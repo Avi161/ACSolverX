@@ -289,7 +289,14 @@ def test_run_refuses_a_manifest_built_for_the_other_rule(mini, tmp_path):
               out_dir=str(tmp_path))
 
 
-def test_early_exit_and_resume(mini, tmp_path):
+def test_every_rank_is_searched_even_after_a_solve(mini, tmp_path):
+    """No early exit: every presentation gets all K searches.
+
+    The census compares the ranks against each other, so each rank has to be
+    measured on the SAME presentations. Were the run to stop at the first solve,
+    ranks 2 and 3 would exist only where rank 1 failed — a harder, self-selected
+    subset — and their means would not be comparable with rank 1's.
+    """
     out = _run(mini, tmp_path, chunks=1, chunk_index=None)
     rows = [json.loads(ln) for ln in open(out)]
     by_pres = {}
@@ -298,25 +305,59 @@ def test_early_exit_and_resume(mini, tmp_path):
 
     for p, rs in by_pres.items():
         rs.sort(key=lambda r: r["rank"])
-        assert [r["rank"] for r in rs] == list(range(1, len(rs) + 1))
-        # a solve is always the LAST row for its presentation: ranks after the
-        # first solve are the searches the early exit exists to never run
-        solved = [i for i, r in enumerate(rs) if r["solved"]]
-        assert solved in ([], [len(rs) - 1])
-        if not solved:
-            assert len(rs) == M.K, f"pres {p} stopped early without solving"
+        assert [r["rank"] for r in rs] == list(range(1, M.K + 1)), (
+            f"pres {p} has ranks {[r['rank'] for r in rs]}, not all {M.K}")
         assert [r["cum_nodes"] for r in rs] == [
             sum(x["nodes_explored"] for x in rs[:i + 1]) for i in range(len(rs))]
         assert all(r["node_budget"] == MAX_BUDGET for r in rs)
         assert all(r["nodes_explored"] <= MAX_BUDGET for r in rs)
         assert all(r["rule"] == mini[0] for r in rs)
 
-    assert any(len(rs) == 1 for rs in by_pres.values()), "no row exited early"
-    assert any(len(rs) == M.K for rs in by_pres.values()), "no row ran all K"
+    # the fixture has to actually exercise the case, or the test is vacuous:
+    # some presentation must solve at a rank that is not the last one, i.e. a
+    # search that early exit would have skipped
+    assert any(any(r["solved"] for r in rs[:-1]) for rs in by_pres.values()), (
+        "no presentation solved before its last rank — this fixture cannot "
+        "tell 'all ranks ran' from 'stopped at the first solve'")
 
     before = open(out).read()
     assert _run(mini, tmp_path, chunks=1, chunk_index=None) == out
     assert open(out).read() == before, "resume re-searched finished work"
+
+
+def test_restart_fills_in_the_ranks_after_a_solve(mini, tmp_path):
+    """Restart -> Run All must finish the ranks below an already-solved one.
+
+    The failure this pins is silent and self-concealing: if a solved rank 1
+    counted as "presentation finished", a resumed run would skip exactly the
+    presentations rank 1 solved, the file would end up complete-looking, and
+    ranks 2-3 would have been measured only on the complement of the easy rows.
+    So: keep ONLY each presentation's rank-1 row, re-run, and require the rest
+    to be searched — including for the presentations whose rank 1 solved.
+    """
+    out = _run(mini, tmp_path, chunks=1, chunk_index=None)
+    rows = [json.loads(ln) for ln in open(out)]
+    rank1 = [r for r in rows if r["rank"] == 1]
+    assert any(r["solved"] for r in rank1), (
+        "no rank-1 solve in the fixture — nothing to skip, test is vacuous")
+    with open(out, "w") as f:
+        for r in rank1:
+            f.write(json.dumps(r) + "\n")
+
+    assert _run(mini, tmp_path, chunks=1, chunk_index=None) == out
+    again = [json.loads(ln) for ln in open(out)]
+    by_pres = {}
+    for r in again:
+        by_pres.setdefault(r["pres_id"], []).append(r["rank"])
+    for p, rk in by_pres.items():
+        assert sorted(rk) == list(range(1, M.K + 1)), (
+            f"pres {p} resumed to ranks {sorted(rk)} — a solve was treated as "
+            f"finishing the presentation")
+    # and the rank-1 rows were not re-searched, only kept
+    kept = {r["pres_id"]: r for r in rank1}
+    for r in again:
+        if r["rank"] == 1:
+            assert r["nodes_explored"] == kept[r["pres_id"]]["nodes_explored"]
 
 
 def test_rows_carry_the_path_and_the_plain_greedy_reference(mini, tmp_path):
@@ -421,9 +462,16 @@ def test_summary_scores_both_arms_on_the_searched_rows_only(mini, tmp_path):
 
 
 def test_summary_separates_unfinished_rows_from_failed_ones(mini, tmp_path):
-    """A presentation with ranks left to try is an unsolved row in every
-    statistic while the arm has not given up on it — mid-run that reads as a
-    loss it never took, so the summary must say so out loud."""
+    """A presentation with ranks left to try is unfinished — whether or not one
+    of the ranks it HAS run already solved.
+
+    Two ways this bites. An unsolved partial is an unsolved row in every
+    statistic while the arm has not given up on it, which mid-run reads as a
+    loss it never took. A *solved* partial is the subtler one: it must still be
+    reported as outstanding, or the per-rank means print over unequal sets while
+    the summary claims nothing is left to do — the same self-selection
+    ``_finished`` exists to prevent, reintroduced through the reporting half.
+    """
     out = _run(mini, tmp_path, chunks=1, chunk_index=None)
     kw = dict(rule=mini[0], budget=MAX_BUDGET, manifest=mini[1],
               out_dir=str(tmp_path))
@@ -432,15 +480,23 @@ def test_summary_separates_unfinished_rows_from_failed_ones(mini, tmp_path):
 
     rows = [json.loads(ln) for ln in open(out)]
     victim = max(r["pres_id"] for r in rows if not r["solved"])
+    # and a presentation whose rank 1 solved — dropping its last rank must
+    # still make it partial, even though it is in the solved set.
+    solved_v = max(r["pres_id"] for r in rows if r["rank"] == 1 and r["solved"])
+    assert solved_v != victim
     keep = [r for r in rows
-            if not (r["pres_id"] == victim and r["rank"] == M.K)]
-    assert len(keep) == len(rows) - 1
+            if r["rank"] != M.K or r["pres_id"] not in (victim, solved_v)]
+    assert len(keep) == len(rows) - 2
     with open(out, "w") as fh:
         for r in keep:
             fh.write(json.dumps(r) + "\n")
     s = R.summarize(out, **kw)
-    assert s["partial"] == [victim]
+    assert s["partial"] == sorted([victim, solved_v]), (
+        "a solved presentation with ranks left to try was reported as finished")
     assert victim in s["searched"] and victim not in s["solved"]
+    assert solved_v in s["solved"], (
+        "the solved partial must stay in the solved set — it is unfinished, "
+        "not unsolved")
 
 
 def test_paired_comparison_uses_only_rows_both_arms_solved(mini, tmp_path,
@@ -466,23 +522,39 @@ def test_paired_comparison_uses_only_rows_both_arms_solved(mini, tmp_path,
         "a presentation plain greedy never solved entered the paired statistics")
 
 
-def test_per_presentation_reports_the_rules_own_cost(mini, tmp_path):
-    """``cum_nodes`` is what the rule actually spent — every rank it ran, not
-    just the winning one — and the reported path is the winning rank's."""
+def test_per_presentation_separates_census_cost_from_deployed_cost(mini,
+                                                                   tmp_path):
+    """The two costs are different numbers and must not be confused.
+
+    ``cum_nodes`` is what the census spent (all K ranks). ``first_solve_nodes``
+    is what the rule would cost deployed as a solver, stopping at its first
+    solve — the only one comparable with plain greedy's single search. Quoting
+    the census cost against plain greedy would charge the method for searches a
+    user would never run.
+    """
     out = _run(mini, tmp_path, chunks=1, chunk_index=None)
     rows = [json.loads(ln) for ln in open(out)]
     per = R.per_presentation(out, M.K)
+    saw_gap = False
     for p, d in per.items():
         mine = sorted((r for r in rows if r["pres_id"] == p),
                       key=lambda r: r["rank"])
         assert d["cum_nodes"] == sum(r["nodes_explored"] for r in mine)
         assert d["n_searches"] == len(mine)
+        assert set(d["by_rank"]) == {r["rank"] for r in mine}
         if d["solved"]:
-            win = next(r for r in mine if r["solved"])
-            assert d["rank"] == win["rank"] == mine[-1]["rank"]
+            win = next(r for r in mine if r["solved"])      # FIRST solving rank
+            assert d["rank"] == win["rank"]
             assert d["path_length"] == win["path_length"]
+            assert d["first_solve_nodes"] == sum(
+                r["nodes_explored"] for r in mine if r["rank"] <= win["rank"])
+            assert d["first_solve_nodes"] <= d["cum_nodes"]
+            saw_gap = saw_gap or d["first_solve_nodes"] < d["cum_nodes"]
         else:
             assert d["rank"] is None and d["path_length"] is None
+            assert d["first_solve_nodes"] is None
+    assert saw_gap, ("census cost equalled deployed cost everywhere — the "
+                     "fixture never ran a rank below a solving one")
 
 
 def test_compare_rules_scores_on_the_common_set(tmp_path):

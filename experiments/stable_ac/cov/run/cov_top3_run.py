@@ -1,12 +1,19 @@
 """Stage B of the ms640 CoV-top-3 experiment: search the frozen top-3 starts.
 
-For each of the 640 ms640 presentations, run the greedy from its manifest picks
-in rank order — rank 1, then rank 2, then rank 3 — **stopping at the first
-solve**. Each search gets its own ``budget`` nodes, so a presentation costs at
-most ``k * budget`` (3 x 100,000 = 300,000) and usually far less: on subset-60 at
-budget 1,000 the median cumulative cost to first solve was 18 nodes. Early exit
-is the rule, not an optimisation — "the top 3 until one solves" is the thing
-being measured, so its cost is the cost of the ranks it actually ran.
+For each of the 640 ms640 presentations, run the greedy from **all three**
+manifest picks, in rank order, at ``budget`` nodes each — including the ranks
+below one that already solved. A presentation therefore always costs ``k``
+searches (worst case 3 x 100,000 = 300,000 nodes).
+
+Not exiting at the first solve is the design, not waste. Every rank is then
+measured on every presentation, so the per-rank means are over ONE set and can
+be compared with each other — which is what says whether the ranking rule
+actually orders the family by quality. Under early exit, ranks 2 and 3 would be
+searched only where rank 1 failed, i.e. on a harder, self-selected subset, and
+their means would be incomparable with rank 1's by construction. Nothing is lost
+in the other direction either: because the ranks run in order and every row
+carries its running ``cum_nodes``, the deployed early-exit cost is recovered
+exactly as ``per_presentation()['first_solve_nodes']``.
 
 The selection is Stage A's problem and is already frozen on disk
 (``cov_top3_manifest``), so this module makes no ranking decisions at all. It
@@ -26,9 +33,10 @@ The rule is in the filename, so the arms can never resume into each other.
 ## Row identity and resume
 
 One jsonl row per *search*, keyed ``(pres_id, rank)``. A presentation is finished
-when some row for it solved, or when all ``k`` ranks have a row — so a resumed
-run re-derives the early exit from the file rather than storing a summary that
-could disagree with it. ``_repair_jsonl`` runs before the first append (a torn
+only when **all** ``k`` ranks have a row — a solve does not finish it, or a
+Restart -> Run All would skip exactly the presentations rank 1 solved and leave
+ranks 2-3 measured on the complement. The verdict is re-derived from the rows
+themselves rather than from a stored summary that could disagree with them. ``_repair_jsonl`` runs before the first append (a torn
 trailing line must be repaired, not merely tolerated at read time) and the output
 is ``flock``-claimed against a superseded session's surviving workers.
 
@@ -79,7 +87,7 @@ from experiments.stable_ac.cov.run.run_cov import (
 
 DEFAULTS = {
     "rule": manifest.DEFAULT_RULE,   # "abel" | "len" — one arm per session
-    "budget": 100_000,               # per search; a presentation costs <= k * this
+    "budget": 100_000,               # per search; every presentation runs all k
     "k": manifest.K,                 # ranks per presentation (manifest is built at 3)
     "manifest": None,                # None = derived from the rule (the safe default)
     "out_dir": manifest.OUT_DIR,
@@ -196,10 +204,10 @@ def _read_done(out_path):
 def shard(pres_list, chunks, chunk_index):
     """Presentation ``j`` belongs to chunk ``(j % chunks) + 1`` (run_cov's rule).
 
-    Sharded on the PRESENTATION, never on the manifest row: ranks 1-3 of one
-    presentation are a sequential early-exit chain, so splitting them across
-    sessions would make each session search ranks the other had already made
-    unnecessary.
+    Sharded on the PRESENTATION, never on the manifest row: a presentation's k
+    ranks are one record — they share a ``cum_nodes`` chain and their comparison
+    is per-presentation — so splitting them across sessions would scatter one
+    unit of the census over two files that each look complete.
     """
     if chunk_index is None:
         return list(pres_list)
@@ -214,9 +222,10 @@ class _Top3Heartbeat:
     ``beat`` (60 s) rides the solver's own ``progress`` callback, so it fires
     *inside* a long search: a slow CPU shows up as a falling instantaneous
     nodes/s, never as silence. ``summary`` (5 min) is the cumulative
-    done/solved/ETA line. Progress is counted in PRESENTATIONS, not searches —
-    early exit makes a presentation 1, 2 or 3 searches, so a search-denominated
-    ETA would be wrong by up to 3x. Everything prints from the main thread (the
+    done/solved/ETA line. Progress is counted in PRESENTATIONS, not searches, so
+    the ETA stays denominated in the same unit the run is sized in (640), and a
+    resumed partial presentation cannot double-count. Everything prints from the
+    main thread (the
     callback runs inside ``solve``); a background thread must never print, and a
     pool worker's print is dropped outright in Colab.
     """
@@ -381,7 +390,15 @@ def run(root=ROOT, **overrides):
                 continue
             cum = ranks = 0
             solved_here = False
+            first_solve = None
             ref = base.get(pres_id, {})
+            # EVERY rank is searched, including the ones after a solve. Stopping
+            # at the first solve would leave ranks 2 and 3 measured only on the
+            # presentations rank 1 could not solve — their means would then be
+            # over the hard tail alone and could not be compared with rank 1's,
+            # which is the comparison this census exists to make. The deployable
+            # early-exit cost is still recoverable from the file, because the
+            # ranks run in order and every row carries its running ``cum_nodes``.
             for pick in picks[:c["k"]]:
                 ranks += 1
                 prev = done.get((pres_id, pick["rank"]))
@@ -389,7 +406,7 @@ def run(root=ROOT, **overrides):
                     cum += int(prev["nodes_explored"])
                     if prev["solved"]:
                         solved_here = True
-                        break
+                        first_solve = first_solve or prev["rank"]
                     continue
                 t0 = time.perf_counter()
                 stats = _search(c, pick["r1"], pick["r2"], pick["cap"],
@@ -431,10 +448,12 @@ def run(root=ROOT, **overrides):
                 hb.note_search(stats)
                 if stats["solved"]:
                     solved_here = True
-                    break
+                    first_solve = first_solve or pick["rank"]
             hb.note_pres(solved_here)
             print(f"  {pres_id}: solved={solved_here} cum_nodes={cum:,} "
-                  f"ranks={ranks}/{min(c['k'], len(picks))}", flush=True)
+                  f"ranks={ranks}/{min(c['k'], len(picks))} "
+                  f"first_solve={f'r{first_solve}' if first_solve else '-'}",
+                  flush=True)
     print(hb.summary(), flush=True)
     print(f"[{c['rule']}-top{c['k']}] done: {n_solved} solving searches over "
           f"{n_seen} searches", flush=True)
@@ -442,15 +461,20 @@ def run(root=ROOT, **overrides):
 
 
 def _finished(done, picks, k):
-    """A presentation is done when some rank solved, or all k ranks have a row.
+    """A presentation is done only when ALL k ranks have a row.
+
+    A solve does NOT finish it. This is the resume half of the no-early-exit
+    rule and the half that fails silently: were a solved rank 1 to count as
+    finished here, a Restart -> Run All would skip precisely the presentations
+    rank 1 solved, and ranks 2 and 3 would end up measured only on the rows
+    rank 1 failed — the file would look complete and the per-rank means would
+    be taken over disjoint, self-selected sets.
 
     Re-derived from the rows themselves on every resume — never cached, because
     a cached verdict that survives a crash the rows did not is exactly how a
     resumed run reports work it never did.
     """
     rows = [done.get((p["pres_id"], p["rank"])) for p in picks[:k]]
-    if any(r is not None and r["solved"] for r in rows):
-        return True
     return bool(rows) and all(r is not None for r in rows)
 
 
@@ -572,12 +596,23 @@ def _stats(vals):
 
 
 def per_presentation(out_path, k, root=ROOT):
-    """{pres_id: {solved, rank, cum_nodes, path_length, base_*}} — the arm's row.
+    """{pres_id: {solved, rank, cum_nodes, first_solve_nodes, ...}} — one record
+    per presentation the file searched, beside the untransformed route's numbers.
 
-    One record per presentation the file searched: what the rule actually
-    delivered (did it solve, at which rank, for how many nodes in total, with
-    what path length) beside the untransformed route's own numbers. This is the
-    unit every comparison below is computed on.
+    Every rank is searched, so a presentation has TWO costs and they are not
+    interchangeable:
+
+    * ``cum_nodes`` — what this census actually spent on it, all k ranks summed.
+      The honest price of running the census.
+    * ``first_solve_nodes`` — ranks 1..r summed, r being the first rank that
+      solved. What the rule would cost DEPLOYED as a solver, stopping at the
+      first solve. This is the number comparable with plain greedy's single
+      search, and it is exact rather than estimated because the ranks run in
+      order.
+
+    Quoting the census cost against plain greedy would charge the method for
+    searches a real user would never run; quoting the deployed cost as the
+    census's price would hide two thirds of the compute. Both are reported.
     """
     done, _, _ = _read_done(out_path)
     base = baseline_rows(root)
@@ -590,12 +625,21 @@ def per_presentation(out_path, k, root=ROOT):
         rows = rows[:k]
         hit = next((r for r in rows if r["solved"]), None)
         ref = base.get(pres_id, {})
+        first = None
+        if hit is not None:
+            first = sum(r["nodes_explored"] for r in rows
+                        if r["rank"] <= hit["rank"])
         out[pres_id] = {
             "solved": hit is not None,
             "rank": hit["rank"] if hit else None,
             "n_searches": len(rows),
             "cum_nodes": sum(r["nodes_explored"] for r in rows),
+            "first_solve_nodes": first,
             "path_length": hit["path_length"] if hit else None,
+            "by_rank": {r["rank"]: {"solved": bool(r["solved"]),
+                                    "nodes_explored": r["nodes_explored"],
+                                    "path_length": r["path_length"]}
+                        for r in rows},
             "base_solved": ref.get("solved"),
             "base_nodes_explored": ref.get("nodes_explored"),
             "base_path_length": ref.get("path_length"),
@@ -621,18 +665,23 @@ def summarize(out_path, root=ROOT, **overrides):
     searched = set(per)
     hit = {p for p, d in per.items() if d["solved"]}
     missing = [p for p, _ in groups if p not in searched]
-    # started but not finished: ranks left to try. Counted separately because
-    # such a row is an unsolved row in every statistic below while the arm has
-    # not actually given up on it — mid-run, that reads as a loss it never took.
-    partial = sorted(p for p, d in per.items()
-                     if not d["solved"] and d["n_searches"] < c["k"])
+    # Started but not finished: ranks left to try. A SOLVED presentation can be
+    # partial too, now that every rank runs — mirroring _finished, which is the
+    # point: were this predicate to keep "a solve finishes it", the per-rank
+    # means printed below would silently span unequal sets mid-run while the
+    # summary reported nothing outstanding. Unsolved partials additionally
+    # understate the arm (they read as losses it has not yet taken).
+    partial = sorted(p for p, d in per.items() if d["n_searches"] < c["k"])
+    part_uns = [p for p in partial if not per[p]["solved"]]
     n, m = len(groups), len(searched)
     print(f"[summary {c['rule']} top-{c['k']} @ {c['budget']:,}] {m}/{n} "
           f"presentations searched"
           + (f" — {len(missing)} NOT STARTED, every number below is over the "
              f"{m} searched" if missing else "")
-          + (f"; {len(partial)} still have ranks to try {partial[:10]} and "
-             f"count as unsolved below" if partial else ""), flush=True)
+          + (f"; {len(partial)} still have ranks to try {partial[:10]} — the "
+             f"per-rank block below is over unequal sets until they finish, and "
+             f"the {len(part_uns)} of them not yet solved count as unsolved"
+             if partial else ""), flush=True)
     if not m:
         return {"searched": searched, "solved": hit, "per": per}
 
@@ -649,28 +698,68 @@ def summarize(out_path, root=ROOT, **overrides):
           f"{only_a[:20] or ''} | {len(only_g)} only greedy {only_g[:20] or ''}",
           flush=True)
     ranks = [per[p]["rank"] for p in hit]
-    print(f"  solving rank: "
+    print(f"  first solving rank: "
           + " ".join(f"r{i}={ranks.count(i)}" for i in range(1, c["k"] + 1))
           + f" | unsolved={m - len(hit)}", flush=True)
+
+    # -- per rank, on every presentation ---------------------------------------
+    # Every rank is searched on every presentation, so these means are over the
+    # same set and ARE comparable with each other. That is the whole point of not
+    # exiting early: a rank measured only where the ranks above it failed would
+    # be measured on a harder, self-selected subset, and would look worse than it
+    # is. If the rule orders by quality, r1 solves most and costs least here.
+    by_rank = {}
+    for p, d in per.items():
+        for r, v in d["by_rank"].items():
+            by_rank.setdefault(r, []).append(v)
+    print(f"  per rank, each over the presentations that reached it "
+          f"(same set across ranks once the run is complete):", flush=True)
+    for r in sorted(by_rank):
+        v = by_rank[r]
+        s = [x for x in v if x["solved"]]
+        nod = _stats([x["nodes_explored"] for x in v])
+        line = (f"    r{r}: solved {len(s)}/{len(v)}  nodes median "
+                f"{nod['median']:,} mean {nod['mean']:,.0f} total "
+                f"{nod['total']:,}")
+        if s:
+            pl = _stats([x["path_length"] for x in s])
+            line += f"  path median {pl['median']} mean {pl['mean']:.1f}"
+        print(line, flush=True)
+    union = {p for p, d in per.items()
+             if any(v["solved"] for v in d["by_rank"].values())}
+    r1_only = {p for p, d in per.items() if d["by_rank"].get(1, {}).get("solved")}
+    print(f"    rank 1 alone solves {len(r1_only)}/{m}; the top-{c['k']} union "
+          f"solves {len(union)}/{m} — the extra {len(union) - len(r1_only)} are "
+          f"what ranks 2..{c['k']} are worth", flush=True)
+    census = _stats([per[p]["cum_nodes"] for p in per])
+    print(f"    census cost (all {c['k']} ranks, every presentation): "
+          f"{census['total']:,} nodes, mean {census['mean']:,.0f} per "
+          f"presentation", flush=True)
 
     # -- the paired comparison, on rows BOTH arms solved -----------------------
     pair = sorted(p for p in hit if per[p]["base_solved"]
                   and per[p]["base_nodes_explored"] is not None)
     if pair:
-        cn = _stats([per[p]["cum_nodes"] for p in pair])
+        # first_solve_nodes, not cum_nodes: plain greedy's number is the cost of
+        # ONE search that stopped when it solved, so the comparable CoV number is
+        # the cost of the ranks tried up to and including the one that solved.
+        # Charging the method for the ranks a deployed solver would never run
+        # would compare a census against a solver.
+        cn = _stats([per[p]["first_solve_nodes"] for p in pair])
         bn = _stats([per[p]["base_nodes_explored"] for p in pair])
         cp = _stats([per[p]["path_length"] for p in pair])
         bp = _stats([per[p]["base_path_length"] for p in pair])
         w_n = sum(1 for p in pair
-                  if per[p]["cum_nodes"] < per[p]["base_nodes_explored"])
+                  if per[p]["first_solve_nodes"] < per[p]["base_nodes_explored"])
         t_n = sum(1 for p in pair
-                  if per[p]["cum_nodes"] == per[p]["base_nodes_explored"])
+                  if per[p]["first_solve_nodes"] == per[p]["base_nodes_explored"])
         w_p = sum(1 for p in pair
                   if per[p]["path_length"] < per[p]["base_path_length"])
         t_p = sum(1 for p in pair
                   if per[p]["path_length"] == per[p]["base_path_length"])
         print(f"  paired on {len(pair)} presentations both arms solved "
-              f"(plain greedy's own cost at its 1,000,000-node budget):",
+              f"(plain greedy's own cost at its 1,000,000-node budget; the "
+              f"{c['rule']} cost is nodes to its FIRST solve, not the census):",
               flush=True)
         print(f"    nodes  {c['rule']}: median {cn['median']:,} mean "
               f"{cn['mean']:,.0f} max {cn['max']:,} total {cn['total']:,}",
@@ -719,8 +808,12 @@ def compare_rules(path_a, path_b, root=ROOT, k=manifest.K, label_a="abel",
           f"only {label_b} {sorted(hb_ - ha)[:20]}", flush=True)
     both = sorted(ha & hb_)
     if both:
-        an = _stats([a[p]["cum_nodes"] for p in both])
-        bn = _stats([b[p]["cum_nodes"] for p in both])
+        # first-solve cost on both sides: the two arms run the same number of
+        # searches per presentation, so the census totals differ only by search
+        # cost, but what distinguishes the RULES is how early each one puts a
+        # solving start — which is exactly what nodes-to-first-solve measures.
+        an = _stats([a[p]["first_solve_nodes"] for p in both])
+        bn = _stats([b[p]["first_solve_nodes"] for p in both])
         ap_ = _stats([a[p]["path_length"] for p in both])
         bp = _stats([b[p]["path_length"] for p in both])
         print(f"  on the {len(both)} both solved — nodes {label_a} median "
