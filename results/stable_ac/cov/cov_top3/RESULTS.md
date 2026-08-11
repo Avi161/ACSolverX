@@ -115,6 +115,18 @@ Total transformed length is the right thing to break that tie with, and it is me
 
 The recommended rule is therefore `(abel, total transformed length)` for ranking, **relabel dedup of the candidate list before the top k** (which subsumes the Booth dedup — the 8 signed permutations include the identity, so a Booth repeat is a relabel repeat), **`S` at the last slot**, canonical-lex last for determinism. Two cautions carry over: the re-score above only reorders picks that were already searched, so it is a lower bound and not an evaluation of the full rule; and each added term is another variable, which is why `abel_rd` and `len_rd` exist — they change the shipped arms in exactly one way, so a difference against the frozen runs is attributable.
 
+**All 640 at budget 1,000, every rank searched (2026-08-11).** Four fresh runs — `abel`, `abel → length → S`, `len`, `length → S` — over every ms640 presentation at `node_budget = 1,000`, with all three ranks searched on every row even when rank 1 solves, so a presentation costs at most 3,000 nodes. All 7,680 rows verify (`verify_results`: 6,820 solved certificates, 0 budget-invariance violations). The plain-greedy control is the **same baseline truncated to 1,000 nodes**, not its own 1,000,000-node run: a search at *B* is the first *B* pops of a longer one, so truncation gives the exact budget-1,000 control at zero new search — quoting the baseline's own 640/640 would compare against a 1,000× larger budget.
+
+| arm | rank 1 | top 3 | deployed nodes | all-3-ranks nodes |
+|---|---|---|---|---|
+| plain greedy, truncated to 1,000 | — | 554 | 122,208 | 122,208 |
+| `abel` (shipped) | 584 | 596 | 168,906 | 249,413 |
+| **`abel → length → S`** | **590** | 596 | **161,629** | 333,815 |
+| `len` (shipped) | 573 | 587 | 215,176 | 315,088 |
+| `length → S` | 572 | **588** | 213,206 | 331,050 |
+
+This is the dynamic range subset-60 could not supply, where `S` moved 6 nodes and nothing else because almost no row had headroom. **`S` earns its slot at rank 1 and only there**: 584 → 590 solves and 7,277 fewer deployed nodes on the abel arm, and one extra top-3 row on the length arm (587 → 588). Top-3 on the abel arm is 596 either way — and the *same* 596 presentations, not merely the same count — so what `S` buys is a better first pick, not a better list. **Priced as the run was actually executed it is the dearer arm**: 249,413 → 333,815 nodes, because the picks it promotes into slots 2 and 3 solve markedly worse (580/580 → 524/543 by rank). The mechanism is [diversity-only-pays-at-full-depth](../../../../experiments/lessons/diversity-only-pays-at-full-depth.md) seen from the other side — the name tie-break fills those slots with unlike starts, `S` with near-copies of the rank-1 pick — so the two accountings must be reported as separate columns, per [price-the-untransformed-route](../../../../experiments/lessons/price-the-untransformed-route.md). **`k = 2` reaches the top-3 count on all four arms**, so the third search buys nothing *at this budget*; that does not transfer to 100,000, where abel's rank 1 already solves 640/640.
+
 ## Reproducing
 
 ```bash
