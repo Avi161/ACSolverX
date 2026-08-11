@@ -139,7 +139,49 @@ The 1,000-node gap over the incumbent is **one presentation**, not a distributio
 
 **This column is not a scoreboard — read it against the one above.** `abel` alone decides a unique pick on 7/60; total length as the second key takes it to 31/60, `Lmin` to only 24/60, and `S` to 14/60. But `abel + S + total` decides **48/60** — the most of any chain here, more than `abel + total + Lmin`'s 34 — and it is the arm that *loses* 2 rank-1 solves and 2,185 nodes. `abel + reco` decides 38/60 and buys nothing. Breaking more ties is not the objective; breaking them *toward the shorter pair* is.
 
-After `abel` and the total, **29 of 60 presentations still need a further key**, and — since `max = total − Lmin` — no length feature remains to supply one. That residue is what `_ident` decides today. Nothing in the sweep above is a better answer to it, and the ms640 census already names one that is not a sort key at all: a **Booth-canonical dedup of the candidate list before the top 3 is taken**. Canonically identical candidates carry equal keys, sort adjacent, and both enter the top 3 under every arm in this file — one of the three slots spent re-searching the same start. No dedup is applied here, deliberately, so these numbers stay comparable to the incumbent 41/60.
+After `abel` and the total, **29 of 60 presentations are still tied** and — since `max = total − Lmin` — no length feature remains to supply another key. The next section asks what to do about that, and the answer is nothing.
+
+## What to do when the tie survives: nothing
+
+Three measurements, in the order that settles the question.
+
+**1. Half the tie is not a tie.** The 102 candidates tied at `(abel, total)`'s minimum across those 29 presentations reduce to **52 distinct Booth-canonical pairs** (49% duplicates), and on 9 of the 29 the whole tied set is **one** start listed several times. Two candidates with the same canonical pair are not similar starts, they are the same search: same pops, same `nodes_explored`, same outcome. Choosing between them is not a decision.
+
+**2. Where the tie is real, it is almost always inconsequential.** Split the 29 tied sets by outcome: **12** where every member solves, **16** where none does, and **1** mixed. A homogeneous set cannot be improved by any tie-break — every choice returns the same verdict. Exactly 1 presentation is a genuine decision: `533`, where the tied pair splits 25 nodes against 1,000. That is the same row that has driven every margin in this file.
+
+**3. Deduplicating before the top 3 is free and buys nothing.** It is a real intervention, not a no-op — **42 of 60** top-3 lists currently spend at least one slot on a search an earlier rank already ran (56 slots in total), and dropping the duplicates changes the top-3 *set* on those 42 rows. The result is identical anyway:
+
+| | k=1 | k=2 | k=3 | median | mean | deployed |
+|---|---:|---:|---:|---:|---:|---:|
+| `(abel, total)` top 3 | 40 | 41 | 41 | 18 | 112.9 | 61,627 |
+| + canonical dedup | 40 | 41 | 41 | 18 | 112.9 | 61,627 |
+
+Paired: win/tie/loss **0/41/0** at budget 1,000 and **0/52/0** at 10,000 — not one node moves at either budget. The promoted candidates never solve where the old top 3 failed.
+
+This is **not** a refutation of the dedup recommendation in [`cov_top3/RESULTS.md`](../stable_ac/cov/cov_top3/RESULTS.md); it is the abel-arm half of it, measured. That census found the waste is overwhelmingly a `len`-arm problem — `len` spent **325,963 nodes, 10% of its census, on 126 repeated searches**, while **abel spent 707 nodes on 38** — and it flagged its own re-score as a lower bound because it could only reorder picks already searched. This file removes that limitation (it re-ranks the whole enumerated family, so the dedup really does pull in candidates that were never in the top 3) and finds the abel arm's gain is not merely small but **exactly zero** on all 60 rows at both budgets. So: keep the dedup, because 42/60 lists really do waste a slot and `k` should mean *k distinct searches* — but for an `abel`-ranked arm it is hygiene, not headroom, and it must never be reported as a gain. The correction is to the first version of *this* file, which offered it as the answer to the residue on the strength of the 49% duplicate count alone.
+
+## Where the headroom actually is
+
+The tie is exhausted, so the 4 rows between this arm's 41/60 and the oracle's 45/60 have to come from somewhere else. Rank of the first *solving* candidate under `(abel, total)`, over the 45 solvable presentations:
+
+| k | 1 | 2 | 3 | 5 | 10 | 25 | 50 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| solved within k | 40 | 41 | 41 | 41 | 43 | 43 | 45 |
+
+Widening k is not the answer either: k=3 to k=5 buys **0**, and the four rows beyond k=3 sit at ranks 8, 8, 49, 44 out of 109, 109, 138, 134 candidates. Their solving searches cost 410–632 nodes — they are **cheap solves ranked far down**, so this is a primary-ranking failure, not a budget or a tie-break failure.
+
+All four share one cause: the solving candidate sits **one abel step above the minimum** (abel 3 against the rank-1 pick's abel 2), and on two of them it is also much longer (41 and 37 against 24). Both keys point away from it. Over all 45 solvable rows, `abel(first solving candidate) − min abel` is **40** at offset 0 and **5** at offset 1 — so the abelian filter's own minimum shell is right 40 times out of 45 and wrong 5. The open question this file leaves is therefore **when to skip abel's minimum shell**, which is not a tie-break question.
+
+Reserving a slot for the next shell does not answer it. Three class-quota policies, scored the same way:
+
+| policy | k=1 | k=2 | k=3 | deployed |
+|---|---:|---:|---:|---:|
+| all 3 from the minimum shell | 40 | 40 | 40 | 61,602 |
+| 2 from the minimum + 1 from the next | 40 | 41 | 41 | 61,627 |
+| 1 from each of the 3 lowest | 40 | 41 | 41 | 61,627 |
+| `(abel, total)` top 3, for reference | 40 | 41 | 41 | 61,627 |
+
+Not one recovers a row, and the pure-shell policy *loses* one. The reason is that `(abel, total)` already spills into the next shell whenever the minimum shell holds fewer than 3 candidates, so an explicit quota is mostly a no-op — and where it is not, it displaces a rank that was solving. Whatever promotes these four is a signal not yet in the vocabulary.
 
 ## Rank 1 alone, and why the 1,000-node margin does not survive a budget change
 

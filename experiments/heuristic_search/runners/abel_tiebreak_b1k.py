@@ -90,6 +90,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(_HERE, "..", "..", "..")))
 from experiments.heuristic_search.runners import abel_topk_cov_b1k as R  # noqa: E402
 from experiments.heuristic_search.core.hlab import FEATURES, phi  # noqa: E402
 from experiments.heuristic_search.core.hsolve import RECOMMENDED  # noqa: E402
+from experiments.search.greedy_baseline import (  # noqa: E402
+    canonical_pair_nj, reduce_relator_nj, str_to_arr,
+)
 
 ROOT = R.ROOT
 K = 3
@@ -323,6 +326,143 @@ def discrimination(cov):
     return out
 
 
+def canon_pair(d):
+    """The pair the SOLVER would start from — Booth lex-min, order-normalised.
+
+    Two candidates with the same value here are not similar, they are the same search: same
+    pops, same ``nodes_explored``, same outcome. This is the equivalence a top-k list wastes a
+    slot on when it takes both.
+    """
+    a = reduce_relator_nj(str_to_arr(d["r1"]), True)
+    b = reduce_relator_nj(str_to_arr(d["r2"]), True)
+    c1, c2 = canonical_pair_nj(a, b)
+    return c1.tobytes(), c2.tobytes()
+
+
+def tie_residue(cov, key):
+    """What is actually left in the tie at ``key``'s minimum, and whether the pick can matter.
+
+    ``homog`` splits the tied sets by outcome: a set where every member solves, or none does,
+    cannot be improved by any tie-break — the choice is between identical outcomes. Only a
+    ``mixed`` set is a decision.
+    """
+    tied, n_cand, n_canon, collapse = [], 0, 0, 0
+    homog_all, homog_none, mixed = 0, 0, []
+    for p, v in cov.items():
+        m = min(key(d) for d in v)
+        t = [d for d in v if key(d) == m]
+        if len(t) == 1:
+            continue
+        tied.append(p)
+        n_cand += len(t)
+        n_canon += len({canon_pair(d) for d in t})
+        collapse += len({canon_pair(d) for d in t}) == 1
+        ns = sum(1 for d in t if d["solved"])
+        if ns == len(t):
+            homog_all += 1
+        elif ns == 0:
+            homog_none += 1
+        else:
+            mixed.append((p, len(t), ns, min(d["nodes_explored"] for d in t),
+                          max(d["nodes_explored"] for d in t)))
+    return {"n_tied": len(tied), "n_cand": n_cand, "n_canon": n_canon, "collapse": collapse,
+            "homog_all": homog_all, "homog_none": homog_none, "mixed": mixed}
+
+
+def dedup_rank(cov, key):
+    """Rank by ``key``, then drop every candidate whose canonical pair already appeared.
+
+    The top k is then k *distinct searches*. This is the intervention the ms640 write-up
+    proposed for the residue; ``main`` prices it rather than assuming it helps.
+    """
+    out = {}
+    for p, v in cov.items():
+        for d in v:
+            d["_key"] = key(d)
+        seen, keep = set(), []
+        for d in sorted(v, key=lambda d: d["_key"] + R._ident(d)):
+            c = canon_pair(d)
+            if c in seen:
+                continue
+            seen.add(c)
+            keep.append(d)
+        out[p] = keep
+    return out
+
+
+def score_ranked(ranked, cov):
+    """``score`` for an already-ranked dict (``dedup_rank``'s output)."""
+    hits = {p for p in cov if R.solves_within(ranked[p], K)}
+    return {"ranked": ranked, "hits": hits,
+            "hits_at": {k: {p for p in cov if R.solves_within(ranked[p], k)} for k in KS},
+            "at_k": {k: len({p for p in cov if R.solves_within(ranked[p], k)}) for k in KS},
+            "first_solve": {p: first_solve_nodes(ranked[p]) for p in hits},
+            "deployed": {p: deployed_nodes(ranked[p]) for p in cov},
+            "deployed_total": sum(deployed_nodes(ranked[p]) for p in cov),
+            "k1_first_solve": {p: first_solve_nodes(ranked[p], 1) for p in cov
+                               if first_solve_nodes(ranked[p], 1) is not None},
+            "ident_topk": 0, "ident_rank1": 0}
+
+
+def slot_waste(ranked, cov):
+    """Top-k slots spent re-running a search an earlier rank already ran."""
+    lists = sum(1 for p in cov
+                if len({canon_pair(d) for d in ranked[p][:K]}) < min(K, len(ranked[p])))
+    slots = sum(min(K, len(ranked[p])) - len({canon_pair(d) for d in ranked[p][:K]})
+                for p in cov)
+    return lists, slots
+
+
+def solve_rank_curve(ranked, cov):
+    """Rank of the first solving candidate — how large k would have to be, and for whom."""
+    ranks = {}
+    for p in cov:
+        i = next((i + 1 for i, d in enumerate(ranked[p]) if d["solved"]), None)
+        if i:
+            ranks[p] = i
+    curve = {k: sum(1 for r in ranks.values() if r <= k) for k in (1, 2, 3, 5, 10, 25, 50)}
+    beyond = sorted((p, r, ranked[p][r - 1]["nodes_explored"], len(ranked[p]))
+                    for p, r in ranks.items() if r > K)
+    return ranks, curve, beyond
+
+
+def abel_offset(cov):
+    """For each solvable presentation, abel(first solving candidate) - min abel over the family.
+
+    0 means the abelian filter's own minimum shell contains a solving start; 1 means the
+    solving start is one step above it and the primary key ranks it below every member of a
+    shell that never solves.
+    """
+    out = {}
+    for p, v in cov.items():
+        sol = [d for d in v if d["solved"]]
+        if not sol:
+            continue
+        m = min(_abel(d) for d in v)
+        w = min(sol, key=lambda d: (_abel(d), R._start_len(d)) + R._ident(d))
+        out[p] = _abel(w) - m
+    return out
+
+
+def class_quota(cov, quota):
+    """Take ``quota[i]`` candidates from the i-th lowest abel shell, shortest first.
+
+    A diversification control for the offset finding: if the misses are a shell problem,
+    reserving a slot for the next shell should recover them.
+    """
+    out = {}
+    for p, v in cov.items():
+        shells = defaultdict(list)
+        for d in v:
+            shells[_abel(d)].append(d)
+        pick = []
+        for i, a in enumerate(sorted(shells)):
+            n = quota[i] if i < len(quota) else 0
+            pick += sorted(shells[a], key=lambda d: (R._start_len(d),) + R._ident(d))[:n]
+        out[p] = pick
+    return out
+
+
 def second_key_sweep(cov):
     """Every feature as the second key, in both positions. Zero search nodes, so exhaustive.
 
@@ -381,12 +521,27 @@ def main():
     disc = discrimination(cov)
     sweep = second_key_sweep(cov)
 
+    # what is left in the tie after (abel, total), and whether anything can be done with it
+    AT = ARMS["abel_mean_len"]              # (abel, total, mean) == (abel, total)
+    TOTKEY = lambda d: (_abel(d), R._start_len(d))          # noqa: E731
+    resid = tie_residue(cov, TOTKEY)
+    dd = score_ranked(dedup_rank(cov, TOTKEY), cov)
+    waste_lists, waste_slots = slot_waste(S["abel_mean_len"]["ranked"], cov)
+    pr_dd = paired(dd, S["abel_mean_len"])
+    _, curve, beyond = solve_rank_curve(S["abel_mean_len"]["ranked"], cov)
+    offs = abel_offset(cov)
+    off_hist = {o: sum(1 for x in offs.values() if x == o) for o in sorted(set(offs.values()))}
+    QUOTAS = ((K,), (K - 1, 1), (1, 1, 1))
+    quota_res = [(q, score_ranked(class_quota(cov, q), cov)) for q in QUOTAS]
+
     # free robustness check: the same arms on the 10,000-node twin of this sweep
     cov10, ctl10 = load_sweep(R.SWEEP_10K, set(ids60))
     S10 = {name: score(cov10, key) for name, key in ARMS.items()}
     oracle10 = R.oracle_set(cov10)
     greedy10 = {p for p, c in ctl10.items() if c["solved"]}
     pr10 = paired(S10[A], S10[B])
+    dd10 = score_ranked(dedup_rank(cov10, TOTKEY), cov10)
+    pr_dd10 = paired(dd10, S10["abel_mean_len"])
 
     # the held-out 124 — reported as untestable, with the number that makes it so
     cov124, _ = load_sweep(HELDOUT)
@@ -545,7 +700,51 @@ The {abs(vs_inc['abel_mean_len']['a_total'] - vs_inc['abel_mean_len']['b_total']
 
 **This column is not a scoreboard — read it against the one above.** `abel` alone decides a unique pick on {disc['abel'][2]}/{n_pres}; total length as the second key takes it to {disc['abel + total'][2]}/{n_pres}, `Lmin` to only {disc['abel + min'][2]}/{n_pres}, and `S` to {disc['abel + S'][2]}/{n_pres}. But `abel + S + total` decides **{disc['abel + S + total'][2]}/{n_pres}** — the most of any chain here, more than `abel + total + Lmin`'s {disc['abel + min + total'][2]} — and it is the arm that *loses* {S['abel_mean_len']['at_k'][1] - S['abel_S_len']['at_k'][1]} rank-1 solves and {S['abel_S_len']['deployed_total'] - S['abel_mean_len']['deployed_total']:,} nodes. `abel + reco` decides {disc['abel + reco'][2]}/{n_pres} and buys nothing. Breaking more ties is not the objective; breaking them *toward the shorter pair* is.
 
-After `abel` and the total, **{n_pres - disc['abel + total'][2]} of 60 presentations still need a further key**, and — since `max = total − Lmin` — no length feature remains to supply one. That residue is what `_ident` decides today. Nothing in the sweep above is a better answer to it, and the ms640 census already names one that is not a sort key at all: a **Booth-canonical dedup of the candidate list before the top {K} is taken**. Canonically identical candidates carry equal keys, sort adjacent, and both enter the top {K} under every arm in this file — one of the three slots spent re-searching the same start. No dedup is applied here, deliberately, so these numbers stay comparable to the incumbent {S['abel_len_lex']['at_k'][3]}/60.
+After `abel` and the total, **{resid['n_tied']} of 60 presentations are still tied** and — since `max = total − Lmin` — no length feature remains to supply another key. The next section asks what to do about that, and the answer is nothing.
+
+## What to do when the tie survives: nothing
+
+Three measurements, in the order that settles the question.
+
+**1. Half the tie is not a tie.** The {resid['n_cand']} candidates tied at `(abel, total)`'s minimum across those {resid['n_tied']} presentations reduce to **{resid['n_canon']} distinct Booth-canonical pairs** ({100 * (1 - resid['n_canon'] / resid['n_cand']):.0f}% duplicates), and on {resid['collapse']} of the {resid['n_tied']} the whole tied set is **one** start listed several times. Two candidates with the same canonical pair are not similar starts, they are the same search: same pops, same `nodes_explored`, same outcome. Choosing between them is not a decision.
+
+**2. Where the tie is real, it is almost always inconsequential.** Split the {resid['n_tied']} tied sets by outcome: **{resid['homog_all']}** where every member solves, **{resid['homog_none']}** where none does, and **{len(resid['mixed'])}** mixed. A homogeneous set cannot be improved by any tie-break — every choice returns the same verdict. Exactly {len(resid['mixed'])} presentation is a genuine decision: `{resid['mixed'][0][0]}`, where the tied pair splits {resid['mixed'][0][3]:,} nodes against {resid['mixed'][0][4]:,}. That is the same row that has driven every margin in this file.
+
+**3. Deduplicating before the top {K} is free and buys nothing.** It is a real intervention, not a no-op — **{waste_lists} of 60** top-{K} lists currently spend at least one slot on a search an earlier rank already ran ({waste_slots} slots in total), and dropping the duplicates changes the top-{K} *set* on those {waste_lists} rows. The result is identical anyway:
+
+| | k=1 | k=2 | k=3 | median | mean | deployed |
+|---|---:|---:|---:|---:|---:|---:|
+| `(abel, total)` top {K} | {S['abel_mean_len']['at_k'][1]} | {S['abel_mean_len']['at_k'][2]} | {S['abel_mean_len']['at_k'][3]} | {_stat(S['abel_mean_len'])[2]:,.0f} | {_stat(S['abel_mean_len'])[1]:,.1f} | {S['abel_mean_len']['deployed_total']:,} |
+| + canonical dedup | {dd['at_k'][1]} | {dd['at_k'][2]} | {dd['at_k'][3]} | {_stat(dd)[2]:,.0f} | {_stat(dd)[1]:,.1f} | {dd['deployed_total']:,} |
+
+Paired: win/tie/loss **{pr_dd['win']}/{pr_dd['tie']}/{pr_dd['loss']}** at budget 1,000 and **{pr_dd10['win']}/{pr_dd10['tie']}/{pr_dd10['loss']}** at 10,000 — not one node moves at either budget. The promoted candidates never solve where the old top {K} failed.
+
+This is **not** a refutation of the dedup recommendation in [`cov_top3/RESULTS.md`](../stable_ac/cov/cov_top3/RESULTS.md); it is the abel-arm half of it, measured. That census found the waste is overwhelmingly a `len`-arm problem — `len` spent **325,963 nodes, 10% of its census, on 126 repeated searches**, while **abel spent 707 nodes on 38** — and it flagged its own re-score as a lower bound because it could only reorder picks already searched. This file removes that limitation (it re-ranks the whole enumerated family, so the dedup really does pull in candidates that were never in the top {K}) and finds the abel arm's gain is not merely small but **exactly zero** on all 60 rows at both budgets. So: keep the dedup, because {waste_lists}/60 lists really do waste a slot and `k` should mean *k distinct searches* — but for an `abel`-ranked arm it is hygiene, not headroom, and it must never be reported as a gain. The correction is to the first version of *this* file, which offered it as the answer to the residue on the strength of the {100 * (1 - resid['n_canon'] / resid['n_cand']):.0f}% duplicate count alone.
+
+## Where the headroom actually is
+
+The tie is exhausted, so the {len(oracle) - S['abel_mean_len']['at_k'][3]} rows between this arm's {S['abel_mean_len']['at_k'][3]}/60 and the oracle's {len(oracle)}/60 have to come from somewhere else. Rank of the first *solving* candidate under `(abel, total)`, over the {len(oracle)} solvable presentations:
+
+| k | 1 | 2 | 3 | 5 | 10 | 25 | 50 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| solved within k | {curve[1]} | {curve[2]} | {curve[3]} | {curve[5]} | {curve[10]} | {curve[25]} | {curve[50]} |
+
+Widening k is not the answer either: k={K} to k=5 buys **{curve[5] - curve[3]}**, and the four rows beyond k={K} sit at ranks {", ".join(str(r) for _, r, _, _ in beyond)} out of {", ".join(str(n) for *_, n in beyond)} candidates. Their solving searches cost {min(n for _, _, n, _ in beyond)}–{max(n for _, _, n, _ in beyond)} nodes — they are **cheap solves ranked far down**, so this is a primary-ranking failure, not a budget or a tie-break failure.
+
+All four share one cause: the solving candidate sits **one abel step above the minimum** (abel 3 against the rank-1 pick's abel 2), and on two of them it is also much longer (41 and 37 against 24). Both keys point away from it. Over all {len(oracle)} solvable rows, `abel(first solving candidate) − min abel` is {" and ".join(f"**{v}** at offset {o}" for o, v in off_hist.items())} — so the abelian filter's own minimum shell is right {off_hist.get(0, 0)} times out of {len(offs)} and wrong {sum(v for o, v in off_hist.items() if o)}. The open question this file leaves is therefore **when to skip abel's minimum shell**, which is not a tie-break question.
+
+Reserving a slot for the next shell does not answer it. Three class-quota policies, scored the same way:
+
+| policy | k=1 | k=2 | k=3 | deployed |
+|---|---:|---:|---:|---:|
+""" + "\n".join(
+        f"| {lbl} | {sc['at_k'][1]} | {sc['at_k'][2]} | {sc['at_k'][3]} | {sc['deployed_total']:,} |"
+        for lbl, (_, sc) in zip(("all 3 from the minimum shell",
+                                 "2 from the minimum + 1 from the next",
+                                 "1 from each of the 3 lowest"), quota_res)) + f"""
+| `(abel, total)` top {K}, for reference | {S['abel_mean_len']['at_k'][1]} | {S['abel_mean_len']['at_k'][2]} | {S['abel_mean_len']['at_k'][3]} | {S['abel_mean_len']['deployed_total']:,} |
+
+Not one recovers a row, and the pure-shell policy *loses* one. The reason is that `(abel, total)` already spills into the next shell whenever the minimum shell holds fewer than {K} candidates, so an explicit quota is mostly a no-op — and where it is not, it displaces a rank that was solving. Whatever promotes these four is a signal not yet in the vocabulary.
 
 ## Rank 1 alone, and why the 1,000-node margin does not survive a budget change
 
