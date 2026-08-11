@@ -1,0 +1,273 @@
+"""Relabel-dedup + the `MK` final slot, on both arms, at budget 1,000 and 10,000.
+
+**Zero search nodes.** Every number is a re-ranking of the frozen subset-60
+sweeps through ``abel_topk_cov_b1k``'s gated loader — the same loader, the same
+truncation gate, the same 60 presentations. Nothing here calls the solver, so
+the 1,000-node local cap is not in play.
+
+Why this set can be measured at all
+-----------------------------------
+
+The ms640 top-3 run searched only the three picks each rule chose, so a dedup
+there can be *counted* but not *priced*: the replacement candidate it promotes
+was never searched. The subset-60 sweep searched the **entire enumerated CoV
+family** of every row at both budgets, so promoting a candidate from rank 7 to
+rank 3 costs nothing to score. This file is therefore the only place the dedup's
+real effect — not its slot count — can be read.
+
+The three variants, per base key
+--------------------------------
+
+```text
+plain  rank by the arm's key, ties by _ident (the shipped behaviour)
+rd     the same ranking, then drop any candidate whose relabel class already
+       appeared, pulling deeper to refill the top k
+rd_mk  rank by the arm's key + MK, then the same dedup   <- "the other idea"
+```
+
+``MK`` is ``hlab.FEATURES``' max-knot count, the feature that beat ``_ident`` at
+the post-dedup slot in ``ABEL_TIEBREAK_B1K.md`` (1/40/0 at budget 1,000, 2/50/0
+at 10,000 win/tie/loss). It enters as the last key *before* ``_ident``, so it
+decides only what ``_ident`` would otherwise have decided by name — it can never
+outvote abel or length.
+
+Three base keys are carried, because the user's question is about both arms:
+
+```text
+abel       (abel,)                 the shipped ms640 arm
+abel_len   (abel, total length)    the validated b1k ranking
+len        (total length,)         the shipped "top length" arm
+```
+
+Read the cost columns, not the solve column: subset-60's oracle at budget 1,000
+is 45/60 and every abel-first arm reaches the same top-3 count, so solves
+saturate by construction. The repo's own
+[control-with-no-dynamic-range](../../lessons/control-with-no-dynamic-range.md)
+and [gap-metric](../../lessons/gap-metric-saturates-when-the-treatment-wins.md)
+lessons both apply: a one-row margin on 60 rows is not a property of the key.
+
+    .venv/bin/python3 -m experiments.heuristic_search.runners.cov_relabel_b1k
+"""
+
+import csv
+import json
+import os
+import statistics
+
+from experiments.equivalence_classes.lib.words import relabel_key
+from experiments.heuristic_search.runners import abel_topk_cov_b1k as R
+from experiments.heuristic_search.runners import abel_tiebreak_b1k as T
+
+K = T.K
+KS = T.KS
+ROOT = R.ROOT
+
+OUT_CSV = "results/comparison/cov_relabel_b1k_subset60.csv"
+OUT_MD = "results/comparison/COV_RELABEL_B1K.md"
+OUT_FIG = "results/comparison/cov_relabel_b1k.png"
+
+# base key name -> (label, key function). The key is imported, never restated.
+BASES = {
+    "abel": ("(abel)", R.KEYS["abel"]),
+    "abel_len": ("(abel, total)", R.KEYS["abel_len"]),
+    "len": ("(total)", R.KEYS["len_only"]),
+}
+VARIANTS = ("plain", "rd", "rd_mk")
+
+
+def relabel_class(d):
+    """The repo's canonical form under the 8 signed permutations of {x, y}.
+
+    ``words.relabel_key`` — the same function ``cov_top3_relabel`` gates the
+    ms640 manifests with, so the study and the shipped rule cannot drift apart
+    about what "the same start renamed" means.
+    """
+    return relabel_key((d["r1"], d["r2"]))
+
+
+def rank_variant(cov, base, variant):
+    """{pres_id: [candidate, ...]} under one (base key, variant) pair."""
+    _, key = BASES[base]
+    use_mk = variant == "rd_mk"
+    out = {}
+    for p, cands in cov.items():
+        if use_mk:
+            order = sorted(cands, key=lambda d: tuple(key(d)) + (T._MK(d),) + R._ident(d))
+        else:
+            order = sorted(cands, key=lambda d: tuple(key(d)) + R._ident(d))
+        if variant == "plain":
+            out[p] = order
+            continue
+        seen, keep = set(), []
+        for d in order:
+            c = relabel_class(d)
+            if c in seen:
+                continue
+            seen.add(c)
+            keep.append(d)
+        out[p] = keep
+    return out
+
+
+def relabel_waste(ranked, cov):
+    """Top-k slots holding a start an earlier rank already searched, up to renaming."""
+    lists = sum(1 for p in cov
+                if len({relabel_class(d) for d in ranked[p][:K]})
+                < min(K, len(ranked[p])))
+    slots = sum(min(K, len(ranked[p])) - len({relabel_class(d) for d in ranked[p][:K]})
+                for p in cov)
+    return lists, slots
+
+
+def promoted(ranked_plain, ranked_rd, cov):
+    """Presentations whose top-k membership the dedup actually changed."""
+    return {p for p in cov
+            if [T._id(d) for d in ranked_plain[p][:K]]
+            != [T._id(d) for d in ranked_rd[p][:K]]}
+
+
+def score_all(cov):
+    s = {}
+    for base in BASES:
+        for v in VARIANTS:
+            ranked = rank_variant(cov, base, v)
+            sc = T.score_ranked(ranked, cov)
+            sc["waste"] = relabel_waste(ranked, cov)
+            s[f"{base}__{v}"] = sc
+    return s
+
+
+def _row(name, sc):
+    fs = sc["first_solve"]
+    return {
+        "arm": name,
+        "k1": sc["at_k"][1], "k2": sc["at_k"][2], "k3": sc["at_k"][3],
+        "deployed_total": sc["deployed_total"],
+        "median_first_solve": statistics.median(fs.values()) if fs else None,
+        "mean_first_solve": round(statistics.mean(fs.values()), 1) if fs else None,
+        "waste_lists": sc["waste"][0], "waste_slots": sc["waste"][1],
+    }
+
+
+def table(s, budget):
+    lines = [f"| arm | k=1 | k=3 | median nodes | mean nodes | deployed | "
+             f"wasted slots |", "|---|---:|---:|---:|---:|---:|---:|"]
+    for base, (lab, _) in BASES.items():
+        for v in VARIANTS:
+            r = _row(f"{base}__{v}", s[f"{base}__{v}"])
+            suffix = {"plain": "", "rd": " + relabel-dedup",
+                      "rd_mk": " + relabel-dedup + MK"}[v]
+            lines.append(
+                f"| `{lab}`{suffix} | {r['k1']} | {r['k3']} | "
+                f"{r['median_first_solve']:,.0f} | {r['mean_first_solve']:,.1f} | "
+                f"{r['deployed_total']:,} | {r['waste_slots']} |")
+    return "\n".join(lines)
+
+
+def figure(s1k, s10k, path):
+    """Deployed nodes per arm, both budgets. Blue/orange + hatch, never red/green."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    labels, plain, rd, rdmk = [], [], [], []
+    for base, (lab, _) in BASES.items():
+        labels.append(lab)
+        plain.append(s1k[f"{base}__plain"]["deployed_total"])
+        rd.append(s1k[f"{base}__rd"]["deployed_total"])
+        rdmk.append(s1k[f"{base}__rd_mk"]["deployed_total"])
+
+    x = np.arange(len(labels))
+    w = 0.26
+    fig, ax = plt.subplots(figsize=(6.0, 4.25), dpi=200)
+    b1 = ax.bar(x - w, plain, w, label="shipped (name tie-break)",
+                color="#3b6ea5", edgecolor="black", linewidth=.6)
+    b2 = ax.bar(x, rd, w, label="+ relabel-dedup", color="#e08214",
+                edgecolor="black", linewidth=.6, hatch="//")
+    b3 = ax.bar(x + w, rdmk, w, label="+ relabel-dedup + MK", color="#f7f7f7",
+                edgecolor="black", linewidth=.9, hatch="xx")
+    for bars in (b1, b2, b3):
+        ax.bar_label(bars, fontsize=6, padding=2,
+                     labels=[f"{int(b.get_height()):,}" for b in bars])
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=9)
+    ax.set_ylabel("nodes deployed over 60 presentations", fontsize=9)
+    ax.set_title("Top-3 CoV cost at budget 1,000 · subset-60", fontsize=10)
+    ax.legend(fontsize=7.5, frameon=False)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.tick_params(labelsize=8)
+    fig.tight_layout()
+    ap = path if os.path.isabs(path) else os.path.join(ROOT, path)
+    os.makedirs(os.path.dirname(ap), exist_ok=True)
+    fig.savefig(ap, bbox_inches="tight")
+    plt.close(fig)
+    return ap
+
+
+def main():
+    ids60, bins, auts, cov, control = R.load()
+    cov10, ctl10 = T.load_sweep(R.SWEEP_10K, set(ids60))
+    s1k, s10k = score_all(cov), score_all(cov10)
+
+    ap = os.path.join(ROOT, OUT_CSV)
+    os.makedirs(os.path.dirname(ap), exist_ok=True)
+    with open(ap, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(_row("x", s1k["abel__plain"])) + ["budget"])
+        w.writeheader()
+        for budget, s in ((1000, s1k), (10000, s10k)):
+            for name in s:
+                w.writerow({**_row(name, s[name]), "budget": budget})
+
+    oracle = R.oracle_set(cov)
+    greedy_hits = {p for p, c in control.items() if c['solved']}
+    fig_path = figure(s1k, s10k, OUT_FIG)
+
+    def pair(base, a, b, s):
+        return T.paired(s[f"{base}__{a}"], s[f"{base}__{b}"])
+
+    md = [
+        "# Relabel-dedup, and `MK` at the last slot — both arms, budget 1,000 and 10,000",
+        "",
+        f"**Zero search nodes.** A re-ranking of the frozen `{R.SWEEP}` and its 10,000-node twin through `abel_topk_cov_b1k`'s gated loader, subset-60, top {K}. The sweep searched every candidate of every row, so unlike the ms640 top-3 census a promoted candidate costs nothing to score — this is the only place the dedup can be priced rather than merely counted.",
+        "",
+        "## Budget 1,000",
+        "",
+        table(s1k, 1000),
+        "",
+        "## Budget 10,000",
+        "",
+        table(s10k, 10000),
+        "",
+        "## Paired, on the rows both arms solve",
+        "",
+        "| base key | comparison | budget | win / tie / loss |",
+        "|---|---|---:|---|",
+    ]
+    for base, (lab, _) in BASES.items():
+        for a, b, what in (("rd", "plain", "dedup vs shipped"),
+                           ("rd_mk", "rd", "MK vs name, after dedup"),
+                           ("rd_mk", "plain", "both vs shipped")):
+            for budget, s in ((1000, s1k), (10000, s10k)):
+                pr = pair(base, a, b, s)
+                md.append(f"| `{lab}` | {what} | {budget:,} | "
+                          f"{pr['win']} / {pr['tie']} / {pr['loss']} |")
+    md += [
+        "",
+        f"Reference points at budget 1,000: best-CoV **oracle {len(oracle)}/60**, plain greedy on the untransformed pair **{len(greedy_hits)}/60**. The solve column saturates against that oracle, so read the cost columns.",
+        "",
+        f"![arms]({os.path.basename(OUT_FIG)})",
+        "",
+    ]
+    mp = os.path.join(ROOT, OUT_MD)
+    with open(mp, "w") as fh:
+        fh.write("\n".join(md) + "\n")
+    print(f"wrote {OUT_CSV}\nwrote {OUT_MD}\nwrote {OUT_FIG}")
+    for budget, s in ((1000, s1k), (10000, s10k)):
+        print(f"\n=== budget {budget:,} ===")
+        print(table(s, budget))
+    return s1k, s10k
+
+
+if __name__ == "__main__":
+    main()
