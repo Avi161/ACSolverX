@@ -133,8 +133,8 @@ def test_importing_this_module_does_not_touch_the_shared_whitelist():
     undeduped ones.
     """
     assert sorted(M.RULES) == ["abel", "len"]
-    assert sorted(RD.RULES) == ["abel_len_rd", "abel_len_rd_mk", "abel_rd",
-                                "len_rd", "len_rd_mk"]
+    assert sorted(RD.RULES) == ["abel_len_rd", "abel_len_rd_mk", "abel_len_rd_s",
+                                "abel_rd", "len_rd", "len_rd_mk", "len_rd_s"]
     assert set(RD.RULES) & set(M.RULES) == set()
 
 
@@ -170,22 +170,26 @@ def test_the_deduped_rules_reuse_the_base_keys_not_copies():
     assert RD.base_rule("abel_len_rd") is None
 
 
-@pytest.mark.parametrize("rule,base,n", [("abel_len_rd_mk", "abel_len", 3),
+@pytest.mark.parametrize("rule,base,n", [("abel_len_rd_s", "abel_len", 3),
+                                         ("len_rd_s", "len_only", 2),
+                                         ("abel_len_rd_mk", "abel_len", 3),
                                          ("len_rd_mk", "len_only", 2)])
-def test_the_mk_rules_keep_every_term_of_the_key_they_compose_on(rule, base, n):
+def test_the_third_term_rules_keep_every_term_of_the_key_they_compose_on(rule, base, n):
     """The bug this pins: the shipped ``abel`` rule is bare ``(abel,)``.
 
-    Building ``abel_len_rd_mk`` on ``BASE_OF["abel_rd"]`` — the obvious reading
-    of "the same pipeline plus MK" — would have ranked by ``(abel, MK)`` and
-    silently dropped the total-length term the ranking was validated with. The
-    MK key must be its base key with exactly one element appended.
+    Building ``abel_len_rd_s`` on ``BASE_OF["abel_rd"]`` — the obvious reading
+    of "the same pipeline plus a third term" — would have ranked by
+    ``(abel, S)`` and silently dropped the total-length term the ranking was
+    validated with. Each key must be its base key with exactly one element
+    appended, and that element must be the feature the rule name claims.
     """
     key, bkey = RD.RULES[rule], B1K.KEYS[base]
+    feat = TB._S if rule.endswith("_s") else TB._MK
     for d in M.candidates(*_pres(7))[:40]:
         v = key(d)
         assert len(v) == n
         assert v[:-1] == tuple(bkey(d))
-        assert v[-1] == TB._MK(d)
+        assert v[-1] == feat(d)
 
 
 def test_the_mk_key_is_search_free():
@@ -193,6 +197,7 @@ def test_the_mk_key_is_search_free():
     ``phi(r1, r2)``, so a candidate carrying nothing but the two start strings
     must rank — if it ever needed a search result this raises."""
     assert RD.RULES["len_rd_mk"]({"r1": "xyXY", "r2": "xxy"})
+    assert RD.RULES["len_rd_s"]({"r1": "xyXY", "r2": "xxy"})
     for rule in RD.RULES:
         assert RD.RULES[rule]({"r1": "xyXY", "r2": "xxy"}) is not None
 

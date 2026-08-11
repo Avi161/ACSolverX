@@ -149,16 +149,36 @@ K = manifest.K
 DEDUP_TAG = "relabel8"
 
 
-def _with_mk(key):
-    """``key`` with ``MK`` appended as the last ordering term before ``_ident``.
+def _with(key, feat):
+    """``key`` with one ``hlab.FEATURES`` value appended before ``_ident``.
 
-    ``MK`` is ``hlab.FEATURES``' max-knot count over the two relators, read off
-    the START pair — ``tiebreak._MK`` is ``phi(r1, r2)[MK]``, so like every key
+    ``feat`` is read off the START pair (``phi(r1, r2)[i]``), so like every key
     here it is search-free and computable at manifest-build time. Appending it
     means it decides only what the name tie-break would otherwise have decided:
     it can never outvote abel or length.
     """
-    return lambda d: tuple(key(d)) + (tiebreak._MK(d),)
+    return lambda d: tuple(key(d)) + (feat(d),)
+
+
+def _with_s(key):
+    """``key`` then ``S`` — the intended third term, `abel -> length -> S`.
+
+    ``S`` is the smaller mean block: the mean run length of the thinner
+    generator. It carries the heaviest weight in the project's one sanctioned
+    heuristic, ``L + 20*S + 2*MK``, which is why it is the tie-break these arms
+    are built on.
+    """
+    return _with(key, tiebreak._S)
+
+
+def _with_mk(key):
+    """``key`` then ``MK``, kept only so the two tie-breaks can be compared.
+
+    ``MK`` is the max knot count. It is **not** the recommended third term — see
+    ``S`` above — and is retained because it was already measured on subset-60,
+    where its sign depends on the budget.
+    """
+    return _with(key, tiebreak._MK)
 
 
 # new rule -> the shipped rule whose ranking it reuses **verbatim**. For these
@@ -179,6 +199,10 @@ RULES = {
     "abel_rd": manifest.RULES["abel"],                  # (abel)
     "len_rd": manifest.RULES["len"],                    # (total)
     "abel_len_rd": b1k.KEYS["abel_len"],                # (abel, total)
+    # the intended rule: abel -> length -> S, with the 8-name-change dedup
+    "abel_len_rd_s": _with_s(b1k.KEYS["abel_len"]),     # (abel, total, S)
+    "len_rd_s": _with_s(b1k.KEYS["len_only"]),          # (total, S)
+    # MK kept only as a measured alternative to S, never the recommendation
     "abel_len_rd_mk": _with_mk(b1k.KEYS["abel_len"]),   # (abel, total, MK)
     "len_rd_mk": _with_mk(b1k.KEYS["len_only"]),        # (total, MK)
 }

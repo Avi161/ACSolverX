@@ -1,4 +1,4 @@
-"""Relabel-dedup + the `MK` final slot, on both arms, at budget 1,000 and 10,000.
+"""Relabel-dedup + the final ordering slot (`S`, vs `MK`), on both arms, at budget 1,000 and 10,000.
 
 **Zero search nodes.** Every number is a re-ranking of the frozen subset-60
 sweeps through ``abel_topk_cov_b1k``'s gated loader — the same loader, the same
@@ -22,14 +22,17 @@ The three variants, per base key
 plain  rank by the arm's key, ties by _ident (the shipped behaviour)
 rd     the same ranking, then drop any candidate whose relabel class already
        appeared, pulling deeper to refill the top k
-rd_mk  rank by the arm's key + MK, then the same dedup   <- "the other idea"
+rd_s   rank by the arm's key + S, then the same dedup    <- the intended rule
+rd_mk  rank by the arm's key + MK, then the same dedup   (comparison only)
 ```
 
-``MK`` is ``hlab.FEATURES``' max-knot count, the feature that beat ``_ident`` at
-the post-dedup slot in ``ABEL_TIEBREAK_B1K.md`` (1/40/0 at budget 1,000, 2/50/0
-at 10,000 win/tie/loss). It enters as the last key *before* ``_ident``, so it
-decides only what ``_ident`` would otherwise have decided by name — it can never
-outvote abel or length.
+``S`` is ``hlab.FEATURES``' smaller mean block — the mean run length of the
+thinner generator, and the heaviest-weighted term of the project's one
+sanctioned heuristic ``L + 20*S + 2*MK``. It is the intended third term:
+**abel -> length -> S**. ``MK`` (max knots) is carried beside it only so the two
+can be compared; it is not the recommendation. Either enters as the last key
+*before* ``_ident``, so it decides only what ``_ident`` would otherwise have
+decided by name — it can never outvote abel or length.
 
 Three base keys are carried, because the user's question is about both arms:
 
@@ -72,7 +75,10 @@ BASES = {
     "abel_len": ("(abel, total)", R.KEYS["abel_len"]),
     "len": ("(total)", R.KEYS["len_only"]),
 }
-VARIANTS = ("plain", "rd", "rd_mk")
+VARIANTS = ("plain", "rd", "rd_s", "rd_mk")
+
+# third ordering term per variant; None = the name tie-break decides alone.
+_THIRD = {"plain": None, "rd": None, "rd_s": T._S, "rd_mk": T._MK}
 
 
 def relabel_class(d):
@@ -88,11 +94,11 @@ def relabel_class(d):
 def rank_variant(cov, base, variant):
     """{pres_id: [candidate, ...]} under one (base key, variant) pair."""
     _, key = BASES[base]
-    use_mk = variant == "rd_mk"
+    third = _THIRD[variant]
     out = {}
     for p, cands in cov.items():
-        if use_mk:
-            order = sorted(cands, key=lambda d: tuple(key(d)) + (T._MK(d),) + R._ident(d))
+        if third is not None:
+            order = sorted(cands, key=lambda d: tuple(key(d)) + (third(d),) + R._ident(d))
         else:
             order = sorted(cands, key=lambda d: tuple(key(d)) + R._ident(d))
         if variant == "plain":
@@ -156,6 +162,7 @@ def table(s, budget):
         for v in VARIANTS:
             r = _row(f"{base}__{v}", s[f"{base}__{v}"])
             suffix = {"plain": "", "rd": " + relabel-dedup",
+                      "rd_s": " + relabel-dedup + S",
                       "rd_mk": " + relabel-dedup + MK"}[v]
             lines.append(
                 f"| `{lab}`{suffix} | {r['k1']} | {r['k3']} | "
@@ -187,21 +194,24 @@ def figure(s1k, s10k, path):
     BLUE, ORANGE = "#3b6ea5", "#e08214"
     fig, axes = plt.subplots(1, 2, figsize=(10.0, 4.4), dpi=200, sharey=False)
     x = np.arange(len(BASES))
-    w = 0.34
+    w = 0.26
+    SERIES = (("rd", "+ relabel-dedup", BLUE, ""),
+              ("rd_s", "+ relabel-dedup + S  (the rule)", ORANGE, "///"),
+              ("rd_mk", "+ relabel-dedup + MK  (comparison)", "#7f7f7f", "..."))
+    OFF = {"rd": -w, "rd_s": 0.0, "rd_mk": w}
 
     for ax, (s, budget) in zip(axes, ((s1k, 1000), (s10k, 10000))):
         series = []
-        for v, lab, c, h in (("rd", "+ relabel-dedup", BLUE, ""),
-                             ("rd_mk", "+ relabel-dedup + MK", ORANGE, "///")):
+        for v, lab, c, h in SERIES:
             d = [s[f"{b}__{v}"]["deployed_total"] - s[f"{b}__plain"]["deployed_total"]
                  for b in BASES]
             series.append((v, d))
-            off = -w / 2 if v == "rd" else w / 2
+            off = OFF[v]
             ax.bar(x + off, d, w, label=lab, color=c, edgecolor="black",
                    linewidth=.6, hatch=h, zorder=3)
         span = max((abs(v) for _, d in series for v in d), default=1) or 1
         for v, d in series:
-            off = -w / 2 if v == "rd" else w / 2
+            off = OFF[v]
             for i, (b, dv) in enumerate(zip(BASES, d)):
                 dk1 = s[f"{b}__{v}"]["at_k"][1] - s[f"{b}__plain"]["at_k"][1]
                 dk3 = s[f"{b}__{v}"]["at_k"][3] - s[f"{b}__plain"]["at_k"][3]
@@ -225,11 +235,14 @@ def figure(s1k, s10k, path):
 
     axes[0].set_ylabel("nodes vs the same arm's shipped ranking\n(down = cheaper)",
                        fontsize=9)
-    # upper left: the only quadrant no bar or annotation reaches in either panel
-    axes[0].legend(fontsize=8, frameon=False, loc="upper left")
-    fig.suptitle("Relabel-dedup is inert; MK changes sign with the budget · top-3, "
-                 "subset-60", fontsize=11)
-    fig.tight_layout()
+    # three series no longer fit inside a panel without covering a bar, so the
+    # legend goes under the axes where it can never collide with data
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, fontsize=8, frameon=False, ncol=3,
+               loc="lower center", bbox_to_anchor=(0.5, -0.015))
+    fig.suptitle("Relabel-dedup is inert; S and MK are indistinguishable on 60 rows · "
+                 "top-3, subset-60", fontsize=11)
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
     ap = path if os.path.isabs(path) else os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(ap), exist_ok=True)
     fig.savefig(ap, bbox_inches="tight")
@@ -278,8 +291,10 @@ def main():
     ]
     for base, (lab, _) in BASES.items():
         for a, b, what in (("rd", "plain", "dedup vs shipped"),
+                           ("rd_s", "rd", "S vs name, after dedup"),
                            ("rd_mk", "rd", "MK vs name, after dedup"),
-                           ("rd_mk", "plain", "both vs shipped")):
+                           ("rd_s", "plain", "dedup + S vs shipped"),
+                           ("rd_mk", "plain", "dedup + MK vs shipped")):
             for budget, s in ((1000, s1k), (10000, s10k)):
                 pr = pair(base, a, b, s)
                 md.append(f"| `{lab}` | {what} | {budget:,} | "
@@ -293,18 +308,20 @@ def main():
         "",
         f"A win/tie/loss of 0/N/0 is only evidence if the metric had room to move. Two measurements say it mostly did not. **Every unsolved search burns the whole budget** — {short} of {n_searches} unsolved searches stop short of it — and the dedup **never changes rank 1** (it keeps the first-ranked member of each relabel class, so rank 1 is identical by construction). The deployed bill therefore cannot move on any row whose rank 1 already solves, which is nearly all of them. `promoted` below counts the rows whose top-{K} *membership* the change actually rewrites; `sensitive` counts the rows where that rewrite could reach the bill at all.",
         "",
-        "| base key | budget | dedup rewrites top-3 | MK rewrites top-3 | rows the bill can see |",
-        "|---|---:|---:|---:|---:|",
+        "| base key | budget | dedup rewrites top-3 | S rewrites top-3 | MK rewrites top-3 | rows the bill can see |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
     for budget, c in ((1000, cov), (10000, cov10)):
         for base in BASES:
             plain = rank_variant(c, base, "plain")
             rd = rank_variant(c, base, "rd")
+            rds = rank_variant(c, base, "rd_s")
             rdmk = rank_variant(c, base, "rd_mk")
             sens = sum(1 for p in c if not plain[p][0]["solved"]
                        and any(d["solved"] or d["nodes_explored"] < d["node_budget"]
                                for d in plain[p][1:K]))
             md.append(f"| `{BASES[base][0]}` | {budget:,} | {len(promoted(plain, rd, c))}/{len(c)} "
+                      f"| {len(promoted(rd, rds, c))}/{len(c)} "
                       f"| {len(promoted(rd, rdmk, c))}/{len(c)} | {sens}/{len(c)} |")
     md += [
         "",
@@ -312,7 +329,7 @@ def main():
         "",
         "## Which presentations, not how many",
         "",
-        "A count that does not move can still be a different set, and a figure keyed on the shipped arm would then depict a different `k` rows than the text describes. Set membership of the recommended `(abel, total)` + dedup + `MK` against the shipped `(abel)`:",
+        "A count that does not move can still be a different set, and a figure keyed on the shipped arm would then depict a different `k` rows than the text describes. Set membership of the recommended `(abel, total)` + dedup + `S` against the shipped `(abel)`:",
         "",
         "| budget | k | shipped | recommended | identical set | gained | lost |",
         "|---:|---:|---:|---:|---|---|---|",
@@ -320,7 +337,7 @@ def main():
     for budget, s in ((1000, s1k), (10000, s10k)):
         for k in (1, K):
             a = s["abel__plain"]["hits_at"][k]
-            b = s["abel_len__rd_mk"]["hits_at"][k]
+            b = s["abel_len__rd_s"]["hits_at"][k]
             gained = ", ".join(str(p) for p in sorted(b - a)) or "—"
             lost = ", ".join(str(p) for p in sorted(a - b)) or "—"
             md.append(f"| {budget:,} | {k} | {len(a)} | {len(b)} | "
