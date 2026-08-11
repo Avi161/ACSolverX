@@ -87,22 +87,34 @@ python -m experiments.ppo.arm_config s20mk2 --full  --out /root/s20mk2_full.json
 
 ```bash
 tmux new -s ppo                       # so a dropped SSH connection does not kill the run
-python -m experiments.ppo.run_ppo --stage train --config /root/s20mk2_smoke.json
+CKPT=results/ppo/s20mk2/ppo-drt-AC19_extended_ho60-s20mk2-lam0.2-s142.pt
+
+python -m experiments.ppo.run_ppo --stage train     --config /root/s20mk2_smoke.json
+python -m experiments.ppo.run_ppo --stage beam_eval --config /root/s20mk2_smoke.json --set BEAM_CHECKPOINT=$CKPT
+python -m experiments.ppo.run_ppo --stage report    --config /root/s20mk2_smoke.json
 ```
 
-Two updates plus a time-bounded benchmark-60 eval, ~8 minutes. Read `seconds_per_update` off the heartbeat and compare it against **31.18 s/update** (the Colab A100 figure, TF32 off). That number is the whole point of the smoke on a new box: it tells you what the full 1000 updates will cost here before you commit to them. Then run `--stage beam_eval` and `--stage report`, and paste the block between the `====` lines back into the chat before starting the full run — that is the gate §4 of the plan asks for.
+Two updates plus a time-bounded benchmark-60 eval, ~8 minutes. Read `seconds_per_update` off the heartbeat and compare it against **31.18 s/update** (the Colab A100 figure, TF32 off). That number is the whole point of the smoke on a new box: it tells you what the full 1000 updates will cost here before you commit to them. Paste the block between the `====` lines back into the chat before starting the full run — that is the gate §4 of the plan asks for.
+
+**`--set BEAM_CHECKPOINT` is not optional, and leaving it off does not raise a useful error.** The notebook's RUN cell passes it per-stage (`run("beam_eval", BEAM_CHECKPOINT=ckpt)`), so it is not in the config `arm_config.py` writes. Without it, `stage_beam` (`run_ppo.py:594`) falls through to `PARAMS_NPZ` — the 610model — which on this box does not exist, because `convert` never ran. You would discover that after training, ~9 h in, on a machine billing by the second. Worse if the npz *did* exist: it would beam the upstream model and write a perfectly well-formed jsonl of the wrong thing. Run the smoke to see it work before the full run depends on it.
 
 Then the real thing:
 
 ```bash
-python -m experiments.ppo.run_ppo --stage train --config /root/s20mk2_full.json
+python -m experiments.ppo.run_ppo --stage train     --config /root/s20mk2_full.json
+python -m experiments.ppo.run_ppo --stage beam_eval --config /root/s20mk2_full.json --set BEAM_CHECKPOINT=$CKPT
+python -m experiments.ppo.run_ppo --stage report    --config /root/s20mk2_full.json
 ```
 
 1000 updates, ~8.7 h at the Colab rate. It resumes from its checkpoint if anything drops, so a lost connection costs at most the time since the last `SAVE_EVERY = 25` checkpoint. For option 1 above, run the second arm concurrently on the other GPU:
 
 ```bash
 python -m experiments.ppo.arm_config control --full --out /root/control_full.json
-CUDA_VISIBLE_DEVICES=1 python -m experiments.ppo.run_ppo --stage train --config /root/control_full.json
+CKPT_C=results/ppo/control/ppo-drt-AC19_extended_ho60-s142.pt
+
+CUDA_VISIBLE_DEVICES=1 python -m experiments.ppo.run_ppo --stage train     --config /root/control_full.json
+CUDA_VISIBLE_DEVICES=1 python -m experiments.ppo.run_ppo --stage beam_eval --config /root/control_full.json --set BEAM_CHECKPOINT=$CKPT_C
+CUDA_VISIBLE_DEVICES=1 python -m experiments.ppo.run_ppo --stage report    --config /root/control_full.json
 ```
 
 The two arms write to separate `OUT_DIR`s and carry different tags (`...-s20mk2-lam0.2-s142` vs `...-s142`), so they cannot resume from each other's checkpoint — the trap `train_tag` exists to close.
