@@ -53,6 +53,17 @@
 | `(total)` | both vs shipped | 1,000 | 0 / 38 / 1 |
 | `(total)` | both vs shipped | 10,000 | 0 / 49 / 0 |
 
+## Which presentations, not how many
+
+A count that does not move can still be a different set, and a figure keyed on the shipped arm would then depict a different `k` rows than the text describes. Set membership of the recommended `(abel, total)` + dedup + `MK` against the shipped `(abel)`:
+
+| budget | k | shipped | recommended | identical set | gained | lost |
+|---:|---:|---:|---:|---|---|---|
+| 1,000 | 1 | 38 | 40 | no | 565, 575 | — |
+| 1,000 | 3 | 41 | 41 | yes | — | — |
+| 10,000 | 1 | 52 | 52 | yes | — | — |
+| 10,000 | 3 | 52 | 52 | yes | — | — |
+
 Reference points at budget 1,000: best-CoV **oracle 45/60**, plain greedy on the untransformed pair **29/60**. The solve column saturates against that oracle, so read the cost columns.
 
 ![arms](cov_relabel_b1k.png)

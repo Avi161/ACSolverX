@@ -286,6 +286,23 @@ def main():
                           f"{pr['win']} / {pr['tie']} / {pr['loss']} |")
     md += [
         "",
+        "## Which presentations, not how many",
+        "",
+        "A count that does not move can still be a different set, and a figure keyed on the shipped arm would then depict a different `k` rows than the text describes. Set membership of the recommended `(abel, total)` + dedup + `MK` against the shipped `(abel)`:",
+        "",
+        "| budget | k | shipped | recommended | identical set | gained | lost |",
+        "|---:|---:|---:|---:|---|---|---|",
+    ]
+    for budget, s in ((1000, s1k), (10000, s10k)):
+        for k in (1, K):
+            a = s["abel__plain"]["hits_at"][k]
+            b = s["abel_len__rd_mk"]["hits_at"][k]
+            gained = ", ".join(str(p) for p in sorted(b - a)) or "—"
+            lost = ", ".join(str(p) for p in sorted(a - b)) or "—"
+            md.append(f"| {budget:,} | {k} | {len(a)} | {len(b)} | "
+                      f"{'yes' if a == b else 'no'} | {gained} | {lost} |")
+    md += [
+        "",
         f"Reference points at budget 1,000: best-CoV **oracle {len(oracle)}/60**, plain greedy on the untransformed pair **{len(greedy_hits)}/60**. The solve column saturates against that oracle, so read the cost columns.",
         "",
         f"![arms]({os.path.basename(OUT_FIG)})",
