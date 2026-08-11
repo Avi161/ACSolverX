@@ -284,7 +284,31 @@ def main():
                 pr = pair(base, a, b, s)
                 md.append(f"| `{lab}` | {what} | {budget:,} | "
                           f"{pr['win']} / {pr['tie']} / {pr['loss']} |")
+    short = sum(1 for p in cov for d in cov[p]
+                if not d["solved"] and d["nodes_explored"] < d["node_budget"])
+    n_searches = sum(len(cov[p]) for p in cov)
     md += [
+        "",
+        "## What the paired column can actually see",
+        "",
+        f"A win/tie/loss of 0/N/0 is only evidence if the metric had room to move. Two measurements say it mostly did not. **Every unsolved search burns the whole budget** — {short} of {n_searches} unsolved searches stop short of it — and the dedup **never changes rank 1** (it keeps the first-ranked member of each relabel class, so rank 1 is identical by construction). The deployed bill therefore cannot move on any row whose rank 1 already solves, which is nearly all of them. `promoted` below counts the rows whose top-{K} *membership* the change actually rewrites; `sensitive` counts the rows where that rewrite could reach the bill at all.",
+        "",
+        "| base key | budget | dedup rewrites top-3 | MK rewrites top-3 | rows the bill can see |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for budget, c in ((1000, cov), (10000, cov10)):
+        for base in BASES:
+            plain = rank_variant(c, base, "plain")
+            rd = rank_variant(c, base, "rd")
+            rdmk = rank_variant(c, base, "rd_mk")
+            sens = sum(1 for p in c if not plain[p][0]["solved"]
+                       and any(d["solved"] or d["nodes_explored"] < d["node_budget"]
+                               for d in plain[p][1:K]))
+            md.append(f"| `{BASES[base][0]}` | {budget:,} | {len(promoted(plain, rd, c))}/{len(c)} "
+                      f"| {len(promoted(rd, rdmk, c))}/{len(c)} | {sens}/{len(c)} |")
+    md += [
+        "",
+        "So the dedup's 0/N/0 is not \"the dedup does nothing\" — it rewrites five-sixths of the top-3 lists. It is \"the bill cannot see ranks 2-3 except on a handful of rows.\" On `(abel)` at 10,000 that handful is **empty**, which makes the null there mathematically forced rather than measured, exactly the shape of [control-with-no-dynamic-range](../../experiments/lessons/control-with-no-dynamic-range.md). And `MK`'s support is thinner than its win column suggests: it rewrites the top-3 on 22/60 rows of `(abel)`, the arm where it *hurts* at 10,000, but only 3/60 of `(abel, total)`, the arm whose 1-2 wins are the whole case for keeping it.",
         "",
         "## Which presentations, not how many",
         "",

@@ -53,6 +53,21 @@
 | `(total)` | both vs shipped | 1,000 | 0 / 38 / 1 |
 | `(total)` | both vs shipped | 10,000 | 0 / 49 / 0 |
 
+## What the paired column can actually see
+
+A win/tie/loss of 0/N/0 is only evidence if the metric had room to move. Two measurements say it mostly did not. **Every unsolved search burns the whole budget** — 0 of 6177 unsolved searches stop short of it — and the dedup **never changes rank 1** (it keeps the first-ranked member of each relabel class, so rank 1 is identical by construction). The deployed bill therefore cannot move on any row whose rank 1 already solves, which is nearly all of them. `promoted` below counts the rows whose top-3 *membership* the change actually rewrites; `sensitive` counts the rows where that rewrite could reach the bill at all.
+
+| base key | budget | dedup rewrites top-3 | MK rewrites top-3 | rows the bill can see |
+|---|---:|---:|---:|---:|
+| `(abel)` | 1,000 | 51/60 | 22/60 | 3/60 |
+| `(abel, total)` | 1,000 | 48/60 | 3/60 | 1/60 |
+| `(total)` | 1,000 | 37/60 | 13/60 | 2/60 |
+| `(abel)` | 10,000 | 51/60 | 22/60 | 0/60 |
+| `(abel, total)` | 10,000 | 48/60 | 3/60 | 1/60 |
+| `(total)` | 10,000 | 37/60 | 13/60 | 2/60 |
+
+So the dedup's 0/N/0 is not "the dedup does nothing" — it rewrites five-sixths of the top-3 lists. It is "the bill cannot see ranks 2-3 except on a handful of rows." On `(abel)` at 10,000 that handful is **empty**, which makes the null there mathematically forced rather than measured, exactly the shape of [control-with-no-dynamic-range](../../experiments/lessons/control-with-no-dynamic-range.md). And `MK`'s support is thinner than its win column suggests: it rewrites the top-3 on 22/60 rows of `(abel)`, the arm where it *hurts* at 10,000, but only 3/60 of `(abel, total)`, the arm whose 1-2 wins are the whole case for keeping it.
+
 ## Which presentations, not how many
 
 A count that does not move can still be a different set, and a figure keyed on the shipped arm would then depict a different `k` rows than the text describes. Set membership of the recommended `(abel, total)` + dedup + `MK` against the shipped `(abel)`:

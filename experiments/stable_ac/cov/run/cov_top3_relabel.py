@@ -94,9 +94,10 @@ All five names live in this module's own :data:`RULES`, and are spliced into
 dict is read at module scope by other code, and mutating it on import would make
 behaviour depend on import order —
 
-- ``tests/stable_ac/test_cov_top3.py`` parametrizes five tests on
-  ``sorted(M.RULES)`` at collection time, and would run the shipped arms' assertions
-  against a deduped rule whose key it has no entry for;
+- ``tests/stable_ac/test_cov_top3.py`` parametrizes on ``sorted(M.RULES)`` at
+  collection time from four sites (three decorators plus a fixture), which expand
+  to **16 test functions / 32 collected ids**, and would run the shipped arms'
+  assertions against a deduped rule whose key it has no entry for;
 - ``cov_top3_manifest``'s own CLI builds ``sorted(RULES)`` when given no
   arguments, so a stray import would make ``python3 -m ...cov_top3_manifest``
   silently overwrite the deduped manifests with **undeduped** ones.
@@ -109,8 +110,17 @@ files.
 Scoped registration narrows that second footgun but does not close it — a
 deduped path is still writable by an undeduped build. So every row this module
 writes carries ``dedup = "relabel8"``, and :func:`verify` re-derives every
-relabel_class from ``(r1, r2)`` rather than trusting the tag. Load a manifest
-through :func:`load_manifest` and a wrong file cannot be searched silently.
+relabel_class from ``(r1, r2)`` rather than trusting the tag — forging the tag
+onto undeduped rows does not get past it.
+
+The gate that actually runs in production is ``cov_top3_relabel_run.preflight``,
+**not** :func:`load_manifest`: stage B (``cov_top3_run.run`` / ``merge_chunks`` /
+``summarize``) loads through ``cov_top3_manifest.load_manifest``, and this
+module's :func:`load_manifest` is a convenience door used by the tests. Two
+limits worth knowing before leaning on :func:`verify`: it proves a manifest is
+*deduped*, not that it is *correctly ranked* (a correctly-deduped file with its
+picks permuted still passes), and ``verify(path, rule=None)`` skips the rule
+check entirely — always pass the rule, as ``preflight`` does.
 
     .venv/bin/python3 -m experiments.stable_ac.cov.run.cov_top3_relabel            # build both
     .venv/bin/python3 -m experiments.stable_ac.cov.run.cov_top3_relabel abel_rd    # build one
