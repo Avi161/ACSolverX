@@ -143,6 +143,28 @@ The recommended rule is therefore `(abel, total transformed length)` for ranking
 
 This is the dynamic range subset-60 could not supply, where `S` moved 6 nodes and nothing else because almost no row had headroom. **`S` earns its slot at rank 1 and only there**: 584 → 590 solves and 7,277 fewer deployed nodes on the abel arm, and one extra top-3 row on the length arm (587 → 588). Top-3 on the abel arm is 596 either way — and the *same* 596 presentations, not merely the same count — so what `S` buys is a better first pick, not a better list. **Priced as the run was actually executed it is the dearer arm**: 249,413 → 333,815 nodes, because the picks it promotes into slots 2 and 3 solve markedly worse (580/580 → 524/543 by rank). The mechanism is [diversity-only-pays-at-full-depth](../../../../experiments/lessons/diversity-only-pays-at-full-depth.md) seen from the other side — the name tie-break fills those slots with unlike starts, `S` with near-copies of the rank-1 pick — so the two accountings must be reported as separate columns, per [price-the-untransformed-route](../../../../experiments/lessons/price-the-untransformed-route.md). **`k = 2` reaches the top-3 count on all four arms**, so the third search buys nothing *at this budget*; that does not transfer to 100,000, where abel's rank 1 already solves 640/640.
 
+## The two S arms at 100,000: the prediction held (2026-08-11)
+
+Both `S` arms have now run on all 640 presentations at budget 100,000 — `abel_len_rd_s` and `len_rd_s`, the files dated `08_11_26` in this directory. Full four-way table in [`ARM_COMPARE_100K.md`](ARM_COMPARE_100K.md), from [`cov_top3_arm_compare.py`](../../../../experiments/stable_ac/cov/run/cov_top3_arm_compare.py) at zero search nodes; all four arms embed the same baseline column, asserted rather than assumed.
+
+| arm | rank 1 | top 3 | rank-1 nodes | deployed | as-run | median path | unsolved |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `abel` | 640 / 640 | **640 / 640** | 458,688 | 458,688 | 2,541,652 | 7 | — |
+| `abel_len_rd_s` | 640 / 640 | **640 / 640** | **420,426** | **420,426** | 8,447,944 | 7 | — |
+| `len` | 633 / 640 | 638 / 640 | 1,306,940 | 1,721,736 | 3,143,988 | 7 | 634, 635 |
+| `len_rd_s` | 633 / 640 | **639 / 640** | 1,325,916 | 1,648,391 | 3,710,106 | 7 | 634 |
+| *baseline, untransformed* | — | 640 / 640 | — | 3,176,297 | — | 9 | — |
+
+**The prediction above was right: `S` buys no solves on the abel arm.** Shipped `abel` already solves 640/640 at rank 1 at this budget, so no abel-first arm has any solve headroom to take, and `abel_len_rd_s` takes none — 640/640 either way, the same 640 presentations. What moves is cost: the rank-1 bill falls **458,688 → 420,426 nodes (−8.3%)**, and it gets there by changing the rank-1 pick on **357 of 640** presentations. Over half the picks change and the solve set does not move at all, which is the sharpest statement yet of how little the ranking rule matters once the budget is generous — it reorders the family without reordering the outcome.
+
+**On the length arm `S` buys exactly one row.** Rank 1 is unchanged at 633/640, but top-3 goes **638 → 639**, recovering presentation 635; only 634 stays unsolved. The rank-1 bill goes slightly the wrong way (+1.5%) while deployed improves (−4.3%), so on this arm `S` earns its slot in slots 2–3, the opposite of where it earned it at budget 1,000.
+
+**Priced as the runs were actually executed, `abel_len_rd_s` is by far the dearest arm**: 8,447,944 nodes against `abel`'s 2,541,652 (**+232%**), 3.6 h of wall clock against 1.0 h. This is the budget-1,000 finding at scale and it got worse, not better, with headroom: `S` fills slots 2 and 3 with near-copies of the rank-1 pick, and on the 640 rows where rank 1 already solved, those near-copies still run and still cost. The recorded runs do **not** early-stop — all three ranks execute even after rank 1 solves, so `stop3` in the filenames does not mean early-stop in the data, and 1,280 of the 1,920 rows are searches whose answer was already known. The −8.3% deployed saving is therefore *conditional on a deployment that stops on success*, which is not what was run; quoted as executed, `S` costs 3.3× more to reach an identical result.
+
+**No escapes, and the budgets are not matched.** The untransformed baseline solves 640/640 at its own 1,000,000-node budget, so nothing here is a solvability win over the baseline — the win is cost and path length. The honest comparison is nodes actually spent: `abel_len_rd_s` reaches the same 640/640 for **420,426 deployed nodes against the baseline's 3,176,297 (7.6×)**, with a shorter median path (**7 vs 9**) and a shorter path on 585 of 640 rows against 3 longer. The tail is where that ratio lives — the median per-row speedup is only 1.8× — and the extreme case is presentation 634, which costs the baseline 574,348 nodes and `abel_len_rd_s` 7,838 at rank 1, a **73×** saving on the benchmark's hardest row. Seven presentations tie at exactly 19,340 deployed nodes, the arm's worst case, against the baseline's worst of 574,959.
+
+**Recommendation.** `abel` remains the arm to ship as-is. `abel_len_rd_s` is worth taking *only* together with early-stop-on-success, which would turn its +232% as-run penalty into a −8.3% saving; without that change it is strictly worse. `len_rd_s` supersedes `len` outright — one more row solved and 4.3% cheaper deployed.
+
 ## Reproducing
 
 ```bash
