@@ -39,6 +39,7 @@ Two documented divergences from JAX, both inert for the baseline config:
 import numpy as np
 import torch
 
+from experiments.ppo import shaping
 from experiments.ppo.acs_moves import decode_action, s_move
 
 INT32_MAX = 2 ** 31 - 1
@@ -49,7 +50,8 @@ class VecACS:
 
     def __init__(self, init_states, num_envs, *, n_gen=2, max_length=24,
                  max_steps=96, gamma=0.999, cycle_penalty=0.0, noop_penalty=0.0,
-                 n_pinned=0, device="cpu", seed=0, track_paths=True):
+                 n_pinned=0, device="cpu", seed=0, track_paths=True,
+                 shaping=None, lam=0.0):
         self.device = torch.device(device)
         self.n_gen = n_gen
         self.L = max_length
@@ -61,6 +63,11 @@ class VecACS:
         self.noop_penalty = float(noop_penalty)
         self.track_paths = track_paths
         self.n_actions = n_gen * 2 * max_length * max_length
+        # Reward shaping is OFF unless both are set, and `lam = 0` is a hard zero
+        # rather than a small number -- the control arm must be bit-identical to the
+        # unshaped baseline, not merely close to it. See `shaping.py`.
+        self.shaping = shaping
+        self.lam = float(lam)
 
         self.init_states = torch.as_tensor(np.asarray(init_states), dtype=torch.int64, device=self.device)
         if self.init_states.shape[1] != self.obs_len:
@@ -146,6 +153,12 @@ class VecACS:
         penalty = (already_visited.to(torch.float32) * self.cycle_penalty
                    + is_noop.to(torch.float32) * self.noop_penalty) * (1.0 - term_f)
         reward = base_reward - penalty
+        if self.shaping is not None and self.lam:
+            # `self.x` is still the state the action was taken FROM -- this must stay
+            # above the assignment below. `done` carries truncation as well as
+            # termination, which is what zeroes `Phi` at the horizon.
+            reward = reward + shaping.shaping_term(
+                self.x, new_x, done, self.lam, self.gamma, self.shaping, self.n_gen, L)
 
         self.x = new_x
         self.time = time

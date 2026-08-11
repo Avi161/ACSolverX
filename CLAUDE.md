@@ -35,6 +35,7 @@ Same rule in [`AGENTS.md`](AGENTS.md). Example day file: [`logs/28-07-2026.md`](
   `B` is exactly the first `B` pops of any longer search, so a bigger budget buys a slower
   repro, never a different behaviour. Prove the pipeline is budget-agnostic instead of
   brute-forcing one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
+- **Never start a long run without a smoke run first.** Anything that would take more than a few minutes — PPO training, a full beam decode, a multi-hour search, any Colab campaign — gets a short, wall-clock-bounded rehearsal **at production settings** first, and its report is read before the real run is launched. The smoke does two things a shrunken rehearsal cannot: it measures the per-unit cost the real run is sized from (`seconds_per_update`, seconds/presentation), and it proves every side effect actually fires — optimiser step, checkpoint write, Drive mirror, resume. Narrowing the beam width, the batch or the subset to make it fast measures a *proxy* and is worth nothing; bound it in **time**, between units, so every row it writes is a real row the full run resumes from. `SMOKE_RUN = True` in a Colab CONFIG is this rule's implementation. Same rule in [`AGENTS.md`](AGENTS.md).
 - **Scout small, then scale only the winner.** Do **not** start heuristic / ordering
   experiments as long wall-clock runs or huge node budgets. Compare arms in **short
   scouts** (small budget, small subset, short wall); pick the best; **only then** raise

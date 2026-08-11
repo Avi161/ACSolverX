@@ -30,7 +30,7 @@ import time
 import numpy as np
 import torch
 
-from experiments.ppo import acs_data
+from experiments.ppo import acs_data, bench60, heldout, shaping
 from experiments.ppo.acs_env import VecACS
 from experiments.ppo.beam import repair_jsonl, run_beam, summarise
 from experiments.ppo.policy import RelativeDualRingActorCritic
@@ -78,6 +78,27 @@ class Heartbeat:
             self.last = now
             return True
         return False
+
+
+def _ensure_dataset(stem, max_length, log=print):
+    """Build a derived dataset on first use, so a fresh VM needs no manual step.
+
+    `data/` holds the shipped files; the held-out training file and the 60-row
+    evaluation file are *derived* from them and from the frozen benchmark CSV, so
+    they are generated rather than committed -- one source of truth, and no way for
+    a stale copy to disagree with the benchmark it came from.
+
+    Deliberately NOT short-circuited on `os.path.exists`. Both builders are idempotent
+    and compare the existing file's CONTENT, so calling them is a no-op when the file is
+    already right -- but an existence check would skip that comparison and hand a stale or
+    truncated file straight to an 8-hour training run, which is the one outcome the
+    derived-not-committed design exists to prevent. The cost is one parse of the source
+    file per process start; the run it guards is measured in hours.
+    """
+    if stem == heldout.BENCH_STEM:
+        heldout.build_benchmark_dataset(max_length, log=log)
+    elif stem.endswith(heldout.HELDOUT_SUFFIX):
+        heldout.build(stem[:-len(heldout.HELDOUT_SUFFIX)], max_length, log=log)
 
 
 def _mirror(src, dst_dir):
@@ -361,14 +382,22 @@ def _unflatten(flat):
     return tree
 
 
-def train_tag(stem, seed):
+def train_tag(stem, seed, shaping=None, lam=0.0):
     """Checkpoint / jsonl / W&B identity of one training arm.
 
     The update count is deliberately absent: this names a *continuing* run, and
     the update it has reached lives inside the checkpoint. Anything that reads
     the weights and reports a number (`beam_tag`) must add it back.
+
+    The reward variant and `lam` ARE in it, because they change the result: two arms
+    sharing a tag would share a checkpoint file and each would silently resume from
+    the other. An unshaped run keeps the original tag exactly, so control checkpoints
+    and every existing artefact stay readable.
     """
-    return f"ppo-drt-{stem}-s{int(seed)}"
+    tag = f"ppo-drt-{stem}"
+    if shaping and lam:
+        tag += f"-{shaping}-lam{float(lam):g}"
+    return f"{tag}-s{int(seed)}"
 
 
 def stage_train(cfg, log=print):
@@ -378,8 +407,12 @@ def stage_train(cfg, log=print):
 
     L = config["MAX_RELATOR_LENGTH"]
     stem = config["DATASET"]
+    _ensure_dataset(stem, L, log)
     pres = acs_data.load_presentations(stem, L)
-    n_pinned = acs_data.ms_prefix_length(stem)
+    # NOT `acs_data.ms_prefix_length`: that walks leading lines against `1190MS` and
+    # returns 0 the moment a held-out row is removed from the head of the file, which
+    # would switch pinning off in every arm without a word of warning. See `heldout.py`.
+    n_pinned = heldout.ms_prefix_length(stem, L)
     if n_pinned > config["NUM_ENVS"]:
         # Only reachable by shrinking NUM_ENVS for a smoke run. Clamping keeps it
         # runnable; saying so keeps its solve count from being read as an arm.
@@ -390,15 +423,24 @@ def stage_train(cfg, log=print):
     log(f"{stem}: {len(pres)} presentations, MS prefix {n_pinned} "
         f"-> {n_pinned} envs pinned deterministically, {config['NUM_ENVS'] - n_pinned} sampling")
 
+    variant, lam = cfg.get("SHAPING"), float(cfg.get("LAMBDA") or 0.0)
+    if variant and lam:
+        w = shaping.WEIGHTS[variant]                 # KeyError here beats a silent arm
+        log(f"reward shaping: {variant} lam={lam:g}  "
+            f"Phi = -{lam:g} * ({w[0]:g}L + {w[1]:g}K + {w[2]:g}MK + {w[3]:g}S)")
+    else:
+        variant, lam = None, 0.0
+        log("reward shaping: OFF (control arm -- reward is the unshaped baseline)")
+
     env = VecACS(pres, config["NUM_ENVS"], max_length=L, max_steps=config["NUM_STEPS"],
                  gamma=config["GAMMA"], cycle_penalty=config["CYCLE_PENALTY"],
                  noop_penalty=config["NOOP_PENALTY"], n_pinned=n_pinned,
-                 device=device, seed=config["SEED"])
+                 device=device, seed=config["SEED"], shaping=variant, lam=lam)
     trainer = PPOTrainer(env, config, device)
 
     out_dir = cfg["OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
-    tag = cfg.get("RUN_TAG") or train_tag(stem, config["SEED"])
+    tag = cfg.get("RUN_TAG") or train_tag(stem, config["SEED"], variant, lam)
     ckpt_path = os.path.join(out_dir, f"{tag}.pt")
     jsonl_path = os.path.join(out_dir, f"{tag}.jsonl")
     mirror = cfg.get("MIRROR_DIR")
@@ -559,6 +601,7 @@ def stage_beam(cfg, log=print):
         ckpt_tag = checkpoint_tag(cfg, src)
 
     stem = cfg["EVAL_DATASET"]
+    _ensure_dataset(stem, L, log)
     pres = acs_data.load_presentations(stem, L)
     out_dir = cfg["OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
@@ -700,6 +743,11 @@ def stage_report(cfg, log=print):
                 "num_solved_pinned": last.get("num_solved_pinned"),
                 "seconds_per_update": round(last.get("collect_s", 0) + last.get("learn_s", 0), 2)})
 
+    # Row level AND orbit level: 60 rows are 45 Aut orbits, so `n/60` alone overstates
+    # any method that suits a duplicated orbit. `bench60` refuses to print one without
+    # the other, and carries the bins-7-9 subset the arms can actually differ on.
+    report["benchmark60"] = bench60.summarise(out_dir)
+
     os.makedirs(out_dir, exist_ok=True)
     # Distinct names so the full run does not overwrite the smoke report that
     # justified starting it -- the two are read side by side when a number moves.
@@ -708,6 +756,24 @@ def stage_report(cfg, log=print):
     with open(report_path, "w") as fh:
         json.dump(report, fh, indent=2, default=float)
     _mirror(report_path, mirror)
+
+    # Those two names separate a smoke from a full run and nothing else: every smoke
+    # overwrites the previous smoke. With two reward arms coming, the second arm's
+    # report would erase the first, which is the number it has to be compared against.
+    # The fixed names stay (they are what gets read back after a session), and the
+    # history goes to an append-only jsonl beside them -- the repo's idiom everywhere
+    # else, with no naming scheme left to collide.
+    history_path = os.path.join(out_dir, "report_history.jsonl")
+    _seed_from_mirror(history_path, mirror)
+    repair_jsonl(history_path, log)          # a killed VM can only tear the last line
+    with open(history_path, "a") as fh:
+        fh.write(json.dumps(
+            dict(written_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                 kind="smoke" if cfg.get("SMOKE_RUN") else "full", **report),
+            default=float) + "\n")
+        fh.flush()
+        os.fsync(fh.fileno())
+    _mirror(history_path, mirror)
 
     log("=" * 72)
     log(json.dumps(report, indent=2, default=float))
@@ -726,6 +792,12 @@ def main(cfg, log=print):
     if stage not in STAGES:
         raise SystemExit(f"unknown STAGE {stage!r}; expected one of {sorted(STAGES)}")
     log(f"=== stage {stage} ===")
+    # Derived datasets get built here rather than in each stage: `parity` and the env
+    # self-check both load `DATASET` too, so a fresh VM whose first stage is not `train`
+    # would otherwise die on a missing file.
+    for key in ("DATASET", "EVAL_DATASET"):
+        if cfg.get(key):
+            _ensure_dataset(cfg[key], cfg.get("MAX_RELATOR_LENGTH", 24), log)
     return STAGES[stage](cfg, log=log)
 
 

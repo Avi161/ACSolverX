@@ -132,3 +132,36 @@ def test_report_is_a_registered_stage_reachable_through_main(tmp_path, presentat
     _beam_file(tmp_path, presentations, n=2)
     cfg = _cfg(tmp_path, STAGE="report")
     assert run_ppo.main(cfg, log=lambda *_: None)["beam_runs"][0]["rows"] == 2
+
+
+def test_every_report_is_kept_even_though_the_json_name_is_fixed(tmp_path):
+    """`smoke_report.json` is one name, and the arms produce more than one report.
+
+    The second reward arm's smoke would otherwise overwrite the first arm's -- the
+    exact number it has to be compared against. The fixed names stay (they are what
+    gets pasted back after a session); the history is append-only beside them.
+    """
+    base = {"OUT_DIR": str(tmp_path), "MIRROR_DIR": None, "EVAL_DATASET": "1190MS"}
+    run_ppo.stage_report({**base, "SMOKE_RUN": True, "SEED": 1}, log=lambda *_: None)
+    run_ppo.stage_report({**base, "SMOKE_RUN": True, "SEED": 2}, log=lambda *_: None)
+    run_ppo.stage_report({**base, "SMOKE_RUN": False, "SEED": 3}, log=lambda *_: None)
+
+    # the fixed names still behave exactly as before -- last writer wins
+    with open(tmp_path / "smoke_report.json") as fh:
+        assert json.load(fh)["config"]["SEED"] == 2
+
+    rows = [json.loads(l) for l in open(tmp_path / "report_history.jsonl") if l.strip()]
+    assert [r["config"]["SEED"] for r in rows] == [1, 2, 3]
+    assert [r["kind"] for r in rows] == ["smoke", "smoke", "full"]
+    assert all(r["written_at"].endswith("Z") for r in rows)
+
+
+def test_a_torn_history_line_is_repaired_before_the_next_append(tmp_path):
+    """A killed VM tears the trailing line; the next run must not append after it."""
+    path = tmp_path / "report_history.jsonl"
+    path.write_text('{"kind": "smoke", "config": {"SEED": 1}}\n{"kind": "smo')
+    run_ppo.stage_report({"OUT_DIR": str(tmp_path), "MIRROR_DIR": None,
+                          "EVAL_DATASET": "1190MS", "SMOKE_RUN": True, "SEED": 9},
+                         log=lambda *_: None)
+    rows = [json.loads(l) for l in open(path) if l.strip()]
+    assert [r["config"]["SEED"] for r in rows] == [1, 9]

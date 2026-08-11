@@ -2,6 +2,18 @@
 
 ## Hard rules
 
+### ⛔ Smoke run before any long run
+
+Anything that would take more than a few minutes — PPO training, a full beam decode, a multi-hour search, any Colab campaign — gets a short rehearsal first, and its report is read before the real run is launched.
+
+1. **At production settings.** Same beam width, same batch, same data. Narrowing anything to make it fast measures a proxy.
+2. **Bounded in wall-clock, between units.** Every row it writes is then a real row the full run resumes from — no work thrown away.
+3. **It must measure the per-unit cost** the real run is sized from: `seconds_per_update`, seconds/presentation.
+4. **It must exercise every side effect**, not just the maths: optimiser step, checkpoint write, Drive mirror, resume-from-disk.
+5. **Read the report before launching.** A smoke nobody reads is a smoke that did not happen.
+
+`SMOKE_RUN = True` in a Colab CONFIG is this rule's implementation. Same rule in [`CLAUDE.md`](CLAUDE.md).
+
 ### ⛔ Scout small, then scale only the winner (heuristic experiments)
 
 Do **not** default to long wall-clock campaigns or huge node budgets.
