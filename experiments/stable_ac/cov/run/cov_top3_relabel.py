@@ -12,16 +12,40 @@ exist.
 The rule the user approved, in order:
 
 ```text
-1. rank by (abel | len)          -- the arm's key, unchanged
-2. then by total transformed length
+1. rank by (abel | total length)  -- the arm's key
+2. then by MK (max knots)         -- "the other idea", optional
 3. drop a candidate whose relabel_class already appeared    <-- this module
 4. pull deeper to refill the slot
 5. _ident (z_word, iso_gen, iso_index, r1, r2) as the last resort
 ```
 
-Steps 1, 2 and 5 are ``cov_top3_manifest.rank`` verbatim — this module imports
-that ordering rather than restating it, so the arms differ in the dedup and in
-nothing else.
+The five rules
+--------------
+
+```text
+abel_rd          (abel)                shipped `abel` + dedup, one variable
+len_rd           (total)               shipped `len`  + dedup, one variable
+abel_len_rd      (abel, total)         the validated b1k ranking + dedup
+abel_len_rd_mk   (abel, total, MK)     the above + "the other idea"
+len_rd_mk        (total, MK)           the length arm + "the other idea"
+```
+
+Every key is ``abel_topk_cov_b1k.KEYS`` or a ``_with_mk`` of one, so a change
+there reaches these arms and the study in
+``heuristic_search/runners/cov_relabel_b1k.py`` cannot drift from what the
+manifests are actually built with.
+
+``abel_rd`` and ``len_rd`` exist to isolate the dedup: they are a shipped arm
+with the filter added and **nothing else changed**, which is what makes a
+comparison against the shipped ms640 run a one-variable comparison. The other
+three change the ranking too, so they have no shipped counterpart
+(:func:`base_rule` returns ``None`` for them rather than inventing one).
+
+Note that the shipped ``abel`` rule is bare ``(abel,)`` — it does *not* carry
+the total-length term. Building the MK arms on top of it would have quietly
+dropped that term; ``abel_len_rd_mk`` composes from ``KEYS["abel_len"]``
+instead, and ``abel_len_rd`` is carried alongside so the MK term can be read
+against the same ranking without it.
 
 Why dedup at all — and the honest limit of the claim
 ----------------------------------------------------
@@ -64,9 +88,9 @@ dedup. Evaluating this arm means running stage B; that is a Colab job.
 Rules and run identity
 ----------------------
 
-``abel_rd`` and ``len_rd`` live in this module's own :data:`RULES`, and are
-spliced into ``cov_top3_manifest.RULES`` **only for the duration of a stage-B
-run** (:func:`registered`). They are deliberately NOT registered at import: that
+All five names live in this module's own :data:`RULES`, and are spliced into
+``cov_top3_manifest.RULES`` **only for the duration of a stage-B run**
+(:func:`registered`). They are deliberately NOT registered at import: that
 dict is read at module scope by other code, and mutating it on import would make
 behaviour depend on import order —
 
@@ -107,19 +131,47 @@ import time
 
 from experiments import run_baseline
 from experiments.equivalence_classes.lib.words import relabel_key
+from experiments.heuristic_search.runners import abel_tiebreak_b1k as tiebreak
+from experiments.heuristic_search.runners import abel_topk_cov_b1k as b1k
 from experiments.stable_ac.cov.run import cov_top3_manifest as manifest
 
 K = manifest.K
 DEDUP_TAG = "relabel8"
 
-# new rule -> the shipped rule whose ranking it reuses verbatim. The dedup is
-# the ONLY difference between an arm and its base, which is what lets the two be
-# compared: one variable, not two.
+
+def _with_mk(key):
+    """``key`` with ``MK`` appended as the last ordering term before ``_ident``.
+
+    ``MK`` is ``hlab.FEATURES``' max-knot count over the two relators, read off
+    the START pair — ``tiebreak._MK`` is ``phi(r1, r2)[MK]``, so like every key
+    here it is search-free and computable at manifest-build time. Appending it
+    means it decides only what the name tie-break would otherwise have decided:
+    it can never outvote abel or length.
+    """
+    return lambda d: tuple(key(d)) + (tiebreak._MK(d),)
+
+
+# new rule -> the shipped rule whose ranking it reuses **verbatim**. For these
+# two the dedup is the ONLY difference from a shipped arm, which is what lets
+# them be compared to it: one variable, not two. The rules below that add an
+# ordering term have no shipped counterpart and are absent here.
 BASE_OF = {"abel_rd": "abel", "len_rd": "len"}
 
 # This module's own whitelist. Same contract as the base module's: an unknown
 # rule fails here, never falls back to a default.
-RULES = {new: manifest.RULES[base] for new, base in BASE_OF.items()}
+#
+# Composition, not restatement: every key is ``abel_topk_cov_b1k.KEYS`` or a
+# ``_with_mk`` of one, so a change to a key there reaches these arms. Writing
+# ``(abel,) + MK`` here would have been the easy mistake — the shipped ``abel``
+# rule is bare ``(abel,)``, so building the MK arms on ``BASE_OF`` would have
+# silently dropped the total-length term that the ranking was validated with.
+RULES = {
+    "abel_rd": manifest.RULES["abel"],                  # (abel)
+    "len_rd": manifest.RULES["len"],                    # (total)
+    "abel_len_rd": b1k.KEYS["abel_len"],                # (abel, total)
+    "abel_len_rd_mk": _with_mk(b1k.KEYS["abel_len"]),   # (abel, total, MK)
+    "len_rd_mk": _with_mk(b1k.KEYS["len_only"]),        # (total, MK)
+}
 
 ROOT = manifest.ROOT
 
@@ -156,8 +208,25 @@ def registered(rule, rules=None):
 
 
 def base_rule(rule):
-    """The shipped rule a deduped rule ranks by; a shipped rule is its own base."""
-    return BASE_OF.get(rule, rule)
+    """The shipped rule a deduped rule ranks by, or ``None`` if it has no counterpart.
+
+    Only ``abel_rd`` and ``len_rd`` mirror a shipped arm. The rules that add an
+    ordering term differ from every shipped arm in two ways, so there is no
+    single base to compare them against and callers must not invent one.
+    """
+    return BASE_OF.get(rule)
+
+
+def rank(cands, rule):
+    """``cov_top3_manifest.rank``'s ordering, over a key this module owns.
+
+    Same shape as the base module's — the rule's key, then ``_ident`` (the CoV's
+    own name) as the deterministic last resort. It is restated here only because
+    the base ``rank`` looks its key up in ``cov_top3_manifest.RULES``, which the
+    composed rules are deliberately not permanent members of.
+    """
+    key = RULES[check_rule(rule)]
+    return sorted(cands, key=lambda d: tuple(key(d)) + manifest._ident(d))
 
 
 def manifest_path(rule, out_dir=manifest.OUT_DIR):
@@ -206,9 +275,8 @@ def dedup_ranked(ranked, k=K):
 
 
 def top_k(cands, k=K, rule="abel_rd"):
-    """The deduped top ``k``. ``rank`` is the base arm's, unchanged."""
-    ranked = manifest.rank(cands, base_rule(rule))
-    return dedup_ranked(ranked, k)
+    """The deduped top ``k``. The ranking is :func:`rank`; the dedup is the filter."""
+    return dedup_ranked(rank(cands, rule), k)
 
 
 def build(rule="abel_rd", dataset=manifest.DATASET, out_path=None, k=K,
@@ -259,8 +327,12 @@ def build(rule="abel_rd", dataset=manifest.DATASET, out_path=None, k=K,
     if verbose:
         print(f"wrote {out_path}: {n_rows} picks over {n_pres} presentations "
               f"in {time.perf_counter() - t0:.0f}s", flush=True)
-        print(f"  {n_dropped} relabel repeats dropped; top-{k} differs from "
-              f"{base_rule(rule)!r} on {n_changed}/{n_pres} presentations; "
+        base = base_rule(rule)
+        moved = (f"top-{k} differs from {base!r} on {n_changed}/{n_pres} "
+                 f"presentations" if base else
+                 f"{n_changed}/{n_pres} presentations have a pick pulled deeper "
+                 f"than its raw rank")
+        print(f"  {n_dropped} relabel repeats dropped; {moved}; "
               f"{n_short} presentations had fewer than {k} relabel-distinct "
               f"candidates", flush=True)
     return ap

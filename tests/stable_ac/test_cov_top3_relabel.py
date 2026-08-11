@@ -29,7 +29,10 @@ import os
 
 import pytest
 
+from experiments import run_baseline
 from experiments.equivalence_classes.lib import words
+from experiments.heuristic_search.runners import abel_tiebreak_b1k as TB
+from experiments.heuristic_search.runners import abel_topk_cov_b1k as B1K
 from experiments.stable_ac.cov.run import cov_top3_manifest as M
 from experiments.stable_ac.cov.run import cov_top3_relabel as RD
 from experiments.stable_ac.cov.run import cov_top3_relabel_run as RDRUN
@@ -45,6 +48,14 @@ SHIPPED_REPEATS = {"abel": (500, 723), "len": (343, 424)}
 def _rows(path):
     with open(os.path.join(RD.ROOT, path)) as fh:
         return [json.loads(l) for l in fh if l.strip()]
+
+
+def _pres(pres_id):
+    """``(r1, r2)`` of one ms640 row, straight from the dataset the manifests use."""
+    for _, r1, r2 in run_baseline.load_dataset(
+            os.path.join(RD.ROOT, M.DATASET), subset=[pres_id]):
+        return r1, r2
+    raise AssertionError(f"pres {pres_id} not in {M.DATASET}")
 
 
 @pytest.fixture(scope="module")
@@ -122,7 +133,8 @@ def test_importing_this_module_does_not_touch_the_shared_whitelist():
     undeduped ones.
     """
     assert sorted(M.RULES) == ["abel", "len"]
-    assert sorted(RD.RULES) == ["abel_rd", "len_rd"]
+    assert sorted(RD.RULES) == ["abel_len_rd", "abel_len_rd_mk", "abel_rd",
+                                "len_rd", "len_rd_mk"]
     assert set(RD.RULES) & set(M.RULES) == set()
 
 
@@ -153,6 +165,46 @@ def test_the_deduped_rules_reuse_the_base_keys_not_copies():
     ranking key must be the same object, not a re-implementation."""
     for new, base in RD.BASE_OF.items():
         assert RD.RULES[new] is M.RULES[base]
+    # ...and the composed rules reuse the b1k keys rather than restating them
+    assert RD.RULES["abel_len_rd"] is B1K.KEYS["abel_len"]
+    assert RD.base_rule("abel_len_rd") is None
+
+
+@pytest.mark.parametrize("rule,base,n", [("abel_len_rd_mk", "abel_len", 3),
+                                         ("len_rd_mk", "len_only", 2)])
+def test_the_mk_rules_keep_every_term_of_the_key_they_compose_on(rule, base, n):
+    """The bug this pins: the shipped ``abel`` rule is bare ``(abel,)``.
+
+    Building ``abel_len_rd_mk`` on ``BASE_OF["abel_rd"]`` — the obvious reading
+    of "the same pipeline plus MK" — would have ranked by ``(abel, MK)`` and
+    silently dropped the total-length term the ranking was validated with. The
+    MK key must be its base key with exactly one element appended.
+    """
+    key, bkey = RD.RULES[rule], B1K.KEYS[base]
+    for d in M.candidates(*_pres(7))[:40]:
+        v = key(d)
+        assert len(v) == n
+        assert v[:-1] == tuple(bkey(d))
+        assert v[-1] == TB._MK(d)
+
+
+def test_the_mk_key_is_search_free():
+    """Every ranking key must be computable at manifest-build time. ``_MK`` reads
+    ``phi(r1, r2)``, so a candidate carrying nothing but the two start strings
+    must rank — if it ever needed a search result this raises."""
+    assert RD.RULES["len_rd_mk"]({"r1": "xyXY", "r2": "xxy"})
+    for rule in RD.RULES:
+        assert RD.RULES[rule]({"r1": "xyXY", "r2": "xxy"}) is not None
+
+
+def test_adding_the_length_and_mk_terms_actually_moves_picks():
+    """A rule that never changes a pick is a rule not worth its run identity."""
+    cands = M.candidates(*_pres(7))
+    picks = {rule: [(d["r1"], d["r2"]) for _, _, d in RD.top_k(cands, 3, rule)[0]]
+             for rule in RD.RULES}
+    assert picks["abel_len_rd"] != picks["abel_rd"], \
+        "the total-length term must be doing something on this presentation"
+    assert len({tuple(v) for v in picks.values()}) > 1
 
 
 # ------------------------------------------------------------ run identity
@@ -245,10 +297,14 @@ def test_the_deduped_manifests_have_no_repeats_and_full_k(rule):
         assert picks[0]["rank_raw"] == 1
 
 
-@pytest.mark.parametrize("rule", sorted(RD.RULES))
+@pytest.mark.parametrize("rule", sorted(RD.BASE_OF))
 def test_deduped_rows_are_a_superset_of_the_base_schema(rule, tmp_path):
     """Stage B reads the manifest by field name; a missing field is a crash
-    mid-run, an extra one is free."""
+    mid-run, an extra one is free.
+
+    Only the two mirror rules have a shipped arm to diff against; the schema is
+    written by one ``build``, so covering them covers the field set.
+    """
     base = M.build(rule=RD.base_rule(rule), subset=list(range(6)),
                    out_path=str(tmp_path / "base.jsonl"), verbose=False)
     new = RD.build(rule=rule, subset=list(range(6)),

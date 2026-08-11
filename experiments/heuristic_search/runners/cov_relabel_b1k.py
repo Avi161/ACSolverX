@@ -165,38 +165,70 @@ def table(s, budget):
 
 
 def figure(s1k, s10k, path):
-    """Deployed nodes per arm, both budgets. Blue/orange + hatch, never red/green."""
+    """Each variant's cost **relative to its own shipped ranking**, both budgets.
+
+    Plotted as a delta, not as absolute totals, for a specific reason: the arms differ by
+    ~3%, so on a zero-based axis of ~65,000 nodes every bar is the same height and the two
+    findings — that the dedup changes *nothing* and that MK changes sign — are both
+    invisible. Against a zero baseline the dedup's exact inertness is a bar of literally no
+    height, which is the honest picture of it.
+
+    Down is cheaper. Solve changes are annotated where they are nonzero, because a cost
+    delta means nothing without them: an arm can look cheap purely by giving up a row.
+
+    Colour never carries a distinction alone (the reader is red-green colourblind): blue vs
+    orange, and each series also has its own hatch.
+    """
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import numpy as np
 
-    labels, plain, rd, rdmk = [], [], [], []
-    for base, (lab, _) in BASES.items():
-        labels.append(lab)
-        plain.append(s1k[f"{base}__plain"]["deployed_total"])
-        rd.append(s1k[f"{base}__rd"]["deployed_total"])
-        rdmk.append(s1k[f"{base}__rd_mk"]["deployed_total"])
+    BLUE, ORANGE = "#3b6ea5", "#e08214"
+    fig, axes = plt.subplots(1, 2, figsize=(10.0, 4.4), dpi=200, sharey=False)
+    x = np.arange(len(BASES))
+    w = 0.34
 
-    x = np.arange(len(labels))
-    w = 0.26
-    fig, ax = plt.subplots(figsize=(6.0, 4.25), dpi=200)
-    b1 = ax.bar(x - w, plain, w, label="shipped (name tie-break)",
-                color="#3b6ea5", edgecolor="black", linewidth=.6)
-    b2 = ax.bar(x, rd, w, label="+ relabel-dedup", color="#e08214",
-                edgecolor="black", linewidth=.6, hatch="//")
-    b3 = ax.bar(x + w, rdmk, w, label="+ relabel-dedup + MK", color="#f7f7f7",
-                edgecolor="black", linewidth=.9, hatch="xx")
-    for bars in (b1, b2, b3):
-        ax.bar_label(bars, fontsize=6, padding=2,
-                     labels=[f"{int(b.get_height()):,}" for b in bars])
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=9)
-    ax.set_ylabel("nodes deployed over 60 presentations", fontsize=9)
-    ax.set_title("Top-3 CoV cost at budget 1,000 · subset-60", fontsize=10)
-    ax.legend(fontsize=7.5, frameon=False)
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.tick_params(labelsize=8)
+    for ax, (s, budget) in zip(axes, ((s1k, 1000), (s10k, 10000))):
+        series = []
+        for v, lab, c, h in (("rd", "+ relabel-dedup", BLUE, ""),
+                             ("rd_mk", "+ relabel-dedup + MK", ORANGE, "///")):
+            d = [s[f"{b}__{v}"]["deployed_total"] - s[f"{b}__plain"]["deployed_total"]
+                 for b in BASES]
+            series.append((v, d))
+            off = -w / 2 if v == "rd" else w / 2
+            ax.bar(x + off, d, w, label=lab, color=c, edgecolor="black",
+                   linewidth=.6, hatch=h, zorder=3)
+        span = max((abs(v) for _, d in series for v in d), default=1) or 1
+        for v, d in series:
+            off = -w / 2 if v == "rd" else w / 2
+            for i, (b, dv) in enumerate(zip(BASES, d)):
+                dk1 = s[f"{b}__{v}"]["at_k"][1] - s[f"{b}__plain"]["at_k"][1]
+                dk3 = s[f"{b}__{v}"]["at_k"][3] - s[f"{b}__plain"]["at_k"][3]
+                note = f"{dv:+,}" if dv else "0"
+                if dk1 or dk3:
+                    note += f"\nk1 {dk1:+d}" if dk1 else ""
+                    note += f"\nk3 {dk3:+d}" if dk3 else ""
+                up = dv >= 0
+                ax.text(i + off, dv + (0.03 if up else -0.03) * span, note,
+                        ha="center", va="bottom" if up else "top", fontsize=7,
+                        linespacing=1.35, zorder=4)
+        ax.axhline(0, color="black", lw=1.1, zorder=2)
+        ax.set_ylim(-1.45 * span, 1.45 * span)
+        ax.set_xticks(x)
+        ax.set_xticklabels([lab for lab, _ in BASES.values()], fontsize=9)
+        ax.set_title(f"budget {budget:,}", fontsize=10)
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.tick_params(labelsize=8)
+        ax.grid(axis="y", color="#e8eaf0", lw=0.8, zorder=0)
+        ax.yaxis.set_major_formatter(lambda v, _: f"{v:+,.0f}".replace("+0", "0"))
+
+    axes[0].set_ylabel("nodes vs the same arm's shipped ranking\n(down = cheaper)",
+                       fontsize=9)
+    # upper left: the only quadrant no bar or annotation reaches in either panel
+    axes[0].legend(fontsize=8, frameon=False, loc="upper left")
+    fig.suptitle("Relabel-dedup is inert; MK changes sign with the budget · top-3, "
+                 "subset-60", fontsize=11)
     fig.tight_layout()
     ap = path if os.path.isabs(path) else os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(ap), exist_ok=True)
