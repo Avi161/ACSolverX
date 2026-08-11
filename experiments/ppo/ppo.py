@@ -58,6 +58,21 @@ def make_config(**overrides):
     return cfg
 
 
+def _cpu_rng(state):
+    """An RNG state must be a CPU `ByteTensor`, whatever device the run is on.
+
+    `run_ppo` resumes with `torch.load(..., map_location=device)`, which maps *every*
+    tensor in the blob -- the three RNG states included -- so on a GPU they arrive on CUDA
+    and `set_state` raises `TypeError: RNG state must be a torch.ByteTensor`. That is a
+    crash on the resume path only, which is exactly the path a multi-hour run depends on
+    and the one a CPU test never reaches: `map_location="cpu"` leaves the states where
+    `set_state` already wants them, so the round-trip test passed for years of CPU runs.
+    Route every RNG state through here rather than `.cpu()`-ing them one by one -- the
+    original bug was two of the three call sites having been missed.
+    """
+    return state.cpu() if hasattr(state, "cpu") else state
+
+
 class PPOTrainer:
     def __init__(self, env, config, device):
         self.env = env
@@ -271,8 +286,8 @@ class PPOTrainer:
         self.update = int(blob["update"])
         self.model.load_state_dict(blob["model"])
         self.opt.load_state_dict(blob["optimizer"])
-        torch.set_rng_state(blob["torch_rng"].cpu() if hasattr(blob["torch_rng"], "cpu") else blob["torch_rng"])
-        self.gen.set_state(blob["gen_rng"])
+        torch.set_rng_state(_cpu_rng(blob["torch_rng"]))
+        self.gen.set_state(_cpu_rng(blob["gen_rng"]))
         env, e = self.env, blob["env"]
         for name in ("x", "time", "idx", "sample", "visited", "ret", "norm_mean",
                      "norm_var", "norm_count", "solves", "attempts", "probs",
@@ -281,7 +296,7 @@ class PPOTrainer:
         if env.track_paths and e.get("best_paths") is not None:
             env.best_paths.copy_(e["best_paths"].to(env.device))
             env.current_actions.copy_(e["current_actions"].to(env.device))
-        env.gen.set_state(e["gen_rng"])
+        env.gen.set_state(_cpu_rng(e["gen_rng"]))
 
 
 def solved_rows(env):

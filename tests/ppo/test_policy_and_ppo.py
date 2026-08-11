@@ -190,6 +190,55 @@ def test_one_update_runs_and_is_resumable(tmp_path):
         assert torch.equal(a, b)
 
 
+class _OffCpuTensor:
+    """A tensor as `map_location="cuda"` hands it back: real, but not on the CPU.
+
+    `Generator.set_state` accepts ONLY a CPU `ByteTensor`, so passing this raises the
+    same `TypeError` a GPU resume raises. That makes the GPU-only failure reachable on a
+    CPU-only machine, which is the whole point -- the bug this guards shipped because the
+    round-trip test above loads with `map_location="cpu"` while `run_ppo` loads with
+    `map_location=device`, so the test exercised a path production never takes.
+    """
+
+    def __init__(self, t):
+        self._t = t
+
+    def cpu(self):
+        return self._t
+
+
+def test_resume_survives_rng_state_that_came_back_on_the_gpu(tmp_path):
+    """The resume path, as a GPU actually delivers it.
+
+    Every multi-hour run leans on this: Colab drops the VM, `Restart -> Run All` reloads
+    the checkpoint, and `torch.load(..., map_location=device)` puts the three RNG states
+    on CUDA. Two of the three `set_state` calls used to take them unconverted.
+    """
+    tr = _tiny_trainer()
+    tr.step_update()
+    blob = tr.state_dict()
+    saved_torch_rng = blob["torch_rng"].clone()
+
+    # exactly what map_location=device does to the blob: every tensor moves
+    blob["torch_rng"] = _OffCpuTensor(blob["torch_rng"])
+    blob["gen_rng"] = _OffCpuTensor(blob["gen_rng"])
+    blob["env"]["gen_rng"] = _OffCpuTensor(blob["env"]["gen_rng"])
+
+    tr2 = _tiny_trainer()
+    tr2.load_state_dict(blob)                    # must not raise
+
+    # restored, not merely accepted -- all three generators, and the env with them
+    assert torch.equal(torch.get_rng_state(), saved_torch_rng)
+    assert torch.equal(tr2.gen.get_state(), tr.gen.get_state())
+    assert torch.equal(tr2.env.gen.get_state(), tr.env.gen.get_state())
+    assert torch.equal(tr2.env.x, tr.env.x)
+
+    # a resumed run must continue the SAME stream, or two halves of one 8-hour run are
+    # two different experiments stitched together
+    assert torch.equal(torch.randint(0, 99, (16,), generator=tr2.gen),
+                       torch.randint(0, 99, (16,), generator=tr.gen))
+
+
 def test_the_metadata_tree_is_found_however_orbax_wraps_it():
     """`610model` was trained on ROCm, so a plain restore dies off-ROCm.
 
