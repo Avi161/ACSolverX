@@ -243,3 +243,45 @@ def test_expand_chunk_census_and_no_self_loop():
     assert all(c[0] != P0 for c in children)             # self-loop never emitted
     assert sum(c[5] for c in children) <= ncov           # multiplicities are a census
     assert children == sorted(children)                  # deterministic order
+
+
+# ------------------------------------------------------- the open set is not a beam
+
+def test_take_wave_never_discards():
+    """WAVE bounds a batch, never membership: what a wave doesn't pop stays queued."""
+    st = Store(1)
+    reps = [(f"x{i}y", "xy") for i in range(5)]
+    for r in reps:
+        st.reach(r, 4, 1)
+    got = st.take_wave(2)
+    assert len(got) == 2 and st.frontier_size() == 3
+    rest = st.take_wave(99)
+    assert sorted(got + rest) == sorted(reps)            # every rep popped exactly once
+    assert st.take_wave(99) == [] and st.frontier_size() == 0
+
+
+def test_all_duplicate_children_do_not_stop_the_run(tmp_path, monkeypatch):
+    """The user's bug class: a wave whose children ALL dedup into known orbits (here:
+    every expansion 'discovers' only seed 0's rep) must not end the run — the loop may
+    stop only when every state in the open set has been popped and expanded. Merges
+    must not stop it either."""
+    seeds = [(f"t_{i}", f"xxx{'y' * (i + 1)}", "xyxY") for i in range(4)]
+    import experiments.stable_ac.cov.meet.covmeet as cm
+    from experiments.stable_ac.cov.ladder import autcanon_fast as af
+    target = af.aut_min((seeds[0][1], seeds[0][2]))[1]
+
+    def fake_expand(pairs):
+        return [((a, b), 1,
+                 [] if (a, b) == target else [(target, 8, "xy", "x", 0, 1)])
+                for a, b in pairs]
+
+    monkeypatch.setattr(cm, "_expand_chunk", fake_expand)
+    summary = run(str(tmp_path), seed_set="testDUP", seeds_override=seeds,
+                  workers=0, wave=1, chunk=1, mem_guard_gb=0, log=lambda *a: None)
+    assert "exhausted" in summary["stopped"]             # ran the open set DRY
+    assert summary["expanded"] == len(seeds)             # EVERY seed rep was popped
+    store = _store(tmp_path, 4, tag="testDUP")
+    assert store.frontier_size() == 0                    # nothing left unpopped
+    assert len(store.expanded) == len(store.mask)        # every discovered orbit popped
+    assert summary["merges_found"] >= 1                  # merges happened mid-run...
+    assert summary["classes_remaining"] == 1             # ...and the run kept going
