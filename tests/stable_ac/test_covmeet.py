@@ -1,0 +1,245 @@
+"""covmeet: the resume contract, merge detection, drop tracking, and determinism.
+
+Everything here runs on tiny seed pairs with ``max_expanded`` in the single digits —
+covmeet does zero greedy-search nodes (it is pure CoV enumeration + Aut-min), so the
+1,000-node budget rule is satisfied trivially, and each run() call is well under a
+second of real expansion work.
+
+The load-bearing contract, in order of what a failure would cost:
+
+1. **Resume == uninterrupted.** A run stopped after k expansions and resumed to n must
+   leave the exact store a straight run to n leaves. This is what lets a vast.ai box
+   die at any instant and lose nothing.
+2. **A torn trailing line is repaired before the first append** — the crash mode a
+   preempted spot instance actually produces (lesson: run-baseline-two-known-bugs).
+3. **A merge is detected** when two seeds' cones touch, and the classes count drops.
+4. **A drop is detected** when a cone reaches below its seed's aut-min (the user's
+   second deliverable), and replay re-derives it identically.
+5. **Determinism**: same config, fresh dir, twice -> byte-identical event rows (meta
+   rows carry a session timestamp and are excluded).
+6. **Serial == parallel**: workers=0 and workers=2 produce the same store.
+"""
+
+import json
+import os
+
+import pytest
+
+from experiments.stable_ac.cov.meet import covmeet
+from experiments.stable_ac.cov.meet.covmeet import (
+    Store, _expand_chunk, replay, run, run_paths,
+)
+
+# Two short, freely+cyclically reduced pairs (aca_0 and aca_1's raw reps — used here
+# as arbitrary small inputs, not as a claim about those classes).
+P0 = ("YXXyxYx", "YYYYYYXyxyX")
+P1 = ("YYXXyxx", "YYYxyXyX")
+
+SEEDS_AB = [("t_a", *P0), ("t_b", *P1)]
+
+
+def _run(tmp, seeds, n, tag="testAB", **kw):
+    kw.setdefault("workers", 0)
+    kw.setdefault("wave", 3)
+    kw.setdefault("chunk", 2)
+    kw.setdefault("mem_guard_gb", 0)          # never trip on a busy CI host
+    kw.setdefault("log", lambda *a: None)
+    return run(str(tmp), seed_set=tag, seeds_override=seeds, max_expanded=n, **kw)
+
+
+def _store(tmp, n_seeds, tag="testAB"):
+    events, _ = run_paths(str(tmp), tag)
+    store, meta = replay(events, n_seeds, expect_family=covmeet.FAMILY)
+    assert meta is not None
+    return store
+
+
+def _fingerprint(store):
+    return (sorted(store.mask.items()), sorted(store.expanded),
+            sorted((k, sorted(v)) for k, v in store.frontier.items()),
+            store.merges, store.drops, sorted(store.best_mu.items()))
+
+
+# ------------------------------------------------------------------- 1. resume
+
+def test_resume_equals_uninterrupted(tmp_path):
+    a, b = tmp_path / "a", tmp_path / "b"
+    _run(a, SEEDS_AB, 5)                              # straight run to 5
+    _run(b, SEEDS_AB, 2)                              # crash after 2...
+    _run(b, SEEDS_AB, 3)                              # ...resume for 3 more
+    sa, sb = _store(a, 2), _store(b, 2)
+    assert _fingerprint(sa) == _fingerprint(sb)
+    assert len(sa.expanded) == 5
+
+
+def test_resume_is_replay_not_reseed(tmp_path):
+    _run(tmp_path, SEEDS_AB, 2)
+    _run(tmp_path, SEEDS_AB, 1)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    rows = [json.loads(l) for l in open(events)]
+    assert sum(1 for r in rows if r["t"] == "seed") == 2      # seeded exactly once
+    assert sum(1 for r in rows if r["t"] == "meta") == 2      # one meta per session
+
+
+def test_summary_written_and_matches_replay(tmp_path):
+    _run(tmp_path, SEEDS_AB, 3)
+    events, summary_path = run_paths(str(tmp_path), "testAB")
+    with open(summary_path) as f:
+        written = json.load(f)
+    store = _store(tmp_path, 2)
+    live = covmeet.summarise(store, SEEDS_AB)
+    for k in ("classes_remaining", "merges_found", "expanded", "discovered", "edges"):
+        assert written[k] == live[k], k
+
+
+# ------------------------------------------------------------- 2. torn tail
+
+def test_torn_trailing_line_repaired_before_append(tmp_path):
+    _run(tmp_path, SEEDS_AB, 2)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    before = _store(tmp_path, 2)
+    with open(events, "a") as f:
+        f.write('{"t":"edge","rep":["xy')               # the crash artifact
+    _run(tmp_path, SEEDS_AB, 1)                          # must repair, then resume
+    after = _store(tmp_path, 2)
+    assert len(after.expanded) == len(before.expanded) + 1
+    for line in open(events):
+        json.loads(line)                                 # every line parses again
+
+
+def test_torn_tail_without_newline_only_loses_the_torn_row(tmp_path):
+    _run(tmp_path, SEEDS_AB, 2)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    n_rows = sum(1 for _ in open(events))
+    with open(events, "a") as f:
+        f.write('{"t":"x","rep":["a","b"],"nc')
+    cut = covmeet._repair_torn_tail(events)
+    assert cut > 0
+    assert sum(1 for _ in open(events)) == n_rows
+
+
+# ------------------------------------------------------------- 3. merges
+
+def _first_child(pair):
+    (_, _, children), = _expand_chunk([pair])
+    assert children, "expansion produced no non-self-loop orbit"
+    return children[0][0], children[0][1]                # (rep, mu)
+
+
+def test_merge_via_common_child(tmp_path):
+    """Seed B placed AT one of A's depth-1 orbits: expanding A must merge them."""
+    crep, _ = _first_child(P0)
+    seeds = [("t_a", *P0), ("t_planted", *crep)]
+    summary = _run(tmp_path, seeds, 4, tag="testMG")
+    assert summary["merges_found"] >= 1
+    assert summary["classes_remaining"] == 1
+    store = _store(tmp_path, 2, tag="testMG")
+    assert store.uf.find(0) == store.uf.find(1)
+    events, _ = run_paths(str(tmp_path), "testMG")
+    merges = [json.loads(l) for l in open(events) if '"merge"' in l]
+    assert merges and merges[0]["remaining"] == 1
+
+
+def test_no_merge_between_disjoint_shallow_cones(tmp_path):
+    summary = _run(tmp_path, SEEDS_AB, 2, tag="testNM")   # one expansion each
+    assert summary["merges_found"] == 0
+    assert summary["classes_remaining"] == 2
+
+
+# ------------------------------------------------------------- 4. drops
+
+def test_drop_logged_when_cone_descends_below_seed(tmp_path):
+    """Plant a seed at a depth-1 orbit whose expansion contains an orbit SHORTER
+    than itself; the engine must log the descent for that class. Constructed, not
+    assumed: we search A's shallow cone for such a parent first."""
+    (_, _, kids), = _expand_chunk([P0])
+    planted = None
+    for rep, mu, *_ in kids:
+        (_, _, grand), = _expand_chunk([rep])
+        if any(gmu < mu for _, gmu, *_ in grand):
+            planted = rep
+            break
+    if planted is None:
+        pytest.skip("no depth-2 descent under this start — probe deeper offline")
+    summary = _run(tmp_path, [("t_p", *planted)], 1, tag="testDR", wave=1)
+    assert summary["n_improved"] == 1
+    row = summary["improved_below_seed"][0]
+    assert row["best_mu"] < row["seed_mu"]
+    store = _store(tmp_path, 1, tag="testDR")
+    assert store.drops and store.drops[-1][1] == row["best_mu"]
+    mus = [mu for _, mu, _ in store.drops]                # successive strict descents
+    assert mus == sorted(mus, reverse=True) and len(set(mus)) == len(mus)
+    events, _ = run_paths(str(tmp_path), "testDR")
+    assert any(json.loads(l)["t"] == "drop" for l in open(events))
+
+
+def test_seed_mu_is_not_a_drop(tmp_path):
+    _run(tmp_path, SEEDS_AB, 1)
+    store = _store(tmp_path, 2)
+    assert store.drops == [] or all(
+        mu < store.seed_mu[i] for i, mu, _ in store.drops)
+
+
+# ------------------------------------------------------------- 5. determinism
+
+def test_same_config_twice_is_byte_identical_minus_meta(tmp_path):
+    a, b = tmp_path / "a", tmp_path / "b"
+    _run(a, SEEDS_AB, 4)
+    _run(b, SEEDS_AB, 4)
+    ea, _ = run_paths(str(a), "testAB")
+    eb, _ = run_paths(str(b), "testAB")
+    rows = lambda p: [l for l in open(p) if '"meta"' not in l.split(",")[0]]
+    assert rows(ea) == rows(eb)
+
+
+def test_event_rows_carry_no_timestamps(tmp_path):
+    _run(tmp_path, SEEDS_AB, 2)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    for line in open(events):
+        ev = json.loads(line)
+        if ev["t"] != "meta":
+            assert "utc" not in json.dumps(ev).lower()
+
+
+# ------------------------------------------------------------- 6. parallel parity
+
+def test_serial_equals_parallel(tmp_path):
+    a, b = tmp_path / "ser", tmp_path / "par"
+    _run(a, SEEDS_AB, 4)
+    _run(b, SEEDS_AB, 4, workers=2)
+    assert _fingerprint(_store(a, 2)) == _fingerprint(_store(b, 2))
+
+
+# ------------------------------------------------------------- guards & identity
+
+def test_family_mismatch_refuses_to_resume(tmp_path):
+    _run(tmp_path, SEEDS_AB, 1)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    with pytest.raises(RuntimeError, match="family"):
+        replay(events, 2, expect_family="someotherfamily")
+
+
+def test_filename_carries_seed_set_and_family_only(tmp_path):
+    events, summary = run_paths("/x", "all124")
+    assert os.path.basename(events) == f"covmeet_all124_{covmeet.FAMILY}.jsonl"
+    for knob in ("wave", "chunk", "worker", "2026"):
+        assert knob not in os.path.basename(events)
+
+
+def test_load_seeds_all124_uses_reduced_reps():
+    seeds = covmeet.load_seeds("all124")
+    assert len(seeds) == 124
+    byname = {n: (a, b) for n, a, b in seeds}
+    # aca_2 is a reduced row: its seed must be the mu-ladder rep, not the raw rep
+    assert byname["aca_2"] != ("YXXYxyxyy", "YYxYxxYxy")
+    assert len(covmeet.load_seeds("reduced39")) == 39
+    with pytest.raises(ValueError):
+        covmeet.load_seeds("everything")
+
+
+def test_expand_chunk_census_and_no_self_loop():
+    (rep, ncov, children), = _expand_chunk([P0])
+    assert rep == P0 and ncov >= len(children) >= 1
+    assert all(c[0] != P0 for c in children)             # self-loop never emitted
+    assert sum(c[5] for c in children) <= ncov           # multiplicities are a census
+    assert children == sorted(children)                  # deterministic order
