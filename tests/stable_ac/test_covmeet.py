@@ -507,3 +507,30 @@ def test_report_refuses_unverified_and_writes_consistent_results(tmp_path):
                              seeds_override=SEEDS_AB)
     assert rc != 0
     assert not (tmp_path / "res2").exists()               # nothing written
+
+
+def test_every_stored_orbit_presents_the_trivial_group_by_abelianization(tmp_path):
+    """Every CoV step is a Tietze transformation, so every orbit in the store must
+    present the trivial group. The verifier checks the one necessary condition the
+    pipeline never computes — abelianization det ±1 — on every sampled orbit, and a
+    planted det-0 orbit must make it fail."""
+    from experiments.equivalence_classes.lib.words import abelian_det
+    from experiments.stable_ac.cov.meet import verify_covmeet as vc
+    _run(tmp_path, SEEDS_AB, 5)
+    store = _store(tmp_path, 2)
+    for rep in store.reps:                                # exhaustive, small store
+        assert abelian_det(rep[0], rep[1]) in (1, -1), rep
+    rc = vc.main([str(tmp_path), "--seed-set", "testAB", "--full"],
+                 seeds_override=SEEDS_AB)
+    assert rc == 0
+    # plant a det-0 pair as an orbit and re-snapshot: the verifier must reject it
+    bad = ("xyXY", "xxYXXy")                              # both exponent sums (0,0)
+    assert abelian_det(*bad) == 0
+    store.index[bad] = len(store.reps)
+    store.reps.append(bad)
+    store.mask[bad] = 1
+    store.mu[bad] = len(bad[0]) + len(bad[1])
+    save_snapshot(str(tmp_path), "testAB", store, 2)
+    rc = vc.main([str(tmp_path), "--seed-set", "testAB", "--full"],
+                 seeds_override=SEEDS_AB)
+    assert rc != 0

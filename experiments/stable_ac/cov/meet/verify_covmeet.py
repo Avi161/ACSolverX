@@ -12,9 +12,13 @@ drops, with full chains). Verification layers:
   real ``aut_min``, must land exactly on the recorded next rep (lesson:
   cov-chains-junction-at-canonical-reps; chains are never concatenated). Duplicate
   certificate rows (a re-done crash interval re-firing a merge) are deduped;
-* **self-canonical sample**: ``--sample K`` (default 1000; ``--full`` = all) snapshot
-  orbits are checked to be genuine Aut-minimal fixed points — ``aut_min(rep) == rep``
-  — a real property, not a round-trip;
+* **self-canonical + triviality-invariant sample**: ``--sample K`` (default 1000;
+  ``--full`` = all) snapshot orbits are checked to be genuine Aut-minimal fixed points
+  (``aut_min(rep) == rep``) AND to have abelianization determinant ±1 — a necessary
+  condition for presenting the trivial group that NOTHING in the pipeline computes
+  (the greedy-test-suite philosophy: verify against an invariant the code never
+  touches). Every CoV step is a Tietze transformation, so every orbit must present
+  the trivial group; a det ≠ ±1 anywhere would falsify the pipeline, not the orbit;
 * seed reps must carry their own bit; the summary json must agree with the store.
 
 Exit 0 = everything checked verifies.
@@ -28,6 +32,7 @@ import json
 import os
 import sys
 
+from experiments.equivalence_classes.lib.words import abelian_det
 from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 from experiments.stable_ac.cov.ladder import autcanon_fast as af
@@ -154,6 +159,11 @@ def main(argv=None, seeds_override=None):
         if canon != rep or mu != len(rep[0]) + len(rep[1]):
             print(f"FAIL: stored orbit {rep} is not aut-min canonical")
             return 1
+        if abelian_det(rep[0], rep[1]) not in (1, -1):
+            print(f"FAIL: stored orbit {rep} has abelianization det "
+                  f"{abelian_det(rep[0], rep[1])} — it cannot present the trivial "
+                  f"group, so a CoV step was not a Tietze transformation")
+            return 1
 
     if bad:
         print(f"FAIL: {bad} certificate failures across {n_chains} chains")
@@ -161,8 +171,8 @@ def main(argv=None, seeds_override=None):
     trunc_note = f" ({n_trunc} truncated — deterministic re-run recovers them)" \
         if n_trunc else ""
     print(f"OK: {n_chains} chains replay segment-by-segment{trunc_note}; "
-          f"{len(picked)} orbits are aut-min fixed points; "
-          f"classes {summary['classes_remaining']}/{len(seeds)}")
+          f"{len(picked)} orbits are aut-min fixed points with abelianization "
+          f"det ±1; classes {summary['classes_remaining']}/{len(seeds)}")
     return 0
 
 
