@@ -730,7 +730,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         rate = (len(store.expanded) - beat_prev[1]) / dt
         L = min(store.frontier) if store.frontier else None
         log(f"[hb] +{now - t0:7.0f}s  expanded {len(store.expanded):>9,} "
-            f"({rate:6.2f} st/s)  discovered {len(store.mask):>10,}  "
+            f"({rate:6.2f} st/s)  distinct {len(store.mask):>10,}  "
             f"frontier {store.frontier_size():>9,}  bucket L={L}  "
             f"merges {len(store.merges)}")
         last_beat[0] = now
@@ -742,9 +742,11 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
                 mb = os.path.getsize(snap_paths(out_dir, seed_set)[0]) / 1e6
             except OSError:
                 mb = 0.0
+            collapse = store.n_cov_total / max(len(store.mask), 1)
             log(f"[cum] {datetime.datetime.utcnow().isoformat(timespec='seconds')}Z  "
                 f"session {(now - t0) / 3600:.2f} h  {tot_rate:.2f} st/s avg  "
-                f"raw CoVs {store.n_cov_total:,}  classes "
+                f"raw CoVs {store.n_cov_total:,} -> {len(store.mask):,} distinct "
+                f"({collapse:.0f}x collapse)  classes "
                 f"{len(store.uf.roots())}/{len(seeds)}  snapshot {mb:,.0f} MB  "
                 f"mem_avail {mem and f'{mem:.1f}'} GB")
             last_cum[0] = now
