@@ -61,16 +61,18 @@ def verify_chain(chain):
     return True, n, truncated
 
 
-def main(argv=None):
+def main(argv=None, seeds_override=None):
+    """``seeds_override`` is the same TEST seam ``covmeet.run`` has."""
     ap = argparse.ArgumentParser()
     ap.add_argument("out_dir")
-    ap.add_argument("--seed-set", default="all124", choices=covmeet.SEED_SETS)
+    ap.add_argument("--seed-set", default="all124")
     ap.add_argument("--sample", type=int, default=1000)
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args(argv)
 
     certs_path, summary_path = covmeet.run_paths(args.out_dir, args.seed_set)
-    seeds = covmeet.load_seeds(args.seed_set)
+    seeds = seeds_override if seeds_override is not None \
+        else covmeet.load_seeds(args.seed_set)
 
     # -- snapshot pass: load() hash-verifies and cross-checks merges against masks
     store, header = covmeet.load(args.out_dir, args.seed_set, len(seeds),

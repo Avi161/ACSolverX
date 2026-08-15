@@ -20,6 +20,7 @@ The load-bearing contract, in order of what a failure would cost:
 6. **Serial == parallel**: workers=0 and workers=2 produce the same store.
 """
 
+import csv
 import json
 import os
 
@@ -471,3 +472,38 @@ def test_snapshot_interval_adapts_to_write_cost():
     assert covmeet._next_snap_interval(300, 0.5) == 300
     assert covmeet._next_snap_interval(300, 60) == 600
     assert covmeet._next_snap_interval(300, 1440) == 14400
+
+
+# ------------------------------------------------------------- report generator
+
+def test_report_refuses_unverified_and_writes_consistent_results(tmp_path):
+    """report_covmeet is the ingestion gate: it must refuse a corrupt run and, on a
+    good one, write per-class rows and a census that match the store exactly."""
+    from experiments.stable_ac.cov.meet import report_covmeet
+    out = tmp_path / "out"
+    res = tmp_path / "res"
+    _run(out, SEEDS_AB, 4)
+    rc = report_covmeet.main([str(out), "--seed-set", "testAB",
+                              "--results-dir", str(res), "--sample", "50"],
+                             seeds_override=SEEDS_AB)
+    assert rc == 0
+    store = _store(out, 2)
+    rows = list(csv.DictReader(open(res / "covmeet_classes.csv")))
+    assert [r["name"] for r in rows] == ["t_a", "t_b"]
+    for i, r in enumerate(rows):
+        assert int(r["seed_mu"]) == store.seed_mu[i]
+        assert int(r["best_mu"]) == store.best_mu[i]
+    census = list(csv.DictReader(open(res / "covmeet_census.csv")))
+    assert len(census) == len(store.expanded)
+    md = open(res / "COVMEET.md").read()
+    assert f"**2 / 2**" in md                             # classes remaining
+    # corrupt both snapshots -> the verifier fails -> the report must refuse
+    for p in snap_paths(str(out), "testAB"):
+        with open(p, "r+b") as f:
+            f.seek(10)
+            f.write(b"garbage")
+    rc = report_covmeet.main([str(out), "--seed-set", "testAB",
+                              "--results-dir", str(tmp_path / "res2")],
+                             seeds_override=SEEDS_AB)
+    assert rc != 0
+    assert not (tmp_path / "res2").exists()               # nothing written
