@@ -387,3 +387,79 @@ def test_orbit_memo_cap_clears_not_grows(monkeypatch):
     covmeet._ORBIT_MEMO.clear()
     _expand_chunk([P0])
     assert len(covmeet._ORBIT_MEMO) <= 5 + 1              # clear fired at the cap
+
+
+# ------------------------------------------------- the user's two explicit scenarios
+
+def test_two_arbitrary_presentations_merge_is_collected_end_to_end(tmp_path):
+    """Two seeds whose cones meet at depth 2 — not planted on a direct child — must
+    produce: a merge in the summary, a union in the store, a certificate row whose
+    two chains BOTH replay segment-by-segment to the same meeting orbit, and a
+    classes count that drops to 1. The full collection path, nothing mocked."""
+    (_, _, kids), = _expand_chunk([P0])
+    mid = kids[0][0]
+    (_, _, grand), = _expand_chunk([mid])
+    deep = next(g[0] for g in grand if g[0] != mid)       # depth-2 orbit of P0
+    seeds = [("t_a", *P0), ("t_deep", *deep)]
+    summary = _run(tmp_path, seeds, 30, tag="testE2E", wave=4)
+    assert summary["merges_found"] >= 1
+    assert summary["classes_remaining"] == 1
+    store = _store(tmp_path, 2, tag="testE2E")
+    assert store.uf.find(0) == store.uf.find(1)
+    events, _ = run_paths(str(tmp_path), "testE2E")
+    merges = [json.loads(l) for l in open(events) if '"merge"' in l]
+    assert len(merges) == 1
+    from experiments.stable_ac.cov.meet import verify_covmeet as vc
+    ends = []
+    for ch in merges[0]["chains"]:
+        ok, nseg, trunc = vc.verify_chain(ch)
+        assert ok and not trunc
+        ends.append(ch[-1]["rep"])
+    assert ends[0] == ends[1] == merges[0]["rep"]
+
+
+def test_cov_cycle_terminates_each_orbit_expanded_exactly_once(tmp_path, monkeypatch):
+    """The infinite-loop scenario: a CoV graph that is a pure cycle A->B->C->A plus
+    self-loops. The visited/expanded set must make the run TERMINATE by exhaustion
+    with each orbit expanded exactly once — no requeue, no spin."""
+    import experiments.stable_ac.cov.meet.covmeet as cm
+    from experiments.stable_ac.cov.ladder import autcanon_fast as af
+    trip = [af.aut_min((f"xxx{'y' * (i + 1)}", "xyxY"))[1] for i in range(3)]
+    nxt = {trip[0]: trip[1], trip[1]: trip[2], trip[2]: trip[0]}
+
+    def fake_expand(pairs):
+        out = []
+        for a, b in pairs:
+            child = nxt[(a, b)]
+            out.append((((a, b)), 2,
+                        [(child, len(child[0]) + len(child[1]), "xy", "x", 0, 1)]))
+        return out
+
+    monkeypatch.setattr(cm, "_expand_chunk", fake_expand)
+    seeds = [("t_cyc", *trip[0])]
+    summary = run(str(tmp_path), seed_set="testCYC", seeds_override=seeds,
+                  workers=0, wave=1, chunk=1, mem_guard_gb=0, log=lambda *a: None)
+    assert "exhausted" in summary["stopped"]              # terminated, not looping
+    store = _store(tmp_path, 1, tag="testCYC")
+    assert len(store.expanded) == 3 == len(store.mask)    # each orbit exactly once
+    assert store.frontier_size() == 0
+    assert sorted(store.census.values()) == [(2, 1)] * 3  # one census per orbit, once
+
+
+def test_expanded_orbit_is_never_requeued_on_re_reach(tmp_path):
+    """Real data: after several waves, no expanded orbit may sit in the frontier,
+    no orbit index repeats, and a resume expands strictly NEW orbits — the visited
+    set does its job across sessions too."""
+    _run(tmp_path, SEEDS_AB, 6)
+    s1 = _store(tmp_path, 2)
+    assert not (s1.expanded & set().union(*s1.frontier.values())
+                if s1.frontier else set())
+    assert len(s1.reps) == len(set(s1.reps))              # no orbit stored twice
+    first = set(s1.expanded)
+    _run(tmp_path, SEEDS_AB, 4)                           # resume
+    s2 = _store(tmp_path, 2)
+    assert first < s2.expanded                            # strictly grew...
+    grown = len(s2.expanded) - len(first)
+    assert 4 <= grown <= 4 + 2                            # budget, checked per wave
+    assert not (s2.expanded & (set().union(*s2.frontier.values())
+                               if s2.frontier else set()))
