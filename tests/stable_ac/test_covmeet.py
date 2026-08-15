@@ -463,3 +463,11 @@ def test_expanded_orbit_is_never_requeued_on_re_reach(tmp_path):
     assert 4 <= grown <= 4 + 2                            # budget, checked per wave
     assert not (s2.expanded & (set().union(*s2.frontier.values())
                                if s2.frontier else set()))
+
+
+def test_snapshot_interval_adapts_to_write_cost():
+    """The cadence must keep checkpoint overhead ~10%: a cheap write keeps the base
+    interval, an expensive one stretches it to 10x its own cost."""
+    assert covmeet._next_snap_interval(300, 0.5) == 300
+    assert covmeet._next_snap_interval(300, 60) == 600
+    assert covmeet._next_snap_interval(300, 1440) == 14400

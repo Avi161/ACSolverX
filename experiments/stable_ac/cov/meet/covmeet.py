@@ -621,6 +621,16 @@ class _Writer:
 
 # --------------------------------------------------------------------------- run
 
+def _next_snap_interval(base, write_seconds):
+    """Adaptive checkpoint cadence: never spend more than ~10% of wall-clock writing
+    snapshots. Measured 11.9 us/orbit — at 120M orbits a snapshot is ~24 min, so a
+    fixed 300 s cadence would eventually write longer than it waits. The re-do window
+    after a hard crash grows with the store (10x the write cost), which is the trade
+    the user accepted for a multi-day run.
+    """
+    return max(base, 10.0 * write_seconds)
+
+
 def _mem_available_gb():
     try:
         with open("/proc/meminfo") as f:
@@ -706,6 +716,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
 
     t0 = time.time()
     last_snap = [time.time()]
+    snap_interval = [float(snapshot_every)]
     expanded0 = len(store.expanded)
     last_beat = [0.0]                 # 0 => first heartbeat fires immediately
     last_cum = [time.time()]
@@ -803,12 +814,16 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
                                 f"{mrep} — {len(store.uf.roots())} classes remain")
                     store.mark_expanded(rep, ncov, len(children))
             w.sync()                          # certificates reach disk before the next wave
-            if time.time() - last_snap[0] >= snapshot_every:
+            if time.time() - last_snap[0] >= snap_interval[0]:
+                t_snap = time.time()
                 mb = save_snapshot(out_dir, seed_set, store, len(seeds)) / 1e6
+                wrote = time.time() - t_snap
+                snap_interval[0] = _next_snap_interval(snapshot_every, wrote)
                 last_snap[0] = time.time()
                 log(f"[snap] checkpointed {len(store.mask):,} orbits "
-                    f"({mb:.1f} MB) — a crash now re-does at most "
-                    f"{snapshot_every}s of work")
+                    f"({mb:.1f} MB in {wrote:.1f}s) — next checkpoint in "
+                    f"~{snap_interval[0] / 60:.0f} min; a crash re-does at most "
+                    f"that much work")
             heartbeat()
     finally:
         if pool is not None:
