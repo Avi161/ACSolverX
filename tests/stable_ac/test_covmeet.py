@@ -27,7 +27,7 @@ import pytest
 
 from experiments.stable_ac.cov.meet import covmeet
 from experiments.stable_ac.cov.meet.covmeet import (
-    Store, _expand_chunk, replay, run, run_paths,
+    Store, _expand_chunk, load, run, run_paths, save_snapshot, snap_paths,
 )
 
 # Two short, freely+cyclically reduced pairs (aca_0 and aca_1's raw reps — used here
@@ -48,9 +48,9 @@ def _run(tmp, seeds, n, tag="testAB", **kw):
 
 
 def _store(tmp, n_seeds, tag="testAB"):
-    events, _ = run_paths(str(tmp), tag)
-    store, meta = replay(events, n_seeds, expect_family=covmeet.FAMILY)
-    assert meta is not None
+    store, header = load(str(tmp), tag, n_seeds, expect_family=covmeet.FAMILY,
+                         log=lambda *a: None)
+    assert header is not None
     return store
 
 
@@ -81,17 +81,20 @@ def test_resume_is_replay_not_reseed(tmp_path):
     assert sum(1 for r in rows if r["t"] == "meta") == 2      # one meta per session
 
 
-def test_each_orbit_written_once(tmp_path):
-    """The v2 size contract: one `o` row per orbit, ever — a re-reach that changes
-    nothing writes NOTHING, and `x` rows reference orbits by index, repeating no rep."""
-    _run(tmp_path, SEEDS_AB, 5)
-    events, _ = run_paths(str(tmp_path), "testAB")
-    rows = [json.loads(l) for l in open(events)]
-    o_idx = [r["i"] for r in rows if r["t"] == "o"]
-    assert len(o_idx) == len(set(o_idx))                     # never twice
-    for r in rows:
-        if r["t"] == "x":
-            assert "rep" not in r and isinstance(r["i"], int)
+def test_certs_hold_results_only_and_disk_is_bounded(tmp_path):
+    """The v3 size contract: the certs jsonl carries ONLY meta/seed/merge/drop rows —
+    per-expansion work writes nothing there — and the on-disk footprint is the
+    snapshot pair, whose size tracks the store, not the runtime."""
+    _run(tmp_path, SEEDS_AB, 2)
+    certs, _ = run_paths(str(tmp_path), "testAB")
+    rows_before = sum(1 for _ in open(certs))
+    _run(tmp_path, SEEDS_AB, 3)                              # more work, no merges
+    rows = [json.loads(l) for l in open(certs)]
+    assert {r["t"] for r in rows} <= {"meta", "seed", "merge", "drop"}
+    # only the second session's meta row was added — expansions wrote nothing
+    assert len(rows) == rows_before + 1
+    snap, prev = snap_paths(str(tmp_path), "testAB")
+    assert os.path.exists(snap) and os.path.exists(prev)
 
 
 def test_summary_written_and_matches_replay(tmp_path):
@@ -113,7 +116,7 @@ def test_torn_trailing_line_repaired_before_append(tmp_path):
     events, _ = run_paths(str(tmp_path), "testAB")
     before = _store(tmp_path, 2)
     with open(events, "a") as f:
-        f.write('{"t":"o","i":9999,"rep":["xy')          # the crash artifact
+        f.write('{"t":"drop","name":"zz","chain":["xy')   # the crash artifact
     _run(tmp_path, SEEDS_AB, 1)                          # must repair, then resume
     after = _store(tmp_path, 2)
     assert len(after.expanded) == len(before.expanded) + 1
@@ -217,6 +220,9 @@ def test_same_config_twice_is_byte_identical_minus_meta(tmp_path):
     eb, _ = run_paths(str(b), "testAB")
     rows = lambda p: [l for l in open(p) if '"meta"' not in l.split(",")[0]]
     assert rows(ea) == rows(eb)
+    sa, _ = snap_paths(str(a), "testAB")
+    sb, _ = snap_paths(str(b), "testAB")
+    assert open(sa, "rb").read() == open(sb, "rb").read()    # snapshots byte-equal
 
 
 def test_event_rows_carry_no_timestamps(tmp_path):
@@ -241,14 +247,32 @@ def test_serial_equals_parallel(tmp_path):
 
 def test_family_mismatch_refuses_to_resume(tmp_path):
     _run(tmp_path, SEEDS_AB, 1)
-    events, _ = run_paths(str(tmp_path), "testAB")
     with pytest.raises(RuntimeError, match="family"):
-        replay(events, 2, expect_family="someotherfamily")
+        load(str(tmp_path), "testAB", 2, expect_family="someotherfamily",
+             log=lambda *a: None)
+
+
+def test_corrupt_snapshot_falls_back_to_previous_and_redoes(tmp_path):
+    """A hard crash mid-checkpoint: the main snapshot is garbage, the previous one
+    loads, and the deterministic re-do lands on the same store as a straight run."""
+    a, b = tmp_path / "a", tmp_path / "b"
+    _run(a, SEEDS_AB, 4)                                  # straight run to 4
+    _run(b, SEEDS_AB, 2)                                  # snap S2
+    _run(b, SEEDS_AB, 2)                                  # snap S4, prev = S2
+    snap, prev = snap_paths(str(b), "testAB")
+    with open(snap, "r+b") as f:                          # corrupt the newest
+        f.seek(20)
+        f.write(b"garbagegarbage")
+    store, header = load(str(b), "testAB", 2, expect_family=covmeet.FAMILY,
+                         log=lambda *a: None)
+    assert header is not None and len(store.expanded) == 2   # fell back to S2
+    _run(b, SEEDS_AB, 2)                                  # re-do the lost interval
+    assert _fingerprint(_store(b, 2)) == _fingerprint(_store(a, 2))
 
 
 def test_filename_carries_engine_seed_set_and_family_only(tmp_path):
     events, summary = run_paths("/x", "all124")
-    assert os.path.basename(events) == f"covmeet2_all124_{covmeet.FAMILY}.jsonl"
+    assert os.path.basename(events) == f"covmeet3_all124_{covmeet.FAMILY}_certs.jsonl"
     for knob in ("wave", "chunk", "worker", "2026"):
         assert knob not in os.path.basename(events)
 
@@ -338,3 +362,28 @@ def test_long_rep_survives_disk_roundtrip(tmp_path):
     from experiments.stable_ac.cov.ladder import autcanon_fast as af
     mu, rep = af.aut_min(long_pair)
     assert store.mask.get(rep, 0) & 1                    # the seed bit survived
+
+
+# ------------------------------------------------------------- orbit memo (speed)
+
+def test_orbit_memo_is_result_neutral():
+    """Cold memo vs warm memo must give identical expansions — the memo is a
+    speedup, never a result change. Measured: aut_min is 89% of per-state cost and
+    relabel groups collapse ~66 children to ~21 keys."""
+    covmeet._ORBIT_MEMO.clear()
+    cold = _expand_chunk([P0, P1])
+    warm = _expand_chunk([P0, P1])                        # memo now populated
+    assert cold == warm
+    assert len(covmeet._ORBIT_MEMO) > 0                   # it actually memoised
+    # and against the raw function, orbit by orbit
+    from experiments.stable_ac.cov.ladder import autcanon_fast as af
+    for (_, _, children) in cold:
+        for rep, mu, *_ in children:
+            assert af.aut_min(rep) == (mu, rep)
+
+
+def test_orbit_memo_cap_clears_not_grows(monkeypatch):
+    monkeypatch.setattr(covmeet, "_ORBIT_MEMO_CAP", 5)
+    covmeet._ORBIT_MEMO.clear()
+    _expand_chunk([P0])
+    assert len(covmeet._ORBIT_MEMO) <= 5 + 1              # clear fired at the cap

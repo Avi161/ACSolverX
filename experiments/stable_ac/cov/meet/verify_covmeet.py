@@ -1,23 +1,23 @@
-"""Independent check of a covmeet events file: replay the store, certify the chains.
+"""Independent check of a covmeet run: load the snapshot, certify the chains.
 
-v2 storage writes bulk discovery compactly (no per-edge moves) and full chains only on
-``merge`` and ``drop`` rows — the claims. So verification splits accordingly:
+v3 storage keeps two artifacts: the binary snapshot (the whole store — integrity-hashed,
+loaded and cross-checked here) and the certs jsonl (results only — seeds, merges,
+drops, with full chains). Verification layers:
 
-* structural pass (always): every line parses; masks/frontier replay; merges and drops
-  re-derive from the mask events alone and must agree with the certificate rows and the
-  summary json;
-* chain pass (always, every chain): each recorded chain replays SEGMENT BY SEGMENT —
-  ``cov_branches`` on the previous rep with the recorded ``(z, iso, br)``, then the real
-  ``aut_min``, must land exactly on the recorded next rep (lesson:
-  cov-chains-junction-at-canonical-reps; chains are never concatenated). A chain marked
-  ``truncated`` (its head predates a resume — parents are RAM-only) has its surviving
-  segments verified and is reported; the deterministic fresh re-run reproduces it whole.
-* ``--sample K`` / ``--full``: additionally decode K (or all) ``o`` rows and check the
-  stored rep is a valid, correctly-packed pair whose bucket matches its length.
+* **snapshot pass**: loads and hash-verifies the snapshot; the loader independently
+  re-derives union-find classes from the MASKS alone and refuses a snapshot whose
+  recorded merges disagree with them;
+* **chain pass** (always, every chain): each recorded chain replays SEGMENT BY SEGMENT
+  — ``cov_branches`` on the previous rep with the recorded ``(z, iso, br)``, then the
+  real ``aut_min``, must land exactly on the recorded next rep (lesson:
+  cov-chains-junction-at-canonical-reps; chains are never concatenated). Duplicate
+  certificate rows (a re-done crash interval re-firing a merge) are deduped;
+* **self-canonical sample**: ``--sample K`` (default 1000; ``--full`` = all) snapshot
+  orbits are checked to be genuine Aut-minimal fixed points — ``aut_min(rep) == rep``
+  — a real property, not a round-trip;
+* seed reps must carry their own bit; the summary json must agree with the store.
 
-Individual ``o`` rows carry no move by design (the v1 per-edge log was ~85% of the
-bytes); the full audit of discovery itself is a deterministic re-run with the same
-config. Exit 0 = everything checked verifies.
+Exit 0 = everything checked verifies.
 
     PYTHONPATH=. python3 -m experiments.stable_ac.cov.meet.verify_covmeet OUT_DIR \
         [--seed-set all124] [--sample 1000 | --full]
@@ -32,7 +32,7 @@ from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 from experiments.stable_ac.cov.ladder import autcanon_fast as af
 from experiments.stable_ac.cov.meet import covmeet
-from experiments.stable_ac.cov.meet.covmeet import _dec_rep, _dec_word
+from experiments.stable_ac.cov.meet.covmeet import _dec_rep
 
 
 def replay_step(prev_rep, z, iso, br):
@@ -69,22 +69,18 @@ def main(argv=None):
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args(argv)
 
-    events_path, summary_path = covmeet.run_paths(args.out_dir, args.seed_set)
-    if not os.path.exists(events_path):
-        print(f"FAIL: no events file at {events_path}")
-        return 1
+    certs_path, summary_path = covmeet.run_paths(args.out_dir, args.seed_set)
     seeds = covmeet.load_seeds(args.seed_set)
 
-    # -- structural: full replay (parses every line, rebuilds masks, re-derives
-    #    merges and drops from mask events alone)
-    store, meta = covmeet.replay(events_path, len(seeds),
+    # -- snapshot pass: load() hash-verifies and cross-checks merges against masks
+    store, header = covmeet.load(args.out_dir, args.seed_set, len(seeds),
                                  expect_family=covmeet.FAMILY)
-    if meta is None:
-        print("FAIL: events file has no meta row")
+    if header is None:
+        print(f"FAIL: no readable snapshot in {args.out_dir}")
         return 1
     summary = covmeet.summarise(store, seeds)
-    print(f"replayed: {len(store.mask):,} orbits, {len(store.expanded):,} expanded, "
-          f"{summary['merges_found']} merges, {summary['n_improved']} drops(classes), "
+    print(f"snapshot: {len(store.mask):,} orbits, {len(store.expanded):,} expanded, "
+          f"{summary['merges_found']} merges, {summary['n_improved']} improved, "
           f"classes {summary['classes_remaining']}/{len(seeds)}")
     if os.path.exists(summary_path):
         with open(summary_path) as f:
@@ -92,27 +88,26 @@ def main(argv=None):
         for key in ("classes_remaining", "merges_found", "n_improved",
                     "expanded", "discovered"):
             if written.get(key) != summary[key]:
-                print(f"FAIL: summary json {key}={written.get(key)} but replay "
-                      f"says {summary[key]}")
+                print(f"FAIL: summary json {key}={written.get(key)} but the "
+                      f"snapshot says {summary[key]}")
                 return 1
 
-    # -- certificate rows must agree with the re-derivation
-    cert_merges, cert_drops, o_rows = [], [], []
-    with open(events_path) as f:
-        for line in f:
-            ev = json.loads(line)
-            if ev["t"] == "merge":
-                cert_merges.append(ev)
-            elif ev["t"] == "drop":
-                cert_drops.append(ev)
-            elif ev["t"] == "o":
-                o_rows.append(ev)
+    # -- certificate rows: dedupe (a re-done crash interval may re-fire a merge)
+    cert_merges, cert_drops = {}, {}
+    if os.path.exists(certs_path):
+        with open(certs_path) as f:
+            for line in f:
+                ev = json.loads(line)
+                if ev["t"] == "merge":
+                    cert_merges[frozenset(ev["classes"])] = ev
+                elif ev["t"] == "drop":
+                    cert_drops[(ev["name"], ev["mu"])] = ev
     if len(cert_merges) != summary["merges_found"]:
-        print(f"FAIL: {len(cert_merges)} merge rows but replay derives "
-              f"{summary['merges_found']}")
+        print(f"FAIL: {len(cert_merges)} distinct merge certificates but the "
+              f"snapshot masks derive {summary['merges_found']}")
         return 1
 
-    # -- seed rows must match the dataset (the run's inputs are the csv's rows)
+    # -- seed reps must carry their own bit
     af.warm()
     for i, (name, r1, r2) in enumerate(seeds):
         mu, rep = af.aut_min((r1, r2))
@@ -120,9 +115,9 @@ def main(argv=None):
             print(f"FAIL: seed {name} rep {rep} missing its own bit")
             return 1
 
-    # -- chain pass: every chain on every certificate row, segment by segment
+    # -- chain pass
     bad = n_chains = n_trunc = 0
-    for ev in cert_merges:
+    for ev in cert_merges.values():
         ends = []
         for chain in ev["chains"]:
             ok, nseg, trunc = verify_chain(chain)
@@ -136,7 +131,7 @@ def main(argv=None):
             bad += 1
             print(f"FAIL merge {ev['classes']}: chains do not meet at the "
                   f"recorded orbit")
-    for ev in cert_drops:
+    for ev in cert_drops.values():
         ok, nseg, trunc = verify_chain(ev["chain"])
         n_chains += 1
         n_trunc += trunc
@@ -149,22 +144,22 @@ def main(argv=None):
             bad += 1
             print(f"FAIL drop {ev['name']}: chain end or mu mismatch")
 
-    # -- o-row decode sample: stored reps must round-trip and match their length
-    picked = o_rows if args.full else \
-        o_rows[::max(1, len(o_rows) // max(args.sample, 1))][:args.sample]
-    for ev in picked:
-        rep = _dec_rep(ev["rep"])
-        if covmeet._enc_rep(rep) != ev["rep"] or not rep[0] or not rep[1]:
-            print(f"FAIL: o row {ev['i']} does not round-trip")
+    # -- self-canonical sample: stored orbits must be aut_min fixed points
+    picked = store.reps if args.full else \
+        store.reps[::max(1, len(store.reps) // max(args.sample, 1))][:args.sample]
+    for rep in picked:
+        mu, canon = af.aut_min(rep)
+        if canon != rep or mu != len(rep[0]) + len(rep[1]):
+            print(f"FAIL: stored orbit {rep} is not aut-min canonical")
             return 1
 
     if bad:
         print(f"FAIL: {bad} certificate failures across {n_chains} chains")
         return 1
-    trunc_note = f" ({n_trunc} truncated at a resume boundary — deterministic " \
-                 f"re-run recovers them whole)" if n_trunc else ""
+    trunc_note = f" ({n_trunc} truncated — deterministic re-run recovers them)" \
+        if n_trunc else ""
     print(f"OK: {n_chains} chains replay segment-by-segment{trunc_note}; "
-          f"{len(picked)} o rows round-trip; "
+          f"{len(picked)} orbits are aut-min fixed points; "
           f"classes {summary['classes_remaining']}/{len(seeds)}")
     return 0
 

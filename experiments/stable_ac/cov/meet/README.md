@@ -19,28 +19,31 @@ a *meeting* search, not a descent): `covmeet.py`'s module docstring.
 | notebook | [`experiments/notebooks/stable_ac/covmeet_vast.ipynb`](../../../notebooks/stable_ac/covmeet_vast.ipynb) — CONFIG / SETUP / RUN / STATUS, for a vast.ai CPU box |
 | tests | `tests/stable_ac/test_covmeet.py` — resume==uninterrupted, torn-tail repair, merge + drop detection, determinism, serial==parallel |
 
-## The output folder is the whole state
+## The output folder: a bounded snapshot + a tiny certificates file
 
-`OUT_DIR` holds one append-only `covmeet_<seedset>_<family>.jsonl` (identity = seed set
-+ family tag, nothing else) plus a derived `*_summary.json`. Every wave is fsynced.
+`OUT_DIR` holds three things (identity = engine tag + seed set + family tag):
+
+| file | what | size |
+|---|---|---|
+| `covmeet3_<seeds>_<family>.snap` (+`.snap.prev`) | the WHOLE store — orbits 2-bit-packed, masks, expanded flags, census, parent pointers and moves — checkpointed atomically every `snapshot_every` s (default 300) and at every stop; sha256-trailed; corrupt main falls back to prev | ~28 B/orbit, **bounded** (~2 snapshots, tracks the store, not the runtime) |
+| `covmeet3_<seeds>_<family>_certs.jsonl` | ONLY results: `meta`/`seed` rows + **full chains** on `merge` and `drop` | KBs |
+| `*_summary.json` | derived summary, atomic-replaced | KBs |
+
+Why not hashing: at 10⁸+ orbits a collision-safe digest needs 128 bits = 16 bytes,
+while the exact pair 2-bit-packed is ~5–10 bytes at measured shell lengths — the exact
+state is *smaller* than any safe hash, and a colliding digest would be a false merge.
+
 Crash/preempt recovery: download `OUT_DIR` any time; on a new box upload it to the same
-path and **Restart & Run All** — the torn last line is repaired, events replay, the run
-continues. Runs are deterministic given the config, and `WAVE`/`CHUNK`/`WORKERS` change
-throughput only, never the final masks/merges/classes.
+path and **Restart & Run All** — resume loads the newest valid snapshot and
+deterministically re-does at most `snapshot_every` seconds of work. Parents are IN the
+snapshot, so merge/drop chains survive restarts whole; a merge re-fired during a
+re-done interval at worst duplicates a certificate row, which the verifier dedupes.
+Runs are deterministic given the config; `WAVE`/`CHUNK`/`WORKERS` change throughput
+only, never the final masks/merges/classes.
 
-Event rows (v2 — the storage policy is "results and resume state, never bulk
-provenance"): `meta` (session), `seed`, `o` (one row per orbit at FIRST discovery —
-rep + mask, never repeated), `r` (an orbit's mask GREW — a cone overlap), `x`
-(expansion done, by orbit index: `nc` raw CoVs → `no` orbits — the per-state census),
-`merge` and `drop` (the certificates: **full chains**, seed to meeting/drop orbit,
-every step carrying its `(z, iso, br)` move). Parent pointers live in RAM only; a
-no-op re-reach writes nothing (v1 logged every edge with the parent pair repeated —
-~85% of the bytes). Merges and drops are re-derived on replay; the rows are the
-certificates. Relators over 120 letters are stored 2-bit-packed (`~<len>:<b64>`).
-The trade, stated plainly: single `o` rows are not independently replayable — the
-full audit of discovery is a deterministic re-run; a post-resume merge whose chain
-crosses pre-resume territory is written `"truncated": true` and the fresh re-run
-reproduces it whole.
+Speed: `aut_min` is 89% of per-state cost; `_aut_min_memo` (exact, keyed on
+`relabel_min` — equal keys imply the same Aut-orbit) collapses ~66 children to ~21
+computations and re-reaches to zero. Measured 134 → 51 ms/state cold, 21 ms warm.
 
 Finished or interim results get committed under `results/stable_ac/covmeet/` (hand the
 downloaded folder back and it lands there) — never beside this code.

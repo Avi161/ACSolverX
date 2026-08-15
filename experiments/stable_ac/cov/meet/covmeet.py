@@ -11,24 +11,32 @@ AC-equivalent (a CoV chain from each side meets there) and 124 drops by one.
 No substitution supermoves, no AC search anywhere in this pipeline — CoV edges and
 Whitehead reduction only, zero search nodes.
 
-STORAGE (v2, "covmeet2" — the user's policy). Disk stores results and resume state,
-never bulk provenance:
+STORAGE (v3, "covmeet3" — snapshot + certificates, after the user asked for smaller
+than v2's journal). Two artifacts, two lifetimes:
 
-* one ``o`` row per orbit at FIRST discovery (rep + mask), never again;
-* an ``r`` row only when an orbit's mask GROWS (a cone overlap — the interesting case);
-* an ``x`` row per expansion, by orbit index, carrying the census (raw CoVs → orbits);
-* full chains are written ONLY for the events that are results: ``merge`` (two classes
-  meet — both chains, seed to meeting orbit) and ``drop`` (a class reaches below its
-  seeded aut-min — the chain to the new best rep). Parent pointers live in RAM only.
+* ``*_certs.jsonl`` — ONLY results: ``meta``/``seed`` rows plus full chains on
+  ``merge`` (two classes meet — both chains, seed to meeting orbit) and ``drop`` (a
+  class reaches below its seeded aut-min). KBs, human-readable, append+fsync at once,
+  torn tail repaired before append. This is the file that ever lands in ``results/``.
+* ``*.snap`` — the WHOLE store (orbits 2-bit-packed, masks, expanded flags, census,
+  parent pointers and moves) as one binary checkpoint, rewritten atomically every
+  ``snapshot_every`` seconds and at every stop; the previous snapshot is kept as
+  ``.snap.prev``. Disk usage is therefore BOUNDED at ~2 snapshots regardless of
+  runtime, instead of a journal growing forever. sha256 trailer; a corrupt snapshot
+  falls back to ``.prev``.
 
-v1 logged every edge with its parent pair repeated per row; at 5.7 edges/expansion that
-was ~85% of the bytes and grew superlinearly as cones overlap (a re-reach wrote a row
-even when nothing changed). v2 writes nothing on a no-op re-reach. The cost of the
-trade: individual ``o`` rows are not independently replayable (no move recorded), so
-the full audit of a run is a deterministic re-run; merges and drops — the claims —
-stay fully certified on disk. After a crash+resume, a later merge whose chain crosses
-pre-resume territory is written truncated (``"truncated": true``) — the deterministic
-fresh re-run reproduces it with the full chain.
+Why packing instead of the hashing the user suggested: at 10^8+ orbits a
+collision-safe digest needs 128 bits = 16 bytes, while the exact pair 2-bit-packed is
+~5-10 bytes at the measured shell lengths — the exact state is SMALLER than any safe
+hash, so exactness costs nothing (and a false merge from a colliding digest would be
+a wrong mathematical claim). v1 journaled every edge (~830 B/expansion); v2 journaled
+discoveries (~210 B/expansion, unbounded); v3 stores ~28 B/orbit ONCE, bounded.
+
+Crash recovery: resume loads the newest valid snapshot and deterministically re-does
+only the work after it (bounded by ``snapshot_every``). Parent pointers are IN the
+snapshot, so chains survive restarts whole; a merge that fired inside a lost interval
+fires again on the re-do, so its certificate is never lost — at worst the certs file
+carries a duplicate row, which the verifier dedupes.
 
 Design decisions, each carrying a lesson or a measurement:
 
@@ -36,16 +44,17 @@ Design decisions, each carrying a lesson or a measurement:
   structural ceiling; this pipeline never calls that solver. Measured: ``aut_min`` is
   FLAT in input length (0.67 ms @ 10-19 letters -> 0.78 ms @ 90-99). A ceiling defines
   the space (lesson: ceiling-not-budget-was-binding) — here there deliberately is none.
-  Relators longer than ``_PACK_THRESHOLD`` letters are stored 2-bit-packed+base64 on
-  disk; measured shells (L 19-21, uncapped) top out at 59 letters, so this is insurance,
-  not the common path.
+  Snapshots pack every relator at 2 bits/letter regardless of length; in the certs
+  jsonl relators stay ascii up to ``_PACK_THRESHOLD`` letters for readability (measured
+  shells, L 19-21 uncapped, top out at 59 letters).
 * **Shortest-bucket-first.** The frontier is bucketed by total length and waves pop the
   shortest bucket. WAVE bounds a batch, never membership: what a wave doesn't pop stays
   queued, and the only stop is the frontier running dry (pinned by
   ``test_all_duplicate_children_do_not_stop_the_run``).
-* **The jsonl IS the state.** Append-only events, parent-only writes, fsync per wave,
-  torn trailing line repaired BEFORE the first append (lesson: run-baseline-two-known-
-  bugs). Resume = replay.
+* **The snapshot IS the state; the certs jsonl IS the result.** Parent-only writes;
+  certificates fsync at write; snapshots are atomic (tmp + fsync + os.replace, previous
+  kept); the certs file's torn trailing line is repaired BEFORE the first append
+  (lesson: run-baseline-two-known-bugs). Resume = load newest valid snapshot.
 * **Exact keys, no digests.** The store keys on the canonical rep pair itself. At 10^8+
   rows a 64-bit hash WILL collide, and a collision here is a false merge.
 * **Expansion is once-per-orbit.** Mask growth keeps being recorded whenever any parent
@@ -68,6 +77,7 @@ Never claim unqualified AC-equivalence from this pipeline.
 
 import base64
 import csv
+import hashlib
 import datetime
 import json
 import os
@@ -78,7 +88,7 @@ from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 from experiments.stable_ac.cov.ladder import autcanon_fast as af
 
-ENGINE_TAG = "covmeet2"      # bump on ANY change to event semantics or expansion rule
+ENGINE_TAG = "covmeet3"      # bump on ANY change to event semantics or expansion rule
 SEED_SETS = ("all124", "reduced39")
 
 # The user's rule for this experiment: NO length ceiling anywhere. cov.REJECT_LEN=239
@@ -168,13 +178,47 @@ def load_seeds(seed_set):
 
 
 def run_paths(out_dir, seed_set):
-    """(events_jsonl, summary_json). Identity = engine + seed set + family tag."""
+    """(certs_jsonl, summary_json). Identity = engine + seed set + family tag.
+
+    The certs file is the small, human-readable one — results only. The bulk store
+    lives in the snapshot pair beside it (``snap_paths``).
+    """
     stem = f"{ENGINE_TAG}_{seed_set}_{FAMILY}"
-    return (os.path.join(out_dir, stem + ".jsonl"),
+    return (os.path.join(out_dir, stem + "_certs.jsonl"),
             os.path.join(out_dir, stem + "_summary.json"))
 
 
+def snap_paths(out_dir, seed_set):
+    stem = f"{ENGINE_TAG}_{seed_set}_{FAMILY}"
+    base = os.path.join(out_dir, stem + ".snap")
+    return base, base + ".prev"
+
+
 # --------------------------------------------------------------------------- worker
+
+# Result-neutral speedup, measured 2026-08-15 on the active shells: aut_min is 89% of
+# the per-state cost (119 ms of 134 ms), and a state's ~66 raw CoV outputs fall into
+# only ~21 relabel_min groups. relabel_min (the 8-signed-permutation canonical) is
+# exact for this purpose: equal keys imply the same Aut-orbit, hence the same aut_min
+# — the same memo the mu-ladder ships (autcanon_fast docstring). Worker-local, capped
+# (cleared, not evicted, at the cap — determinism of RESULTS is unaffected either
+# way, only speed), and cross-state: at 5.7 re-reaches per discovered orbit the
+# steady-state hit rate far exceeds the within-state 3x. The verifier deliberately
+# does NOT use it — independence.
+_ORBIT_MEMO = {}
+_ORBIT_MEMO_CAP = 1_000_000
+
+
+def _aut_min_memo(pair):
+    key = af.relabel_min(pair)
+    hit = _ORBIT_MEMO.get(key)
+    if hit is None:
+        if len(_ORBIT_MEMO) >= _ORBIT_MEMO_CAP:
+            _ORBIT_MEMO.clear()
+        hit = af.aut_min(pair)
+        _ORBIT_MEMO[key] = hit
+    return hit
+
 
 def _expand_chunk(pairs):
     """Expand canonical rep pairs: every CoV, Aut-min each output, aggregate per orbit.
@@ -191,7 +235,7 @@ def _expand_chunk(pairs):
         results = cov.enumerate_cov(wa, wb, reject_len=REJECT_LEN_UNCAPPED)
         agg = {}
         for res in results:
-            mu, rep = af.aut_min((word_to_str(res.r1), word_to_str(res.r2)))
+            mu, rep = _aut_min_memo((word_to_str(res.r1), word_to_str(res.r2)))
             if rep == (a, b):
                 continue
             hit = agg.get(rep)
@@ -253,7 +297,7 @@ class Store:
         self.best_mu = {}                 # seed i -> lowest mu its cone has reached
         self.seed_mu = {}                 # seed i -> mu of its starting rep
         self.drops = []                   # (seed_i, mu, rep): reached BELOW seed_mu[i]
-        self.n_expansions_logged = 0
+        self.census = {}                  # rep -> (ncov, norb) for expanded orbits
         self.n_cov_total = 0
 
     def _bucket_add(self, rep):
@@ -301,9 +345,9 @@ class Store:
                 self.merges.append(merged)
         return ("new" if old == 0 else "grew"), merged, drops
 
-    def mark_expanded(self, rep, ncov):
+    def mark_expanded(self, rep, ncov, norb):
         self.expanded.add(rep)
-        self.n_expansions_logged += 1
+        self.census[rep] = (ncov, norb)
         self.n_cov_total += ncov
         L = len(rep[0]) + len(rep[1])
         b = self.frontier.get(L)
@@ -376,40 +420,187 @@ def _repair_torn_tail(path):
         return size - good
 
 
-def replay(events_path, n_seeds, expect_family=None):
-    """Rebuild the Store from the events file. Merges/drops are re-derived, not read."""
+_SNAP_MAGIC = b"CVM3\n"
+
+
+def _vint(n):
+    out = bytearray()
+    while True:
+        b = n & 0x7F
+        n >>= 7
+        if n:
+            out.append(b | 0x80)
+        else:
+            out.append(b)
+            return bytes(out)
+
+
+def _read_vint(buf, pos):
+    n = shift = 0
+    while True:
+        b = buf[pos]
+        pos += 1
+        n |= (b & 0x7F) << shift
+        if not b & 0x80:
+            return n, pos
+        shift += 7
+
+
+def _pack_word(w):
+    out = bytearray()
+    for i in range(0, len(w), 4):
+        b = 0
+        for j, c in enumerate(w[i:i + 4]):
+            b |= _PACK_BITS[c] << (2 * j)
+        out.append(b)
+    return bytes(out)
+
+
+def _unpack_word(raw, n):
+    return "".join(_PACK_CHARS[raw[i // 4] >> (2 * (i % 4)) & 3] for i in range(n))
+
+
+def save_snapshot(out_dir, seed_set, store, n_seeds):
+    """Atomically checkpoint the WHOLE store: rotate .snap -> .snap.prev, write .tmp,
+    fsync, os.replace. Byte-deterministic (no timestamps). sha256 trailer over the body.
+    """
+    snap, prev = snap_paths(out_dir, seed_set)
+    header = {"engine": ENGINE_TAG, "family": FAMILY, "seed_set": seed_set,
+              "n_seeds": n_seeds, "n_orbits": len(store.reps),
+              "merges": [[store.index[r], a, b] for r, a, b in store.merges],
+              "drops": [[i, mu, store.index[r]] for i, mu, r in store.drops]}
+    body = bytearray()
+    for rep in store.reps:
+        r1, r2 = rep
+        body += _vint(len(r1)) + _pack_word(r1) + _vint(len(r2)) + _pack_word(r2)
+        body += _vint(store.mask[rep])
+        expanded = rep in store.expanded
+        par = store.parent.get(rep)
+        flags = (1 if expanded else 0) | (2 if par else 0)
+        if par:
+            iso_bit = 0 if par[2] == "x" else 1
+            flags |= iso_bit << 2 | (par[3] & 3) << 3
+        body.append(flags)
+        if expanded:
+            nc, no = store.census.get(rep, (0, 0))
+            body += _vint(nc) + _vint(no)
+        if par:
+            prep, z, iso, br = par
+            body += _vint(store.index[prep]) + _vint(len(z)) + _pack_word(z)
+    tmp = snap + ".tmp"
+    with open(tmp, "wb") as f:
+        f.write(_SNAP_MAGIC)
+        f.write(json.dumps(header, separators=(",", ":")).encode() + b"\n")
+        f.write(bytes(body))
+        f.write(b"END" + hashlib.sha256(bytes(body)).digest())
+        f.flush()
+        os.fsync(f.fileno())
+    if os.path.exists(snap):
+        os.replace(snap, prev)
+    os.replace(tmp, snap)
+    return os.path.getsize(snap)
+
+
+def _load_one(path, n_seeds, expect_family):
+    with open(path, "rb") as f:
+        blob = f.read()
+    if not blob.startswith(_SNAP_MAGIC):
+        raise ValueError("bad magic")
+    hdr_end = blob.index(b"\n", len(_SNAP_MAGIC))
+    header = json.loads(blob[len(_SNAP_MAGIC):hdr_end])
+    if expect_family and header["family"] != expect_family:
+        raise RuntimeError(
+            f"snapshot family {header['family']!r} != current {expect_family!r} — "
+            f"a different family is a different experiment")
+    if header.get("engine") != ENGINE_TAG:
+        raise RuntimeError(f"snapshot engine {header.get('engine')!r} != {ENGINE_TAG!r}")
+    if header["n_seeds"] != n_seeds:
+        raise RuntimeError("snapshot seed count differs from the current seed set")
+    body = blob[hdr_end + 1:-35]
+    trailer = blob[-35:]
+    if trailer[:3] != b"END" or hashlib.sha256(body).digest() != trailer[3:]:
+        raise ValueError("snapshot integrity check failed")
+
     store = Store(n_seeds)
-    if not os.path.exists(events_path):
-        return store, None
-    meta = None
-    with open(events_path) as f:
-        for line in f:
-            ev = json.loads(line)
-            t = ev["t"]
-            if t == "meta":
-                if meta is None:
-                    meta = ev
-                    if expect_family and ev["family"] != expect_family:
-                        raise RuntimeError(
-                            f"resume file family {ev['family']!r} != current "
-                            f"{expect_family!r} — a different family is a different "
-                            f"experiment and must never share a resume file")
-                    if ev.get("engine") != ENGINE_TAG:
-                        raise RuntimeError(
-                            f"resume file engine {ev.get('engine')!r} != "
-                            f"{ENGINE_TAG!r} — event semantics differ; start fresh")
-            elif t == "seed":
-                store.reach(_dec_rep(ev["rep"]), ev["mu"], 1 << ev["i"])
-            elif t == "o":
-                rep = _dec_rep(ev["rep"])
-                store.reach(rep, len(rep[0]) + len(rep[1]), int(ev["m"], 16))
-            elif t == "r":
-                rep = store.reps[ev["i"]]
-                store.reach(rep, store.mu[rep], int(ev["m"], 16))
-            elif t == "x":
-                store.mark_expanded(store.reps[ev["i"]], ev["nc"])
-            # "merge" and "drop" rows are certificates; replay re-derives both
-    return store, meta
+    pos = 0
+    pend_parent = []
+    for idx in range(header["n_orbits"]):
+        n1, pos = _read_vint(body, pos)
+        r1 = _unpack_word(body[pos:pos + (n1 + 3) // 4], n1)
+        pos += (n1 + 3) // 4
+        n2, pos = _read_vint(body, pos)
+        r2 = _unpack_word(body[pos:pos + (n2 + 3) // 4], n2)
+        pos += (n2 + 3) // 4
+        mask, pos = _read_vint(body, pos)
+        flags = body[pos]
+        pos += 1
+        rep = (r1, r2)
+        store.index[rep] = idx
+        store.reps.append(rep)
+        store.mask[rep] = mask
+        store.mu[rep] = n1 + n2
+        if flags & 1:
+            nc, pos = _read_vint(body, pos)
+            no, pos = _read_vint(body, pos)
+            store.expanded.add(rep)
+            store.census[rep] = (nc, no)
+            store.n_cov_total += nc
+        else:
+            store._bucket_add(rep)
+        if flags & 2:
+            pidx, pos = _read_vint(body, pos)
+            nz, pos = _read_vint(body, pos)
+            z = _unpack_word(body[pos:pos + (nz + 3) // 4], nz)
+            pos += (nz + 3) // 4
+            iso = "x" if not flags >> 2 & 1 else "y"
+            br = flags >> 3 & 3
+            pend_parent.append((rep, pidx, z, iso, br))
+    if pos != len(body):
+        raise ValueError("snapshot body length mismatch")
+    for rep, pidx, z, iso, br in pend_parent:
+        store.parent[rep] = (store.reps[pidx], z, iso, br)
+
+    # Independent state rebuilds — from the masks, not from the header lists:
+    for rep, mask in store.mask.items():
+        mu = store.mu[rep]
+        bits = [i for i in range(mask.bit_length()) if mask >> i & 1]
+        for i in bits:
+            if store.best_mu.get(i) is None or mu < store.best_mu[i]:
+                store.best_mu[i] = mu
+        for i in bits[1:]:
+            store.uf.union(bits[0], i)
+    for i in range(min(n_seeds, len(store.reps))):
+        store.seed_mu[i] = store.mu[store.reps[i]]
+    store.merges = [(store.reps[i], a, b) for i, a, b in header["merges"]]
+    store.drops = [(i, mu, store.reps[ridx]) for i, mu, ridx in header["drops"]]
+    if len({store.uf.find(i) for i in range(n_seeds)}) != \
+            n_seeds - sum(1 for _ in header["merges"]):
+        raise ValueError("snapshot merges inconsistent with masks")
+    return store, header
+
+
+def load(out_dir, seed_set, n_seeds, expect_family=None, log=print):
+    """Newest valid snapshot (main, else .prev), or a fresh empty store.
+
+    Returns ``(store, header_or_None)``. A corrupt main snapshot falls back to the
+    previous one — losing at most one ``snapshot_every`` interval of deterministic
+    re-doable work — and says so. Identity mismatches raise; corruption degrades.
+    """
+    snap, prev = snap_paths(out_dir, seed_set)
+    for path, label in ((snap, "snapshot"), (prev, "previous snapshot")):
+        if not os.path.exists(path):
+            continue
+        try:
+            store, header = _load_one(path, n_seeds, expect_family)
+            if label != "snapshot":
+                log(f"[covmeet] main snapshot unreadable — resumed from {label} "
+                    f"(the lost interval re-runs deterministically)")
+            return store, header
+        except RuntimeError:
+            raise
+        except Exception as e:
+            log(f"[covmeet] {label} unreadable ({e}) — trying older")
+    return Store(n_seeds), None
 
 
 class _Writer:
@@ -464,7 +655,7 @@ def summarise(store, seeds):
 
 def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         max_expanded=None, max_seconds=None, mem_guard_gb=8.0, log=print,
-        seeds_override=None):
+        seeds_override=None, snapshot_every=300):
     """Anytime, resumable CoV collision search. Returns the summary dict.
 
     Every knob except ``seed_set`` is throughput/stopping only and does not change the
@@ -476,14 +667,14 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
     # seeds_override is the TEST seam (like run_baseline's SOLVER): a tiny controlled
     # seed list under a private seed_set label, so tests never touch the real datasets.
     seeds = seeds_override if seeds_override is not None else load_seeds(seed_set)
-    events_path, summary_path = run_paths(out_dir, seed_set)
+    certs_path, summary_path = run_paths(out_dir, seed_set)
 
-    cut = _repair_torn_tail(events_path)
+    cut = _repair_torn_tail(certs_path)
     if cut:
-        log(f"[covmeet] repaired torn tail: truncated {cut} bytes")
-    store, meta = replay(events_path, len(seeds), expect_family=FAMILY)
+        log(f"[covmeet] repaired torn certs tail: truncated {cut} bytes")
+    store, meta = load(out_dir, seed_set, len(seeds), expect_family=FAMILY, log=log)
     resumed = meta is not None
-    w = _Writer(events_path)
+    w = _Writer(certs_path)
     w.row({"t": "meta", "engine": ENGINE_TAG, "family": FAMILY,
            "seed_set": seed_set, "n_seeds": len(seeds),
            "session_utc": datetime.datetime.utcnow().isoformat(timespec="seconds")})
@@ -495,6 +686,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
                    "rep": _enc_rep(rep), "mu": mu})
             store.reach(rep, mu, 1 << i)
         w.sync()
+        save_snapshot(out_dir, seed_set, store, len(seeds))
         log(f"[covmeet] fresh run: {len(seeds)} seeds canonicalised")
     else:
         log(f"[covmeet] RESUMED: {len(store.expanded)} expanded, "
@@ -513,6 +705,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         af.warm()
 
     t0 = time.time()
+    last_snap = [time.time()]
     expanded0 = len(store.expanded)
     last_beat = [0.0]                 # 0 => first heartbeat fires immediately
     last_cum = [time.time()]
@@ -535,13 +728,13 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             mem = _mem_available_gb()
             tot_rate = (len(store.expanded) - expanded0) / max(now - t0, 1e-9)
             try:
-                mb = os.path.getsize(events_path) / 1e6
+                mb = os.path.getsize(snap_paths(out_dir, seed_set)[0]) / 1e6
             except OSError:
                 mb = 0.0
             log(f"[cum] {datetime.datetime.utcnow().isoformat(timespec='seconds')}Z  "
                 f"session {(now - t0) / 3600:.2f} h  {tot_rate:.2f} st/s avg  "
                 f"raw CoVs {store.n_cov_total:,}  classes "
-                f"{len(store.uf.roots())}/{len(seeds)}  events {mb:,.0f} MB  "
+                f"{len(store.uf.roots())}/{len(seeds)}  snapshot {mb:,.0f} MB  "
                 f"mem_avail {mem and f'{mem:.1f}'} GB")
             last_cum[0] = now
 
@@ -584,17 +777,10 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             for chunk_res in results:
                 for rep, ncov, children in chunk_res:
                     pmask = store.mask[rep]
-                    hexmask = format(pmask, "x")
                     for crep, mu, z, iso, br, n in children:
-                        known = crep in store.mask
                         kind, merged, drops = store.reach(crep, mu, pmask)
-                        if not known and kind == "new":
+                        if kind == "new":
                             store.parent[crep] = (rep, z, iso, br)
-                            w.row({"t": "o", "i": store.index[crep],
-                                   "rep": _enc_rep(crep), "m": hexmask})
-                        elif kind == "grew":
-                            w.row({"t": "r", "i": store.index[crep],
-                                   "m": hexmask})
                         for di, dmu, drep in drops:
                             w.row({"t": "drop", "i": di, "name": seeds[di][0],
                                    "mu": dmu, "from": store.seed_mu[di],
@@ -615,15 +801,20 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
                                                 "rep": _enc_rep(mrep)}]]})
                             log(f"[MERGE] {seeds[a][0]} ≡ {seeds[b][0]} at "
                                 f"{mrep} — {len(store.uf.roots())} classes remain")
-                    w.row({"t": "x", "i": store.index[rep], "nc": ncov,
-                           "no": len(children)})
-                    store.mark_expanded(rep, ncov)
-            w.sync()                          # the wave reaches disk before the next
+                    store.mark_expanded(rep, ncov, len(children))
+            w.sync()                          # certificates reach disk before the next wave
+            if time.time() - last_snap[0] >= snapshot_every:
+                mb = save_snapshot(out_dir, seed_set, store, len(seeds)) / 1e6
+                last_snap[0] = time.time()
+                log(f"[snap] checkpointed {len(store.mask):,} orbits "
+                    f"({mb:.1f} MB) — a crash now re-does at most "
+                    f"{snapshot_every}s of work")
             heartbeat()
     finally:
         if pool is not None:
             pool.shutdown(wait=False, cancel_futures=True)
         w.close()
+        save_snapshot(out_dir, seed_set, store, len(seeds))
         summary = summarise(store, seeds)
         summary["stopped"] = reason or "interrupted"
         with open(summary_path + ".tmp", "w") as f:
