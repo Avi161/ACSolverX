@@ -81,6 +81,19 @@ def test_resume_is_replay_not_reseed(tmp_path):
     assert sum(1 for r in rows if r["t"] == "meta") == 2      # one meta per session
 
 
+def test_each_orbit_written_once(tmp_path):
+    """The v2 size contract: one `o` row per orbit, ever — a re-reach that changes
+    nothing writes NOTHING, and `x` rows reference orbits by index, repeating no rep."""
+    _run(tmp_path, SEEDS_AB, 5)
+    events, _ = run_paths(str(tmp_path), "testAB")
+    rows = [json.loads(l) for l in open(events)]
+    o_idx = [r["i"] for r in rows if r["t"] == "o"]
+    assert len(o_idx) == len(set(o_idx))                     # never twice
+    for r in rows:
+        if r["t"] == "x":
+            assert "rep" not in r and isinstance(r["i"], int)
+
+
 def test_summary_written_and_matches_replay(tmp_path):
     _run(tmp_path, SEEDS_AB, 3)
     events, summary_path = run_paths(str(tmp_path), "testAB")
@@ -88,7 +101,8 @@ def test_summary_written_and_matches_replay(tmp_path):
         written = json.load(f)
     store = _store(tmp_path, 2)
     live = covmeet.summarise(store, SEEDS_AB)
-    for k in ("classes_remaining", "merges_found", "expanded", "discovered", "edges"):
+    for k in ("classes_remaining", "merges_found", "expanded", "discovered",
+              "raw_cov_enumerated", "n_improved"):
         assert written[k] == live[k], k
 
 
@@ -99,7 +113,7 @@ def test_torn_trailing_line_repaired_before_append(tmp_path):
     events, _ = run_paths(str(tmp_path), "testAB")
     before = _store(tmp_path, 2)
     with open(events, "a") as f:
-        f.write('{"t":"edge","rep":["xy')               # the crash artifact
+        f.write('{"t":"o","i":9999,"rep":["xy')          # the crash artifact
     _run(tmp_path, SEEDS_AB, 1)                          # must repair, then resume
     after = _store(tmp_path, 2)
     assert len(after.expanded) == len(before.expanded) + 1
@@ -138,6 +152,14 @@ def test_merge_via_common_child(tmp_path):
     events, _ = run_paths(str(tmp_path), "testMG")
     merges = [json.loads(l) for l in open(events) if '"merge"' in l]
     assert merges and merges[0]["remaining"] == 1
+    # the certificate: two chains, both ending at the recorded meeting orbit,
+    # every segment replaying through the real transform + aut_min
+    from experiments.stable_ac.cov.meet import verify_covmeet as vc
+    ch_a, ch_b = merges[0]["chains"]
+    for ch in (ch_a, ch_b):
+        ok, nseg, trunc = vc.verify_chain(ch)
+        assert ok and not trunc
+    assert ch_a[-1]["rep"] == ch_b[-1]["rep"] == merges[0]["rep"]
 
 
 def test_no_merge_between_disjoint_shallow_cones(tmp_path):
@@ -170,7 +192,12 @@ def test_drop_logged_when_cone_descends_below_seed(tmp_path):
     mus = [mu for _, mu, _ in store.drops]                # successive strict descents
     assert mus == sorted(mus, reverse=True) and len(set(mus)) == len(mus)
     events, _ = run_paths(str(tmp_path), "testDR")
-    assert any(json.loads(l)["t"] == "drop" for l in open(events))
+    drops = [json.loads(l) for l in open(events) if json.loads(l)["t"] == "drop"]
+    assert drops
+    from experiments.stable_ac.cov.meet import verify_covmeet as vc
+    ok, nseg, trunc = vc.verify_chain(drops[-1]["chain"])
+    assert ok and not trunc and nseg >= 1
+    assert drops[-1]["chain"][-1]["rep"] == drops[-1]["rep"]
 
 
 def test_seed_mu_is_not_a_drop(tmp_path):
@@ -219,9 +246,9 @@ def test_family_mismatch_refuses_to_resume(tmp_path):
         replay(events, 2, expect_family="someotherfamily")
 
 
-def test_filename_carries_seed_set_and_family_only(tmp_path):
+def test_filename_carries_engine_seed_set_and_family_only(tmp_path):
     events, summary = run_paths("/x", "all124")
-    assert os.path.basename(events) == f"covmeet_all124_{covmeet.FAMILY}.jsonl"
+    assert os.path.basename(events) == f"covmeet2_all124_{covmeet.FAMILY}.jsonl"
     for knob in ("wave", "chunk", "worker", "2026"):
         assert knob not in os.path.basename(events)
 
@@ -285,3 +312,29 @@ def test_all_duplicate_children_do_not_stop_the_run(tmp_path, monkeypatch):
     assert len(store.expanded) == len(store.mask)        # every discovered orbit popped
     assert summary["merges_found"] >= 1                  # merges happened mid-run...
     assert summary["classes_remaining"] == 1             # ...and the run kept going
+
+
+# ------------------------------------------------------------- v2 word codec
+
+def test_word_codec_roundtrips_and_only_packs_long_words():
+    from experiments.stable_ac.cov.meet.covmeet import _dec_word, _enc_word
+    short = "xYxxyXY"
+    assert _enc_word(short) == short                     # readable below threshold
+    long_w = "xy" * 100                                  # 200 letters, freely reduced
+    enc = _enc_word(long_w)
+    assert enc.startswith("~200:") and len(enc) < len(long_w)
+    assert _dec_word(enc) == long_w
+    assert _dec_word(short) == short
+    for w in ("x", "Xy", "xyX" * 41, "Y" + "xy" * 80):   # boundary + odd lengths
+        assert _dec_word(_enc_word(w)) == w
+
+
+def test_long_rep_survives_disk_roundtrip(tmp_path):
+    """A >threshold relator must pack on disk and replay to the identical store."""
+    long_pair = ("xy" * 80, "xY")                        # 160-letter relator
+    seeds = [("t_long", *long_pair), ("t_b", *P1)]
+    _run(tmp_path, seeds, 2, tag="testLP", wave=1)
+    store = _store(tmp_path, 2, tag="testLP")
+    from experiments.stable_ac.cov.ladder import autcanon_fast as af
+    mu, rep = af.aut_min(long_pair)
+    assert store.mask.get(rep, 0) & 1                    # the seed bit survived

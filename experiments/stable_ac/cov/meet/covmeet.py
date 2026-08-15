@@ -11,48 +11,62 @@ AC-equivalent (a CoV chain from each side meets there) and 124 drops by one.
 No substitution supermoves, no AC search anywhere in this pipeline — CoV edges and
 Whitehead reduction only, zero search nodes.
 
+STORAGE (v2, "covmeet2" — the user's policy). Disk stores results and resume state,
+never bulk provenance:
+
+* one ``o`` row per orbit at FIRST discovery (rep + mask), never again;
+* an ``r`` row only when an orbit's mask GROWS (a cone overlap — the interesting case);
+* an ``x`` row per expansion, by orbit index, carrying the census (raw CoVs → orbits);
+* full chains are written ONLY for the events that are results: ``merge`` (two classes
+  meet — both chains, seed to meeting orbit) and ``drop`` (a class reaches below its
+  seeded aut-min — the chain to the new best rep). Parent pointers live in RAM only.
+
+v1 logged every edge with its parent pair repeated per row; at 5.7 edges/expansion that
+was ~85% of the bytes and grew superlinearly as cones overlap (a re-reach wrote a row
+even when nothing changed). v2 writes nothing on a no-op re-reach. The cost of the
+trade: individual ``o`` rows are not independently replayable (no move recorded), so
+the full audit of a run is a deterministic re-run; merges and drops — the claims —
+stay fully certified on disk. After a crash+resume, a later merge whose chain crosses
+pre-resume territory is written truncated (``"truncated": true``) — the deterministic
+fresh re-run reproduces it with the full chain.
+
 Design decisions, each carrying a lesson or a measurement:
 
 * **No relator-length cap.** ``REJECT_LEN`` in cov.py is the packed greedy solver's
-  structural ceiling; this pipeline never calls that solver, so the constant does not
-  apply. Measured: ``aut_min`` is FLAT in input length (0.67 ms @ 10-19 letters ->
-  0.78 ms @ 90-99), and per-state cost grows only because the subword z-family grows
-  ~11 candidates/letter. A ceiling defines the space (lesson:
-  ceiling-not-budget-was-binding) — here there deliberately is none.
+  structural ceiling; this pipeline never calls that solver. Measured: ``aut_min`` is
+  FLAT in input length (0.67 ms @ 10-19 letters -> 0.78 ms @ 90-99). A ceiling defines
+  the space (lesson: ceiling-not-budget-was-binding) — here there deliberately is none.
+  Relators longer than ``_PACK_THRESHOLD`` letters are stored 2-bit-packed+base64 on
+  disk; measured shells (L 19-21, uncapped) top out at 59 letters, so this is insurance,
+  not the common path.
 * **Shortest-bucket-first.** The frontier is bucketed by total length and waves pop the
-  shortest bucket. This is the whole ordering — no heap — and it yields the conditional
-  closure by-product (no merge below L via routes staying under L) for free.
+  shortest bucket. WAVE bounds a batch, never membership: what a wave doesn't pop stays
+  queued, and the only stop is the frontier running dry (pinned by
+  ``test_all_duplicate_children_do_not_stop_the_run``).
 * **The jsonl IS the state.** Append-only events, parent-only writes, fsync per wave,
   torn trailing line repaired BEFORE the first append (lesson: run-baseline-two-known-
-  bugs). Resume = replay. A computed wave reaches disk before the next is attempted
-  (lesson: heavy-mode-defers-solved-rows).
+  bugs). Resume = replay.
 * **Exact keys, no digests.** The store keys on the canonical rep pair itself. At 10^8+
-  rows a 64-bit hash WILL collide, and a collision here is a false merge — a wrong
-  mathematical claim.
-* **Expansion is once-per-orbit.** Edges INTO an orbit keep being emitted whenever any
-  parent is expanded, so a first meeting is always detected; masks *downstream* of a
-  late meeting are deliberately not back-propagated (the merge was already recorded at
-  the meeting orbit — see ``test_merge_via_common_child``).
-* **Filename identity** = seed set + ``cov.SUBWORD_FAMILY_TAG`` (single source of
-  truth — lesson: identity-tag-shadowed-by-yaml). WAVE / CHUNK / WORKERS change wave
-  boundaries and hence which orbit records a meeting first, but not the final masks,
-  merges, or class count — they stay OUT of the filename (lesson:
-  jsonl-filename-encodes-search-identity). No dates in the filename either.
-* **Heartbeat is TIME-based**, parent-only (a worker's print is dropped — lesson:
-  heartbeat-worker-cannot-print): a 60 s beat with instantaneous states/s and a ~5 min
-  cumulative line. First emission fires immediately at run start (lesson:
-  heartbeat-first-emission-phase-bug).
-* **Memory guard** trips on real system pressure (``MemAvailable``), never on a share
-  (lesson: gb-per-pres-sized-from-measured-memory). Everything is on disk already, so
-  the guard just stops cleanly.
+  rows a 64-bit hash WILL collide, and a collision here is a false merge.
+* **Expansion is once-per-orbit.** Mask growth keeps being recorded whenever any parent
+  reaches a known orbit, so a first meeting is always detected; masks downstream of a
+  late meeting are not back-propagated (the merge was already recorded at the meeting
+  orbit).
+* **Filename identity** = engine tag + seed set + family tag (single source of truth —
+  lesson: identity-tag-shadowed-by-yaml). WAVE / CHUNK / WORKERS change wave boundaries
+  and hence which orbit records a meeting first, but not the final masks, merges, or
+  class count — they stay OUT of the filename. No dates in the filename either.
+* **Heartbeat is TIME-based**, parent-only; first emission fires immediately (lessons:
+  heartbeat-worker-cannot-print, heartbeat-first-emission-phase-bug).
+* **Memory guard** trips on real system pressure (``MemAvailable``), never on a share.
 
-A merge event here proves the two classes STABLY AC-equivalent (CoV chains junction at
+A merge event proves the two classes STABLY AC-equivalent (CoV chains junction at
 canonical reps and must be verified segment by segment — ``verify_covmeet.py`` replays
-recorded (parent, z, iso_gen, iso_index) edges one at a time; lesson:
-cov-chains-junction-at-canonical-reps). Never claim unqualified AC-equivalence from
-this pipeline.
+every recorded chain one step at a time; lesson: cov-chains-junction-at-canonical-reps).
+Never claim unqualified AC-equivalence from this pipeline.
 """
 
+import base64
 import csv
 import datetime
 import json
@@ -64,7 +78,7 @@ from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 from experiments.stable_ac.cov.ladder import autcanon_fast as af
 
-ENGINE_TAG = "covmeet1"      # bump on ANY change to event semantics or expansion rule
+ENGINE_TAG = "covmeet2"      # bump on ANY change to event semantics or expansion rule
 SEED_SETS = ("all124", "reduced39")
 
 # The user's rule for this experiment: NO length ceiling anywhere. cov.REJECT_LEN=239
@@ -76,6 +90,42 @@ FAMILY = cov.SUBWORD_FAMILY_TAG + "nolim"
 
 HEARTBEAT_S = 60             # instantaneous beat
 CUMULATIVE_S = 300           # cumulative done/frontier/merges line
+
+_PACK_THRESHOLD = 120        # letters; longer relators are packed+b64 on disk
+_PACK_BITS = {"x": 0, "X": 1, "y": 2, "Y": 3}
+_PACK_CHARS = "xXyY"
+
+
+# --------------------------------------------------------------------- word codec
+
+def _enc_word(w):
+    """Disk form of one relator: plain ascii, or ``~<len>:<b64>`` when long."""
+    if len(w) <= _PACK_THRESHOLD:
+        return w
+    out = bytearray()
+    for i in range(0, len(w), 4):
+        b = 0
+        for j, c in enumerate(w[i:i + 4]):
+            b |= _PACK_BITS[c] << (2 * j)
+        out.append(b)
+    return f"~{len(w)}:" + base64.b64encode(bytes(out)).decode()
+
+
+def _dec_word(s):
+    if not s.startswith("~"):
+        return s
+    head, b64 = s[1:].split(":", 1)
+    n = int(head)
+    raw = base64.b64decode(b64)
+    return "".join(_PACK_CHARS[raw[i // 4] >> (2 * (i % 4)) & 3] for i in range(n))
+
+
+def _enc_rep(rep):
+    return [_enc_word(rep[0]), _enc_word(rep[1])]
+
+
+def _dec_rep(v):
+    return (_dec_word(v[0]), _dec_word(v[1]))
 
 
 # --------------------------------------------------------------------------- seeds
@@ -118,8 +168,8 @@ def load_seeds(seed_set):
 
 
 def run_paths(out_dir, seed_set):
-    """(events_jsonl, summary_json). Identity = seed set + family tag, nothing else."""
-    stem = f"covmeet_{seed_set}_{FAMILY}"
+    """(events_jsonl, summary_json). Identity = engine + seed set + family tag."""
+    stem = f"{ENGINE_TAG}_{seed_set}_{FAMILY}"
     return (os.path.join(out_dir, stem + ".jsonl"),
             os.path.join(out_dir, stem + "_summary.json"))
 
@@ -183,11 +233,19 @@ class _UF:
 
 
 class Store:
-    """In-memory mirror of the events file. Rebuilt exactly by replaying it."""
+    """In-memory mirror of the events file. Rebuilt exactly by replaying it.
+
+    ``parent`` (rep -> (parent_rep, z, iso, br)) is RAM-ONLY provenance for chain
+    extraction on merge/drop; it is deliberately NOT rebuilt by replay — see the
+    module docstring on truncated post-resume chains.
+    """
 
     def __init__(self, n_seeds):
         self.mask = {}                    # rep -> int bitmask of seed classes
         self.mu = {}                      # rep -> aut-min total length
+        self.index = {}                   # rep -> orbit index (discovery order)
+        self.reps = []                    # orbit index -> rep
+        self.parent = {}                  # RAM only: rep -> (prep, z, iso, br)
         self.expanded = set()             # reps whose expansion completed (x row)
         self.frontier = {}                # L -> set of unexpanded reps
         self.uf = _UF(n_seeds)
@@ -195,7 +253,7 @@ class Store:
         self.best_mu = {}                 # seed i -> lowest mu its cone has reached
         self.seed_mu = {}                 # seed i -> mu of its starting rep
         self.drops = []                   # (seed_i, mu, rep): reached BELOW seed_mu[i]
-        self.n_edges = 0
+        self.n_expansions_logged = 0
         self.n_cov_total = 0
 
     def _bucket_add(self, rep):
@@ -203,21 +261,24 @@ class Store:
         self.frontier.setdefault(L, set()).add(rep)
 
     def reach(self, rep, mu, bits):
-        """OR ``bits`` into ``rep``'s mask. Returns ``(merge_or_None, drops)``.
+        """OR ``bits`` into ``rep``'s mask.
 
-        A drop is the user's second deliverable: seed ``i``'s cone reaching an orbit
-        with mu STRICTLY BELOW the mu it was seeded at — a new best representative for
-        that class, found by CoV alone. Checked on newly-set bits only (an already-set
-        bit saw this orbit when it was set).
+        Returns ``(kind, merged, drops)`` where kind is ``"new"`` (first discovery —
+        an ``o``/``seed`` row is due), ``"grew"`` (mask gained bits — an ``r`` row is
+        due), or ``None`` (no change — NOTHING is written, the v2 size fix). A drop is
+        seed ``i``'s cone reaching an orbit with mu STRICTLY BELOW its seeded mu.
         """
         old = self.mask.get(rep, 0)
         new = old | bits
         if new == old:
-            return None, ()
+            return None, None, ()
+        if old == 0:
+            self.index[rep] = len(self.reps)
+            self.reps.append(rep)
+            self.mu[rep] = mu
+            if rep not in self.expanded:
+                self._bucket_add(rep)
         self.mask[rep] = new
-        self.mu[rep] = mu
-        if old == 0 and rep not in self.expanded:
-            self._bucket_add(rep)
         drops = []
         added = new & ~old
         for i in range(added.bit_length()):
@@ -238,10 +299,11 @@ class Store:
             if self.uf.union(base, i):
                 merged = (rep, self.uf.find(base), i)
                 self.merges.append(merged)
-        return merged, drops
+        return ("new" if old == 0 else "grew"), merged, drops
 
     def mark_expanded(self, rep, ncov):
         self.expanded.add(rep)
+        self.n_expansions_logged += 1
         self.n_cov_total += ncov
         L = len(rep[0]) + len(rep[1])
         b = self.frontier.get(L)
@@ -264,6 +326,27 @@ class Store:
 
     def frontier_size(self):
         return sum(len(v) for v in self.frontier.values())
+
+    def chain(self, rep):
+        """RAM lineage of ``rep``: ``[{"rep": ...}, {"z","iso","br","rep"}, ...]``.
+
+        Walks ``parent`` back to a seed. If the walk hits an orbit with no parent
+        entry that is not a seed (its discovery predates this session — parents are
+        RAM-only), the chain is returned truncated with a leading marker; the
+        deterministic fresh re-run reproduces the full chain.
+        """
+        steps = []
+        cur = rep
+        while True:
+            hit = self.parent.get(cur)
+            if hit is None:
+                head = {"rep": _enc_rep(cur)}
+                if self.index.get(cur, 0) >= len(self.seed_mu):
+                    head["truncated"] = True
+                return [head] + steps[::-1]
+            prep, z, iso, br = hit
+            steps.append({"z": z, "iso": iso, "br": br, "rep": _enc_rep(cur)})
+            cur = prep
 
 
 # --------------------------------------------------------------------------- events
@@ -294,7 +377,7 @@ def _repair_torn_tail(path):
 
 
 def replay(events_path, n_seeds, expect_family=None):
-    """Rebuild the Store from the events file. Merges are re-derived, not read."""
+    """Rebuild the Store from the events file. Merges/drops are re-derived, not read."""
     store = Store(n_seeds)
     if not os.path.exists(events_path):
         return store, None
@@ -311,14 +394,21 @@ def replay(events_path, n_seeds, expect_family=None):
                             f"resume file family {ev['family']!r} != current "
                             f"{expect_family!r} — a different family is a different "
                             f"experiment and must never share a resume file")
+                    if ev.get("engine") != ENGINE_TAG:
+                        raise RuntimeError(
+                            f"resume file engine {ev.get('engine')!r} != "
+                            f"{ENGINE_TAG!r} — event semantics differ; start fresh")
             elif t == "seed":
-                store.reach(tuple(ev["rep"]), ev["mu"], 1 << ev["i"])
-            elif t == "edge":
-                store.n_edges += 1
-                store.reach(tuple(ev["rep"]), ev["mu"], int(ev["m"], 16))
-            # "merge" and "drop" rows are informational; replay re-derives both
+                store.reach(_dec_rep(ev["rep"]), ev["mu"], 1 << ev["i"])
+            elif t == "o":
+                rep = _dec_rep(ev["rep"])
+                store.reach(rep, len(rep[0]) + len(rep[1]), int(ev["m"], 16))
+            elif t == "r":
+                rep = store.reps[ev["i"]]
+                store.reach(rep, store.mu[rep], int(ev["m"], 16))
             elif t == "x":
-                store.mark_expanded(tuple(ev["rep"]), ev["ncov"])
+                store.mark_expanded(store.reps[ev["i"]], ev["nc"])
+            # "merge" and "drop" rows are certificates; replay re-derives both
     return store, meta
 
 
@@ -368,7 +458,7 @@ def summarise(store, seeds):
         "expanded": len(store.expanded), "discovered": len(store.mask),
         "frontier": store.frontier_size(),
         "shortest_open_bucket": min(store.frontier) if store.frontier else None,
-        "edges": store.n_edges, "raw_cov_enumerated": store.n_cov_total,
+        "raw_cov_enumerated": store.n_cov_total,
     }
 
 
@@ -378,9 +468,9 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
     """Anytime, resumable CoV collision search. Returns the summary dict.
 
     Every knob except ``seed_set`` is throughput/stopping only and does not change the
-    final masks, merges or class count — see the module docstring. ``max_seconds`` is
-    the smoke run's TIME bound (rows written under it are real rows the full run
-    resumes from); ``max_expanded`` is a test/backstop budget.
+    final masks, merges or class count. ``max_seconds`` is the smoke run's TIME bound
+    (rows written under it are real rows the full run resumes from); ``max_expanded``
+    is a test/backstop budget.
     """
     os.makedirs(out_dir, exist_ok=True)
     # seeds_override is the TEST seam (like run_baseline's SOLVER): a tiny controlled
@@ -401,8 +491,9 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         af.warm()
         for i, (name, r1, r2) in enumerate(seeds):
             mu, rep = af.aut_min((r1, r2))
-            w.row({"t": "seed", "i": i, "name": name, "rep": list(rep), "mu": mu})
-            store.reach(rep, mu, 1 << i)          # (merged, drops) both empty here
+            w.row({"t": "seed", "i": i, "name": name,
+                   "rep": _enc_rep(rep), "mu": mu})
+            store.reach(rep, mu, 1 << i)
         w.sync()
         log(f"[covmeet] fresh run: {len(seeds)} seeds canonicalised")
     else:
@@ -443,10 +534,14 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         if now - last_cum[0] >= CUMULATIVE_S:
             mem = _mem_available_gb()
             tot_rate = (len(store.expanded) - expanded0) / max(now - t0, 1e-9)
+            try:
+                mb = os.path.getsize(events_path) / 1e6
+            except OSError:
+                mb = 0.0
             log(f"[cum] {datetime.datetime.utcnow().isoformat(timespec='seconds')}Z  "
                 f"session {(now - t0) / 3600:.2f} h  {tot_rate:.2f} st/s avg  "
                 f"raw CoVs {store.n_cov_total:,}  classes "
-                f"{len(store.uf.roots())}/{len(seeds)}  "
+                f"{len(store.uf.roots())}/{len(seeds)}  events {mb:,.0f} MB  "
                 f"mem_avail {mem and f'{mem:.1f}'} GB")
             last_cum[0] = now
 
@@ -491,27 +586,37 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
                     pmask = store.mask[rep]
                     hexmask = format(pmask, "x")
                     for crep, mu, z, iso, br, n in children:
-                        w.row({"t": "edge", "rep": list(crep), "mu": mu,
-                               "par": list(rep), "m": hexmask, "z": z,
-                               "iso": iso, "br": br, "n": n})
-                        merged, drops = store.reach(crep, mu, pmask)
-                        store.n_edges += 1
+                        known = crep in store.mask
+                        kind, merged, drops = store.reach(crep, mu, pmask)
+                        if not known and kind == "new":
+                            store.parent[crep] = (rep, z, iso, br)
+                            w.row({"t": "o", "i": store.index[crep],
+                                   "rep": _enc_rep(crep), "m": hexmask})
+                        elif kind == "grew":
+                            w.row({"t": "r", "i": store.index[crep],
+                                   "m": hexmask})
                         for di, dmu, drep in drops:
                             w.row({"t": "drop", "i": di, "name": seeds[di][0],
                                    "mu": dmu, "from": store.seed_mu[di],
-                                   "rep": list(drep)})
+                                   "rep": _enc_rep(drep),
+                                   "chain": store.chain(drep)})
                             log(f"[DROP] {seeds[di][0]}: mu {store.seed_mu[di]} "
                                 f"-> {dmu} at {drep} — below its reduced aut-min "
                                 f"start")
                         if merged:
                             mrep, a, b = merged
-                            w.row({"t": "merge", "rep": list(mrep),
+                            w.row({"t": "merge", "at": store.index[mrep],
+                                   "rep": _enc_rep(mrep),
                                    "classes": [seeds[a][0], seeds[b][0]],
-                                   "remaining": len(store.uf.roots())})
+                                   "remaining": len(store.uf.roots()),
+                                   "chains": [store.chain(mrep),
+                                              store.chain(rep) +
+                                              [{"z": z, "iso": iso, "br": br,
+                                                "rep": _enc_rep(mrep)}]]})
                             log(f"[MERGE] {seeds[a][0]} ≡ {seeds[b][0]} at "
                                 f"{mrep} — {len(store.uf.roots())} classes remain")
-                    w.row({"t": "x", "rep": list(rep), "ncov": ncov,
-                           "norb": len(children)})
+                    w.row({"t": "x", "i": store.index[rep], "nc": ncov,
+                           "no": len(children)})
                     store.mark_expanded(rep, ncov)
             w.sync()                          # the wave reaches disk before the next
             heartbeat()

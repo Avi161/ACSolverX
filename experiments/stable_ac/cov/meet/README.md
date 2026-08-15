@@ -28,10 +28,19 @@ path and **Restart & Run All** — the torn last line is repaired, events replay
 continues. Runs are deterministic given the config, and `WAVE`/`CHUNK`/`WORKERS` change
 throughput only, never the final masks/merges/classes.
 
-Event rows: `meta` (session), `seed`, `edge` (child orbit + parent + `(z, iso, br)` move
-+ parent mask + census multiplicity), `x` (expansion done: `ncov` raw CoVs → `norb`
-orbits — the per-state census), `merge`, `drop`. Merges and drops are re-derived on
-replay; the rows are for humans.
+Event rows (v2 — the storage policy is "results and resume state, never bulk
+provenance"): `meta` (session), `seed`, `o` (one row per orbit at FIRST discovery —
+rep + mask, never repeated), `r` (an orbit's mask GREW — a cone overlap), `x`
+(expansion done, by orbit index: `nc` raw CoVs → `no` orbits — the per-state census),
+`merge` and `drop` (the certificates: **full chains**, seed to meeting/drop orbit,
+every step carrying its `(z, iso, br)` move). Parent pointers live in RAM only; a
+no-op re-reach writes nothing (v1 logged every edge with the parent pair repeated —
+~85% of the bytes). Merges and drops are re-derived on replay; the rows are the
+certificates. Relators over 120 letters are stored 2-bit-packed (`~<len>:<b64>`).
+The trade, stated plainly: single `o` rows are not independently replayable — the
+full audit of discovery is a deterministic re-run; a post-resume merge whose chain
+crosses pre-resume territory is written `"truncated": true` and the fresh re-run
+reproduces it whole.
 
 Finished or interim results get committed under `results/stable_ac/covmeet/` (hand the
 downloaded folder back and it lands there) — never beside this code.
