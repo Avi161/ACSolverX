@@ -631,6 +631,22 @@ def _next_snap_interval(base, write_seconds):
     return max(base, 10.0 * write_seconds)
 
 
+def _pacific_now():
+    """Wall-clock in the user's timezone for the [cum] line — display only.
+
+    Uses the real America/Los_Angeles zone (so PST/PDT flips are correct) when the
+    host has tzdata; falls back to a fixed UTC-7 marked 'PT*'. Never anywhere near
+    filenames or identity (no-dates-in-keys lesson).
+    """
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.datetime.now(
+            ZoneInfo("America/Los_Angeles")).strftime("%a %H:%M %Z")
+    except Exception:
+        t = datetime.datetime.utcnow() - datetime.timedelta(hours=7)
+        return t.strftime("%a %H:%M PT*")
+
+
 def _mem_available_gb():
     try:
         with open("/proc/meminfo") as f:
@@ -743,7 +759,8 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             except OSError:
                 mb = 0.0
             collapse = store.n_cov_total / max(len(store.mask), 1)
-            log(f"[cum] {datetime.datetime.utcnow().isoformat(timespec='seconds')}Z  "
+            log(f"[cum] {datetime.datetime.utcnow().isoformat(timespec='seconds')}Z "
+                f"({_pacific_now()})  "
                 f"session {(now - t0) / 3600:.2f} h  {tot_rate:.2f} st/s avg  "
                 f"raw CoVs {store.n_cov_total:,} -> {len(store.mask):,} distinct "
                 f"({collapse:.0f}x collapse)  classes "
