@@ -534,3 +534,42 @@ def test_every_stored_orbit_presents_the_trivial_group_by_abelianization(tmp_pat
     rc = vc.main([str(tmp_path), "--seed-set", "testAB", "--full"],
                  seeds_override=SEEDS_AB)
     assert rc != 0
+
+
+# ------------------------------------------------------------- dataset export
+
+def test_export_matches_store_and_ac1m_layout(tmp_path):
+    """The exported flat-int lines must decode back to exactly the store's canonical
+    pairs (AC-1M layout: x=1 X=-1 y=2 Y=-2, zero-padded), labels must align row for
+    row, and over-length rows are skipped AND counted, never silently dropped."""
+    import ast
+    from experiments.stable_ac.cov.meet import export_covmeet
+    out, dest = tmp_path / "out", tmp_path / "ds"
+    _run(out, SEEDS_AB, 4)
+    rc = export_covmeet.main([str(out), "--seed-set", "testAB",
+                              "--dest", str(dest), "--sample", "50"],
+                             seeds_override=SEEDS_AB)
+    assert rc == 0
+    store = _store(out, 2)
+    manifest = json.load(open(dest / "covmeet_hard_manifest.json"))
+    assert manifest["rows"] + manifest["skipped_over_max_length"] == len(store.reps)
+    back = {"1": "x", "-1": "X", "2": "y", "-2": "Y"}
+    dec = lambda ints: "".join(back[str(v)] for v in ints if v)
+    lines = [ast.literal_eval(l) for l in open(dest / "covmeet_hard.txt")]
+    labels = list(csv.DictReader(open(dest / "covmeet_hard_labels.csv")))
+    assert len(lines) == len(labels) == manifest["rows"]
+    L = manifest["max_length"]
+    got = set()
+    for ints, lab in zip(lines, labels):
+        assert len(ints) == 2 * L
+        r1, r2 = dec(ints[:L]), dec(ints[L:])
+        assert (r1, r2) == (lab["r1"], lab["r2"])         # txt and csv aligned
+        assert (r1, r2) in store.mask                     # a real stored orbit
+        assert int(lab["mu"]) == len(r1) + len(r2)
+        assert int(lab["depth"]) >= 0 and int(lab["n_classes"]) >= 1
+        got.add((r1, r2))
+    assert len(got) == len(lines)                         # pairwise distinct orbits
+    # seeds are depth 0; everything else positive
+    seed_rows = [l for l in labels if int(l["depth"]) == 0]
+    assert {l["r1"] for l in seed_rows} == \
+        {store.reps[i][0] for i in range(2)}
