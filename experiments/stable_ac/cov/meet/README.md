@@ -27,7 +27,19 @@ a *meeting* search, not a descent): `covmeet.py`'s module docstring.
 |---|---|---|
 | `covmeet3_<seeds>_<family>.snap` (+`.snap.prev`) | the WHOLE store — orbits 2-bit-packed, masks, expanded flags, census, parent pointers and moves — checkpointed atomically every `snapshot_every` s (default 300) and at every stop; sha256-trailed; corrupt main falls back to prev | ~28 B/orbit, **bounded** (~2 snapshots, tracks the store, not the runtime) |
 | `covmeet3_<seeds>_<family>_certs.jsonl` | ONLY results: `meta`/`seed` rows + **full chains** on `merge` and `drop` | KBs |
-| `*_summary.json` | derived summary, atomic-replaced | KBs |
+| `*_summary.json` | derived summary, atomic-replaced — written immediately after **every** snapshot, never only at shutdown | KBs |
+
+`verify_covmeet` hard-fails when the summary disagrees with the snapshot, and
+`report_covmeet` will not write `COVMEET.md` unless the verifier passes — so the summary
+is part of the state, not a convenience. It used to be written only in `run()`'s
+`finally:`, which SIGKILL skips, and a preempted 25 h session left a 3-minute smoke
+summary (28,224 expanded) beside a 9.3M-expanded snapshot: a healthy store, unreportable.
+[[TRAP]](../../../lessons/summary-written-only-in-finally.md) Repair a run that already
+has a stale one — reads the snapshot only, needs the RAM to hold the store:
+
+```bash
+PYTHONPATH=. python3 -m experiments.stable_ac.cov.meet.covmeet OUT_DIR --seed-set all124
+```
 
 Why not hashing: at 10⁸+ orbits a collision-safe digest needs 128 bits = 16 bytes,
 while the exact pair 2-bit-packed is ~5–10 bytes at measured shell lengths — the exact

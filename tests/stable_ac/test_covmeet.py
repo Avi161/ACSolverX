@@ -110,6 +110,80 @@ def test_summary_written_and_matches_replay(tmp_path):
         assert written[k] == live[k], k
 
 
+# The keys verify_covmeet hard-fails on when the summary and the snapshot disagree.
+_VERIFIED_KEYS = ("classes_remaining", "merges_found", "n_improved",
+                  "expanded", "discovered")
+
+
+def _assert_summary_matches_snapshot(tmp_path, seeds, tag="testAB"):
+    _, summary_path = run_paths(str(tmp_path), tag)
+    with open(summary_path) as f:
+        written = json.load(f)
+    live = covmeet.summarise(_store(tmp_path, len(seeds), tag), seeds)
+    for k in _VERIFIED_KEYS:
+        assert written[k] == live[k], f"{k}: summary {written[k]} vs snapshot {live[k]}"
+    return written
+
+
+def test_summary_matches_snapshot_when_the_run_is_killed_mid_flight(tmp_path):
+    """A session that dies without finishing must still leave a summary matching
+    its snapshot.
+
+    ``run()`` used to write the summary ONLY in its ``finally``, which SIGKILL skips —
+    exactly how a preempted spot instance dies. A 25 h vast.ai session then left a
+    3-minute smoke summary (28,224 expanded) beside a 9.3M-expanded snapshot, and
+    verify_covmeet's summary-agreement check turned that healthy store into a FAIL,
+    which in turn blocked report_covmeet. The kill is simulated by making
+    ``save_snapshot`` raise: the ``finally`` calls it again, so it raises there too and
+    the end-of-run summary write is never reached — leaving only what the periodic
+    checkpoint wrote.
+    """
+    real = covmeet.save_snapshot
+    calls = [0]
+
+    def dying(*a, **kw):
+        calls[0] += 1
+        if calls[0] > 2:                      # seeds + one checkpoint, then "SIGKILL"
+            raise RuntimeError("simulated hard kill")
+        return real(*a, **kw)
+
+    covmeet.save_snapshot = dying
+    try:
+        with pytest.raises(RuntimeError, match="simulated hard kill"):
+            _run(tmp_path, SEEDS_AB, 12, snapshot_every=0)   # checkpoint every wave
+    finally:
+        covmeet.save_snapshot = real
+    assert calls[0] > 2, "the kill never fired — the test proves nothing"
+    written = _assert_summary_matches_snapshot(tmp_path, SEEDS_AB)
+    assert written["stopped"] == "running"    # honest: this run did not finish
+    assert written["expanded"] > 0            # and it is the checkpoint's numbers
+
+
+def test_regen_summary_repairs_a_stale_summary(tmp_path, monkeypatch):
+    """The recovery path for a run whose summary is already stale on disk."""
+    monkeypatch.setattr(covmeet, "load_seeds", lambda seed_set: SEEDS_AB)
+    _run(tmp_path, SEEDS_AB, 6)
+    _, summary_path = run_paths(str(tmp_path), "testAB")
+    with open(summary_path) as f:
+        good = json.load(f)
+    with open(summary_path, "w") as f:        # the smoke-era summary
+        json.dump({**good, "expanded": 1, "discovered": 2, "stopped": "smoke"}, f)
+    with pytest.raises(AssertionError):
+        _assert_summary_matches_snapshot(tmp_path, SEEDS_AB)
+
+    out = covmeet.regen_summary(str(tmp_path), "testAB", log=lambda *a: None)
+    written = _assert_summary_matches_snapshot(tmp_path, SEEDS_AB)
+    assert written["stopped"].startswith("regenerated")
+    for k in _VERIFIED_KEYS:
+        assert out[k] == good[k], k           # and it recovers the real numbers
+
+
+def test_regen_summary_refuses_when_there_is_no_snapshot(tmp_path, monkeypatch):
+    monkeypatch.setattr(covmeet, "load_seeds", lambda seed_set: SEEDS_AB)
+    with pytest.raises(RuntimeError, match="no valid snapshot"):
+        covmeet.regen_summary(str(tmp_path), "testAB", log=lambda *a: None)
+
+
 # ------------------------------------------------------------- 2. torn tail
 
 def test_torn_trailing_line_repaired_before_append(tmp_path):

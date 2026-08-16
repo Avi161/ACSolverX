@@ -679,6 +679,55 @@ def summarise(store, seeds):
     }
 
 
+def _write_summary(summary_path, store, seeds, stopped):
+    """Write the summary json atomically. ALWAYS called right after ``save_snapshot``.
+
+    The summary must never be older than the snapshot beside it: ``verify_covmeet``
+    hard-fails when the two disagree, and ``report_covmeet`` refuses to write unless
+    the verifier passes — so a stale summary makes a perfectly good store unreportable.
+    Writing it only at the end of ``run()`` did exactly that: the ``finally`` block is
+    skipped by SIGKILL, which is precisely how a preempted spot instance dies, and a
+    25-hour session left a smoke-run summary (28,224 expanded) next to a snapshot
+    holding 9,336,325. Pairing the two writes bounds the disagreement window at the
+    milliseconds between them instead of the whole session.
+
+    Order matters: snapshot FIRST, summary second. The snapshot write is minutes at
+    scale and the summary is milliseconds, so a kill in between leaves the summary
+    behind by one checkpoint at worst — the reverse order would leave it ahead by a
+    whole snapshot write.
+    """
+    summary = summarise(store, seeds)
+    summary["stopped"] = stopped
+    summary["summary_utc"] = datetime.datetime.utcnow().isoformat(timespec="seconds")
+    with open(summary_path + ".tmp", "w") as f:
+        json.dump(summary, f, indent=1)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(summary_path + ".tmp", summary_path)
+    return summary
+
+
+def regen_summary(out_dir, seed_set="all124", log=print):
+    """Rebuild the summary json from the newest valid snapshot, for a run whose own
+    summary is missing or stale (a session killed before it could write one).
+
+    Reads nothing but the snapshot, so the number it prints is the store's, not a
+    previous summary's. Needs the RAM to hold the store (~500 B/orbit).
+    """
+    seeds = load_seeds(seed_set)
+    store, meta = load(out_dir, seed_set, len(seeds), expect_family=FAMILY, log=log)
+    if meta is None:
+        raise RuntimeError(f"no valid snapshot in {out_dir} for seed set {seed_set}")
+    _, summary_path = run_paths(out_dir, seed_set)
+    summary = _write_summary(summary_path, store, seeds,
+                             "regenerated from snapshot (session wrote none)")
+    log(f"[covmeet] summary regenerated: {summary['expanded']:,} expanded, "
+        f"{summary['discovered']:,} discovered, "
+        f"{summary['classes_remaining']}/{len(seeds)} classes, "
+        f"{summary['merges_found']} merges -> {summary_path}")
+    return summary
+
+
 def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         max_expanded=None, max_seconds=None, mem_guard_gb=8.0, log=print,
         seeds_override=None, snapshot_every=300):
@@ -713,6 +762,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             store.reach(rep, mu, 1 << i)
         w.sync()
         save_snapshot(out_dir, seed_set, store, len(seeds))
+        _write_summary(summary_path, store, seeds, "running")
         log(f"[covmeet] fresh run: {len(seeds)} seeds canonicalised")
     else:
         log(f"[covmeet] RESUMED: {len(store.expanded)} expanded, "
@@ -836,6 +886,7 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             if time.time() - last_snap[0] >= snap_interval[0]:
                 t_snap = time.time()
                 mb = save_snapshot(out_dir, seed_set, store, len(seeds)) / 1e6
+                _write_summary(summary_path, store, seeds, "running")
                 wrote = time.time() - t_snap
                 snap_interval[0] = _next_snap_interval(snapshot_every, wrote)
                 last_snap[0] = time.time()
@@ -849,11 +900,8 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
             pool.shutdown(wait=False, cancel_futures=True)
         w.close()
         save_snapshot(out_dir, seed_set, store, len(seeds))
-        summary = summarise(store, seeds)
-        summary["stopped"] = reason or "interrupted"
-        with open(summary_path + ".tmp", "w") as f:
-            json.dump(summary, f, indent=1)
-        os.replace(summary_path + ".tmp", summary_path)
+        summary = _write_summary(summary_path, store, seeds,
+                                 reason or "interrupted")
 
     heartbeat(force=True)
     log(f"[covmeet] stopped: {reason}")
@@ -861,3 +909,15 @@ def run(out_dir, seed_set="all124", workers=None, wave=4096, chunk=8,
         f"/{len(seeds)}  merges: {summary['merges_found']}  "
         f"classes below their seed mu: {summary['n_improved']}")
     return summary
+
+
+if __name__ == "__main__":                     # recovery entry point, not the runner
+    import argparse
+    ap = argparse.ArgumentParser(
+        description="Rebuild a covmeet summary json from its snapshot. Use when a "
+                    "session was killed before it wrote one (the search itself is "
+                    "launched from the notebook, never from here).")
+    ap.add_argument("out_dir")
+    ap.add_argument("--seed-set", default="all124")
+    a = ap.parse_args()
+    regen_summary(a.out_dir, a.seed_set)
