@@ -6,15 +6,19 @@ reduction, the canonicalisation, the per-relator cap, the visited set and the ``
 key)`` tie-break are the baseline's, reached by subclassing rather than by copying. So a difference
 between two runs is attributable to the ordering and to nothing else.
 
-    from experiments.search.heuristics import greedy_search_h, RECOMMENDED
+    from experiments.search.heuristics import greedy_search_h, S20_MK2
 
     stats = greedy_search_h(r1, r2, node_budget=10**5, max_relator_length=24,
-                            config=RECOMMENDED)      # config=None => the baseline, exactly
+                            config=S20_MK2)          # config=None => the baseline, exactly
 
 ``greedy_search_h`` returns **exactly** the dict ``greedy_baseline.greedy_search`` returns — same
 keys, same order, same types — so a caller switches ordering by passing one argument and touches
 nothing downstream. ``phi`` exposes the feature vector and ``make_priority`` compiles a config into
 the callable the heap pushes with. ``HEURISTICS.md``, beside this file, documents every feature.
+
+``S20_MK2`` is the one tuned vector this module ships. An earlier ``RECOMMENDED`` vector was
+**withdrawn as overfit** — it was selected on a slice containing fourteen of the twenty rows it was
+then validated against, so its reported margin measured the tuning set. Do not reintroduce it.
 
 Two invariants, both pinned in ``tests/test_greedy_heuristic.py``:
 
@@ -167,17 +171,39 @@ def phi(r1, r2):
 
 BASELINE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
 
-# The shipped ordering. One segment, no boundary, five of the seventeen features:
+# The shipped ordering. One segment, no boundary, three of the seventeen features:
 #
-#     priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb
+#     priority(r1, r2) = L + 20*S + 2*MK
 #
-# i.e. total length, plus penalties for knot sum, worst-relator knots, smaller mean block and
-# generator imbalance. Lower pops first, so every term above pushes a state DOWN the queue: a state
-# is preferred for being short, for being less tangled, and for using its two generators evenly.
-# The weights were tuned jointly, not one at a time — S is the weakest single ordering of the five
-# and carries the largest weight here, so a one-at-a-time search would have discarded it.
-RECOMMENDED = {"segments": [
-    {"upto": None, "w": {"L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+# i.e. total length, plus penalties for the smaller mean block and the worse relator's knot count.
+# Lower pops first, so both structural terms push a state DOWN the queue: a state is preferred for
+# being short, for having thicker runs of its thinner generator, and for having its harder half less
+# tangled. S carries the weight and MK is a light correction on top of it — the pure-S arm already
+# reaches most of the separation and MK adds the rest.
+#
+# PROVENANCE, as a pair — a number stated without both halves is not readable:
+#   selected on   ac1m_hard_aut train 120     (54/120, against the length control's 0/120)
+#   evaluated on  fresh Aut-disjoint holdout  (27/60, against the length control's 0/60)
+# The evaluation slice shares no automorphism class with the selection slice, so the separation is
+# transfer to genuinely new problems rather than a restatement of the tuning objective. Note the
+# grid's own top scorer was S28_MK2_F8 (57/120); it is NOT what ships, because it falls to 22/60 on
+# that same fresh holdout where this vector holds 27/60. See HEURISTICS.md for the full tables.
+S20_MK2 = {"segments": [
+    {"upto": None, "w": {"L": 1.0, "S": 20.0, "MK": 2.0}}]}
+
+# WITHDRAWN — do not reintroduce, under this or any other name.
+#
+#     L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb          (the former ``RECOMMENDED``)
+#
+# Overfit: selected on a slice containing fourteen of the twenty rows it was then validated against,
+# and its 60-row campaign used subset-60 as its own row list, so every margin ever reported for it
+# — 10/20 -> 15/20, the 60-row cost tables — is largely in-sample. That is a statement about the
+# tuner, not about the ordering. Removed rather than demoted: a name importable from this module
+# becomes the thing every call site passes, and the provenance that makes a number readable does not
+# travel with an import. The runs it produced are real and survive as the ``heur_*`` columns of the
+# benchmark arms tables, labelled there as the output of a withdrawn vector;
+# ``benchmark_subset_*_arms.json`` keeps its weights as the provenance for those columns.
+# ``tests/test_greedy_heuristic.py`` guards against the vector reappearing.
 
 
 def make_priority(config=None):
@@ -285,7 +311,7 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
     """``greedy_baseline.greedy_search`` with the heap ordering swapped. Same return dict.
 
     ``config=None`` orders by total length and IS the baseline search, pop for pop. Pass
-    ``RECOMMENDED``, or any config of your own, to order by the heuristic.
+    ``S20_MK2``, or any config of your own, to order by the heuristic.
 
     Returns the same eleven keys ``greedy_search`` returns — ``solved``, ``nodes_explored``,
     ``path_length``, ``min_relator_length``, ``min_relator``, ``max_relator_length``,
