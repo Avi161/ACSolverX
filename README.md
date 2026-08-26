@@ -66,6 +66,12 @@ presentations versus **457** for the prior RL baseline, and consistently finds
 shorter trivialization paths than classical greedy search, especially on hard
 presentations.
 
+The full census of that benchmark — 1,190 presentations, 640 solved, 550
+unsolved, collapsing to 261 rep names, 168 under exact `Aut(F₂)`, and at most
+124 distinct problems after AC-moves — is stated once in
+[`benchmark/README.md`](benchmark/README.md#the-census-these-rows-sit-inside).
+Cite it from there rather than restating the numbers.
+
 ## Quickstart
 
 Install the dependencies for your accelerator, then evaluate the released model

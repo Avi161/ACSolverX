@@ -4,6 +4,27 @@ Fixed row lists for scoring a search technique, so two techniques are compared o
 
 All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem.
 
+## The census these rows sit inside
+
+Stated once here; every other mention in this repository should point at this block rather than restate it.
+
+| step | count | what the step is |
+|---|---|---|
+| Miller–Schupp presentations | **1,190** | `data/1190MS.txt`, verified set-equal to the 170 × 7 grid |
+| solved | **640** | `data/ms640_solved.txt` — the pool these benchmark subsets draw from |
+| unsolved | **550** | 550 *distinct* canonical presentations |
+| distinct rep names among them | **261** | the 550 cells carry only 261 names |
+| under exact `Aut(F₂)` (Whitehead) | **168** | **exact** — no change of variables does better |
+| after AC-move search modulo `Aut(F₂)` | **124** | **upper bound**; caps 30–36, unanimous across five arms |
+
+Three things about this chain that are easy to get wrong:
+
+- **Read 124 as *distinct problems*, never as *AC-classes*.** It is an upper bound from a bounded search, unanimous across five arms but not proven converged — not a count of equivalence classes.
+- **550 → 261 is not an `Aut(F₂)` result.** Only 159 of the 550 cells are `Aut`-equivalent to the rep they are named after, and the reps average 2.74 letters shorter than their cells. That collapse came from somebody else's bounded search; the exact automorphism step is 261 → 168.
+- **The 640/550 split is what makes these subsets meaningful:** every benchmark row is drawn from the 640, so a technique that fails one has failed a problem known to be solvable.
+
+Derivation and machine-checked merges: `results/equivalence_classes/EQUIVALENCE_FINDING.md` on the research branches.
+
 ## `subsets/` — the efficiency ladder
 
 | file | what |
