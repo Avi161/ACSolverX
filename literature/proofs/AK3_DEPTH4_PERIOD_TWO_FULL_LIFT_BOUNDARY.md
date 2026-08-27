@@ -906,6 +906,108 @@ coordinates in (3.43) can be nonzero.  The remaining free-bucket problem is
 therefore the restriction of this fixed Fox--Hessian form to the complete
 anchored generating family (3.22), together with the affine unary term.
 
+### 3.6 Kernel gauge and the terminal slot-four row
+
+The displayed chronological matrix is not itself the invariant object on
+homogeneous directions.  Put \(R=\mathbb Z[Q]\), regard
+
+\[
+ \mathcal L=(\mathcal L_0,\ldots,\mathcal L_4):R^5\longrightarrow R,
+ \qquad \mathcal K:=\ker \mathcal L,
+\tag{3.47}
+\]
+
+and define the additive gauge subgroup
+
+\[
+ \mathcal G
+ :=\mathcal L^*\operatorname{Mat}_{1\times5}(R)
+  +\operatorname{Mat}_{5\times1}(R)\mathcal L
+ \subseteq\operatorname{Mat}_5(R).
+\tag{3.48}
+\]
+
+If
+
+\[
+ \mathbf A=\mathcal L^*\mathbf P+\mathbf Q\mathcal L\in\mathcal G,
+\tag{3.49}
+\]
+
+then for \(F,G\in\mathcal K\), diagonal tensor coinvariance gives
+
+\[
+\begin{aligned}
+ \sum_{s,t}[F_s\otimes \mathcal L_s^*P_tG_t]
+ &=\left[\left(\sum_s\mathcal L_sF_s\right)
+       \otimes\left(\sum_tP_tG_t\right)\right]=0,\\
+ \sum_{s,t}[F_s\otimes Q_s\mathcal L_tG_t]
+ &=\sum_s\left[F_s\otimes
+       Q_s\left(\sum_t\mathcal L_tG_t\right)\right]=0.
+\end{aligned}
+\tag{3.50}
+\]
+
+The same calculation with \(F\) and \(G\) exchanged proves that every
+matrix in \(\mathcal G\) vanishes in the symmetrized tensor (3.44).
+Consequently the restricted free-bucket Hessian depends only on
+
+\[
+ \boxed{[\mathbf H]_{\mathcal K}
+ \in\operatorname{Mat}_5(R)/\mathcal G.}
+\tag{3.51}
+\]
+
+If one also wants to retain the ambient adjoint identity (3.41), the exact
+skew gauge family
+
+\[
+ \mathbf H\longmapsto
+ \mathbf H+\mathcal L^*\mathbf P-\mathbf P^*\mathcal L
+\tag{3.52}
+\]
+
+does so.  No assertion is made that (3.52) exhausts all skew elements of
+\(\mathcal G\).
+
+There is one useful one-sided representative.  Occurrences \(15,16\) are
+the final two occurrences, both in slot four, with signs \(+1,-1\) and raw
+actions \(q_{15}=t,q_{16}=1\).  Hence (3.40) gives
+
+\[
+ \mathbf H_{4t}=0\quad(t\ne4),\qquad
+ \mathbf H_{44}=1-t^{-1}=-\mathcal L_4^*.
+\tag{3.53}
+\]
+
+For the standard row vector \(\mathbf e_4\), set
+
+\[
+ \widehat{\mathbf H}:=\mathbf H+\mathcal L^*\mathbf e_4.
+\]
+
+This changes no value on \(\mathcal K\times\mathcal K\) by (3.50), and
+
+\[
+ \boxed{\widehat{\mathbf H}_{4t}=0\qquad(0\leq t\leq4).}
+\tag{3.54}
+\]
+
+Thus the terminal slot-four row is gauge-null.  No further triangularization
+follows from this one-sided gauge.  Further elimination by
+\(\mathcal L^*\mathbf P\) requires the corresponding column classes modulo
+\(\operatorname{im}\mathcal L^*\) to vanish; allowing
+\(\mathbf Q\mathcal L\) introduces coupled row and column changes.  Neither
+the required divisibility nor a full triangular gauge follows from (3.41).
+
+This gauge theorem is also a precise boundary on the present argument.
+Equation (3.41) proves skew-adjointness of the restriction but neither
+nondegeneracy nor metabolicity.  The known nonzero full-wedge mixed value
+may be carried entirely by inversion-fixed \(\mathbb Z/2\)-buckets and is
+therefore not a free-bucket witness.  A free obstruction still requires an
+explicit nonzero oriented bucket on the anchored generators (3.22), or a
+new leading-double-coset separation theorem for their exact forest flows.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
