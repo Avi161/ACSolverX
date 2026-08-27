@@ -674,9 +674,330 @@ The exact missing lemma is
 
 Equations (5.20) and (5.27) prove that (5.28) is equivalent to
 \(G_{i+1}=G_i\).  The current pure-\(P\) schemas supply the powered supports
-and canonical vertices in (5.21), but they do not yet prove the shortlex
-merge, transport, base--direction, inverse, and quotient-section
-cancellations in (5.24)--(5.27).
+and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
+base--direction, inverse, and one-vertex transport families from part of
+the unbounded obstruction.  The transported ordered-section
+order-reversal sum remains open.
+
+### 5.3 Weighted Green reduction and the order-reversal remainder
+
+The untransported shortlex part of (5.24) admits a finite-action Green
+formula, but its transported occurrence sum retains an order-reversal
+correction.  Fix one tracked permutation action
+\(\rho:Q\to\operatorname{Sym}(\Omega)\), with base point \(0\), and an
+invariant covector
+\(\lambda\in(\Lambda^2\mathbb F_2^\Omega)^*\).  Write
+
+\[
+ \pi_\rho(e_x)=e_{\rho(x)0},
+ \qquad
+ \Pi_\rho^\wedge:=\Lambda^2\pi_\rho,
+ \qquad
+ b_\lambda(u,v)=\lambda(u\wedge v),
+\tag{5.29}
+\]
+
+and put
+
+\[
+ q_\lambda(v)
+ =\sum_{\alpha<\beta}v_\alpha v_\beta\,
+   \lambda(e_\alpha\wedge e_\beta).
+\tag{5.30}
+\]
+
+Here and below every integral current is collision-aggregated first and
+then reduced modulo two.  The relevant map on an intermediate tensor is
+the ordered-half reader
+
+\[
+ \operatorname{Wdg}_\rho(A)
+ :=\sum_{x<y}A_{xy}\,
+ e_{\rho(x)0}\wedge e_{\rho(y)0}.
+\tag{5.30a}
+\]
+
+It kills diagonals and reads the one canonical source-shortlex orientation.
+It is not the characteristic-two quotient map
+\(T(M)\to\Lambda^2M\): that quotient would send an antisymmetric
+commutator tensor to twice its wedge and hence to zero.  It is also not
+\(Q\)-equivariant, because a quotient action can reverse the source
+shortlex order.
+
+#### Lemma 5.1 (weighted Green identity)
+
+For all integral finite currents \(f,e\),
+
+\[
+\boxed{
+ \lambda\operatorname{Wdg}_\rho(d\Sigma_f(e))
+ =b_\lambda(\pi_\rho f,\pi_\rho e)
+  +q_\lambda(\pi_\rho e).}
+\tag{5.31}
+\]
+
+#### Proof
+
+The diagonal and binomial terms in (5.24) die under
+\(\operatorname{Wdg}_\rho\).  For \(x\ne y\), set
+
+\[
+ w(x,y)=
+ \lambda(e_{\rho(x)0}\wedge e_{\rho(y)0}).
+\tag{5.32}
+\]
+
+In characteristic two, \(w(x,y)=w(y,x)\) and \(w(x,x)=0\).  The two
+old--new summands in (5.24), summed over the one shortlex orientation of
+each unordered pair, therefore aggregate fiberwise to
+\(b_\lambda(\pi_\rho f,\pi_\rho e)\).  The new--new summand similarly
+aggregates to \(q_\lambda(\pi_\rho e)\).  This proves (5.31). \(\square\)
+
+For a fixed slot \(s\), the positive and negative occurrence counts do
+have zero signed augmentation:
+
+\[
+ \sum_{o:s_o=s}p_o=0.
+\tag{5.33}
+\]
+
+This does not cancel the transported leaf terms.  Although \(\lambda\) is
+\(\rho(Q)\)-invariant, the ordered-half reader in (5.30a) is not
+\(Q\)-equivariant.  Transport can reverse a pair of source-shortlex
+vertices, and that reversal is exactly one of the section-cocycle terms
+which Section 5.1 showed to be active.
+
+More precisely, let
+
+\[
+ \operatorname{Inv}_q(f)
+ :=\sum_{\substack{x<y\\
+   \operatorname{key}(\operatorname{cvert}(qx))>
+   \operatorname{key}(\operatorname{cvert}(qy))}}
+ f_xf_y\,
+ e_{\operatorname{cvert}(qx)}
+ \wedge e_{\operatorname{cvert}(qy)}.
+\tag{5.33a}
+\]
+
+The complete wedge-valued section defect is
+
+\[
+ \kappa_q(f)
+ =\sum_x f_x\tau_q(x)+\operatorname{Inv}_q(f),
+\tag{5.33b}
+\]
+
+and its exact increment is
+
+\[
+\boxed{
+ d\kappa_{q,f}(e)
+ =\sum_xe_x\tau_q(x)+d\operatorname{Inv}_{q,f}(e),}
+\tag{5.33c}
+\]
+
+where
+
+\[
+ d\operatorname{Inv}_{q,f}(e)
+ =\sum_{\substack{x<y\\
+   \operatorname{key}(\operatorname{cvert}(qx))>
+   \operatorname{key}(\operatorname{cvert}(qy))}}
+ (f_xe_y+e_xf_y+e_xe_y)\,
+ e_{\operatorname{cvert}(qx)}
+ \wedge e_{\operatorname{cvert}(qy)}.
+\tag{5.33d}
+\]
+
+Thus the transported ordered-section contribution must be retained as the
+coupled package
+
+\[
+\boxed{
+ \mathcal K_{\rho,\lambda}(q;f,e)
+ =\lambda\operatorname{Wdg}_\rho(q\,d\Sigma_f(e))
+  +\lambda\Pi_\rho^\wedge(d\kappa_{q,f}(e)).}
+\tag{5.33e}
+\]
+
+Neither summand in (5.33e) may be discarded separately.  Lemma 5.1 removes
+the untransported shortlex sum, but it does not by itself evaluate the
+occurrence sum of the packages (5.33e).
+
+The terms outside the coupled section package (5.33e) which factor only
+through projected linear states are finite-state.  To state this without
+confusing the right-deck action with the point action, lift \(\rho\) to the
+finite group-image basis \(\mathbb F_2[\rho(Q)]\).  Right multiplication by
+a powered endpoint is then a genuine permutation operator; evaluation at
+the base point is applied only afterward.  For the six pure-\(P\) source
+families, the exact path recurrence has the lifted form
+
+\[
+ X_{\rho,\nu,s}(i)
+ =H_i(T_{\rho,\nu})A_{\rho,\nu,s}
+  +T_{\rho,\nu}^{\,i}C_{\rho,\nu,s},
+\qquad
+ H_i(T)=\sum_{h=0}^{i-1}T^h.
+\tag{5.34}
+\]
+
+Each \(T_{\rho,\nu}\) is conjugate in the finite group image to the
+appropriate image of the powered element.  If
+\(m_\rho=\operatorname{ord}\rho(\gamma)\), then
+\(T_{\rho,\nu}^{m_\rho}=1\).  Over \(\mathbb F_2\),
+
+\[
+ H_{i+2m_\rho}(T_{\rho,\nu})=H_i(T_{\rho,\nu}),
+ \qquad
+ T_{\rho,\nu}^{\,i+2m_\rho}=T_{\rho,\nu}^{\,i}.
+\tag{5.35}
+\]
+
+Thus every projected old linear state, two-step increment, and every
+outer-product, inverse-self, or \(o_{q,r}\)-linear term built from those
+states is strictly \(2m_\rho\)-periodic from \(i=0\).  The fixed
+\(O_{q,r}\) has zero derivative.  This assertion excludes the ordered
+reader and \(d\kappa\) terms in (5.33e).  The eleven action orders in (5.2)
+give the joint bound
+
+\[
+ \operatorname{lcm}_\rho(2m_\rho)=40.
+\tag{5.36}
+\]
+
+The first summand of (5.33c), the one-vertex transport term, can be
+evaluated independently.  For a basis vertex, let
+\(\overline\omega(q,x)\in M\) be the relation-module class of the
+quotient-section defect between
+\(\widehat q\,\widehat x\) and \(\widehat{qx}\).  The transport scalar is
+
+\[
+\boxed{
+ \lambda\Pi_\rho^\wedge(\tau_q(e_x))
+ =\lambda\!\left(
+ e_{\rho(qx)0}\wedge
+ \pi_\rho\overline\omega(q,x)
+ \right).}
+\tag{5.37}
+\]
+
+Indeed,
+\(q r_xq^{-1}=\omega(q,x)r_{qx}\omega(q,x)^{-1}\);
+the class-two conjugation cross term is precisely (5.37), with orientation
+irrelevant after reduction modulo two.
+
+Formula (5.37) cannot be inferred from the central finite point alone.  The
+point
+\(\rho(qx)0\) is finite-periodic, but
+\(\pi_\rho\overline\omega(q,x)\) is not determined by that point.  One must
+therefore retain the local raw bridge rather than infer the defect current
+from a finite point.
+
+For one actual correction occurrence with prefix \(q_o\) and atom \(v\),
+the approved bridge has
+
+\[
+ \operatorname{red}(q_ovccv^{-1}q_o^{-1})=zccz^{-1},
+ \qquad
+ z=k_z\widehat x,
+ \qquad
+ x=\operatorname{cvert}(q_ov).
+\tag{5.40}
+\]
+
+Its first-half Schreier events are exactly the event word of \(k_z\), and
+
+\[
+ q_or_vq_o^{-1}=k_zr_xk_z^{-1}.
+\tag{5.41}
+\]
+
+Thus \(k_z\) is the terminal-normalized defect in (5.37), and, over
+\(\mathbb F_2\),
+
+\[
+ \pi_\rho\overline{k_z}
+ =\sum_{a\ {\rm a\ first\text{-}half\ event}}
+   e_{\rho(\ell(a))0}.
+\tag{5.42}
+\]
+
+Raw signs may be omitted in (5.42); collision fibers are summed modulo two.
+The approved pure-\(P\) raw pump fixes the complete first-half label list
+for all 84 nonzero-slot occurrence records once \(i\geq3\).  These are the
+42 collision-first coordinate families in slots \(2,3,4\), each evaluated
+at its two actual occurrence actions.  Their central labels run on the
+lifted common-phase finite orbit whose core is conjugate to
+\(\gamma^{-1}\).  Equations (5.37) and (5.40)--(5.42) therefore prove that every
+nonzero-slot transport scalar is \(m_\rho\)-periodic for \(i\geq3\).
+Since \(E_i=q_i+q_{i+1}\) modulo two and \(\tau_q\) is linear, the same is
+true for the complete two-step nonzero-slot transport contribution.
+
+The slot-zero transport family can be closed directly.  On the diagonal,
+
+\[
+ y_i:=y_{ii}
+ =p^{-1}c\gamma^{-(i+1)}t
+ =(\texttt{cTc})(\gamma^{-1})^{i+1}\texttt t.
+\tag{5.43}
+\]
+
+The word \(\gamma^{-1}\) is freely reduced of length \(24\), begins in
+\(\texttt T\), and ends in \(c\).  Thus every displayed seam in (5.43) is
+reduced and \(y_i\) ends in \(\texttt t\), so no terminal-\(c\)
+normalization occurs.  The six slot-zero occurrence prefixes have length
+at most \(11\).  At \(i=0\), the next powered insertion lies after
+
+\[
+ |\texttt{cTc}|+|\gamma^{-1}|=3+24=27>11+1.
+\tag{5.44}
+\]
+
+Reduction of a fixed prefix \(q_o\) against \(y_i\) cannot reach that
+insertion.  Hence the first-half kernel factor \(k_z\) in (5.40) is
+literally independent of \(i\) from \(i=0\), while the central point has
+period \(m_\rho=\operatorname{ord}\rho(\gamma)\).  Therefore the complete
+slot-zero transport contribution attached to
+
+\[
+ E_{i,0}=e_{y_{i+2,i+2}}+e_{y_{ii}}
+ \quad\text{over }\mathbb F_2
+\tag{5.45}
+\]
+
+is \(m_\rho\)-periodic from \(i=0\).  Together with the approved
+84-record pump, this settles the entire one-vertex transport summand in
+(5.33c): its slots \(2,3,4\) have joint period dividing \(20\) for
+\(i\geq3\), and slot zero has that bound from \(i=0\).
+
+The remaining unbounded term is not transport.  It is the
+order-reversal derivative (5.33d) coupled to the transported ordered-half
+leaf in (5.33e).  Its old--new part contains the weighted prefix families
+
+\[
+\boxed{
+ \sum_{0\leq h\leq i}w_{\alpha,k}(h)
+ \left[
+ \operatorname{cvert}(A_\alpha R_\alpha^hB_\alpha)
+ <\operatorname{cvert}(A_\beta R_\beta^{\,i+\delta}B_\beta)
+ \right],}
+\tag{5.46}
+\]
+
+together with the same comparison after left multiplication by each fixed
+occurrence prefix and \(\delta\in\{0,1,2\}\).  Equality and
+terminal-\(c\) branches are retained.  The new--new part is bounded, but
+the old--new sums run over the complete old \(P\)-ray.
+
+The four-cell raw pumps fix terminal shell records and the transport
+factors \(k_z\); they do not classify the full prefixes in (5.46).  The
+finite action periods in (5.2) likewise do not determine the two shortlex
+comparisons.  The exact next theorem is a common-phase/Fine--Wilf
+comparator catalog for (5.46), followed by its weighted prefix sums.  Until
+that catalog proves cancellation or a period for the complete packages
+(5.33e), neither a period for \(R_{k,i}\), a finite \(i\)-window, (5.28),
+nor any period-two or AK(3) conclusion is established.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation

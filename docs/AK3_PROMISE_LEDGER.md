@@ -127,9 +127,15 @@ finite quotient do not close a route.
   all-power diagonal sequence
   \(V_i=(U_1(D_{ii}),\ldots,U_{14}(D_{ii}))\), which must equal
   `11101011010101` before a diagonal candidate can pass the recorded
-  syndrome.  Finite permutation orders give only a mod-four projected-current
-  shadow of period at most 80; shortlex section and transport defects prevent
-  any inferred period for \(V_i\).  With
+  syndrome.  The weighted Green identity removes the untransported
+  merged-support shortlex sum, but the correct ordered-half wedge reader is
+  not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
+  occurrence augmentation.  Projected linear/outer terms outside that
+  section package are period 40 from \(i=0\).  The approved 84-record raw
+  pump makes every slot-two/three/four one-vertex transport term period
+  dividing 20 for \(i\geq3\); the explicit word
+  \(y_i=(\texttt{cTc})(\gamma^{-1})^{i+1}\texttt t\) proves the same
+  slot-zero transport bound directly from \(i=0\).  With
   \(\Delta_i=D_{i+1}-D_i\), the exact period-two proof object is
   \(G_i=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i)\); proving
   \(G_{i+1}=G_i\) would make the two known nonzero boundary values exclude
@@ -137,9 +143,14 @@ finite quotient do not close a route.
   \(E_i=D_{i+2}-D_i\), the smallest missing lemma is the fourteen exact
   crossed-AST derivative values
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\).
-  The section cocycle is not killed by invariant covectors: two tracked
-  four-point coordinates have explicit nonzero quotient-section residuals,
-  so the complete AST sum is mandatory.  Any survivor must then solve the full exterior-module cokernel
+  The exact remaining unbounded family is the order-reversal derivative
+  in the transported section cocycle.  Its old--new terms are weighted
+  shortlex-prefix sums over the full old \(P\)-ray, before and after each
+  fixed occurrence action.  A common-phase/Fine--Wilf comparator catalog
+  is still required; no period or finite \(i\)-window for the complete
+  \(R_{k,i}\) is proved.  The section cocycle is not killed pointwise by
+  invariant covectors: two tracked four-point coordinates have explicit
+  nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
   companion cross kernels and other primitive families remain open; no
   full-Hessian rank claim follows.
