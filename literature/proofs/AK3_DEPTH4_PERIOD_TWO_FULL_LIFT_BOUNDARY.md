@@ -3454,6 +3454,164 @@ height value is not contained in $A_h$, and the height quotient is blind
 to the residual subspace $p_0=p_1=p_4=0$.  Thus (3.200) is an exact
 global reduction, not a class-two obstruction or a lift theorem.
 
+### 3.31 Exact free-subgroup ledger for all paired colliders
+
+The arbitrary cross-support collisions of one paired tensor admit a
+complete algebraic ledger.  Let
+
+\[
+ \pi_c:Q\longrightarrow C_2,
+ \qquad \pi_c(c)=1,
+ \qquad \pi_c(t)=0,
+ \tag{3.205}
+\]
+
+and put $K=\ker\pi_c$.  Schreier rewriting gives
+
+\[
+ \boxed{K=F(t,ctc),
+ \qquad Q=K\rtimes_\alpha\langle c\rangle,}
+ \tag{3.206}
+\]
+
+where $\alpha(k)=ckc$ swaps the two displayed free generators.  Every
+right $H=\langle c\rangle$-coset has a unique representative in $K$,
+so $X=Q/H$ is identified with $K$.  Under this identification,
+
+\[
+ kc^\epsilon(aH)=k\alpha^\epsilon(a)H
+ \qquad(k,a\in K,\ \epsilon\in\{0,1\}).
+ \tag{3.207}
+\]
+
+Taking diagonal $K$-coinvariants first and then the residual $c$-action
+gives the exact integral presentation
+
+\[
+ \boxed{
+ (\Lambda^2\mathbb Z[X])_Q
+ \cong
+ \frac{\mathbb Z[K\setminus\{1\}]}
+ {\langle[\alpha(s)]-[s],\ [s^{-1}]+[s]\rangle},}
+ \tag{3.208}
+\]
+
+with
+
+\[
+ [aH\wedge bH]\longmapsto[a^{-1}b].
+ \tag{3.209}
+\]
+
+Indeed, left translation by $a^{-1}$ gives (3.209), swapping the wedge
+endpoints sends $s$ to $s^{-1}$ with a minus sign, and the element
+$c$ fixes $H$ while sending $sH$ to $\alpha(s)H$.  These are all
+relations.
+
+Let
+
+\[
+ \mathscr D_K:=(K\setminus\{1\})/\langle\alpha\rangle,
+ \qquad
+ \iota([s]_\alpha):=[s^{-1}]_\alpha.
+ \tag{3.210}
+\]
+
+The only element of $K$ fixed by $\alpha$ is the identity: it lies in
+$K\cap C_Q(c)$, while the centralizer of $c$ in the free product is
+$H$.  Therefore (3.208) splits as
+
+\[
+ \boxed{
+ \bigoplus_{\{d,\iota d\},\ d\ne\iota d}\mathbb Z
+ \ \oplus\
+ \bigoplus_{d=\iota d}\mathbb Z/2.}
+ \tag{3.211}
+\]
+
+Here $d=\iota d$ exactly when $\alpha(s)=s^{-1}$, equivalently when
+$(sc)^2=1$.  Thus the second sum in (3.211) retains precisely the
+inversion-fixed integral torsion; it must not be discarded by replacing a
+wedge with twice its skew group-ring representative.
+
+Now write a finite current and a paired generator as
+
+\[
+ f=\sum_{a\in K}F_a e_{aH},
+ \qquad
+ \mathbf F=\sum_{a\in K}F_a a\in\mathbb ZK,
+ \qquad
+ g=kc^\epsilon.
+ \tag{3.212}
+\]
+
+With $\mathbf F^*=\sum_aF_a a^{-1}$, equations (3.207)--(3.209) give
+
+\[
+ \boxed{
+ [f\wedge gf]_Q
+ =\pi_K\left(\mathbf F^*k\alpha^\epsilon(\mathbf F)\right),}
+ \tag{3.213}
+\]
+
+where $\pi_K$ is the quotient map in (3.208) and its identity
+coefficient is discarded.  Consequently every ordered source pair
+$(a,b)$ has the single relative word
+
+\[
+ \boxed{s_g(a,b):=a^{-1}k\alpha^\epsilon(b).}
+ \tag{3.214}
+\]
+
+Two pairs hit the same oriented bucket exactly when their words in
+(3.214) differ by $\alpha$.  On a nonfixed inversion orbit they hit
+opposite orientations exactly when one word is the inverse, possibly
+followed by $\alpha$, of the other.  On a fixed orbit the inverse is the
+same $\mathbb Z/2$-bucket, where only coefficient parity remains.
+This classifies all cross-support colliders, not only the map $\Phi_I$
+from (3.176).
+
+There is also an exact coefficientwise zero test.  Put
+
+\[
+ P:=\mathbf F^*k\alpha^\epsilon(\mathbf F)
+   =\sum_sA_s\,s,
+ \qquad
+ C_{[s]_\alpha}:=A_s+A_{\alpha(s)}.
+ \tag{3.215}
+\]
+
+Then
+
+\[
+ \boxed{
+ [f\wedge gf]_Q=0
+ \Longleftrightarrow
+ \begin{cases}
+  C_d=C_{\iota d},&d\ne\iota d,\\
+  C_d\equiv0\pmod2,&d=\iota d.
+ \end{cases}}
+ \tag{3.216}
+\]
+
+Equivalently,
+
+\[
+ \boxed{
+ P\in\mathbb Z\,1+(1+*)\mathbb ZK+(1-\alpha)\mathbb ZK.}
+ \tag{3.217}
+\]
+
+Formula (3.216) is the complete finite signed-cycle condition for one
+paired tensor.  In particular, $P-P^*$ represents $2[f\wedge gf]_Q$,
+not the integral class itself, so a domain argument applied only to that
+skew difference cannot detect the $\mathbb Z/2$-summands in (3.211).
+The height theorem (3.195) is the one-variable quotient of (3.213).  When
+the height profile vanishes, (3.216) retains the exact free-group
+coefficient equalities which must be resolved next.  It does not by itself
+force $\mathbf F=0$, and the other fourteen laminar pairings and the
+affine unary term remain outside this one-pair ledger.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
