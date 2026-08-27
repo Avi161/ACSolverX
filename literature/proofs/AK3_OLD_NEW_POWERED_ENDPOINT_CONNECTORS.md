@@ -308,7 +308,146 @@ the complete powered-chain telescope
  \tag{3.16}
 \]
 
-## 4. Cochain loads and the occurrence sweep
+## 4. Exact local forest overlap
+
+Abbreviate \(K_h=K_Q(h)\) and identify a mod-two forest chain with its
+collision-aggregated stored-edge support when taking cardinalities.  The
+final \(Q\)-increment and (3.7) give
+
+\[
+ \boxed{\beta_E=C_Q(d-1)=K_Q(d-1)+K_Q(d)=K_{d-1}+K_d.}
+ \tag{4.1}
+\]
+
+Its certified collision support has size
+
+\[
+ \boxed{
+ |\beta_E|
+ =|\mathcal S_2|+|\mathcal S_3|+|\mathcal S_4|
+ =8+14+14=36.}
+ \tag{4.2}
+\]
+
+For the long component connector, the exact word lengths are
+
+\[
+ |P_1|=|Q_1|=|Q_2|=14,\qquad
+ P_*=P_3,\qquad |P_*|=18.
+ \tag{4.3}
+\]
+
+Because \(C_1=P_1\) and \(C_3=P_3\), its two reduced common-root words are
+
+\[
+ W_1=P_1^{\,i+1}Q_1^h,\qquad
+ W_3=P_*^{\,i+1}Q_2^h.
+ \tag{4.4}
+\]
+
+Exact free reduction leaves these concatenations reduced, with
+
+\[
+ |W_1|=14(i+1)+14h,\qquad
+ |W_3|=18(i+1)+14h.
+ \tag{4.5}
+\]
+
+The words start with \(\texttt{aB}\) and \(\texttt{aG}\), respectively, so
+their common rooted path is exactly the first edge.  Removing that common
+edge twice gives
+
+\[
+ \boxed{
+ |[v_1(h),v_3(h)]|
+ =|W_1|+|W_3|-2
+ =32(i+1)+28h-2.}
+ \tag{4.6}
+\]
+
+The transported literal words in (3.8)--(3.10) give the exact short
+connector lengths
+
+\[
+ |S_w^{(3)}(h)|=2,\qquad
+ |S_z^{(3)}(h)|=3,\qquad
+ |S_w^{(2)}(h)|=2.
+ \tag{4.7}
+\]
+
+These three short paths are mutually interior-disjoint.  The first two
+leave \(v_3(h)\) through the distinct initial letters \(\texttt a\) and
+\(\texttt b\), so a later intersection would create a cycle in the forest;
+the \((2,6)\) path lies in the other component.  They are also
+interior-disjoint from the long connector.  At \(h=0\), the long path
+leaves \(v_3(0)\) in the direction opposite the terminal
+\(\texttt G\) of \(W_3\); for \(h>0\), it leaves in the direction opposite
+the terminal \(\texttt b\).  The short paths leave through
+\(\texttt a\) or positive \(\texttt b\), while the \((2,6)\) path remains
+in the other component.  Distinct incident directions in a forest cannot
+meet again without producing a cycle.  Thus the only shared endpoint is
+the forced \(v_3(h)\) endpoint of the two short paths in its component.
+
+Consequently (3.11) is a support-disjoint sum apart from endpoints, which
+do not contribute edge support, and
+
+\[
+ \boxed{
+ |K_Q(h)|
+ =32(i+1)+28h-2+2+3+2
+ =32(i+1)+28h+5.}
+ \tag{4.8}
+\]
+
+Put
+
+\[
+ x=|K_d\setminus K_{d-1}|,\qquad
+ y=|K_{d-1}\setminus K_d|.
+ \tag{4.9}
+\]
+
+Equation (4.1), the certified support count (4.2), and the size formula
+(4.8) give the ordinary-integer identities
+
+\[
+ x+y=36,\qquad
+ x-y=|K_d|-|K_{d-1}|=28.
+ \tag{4.10}
+\]
+
+Hence
+
+\[
+ x=32,\qquad y=4.
+ \tag{4.11}
+\]
+
+The mod-two forest membership pairing is therefore
+
+\[
+\begin{aligned}
+ \langle K_Q(d),\beta_E\rangle
+ &=|K_d\cap(K_d\mathbin{\triangle}K_{d-1})|\pmod2\\
+ &=|K_d\setminus K_{d-1}|\pmod2
+ =32\pmod2,
+\end{aligned}
+\]
+
+so
+
+\[
+ \boxed{\langle K_Q(d),\beta_E\rangle=0\in\mathbb F_2.}
+ \tag{4.12}
+\]
+
+This completely evaluates only the forest-overlap, or membership, part of
+the combined powered \(P,C,Q\) outer load.  It does not evaluate the
+tie/occurrence term \(\langle K_Q(d),\tau_T\rangle\), the finite old terms,
+positive-chamber covariance, the period-two lift, AK(3), stable
+Andrews--Curtis, or Andrews--Curtis.
+
+## 5. Cochain loads and the occurrence sweep
 
 For any edge cochain
 \(\omega\in C^1(\mathcal T;\mathbb F_2)\), pairing (3.16) with \(\omega\)
@@ -320,7 +459,7 @@ gives
  +\langle C_C(i),\omega\rangle
  +\sum_{h=0}^{d-1}\langle C_Q(h),\omega\rangle
  =\langle K_Q(d),\omega\rangle.}
- \tag{4.1}
+ \tag{5.1}
 \]
 
 Specialize now to the complete collision-aggregated old--new cochain
@@ -329,12 +468,12 @@ restriction is the proved coboundary
 
 \[
  \omega_T(E_4(v))=\bar b_4(v)+\bar b_4(tv),
- \tag{4.2}
+ \tag{5.2}
 \]
 
 and its mixed-slot values have the exact occurrence-prefix and
 head--tail boundary descriptions already established there.  Formula
-(4.1) couples the previous separate powered \(P,C,Q\) program into the
+(5.1) couples the previous separate powered \(P,C,Q\) program into the
 single outer evaluation
 
 \[
@@ -343,7 +482,7 @@ single outer evaluation
  +\langle C_C(i),\omega_T\rangle
  +\sum_{h=0}^{d-1}\langle C_Q(h),\omega_T\rangle
  =\langle K_Q(d),\omega_T\rangle.}
- \tag{4.3}
+ \tag{5.3}
 \]
 
 This connector theorem does not evaluate \(\langle K_Q(d),\omega_T\rangle\).
