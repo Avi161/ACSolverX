@@ -20,8 +20,10 @@ now evaluated.  Literal-stream flattening absorbs every remaining product,
 inverse, transport, and quotient-section ordered profile into one weighted
 cut form.  The all-index target is therefore equivalent to the conservative
 2,380-bit window \(R_{k,i}\) with \(1\leq k\leq14\) and
-\(0\leq i\leq169\).  None of those
-post-inversion remainder values is evaluated here.  Even simultaneous
+\(0\leq i\leq169\).  Section 5.7 proves the 167 coordinate-four values
+\(R_{4,i}=0\) for \(3\leq i\leq169\), leaving 2,213 unevaluated values:
+2,210 in the other thirteen coordinates and the three coordinate-four
+seeds.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
@@ -684,7 +686,8 @@ and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
 the unbounded obstruction.  The analysis below evaluates the transported
 ordered-section order-reversal sum and reduces the remaining exact
-obligation to the 2,380 finite values in (5.77).
+obligation to the 2,380 finite values in (5.77).  Section 5.7 subsequently
+evaluates 167 of them and leaves the exact 2,213-value remainder.
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -2957,9 +2960,17 @@ set
 \tag{5.77}
 \]
 
-This is \(14\cdot170=2{,}380\) bits.  No value in (5.77) is evaluated
-here.  In particular, (5.76) is not a period-two theorem and proves no lift
-or AK(3) conclusion.
+This is \(14\cdot170=2{,}380\) bits.  Section 5.7 proves
+\(R_{4,i}=0\) for \(3\leq i\leq169\), so the exact unevaluated part of
+(5.77) has
+
+\[
+ 13\cdot170+3=2{,}213
+\tag{5.77a}
+\]
+
+values.  In particular, (5.76) is not a period-two theorem and the partial
+evaluation proves no lift or AK(3) conclusion.
 
 ### 5.7 Coordinate-four new--new covariance
 
@@ -3302,9 +3313,57 @@ modified.  Substitution in (5.94) proves
 \tag{5.94b}
 \]
 
-Equation (5.94b) is a natural-side simultaneous-shift seam.  It is not a
-vanishing theorem: pairwise common-phase covariance alone does not evaluate
-the 48 \(\Theta\)-rows.
+The aggregate seam can now be evaluated without evaluating its 48 rows
+separately.  Let \(f_{j,s}\) be the collision-aggregated old correction mask
+\(B_s+D_{j,s}\) inside one occurrence of slot \(s\), and let
+\(e_{j,s}=q_{j,s}\).  Repeating the positive/reverse-negative calculation
+with old mask \(f_{j,s}\) and shell mask \(e_{j,s}\) gives
+
+\[
+ \mathcal H^{\rm loc}_{4,s}(f_j;M_j)
+ =b_4(\pi_4f_{j,s},\pi_4e_{j,s}).
+\tag{5.94c}
+\]
+
+The local tensor data inside a correction atom belong to
+\(\varrho_4\), not to (5.94c).  Fixed raw and quotient-section atoms are
+external blocks already canceled before (5.92), while fixed base and anchor
+correction coordinates are included in \(f_{j,s}\).
+
+Put \(Q_s:=\pi_4e_{j,s}\).  Equations (5.82)--(5.83b), applied
+occurrence by occurrence after collision aggregation, make \(Q_s\)
+independent of \(j\).  Slots \(2,3,4\) each have one polarity pair, while
+slot zero has three; all four multiplicities are odd.  Slot one has no
+shell activity.  Since
+
+\[
+ f_{i,s}+f_{i+1,s}
+ =(B_s+D_{i,s})+(B_s+D_{i+1,s})
+ =e_{i,s},
+\tag{5.94d}
+\]
+
+the two natural-side sweeps in (5.94b) give
+
+\[
+\begin{aligned}
+ \beta_4(a_{i+1},E_i)
+ &=\sum_{s\in\{0,2,3,4\}}
+   \left(
+    b_4(\pi_4f_{i,s},Q_s)
+    {}+b_4(\pi_4f_{i+1,s},Q_s)
+   \right)\\
+ &=\sum_{s\in\{0,2,3,4\}}b_4(Q_s,Q_s)=0.
+\end{aligned}
+\tag{5.94e}
+\]
+
+The final equality uses alternation of \(b_4\).  Thus
+
+\[
+\boxed{\beta_4(a_{i+1},E_i)=0\qquad(i\geq0).}
+\tag{5.94f}
+\]
 
 Finally, the one-step decomposition and bilinearity give
 
@@ -3318,25 +3377,27 @@ Finally, the one-step decomposition and bilinearity give
 \tag{5.95}
 \]
 
-Using (5.84),
+Using (5.84) and (5.94f),
 
 \[
 \boxed{
  R_{4,i}
- =L_4(q_{i+1})+L_4(q_i)
- +\beta_4(a_{i+1},E_i).
+ =L_4(q_{i+1})+L_4(q_i).
 }
 \tag{5.96}
 \]
 
-Thus for \(i\geq3\), (5.86) removes the local term and (5.94) is the entire
-coordinate-four derivative.  Equivalently, (5.94b) makes its old--shell
-part the natural-side shift seam.  The remaining stable interface has 48 rows:
-each row records its chord color, its two endpoint occurrences and actions,
-the two three-bit \(\Theta\)-vectors in (5.94a), and their one output bit.
-The three lower local seams in (5.87) remain separate.  No scalar crossing
-or occurrence-type count determines these shifted prefixes, so no
-vanishing is asserted.
+Combining (5.86) and (5.96) proves the first complete family of crossed
+derivative values:
+
+\[
+\boxed{R_{4,i}=0\qquad(i\geq3).}
+\tag{5.97}
+\]
+
+The coordinate-four all-index target is now exactly the three lower local
+seams in (5.87).  None is evaluated here.  Thus (5.97) proves no
+all-index period two, lift, or AK(3) conclusion.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation

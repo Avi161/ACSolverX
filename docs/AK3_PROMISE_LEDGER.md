@@ -143,7 +143,10 @@ finite quotient do not close a route.
   \(E_i=D_{i+2}-D_i\), the all-index target is
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
   proved exact obligation is its conservative 2,380-bit window
-  \(1\leq k\leq14,\ 0\leq i\leq169\).
+  \(1\leq k\leq14,\ 0\leq i\leq169\).  Coordinate four is now evaluated
+  to zero for \(3\leq i\leq169\), leaving exactly 2,213 unevaluated values:
+  2,210 in the other thirteen coordinates and the three coordinate-four
+  seeds.
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
@@ -201,8 +204,9 @@ finite quotient do not close a route.
   The leaf bound \(L=372\), with the sound two-sided
   allowance for whole-core cancellation, gives onset 130.  Hence the
   protected catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq130\),
-  giving the 2,380-bit window above.  No remainder value in that window is
-  evaluated yet, so no vanishing or period-two claim is proved.  In the
+  giving the 2,380-bit window above.  The fourth coordinate now contributes
+  167 proved zeros inside that window; 2,213 values remain unevaluated, so
+  no all-coordinate vanishing or period-two claim is proved.  In the
   fourth three-point coordinate, however, the powered element acts
   trivially and every one-step-shell chord label has an all-index constant
   projected color.  The frozen crossing set then proves termwise that the
@@ -223,8 +227,11 @@ finite quotient do not close a route.
   slotwise: increasing positive chronology and decreasing negative
   chronology count every unordered weighted pair twice.  This converts the
   48 rows to the natural-side simultaneous-shift seams \(\Theta\).  The
-  three local seams and all 48 shifted-prefix rows remain unevaluated, so
-  this is not a proof that \(R_{4,i}=0\).
+  aggregate seam then vanishes: the projected shell mask is index-independent
+  in each slot, consecutive old masks differ by that shell, and the
+  resulting self-pair is zero by alternation.  Hence
+  \(R_{4,i}=0\) for every \(i\geq3\).  The three lower local seams remain
+  unevaluated, so all-index coordinate-four vanishing is still open.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
