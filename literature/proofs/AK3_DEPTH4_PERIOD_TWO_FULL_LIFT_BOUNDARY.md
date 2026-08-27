@@ -3953,6 +3953,132 @@ full kernel.  The affine unary term is still absent.  Thus (3.239)--(3.245)
 both sharpen the forest residue and identify exactly why this quotient
 alone cannot finish the class-two obstruction.
 
+### 3.34 Two-dimensional semilinear refinement
+
+The dihedral blind subspace contains a slot-zero symmetry which disappears
+before the one-dimensional specialization.  Abelianize the free subgroup
+
+\[
+ K=F(t,ctc)\longrightarrow\mathbb Z^2,
+ \qquad
+ t\longmapsto x,
+ \qquad
+ ctc\longmapsto y,
+ \tag{3.246}
+\]
+
+and let $\alpha$ swap $x$ and $y$.  A quotient prefix acts on
+$\mathbb Z[x^{\pm1},y^{\pm1}]$ as a monomial followed, possibly, by
+$\alpha$.  The sixteen prefixes have the exact hand-reduced ledger
+
+\[
+\boxed{
+\begin{array}{c|rrrrrrrrrrrrrrrr}
+o&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16\\ \hline
+A_o&0&1&1&-3&-1&0&0&-4&-2&-1&-1&2&2&1&1&0\\
+B_o&0&0&0&3&3&0&0&3&3&2&2&-2&0&0&0&0\\
+\eta_o&0&1&1&0&1&1&1&0&1&0&0&1&0&0&0&0
+\end{array}}
+\tag{3.247}
+\]
+
+meaning $q_o^{\rm ab}=x^{A_o}y^{B_o}\alpha^{\eta_o}$.  Summing with the
+literal occurrence signs gives
+
+\[
+\boxed{
+\begin{aligned}
+ L_0^{\rm ab}&=x\alpha-x^{-3}y^3+\alpha-x^{-4}y^3
+                +x^{-1}y^2-x^2y^{-2}\alpha,\\
+ L_1^{\rm ab}&=x\alpha-x^{-1}y^3\alpha+x^{-1}y^2-x^2,\\
+ L_2^{\rm ab}&=1-\alpha,\\
+ L_3^{\rm ab}&=x^{-2}y^3\alpha-x,\\
+ L_4^{\rm ab}&=x-1.
+\end{aligned}}
+\tag{3.248}
+\]
+
+The paired occurrence blocks give the stronger right factorizations
+
+\[
+\boxed{
+\begin{aligned}
+ L_0^{\rm ab}
+  &=(x\alpha+\alpha+x^{-1}y^2)(1-x^3y^{-4}\alpha),\\
+ L_1^{\rm ab}
+  &=(x\alpha+x^{-1}y^2)(1-x^3y^{-2}),\\
+ L_2^{\rm ab}&=1-\alpha,\\
+ L_3^{\rm ab}
+  &=x^{-2}y^3\alpha(1-x^{-3}y^3\alpha),\\
+ L_4^{\rm ab}&=x(1-x^{-1}).
+\end{aligned}}
+\tag{3.249}
+\]
+
+All products in (3.248)--(3.249) are semilinear compositions, read
+rightmost first.  For example,
+
+\[
+ (x^3y^{-4}\alpha)^2=x^{-1}y^{-1},
+ \qquad
+ (x^{-3}y^3\alpha)^2=1.
+ \tag{3.250}
+\]
+
+Let $P_s$ be the finite two-variable profile of $F_s$.  A finite Laurent
+profile invariant under a nontrivial translation is zero.  If
+$P=m\alpha(P)$, applying the same glide twice gives
+$P=m\alpha(m)P$.  Equations (3.249)--(3.250) therefore give the exact
+simultaneous paired-boundary kernel
+
+\[
+\boxed{
+\begin{aligned}
+ &(1-x^3y^{-4}\alpha)P_0=0,
+ \quad(1-x^3y^{-2})P_1=0,
+ \quad(1-\alpha)P_2=0,\\
+ &(1-x^{-3}y^3\alpha)P_3=0,
+ \quad(1-x^{-1})P_4=0
+\end{aligned}
+}
+\tag{3.251}
+\]
+
+if and only if
+
+\[
+ \boxed{
+ P_0=P_1=P_4=0,
+ \qquad
+ P_2=\alpha(P_2),
+ \qquad
+ P_3=x^{-3}y^3\alpha(P_3).}
+ \tag{3.252}
+\]
+
+In particular, the slot-zero reflection symmetry in (3.244) was created
+by collapsing the glide translation $x^{-1}y^{-1}$; it is not present in
+the two-dimensional finite-profile kernel.  Slot two and slot three are
+genuine reflections and retain their finite symmetric profiles.
+
+Let $\Pi_{\rm ab}$ be the complete homogeneous occurrence polygon after
+this two-dimensional profile projection.  On the profile subspace
+(3.252), the two endpoint currents of every paired interval agree.  The
+laminar recursion then has zero boundary and zero internal area from each
+innermost interval outward.  Hence
+
+\[
+ \boxed{\Pi_{\rm ab}(P_0,\ldots,P_4)=0
+ \qquad\text{for every profile tuple satisfying (3.252).}}
+ \tag{3.253}
+\]
+
+As in (3.245), this is a blind subspace of the projected homogeneous
+polygon, not a theorem that every profile tuple is realized by a balanced
+source correction.  It is also not the full kernel of $\Pi_{\rm ab}$, and
+the affine unary term is absent.  The refinement eliminates the false
+slot-zero symmetry but leaves an exact two-reflection forest residue.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
