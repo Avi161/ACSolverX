@@ -3762,6 +3762,197 @@ Different laminar pairings can occupy the same distance coordinate, and
 the affine unary image remains separate, so the dihedral detector does not
 prove nonvanishing of the complete defect.
 
+### 3.33 Nine-pair dihedral polygon and its exact forest face
+
+The complete homogeneous dihedral image also compresses beyond the
+fifteen laminar pairings.  Let $R$ be Laurent reversal,
+
+\[
+ Rp(w):=p(w^{-1}),
+ \tag{3.231}
+\]
+
+and let $\{f,g\}_\delta$ be the distance-histogram class of the wedge of
+the two profiles.  Thus, for $n\geq1$,
+
+\[
+ [\{f,g\}_\delta]_n
+ =\sum_i(f_i g_{i+n}+f_{i+n}g_i),
+ \qquad
+ \{f,g\}_\delta=\{g,f\}_\delta,
+ \qquad
+ \{f,f\}_\delta=0.
+ \tag{3.232}
+\]
+
+Write $p_s=\overline p_{F_s}$.  The semilinear closure of the sixteen
+transported profiles is
+
+\[
+ \sum_{s=0}^4\mathcal L_s^\delta p_s=0,
+ \tag{3.233}
+\]
+
+where composition is read rightmost first and
+
+\[
+\boxed{
+\begin{aligned}
+ \mathcal L_0^\delta&=((w+1)R+w^{-3})(1+w^7R),\\
+ \mathcal L_1^\delta&=(wR+w^{-3})(1+w^5),\\
+ \mathcal L_2^\delta&=1+R,\\
+ \mathcal L_3^\delta&=w^{-5}R(1+w^{-6}R),\\
+ \mathcal L_4^\delta&=w(1+w^{-1}).
+\end{aligned}}
+\tag{3.234}
+\]
+
+For example, the first row expands to
+
+\[
+ wR+w^{-6}+R+w^{-7}+w^{-3}+w^4R,
+ \tag{3.235}
+\]
+
+which is the slot-zero part of (3.229).
+
+Define the translation and reflection paired classes
+
+\[
+ \mathbf T_d(p):=\{p,w^dp\}_\delta,
+ \qquad
+ \mathbf R_d(p):=\{p,w^dRp\}_\delta.
+ \tag{3.236}
+\]
+
+Put
+
+\[
+\boxed{
+\begin{aligned}
+ U&:=(1+R)p_2,\\
+ A&:=wRp_0+w^{-6}p_0,\\
+ B&:=(w+w^{-4})Rp_1+A,\\
+ E&:=w^{-2}RB,\\
+ W&:=(w^{-5}R+w)p_3,\\
+ D_1&:=U+B,\\
+ D_2&:=Rp_0+w^{-7}p_0,\\
+ D_3&:=W+E.
+\end{aligned}}
+\tag{3.237}
+\]
+
+These are the three first root currents and their nested child currents.
+Equation (3.233) is equivalently
+
+\[
+ \boxed{D_1+D_2+D_3+(w+1)p_4=0.}
+ \tag{3.238}
+\]
+
+If $\Pi_\delta(F)$ is the complete homogeneous sixteen-occurrence
+polygon in (3.221), then
+
+\[
+\boxed{
+\begin{aligned}
+ \Pi_\delta(F)={}&
+ \mathbf R_7(p_0)+\mathbf R_0(p_2)
+ +\mathbf R_{-6}(p_3)+\mathbf T_{-1}(p_4)\\
+ &+\{U,B\}_\delta+\{W,E\}_\delta\\
+ &+\{D_1,D_2\}_\delta
+  +\{D_1,D_3\}_\delta
+  +\{D_2,D_3\}_\delta.
+\end{aligned}}
+\tag{3.239}
+\]
+
+Indeed, the three slot-zero paired terms are equal copies of
+$\mathbf R_7(p_0)$ and therefore leave one copy modulo two.  The two
+slot-one paired terms are equal copies of $\mathbf T_5(p_1)$ and cancel.
+The two inner parent--child pairings are carried to each other by the
+diagonal reflection $w^{-2}R$ and cancel.  The slot-two, slot-three, and
+slot-four paired terms, the two outer parent--child terms, and the three
+root terms are exactly the nine terms displayed in (3.239).
+
+There is an exact conclusion on the projected pure forest face.  Suppose
+
+\[
+ p_0=p_1=p_4=0.
+ \tag{3.240}
+\]
+
+Then $B=E=D_2=0$, and closure says $U=W$.  Formula (3.239) reduces to
+
+\[
+ \Pi_\delta(F)=\mathbf R_0(p_2)+\mathbf R_{-6}(p_3).
+ \tag{3.241}
+\]
+
+Embed the distance target into symmetric Laurent polynomials by sending
+its distance-$n$ basis element to $w^n+w^{-n}$.  This map is injective,
+and
+
+\[
+\begin{aligned}
+ \mathbf R_d(p)&\longmapsto
+ w^d(Rp)^2+w^{-d}p^2,\\
+ \Pi_\delta(F)&\longmapsto
+ U^2+w^4W^2=(1+w^4)U^2.
+\end{aligned}
+\tag{3.242}
+\]
+
+The Laurent ring over $\mathbb F_2$ is a domain.  Hence, on the face
+(3.240) subject to closure,
+
+\[
+ \boxed{
+ \Pi_\delta(F)=0
+ \Longleftrightarrow
+ p_2=Rp_2
+ \ \text{and}\
+ p_3=w^{-6}Rp_3.}
+ \tag{3.243}
+\]
+
+If $U\ne0$, equation (3.242) proves nonvanishing.  If $U=0$, closure
+also gives $W=0$, and the two symmetry conditions in (3.243) make both
+reflection classes in (3.241) vanish by (3.228).
+
+The full projected polygon has a larger explicit blind subspace:
+
+\[
+\boxed{
+ \mathcal B_\delta:=
+ \left\{
+ \begin{array}{l}
+ p_0=w^7Rp_0,\quad p_1=0,\quad p_2=Rp_2,\\
+ p_3=w^{-6}Rp_3,\quad p_4=0
+ \end{array}
+ \right\}.
+}
+\tag{3.244}
+\]
+
+Every right boundary factor in (3.234) vanishes on this subspace.  In each
+paired interval its two endpoint profiles agree; the laminar recursion
+then gives zero net current and zero internal area from the innermost
+blocks outward.  Therefore
+
+\[
+ \boxed{\Pi_\delta(F)=0\qquad
+        ((p_0,\ldots,p_4)\in\mathcal B_\delta).}
+ \tag{3.245}
+\]
+
+This is a profile-level blind subspace of the homogeneous dihedral
+quotient, not a claim that every displayed profile tuple lifts to an
+element of $\mathcal H_{\rm fin}$, and not a characterization of the
+full kernel.  The affine unary term is still absent.  Thus (3.239)--(3.245)
+both sharpen the forest residue and identify exactly why this quotient
+alone cannot finish the class-two obstruction.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
