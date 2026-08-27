@@ -1751,6 +1751,61 @@ does not force its xor to vanish.  At \(i=0\), the stable terms
 \(W_1,W_2,A_1,T_2\) remain valid; only the seed seam \(A_0\) and seed
 terminal set \(T_0\) need a separate collision-aggregated finite table.
 
+The stable slot-two weights can be evaluated directly in the pinned finite
+actions.  It is essential to retain the canonical schema order
+
+\[
+ \text{fixed}_0\,\text{fixed}_1\,
+ \text{core}^{\,3h}\,\text{fixed}_2;
+\tag{5.45aw}
+\]
+
+point evaluation applies the rightmost factor first.  Substitution of the
+eight row heads in (5.45ao) and the sets (5.45ap) into (5.45ar) gives the
+following complete residue table for \(i\geq1\):
+
+\[
+\begin{array}{c|c|c}
+k&r_k&S_{k,2}(i\bmod r_k)\\ \hline
+1&2&(1,1)\\
+2&4&(1,1,1,1)\\
+3&1&(0)\\
+4&1&(0)\\
+5&2&(0,0)\\
+6&4&(0,0,0,0)\\
+7&4&(0,0,0,0)\\
+8&1&(0)\\
+9&4&(1,1,1,1)\\
+10&1&(0)\\
+11&5&(0,0,0,0,0)\\
+12&5&(0,0,0,0,0)\\
+13&4&(1,1,1,1)\\
+14&4&(0,0,0,0).
+\end{array}
+\tag{5.45ax}
+\]
+
+For a structural check, the \(c\)-trivial actions turn every row into an
+affine phase on the corresponding \(t\)-cycle, so the paired
+\(W/A/T\)-terms cancel in coordinates \(3,5,6,7,11,12\).  The order-one
+rows \(4,8,10\) cancel directly.  In the remaining finite orbits, exact
+substitution leaves the constant survivors \(1,2,9,13\).  The terminal row
+is indexed as \(z_h\), while \(T_h\) uses \(z_{h+1}\); this shift is part of
+the calculation.
+
+Hence the stable slot-two inversion source is
+
+\[
+\boxed{
+ \bigl(S_{1,2}(i),\ldots,S_{14,2}(i)\bigr)
+ =\texttt{11000000100010}
+ \qquad(i\geq1).}
+\tag{5.45ay}
+\]
+
+Equation (5.45ay) does not cover the seed seam \(A_0,T_0\), and it remains
+only one component of the complete crossed derivative.
+
 Finally, slot three has a sharper exact cancellation signature than the
 generic band (5.46d).  Write
 
