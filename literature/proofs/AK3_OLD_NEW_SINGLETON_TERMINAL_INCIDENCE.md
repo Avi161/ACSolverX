@@ -1,12 +1,22 @@
-# Exact singleton and base terminal incidence for the old--new load
+# Complete finite old terms and positive-chamber old--new covariance
 
 ## Status and scope
 
-This note proves exactly two positive-chamber finite old-term identities:
+This note proves all three positive-chamber finite old-term identities and
+combines them with the powered endpoint theorem:
 
 \[
- \boxed{E_{\rm singleton}=1,\qquad E_{\rm base}=0.}
+ \boxed{
+ E_{\rm fixed}=0,\qquad E_{\rm base}=0,\qquad
+ E_{\rm singleton}=1,}
  \tag{0.1}
+\]
+
+\[
+ \boxed{
+ \mathbb B(A_{n,d},b_{n,d})
+ =1+[d=1]=[d>1]\qquad(d\geq1).}
+ \tag{0.2}
 \]
 
 The singleton old row is the collision-aggregated slot-zero module atom
@@ -15,7 +25,7 @@ of the six slot-zero occurrence copies
 
 \[
  \mathcal O_0=\{3,4,7,8,11,12\}.
- \tag{0.2}
+ \tag{0.3}
 \]
 
 The actual mask \(T=b\) has collision-aggregated slot-zero support
@@ -23,13 +33,14 @@ The actual mask \(T=b\) has collision-aggregated slot-zero support
 \[
  S_0=\{y_0,y_1\},
  \qquad y_1=y_{i,j+1}.
- \tag{0.3}
+ \tag{0.4}
 \]
 
 All statements are over \(\mathbb F_2\) after integral coefficients have
-been aggregated at their canonical coordinates.  The fixed old term remains
-open.  This note proves no positive-chamber covariance, period-two lift,
-AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
+been aggregated at their canonical coordinates.  Equation (0.2) proves only
+the positive-chamber old--new covariance lemma.  Other chambers, boundary
+values, the period-two lift, the unary delta identity, AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## 1. Reduction to six chronology prefixes
 
@@ -322,18 +333,144 @@ Substitution into (5.1) proves
  \tag{5.6}
 \]
 
-## 6. Remaining boundary and hostile audit
+## 6. Exact fixed-core exclusion
 
-The fixed old term remains open.  Forest-alphabet length cannot be compared
-directly with canonical quotient-label length: these are different metrics
-on differently typed objects, and no order or annulus conclusion follows
-from a raw numerical length comparison.  Consequently the singleton and
-base identities alone prove no positive-chamber covariance, period-two
-lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
+Let \(\mathcal F_{\rm tok}\) be the authoritative set of 70 fixed-token
+coordinates, and let \(\mathcal L_{\rm fix}\) be its set of 27 distinct
+canonical quotient labels.  Their multiplicities, component roots, and
+exact reduced source-forest paths are:
 
-**Hostile-audit note.**  Neither proof above uses the rejected cross-metric
+| canonical label | multiplicity | component root | exact reduced path | distance |
+|:---|---:|:---|:---|---:|
+| \(\mathrm{eps}\) | \(4\) | \(\mathrm{eps}\) | empty | \(0\) |
+| \(\texttt t\) | \(4\) | \(\mathrm{eps}\) | \(\texttt A\) | \(1\) |
+| \(\texttt{cT}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGaGb}\) | \(5\) |
+| \(\texttt{ct}\) | \(1\) | \(\texttt{ct}\) | empty | \(0\) |
+| \(\texttt{Tct}\) | \(2\) | \(\texttt{ct}\) | \(\texttt a\) | \(1\) |
+| \(\texttt{cTT}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGaGaGb}\) | \(7\) |
+| \(\texttt{Tctt}\) | \(2\) | \(\texttt{ct}\) | \(\texttt g\) | \(1\) |
+| \(\texttt{cTct}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGb}\) | \(3\) |
+| \(\texttt{ctcT}\) | \(5\) | \(\texttt{ct}\) | \(\texttt{aG}\) | \(2\) |
+| \(\texttt{cTTct}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{BaGb}\) | \(4\) |
+| \(\texttt{cTctt}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{BgAb}\) | \(4\) |
+| \(\texttt{ctcTT}\) | \(4\) | \(\mathrm{eps}\) | \(\texttt{aG}\) | \(2\) |
+| \(\texttt{cTTctt}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{BaGb}\) | \(4\) |
+| \(\texttt{ctcTTT}\) | \(4\) | \(\texttt{ct}\) | \(\texttt{aGaGbaG}\) | \(7\) |
+| \(\texttt{ctcTcT}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGaG}\) | \(4\) |
+| \(\texttt{ctcTct}\) | \(4\) | \(\mathrm{eps}\) | \(\texttt{BgA}\) | \(3\) |
+| \(\texttt{ctcTTTT}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGaGaGbaG}\) | \(9\) |
+| \(\texttt{ctcTTct}\) | \(4\) | \(\mathrm{eps}\) | \(\texttt G\) | \(1\) |
+| \(\texttt{ctcTTTct}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{aGbaG}\) | \(5\) |
+| \(\texttt{ctcTTctt}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{AG}\) | \(2\) |
+| \(\texttt{ctcTcTct}\) | \(4\) | \(\mathrm{eps}\) | \(\texttt B\) | \(1\) |
+| \(\texttt{ctcTTTTct}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{BaGbaG}\) | \(6\) |
+| \(\texttt{ctcTTTctt}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{BgAbaG}\) | \(6\) |
+| \(\texttt{ctcTcTctt}\) | \(2\) | \(\texttt{ct}\) | \(\texttt B\) | \(1\) |
+| \(\texttt{ctcTTTTctt}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{BaGbaG}\) | \(6\) |
+| \(\texttt{ctcTcTcTct}\) | \(2\) | \(\mathrm{eps}\) | \(\texttt{BaG}\) | \(3\) |
+| \(\texttt{ctcTcTcTctt}\) | \(2\) | \(\texttt{ct}\) | \(\texttt{BaG}\) | \(3\) |
+
+Here an empty path denotes the listed component root.  The multiplicities
+sum to \(70\).  Every displayed forest word is visibly reduced, and direct
+application of that word in the listed source-tree component gives the
+displayed canonical label.  Thus every fixed label lies at exact
+source-forest distance at most \(9\) from its component root.
+
+This finite table came from one guarded authoritative subgroup rewrite.
+Each row is independently readable and verifiable as an exact reduced path;
+the table is a finite premise, not a sampled assertion about a powered
+family.
+
+Every label of \(T\) is either a transported slot-zero boundary vertex or
+the head or tail of a supported \(\beta_E\)-edge.  The reviewed terminal
+decomposition in AK3_OLD_NEW_POWERED_ENDPOINT_CONNECTORS.md, Sections 4--5,
+together with the same-forest \(W_2\) bound proved in Section 5 above, keeps
+every such label at source-forest distance at least \(28\) in the
+\(\texttt{ct}\)-component and at least \(33\) in the
+\(\mathrm{eps}\)-component, after all permitted short-connector retracing.
+Collision aggregation can delete coincident edges but cannot create a
+nearer label.  Comparing distances inside the same source-tree component
+therefore gives
+
+\[
+ \boxed{H_T(x)=0\qquad(x\in\mathcal F_{\rm tok}).}
+ \tag{6.1}
+\]
+
+The fixed tokens lie outside the correction blocks.  Each complete earlier
+\(T\)-occurrence block has one of the even collision-aggregated support
+sizes
+
+\[
+ |S_0|=2,\qquad |S_2|=8,\qquad
+ |S_3|=14,\qquad |S_4|=14.
+ \tag{6.2}
+\]
+
+Hence the literal-chronology rank of every fixed token is
+
+\[
+ \boxed{R_T^\chi(x)=0\qquad(x\in\mathcal F_{\rm tok}).}
+ \tag{6.3}
+\]
+
+The exact two-rank formula (3.4) from
+AK3_OLD_NEW_CHRONOLOGY_RANK_POTENTIAL.md, Section 3, and the
+any-decorated-coordinate identity (4.3) from
+AK3_OLD_NEW_EVEN_LABEL_TIE_COCHAIN.md, Section 4, give
+
+\[
+ \Lambda_T(x)=R_T^\chi(x)+H_T(x)=0
+ \qquad(x\in\mathcal F_{\rm tok}).
+ \tag{6.4}
+\]
+
+Summing with the fixed multiplicities therefore proves
+
+\[
+ \boxed{
+ E_{\rm fixed}
+ =\sum_{x\in\mathcal F_{\rm tok}}\Lambda_T(x)=0.}
+ \tag{6.5}
+\]
+
+## 7. Positive-chamber old--new covariance
+
+AK3_OLD_NEW_POWERED_ENDPOINT_CONNECTORS.md, Section 5, proves that the
+combined powered \(P,C,Q\) forest load is
+
+\[
+ E_{P/C/Q}=[d=1].
+ \tag{7.1}
+\]
+
+The finite terms are (4.3), (5.6), and (6.5).  Therefore
+
+\[
+\begin{aligned}
+ \mathbb B(A_{n,d},b_{n,d})
+ &=E_{\rm fixed}+E_{\rm base}+E_{\rm singleton}+E_{P/C/Q}\\
+ &=0+0+1+[d=1]\\
+ &=1+[d=1]=[d>1]
+ \qquad(d\geq1).
+\end{aligned}
+ \tag{7.2}
+\]
+
+The result is independent of \(n\).  This proves the positive-chamber
+old--new covariance lemma and nothing beyond it.
+
+## 8. Remaining boundary and hostile audit
+
+Other chambers and boundary values remain open, as do the period-two lift,
+the unary delta identity, AK(3), stable Andrews--Curtis, and
+Andrews--Curtis.
+
+**Hostile-audit note.**  No proof above uses the rejected cross-metric
 annulus argument.  The singleton proof uses only the collision-aggregated
 terminal forest, exact head/tail occurrence labels, bijectivity of each
 \(\tau_o\), and literal AST occurrence order.  The base proof uses
 same-forest reduced-path distances and explicitly permits the short
-connector retracing described in Section 5.
+connector retracing described in Section 5.  The fixed proof compares only
+exact distances inside the same source-tree component; its 27-row table is
+a finite exact premise, not evidence extrapolated from sampled powers.
