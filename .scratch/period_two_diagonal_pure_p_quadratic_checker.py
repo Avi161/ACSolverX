@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""[unverified] Provisional 48-chord certificate for diagonal pure-P Q.
+"""Provisional 48-chord certificate for diagonal pure-P Q.
 
 This artifact computes, but does not prescribe, Q(q_i) for
 q_i=A_(i+1,i+1)+A_(i,i).  It reuses the approved collision schemas from the

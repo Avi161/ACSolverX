@@ -33,10 +33,12 @@ Consequently
 
 The specialization \(j=i\) is the narrowest diagonal target: its source
 words contain powers of \(P_\nu\), but no \(Q_\nu\)-factor.  The all-power
-certificate in Section 4 proves the complete raw contribution zero.  The
-joint old--new and new--new xor remains open.  No diagonal identity, unary
-delta identity, period-two lift, AK(3), stable Andrews--Curtis, or
-Andrews--Curtis claim is made.
+certificate in Section 4 proves the complete raw contribution zero, Section
+6 proves the old--new value one, and the independently replayed certificate
+in Section 7 proves the new--new value one.  Consequently the complete
+increment vanishes, which proves the diagonal identity and
+\(u_{ij}=\delta_{ij}\).  The free-group period-two lift, AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## 1. Exact diagonal source words
 
@@ -1182,3 +1184,66 @@ the already proved reductions. Until (7.1) is proved, those conclusions and
 every period-two/AK3/AC conclusion remain open.
 
 <!-- AK3_PURE_P_Q_SECTION_7_1_END -->
+
+### 7.2 Quadratic theorem and diagonal closure
+
+The primary all-power certificate and a genuinely independent replay are
+frozen in
+<code>.scratch/period_two_diagonal_pure_p_quadratic_certificate.md</code>.
+Neither artifact imposes an expected value of \(Q\).  They reconstruct the
+four exhaustive cells
+
+\[
+ i=0,\qquad i=1,\qquad i=2,\qquad i\geq3
+ \tag{7.8}
+\]
+
+from the low-level source rows.  In every cell the 48 prefix parities in
+(7.6) have integer sum 21.  The independent replay also reconstructs the
+96-token stream directly and obtains the same parity from all
+\(\binom{96}{2}=4560\) kernel pairs.  Thus (7.7) gives
+
+\[
+ \boxed{Q(q_i)=1\qquad(i\geq0).}
+ \tag{7.9}
+\]
+
+Combining (7.9) with the complete raw theorem (4.13) and old--new theorem
+(6.27) gives
+
+\[
+\begin{aligned}
+ \mathscr C(A_i^\Delta,q_i)
+ &=L(q_i)+\mathbb B(A_i^\Delta,q_i)+Q(q_i)\\
+ &=0+1+1=0.
+\end{aligned}
+ \tag{7.10}
+\]
+
+Equation (0.3) therefore yields
+
+\[
+ c_{i+1}=c_i\qquad(i\geq0).
+ \tag{7.11}
+\]
+
+The exact seed \(u_{00}=1\), together with
+\(u_{00}=c_0+1\), gives \(c_0=0\).  Hence
+
+\[
+ \boxed{c_i=0,\qquad u_{ij}=[j=i]=\delta_{ij}.}
+ \tag{7.12}
+\]
+
+It follows at once that
+
+\[
+ \boxed{\mathcal D_{ij}=0}
+ \qquad\text{and}\qquad
+ \boxed{I_{ij}=[i-j=-1]+[i-j=0]}
+ \tag{7.13}
+\]
+
+for all \(i,j\geq0\).  These are complete-cover unary identities.  They do
+not solve the nonabelian free-group lifting defect, the unresolved companion
+cross kernels, AK(3), stable Andrews--Curtis, or Andrews--Curtis.

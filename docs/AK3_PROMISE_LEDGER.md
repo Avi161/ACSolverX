@@ -86,16 +86,17 @@ finite quotient do not close a route.
   every \(i\geq0\).  Current hash prefixes: manifest 6f83559c, independent
   replay 179e868d, independent tests a08021d7; the source-bound raw-locality
   section digest is 4e0de9fd.
-- **Quadratic label blocker closed:** deterministic collision splicing gives
+- **Quadratic theorem proved:** deterministic collision splicing gives
   a 48-chord label-preserving matching of the 96-token stream.  Exact
   reduced-cone separation proves that its sole repeated chord label occurs
   at \(X_{3,i+1}\); the two corresponding intervals are nested, so every
   crossing is heterochromatic and \(Q(q_i)\) is the total chord-crossing
-  parity.  The exact occurrence census leaves 294 unevaluated nonzero-slot
-  module-order predicates plus one fixed slot-zero order predicate.  The
-  old--new head--tail interface has an exact uncompressed
-  \(1262(i+1)+188\)-predicate same-component ledger.  These are reductions,
-  not values.
+  parity.  The [frozen certificate](../.scratch/period_two_diagonal_pure_p_quadratic_certificate.md)
+  proves all 39 adjacent all-power rank comparisons in each of four
+  exhaustive cells; the 48 prefix bits have weight 21.  A genuinely
+  independent source-row reconstruction agrees with an explicit
+  4,560-pair direct kernel ledger without reading the producer's scalar.
+  Hence \(Q(q_i)=1\) for every \(i\geq0\).
 - **Diagonal finite-old terms proved:** exact AST interval counts
   \(0,28,18,24,0\) give fixed chronology parity
   \(28+24=52=0\); source-forest separation kills the fixed equal-label
@@ -109,19 +110,22 @@ finite quotient do not close a route.
   \((H_1,H_2,H_3,H_4)=(1,1,0,0)\).  The powered subtotal is therefore
   zero; adding the finite-old subtotal gives
   \(\mathbb B(A_i^\Delta,q_i)=1\) for every \(i\geq0\).
-- **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
-  pure-\(P\) normal-form note:
-  \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
-  proved zero, and the complete nonzero raw part is now also proved zero.
-  The old--new term is one, so the sole remaining scalar is
-  \(Q(q_i)=1\) on the deterministic 48-chord matching.  Evaluate its 294
-  nonzero-slot module-order predicates by three ranked slot lists: 39
-  adjacent order witnesses in each of the four cells, followed by the
-  48-row chord prefix sweep (7.6)--(7.7).  With the seed, \(Q=1\) would
-  prove \(u_{ij}=\delta_{ij}\).
-- **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
-  law; the reduction does not prove the diagonal identity.  The unary delta,
-  period-two lift, AK(3), stable AC, and AC remain open.
+- **Diagonal and unary theorem proved:** the three exact values
+  \(L(q_i)=0\), \(\mathbb B(A_i^\Delta,q_i)=1\), and \(Q(q_i)=1\) give
+  \(\mathscr C(A_i^\Delta,q_i)=0\).  Thus \(c_{i+1}=c_i\); the seed
+  \(u_{00}=1\) gives \(c_0=0\), so
+  \(u_{ij}=\delta_{ij}\), \(\mathcal D_{ij}=0\), and
+  \(I_{ij}=[i-j=-1]+[i-j=0]\).  The last-coordinate first-family unary
+  matrix therefore has infinite rank, even after its row-only and constant
+  rank-one terms.
+- **Resume point:** keep the free-group period-two lift separate.  The unary
+  theorem lives after the complete-cover/\(c^2=1\) reduction and neither
+  constructs literal correction words in \(F(c,t)\) nor cancels their
+  nonabelian residual in \([N,N]\).  The companion cross kernels and other
+  primitive families also remain open; no full-Hessian rank claim follows.
+- **Nonclaim:** no period-two free-group witness, AK(3), stable AC, or AC
+  conclusion is proved.  Even a successful lift still needs a separately
+  proved implication to the relevant AK(3) move/factorization target.
 
 ## 3. Thickenability frontier — preserved
 

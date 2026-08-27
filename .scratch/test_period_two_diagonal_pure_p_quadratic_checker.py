@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""[unverified] Structural and hostile tests for the pure-P Q certificate."""
+"""Structural and hostile tests for the pure-P Q certificate."""
 
 from __future__ import annotations
 

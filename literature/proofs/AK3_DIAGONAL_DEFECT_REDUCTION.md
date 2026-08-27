@@ -19,16 +19,17 @@ The completed \(j\)-edge theorem is
 \]
 
 This note combines (0.2) with the already proved four-corner identity to
-show that \(\mathcal D_{ij}\) is constant in \(j\). It does not prove that
-this constant is zero. The remaining diagonal target is the one-parameter
-family
+show that \(\mathcal D_{ij}\) is constant in \(j\).  The later diagonal
+pure-\(P\) theorem now proves that this constant is zero.  Thus
 
 \[
  \boxed{\mathcal D_{i0}=0\qquad(i\geq0),}
  \tag{0.3}
 \]
 
-which remains open.
+for every \(i\geq0\), and the complete unary identity is
+\(u_{ij}=\delta_{ij}\).  The free-group period-two lift and every AK3/AC
+conclusion remain open.
 
 ## 1. Inputs
 
@@ -341,3 +342,54 @@ After (5.6), target (5.3) is exactly the joint identity
 The nonzero-slot raw term, complete old--new term, and new--new quadratic
 term in (5.7) remain open. Equation (5.7) is the proof object; no termwise
 vanishing is asserted or required.
+
+## 6. Resolution by the diagonal pure-\(P\) theorem
+
+The independently replayed theorem in
+<code>AK3_PURE_P_INCREMENT_NORMAL_FORM.md</code>, equations
+(7.9)--(7.10), proves
+
+\[
+ \mathscr C(A_i^\Delta,q_i)=0
+ \qquad(i\geq0).
+ \tag{6.1}
+\]
+
+By (0.3) of that note and (3.3) here,
+
+\[
+ 0=c_{i+1}+c_i=\mathcal D_{ij}
+ \qquad(i,j\geq0).
+ \tag{6.2}
+\]
+
+The seed \(u_{00}=1\) gives \(c_0=0\), so (3.2) becomes
+
+\[
+ \boxed{u_{ij}=\delta_{ij}.}
+ \tag{6.3}
+\]
+
+Consequently the other edge direction is now exact as well:
+
+\[
+\begin{aligned}
+ I_{ij}
+ &:=u_{i+1,j}+u_{ij}\\
+ &=\delta_{i+1,j}+\delta_{ij}\\
+ &=\boxed{[i-j=-1]+[i-j=0]}.
+\end{aligned}
+ \tag{6.4}
+\]
+
+The alternative fixed-\(e=1\) target (5.3) follows from (6.2), although its
+three summands in (5.7) have not been evaluated separately.  No such
+termwise value is needed.
+
+The scalar matrix \((u_{ij})\) is the infinite identity matrix.  Hence the
+last-coordinate first-family unary contribution has infinite rank, even
+after the separately identified row-only and constant rank-one terms.  This
+does not decide the full Hessian rank: the companion cross kernels and the
+other primitive families remain open.  It also gives no lift of the
+period-two quotient witness to \(F(c,t)\), and proves no AK(3), stable-AC,
+or AC conclusion.

@@ -21380,7 +21380,7 @@
     },
     "checker": {
       "path": ".scratch/period_two_diagonal_pure_p_quadratic_checker.py",
-      "sha256": "4a98fb5b652799a2ca290d9f8005f21ddd4a238a38cc0d4adf94a03755477555"
+      "sha256": "1188ec9526f70b4cb73f252dff36e139ad4b966b69cc47afa30ec54688b8190c"
     },
     "direct_replay": {
       "path": ".scratch/period_two_seven_family_covariance_checker.py",
@@ -21405,7 +21405,7 @@
     },
     "tests": {
       "path": ".scratch/test_period_two_diagonal_pure_p_quadratic_checker.py",
-      "sha256": "b932212f7ab760a4fee22b50836d33a0679bfb51a1890d36c6d05349e54505f2"
+      "sha256": "587752a614eafe1221c59b405add04de1ac3b4250eea48644496f8a44fb96c50"
     },
     "theory": {
       "intervals": [
