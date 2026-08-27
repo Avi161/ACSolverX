@@ -2395,6 +2395,106 @@ The exact remaining task is now narrower--compare those terms with the
 strict negative energy (3.132), or prove that their maximal-ray
 contribution has smaller depth.
 
+### 3.20 The other two forest axes
+
+The ungauged occurrence Hessian contains analogous diagonal energies in
+slots two and three.  Put
+
+\[
+ g_2:=q_1^{-1}q_6=\texttt{ctcTcTctc},
+\qquad
+ g_3:=q_9^{-1}q_{14}=\texttt{TTcttcTct}.
+\tag{3.133}
+\]
+
+Equation (3.69) and its slot-three analogue give
+
+\[
+ \mathbf H_{22}=1-g_2,\qquad
+ \mathbf H_{33}=1-g_3.
+\tag{3.134}
+\]
+
+Both elements are primitive hyperbolic elements of \(C_2*\mathbb Z\),
+and they are conjugate.  Indeed, after removing the endpoint \(H\)-letters
+and cyclically reducing, their exponent-block cycles are respectively
+
+\[
+ (-1,-1,2),\qquad(2,-1,-1).
+\tag{3.135}
+\]
+
+These are cyclic rotations.  The common cycle is not a proper power: it
+has three \(c\)-syllables, while its three exponent blocks are not all
+equal.  Its inverse cycle has exponent multiset
+\(\{-2,1,1\}\), different from
+\(\{-1,-1,2\}\), so neither \(g_s\) is conjugate to \(g_s^{-1}\).
+Consequently
+
+\[
+ C_Q(g_s)=\langle g_s\rangle,\qquad s=2,3.
+\tag{3.136}
+\]
+
+For \(s=2,3\), define
+
+\[
+ \mathscr D_s(v):=Hv^{-1}g_svH.
+\tag{3.137}
+\]
+
+Every conjugate of \(g_s\) has an odd number of \(c\)-syllables.  A
+one-sided multiplication by \(c\) changes that parity, so it cannot turn
+one conjugate into another.  With zero or two endpoint \(c\)-multipliers,
+the centralizer argument used in (3.99) applies.  The non-reversibility in
+(3.135) also excludes equality with the inverse double coset.  Therefore
+
+\[
+\boxed{
+\begin{aligned}
+ \mathscr D_s(v)&\ne\mathscr D_s(v)^{-1},\\
+ \mathscr D_s(v)=\mathscr D_s(w)
+ &\Longleftrightarrow
+ wH=g_s^kvH\text{ for some }k\in\mathbb Z.
+\end{aligned}}
+\tag{3.138}
+\]
+
+Thus the \(g_s\)-axes
+\(\mathscr R_s:=\langle g_s\rangle\backslash X\) index free integral
+direct summands of \(W_Q\).  Orient them by \(\mathscr D_s(v)\).
+Since \(g_2\) and \(g_3\) are conjugate, the two families are the same
+subfamily after the corresponding conjugation reindexing.
+
+For a finite slot-\(s\) current \(f\), the diagonal quadratic contribution
+from (3.134) is
+
+\[
+ \Xi_s\bigl(f\otimes(1-g_s)f\bigr)
+ =-\Xi_s(f\otimes g_sf),
+\tag{3.139}
+\]
+
+because the oriented free-bucket reader kills the symmetric tensor
+\(f\otimes f\).  If \(f\) is supported on one
+\(\langle g_s\rangle\)-axis and \(f_i=f(g_s^iu)\), exactly the same
+calculation as in (3.123)--(3.125) gives
+
+\[
+\boxed{
+ [Q^{(s)}_{\mathrm{axis}}(f)]_{\langle g_s\rangle u}
+ =-\frac12\sum_i(f_i-f_{i-2})^2<0
+ \quad(f\ne0).}
+\tag{3.140}
+\]
+
+This proves single-axis integral anisotropy for all three forest edge
+slots.  Only slot four currently has the maximal-axis separation theorem
+(3.132).  In slots two and three the off-diagonal Hessian entries and
+cross-axis terms have not been shown to lower axis depth, and the affine
+unary defect is still present.  The axis energies are therefore exact
+leading candidates, not a full class-two obstruction.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
