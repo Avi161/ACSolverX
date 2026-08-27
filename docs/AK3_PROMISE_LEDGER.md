@@ -219,12 +219,12 @@ finite quotient do not close a route.
   occurrence-prefix base cancels between corresponding shifted chords.
   Old fixed atoms inside an endpoint occurrence remain in its local prefix.
   The exact survivor is a 48-row ledger of within-occurrence three-color
-  prefix differences.  Subtracting the matching one-step-shell prefix makes
-  every bichromatic chord crossing appear twice and cancel.  The remaining
-  48 rows are exactly the shifted-prefix seams \(\Theta\), whose possible
-  chord dependence is concentrated in the three moving \(w,z,w\) connector
-  differences.  The three local seams and those 48 seam rows remain
-  unevaluated, so this is not a proof that \(R_{4,i}=0\).
+  prefix differences.  The complete one-step-shell self-prefix vanishes by
+  double-counting crossings, but that cancellation cannot be applied after
+  restricting to these local prefixes: it also uses relative-order and
+  cross-occurrence terms already removed in the local decomposition.  The
+  three local seams and all 48 prefix rows remain unevaluated, so this is
+  not a proof that \(R_{4,i}=0\).
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
