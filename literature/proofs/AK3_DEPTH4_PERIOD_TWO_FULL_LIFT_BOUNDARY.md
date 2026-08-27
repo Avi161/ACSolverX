@@ -2727,7 +2727,7 @@ The independently guarded occurrence replay gives the complete pure-
 with every unlisted entry zero.  The checker
 \(\texttt{.scratch/period\_two\_h\_circ\_static\_expansion\_checker.py}\)
 has SHA-256
-\(\texttt{17926f4a279c0aa1ddc56d5a7a0d109e18894b954f3db98f61b9f57529b0159e}\);
+\(\texttt{d0631658c3c3e7594613e5ff24c4f58eef1e6e35ebc151b33245f9fb2cad7eb4}\);
 it reconstructs all 25 entries from (3.40), (3.54), and (3.70), obtaining
 row supports \((42,28,10,10,0)\) and matrix digest
 \(\texttt{d8ff2cfe1976d3c1fe7657c18a6b66b0e6fcb1083450cb5adb0d5682b0b025f3}\).
@@ -2793,7 +2793,7 @@ two currents are
 
 \[
  z_{15}=tF_4,\qquad z_{16}=-F_4,
- \qquad S_{14}=-(t-1)F_4,qquad S_{15}=F_4.
+ \qquad S_{14}=-(t-1)F_4,\qquad S_{15}=F_4.
  \tag{3.160}
 \]
 
@@ -2912,6 +2912,138 @@ or supports; cancellation between them and against the affine unary value
 is still possible.  The remaining anisotropy problem is now the exact
 laminar form (3.167), with each pairing evaluated by the splice rule
 (3.152)--(3.155).
+
+### 3.25 Every paired boundary is faithful
+
+None of the eight paired-occurrence currents can vanish on a nonzero
+finite current in its slot.  For \(I=[a,b]\in\mathscr I_s\), put
+
+\[
+ g_I:=q_a^{-1}q_b,
+ \qquad
+ P_I:=A_I-B_I=q_a(1-g_I)F_s.
+ \tag{3.168}
+\]
+
+The height list (3.102) gives
+
+\[
+ \nu_t(g_I)=
+ \begin{cases}
+  -1,&I=[3,4],[7,8],[11,12],[15,16],\\
+  +1,&I=[2,5],[10,13],\\
+  0,&I=[1,6],[9,14].
+ \end{cases}
+ \tag{3.169}
+\]
+
+The first six elements therefore have infinite order.  The two height-zero
+elements are \(g_2,g_3\) from (3.133), already proved primitive
+hyperbolic in (3.135)--(3.136), so they also have infinite order.
+
+For any infinite-order \(g\in Q\), the operator \(1-g\) is injective on
+finitely supported \(M=\mathbb Z[X]\).  Indeed, if a power \(g^n\)
+fixed a vertex \(xH\), then \(x^{-1}g^nx\in H\).  The nonidentity element
+of \(H\) has order two, whereas every nonzero power of \(g\) has infinite
+order.  Thus every \(g\)-orbit in \(X\) is infinite.  A finitely supported
+function constant on all such orbits is zero.  Applying this to (3.168)
+proves
+
+\[
+ \boxed{P_I=0\Longleftrightarrow F_s=0
+ \qquad(I\in\mathscr I_s).}
+ \tag{3.170}
+\]
+
+Hence a nonzero homogeneous correction necessarily activates every paired
+boundary belonging to each of its nonzero slots; the laminar polygon
+cannot collapse merely because all eight endpoint differences vanish.
+This faithfulness does not prevent their fifteen ray areas from canceling,
+so it is not yet an anisotropy theorem.
+
+### 3.26 All eight paired axes carry strict energies
+
+The paired generators in (3.168) are not merely infinite order.  Their
+verified cyclic exponent data are
+
+\[
+\boxed{
+\begin{array}{c|c|c|c}
+I&\text{cyclic }t\text{-block cycle}&\#_c&\nu_t\\ \hline
+[3,4],[7,8],[11,12]&(1,-3,1)&3&-1\\
+[2,5],[10,13]&(-1,1,-1,2)&4&1\\
+[1,6]&(-1,-1,2)&3&0\\
+[9,14]&(2,-1,-1)&3&0\\
+[15,16]&(-1)&0&-1
+\end{array}}
+\tag{3.171}
+\]
+
+No displayed cycle is periodic, so every \(g_I\) is primitive.  The
+nonzero-height rows cannot be conjugate to their inverses.  The two
+height-zero rows are the nonreversible cycles already compared in (3.135).
+Thus
+
+\[
+ \boxed{C_Q(g_I)=\langle g_I\rangle,
+ \qquad g_I\not\sim_Q g_I^{-1}.}
+ \tag{3.172}
+\]
+
+For each interval define
+
+\[
+ \mathscr D_I(v):=Hv^{-1}g_IvH,
+ \qquad
+ \mathscr R_I:=\langle g_I\rangle\backslash X.
+ \tag{3.173}
+\]
+
+The same centralizer proof as in (3.138) gives
+
+\[
+\boxed{
+ \mathscr D_I(v)=\mathscr D_I(w)
+ \Longleftrightarrow wH=g_I^kvH,
+ \qquad
+ \mathscr D_I(v)\ne\mathscr D_I(v)^{-1}.}
+\tag{3.174}
+\]
+
+For completeness, a one-sided endpoint multiplier from \(H\) is excluded
+by the \(C_2\)-coordinate of the abelianization of \(Q\): it changes the
+parity of the number of \(c\)-letters, whereas two conjugates of \(g_I\)
+have the same parity.  Zero or two endpoint multipliers reduce to (3.172),
+with the two-sided multiplier absorbed by the right \(H\)-representative.
+
+Orient the free bucket in (3.173) by \(g_I\).  If a finite slot current
+\(f\) is supported on one \(g_I\)-axis and
+\(f_j=f(g_I^ju)\), the paired term in (3.165) has coordinate
+
+\[
+\boxed{
+ -\Xi_I(f\otimes g_If)
+ =-\frac12\sum_j(f_j-f_{j-2})^2<0
+ \qquad(f\ne0).}
+\tag{3.175}
+\]
+
+Diagonal translation by \(q_a\) identifies this with
+\(-\Xi_I(A_I\otimes B_I)\).  The proof is exactly (3.139)--(3.140), and
+the polygon and block-Stokes identities are valid for this oriented skew
+reader just as they are for \(\Xi_{\mathrm{ray}}\).
+
+The guarded checker
+\(\texttt{.scratch/period\_two\_h\_circ\_static\_expansion\_checker.py}\)
+has SHA-256
+\(\texttt{d0631658c3c3e7594613e5ff24c4f58eef1e6e35ebc151b33245f9fb2cad7eb4}\)
+and verifies the eight reduced words, cycles, heights, primitivity flags,
+and inverse-cyclic flags with paired-axis digest
+\(\texttt{3195cf72e33b9e53e7bd3b6f3c1649e7bae5742b2414827689263ca440f293c0}\).
+
+Thus every nonzero slot current has a strict negative paired-axis energy.
+The other fourteen laminar terms may still enter that same bucket, so the
+eight energies do not yet add to a global sign-definite form.
 
 ## 4. Exact diagonal sieve
 

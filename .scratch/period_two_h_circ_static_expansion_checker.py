@@ -15,6 +15,7 @@ from hashlib import sha256
 Word = str
 Ring = dict[Word, int]
 Matrix = list[list[Ring]]
+Syllable = tuple[str, int]
 
 
 def reduce_word(raw: str) -> Word:
@@ -38,6 +39,68 @@ def multiply_word(left: Word, right: Word) -> Word:
 def inverse_word(word: Word) -> Word:
     return reduce_word("".join({"c": "c", "t": "T", "T": "t"}[x]
                               for x in reversed(word)))
+
+
+def syllables(word: Word) -> tuple[Syllable, ...]:
+    result: list[Syllable] = []
+    exponent = 0
+    for letter in reduce_word(word):
+        if letter == "c":
+            if exponent:
+                result.append(("t", exponent))
+                exponent = 0
+            result.append(("c", 1))
+        else:
+            exponent += 1 if letter == "t" else -1
+    if exponent:
+        result.append(("t", exponent))
+    return tuple(result)
+
+
+def cyclic_syllables(word: Word) -> tuple[Syllable, ...]:
+    value = list(syllables(word))
+    while len(value) > 1 and value[0][0] == value[-1][0]:
+        first = value.pop(0)
+        last = value.pop()
+        if first[0] == "t":
+            combined = last[1] + first[1]
+            if combined:
+                value.append(("t", combined))
+    if len(value) > 1 and value[0][0] == "t":
+        value = [value[-1], *value[:-1]]
+    return tuple(value)
+
+
+def syllable_word(value: tuple[Syllable, ...]) -> Word:
+    return "".join(
+        "c" if factor == "c" else ("t" * exponent if exponent > 0 else "T" * -exponent)
+        for factor, exponent in value
+    )
+
+
+def cyclic_rotation_equal(left: tuple[Syllable, ...], right: tuple[Syllable, ...]) -> bool:
+    return len(left) == len(right) and any(
+        left == right[offset:] + right[:offset] for offset in range(len(right))
+    )
+
+
+def is_proper_power(value: tuple[Syllable, ...]) -> bool:
+    if len(value) == 1:
+        factor, exponent = value[0]
+        return factor == "t" and abs(exponent) > 1
+    return any(
+        len(value) % period == 0
+        and value == value[:period] * (len(value) // period)
+        for period in range(1, len(value))
+    )
+
+
+def is_inverse_cyclic(value: tuple[Syllable, ...]) -> bool:
+    inverse = tuple(
+        (factor, exponent if factor == "c" else -exponent)
+        for factor, exponent in reversed(value)
+    )
+    return cyclic_rotation_equal(value, inverse)
 
 
 def ring(*terms: tuple[int, Word]) -> Ring:
@@ -184,6 +247,19 @@ PURE_T_EXPECTED: dict[tuple[int, int], Ring] = {
     (3, 4): pinned((-1, "")),
 }
 
+PAIRED_INTERVALS = ((3, 4), (7, 8), (11, 12), (2, 5),
+                    (10, 13), (1, 6), (9, 14), (15, 16))
+PAIR_AXIS_EXPECTED = (
+    (3, 4, "cTctcTTTcttc", "ctcTTTct", (1, -3, 1), 3, -1, False, False),
+    (7, 8, "cTctcTTTcttc", "ctcTTTct", (1, -3, 1), 3, -1, False, False),
+    (11, 12, "cTctcTTTcttc", "ctcTTTct", (1, -3, 1), 3, -1, False, False),
+    (2, 5, "cTctcTctt", "cTctcTctt", (-1, 1, -1, 2), 4, 1, False, False),
+    (10, 13, "cTctcTctt", "cTctcTctt", (-1, 1, -1, 2), 4, 1, False, False),
+    (1, 6, "ctcTcTctc", "cTcTctt", (-1, -1, 2), 3, 0, False, False),
+    (9, 14, "TTcttcTct", "cttcTcT", (2, -1, -1), 3, 0, False, False),
+    (15, 16, "T", "T", (-1,), 0, -1, False, False),
+)
+
 
 def formula_rows_23(linear: list[Ring]) -> dict[tuple[int, int], Ring]:
     q = [word for _, _, word in OCCURRENCES]
@@ -239,9 +315,28 @@ def main() -> None:
     }
     actual_pure = {key: value for key, value in actual_pure.items() if value}
     assert actual_pure == PURE_T_EXPECTED, (actual_pure, PURE_T_EXPECTED)
+    pair_rows = []
+    for start, end in PAIRED_INTERVALS:
+        start_word = OCCURRENCES[start - 1][2]
+        end_word = OCCURRENCES[end - 1][2]
+        pair_word = multiply_word(inverse_word(start_word), end_word)
+        cyclic = cyclic_syllables(pair_word)
+        cycle = tuple(exponent for factor, exponent in cyclic if factor == "t")
+        height = pair_word.count("t") - pair_word.count("T")
+        expected_height = (end_word.count("t") - end_word.count("T")
+                           - start_word.count("t") + start_word.count("T"))
+        assert height == expected_height
+        pair_rows.append((start, end, pair_word, syllable_word(cyclic), cycle,
+                          sum(factor == "c" for factor, _ in cyclic), height,
+                          is_proper_power(cyclic), is_inverse_cyclic(cyclic)))
+    assert tuple(pair_rows) == PAIR_AXIS_EXPECTED, (pair_rows, PAIR_AXIS_EXPECTED)
     digest = sha256(canonical_matrix(actual).encode("ascii")).hexdigest()
+    pair_digest = sha256(repr(pair_rows).encode("ascii")).hexdigest()
     support = tuple(sum(len(actual[row][column]) for column in range(5)) for row in range(5))
     print(f"Hcirc-static ok entries=25 row-support={support} digest={digest}")
+    for row in pair_rows:
+        print("pair-axis", row)
+    print(f"pair-axis ok entries=8 digest={pair_digest}")
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 
 Status: **verified fixed expansion**.  The independent guarded checker
 `.scratch/period_two_h_circ_static_expansion_checker.py` (SHA-256
-`17926f4a279c0aa1ddc56d5a7a0d109e18894b954f3db98f61b9f57529b0159e`)
+`d0631658c3c3e7594613e5ff24c4f58eef1e6e35ebc151b33245f9fb2cad7eb4`)
 reconstructed all 25 entries from the sixteen occurrence triples and both
 gauges, checked the printed row formulas and augmentations, and obtained
 row supports `(42,28,10,10,0)` with matrix digest
