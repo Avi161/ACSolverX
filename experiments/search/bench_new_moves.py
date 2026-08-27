@@ -45,7 +45,7 @@ SUBSET_CSV = os.path.join(_ROOT, "benchmark", "subsets", "benchmark_subset_60.cs
 OUT_DIR = os.path.join(_ROOT, "results", "new_moves")
 
 BUDGET = 1000
-CHECKPOINTS = (100, 250, 500, 1000)
+CHECKPOINTS = (100, 250, 500, 1000, 2500, 5000, 10000)
 MRL = 24
 
 ARMS = ("greedy", "s20_mk2", "macro_L", "macro_s20_mk2")
@@ -57,6 +57,11 @@ ARMS = ("greedy", "s20_mk2", "macro_L", "macro_s20_mk2")
 # automorphism), without materialising a path for the original — every row and
 # table carries its claim label so the two are never silently pooled.
 STAGE2_ARMS = ("greedy", "s20_mk2", "ncrw_L", "ncrw_s20_mk2", "cov_L", "cov_s20_mk2")
+
+# Stage 3 (--stage3): no heuristic anywhere — plain length ordering only.
+# The baseline, the new AC moves, the portal, and the two stacked, run deep
+# (pass --budget 10000) to see where the new moves lead on their own.
+STAGE3_ARMS = ("greedy", "ncrw_L", "cov_L", "covncrw_L")
 
 
 def _peak_reduce_trace(r1, r2):
@@ -119,14 +124,22 @@ def _run_one(job):
         image = [i1, i2]
         cfg = None if arm == "cov_L" else S20_MK2
         res = greedy_search_h(i1, i2, budget, MRL, config=cfg)
+    elif arm == "covncrw_L":
+        # the full stack, no heuristic: Whitehead-minimal coordinates, then the
+        # plain-length greedy over substitution + goal donor + ncrw rewrites
+        (i1, i2), aut_trace = _peak_reduce_trace(r1, r2)
+        image = [i1, i2]
+        res = macro_greedy_search(i1, i2, budget, MRL, config=None,
+                                  donor_wmax=-1, donor_subw=None, goal_smax=2,
+                                  ncrw_smax=2, ncrw_max_factors=4)
     else:
         raise ValueError(arm)
     wall = time.perf_counter() - t0
 
-    is_cert_arm = arm.startswith(("macro_", "ncrw_"))
+    is_cert_arm = arm.startswith(("macro_", "ncrw_", "covncrw_"))
     out = {
         "arm": arm,
-        "claim": "AC_TRIVIAL_IFF" if arm.startswith("cov_") else "AC_EQ",
+        "claim": "AC_TRIVIAL_IFF" if arm.startswith("cov") else "AC_EQ",
         "pres_id": row["pres_id"],
         "bin": row["bin"],
         "solved": res["solved"],
@@ -141,14 +154,17 @@ def _run_one(job):
         "n_donor_edges": res.get("n_donor_edges"),
         "n_ncrw_edges": res.get("n_ncrw_edges"),
     }
-    if arm.startswith("cov_"):
+    if arm.startswith("cov"):
         out["image"] = image
         out["aut_steps"] = len(aut_trace)
         out["aut_trace"] = aut_trace
     if res["solved"]:
         if is_cert_arm:
+            # certificate arms verify from the searched start — the original
+            # pair, or the Whitehead image when a portal preceded the search
+            v1, v2 = (image if image is not None else (r1, r2))
             report = verify_solution(
-                r1, r2, [tuple(s) for s in res["path"]],
+                v1, v2, [tuple(s) for s in res["path"]],
                 [tuple(c) for c in res["path_certs"]])
             out["verified"] = report["ok"]
             out["verify_reason"] = report["reason"]
@@ -207,6 +223,7 @@ ARM_META = {
     "ncrw_s20_mk2": ("sub+goal+ncrw", "s20_mk2", "AC_EQ path"),
     "cov_L": ("Whitehead reduce, then sub", "L", "AC_TRIVIAL_IFF portal"),
     "cov_s20_mk2": ("Whitehead reduce, then sub", "s20_mk2", "AC_TRIVIAL_IFF portal"),
+    "covncrw_L": ("Whitehead reduce, then sub+goal+ncrw", "L", "AC_TRIVIAL_IFF portal"),
 }
 
 
@@ -294,10 +311,17 @@ def main():
     ap.add_argument("--stage2", action="store_true",
                     help="run the stage-2 arms (ncrw + cov portal) instead of "
                          "the stage-1 grid; outputs get a 'stage2_' prefix")
+    ap.add_argument("--stage3", action="store_true",
+                    help="no-heuristic arms only (plain length ordering): "
+                         "greedy, ncrw_L, cov_L, covncrw_L; 'stage3_' prefix")
     args = ap.parse_args()
     checkpoints = tuple(b for b in CHECKPOINTS if b <= args.budget)
-    arms = STAGE2_ARMS if args.stage2 else ARMS
-    prefix = "stage2_" if args.stage2 else ""
+    if args.stage3:
+        arms, prefix = STAGE3_ARMS, "stage3_"
+    elif args.stage2:
+        arms, prefix = STAGE2_ARMS, "stage2_"
+    else:
+        arms, prefix = ARMS, ""
 
     rows = load_rows()
     subw = tuple(args.subw) if args.subw else None
@@ -335,6 +359,8 @@ def main():
     results.sort(key=lambda r: (arms.index(r["arm"]), r["pres_id"]))
     per_arm = summarise(results, args.budget, checkpoints, arms=arms)
     regen = f"python -m experiments.search.bench_new_moves --budget {args.budget}"
+    if args.stage3:
+        regen += " --stage3"
     if args.stage2:
         regen += " --stage2"
     if args.goal_smax != 2:
