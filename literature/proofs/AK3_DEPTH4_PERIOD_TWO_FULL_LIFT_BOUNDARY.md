@@ -2044,8 +2044,108 @@ every \(i\geq0\),
 
 This is exactly \(9+9=18\) finite-action weights.  There is no seed
 exception: the unprotected level zero is common to both potentials and
-cancels, while both surviving levels are at least one.  No slot-three
-source value is claimed.
+cancels, while both surviving levels are at least one.  It remains only
+to evaluate these eighteen weights in the pinned finite actions.
+
+Put
+
+\[
+ C_{k,3}(n):=\theta_k(\mathcal W_n)\qquad(n\geq1),
+ \qquad
+ S_{k,3}(i):=C_{k,3}(i+1)+C_{k,3}(i+2).
+\tag{5.45cc}
+\]
+
+The protected labels in (5.45bw) have the common exact form
+
+\[
+ u_x(n)=P_x\,\texttt{cTctttcT}^{\,3n}\texttt{ct},
+\tag{5.45cd}
+\]
+
+where the seven prefixes needed by (5.45bx) are
+
+\[
+\begin{array}{c|c@{\qquad}c|c}
+x&P_x&x&P_x\\ \hline
+a&\texttt{TctcTctcT}&b&\texttt{TctctcT}\\
+c&\texttt{TctttcT}&d&\texttt{TcttcTcTctttcT}\\
+g&\texttt{ttcT}&h&\texttt{TctcTTctttcT}\\
+j&\texttt{ttcTcTctttcT}&&
+\end{array}
+\tag{5.45ce}
+\]
+
+Direct substitution of these seven words and the nine pairs in
+(5.45bx) into the pinned actions and covectors gives the complete table
+below.  Each \(C\)-row is indexed by \(n\bmod r_k\), using positive
+levels, and each \(S\)-row by \(i\bmod r_k\).
+
+\[
+\begin{array}{c|c|c|c}
+k&r_k&C_{k,3}&S_{k,3}\\ \hline
+1&2&(0,1)&(1,1)\\
+2&4&(1,0,0,1)&(0,1,0,1)\\
+3&1&(1)&(0)\\
+4&1&(0)&(0)\\
+5&2&(1,1)&(0,0)\\
+6&4&(0,0,0,0)&(0,0,0,0)\\
+7&4&(1,1,1,1)&(0,0,0,0)\\
+8&1&(1)&(0)\\
+9&4&(1,1,0,0)&(1,0,1,0)\\
+10&1&(1)&(0)\\
+11&5&(0,0,0,0,0)&(0,0,0,0,0)\\
+12&5&(1,1,1,1,1)&(0,0,0,0,0)\\
+13&4&(1,0,1,0)&(1,1,1,1)\\
+14&4&(1,1,1,1)&(0,0,0,0).
+\end{array}
+\tag{5.45cf}
+\]
+
+The constant rows in (5.45cf) provide an internal orbit check.  The only
+nonconstant source phases are coordinate 2, which is one on odd \(i\),
+and coordinate 9, which is one on even \(i\); coordinates 1 and 13 are
+constant one.  Therefore the exact slot-three source vector is
+
+\[
+\boxed{
+ (S_{1,3}(i),\ldots,S_{14,3}(i))
+ =
+ \begin{cases}
+ \texttt{10000000100010},&i\equiv0\pmod2,\\
+ \texttt{11000000000010},&i\equiv1\pmod2.
+ \end{cases}}
+\tag{5.45cg}
+\]
+
+For clarity, define the complete differentiated-inversion source, but not
+the complete crossed derivative, by
+
+\[
+ \mathcal S_{k}(i):=S_{k,2}(i)+S_{k,3}(i)+S_{k,4}(i).
+\tag{5.45ch}
+\]
+
+Xoring (5.45ak), (5.45bd), and (5.45cg) yields the all-index identity
+
+\[
+\boxed{
+ (\mathcal S_1(i),\ldots,\mathcal S_{14}(i))
+ =
+ \begin{cases}
+ \texttt{01010001000000},&i=0,\\
+ \texttt{00000000100000},&i\geq1\text{ odd},\\
+ \texttt{01000000000000},&i\geq2\text{ even}.
+ \end{cases}}
+\tag{5.45ci}
+\]
+
+Thus the entire differentiated-inversion contribution is reduced to one
+alternating coordinate after the seed: coordinate 9 on odd indices and
+coordinate 2 on positive even indices.  The seed retains coordinates
+2, 4, and 8.  Formula (5.45ci) is not the full \(R_{k,i}\): the remaining
+old--new forest load and the other local derivative terms must still be
+combined before any constancy or AK(3) conclusion.
 
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families
