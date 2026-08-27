@@ -1807,6 +1807,91 @@ Hence the stable slot-two inversion source is
 Equation (5.45ay) does not cover the seed seam \(A_0,T_0\), and it remains
 only one component of the complete crossed derivative.
 
+The seed can be evaluated separately from its canonical rows.  The exact
+level-zero and terminal length ledger is
+
+\[
+\begin{array}{c|rrrrrrrr}
+ &a_0&b_0&c_0&d_0&e_0&f_0&g_0&z_1\\ \hline
+ |x|&3&15&22&26&4&12&20&30\\
+ |Bx|&12&22&29&17&4&15&23&29.
+\end{array}
+\tag{5.45az}
+\]
+
+The protected full-depth \(B\)-cancellation in (5.45ao) does not apply to
+the three level-zero \(P_*\) rows.  Their direct forms are
+
+\[
+ e_0=B^{-1}(GT)\texttt{ct},\quad
+ f_0=B^{-1}(GT)\delta\texttt{ct},\quad
+ g_0=B^{-1}(GT)\delta^2\texttt{ct},
+\]
+
+so multiplication by \(B\) gives the lengths \(4,15,23\) in (5.45az).
+The old terminal schema at exponent zero is the physical \(z_1\); its
+frozen output label has length \(29\).
+
+The level-one transformed lengths for \(a_1,\ldots,g_1\) are
+
+\[
+ (36,46,53,41,19,27,35).
+\]
+
+Hence the exact seed reversal sets are
+
+\[
+\begin{aligned}
+ A_0={}&\{(b_0,e_1),(c_0,e_1),(c_0,f_1),(g_0,e_1)\},\\
+ T_0={}&\{(c_0,z_1)\}.
+\end{aligned}
+\tag{5.45ba}
+\]
+
+For the terminal tie, \(Bc_0\) and \(Bz_1\) both have length \(29\).
+The latter begins \(\texttt{ctcTT}\), while the former begins
+\(\texttt{ctcTc}\); since \(T<c\), one has \(Bz_1<Bc_0\), proving the
+single reversal in \(T_0\).
+
+Relative to the formal protected seed, (5.45ba) contributes the correction
+
+\[
+\begin{aligned}
+ (\omega_k(g_0,e_1))_{k=1}^{14}
+   &=\texttt{11101010100101},\\
+ (\omega_k(b_0,z_1))_{k=1}^{14}
+   &=\texttt{11111011100101},\\
+ (\omega_k(g_0,e_1)+\omega_k(b_0,z_1))_{k=1}^{14}
+   &=\texttt{00010001000000}.
+\end{aligned}
+\tag{5.45bb}
+\]
+
+Combining this correction with the stable formal value proves
+
+\[
+\boxed{
+ \bigl(S_{1,2}(0),\ldots,S_{14,2}(0)\bigr)
+ =\texttt{10010001000010}.}
+\tag{5.45bc}
+\]
+
+Thus the complete slot-two inversion source is now the exact piecewise
+all-index function
+
+\[
+\boxed{
+ (S_{1,2}(i),\ldots,S_{14,2}(i))
+ =
+ \begin{cases}
+ \texttt{10010001000010},&i=0,\\
+ \texttt{10000000000010},&i\geq1.
+ \end{cases}}
+\tag{5.45bd}
+\]
+
+This still evaluates only the slot-two inversion source.
+
 Finally, slot three has a sharper exact cancellation signature than the
 generic band (5.46d).  Write
 

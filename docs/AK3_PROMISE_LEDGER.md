@@ -175,13 +175,14 @@ finite quotient do not close a route.
   exact length gap.  For \(i\geq1\), the slot-two source is exactly 22
   finite-action weights on two new levels, two adjacent seams, and two
   terminal incidences; their evaluated all-index stable vector is
-  `10000000000010`, with survivors \(k=1,13\).  The case \(i=0\)
-  still needs only its seed seam/terminal table.
+  `10000000000010`, with survivors \(k=1,13\).  The separately evaluated
+  seed is `10010001000010`, with survivors \(k=1,4,8,13\).  Thus the
+  slot-two inversion source is completely known for every index.
   The slot-three source has an exact \(G\)-cancellation-depth signature and
   at most 975 prefiltered comparisons plus one bounded seed table; its
   protected part has joint period dividing 20.  Thus no genuine parity
-  prefix sum remains, although the slot-two seed at \(i=0\) and the
-  slot-three source values are not yet evaluated.  The
+  prefix sum remains, although the slot-three source values are not yet
+  evaluated.  The
   152-schema common-phase/Fine--Wilf argument and its source-bound onset 99
   conservatively control their surviving parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
