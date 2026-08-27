@@ -40,7 +40,7 @@ def main() -> None:
 
     manifest = checker.build_manifest()
     assert checker.verification_failures(manifest) == []
-    assert manifest["format"] == "period-two-inverse-pure-increment-direct-q-v3"
+    assert manifest["format"] == "period-two-inverse-pure-increment-direct-q-v4"
     assert len(manifest["cells"]) == 12
     assert len(manifest["cell_results"]) == 12
     assert len(manifest["provenance"]) == 92
@@ -104,12 +104,17 @@ def main() -> None:
             ) % 2
             for pump in raw["pumps"]:
                 pump_count += 1
-                assert pump["primitive_core_shield"]
-                assert pump["one_step_signature_matches"]
+                assert pump["horizon_saturated"]
+                assert pump["base_next_raw_signature_equal"]
+                assert pump["central_length_slope"] > 0
                 assert pump["core_length"] == 8
+                assert pump["affine_increment"] == 3
+                assert pump["saturated_boundary"] == (
+                    pump["insertion_split"]
+                    + pump["affine_increment"] * pump["core_length"]
+                )
                 if pump["variable"] == "n":
                     assert pump["block"] == "p"
-                    assert pump["base_exponent"] >= 9
         pair_ids = {
             f"pair:{left['id']}|{right['id']}"
             for index, left in enumerate(result["tokens"])
@@ -133,7 +138,30 @@ def main() -> None:
         checker,
         manifest,
         lambda changed: changed["cell_results"][8]["raw_records"][0]["pumps"][0].__setitem__(
-            "primitive_core_shield", False
+            "horizon_saturated", False
+        ),
+    )
+    assert_rejected(
+        checker,
+        manifest,
+        lambda changed: changed["cell_results"][8]["raw_records"][0]["pumps"][0].__setitem__(
+            "insertion_split",
+            changed["cell_results"][8]["raw_records"][0]["pumps"][0]["insertion_split"] + 1,
+        ),
+    )
+    assert_rejected(
+        checker,
+        manifest,
+        lambda changed: changed["cell_results"][8]["raw_records"][0]["pumps"][0].__setitem__(
+            "affine_increment", 4
+        ),
+    )
+    assert_rejected(
+        checker,
+        manifest,
+        lambda changed: changed["cell_results"][8]["raw_records"][0]["pumps"][0].__setitem__(
+            "action_horizon",
+            changed["cell_results"][8]["raw_records"][0]["pumps"][0]["action_horizon"] + 1,
         ),
     )
     assert_rejected(

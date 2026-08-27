@@ -41,14 +41,25 @@ finite quotient do not close a route.
   \([e=0]\) and tie load `0`; fixed/base loads vanish and the singleton
   load is `1`.  Hence
   \(\mathbb B(A^-_{n,e},b^-_{n,e})=[e\geq1]\), independently of \(n\).
-- **Resume point:** prove the joint inverse scalar identity
-  \(L_{\ne0}(b^-_{n,e})+Q(b^-_{n,e})=[e\geq1]\), equivalently the remaining
-  pure-increment theorem \(\Phi(b^-_{n,e})=1\).  Its exact unresolved schema
-  is 36 paired raw bits plus 210 same-slot module-order predicates on the
-  collision-aggregated 84-token stream.  Then prove the diagonal defect.
-- **Nonclaim:** positive covariance is not by itself the \(j\)-edge values and
-  does not prove the other chambers, diagonal identity, unary delta,
-  period-two lift, AK(3), stable AC, or AC.
+- **Inverse pure increment and edge law proved:** the approved
+  [all-power inverse certificate](../.scratch/period_two_inverse_pure_increment_certificate.md)
+  evaluates the 36 paired raw bits and all 3,486 pairs of the 84-token stream
+  on twelve exhaustive symbolic cells.  It gives
+  \(L(b^-_{n,e})=0\), \(Q(b^-_{n,e})=1\), and
+  \(\Phi(b^-_{n,e})=1\), hence \(J^-_{n,e}=[e=0]\).  The frozen manifest is
+  `.scratch/period_two_inverse_pure_increment_manifest.json`, SHA-256
+  `4e821f1cc9b721281178341b458669de3ac7191314a8e613fb7a37866e40b0cd`.
+- **Positive raw load and edge law proved:** the separate
+  [positive-chamber theorem](../literature/proofs/AK3_POSITIVE_J_EDGE_RAW_LOAD.md)
+  proves \(L(b_{n,d})=0\) for every \(d\geq1\).  With the already proved
+  \(Q(b_{n,d})=1\) and
+  \(\mathbb B(A_{n,d},b_{n,d})=[d>1]\), it gives
+  \(J_{n,d}=[d=1]\).  Together with the inverse theorem, the \(j\)-edge law
+  is complete in every chamber.
+- **Resume point:** prove the diagonal defect.
+- **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
+  law, diagonal identity, unary delta, period-two lift, AK(3), stable AC,
+  or AC.
 
 ## 3. Thickenability frontier — preserved
 

@@ -867,11 +867,6 @@ def raw_records(
                 failures.append(f"raw_pump_block:{token['id']}:{variable}:{len(candidates)}")
                 continue
             kind, core, affine = candidates[0]
-            exponent = (
-                schema.q_multiplier * (cell.base_e + schema.q_offset)
-                if kind == "q"
-                else schema.p_multiplier * (cell.base_n + schema.p_offset)
-            )
             split = dict(template.insertion_splits).get(kind)
             if split is None:
                 failures.append(f"raw_pump_split:{token['id']}:{variable}")
@@ -881,21 +876,26 @@ def raw_records(
             next_vertex = direct_schema_vertex(generator, schema, next_e, next_n)
             next_observable = residual.raw_observable(generator, action, next_vertex)
             stable_signature = base[:3] == next_observable[:3]
-            shield = split + exponent * len(core) > locality["action_horizon"]
+            affine_increment = affine[coefficient_index]
+            saturated_boundary = split + affine_increment * len(core)
+            horizon_saturated = saturated_boundary > locality["action_horizon"]
+            central_length_slope = len(next_observable[3]) - len(base[3])
             pump = {
                 "variable": variable,
                 "block": kind,
                 "core": generator.lit(core),
                 "core_length": len(core),
-                "base_exponent": exponent,
                 "insertion_split": split,
+                "affine_increment": affine_increment,
                 "action_horizon": locality["action_horizon"],
-                "primitive_core_shield": shield,
-                "one_step_signature_matches": stable_signature,
+                "saturated_boundary": saturated_boundary,
+                "horizon_saturated": horizon_saturated,
+                "base_next_raw_signature_equal": stable_signature,
+                "central_length_slope": central_length_slope,
                 "one_step": observable_record(generator, next_observable),
             }
             pumps.append(pump)
-            if not shield or not stable_signature:
+            if not horizon_saturated or not stable_signature or central_length_slope <= 0:
                 failures.append(f"raw_pump:{token['id']}:{variable}")
         if pumps and (
             not locality["all_first_half_noncentral"]
@@ -913,7 +913,7 @@ def raw_records(
                 "base": base_record,
                 "locality": locality,
                 "pumps": pumps,
-                "source_binding": "raw_observable + primitive-core locality induction",
+                "source_binding": "raw_observable + one-increment horizon-saturation lemma",
             }
         )
     return records, failures
@@ -1211,7 +1211,7 @@ def build_manifest() -> dict[str, Any]:
         *(failure for cell in cells for failure in cell["generation_failures"]),
     ]
     return {
-        "format": "period-two-inverse-pure-increment-direct-q-v3",
+        "format": "period-two-inverse-pure-increment-direct-q-v4",
         "scope": {
             "parameters": "e=j-i>=0, n=i>=0",
             "increment": "b^-_(n,e)=A^-_(n,e)+A^-_(n,e+1)",
@@ -1242,6 +1242,21 @@ def build_manifest() -> dict[str, Any]:
                 "path": str(RAW_PATH.relative_to(ROOT)),
                 "function": "raw_observable",
                 "sha256": sha256_path(RAW_PATH),
+                "locality_lemma": (
+                    "For A R^(k t) B, if one inserted affine increment moves the "
+                    "right edge past the finite action horizon, the exact base and "
+                    "next raw signatures agree, and the central length has positive "
+                    "slope, then later insertions cannot alter the horizon prefix."
+                ),
+                "certificate_fields": [
+                    "insertion_split",
+                    "affine_increment",
+                    "core_length",
+                    "action_horizon",
+                    "saturated_boundary",
+                    "base_next_raw_signature_equal",
+                    "central_length_slope",
+                ],
             },
             "direct_replay": {
                 "path": str(DIRECT_PATH.relative_to(ROOT)),
@@ -1360,7 +1375,31 @@ def verification_failures(manifest: dict[str, Any]) -> list[str]:
                 if record["pumps"] and not record["locality"]["central_strictly_longer"]:
                     failures.append(f"raw_length:{cell_id}:{record['id']}")
                 for pump in record["pumps"]:
-                    if not pump["primitive_core_shield"] or not pump["one_step_signature_matches"]:
+                    expected_boundary = (
+                        pump["insertion_split"]
+                        + pump["affine_increment"] * pump["core_length"]
+                    )
+                    expected_saturation = expected_boundary > pump["action_horizon"]
+                    expected_signature_equal = all(
+                        record["base"][field] == pump["one_step"][field]
+                        for field in ("first_half_labels", "equalities", "rho")
+                    )
+                    expected_central_slope = (
+                        pump["one_step"]["central_length"]
+                        - record["base"]["central_length"]
+                    )
+                    if (
+                        pump["core_length"] != len(pump["core"])
+                        or pump["affine_increment"] != 3
+                        or pump["action_horizon"] != record["locality"]["action_horizon"]
+                        or pump["saturated_boundary"] != expected_boundary
+                        or pump["horizon_saturated"] != expected_saturation
+                        or not expected_saturation
+                        or pump["base_next_raw_signature_equal"] != expected_signature_equal
+                        or not expected_signature_equal
+                        or pump["central_length_slope"] != expected_central_slope
+                        or expected_central_slope <= 0
+                    ):
                         failures.append(f"raw_pump:{cell_id}:{record['id']}:{pump['variable']}")
             pairs = result["quadratic"]["pairs"]
             expected_pair_ids = {

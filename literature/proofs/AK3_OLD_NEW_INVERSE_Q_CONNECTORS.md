@@ -32,16 +32,15 @@ The corresponding \(j\)-edge bit is
  \tag{0.3}
 \]
 
-The desired nonpositive-chamber edge law would be
+The nonpositive-chamber edge law is
 
 \[
  J^-_{n,e}=[e=0].
  \tag{0.4}
 \]
 
-This note does not prove (0.4).  It proves the exact inverse-\(Q\) powered
-chain telescope, terminal topology, support count, and complete old--new
-pairing
+This note proves (0.4).  The exact inverse-\(Q\) powered chain telescope,
+terminal topology, support count, and complete old--new pairing give
 
 \[
  \boxed{
@@ -50,8 +49,18 @@ pairing
  \tag{0.5}
 \]
 
-No symmetry with the positive chamber is asserted or used.  The remaining
-raw and new--new terms in (0.3) are not evaluated here.
+The all-power certificate in
+`.scratch/period_two_inverse_pure_increment_certificate.md` evaluates the
+remaining pure increment as
+
+\[
+ L(b^-_{n,e})=0,\qquad Q(b^-_{n,e})=1,
+ \qquad \Phi(b^-_{n,e})=1.
+ \tag{0.6}
+\]
+
+Combining (0.5) and (0.6) proves (0.4).  No symmetry with the positive
+chamber is asserted or used.
 
 All chains are collision-aggregated in the common stored-edge basis.
 Integral family and incidence signs are placed before reduction modulo two.
@@ -646,7 +655,7 @@ The powered outer load is (6.8), and the three finite-old values are
 This completes the inverse old--new term only.  It is independent of
 \(n\), but it is not the complete \(J^-_{n,e}\) edge law.
 
-## 7. Exact joint pure-increment reduction
+## 7. Exact joint pure-increment theorem and proof interface
 
 ### 7.1 Equivalent remaining scalar
 
@@ -687,8 +696,8 @@ The reviewed slot-zero identity (1.12) then makes (7.3) equivalent to
  \tag{7.5}
 \]
 
-Equations (7.3)--(7.5) are equivalences, not evaluations of the displayed
-pure-increment terms.
+Equations (7.3)--(7.5) isolate the scalar evaluated by the all-power
+certificate below.
 
 ### 7.2 Exact slot-zero order
 
@@ -937,58 +946,96 @@ the three nonzero slots:
  \tag{7.27}
 \]
 
-No value for those 210 predicates is asserted here.  Combining
-(7.5), (7.21), and (7.26) gives the exact joint remaining scalar:
+The guarded v4 certificate evaluates every one of the 72 occurrence-wise raw
+rows and all \(\binom{84}{2}=3486\) decorated-token pairs in each of twelve
+disjoint all-power cells.  Its exact values are
+
+\[
+\boxed{
+ L((b^-_{n,e})^{(0)})=[e=0],\qquad
+ L_{\ne0}(b^-_{n,e})=[e=0],\qquad
+ L(b^-_{n,e})=0,
+}
+\tag{7.28}
+\]
+
+and
+
+\[
+\boxed{
+ Q(b^-_{n,e})=1,
+ \qquad
+ \Phi(b^-_{n,e})=1.}
+\tag{7.29}
+\]
+
+Consequently the joint scalar in the proof interface is
 
 \[
 \boxed{
  \sum_{s=2}^4\sum_{v\in\mathcal S_s}R_s(v)
  +\operatorname{cr}_{\ne}(C_{84},M)
- \stackrel{\rm open}{=}[e\geq1].}
- \tag{7.28}
+ =[e\geq1].}
+\tag{7.30}
 \]
 
-Equation (7.28) is equivalent to \(\Phi(b^-_{n,e})=1\) and hence to the
-inverse edge law, but it is not proved.
+### 7.6 All-power certificate and edge law
 
-### 7.6 Why topology does not finish the scalar
-
-The source-tree topology determines the 38 module coordinates, the 84
-decorated tokens, the matching \(M\), and the endpoint expression (7.23).
-It does not determine the occurrence-wise raw weights \(R_s(v)\) or the
-within-occurrence canonical shortlex order represented by the 210
-predicates in (7.27).
-
-In particular, the exact counterexample in
-period_two_crossing_parity_induction.md, Section 5, equations (5.4)--(5.5),
-shows that \(\rho_o(v)\) is not a function only of the central
-post-\(\operatorname{cvert}\) label.  A label-preserving source-tree
-matching therefore cannot erase the local raw mirrors.  Nor does path
-distance determine canonical quotient shortlex.
-
-Consequently
+The certificate and its hostile-review record are documented in
+`.scratch/period_two_inverse_pure_increment_certificate.md`.  Its cells are
 
 \[
- \boxed{\Phi(b^-_{n,e})=1}
- \tag{7.29}
+ \{e=0,e=1,e\geq2\}
+ \times\{n=0,n=1,n=2,n\geq3\}.
+ \tag{7.31}
 \]
 
-remains open.
+In each cell the 92 signed provenance rows form 53 exact all-power collision
+fibers, 36 of which are active with profile \((8,14,14)\).  The two
+slot-zero coordinates and 36 active edge coordinates generate the exact
+84-token stream in Section 7.5.  A common primitive reference removes cyclic
+phase ambiguity across commensurable schemas.  For every free raw direction,
+the recorded one-increment saturation witness proves that later insertions
+lie beyond the finite action horizon.  The checker then recomputes the raw
+rows, canonical comparisons, all pair bits, and the values (7.28)--(7.30),
+with an independent direct semantic replay at every cell base.
+
+Topology alone would not prove those values.  In particular, the exact
+counterexample in `period_two_crossing_parity_induction.md`, Section 5,
+equations (5.4)--(5.5), shows that \(\rho_o(v)\) is not a function only of
+the central post-\(\operatorname{cvert}\) label.  The certificate evaluates
+the local raw mirrors and shortlex comparisons rather than erasing them by a
+source-tree argument.
+
+Finally, (0.3), (6.15), (7.28), and (7.29) give
+
+\[
+\boxed{
+ J^-_{n,e}
+ =0+[e\geq1]+1
+ =[e=0].}
+\tag{7.32}
+\]
 
 ## 8. Honest remaining boundary
 
-The following terms are not evaluated here:
+The theorem above closes the inverse/nonpositive chamber
+\(e=j-i\geq0\).  Separately,
+`literature/proofs/AK3_POSITIVE_J_EDGE_RAW_LOAD.md` proves
 
-1. the joint raw/crossing identity (7.28), comprising the 36 raw bits and
-   210 unresolved same-slot order predicates;
-2. equivalently, \(Q(b^-_{n,e})\), the non-slot-zero raw term, and the
-   required new--new contribution;
-3. the complete target \(J^-_{n,e}=[e=0]\);
-4. the diagonal defect and the unary delta identity; and
-5. the period-two lift, AK(3), stable Andrews--Curtis, and
-   Andrews--Curtis.
+\[
+ L(b_{n,d})=0,
+ \qquad
+ J_{n,d}=[d=1]
+ \qquad(d\geq1).
+ \tag{8.1}
+\]
 
-The exact chain, topology, tie, finite-old, and joint-reduction identities
-above make no claim that the open scalar vanishes.  In particular, this
-note is not a complete nonpositive-chamber edge-law proof and contains no
-AK3 or Andrews--Curtis conclusion.
+Together with (7.32), this completes the \(j\)-edge law in every chamber.
+The positive theorem is not inferred by symmetry from the inverse
+certificate; it has its own all-power raw proof.
+
+The next obligation is the diagonal defect.  The \(i\)-edge law, unary delta
+identity, period-two lift, AK(3), stable Andrews--Curtis, and
+Andrews--Curtis all remain open.  This note contains no claim about any of
+them.
