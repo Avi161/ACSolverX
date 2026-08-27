@@ -1,0 +1,5344 @@
+{
+  "max_defining_length": 8,
+  "records": [
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYYYYYxyXyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYxyXy",
+          "YxxyXYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYYXyxyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXztxxzt",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxY",
+        "template": "ztxY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_0",
+      "source": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyXX",
+          "YYxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "TZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyxyxyXYY",
+          "YxxyXXYX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYxyXyX"
+        ],
+        "rank3": [
+          "ztztztxTZXTZX",
+          "ZX",
+          "TXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyy",
+        "template": "zty",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 56,
+      "name": "aca_1",
+      "source": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXXyx",
+          "YYYXyyyxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYxyyyXXX",
+          "YxxyxyX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YXXyXyx",
+          "YYYXyyyxx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXztxztxztxxx",
+          "ZX",
+          "TXztztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyXyxY",
+        "template": "ztxY",
+        "word_t": "XyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_2",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYYYYXyXyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYXyXy",
+          "YxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYxyxyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZxztxxzt",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxY",
+        "template": "ztxY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_3",
+      "source": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYXYXyyxxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXyyxxyxY",
+          "YxxxyXYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YYXXXyx",
+          "YYxyxyXyXYX"
+        ],
+        "rank3": [
+          "TZTZxztxztXztXTZX",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYY",
+        "template": "ztY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_4",
+      "source": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyx",
+          "YYYXXYxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXyxxyyyX",
+          "YxxxyxYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXyX",
+          "YYYxyXyxyxyx"
+        ],
+        "rank3": [
+          "TZTZTZxztXztxztxztx",
+          "ZX",
+          "TXXztXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXYY",
+        "template": "ztY",
+        "word_t": "XXyXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 68,
+      "name": "aca_5",
+      "source": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyxxyx",
+          "YXXXYxxxxxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYxxxxxyXYXX",
+          "YYXXyxxyx"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXyxxyx",
+          "YXXXXXyxYx"
+        ],
+        "rank3": [
+          "xTZXXXXXztxTZx",
+          "ZX",
+          "TTZxxztXztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyyXY",
+        "template": "ztXY",
+        "word_t": "XYxxyy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_6",
+      "source": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyXX",
+          "YYXYXYXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "TZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyxyxyxyyxxyx",
+          "YxxyXXYX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYYxYXYX"
+        ],
+        "rank3": [
+          "ztztztztxztXztX",
+          "ZX",
+          "TXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyy",
+        "template": "zty",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_7",
+      "source": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxx",
+          "YYXyyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyxyxYYXX",
+          "YxxYXyX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXyXYxx",
+          "YYXYXyyx"
+        ],
+        "rank3": [
+          "ztxztztXTZXTZx",
+          "ZX",
+          "TXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxy",
+        "template": "ztxy",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 52,
+      "name": "aca_8",
+      "source": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXXyXyXyXYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxxyXyX",
+          "YxxxyXX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYXXyyX"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXztxxztx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 68,
+      "name": "aca_9",
+      "source": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXXyXyXYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxxYxyXyX",
+          "YxxxyXX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXXyxx",
+          "YYXYXyyX"
+        ],
+        "rank3": [
+          "XXTZXXTZXXXTZXztxxztx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_10",
+      "source": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyxYxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxyXXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYXyxyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXztxxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_11",
+      "source": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyxYxYxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxxYXyXyX",
+          "YxxxyXX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXXyxx",
+          "YYXYxyyX"
+        ],
+        "rank3": [
+          "XXTZXXTZXXXTZxztxxztx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_12",
+      "source": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXXYXYx",
+          "YXXYxxxyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YxxxyXXYXX",
+          "YxYXYXXYX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YYXXYYx",
+          "YXXXyxxYx"
+        ],
+        "rank3": [
+          "TZXXXztxxTZx",
+          "ZX",
+          "TXTZTZxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYYxYY",
+        "template": "ztY",
+        "word_t": "XYYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_13",
+      "source": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXXyx",
+          "YYYxyyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYxyyXXX",
+          "YxxyxyX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXyXyx",
+          "YYYXyyxx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXztxztxxx",
+          "ZX",
+          "TXztztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyXyxY",
+        "template": "ztxY",
+        "word_t": "XyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_14",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXYxYxY",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYxyyyX"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxTZXXTZXXTZX",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_15",
+      "source": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXyxxyXYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YxyXyxYXX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXXyxx",
+          "YXyxxyXYx"
+        ],
+        "rank3": [
+          "TZXztxxztXTZx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 60,
+      "name": "aca_16",
+      "source": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXYxxx",
+          "YYYYxyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYxyyyXX",
+          "YxxxYXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXXYxYx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXztxztxztxx",
+          "ZX",
+          "TXXXTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxYxY",
+        "template": "ztxY",
+        "word_t": "XXYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_17",
+      "source": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYXyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYXyyy",
+          "YxxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYxyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZxztxztxzt",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_18",
+      "source": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxxx",
+          "YYYYxyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyxYYYXX",
+          "YxxxYXyX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXyXYxxx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "ztxztxztxztXTZXTZXTZx",
+          "ZX",
+          "TXXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxy",
+        "template": "ztxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_19",
+      "source": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYxyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYxyyyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXztxztxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_20",
+      "source": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXyxxyxxyxx",
+          "YYXXyx"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYxyyyX"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxztXztXztXX",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_21",
+      "source": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYXyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYXyyy",
+          "YxxYXXyX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYxyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZxztxztxzt",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_22",
+      "source": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYxyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYxyyyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXztxztxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_23",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YYXXYXYXYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYxYYXX",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYXXYXYx"
+        ],
+        "rank3": [
+          "TZTZTZXXTZXTZx",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_24",
+      "source": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYxyxxyxxy",
+          "YYXXyx"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZXztXztXzt",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_25",
+      "source": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXYxxx",
+          "YXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYXyXyXyX",
+          "YxxxYYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxYxx",
+          "YYYYxyyyX"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZxztxxztxxztx",
+          "ZX",
+          "TXXXTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxY",
+        "template": "ztxxY",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_26",
+      "source": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyXyxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyxYxYxYXX",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztXTZXXTZXXTZx",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_27",
+      "source": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXYxxx",
+          "YXyXyXyXyxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxyXyXyXXX",
+          "YxxxYYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxYxx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXztxxztxxztxxx",
+          "ZX",
+          "TXXXTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxY",
+        "template": "ztxxY",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_28",
+      "source": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYxxyxyXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXXyyxxyx",
+          "YxxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXXyx",
+          "YYxxyxyXyX"
+        ],
+        "rank3": [
+          "TZTZxxztxztXztX",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYY",
+        "template": "ztY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_29",
+      "source": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YXYXYXYXYXyxxxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXyxxxyx",
+          "YxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYYxyXXyX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZxztXXztX",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYY",
+        "template": "ztY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_30",
+      "source": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyXX",
+          "YYXyxyxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "TZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyxyxyxyxyxYYXX",
+          "YxxyXXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYYYXyXyx"
+        ],
+        "rank3": [
+          "ztztztztztXTZXTZx",
+          "ZX",
+          "TXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyy",
+        "template": "zty",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_31",
+      "source": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYxyXyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYxyXyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYXyxyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXztxxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_32",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYxyxyXyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYxyxyXyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYXyXyxyx"
+        ],
+        "rank3": [
+          "XTZXTZXztztxxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_33",
+      "source": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxx",
+          "YXyXyXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxyXyXyXyXXX",
+          "YxxxxYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YXXXYxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxY",
+        "template": "ztxxY",
+        "word_t": "XXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_34",
+      "source": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYxxyxyxyXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXXyyxxyx",
+          "YxxxyXYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YYXXXyx",
+          "YYYxxyxyXyX"
+        ],
+        "rank3": [
+          "TZTZTZxxztxztXztX",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYY",
+        "template": "ztY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_35",
+      "source": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxyXYxx",
+          "YYXYxxyxYX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYxyXYxx",
+          "YxxyxYXYYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YYXYYXXyX",
+          "YYXyxYXXX"
+        ],
+        "rank3": [
+          "TZTZXztxTZXXX",
+          "ZX",
+          "TXztXTZTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyXYYXYY",
+        "template": "ztY",
+        "word_t": "XyXYYXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 60,
+      "name": "aca_36",
+      "source": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YXYXYXYXYxyxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYxyxyxyxyX",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZXztztztztx",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_37",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYxyxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYxyxyxyxyX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZXztztztztx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_38",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXYxxx",
+          "YYYYYxyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYxyyyyXX",
+          "YxxxYXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXXYxYx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXztxztxztxztxx",
+          "ZX",
+          "TXXXTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxYxY",
+        "template": "ztxY",
+        "word_t": "XXYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_39",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYXyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYXyyyy",
+          "YxxxyXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYxyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZxztxztxztxzt",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_40",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxxx",
+          "YYYYYxyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyyxYYYYXX",
+          "YxxxYXyX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXyXYxxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "ztxztxztxztxztXTZXTZXTZXTZx",
+          "ZX",
+          "TXXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxy",
+        "template": "ztxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_41",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYxyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYxyyyyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXztxztxztxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_42",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxxYxx",
+          "YXXyXyxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyxYxYxxxYXXX",
+          "YxxxxYxxYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxYxxx",
+          "YYXyyXXyxx"
+        ],
+        "rank3": [
+          "ztxxztXTZXXTZXXXXTZxx",
+          "ZX",
+          "TXXXXTZXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXyxxy",
+        "template": "ztxxy",
+        "word_t": "XXyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 68,
+      "name": "aca_43",
+      "source": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYxxyxxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYxxyxxyX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYXXyXyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZXXztXztx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 92,
+      "name": "aca_44",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXXYxxxx",
+          "YXXYxYxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyxxyXXXX",
+          "YxxxxYXyXX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXyXYxxx",
+          "YYYYXXXYxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztXztxxxx",
+          "ZX",
+          "TXXXXTZxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxy",
+        "template": "ztxxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_45",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYxyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYxyyyyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXztxztxztxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_46",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXyxxyxxyxxyxx",
+          "YYXXyx"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYxyyyyX"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxztXztXztXztXX",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_47",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YXXyXyXyXyxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxxyXXXXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXXyxYxx",
+          "YYYYXXyxxx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXztxxxxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxY",
+        "template": "ztxxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_48",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYXyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYXyyyy",
+          "YxxYXXyX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYxyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZxztxztxztxzt",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_49",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYxyxxyxxyxxy",
+          "YYXXyx"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZXztXztXztXzt",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_50",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXYxxx",
+          "YXyXyXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxyXyXyXyXXX",
+          "YxxxYYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXYxYxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxY",
+        "template": "ztxxY",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_51",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyxYxYxYxYXX",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztXTZXXTZXXTZXXTZx",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_52",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYXyyxxYxYX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYxyyxyXyXXX",
+          "YxxyXYX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YXXyxYx",
+          "YYXyyXyxyxx"
+        ],
+        "rank3": [
+          "XTZXTZXztxztztxxztxxx",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxY",
+        "template": "ztxY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 68,
+      "name": "aca_53",
+      "source": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxxyXX",
+          "YXYXXyxxxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXXyxxxxx",
+          "YxxxxyXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXXyxx",
+          "YYxxyXXXXX"
+        ],
+        "rank3": [
+          "TZTZxxztXXXXX",
+          "ZX",
+          "TXXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_54",
+      "source": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyx",
+          "YYXyXYxxyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYXyXYxxyy",
+          "YxxxyxYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YXXXyXYx",
+          "YYxyxYXXyyX"
+        ],
+        "rank3": [
+          "XTZXTZxztxTZXXztxzt",
+          "ZX",
+          "TXXztXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXYxY",
+        "template": "ztxY",
+        "word_t": "XXyXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_55",
+      "source": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YYXYXXyxxxYX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYYXYXXyxxx",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYXYYxxyXXX"
+        ],
+        "rank3": [
+          "TZTZXTZTZxxztXXX",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_56",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YYXYXyxxxxYX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYYXYXyxxxx",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYXYYxyXXXX"
+        ],
+        "rank3": [
+          "TZTZXTZTZxztXXXX",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_57",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxx",
+          "YXyXyXyXyXyXyxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxyXyXyXyXyXXX",
+          "YxxxxYX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXXYxx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxY",
+        "template": "ztxxY",
+        "word_t": "XXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_58",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyxx",
+          "YxYxYxYxxxxxxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXXXXXXXXX",
+          "YxxyxxYX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXYxxyxx",
+          "YYYYxxxxxxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxxxxxxxx",
+          "ZX",
+          "TXztXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYXXyxxy",
+        "template": "ztxxy",
+        "word_t": "XYXXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 38,
+      "name": "aca_59",
+      "source": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YXXyXyXyXyXyxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxxyXXXXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXXyxYxx",
+          "YYYYYXXyxxx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXztxxxxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxY",
+        "template": "ztxxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_60",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXXYxxxx",
+          "YXXYxYxYxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyxxyXXXX",
+          "YxxxxYXyXX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXyXYxxx",
+          "YYYYYXXXYxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztXztxxxx",
+          "ZX",
+          "TXXXXTZxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxy",
+        "template": "ztxxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_61",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXYxxx",
+          "YYYYYYxyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYxyyyyyXX",
+          "YxxxYXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXYxYx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXztxztxztxztxztxx",
+          "ZX",
+          "TXXXTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxYxY",
+        "template": "ztxY",
+        "word_t": "XXYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 84,
+      "name": "aca_62",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYXyyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYXyyyyy",
+          "YxxxyXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYxyyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZxztxztxztxztxzt",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 92,
+      "name": "aca_63",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxxx",
+          "YYYYYYxyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyyyxYYYYYXX",
+          "YxxxYXyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXyXYxxx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "ztxztxztxztxztxztXTZXTZXTZXTZXTZx",
+          "ZX",
+          "TXXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxy",
+        "template": "ztxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_64",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYxyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYxyyyyyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXztxztxztxztxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 92,
+      "name": "aca_65",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YXYXYXYXYXYXyxyxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXyxyxyxyxyx",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYxyyyyyX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZxztztztztztX",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_66",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYXYXyxyxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXyxyxyxyxyx",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYYxyyyyyX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZxztztztztztX",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 92,
+      "name": "aca_67",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYYxyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYxyyyyyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXztxztxztxztxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_68",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxYXXYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXXYXyxxyxxyxxyxxyxx",
+          "YYXXyx"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYYxyyyyyX"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxTZxztXztXztXztXztXX",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_69",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYYXyyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYXyyyyy",
+          "YxxYXXyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYYxyyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZxztxztxztxztxzt",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_70",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXXyxx",
+          "YXyXyxxyXYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYXyXyxxyXXX",
+          "YxxxyyXX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXXyXyxx",
+          "YYYxyyXXXyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZxztxxztXztxxx",
+          "ZX",
+          "TXXztxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_71",
+      "source": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxxYxx",
+          "YXXyXyxYxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXYxYxxyXXXX",
+          "YxxxxYxxYX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXYxYxxx",
+          "YYYxyyXXYxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxTZXXTZXXztxxxx",
+          "ZX",
+          "TXXXXTZXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXyxxy",
+        "template": "ztxxy",
+        "word_t": "XXyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_72",
+      "source": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxxyxYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXXYxyxxyxxyxxyxxy",
+          "YYXXyx"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxTZXztXztXztXztXzt",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_73",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyXyXyXyxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyXyxYxYxYxYxYXX",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztxxztXTZXXTZXXTZXXTZXXTZx",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_74",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YXYxYxYxYxYxYxxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxxxxYXXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXyxYxx",
+          "YYYYYYXXXYxx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXXXXTZxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxY",
+        "template": "ztxxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_75",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YXXyXyXyXyXyXyxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxxyXXXXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXyxYxx",
+          "YYYYYYXXyxxx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXztxxxxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxY",
+        "template": "ztxxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_76",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXXYxxxx",
+          "YXXYxYxYxYxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyXyxxyXXXX",
+          "YxxxxYXyXX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXyXYxxx",
+          "YYYYYYXXXYxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztxxztXztxxxx",
+          "ZX",
+          "TXXXXTZxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxy",
+        "template": "ztxxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_77",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYXXYXyxyxyxyxyxyxyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYxyxxyyxx",
+          "YxxyXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYYYYXyXyxyXX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZXztXztxztXX",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYY",
+        "template": "ztY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 60,
+      "name": "aca_78",
+      "source": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXXXyxyxx",
+          "YXXXYxxxxxyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YxxxxxyXXYXXX",
+          "YxxxyxyXXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXXyyxx",
+          "YXXXXXyxxYxx"
+        ],
+        "rank3": [
+          "TZXXXXXztxxTZxx",
+          "ZX",
+          "TXXztztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyyxxYY",
+        "template": "ztY",
+        "word_t": "XXyyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_79",
+      "source": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxxyXX",
+          "YXYxyXyxxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYxYXYxyXyx",
+          "YxxxxyXXYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXXXyxxYx",
+          "YXYxYXyxyXX"
+        ],
+        "rank3": [
+          "XTZXXTZTZXztxxztX",
+          "ZX",
+          "TXXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXXyxxYxY",
+        "template": "ztxY",
+        "word_t": "XXXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_80",
+      "source": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxx",
+          "YXyXyXyXyXyXyXyxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxyXyXyXyXyXyXXX",
+          "YxxxxYX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXXYxx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxY",
+        "template": "ztxxY",
+        "word_t": "XXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_81",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXyxxyxyxYXX",
+          "YXXYXXYxxxxxyxxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zXt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXXYxyyxxyXYX",
+          "YxxxxxyxxyXYXXYXX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YYYXXXXXyyx",
+          "YYXyxxyyxYX"
+        ],
+        "rank3": [
+          "TxZTxZXzXtxxzXtzXtxTxZX",
+          "ZX",
+          "TXXXzXtzXtxTxZTxZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXXXyyxYYY",
+        "template": "zXtY",
+        "word_t": "XXXyyxYY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_82",
+      "source": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXXYxxxx",
+          "YXXXyXyXyXyXyXyXyxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyXyXyxxYXXXX",
+          "YxxxxYXyXX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXyXYxxx",
+          "YYYYYYYXXyxxx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztxxztxxztXXTZxxx",
+          "ZX",
+          "TXXXXTZxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxy",
+        "template": "ztxxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_83",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YXYxYxYxYxYxYxYxxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxxxxYXXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXXyxYxx",
+          "YYYYYYYXXXYxx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXXXXXTZxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxxY",
+        "template": "ztxxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_84",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyXyXyXyXyxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxyXyXyXyXyXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_85",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXyxxyxxxyXYXX",
+          "YXXYXXYxxxxxyxxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zXt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXXYxyyxxyxYXXX",
+          "YxxxxxyxxyxYXXYXX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YYYXXXXXyyX",
+          "YYXyxxyyXYx"
+        ],
+        "rank3": [
+          "TxZTxZXzXtxxzXtzXtXTxZx",
+          "ZX",
+          "TXXXzXtzXtXTxZTxZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXXXyyXYYY",
+        "template": "zXtY",
+        "word_t": "XXXyyXYY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 76,
+      "name": "aca_86",
+      "source": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YXYXYXYXYXYXYxyxyxyxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYxyxyxyxyxyxyX",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZXztztztztztztx",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_87",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYxYXyxxyxxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYxYXyxxyxxyX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYXXYxyXyXyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZXXTZxztXztXztx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_88",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYYYxyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYxyyyyyyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_89",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYXYXYxyxyxyxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYxyxyxyxyxyxyX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZXztztztztztztx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 100,
+      "name": "aca_90",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYYxyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYxyyyyyyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 100,
+      "name": "aca_91",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxxx",
+          "YYYYYYYxyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyyyyxYYYYYYXX",
+          "YxxxYXyX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXyXYxxx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "ztxztxztxztxztxztxztXTZXTZXTZXTZXTZXTZx",
+          "ZX",
+          "TXXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxy",
+        "template": "ztxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_92",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYXyyyyyy",
+          "YxxxyXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYYxyyyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZxztxztxztxztxztxzt",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 100,
+      "name": "aca_93",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXYxxx",
+          "YYYYYYYxyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYxyyyyyyXX",
+          "YxxxYXYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXXYxYx",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxx",
+          "ZX",
+          "TXXXTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxYxY",
+        "template": "ztxY",
+        "word_t": "XXYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 92,
+      "name": "aca_94",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxxYxx",
+          "YXXyXyXyxYxYxYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyxYxYxYxxxYXXX",
+          "YxxxxYxxYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YXXYxYxxx",
+          "YYYXyyyXXyxx"
+        ],
+        "rank3": [
+          "ztxxztxxztXTZXXTZXXTZXXXXTZxx",
+          "ZX",
+          "TXXXXTZXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyXyxxy",
+        "template": "ztxxy",
+        "word_t": "XXyXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_95",
+      "source": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxxyxxyxYXXYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXXYXXYxyxxyxxyxxyxxyxxy",
+          "YYXXyx"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYYYXyyyyyyx"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxTZxTZXztXztXztXztXztXzt",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_96",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxx",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxYxyXyXyXyXyXyXyXXX",
+          "YxxxxYX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXXXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxY",
+        "template": "ztxxY",
+        "word_t": "XXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_97",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxYxyXyXyXyXyXyXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_98",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YXYXYXYXYXYXYXYxyxyxyxyxyxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYXYxyxyxyxyxyxyxyX",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZTZXztztztztztztztx",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_99",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYXYXYxxyxxyxxyxxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYxxyxxyxxyxxyX",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYYYXXyXyXyXyx"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZXXztXztXztXztx",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_100",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXYxxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYYxyyyyyyyXX",
+          "YxxxYXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXXYxYx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxztxx",
+          "ZX",
+          "TXXXTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxYxY",
+        "template": "ztxY",
+        "word_t": "XXYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 100,
+      "name": "aca_101",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYYXyyyyyyy",
+          "YxxxyXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXTZxztxztxztxztxztxztxzt",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 108,
+      "name": "aca_102",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXyXYxxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyyyyyxYYYYYYYXX",
+          "YxxxYXyX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXyXYxxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "ztxztxztxztxztxztxztxztXTZXTZXTZXTZXTZXTZXTZx",
+          "ZX",
+          "TXXXTZxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxy",
+        "template": "ztxy",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_103",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyX",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYYxyyyyyyyXX",
+          "YxxxyXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXXyxYx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxztxx",
+          "ZX",
+          "TXXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxYxY",
+        "template": "ztxY",
+        "word_t": "XXyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 108,
+      "name": "aca_104",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxYXXX",
+          "YXYXYXYXYXYXYXYXyxyxyxyxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYXYXyxyxyxyxyxyxyx",
+          "YxxYXXXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZTZxztztztztztztztX",
+          "ZX",
+          "TXXTZxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "ztY",
+        "word_t": "XXYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_105",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxyXX",
+          "YXYXYXYXYXYXYXYXyxyxyxyxyxyxyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "zt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXYXYXYXYXYXYXYXyxyxyxyxyxyxyx",
+          "YxxxyXXYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXyxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "TZTZTZTZTZTZTZTZxztztztztztztztX",
+          "ZX",
+          "TXXztxxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxYY",
+        "template": "ztY",
+        "word_t": "XXyxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 108,
+      "name": "aca_106",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyXyXyXyXyxYxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyXyXyXyXYxYxYxYxYxYxY",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztxxztxxztxxztxTZXXTZXXTZXXTZXXTZXXTZXXTZX",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_107",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYYxyyyyyyyXX",
+          "YxxYXXyX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXTZXztxztxztxztxztxztxztxx",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_108",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxxyxxyxYXXYXXYXXYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXXYXXYXXYXyxxyxxyxxyxxyxxyxxyxx",
+          "YYXXyx"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxTZxTZxTZxztXztXztXztXztXztXztXX",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_109",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXYxxx",
+          "YXyXyXyXyXyXyXyxYxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxYXyXyXyXyXyXyXyX",
+          "YxxxYYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxYxx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXXTZxztxxztxxztxxztxxztxxztxxztx",
+          "ZX",
+          "TXXXTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxY",
+        "template": "ztxxY",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_110",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYYYYXyyyyyyy",
+          "YxxYXXyX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxxyx",
+          "YYYYYYYYxyyyyyyyX"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXTZXTZXTZxztxztxztxztxztxztxzt",
+          "ZX",
+          "TXXTZxxztx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyxY",
+        "template": "ztxY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 96,
+      "name": "aca_111",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXXyx",
+          "YXyxxyxxyxxyxxyxxyxxyxxyxYXXYXXYXXYXXYXXYXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "XYXXYXXYXXYXXYXXYXXYXXYxyxxyxxyxxyxxyxxyxxy",
+          "YYXXyx"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxxyX",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "xTZxTZxTZxTZxTZxTZxTZxTZXztXztXztXztXztXztXzt",
+          "ZX",
+          "TTZxxztX"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxxyXY",
+        "template": "ztXY",
+        "word_t": "XYxxy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_112",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YYXYxxx",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxYxYxyXyXyXyXyXyXyXXX",
+          "YxxxYYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXYxYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXXTZXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxY",
+        "template": "ztxxY",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_113",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxYxx",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XXTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyXyXyXyXyXyXyXyxYxYxYxYxYxYxYXX",
+          "YxxyXXyXX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YXXyXyxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "ztxxztxxztxxztxxztxxztxxztxxztXTZXXTZXXTZXXTZXXTZXXTZXXTZx",
+          "ZX",
+          "TXztxxxztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXYxYxxy",
+        "template": "ztxxy",
+        "word_t": "XYxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 104,
+      "name": "aca_114",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyXXXX",
+          "YxyxYX"
+        ],
+        "output_floor": 13,
+        "output_representative": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "rank3": [
+          "ztxztxztxztxxxx",
+          "ZX",
+          "TztXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XYXyxy",
+        "template": "ztxy",
+        "word_t": "YXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 28,
+      "name": "aca_115",
+      "source": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "source_floor": 13,
+      "source_representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxx",
+          "YXYXYXyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "TZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyxxxYXXX",
+          "YxyxyxyxYX"
+        ],
+        "output_floor": 14,
+        "output_representative": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ],
+        "rank3": [
+          "ztXXXTZxx",
+          "ZX",
+          "TztztztXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XYYYXyy",
+        "template": "zty",
+        "word_t": "YYYXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 68,
+      "name": "aca_116",
+      "source": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXyxxx",
+          "YXYXYxyxyX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "TZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyxxxYXXX",
+          "YxyxyXYXYX"
+        ],
+        "output_floor": 14,
+        "output_representative": [
+          "YYYXyyx",
+          "YXXXyxx"
+        ],
+        "rank3": [
+          "ztXXXTZxx",
+          "ZX",
+          "TztztxTZTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XYYxyyy",
+        "template": "zty",
+        "word_t": "YYxyy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 60,
+      "name": "aca_117",
+      "source": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYYYxyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYxyXXX",
+          "YxxyXYX"
+        ],
+        "output_floor": 15,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYXyxx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXztxxx",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxY",
+        "template": "ztxY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 64,
+      "name": "aca_118",
+      "source": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxyX",
+          "YYYYYxyXX"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xYYYYYxyXXX",
+          "YxxyXYX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYXyxx"
+        ],
+        "rank3": [
+          "XTZXTZXTZXTZXTZXztxxx",
+          "ZX",
+          "TXztxTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXyxYxY",
+        "template": "ztxY",
+        "word_t": "XyxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_119",
+      "source": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxxxx",
+          "YXyXyXyXyxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxyXyXyXXX",
+          "YxxxxYX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YXXXYxx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXztxxztxxztxxx",
+          "ZX",
+          "TXXXXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxY",
+        "template": "ztxxY",
+        "word_t": "XXY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 72,
+      "name": "aca_120",
+      "source": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyXyxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxyXyXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 16,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYYXyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXztxxztxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 80,
+      "name": "aca_121",
+      "source": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyXyXyxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxyXyXyXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 18,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYYYXyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_122",
+      "source": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "best": {
+        "canonical_output": [
+          "YXXXyxx",
+          "YXyXyXyXyXyXyxYxYxYxYx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "ztxx",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xxYxYxYxYxYxYxyXyXyXyXyXXX",
+          "YxxxyXX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXXXyxx",
+          "YYYYYYXyyyyyx"
+        ],
+        "rank3": [
+          "XXTZXXTZXXTZXXTZXXTZXXTZXztxxztxxztxxztxxztxxx",
+          "ZX",
+          "TXXztxx"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXyxxY",
+        "template": "ztxxY",
+        "word_t": "XXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 88,
+      "name": "aca_123",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    }
+  ],
+  "schema": "aca124-visible-two-block-corridor-v1",
+  "summary": {
+    "class_count": 124,
+    "classes_with_floor_descent": 0,
+    "classes_with_nonautomorphic_output": 0,
+    "classes_with_outputs": 124
+  }
+}

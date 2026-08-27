@@ -1,0 +1,60 @@
+{
+  "hidden_insertions": 0,
+  "max_defining_length": 3,
+  "records": [
+    {
+      "best": {
+        "canonical_output": [
+          "YYYxYxyyx",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "expanded_spelling": "XXXYxxYY",
+        "expression_x": "T",
+        "expression_y": "TTZXXX",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YYYxYxYxYxYxYxYxYxyXyXyXyXyXyXyXyy",
+          "XYYXyXyyy"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "xxxzttxxxzttxxxzttxxxzttxxxzttxxxzttxxxzttxxxzttXTTZXXXTTZXXXTTZXXXTTZXXXTTZXXXTTZXXXTTZXX",
+          "ZTTZXXXTTZXXX",
+          "TX"
+        ],
+        "second_isolator_index": 2,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "XXXYTTZ",
+        "word_t": "X",
+        "word_z": "yy"
+      },
+      "distinct_output_count": 10,
+      "name": "aca_99",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    }
+  ],
+  "repeat_blocks": true,
+  "required_word_t": null,
+  "required_word_z": "yy",
+  "schema": "aca124-two-block-corridor-v1",
+  "summary": {
+    "class_count": 1,
+    "classes_with_floor_descent": 0,
+    "classes_with_nonautomorphic_output": 0,
+    "classes_with_outputs": 1
+  }
+}

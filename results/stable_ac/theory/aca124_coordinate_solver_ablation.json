@@ -1,0 +1,1627 @@
+{
+  "budget": 1000,
+  "max_relator_length": 80,
+  "payload_sha256": "44a3733ab3e2f5c36f38eb5efded6fe133677df7d53ac13e0716cbdb29c5ddbf",
+  "records": [
+    {
+      "name": "aca_0",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 50,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_1",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 36,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_2",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 36,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_3",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_4",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_5",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_6",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_7",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 41,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_8",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 32,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_9",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 30,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_10",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 30,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_11",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 32,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_12",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 32,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_13",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 31,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_14",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 34,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_15",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_16",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 37,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_17",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_18",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_19",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_20",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_21",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_22",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_23",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_24",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 37,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_25",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_26",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_27",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_28",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_29",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 31,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_30",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 39,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_31",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 38,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_32",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 41,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_33",
+      "source": {
+        "min_total": 17,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 33,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_34",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 54,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_35",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_36",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 33,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_37",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_38",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 41,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_39",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 57,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_40",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 53,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_41",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 53,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_42",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 53,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_43",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 39,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_44",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 39,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_45",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_46",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_47",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_48",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_49",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_50",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_51",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 59,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_52",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 59,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_53",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 38,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_54",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 33,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_55",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_56",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_57",
+      "source": {
+        "min_total": 19,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_58",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 64,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_59",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_60",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 50,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_61",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 50,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_62",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 67,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_63",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 63,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_64",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 67,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_65",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 63,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_66",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 53,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_67",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_68",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_69",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_70",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_71",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_72",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_73",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_74",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 69,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_75",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 52,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_76",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 55,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_77",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 55,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_78",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_79",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_80",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_81",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 74,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_82",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 40,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_83",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 55,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_84",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 57,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_85",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_86",
+      "source": {
+        "min_total": 22,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 40,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_87",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 59,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_88",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 43,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_89",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_90",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_91",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 73,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_92",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 77,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_93",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 73,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_94",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 77,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_95",
+      "source": {
+        "min_total": 21,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_96",
+      "source": {
+        "min_total": 23,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_97",
+      "source": {
+        "min_total": 24,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 84,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_98",
+      "source": {
+        "min_total": 24,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 49,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_99",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 61,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_100",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 45,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_101",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 87,
+        "nodes": 97,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_102",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 83,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_103",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 86,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_104",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 83,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_105",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 65,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_106",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 47,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_107",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 61,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_108",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 51,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_109",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 51,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_110",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 61,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_111",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 51,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_112",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 51,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_113",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 89,
+        "nodes": 94,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_114",
+      "source": {
+        "min_total": 25,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 89,
+        "nodes": 48,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_115",
+      "source": {
+        "min_total": 13,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 27,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_116",
+      "source": {
+        "min_total": 14,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 29,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_117",
+      "source": {
+        "min_total": 14,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 29,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_118",
+      "source": {
+        "min_total": 15,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 35,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_119",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 40,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_120",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 44,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_121",
+      "source": {
+        "min_total": 16,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 33,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_122",
+      "source": {
+        "min_total": 18,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 37,
+        "nodes": 1000,
+        "solved": false
+      }
+    },
+    {
+      "name": "aca_123",
+      "source": {
+        "min_total": 20,
+        "nodes": 1000,
+        "solved": false
+      },
+      "target": {
+        "min_total": 41,
+        "nodes": 1000,
+        "solved": false
+      }
+    }
+  ],
+  "schema": "aca124-coordinate-solver-ablation-v1",
+  "summary": {
+    "class_count": 124,
+    "source_solved": 0,
+    "target_lower_minimum": 0,
+    "target_only_solved": 0,
+    "target_solved": 0
+  }
+}

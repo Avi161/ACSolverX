@@ -1,0 +1,414 @@
+{
+  "cyclic_words": 128,
+  "distinct_endpoint_orbits": 15,
+  "endpoints": [
+    {
+      "expr": "XXZZxx",
+      "intermediate": [
+        "ZZxxYXX",
+        "zyyXXyxxYYY",
+        "ZXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 29,
+      "n_subs": 3,
+      "phi": {
+        "x": "X",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXYxx",
+        "YYYYYYXXYxxyyyyxxyyXX"
+      ],
+      "target": [
+        "yXXYYYYXXYYxxyyyyyyxx",
+        "YXXXYYxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "XXZZxx",
+      "intermediate": [
+        "ZZxxYXX",
+        "xxYYYXyyyXz",
+        "ZXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 23,
+      "n_subs": 3,
+      "phi": {
+        "x": "X",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXYxx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "target": [
+        "yyyyyyXYYYYYYxy",
+        "YXXXYYxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "XXZZxx",
+      "intermediate": [
+        "ZZxxYXX",
+        "XzxxYYYzyy",
+        "ZXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 25,
+      "n_subs": 4,
+      "phi": {
+        "x": "X",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXYxx",
+        "YYYYYYYXXYxxyyyyX"
+      ],
+      "target": [
+        "XyyyyyyyxxyXXYYYYxx",
+        "YXXXYYxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "XXZZxx",
+      "intermediate": [
+        "ZZxxYXX",
+        "xYYYXyyyXXyx",
+        "ZXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 27,
+      "n_subs": 2,
+      "phi": {
+        "x": "X",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXYxx",
+        "YYYYYYXyyyyyyxxYYXX"
+      ],
+      "target": [
+        "XyyyyyyXYYYYYYXXYYxxx",
+        "YXXXYYxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "xxYZYxYx",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 23,
+      "n_subs": 3,
+      "phi": {
+        "x": "X",
+        "y": "YXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXyxxYx",
+        "YYXXXXyxxxYXyx"
+      ],
+      "target": [
+        "xxxYxxyXXXXYxxYxyXYxyXXX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "YxYxxxYXX",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 23,
+      "n_subs": 2,
+      "phi": {
+        "x": "X",
+        "y": "YXXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXyxx",
+        "YXyXXYXyxxxYXyx"
+      ],
+      "target": [
+        "xxYxyXYxxxyXYXXyXXX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "YzxYZYx",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 25,
+      "n_subs": 4,
+      "phi": {
+        "x": "X",
+        "y": "YXXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXyxx",
+        "YXYXXXXyxYxxxyXyx"
+      ],
+      "target": [
+        "XyxxxYxyXXXXYxxYxyXXX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "YxYzxYXX",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 25,
+      "n_subs": 3,
+      "phi": {
+        "x": "x",
+        "y": "Yxxxx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXyXyxx",
+        "YYxxxyxYXyXXYXyx"
+      ],
+      "target": [
+        "xxYxyXXXXyxxxYxyXYXXyXXX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "xYxzYZY",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 19,
+      "n_subs": 4,
+      "phi": {
+        "x": "X",
+        "y": "YXXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "target": [
+        "xxxYxyXYxyXXXyXYX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "yyyZyzYYY",
+      "intermediate": [
+        "YxYxzYXX",
+        "ZyzYYYXyyy",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 23,
+      "n_subs": 3,
+      "phi": {
+        "x": "X",
+        "y": "YXXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXyxx",
+        "YYXXyxxYxyXYxyX"
+      ],
+      "target": [
+        "xxYxyXYxyXXXyxxYXXyXXX",
+        "YxxxYxxyXXX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "ZxxZXX",
+      "intermediate": [
+        "xxZXXYZ",
+        "XyyyXXyxZYY",
+        "ZyX"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 47,
+      "n_subs": 3,
+      "phi": {
+        "x": "X",
+        "y": "YX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXYXXXXYx",
+        "YXyXyxxxyXyxxYXXYxYXXXXXYxYXXXYxYXXXYx"
+      ],
+      "target": [
+        "XYxxYXXYxxYXXYxxYXXXXYxxYXYxxyXXyxxyXXy",
+        "YYxxYXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "ZxxZXX",
+      "intermediate": [
+        "xxZXXYZ",
+        "YYYXyyzXyxx",
+        "ZyX"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 41,
+      "n_subs": 3,
+      "phi": {
+        "x": "x",
+        "y": "yxx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXXXYXX",
+        "YYXXyyxYxxyyxxxxyyxYYXXXXYYXXXX"
+      ],
+      "target": [
+        "xxyXXyxxyXXyxxyXXyXYxxYXXYxxYXXyXYxxY",
+        "YYxxYXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "ZxxZXX",
+      "intermediate": [
+        "xxZXXYZ",
+        "XyyzXyxZYY",
+        "ZyX"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 39,
+      "n_subs": 4,
+      "phi": {
+        "x": "x",
+        "y": "yxx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXXXYXX",
+        "YYXXyXYYXXXYxxyyxxxxyyXYYXXXX"
+      ],
+      "target": [
+        "XYxxYXXYxxYXXyXYxxYXYxxyXXyxxyXXy",
+        "YYxxYXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "ZxxZXX",
+      "intermediate": [
+        "xxZXXYZ",
+        "xYYYXyyyXXyx",
+        "ZyX"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 49,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "yxx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YYXXXXXYXX",
+        "YYXXyyxxxxxxyyxxxxyyxxxxyyxYYXXXXYYXXXX"
+      ],
+      "target": [
+        "xxxyXXyxxyXXyxxyXXyXYxxYXXYxxYXXYxxYXXXXYxxYX",
+        "YYxxYXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "XXZxxx",
+      "intermediate": [
+        "YXXZxxx",
+        "yxxYYYXyyyXX",
+        "ZyXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 21,
+      "n_subs": 1,
+      "phi": {
+        "x": "x",
+        "y": "Yx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "target": [
+        "XXYxxyXyXyXYxYxYx",
+        "YXXYYxxx"
+      ],
+      "w": "yXy"
+    }
+  ],
+  "minimum_endpoint_mu": 19,
+  "name": "aca_95",
+  "schema": "exhaustive-single-cov-v1",
+  "source": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+  ],
+  "source_mu": 21,
+  "source_rep": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+  ],
+  "target_orbit_hits": 0,
+  "target_rep": [
+    "XX",
+    "YYXyXyxYXyx"
+  ],
+  "variant_attempts": 50936
+}

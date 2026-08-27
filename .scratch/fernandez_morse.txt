@@ -1,0 +1,1620 @@
+                                                          MORSE THEORY FOR GROUP PRESENTATIONS
+
+                                                                                  XIMENA FERNÁNDEZ
+
+
+                                                   Abstract. We introduce a novel combinatorial method to study Q∗∗ -transformations
+
+
+
+
+arXiv:1912.00115v3 [math.AT] 19 Apr 2024
+                                                   of group presentations or, equivalently, 3-deformations of CW-complexes of dimension 2.
+                                                   Our procedure is based on a refinement of discrete Morse theory that gives a Whitehead
+                                                   simple homotopy equivalence from a regular CW-complex to the simplified Morse CW-
+                                                   complex, with an explicit description of the attaching maps and bounds on the dimension
+                                                   of the complexes involved in the deformation. We apply this technique to show that
+                                                   some known potential counterexamples to the Andrews–Curtis conjecture do satisfy the
+                                                   conjecture.
+
+
+
+                                              Any finite presentation P = ⟨x1 , . . . , xn | r1 , . . . , rm ⟩ of a group G can be transformed
+                                           into any other presentation of the same group by a finite sequence of the following opera-
+                                           tions [37, 28]:
+                                               (1) replace some relator ri by ri−1 ;
+                                               (2) replace some relator ri by ri rj for some j ̸= i;
+                                               (3) replace some relator ri by a conjugate wri w−1 for some w in the free group
+                                                   F (x1 , x2 , . . . , xn );
+                                               (4) add a generator xn+1 and a relator rm+1 that coincides with xn+1 , or the inverse
+                                                   of this operation;
+                                               (5) replace each relator ri by ϕ(ri ) where ϕ is an automorphism of F (x1 , x2 , . . . , xn );
+                                               (6) add a relator 1, or the inverse of this operation.
+                                           For balanced presentations (i.e., m = n), J. Andrews and M. Curtis conjectured in 1965 [2]
+                                           that any presentation of the trivial group P = ⟨x1 , . . . , xn | r1 , . . . , rn ⟩ can be transformed
+                                           into the empty presentation ⟨ | ⟩ by a finite sequence of the operations (1) to (5), called
+                                           Q∗∗ -transformations [29, 41]. This question still remains open and it has become one of the
+                                           most notorious problems in group theory, as well as in low-dimensional topology due to its
+                                           topological consequences. Indeed, although the original conjecture is in the area of com-
+                                           binatorial group theory, it has an equivalent formulation – first noticed by the anonymous
+                                           referee of the foundational article [2] – in terms of Whitehead’s simple homotopy theory
+                                           [39, 40]. It states that any (finite) contractible 2-dimensional CW-complex K 3-deforms to
+                                           a point. That is, K can be transformed into a point by a sequence of elementary collapses
+                                           and expansions in which the dimension of the complexes involved is not greater than 3 (see
+                                           [42] and [23, Sect. 2.3. Ch. I] for a detailed proof of this equivalence). This conjecture
+                                           is closely related to other relevant problems in algebraic topology, such as Whitehead as-
+                                           phericity conjecture [38], Zeeman conjecture [43] and the smooth 4-dimensional Poincaré
+                                           conjecture [24] (see also [23]). The Andrews–Curtis conjecture is known to be true for
+                                           some classes of complexes (such as the standard spines [20] and the quasi-constructible
+
+                                              2020 Mathematics Subject Classification. 57M07, 57Q10, 57Q70, 20F05, 55-04.
+                                              Key words and phrases. discrete Morse theory, 3-deformations, Andrews–Curtis conjecture, Q**-
+                                           transformations, posets.
+                                                                                             1
+2                                    XIMENA FERNÁNDEZ
+
+complexes [3]), but the problem still remains unsolved for general 2-complexes or, equiv-
+alently, balanced presentations of the trivial group. Moreover, there is a list of balanced
+presentations of the trivial group for which no Q∗∗ -trivialization is known. They serve as
+potential counterexamples to disprove the conjecture (see [23, Sect. 1.1 Ch. XII] and [35]).
+   Computational approaches to this problem have proven to be limited by the exponen-
+tial complexity of the algorithms [5, 8, 22, 27, 31, 32, 34]. Most of them are based on
+the exploration and exhibition of possible transformations of type (1)–(3) from a given
+presentation. However, in [8] M. Bridson exhibited examples of rather small balanced
+presentations of the trivial group for which the minimum length of any Q∗∗ -simplification
+sequence to ⟨ | ⟩ is super-exponential in the total length of the relators (and hence, compu-
+tationally intractable with standard methods). In this article, we present a method which
+combines topological and combinatorial tools, that allows the computational exploration
+of presentations which are Q∗∗ -equivalent from a given one without the need of exhibiting
+the actual list of transformations. This alternative technique to find Q∗∗ -transformations,
+based on a refinement of discrete Morse theory, enables us to show that some well known
+potential counterexamples to the conjecture can be easily Q∗∗ -trivialized. Moreover, we
+also apply this theory to presentations of non-trivial groups, proving that some potential
+counterexamples to the generalized Andrews-Curtis conjecture [4] do satisfy it.
+   Forman’s discrete Morse theory [15, 16] introduces a combinatorial tool to simplify the
+cell decomposition of a given (regular) CW-complex up to homotopy equivalence, in terms
+of the critical cells of discrete Morse functions. Although this theory results in an efficient
+way to compute the homology of a regular CW-complex, it does not provide sufficient
+information to recover its homotopy type due to the lack of a combinatorial description
+of the simplified CW-complex (the Morse CW-complex ). Moreover, the procedure does
+not ensure the preservation of the simple homotopy type. We extend the scope of For-
+man’s theory to Whitehead deformations and simple homotopy classes. Concretely, given
+a regular n-dimensional complex K and a discrete Morse function on it, we construct an
+explicit and algorithmically computable cell decomposition of the Morse CW-complex and
+we prove that it (n + 1)-deforms to K. We deduce a computational method for handling
+3-deformations of 2-complexes and thus study the Andrews–Curtis conjecture from a new
+point of view. We present an algorithm to obtain new presentations Q∗∗ -equivalent to a
+given one without requiring to specify the exhaustive list of movements to transform one
+into the other.
+   Independently, in [6, 7] the authors also used discrete Morse theory to present an algo-
+rithm to describe a presentation of the fundamental group of a regular CW-complex. They
+applied it in a classification problem of prime knots, and also to compute the fundamental
+group of point clouds.
+   The article is organized as follows. In Section 1, we present the refinement of discrete
+Morse theory in terms of internal collapses and Whitehead deformations with bounds in the
+dimension of the complexes involved. In Section 2, we deduce a method that associates to
+each presentation P and acyclic matching in a poset obtained from P, a presentation Q such
+that P ∼Q∗∗ Q. In Section 3, we exhibit applications of our method to investigate potential
+counterexamples to the Andrews–Curtis conjecture. Appendix B contains the proof of an
+intermediate result that is necessary in Section 3. The implementation in SAGE [36] of
+the algorithms of Section 2, as well as its application to the potential counterexamples
+at Section 3, can be found at [13] as part of the package Finite Topological Spaces. An
+                         MORSE THEORY FOR GROUP PRESENTATIONS                                   3
+
+implementation in GAP [18] is also available at the package Posets [14]. An outline of the
+computational procedure is described in Appendix A.
+   Note. Most of the results of this article appeared originally in the author’s PhD Thesis
+[12].
+
+
+
+            1. Discrete Morse theory and Whitehead deformations
+   Discrete Morse theory was introduced by R. Forman [15, 16] as a discrete approach
+to classical Morse theory for smooth manifolds. It is based on a combinatorial notion of
+Morse functions for regular CW-complexes. Critical cells of Morse functions on a CW-
+complex K are linked to the number of cells in each dimension of a new CW-complex, the
+Morse CW-complex, which is homotopy equivalent to K [15, Cor. 3.5]. Although discrete
+Morse theory is a relevant tool to obtain information about the homotopy type of a CW-
+complex, it does not give information about its Whitehead simple homotopy type. In this
+section we present a refinement of the theory, showing that discrete Morse theory actually
+provides a method to simplify the cell structure of an n-dimensional complex through an
+(n + 1)-deformation.
+   We briefly recall here the main concepts in simple homotopy theory and refer the reader
+to [11, 23] for a more complete exposition. All the CW-complexes in this article will be
+finite and connected. Given a CW-complex K and a subcomplex L ≤ K, we say that K
+elementary collapses to L (or L elementary expands to K) and denote it by K ↘e L (resp.
+L↗ e K) if K = L ∪ en−1 ∪ en with en−1 , en ∈ / L and there exists a map ψ : Dn → K such
+that ψ is the characteristic map of e , ψ|∂Dn ∖Dn−1 is the characteristic map of en−1 and
+                                       n
+
+ψ(Dn−1 ) ⊆ L(n−1) , where L(n−1) is the (n − 1)-skeleton of L. In general, K collapses to L
+(or L expands to K) if there is a finite sequence of elementary collapses from K to L. We
+denote it by K ↘ L (resp. L↗ K). We say that a CW-complex K n-deforms to L, and
+denote it by K ⧸↘n L, if there is a sequence of CW-complexes K = K0 , K1 , . . . Kr = L
+such that Ki ↘e Ki+1 or Ki ↗    e K
+                                    i+1 for each 0 ≤ i ≤ r − 1, and dim(Ki ) ≤ n for all
+1 ≤ i ≤ r. For every 0 ≤ i ≤ r − 1, there is a homotopy equivalence fi : Ki → Ki+1 which
+is an inclusion or a retraction depending on whether Ki ↗e K                e
+                                                              i+1 or Ki+1 ↘ Ki respectively.
+If K n-deforms to L, then K and L are then related by a deformation f : K → L defined
+as the composition of the retractions and inclusions as above, i.e, f = fr−1 . . . f1 f0 . Notice
+that if K ⧸↘n L, then K and L are homotopy equivalent. The converse is not true in
+general and this obstruction is measured by the Whitehead group [11].
+   We now outline the main definitions and results in discrete Morse theory. We refer the
+reader to [17, 25] for more details. A CW-complex K is said to be regular if for every
+open cell en , the characteristic map Dn → en is a homeomorphism. A cell e of a regular
+complex K is a face of a cell e′ if e ⊆ e′ . We denote the face relation by e ≤ e′ . Given a
+regular CW-complex K, a map f : K → R is a discrete Morse function if for every cell en
+in K, the number of faces and cofaces of en for which the value of f does not increase with
+dimension is at most one. An n-cell en ∈ K (n) is a critical cell of index n if the values of f
+in every face and coface of en increase with dimension. A discrete Morse function induces
+an ordering in the cells, which determines level subcomplexes of K. For every c ∈ R, the
+level subcomplex K(c) of K is the subcomplex of closed cells ē of K such that f (e) ≤ c
+in R. Discrete Morse functions serve as a tool to study the homotopy type of K. The
+following theorem summarizes the main results in discrete Morse theory.
+4                                    XIMENA FERNÁNDEZ
+
+Theorem 1.1. [16, 17] Let K be a regular CW-complex and let f : K → R be a discrete
+Morse function. Let a < b be real numbers.
+(a) If every cell e ∈ K such that f (e) ∈ (a, b] is not critical, then K(b) ↘ K(a).
+(b) If en ∈ K is the only critical cell with f (en ) ∈ (a, b], then there is a continuous map
+    φ : ∂Dn → K(a) such that K(b) is homotopy equivalent to K(a) ∪φ Dn .
+(c) K is homotopy equivalent to a CW-complex with exactly one cell of dimension k for
+    every critical cell of index k.
+
+   Given K a regular CW-complex, denote by X (K) its face poset, that is, the poset of
+cells of K ordered by the face relation ≤. Let H(X (K)) be the Hasse diagram of the poset
+X (K), a digraph whose vertices are the cells of K and whose edges are the ordered pairs
+(e, e′ ) such that e < e′ and there exists no e′′ ∈ K such that e < e′′ < e′ (in that case, we
+say that e′ covers e and we denote this by e ≺ e′ ).
+   Every discrete Morse function f : K → R has an associated set Mf of pairings of the
+cells of K, where (e, e′ ) ∈ Mf if and only if e ≺ e′ and f (e) ≥ f (e′ ). Moreover, Mf is an
+acyclic matching in X (K). Recall that a pairing M of cells in K is said to be an acyclic
+matching if each cell of K is involved in at most one pair of M and the directed graph
+HM (X (K)) obtained by reversing the orientation of the edges of H(X (K)) associated to
+matched pairs of cells is acyclic. In [10], M. Chari proved that a subset C of cells of K is
+the set of critical cells of a discrete Morse function f on K if and only if there is an acyclic
+matching M in X (K) such that C is the set of nodes of X (K) not incident to any edge in
+M.
+   We next present a series of results in simple homotopy theory as preliminary steps to
+our refinement of Theorem 1.1. Our theory is built over the idea of internal collapses, a
+generalization of the standard collapses (see [25, Ch. 11] and [26, Ch. 11]). We will show
+that internal collapses can be thought of as a way of performing (n + 1)-deformations from
+a CW-complex of dimension less than or equal to n to another one with fewer number
+of cells. This general notion of collapse will be the key to a better understanding of the
+close connection between discrete Morse theory and Whitehead deformations of bounded
+dimension.
+   The cornerstone of the concept of internal collapses is the following fact. If K ↘ L and
+we attach a cell e to K, then we still have a deformation from K ∪ e to L ∪ ẽ, where ẽ
+is attached with an inherited attaching map (cf. [11, Prop. 7.1]). When needed, we may
+emphasize the attaching map φ : ∂Dn → K of an n-cell by writing K ∪ en as K ∪φ Dn .
+
+Lemma 1.2. Let K be a CW-complex of dimension less than or equal to n. Let φ : ∂Dn →
+                                                                 n+1
+K be the attaching map of an n-cell en . If K ↘ L, then K ∪ en ⧸↘ L ∪ ẽn , where the
+attaching map φ̃ : ∂Dn → L of ẽn is defined as φ̃ = rφ with r : K → L the canonical
+strong deformation retract induced by the collapse K ↘ L.
+
+Proof. Let ı : L → K be the inclusion map and let r : K → L be the strong deformation
+retract induced by the collapse K ↘ L. There is a homotopy H : ∂Dn × I → K, ırφ ∼
+                                                                                =H φ
+that allows to perform the following elementary moves
+
+                K ∪φ Dn ↗
+                        e
+                          (K ∪φ Dn ) ∪ırφ Dn ∪H Dn × I ↘e K ∪ırφ Dn .
+
+Finally, the collapse K ↘ L induces a collapse K ∪ırφ Dn ↘ L ∪rφ Dn , since the image
+of the attaching map ırφ is included in L. Given that the dimension of the complex
+                            MORSE THEORY FOR GROUP PRESENTATIONS                                                 5
+
+(K ∪φ Dn ) ∪ırφ Dn ∪H Dn+1 is n + 1, we conclude that
+                                                        n+1
+                                        K ∪φ Dn ⧸↘             L ∪φ̃ Dn .                                       □
+   The next result is a generalization of the previous statement. It says that when one
+attaches a finite sequence of cells to a CW-complex that collapses to a subcomplex, it is
+possible to recover an iterative procedure for the deformation with bounds in the dimension
+of the involved complexes.
+                                  d
+                                  [
+Proposition 1.3. Let K ∪            ei be a CW-complex where dim(K) ≤ dim(ei ) ≤ dim(ei+1 ) ≤
+                                  i=1               [
+n for all i = 1, 2, . . . , d−1. Let φj : ∂Dj → K ∪ ei be the attaching map of ej . If K ↘ L,
+                                                           i<j
+then there exist CW-complexes Z1 ≤ Z2 ≤ . . . ≤ Zd of dimension less than or equal to n+1
+such that for every j = 1, 2, . . . , d,
+                                             j
+                                             [                          j
+                                                                        [
+                                        K∪         ei ↗ Zj ↘ L ∪            ẽi
+                                             i=1                     i=1
+                                                         [
+where the attaching map φ̃j : ∂Dj → L ∪                        ẽi of the cell ẽj is defined inductively as
+                                                         i<j
+follows: φ̃1 = r0 φ1 with r0 : K → L the canonical  [ strong deformation retract and for
+j > 1, φ̃j = r̃j−1 ıj−1 φj where r̃j−1 : Zj−1 → L ∪   ẽi is the strong deformation retract
+                                                                  i<j
+                 [
+and ıj−1 : K ∪         ei → Zj−1 is the inclusion.
+                 i<j
+
+Proof. We proceed by induction on the number of cells d. If d = 1, the assertion follows
+by Lemma 1.2. Suppose that the statement holds for d ≥ 1. Thus, we have the following
+sequence of expansions and collapses
+                                             d
+                                             [                       d
+                                                                     [
+                                        K∪         e i ↗ Zd ↘ L ∪           ẽi .
+                                             i=1                    i=1
+                                                                  d
+                                                                  [                                     d
+                                                                                                        [
+There is a strong deformation retract r̃d : Zd → L ∪                    ẽi and an inclusion ıd : K ∪         ei →
+                                                                  i=1                                   i=1
+                                           d
+                                           [
+Zd . Let φd+1 : ∂Dd+1 → K ∪                     ei be the attaching map of the cell ed+1 . Define
+                                          i=1
+                            d
+                            [                                                       d
+                                                                                    [
+φ̃d+1 : ∂Dd+1 → L ∪               ẽi as φ̃d+1 := r̃d ıd φd+1 . If ı̃d : L ∪              ẽi → Zd denotes the
+                            i=1                                                     i=1
+inclusion, then the maps ıd φd+1 and ı̃d φ̃d+1 are homotopic. Let H : ∂Dd+1 × I → Zd be
+the homotopy ıd φd+1 ≃H ı̃d φ̃d+1 . Define
+                  Zd+1 := Zd ∪ıd+1 φd+1 Dd+1 ∪ı̃d+1 φ̃d+1 Dd+1 ∪H (Dd+1 × I).
+By definition, there are elementary moves
+                                            e
+                         Zd ∪ıd+1 φd+1 Dd+1 ↗ Zd+1 ↘e Zd ∪ı̃d+1 φ̃d+1 Dd+1 .
+6                                               XIMENA FERNÁNDEZ
+
+                                  d
+                                  [                                         d
+                                                                            [
+Since Im(ıd+1 φd+1 ) ⊆ K ∪              ei , the collapse Zd ↘ K ∪                   ei induces a collapse Zd ∪ıd+1 φd+1
+                                  i=1                                       i=1
+                  d+1
+                  [                                                                  d+1
+                                                                                     [
+Dd+1 ↘ K ∪              ei . Analogously, Zd ∪ı̃d+1 φ̃d+1 Dd+1 ↘ L ∪                       ei and the result follows. □
+                  i=1                                                                i=1
+
+Corollary 1.4. Let K be an n-dimensional CW-complex and let L ≤ K be a subcomplex
+                               n+1
+of K such that L ↘ ∗. Then K ⧸↘ K/L.
+Definition 1.5. Under the conditions of Proposition 1.3, we say that there is a internal
+                  d
+                  [           d
+                              [
+collapse from K ∪   ei to L ∪   ẽi .
+                          i=1             i=1
+
+  We next prove that the composition of a sequence of internal collapses in n-dimensional
+complexes is an (n + 1)-deformation.
+Theorem 1.6. Let L be a CW-complex on dimension n. Let L0 ≤ K0 ≤ L1 ≤ K1 ≤ . . . ≤
+LN ≤ KN ≤ LN +1 = L be a sequence of CW-subcomplexes of L such that Kj ↘ Lj for
+                                       dj
+                                          eji , then there are internal collapses from Lj+1 to
+                                       [
+all j = 0, 1, . . . N . If Lj+1 = Kj ∪
+                                                i=1
+       dj
+             ẽji for all j = 0, 1, . . . , N that induce an (n + 1)-deformation
+       [
+Lj ∪
+       i=1
+                                                                   dj
+                                                                 N [
+                                                    n+1
+                                                                           ẽji .1
+                                                                 [
+                                           L ⧸↘           L0 ∪
+                                                                 j=0 i=1
+
+Proof. We proceed by induction on N . For N = 0, the statement follows from Proposition
+1.3. For N ≥ 1, by inductive hypothesis there is an (n + 1)-deformation
+                                                        dj
+                                                     −1 [
+                                                    N[
+                                                                    n+1
+                                          L0 ∪                ẽji ⧸↘      LN .
+                                                    j=0 i=1
+
+Moreover, there exist a CW-complex Z of dimension n + 1 such that
+                                                        dj
+                                                     −1 [
+                                                    N[
+                                          L0 ∪                ẽji ↗ Z ↘ LN
+                                                    j=0 i=1
+
+                                                                                                                  dN
+                                                                                                                  [
+(see for instance [11, Ch.II]). Suppose that LN ↗ KN ⊆ LN +1 , where LN +1 = KN ∪                                       eN
+                                                                                                                         j .
+                                                                                                                  j=1
+                                                                                            dN
+                                                                                            [
+By Proposition 1.3, the internal collapse from LN +1 to LN ∪                                      ẽN
+                                                                                                    i induces an (n + 1)-
+                                                                                            i=1
+deformation (where the attaching maps of ẽN                                         N
+                                           j are induced from the attaching maps of ej ).
+On the other hand, an argument analogous to the proof of Proposition 1.3 shows that it is
+
+    1Here, the attaching maps of the cells ẽj are induced by the internal collapses (see Proposition 1.3).
+                                                i
+                           MORSE THEORY FOR GROUP PRESENTATIONS                                              7
+
+possible to construct a sequence of CW-complexes Z ≤ Z1 ≤ Z2 ≤ . . . ≤ ZdN of dimension
+less than or equal to n + 1 such that for every d = 1, 2, . . . , dN
+                                        
+                                 dj
+                              −1 [
+                             N[              d                       d
+                                    ẽji  ∪
+                                             [                       [
+                      L0 ∪                    ẽ˜N
+                                                  i ↗ Z j ↘  L  N  ∪   ẽN
+                                                                         i
+                                    j=0 i=1          i=1                     i=1
+                                                     [
+where the attaching map φ̃˜N
+                           d : ∂Dj → L ∪                   ẽ˜i of the cell ẽ˜N
+                                                                               d is induced by the attaching
+                                                     i<d
+map of ẽN
+         d .                                                                                            
+                                                                                                 dj
+                                                                                              −1 [
+                                                                                             N[
+   We have proved that there is an (n + 1)-deformation from LN +1 to L0 ∪                             ẽji  ∪
+                                                                                             j=0 i=1
+dN                                    dj
+                                    N [
+                                              ẽji by abuse of notation).
+[                                   [
+      ẽ˜N
+         i (equivalently, to L0 ∪                                                                            □
+i=1                                 j=0 i=1
+
+   In what follows, we interpret discrete Morse theory in terms of internal collapses. In
+particular, we deduce a combinatorial method to simplify the cell structure of a regular
+CW-complex preserving its simple homotopy type, with bounds in the deformation. Every
+discrete Morse function f on a regular CW-complex K can be described as a sequence of
+internal collapses in its CW-structure as follows.
+Lemma 1.7. Let K be a regular CW-complex. Then, M is an acyclic matching in X (K)
+with unmatched set of cells C if and only if there exist a sequence of subcomplexes of K
+(∗1 )                    K0 ≤ L1 ≤ K1 . . . ≤ KN −1 ≤ LN −1 ≤ KN = K
+such that Kj ↘ Lj for all 1 ≤ j ≤ N and the set of cells of K that was not collapsed in
+any of the collapses Kj ↘ Lj is equal to C.
+Proof. Given an acyclic matching M in X (K), there is a linear extension L of the (order
+induced by the) directed acyclic graph HM (X (K)) such that if (e, e′ ) ∈ M , the cells e, e′
+follow consecutively in total order L (see [25, Thm. 11.2.]). Let LM be the ordering
+induced by L with the additional relations e =LM e′ if (e, e′ ) ∈ M . It is easy to see that
+fM : K → R defined by fM (e) = |{e′ ∈ K : e′ ≤LM e}| is a discrete Morse function with
+critical cells the set C of unmatched cells of M . If c1 ≤ c2 ≤ . . . ≤ cN ∈ N0 are the images
+under fM of the critical cells of K, define Lj = K(cj ) for 1 ≤ j ≤ N , Kj−1 = K(cj − 1)
+for 1 ≤ j ≤ N − 1 and KN = K. Notice that L1 ≤ K1 ≤ . . . ≤ LN −1 ≤ KN −1 ≤
+LN ≤ KN is a sequence of CW-subcomplexes of K and by Theorem 1.1, Kj ↘ Lj for all
+1 ≤ j ≤ N . The set of cells of K that are not involved in any of the collapses Kj ↘ Lj is
+{e ∈ K(cj ) ∖ K(cj − 1) : 1 ≤ j ≤ N } = C, the set of critical cells of fM .
+   Conversely, given a sequence (∗1 ) of subcomplexes of a regular CW-complex K, define
+M as the set of pairings of cells (ek−1 , ek ) of K associated to each elementary collapse in
+Kj ↘ Lj for all 1 ≤ j ≤ N . Since each cell is involved in at most one elementary collapse,
+M is a matching in X (K). Suppose that there is a simple cycle
+(∗2 )                  ek−1
+                        1   ≺ ek1 ≻ ek−1
+                                     2   ≺ ek2 ≻ . . . ek−1
+                                                        l   ≺ ekl = ek0 ≻ ek−1
+                                                                           1
+
+in HM (X (K)) where (ek−1     i   , eki ) ∈ M for all 1 ≤ i ≤ l. Let Kj be the minimal subcomplex
+of K in the sequence (∗1 ) that contains all the cells of the cycle (∗2 ). For every pair of
+cells (ek−1
+        i   , eki ) in (∗2 ), ek−1
+                                i    is also a face of eki−1 , which in turn is not part of any other
+8                                      XIMENA FERNÁNDEZ
+
+
+elementary collapse along with a higher dimensional cell. So none of the pairs (ek−1
+                                                                                 i   , eki )
+determines an elementary collapse in Kj ↘ Lj . This contradicts the minimality of Kj .
+Hence, M is an acyclic matching in X (K).                                                □
+Remark 1.8. Given a regular CW-complex K and an acyclic matching in X (K), the asso-
+ciated sequence of internal collapses (∗1 ) in K of Lemma 1.7 can be performed in a way
+that all the collapses involved are performed in decreasing dimension. That is, if (ek−1 , ek )
+         ′     ′
+and (ek −1 , ek ) are pair of cells involved in collapses Kj ↘ Lj and Kj ′ ↘ Lj ′ respectively
+with j ′ ≤ j, then the dimensions k, k ′ satisfy k ′ ≤ k. This construction can be achieved
+by considering in the proof of Lemma 1.7 a linear extension L of the order induced by
+HM (X (K)) such that it also respects the order given by the dimension (the existence of
+such L follows by a slight modification of proof of [25, Thm. 11.2.]).
+  We next state the simple homotopy version of Theorem 1.1, that provides an explicit
+construction of the Morse CW-complex and establishes bounds on the dimension of the
+deformation.
+Theorem 1.9. Let K be a regular CW-complex of dimension n and let M be an acyclic
+matching in X (K). Then M induces a sequence of subcomplexes of K
+                       K0 ≤ L1 ≤ K1 . . . ≤ KN −1 ≤ LN −1 ≤ KN = K
+such that Kj ↘ Lj for all 1 ≤ j ≤ N and the set of cells of K non-collapsed in Kj ↘ Lj ∀j
+corresponds to the unmatched cells in M . Moreover, if KM is the CW-complex obtained
+                                                                                   n+1
+after performing in K the sequence of internal collapses induced by M , then K ⧸↘ KM .
+In particular, KM has exactly one cell of dimension k for every unmatched cell of dimension
+k in M .
+Proof. It is consequence of Lemma 1.7 and Theorem 1.6.                                           □
+
+  We focus now in the explicit combinatorial description of the deformation provided by
+Theorem 1.9 in the case of 2-complexes.
+Remark 1.10. Notice that internal collapses transform 2-dimensional regular CW-complexes
+into combinatorial complexes. Recall that a CW-complex K of dimension 2 is called com-
+binatorial if for each 2-cell e2 , its attaching map φ : S 1 → K (1) , seen as a cellular map by
+assigning a CW-structure on S 1 , is a combinatorial map (that is, φ sends each open 1-cell
+of S 1 either homeomorphically onto an open 1-cell of K or it collapses it to a 0-cell of K,
+see [23, Ch.II]). Thus, one can think of the attaching map of a 2-cell in a combinatorial
+complex of dimension 2 just as the ordered list of oriented 1-cells. Suppose
+                                                                          Sn      that there
+                                                                                          Sn is an
+elementary internal collapse from the combinatorial      2-complex  K   ∪      e
+                                                                            i=1 i  to L ∪  i=1 ẽi ,
+in which K ↘e L. We endow the CW-complex L∪ ni=1 ẽi with a combinatorial structure
+                                                      S
+                                                                                          Sn as
+follows. If K = L ∪ {x, v}, where v is a 0-cell and x a 1-cell, then for every 2-cell in i=1 ei
+containing an edge xϵ with ϵ = 1 or −1 (where by x−1 we mean the 1-cell x traversed
+with the opposite orientation), modify its attaching map by replacing each occurrence of
+xϵ by 1. Similarly, if K = L ∪ {x,     Se}  with x a 1-cell and e a 2-cell with attaching map
+                                         n
+xx1 . . . xr , then for every 2-cell in i=1 ei containing edge xϵ modify its attaching map by
+replacing each occurrence of xϵ by (x1 . . . xr )−ϵ and leaving the remaining cells unchanged.
+As aSresult, after performing a sequence of     S internal collapses to a regular CW-complex
+K ∪ ni=1 ei we obtain a CW-complex L ∪ ni=1 ẽi with a natural combinatorial structure.
+                           MORSE THEORY FOR GROUP PRESENTATIONS                                 9
+
+
+
+
+          Figure 1. CW-regular structure of the torus T . Arrows (in white) indicate
+          the orientation of cells.
+
+Example 1.11 (Torus). Let K be the oriented regular CW-complex of Figure 1. Let
+M be the acyclic matching in X (K) described in Figure 2. By Theorem 1.1, the Morse
+CW-complex KM has one cell of dimension 0, two cells of dimension 1 and one cell of
+dimension 2. There is also a formula to compute the incidence number of critical cells
+of consecutive dimension by means of M (see [16] and [25, Thm. 11.13.]). However, this
+information does not determine the homotopy type of KM . In fact, the incidence number
+of the critical 2-cell into each of the critical 1-cells is 0. But the same number of cells in
+each dimension and incidence numbers can be observed in the minimal CW-structure of
+S 1 ∨ S 1 ∨ S 2 . We give next an explicit description of the attaching map of the 2-cell using
+Theorem 1.9.
+                     ◦10     •9    •8     •7                  v1       5           x6      v1
+
+
+                                                              x4                           x4
+                                                                               8
+                                                                           9
+     •9       •8     •7      •2    •3     ◦4     •5     ◦6
+                                                                                     7
+                                                               3      e10      2           3
+
+
+                     •2      •3    •5     ◦1                  v1       5           x6      v1
+
+          Figure 2. Left: Face poset associated to the regular CW-structure of
+          the torus T , an acyclic matching M in red and labels corresponding to an
+          induced discrete Morse function fM (critical cells are the empty bullets).
+          Right: Regular CW-structure of the torus T . The arrows in red indicate
+          pairs of cells in the matching M .
+
+   We denote by vi , xi , ei the 0-cells, 1-cells and 2-cells of K respectively. Initially, the
+attaching map of the critical 2-cell e10 is
+                                        x−1    −1
+                                         3 x5 x2 x9 .
+After the internal collapse associated to the pair (x9 , e9 ) (or 9 for short), the attaching
+map of ẽ10 becomes
+                                    x−1    −1    −1 −1
+                                     3 x5 x2 x8 x5 x4
+10                                                      XIMENA FERNÁNDEZ
+
+(see Figure 3 (a)). After performing the internal collapses associated to the pairs 8 and 7,
+the induced attaching map of the 2-cell ẽ10 2 is
+                                               x−1    −1             −1 −1 −1
+                                                3 x5 x2 x2 x6 x3 x4 x6 x5 x4
+(see Figure 3 (b) and (c)). Now, the internal collapses 5, 3, 2 associated to pairs of 0-cells
+and 1-cells mean that the corresponding edges are collapsed into a point, and they translate
+into the elimination of each occurrence of xϵ2 , xϵ3 , xϵ5 (with ϵ = ±1) from the description of
+the attaching map of ẽ10 , that ends up being equal to
+                                                                 x6 x4 x−1 −1
+                                                                        6 x4 .
+See Figure 3 for a picture of the complete procedure of deformation.
+v1        5                 x6           v1        v1            5                 x6       v1   v1         5              x6        v1
+
+
+x4                                       x4    x4                                           x4   x4                                  x4
+                       8                                             ẽ10
+                                                                                                                ẽ10
+          ẽ10
+                                7                                                       7
+ 3                     2                 3         3                          2             3    3                     2             3
+
+
+v1        5                 x6           v1        v1            5                 x6       v1   v1         5              x6        v1
+                   (a)                                                      (b)                                   (c)
+
+                 v1        x6       v1                                 v1          x6       v1        v1        x6          v1
+
+     x4
+                   ẽ10             x4                  x4                                            x4        ẽ10            x4
+                                                                                            x4
+                                                                            ẽ10
+                                                             2
+                                                                                            v1         v1       x6          v1
+                                              v1
+     3             2                3
+                                                                        x6
+                 v1    x6           v1
+                   (d)                                                      (e)                                  (f)
+
+          Figure 3.      Internal collapses in the torus T . The CW-complex ob-
+          tained after performing successively the internal collapses associated to the
+          matched pairs 9 (a), 8 (b), 7 (c), 5 (d), 3 (e) and 2 (f).
+
+Remark 1.12. Given a regular CW-complex K of dimension 2 and an acyclic matching
+M in X (K), the associated sequence of internal collapses (∗1 ) can be performed in any
+order in the process of construction of KM . Concretely, if (v, x) ∈ M is a pair of matched
+cells of dimension 0 and 1, the associated internal collapse induces the replacement of xϵ
+by 1 in the combinatorial description of the attaching map of every 2-cell. This operation
+commutes with the transformation induced by the rest of the internal collapses, since x is
+not part of any other element of M . Let (x1 , e1 ), (x2 , e2 ) ∈ M be two pairs of matched
+   2By abuse of notation, we denote by ẽ to all the intermediate stages of the cell obtained from a critical
+cell e after performing a subsequence of internal collapses.
+                                  MORSE THEORY FOR GROUP PRESENTATIONS                                               11
+
+cells of dimension 1 and 2. The attaching maps of ei in K can be described as xi wi
+where wi does not contain xi . It is impossible that both w1 contains an occurrence of x2
+and w2 an occurrence of x1 , since this would contradict the acyclicity of HM (X (K)). In
+particular, after performing any of the transformations induced by these internal collapses,
+the modified attaching map ẽi will still contain a single occurrence of xi , i = 1, 2. So it
+is possible to perform these two transformations in any order, and they yield the same
+result. An inductive application of this step completes the proof for an arbitrary number
+of transpositions.
+
+Example 1.13 (Higher dimensions). For dimension n > 2, internal collapses also preserve
+some of the rigid combinatorial structure of regular CW-complexes. Indeed, they transform
+regular complexes into higher dimensional combinatorial complexes, characterized by a
+discrete description of the attaching maps (see [23, Ch.II] for the definitions). A general
+algorithmic description of the Morse CW-complex in high dimensions is, however, limited
+by the lack of a simple combinatorial description of the attaching map of n-cells for n > 2.
+Notwithstanding, the Morse CW-complex can be still described in particular examples.
+   For instance, let K be the 3-dimensional regular CW-complex constructed as two solid
+pyramids K1 and K2 whose boundary is jointly identified as in Figure 4. Each pyramid
+can be seen as the cone on a regular CW-structure P of the projective plane RP 2 .
+
+
+                                        v1                                               v1
+               K1                                                 K2
+
+
+
+                                   x3                  x4                           x2                x1
+                        x2                    x1                        x3                     x4
+
+                             v3                             v2                v2                                v3
+                                         e4                                               e2
+                              e1                  e3                           e3               e1
+                                        v4                                               v4
+                                   e2                                               e4
+              v2                                  v3             v3                             v2
+
+               K1 (top view)                                          K2 (top view)
+                   v3              x5              v2                    v2              x5               v3
+
+                                   e7                                                    e5
+                        x3                    x4                              x2                     x1
+                                   v1                                                     v1
+               x6            e8              e6        x6               x6         e8           e6         x6
+
+                        x2         e5         x1                              x3         e7          x4
+
+                   v2              x5              v3                    v3              x5               v2
+
+
+
+       Figure 4. Top: Two subdivided solid pyramids K1 and K2 whose bound-
+       aries are jointly identified. Each pyramid is the cone on a regular CW-
+       structure P of the projective plane RP 2 . Bottom: The top view of K1 and
+       K2 showing the identification of its ‘top’ cells.
+12                                         XIMENA FERNÁNDEZ
+
+   Let M be the acyclic matching in X (K) described at Figure 5. The associated internal
+collapses, depicted in Figure 6, simplify the 3-skeleton of K to obtain a CW-complex with
+a single (critical) 3-cell whose attaching map can be concretely described as follows. Let
+S be the triangulation of S 2 induced by the construction of K illustrated at Figure 7.
+The attaching map of the critical 3-cell in the Morse CW-complex KM is the quotient
+of the canonical homeomorphism φ : S 2 → S under the identification in S of antipodal
+points (via the homeomorphism). This construction shows a simple CW-structure of the
+3-dimensional real projective space RP 3 . A minimal CW-structure of RP 3 (with a single
+0-cell v2 , a 1-cell x10 , a 2-cell e5 and a 3-cell b8 ) is obtained after further performing the
+internal collapses associated to the matched cells in solid black at Figure 5.
+
+ X (K1 )                                                                                             X (K2 )
+
+
+
+
+                                                        X (P )
+
+
+
+
+           Figure 5. Acyclic matching M in X (K) in solid red (and a maximal
+           acyclic matching Mmax in solid red and black). In dashed lines, the sub-
+           posets X (K1 ), X (K2 ) and X (P ) with P the regular CW-structure of the
+           projective plane RP 2 in the basis of K1 and K2 .
+           Here, e9 , . . . , e12 and e13 , . . . , e16 denote the ‘internal’ 2-cells in K1 and K2
+           respectively with vertices {v1 , v4 , vi } for i = 2, 3. The 3-cells in K1 and K2
+           are denoted by b1 , . . . , b4 and b5 , . . . , b8 respectively. The 1-cells x11 and
+           x12 joins the vertices v1 and v4 in K1 and K2 respectively. The ‘internal’
+           1-cells in the CW-structure P of the projective plane in the basis of K1 and
+           K2 are labelled as x7 , . . . , x10 .
+
+
+
+                     2. Q∗∗ -transformations of group presentations
+  In this section, we present an algorithm based in discrete Morse theory to obtain finite
+presentations that are Q∗∗ -equivalent to a given one without tracking down explicitly the
+Q∗∗ -transformations involved. The method has a geometric core based in the connection
+between group presentations and 2-dimensional CW-complexes [23, Ch.I].
+                            MORSE THEORY FOR GROUP PRESENTATIONS                                                          13
+
+
+K1
+
+
+
+            b1                                          e11
+       e9                    b2   e10                                               b4                          e12 x11
+                                                   b3
+                                                                                    e4
+
+
+
+K2
+
+                                             b6                          e15
+            b5
+                 e13                e14                                                             x12
+
+                                                                         b7                               e16
+
+
+
+P
+                                        e7
+                                                                   x7
+                       e6                     x8                                                      v4
+                                                              e8
+                  x5                                                                            x6
+
+
+
+
+     Figure 6. Internal collapses in K determined by the acyclic matching M .
+     Here P is the CW-structure of projective plane RP 2 at the basis of the
+     pyramids.
+
+                        S                                      KM               v1
+
+
+
+                                                                               x3              x4
+                                                                    x2                   x1
+                                                                        v3                           v2
+
+
+                                                              v2                          v3
+                                                                         x1                    x2
+                                                                   x4           x3
+
+
+
+                                                                                v1
+
+
+     Figure 7. Left: A triangulation S of S 2 (the boundary of D3 ). Right: The
+     Morse CW-complex KM obtained as the identification of antipodal points
+     in S ∪φ D3 , with φ : ∂D3 → S the canonical homeomorphism.
+14                                     XIMENA FERNÁNDEZ
+
+   In the same way as the collapses and expansions determine simple homotopy classes
+of CW-complexes, the transformations (1)–(5) define classes of group presentations, the
+Q∗∗ -classes. There is a correspondence between 3-deformation classes of CW-complexes
+of dimension 2 and Q∗∗ -classes of group presentations. Such correspondence is based
+on a standard way to map a given complex K to an associated presentation PK , and a
+presentation P to a 2-complex KP . Concretely, if P = ⟨x1 , . . . , xn | r1 , . . . , rm ⟩ is a finite
+group presentation, its associated standard complex KP is a CW-complex with a single
+vertex and an oriented 1-cell e1i for each generator xi . The 2-cells e2j of KP correspond
+to the relators rj , which determine closed edge paths on the 1-skeleton as the attaching
+maps. Conversely, if K is a finite CW-complex of dimension 2 and T is a spanning tree of
+K (1) (the 1-skeleton of K), then K ⧸↘3 K/T and the standard presentation PK is defined
+as a presentation of the fundamental group of K/T . Different choices of spanning trees
+result in Q∗∗ -equivalent presentations. It is important to note that PK contains not only
+information about the fundamental group of K, but also about its 3-deformation class.
+Given group presentations P, Q, if P can be transformed into Q by a finite sequence of
+Q∗∗ -transformations, we say that P is Q∗∗ -equivalent to Q and we denote P ∼Q∗∗ Q.
+It can be shown that P ∼Q∗∗ Q if and only KP ⧸↘3 KQ . Similarly, if K, L are CW-
+complexes of dimension 2, K ⧸↘3 L if and only if PK ∼Q∗∗ PL . Moreover, P ∼Q∗∗ PKP
+and K ⧸↘3 KPK . Balanced presentations of the trivial group correspond to contractible
+complexes.
+   Theorem 1.9 implies the following result in terms of group presentations when the di-
+mension of the CW-complex is 2.
+Corollary 2.1. Let K be a regular CW-complex of dimension 2 and let M be an acyclic
+matching in K. Then, PK ∼Q∗∗ PKM .
+   We will show next an algorithm to construct PKM for any matching M in X (K). We
+start with the case when the matching M only pairs cells of dimension 0 and 1.
+Lemma 2.2. Let K be a regular CW-complex of dimension n and let M be a matching in
+the subposet of X (K) of cells of dimension 0 and 1 with only one critical
+                                                                      S cell of dimension
+0. Let T be the subcomplex of K of the closed matched cells T = e∈M ē. Then, M is
+acyclic if and only if T is a spanning tree in the 1-skeleton K (1) .
+Proof. Recall that given an acyclic matching M in the Hasse diagram of X (K), the graph
+HM (X (K)) is the (acyclic) directed graph obtained by reversing in H(X) the orientation
+of the edges corresponding to pairs in M . Since the induced subgraph of H(X (K)) whose
+vertices are the cells of dimension 0 and 1 is the barycentric subdivision of the 1-skeleton
+of K, the result follows directly from the following fact: any simple cycle
+                             v1 ≺ x1 ≻ v2 ≺ x2 ≻ . . . vk ≺ xk ≻ v1
+in HM (X (K)), with vi of dimension 0 and xi of dimension 1, is in correspondence with a
+simple cycle
+                                    v1 , v2 , . . . , vk , v1
+in the 1-dimensional subcomplex of K of matched pairs of cells of dimensions 0 and 1. □
+  As a consequence of the previous lemma and Theorem 1.9, we obtain an alternative
+proof of the fact that an n-dimensional CW-complex K (n + 1)-deforms to K/T , where
+T is a spanning tree of K (1) . Indeed, it reduces to noting that K/T is homeomorphic to
+KM , where M is the acyclic matching induced by T .
+                         MORSE THEORY FOR GROUP PRESENTATIONS                                   15
+
+  We now provide a simple description of the group presentation associated to KM for
+any acyclic matching M , which will be easily tractable through computer assistance. We
+need first some definitions.
+Definition 2.3 (Rewriting rule). Let P be a group presentation and let r be a relator of P
+given by the word w1 xϵ w2 , where w1 and w2 are words on the generators, the generator x
+appears neither in w1 nor in w2 and ϵ = +1 or −1. The equivalent expression of x induced
+by r is defined as (w1−1 w2−1 )ϵ .
+Remark 2.4. If P is a group presentation and x is a generator of P such that it appears only
+once in a relator r, then P is Q∗∗ -equivalent to the presentation obtained after eliminating
+the generator x and the relator r and applying the rewriting rule to every occurrence of
+x in the rest of the relators. Indeed, if r′ is another relator containing x, by cyclically
+permuting r′ if necessary (this is operation (3)), we can assume r′ reads as xϵ u, with ϵ = 1
+or −1. We replace r′ by the product sr′ where s is a suitable cyclic permutation of r (or
+its inverse) to eliminate this occurrence of x (here we apply operations (1), (2) and (3)).
+We iterate this procedure until no occurrence of x is left.
+Example 2.5. If P = ⟨x, y | xyxy −1 x−1 y −1 , xy −2 ⟩, then the equivalent expression of
+x induced by the relator r = xy −2 is y 2 . By Remark 2.4, P is Q∗∗ -equivalent to the
+presentation P̃ = ⟨y | y 2 yy 2 y −1 y −2 y −1 ⟩, i.e. ⟨y | y⟩.
+Definition 2.6. Let K be a regular CW-complex of dimension 2. Let M be an acyclic
+matching in X (K) such that there is only one critical cell of dimension 0. Denote by M0 the
+subset of matched pairs of cells of dimension 0 and 1 and by M1 = {(x1 , e1 ), . . . , (xm , em )}
+the subset of matched pairs of cells of dimension 1 and 2. The Morse presentation QK,M
+is the presentation Qm defined by the following iterative procedure:
+      • Q0 is the standard presentation PK constructed using the spanning tree T induced
+        by M0 (see Lemma 2.2). The generators of Q0 are the unmatched 1-cells of K
+        with respect to the matching M0 , and its relators are the words induced by the
+        attaching maps of the 2-cells of K. We associate to each relator r in Q0 the 2-cell
+        that produced it.
+      • For 0 ≤ i < m, let Qi+1 be the presentation obtained from Qi after removing the
+        relator associated to ei and the generator xi , and applying the rewriting rule on
+        every occurrence of the generator xi in the rest of the relators.
+   We will see next that the Morse presentation QK,M is an algorithmic description of PKM .
+Concretely, there is a correspondence between the internal collapses in K induced by M
+and the combinatorial transformations in PK described in Definition 2.6. The acyclicity
+of M implies that the construction of QK,M does not depend on the choice of the order in
+M1 ; that is, the internal collapses determined by M1 can be performed in any order (see
+Remark 1.12).
+Proposition 2.7. Let K be a regular 2-dimensional CW-complex, and let M be an acyclic
+matching in X (K) with only one critical cell of dimension 0. Then, QK,M = PKM for a
+suitable choice of orientations and basepoints in KM .
+Proof. Given an acyclic matching M in X (K), by Lemma 1.7 and Remarks 1.8 and 1.12
+there is a sequence of internal collapses (∗1 ) of decreasing dimension such that the collapses
+at each dimension can be performed in any order. If M0 and M1 = {(x1 , e1 ), . . . , (xm , em )}
+are as in Definition 2.6, then they describe an (ordered) sequence of internal collapses to
+16                                            XIMENA FERNÁNDEZ
+
+transform K into KM . For each 1 ≤ i < m, the combinatorial transformation performed
+to get Qi+1 from Qi parallels exactly the geometric description of the elementary internal
+collapse indicated by the pair (xi , ei ) (see Remark 1.10). Denote by KM1 the CW-complex
+obtained from K after performing the internal collapses induced by the pairs in M1 . Now,
+let T be the spanning tree induced by M0 . Since KM = KM1 /T , it follows that Qm = QK,M
+is the standard presentation associated to KM for the right choice of orientations and
+basepoints.                                                                             □
+  By Corollary 2.1, Proposition 2.7 implies that QK,M is another representative of the
+Q∗∗ -class of PK .
+Theorem 2.8. Let K be a regular 2-dimensional CW-complex, and let M be an acyclic
+matching in X (K) with only one critical cell of dimension 0. Then, QK,M ∼Q∗∗ PK .
+  We deduce next a combinatorial technique to study the Q∗∗ -class of a given presentation
+P, by means of acyclic matchings.
+Theorem 2.9. Let P be a finite presentation of a finitely presented group and KP′ the
+barycentric subdivision of KP . Let M be an acyclic matching in X (KP′ ) with only one
+critical cell of dimension 0. Then P ∼Q∗∗ QKP′ ,M .
+Proof. The result follows from the sequence of Q∗∗ -equivalences
+                                P ∼Q∗∗ PKP ∼Q∗∗ PKP′ ∼Q∗∗ P(KP′ )M = QKP′ ,M ,
+where the equivalence P ∼Q∗∗ PKP is well known (see for instance [42]), PKP ∼Q∗∗ PKP′
+holds since every 2-complex 3-deforms to its barycentric subdivision, and PKP′ ∼Q∗∗
+P(KP′ )M = QKP′ ,M is consequence of Theorem 2.8 applied to the regular 2-dimensional
+CW-complex KP′ .                                                                   □
+Example 2.10. Let P = ⟨x, y | x2 , xy −2 ⟩. The poset X (KP′ ) associated to P is depicted in
+Figure 8. This poset admits an explicit algorithmic description from P. If o is the minimal
+point that represents the only vertex of KP , for every generator g of P there is a subposet
+of X (KP′ ), a model of S 1 , consisting of four points o, g, g +1 , g −1 . We refer to these points
+as generator elements. For every relator ri of P, there is a subposet of X (KP′ ), a model
+of D2 , given by a cone with apex vr over a model of S 1 that represents the subdivision
+of the 2-cell associated to ri in KP . We refer to the points of this subposet as relator
+elements. Finally, there are cover relations between the generator elements and the relator
+elements. For each g ϵ in ri there is an edge from the generator elements g, g +1 , g −1 to the
+homonym relator elements g, g +1 , g −1 . Note that X (KP′ ) has 29 points and, in general,
+|X (KP′ )|= 4(l + m) + 1 where l is the total relator length and m the number of relators of
+P.
+   Consider an acyclic matching M in X (KP′ ) with a single critical cell of dimension 0,
+Figure 9.
+   First, we compute the presentation Q0 associated to KP′ /T , T being the spanning tree
+in KP′ (1) induced by M , see (∗3 ) 3. Notice that, although Q0 is Q∗∗ -equivalent to P, it has
+a larger number of generators and relators.
+        Q0 =⟨x6 . . . , x15 |
+(∗3 )
+              x7 , x−1 −1      −1      −1 −1       −1            −1              −1        −1            −1
+                    6 x7 x8 , x8 x9 , x6 x9 x10 , x10 x11 , x11 x12 , x13 , x12 x13 x14 , x14 x15 , x12 x15 ⟩
+
+     3Here, the subscript of each critical 1-cell corresponds to the label in Figure 9.
+                         MORSE THEORY FOR GROUP PRESENTATIONS                                                                             17
+
+                                        x                                 x             x−1                o
+
+                             x−1                       x+1       x+1                                           y −1
+
+
+
+                    o                       vr1                  o                              vr2                   y
+
+
+                         x+1                        x−1          y +1                                          y +1
+
+                                                                          y                            o
+                                        x                                               y −1
+
+•x+1 •x−1 •x+1 •x−1                                                                     •x+1 •x−1 •y−1 •y+1 •y−1 •y+1
+
+
+
+•o      •x     •o       •x     •x+1 •x−1                     •y−1 •y+1                      •o        •x            •o     •y   •o   •y
+
+
+
+       •vr1                                  •x         •o       •y                                             •vr2
+
+     Figure 8. Top: The barycenter subdivision of KP . Bottom: The face
+     poset X (KP′ ).
+                                                                                            3
+
+
+                                                                          12           11                       x6
+                          3         15                                                                10
+                                              e16
+                                                             v1
+                                                   4                          5
+                                   14                                                                      9
+                                            13                                     7
+                                                        3            2                                          2
+                                                                                                 8
+
+                                                                                        x6
+
+ ◦16     •15   •14       •13                                                                •12        •11          •10    •9   •8   •7
+
+
+
+  •4     •15   •14       •13        •12           •3                 ◦6           •2        •5         •11          •10    •9   •8   •7
+
+
+
+         •4                                       •3        ◦1       •2                                               •5
+
+     Figure 9. Top: The barycenter subdivision of KP with arrows and labels
+     associated to an acyclic matching M . Bottom: The face poset X (KP′ ) with
+     the matching M in red. The labels correspond to an induced discrete Morse
+     function fM . Critical cells are empty bullets.
+18                                             XIMENA FERNÁNDEZ
+
+ We perform below the iterative procedure of reduction of Q0 described in Definition 2.6.
+This is a sequence of Q∗∗ -transformations induced by M to obtain QK,M , a new presenta-
+tion derived from Q0 with fewer generators and relators that is also Q∗∗ -equivalent to P (see
+Proposition 2.7). At each step, the generator and relator involved in the transformation of
+the next step is in bold.
+     Q1 =⟨x6 , . . . , x14 | x7 , x−1 −1      −1      −1 −1       −1            −1              −1            −1
+                                   6 x7 x8 , x8 x9 , x6 x9 x10 , x10 x11 , x11 x12 , x13 , x12 x13 x14 , x12 x14 ⟩
+
+     Q2 =⟨x6 , . . . , x13 | x7 , x−1 −1      −1      −1 −1       −1            −1              −1
+                                   6 x7 x8 , x8 x9 , x6 x9 x10 , x10 x11 , x11 x12 , x13 , x12 x13 x12 ⟩
+
+     Q3 =⟨x6 , . . . , x12 | x7 , x−1 −1      −1      −1 −1       −1            −1    2
+                                   6 x7 x8 , x8 x9 , x6 x9 x10 , x10 x11 , x11 x12 , x12 ⟩
+
+     Q4 =⟨x6 , . . . , x11 | x7 , x−1 −1      −1      −1 −1       −1        2
+                                   6 x7 x8 , x8 x9 , x6 x9 x10 , x10 x11 , x11 ⟩
+
+     Q5 =⟨x6 , . . . , x10 | x7 , x−1 −1      −1      −1 −1       2
+                                   6 x7 x8 , x8 x9 , x6 x9 x10 , x10 ⟩
+
+     Q6 =⟨x6 , . . . , x9 | x7 , x−1 −1      −1             2
+                                  6 x7 x8 , x8 x9 , (x9 x6 ) ⟩
+
+     Q7 =⟨x6 , x7 , x8 | x7 , x−1 −1             2
+                               6 x7 x8 , (x8 x6 ) ⟩
+
+     Q8 =⟨x6 , x7 | x7 , (x7 x26 )2 ⟩
+     Q9 =⟨x6 | x46 ⟩
+
+Hence, P ∼Q∗∗ ⟨x6 | x46 ⟩.
+Remark 2.11. Given a presentation P and a matching M in KP′ with only one critical
+0-cell, we showed that P ∼Q∗∗ QKP′ ,M . We now estimate a sufficient number of Q∗∗ -
+transformations to obtain QKP′ ,M from P. Let n be the number of generators of P, m
+the number of relators and k the total relator length. We base our reasoning in the proof
+of Theorem 2.9. The equivalences P ∼Q∗∗ PKP and PKP ∼Q∗∗ PKP′ can be achieved in
+O(n + m) and O(k) Q∗∗ -transformations respectively. By Corollary 2.1, KP′ ⧸↘3 (KP′ )M
+and the estimated number of Q∗∗ -transformations required to obtain P(KP′ )M from PKP′
+is proportional to the number of elementary expansions and collapses needed to deform
+KP′ into (KP′ )M . This is bounded by the square of the number of cells of KP′ , which is
+proportional to k.
+
+                    3. Applications to the Andrews–Curtis conjecture
+   In this section, we apply the techniques developed in Section 2 to prove that some of
+the potential counterexamples to the Andrews–Curtis conjecture do satisfy the conjecture.
+   There is a common belief that the Andrews–Curtis conjecture is false. However, not a
+single counterexample could be found yet. Over the last fifty years, a list of examples of
+balanced presentations of the trivial group which are not known to be trivializable via Q∗∗ -
+transformations has been compiled. They serve as potential counterexamples to disprove
+the Andrews–Curtis conjecture (see [23, Ch. XII] for a detailed reference).
+   For a potential counterexample P, the general outline we will adopt to prove that P ∼Q∗∗
+⟨ | ⟩ is to find an appropriated acyclic matching M in X (KP ′ ) such that the presentation
+QKP′ ,M , which is in the same Q∗∗ -class as P, is computationally tractable and easily
+transformed into the trivial presentation ⟨ | ⟩. Note that, given P and the acyclic matching
+M , the complexity of the computation of the presentation QKP′ ,M , the Morse presentation
+associated to P, is O(k) with k the total length relator of P. We emphasize that our method
+of Q∗∗ -transformation makes use of the transformation (4), the only transformation in (1)–
+(5) that increases the total length relator of the presentation. This point is central for the
+posterior manageable reduction of the Q∗∗ -equivalent Morse presentation.
+                        MORSE THEORY FOR GROUP PRESENTATIONS                                 19
+
+   We say that a presentation P is greedily trivializable if the reduction algorithm for sim-
+plification of presentations described in [21] can transform P into ⟨ | ⟩. This procedure
+was originally developed for Tietze simplification of presentations and it consists of a loop
+of two phases which is iterated until no further operation is possible. The search phase
+attempts to reduce the length-relator by replacing long substrings of relators by shorter
+equivalent ones. That is, if there are relators r1 and r2 such that a suitable cyclic permu-
+tation of r1 reads uv and a cyclic permutation of r2 , or its inverse reads as wv, and the
+length of u is greater than the length of w, then r2 is replaced by wu−1 . The elimination
+phase involves the elimination of generators x which occur only once in some relator r (in
+which case the reduction consist of the elimination of the generator x and the relator r).
+Remark 3.1. There is only one situation in which the reduction algorithm [21] performs
+the transformation (6). Namely, suppose that the presentation P has a relator ri which is
+equal to another relator rj . In that case, the algorithm replaces relator ri by a 1 and then
+eliminates the latter 1. This transformation changes the deficiency of the presentation and
+does not preserve the (simple) homotopy type of the associated CW-complex KP .
+   Note that the previous situation is not possible if P is a balanced presentation of the
+trivial group, since if P has (after possibly a sequence of Q∗∗ -transformations) one relator
+equal to another, then it is in the same Q∗∗ -class as a presentation with a relator equal
+to 1. Thus, KP has non-trivial second homology group, which is not possible. There-
+fore, the reduction algorithm performs only Q∗∗ -transformations if the input is a balanced
+presentation of the trivial group.
+3.1. Experimental results. We next present an application of our method to compu-
+tationally prove that some potential counterexamples of the Andrews–Curtis conjecture
+can be Q∗∗ -trivialized. Concretely, given a balanced presentation P, we computationally
+generate an acyclic matching M in X (KP′ ) such that the presentation QKP′ ,M is greedily
+trivializable. All the computations are made using SAGE [36]. The code to replicate the
+following examples can be found at [13], whereas the outline of the routine is described
+in Appendix A. We remark that in all of these examples of balanced presentations P of
+the trivial group, the reduction algorithm applied to the presentation QKP′ ,T , with T the
+spanning tree induced by the matching M , is not able to trivialize it (cf. Lemma 2.2).
+Example 3.2 (Akbulut & Kirby [1]). The family of balanced presentations of the trivial
+group AKn was inspired by the case n = 4, which corresponds to a handle decomposition
+of the Akbulut-Kirby 4-sphere:
+                       AKn = ⟨x, y | xyx = yxy, xn = y n+1 ⟩, n ≥ 1.
+We prove that the presentation
+                            AK2 = ⟨x, y | xyx = yxy, x2 = y 3 ⟩
+satisfies the Andrews–Curtis conjecture. Indeed, it is simple to find an acyclic match-
+ing M in X (KAK  ′     ) such that QKAK
+                     2
+                                       ′   ,M is greedily trivializable (see Appendix A). Since
+                                         2
+AK2 ∼Q∗∗ QKAK  ′     ,M  , this shows that  AK2 satisfies the Andrews–Curtis conjecture. This
+                   2
+fact was previously proved in [31] using genetic algorithms (also by S. M. Gersten in an
+unpublished work [19]). However, their methods were focused on the explicit sequence of
+transformations to trivialize the presentation, rather than to give a proof of its existence.
+For n = 1, AK1 is simply Q∗∗ -trivializable (see Example 2.5). For n > 2, the question
+remains open.
+20                                        XIMENA FERNÁNDEZ
+
+Example 3.3 (Miller III & Schupp [33]). Given w a word in x and y with exponent sum
+0 on x and n > 0,
+                      MSn (w) = ⟨x, y | x−1 y n x = y n+1 , x = w⟩
+is a balanced presentation of the trivial group. A well-studied subfamily of the presentations
+MSn (w) is that given by w∗ = y −1 xyx−1 (see [22, 31]). In these works, the authors proved
+that MSn (w∗ ) is Q∗∗ -trivializable for n ≤ 2. The case n = 3 was the smallest potential
+counterexample of this family. With our algorithmic method, we prove that
+                       MS3 (w∗ ) = ⟨x, y | x−1 y 3 x = y 4 , x = y −1 xyx−1 ⟩
+does satisfy the Andrews–Curtis conjecture. Precisely, we computationally generate an
+acyclic matching M such that the Morse presentation QK ′     ,M is greedily trivializable
+                                                                       MS3 (w∗ )
+(see Appendix A).
+Example 3.4 (Barmak [4]). The generalized Andrews–Curtis conjecture states that any
+two presentations P and Q with simple homotopy equivalent standard complexes KP , KQ
+are Q∗∗ -equivalent [23, Ch.I]. A strong version of the generalized conjecture asserts that
+under the previous conditions, P can be obtained from Q by performing only operations
+(1) to (3) (called Q∗ -transformations). Recently, Barmak found a counterexample to this
+strong formulation of the conjecture [4]. He proved that
+                                         B1 = ⟨x, y | [x, y], 1⟩
+is not Q∗ -equivalent to
+                    B2 = ⟨x, y | [x, [x, y −1 ]]2 y[y −1 , x]y −1 , [x, [[y −1 , x], x]]⟩,
+but KB1 ⧸↘ KB2 (here [x, y] = xyx−1 y −1 ). He asked whether these presentations are
+Q∗∗ -equivalent or not, being B1 and B2 a potential counterexample to the generalized
+Andrews–Curtis conjecture.
+  We produce an acyclic matching M in X (KB′ 2 ) such that the associated Morse pre-
+sentation is greedily transformed into B1 via the reduction algorithm (see Appendix A).
+By Theorem 2.9 and Remark 3.1, we conclude that B1 ∼Q∗∗ B2 and hence, that this
+counterexample to the strong version of the conjecture does not disprove the generalized
+Andrews–Curtis conjecture.
+3.2. Gordon’s potential counterexamples. In [9, Sect. 3.8–3.10], the author brings to
+the attention the following family of balanced presentations of the trivial group proposed
+by Gordon
+                 Gn,m,p,q = ⟨x, y | x = [xm , y n ], y = [y p , xq ]⟩ n, m, p, q ∈ Z,
+where [x, y] = xyx−1 y −1 . Many instances of this family of presentations are potential
+counterexamples of the Andrews–Curtis conjecture [30]. For instance, the presentation
+MS3 (w∗ ) of Example 3.3 (see also [33]) is a representative of this family for n = m = q =
+−1, p = −3. It is not known in general whether a presentation Gn,m,p,q is Q∗∗ -trivializable.
+In [5], the authors proved that any presentation in this sequence with total length-relator
+up to 14 can be transformed into ⟨ | ⟩ by exploring the space of possible sequences of
+transformations (1)–(3). We focus our attention on the subfamily
+               Gq := G−1,−1,−1,−q = ⟨x, y | x = [x−1 , y −1 ], y = [y −1 , x−q ]⟩.
+                                       = ⟨x, y | x = x−1 y −1 xy, y = y −1 x−q yxq ⟩.
+                             MORSE THEORY FOR GROUP PRESENTATIONS                               21
+
+We show that Gq is Q∗∗ -trivializable for all q ∈ N, by an inductive procedure based on our
+theory from Section 2.
+Theorem 3.5. The presentation Gq = ⟨x, y | x = x−1 y −1 xy, y = y −1 x−q yxq ⟩ satisfies the
+Andrews–Curtis conjecture for all q ∈ N.
+Proof. If q is even, Gq results greedily trivializable. Indeed, given q = 2k with k ∈ N, the
+reduction algorithm replaces k times the string x−1 yx2 by its equivalent expression y in
+the second relator y −2 x−2k yx2k , which results in y −2 x−k y or, equivalently, y −1 x−k . Now,
+the first relator x−2 y −1 xy is transformed into x after replacing the string y by x−k . The
+resulting presentation ⟨x, y | x, y −1 x−k ⟩ is clearly Q∗∗ -trivializable. Hence, G2k ∼Q∗∗ ⟨ | ⟩.
+   For q odd, that is q = 2k − 1, a similar procedure transforms G2k−1 into
+                        G̃k = ⟨x, y | x−2 y −1 xy, y −1 x−k+1 yx−1 y −1 ⟩, k ∈ N.
+For k = 1, it is easy to check that G̃1 is trivializable. For k = 2,
+                             G̃2 = ⟨x, y | x−2 y −1 xy, y −1 x−1 yx−1 y −1 ⟩.
+If we replace the first relator r1 by r1 r2 , we obtain r̃1 = x−3 y −1 . Now, y occurs only
+once at r̃1 . After replacing y by its equivalent expression x−3 in r2 and eliminating the
+generator y and relator r̃1 , the resulting Q∗∗ -equivalent presentation
+                                                   ⟨x | x⟩
+is trivializable.
+   For q > 3 odd (that is q = 2k − 1 with k > 2), the reduction algorithm is not able
+to trivialize Gq (neither G̃k ). We prove by induction on k that Gk ∼Q∗∗ ⟨ | ⟩. For k ≥ 3,
+consider the acyclic matching Mk in the poset Xk = X (KG̃′ ) of Figure 10.
+                                                            k
+   The Morse presentation QK ′ ,Mk is (Q∗∗ -equivalent to)
+                                    G̃k
+
+          ⟨a0 , a1 , a2 | a0 a−1         −1 −1 −1         −1 −1    −1 −1
+                              1 a0 , a2 a1 a2 a0 a1 , a0 a2 a0 a1 a2 (a1 a0 )
+                                                                              k−1
+                                                                                  a2 a−1
+                                                                                      1 ⟩
+(see Appendix B) and it can be inductively trivialized. In fact, there exists a sequence of
+Q∗∗ -equivalent presentations
+                    QK ′ ,Mk ≃Q∗∗ ⟨a0 , a2 | a2 a−2 −1      −1    −1 −k+1
+                                                 0 a2 a0 , a2 a0 a2 a0    a2 a−1
+                                                                              0 ⟩
+                       G̃k
+
+                              ≃Q∗∗ ⟨a0 , a2 | a2 a−2 −1      −1    −1 −k+2
+                                                  0 a1 a0 , a2 a0 a2 a0    a2 a−3
+                                                                               0 ⟩
+                              ≃Q∗∗ ⟨a0 , a2 | a2 a−2 −1      −1 −2 −k+2
+                                                  0 a2 a0 , a0 a2 a0    a1 ⟩
+                              ≃Q∗∗ G̃k−1 .
+For the first Q∗∗ -equivalence, notice that the generator a1 appears only once in the first
+relator of QK ′ ,Mk . Thus, after replacing a1 by its equivalent expression a20 in the rest of
+              G̃k
+
+the relators, the generator a1 and the relator a0 a−1
+                                                   1 a0 can be removed. Now, for the second
+equivalence, the second relator can be rewritten as a−1        −1 −k+2
+                                                        2 a0 (a2 a0     a2 )(a−1 −1     −1
+                                                                              2 a0 a2 )a0 . It
+can be deduced from the first relator that the string a−1  −1                    −2 −1
+                                                        2 a0 is equivalent to a0 a2 . After
+            −1 −1
+replacing a2 a0 by its equivalent expression in the second relator, the latter is transformed
+into a−1      −1 −k+2
+      2 a0 (a2 a0     a2 )(a−2  −1     −1                      −1 −k+2
+                            0 a2 a2 )a0 or equivalently, a0 (a2 a0      a2 )a−3 −1
+                                                                             0 a2 . By replac-
+                −2 −1       −1 −1                         −1 −k+2       −1 −1
+ing this time a0 a2 by a2 a0 , it is transformed into a2 a0         a2 a0 a2 and, hence, the
+resulting presentation is Q -equivalent to G̃k−1 . By inductive hypothesis, G̃k−1 is Q∗∗ -
+                             ∗∗
+
+trivializable and therefore, so is QK ′ ,Mk .                                               □
+                                             G̃k
+22                                           XIMENA FERNÁNDEZ
+
+•x−1 •x+1 •x−1 •x+1 •y−1 •y+1 ◦x+1 •x−1 •y+1 ◦y−1
+
+
+
+
+ •o     •x        •o        •x   •o     •y    •o   •x         •o        •y        •x+1 ◦x−1          •y+1 •y−1
+
+
+
+
+                                 •vr1                                                    •x    ◦o    •y
+
+
+                                  •y−1 •y+1 •x−1 •x+1 . . . •x−1 •x+1 •y+1 •y−1 •x−1 •x+1 ◦y−1 •y+1
+
+                                                        ···
+
+
+•x+1 ◦x−1          •y+1 •y−1       •o   •y    •o   •x   ...        •o        •x     ◦o    •y    •o        ◦x   •o   •y
+
+
+
+
+        •x   ◦o        •y                                                •vr2
+
+        Figure 10. Acyclic matching in Xk (edges in red). Critical points are
+        the empty bullets. Edges between generator elements and relator elements
+        are not depicted unless they belong to the matching. The figure illustrates
+        the subposets of Xk corresponding to the generator elements and the first
+        relator elements (top) and the second relator elements (bottom).
+
+
+      Appendix A. Computational procedure for examples in Section 3.1
+   The algorithm to compute a presentation Q∗∗ -equivalent to a given one is implemented
+in SAGE [36]. The code can be found at the repository [13].4
+   We describe next the main functions. Given as input the lists gens and rels of genera-
+tors and relators, the function group_presentation(gens, rels) computes the induced
+group presentation P = ⟨gens | rels⟩. The method simplified() applies the reduction
+algorithm described in Section 3 [21]. It can be verified that the method simplified()
+is not able to reduce the number of generators and relators of the original presentation in
+any of the Examples of Section 3.1.
+   The function presentation_poset(gens, rels) returns X (KP′ ), that is, the face poset
+of the barycentric subdivision of the standard complex induced by P.
+   Given a poset X, we randomly generate an acyclic matching with a single critical point
+at level 0 with the function spanning_matching(X).
+   Now, given an acyclic matching M in the poset X (KP′ ), the function Morse_presentation
+(gens, rels, M) computes the associated Morse presentation QKP′ ,M (see Definition 2.6).
+By Theorem 2.9, the latter is Q∗∗ -equivalent to P.
+
+   4The package Posets [14] in GAP [18] also contains an implementation of the functions described in this
+section.
+                                 MORSE THEORY FOR GROUP PRESENTATIONS                                                                23
+
+   In Examples 3.2 and 3.3, we find in short runtime an appropriate matching M such that
+the method simplified() applied to Morse_presentation(gens, rels, M) produce as
+output the presentation ⟨ | ⟩. In Example 3.4, given gens and rels the generators and
+relators of B ′ , we generate a matching M such that Morse_presentation(gens, rels,
+M).simplified() is the presentation ⟨x, y | [x, y]⟩. By Remark 3.1, this implies that the
+original presentation B ′ = ⟨gens | rels⟩ is Q∗∗ -equivalent to B = ⟨x, y | [x, y], 1⟩.5
+   The following script summarizes the procedure:
+P = group_presentation(gens, rels)
+X = presentation_poset(gens, rels)
+l = len(P.simplified().generators())
+while l>1:
+    M = spanning_matching(X)
+    Q = Morse_presentation(gens, rels, M)
+    S = Q.simplified()
+    l = len(S.generators())
+print(S)
+
+                           Appendix B. The Morse presentation QKG′                                              ,Mk
+                                                                                                         2k−1
+
+ . In this appendix we give a proof of the construction of the Morse presentation
+                                                           −2 −1   −1 −k+1 yx−1 y −1 ⟩, k ∈
+QKG′ ,Mk for all k ∈ N. Recall that G2k−1 = G̃k = ⟨x, y | x y xy, y x
+    2k−1
+N. The poset Xk is the face poset of the regular CW-complex KG̃′ associated to G̃k (see
+                                                                k
+Figure 11).
+
+                                                                                                         k − 1 times
+                               x−1         o                                 −1
+                                                                                       x
+                                                                                            x   +1
+                           x                                                 x
+                      +1                       x+1                       o                           o
+                  x
+                                                                  y +1                                    x−1
+              o                                       x
+                                                          y                                                       x
+         −1
+     y
+                                                x−1               y −1                                            x+1
+
+    y                                vr1                                                   vr2                        o
+                                                          o
+                                                 y −1             y +1                                            y +1
+    y +1
+                                                          y                                                   y
+              o                                       y           −1                                         −1
+                                                              y                                          y
+                  x+1                          y +1                                                  o
+                                                                         o
+                           x   x−1         o                                 x+1       x     x−1
+
+
+              Figure 11. The regular CW- complex KG̃′ . The 1-cells x1+ and x−1 in
+                                                                                   k
+              braces are repeated k − 1 times and correspond to the substring x−k+1 of
+              the second relator of G̃k .
+  5The list of transformations involved in the simplification of the Morse presentation Q    can be                       K ′ ′ ,M
+                                                                                                                            B
+verified using the function SimplifyPresentation in GAP [18] (equivalent to the method simplified()
+in SAGE [36]) and it is included in the repository [13] for completeness.
+24                                                         XIMENA FERNÁNDEZ
+
+     We label the 1-cells x1 , x2 , . . . , x20+2k as in Figure 12.
+
+                                                                                                        k − 1 times
+                                    x2                                      x2               x1
+                 x1                                   x1
+                                                               x3                                       x2
+                                        x7                                     x17     x18
+                              x8               x6                                              x13+2k
+                                                                      x16
+       x4          x9                                     x2
+                                                                x4                                  x14+2k x1
+                                                    x5           x15
+                 x10                                                                              x15+2k
+                                                          x4         x20+2k
+                                                    x14         x3                                             x3
+       x3                                                                                    x16+2k
+                        x11
+                                             x13                        x19+2k
+                                   x12                                               x17+2k
+                                                                              x18+2k
+                                                               x4                                       x4
+                 x1                                  x3
+                                   x2                                         x1          x2
+
+            Figure 12. Labeling of the 1-cells of KG̃′ . The matching Mk in X (KG̃′ )
+                                                      k                            k
+            is represented with red arrows.
+
+
+   The presentation Q0 has generators that coincide with the set of 1-cells x1 , x2 , . . . , x20+2k
+and relators r1 , r2 , . . . , r20+2k that correspond either to a non-critical 1-cell (that is, relators
+x8 , x11 , x14 , x16+2k ) or to the attaching map of a 2-cell. Concretely,
+
+Q0 = ⟨x1 , x2 , . . . , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x15+2k , . . . , x18+2k , x19+2k , x20+2k | x8 , x11 , x14 , x16+2k ,
+     x5 x−1 −1      −1 −1      −1 −1      −1 −1      −1 −1        −1 −1           −1           −1           −1
+         2 x6 , x6 x1 x7 , x7 x2 x8 , x8 x1 x9 , x9 x4 x10 , x10 x3 x11 , x11 x1 x12 , x12 x2 x13 , x13 x3 x14 ,
+                                                                                                        −1 −1
+     x14 x4 x−1       −1 −1        −1 −1        −1 −1        −1 −1                   −1 −1
+             5 , x15 x4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+                                   −1              −1 −1              −1 −1              −1 −1              −1 −1
+     x15+2k x3 x−1
+                16+2k , x16+2k x4 x17+2k , x17+2k x2 x18+2k , x18+2k x1 x19+2k , x19+2k x4 x20+2k , x20+2k x3 x15 ⟩
+
+   For each relator, we display in bold either the generator associated to the 1-cell to which
+the underlying 2-cell is matched or the generator that is not critical.
+   The critical 1-cells are the ones linked to the generators x2 , x15+2k , x18+2k , whereas crit-
+                                                                            −1          −1 −1
+ical 2-cells are in correspondence with the relators x11 x1 x−112 , x14 x4 x5 , x19+2k x4 x20+2k
+(in blue). After performing the reductions associated to the non-critical 1-cells (or equiva-
+lently, the collapse to a point of the associated spanning tree on the 1-skeleton), we obtain
+
+Q0 ∼Q∗∗ ⟨x1 , x2 , . . . , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x15+2k , x17+2k , x18+2k , x19+2k , x20+2k |
+            x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1        −1      −1           −1
+                2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x4 x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 ,
+
+            x4 x−1       −1 −1        −1 −1        −1 −1        −1 −1                   −1 −1              −1 −1
+                5 , x15 x4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+
+            x15+2k x3 , x4 x−1              −1 −1              −1 −1              −1 −1              −1 −1
+                            17+2k , x17+2k x2 x18+2k , x18+2k x1 x19+2k , x19+2k x4 x20+2k , x20+2k x3 x15 ⟩.
+
+  Now, we perform iteratively the reductions associated to the internal collapses involving
+pairs of 1-cells and 2-cells. At each step, we replace a generator by its equivalent expression
+induced by the associated matched pair of cells, and then we remove the corresponding
+generator and relator. The generator and relator involved at each stage of the procedure
+are marked in bold.
+                                   MORSE THEORY FOR GROUP PRESENTATIONS                                               25
+
+
+
+G̃k ∼Q∗∗ ⟨x1 , x2 , . . . , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x15+2k , x17+2k , x18+2k , x19+2k , x20+2k |
+           x5 x−1 −1   −1 −1      −1   −1 −1      −1 −1        −1      −1           −1                −1
+               2 x6 , x6 x7 , x7 x2 , x1 x9 , x9 x4 x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 , x4 x5 ,
+
+           x15 x−1 −1        −1 −1        −1 −1        −1 −1                   −1 −1              −1 −1
+                4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+
+           x15+2k x3 , x4 x−1              −1 −1              −1 −1              −1 −1              −1 −1
+                           17+2k , x17+2k x2 x18+2k , x18+2k x1 x19+2k , x19+2k x4 x20+2k , x20+2k x3 x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , . . . , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x15+2k , x17+2k , x18+2k , x19+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1        −1      −1           −1                −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x4 x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 , x4 x5 ,
+
+           x15 x−1 −1        −1 −1        −1 −1        −1 −1                   −1 −1              −1 −1
+                4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+
+           x15+2k x3 , x4 x−1              −1 −1              −1 −1              −1 −1 −1
+                           17+2k , x17+2k x2 x18+2k , x18+2k x1 x19+2k , x19+2k x4 x3 x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , . . . , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x15+2k , x17+2k , x18+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1        −1      −1           −1                −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x4 x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 , x4 x5 ,
+
+           x15 x−1 −1        −1 −1        −1 −1        −1 −1                   −1 −1              −1 −1
+                4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+                                           −1 −1              −1 −1 −1 −1
+           x15+2k x3 , x4 x−1
+                           17+2k , x17+2k x2 x18+2k , x18+2k x1 x4 x3 x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x3 , x4 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x14+2k , x15+2k , x18+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1        −1      −1           −1                −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x4 x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 , x4 x5 ,
+                                                                                                  −1 −1
+           x15 x−1 −1        −1 −1        −1 −1        −1 −1                   −1 −1
+                4 x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k , x14+2k x1 x15+2k ,
+                                              −1 −1 −1 −1
+           x15+2k x3 , x4 x−1 −1
+                           2 x18+2k , x18+2k x1 x4 x3 x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x3 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x14+2k , x15+2k , x18+2k |
+                                                               −1        −1      −1           −1
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x3 , x1 x12 , x12 x2 x13 , x13 x3 ,
+                                         −1        −1 −1        −1 −1        −1 −1                   −1 −1
+           x18+2k x2 x−1       −1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x3 x17 , x17 x2 x18 , x18 x1 x19 , . . . , x13+2k x2 x14+2k ,
+                                                  −1 −1 −1     −1 −1
+           x14+2k x−1 −1
+                   1 x15+2k , x15+2k x3 , x18+2k x1 x2 x18+2k x3 x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x14+2k , x15+2k , x18+2k |
+                                                               −1                    −1           −1        −1
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+                                         −1               −1        −1 −1                   −1 −1
+           x18+2k x2 x−1       −1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x15+2k x17 , x17 x2 x18 , . . . , x13+2k x2 x14+2k ,
+                                      −1 −1 −1            −1
+           x14+2k x−1 −1
+                   1 x15+2k , x18+2k x1 x2 x18+2k x15+2k x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x13+2k , x15+2k , x18+2k |
+                                                               −1                    −1           −1        −1
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+                                         −1               −1        −1 −1                   −1 −1
+           x18+2k x2 x−1       −1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x15+2k x17 , x17 x2 x18 , . . . , x12+2k x1 x13+2k ,
+
+           x13+2k x−1 −1 −1              −1 −1 −1            −1
+                   2 x1 x15+2k , x18+2k x1 x2 x18+2k x15+2k x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , . . . , x12+2k , x15+2k , x18+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1        −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+
+           x18+2k x2 x−1       −1 −1     −1               −1        −1 −1                   −1 −1 −1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x15+2k x17 , x17 x2 x18 , . . . , x12+2k x1 x2 x1 x15+2k ,
+
+           x18+2k x−1 −1 −1            −1
+                   1 x2 x18+2k x15+2k x15 ⟩
+       ...
+    ∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , x16 , x17 , x15+2k , x18+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1        −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+
+           x18+2k x2 x−1       −1 −1     −1               −1         −1 −1 k−1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x15+2k x17 , x17 (x2 x1 )   x15+2k ,
+           x18+2k x−1 −1 −1            −1
+                   1 x2 x18+2k x15+2k x15 ⟩
+
+    ∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , x16 , x15+2k , x18+2k |
+           x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1        −1
+               2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+
+           x18+2k x2 x−1       −1 −1     −1                −1 −1 k−1 −1
+                      5 , x15 x2 x18+2k x16 , x16 x15+2k (x2 x1 )   x15+2k , x18+2k x−1 −1 −1            −1
+                                                                                     1 x2 x18+2k x15+2k x15 ⟩
+26                                                   XIMENA FERNÁNDEZ
+
+
+
+
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15 , x15+2k , x18+2k |
+       x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1        −1
+           2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+
+       x18+2k x2 x−1       −1 −1             −1 −1 k−1 −1
+                  5 , x15 x2 x18+2k x15+2k (x2 x1 )   x15+2k , x18+2k x−1 −1 −1            −1
+                                                                       1 x2 x18+2k x15+2k x15 ⟩
+
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x13 , x15+2k , x18+2k |
+       x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1        −1
+           2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x13 , x13 x15+2k ,
+
+       x18+2k x2 x−1          −1 −1 −1            −1 −1             −1 −1 k−1 −1
+                  5 , x18+2k x1 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x1 )   x15+2k ⟩
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x12 , x15+2k , x18+2k |
+       x5 x−1 −1      −1 −1      −1   −1 −1      −1 −1     −1                    −1           −1
+           2 x6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x12 , x12 x2 x15+2k ,
+
+       x18+2k x2 x−1          −1 −1 −1            −1 −1             −1 −1 k−1 −1
+                  5 , x18+2k x1 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x1 )   x15+2k ⟩
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x10 , x15+2k , x18+2k |
+       x5 x2−1 x−1      −1 −1      −1   −1 −1      −1 −1     −1                       −1
+                6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x10 , x10 x15+2k , x1 x2 x15+2k ,
+                                                  −1 −1             −1 −1 k−1 −1
+       x18+2k x2 x−1          −1 −1 −1
+                  5 , x18+2k x1 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x1 )   x15+2k ⟩
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x9 , x15+2k , x18+2k |
+                                                                            −1
+       x5 x2−1 x−1      −1 −1      −1   −1 −1      −1 −1
+                6 , x6 x1 x7 , x7 x2 , x1 x9 , x9 x2 x18+2k x15+2k , x1 x2 x15+2k ,
+                                                  −1 −1             −1 −1 k−1 −1
+       x18+2k x2 x−1          −1 −1 −1
+                  5 , x18+2k x1 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x1 )   x15+2k ⟩
+∼Q∗∗ ⟨x1 , x2 , x5 , x6 , x7 , x15+2k , x18+2k |
+                                                                    −1
+       x5 x2−1 x−1      −1 −1      −1   −1 −1 −1
+                6 , x6 x1 x7 , x7 x2 , x1 x2 x18+2k x15+2k , x1 x2 x15+2k ,
+                                                  −1 −1             −1 −1 k−1 −1
+       x18+2k x2 x−1          −1 −1 −1
+                  5 , x18+2k x1 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x1 )   x15+2k ⟩
+∼Q∗∗ ⟨x2 , x5 , x6 , x7 , x15+2k , x18+2k |
+                                                                         −1
+       x5 x2−1 x−1      −1              −1      −1   −1 −1
+                6 , x6 x15+2 x18+2k x2 x7 , x7 x2 , x2 x18+2k x15+2k x2 x15+2k ,
+                                               −1 −1            −1 −1             −1 −1              k−1 −1
+       x18+2k x2 x−1          −1
+                  5 , x18+2k x15+2k x18+2k x2 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x15+2 x18+2k x2 )   x15+2k ⟩
+∼Q∗∗ ⟨x2 , x5 , x6 , x15+2k , x18+2k |
+                                                                 −1
+       x5 x2−1 x−1      −1              −1   −1 −1
+                6 , x6 x15+2 x18+2k x2 x2 , x2 x18+2k x15+2k x2 x15+2k ,
+                                               −1 −1            −1 −1             −1 −1              k−1 −1
+       x18+2k x2 x−1          −1
+                  5 , x18+2k x15+2k x18+2k x2 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x15+2 x18+2k x2 )   x15+2k ⟩
+∼Q∗∗ ⟨x2 , x5 , x15+2k , x18+2k |
+                                                 −1
+       x5 x−1 −1             −1 −1
+           2 x15+2 x18+2k , x2 x18+2k x15+2k x2 x15+2k ,
+                                               −1 −1            −1 −1             −1 −1              k−1 −1
+       x18+2k x2 x−1          −1
+                  5 , x18+2k x15+2k x18+2k x2 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x15+2 x18+2k x2 )   x15+2k ⟩
+∼Q∗∗ ⟨x2 , x15+2k , x18+2k |
+       x−1 −1               −1                 −1 −1
+        2 x18+2k x15+2k x2 x15+2k , x18+2k x2 x2 x15+2 x18+2k ,
+
+       x18+2k x−1               −1 −1            −1 −1             −1 −1
+               15+2k x18+2k x2 x2 x18+2k x15+2k x2 x18+2k x15+2k (x2 x15+2 x18+2k x2 )
+                                                                                      k−1 −1
+                                                                                         x15+2k ⟩
+
+     Therefore,
+
+QK ′ ,Mk ∼Q∗∗ ⟨x2 , x15+2k , x18+2k | x18+2k x−1                −1     −1 −1
+                                              15+2 x18+2k , x2 x15+2k x2 x18+2k x15+2k ,
+      G̃k
+
+                                                        x18+2k x−1 −1            −1 −1
+                                                                2 x18+2k x15+2k x2 (x15+2 x18+2k )
+                                                                                                  k−1
+                                                                                                      x2 x−1
+                                                                                                          15+2k ⟩
+
+
+   Acknowledgements. The author is grateful to Eugenio Borghini and Gabriel Minian
+for many useful discussions and suggestions during the preparation of this article. This
+work was partially supported by the EPSRC grant New Approaches to Data Science:
+Application Driven Topological Data Analysis EP/R018472/1.
+                           MORSE THEORY FOR GROUP PRESENTATIONS                                         27
+
+                                             References
+ [1] S. Akbulut and R. Kirby. A potential smooth counterexample in dimension 4 to the Poincaré conjec-
+     ture, the Schoenflies conjecture, and the Andrews-Curtis conjecture. Topology, 24(4):375–390, 1985.
+ [2] J. J. Andrews and M. L. Curtis. Free groups and handlebodies. Proc. Amer. Math. Soc., 16:192–195,
+     1965.
+ [3] J. A. Barmak. Algebraic topology of finite topological spaces and applications, volume 2032 of Lecture
+     Notes in Mathematics. Springer, Heidelberg, 2011.
+ [4] J. A. Barmak. A counterexample to a strong version of the Andrews–Curtis conjecture. arXiv preprint
+     arXiv: 1806.11493, 2018.
+ [5] R. S. Bowman and S. B. McCaul. Fast searching for Andrews-Curtis trivializations. Experiment.
+     Math., 15(2):193–197, 2006.
+ [6] P. Brendel, , G. Ellis, M. Juda, and M. Mrozek. Computing fundamental groups from point clouds.
+     Appl. Algebra Engrg. Comm. Comput., 26(1-2):27–48, 2015.
+ [7] P. Brendel, P. Dłotko, G. Ellis, M. Juda, and M. Mrozek. Fundamental group algorithm for low
+     dimensional tessellated cw complexes. arXiv preprint arXiv:1507.03396, 2015.
+ [8] M. R. Bridson. The complexity of balanced presentations and the Andrews–Curtis conjecture. arXiv
+     preprint arXiv:1504.04187, 2015.
+ [9] R. Brown. Coproducts of crossed P -modules: applications to second homotopy groups and to the
+     homology of groups. Topology, 23(3):337–345, 1984.
+[10] M. K. Chari. On discrete Morse functions and combinatorial decompositions. Discrete Math., 217(1-
+     3):101–113, 2000. Formal power series and algebraic combinatorics (Vienna, 1997).
+[11] M. M. Cohen. A course in simple-homotopy theory. Springer-Verlag, New York-Berlin, 1973. Graduate
+     Texts in Mathematics, Vol. 10.
+[12] X. L. Fernández. Combinatorial methods and algorithms in low dimensional topology and the Andrews–
+     Curtis conjecture. PhD thesis, Universidad de Buenos Aires, 8 2017.
+[13] X.     L.   Fernández.       GitHub    repository    SageMath:         Finite    topological   spaces.
+     https://github.com/ximenafernandez/Finite-Topological-Spaces/tree/
+     1fdf3af56d0f3103a58d75cce7212372a458e6ba, 2021.
+[14] X. L. Fernández, K. I. Piterman, and I. Sadofschi Costa. GitHub repository GAP: Posets. https:
+     //github.com/isadofschi/posets, 2019.
+[15] R. Forman. A discrete Morse theory for cell complexes. In Geometry, topology, & physics, Conf. Proc.
+     Lecture Notes Geom. Topology, IV, pages 112–125. Int. Press, Cambridge, MA, 1995.
+[16] R. Forman. Morse theory for cell complexes. Adv. Math., 134(1):90–145, 1998.
+[17] R. Forman. A user’s guide to discrete Morse theory. Sém. Lothar. Combin., 48:Art. B48c, 35, 2002.
+[18] The GAP Group. GAP – Groups, Algorithms, and Programming, Version 4.10.2, 2019.
+[19] S. M. Gersten. On Rapaport’s example in presentations of the trivial group. Preprint, 1987.
+[20] D. Gillman and D. Rolfsen. The Zeeman conjecture for standard spines is equivalent to the Poincaré
+     conjecture. Topology, 22(3):315–323, 1983.
+[21] G. Havas, P. E. Kenne, J. S. Richardson, and E. F. Robertson. A Tietze transformation program. In
+     Computational group theory (Durham, 1982), pages 69–73. Academic Press, London, 1984.
+[22] G. Havas and C. Ramsay. Breadth-first search and the Andrews-Curtis conjecture. Internat. J. Algebra
+     Comput., 13(1):61–68, 2003.
+[23] C. Hog-Angeloni, W. Metzler, and A. J. Sieradski. Two-Dimensional Homotopy and Combinatorial
+     Group Theory. London Mathematical Society Lecture Note Series. Cambridge University Press, 1993.
+[24] R. Kirby. Problems in low-dimensional topology. In Proceedings of Georgia Topology Conference, Part
+     2, pages 35–473. Press, 1995.
+[25] D. Kozlov. Combinatorial algebraic topology, volume 21 of Algorithms and Computation in Mathemat-
+     ics. Springer, Berlin, 2008.
+[26] Dmitry N Kozlov. Organized collapse: An introduction to discrete Morse theory, volume 207. American
+     Mathematical Society, 2021.
+[27] K. Krawiec and J. Swan. Distance metric ensemble learning and the Andrews–Curtis conjecture. arXiv
+     preprint arXiv:1606.01412, 06 2016.
+[28] R. C. Lyndon and P. E. Schupp. Combinatorial group theory. Classics in Mathematics. Springer-Verlag,
+     Berlin, 2001. Reprint of the 1977 edition.
+28                                       XIMENA FERNÁNDEZ
+
+[29] W. Metzler. Äquivalenzklassen von Gruppenbeschreibungen, Identitäten und einfacher Homotopietyp
+     in niederen Dimensionen. In Homological group theory (Proc. Sympos., Durham, 1977), volume 36 of
+     London Math. Soc. Lecture Note Ser., pages 291–326. Cambridge Univ. Press, Cambridge-New York,
+     1979.
+[30] W. Metzler. On the Andrews–Curtis conjecture and related problems. AMS Contemp. Math, 44:35–50,
+     1985.
+[31] A. D. Miasnikov. Genetic algorithms and the Andrews-Curtis conjecture. Internat. J. Algebra Comput.,
+     9(6):671–686, 1999.
+[32] A. D. Miasnikov and A. G. Myasnikov. Balanced presentations of the trivial group on two generators
+     and the Andrews-Curtis conjecture. In Groups and computation, III (Columbus, OH, 1999), volume 8
+     of Ohio State Univ. Math. Res. Inst. Publ., pages 257–263. de Gruyter, Berlin, 2001.
+[33] C. F. Miller III and P. E. Schupp. Some presentations of the trivial group. In Groups, languages and
+     geometry (South Hadley, MA, 1998), volume 250 of Contemp. Math., pages 113–115. Amer. Math.
+     Soc., Providence, RI, 1999.
+[34] A. D. Myasnikov, A. G. Myasnikov, and V. Shpilrain. On the Andrews-Curtis equivalence. In Combi-
+     natorial and geometric group theory (New York, 2000/Hoboken, NJ, 2001), volume 296 of Contemp.
+     Math., pages 183–198. Amer. Math. Soc., Providence, RI, 2002.
+[35] Alexei D Myasnikov, Alexei G Myasnikov, and Vladimir Shpilrain. On the andrews-curtis equivalence.
+     Contemporary Mathematics, 296:183–198, 2002.
+[36] The Sage Developers. SageMath, the Sage Mathematics Software System (Version 9.1), 2020.
+     https://www.sagemath.org.
+[37] H. Tietze. Über die topologischen Invarianten mehrdimensionaler Mannigfaltigkeiten. Monatsh. Math.
+     Phys., 19(1):1–118, 1908.
+[38] J. H. C. Whitehead. On adding relations to homotopy groups. Ann. of Math. (2), 42:409–428, 1941.
+[39] J. H. C. Whitehead. On incidence matrices, nuclei and homotopy types. Ann. of Math. (2), 42:1197–
+     1239, 1941.
+[40] J. H. C. Whitehead. Simple homotopy types. Amer. J. Math., 72:1–57, 1950.
+[41] W. Wolfgang. On the Andrews-Curtis conjecture and related problems. In Combinatorial methods in
+     topology and algebraic geometry (Rochester, N.Y., 1982), volume 44 of Contemp. Math., pages 35–50.
+     Amer. Math. Soc., Providence, RI, 1985.
+[42] P. Wright. Group presentations and formal deformations. Trans. Amer. Math. Soc., 208:161–169, 1975.
+[43] E. C. Zeeman. On the dunce hat. Topology, 2:341–358, 1964.
+
+  Department of Mathematics, Swansea University, UK and Departamento de Matemática,
+FCEN, Universidad de Buenos Aires, Argentina.
+  Email address: xfernand@dm.uba.ar
+

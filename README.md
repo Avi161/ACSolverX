@@ -233,7 +233,7 @@ python scripts/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
 
 ## License
 
-- **Code** is released under the [MIT License](LICENSE).
+- **Code** is released under the [MIT License](work/surf/+/AC-Solver-Caltech/LICENSE.md).
 - **Datasets** (`data/`, including AC-19 and AC-1M) are released under
   [CC BY 4.0](LICENSE-DATA).
 

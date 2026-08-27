@@ -1,0 +1,55 @@
+{
+  "max_defining_length": 8,
+  "records": [
+    {
+      "best": {
+        "canonical_output": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "expression_x": "Z",
+        "expression_y": "XTZ",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "xyyyyXXXX",
+          "YxyxYX"
+        ],
+        "output_floor": 13,
+        "output_representative": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "rank3": [
+          "ztxztxztxztxxxx",
+          "ZX",
+          "TztXTZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XYXyxy",
+        "template": "ztxy",
+        "word_t": "YXy",
+        "word_z": "X"
+      },
+      "distinct_output_count": 28,
+      "name": "aca_115",
+      "source": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "source_floor": 13,
+      "source_representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ]
+    }
+  ],
+  "schema": "aca124-visible-two-block-corridor-v1",
+  "summary": {
+    "class_count": 1,
+    "classes_with_floor_descent": 0,
+    "classes_with_nonautomorphic_output": 0,
+    "classes_with_outputs": 1
+  }
+}

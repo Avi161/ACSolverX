@@ -1,0 +1,136 @@
+{
+  "beam": 1000,
+  "depth_limit": 18,
+  "depth_stats": [
+    {
+      "best_delta": 0,
+      "best_image_total": 4,
+      "depth": 1,
+      "generated": 8,
+      "retained": 8
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 4,
+      "depth": 2,
+      "generated": 51,
+      "retained": 51
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 6,
+      "depth": 3,
+      "generated": 326,
+      "retained": 326
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 8,
+      "depth": 4,
+      "generated": 2108,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 10,
+      "depth": 5,
+      "generated": 7066,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 2,
+      "depth": 6,
+      "generated": 7165,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 6,
+      "depth": 7,
+      "generated": 7159,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 8,
+      "depth": 8,
+      "generated": 7776,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 10,
+      "depth": 9,
+      "generated": 7899,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 12,
+      "depth": 10,
+      "generated": 8184,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 14,
+      "depth": 11,
+      "generated": 8532,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 14,
+      "depth": 12,
+      "generated": 8445,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 14,
+      "depth": 13,
+      "generated": 8623,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 20,
+      "depth": 14,
+      "generated": 8632,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 16,
+      "depth": 15,
+      "generated": 8573,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 16,
+      "depth": 16,
+      "generated": 8636,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 20,
+      "depth": 17,
+      "generated": 8803,
+      "retained": 1000
+    },
+    {
+      "best_delta": 0,
+      "best_image_total": 24,
+      "depth": 18,
+      "generated": 8959,
+      "retained": 1000
+    }
+  ],
+  "distinct_states": 116946,
+  "max_image_total": 40,
+  "raw_descents": 0,
+  "records": []
+}

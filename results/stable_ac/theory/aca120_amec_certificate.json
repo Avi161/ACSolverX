@@ -1,0 +1,109 @@
+{
+  "schema": "aca120-amec-certificate-v1",
+  "source": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+  ],
+  "triviality_provenance": "aca_124.csv:aca_120",
+  "stages": [
+    {
+      "fresh_generator": "z",
+      "defining_word": "xy",
+      "definition": "Zxy",
+      "compressed_relators": [
+        "ZXXYxx",
+        "YYYZyyyx"
+      ],
+      "displayed_substitution_count": 2,
+      "eliminated_generator": "x",
+      "isolator_index": 1,
+      "isolator": "YYYZyyyx",
+      "expression": "YYYzyyy",
+      "output": [
+        "ZYYYZZYzzyyy",
+        "ZYYYzyyyy"
+      ]
+    },
+    {
+      "fresh_generator": "t",
+      "defining_word": "yyy",
+      "definition": "Tyyy",
+      "compressed_relators": [
+        "ZTZZYzzt",
+        "ZTzty"
+      ],
+      "displayed_substitution_count": 4,
+      "eliminated_generator": "y",
+      "isolator_index": 0,
+      "isolator": "ZTZZYzzt",
+      "expression": "zztZTZZ",
+      "output": [
+        "ZTztzztZTZZ",
+        "TzztZZZTZZ"
+      ]
+    }
+  ],
+  "relabel": {
+    "z": "x",
+    "t": "y"
+  },
+  "declared_generators": {
+    "source": [
+      "x",
+      "y"
+    ],
+    "before_relabel": [
+      "z",
+      "t"
+    ]
+  },
+  "displayed_substitution_count": 6,
+  "target": [
+    "XYxyxxyXYXX",
+    "YxxyXXXYXX"
+  ],
+  "whitehead": {
+    "source_floor": 16,
+    "source_representative": [
+      "YXXXYxx",
+      "YYYYXyyyx"
+    ],
+    "target_floor": 15,
+    "target_representative": [
+      "YXXyxYx",
+      "YYYXyyxx"
+    ],
+    "target_phi": {
+      "x": "Y",
+      "y": "yyx"
+    },
+    "independent_checks": [
+      true,
+      true
+    ]
+  },
+  "one_step_substitution_audit": {
+    "valid_seam_children": 40,
+    "full_children": 156,
+    "minimum_floor": 19
+  },
+  "single_stabilizer_cov_audit": {
+    "cyclic_words": 104,
+    "variant_attempts": 178256,
+    "distinct_endpoint_orbits": 191,
+    "minimum_endpoint_floor": 16,
+    "target_orbit_hits": 0,
+    "sha256": "18fda8dc5e0a6ae60a8920ccd5bcc2b466d3962805932b41442ea3097948da8e"
+  },
+  "bound": {
+    "lemma11_uses": 4,
+    "normal_witnesses_materialized": false,
+    "status": "witness-dependent; no effective input-visible numeric bound supplied by the structural proof",
+    "fallback": "fixed-machine Busy-Beaver bound on stable-AC breadth-first proof search"
+  },
+  "independent_replay": {
+    "verifier_sha256": "90bd82ed7ad7d05bacd0adc335a252e4f105385f47ba88694f5901553250039f",
+    "certificate_sha256": "2dba529c13945b7e3c0499fd308546d8ce262636d9d4c3ca1324f6336742b426"
+  },
+  "sol_advisor_verdict": "APPROVE under the user-corrected gate: a new solver macro may compose Lemma 11"
+}

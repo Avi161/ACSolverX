@@ -1,0 +1,414 @@
+{
+  "cyclic_words": 64,
+  "distinct_endpoint_orbits": 15,
+  "endpoints": [
+    {
+      "expr": "YYZyyyy",
+      "intermediate": [
+        "xYXXXYx",
+        "xYYYYzyy",
+        "ZXy"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 16,
+      "n_subs": 1,
+      "phi": {
+        "x": "y",
+        "y": "Xyy"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "XXYXyXXyXXyXYxxxx",
+        "YXXXXyxxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "YYZyyyy",
+      "intermediate": [
+        "YXXXZx",
+        "xYYYYzyy",
+        "ZXy"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 21,
+      "n_subs": 2,
+      "phi": {
+        "x": "X",
+        "y": "yXX"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXXyxxx",
+        "YYYXyXXXXyxx"
+      ],
+      "target": [
+        "XXXXXyXXyXXyxxYXXYxxxx",
+        "YXXXXyxxx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "XXXZx",
+      "intermediate": [
+        "YXXXZx",
+        "xYYYYzyy",
+        "ZXy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 19,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "XXY"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXYxx",
+        "YYYYxYXXXyyx"
+      ],
+      "target": [
+        "yxxyxxyxxyxxxyXXXYXXYx",
+        "YXXXXYx"
+      ],
+      "w": "Xy"
+    },
+    {
+      "expr": "ZYzY",
+      "intermediate": [
+        "zYXZY",
+        "YYYXyyyxY",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "mu": 22,
+      "n_subs": 2,
+      "phi": {
+        "x": "y",
+        "y": "x"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXYxYXXYx",
+        "YYYYXyxyyyXYx"
+      ],
+      "target": [
+        "XXYxyxxxYXyXX",
+        "YYXyXYXyX"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "YzYZ",
+      "intermediate": [
+        "YZXYz",
+        "YYYXyyyxY",
+        "Zxx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "mu": 22,
+      "n_subs": 2,
+      "phi": {
+        "x": "Y",
+        "y": "X"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXYxYXXYx",
+        "YYYYXYxyyyXyx"
+      ],
+      "target": [
+        "XXXyxYxxxyXYX",
+        "YXyXYXyXY"
+      ],
+      "w": "xx"
+    },
+    {
+      "expr": "YYYzyyy",
+      "intermediate": [
+        "XYxxZX",
+        "YYYZyyyx",
+        "Zxy"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 21,
+      "n_subs": 2,
+      "phi": {
+        "x": "X",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXXyxxx",
+        "YYXXXYxxxyyX"
+      ],
+      "target": [
+        "XXXYXyyxxxYXXXYxxx",
+        "YXXXyxxxx"
+      ],
+      "w": "xy"
+    },
+    {
+      "expr": "xxZXX",
+      "intermediate": [
+        "XYxxZX",
+        "YYYZyyyx",
+        "Zxy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 19,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "Y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXYxx",
+        "YYYXXYxxyyyX"
+      ],
+      "target": [
+        "xxyyyXXYxxYYYX",
+        "YxxxYXX"
+      ],
+      "w": "xy"
+    },
+    {
+      "expr": "yyyZYYY",
+      "intermediate": [
+        "XYxZXX",
+        "ZYYYXyyy",
+        "ZyX"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 21,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXXyxxx",
+        "YYYXXXyxxxyx"
+      ],
+      "target": [
+        "xxxyXYXXXYxxxyyXXX",
+        "YxxxxyXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "xZXXX",
+      "intermediate": [
+        "XYxZXX",
+        "ZYYYXyyy",
+        "ZyX"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 19,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "XXY"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXYxx",
+        "YYYXyyyXyxxx"
+      ],
+      "target": [
+        "YxxxyxxyxxyXYXXYXXYXXX",
+        "YxYXXXX"
+      ],
+      "w": "yX"
+    },
+    {
+      "expr": "yyzYYYY",
+      "intermediate": [
+        "YXXZxx",
+        "YYXyyzYY",
+        "Zyx"
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "mu": 21,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "Yxx"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXXyxxx",
+        "YYXyyXXXXyxx"
+      ],
+      "target": [
+        "xxxYxxYXXYxxyXXyXXXX",
+        "YxxxyXXXX"
+      ],
+      "w": "yx"
+    },
+    {
+      "expr": "XXZxx",
+      "intermediate": [
+        "YXXZxx",
+        "YYXyyzYY",
+        "Zyx"
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "mu": 19,
+      "n_subs": 2,
+      "phi": {
+        "x": "X",
+        "y": "y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXXYxx",
+        "YYYYXXYxxyyX"
+      ],
+      "target": [
+        "XXyyXYYxxyXXyyxx",
+        "YXXYxxx"
+      ],
+      "w": "yx"
+    },
+    {
+      "expr": "xzzXZ",
+      "intermediate": [
+        "xxYXXXY",
+        "XyzxZZ",
+        "Zyy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "mu": 24,
+      "n_subs": 3,
+      "phi": {
+        "x": "Y",
+        "y": "X"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXyxYXXyxx",
+        "YYYYXXyxyXXyx"
+      ],
+      "target": [
+        "xxyxYYXXXXyxYYX",
+        "YxyyXYxyyXY"
+      ],
+      "w": "yy"
+    },
+    {
+      "expr": "ZxzzX",
+      "intermediate": [
+        "xxYXXXY",
+        "ZXzyxZ",
+        "Zyy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "mu": 24,
+      "n_subs": 3,
+      "phi": {
+        "x": "Y",
+        "y": "x"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXyxYXXyxx",
+        "YYYXXyxyyXXyx"
+      ],
+      "target": [
+        "xxxYYXyXXYYXy",
+        "YYxyyXYxyyX"
+      ],
+      "w": "yy"
+    },
+    {
+      "expr": "XzxZ",
+      "intermediate": [
+        "xxYXXXY",
+        "XzxZY",
+        "Zyyy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "mu": 24,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXXyXYxxxyX",
+        "YYXyxYXyxYXyx"
+      ],
+      "target": [
+        "xxyXYXXyXYx",
+        "YXyxYXyxYXyxY"
+      ],
+      "w": "yyy"
+    },
+    {
+      "expr": "ZXzx",
+      "intermediate": [
+        "xxYXXXY",
+        "zxYZX",
+        "Zyyy"
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "mu": 24,
+      "n_subs": 2,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "phi_check": true,
+      "rep": [
+        "YXyXYXyxxxx",
+        "YYXyxYXyxYXyx"
+      ],
+      "target": [
+        "xYxyXXXXYxy",
+        "YYXyxYXyxYXyx"
+      ],
+      "w": "yyy"
+    }
+  ],
+  "minimum_endpoint_mu": 16,
+  "name": "aca_120",
+  "schema": "exhaustive-single-cov-v1",
+  "source": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+  ],
+  "source_mu": 16,
+  "source_rep": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+  ],
+  "target_orbit_hits": 0,
+  "target_rep": [
+    "YXXyxYx",
+    "YYYXyyxx"
+  ],
+  "variant_attempts": 12692
+}

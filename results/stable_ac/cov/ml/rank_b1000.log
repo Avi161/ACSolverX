@@ -1,0 +1,69 @@
+6722 CoV rows · 66 presentations · 51 Aut-orbits · budget 1,000 · 81 features
+solved 2190 / 6722 (32.6%)
+
+solve classifier   AUC 0.719   (linear baseline 0.804)
+
+references over 66 presentations
+  oracle (best z)                geo      83.7   solve rate 0.682  (45/66)
+  random pick, exact expectation geo     270.8   P(solve) 0.453
+
+picker                            k   solved  mean nodes   (common)       geo  capture
+GBT · raw                         1   41.0/66        94.5       24.4     106.3     0.80
+GBT · centred                     1   40.0/66        89.7       34.6     113.9     0.74
+ridge · centred                   1   39.0/66        67.3       24.0     110.7     0.76
+heuristic · abelian mass          1   35.8/66       113.8       54.3     210.5     0.21
+heuristic · shortest result       1   36.5/66       196.2       99.5     198.6     0.26
+heuristic · moved only            1   32.0/66       173.3      120.2     257.4     0.04
+random                            1   27.0/66       145.6      138.2     280.7    -0.03
+   ^ mean nodes = arithmetic mean over that picker's OWN solved picks; (common) = the 24 presentations every picker solves
+
+GBT · raw                         3   41.0/66        84.5       41.8     101.7     0.83
+GBT · centred                     3   42.0/66       104.3       43.5     101.8     0.83
+ridge · centred                   3   43.0/66       101.1       30.2      96.5     0.88
+heuristic · abelian mass          3   41.0/66        82.5       38.6     100.8     0.84
+heuristic · shortest result       3   38.3/66       186.4      126.9     178.7     0.35
+heuristic · moved only            3   38.0/66       158.5      103.6     186.4     0.32
+random                            3   36.0/66       148.5      120.0     188.3     0.31
+   ^ mean nodes = arithmetic mean over that picker's OWN solved picks; (common) = the 33 presentations every picker solves
+
+GBT · raw                         5   42.0/66        91.1       39.6      98.2     0.86
+GBT · centred                     5   44.0/66       108.5       30.3      88.0     0.96
+ridge · centred                   5   43.0/66        95.4       22.8      88.3     0.95
+heuristic · abelian mass          5   41.6/66       104.9       35.5      96.3     0.88
+heuristic · shortest result       5   38.6/66       165.9      122.0     169.3     0.40
+heuristic · moved only            5   38.0/66       146.2       93.1     174.7     0.37
+random                            5   37.0/66       124.9       95.2     156.2     0.47
+   ^ mean nodes = arithmetic mean over that picker's OWN solved picks; (common) = the 34 presentations every picker solves
+
+within-presentation Spearman rho (score vs actual cost), median over 45 presentations (21 dropped — every CoV unsolved):
+  GBT · raw                        +0.725   (mean +0.630, 96% of presentations positive)
+  GBT · centred                    +0.789   (mean +0.705, 100% of presentations positive)
+  ridge · centred                  +0.798   (mean +0.720, 100% of presentations positive)
+  heuristic · abelian mass         +0.799   (mean +0.716, 100% of presentations positive)
+  heuristic · shortest result      +0.332   (mean +0.312, 87% of presentations positive)
+  heuristic · moved only           +0.012   (mean +0.020, 53% of presentations positive)
+  random                           -0.003   (mean +0.004, 47% of presentations positive)
+
+abelian mass, decomposed (per presentation, never pooled):
+  picks the solvers          AUC 0.933 (median over 29 presentations with both outcomes)
+  among solved rows, ranks   nodes +0.806   path +0.887   (total length ranks nodes +0.242)
+  POOLED across presentations it vanishes: r(log cost, abelian) = +0.110 vs r(log cost, length) = +0.404
+
+permutation importance (centred ranker, held-out folds, top 15):
+  d_exp_l1                   +0.4332
+  autcanon_cov_len           +0.0247
+  d_autcanon_len             +0.0151
+  orig_min_len               +0.0044
+  is_relabel                 +0.0034
+  orig_r2_abs_expy           +0.0026
+  d_min_len                  +0.0020
+  cov_r1_switches            +0.0011
+  orig_len_ratio             +0.0006
+  z_abs_expy                 +0.0005
+  n_subs                     +0.0003
+  z_expy                     +0.0003
+  cov_min_len                +0.0001
+  iso_index                  +0.0000
+  z_syll                     +0.0000
+
+wrote results/stable_ac/cov/ml/rank_b1000.json

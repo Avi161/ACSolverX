@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "min_total": 13,
+    "nodes": 100,
+    "solved": false
+  },
+  "budget": 100,
+  "cap": 48,
+  "improvements": [],
+  "max_image_length": 7,
+  "name": "aca_115",
+  "proper_distinct_targets": 1664,
+  "source": [
+    "YXYxyx",
+    "YYYYxxx"
+  ]
+}

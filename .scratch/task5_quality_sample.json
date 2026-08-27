@@ -1,0 +1,729 @@
+{
+  "schema": "ak3-aut-frontier-certificate-v1",
+  "bounded_census": {
+    "exact_cellular_key_count": 285,
+    "map_count": 1000,
+    "ordered_membership_count": 3000,
+    "spelling_mode_histogram": {
+      "cyclic": 1000,
+      "free": 1000,
+      "literal": 1000
+    },
+    "support_histogram": {
+      "C4": 6,
+      "K4": 6,
+      "K4-e": 33,
+      "K4-e+1loop": 6,
+      "P4": 16,
+      "UNSUPPORTED": 200,
+      "paw+1loop": 18
+    },
+    "verdict_histogram": {
+      "NOT_SPHERICAL_EXACT": 35,
+      "PRIOR_EXACT_DUPLICATE": 50,
+      "SPHERICAL_REQUIRES_INDEPENDENT_VALIDATION": 0,
+      "UNSUPPORTED": 200
+    }
+  },
+  "ordered_result_digest": "e283e86fc34fee28c0998997cf8b5e1533ec78214510bb1206ed0e3f91c8a813",
+  "quarantined_row_ids": [],
+  "source_hashes": {
+    "decision_driver": {
+      "path": "experiments/stable_ac/thickenable/ak3_aut_frontier_certificate.py",
+      "sha256": "da9120979c536ed4bba084eeaeb7ad3d16d53ecee80a832ef957b2e277046d13"
+    },
+    "manifest": {
+      "path": "results/stable_ac/theory/ak3_aut_frontier_manifest.json",
+      "sha256": "96b710a0fd53e56c53c42e8bcd203286d98a982a735ec2d42fa9b4b856fd816a"
+    },
+    "prior_corpus": [
+      {
+        "path": "results/stable_ac/theory/ak3_neuwirth_census.json",
+        "sha256": "716019daf3f61a290fcec1608a5042cfa2da72f25f0719b115a463e8fea52710"
+      },
+      {
+        "path": "results/stable_ac/theory/ak3_component_thickenability.json",
+        "sha256": "a64f8cdf396a7fcc0d5bdf0a49542078da69e5e43c05dd64b5d9b1251539d96f"
+      },
+      {
+        "path": "results/stable_ac/theory/ak3_cov_thickenability.json",
+        "sha256": "db14ff6417610f212e847f7c3a2eda479ab49bac92fc2f1f9c242807bfbfb6cc"
+      },
+      {
+        "path": "results/stable_ac/theory/ak3_two_hop_cov_thickenability.json",
+        "sha256": "06e113537ca6cae07763a94f8aae0bb1b91edc30710fccea814bb2a2c70f0400"
+      },
+      {
+        "path": "results/stable_ac/theory/ak3_primitive_quotient_thickenability.json",
+        "sha256": "38a49708989e6a06542106f980885f5c3745093e5d87a73285d7fb2ae2902bab"
+      }
+    ],
+    "selected_solvers": [
+      {
+        "path": "experiments/stable_ac/thickenable/neuwirth_rank_solver.py",
+        "sha256": "5f5e0587e9f9b605c53412d9e5ab793d6823a9b67c87589a06d9ab36ada2c5cb"
+      },
+      {
+        "path": "experiments/stable_ac/thickenable/neuwirth_p4_solver.py",
+        "sha256": "2c0b80038da936146264eccc3df31464bff1011fafbd1aa19c27569062ca421e"
+      },
+      {
+        "path": "experiments/stable_ac/thickenable/neuwirth_one_loop_solver.py",
+        "sha256": "5962751e54d3adc94da64ba6c3db1d4236f3999298ea27b39f7b992d36ac30fc"
+      },
+      {
+        "path": "experiments/stable_ac/thickenable/neuwirth_paw_one_loop_solver.py",
+        "sha256": "20ed3de02d4b2d544af87b1d0a923c62060c1b5f76a62cb4782a300efb2644ee"
+      }
+    ],
+    "support_proofs": [
+      {
+        "path": "literature/proofs/AK3_SYNCHRONIZED_PLANARITY.md",
+        "sha256": "cd829d5899235a70441497a579c3c65647882376d61511e2af27a980c4a1fe9b"
+      },
+      {
+        "path": "literature/proofs/AK3_P4_SYNCHRONIZED_PLANARITY.md",
+        "sha256": "04003737e20c6741ab867fd6822f6b9a56b8f266e83d57d0e9bd29ba6adfaf97"
+      },
+      {
+        "path": "literature/proofs/AK3_ONE_LOOP_SYNCHRONIZED_PLANARITY.md",
+        "sha256": "96952a15b3abf745d1553334a8790566b7dc9f71ca5907c05ac04a37b2b6aeaa"
+      },
+      {
+        "path": "literature/proofs/AK3_PAW_ONE_LOOP_PLANARITY.md",
+        "sha256": "25443f6e87313872b3e0c0d9db8422107ce3dd91572887431d58c6b27ab58413"
+      }
+    ]
+  },
+  "result_count": 285,
+  "first": {
+    "category": "UNSUPPORTED",
+    "cellular_key": [
+      "XXXXXXXXYXXXXYXXXXY",
+      "XXXXXYxXXXXYXyxxxx"
+    ],
+    "counters": null,
+    "fail_closed_reason": "loop class multiplicity is not one",
+    "members": [
+      {
+        "map_id": 429,
+        "mode": "literal",
+        "raw_relators": [
+          "xYYYYxYYYYxYYYYYYYY",
+          "xYYYYyxYYYYYyyyyXY"
+        ]
+      },
+      {
+        "map_id": 661,
+        "mode": "literal",
+        "raw_relators": [
+          "yXXXXyXXXXyXXXXXXXX",
+          "yXXXXxyXXXXXxxxxYX"
+        ]
+      },
+      {
+        "map_id": 867,
+        "mode": "literal",
+        "raw_relators": [
+          "XYYYYXYYYYXYYYYYYYY",
+          "XYYYYyXYYYYYyyyyxY"
+        ]
+      }
+    ],
+    "prior_provenance": null,
+    "representative": {
+      "map_id": 429,
+      "mode": "literal",
+      "raw_relators": [
+        "xYYYYxYYYYxYYYYYYYY",
+        "xYYYYyxYYYYYyyyyXY"
+      ]
+    },
+    "row_id": "bucket-000",
+    "selected_solver": null,
+    "selected_theorem": null,
+    "solver_verdict": null,
+    "support": {
+      "kind": "UNSUPPORTED",
+      "loop_class": null,
+      "reason": "loop class multiplicity is not one",
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "support_inventory": {
+      "edge_multiplicities": [
+        {
+          "edge": [
+            0,
+            2
+          ],
+          "multiplicity": 4
+        },
+        {
+          "edge": [
+            0,
+            3
+          ],
+          "multiplicity": 2
+        },
+        {
+          "edge": [
+            1,
+            3
+          ],
+          "multiplicity": 6
+        },
+        {
+          "edge": [
+            2,
+            2
+          ],
+          "multiplicity": 2
+        },
+        {
+          "edge": [
+            2,
+            3
+          ],
+          "multiplicity": 23
+        }
+      ]
+    },
+    "witness": null
+  },
+  "last": {
+    "category": "UNSUPPORTED",
+    "cellular_key": [
+      "XYXxYXxYXxYXxyXYXxyXYXxyXYXxy",
+      "XYXxYXxyxYXxYXxyXYXxyXxy"
+    ],
+    "counters": null,
+    "fail_closed_reason": "loop class multiplicity is not one",
+    "members": [
+      {
+        "map_id": 507,
+        "mode": "literal",
+        "raw_relators": [
+          "xyXxyXxyXxYXyXxYXyXxYXyXxYXyX",
+          "xyXxYxyXxyXxYXyXxYXxYXyX"
+        ]
+      },
+      {
+        "map_id": 727,
+        "mode": "literal",
+        "raw_relators": [
+          "yxYyxYyxYyXYxYyXYxYyXYxYyXYxY",
+          "yxYyXyxYyxYyXYxYyXYyXYxY"
+        ]
+      },
+      {
+        "map_id": 935,
+        "mode": "literal",
+        "raw_relators": [
+          "XyxXyxXyxXYxyxXYxyxXYxyxXYxyx",
+          "XyxXYXyxXyxXYxyxXYxXYxyx"
+        ]
+      }
+    ],
+    "prior_provenance": null,
+    "representative": {
+      "map_id": 507,
+      "mode": "literal",
+      "raw_relators": [
+        "xyXxyXxyXxYXyXxYXyXxYXyXxYXyX",
+        "xyXxYxyXxyXxYXyXxYXxYXyX"
+      ]
+    },
+    "row_id": "bucket-284",
+    "selected_solver": null,
+    "selected_theorem": null,
+    "solver_verdict": null,
+    "support": {
+      "kind": "UNSUPPORTED",
+      "loop_class": null,
+      "reason": "loop class multiplicity is not one",
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "support_inventory": {
+      "edge_multiplicities": [
+        {
+          "edge": [
+            0,
+            0
+          ],
+          "multiplicity": 13
+        },
+        {
+          "edge": [
+            0,
+            2
+          ],
+          "multiplicity": 7
+        },
+        {
+          "edge": [
+            1,
+            2
+          ],
+          "multiplicity": 13
+        },
+        {
+          "edge": [
+            1,
+            3
+          ],
+          "multiplicity": 20
+        }
+      ]
+    },
+    "witness": null
+  },
+  "prior": {
+    "category": "PRIOR_EXACT_DUPLICATE",
+    "cellular_key": [
+      "XXXXXXXXYXXXXYXXXXY",
+      "XXXYXyXY"
+    ],
+    "counters": null,
+    "fail_closed_reason": "prior exact duplicate; solver bypassed",
+    "members": [
+      {
+        "map_id": 429,
+        "mode": "free",
+        "raw_relators": [
+          "xYYYYxYYYYxYYYYYYYY",
+          "xYYYxYXY"
+        ]
+      },
+      {
+        "map_id": 429,
+        "mode": "cyclic",
+        "raw_relators": [
+          "xYYYYxYYYYxYYYYYYYY",
+          "xYYYxYXY"
+        ]
+      },
+      {
+        "map_id": 661,
+        "mode": "free",
+        "raw_relators": [
+          "yXXXXyXXXXyXXXXXXXX",
+          "yXXXyXYX"
+        ]
+      },
+      {
+        "map_id": 661,
+        "mode": "cyclic",
+        "raw_relators": [
+          "yXXXXyXXXXyXXXXXXXX",
+          "yXXXyXYX"
+        ]
+      },
+      {
+        "map_id": 867,
+        "mode": "free",
+        "raw_relators": [
+          "XYYYYXYYYYXYYYYYYYY",
+          "XYYYXYxY"
+        ]
+      },
+      {
+        "map_id": 867,
+        "mode": "cyclic",
+        "raw_relators": [
+          "XYYYYXYYYYXYYYYYYYY",
+          "XYYYXYxY"
+        ]
+      }
+    ],
+    "prior_provenance": [
+      {
+        "cellular_key": [
+          "XXXXXXXXYXXXXYXXXXY",
+          "XXXYXyXY"
+        ],
+        "corpus_path": "results/stable_ac/theory/ak3_two_hop_cov_thickenability.json",
+        "raw_relators": [
+          "XXyXXXXyXXXXyXXXXXX",
+          "YXyXXXyX"
+        ],
+        "record_id": "output:465",
+        "source_sha256": "06e113537ca6cae07763a94f8aae0bb1b91edc30710fccea814bb2a2c70f0400",
+        "verdict": "NOT_SPHERICAL"
+      }
+    ],
+    "representative": {
+      "map_id": 429,
+      "mode": "free",
+      "raw_relators": [
+        "xYYYYxYYYYxYYYYYYYY",
+        "xYYYxYXY"
+      ]
+    },
+    "row_id": "bucket-001",
+    "selected_solver": null,
+    "selected_theorem": null,
+    "solver_verdict": null,
+    "support": {
+      "kind": "K4-e",
+      "loop_class": null,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "support_inventory": {
+      "edge_multiplicities": [
+        {
+          "edge": [
+            0,
+            2
+          ],
+          "multiplicity": 5
+        },
+        {
+          "edge": [
+            0,
+            3
+          ],
+          "multiplicity": 1
+        },
+        {
+          "edge": [
+            1,
+            2
+          ],
+          "multiplicity": 1
+        },
+        {
+          "edge": [
+            1,
+            3
+          ],
+          "multiplicity": 5
+        },
+        {
+          "edge": [
+            2,
+            3
+          ],
+          "multiplicity": 15
+        }
+      ]
+    },
+    "witness": null
+  },
+  "negative": {
+    "category": "NOT_SPHERICAL_EXACT",
+    "cellular_key": [
+      "XXXXXXXYXXXYXXXY",
+      "XXYXXYXyx"
+    ],
+    "counters": {
+      "closed_component_assignments": 16,
+      "compatible_signature_matches": 0,
+      "complement_lookups": 0,
+      "component_seed_attempts": 655044,
+      "component_seed_budget": 655044,
+      "exhaustive": true,
+      "left_signature_count": 0,
+      "phase_pair_budget": 50388,
+      "phase_pairs_considered": 50388,
+      "raw_component_combination_budget": 0,
+      "right_signature_count": 0,
+      "scheme_budget": 442,
+      "schemes_considered": 442,
+      "within_cycle_collision_rejections": 0,
+      "witness_replay_failures": 0
+    },
+    "fail_closed_reason": null,
+    "members": [
+      {
+        "map_id": 371,
+        "mode": "free",
+        "raw_relators": [
+          "YYXYYYXYYYXYYYYY",
+          "YYXYYXYxy"
+        ]
+      },
+      {
+        "map_id": 616,
+        "mode": "free",
+        "raw_relators": [
+          "XXYXXXYXXXYXXXXX",
+          "XXYXXYXyx"
+        ]
+      },
+      {
+        "map_id": 811,
+        "mode": "free",
+        "raw_relators": [
+          "YYxYYYxYYYxYYYYY",
+          "YYxYYxYXy"
+        ]
+      },
+      {
+        "map_id": 977,
+        "mode": "free",
+        "raw_relators": [
+          "yyXyyyXyyyXyyyyy",
+          "yyXyyXyxY"
+        ]
+      }
+    ],
+    "prior_provenance": null,
+    "representative": {
+      "map_id": 371,
+      "mode": "free",
+      "raw_relators": [
+        "YYXYYYXYYYXYYYYY",
+        "YYXYYXYxy"
+      ]
+    },
+    "row_id": "bucket-007",
+    "selected_solver": "neuwirth_paw_one_loop_solver.solve_paw_one_loop_spherical",
+    "selected_theorem": "AK3_PAW_ONE_LOOP_PLANARITY.md",
+    "solver_verdict": "NOT_SPHERICAL",
+    "support": {
+      "kind": "paw+1loop",
+      "loop_class": [
+        3,
+        3
+      ],
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    "support_inventory": {
+      "edge_multiplicities": [
+        {
+          "edge": [
+            0,
+            2
+          ],
+          "multiplicity": 1
+        },
+        {
+          "edge": [
+            0,
+            3
+          ],
+          "multiplicity": 5
+        },
+        {
+          "edge": [
+            1,
+            2
+          ],
+          "multiplicity": 6
+        },
+        {
+          "edge": [
+            2,
+            3
+          ],
+          "multiplicity": 12
+        },
+        {
+          "edge": [
+            3,
+            3
+          ],
+          "multiplicity": 1
+        }
+      ]
+    },
+    "witness": null
+  },
+  "unsupported": {
+    "category": "UNSUPPORTED",
+    "cellular_key": [
+      "XXXXXXXXYXXXXYXXXXY",
+      "XXXXXYxXXXXYXyxxxx"
+    ],
+    "counters": null,
+    "fail_closed_reason": "loop class multiplicity is not one",
+    "members": [
+      {
+        "map_id": 429,
+        "mode": "literal",
+        "raw_relators": [
+          "xYYYYxYYYYxYYYYYYYY",
+          "xYYYYyxYYYYYyyyyXY"
+        ]
+      },
+      {
+        "map_id": 661,
+        "mode": "literal",
+        "raw_relators": [
+          "yXXXXyXXXXyXXXXXXXX",
+          "yXXXXxyXXXXXxxxxYX"
+        ]
+      },
+      {
+        "map_id": 867,
+        "mode": "literal",
+        "raw_relators": [
+          "XYYYYXYYYYXYYYYYYYY",
+          "XYYYYyXYYYYYyyyyxY"
+        ]
+      }
+    ],
+    "prior_provenance": null,
+    "representative": {
+      "map_id": 429,
+      "mode": "literal",
+      "raw_relators": [
+        "xYYYYxYYYYxYYYYYYYY",
+        "xYYYYyxYYYYYyyyyXY"
+      ]
+    },
+    "row_id": "bucket-000",
+    "selected_solver": null,
+    "selected_theorem": null,
+    "solver_verdict": null,
+    "support": {
+      "kind": "UNSUPPORTED",
+      "loop_class": null,
+      "reason": "loop class multiplicity is not one",
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "support_inventory": {
+      "edge_multiplicities": [
+        {
+          "edge": [
+            0,
+            2
+          ],
+          "multiplicity": 4
+        },
+        {
+          "edge": [
+            0,
+            3
+          ],
+          "multiplicity": 2
+        },
+        {
+          "edge": [
+            1,
+            3
+          ],
+          "multiplicity": 6
+        },
+        {
+          "edge": [
+            2,
+            2
+          ],
+          "multiplicity": 2
+        },
+        {
+          "edge": [
+            2,
+            3
+          ],
+          "multiplicity": 23
+        }
+      ]
+    },
+    "witness": null
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "after_x_substitution": [
+    "ZYYYZZYzzyyy",
+    "ZYYYzyyyy"
+  ],
+  "definitions": [
+    "Zxy",
+    "Tyyy"
+  ],
+  "first_isolator": "YYYZyyyx",
+  "hidden_step": "four Lemma-11 directions; witness-dependent; no effective input-visible bound supplied",
+  "nontriangular_block": [
+    "YYYZyyyxZTZZYzztYYYZyyyxYYYZyyyx",
+    "ZTZZYzztYYYZyyyxYYYZyyyx"
+  ],
+  "old_generator_occurrence_counts": [
+    [
+      3,
+      19
+    ],
+    [
+      2,
+      13
+    ]
+  ],
+  "relative_nielsen_inverse": [
+    "A_prime <- A_prime B_prime^-1",
+    "B_prime <- B_prime A^-1",
+    "B_prime A^-1 <- (B_prime A^-1) A^-1"
+  ],
+  "schema": "aca120-two-block-certificate-v1",
+  "second_isolator": "ZTZZYzzt",
+  "single_cov_audit": {
+    "cyclic_words": 104,
+    "distinct_endpoint_orbits": 191,
+    "minimum_endpoint_mu": 16,
+    "target_orbit_hits": 0,
+    "variant_attempts": 178256
+  },
+  "single_cov_audit_sha256": "18fda8dc5e0a6ae60a8920ccd5bcc2b466d3962805932b41442ea3097948da8e",
+  "source": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+  ],
+  "source_mu": 16,
+  "source_rep": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+  ],
+  "source_whitehead_phi": {
+    "x": "x",
+    "y": "y"
+  },
+  "t_substitution": {
+    "block": [
+      "ZTZZYzzt",
+      "ZTzty",
+      "Tyyy"
+    ],
+    "count": 4
+  },
+  "target": [
+    "XYxyxxyXYXX",
+    "YxxyXXXYXX"
+  ],
+  "target_mu": 15,
+  "target_rep": [
+    "YXXyxYx",
+    "YYYXyyxx"
+  ],
+  "target_whitehead_phi": {
+    "x": "Y",
+    "y": "yyx"
+  },
+  "whitehead_checks": [
+    true,
+    true
+  ],
+  "x_expression": "YYYzyyy",
+  "y_expression": "zztZTZZ",
+  "z_substitution": {
+    "count": 2,
+    "relators": [
+      "ZXXYxx",
+      "YYYZyyyx"
+    ]
+  }
+}

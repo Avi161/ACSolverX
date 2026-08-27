@@ -1,0 +1,3226 @@
+{
+  "bounds": {
+    "max_template_length": 5,
+    "max_word_length": 3,
+    "minimum_z_occurrences": 2
+  },
+  "records": [
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzyZ",
+        "floor_delta": 9,
+        "isolator_template": "xzYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyxYx",
+          "YYYYYYxYXXyxxyXyxYXX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYYxYXXyxxyXyxYXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxYXXy"
+      },
+      "name": "aca_0",
+      "source": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "trace_sha256": "18956de938ffc113c2efd5395597f37bc3fb80e6721fc3cf2589f7ab53552c04"
+    },
+    {
+      "accepted_count": 48,
+      "best": {
+        "defining_word": "xyX",
+        "eliminated": "y",
+        "expression": "xzzX",
+        "floor_delta": 5,
+        "isolator_template": "xzzXY",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyxx",
+          "YYYYYYxyyXyyX"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYYYYxyyXyyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxyyXXY"
+      },
+      "name": "aca_1",
+      "source": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "trace_sha256": "35936f99b13bb89769534f4e124aff19d6da54bc57889e3ecf3584376a3ec8dd"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Xyx",
+        "eliminated": "y",
+        "expression": "XzXz",
+        "floor_delta": 5,
+        "isolator_template": "xyZxZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXyx",
+          "YXyXyXyXyXyXyxxYxYxYxYxYx"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYYYXyyyyyyxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXYxYx"
+      },
+      "name": "aca_2",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "trace_sha256": "469c460f6f8370890eec797d163b8f008e621009439c8185b04fa7eaa4910c6e"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzyZ",
+        "floor_delta": 9,
+        "isolator_template": "xzYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyxYx",
+          "YYYYYxxyXyxxyXyxYXX"
+        ],
+        "output_floor": 26,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYxxyXyxxyXyxYXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxYXXy"
+      },
+      "name": "aca_3",
+      "source": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "trace_sha256": "18956de938ffc113c2efd5395597f37bc3fb80e6721fc3cf2589f7ab53552c04"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzzy",
+        "floor_delta": 11,
+        "isolator_template": "xYZZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YYXXXYYxxxyyxxxyXXXXXX"
+        ],
+        "output_floor": 29,
+        "output_representative": [
+          "YYXXXyx",
+          "YYXXXYYxxxyyxxxyXXXXXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYYXXXy"
+      },
+      "name": "aca_4",
+      "source": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "trace_sha256": "d3edc5bd6ff8e6d7071a9976b36bd4072eb6831141734549c011296bf20ef1b2"
+    },
+    {
+      "accepted_count": 24,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "YZZZ",
+        "floor_delta": 9,
+        "isolator_template": "xzzzy",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyX",
+          "YYYYXXXyxxxyXXXXXXXXX"
+        ],
+        "output_floor": 28,
+        "output_representative": [
+          "YYXXXyX",
+          "YYYYXXXyxxxyXXXXXXXXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxxxyy"
+      },
+      "name": "aca_5",
+      "source": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "trace_sha256": "079f785e7c8c1ec84c10f87d4e0c7ac42913ead2f1246acdb59cda2e8ab6b21b"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "xxy",
+        "eliminated": "x",
+        "expression": "ZYzy",
+        "floor_delta": 16,
+        "isolator_template": "xYZyz",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxYXyxx",
+          "YYxYXyxYXyxYXyxYXyxYXyxyX"
+        ],
+        "output_floor": 35,
+        "output_representative": [
+          "YYXXyxYXyx",
+          "YXyXYxyXYxyXYxyXYxyXYxyxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYYXXyxxy"
+      },
+      "name": "aca_6",
+      "source": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "trace_sha256": "fe39147a0c74d11c91559ed01bf6e105cbb7b5cf105e51b7900ad2ac9b829201"
+    },
+    {
+      "accepted_count": 48,
+      "best": {
+        "defining_word": "xyX",
+        "eliminated": "y",
+        "expression": "xzzX",
+        "floor_delta": 6,
+        "isolator_template": "xzzXY",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyxx",
+          "YYYYYYYYxYYXYYX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYYYYYYxYYXYYX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxyyXXY"
+      },
+      "name": "aca_7",
+      "source": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "trace_sha256": "35936f99b13bb89769534f4e124aff19d6da54bc57889e3ecf3584376a3ec8dd"
+    },
+    {
+      "accepted_count": 216,
+      "best": {
+        "defining_word": "yxY",
+        "eliminated": "y",
+        "expression": "zzXZ",
+        "floor_delta": 9,
+        "isolator_template": "xZZyz",
+        "nonautomorphic": true,
+        "output": [
+          "YXYxyx",
+          "YYXyyXyXYxyxYxYYXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyXYxx",
+          "YYXYxxyXYxxyyXXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyxY"
+      },
+      "name": "aca_8",
+      "source": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "trace_sha256": "2eb70d2c2a0b4cc5ecdcda4e9f97f062a2493523de296970b19a0f136fb34f19"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 9,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYXyxYXyxyyXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYXyxYXyxyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_9",
+      "source": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 5,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYXyyxyXyx"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYXyyxyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_10",
+      "source": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 5,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYXYxyXyyx"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYXYxyXyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_11",
+      "source": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 200,
+      "best": {
+        "defining_word": "xyy",
+        "eliminated": "x",
+        "expression": "ZYz",
+        "floor_delta": 2,
+        "isolator_template": "xZyz",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYxyXyyxYX"
+        ],
+        "output_floor": 17,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXYxyxx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYXyxyy"
+      },
+      "name": "aca_12",
+      "source": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "trace_sha256": "a5982b80e456a261ece6c2ab4126ee5b264173a28ff3d1785e1262be37ff55bc"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "xyX",
+        "eliminated": "x",
+        "expression": "YYZZ",
+        "floor_delta": 17,
+        "isolator_template": "xzzyy",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYxxyyx",
+          "YYYXXYxxyyxxyyxxyXXYYXX"
+        ],
+        "output_floor": 33,
+        "output_representative": [
+          "YYXXYxxyyx",
+          "YYXyyxxyyxxxyyxYYXXYYXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxyyXyy"
+      },
+      "name": "aca_13",
+      "source": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "trace_sha256": "45bad366c18f741f00ece6c518e6fe3440ba282bcd56d4c85dc0d893274eb719"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Xyx",
+        "eliminated": "y",
+        "expression": "XzXz",
+        "floor_delta": 4,
+        "isolator_template": "xyZxZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXyx",
+          "YXyXyXyXyxxYxYxYxYxYx"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYYYxyyyyXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXYxYx"
+      },
+      "name": "aca_14",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "trace_sha256": "469c460f6f8370890eec797d163b8f008e621009439c8185b04fa7eaa4910c6e"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "yyy",
+        "eliminated": "y",
+        "expression": "xzXZ",
+        "floor_delta": 7,
+        "isolator_template": "xzXZY",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXXYxxyx",
+          "YYxyXYxyXYxyX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXXyXXYxxyx",
+          "YYxyXYxyXYxyX"
+        ],
+        "source_index": 1,
+        "source_orientation": "xyyyXYYYY"
+      },
+      "name": "aca_15",
+      "source": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "trace_sha256": "360ed0ffd9a817ed0c9986bc23c94aef3f47b5eeb18ada0480b593af39f88746"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "xYX",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 13,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYxyXYXyx",
+          "YYXYxyXYxyXYxyXyxYXyx"
+        ],
+        "output_floor": 30,
+        "output_representative": [
+          "YXYxyXXyx",
+          "YYXYxyXYxyXYxyXyxYXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xxyXYxYXy"
+      },
+      "name": "aca_16",
+      "source": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "trace_sha256": "84bd5951b7d99ec77ea82b0bdf56f2e0e973f2435ef01c5f5e4d1eb1cb3c2a34"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YYY",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 5,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXXXyxxx",
+          "YYXyxYXyxYXyx"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXXXyxxx",
+          "YYXyxYXyxYXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYYYXyyy"
+      },
+      "name": "aca_17",
+      "source": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "9a3fb2e6eb1936be54f4f5f37a3ed9fd4cb945e5c67a23513b32e3cf6fdaa512"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "yyy",
+        "eliminated": "y",
+        "expression": "xzXZ",
+        "floor_delta": 7,
+        "isolator_template": "xzXZY",
+        "nonautomorphic": true,
+        "output": [
+          "YXyxYxxxyXX",
+          "YYxyXYxyXYxyX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyXXXYxxyx",
+          "YYXyxYXyxYXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xyyyXYYYY"
+      },
+      "name": "aca_18",
+      "source": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "trace_sha256": "360ed0ffd9a817ed0c9986bc23c94aef3f47b5eeb18ada0480b593af39f88746"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YYY",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 9,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxYXyxYXyx",
+          "YXyXYXyxYxxyx"
+        ],
+        "output_floor": 26,
+        "output_representative": [
+          "YYXYxyXyxyXYx",
+          "YXyxYXyxYXXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYYYXyyy"
+      },
+      "name": "aca_19",
+      "source": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "9a3fb2e6eb1936be54f4f5f37a3ed9fd4cb945e5c67a23513b32e3cf6fdaa512"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YYY",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 7,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXyxYxxxyXX",
+          "YYXyxYXyxYXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyXXXYxxyx",
+          "YYxyXYxyXYxyX"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYYYXyyy"
+      },
+      "name": "aca_20",
+      "source": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "9a3fb2e6eb1936be54f4f5f37a3ed9fd4cb945e5c67a23513b32e3cf6fdaa512"
+    },
+    {
+      "accepted_count": 72,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYxYXyyyxyX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXYxyxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_21",
+      "source": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "trace_sha256": "24dc3a6632932d845d96335bdb439e58bd017d9101da4a7fdb6b59fda5dcc54f"
+    },
+    {
+      "accepted_count": 72,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYxyXyyyxYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYxyXyyyxYX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_22",
+      "source": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "trace_sha256": "c45dac2151b56b865e106c4683e27c2a6b47e8c3d814e97cb8987bcaf2ab700f"
+    },
+    {
+      "accepted_count": 72,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYxYXyyyxyX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYxYXyyyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_23",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "b264df359a4190ea0eb53b195d5d05bb582465218eb73d73ea74eb757173b881"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_24",
+      "source": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 72,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYxyXyyyxYX"
+        ],
+        "output_floor": 19,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXYxyxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_25",
+      "source": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "5d792421ac533c99aec129d04288a80d826706712de97e0f5213db854c280372"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "yyy",
+        "eliminated": "y",
+        "expression": "xzXZ",
+        "floor_delta": 7,
+        "isolator_template": "xzXZY",
+        "nonautomorphic": true,
+        "output": [
+          "YXyXXYxxxyX",
+          "YYxyXYxyXYxyX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyXXYxxxyX",
+          "YYxyXYxyXYxyX"
+        ],
+        "source_index": 1,
+        "source_orientation": "xyyyXYYYY"
+      },
+      "name": "aca_26",
+      "source": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "trace_sha256": "360ed0ffd9a817ed0c9986bc23c94aef3f47b5eeb18ada0480b593af39f88746"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YYY",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 7,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXXYxxyx",
+          "YYXyxYXyxYXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXXyXXYxxyx",
+          "YYXyxYXyxYXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYYYXyyy"
+      },
+      "name": "aca_27",
+      "source": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "9a3fb2e6eb1936be54f4f5f37a3ed9fd4cb945e5c67a23513b32e3cf6fdaa512"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YYY",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 7,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXyXXYxxxyX",
+          "YYXyxYXyxYXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyXXYxxxyX",
+          "YYXyxYXyxYXyx"
+        ],
+        "source_index": 1,
+        "source_orientation": "xYYYYXyyy"
+      },
+      "name": "aca_28",
+      "source": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "9a3fb2e6eb1936be54f4f5f37a3ed9fd4cb945e5c67a23513b32e3cf6fdaa512"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "xyX",
+        "eliminated": "y",
+        "expression": "xxzz",
+        "floor_delta": 9,
+        "isolator_template": "xxzzY",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YYXYYXXXYYXXyyxxyyx"
+        ],
+        "output_floor": 26,
+        "output_representative": [
+          "YYXXXyx",
+          "YYXYYXXXYYXXyyxxyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyyXY"
+      },
+      "name": "aca_29",
+      "source": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "trace_sha256": "d3edc5bd6ff8e6d7071a9976b36bd4072eb6831141734549c011296bf20ef1b2"
+    },
+    {
+      "accepted_count": 48,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzy",
+        "floor_delta": 4,
+        "isolator_template": "xYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyx",
+          "YYYYYxxyXXYXXXX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYXYYxyyXXXXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYYXXy"
+      },
+      "name": "aca_30",
+      "source": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "trace_sha256": "6c2c5bb88ea7b154545193440a277c63474d8bf3e3cf473eb9e40fee94895f37"
+    },
+    {
+      "accepted_count": 48,
+      "best": {
+        "defining_word": "xyX",
+        "eliminated": "y",
+        "expression": "xzzX",
+        "floor_delta": 7,
+        "isolator_template": "xzzXY",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyxx",
+          "YYYYYYYYYYXyyXyyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YYXXyxx",
+          "YYYYYYYYYYXyyXyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxyyXXY"
+      },
+      "name": "aca_31",
+      "source": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "trace_sha256": "35936f99b13bb89769534f4e124aff19d6da54bc57889e3ecf3584376a3ec8dd"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 4,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYxYXyxyXyxyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYxYXyxyXyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_32",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_33",
+      "source": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YzYZ",
+        "floor_delta": 6,
+        "isolator_template": "xzyZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXYxYXYx",
+          "YYYYYxyXyyyyxYX"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYYYXYxyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyXXy"
+      },
+      "name": "aca_34",
+      "source": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "849a10bdd2a68d34f637fe77e759c2ec005200568362119056eaf9cec10e9c24"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzzy",
+        "floor_delta": 11,
+        "isolator_template": "xYZZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YYYxxxyxxxyyxxxyXXXXXX"
+        ],
+        "output_floor": 29,
+        "output_representative": [
+          "YYXXXyx",
+          "YYYxxxyxxxyyxxxyXXXXXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYYXXXy"
+      },
+      "name": "aca_35",
+      "source": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "trace_sha256": "d3edc5bd6ff8e6d7071a9976b36bd4072eb6831141734549c011296bf20ef1b2"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "xyy",
+        "eliminated": "y",
+        "expression": "xzzx",
+        "floor_delta": 9,
+        "isolator_template": "xYxzz",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYYXXyX",
+          "YYXyyxYYXXXXXYYXX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXYYXXYx",
+          "YYYYYXXyxxYXXYYXX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxxyyxyy"
+      },
+      "name": "aca_36",
+      "source": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "trace_sha256": "f1309c129212226bd22b45435777c8ff1e1b2e53e999040535a29d4032ba6f43"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_37",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_38",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_39",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_40",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_41",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_42",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_43",
+      "source": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_44",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 10,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXYx",
+          "YXyXYxxxxyXYxyXYxyXYxyX"
+        ],
+        "output_floor": 29,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYXyxYXyxYXyxYXyxyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyXYxx"
+      },
+      "name": "aca_45",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "trace_sha256": "4a35aeeb194bc8899e2c7b92fe1525b792c31051e4aedc0f59aabbd741826f81"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYxYXyyyyxyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYxYXyyyyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_46",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYxYXyyyyxyX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXYxyxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_47",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 11,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "output_floor": 30,
+        "output_representative": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyXYxx"
+      },
+      "name": "aca_48",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "trace_sha256": "005226e4631cf137db8ee555a65f7f351417f9cb55be5e4c1faa386c27b98d18"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYxyXyyyyxYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYxyXyyyyxYX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_49",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYxyXyyyyxYX"
+        ],
+        "output_floor": 21,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXYxyxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_50",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_51",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_52",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Xyx",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 11,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyxYx",
+          "YXyxYXyxYXXyxxYxxyXYxyX"
+        ],
+        "output_floor": 29,
+        "output_representative": [
+          "YYXXyx",
+          "YXyxYXyxYXXyxxYxxyXYxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXyXYx"
+      },
+      "name": "aca_53",
+      "source": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "trace_sha256": "18956de938ffc113c2efd5395597f37bc3fb80e6721fc3cf2589f7ab53552c04"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_54",
+      "source": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_55",
+      "source": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_56",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_57",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YzYZ",
+        "floor_delta": 6,
+        "isolator_template": "xzyZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXYxYXYx",
+          "YYYYYYxyXyyyyyxYX"
+        ],
+        "output_floor": 26,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYYYYXYxyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyXXy"
+      },
+      "name": "aca_58",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "849a10bdd2a68d34f637fe77e759c2ec005200568362119056eaf9cec10e9c24"
+    },
+    {
+      "accepted_count": 40,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "y",
+        "expression": "Zxxz",
+        "floor_delta": 4,
+        "isolator_template": "xxzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyXX",
+          "YXXXXXXXXyxxxxxxx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YYXXYYx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxYXXYxxy"
+      },
+      "name": "aca_59",
+      "source": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "trace_sha256": "4e141291b34071ba115fa64cac9ee9ae17d56705bad356ea4bd6bf34edffa8dc"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 14,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "output_floor": 34,
+        "output_representative": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyXYxx"
+      },
+      "name": "aca_60",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "trace_sha256": "005226e4631cf137db8ee555a65f7f351417f9cb55be5e4c1faa386c27b98d18"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 13,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXYx",
+          "YXyXYxxxxyXYxyXYxyXYxyXYxyX"
+        ],
+        "output_floor": 33,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYXyxYXyxYXyxYXyxYXyxyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyXYxx"
+      },
+      "name": "aca_61",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "trace_sha256": "4a35aeeb194bc8899e2c7b92fe1525b792c31051e4aedc0f59aabbd741826f81"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_62",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_63",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_64",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_65",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_66",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_67",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYYxYXyyyyyxyX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYYxYXyyyyyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_68",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYYxYXyyyyyxyX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXYxyxxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_69",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYYxyXyyyyyxYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYYxyXyyyyyxYX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_70",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_71",
+      "source": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_72",
+      "source": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYYxyXyyyyyxYX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXXYxyxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_73",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_74",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 17,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXXXyxYxxyx"
+        ],
+        "output_floor": 38,
+        "output_representative": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXXXyxYxxyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyXYxx"
+      },
+      "name": "aca_75",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "trace_sha256": "005226e4631cf137db8ee555a65f7f351417f9cb55be5e4c1faa386c27b98d18"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 17,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "output_floor": 38,
+        "output_representative": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXXXyXYxxyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyXYxx"
+      },
+      "name": "aca_76",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "trace_sha256": "005226e4631cf137db8ee555a65f7f351417f9cb55be5e4c1faa386c27b98d18"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 16,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXYx",
+          "YXyXYxxxxyXYxyXYxyXYxyXYxyXYxyX"
+        ],
+        "output_floor": 37,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYXyxYXyxYXyxYXyxYXyxYXyxyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyXYxx"
+      },
+      "name": "aca_77",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "trace_sha256": "4a35aeeb194bc8899e2c7b92fe1525b792c31051e4aedc0f59aabbd741826f81"
+    },
+    {
+      "accepted_count": 48,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzy",
+        "floor_delta": 6,
+        "isolator_template": "xYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXyx",
+          "YYYYYYYYXXXXyxxyXXYXX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXyx",
+          "YYYYXXXXXXXXYYXYYxyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYYXXy"
+      },
+      "name": "aca_78",
+      "source": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "trace_sha256": "6c2c5bb88ea7b154545193440a277c63474d8bf3e3cf473eb9e40fee94895f37"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_79",
+      "source": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_80",
+      "source": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YzYZ",
+        "floor_delta": 6,
+        "isolator_template": "xzyZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXYxYXYx",
+          "YYYYYYYxyXyyyyyyxYX"
+        ],
+        "output_floor": 28,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYYYYYXYxyyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyXXy"
+      },
+      "name": "aca_81",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "849a10bdd2a68d34f637fe77e759c2ec005200568362119056eaf9cec10e9c24"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_82",
+      "source": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "zXZx",
+        "floor_delta": 19,
+        "isolator_template": "xYzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyXYx",
+          "YXyxYXyxYXyxYXyxYXyxYXyxYXXyXYxxxyx"
+        ],
+        "output_floor": 41,
+        "output_representative": [
+          "YYXXYx",
+          "YYYXYxyXYxyXYxyXYxyXYxyXYxyXYxyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyXYxx"
+      },
+      "name": "aca_83",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "trace_sha256": "4a35aeeb194bc8899e2c7b92fe1525b792c31051e4aedc0f59aabbd741826f81"
+    },
+    {
+      "accepted_count": 20,
+      "best": {
+        "defining_word": "XXy",
+        "eliminated": "y",
+        "expression": "XzxZ",
+        "floor_delta": 20,
+        "isolator_template": "xyzXZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXyxYXXXyxYxxyx"
+        ],
+        "output_floor": 42,
+        "output_representative": [
+          "YYXXXyx",
+          "YXyxYXyxYXyxYXyxYXyxYXyxYXXXyxYxxyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXyXYxx"
+      },
+      "name": "aca_84",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "trace_sha256": "005226e4631cf137db8ee555a65f7f351417f9cb55be5e4c1faa386c27b98d18"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 6,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYYYYYXYxyyyyyyXyx"
+        ],
+        "output_floor": 28,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYYYYYXYxyyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_85",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_86",
+      "source": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_87",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_88",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYYYxYXyyyyyyxyX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYYYxYXyyyyyyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_89",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_90",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_91",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_92",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_93",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_94",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_95",
+      "source": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYYYxyXyyyyyyxYX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXXXYxyxxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_96",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YzYZ",
+        "floor_delta": 6,
+        "isolator_template": "xzyZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXYxYXYx",
+          "YYYYYYYYxyXyyyyyyyxYX"
+        ],
+        "output_floor": 30,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYYYYYYXYxyyyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyXXy"
+      },
+      "name": "aca_97",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "849a10bdd2a68d34f637fe77e759c2ec005200568362119056eaf9cec10e9c24"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 6,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYYYYYYXYxyyyyyyyXyx"
+        ],
+        "output_floor": 30,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYYYYYYXYxyyyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_98",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_99",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_100",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_101",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_102",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_103",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_104",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_105",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_106",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_107",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYYYYxYXyyyyyyyxyX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYYYYxYXyyyyyyyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_108",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYYYYxYXyyyyyyyxyX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXXXYxyxxxxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_109",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_110",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zyZ",
+        "floor_delta": 2,
+        "isolator_template": "xzYZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXXYx",
+          "YYYYYYYYxyXyyyyyyyxYX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXYx",
+          "YYYYYYYYxyXyyyyyyyxYX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXYxxy"
+      },
+      "name": "aca_111",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "trace_sha256": "37021a0f0cb220a29da071dd74cfc3ab195cfecda90442b85b370fce02954b3d"
+    },
+    {
+      "accepted_count": 32,
+      "best": {
+        "defining_word": "YXX",
+        "eliminated": "x",
+        "expression": "zYZ",
+        "floor_delta": 2,
+        "isolator_template": "xzyZ",
+        "nonautomorphic": true,
+        "output": [
+          "YYXyxx",
+          "YYYYYYYYxyXyyyyyyyxYX"
+        ],
+        "output_floor": 27,
+        "output_representative": [
+          "YYXXyx",
+          "YXyXXXXXXXXYxyxxxxxxx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYXXyxxy"
+      },
+      "name": "aca_112",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "b590e03ecc96e2bb463f8b5226a437bc2c3fd84818c1de9b8773240a17ce6573"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_113",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 0,
+      "best": null,
+      "name": "aca_114",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "trace_sha256": "2753e07638fc4bc172c768fb0d4e07ccf2266efb9d3e5c1664f69e0269465576"
+    },
+    {
+      "accepted_count": 256,
+      "best": {
+        "defining_word": "XY",
+        "eliminated": "x",
+        "expression": "Zyz",
+        "floor_delta": 1,
+        "isolator_template": "xZYz",
+        "nonautomorphic": true,
+        "output": [
+          "YXXYx",
+          "YYYYXyyyx"
+        ],
+        "output_floor": 14,
+        "output_representative": [
+          "YXXYx",
+          "YYYYXyyyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyxYXY"
+      },
+      "name": "aca_115",
+      "source": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "source_floor": 13,
+      "source_representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "trace_sha256": "cd7fc00dc4bbd312de1448a3e8dcb2da995f9a5fabe769be5a9537954d792a82"
+    },
+    {
+      "accepted_count": 336,
+      "best": {
+        "defining_word": "Xyy",
+        "eliminated": "y",
+        "expression": "ZXzX",
+        "floor_delta": 6,
+        "isolator_template": "xzyxZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyXYXyX",
+          "YXyXXYxyxxx"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYXYxyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "yyyxYYx"
+      },
+      "name": "aca_116",
+      "source": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "trace_sha256": "c046648c0e92ea84e6aca3689da12707e09d78dd0a8772bc2422454b83808f0d"
+    },
+    {
+      "accepted_count": 336,
+      "best": {
+        "defining_word": "Xyy",
+        "eliminated": "y",
+        "expression": "zxZX",
+        "floor_delta": 6,
+        "isolator_template": "xzXZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YXXyXYxxxyx"
+        ],
+        "output_floor": 20,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYXYxyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "yyXYYxy"
+      },
+      "name": "aca_117",
+      "source": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "trace_sha256": "6beae08095096c0f698b9364f3551e1018e3952daf61ee958a62431682c435a5"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzyZ",
+        "floor_delta": 7,
+        "isolator_template": "xzYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyxYx",
+          "YYYYxYXXyxxyxyX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYxYXXyxxyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxYXXy"
+      },
+      "name": "aca_118",
+      "source": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "trace_sha256": "18956de938ffc113c2efd5395597f37bc3fb80e6721fc3cf2589f7ab53552c04"
+    },
+    {
+      "accepted_count": 176,
+      "best": {
+        "defining_word": "Yxy",
+        "eliminated": "x",
+        "expression": "zzyZ",
+        "floor_delta": 7,
+        "isolator_template": "xzYZZ",
+        "nonautomorphic": true,
+        "output": [
+          "YXXyxYx",
+          "YYYYYxYXXyxxyxyX"
+        ],
+        "output_floor": 23,
+        "output_representative": [
+          "YXXyxYx",
+          "YYYYYxYXXyxxyxyX"
+        ],
+        "source_index": 0,
+        "source_orientation": "xYxYXXy"
+      },
+      "name": "aca_119",
+      "source": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "trace_sha256": "18956de938ffc113c2efd5395597f37bc3fb80e6721fc3cf2589f7ab53552c04"
+    },
+    {
+      "accepted_count": 208,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YzYZ",
+        "floor_delta": 6,
+        "isolator_template": "xzyZy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXYxYXYx",
+          "YYYYxyXyyyxYX"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXYxYXXYx",
+          "YYYYXYxyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xxxyXXy"
+      },
+      "name": "aca_120",
+      "source": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "1490e4811874e49756000f9c477444a0777f985d762d6c1d8f84762f31ba9f00"
+    },
+    {
+      "accepted_count": 208,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 6,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYYXYxyyyXyx"
+        ],
+        "output_floor": 22,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYYXYxyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_121",
+      "source": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "trace_sha256": "c2e8ff44337e6ce0f35b7f4b33d6e8eb7612c00c5b2db5dd6acfc3fe09f62887"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 6,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYYYXYxyyyyXyx"
+        ],
+        "output_floor": 24,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYYYXYxyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_122",
+      "source": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    },
+    {
+      "accepted_count": 168,
+      "best": {
+        "defining_word": "xxY",
+        "eliminated": "x",
+        "expression": "YZyz",
+        "floor_delta": 6,
+        "isolator_template": "xZYzy",
+        "nonautomorphic": true,
+        "output": [
+          "YXYXyxYXyx",
+          "YYYYYYXYxyyyyyXyx"
+        ],
+        "output_floor": 26,
+        "output_representative": [
+          "YXyxYXXyx",
+          "YYYYYYXYxyyyyyXyx"
+        ],
+        "source_index": 0,
+        "source_orientation": "xyXXYxx"
+      },
+      "name": "aca_123",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "trace_sha256": "cb59eb4e0d9f8f4400fe469beb2fe654a8576598ae3414c04b8ecda17ef1debd"
+    }
+  ],
+  "schema": "aca124-rank3-hidden-cancellation-v1",
+  "summary": {
+    "class_count": 124,
+    "classes_with_corridors": 75,
+    "classes_with_floor_descent": 0,
+    "classes_with_nonautomorphic_output": 75
+  }
+}

@@ -1,0 +1,4 @@
+{"pres_id": 0, "solved": true}
+{"pres_id": 1, "solved": false, "mem_abort": true, "mem_abort_pending": true}
+{"pres_id": 2, "solved": false, "mem_abort": true}
+{"pres_id": 3, "solved": true, "path_pending": true}

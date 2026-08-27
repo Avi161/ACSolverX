@@ -1,0 +1,1624 @@
+{
+  "counts": {
+    "NOT_SPHERICAL": 124
+  },
+  "rows": [
+    {
+      "exhaustive": true,
+      "name": "aca_0",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_1",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_2",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_3",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_4",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_5",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_6",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_7",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_8",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_9",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_10",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_11",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_12",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_13",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_14",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_15",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_16",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_17",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_18",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_19",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_20",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_21",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_22",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_23",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_24",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_25",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_26",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_27",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_28",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_29",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_30",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_31",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_32",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_33",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_34",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_35",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_36",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_37",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_38",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_39",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_40",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_41",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_42",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_43",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_44",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_45",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_46",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_47",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_48",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_49",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_50",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_51",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_52",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_53",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_54",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_55",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_56",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_57",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_58",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_59",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_60",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_61",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_62",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_63",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_64",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_65",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_66",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_67",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_68",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_69",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_70",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_71",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_72",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_73",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_74",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_75",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_76",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_77",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_78",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_79",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_80",
+      "reason": null,
+      "spherical": false,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_81",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_82",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_83",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_84",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_85",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_86",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_87",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_88",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_89",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_90",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_91",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_92",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_93",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_94",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_95",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_96",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_97",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_98",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_99",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_100",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_101",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_102",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_103",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_104",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_105",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_106",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_107",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_108",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_109",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_110",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_111",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_112",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_113",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_114",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_115",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXYxyx",
+        "YYYYxxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_116",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_117",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_118",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_119",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_120",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_121",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_122",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "exhaustive": true,
+      "name": "aca_123",
+      "reason": null,
+      "spherical": false,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    }
+  ],
+  "schema": "aca124-neuwirth-rank-scan-v1",
+  "supports": {
+    "K4": 123,
+    "K4-e": 1
+  }
+}

@@ -1,0 +1,4731 @@
+{
+  "bounds": {
+    "beam_size": 96,
+    "max_conjugator_length": 1,
+    "max_width": 3,
+    "relator_cap": 80
+  },
+  "payload_sha256": "aaad3046ef5d19bb044b1dafcf4b517b59c4d8577f4ceed75d9eac7b40088ace",
+  "records": [
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyxYx",
+          "YYYYYYXyXyxY"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXyxYx",
+          "YYYYYYYXyxx"
+        ]
+      },
+      "name": "aca_0",
+      "source": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyxx",
+          "xYxYXyXXyxx"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXyXyxx",
+          "YYxyxyXXX"
+        ]
+      },
+      "name": "aca_1",
+      "source": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyx",
+          "YYYXyyyyXyxY"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXyXyx",
+          "YYYYxyyyxyX"
+        ]
+      },
+      "name": "aca_2",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyxYx",
+          "YYYYYxyXyxY"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXyxYx",
+          "YYYYYXyxyX"
+        ]
+      },
+      "name": "aca_3",
+      "source": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyx",
+          "xyxYxYXYXXXXyx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYXXXXyxyxYxx"
+        ]
+      },
+      "name": "aca_4",
+      "source": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyX",
+          "XYXYXYxYXyXXXyX"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YYXXXyX",
+          "YXYXYxYXyXXXyXX"
+        ]
+      },
+      "name": "aca_5",
+      "source": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyxxyx",
+          "XyXYxxxyxxyxY"
+        ],
+        "target_floor": 20,
+        "target_representative": [
+          "YYXXyxxyx",
+          "YYxxxyXYXyx"
+        ]
+      },
+      "name": "aca_6",
+      "source": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyxx",
+          "xyxyXyyXXyxx"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YYXXyxx",
+          "YYXXYxxxYxYX"
+        ]
+      },
+      "name": "aca_7",
+      "source": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxx",
+          "XYYxyyXYxxy"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXyXYxx",
+          "YYXyxxYXyyx"
+        ]
+      },
+      "name": "aca_8",
+      "source": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYXXyXXXyx"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYXXyXXXyx"
+        ]
+      },
+      "name": "aca_9",
+      "source": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYXYXyXXXyx"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXXyxx",
+          "YYXYXyXXXyx"
+        ]
+      },
+      "name": "aca_10",
+      "source": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYXyXXyxxx"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYXyXXyxxx"
+        ]
+      },
+      "name": "aca_11",
+      "source": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYXYxyXXXyx"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXXyxx",
+          "YYXYxyXXXyx"
+        ]
+      },
+      "name": "aca_12",
+      "source": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXYYx",
+          "XyXXYxYYxY"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXyXyXX",
+          "YYxYxyxyx"
+        ]
+      },
+      "name": "aca_13",
+      "source": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyx",
+          "YYYXyyyXyxY"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXyXyx",
+          "YYYYxyyxyX"
+        ]
+      },
+      "name": "aca_14",
+      "source": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYxyyXXyXyx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXyXyxYx",
+          "YYYXyyxYxxyX"
+        ]
+      },
+      "name": "aca_15",
+      "source": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "XyxYXXYXXyxxY"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyxxYx",
+          "YXYXXyxxYXyx"
+        ]
+      },
+      "name": "aca_16",
+      "source": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxYx",
+          "XYYYxyyyXXXYxYx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXYxYx",
+          "YYYYxYXXXyyyx"
+        ]
+      },
+      "name": "aca_17",
+      "source": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYYYxyyXXXyxY"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYxyyXXXyx"
+        ]
+      },
+      "name": "aca_18",
+      "source": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxxx",
+          "XYYYxyyyXyXYxxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXYXyxxyX",
+          "YYYXyyXYXyxx"
+        ]
+      },
+      "name": "aca_19",
+      "source": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "XYYYxyyyXXXyxYx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYxyyyXXXyx"
+        ]
+      },
+      "name": "aca_20",
+      "source": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYxyyXXyxxy"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYxyyXXyxx"
+        ]
+      },
+      "name": "aca_21",
+      "source": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYxyyXXYxxy"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYxyyXXYxx"
+        ]
+      },
+      "name": "aca_22",
+      "source": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYXyyXXyxxy"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYXyyXXyxx"
+        ]
+      },
+      "name": "aca_23",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "XyxyXYxxy"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YYXXXYxx",
+          "YXYxYXXyx"
+        ]
+      },
+      "name": "aca_24",
+      "source": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYXyyXXYxxy"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYXyyXXYxx"
+        ]
+      },
+      "name": "aca_25",
+      "source": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxx",
+          "YYYYxyyXXYxYx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxYxx",
+          "YYYYxyyXXYxYx"
+        ]
+      },
+      "name": "aca_26",
+      "source": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYXyyxYxxyX"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXyXyxx",
+          "YYYYXyyxYxxyX"
+        ]
+      },
+      "name": "aca_27",
+      "source": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxx",
+          "XYYYxyyyXXYxYxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxYxx",
+          "YYYXyyyXyXyxx"
+        ]
+      },
+      "name": "aca_28",
+      "source": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyx",
+          "xYxYXYXXXXXyx"
+        ],
+        "target_floor": 20,
+        "target_representative": [
+          "YYXXXyx",
+          "YXYXXXXXyxxYx"
+        ]
+      },
+      "name": "aca_29",
+      "source": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyx",
+          "xYxxYXyyyXXyx"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YYXXyx",
+          "YYYxyXXyXXYxx"
+        ]
+      },
+      "name": "aca_30",
+      "source": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyxx",
+          "YYYYYXyxyyX"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YYXXyxx",
+          "YYYYYXyxyyX"
+        ]
+      },
+      "name": "aca_31",
+      "source": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYXyXyxxy"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYXyXyxx"
+        ]
+      },
+      "name": "aca_32",
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYXyXyXXyxYxx"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YYXXXyx",
+          "YYxyxyXyXYx"
+        ]
+      },
+      "name": "aca_33",
+      "source": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxx",
+          "XYYYYxyyyyXXXYxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXYxx",
+          "YYYYXyyyyXyxxx"
+        ]
+      },
+      "name": "aca_34",
+      "source": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyx",
+          "xYxYXYXXyXXXyx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyXyx",
+          "YYxxYxxyxxyXX"
+        ]
+      },
+      "name": "aca_35",
+      "source": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXYYXXyX",
+          "xxxyXYYYXXyX"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YYXXYXXYx",
+          "YYXyxxxyyX"
+        ]
+      },
+      "name": "aca_36",
+      "source": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "XYYYYxyyyXXXYxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YYXXXYxx",
+          "YYYYxyyyXXXYx"
+        ]
+      },
+      "name": "aca_37",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "XYYYYxyyyXXXyxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYxyyyXXXyx"
+        ]
+      },
+      "name": "aca_38",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxYx",
+          "XYYYYxyyyyXXXYxYx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXYxYx",
+          "YYYYYxYXXXyyyyx"
+        ]
+      },
+      "name": "aca_39",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYYYYxyyyXXXyxY"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYxyyyXXXyx"
+        ]
+      },
+      "name": "aca_40",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxxx",
+          "XYYYYxyyyyXyXYxxx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXYXyxxyX",
+          "YYYYXyyyXYXyxx"
+        ]
+      },
+      "name": "aca_41",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "XYYYYxyyyyXXXyxYx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYxyyyyXXXyx"
+        ]
+      },
+      "name": "aca_42",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxxx",
+          "YYXyyXYxxxY"
+        ],
+        "target_floor": 20,
+        "target_representative": [
+          "YXXYxYxxx",
+          "YYYXyyXYxxx"
+        ]
+      },
+      "name": "aca_43",
+      "source": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "YYYYYXXyxxyyX"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYXXyxxyyX"
+        ]
+      },
+      "name": "aca_44",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXYxxx",
+          "YYYYXXYxxyX"
+        ],
+        "target_floor": 20,
+        "target_representative": [
+          "YXXyXYxxx",
+          "YYYYXXYxxyX"
+        ]
+      },
+      "name": "aca_45",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYXyyyXXyxxy"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYXyyyXXyxx"
+        ]
+      },
+      "name": "aca_46",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYxyyyXXyxxy"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYxyyyXXyxx"
+        ]
+      },
+      "name": "aca_47",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYxx",
+          "YYYYXXyyxYxxY"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YXXXyxYxx",
+          "YYYYYXXyyxYxx"
+        ]
+      },
+      "name": "aca_48",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYxyyyXXYxxy"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYxyyyXXYxx"
+        ]
+      },
+      "name": "aca_49",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYXyyyXXYxxy"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYXyyyXXYxx"
+        ]
+      },
+      "name": "aca_50",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxx",
+          "XYYYYxyyyyXXYxYxx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxYxx",
+          "YYYYXyyyyXyXyxx"
+        ]
+      },
+      "name": "aca_51",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYYXyyyxYxxyX"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXyXyxx",
+          "YYYYYXyyyxYxxyX"
+        ]
+      },
+      "name": "aca_52",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyxYx",
+          "YYXyyXyxyyxYxY"
+        ],
+        "target_floor": 20,
+        "target_representative": [
+          "YXXyxYx",
+          "YYYXXyyyXyxyx"
+        ]
+      },
+      "name": "aca_53",
+      "source": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXXyxx",
+          "xxxxxYXXXXXXyxx"
+        ],
+        "target_floor": 24,
+        "target_representative": [
+          "YYXXXXyxx",
+          "YXXXXXXyxxxxxxx"
+        ]
+      },
+      "name": "aca_54",
+      "source": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyXYx",
+          "YYxyxYXXyXXXyXY"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyXYx",
+          "YYYxyxYXXyXXXyX"
+        ]
+      },
+      "name": "aca_55",
+      "source": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "xxxYXXyyXXyxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYxxyXXXXXYxx"
+        ]
+      },
+      "name": "aca_56",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "xxxxYXyyXXyxx"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYxyXXXXXXYxx"
+        ]
+      },
+      "name": "aca_57",
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxx",
+          "XYYYYYxyyyyyXXXYxx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXYxx",
+          "YYYYYXyyyyyXyxxx"
+        ]
+      },
+      "name": "aca_58",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyxx",
+          "YYYYxxxxxYXXyxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxxyxx",
+          "YYYxxxxxYXXyxx"
+        ]
+      },
+      "name": "aca_59",
+      "source": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYxx",
+          "YYYYYXXyyxYxxY"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyxYxx",
+          "YYYYYYXXyyxYxx"
+        ]
+      },
+      "name": "aca_60",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXYxxx",
+          "YYYYYXXYxxyX"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXyXYxxx",
+          "YYYYYXXYxxyX"
+        ]
+      },
+      "name": "aca_61",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxYx",
+          "XYYYYYxyyyyyXXXYxYx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXXYxYx",
+          "YYYYYYxYXXXyyyyyx"
+        ]
+      },
+      "name": "aca_62",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYYYYYxyyyyXXXyxY"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYYxyyyyXXXyx"
+        ]
+      },
+      "name": "aca_63",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxxx",
+          "XYYYYYxyyyyyXyXYxxx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXYXyxxyX",
+          "YYYYYXyyyyXYXyxx"
+        ]
+      },
+      "name": "aca_64",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "XYYYYYxyyyyyXXXyxYx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYxyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_65",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "YYYYYYxyyyXXXYx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YYXXXYxx",
+          "YYYYYYxyyyXXXYx"
+        ]
+      },
+      "name": "aca_66",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "YYYYYYxyyyXXXyx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYYxyyyXXXyx"
+        ]
+      },
+      "name": "aca_67",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYYXyyyyXXyxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYYXyyyyXXyxx"
+        ]
+      },
+      "name": "aca_68",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYYxyyyyXXyxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYYxyyyyXXyxx"
+        ]
+      },
+      "name": "aca_69",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYYxyyyyXXYxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYYxyyyyXXYxx"
+        ]
+      },
+      "name": "aca_70",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyXyxx",
+          "YYYxyyXXYxxxyX"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyXyxx",
+          "YYYxyyXXYxxxyX"
+        ]
+      },
+      "name": "aca_71",
+      "source": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxxx",
+          "YYYxyyXXXyxxyX"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxYxxx",
+          "YYYxyyXXXyxxyX"
+        ]
+      },
+      "name": "aca_72",
+      "source": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYYXyyyyXXYxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYYXyyyyXXYxx"
+        ]
+      },
+      "name": "aca_73",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYYYXyyyyxYxxyX"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXyXyxx",
+          "YYYYYYXyyyyxYxxyX"
+        ]
+      },
+      "name": "aca_74",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYxx",
+          "YYYYYYXXXXYxxxy"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YXXXyxYxx",
+          "YYYYYXXXXYxxx"
+        ]
+      },
+      "name": "aca_75",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYxx",
+          "YYYYYYXXyyxYxxY"
+        ],
+        "target_floor": 24,
+        "target_representative": [
+          "YXXXyxYxx",
+          "YYYYYYYXXyyxYxx"
+        ]
+      },
+      "name": "aca_76",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXYxxx",
+          "YYYYYYXXYxxyX"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YXXyXYxxx",
+          "YYYYYYXXYxxyX"
+        ]
+      },
+      "name": "aca_77",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXyx",
+          "xxYXYxYxyyyyyXXyx"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YYXXyx",
+          "YYYYYXyXyxyXXXYxx"
+        ]
+      },
+      "name": "aca_78",
+      "source": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 4,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyyxx",
+          "XXyXXYxxyyxxY"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YYXXXyyxx",
+          "YYXXyxxYxxyXX"
+        ]
+      },
+      "name": "aca_79",
+      "source": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXXyxxYx",
+          "xxYXYxyXyXXXyxxYx"
+        ],
+        "target_floor": 24,
+        "target_representative": [
+          "YYXXXXyxx",
+          "YYXyxxyXXyXXYxx"
+        ]
+      },
+      "name": "aca_80",
+      "source": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxx",
+          "XYYYYYYxyyyyyyXXXYxx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXXYxx",
+          "YYYYYYXyyyyyyXyxxx"
+        ]
+      },
+      "name": "aca_81",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 1
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 0
+        },
+        "target": [
+          "YYYXXXXXXyxxyyxY",
+          "YYXyxxyyxYX"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXYxyxxyX",
+          "YYYYYYXXXXyxxyyx"
+        ]
+      },
+      "name": "aca_82",
+      "source": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXYxxx",
+          "YYYYYYYXXyyxYxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXyXYxxx",
+          "YYYYYYXXyyxYxx"
+        ]
+      },
+      "name": "aca_83",
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYxx",
+          "YYYYYYYXXXXYxxxy"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyxYxx",
+          "YYYYYYXXXXYxxx"
+        ]
+      },
+      "name": "aca_84",
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYYYYYXyyyyyxxxyX"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYYYYYXyyyyyxxxyX"
+        ]
+      },
+      "name": "aca_85",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 1
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 0
+        },
+        "target": [
+          "YYYXXXXXXyxxyyXY",
+          "YYXyxxyyXYx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXyxYxxyX",
+          "YYYYYYXXXXYxxyyx"
+        ]
+      },
+      "name": "aca_86",
+      "source": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "XYYYYYYxyyyyyXXXYxx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YYXXXYxx",
+          "YYYYYYxyyyyyXXXYx"
+        ]
+      },
+      "name": "aca_87",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "YYYYYXXYxyXyxxyyX"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYXXYxyXyxxyyX"
+        ]
+      },
+      "name": "aca_88",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYYYXyyyyyXXyxxy"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYYYXyyyyyXXyxx"
+        ]
+      },
+      "name": "aca_89",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "XYYYYYYxyyyyyXXXyxx"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYYxyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_90",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "XYYYYYYxyyyyyyXXXyxYx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYYxyyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_91",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxxx",
+          "XYYYYYYxyyyyyyXyXYxxx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXYXyxxyX",
+          "YYYYYYXyyyyyXYXyxx"
+        ]
+      },
+      "name": "aca_92",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYYYYYYxyyyyyXXXyxY"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYYYxyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_93",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxYx",
+          "XYYYYYYxyyyyyyXXXYxYx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXXYxYx",
+          "YYYYYYYxYXXXyyyyyyx"
+        ]
+      },
+      "name": "aca_94",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxxx",
+          "YYYXyyyXYxxxY"
+        ],
+        "target_floor": 22,
+        "target_representative": [
+          "YXXYxYxxx",
+          "YYYYXyyyXYxxx"
+        ]
+      },
+      "name": "aca_95",
+      "source": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYYYXyyyyyXXYxxy"
+        ],
+        "target_floor": 25,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYYYXyyyyyXXYxx"
+        ]
+      },
+      "name": "aca_96",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxx",
+          "XYYYYYYYxyyyyyyyXXXYxx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXXYxx",
+          "YYYYYYYXyyyyyyyXyxxx"
+        ]
+      },
+      "name": "aca_97",
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYYYYYYXyyyyyyxxxyX"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYYYYYYXyyyyyyxxxyX"
+        ]
+      },
+      "name": "aca_98",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "XYYYYYYYxyyyyyyXXXYxx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXXYxx",
+          "YYYYYYYxyyyyyyXXXYx"
+        ]
+      },
+      "name": "aca_99",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "YYYYYYYXXyXyXyxxyyX"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYYYXXyXyXyxxyyX"
+        ]
+      },
+      "name": "aca_100",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxYx",
+          "XYYYYYYYxyyyyyyyXXXYxYx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXXYxYx",
+          "YYYYYYYYxYXXXyyyyyyyx"
+        ]
+      },
+      "name": "aca_101",
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "YYYYYYYYxyyyyyyXXXyxY"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYYYYxyyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_102",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXyXYxxx",
+          "XYYYYYYYxyyyyyyyXyXYxxx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXYXyxxyX",
+          "YYYYYYYXyyyyyyXYXyxx"
+        ]
+      },
+      "name": "aca_103",
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxYx",
+          "XYYYYYYYxyyyyyyyXXXyxYx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXXyxYx",
+          "YYYYYYYYxyyyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_104",
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXYxx",
+          "YYYYYYYYxyyyyyXXXYx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXXYxx",
+          "YYYYYYYYxyyyyyXXXYx"
+        ]
+      },
+      "name": "aca_105",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 334,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YYXXXyxx",
+          "YYYYYYYYxyyyyyXXXyx"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YYXXXyxx",
+          "YYYYYYYYxyyyyyXXXyx"
+        ]
+      },
+      "name": "aca_106",
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYYYYYxyyyyyyXXyXyx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXyXyxYx",
+          "YYYYYYYXyyyyyyxYxxyX"
+        ]
+      },
+      "name": "aca_107",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYYYYXyyyyyyXXyxxy"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYYYYXyyyyyyXXyxx"
+        ]
+      },
+      "name": "aca_108",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 324,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYYYYxyyyyyyXXyxxy"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYYYYxyyyyyyXXyxx"
+        ]
+      },
+      "name": "aca_109",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxx",
+          "YYYYYYYYxyyyyyyXXYxYx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXYxYxx",
+          "YYYYYYYYxyyyyyyXXYxYx"
+        ]
+      },
+      "name": "aca_110",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyx",
+          "YYYYYYYYxyyyyyyXXYxxy"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXYxxyx",
+          "YYYYYYYxyyyyyyXXYxx"
+        ]
+      },
+      "name": "aca_111",
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "x",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxxyX",
+          "YYYYYYYYXyyyyyyXXYxxy"
+        ],
+        "target_floor": 27,
+        "target_representative": [
+          "YXXYxxyX",
+          "YYYYYYYXyyyyyyXXYxx"
+        ]
+      },
+      "name": "aca_112",
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXYxYxx",
+          "XYYYYYYYxyyyyyyyXXYxYxx"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXYxYxx",
+          "YYYYYYYXyyyyyyyXyXyxx"
+        ]
+      },
+      "name": "aca_113",
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyXyxx",
+          "YYYYYYYYXyyyyyyxYxxyX"
+        ],
+        "target_floor": 29,
+        "target_representative": [
+          "YXXyXyxx",
+          "YYYYYYYYXyyyyyyxYxxyX"
+        ]
+      },
+      "name": "aca_114",
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXYxyx",
+          "XXXyyyXYxyx"
+        ],
+        "target_floor": 15,
+        "target_representative": [
+          "YXYxyx",
+          "YYYxxYXyx"
+        ]
+      },
+      "name": "aca_115",
+      "source": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "source_floor": 13,
+      "source_representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ]
+    },
+    {
+      "action_count": 332,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": 1,
+              "relator_index": 1
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 0
+        },
+        "target": [
+          "YYYXyXXXyx",
+          "YXXXyxx"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYXyXXXyx"
+        ]
+      },
+      "name": "aca_116",
+      "source": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 1
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 0
+        },
+        "target": [
+          "YYYXyxxxyX",
+          "YXXXyxx"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYXyxxxyX"
+        ]
+      },
+      "name": "aca_117",
+      "source": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyxYx",
+          "YYYYXyyxYxY"
+        ],
+        "target_floor": 17,
+        "target_representative": [
+          "YXXyxYx",
+          "YYYYYXXyyx"
+        ]
+      },
+      "name": "aca_118",
+      "source": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 3,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "Y",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXyxYx",
+          "YYYYYXyyxYxY"
+        ],
+        "target_floor": 18,
+        "target_representative": [
+          "YXXyxYx",
+          "YYYYYYXXyyx"
+        ]
+      },
+      "name": "aca_119",
+      "source": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 2,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "",
+              "exponent": 1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": -1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXYxx",
+          "XYYYxyyyXXXYxx"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXXYxx",
+          "YYYXyyyXyxxx"
+        ]
+      },
+      "name": "aca_120",
+      "source": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYYXyyxxxyX"
+        ],
+        "target_floor": 19,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYYXyyxxxyX"
+        ]
+      },
+      "name": "aca_121",
+      "source": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYYYXyyyxxxyX"
+        ],
+        "target_floor": 21,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYYYXyyyxxxyX"
+        ]
+      },
+      "name": "aca_122",
+      "source": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ]
+    },
+    {
+      "action_count": 328,
+      "all_actions_replayed": true,
+      "first_nonautomorphic": {
+        "atomic_bound": 5,
+        "certificate": {
+          "factors": [
+            {
+              "conjugator": "X",
+              "exponent": -1,
+              "relator_index": 0
+            }
+          ],
+          "source_conjugator": "",
+          "source_exponent": 1,
+          "target_index": 1
+        },
+        "target": [
+          "YXXXyxx",
+          "YYYYYYXyyyyxxxyX"
+        ],
+        "target_floor": 23,
+        "target_representative": [
+          "YXXXyxx",
+          "YYYYYYXyyyyxxxyX"
+        ]
+      },
+      "name": "aca_123",
+      "source": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ]
+    }
+  ],
+  "schema": "aca124-witnessed-acm-v1",
+  "summary": {
+    "class_count": 124,
+    "classes_with_actions": 124,
+    "classes_with_nonautomorphic_action": 124,
+    "replay_failures": 0,
+    "total_distinct_actions": 40876
+  }
+}

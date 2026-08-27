@@ -1,0 +1,19 @@
+{
+  "claim": "Every input row is a balanced presentation of the trivial group.",
+  "family": "Miller-Schupp MS(n,w)",
+  "reason": "The 124 rows are ACA representatives of the 550 unsolved Miller-Schupp benchmark cells. The checked ACA edges preserve the presented group, and the benchmark family consists of promised trivial-group presentations.",
+  "sources": [
+    {
+      "path": ".claude/worktrees/codex-proofs/data/ms_unsolved_reps/aca_124.csv",
+      "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+    },
+    {
+      "path": ".claude/worktrees/codex-proofs/results/equivalence_classes/certificates.json",
+      "sha256": "2340d84b7ad32c9a9205692d17e19967f6a664ba1950383cf068674f772df339"
+    },
+    {
+      "path": ".claude/worktrees/codex-proofs/results/equivalence_classes/ms1190_tables/unsolved_124_aca_classes.csv",
+      "sha256": "58355f1934d23bcb2ce858db486c4a9ca687f820ba40527963162992d83fcde1"
+    }
+  ]
+}

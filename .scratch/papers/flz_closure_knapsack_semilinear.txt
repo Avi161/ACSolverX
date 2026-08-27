@@ -1,0 +1,2036 @@
+                                                  CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR
+                                                                   GROUPS
+
+                                                      MICHAEL FIGELIUS, MARKUS LOHREY, AND GEORG ZETZSCHE
+
+
+
+
+arXiv:1911.12857v2 [math.GR] 26 Nov 2024
+                                                    Abstract. A knapsack equation in a group G is an equation of the form
+                                                                x
+                                                    g1x1 · · · gk k = g where g1 , . . . , gk , g are elements of G and x1 , . . . , xk are vari-
+                                                    ables that take values in the natural numbers. We study the class of groups
+                                                    G for which all knapsack equations have effectively semilinear solution sets.
+                                                    We show that the following group constructions preserve effective semilin-
+                                                    earity: graph products, amalgamated free products with finite amalgamated
+                                                    subgroups, HNN-extensions with finite associated subgroups, and finite exten-
+                                                    sions. Moreover, we study a complexity measure, called magnitude, of the re-
+                                                    sulting semilinear solution sets. More precisely, we are interested in the growth
+                                                    of the magnitude in terms of the length of the knapsack equation (measured
+                                                    in number of generators). We investigate how this growth changes under the
+                                                    above group operations.
+
+
+
+
+                                                                                     1. Introduction
+                                               The study of algorithmic problems has a long tradition in combinatorial group
+                                           theory, going back to the work of Dehn [10] on the word and conjugacy problem
+                                           in finitely generated groups. Myasnikov, Nikolaev, and Ushakov initiated in [47]
+                                           the systematic investigation of a new class of algorithmic problems that have their
+                                           origin in discrete optimization problems over the integers. One of these problems
+                                           is the knapsack problem. Myasnikov et al. proposed the following definition for
+                                           the knapsack problem in a finitely generated group G: The input is a sequence of
+                                           group elements g1 , . . . , gk , g ∈ G (specified by finite words over the generators of
+                                           G) and it is asked whether there exist natural numbers x1 , . . . , xk ∈ N such that
+                                           g1x1 · · · gkxk = g in G. For the particular case G = Z (where the additive notation
+                                           x1 · g1 + · · · + xk · gk = g is usually preferred) this problem is NP-complete if
+                                           the numbers g1 , . . . , gk , g ∈ Z are given in binary notation [32, 24].1 On the other
+                                           hand, if g1 , . . . , gk , g are given in unary notation, then the knapsack problem for the
+                                           integers was shown to be complete for the circuit complexity class TC0 [18]. Note
+                                           that the unary notation for integers corresponds to the case where an integer is
+                                           given by a word over a generating set {t, t−1 }. In one particular case, the knapsack
+                                           problem was studied for a non-commutative group before the work of Myasnikov et
+                                           al.: in [3], it was shown that the knapsack problem for commutative matrix groups
+                                           over algebraic number fields can be solved in polynomial time.
+                                               Let us give a brief survey of the results that were obtained for the knapsack
+                                           problem in [47] and successive papers:
+                                                    • Knapsack can be solved in polynomial time for every hyperbolic group [47].
+                                                        In [20] this result was extended to free products of any finite number of
+                                                        hyperbolic groups and finitely generated abelian groups. A further general-
+                                                        ization was obtained in [38], where the smallest class of groups that can be
+                                                        obtained from hyperbolic groups using the operations of free products and
+
+                                               This work has been supported by the DFG research project LO 748/12-1.
+                                               1Karp in his seminal paper [32] defined knapsack in a slightly different way. NP-completeness
+                                           of the above version was shown in [24].
+                                                                                                 1
+2                      M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+        direct products with Z was considered. It was shown that for every group
+        in this class the knapsack problem belongs to the complexity class LogCFL
+        (a subclass of P).
+      • There are nilpotent groups of class 2 for which knapsack is undecidable.
+        Examples are direct products of sufficiently many copies of the discrete
+        Heisenberg group H3 (Z) [35], and free nilpotent groups of class 2 and suf-
+        ficiently high rank [46].
+      • Knapsack for H3 (Z) is decidable [35]. In particular, together with the
+        previous point it follows that decidability of knapsack is not preserved under
+        direct products.
+      • Knapsack is decidable for every co-context-free group [35], i.e., groups where
+        the set of all words over the generators that do not represent the identity is
+        a context-free language. Lehnert and Schweitzer [37] have shown that the
+        Higman-Thompson groups are co-context-free.
+      • Knapsack belongs to NP for all virtually special groups (finite extensions
+        of subgroups of graph groups) [41]. The class of virtually special groups
+        is very rich. It contains all Coxeter groups, one-relator groups with tor-
+        sion, fully residually free groups, and fundamental groups of hyperbolic
+        3-manifolds. For graph groups (also known as right-angled Artin groups)
+        a complete classification of the complexity of knapsack was obtained in
+        [42]: If the underlying graph contains an induced path or cycle on 4 nodes,
+        then knapsack is NP-complete; in all other cases knapsack can be solved in
+        polynomial time (even in LogCFL).
+      • Knapsack is NP-complete for non-abelian free solvable groups [19] and solv-
+        able Baumslag-Solitar groups BS(1, q) [43] with q > 1. For Baumslag-
+        Solitar groups BS(p, q) with p 6= 1 6= q and gcd(p, q) = 1, decidability of
+        knapsack was shown in [16].
+      • Decidability of knapsack is preserved under finite extensions, HNN-exten-
+        sions over finite associated subgroups and amalgamated free products over
+        finite subgroups [41].
+      • In [5], there is a characterization of those wreath products G ≀ H for which
+        the knapsack problem is decidable. The characterization is in terms of
+        (i) decidability properties of the groups G and H and (ii) whether G is
+        abelian.
+
+
+
+
+    In this work, we initiate the systematic study of solution sets of equations
+g1x1 · · · gkxk = g, which we call knapsack equations. The solution set of this equation
+is {(n1 , . . . , nk ) ∈ Nk | g1n1 · · · gknk = g in G}. In the papers [38, 35, 42] it turned
+out that in many groups the solution set of every knapsack equation is a semilinear
+set. Recall that a subset S ⊆ Nk is semilinear if it is a finite union of linear sets,
+and a subset L ⊆ Nk is linear if there are vectors v0 , v1 , . . . , vℓ ∈ Nk such that
+L = {v0 + λ1 v1 + · · · + λℓ vℓ | λ1 , . . . , λℓ ∈ N}. Semilinear sets play a prominent role
+in many areas of computer science and mathematics, e.g. in automata theory and
+logic. It is known that the class of semilinear sets is closed under Boolean opera-
+tions and that the semilinear sets are exactly the sets that are first-order definable
+in Presburger arithmetic (i.e., the structure (N, +)) [22].
+    We say that a group is knapsack-semilinear if for every knapsack equation the
+set of all solutions is semilinear. Note that in any group G the set of solutions
+on an equation g1x = g is periodic and hence semilinear. Moreover, every finitely
+generated abelian group is semilinear (since solution sets of linear equations are
+               CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                 3
+
+
+Presburger definable). Nontrivial examples of knapsack-semilinear groups are hy-
+perbolic groups [38], graph groups [42], and co-context free groups [35].2
+   Obviously, every finitely generated subgroup of a finitely generated knapsack-
+semilinear group is knapsack-semilinear as well. Moreover, it was shown in [21]
+that the class of knapsack-semilinear groups is closed under wreath products. In
+this paper we prove the closure of the class of knapsack-semilinear groups under
+      • finite extensions,
+      • graph products,
+      • amalgamated free products with finite amalgamated subgroups, and
+      • HNN-extensions with finite associated subgroups.
+The operation of graph product interpolates between direct products and free prod-
+ucts. It is specified by a finite graph (V, E), where every node v ∈ V is labelled
+with a group Gv . One takes the free product of the groups Gv (v ∈ V ) modulo the
+congruence that allows elements from adjacent groups to commute. Amalgamated
+free products and HNN-extensions are fundamental constructions in combinatorial
+group theory; see Section 6 for references.
+   In order to get complexity bounds for the knapsack problem, the sole concept
+of knapsack-semilinearity is not useful. For this purpose, we need a quantitative
+measure for semilinear sets; see also [9]: For a semilinear set
+                     [
+              L=        {vi,0 + λ1 vi,1 + · · · + λℓi vi,ℓi | λ1 , . . . , λℓi ∈ N}
+                     1≤i≤n
+
+we call the tuple of all vectors vi,j a semilinear representation for L. The magnitude
+of this semilinear representation is the largest number that occurs in some of the
+vectors vi,j . Finally, the magnitude of a semilinear set L is the smallest magnitude
+among all semilinear representations of L.
+   Our proofs showing that the above group constructions preserve knapsack-semi-
+linearity also yield upper bounds for the magnitude of solution sets in terms of (i)
+the total length of the knapsack equation (measured in the total number of gen-
+erators) and (ii) the number of variables in the knapsack equation. For this, we
+introduce a function KG (n, m) that yields the maximal magnitude of a solution set
+for a knapsack equation over G of total length at most n and at most m variables.
+Roughly speaking, it turns out that finite extensions, amalgamated free products
+with finite amalgamated subgroups, and HNN-extensions with finite associated sub-
+groups only lead to a polynomial blowup for the function KG (n, m) (actually, this
+function also depends on the generating set for G), whereas graph products can
+lead to an exponential blowup. On the other hand, if we bound the number of
+variables by a constant, then also graph products only lead to a polynomial blowup
+for the function KG (n, m).
+
+                             2. Words, monoids and groups
+   Fix a non-empty set Σ, which is also called an alphabet in the following. Its
+elements are also called symbols. A word over Σ is a finite sequence w = a1 a2 . . . an
+of elements a1 , . . . , an ∈ Σ. We write |w| = n for the length w and alph(w) =
+{a1 , a2 , . . . , an } for the set of symbols that occur in w. For a ∈ Σ, we write |w|a
+to denote the number of occurrences of a in w. The free monoid Σ∗ consists of all
+finite words over Σ and the monoid operation is the concatenation of words. The
+concatenation of words u, v ∈ Σ∗ is simply denoted with uv. The identity element
+of the free monoid Σ∗ is the empty word, which is usually denoted with ε. Here,
+we prefer to denote the empty word with 1 according to the following convention:
+   2Knapsack-semilinearity of co-context free groups is not stated in [35] but follows immediately
+from the proof for the decidability of knapsack.
+4                         M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+Convention 2.1. For every monoid M we denote the identity element of M with
+the symbol 1; even in cases where we deal with several monoids.
+   So intuitively, all monoids that we deal with share the same identity element 1.
+This convention will simplify our notations.
+   For a set Ω we denote with F (Ω) the free group generated by Ω. Formally, it can
+be defined as follows: Let Ω−1 = {a−1 | a ∈ Ω} be a disjoint copy of Ω (the set of
+formal inverses) and let Σ = Ω ∪ Ω−1 . Then the free group F (Ω) can be identified
+with the set of all words w ∈ Σ∗ that do not contain a factor of the form aa−1 or
+a−1 a for a ∈ Ω (so called irreducible words). The product of two irreducible words
+u, v is the unique irreducible word obtained from uv by replacing factors of the form
+aa−1 or a−1 a (a ∈ Ω) by the empty word as long as possible. For a set R ⊆ Σ∗ of
+irreducible words (the relators) we denote with hΩ | Ri the quotient group F (Ω)/N ,
+where N is the smallest normal subgroup of F (Ω) that contains R. Every group is
+isomorphic to a group hΩ | Ri. If Ω is finite, then hΩ | Ri is called finitely generated.
+In other words: a group G is finitely generated if there exists a finite subset Σ ⊆ G
+such that every element of G is a product of elements of Σ. If for every a ∈ Σ
+also a−1 belongs to Σ then Σ is called a symmetric generating set for G. If Σ is a
+symmetric generating set and u ∈ Σ∗ with u = u1 · · · un , u1 , . . . , un ∈ Σ, then by
+                                        −1
+u−1 , we denote the word u−1   n · · · u1 .
+   Let Σ be an alphabet. An automaton over Σ is a tuple A = (Q, E, q0 , qf ), where
+Q is a finite set of states, E ⊆ Q × (Σ ∪ {1}) × Q is a finite set of edges, q0 ∈ Q is its
+initial state, and qf ∈ Q is its final state. Note that here, 1 denotes the empty word
+                                                                            w
+over Σ. If there is an edge (p, w, q) ∈ E, we also denote this by p −       → q. A word
+        ∗
+w ∈ Σ is accepted by A if we can write w = a1 · · · an with a1 , . . . , an ∈ Σ ∪ {1} such
+                                                       ai
+that there are states p0 , . . . , pn ∈ Q, edges pi−1 −→  pi for 1 ≤ i ≤ n, and p0 = q0
+and pn = qf . By L(A), we denote the set of all words in Σ∗ accepted by A, which
+is also called its language. The size of A is |Q|, the number of its states.
+
+                                       3. Semilinear sets
+     Fix a dimension d ≥ 1. For a vector v = (v1 , . . . , vd )T ∈ Zd we define its norm
+||v|| = max{|vi | | 1 ≤ i ≤ d} and for a matrix M ∈ Zc×d with entries mi,j (1 ≤ i ≤ c,
+1 ≤ j ≤ d) we define the norm ||M || = max{|mi,j | | 1 ≤ i ≤ c, 1 ≤ j ≤ d}. Finally,
+for a finite set of vectors A ⊆ Nd let ||A|| = max{||a|| | a ∈ A}.
+     We extend the operations of vector addition and multiplication of a vector by a
+matrix to sets of vectors in the obvious way. A linear subset of Nd is a set of the
+form
+                                L = L(b, P ) = b + P · Nk
+where b ∈ Nd and P ∈ Nd×k . We call a set S ⊆ Nd semilinear, if it is a finite
+union of linear sets. The class of semilinear sets is known be closed under Boolean
+operations, a set is semilinear if and only if it is first-order definable in Presburger
+arithmetic [22].
+                                                      Sk
+   If a semilinear set S is given as a union i=1 L(bi , Pi ), we call the tuple R =
+(b1 , P1 , . . . , bk , Pk ) a semilinear representation of S. For a semilinear representa-
+tion R = (b1 , P1 , . . . , bk , Pk ) we define ||R|| = max{||b1 ||, ||P1 || . . . , ||bk ||, ||Pk ||}. The
+magnitude of a semilinear set S, mag(S) for short, is the smallest possible value for
+||R|| among all semilinear representations R of S.
+   For a linear set L(b, P ) ⊆ Nd we can assume that all columns of P are different.
+Hence, if the magnitude of L(b, P ) is bounded by s then we can bound the number
+of columns of P by (s + 1)d (since there are only (s + 1)d vectors in Nd of norm
+at most s). No better upper bound is known, but if we allow to split L(b, P ) into
+several linear sets, we get the following lemma from [17]:
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                5
+
+
+Lemma 3.1 (c.f. [17, TheoremS1]). Let L = L(b, P ) ⊆ Nd be a linear set of mag-
+nitude s = mag(L). Then L = i∈I L(b, Pi ) such that every Pi consists of at most
+2d log(4ds) columns from P (and hence, mag(L(b, Pi )) ≤ s).
+  We also need the following bound on the magnitude for the intersections of
+semilinear sets:
+Proposition 3.2 (c.f. [4, Theorem 4]). Let K = L(b1 , P1 ) and L = L(b2 , P2 ) ⊆ Nd
+be linear sets of magnitude at most s ≥ 1. Then the intersection K ∩L is semilinear
+and mag(K ∩ L) ≤ (12d2 log2 (4ds)dd/2 sd+1 + 1)s ≤ O(dd/2+3 sd+3 ).
+                                            S                          S
+Proof. By Lemma 3.1 we can write K = i∈I1 L(b1 , P1,i ) and L = i∈I2 L(b2 , P2,i )
+where every P1,i S (P2,i ) consists of at most 2d log(4ds) columns from P1 (P2 ). We
+have K ∩ L = (i,j)∈I1 ×I2 L(b1 , P1,i ) ∩ L(b2 , P2,i ). From [4, Theorem 4] we get the
+upper bound (12d2 log2 (4ds)dd/2 sd+1 + 1)s for the magnitude of each intersection
+L(b1 , P1,i ) ∩ L(b2 , P2,i ).                                                       
+
+   In the context of knapsack problems (which we will introduce in the next section),
+we will consider semilinear subsets as sets of mappings f : {x1 , . . . , xd } → N for
+a finite set of variables U = {x1 , . . . , xd }. Such a mapping f can be identified
+with the vector (f (x1 ), . . . , f (xd ))T . This allows to use all vector operations (e.g.
+addition and scalar multiplication) on the set NU of all mappings from U to N. The
+pointwise product f ·g of two mappings f, g ∈ NU is defined by (f ·g)(x) = f (x)·g(x)
+for all x ∈ U . Moreover, for mappings f ∈ NU , g ∈ NV with U ∩ V = ∅ we define
+f ⊕ g ∈ NU∪V by (f ⊕ g)(x) = f (x) for x ∈ U and (f ⊕ g)(y) = g(y) for y ∈ V .
+All operations on NU will be extended to subsets of NU in the standard pointwise
+way. Note that mag(K ⊕ L) ≤ max{mag(K), mag(L)} for semilinear sets K, L.
+If L ⊆ NU is semilinear and V ⊆ U then we denote with L↾V the semilinear set
+{f ↾V | f ∈ L} obtained by restricting every function f ∈ L to the subset V of its
+domain. Clearly, L↾V is semilinear too and mag(L↾V ) ≤ mag(L).
+
+                      4. Knapsack and exponent equations
+    Let G be a finitely generated group with the finite symmetric generating set Σ.
+Moreover, let X be a set of formal variables that take values from N. For a subset
+U ⊆ X, we call a mapping σ : U → N a valuation for U . An exponent expression
+over Σ is a formal expression of the form e = ux1 1 v1 ux2 2 v2 · · · uxk k vk with k ≥ 1, words
+ui , vi ∈ Σ∗ and variables x1 , . . . , xk ∈ X. Here, we allow xi = xj for i 6= j. The
+words ui are called the periods of e, and we can assume that ui 6= 1 for all 1 ≤ i ≤ k.
+If every variable in an exponent expression occurs at most once, it is called a
+knapsack expression. Let Xe = {x1 , . . . , xk } be the set of variables that occur in e.
+For a valuation σ : U → N such that Xe ⊆ U (in which case we also say that σ is a
+                                          σ(x )  σ(x )          σ(x )
+valuation for e), we define σ(e) = u1 1 v1 u2 2 v2 · · · uk k vk ∈ Σ∗ . We say that
+σ is a G-solution of the equation e = 1 if σ(e) evaluates to the identity element 1
+of G. With solG (e) we denote the set of all G-solutions σ : Xe → N of e. We can
+                                                                                Pk
+view solG (e) as a subset of Nk . The length of e is defined as ||e|| = i=1 |ui | + |vi |,
+whereas k ≤ ||e|| is its degree, deg(e) for short. We define solvability of exponent
+equations over G as the following decision problem:
+      Input: A finite
+                    Tnlist of exponent expressions e1 , . . . , en over G.
+      Question: Is i=1 solG (ei ) non-empty?
+The knapsack problem for G is the following decision problem:
+      Input: A single knapsack expression e over G.
+      Question: Is solG (e) non-empty?
+6                          M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+It is easy to observe that the concrete choice of the generating set Σ has no influence
+on the decidability and complexity status of these problems.
+    One could also allow exponent expressions of the form e = v0 ux1 1 v1 ux2 2 v2 · · · uxk k vk .
+However, since then solG (e) = solG (ux1 1 v1 ux2 2 v2 · · · uxk k vk v0 ), this would result in
+the same class of solution sets. Moreover, we could also restrict to exponent
+expressions of the form e = ux1 1 ux2 2 · · · uxk k v: for e = ux1 1 v1 ux2 2 v2 · · · uxk k vk and
+e′ = ux1 1 (v1 u2 v1−1 )x2 (v1 v2 u3 v2−1 v1−1 )x3 · · · (v1 · · · vk−1 u3 vk−1
+                                                                            −1
+                                                                                · · · v1−1 )xk v1 · · · vk−1 vk
+we have solG (e) = solG (e′ ).
+
+4.1. Knapsack-semilinear groups. The group G is called knapsack-semilinear if
+for every knapsack expression e over Σ, the set solG (e) is a semilinear set of vectors
+and a semilinear representation can be effectively computed from e. This implies
+that for every exponent expression e over Σ, the set solG (e) is semilinear as well
+and a semilinear representation can be effectively computed from e. To see this,
+consider an exponent expression e = ux1 1 v1 ux2 2 v2 · · · uxk k vk over Σ. Choose pairwise
+different variables y1 , y2 , . . . , yk such that Xe = {x1 , . . . , xk } ⊆ {y1 , . . . , yk } and
+consider the knapsack expression e′ = uy11 v1 uy22 v2 · · · uykk vk . Moreover, define the
+equivalence relation R = {(i, j) | 1 ≤ i, j ≤ k, xi = xj }. We get
+    solG (e) = (solG (e′ ) ∩ {σ | σ : {y1 , . . . , yk } → N, ∀(i, j) ∈ R : σ(yi ) = σ(yj )})↾Xe .
+Since semilinear sets are effectively closed under intersection and restriction, the
+effective semilinearity of solG (e′ ) yields the effective semilinearity of solG (e).
+   Also notice that solvability of exponent equations is decidable for every knapsack-
+semilinear group. As mentioned in the introduction, the class of knapsack-semilinear
+groups is very rich. An example of a group G, where knapsack is decidable but solv-
+ability of exponent equations is undecidable is the Heisenberg group H3 (Z) (which
+consists of all upper triangular (3 × 3)-matrices over the integers, where all diagonal
+entries are 1), see [35]. In particular, H3 (Z) is not knapsack-semilinear in a strong
+sense: there are knapsack expressions e such that solH3 (Z) (e) is not semilinear.
+Remark 4.1. The requirement that the semilinear representation of the solu-
+tion set can be computed effectively is important: There are groups where every
+knapsack equation has a semilinear solution set, but the semilinear representation
+cannot be computed. For example, consider a finitely generated torsion group G
+with an undecidable word problem [1]. Then every knapsack expression over G
+has a semilinear solution set. However, computing a semilinear representation for
+{n ∈ N | un = 1} for a given word u would allow us to check whether u = 1 in G.
+    For a knapsack-semilinear group G and a finite generating set Σ for G we define
+two growth functions. For n, m ∈ N with m ≤ n let Exp(n, m) be the finite set
+of all exponent expressions e over Σ such that (i) solG (e) 6= ∅, (ii) ||e|| ≤ n and
+(iii) deg(e) ≤ m. Moreover, let Knap(n, m) ⊆ Exp(n, m) be the set of all knapsack
+expressions in Exp(n, m). We define the mappings EG,Σ : {(n, m) | m, n ∈ N, m ≤
+n} → N and KG,Σ : {(n, m) | m, n ∈ N, m ≤ n} → N as follows:
+        • EG,Σ (n, m) = max{mag(solG (e)) | e ∈ Exp(n, m)},
+        • KG,Σ (n, m) = max{mag(solG (e)) | e ∈ Knap(n, m)}.
+Clearly, if solG (e) 6= ∅ and mag(solG (e)) ≤ N then e has a G-solution σ such
+that σ(x) ≤ N for all variables x ∈ Xe . Therefore, if G has a decidable word
+problem and we have a computable bound on the function EG,Σ then we obtain a
+nondeterministic algorithm for solvability of exponent equations over G: given an
+exponent expression e we can guess σ : Xe → N with σ(x) ≤ N for all variables x
+and then verify (using an algorithm for the word problem), whether σ is indeed a
+solution.
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                             7
+
+
+   Let Σ and Σ′ be two generating sets for the group G. Then there is a constant
+c such that EG,Σ (n, m) ≤ EG,Σ′ (cn, m) and KG,Σ (n, m) ≤ KG,Σ′ (cn, m). To see
+this, note that for every a ∈ Σ there is a word wa ∈ (Σ′ )∗ such that a and wa are
+representing the same element in G. Then we can choose c = max{|wa | | a ∈ Σ}.
+
+             5. Part 1: Exponent equations in graph products
+   In this section we introduce graph products of groups (Section 5.2) and show that
+every graph product of knapsack-semilinear groups is again knapsack-semilinear
+(Section 5.6). Our definition of graph products is based on trace monoids (also
+known as partially commutative monoids), which we discuss first.
+5.1. Trace monoids. In the following we introduce some notions from trace the-
+ory, see [12, 13] for more details. An independence alphabet is an undirected
+graph (Σ, I) (without loops). Thus, I is a symmetric and irreflexive relation on
+Σ. The set Σ may be infinite. The trace monoid M(Σ, I) is defined as the quotient
+M(Σ, I) = Σ∗ /{ab = ba | (a, b) ∈ I} with concatenation as operation and the empty
+trace 1 as the neutral element. Its elements are called traces. We denote by [w]I the
+trace represented by the word w ∈ Σ∗ . Let alph([w]I ) = alph(w) and |[w]I | = |w|.
+The dependence alphabet associated with (Σ, I) is (Σ, D), where D = (Σ × Σ) \ I.
+Note that the relation D is reflexive. For a ∈ Σ let I(a) = {b ∈ Σ | (a, b) ∈ I} be
+the letters that commute with a. For traces u, v ∈ M(Σ, I) we denote with u I v
+the fact that alph(u) × alph(v) ⊆ I. The trace u is connected if we cannot write
+u = vw in M(Σ, I) such that v 6= 1 6= w and v I w.
+   An independence clique is a subset ∆ ⊆ Σ such that (a, b) ∈ I for all a, b ∈ ∆
+with a 6= b. A finite independence clique ∆ is identified with the trace [a1 a2 · · · an ]I ,
+where a1 , a2 , . . . , an is an arbitrary enumeration of ∆.
+   The following lemma, which is known as Levi’s lemma, is one of the most fun-
+damental facts for trace monoids, see e.g. [13].
+Lemma 5.1. Let u1 , . . . , um , v1 , . . . , vn ∈ M(Σ, I). Then
+                                u1 u2 · · · um = v1 v2 · · · vn
+if and only if there exist wi,j ∈ M(Σ, I) (1 ≤ i ≤ m, 1 ≤ j ≤ n) such that
+      • ui = wi,1 wi,2 · · · wi,n for every 1 ≤ i ≤ m,
+      • vj = w1,j w2,j · · · wm,j for every 1 ≤ j ≤ n, and
+      • (wi,j , wk,ℓ ) ∈ I if 1 ≤ i < k ≤ m and n ≥ j > ℓ ≥ 1.
+The situation in the lemma will be visualized by a diagram of the following kind.
+The i-th column corresponds to ui , the j-th row corresponds to vj , and the inter-
+section of the i-th column and the j-th row represents wi,j . Furthermore wi,j and
+wk,ℓ are independent if one of them is left-above the other one.
+                          vn    w1,n   w2,n     w3,n    ...       wm,n
+                           ..     ..     ..       ..     ..         ..
+                            .      .      .        .      .          .
+                          v3    w1,3   w2,3     w3,3    ...       wm,3
+                          v2    w1,2   w2,2     w3,2    ...       wm,2
+                          v1    w1,1   w2,1     w3,1    ...       wm,1
+                                 u1     u2       u3     ...        um
+A consequence of Levi’s lemma is that trace monoids are cancellative, i.e., usv = utv
+implies s = t for all traces s, t, u, v ∈ M(Σ, I).
+   A trace rewriting system R over M(Σ, I) is just a subset of M(Σ, I)×M(Σ, I) [12].
+We define the one-step rewrite relation →R ⊆ M(Σ, I) × M(Σ, I) by: x →R y if and
+only if there are u, v ∈ M(Σ, I) and (ℓ, r) ∈ R such that x = uℓv and y = urv. With
+8                       M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+∗
+−
+→R we denote the reflexive transitive closure of →R . The notion of a confluent and
+terminating trace rewriting system is defined as for other types of rewriting systems
+[8]: A trace rewriting system R is called confluent if for all u, v, v ′ ∈ M(Σ, I) with
+   ∗            ∗                                     ∗              ∗
+u− →R v and u − →R v ′ there exists a trace w with v −
+                                                     →R w and v ′ − →R w. It is called
+terminating if there does not exist an infinite chain u0 →R u1 →R u2 · · · . A trace u
+is R-irreducible if no trace v with u →R v exists. The set of all R-irreducible traces
+is denoted with IRR(R). If R is terminating and confluent, then for every trace u,
+                                                                       ∗
+there exists a unique normal form NFR (u) ∈ IRR(R) such that u −      →R NFR (u) [29].
+
+5.2. Graph products. Let us fix a finite independence alphabet (Γ, E) and finitely
+generated groups Gi for i ∈ Γ. Let α be the size of a largest clique of the indepen-
+dence alphabet (Γ, E). As usual 1 is the identity element for each of the groups
+Gi . Let Σi be a finite and symmetric generating set of Gi such that Σi ∩ Σj = ∅
+for i 6= j. We define a (possibly infinite) independence alphabet as in [14, 36]: Let
+                                                     [
+                          Ai = Gi \ {1} and A =          Ai .
+                                                            i∈Γ
+
+We assume that Ai ∩ Aj = ∅ for i 6= j. We fix the independence relation
+                                     [
+                              I=         Ai × Aj
+                                          (i,j)∈E
+
+on A. The independence alphabet (A, I) is the only independence alphabet in this
+paper which may be infinite. Recall that for a trace t ∈ M(A, I), alph(t) ⊆ A is the
+set of symbols that occur in t. We define the Γ-alphabet of t as
+                           alphΓ (t) = {i ∈ Γ | alph(t) ∩ Ai 6= ∅}.
+Note that whether u I v (for u, v ∈ M(A, I)) only depends on alphΓ (u) and alphΓ (v).
+     Every independence clique of (A, I) has size at most α and hence can be identified
+with a trace from M(A, I). Let C1 and C2 be independence cliques. We say
+that C1 and C2 are compatible, if alphΓ (C1 ) = alphΓ (C2 ). In this case we can
+write C1 = {a1 , . . . , am } and C2 = {b1 , . . . , bm } for some m ≤ α such that for
+every 1 ≤ i ≤ m there exists ji ∈ Γ with ai , bi ∈ Aji . Let ci = ai bi in the
+group Gji . If ci 6= 1 for all 1 ≤ i ≤ m, then C1 and C2 are strongly compatible.
+In this case we define the independence clique C1 C2 = {c1 , . . . , cm }. Note that
+alphΓ (C1 ) = alphΓ (C2 ) = alphΓ (C1 C2 ).
+     We will work with traces t ∈ M(A, I). For such a trace we need two length
+measures. The ordinary length of t is |t| as defined in Section 5.1: If t = [a1 · · · ak ]I
+with aj ∈ A then |t| = k. On the other hand, if we deal with computational
+problems, we need a finitary representations of the elements aj . Assume that
+aj ∈ Aij . Then, aj can be written as a word over the alphabet Σij . Let nj = ||aj ||
+denote the length of a shortest word over Σij that evaluates to aj in the group
+Gij ; this is also called the geodesic length of the group element aj . Then we define
+||t|| = n1 + n2 + · · · + nk .
+     A trace a ∈ A (i.e., a generator of M(A, I)) is also called atomic, or an atom.
+For an atom a ∈ A that belongs to the group Gi , we write a−1 for the inverse of a
+in Gi ; it is again an atom. On M(A, I) we define the trace rewriting system
+         [                                                                                 
+     R=        {([aa−1 ]I , 1) | a ∈ Ai } ∪ {([ab]I , [c]I ) | a, b, c ∈ Ai , ab = c in Gi } . (1)
+        i∈Γ
+
+The following lemma was shown in [36]:
+Lemma 5.2. The trace rewriting system R is confluent.
+               CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                              9
+
+
+   Since R is length-reducing, it is also terminating and hence defines unique normal
+forms. We define the graph product G(Γ, E, (Gi )i∈Γ ) as the quotient monoid
+                              G(Γ, E, (Gi )i∈Γ ) = M(A, I)/R.
+Here we identify R with the smallest congruence relation on M(A, I) that contains
+all pairs from R. In the rest of Section 5, we write G for G(Γ, E, (Gi )i∈Γ ). It is
+easy to see that G is a group. The inverse of a trace t = [a1 a2 · · · ak ]I ∈ M(A, I)
+with ai ∈ A is the trace t−1 = [a−1                   −1 −1
+                                             k · · · a2 a1 ]I . Note that t is well defined: If
+[a1 a2 · · · ak ]I = [b1 b2 · · · bk ]I then [ak · · · a−1
+                                               −1          −1        −1      −1 −1
+                                                        2 a1 ]I = [bk · · · b2 b1 ]I . We can
+apply this notation also to an independence clique C of (A, I) which yields the
+independence clique C −1 = {a−1 | a ∈ C}.                  S
+   Note that G is finitely generated by Σ = i∈Γ Σi . If E = ∅, then G is the
+free product of the groups Gi (i ∈ Γ) and if (Γ, E) is a complete graph, then G
+is the direct product of the groups Gi (i ∈ Γ). In this sense, the graph product
+construction generalizes free and direct products.
+   For traces u, v ∈ M(A, I) or words u, v ∈ Σ∗ we write u =G v if u and v represent
+the same element of the group G. In this case, we also say that u = v in G. The
+following lemma is important for solving the word problem in a graph product G:
+Lemma 5.3. Let u, v ∈ M(A, I). Then u =G v if and only if NFR (u) = NFR (v).
+In particular we have u =G 1 if and only if NFR (u) = 1.
+Proof. The if-direction is trivial. Let on the other hand u, v ∈ M(A, I) and suppose
+that u = v in G. By definition this is the case if and only if u and v represent the
+same element from M(A, I)/R and are hence congruent with respect to R. Since R
+produces a normal form for elements from the same congruence class, this implies
+that NFR (u) = NFR (v).                                                           
+
+   Graph products of copies of Z are also known as graph groups or right-angled
+Artin groups. Graph products of copies of Z/2Z are known as right-angled Coxeter
+groups, see [15] for more details.
+   For the rest of the paper we fix the graph product G = G(Γ, E, (Gi )i∈Γ ). More-
+over, Σi , Ai (i ∈ Γ), Σ, A, I, and R will have the meaning defined in this section.
+
+5.3. Results from [42]. In this section we state a small modification of results from
+[42], where the statements are made for finitely generated trace monoids M(Σ, I).
+We need the corresponding statements for the non-finitely generated trace monoid
+M(A, I) from Section 5.2. The proofs are exactly the same as in [42], one only has
+to argue with the Γ-alphabet alphΓ (t) instead the alphabet alph(t) of traces.
+    Note that all statements in this section refer to the trace monoid M(A, I) and
+not to the corresponding graph product G. In particular, when we write a product
+t1 t2 · · · tn of traces ti ∈ M(A, I) no cancellation occurs between the ti . We will also
+consider the case that E = ∅ (and hence I = ∅), in which case M(A, I) = A∗ .
+    Let s, t ∈ M(A, I) be traces. We say that s is a prefix of t if there is a trace
+r ∈ M(A, I) with sr = t. Moreover, we define ρ(t) as the number of prefixes of t.
+We will use the following statement from [6].
+Lemma 5.4. Let t ∈ M(A, I) be a trace of length n. Then ρ(t) ≤ O(nα ) ≤ O(n|Γ| ),
+where α is the size of a largest clique of the independence alphabet (Γ, E).
+Remark 5.5. It is easy to see that ρ(t) = n + 1 if E = ∅.
+Lemma 5.6. Let u ∈ M(A, I) \ {1} be a connected trace and m ∈ N, m ≥ 2. Then,
+for all x ∈ N and traces y1 , . . . , ym the following two statements are equivalent:
+  (i) ux = y1 y2 · · · ym .
+10                       M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+ (ii) There exist traces pi,j (1 ≤ j < i ≤ m), si (1 ≤ i ≤ m) and numbers xi , cj ∈ N
+      (1 ≤ i ≤ m, 1 ≤ j ≤ m − 1) such that:
+                  Qi−1
+         • yi = ( j=1 pi,j )uxi si for all 1 ≤ i ≤ m,
+         • pi,j I pk,ℓ if j < ℓ < k < i and pi,jQI (uxk sk ) if j < k < i,3
+                                                  m
+         • sm = 1 and for all 1 ≤ j < m, sj i=j+1 pi,j = ucj ,
+         • cj ≤ |Γ| for all 1 ≤ j ≤ m − 1,
+                Pm           Pm−1
+         • x = i=1 xi + i=1 ci .
+    Note that this implies alphΓ (pi,j ) ∪ alphΓ (si ) ⊆ alphΓ (u) for 1 ≤ j < i ≤ m.
+    The proof of Lemma 5.6 is the same as for [42, Lemma 3.3], where the statement
+is shown for the case of a finite independence alphabet (A, I). In our situation the
+independency between traces only depends on their Γ-alphabets. This allows to
+carry over the proof of [42, Lemma 3.3] to our situation by replacing the alphabet
+alph(t) of a trace t ∈ M(A, I) by alphΓ (u).
+Remark 5.7. In Section 5.6 we will apply Lemma 5.6 in order to replace an
+equation ux = y1 y2 · · · ym (where x, y1 , . . . , ym are variables and u is a concrete
+connected trace) by an equivalent disjunction. Note that the length of all factors
+pi,j and si in Lemma 5.6 is bounded by |Γ| · |u| and that pi,j and si only contain
+symbols from u. Hence, one can guess these traces as well as the numbers cj ≤ |Γ|
+(the guess results in a disjunction). We can also guess which of the numbers xi are
+zero and which are greater than zero (let K consists of those i such that xi > 0).
+After these guesses we can verify the independencies pi,j I pk,ℓQ(j < ℓ < k < i)
+                                                                         m
+and pi,j I (uxk sk ) (j < k < i), and the identities sm = 1, sj i=j+1 pi,j = ucj
+(1 ≤ j < m). If one of them does not hold, the specific guess does not contribute
+to the disjunction. In this way, we can replace the equation ux = y1 y2 · · · ym by a
+disjunction of formulas of the form
+                             X             ^                           ^
+      ∃xi > 0 (i ∈ K) : x =       xi + c ∧        y i = p i u x i si ∧   y i = p i si ,
+                                     i∈K           i∈K                   i∈[1,m]\K
+
+where K ⊆ [1, m], c ≤ |Γ| · (m − 1) and the pi , si are concrete traces of length
+at most |Γ| · (m − 1) · |u|. The number of disjuncts in the disjunction will not be
+important for our purpose.
+Lemma 5.8. Let p, q, u, v, s, t ∈ M(A, I) with u 6= 1 and v 6= 1 connected. Let
+m = max{ρ(p), ρ(q), ρ(s), ρ(t)} and n = max{ρ(u), ρ(v)}. Then the set
+                     L(p, u, s, q, v, t) = {(x, y) ∈ N × N | pux s = qv y t}
+is a union of O(m8 · n4|Γ| ) many linear sets of the form {(a + bz, c + dz) | z ∈ N}
+with a, b, c, d ≤ O(m8 ·n4|Γ| ). In particular, L(p, u, s, q, v, t) is semilinear. If |Γ| is a
+fixed constant, then a semilinear representation for L(p, u, s, q, v, t) can be computed
+in polynomial time.
+   Again, the proof of Lemma 5.8 is exactly the same as the proof of [42, Lemma
+3.8]. One simply substitutes |A| by |Γ| and alph(x) by alphΓ (x).
+Remark 5.9. Let us consider again the case E = I = ∅ in Lemma 5.8. Let
+m = max{|p|, |q|, |s|, |t|, |u|, |v|}. We can construct an automaton accepting pu∗ s
+of size at most 3m and similarly for qv ∗ t. Hence, we obtain an automaton of size
+O(m2 ) accepting the language L = pu∗ s∩qv ∗ t. We are only interested in the length
+of words from L. Let A be the automaton obtained from the automaton for L by
+replacing every transition label by the symbol a. The resulting automaton A is
+
+     3Note that since alph(p
+                               i,j ) ⊆ alph(u), we must have pi,j = 1 or xk = 0 whenever j < k < i.
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                            11
+
+
+defined over a unary alphabet. Let P = {n | an ∈ L(A)}. By [49, Theorem 1], the
+set P can be written as a union
+                                [r
+                           P =     {bi + ci · z | z ∈ N}
+                                       i=1
+
+with r ∈ O(m ) and bi , ci ∈ O(m4 ). For every 1 ≤ i ≤ r and z ∈ N there must
+                4
+
+exist a pair (x, y) ∈ N × N such that
+                        bi + ci · z = |ps| + |u| · x = |qt| + |v| · y.
+In particular, bi ≥ |ps|, bi ≥ |qt|, |u| divides bi − |ps| and ci , and |v| divides bi − |qt|
+and ci . We get
+                         r                                                           
+                        [       bi − |ps|      ci      bi − |qt|     ci
+  L(p, u, s, q, v, t) =                    +      · z,           +      ·z      z ∈ N
+                        i=1
+                                   |u|        |u|         |v|       |v|
+
+and all numbers that appear on the right-hand side are bounded by O(m4 ).
+5.4. Irreducible powers in graph products. In this section, we study powers
+un for an irreducible trace u ∈ IRR(R). We need the following definitions: A trace
+u ∈ M(A, I) is called cyclically reduced if u ∈ IRR(R) and there do not exist a ∈ A
+and v ∈ M(A, I) such that u = ava−1 . A trace t ∈ M(A, I) is called well-behaved if
+it is connected and tm ∈ IRR(R) for every m ≥ 0.
+Lemma 5.10. Let u ∈ IRR(R). If u2 ∈ IRR(R) then um ∈ IRR(R) for all m ≥ 0.
+Proof. Assume that m ≥ 3 is the smallest number, such that um−1 ∈ IRR(R) and
+um 6∈ IRR(R). Hence we can write um = xaby with x, y ∈ IRR(R) and a, b ∈ Ai
+for some i ∈ Γ. Applying Levi’s lemma, we get factorizations x = x1 x2 · · · xm and
+y = y1 y2 · · · ym and the following diagram:
+                             y    y1     y2   ...   ym−1    ym
+                             b                ...            b
+                             a    a           ...
+                             x    x1     x2   ...   xm−1    xm
+                                  u      u    ...    u       u
+This is in fact the only possibility for the positions of the atoms a and b: If a and b
+were in the same column then u would contain the factor ab and hence u ∈     / IRR(u).
+Also a and b are not independent, which means b has to be top-right from a. If a is
+not in the first column or b is not in the last column, then um−1 is reducible, which
+contradicts the choice of m. Hence, we have u = x1 ay1 = xm bym with a I xm ,
+y1 I xm and b I y1 . We get u2 = x1 ay1 xm bym = x1 axm y1 bym = x1 xm ay1 bym =
+x1 xm aby1 ym . Hence u2 6∈ IRR(R), which is a contradiction.                        
+Lemma 5.11. A trace u ∈ M(A, I) is well-behaved if and only if it has the following
+properties:
+     • u is irreducible,
+     • u is not atomic,
+     • u is connected, and
+     • one cannot write u as u = avb such that a, b ∈ Ai for some i ∈ Γ (in
+        particular, u is cyclically reduced).
+Proof. Clearly, if one the four conditions in the lemma is not satisfied, then u is not
+well-behaved. Now assume that the four conditions hold for u. By Lemma 5.10, it
+suffices to show that u2 ∈ IRR(R). Assume that u2 = xaby with a, b ∈ Ai . Applying
+Levi’s lemma, and using u ∈ IRR(R) and (a, b) ∈  / I, we obtain the following diagram:
+12                         M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+                                              y    y1     y2
+                                              b            b
+                                              a    a
+                                              x    x1    x2
+                                                   u     u
+From Levi’s lemma we also get b I y1 and a I x2 . But a and b are in the same
+group, hence a I y1 and b I x2 also hold. The first property implies u = va with
+v = x1 y1 and the seconds property gives us u = bw with w = x2 y2 . Since u is not
+atomic, we have v 6= 1 6= w. Now we apply Levi’s lemma to va = bw, which yields
+one of the following diagrams:
+                              w     v=w                        w     w′    a
+                              b               a=b              b     b
+                                       v       a                     v     a
+From the left diagram we get a I v. Hence u = va is not connected, which is a
+contradiction. From the right diagram we get u = va = bw′ a for some trace w′ ,
+which is a contradiction to our last assumption. This finally proves u2 ∈ IRR(R),
+hence u is well-behaved.                                                       
+Lemma 5.12. From a trace u ∈ M(A, I) one can compute traces s, t, v1 , . . . , vk ∈
+IRR(R), such that the following hold:
+     • every vi is either atomic or well-behaved,
+     • um =G sv1m · · · vkm t for all m ≥ 0,
+                      Pk
+     • ||s|| + ||t|| + i=1 ||vi || ≤ 3||u||,
+     • k ≤ α, where α is the size of a largest clique in (Γ, E).
+Proof. Let u ∈ M(A, I). As an initial processing, we can replace every u by
+NFR (u) ∈ IRR(R). So we can assume that u is already irreducible. In the next
+step, we compute irreducible traces s, w, t, such that um =G swm t for all m ≥ 0
+and w cannot be written as w = aw′ b with a, b ∈ Aj for some j ∈ Γ. For this, we
+will inductively construct irreducible traces si , ui , ti (with 0 ≤ i ≤ ℓ for some ℓ)
+such that um =G si um    i ti for all m ≥ 0. Moreover, if 0 ≤ i < ℓ then |ui | > |ui+1 |.
+We start with u0 = u and s0 = t0 = 1. Assume that after i steps we already found
+irreducible traces si , ui , ti with um =G si um       i ti for all m ≥ 0. If ui cannot be written
+in the form au′ b with a, b ∈ Aj for some j, then we are done. Otherwise assume that
+ui = avi b for some a, b ∈ Aj . Let c ∈ Aj ∪ {1} such that c = ba in the group Gj . So
+                         m −1
+we get um i =G a(vi c) a         for all m ≥ 0. This means um =G (si a)(vi c)m (a−1 ti ).
+Hence, we can set ui+1 = vi c, si+1 = NFR (si a) and ti+1 = NFR (a−1 ti ). Note
+that |ui+1 | = |ui | − 1, ||ui+1 || ≤ ||ui ||, ||si+1 || ≤ ||si || + ||a||, and ||ti+1 || ≤ ||ti || + ||a||.
+This process is terminating after at most |u| steps. Note also that each ui+1 is
+irreducible. When our algorithm is terminating after step ℓ, we set v = uℓ , s = sℓ
+and t = tℓ . We have
+                                      ||s||, ||t||, ||v|| ≤ ||u||.                                      (2)
+Finally, we split v into its connected components, i.e., we write v = v1 · · · vk , where
+every vj is connected and vi I vj for i 6= j. We obtain for every m ≥ 0 the identity
+um =G sv1m · · · vkm t as described in the statement of the lemma. If a vj is not
+atomic then it cannot be written as vj = bvj′ c with b, c ∈ Ai (otherwise the above
+reduction process would continue). Thus Lemma 5.11 implies that the non-atomic
+                                                Pk
+vj are well-behaved. Finally, we have i=1 ||vi || = ||v|| ≤ ||u|| by (2).                                
+Remark 5.13. If E = ∅ then we must have k = 1 in Lemma 5.12 since α = 1.
+Hence, we obtain s, t, v, where v is either atomic or well-behaved, such that um =
+sv m t for every m ≥ 0 and ||s|| + ||v|| + ||t|| ≤ 3||u||.
+                  CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                               13
+
+
+5.5. Reductions to the empty trace. For the normal form of the product of
+two R-irreducible traces we have the following lemma, which was shown in [14]
+(equation (21) in the proof of Lemma 22) using a slightly different notation.
+
+Lemma 5.14. Let u, v ∈ M(A, I) be R-irreducible. Then there exist strongly com-
+patible independence cliques C, D and unique factorizations u = pCs, v = s−1 Dt
+such that NFR (uv) = p(CD)t.
+
+  In the following, we consider tuples over IRR(R) of arbitrary length. We identify
+tuples that can be obtained from each other by inserting/deleting 1’s at arbitrary
+positions. Clearly, every tuple is equivalent to a possibly empty tuple over IRR(R) \
+{1}.
+
+Definition 5.15. We define a reduction relation on tuples over IRR(R) of arbitrary
+length. Take u1 , u2 , . . . , um ∈ IRR(R). Then we have
+       • (u1 , u2 , . . . , um ) → (u1 , . . . , ui−1 , ui+1 , ui , ui+2 , . . . , um ) if ui I ui+1 (a swap-
+         ping step),
+                                                                                          −1
+       • (u1 , u2 , . . . , um ) → (u1 , . . . , ui−1 , ui+2 , . . . , um ) if ui = ui+1       in M(A, I) (a
+         cancellation step),
+       • (u1 , u2 , . . . , um ) → (u1 , . . . , ui−1 , a, ui+2 , . . . , um ) if there exists j ∈ Γ with
+         ui , ui+1 , a ∈ Aj , and a = ui ui+1 in Gj (an atom creation step of type j).
+Moreover, these are the only reduction steps. A concrete sequence of these rewrite
+steps leading to the empty tuple is a reduction of (u1 , u2 , . . . , um ). If such a sequence
+exists, the tuple is called 1-reducible.
+
+   A reduction of the tuple (u1 , u2 , . . . , um ) can be seen as a witness for the fact that
+u1 u2 · · · um =G 1. On the other hand, u1 u2 · · · um =G 1 does not necessarily imply
+that (u1 , u2 , . . . , um ) has a reduction. For instance, the tuple (a−1 , ab, b−1 ) has no
+reduction. But we can show that every sequence which multiplies to 1 in G can be
+refined (by factorizing the elements of the sequence) such that the resulting refined
+sequence has a reduction. We say that the tuple (v1 , v2 , . . . , vn ) is a refinement of the
+tuple (u1 , u2 , . . . , um ) if there exists factorization ui = ui,1 · · · ui,ki in M(A, I) such
+that (v1 , v2 , . . . , vn ) = (u1,1 , . . . , u1,k1 , u2,1 , . . . , u2,k2 , . . . , um,1 , . . . , um,km ). In the
+following, if an independence clique C appears in a tuple over IRR(R), we identify
+this clique with the sequence a1 , a2 , . . . , an which is obtained by enumerating the
+elements of C in an arbitrary way. For instance, ([abcd]I , {a, b, c}) stands for the
+tuple ([abcd]I , a, b, c). Let us first prove the following lemma:
+
+Lemma 5.16. Assume that the tuple (v1 , v2 , . . . , vn ) is 1-reducible with at most
+m atom creations of each type. For all 1 ≤ i ≤ n let vi = pi Di ti be a fac-
+torization in M(A, I) where Di is an independence            Pn       clique of (A, I). By refining
+p1 , t1 , . . . , pn , tn into a total of at most 4n + i=1 |Di | traces, we can obtain a re-
+finement of (p1 , D1 , t1 , p2 , D2 , t2 , . . . , pn , Dn , tn ) which is 1-reducible with at most
+m atom creations of each type.
+
+Proof. Basically, we would like to apply to (p1 , D1 , t1 , p2 , D2 , t2 , . . . , pn , Dn , tn ) the
+same reduction that reduces (v1 , v2 , . . . , vn ) to the empty tuple. If we do a swapping
+step vi , vj → vj , vi then we can swap also the order of pi , Di , ti and pj , Dj , tj in
+several swapping steps. Also notice that if vi is an atom, then the subsequence
+pi , Di , ti is equivalent to the atom vi . The only remaining problem are cancellation
+steps. Assume that vi and vj cancel, i.e., vi = vj−1 . The traces ti and tj do not
+necessarily cancel out, and similarly for pi and pj and the atoms in Di and Dj .
+Hence, we have to further refine pi , ti , pj , tj using Levi’s lemma. Applied to the
+14                         M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+identity pi Di ti = t−1  −1 −1
+                     j D j pj  it yields the following diagram:
+                                       p−1
+                                        j         xi,j     Ni,j     zi,j
+                                       Dj−1       Wi,j     Ci,j     Ei,j
+                                                                                                           (3)
+                                       t−1
+                                        j         wi,j     Si,j     yi,j
+                                                   pi      Di        ti
+Hence, we get factorizations
+                                           pi    = wi,j Wi,j xi,j                                          (4)
+                                           ti    = yi,j Ei,j zi,j                                          (5)
+                                                       −1 −1 −1
+                                          pj     =    zi,j Ni,j xi,j                                       (6)
+                                                       −1 −1 −1
+                                           tj    =    yi,j Si,j wi,j .                                     (7)
+                                        −1     −1      −1
+where Di = Si,j ⊎ Ci,j ⊎ Ni,j and Dj = Ei,j ⊎ Ci,j ⊎ Wi,j .
+                                                          Using these facts and
+the independencies obtained from the diagram (3) shows that the tuple
+                                                           −1     −1
+          (wi,j , Wi,j , xi,j , Di , yi,j , Ei,j , zi,j , zi,j , Ni,j , x−1          −1     −1     −1
+                                                                         i,j , Dj , yi,j , Si,j , wi,j )
+is 1-reducible. Hence, by refining pi , ti , pj , and tj according to the factoriza-
+tions (4), (5), (6), and (7), respectively, we obtain a 1-reducible refinement of
+(p1 , D1 , t1 , p2 , D2 , t2 , . . . , pn , Dn , tn ). Note that |Wi,j ∪ Ei,j | ≤ |Dj | and |Ni,j ∪
+Si,j | ≤
+       P|D    i |. Hence, the 2n traces p1 , t1 , . . . , pn , tn are refined into totally at most
+          n
+4n + i=1 |Di | traces.                                                                            
+     As before, α denotes the size of a largest independence clique in (A, I).
+Lemma 5.17. Let m ≥ 2 and u1 , u2 , . . . , um ∈ IRR(R). If u1 u2 · · · um = 1 in G,
+then there exists a 1-reducible refinement of (u1 , u2 , . . . , um ) that has length at most
+(3α + 4)m2 ≤ 7αm2 and there is a reduction of that refinement with at most m − 2
+atom creations of each type i ∈ Γ.
+Proof. The proof of the lemma will be an induction on m. For this we first assume
+that m is a power of 2. To make the induction work, we slightly strengthen the
+claim: We will show that there exist factorizations of the ui with totally at most
+f (m) = ( 34 α + 1)m2 − ( 32 α + 1)m factors such that the resulting tuple is 1-reducible
+and has a reduction with at most (m − 2) atom creations of each type i ∈ Γ. This
+implies the lemma for the case that m is a power of two.
+   The case m = 2 is trivial (we must have u2 = u−1        1 ). Let m = 2n ≥ 4. Then by
+Lemma 5.14 we can factorize u2i−1 and u2i for 1 ≤ i ≤ n as u2i−1 = pi C2i−1 si and
+u2i = s−1
+        i C2i ti in M(A, I) such that C2i−1 and C2i are strongly compatible inde-
+pendence cliques and vi = pi (C2i−1 C2i )ti is irreducible. Define the independence
+clique Di = C2i−1 C2i . We have v1 v2 · · · vn = 1 in G. By induction, we obtain
+factorizations pi Di ti = vi = vi,1 · · · vi,ki (1 ≤ i ≤ n) such that the tuple
+                                           (vi,1 , . . . , vi,ki )1≤i≤n                                    (8)
+is 1-reducible. Moreover,
+                       n                                      
+                      X                         3      2    3
+                                    ki ≤          α+1 n −     α+1 n
+                              i=1
+                                                4           2
+and there exists a reduction of the tuple (8) with at most n − 2 atom creations of
+each type. By applying Levi’s lemma to the trace identities pi Di ti = vi,1     Uvi,2 · · · vi,ki ,
+we obtain factorizations vi,j = xi,j Di,j yi,j in M(A, I) such that Di = 1≤j≤ki Di,j ,
+pi = xi,1 · · · xi,ki , ti = yi,1 · · · ui,ki , and the following independencies hold for 1 ≤
+j < ℓ ≤ ki : yi,j I xi,ℓ , yi,j I a for all a ∈ Di,ℓ , a I xi,ℓ for all a ∈ Di,j . Note that
+Di,j can be the empty set.
+   Let us now define for every 1 ≤ i ≤ n the tuples u2i−1 and u2i as follows:
+               CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                    15
+
+
+      • u2i−1 = (xi,1 , . . . , xi,ki , C2i−1 , si )
+      • u2i = (s−1
+                i , C2i , yi,1 , . . . , yi,ki )
+Thus, the tuple ui defines a factorization of the trace ui and the tuple (u1 , u2 , . . . , u2n )
+is a refinement of (u1 , . . . , u2n ) of length 2f (n)+ 2n(α+ 1). This tuple can be trans-
+formed using n cancellation steps (cancelling si and s−1      i ) and n atom creations of
+each type into the sequence
+                              (xi,1 , . . . , xi,ki , Di , yi,1 , . . . , yi,ki )1≤i≤n .
+Using swappings, we finally obtain the sequence
+                          (xi,1 , Di,1 , yi,1 , . . . , xi,k1 , Di,k1 , yi,k1 )1≤i≤n .            (9)
+Recall that vi,j = xi,j Di,j yi,j . Hence, the tuple (9) is a refinement of the 1-reducible
+tuple (8). We are therefore in the situation of Lemma 5.16. By further refining
+the totally at most 2f (n) factors xi,j and yi,j of the traces u1 , . . . , u2n we obtain a
+1-reducible tuple. The resulting refinement of (u1 , . . . , u2n ) has length at most
+                         n
+                         X              ki
+                                      n X
+                                      X
+                     4         ki +              |Di,j | + 2n + 2nα
+                         i=1          i=1 j=1
+                                                    n
+                             3                3        X
+                ≤    4         α + 1 n2 − 4     α+1 n+     |Di | + 2n + 2nα
+                             4                2        i=1
+                ≤    (3α + 4)n2 − (6α + 4)n + (3α + 2)n
+                =  (3α + 4)n2 − (3α + 2)n
+                                              
+                     3            2     3
+              =        α+1 m −            α+1 m
+                     4                  2
+( ni=1 ki + ni=1 kj=1
+ P          P      P i
+                         |Di,j | traces from the refinement of the traces xi,j and yi,j
+by Lemma 5.16, 2n traces s±1  i , and 2nα atoms from the independence cliques Ci ).
+Finally, the total number of atom creations of a certain type is n + n − 2 = 2n − 2 =
+m − 2.
+   In the general case, where m is not assumed to be a power of two, we can
+naturally extend the sequence to u1 , u2 , . . . , uℓ by possibly adding ui = 1 for i > m
+to the smallest power of 2. Hence ℓ ≤ 2m. Substituting 2m for m yields the desired
+bound. Note that by this process, the number of atom creations will not increase.
+This concludes the proof of the lemma.                                                  
+
+   Since by this result we also get a 1-reducible tuple with at most O(m2 ) many
+elements for equations u1 u2 · · · um = 1 over a graph group, this improves the result
+of [42].
+Remark 5.18. The atom creations that appear in a concrete reduction can be
+collected into finitely many identities of the form a1 a2 · · · ak =Gi b1 b2 · · · bℓ (or
+a1 a2 · · · ak b−1       −1 −1
+                ℓ · · · b2 b1 =Gi 1), where a1 , a2 , . . . , ak , b1 , b2 , . . . , bℓ are atoms from
+the initial sequence that all belong to the same group Gi . The new atoms a1 a2 · · · ak
+and b1 b2 · · · bℓ are created by at most m−2 atom creations. Finally, the two resulting
+atoms cancel out. Note that k − 1 + ℓ − 1 ≤ m − 2, i.e., k + ℓ ≤ m.
+   In case E = I = ∅ the quadratic dependence on m in Lemma 5.17 can be avoided:
+Lemma 5.19. Let m ≥ 2 and u1 , u2 , . . . , um ∈ IRR(R). Moreover let E = I = ∅.
+If u1 u2 · · · um = 1 in the free product G, then there exists a 1-reducible refinement
+of the tuple (u1 , u2 , . . . , um ) that has length at most 7m−12 and there is a reduction
+of this refinement with at most m − 2 atom creations.
+16                          M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+Proof. We prove the lemma by induction on m. The case m = 2 is trivial (we must
+have u2 = u−1   1 ). If m ≥ 3 then for the normal form of u1 u2 there are two cases:
+either u1 u2 ∈ IRR(R) or u1 = pas and u2 = s−1 bt for atoms a, b from the same
+group Gi that do not cancel out. We consider only the latter case. Let c = ab
+in Gi , i.e., c ∈ Ai . By the induction hypothesis, the tuple (pct, u3 , . . . , um ) has a
+1-reducible refinement
+                                   (v1 , . . . , vk , w1 , . . . , wℓ )                  (10)
+with k + ℓ ≤ 7(m − 1) − 12 and pct = v1 · · · vk , where the latter is an identity
+between words from A∗ . Moreover, there is a reduction of (10) with at most m − 3
+atom creations. Since pct = v1 · · · vk , one of the vj (1 ≤ j ≤ k) must factorize
+as vj = vj,1 cvj,2 such that p = v1 · · · vj−1 vj,1 and t = vj,2 vj+1 · · · vk , which implies
+u1 = v1 · · · vj−1 vj,1 as and u2 = s−1 bvj,2 vj+1 · · · vk . Therefore we have a 1-reducible
+tuple of the form
+                (v1 , . . . , vj−1 , vj,1 , a, s, s−1 , b, vj,2 , vj+1 , . . . , vk , w̃1 , . . . , w̃ℓ ),   (11)
+where the sequence w̃i is wi unless wi cancels out with vj in our reduction of (10)
+(there can be only one such i), in which case w̃i is (vj,2 )−1 , c−1 , (vj,1 )−1 . It follows
+that the tuple (11) is a refinement of (u1 , u2 , . . . , um ) with at most 7(m−1)−12+7 =
+7m − 12 words, having a reduction with at most m − 2 atom creations.                       
+5.6. Graph products preserve knapsack semilinearity. In this section, we
+assume that every group Gi (i ∈ Γ) is knapsack-semilinear. Recall that we                               S fixed
+the symmetric generating set Σi for Gi , which yields the generating set Σ = i∈Γ Σi
+for the graph product G. In this section, we want to show that the graph product
+G is knapsack-semilinear as well. Moroever, we want to bound the function EG,Σ
+in terms of the functions KGi ,Σi . Let K : N × N → N be the pointwise maximum of
+the functions KGi ,Σi (n, m). We will bound EG,Σ in terms of K.
+    Consider an exponent expression e = ux1 1 v1 u2x2 v2 · · · uxmm vm , where ui , vi are
+words over the generating set Σ. Let gi (resp., hi ) be the element of G represented
+by ui (resp., vi ). We can assume that all ui and vi are geodesic words in the graph
+product G.4 We will make this assumption throughout this section. Moreover,
+we can identify each ui (resp., vi ) with the unique irreducible trace from IRR(R)
+that represents the group element gi (resp., hi ). In addition, for each atom a ∈ A
+(say a ∈ Ai ) that occurs in one of the traces u1 , u2 , . . . , um , v1 , . . . , vm ∈ IRR(R) a
+geodesic word wa ∈ Σ∗i that evaluates to a in the group Gi is given. This yields
+geodesic words for the group elements g1 , . . . , gm , h1 , . . . , hm ∈ G. The lengths of
+these words are ||u1 ||, . . . , ||um ||, ||v1 ||, . . . , ||vm || and we have ||e|| = ||u1 || + · · · + ||um || +
+||v1 || + · · · + ||vm ||.
+    We start with the following preprocessing step.
+Lemma 5.20. Let e be an exponent expression over Σ. From e we can compute a
+knapsack expression e′ with the following properties:
+     • Xe ⊆ Xe′ ,
+     • ||e′ || ≤ 3||e||,
+     • deg(e′ ) ≤ α · deg(e),
+     • every period of e′ is either atomic or well-behaved, and
+     • solG (e) = (K ∩ solG (e′ ))↾Xe for a semilinear set K of magnitude one.
+Proof. Let u1 , . . . , um ∈ Σ∗ be the periods of e. We can view these words as traces
+u1 , . . . , um ∈ M(A, I) that are moreover irreducible. We apply Lemma 5.12 to each
+power uxi in e and obtain an equivalent exponent expression ẽ of degree n ≤ α · m
+and ||ẽ|| ≤ 3||e||. We have Xẽ = Xe and solG (e) = solG (ẽ).
+   4Since the word problem for every G is decidable, also the word problem for G is decidable [23],
+                                      i
+which implies that one can compute a geodesic word for a given group element of G.
+               CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                    17
+
+
+   We now rename in ẽ the variables by fresh variables in such a way that we
+obtain a knapsack expression e′ . Moreover, for every x ∈ Xe we keep exactly
+one occurrence of x in ẽ and do not rename this occurrence of x. This implies
+that there is a semilinear set K ⊆ NXe′ of magnitude one such that solG (e) =
+(K ∩ solG (e′ ))↾Xe .                                                       
+   In case E = I = ∅ and that e is a knapsack expression, we can simplify the
+statement of Lemma 5.20 as follows:
+Remark 5.21. Assume that E = I = ∅ and that e is a knapsack expression as
+in Lemma 5.20. By Remark 5.13 we can compute from e a knapsack expression e′
+over Σ with the following properties:
+     • ||e′ || ≤ 3||e||,
+     • deg(e′ ) ≤ deg(e),
+     • every period of e′ is either atomic or well-behaved, and
+     • solG (e) = solG (e′ ).
+   We now come to the main technical result of Section 5. As before, we denote
+with α the size of a largest independence clique in (Γ, E).
+Theorem 5.22. If each group Gi , i ∈ Γ, is knapsack-semilinear, then their graph
+product G = G(Γ, E, (Gi )i∈Γ ) is knapsack-semilinear as well. Let K : N × N → N be
+the pointwise maximum of the functions KGi ,Σi (n, m) for i ∈ Γ. Then EG,Σ (n, m) ≤
+max{K1 , K2 } with
+                   K1 ≤ O (αm)αm/2+3 · K(6αmn, αm)αm+3 ,
+                                                               
+                                         2           2
+                        K2 ≤ (αm)O(α m) · nO(α |Γ|m) .
+Proof. Consider an exponent expression e = u1x1 v1 ux2 2 v2 · · · uxmm vm . Let us denote
+with A(e) = alph(u1 v1 · · · um vm ) ⊆ A the set of all atoms that appear in the traces
+ui , vi . Finally let µ(e) = max{||a|| | a ∈ A(e)} and let λ(e) be the maximal length
+|t| where t is one of the traces u1 , u2 , . . . , um , v1 , . . . , vm . We clearly have µ(e) ≤ ||e||
+and λ(e) ≤ ||e||.
+    Let us first assume that e is a knapsack expression (i.e., xi 6= xj for i 6= j) where
+every period ui is either an atom or a well-behaved trace (see Lemma 5.20).
+    In the following we describe an algorithm that computes a semilinear represen-
+tation of solG (e) (for e satisfying the conditions from the previous paragraph). At
+the same time, we will compute the magnitude of this semilinear representation.
+The algorithm transforms logical statements into equivalent logical statements (we
+do not have to define the precise logical language; the meaning of the statements
+should be always clear). Every statement contains the variables x1 , . . . , xm from
+our knapsack expression and equivalence of two statements means that for every
+valuation σ : {x1 , . . . , xm } → N the two statements yield the same truth value. We
+start with the statement e = 1. W       In each step we transform the current statement
+Φ into an equivalent disjunction ni=1 Φi . We can therefore view the whole process
+as a branching tree, where the nodes are labelled with statements. If a node is
+labelled
+Wn            with Φ and its children are labelled with Φ1 , . . . , Φn then Φ is equivalent to
+   i=1 i The leaves of the tree are labelled with semilinear constraints of the form
+         Φ   .
+(x1 , . . . , xm ) ∈ L for semilinear sets L. Hence, the solution set solG (e) is the union
+of all semilinear sets that label the leaves of the tree. A bound on the magnitude of
+these semilinear sets yields a bound on the magnitude of solG (e). Therefore, we can
+restrict our analysis to a single branch of the tree. We can view this branch as a
+sequence of nondeterministic guesses. Some guesses lead to dead branches because
+the corresponding statement is unsatisfiable. We will speak of a bad guess in such
+a situation.
+18                    M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+   Let Na ⊆ [1, m] be the set of indices such that ui is atomic and let Na = [1, m]\Na
+be the set of indices such that ui is not atomic (and hence a well-behaved trace).
+For better readability, we write ai for the atom ui in case i ∈ Na . Define Xa =
+{xi | i ∈ Na } and Xa = {xi | i ∈ Na }. For i ∈ Na let γ(i) ∈ Γ be the index with
+ui ∈ Aγ(i) .
+Step 1: Eliminating trivial powers. In a first step we guess a set N1 ⊆ Na of indices
+with the meaning that for i ∈ N1 the power axi i evaluates to the identity element
+of the group Gγ(i) . To express this we continue with the formula
+                                               ^
+                      Φ[N1 ] = (e[N1 ] = 1) ∧      axi i =Gγ(i) 1,               (12)
+                                                 i∈N1
+
+where e[N1 ] is the knapsack expression obtained from e by deleting all powers axi i
+with i ∈ N1 . Note that the above constraints do not exclude that a power uxi i with
+i ∈ [1, m] \ N1 evaluates to the identity element. This will not cause any trouble
+for the following
+         W        arguments. Clearly, the initial equation e = 1 is equivalent to the
+formula N1 ⊆Na Φ[N1 ].
+   In the following we transform every equation e[N1 ] = 1 into a formula Ψ[N1 ]
+such that the following hold for every valuation σ : {xi | i ∈ [1, m] \ N1 } → N:
+(1) if Ψ[N1 ] is true under σ then σ(e[N1 ]) =G 1,
+        σ(x )
+(2) if ai i 6=Gγ(i) 1 for all i ∈ Na \ N1 and σ(e[N1 ]) =G 1 then Ψ[N1 ] is true under
+    σ.
+                    W
+This implies that N1 ⊆Na Φ[N1 ] (and hence e = 1) is equivalent to the formula
+                            _               ^
+                                  (Ψ[N1 ] ∧    axi i =Gγ(i) 1).
+                           N1 ⊆Na           i∈N1
+
+Step 2: Applying Lemma 5.17. We construct the formula Ψ[N1 ] from the knap-
+sack expression e[N1 ] using Lemma 5.17. More precisely, we construct Ψ[N1 ] by
+nondeterministically guessing the following data:
+  (i) factorizations vi = vi,1 · · · vi,ℓi in M(A, I) of all non-trivial traces vi . Each
+      factor vi,j must be nontrivial too.
+ (ii) “symbolic factorizations” uxi i = yi,1 · · · yi,ki for all i ∈ Na . The numbers ki
+      and ℓi must sum up to at most 28αm2 (this number is obtained by replacing
+      m by 2m in Lemma 5.17). The yi,j are existentially quantified variables that
+      take values in IRR(R) and which will be eliminated later.
+(iii) non-empty alphabets Ai,j ⊆ alph(ui ) for each symbolic factor yi,j (i ∈ Na ,
+      1 ≤ j ≤ ki ) with the meaning that Ai,j is the alphabet of atoms that appear
+      in yi,j .
+(iv) a reduction (according to Definition 5.15) of the resulting refined factorization
+      of ux1 1 v1 ux2 2 v2 · · · uxmm vm with at most 2m−2 atom creations of each type i ∈ Γ.
+Note that every factor axi i with i ∈ Na \ N1 evaluates (for a given valuation) either
+to an atom from Aγ(i) or to the identity element. Hence, there is no need to further
+factorize such a power axi i . In our guessed reduction we treat axi i as a symbolic
+                                         σ(x )
+atom (although it might happen that ai i = 1 for a certain valuation σ; but this
+will not make the above statements (1) and (2) wrong).
+    We can also guess ki = 0 in (ii). In this case, we can replace uxi i in e[N1 ] by
+the empty trace and add the constraint xi = 0 (note that a well-behaved trace
+ui 6= 1 represents an element of the graph product G without torsion). Hence, in
+the following we can assume that the ki are not zero. Some of the yi,j must be
+atoms since they take part in an atom creation in our guessed reduction. Such an
+yi,j is replaced by a nondeterministically guessed atom ai,j from the atoms in ui .
+             CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                           19
+
+
+    The guessed alphabetic constraints from (iii) must be consistent with the inde-
+pendencies from our guessed reduction in (iv). This means that if for instance yi,j
+and yk,ℓ are swapped in the reduction then we must have Ai,j × Aj,k ⊆ I. Here
+comes a subtle point: Recall that each power axi (i ∈ Na \ N1 ) evaluates for a given
+valuation either to an atom from Aγ(i) or to the identity element. When checking
+the consistency of the alphabetic constraints with the guessed reduction we make
+the (pessimistic) assumption that every axi evaluates to an atom from Aγ(i) . This
+is justified below.
+    For every specific guess in (i)–(iv) we write down the existentially quantified
+conjunction of the following formulas:
+      • the equation uxi i = yi,1 · · · yi,ki from (ii) (every trace-variable yi,j is exis-
+        tentially quantified),
+      • all trace equations that result from cancellation steps in the guessed reduc-
+        tion,
+      • all “local” identities that result from the atom creations in the guessed
+        reduction,
+      • all alphabetic constraints from (iii) and
+      • all constraints xi = 0 in case we guessed ki = 0 in (ii).
+The local identities in the third point involve the above atoms ai,j and the powers
+axi i for i ∈ Na \ N1 . According to Remark 5.18 they are combined into several
+knapsack expressions over the groups Gi .
+     The formula Ψ[N1 ] is the disjunction of the above existentially quantified con-
+junctions, taken over all possible guesses in (i)–(iv). It is then clear that the above
+points (1) and (2) hold. Point (2) follows immediately from Lemma 5.17. For point
+(1) note that each of the existentially quantified conjunctions in Ψ[N1 ] yields the
+identity e[N1 ] = 1, irrespective of whether a power aixi is trivial or not.
+     So far, we have obtained a disjunction of existentially quantified conjunctions.
+Every conjunction involves the equations uxi i = yi,1 · · · yi,ki from (ii), trace equa-
+tions that result from cancellation steps (we will deal with them in step 4 below),
+local knapsack expressions over the groups Gi , alphabetic constraints for the vari-
+ables yi,j and constraints xi = 0 (if ki = 0). In addition we have the identities
+axi i =Gγ(i) 1 (i ∈ N1 ) from (12). In the following we deal with a single existentially
+quantified conjunction of this form.
+
+Step 3: Isolating the local knapsack instances for the groups Gi . In our existentially
+quantified conjunction we have knapsack expressions e1 , . . . , eq over the groups Gj
+(j ∈ Γ). These knapsack expressions involve the atoms ai,j and the symbolic
+expressions axi i with i ∈ Na . Note that every identity axi i =Gγ(i) 1 (i ∈ N1 ) yields
+the knapsack expression axi i . Each of the expressions ej is built from at most 2m
+atom powers axi i and atoms ai,j (since for every j ∈ Γ there are at most 2m − 2
+atom creations of type j) and its degree is at most m (since there are at most m
+atom powers axi i ). All atoms ai and ai,j belong to A(e). This yields the bound
+||ej || ≤ 2mµ(e) for 1 ≤ j ≤ q. We can assume that each expression ej contains
+at least one atom power uxi i (identities between the explicit atoms ai,j can be
+directly verified; if they do not hold, one gets a bad guess). Moreover, note that
+every atom power axi i with i ∈ Na occurs in exactly one ej . Assume that the
+knapsack expression ej is defined over the group Hj ∈ {Gi | i ∈ Γ}. The solution
+sets solj = solHj (ej ) of these expressions are semilinear by the assumption on the
+groups Gi . Each solj hasPq some dimension dj ≤ m (which is the number of symbolic
+atoms in ej ), where        j=1 dj = |Na | and the magnitude of solj is bounded by
+K(2mµ(e), m) ≤ K(2m||e||,
+                        Lq m). Finally,    we can combine these sets solj into the single
+                                        Xa
+semilinear set Sa =        j=1 solj ⊆ N    of dimension |Na | and magnitude at most
+20                       M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+K(2m||e||, m). Recall that the sets solj refer to pairwise disjoint sets of variables.
+For the variables xi ∈ Xa we now obtain the semilinear contraint (xi )i∈Na ∈ Sa .
+
+Step 4: Reduction to two-dimensional knapsack instances. Let us now deal with
+the cancellation steps from our guessed reduction. From these reduction steps we
+will produce two-dimensional knapsack instances on pairwise disjoint variable sets.
+    If two explicit factors vi,j and vk,ℓ (from (i) in step 2) cancel out in the reduction,
+                           −1
+we must have vk,ℓ = vi,j      ; otherwise our previous guess was bad. If a symbolic factor
+                                                                                  −1
+yi,j and an explicit factor vk,ℓ cancel out, then we can replace yi,j by vk,ℓ        . Before
+                                          −1
+doing this, we check whether alph(vk,ℓ ) = Ai,j and if this condition does not hold,
+then we obtain again a bad guess. Let S be the set of pairs (i, j) such that the
+symbolic factor yi,j still exists after this step. On this set S there must exist a
+matching M ⊆ {(i, j, k, ℓ) | (i, j), (k, ℓ) ∈ S} such that yi,j and yk,ℓ cancel out in
+our reduction if and only if (i, j, k, ℓ) ∈ M . We have (i, j, k, ℓ) ∈ M if and only if
+(k, ℓ, i, j) ∈ M .
+    Let us write the new symbolic factorization of uxi i as uxi i = ỹi,1 · · · ỹi,ki , where
+every ỹi,j is either the original symbolic factor yi,j (in case (i, j) ∈ S) or a concrete
+         −1
+trace vk,ℓ   (in case yi,j and vk,ℓ cancel out in our reduction) or an atom ai,j ∈ alph(ui )
+(that was guessed in step 2). It remains to describe the set of all tuples (x1 , . . . , xm )
+that satisfy a statement of the following form: there exist traces yi,j ((i, j) ∈ S)
+such that the following hold:
+(a) uxi i = ỹi,1 · · · ỹi,ki in M(A, I) for all i ∈ Na
+(b) alph(yi,j ) = Ai,j for all (i, j) ∈ S,
+              −1
+(c) yi,j = yk,ℓ    in M(A, I) for all (i, j, k, ℓ) ∈ M
+(d) (xi )i∈Na ∈ Sa
+In the next step, we eliminate the trace equations uxi i = ỹi,1 · · · ỹi,ki (i ∈ Na ).
+We apply to each of these trace equations Lemma 5.6 (or Remark 5.7). For every
+i ∈ Na we guess a subset Ki ⊆ [1, ki ], an integer 0 ≤ ci ≤ |Γ| · (ki − 1) and traces
+pi,j , si,j with alph(pi,j ) ⊆ alph(ui ) ⊇ alph(si,j ) and |pi,j |, |si,j | ≤ |Γ| · (ki − 1) · |ui | ≤
+|Γ| · (ki − 1) · λ(e), and replace uxi i = ỹi,1 · · · ỹi,ki by the following statement: there
+exist integers xi,j > 0 (j ∈ Ki ) such that
+                       P
+        • xi = ci + j∈Ki xi,j ,
+                        x
+        • ỹi,j = pi,j ui i,j si,j for all j ∈ Ki ,
+        • ỹi,j = pi,j si,j for all j ∈ [1, ki ] \ Ki .
+At this point we can check whether the alphabetic constraints alph(yi,j ) = Ai,j
+                                                                              x
+for (i, j) ∈ S hold (note that an equation yi,j = pi,j si,j or yi,j = pi,j ui i,j si,j with
+xi,j > 0 determines the alphabet of yi,j ). Equations ỹi,j = pi,j si,j , where ỹi,j
+is an explicit trace can be checked and possibly lead to a bad guess. From an
+                        x
+equation ỹi,j = pi,j ui i,j si,j , where ỹi,j is an explicit trace, we can determine a
+unique solution
+            P     for xi,j > 0 (if it exists) and substitute this value into the equation
+xi = ci + j∈Ki xi,j . Note that we must have xi,j ≤ |ỹi,j | ≤ λ(e), since ỹi,j is an
+atom or a factor of a trace vk−1 . Similarly, an equation yi,j = pi,j si,j with (i, j) ∈ S
+allows us to replace the symbolic factor yi,j by the concrete trace pi,j si,j and the
+unique symbolic factor yk,ℓ with (i, j, k, ℓ) ∈ M by the concrete trace s−1              −1
+                                                                                    i,j pi,j .
+                                                                         −1 −1
+If we have an equation yk,ℓ = pk,ℓ sk,ℓ then we check whether si,j pi,j = pk,ℓ sk,ℓ
+                                                            x
+holds. Otherwise we have an equation yk,ℓ = pk,ℓ uk k,ℓ sk,ℓ , and we can compute
+the unique non-zero solution for xk,ℓ (if it exists). Note that xk,ℓ ≤ |s−1           −1
+                                                                                i,j pi,j | ≤
+                                   2   2
+2|Γ| · (ki −P1) · λ(e) ∈ O(|Γ| · m · λ(e)). We then replace xk,ℓ in the equation
+xk = ck + ℓ∈Kk xk,ℓ by this unique solution.
+                 CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                21
+
+
+   By the above procedure, our statement (a)–(d) (with existentially quantified
+traces yi,j ) is transformed nondeterministically into a statement of the following
+form: there exist integers xi,j > 0 (i ∈ Na , j ∈ Ki′ ) such that the following hold:
+(a) xi = c′i + j∈K ′ xi,j for i ∈ Na ,
+                P
+                         i
+          x
+(b) pi,j ui i,j si,j = s−1    −1 xk,ℓ −1
+                        k,ℓ (uk )    pk,ℓ in M(A, I) for all (i, j, k, ℓ) ∈ M ′ ,
+(c) (xi )i∈Na ∈ Sa .
+Here, Ki′ ⊆ Ki ⊆ [1, ki ] is a set of size at most ki ≤ 28αm2 , M ′ ⊆ M is a
+new matching relation (with (i, j, k, ℓ) ∈ M ′ if and only if (k, ℓ, i, j) ∈ M ′ ), and
+c′i ≤ |Γ| · (ki − 1) + ki · O(|Γ|2 · m2 · λ(e)) ≤ O(|Γ|3 · m4 · λ(e)).
+Step 5: Elimination of two-dimensional knapsack instances. The remaining knap-
+                     x
+sack equations pi,j ui i,j si,j = s−1    −1 xk,ℓ −1
+                                   k,ℓ (uk )    pk,ℓ in (b) are two-dimensional and can
+be eliminated with Lemma 5.8. By this lemma, every trace equation
+                                         x
+                                    pi,j ui i,j si,j = s−1    −1 xk,ℓ −1
+                                                        k,ℓ (uk )    pk,ℓ
+(recall that all ui are connected, which is assumed in Lemma 5.8) can be nondeter-
+ministically replaced by a semilinear constraint
+              (xi,j , xk,ℓ ) ∈ {(ai,j,k,ℓ + bi,j,k,ℓ · z, ak,ℓ,i,j + bk,ℓ,i,j · z) | z ∈ N}.
+For the numbers ai,j,k,ℓ , bi,j,k,ℓ , ak,ℓ,i,j , bk,ℓ,i,j we obtain the bound
+                         ai,j,k,ℓ , bi,j,k,ℓ , ak,ℓ,i,j , bk,ℓ,i,j ∈ O(µ8 · ν 4|Γ| ),
+where, by Lemma 5.4,
+      µ = max{ρ(pi,j ), ρ(pk,ℓ ), ρ(si,j ), ρ(sk,ℓ )} ≤ O(|Γ|2α · 28α · m2α · λ(e)α )          (13)
+and
+                                  ν = max{ρ(ui ), ρ(uk )} ≤ O(λ(e)α ).                         (14)
+                             −1
+Note that ρ(t) = ρ(t ) for every trace t. Moreover, note that we have the con-
+straints xi,j , xk,ℓ > 0. Hence, if our nondeterministic guess yields ai,j,k,ℓ = 0 or
+ak,ℓ,i,j = 0 then we make the replacement ai,j,k,ℓ = ai,j,k,ℓ + bi,j,k,ℓ and ak,ℓ,i,j =
+ak,ℓ,i,j + bk,ℓ,i,j . If after this replacement we still have ai,j,k,ℓ = 0 or ak,ℓ,i,j = 0
+then our guess was bad.
+    At this point, we have obtained a statement of the following form: there exist
+zi,j,k,ℓ ∈ N (for (i, j, k, ℓ) ∈ M ′ ) with zi,j,k,ℓ = zk,ℓ,i,j and such that
+(a) xi = c′i + (i,j,k,ℓ)∈M ′ (ai,j,k,ℓ + bi,j,k,ℓ · zi,j,k,ℓ ) for i ∈ Na , and
+                 P
+
+(b) (xi )i∈Na ∈ Sa .
+Note that the sum in (a) contains |Ki′ | ≤ 28m2 α many summands (since for every
+j ∈ Ki′ there P
+              is a unique pair (k, ℓ) with (i, j, k, ℓ) ∈ M ′ ). Hence, (a) can be written
+          ′′
+as xi = ci + (i,j,k,ℓ)∈M ′ bi,j,k,ℓ · zi,j,k,ℓ with
+                                     X
+                  c′′i = c′i +                 ai,j,k,ℓ
+                                        (i,j,k,ℓ)∈M ′
+
+                             ≤     O(|Γ|3 · m4 · λ(e)) + O(α · m2 · µ8 · ν 4|Γ| )
+                             ≤     O(|Γ|16α+1 · 288α · m16α+2 · λ(e)8α+4α|Γ| )
+                             ≤     O(|Γ|16α+1 · 288α · m16α+2 · ||e||8α+4α|Γ| )
+(since λ(e) ≤ ||e||). The bound in the last line is also an upper bound for the
+numbers bi,j,k,ℓ . Hence, we have obtained a semilinear representation for solG (e)
+whose magnitude is bounded by max{K1 , K2 }, where
+                                             K1 ≤ K(2m||e||, m)
+22                         M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+(this is our upper bound for the magnitude of the semilinear set Sa ) and
+                   K2 ≤ O |Γ|16α+1 · 288α · m16α+2 · ||e||8α+4α|Γ| .
+                                                                  
+
+Step 6: Integration of the preprocessing step. Recall that so far we only considered
+the case where e is a knapsack expression having the form of the e′ in Lemma 5.20.
+Let us now consider an arbitrary exponent expression e of degree m. By Lemma 5.20
+we have solG (e) = (K ∩ solG (e′ ))↾Xe where K is semilinear of magnitude one and e′
+has degree at most α · m and satisfies ||e′ || ≤ 3||e||. We can apply the upper bound
+shown so far to e′ . Hence, the magnitude of solG (e′ ) is bounded by max{K′1 , K′2 },
+where
+                                 K′1 ≤ K(6αm||e||, αm)
+and
+                K′2 ≤ O |Γ|16α+1 · 288α · (αm)16α+2 · (3||e||)8α+4α|Γ| .
+                                                                      
+
+It remains to analyze the influence of intersecting with K. For this, we can apply
+Proposition 3.2, which yields for the magnitude the upper bound max{K1 , K2 },
+where
+                   K1 ≤ O (αm)αm/2+3 · K(6αm||e||, αm)αm+3
+                                                                    
+
+and
+                                                                                αm+3 
+     K2   ≤   O (αm)αm/2+3 · O |Γ|32α+3 · 288α · (αm)16α+2 · (3||e||)8α+4α|Γ|
+                       2            2
+          ≤   (αm)O(α m) · ||e||O(α |Γ|m) .
+This concludes the proof of the theorem.                                                  
+Remark 5.23. Assume that G is a fixed graph product (hence, |Γ| is a constant).
+Consider again the case that e is a knapsack expression (i.e., xi 6= xj for i 6= j)
+where every period ui is either an atom or a well-behaved trace. Let m = deg(e).
+In the above proof, we show that the set of solutions solG (e) can be written as a
+finite union
+                                   p M
+                                   [  qi
+                        solG (e) =       solHi,j (ei,j ) ⊕ Li
+                                        i=1 j=1
+such that the following hold for every 1 ≤ i ≤ p:
+      • every Hi,j is one of the groups Gk and ei,j is a knapsack expression over
+        the group Hi,j . The variable sets Xei,j (1 ≤ j ≤ qi ) form a partition of the
+        set Xa (the variables corresponding to atomic periods).
+      • Every ei,j is a knapsack expression of size at most 2m||e|| and degree at
+        most m (see step 3 in the above proof).
+      • The set Li is semilinear of magnitude O |Γ|16α+1 288α m16α+2 ||e||8α+4α|Γ| =
+                                                                                   
+
+        O m16α+2 ||e||8α+4α|Γ| (see step 5 in the above proof).
+                              
+
+Here, the indices i ∈ [1, p] correspond to the guessed data in the above prove.
+Moreover, given i ∈ [1, p] (i.e., a specific guess), one can compute the knapsack
+expressions ei,j (1 ≤ j ≤ qi ) and a semilinear representation of Li in polynomial
+time. This yields a nondeterministic reduction of the knapsack problem for the
+graph product G to the knapsack problems for the groups Gi (i ∈ Γ), assuming
+the input expression e satisfies the above restriction. Recall that in general, direct
+products do not preserve decidability of the knapsack problem.
+   The reader might wonder, whether we can obtain a bound for the function KG,Σ
+in terms of the function KGi ,Σi , which is better than the corresponding bound for
+EG,Σ from Theorem 5.22. This is actually not the case (at least with our proof
+technique): a power of the form ux where u = u1 u2 ∈ M(A, I) with u1 I u2 is
+equivalent to ux1 ux2 . Hence, powers ux with u a non-connected trace naturally lead
+                CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                    23
+
+
+to a duplication of the variable x (and hence to an exponent expression which is no
+longer a knapsack expression). This is the reason why we bounded the (in general
+faster growing) function EG,Σ in terms of the functions KGi ,Σi in Theorem 5.22.
+   An application of Theorem 5.22 is the following:
+Theorem 5.24. Let G be a graph product of hyperbolic groups. Then solvability of
+exponent equations over G belongs to NP.
+Proof. For a hyperbolic group H (with an arbitrary generating set Σ′ ) it was shown
+in [38] that the function KH,Σ′ (n) = KH,Σ′ (n, n) is polynomially bounded. Theo-
+rem 5.22 yields an exponential bound for the function EG,Σ (n) = EG,Σ (n, n) (note
+that |Γ| and α are constants since we consider a fixed graph product G). A nondeter-
+ministic polynomial time Turing machine can therefore guess the binary encodings
+of numbers σ(x) ≤ KG,Σ (||e||) for each variable x of the input exponent expression
+e. Checking whether σ is a G-solution of e is an instance of the compressed word
+problem for G. By the main result of [28] the compressed word problem for a hy-
+perbolic group can be solved in polynomial time and by [26] the compressed word
+problem for a graph product of groups Gi (i ∈ Γ) can be solved in polynomial time
+if for every i ∈ Γ the compressed word problem for Gi can be solved in polynomial
+time. Hence, we can check in polynomial time if σ is a G-solution of e.           
+   Let us now consider the special case where the graph product is a free product
+of two groups G1 and G2 .
+Theorem 5.25. If the groups G1 and G2 are knapsack-semilinear, then G1 ∗ G2 is
+knapsack-semilinear as well. Let K(n, m) be the pointwise maximum of the functions
+KG1 ,Σ1 and KG2 ,Σ2 . Then for G = G1 ∗ G2 we have KG,Σ (n, m) ≤ max{K1 , K2 }
+with
+                       K1 = K(6mn, m) and K2 ≤ O(mn4 ).
+Proof. The proof is similar to the one from Theorem 5.22. We first consider the case
+where every period ui is either an atom or a well-behaved word (see Remark 5.21).
+  Let us go throw the six steps from the proof of Theorem 5.22:
+Step 1. This step is carried out in the same way as in the proof of Theorem 5.22.
+Step 2. Here we can use Lemma 5.19 instead of Lemma 5.17, which yields the upper
+bound of 14m on the number of factors in our refinement of ux1 1 v1 ux2 2 v2 · · · uxmm vm
+(where powers uxi i with i ∈ N1 have been replaced by single atoms). The number
+of atom creations (of any type) is at most 2m − 2. We do not have to guess the
+atom sets Ai,j ⊆ alph(ui,j ) since there are no swapping steps in Lemma 5.19.
+Step 3. This step is copied from the proof of Theorem 5.22. We obtain for the
+variables xi with i ∈ Na the semilinear constraint (xi )i∈Na ∈ Sa where Sa is of
+magnitude at most K(2m||e||, m).
+Step 4. Also this step is analogous to the proof of Theorem 5.22. Recall that
+we have the better bound 14m on the number of factors in our refinement of
+ux1 1 v1 ux2 2 v2 · · · uxmm vm . Eliminating the equations uxi i = ỹi,1 · · · ỹi,ki (i ∈ Na ), which
+are interpreted in A∗ , is much easier due to the absence of commutation. For every
+i ∈ Na we obtain a disjunction of statements of the following form: there exist
+integers xi,j ≥ 0 (1 ≤ j ≤ ki ) such that
+         • xi = ci + kj=1
+                            P i
+                                   xi,j ,
+                             xi,j
+         • ỹi,j = pi,j ui si,j for all 1 ≤ j ≤ ki .
+Here, every pi,j is a suffix of ui , every si,j is a prefix of ui and ci ≤ ki ≤ 14m.
+Basically, ci is the number of factors ui that are split non-trivially in the factor-
+ization uxi i = ỹi,1 · · · ỹi,ki . We can then carry out the same simplifications that we
+24                     M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+                                                                        −1
+did in the proof of Theorem 5.22. If ỹi,j is an explicit word vk,ℓ        then we determine
+                                                             xi,j
+the unique solution xi,j (if it exists) of ỹi,j = pi,j ui si,j and replace xi,j by that
+number, which is at most λ(e). We arrive at a statement of the following form:
+there exist integers xi,j ≥ 0 (i ∈ Na , j ∈ Ki ) such that the following hold:
+(a) xi = c′i + j∈Ki xi,j for i ∈ Na ,
+                  P
+            x
+(b) pi,j ui i,j si,j = s−1    −1 xk,ℓ −1
+                        k,ℓ (uk )    pk,ℓ in A∗ for all (i, j, k, ℓ) ∈ M ,
+(c) (xi )i∈N ∈ Sa .
+Here, Ki ⊆ [1, ki ] is a set of size at most ki ≤ 14m, M is a matching relation (with
+(i, j, k, ℓ) ∈ M if and only if (k, ℓ, i, j) ∈ M ), and c′i ≤ 14m + ki · λ(e) ≤ O(m · λ(e)).
+The words pi,j and si,j have length at most λ(e).
+Step 5. The remaining two-dimensional knapsack equations from point (b) are
+eliminated with Remark 5.9. Every equation
+                                    x
+                              pi,j ui i,j si,j = s−1    −1 xk,ℓ −1
+                                                  k,ℓ (uk )    pk,ℓ
+can be nondeterministically replaced by a semilinear constraint
+           (xi,j , xk,ℓ ) ∈ {(ai,j,k,ℓ + bi,j,k,ℓ · z, ak,ℓ,i,j + bk,ℓ,i,j · z) | z ∈ N}.
+where the numbers ai,j,k,ℓ , bi,j,k,ℓ , ak,ℓ,i,j , bk,ℓ,i,j are bounded by O(λ(e)4 ).
+    At this point, we have obtained a statement of the following form: there exist
+zi,j,k,ℓ ∈ N (for (i, j, k, ℓ) ∈ M ) with zi,j,k,ℓ = zk,ℓ,i,j and such that
+(a) xi = c′i + (i,j,k,ℓ)∈M (ai,j,k,ℓ + bi,j,k,ℓ · zi,j,k,ℓ ) for i ∈ Na , and
+                P
+
+(b) (xi )i∈Na ∈ Sa .
+The sum in (a) P contains |Ki | ≤ 14m many summands. Hence, (a) can be written
+as xi = c′′i + (i,j,k,ℓ)∈M ′ bi,j,k,ℓ · zi,j,k,ℓ with
+                                               X
+                            c′′i = c′i +                ai,j,k,ℓ
+                                          (i,j,k,ℓ)∈M
+
+                               ≤ O(m · λ(e)) + 14m · O(λ(e)4 )
+                               = O(m · λ(e)4 ).
+We therefore obtained a semilinear representation for solG (e) whose magnitude is
+bounded by max{K1 , K2 }, where
+                         K1 = K(2m||e||, m) and K2 ≤ O(m||e||4 ).
+Step 6. For the preprocessing we apply Remark 5.21. Hence, we just have to replace
+||e|| by 3||e|| in the above bounds, which yields the statement of the theorem. 
+Remark 5.26. By Theorem 5.25, KG,Σ is polynomially bounded if KG1 ,Σ and
+KG2 ,Σ are polynomially bounded. This was also shown in [42].
+Remark 5.27. Analogously to Remark 5.23, the above proof shows that the set
+of solutions solG (e) for G = G1 ∗ G2 can be written as a finite union
+                                           qi
+                                         p M
+                                         [
+                            solG (e) =             solHi,j (ei,j ) ⊕ Li
+                                         i=1 j=1
+
+such that the following hold for every 1 ≤ i ≤ p:
+      • every Hi,j is either G1 or G2 and ei,j is a knapsack expression over the
+        group Hi,j . The variable sets Xei,j (1 ≤ j ≤ qi ) form a partition of the set
+        Xa (the variables corresponding to atomic periods).
+      • Every ei,j is a knapsack expression of size at most 6m||e|| and degree at
+        most m.
+      • The set Li is semilinear of magnitude O(mn4 ).
+             CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                         25
+
+
+Here, the indices i ∈ [1, p] correspond to the guessed data in the above prove.
+Moreover, given i ∈ [1, p], one can compute the knapsack expressions ei,j (1 ≤ j ≤
+qi ) and a semilinear representation of Li in polynomial time.
+   The above remark immediately yields the following complexity transfer result.
+A language A is nondeterministically polynomial time reducible to a language B if
+there exists a nondeterministic polynomial time Turing-machine M that outputs on
+each computation path after termination a word over the alphabet of the language
+B and such that x ∈ A if and only if on input x, the machine M has at least one
+computation path on which it outputs a word from B.
+Theorem 5.28. The knapsack problem for G1 ∗ G2 is nondeterministically poly-
+nomial time reducible to the knapsack problems for G1 and G2 .
+    The consequence of Theorem 5.28 that solvability of the knapsack problem in NP
+is passed on from Gi for i = 1, 2 to the free product G1 ∗G2 was shown using different
+methods in the extended abstract [41] (see also the comment after Theorem 6.10).
+
+ 6. Part 2: Knapsack in HNN-extensions and amalgamated products
+   In this section we deal with two constructions that are of fundamental impor-
+tance in combinatorial group theory [44], namely HNN-extensions and amalga-
+mated products. In their general form, HNN-extensions have been used to con-
+struct groups with an undecidable word problem, which means they may destroy
+desirable algorithmic properties. We consider the special case of finite associated
+(resp. identified) subgroups, for which these constructions already play a promi-
+nent role, for example, in Stallings’ decomposition of groups with infinitely many
+ends [48] or the construction of virtually free groups [11]. Moreover, these construc-
+tions are known to preserve a wide range of important structural and algorithmic
+properties [2, 7, 25, 30, 31, 33, 34, 39, 40, 45].
+6.1. HNN-extensions preserve knapsack semilinearity. Suppose G = hΣ |
+Ri is a finitely generated group with the finite symmetric generating set Σ = Ω∪Ω−1
+and the set of relators R ⊆ Σ∗ . Fix two isomorphic subgroups A and B of G
+together with an isomorphism ϕ : A → B. Let t ∈      / Σ be a fresh generator. Then
+the corresponding HNN-extension is the group
+                     H = hΩ ∪ {t} | R ∪ {t−1 a−1 tϕ(a) | a ∈ A}i
+(formally, we identify here every element c ∈ A ∪ B with a word over Σ that
+evaluates to c). This group is usually denoted by
+                         H = hG, t | t−1 at = ϕ(a) (a ∈ A)i.                       (15)
+Intuitively, H is obtained from G by adding a new element t such that conjugating
+elements of A with t applies the isomorphism ϕ. Here, t is called the stable letter
+and the groups A and B are the associated subgroups. A basic fact about HNN-
+extensions is that the group G embeds naturally into H [27].
+   Here, we only consider the case that A and B are finite groups, so that we may
+assume that (A ∪ B) \ {1} is contained in the finite generating set Σ. To exploit the
+symmetry of the situation, we use the notation A(+1) = A and A(−1) = B. Then,
+we have ϕα : A(α) → A(−α) for α ∈ {+1, −1}. We will make use of the (possibly
+infinite) alphabet Γ = G\{1}. By h : (Γ ∪ {t, t−1 })∗ → H, we denote the canonical
+morphism that maps each word to the element of H it represents.
+   A word u ∈ (Γ ∪ {t, t−1 })∗ is called Britton-reduced if it does not contain a factor
+of the form cd with c, d ∈ Γ or a factor t−α atα with α ∈ {−1, 1} and a ∈ A(α).
+A factor of the form t−α atα with α ∈ {−1, 1} and a ∈ A(α) is also called a
+pin. Note that the equation t−α atα = ϕα (a) allows us to replace a pin t−α atα
+26                         M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+                                      g1   tδ2        g2    tδ3        g3
+                           tδ1                                              tδ4
+               g0                                                                         g4
+                          c1     c2        c3    c4        c5     c6        c7    c8
+               h0                                                                         h4
+                           tδ1     h1                                  h3   tδ4
+                                           tδ2      h2      tδ3
+
+          Figure 1. A van Kampen diagram witnessing the equality of two
+          Britton-reduced words in the HNN-extension H.
+
+by ϕα (a) ∈ A(−α). Since this decreases the number of t’s in the word, we can
+reduce every word to an equivalent Britton-reduced word. We denote the set of all
+Britton-reduced words in the HNN-extension (15) by BR(H).
+    In this section, let γ be the cardinality of A. A word w ∈ BR(H) \ Γ is called
+well-behaved, if wm is Britton-reduced for every m ≥ 0. Note that w is well-behaved
+if and only if w and w2 are Britton-reduced. Elements of Γ are also called atomic.
+    The length of a word w ∈ (Γ ∪ {t, t−1 })∗ is defined as usual and denoted by |w|.
+For a word w = a1 a2 · · · ak with ai ∈ Γ ∪ {t, t−1 } we define the the representation
+                        Pk
+length of w as ||w|| = i=1 ni , where ni = 1 if ai ∈ {t, t−1 } and ni is the geodesic
+length of ai in the group G if ai ∈ Γ. Note that ||a|| = 1 for a ∈ (A ∪ B) \ {1}.
+    The following lemma provides a necessary and sufficient condition for equality
+of Britton-reduced words in an HNN-extension (cf. Lemma 2.2 of [25]):
+Lemma 6.1. Let u = g0 tδ1 g1 · · · tδk gk and v = h0 tε1 h1 · · · tεℓ hℓ be Britton-reduced
+words with g0 , . . . , gk , h0 , . . . , hℓ ∈ G and δ1 , . . . δk , ε1 , . . . , εℓ ∈ {1, −1}. Then u = v
+in the HNN-extension H of G if and only if the following hold:
+      • k = ℓ and δi = εi for 1 ≤ i ≤ k
+      • there exist c1 , . . . , c2m ∈ A ∪ B such that:
+          – gi c2i+1 = c2i hi in G for 0 ≤ i ≤ k (here we set c0 = c2k+1 = 1)
+          – c2i−1 ∈ A(δi ) and c2i = ϕδi (c2i−1 ) ∈ A(−δi ) for 1 ≤ i ≤ k.
+   The second condition of the lemma can be visualized by the diagram from Fig-
+ure 1 (also called a van Kampen diagram, see [44] for more details), where k = ℓ = 4.
+Light-shaded (resp. dark-shaded) faces represent relations in G (resp. relations of
+the form ctδ = tδ ϕδ (c) with c ∈ A(δ)). The elements c1 , . . . , c2k in such a diagram
+are also called connecting elements.
+   For our purposes, we will need the following lemma (cf. Lemma 2.3 of [25]),
+which allows us to transform an arbitrary string over the generating set of an
+HNN-extension into a reduced one:
+Lemma 6.2. Assume that u = g0 tδ1 g1 · · · tδk gk and v = h0 tε1 h1 · · · tεℓ hℓ are
+Britton-reduced words (gi , hj ∈ G). Let m(u, v) be the largest number m ≥ 0
+such that
+(a) A(δk−m+1 ) = A(−εm ) (we set A(δk+1 ) = A(−ε0 ) = 1) and
+(b) there is c ∈ A(−εm ) such that
+                       tδk−m+1 gk−m+1 · · · tδk gk h0 tε1 · · · hm−1 tεm =H c
+   (for m = 0 this condition is satisfied with c = 1).
+Moreover, let c(u, v) ∈ A(−εm ) be the element c in (b) (for m = m(u, v)). Then
+                    g0 tδ1 g1 · · · tδk−m(u,v) γ(u, v)tεm(u,v)+1 hm(u,v)+1 · · · tεℓ hℓ
+is a Britton-reduced word equal to uv in H, where γ(u, v) ∈ G such that γ(u, v) =G
+gk−m(u,v) c(u, v)hm(u,v) .
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                     27
+
+
+
+
+                                                g k h0
+
+
+                                              tδk     tε1
+
+                                             ···       ···
+
+
+                                   tδk−m+1                   tεm
+
+                                 gk−m           c(u, v)            hm
+                                 ·
+                                 ··                                 ··  ·
+                            g1                                           hℓ−1
+
+             g0      tδ1                                                        tεℓ
+                                                                                        hℓ
+
+
+                       Figure 2. The situation from Lemma 6.2.
+
+   The above lemma is visualized in Figure 2.
+Lemma 6.3. From a given word u ∈ BR(H) we can compute words s, p, v ∈ BR(H)
+such that um =H sv m p for every m ≥ 0 and either v ∈ G or v is well-behaved and
+starts with t±1 . Moreover, ||s|| + ||p|| + ||v|| ≤ 3||u||.
+Proof. Let u ∈ BR(H). Assume that u is not atomic; otherwise we are done. Let
+us now consider the word u2 . If u2 is not Britton-reduced, we can do the following:
+using Britton-reduction we compute a factorization u = xyz such that zx =H g ∈ G
+and hence u2 =H xygyz, where moreover x and y are chosen such that the sum
+|x| + |z| is maximal. Note that either y = 1 or y begins and ends with t or t−1
+(otherwise we could make x or z longer). Moreover, ||g|| ≤ ||u||. We obtain the
+equality um = (xyz)m =H x(yg)m g −1 z for every m ≥ 0. We set s = x, v = yg,
+and p = g −1 z. If y = 1, we have v = g ∈ G. Now assume that y begins and
+ends with t or t−1 . Since y as a factor of u must be Britton-reduced, also v = yg
+is Britton-reduced. Moreover, v 2 = ygyg must be Britton-reduced, otherwise we
+could extend the length of x and z in the factorization u = xyz. Finally, we have
+||s|| + ||p|| + ||v|| = ||x|| + ||y|| + ||z|| + 2||g|| ≤ 3||u||.                  
+
+Lemma 6.4. Let u, v ∈ BR(H)\G be well-behaved, both starting with t±1 , a, b ∈
+A ∪ B, u′ (resp., v ′ ) be a proper suffix of u (resp., v) and u′′ (resp., v ′′ ) be a proper
+prefix of u (resp., v). Let µ = max{|u|, |v|}. Then the set
+         L(a, u′ , u, u′′ , v ′ , v, v ′′ , b) = {(x, y) ∈ N × N | au′ ux u′′ =H v ′ v y v ′′ b}
+is semilinear. Moreover, one can compute in polynomial time a semilinear repre-
+sentation whose magnitude is bounded by O(γ 2 µ4 ).
+Proof. The proof is inspired by the proof of [38, Lemma 8.3] for hyperbolic groups.
+The assumptions in the lemma imply that for all x, y ∈ N the words au′ ux u′′ and
+v ′ v y v ′′ b are Britton-reduced (possibly after multiplying a and b with neighboring
+symbols from Γ. For a word w ∈ (Γ ∪ {t, t−1 })∗ we define |w|t±1 = |w|t + |w|t−1
+(the t±1 -length of w). Clearly, for Britton-reduced words w, w′ with w =H w′ we
+have |w|t±1 = |w′ |t±1 .
+28                           M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+                 u′           u                 u                u                u            u′′
+          a                                                                                            b
+
+                v′            v                       v                     v                v ′′
+
+              Figure 3. In the proof of Lemma 6.4 the automaton stores the
+              connecting elements, i.e. checks the rectangles.
+
+
+   We will first construct an automaton A over the unary alphabet {#}, where #
+is a fresh letter, such that
+              L(A) = {#ℓ | ∃x, y ∈ N : au′ ux u′′ =H v ′ v y v ′′ b, ℓ = |au′ ux u′′ |t±1 }.
+Moreover, the number of states of A is O(µ2 · γ). Roughly speaking, the automaton
+A verifies from left to right the existence of a van Kampen diagram of the form
+shown in Figure 1. Thereby it stores the current connecting element (an element
+from A ∪ B). By the assumptions on u and v we can write both words as u =
+u0 u1 · · · um−1 , v = v0 v1 · · · vn−1 where n and m are even, ui ∈ {t, t−1 } for i even
+and ui ∈ G for i odd, and analogously for v. Let us write u′ = up up+1 · · · um−1 ,
+u′′ = u0 u1 · · · uq−1 , v ′ = vr vr+1 · · · vn−1 , v ′′ = v0 v1 · · · vs−1 . We set p = m if u′ is
+empty and q = 0 if u′′ is empty and similarly for r and s. We will first consider the
+case that p ≡ r mod 2 and q ≡ s mod 2; other cases are just briefly sketched at the
+end of the proof.
+   The state set of A is
+                Q = {(c, i, j) | c ∈ A ∪ B, 0 ≤ i < m, 0 ≤ j < n, i ≡ j mod 2}.
+The initial state is (a, p mod m, r mod n) and the only final state is (b, q mod m, s mod n).
+Finally, A contains the following transitions for c1 , c2 ∈ A ∪ B such that c1 ui =H
+vj c2 (in case i and j are odd, this must be an identity in G since ui , vj ∈ G):
+                        #
+         • (c1 , i, j) −→ (c2 , i + 1 mod m, j + 1 mod n) if i and j are even,
+                        1
+         • (c1 , i, j) −
+                       → (c2 , i + 1 mod m, j + 1 mod n) if i and j are odd.
+The number of states of A is O(γ · µ2 ). If p ≡ r mod 2 does not hold, then we have
+to introduce a fresh initial state q0 . Assume that for instance p is odd and r is
+even. Thus up belongs to G whereas vr is t or t−1 . Then we add all transitions
+     1
+q0 −
+   → (c, p + 1 mod m, r mod n) for every c ∈ A ∪ B with aup =G c. If q ≡ s mod 2
+does not hold, then we have to add a fresh final state qf .
+   The rest of the argument is the same as in Remark 5.9, we only have to replace
+the length of words by the t±1 -length. We obtain a semilinear representation of
+L(a, u′ , u, u′′ , v ′ , v, v ′′ , b) of magnitude O(γ 2 · µ4 ).               
+
+   We now define 1-reducible tuples for HNN-extensions similar to the case of graph
+products. Again we identify tuples that can be obtained from each other by insert-
+ing/deleting 1’s at arbitrary positions.
+Definition 6.5. We define a reduction relation on tuples over BR(H) of arbitrary
+length. Take u1 , u2 , . . . , um ∈ BR(H). Then we have
+         • (u1 , u2 , . . . , ui , a, ui+1 , . . . , um ) → (u1 , . . . , ui−1 , b, ui+2 , . . . , um ) if both ui
+           and ui+1 contain t or t−1 and ui aui+1 =H b for a, b ∈ A ∪ B (a generalized
+           cancellation step),
+         • (u1 , u2 , . . . , um ) → (u1 , . . . , ui−1 , g, ui+2 , . . . , um ) if ui , ui+1 ∈ Γ and g =G
+           ui ui+1 ∈ G
+                    CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                                                            29
+
+
+If g 6= 1 then we call the last rewrite step an atom creation. A concrete sequence
+of these rewrite steps leading to the empty tuple is a reduction of (u1 , u2 , . . . , um ).
+If such a sequence exists, the tuple is called 1-reducible.
+   A reduction of a tuple (u1 , u2 , . . . , um ) can be seen as a witness for the fact
+that u1 u2 · · · um =H 1. On the other hand, u1 u2 · · · um =H 1 does not necessar-
+ily imply that u1 , u2 , . . . , um has a reduction (as seen for graph products). But
+we can show that every sequence which multiplies to 1 in H can be refined (by
+factorizing the elements of the sequence) such that the resulting refined sequence
+has a reduction. We say that the tuple (v1 , v2 , . . . , vn ) is a refinement of the tuple
+(u1 , u2 , . . . , um ) if there exist factorizations ui = ui,1 · · · ui,ki in (Γ ∪ {t, t−1 })∗ such
+that (v1 , v2 , . . . , vn ) = (u1,1 , . . . , u1,k1 , . . . , um,1 , . . . , um,km ).
+Lemma 6.6. Let m ≥ 2 and u1 , u2 , . . . , um ∈ BR(H). If u1 u2 · · · um = 1 in H,
+then there exists a 1-reducible refinement of (u1 , u2 , . . . , um ) that has length at most
+7m − 12 ≤ 7m and there is a reduction of this refinement with at most 4m − 8 atom
+creations.
+Proof. We prove the lemma by induction on m. The induction is similar to the one
+of Lemma 5.19. The case m = 2 is trivial (we must have u2 = u−1                                 1 ). If m ≥ 3
+then by Lemma 6.2 we can factorize u1 and u2 in (Γ ∪ {t, t−1 })∗ as u1 = u′1 g1 r and
+u2 = sg2 u′2 such that rs =H c ∈ A ∪ B, g1 , g2 ∈ G and u1 u2 =H u′1 gu′2 ∈ BR(H)
+for g = g1 cg2 ∈ G. The words r and s are either both empty (in which case we
+have c = 1) or r starts with some tε and s ends with t−ε .
+     By induction hypothesis, for the tuple (u′1 gu′2 , u3 , . . . , um ) there is a 1-reducible
+refinement
+                      (v1 , . . . , vk , u3,1 , . . . , u3,k3 , . . . , um,1 , . . . , um,km ),           (16)
+                                                                          Pm
+with 4(m − 1) − 8 atom creations, where k + i=3 ki ≤ 7(m − 1) − 12 and
+u′1 gu′2 = v1 · · · vk in (Γ ∪ {t, t−1 })∗ . Since g ∈ G, there exists 1 ≤ i ≤ k, such
+that vi = vi,1 gvi,2 , u′1 = v1 · · · vi−1 vi,1 and u′2 = vi,2 vi+1 · · · vk . Now we replace
+vi by vi,1 , g, vi,2 in the above refinement (16). If there exists uj,ℓ such that vi and
+uj,ℓ cancel out in a generalized cancellation step in the 1-reduction of (16) then
+there exist a, b ∈ A ∪ B such that vi,1 gvi,2 auj,ℓ = vi auj,ℓ =H b. The generalized
+cancellation replaces vi , a, uj,ℓ by b.
+     Recall that vi and uj,ℓ are both Britton-reduced. By Lemma 6.1 we can factorize
+uj,ℓ in (Γ ∪ {t, t−1 })∗ as uj,ℓ = w1 g ′ w2 such that there exist connecting elements
+a′ , b′ ∈ A ∪ B with vi,2 aw1 =H a′ , vi,1 b′ w2 =H b, and ga′ g ′ =G b′ ; see Figure 4.
+This yields the refined tuple
+ (v1 , . . . , vi−1 , vi,1 , g1 , r, s, g2 , vi,2 , vi+1 , . . . , vk , ũ3,1 , . . . , ũ3,k3 , . . . , ũm,1 , . . . , ũm,km ),
+of (u1 , u2 , . . . , um ), where ũj,ℓ = w1 , g ′P
+                                                  , w2 and ũp,q = up,q in all other cases. The
+length of this tuple is at most k + 7 + m            i=3 ki ≤ 7m − 12. The above tuple is also
+1-reducible: First, r, s is replaced by c in a generalized cancellation step. Then,
+after at most two atom creations5 we obtain the tuple
+       (v1 , . . . , vi−1 , vi,1 , g, vi,2 , vi+1 , . . . , vk , ũ3,1 , . . . , ũ3,k3 , . . . , ũm,1 , . . . , ũm,km ).
+At this point, we can basically apply the fixed reduction of (16). The generalized
+cancellation vi , a, uj,ℓ → b is replaced by the sequence
+    vi,1 , g, vi,2 , a, w1 , g ′ , w2 → vi,1 , g, a′ , g ′ , w2 → vi,1 , ga′ , g ′ , w2 → vi,1 , b′ , w2 → b
+which contains at most two atom creations. Hence, the total number of atom
+creations is at most 4 + 4(m − 1) − 8 = 4m − 8. This concludes the proof of the
+lemma.                                                                       
+   5Note that each of c, g , g can be 1, in which case the number of atom creations is smaller
+                          1 2
+than two.
+30                     M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+                         w1                     g′                   w2
+
+        a                                a′            b′                             b
+                          −1
+                         vi,2                 g −1                    −1
+                                                                     vi,1
+
+            Figure 4. The generalized cancellation step for vi and uj,ℓ =
+            w1 g ′ w2 in the proof of Lemma 6.6.
+
+     Now we can prove the next main theorem.
+Theorem 6.7. Let A, B be finite subgroups of G and let ϕ : A → B be an iso-
+morphism. If G is knapsack-semilinear, then the HNN-extension H of G (with
+respect to the isomorphism ϕ) is knapsack-semilinear as well. Moreover, we have
+KH,Σ (n, m) ≤ max{K1 , K2 } with
+                      K1 = KG,Σ (24mn, m) and K2 ≤ O(γ 2 mn4 ),
+where γ = |A|.
+Proof. We will follow the idea of the proof of Theorems 5.22 and 5.25, respectively.
+We first consider the case where every period ui is either an atom or well-behaved
+and starts with t±1 . Again we are going through the six steps. For simplicity, we
+write K instead of KG,Σ .
+Step 1. This step is carried out in the same way as in the proof of Theorem 5.22.
+Step 2. Here we can use Lemma 6.6 instead of Lemma 5.17, which yields the upper
+bound of 14m on the number of factors in our refinement of ux1 1 v1 ux2 2 v2 · · · uxmm vm
+(where powers uxi i with i ∈ N1 have been removed). The number of atom creations
+is at most 8m − 8.
+Step 3. This step is copied from the proof of Theorem 5.22. We obtain for the
+variables xi with i ∈ Na the semilinear constraint (xi )i∈Na ∈ Sa where Sa is of
+magnitude at most K(8m||e||, m).
+Step 4. This step is analogous to the proof of Theorem 5.25. The only difference
+is that the 2-dimensional knapsack instances are produced by the generalized can-
+cellation steps from Definition 6.5. We arrive at a statement of the following form:
+there exist integers xi,j ≥ 0 (i ∈ Na , j ∈ Ki ) such that the following hold:
+(a) xi = c′i + j∈Ki xi,j for i ∈ Na ,
+                  P
+               x
+(b) ai,j pi,j ui i,j si,j =H s−1    −1 xk,ℓ −1
+                              k,ℓ (uk )    pk,ℓ bi,j for all (i, j, k, ℓ) ∈ M ,
+(c) (xi )i∈Na ∈ Sa .
+Here, Ki ⊆ [1, ki ] is a set of size at most ki ≤ 14m, M is a matching relation (with
+(i, j, k, ℓ) ∈ M if and only if (k, ℓ, i, j) ∈ M ), ai,j , bi,j ∈ A ∪ B, and c′i ≤ O(m · λ(e)).
+Every word pi,j is a suffix of ui,j and every si,j is a prefix of ui,j . In particular, pi,j
+and si,j have length at most λ(e).
+Step 5. The remaining two-dimensional knapsack equations from point (b) are
+eliminated with Lemma 6.4. Every equation
+                                   x
+                         ai,j pi,j ui i,j si,j =H s−1    −1 xk,ℓ −1
+                                                   k,ℓ (uk )    pk,ℓ bi,j
+can be nondeterministically replaced by a semilinear constraint for xi,j and xk,ℓ of
+magnitude O(γ 2 λ(e)4 ). By substituting these semilinear constraints in the above
+equations (a) for the xi (as we did in the proof of Theorem 5.22), we obtain for the
+variables xi (i ∈ Na ) a semilinear constraint of magnitude O(m · γ 2 · λ(e)4 ). This
+             CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                        31
+
+
+leads to a semilinear representation for solH (e) of magnitude at most max{K1 , K2 },
+where
+                    K1 = K(8m||e||, m) and K2 ≤ O(m · γ 2 · ||e||4 ).
+Step 6. For the preprocessing we can apply Lemma 6.3 to each period ui . Hence,
+we just have to replace ||e|| by 3||e|| in the above bounds, which yields the statement
+of the theorem.                                                                      
+  The following result is obtained analogously to Theorem 5.28.
+Theorem 6.8. The knapsack problem for hG, t | t−1 at = ϕ(a) (a ∈ A)i (with A
+finite) is nondeterministically polynomial time reducible to the knapsack problem
+for G.
+  The consequence of Theorem 6.8 that solvability of the knapsack problem in
+NP is passed on from G to H was shown using different methods in the extended
+abstract [41].
+6.2. Amalgamated products preserve knapsack semilinearity. Using our
+results for free products and HNN-extensions, we can easily deal with amalgamated
+products. For i ∈ {1, 2}, let Gi = hΣi | Ri i be a finitely generated group with
+Σ1 ∩ Σ2 = ∅ and let A be a finite group that is embedded in each Gi via the
+injective morphism ϕi : A → Gi for i ∈ {1, 2}. Then, the amalgamated product with
+identified subgroup A is the group
+                  hΣ1 ⊎ Σ2 | R1 ⊎ R2 ∪ {ϕ1 (a) = ϕ2 (a) | a ∈ A}i.
+This group is usually written as
+                         hG1 ∗ G2 | ϕ1 (a) = ϕ2 (a) (a ∈ A)i.
+or just G1 ∗A G2 . Note that the amalgamated product depends on the morphisms
+ϕi , although they are omitted in the notation G1 ∗A G2 .
+    From Theorem 6.7, we can easily deduce a similar result for amalgamated prod-
+ucts:
+Theorem 6.9. Let G1 and G2 be finitely generated groups with a common subgroup
+A. Let K(n, m) be the pointwise maximum of the functions KG1 ,Σ1 and KG2 ,Σ2 .
+Furthermore, let γ = |A| and let G be the amalgamated product G1 ∗A G2 . Then
+with Σ = Σ1 ∪ Σ2 we have KG,Σ (n, m) ≤ max{K1 , K2 , K3 } where
+         K1 = KG,Σ (144m2 n, m), K2 ≤ O(m5 n4 ) and K3 ≤ O(m · γ 2 · n4 ).
+Proof. For the proof we will make use of the previous theorem and Theorem 5.25
+for free products.
+   It is well-known [44, Theorem 2.6, p. 187] that G1 ∗A G2 can be embedded into
+the HNN-extension
+                   H = hG1 ∗ G2 , t | t−1 ϕ1 (a)t = ϕ2 (a) (a ∈ A)i
+by the morphism Φ : G1 ∗A G2 → H with
+                                 (
+                                  t−1 gt if g ∈ G1
+                          Φ(g) =
+                                  g      if g ∈ G2 .
+Obviously we have KG,Σ (n, m) ≤ KH,Σ (n, m). Hence we can calculate the bound
+by first getting the bound for the free product G1 ∗ G2 and then proceeding with
+the HNN-extension. Theorem 5.25 tells us that J(n, m) = KG1 ∗G2 ,Σ (n, m) ≤
+max{K′1 , K′2 }, where K′1 = K(6mn, m) and K′2 ≤ O(mn4 ). To obtain KH,Σ (n, m),
+we make use of Theorem 6.7. We have KH,Σ (n, m) ≤ max{J1 , J2 }, where J1 =
+J(24mn, m) and J2 ≤ O(γ 2 mn4 ). Since the function J(n, m) appears in J1 , we
+have to substitute by what we calculated before. More precisely we have to make
+32                     M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+the substitution n 7→ 24mn for the values K′1 and K′2 . This yields KH,Σ (n, m) ≤
+max{K1 , K2 , K3 }, where
+                                    K1 = K(144m2 n, m),
+                                    K2 ≤ O(m5 n4 ),
+                                    K3 = J2 ≤ O(γ 2 mn4 ).
+This finishes the proof of the theorem.                                                     
+   From Theorems 5.28 and 6.8 and the above embedding of G1 ∗A G2 in hG1 ∗G2 , t |
+t−1 ϕ1 (a)t = ϕ2 (a) (a ∈ A)i we obtain:
+Theorem 6.10. The knapsack problem for G1 ∗A G2 (with A finite) is nondeter-
+ministically polynomial time reducible to the knapsack problems for G1 and G2 .
+  As before, the consequence of Theorem 6.10 that solvability of the knapsack
+problem in NP is passed on from Gi for i = 1, 2 to the amalgamated product
+G1 ∗A G2 was shown using different methods in the extended abstract [41].
+
+                    7. Part 3: Knapsack in finite extensions
+     We say that H is a finite extension of G if G is a finite-index subgroup of H.
+Theorem 7.1. Let G be a finitely generated group with a finite symmetric gener-
+ating set Σ and let H be a finite extension of G (hence, it is finitely generated too)
+with the finite symmetric generating set Σ′ = Σ ∪ (C \ {1}) ∪ (C \ {1})−1 , where
+C is a set of coset representatives with 1 ∈ C. Let ℓ = |C| be the index of G in
+H. If G is knapsack-semilinear then H is knapsack-semilinear too and we have the
+bounds
+                      EH,Σ′ (n, m) ≤         ℓ · EG,Σ (O(ℓ2 n), m) + 2ℓ,                  (17)
+                                                             2
+                      K   H,Σ′   (n, m) ≤    ℓ · KG,Σ (O(ℓ n), m) + 2ℓ.                   (18)
+Proof. Suppose we are given an exponent expression
+                                     e = ux1 1 v1 · · · uxmm vm                           (19)
+in H where the ui and vi are words over Σ′ . Let n be the length of e. As a first
+step, we guess which of the variables xi assume a value smaller than ℓ. For those
+that do, we can guess the value and merge the resulting power with the vi on the
+right. This increases the size of the instance by at most a factor of ℓ, which is a
+constant. At the end we will compensate this by applying the substitution n 7→ ℓn.
+Hence, from now on, we only look for H-solutions σ to e = 1 where σ(xi ) ≥ ℓ for
+1 ≤ i ≤ m.
+   Next we guess the cosets of the prefixes of ux1 1 v1 · · · um   xm
+                                                                      vm , i.e., we guess coset
+representatives c1 , d1 , . . . , cm−1 , dm−1 , cm ∈ C and restrict to H-solutions σ to e = 1
+              σ(x )          σ(x )                 σ(x )       σ(x )
+such that u1 1 v1 · · · ui i ∈ Gci and u1 1 v1 · · · ui i vi ∈ Gdi for 1 ≤ i ≤ m.
+Here, we set dm = 1. Equivalently, we only consider H-solutions σ where di−1 uxi i c−1       i
+and ci vi d−1
+           i   all belong to G for 1 ≤ i ≤ m. Here, we set d0 = 1. We can verify in
+polynomial time that all ci vi di−1 (1 ≤ i ≤ m) belong to G. It remains to describe
+the set of all H-solutions σ for e = 1 that fulfill the following constraints for all
+1 ≤ i ≤ m:
+                                      σ(x )
+                                di−1 ui i c−1
+                                            i    ∈ G and σ(xi ) ≥ ℓ.                       (20)
+For 1 ≤ i ≤ m consider the function fi : C → C, which is defined so that for each
+c ∈ C, fi (c) is the unique element d ∈ C with cui d−1 ∈ G. Note that we can
+compute fi in polynomial time if G and H are fixed groups (all we need for this is a
+table that specifies for each c ∈ C and a ∈ Σ′ the coset representative of ca; this is a
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                               33
+
+
+fixed table that does not depend on the input). Then there are numbers 1 ≤ ki ≤ ℓ
+such that fiℓ+ki (di−1 ) = fiℓ (di−1 ). With this notation, we have di−1 uzi c−1    i    ∈ G if
+and only if fiz (di−1 ) = ci for all z ∈ N.
+   We may assume that there is a z ≥ ℓ with fiz (di−1 ) = ci ; otherwise, there is
+no H-solution for e = 1 fulfilling the above constraints (20) and we have a bad
+guess. Therefore, there is a 0 ≤ ri < ki such that fiℓ+ri (di−1 ) = ci . This means
+that for all z ≥ ℓ, we have di−1 uzi c−1i  ∈ G if and only if fiz (di−1 ) = ci if and only if
+z = ℓ + ki ·y + ri for some y ≥ 0. This allows us to construct an exponent expression
+over G.
+                                                               ki −1          ri −1
+   Let ei = fiℓ (di−1 ). Then, the words di−1 uℓi e−1  i , ei ui ei , and ei ui ci    all repre-
+sent elements of G. Moreover, for all yi ≥ 0 and zi = ℓ + ki · yi + ri (1 ≤ i ≤ m),
+we have
+                                   m
+                                     di−1 uℓ+ki ·yi +ri −1
+                                   Y
+           uz11 v1 · · · uzmm vm =         i           ci ci vi d−1
+                                                                 i
+                                  i=1
+                                  m
+                                  Y
+                                                         ki −1 yi    ri −1
+                              =       (di−1 uℓi e−1                              −1
+                                                 i )(ei ui ei ) (ei ui ci ci vi di )
+                                  i=1
+and each word in parentheses represents an element of G. Hence, we can define the
+exponent expression
+                       Ym
+                                             ki −1 xi    ri    −1
+                    ′
+                  e =     (di−1 uℓi e−1
+                                     i )(ei ui ei ) (ei ui vi di )
+                            i=1
+over the group G. From the above consideration we obtain
+              solH (e) ∩ {σ : Xe → H | σ satisfies the constraints (20)} =
+             {σ | σ(xi ) = ki · σ ′ (xi ) + (ℓ + ri ) for some σ ′ ∈ solG (e′ )}.          (21)
+The set in (21) is semilinear by assumption and since all ki and ri are bounded
+by ℓ, we can bound its magnitude by ℓ · mag(solG (e′ )) + 2ℓ. Moreover, we have
+deg(e′ ) = deg(e). It remains to bound ||e′ ||. For this, we first have to rewrite the
+                         ki −1          ri    −1
+words di−1 uℓi e−1
+                 i , ei ui ei , and ei ui vi di  (which represent elements of G) into
+words over Σ. This increases the length of the words only by a constant factor:
+for every c ∈ C and every generator a ∈ Σ′ there exists a fixed word wc,a ∈ Σ∗
+and dc,a ∈ C such that ca = wc,a dc,a holds in H. After this rewriting we have
+||e′ || ≤ O(ℓn), which implies mag(solG (e′ )) ≤ EG,Σ (O(ℓn), m). This yields the bound
+ℓ · EG,Σ (O(ℓn), m) + 2ℓ for the magnitude of the semilinear set in (21). Applying
+the substitution n 7→ ℓn from the first step finally yields (17). The corresponding
+bound (18) for knapsack expressions can be shown in the same way: Note that in
+the above transformation of e into e′ we do not duplicate variables.                  
+  From the above proof we also obtain the following result (similarly to Theo-
+rem 5.28).
+Theorem 7.2. The knapsack problem for a finite extension of a group G is non-
+deterministically polynomial time reducible to the knapsack problem for G.
+   The consequence of Theorem 7.2 that solvability of the knapsack problem in NP
+is passed on from G to finite extensions of G has also appeared in the extended
+abstract [41].
+
+                                        8. Future work
+   In [21] it was shown that the class of knapsack-semilinear groups is also closed
+under restricted wreath products. It remains to bound the function KG≀H (n, m)
+in terms of the functions KG (n, m) and KH (n, m). Looking into the proof in [21]
+34                     M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+reveals that the Presburger formula that describes the solution set for a knapsack
+equation over G≀H involves a quantifier alternation. One therefore has to investigate
+to what extent quantifier alternations blow-up the magnitude of semilinear sets.
+Acknowledgement. The first and second author were supported by the DFG
+research project LO 748/12-1.
+
+
+                                       References
+ [1] Sergei I Adian. The Burnside problem and related topics. Russian Mathematical Surveys,
+     65(5):805–855, 2010.
+ [2] Reg Allenby and Robert John Gregorac. On locally extended residually finite groups. In
+     Conference on Group Theory (Univ. Wisconsin-Parkside, Kenosha, Wis., 1972), number
+     319 in Lecture Notes in Mathematics, pages 9–17. Springer, Berlin, 1973.
+ [3] László Babai, Richard Beals, James Cai, Gábor Ivanyos, and Eugene Luks. Multiplica-
+     tive equations over commuting matrices. In Proceedings of SODA 1996, pages 498–507.
+     ACM/SIAM, 1996.
+ [4] Simon Beier, Markus Holzer, and Martin Kutrib. On the descriptional complexity of opera-
+     tions on semilinear sets. In Proceedings of the 15th International Conference on Automata
+     and Formal Languages, AFL 2017, volume 252 of EPTCS, pages 41–55, 2017.
+ [5] Pascal Bergsträßer, Moses Ganardi, and Georg Zetzsche. A characterization of wreath prod-
+     ucts where knapsack is decidable. In Proceedings of the 38th International Symposium on
+     Theoretical Aspects of Computer Science, STACS 2021, volume 187 of LIPIcs, pages 11:1–
+     11:17. Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2021.
+ [6] Alberto Bertoni, Giancarlo Mauri, and Nicoletta Sabadini. Membership problems for regular
+     and context free trace languages. Information and Computation, 82:135–150, 1989.
+ [7] Vladimir Nikolaevich Bezverkhnii. On the intersection subgroups HNN-groups. Fundamen-
+     talnaya i Prikladnaya Matematika, 4(1):199–222, 1998.
+ [8] Ronald V. Book and Friedrich Otto. String–Rewriting Systems. Springer, 1993.
+ [9] Dmitry Chistikov and Christoph Haase. The Taming of the Semi-Linear Set. In Proceedings
+     of the 43rd International Colloquium on Automata, Languages, and Programming, ICALP
+     2016, volume 55 of Leibniz International Proceedings in Informatics (LIPIcs), pages 128:1–
+     128:13. Schloss Dagstuhl–Leibniz-Zentrum für Informatik, 2016.
+[10] Max Dehn. Über unendliche diskontinuierliche Gruppen. Mathematische Annalen, 71:116–
+     144, 1911. In German.
+[11] Warren Dicks and Martin J. Dunwoody. Groups Acting on Graphs. Cambridge University
+     Press, 1989.
+[12] Voker Diekert. Combinatorics on Traces, volume 454 of Lecture Notes in Computer Science.
+     Springer, 1990.
+[13] Voker Diekert and Grzegorz Rozenberg, editors. The Book of Traces. World Scientific, 1995.
+[14] Volker Diekert and Markus Lohrey. Word equations over graph products. International Jour-
+     nal of Algebra and Computation, 18(3):493–533, 2008.
+[15] Carl Droms. A complex for right-angled Coxeter groups. Proceedings of the American Math-
+     ematical Society, 131(8):2305–2311, 2003.
+[16] Fedor Anatolievich Dudkin and Alexander Victorovich Treyer. Knapsack problem for
+     Baumslag–Solitar groups. Siberian Journal of Pure and Applied Mathematics, 18(4):43–55,
+     2018.
+[17] Friedrich Eisenbrand and Gennady Shmonin. Carathéodory bounds for integer cones. Oper-
+     ations Research Letters, 34(5):564–568, 2006.
+[18] Michael Elberfeld, Andreas Jakoby, and Till Tantau. Algorithmic meta theorems for circuit
+     classes of constant and logarithmic depth. Electronic Colloquium on Computational Com-
+     plexity (ECCC), 18:128, 2011.
+[19] Michael Figelius, Moses Ganardi, Markus Lohrey, and Georg Zetzsche. The complexity of
+     knapsack problems in wreath products. In Proceedings of the 47th International Colloquium
+     on Automata, Languages, and Programming, ICALP 2020, volume 168 of LIPIcs, pages
+     126:1–126:18. Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2020.
+[20] Elizaveta Frenkel, Andrey Nikolaev, and Alexander Ushakov. Knapsack problems in products
+     of groups. Journal of Symbolic Computation, 74:96–108, 2016.
+[21] Moses Ganardi, Daniel König, Markus Lohrey, and Georg Zetzsche. Knapsack problems for
+     wreath products. In Proceedings of 35th Symposium on Theoretical Aspects of Computer
+     Science, STACS 2018, volume 96 of LIPIcs, pages 32:1–32:13. Schloss Dagstuhl - Leibniz-
+     Zentrum für Informatik, 2018.
+              CLOSURE PROPERTIES OF KNAPSACK SEMILINEAR GROUPS                               35
+
+
+[22] Seymour Ginsburg and Edwin Henry Spanier. Semigroups, Presburger formulas and lan-
+     guages. Pacific Journal of Mathematics, 16(2):285–296, 1966.
+[23] Elisabeth R. Green. Graph Products of Groups. PhD thesis, The University of Leeds, 1990.
+[24] Christoph Haase. On the complexity of model checking counter automata. PhD thesis, Uni-
+     versity of Oxford, St Catherine’s College, 2011.
+[25] Niko Haubold and Markus Lohrey. Compressed word problems in HNN-extensions and amal-
+     gamated products. Theory of Computing Systems, 49(2):283–305, 2011.
+[26] Niko Haubold, Markus Lohrey, and Christian Mathissen. Compressed decision problems for
+     graph products of groups and applications to (outer) automorphism groups. International
+     Journal of Algebra and Computation, 22(8), 2013.
+[27] Graham Higman, Bernhard H. Neumann, and Hanna Neumann. Embedding theorems for
+     groups. Journal of the London Mathematical Society. Second Series, 24:247–254, 1949.
+[28] Derek F. Holt, Markus Lohrey, and Saul Schleimer. Compressed decision problems in hyper-
+     bolic groups. In Proceedings of the 36th International Symposium on Theoretical Aspects of
+     Computer Science, STACS 2019, volume 126 of LIPIcs, pages 37:1–37:16. Schloss Dagstuhl
+     - Leibniz-Zentrum für Informatik, 2019.
+[29] Gérard Huet. Confluent reductions: Abstract properties and applications to term rewriting
+     systems: Abstract properties and applications to term rewriting systems. Journal of the
+     ACM, 27(4):797–821, 1980.
+[30] Mark Kambites, Pedro V. Silva, and Benjamin Steinberg. On the rational subset problem for
+     groups. Journal of Algebra, 309(2):622–639, 2007.
+[31] Ilya Kapovich, Richard Weidmann, and Alexei Myasnikov. Foldings, graphs of groups and
+     the membership problem. International Journal of Algebra and Computation, 15(1):95–128,
+     2005.
+[32] Richard M. Karp. Reducibility among combinatorial problems. In R. E. Miller and J. W.
+     Thatcher, editors, Complexity of Computer Computations, pages 85–103. Plenum Press, New
+     York, 1972.
+[33] Abraham Karrass and Donald Solitar. The subgroups of a free product of two groups with an
+     amalgamated subgroup. Transactions of the American Mathematical Society, 150:227–255,
+     1970.
+[34] Abraham Karrass and Donald Solitar. Subgroups of HNN groups and groups with one defining
+     relation. Canadian Journal of Mathematics, 23:627–643, 1971.
+[35] Daniel König, Markus Lohrey, and Georg Zetzsche. Knapsack and subset sum problems in
+     nilpotent, polycyclic, and co-context-free groups. In Algebra and Computer Science, volume
+     677 of Contemporary Mathematics, pages 138–153. American Mathematical Society, 2016.
+[36] Dietrich Kuske and Markus Lohrey. Logical aspects of Cayley-graphs: the monoid case.
+     International Journal of Algebra and Computation, 16(2):307–340, 2006.
+[37] Jörg Lehnert and Pascal Schweitzer. The co-word problem for the Higman-Thompson group
+     is context-free. Bulletin of the London Mathematical Society, 39(2):235–241, 2007.
+[38] Markus Lohrey. Knapsack in hyperbolic groups. Journal of Algebra, 2019.
+[39] Markus Lohrey and Géraud Sénizergues. Theories of HNN-extensions and amalgamated prod-
+     ucts. In Proceedings of the 33st International Colloquium on Automata, Languages and Pro-
+     gramming, ICALP 2006, volume 4052 of Lecture Notes in Computer Science, pages 681–692.
+     Springer, 2006.
+[40] Markus Lohrey and Géraud Sénizergues. Rational subsets in HNN-extensions and amalga-
+     mated products. International Journal of Algebra and Computation, 18(1):111–163, 2008.
+[41] Markus Lohrey and Georg Zetzsche. Knapsack in graph groups, HNN-extensions and amal-
+     gamated products. In Proceedings of the 33rd International Symposium on Theoretical As-
+     pects of Computer Science, STACS 2016, volume 47 of Leibniz International Proceedings in
+     Informatics (LIPIcs), pages 50:1–50:14, Dagstuhl, Germany, 2016. Schloss Dagstuhl–Leibniz-
+     Zentrum für Informatik.
+[42] Markus Lohrey and Georg Zetzsche. Knapsack in graph groups. Theory of Computing Sys-
+     tems, 62(1):192–246, 2018.
+[43] Markus Lohrey and Georg Zetzsche. Knapsack and the power word problem in solvable
+     baumslag-solitar groups. In Proceedings of the 45th International Symposium on Mathemati-
+     cal Foundations of Computer Science, MFCS 2020, volume 170 of LIPIcs, pages 67:1–67:15.
+     Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2020.
+[44] Roger Lyndon and Paul Schupp. Combinatorial Group Theory. Springer, 1977.
+[45] Vasileios Metaftsis and Evagelos Raptis. Subgroup separability of graphs of abelian groups.
+     Proceedings of the American Mathematical Society, 132(7):1873–1884, 2004.
+[46] Alexei Mishchenko and Alexander Treier. Knapsack problem for nilpotent groups. Groups
+     Complexity Cryptology, 9(1):87–98, 2017.
+36                      M. FIGELIUS, M. LOHREY, AND G. ZETZSCHE
+
+
+[47] Alexei Myasnikov, Andrey Nikolaev, and Alexander Ushakov. Knapsack problems in groups.
+     Mathematics of Computation, 84:987–1016, 2015.
+[48] John Robert Stallings. Group Theory and Three-Dimensional Manifolds. Number 4 in Yale
+     Mathematical Monographs. Yale University Press, 1971.
+[49] Anthony Widjaja To. Unary finite automata vs. arithmetic progressions. Inf. Process. Lett.,
+     109(17):1010–1014, 2009.
+    Email address: figelius@eti.uni-siegen.de
+
+     Email address: lohrey@eti.uni-siegen.de
+
+     Email address: georg@mpi-sws.org
+
+     (Michael Figelius, Markus Lohrey) Universität Siegen, Germany
+
+  (Georg Zetzsche) Max Planck Institute for Software Systems, Kaiserslautern, Ger-
+many
+

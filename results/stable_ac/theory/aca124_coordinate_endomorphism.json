@@ -1,0 +1,3395 @@
+{
+  "move": {
+    "atomic_stable_ac_cost": "witness-dependent normal-area replay plus Lemma 11; no effective input-visible bound supplied",
+    "generator": "y",
+    "image": "xyyXY",
+    "mechanism": "quotient-isolator elimination",
+    "nonautomorphism_certificate": {
+      "basis_commutator_length": 4,
+      "commutator_image_length": 10,
+      "cyclically_reduced_commutator_image": "xyyXYXyxYY",
+      "verified": true
+    }
+  },
+  "payload_sha256": "bce48751a4e7b6475533d5f83b419a8a711e46893597b2c1769ae78099c3164d",
+  "records": [
+    {
+      "floor_delta": 36,
+      "name": "aca_0",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "target": [
+        "xYYXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxxyyXYX"
+      ],
+      "target_floor": 54,
+      "target_representative": [
+        "YYXXYxyXyxyxx",
+        "YYXyxxyXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_1",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYxx",
+        "yxYYXyxYYXyxYYxyyXyXYX"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXyyxYXyyxYxxyX",
+        "YYXyyxyxYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_2",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYx",
+        "yxYYXyxYYXyxYYXyyXYxyyXYxyyXYxx"
+      ],
+      "target_floor": 44,
+      "target_representative": [
+        "YYXXYXYxyXyxx",
+        "YYXyxxYXyxxYXyxxyXXYxyXXYxyXXYx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_3",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "target": [
+        "xYYXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYxyyXYxxyyXYX"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXYxyXyxyxx",
+        "YYXyxxYXXYxyXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_4",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYx",
+        "yxYYXyxYYxyyXYxxyyXyXYXyxYYXX"
+      ],
+      "target_floor": 46,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxyX",
+        "YYXyyxYXXyyxyxYxyXYYxxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_5",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYX",
+        "yxYYXyxYYXyxYYxyyXyXYxxyyXYxxyyXYx"
+      ],
+      "target_floor": 51,
+      "target_representative": [
+        "YYXXXyyxYXyyxYXyX",
+        "YYXyyxyxYXXyyxYXXyyxYXyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 20,
+      "name": "aca_6",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYxxxyyXYx",
+        "xYYXXXXXyyXYxyxY"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXXXyyXYxyxYx",
+        "YYXyxYYXXyyXYxxxyyXYxyx"
+      ]
+    },
+    {
+      "floor_delta": 30,
+      "name": "aca_7",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYxYYXXyxYYXX"
+      ],
+      "target_floor": 46,
+      "target_representative": [
+        "YYXXyyxYXyyxYxxyX",
+        "YYxyXYYxyXYYxyXYXYYxxyXYYxxyX"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_8",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYx",
+        "yxYYXyxYYXXyxYYXyyXYxyyXYx"
+      ],
+      "target_floor": 41,
+      "target_representative": [
+        "YXXYxYXXyxxyXyx",
+        "YYxxyXYxxyXyxYXXyxYXXYxxyX"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_9",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXXyyXYxyyXYX"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyxYYXyxYYXXyyXYxyyXYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_10",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXXyxYYXyyXYxyyXYX"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYXyxYYXyxYYXXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_11",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyyXYxxyyXYx"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_12",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXXyxYYxyyXYxyyXYX"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxxyyXYxyyXYxyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 18,
+      "name": "aca_13",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "target": [
+        "xYYXyxYYXXXyxYYXyxY",
+        "xYYXXXyyXYxxyxY"
+      ],
+      "target_floor": 34,
+      "target_representative": [
+        "YYXXXyyXYxxyxYx",
+        "YYXyxYYXXXyxYYXyxYx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_14",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYx",
+        "yxYYXyxYYXyxYYXyyXYxyyXYxx"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXYXYxyXyxx",
+        "YYXyxxYXyxxyXXYxyXXYxyXXYx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_15",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 20,
+      "name": "aca_16",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "xYYXyyXYxxxyyXYXyxY"
+      ],
+      "target_floor": 37,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxyxYXyXYYxxxyX"
+      ]
+    },
+    {
+      "floor_delta": 30,
+      "name": "aca_17",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "xYYXXXXyxYxY",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 47,
+      "target_representative": [
+        "YYXXXXyxYxYx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_18",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 34,
+      "name": "aca_19",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 51,
+      "target_representative": [
+        "YYXXYxyXyxxyXXYx",
+        "YXyxxYXyxxYXyxxYXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_20",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_21",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 53,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_22",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 53,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_23",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 53,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_24",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "xYYXyxYYXyxYYXXXyxYYXXyxY"
+      ],
+      "target_floor": 43,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXYXyxxYYXyxxxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_25",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 53,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_26",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYx",
+        "yxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXXyxYxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_27",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_28",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXXyxYxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_29",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYx",
+        "yxYYXyxYYxxyyXYxxyyXyXYX"
+      ],
+      "target_floor": 41,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxyX",
+        "YYXXyyxYXXyyxyxYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 34,
+      "name": "aca_30",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYxyyXYXyyXYX"
+      ],
+      "target_floor": 51,
+      "target_representative": [
+        "YYXXYxyXyxxYXyxx",
+        "YXyxxYXyxxYXyxxYXyxxYXyxxyXXYxYXXYx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_31",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXyXYx"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXyyxYXyyxYxxyX",
+        "YYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYX"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_32",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxxyyXYx"
+      ],
+      "target_floor": 49,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 20,
+      "name": "aca_33",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "source_floor": 17,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyyXyXYxxyyXYx"
+      ],
+      "target_floor": 37,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXyXYxxyyXYxyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_34",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 58,
+      "target_representative": [
+        "YYXXXXyxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_35",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYx",
+        "yxYYXyxYYXyxYYxxyyXYxxyyXyXYX"
+      ],
+      "target_floor": 46,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxyX",
+        "YYXXyyxYXXyyxyxYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_36",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "target": [
+        "yxYYXyxYYXXyxYYXyxYYXXyyXYX",
+        "yxYYXyxYYXyyXYxyxYYXXXX"
+      ],
+      "target_floor": 50,
+      "target_representative": [
+        "YYXyXYxyyxYYXyxYYXyxxxx",
+        "YYXyXYxyyXYxyyXXYxyyXYxyyXX"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_37",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXYxyyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_38",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 38,
+      "name": "aca_39",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "xYYXXXXyxYxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 57,
+      "target_representative": [
+        "YYXXXXyxYxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_40",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 59,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 42,
+      "name": "aca_41",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 61,
+      "target_representative": [
+        "YYXXYxyXyxxyXXYx",
+        "YXyxxYXyxxYXyxxYXyxxYXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_42",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 59,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 22,
+      "name": "aca_43",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYxx",
+        "yxYYXyxYYXyyXYxyyXYXyyXYxx"
+      ],
+      "target_floor": 41,
+      "target_representative": [
+        "YYXXXyxYxYYxxyx",
+        "YYXyyXYxyyXYXyyXYxxyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_44",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXXyyXyXYx"
+      ],
+      "target_floor": 51,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXXyyxYXyyxYXyyxYXyyxYXyyxYxyXYX"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_45",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "target": [
+        "yxYYXXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXXXXyxYYx"
+      ],
+      "target_floor": 45,
+      "target_representative": [
+        "YYXXYxYXyxxyyXyxx",
+        "YYYYXyxxyXyxxYXyxxYXyxxYXyxx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_46",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_47",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_48",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXXyyXYxxx"
+      ],
+      "target_floor": 45,
+      "target_representative": [
+        "YYXXXyyXYxyxYYxyx",
+        "YYXyxYYXyxYYXyxYYXXyyXYxxxyx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_49",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_50",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 63,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_51",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 59,
+      "target_representative": [
+        "YYXXXyxYxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_52",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 59,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_53",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "target": [
+        "xYYXXyyXYxyxY",
+        "yxYYXyxYYXyyXYxyyXyXYxxyyXYxx"
+      ],
+      "target_floor": 42,
+      "target_representative": [
+        "YYXXYxyXyxyxx",
+        "YYXyxyxxYXyxxyXXYxyXXYxYYXyxx"
+      ]
+    },
+    {
+      "floor_delta": 20,
+      "name": "aca_54",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyyXYxx",
+        "yxYYXyxYYxxyyXYXXXXX"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXXXyyxYXyyxYxxyX",
+        "YYXXyyxYxxxxxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_55",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYXyxY",
+        "yxYYXyxYYxyyXYxyxYYXXyyXYxyyXYX"
+      ],
+      "target_floor": 45,
+      "target_representative": [
+        "YYXXXyyXYXyxYx",
+        "YYXyyXYxyyXYxyxYYXyxYYxxyyXYXyx"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_56",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXXyxYYXyxYYxxyyXYXXX"
+      ],
+      "target_floor": 47,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXXyyxYxxxyXYYxyXYYxxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_57",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "source_floor": 19,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXXyxYYXyxYYxyyXYXXXX"
+      ],
+      "target_floor": 47,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxYxxxxyXYYxyXYYxxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 48,
+      "name": "aca_58",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 68,
+      "target_representative": [
+        "YYXXXXyxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_59",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYxxxxxx"
+      ],
+      "target_floor": 44,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXXyx",
+        "YYXyxYYXyxYYXyxYYxxxxxxyx"
+      ]
+    },
+    {
+      "floor_delta": 30,
+      "name": "aca_60",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXXyyXYxxx"
+      ],
+      "target_floor": 50,
+      "target_representative": [
+        "YYXXXyyXYxyxYYxyx",
+        "YYXyxYYXyxYYXyxYYXyxYYXXyyXYxxxyx"
+      ]
+    },
+    {
+      "floor_delta": 30,
+      "name": "aca_61",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "target": [
+        "yxYYXXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYx"
+      ],
+      "target_floor": 50,
+      "target_representative": [
+        "YYXXYxYXyxxyyXyxx",
+        "YYYYXyxxyXyxxYXyxxYXyxxYXyxxYXyxx"
+      ]
+    },
+    {
+      "floor_delta": 46,
+      "name": "aca_62",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "xYYXXXXyxYxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 67,
+      "target_representative": [
+        "YYXXXXyxYxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 48,
+      "name": "aca_63",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 69,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 50,
+      "name": "aca_64",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 71,
+      "target_representative": [
+        "YYXXYxyXyxxyXXYx",
+        "YXyxxYXyxxYXyxxYXyxxYXyxxYXXYxyXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 48,
+      "name": "aca_65",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 69,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_66",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_67",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYYxyXYYxyXYYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_68",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_69",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_70",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_71",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "target": [
+        "yxYYXXXyyXyXYxx",
+        "yxYYXyxYYXyxYYxyyXYxyyXYXXyyXYx"
+      ],
+      "target_floor": 46,
+      "target_representative": [
+        "YYXXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYXyxYYxxyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 26,
+      "name": "aca_72",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYxx",
+        "yxYYXyxYYXyxYYxyyXYxyyXYXXyxYYx"
+      ],
+      "target_floor": 46,
+      "target_representative": [
+        "YYXXXyxYxYYxxyx",
+        "YYXyyXYxyyXYxyyXYXyyXYxxyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 52,
+      "name": "aca_73",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 73,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 48,
+      "name": "aca_74",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 69,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 34,
+      "name": "aca_75",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYx"
+      ],
+      "target_floor": 55,
+      "target_representative": [
+        "YYXXXyyXYxyxYYxyx",
+        "YYXyxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYxyx"
+      ]
+    },
+    {
+      "floor_delta": 34,
+      "name": "aca_76",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXyyXYxxx"
+      ],
+      "target_floor": 55,
+      "target_representative": [
+        "YYXXXyyXYxyxYYxyx",
+        "YYXyxYYXyxYYXyxYYXyxYYXyxYYXXyyXYxxxyx"
+      ]
+    },
+    {
+      "floor_delta": 34,
+      "name": "aca_77",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "target": [
+        "yxYYXXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYx"
+      ],
+      "target_floor": 55,
+      "target_representative": [
+        "YYXXYxYXyxxyyXyxx",
+        "YYYYXyxxyXyxxYXyxxYXyxxYXyxxYXyxxYXyxx"
+      ]
+    },
+    {
+      "floor_delta": 44,
+      "name": "aca_78",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "target": [
+        "yxYYXyxYYXXyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXyXYxxyyXYXX"
+      ],
+      "target_floor": 65,
+      "target_representative": [
+        "YYXXYxyXyxxYXyxx",
+        "YYXyxyxxyXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 22,
+      "name": "aca_79",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxyyXYxx",
+        "yxYYXXXXXyyXYxxyxYYx"
+      ],
+      "target_floor": 43,
+      "target_representative": [
+        "YYXXXXXyyXYxxyxYYxyx",
+        "YYXyxYYXXXyyXYxyyXYxxyx"
+      ]
+    },
+    {
+      "floor_delta": 20,
+      "name": "aca_80",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "target": [
+        "xYYXXXXyyXYxxyxY",
+        "yxYYXXyxYxYYXyyXYxxyyXYXX"
+      ],
+      "target_floor": 41,
+      "target_representative": [
+        "YYXXXXyyXYxxyxYx",
+        "YYXyyXYxxyyXYXXyxYYXXyxYx"
+      ]
+    },
+    {
+      "floor_delta": 56,
+      "name": "aca_81",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 78,
+      "target_representative": [
+        "YYXXXXyxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_82",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "target": [
+        "yxYYXyxYYXyxYYXXXXXyyXYxyyXYx",
+        "yxYYXyxYYXyyXYxxxyyXYxyyXYxyxYYXX"
+      ],
+      "target_floor": 62,
+      "target_representative": [
+        "YYXXXXXyyxYXyyxYXyyxYxyXYYxyX",
+        "YYXyyxYXyyxYXXyyxYxyXYYxyXYYxxxyX"
+      ]
+    },
+    {
+      "floor_delta": 38,
+      "name": "aca_83",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "target": [
+        "yxYYXXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXyyXYxxx"
+      ],
+      "target_floor": 60,
+      "target_representative": [
+        "YYXXYxYXyxxyyXyxx",
+        "YYYXyxxyyXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXXYx"
+      ]
+    },
+    {
+      "floor_delta": 38,
+      "name": "aca_84",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYx"
+      ],
+      "target_floor": 60,
+      "target_representative": [
+        "YYXXXyyXYxyxYYxyx",
+        "YYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXXXyxYYxyx"
+      ]
+    },
+    {
+      "floor_delta": 56,
+      "name": "aca_85",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 78,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_86",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "source_floor": 22,
+      "source_representative": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "target": [
+        "yxYYXyxYYXyxYYXXXXXyyXYxyyXYX",
+        "xYYXyxYYXyyXYxxxyyXYxyyXYXyxY"
+      ],
+      "target_floor": 58,
+      "target_representative": [
+        "YYXYXyxYxyyXYxyyXXXYxyyxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXXXXXYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 60,
+      "name": "aca_87",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 83,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 36,
+      "name": "aca_88",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXXXyxYYxyyXyXyXYx"
+      ],
+      "target_floor": 59,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxyxyxYXyXYYxyXYYxyXYYxyXYYxyXYYxxxyX"
+      ]
+    },
+    {
+      "floor_delta": 60,
+      "name": "aca_89",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 83,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 60,
+      "name": "aca_90",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 83,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYYxyXYYxyXYYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 56,
+      "name": "aca_91",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 79,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 58,
+      "name": "aca_92",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 81,
+      "target_representative": [
+        "YYXXYxyXyxxyXXYx",
+        "YXyxxYXyxxYXyxxYXyxxYXyxxYXyxxYXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 56,
+      "name": "aca_93",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 79,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 54,
+      "name": "aca_94",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "xYYXXXXyxYxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 77,
+      "target_representative": [
+        "YYXXXXyxYxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 30,
+      "name": "aca_95",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "source_floor": 21,
+      "source_representative": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYxx",
+        "yxYYXyxYYXyxYYXyyXYxyyXYxyyXYXyyXYxx"
+      ],
+      "target_floor": 51,
+      "target_representative": [
+        "YYXXXyxYxYYxxyx",
+        "YYXyyXYxyyXYxyyXYXyyXYxxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 60,
+      "name": "aca_96",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_floor": 23,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 83,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_97",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 88,
+      "target_representative": [
+        "YYXXXXyxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_98",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 24,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 88,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_99",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_100",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXXyyXyXyXyXYx"
+      ],
+      "target_floor": 65,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYXYXYX"
+      ]
+    },
+    {
+      "floor_delta": 62,
+      "name": "aca_101",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "xYYXXXXyxYxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 87,
+      "target_representative": [
+        "YYXXXXyxYxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_102",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 66,
+      "name": "aca_103",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXyyXYXyxYYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 91,
+      "target_representative": [
+        "YYXXYxyXyxxyXXYx",
+        "YXyxxYXyxxYXyxxYXyxxYXyxxYXyxxYXyxxYXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXXYxyXyxx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_104",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "xYYXXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXXyyXYxyxYx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_105",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXyXYYXyxxxxYYXyx",
+        "YYXyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_106",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXyxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXXXyyxYXyyxYxxyX",
+        "YYXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYXyyxYxyXYYxyXYYxyXYYxyXYYxyXYYxyXYYxyXYYxyX"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_107",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_108",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_109",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_110",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXXyxYxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_111",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYX"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYXyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 68,
+      "name": "aca_112",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYYxxyyXYX",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 93,
+      "target_representative": [
+        "YYXXyyXYxxxyyXYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_113",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyxYxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXXyxYxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 64,
+      "name": "aca_114",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "target": [
+        "yxYYXXyyXyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 89,
+      "target_representative": [
+        "YYXXyyXyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_115",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "source_floor": 13,
+      "source_representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "target": [
+        "yxYYXXyxYYxyyXYx",
+        "yxYYXyxYYXyxYYXyxYYxx"
+      ],
+      "target_floor": 37,
+      "target_representative": [
+        "YYXXyxyXYxxyXXyx",
+        "YYXYxxyXYxxyXYxxyXYxx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_116",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "target": [
+        "yxYYXyxYYXyxYYXyyXYxyyXYX",
+        "yxYYXXXyyXYxx"
+      ],
+      "target_floor": 38,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_117",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "source_floor": 14,
+      "source_representative": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "target": [
+        "yxYYXyxYYXyxYYXyyXYxyyXYx",
+        "yxYYXXXyyXYxx"
+      ],
+      "target_floor": 38,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 24,
+      "name": "aca_118",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "source_floor": 15,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "target": [
+        "xYYXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxx"
+      ],
+      "target_floor": 39,
+      "target_representative": [
+        "YYXXYxyXyxyxx",
+        "YYXyxxyXXYxyXXYxyXXYxyXXYx"
+      ]
+    },
+    {
+      "floor_delta": 28,
+      "name": "aca_119",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "target": [
+        "xYYXXyyXYxyxY",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxx"
+      ],
+      "target_floor": 44,
+      "target_representative": [
+        "YYXXYxyXyxyxx",
+        "YYXyxxyXXYxyXXYxyXXYxyXXYxyXXYx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_120",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXXXyxYYx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 48,
+      "target_representative": [
+        "YYXXXXyxYYxyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 32,
+      "name": "aca_121",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "source_floor": 16,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 48,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 40,
+      "name": "aca_122",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_floor": 18,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 58,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    },
+    {
+      "floor_delta": 48,
+      "name": "aca_123",
+      "nonautomorphic": true,
+      "quotient_difference": "ZYxzzXZ",
+      "quotient_identity_conditionally_established": true,
+      "quotient_isolator": "YxzzXZ",
+      "quotient_specialization_verified": true,
+      "source": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_floor": 20,
+      "source_representative": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "target": [
+        "yxYYXXXyyXYxx",
+        "yxYYXyxYYXyxYYXyxYYXyxYYXyxYYXyyXYxyyXYxyyXYxyyXYxyyXYx"
+      ],
+      "target_floor": 68,
+      "target_representative": [
+        "YYXXXyyXYxxyx",
+        "YYXyyXYxyyXYxyyXYxyyXYxyyXYxyxYYXyxYYXyxYYXyxYYXyxYYXyx"
+      ]
+    }
+  ],
+  "schema": "aca124-coordinate-endomorphism-v1",
+  "source_triviality_provenance": {
+    "claim": "Every input row is a balanced presentation of the trivial group.",
+    "family": "Miller-Schupp MS(n,w)",
+    "reason": "The 124 rows are ACA representatives of the 550 unsolved Miller-Schupp benchmark cells. The checked ACA edges preserve the presented group, and the benchmark family consists of promised trivial-group presentations.",
+    "sources": [
+      {
+        "path": ".claude/worktrees/codex-proofs/data/ms_unsolved_reps/aca_124.csv",
+        "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+      },
+      {
+        "path": ".claude/worktrees/codex-proofs/results/equivalence_classes/certificates.json",
+        "sha256": "2340d84b7ad32c9a9205692d17e19967f6a664ba1950383cf068674f772df339"
+      },
+      {
+        "path": ".claude/worktrees/codex-proofs/results/equivalence_classes/ms1190_tables/unsolved_124_aca_classes.csv",
+        "sha256": "58355f1934d23bcb2ce858db486c4a9ca687f820ba40527963162992d83fcde1"
+      }
+    ]
+  },
+  "summary": {
+    "automorphic_targets": 0,
+    "class_count": 124,
+    "maximum_floor_delta": 68,
+    "minimum_floor_delta": 18,
+    "nonautomorphic_targets": 124,
+    "quotient_identities_conditionally_established": 124,
+    "quotient_specializations_verified": 124,
+    "strict_floor_descents": 0
+  }
+}

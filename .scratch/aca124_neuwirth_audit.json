@@ -1,0 +1,3503 @@
+{
+  "claim_limit": "Exact literal stored representatives only. A negative does not obstruct a later stable-AC state from becoming thickenable.",
+  "input": {
+    "path": ".claude/worktrees/codex-proofs/data/ms_unsolved_reps/aca_124.csv",
+    "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+  },
+  "results": [
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 462,
+        "component_seed_budget": 462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 77,
+        "phase_pairs_considered": 77,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_0",
+      "relators": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 280,
+        "component_seed_budget": 280,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_1",
+      "relators": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 378,
+        "component_seed_budget": 378,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_2",
+      "relators": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_3",
+      "relators": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 567,
+        "component_seed_budget": 567,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 81,
+        "phase_pairs_considered": 81,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_4",
+      "relators": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 90,
+        "phase_pairs_considered": 90,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_5",
+      "relators": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_6",
+      "relators": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 315,
+        "component_seed_budget": 315,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_7",
+      "relators": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_8",
+      "relators": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 224,
+        "component_seed_budget": 224,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_9",
+      "relators": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 280,
+        "component_seed_budget": 280,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_10",
+      "relators": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 224,
+        "component_seed_budget": 224,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_11",
+      "relators": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 280,
+        "component_seed_budget": 280,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_12",
+      "relators": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 378,
+        "component_seed_budget": 378,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_13",
+      "relators": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_14",
+      "relators": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_15",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_16",
+      "relators": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_17",
+      "relators": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_18",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_19",
+      "relators": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_20",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_21",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_22",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 280,
+        "component_seed_budget": 280,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_23",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 288,
+        "component_seed_budget": 288,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 72,
+        "phase_pairs_considered": 72,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_24",
+      "relators": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_25",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_26",
+      "relators": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_27",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_28",
+      "relators": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 432,
+        "component_seed_budget": 432,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 72,
+        "phase_pairs_considered": 72,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_29",
+      "relators": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 350,
+        "component_seed_budget": 350,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_30",
+      "relators": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 70,
+        "phase_pairs_considered": 70,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_31",
+      "relators": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 288,
+        "component_seed_budget": 288,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 72,
+        "phase_pairs_considered": 72,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_32",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 576,
+        "component_seed_budget": 576,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 72,
+        "phase_pairs_considered": 72,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_33",
+      "relators": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 308,
+        "component_seed_budget": 308,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 77,
+        "phase_pairs_considered": 77,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_34",
+      "relators": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 486,
+        "component_seed_budget": 486,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 81,
+        "phase_pairs_considered": 81,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_35",
+      "relators": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 648,
+        "component_seed_budget": 648,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 81,
+        "phase_pairs_considered": 81,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_36",
+      "relators": [
+        "YYXYYXXyX",
+        "YYXyxYXXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_37",
+      "relators": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_38",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_39",
+      "relators": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_40",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_41",
+      "relators": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_42",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 704,
+        "component_seed_budget": 704,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 88,
+        "phase_pairs_considered": 88,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_43",
+      "relators": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 540,
+        "component_seed_budget": 540,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 90,
+        "phase_pairs_considered": 90,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_44",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYXXyXyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 528,
+        "component_seed_budget": 528,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 88,
+        "phase_pairs_considered": 88,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_45",
+      "relators": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_46",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_47",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 528,
+        "component_seed_budget": 528,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 88,
+        "phase_pairs_considered": 88,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_48",
+      "relators": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_49",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_50",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_51",
+      "relators": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 84,
+        "phase_pairs_considered": 84,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_52",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 648,
+        "component_seed_budget": 648,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 81,
+        "phase_pairs_considered": 81,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_53",
+      "relators": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 312,
+        "component_seed_budget": 312,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 78,
+        "phase_pairs_considered": 78,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_54",
+      "relators": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 90,
+        "phase_pairs_considered": 90,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_55",
+      "relators": [
+        "YXXXyXYx",
+        "YYxyxYXXyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 440,
+        "component_seed_budget": 440,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 88,
+        "phase_pairs_considered": 88,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_56",
+      "relators": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 440,
+        "component_seed_budget": 440,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 88,
+        "phase_pairs_considered": 88,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_57",
+      "relators": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 364,
+        "component_seed_budget": 364,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 91,
+        "phase_pairs_considered": 91,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_58",
+      "relators": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 364,
+        "component_seed_budget": 364,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 91,
+        "phase_pairs_considered": 91,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_59",
+      "relators": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 594,
+        "component_seed_budget": 594,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 99,
+        "phase_pairs_considered": 99,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_60",
+      "relators": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 594,
+        "component_seed_budget": 594,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 99,
+        "phase_pairs_considered": 99,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_61",
+      "relators": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_62",
+      "relators": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 490,
+        "component_seed_budget": 490,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_63",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_64",
+      "relators": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_65",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 392,
+        "component_seed_budget": 392,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_66",
+      "relators": [
+        "YYXXXYxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 392,
+        "component_seed_budget": 392,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_67",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYYxyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 392,
+        "component_seed_budget": 392,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_68",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_69",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 490,
+        "component_seed_budget": 490,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_70",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 792,
+        "component_seed_budget": 792,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 99,
+        "phase_pairs_considered": 99,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_71",
+      "relators": [
+        "YXXXyXyxx",
+        "YYYxyyXXXyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 792,
+        "component_seed_budget": 792,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 99,
+        "phase_pairs_considered": 99,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_72",
+      "relators": [
+        "YXXYxYxxx",
+        "YYYxyyXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 490,
+        "component_seed_budget": 490,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_73",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_74",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 660,
+        "component_seed_budget": 660,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 110,
+        "phase_pairs_considered": 110,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_75",
+      "relators": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 660,
+        "component_seed_budget": 660,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 110,
+        "phase_pairs_considered": 110,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_76",
+      "relators": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 660,
+        "component_seed_budget": 660,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 110,
+        "phase_pairs_considered": 110,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_77",
+      "relators": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 624,
+        "component_seed_budget": 624,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 104,
+        "phase_pairs_considered": 104,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_78",
+      "relators": [
+        "YYXXyx",
+        "YYYYYYYXyXyxyXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 588,
+        "component_seed_budget": 588,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 98,
+        "phase_pairs_considered": 98,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_79",
+      "relators": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 4992,
+        "component_seed_budget": 4992,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 624,
+        "phase_pairs_considered": 624,
+        "scheme_budget": 6,
+        "schemes_considered": 6,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_80",
+      "relators": [
+        "YXXXXyxxYx",
+        "YXYxYXyxyXX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4-e"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 105,
+        "phase_pairs_considered": 105,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_81",
+      "relators": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 726,
+        "component_seed_budget": 726,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 121,
+        "phase_pairs_considered": 121,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_82",
+      "relators": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 726,
+        "component_seed_budget": 726,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 121,
+        "phase_pairs_considered": 121,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_83",
+      "relators": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 726,
+        "component_seed_budget": 726,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 121,
+        "phase_pairs_considered": 121,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_84",
+      "relators": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 420,
+        "component_seed_budget": 420,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 105,
+        "phase_pairs_considered": 105,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_85",
+      "relators": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 726,
+        "component_seed_budget": 726,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 121,
+        "phase_pairs_considered": 121,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_86",
+      "relators": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 448,
+        "component_seed_budget": 448,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_87",
+      "relators": [
+        "YYXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 1056,
+        "component_seed_budget": 1056,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 132,
+        "phase_pairs_considered": 132,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_88",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYXXYxyXyXyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 448,
+        "component_seed_budget": 448,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_89",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 448,
+        "component_seed_budget": 448,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_90",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 672,
+        "component_seed_budget": 672,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_91",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 672,
+        "component_seed_budget": 672,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_92",
+      "relators": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 560,
+        "component_seed_budget": 560,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_93",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 672,
+        "component_seed_budget": 672,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_94",
+      "relators": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 880,
+        "component_seed_budget": 880,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 110,
+        "phase_pairs_considered": 110,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_95",
+      "relators": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 560,
+        "component_seed_budget": 560,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 112,
+        "phase_pairs_considered": 112,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_96",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 476,
+        "component_seed_budget": 476,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 119,
+        "phase_pairs_considered": 119,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_97",
+      "relators": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 476,
+        "component_seed_budget": 476,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 119,
+        "phase_pairs_considered": 119,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_98",
+      "relators": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_99",
+      "relators": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 1540,
+        "component_seed_budget": 1540,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 154,
+        "phase_pairs_considered": 154,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_100",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYYYXXyXyXyXyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_101",
+      "relators": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_102",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_103",
+      "relators": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_104",
+      "relators": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_105",
+      "relators": [
+        "YYXXXYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_106",
+      "relators": [
+        "YYXXXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_107",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 504,
+        "component_seed_budget": 504,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_108",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_109",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_110",
+      "relators": [
+        "YXXYxYxx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_111",
+      "relators": [
+        "YXXYxxyx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_112",
+      "relators": [
+        "YXXYxxyX",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_113",
+      "relators": [
+        "YXXYxYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 126,
+        "phase_pairs_considered": 126,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_114",
+      "relators": [
+        "YXXyXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 168,
+        "component_seed_budget": 168,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 42,
+        "phase_pairs_considered": 42,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_115",
+      "relators": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 196,
+        "component_seed_budget": 196,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 49,
+        "phase_pairs_considered": 49,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_116",
+      "relators": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 196,
+        "component_seed_budget": 196,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 49,
+        "phase_pairs_considered": 49,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_117",
+      "relators": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 56,
+        "phase_pairs_considered": 56,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_118",
+      "relators": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 378,
+        "component_seed_budget": 378,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_119",
+      "relators": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 252,
+        "component_seed_budget": 252,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_120",
+      "relators": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 252,
+        "component_seed_budget": 252,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_121",
+      "relators": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 308,
+        "component_seed_budget": 308,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 77,
+        "phase_pairs_considered": 77,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_122",
+      "relators": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    },
+    {
+      "category": "NOT_SPHERICAL_EXACT",
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 364,
+        "component_seed_budget": 364,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 91,
+        "phase_pairs_considered": 91,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "name": "aca_123",
+      "relators": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "solver_verdict": "NOT_SPHERICAL",
+      "spherical": false,
+      "support": "K4"
+    }
+  ],
+  "schema": "aca124-neuwirth-audit-v1",
+  "solver_sources": [
+    {
+      "path": ".claude/worktrees/codex-proofs/experiments/stable_ac/thickenable/ak3_aut_frontier_certificate.py",
+      "sha256": "58b5c2395125971179c68c4cfb37473b25fefa86234183aec08fb8c8a9a372b1"
+    },
+    {
+      "path": ".claude/worktrees/codex-proofs/experiments/stable_ac/thickenable/neuwirth_rank_solver.py",
+      "sha256": "5f5e0587e9f9b605c53412d9e5ab793d6823a9b67c87589a06d9ab36ada2c5cb"
+    }
+  ],
+  "summary": {
+    "category_histogram": {
+      "NOT_SPHERICAL_EXACT": 124
+    },
+    "exhaustive_rows": 124,
+    "rows": 124,
+    "support_histogram": {
+      "K4": 123,
+      "K4-e": 1
+    }
+  }
+}

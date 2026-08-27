@@ -1,0 +1,1124 @@
+                                                            KNAPSACK IN HYPERBOLIC GROUPS
+
+                                                                                  MARKUS LOHREY
+
+
+
+
+arXiv:1807.06774v2 [math.GR] 9 Apr 2019
+                                                   Abstract. Recently knapsack problems have been generalized from the in-
+                                                   tegers to arbitrary finitely generated groups. The knapsack problem for a
+                                                   finitely generated group G is the following decision problem: given a tuple
+                                                   (g, g1 , . . . , gk ) of elements of G, are there natural numbers n1 , . . . , nk ∈ N
+                                                                                  n
+                                                   such that g = g1n1 · · · gk k holds in G? Myasnikov, Nikolaev, and Ushakov
+                                                   proved that for every (Gromov-)hyperbolic group, the knapsack problem can
+                                                   be solved in polynomial time. In this paper, the precise complexity of the
+                                                   knapsack problem for hyperbolic group is determined: for every hyperbolic
+                                                   group G, the knapsack problem belongs to the complexity class LogCFL, and
+                                                   it is LogCFL-complete if G contains a free group of rank two. Moreover, it
+                                                   is shown that for every hyperbolic group G and every tuple (g, g1 , . . . , gk ) of
+                                                                                                                                    n
+                                                   elements of G the set of all (n1 , . . . , nk ) ∈ Nk such that g = g1n1 · · · gk k in
+                                                   G is semilinear and a semilinear representation where all integers are of size
+                                                   polynomial in the total geodesic length of the g, g1 , . . . , gk can be computed.
+                                                   Groups with this property are also called knapsack-tame. This enables us to
+                                                   show that knapsack can be solved in LogCFL for every group that belongs to
+                                                   the closure of hyperbolic groups under free products and direct products with
+                                                   Z.
+
+                                                                                 1. Introduction
+                                              In [22], Myasnikov, Nikolaev, and Ushakov initiated the investigation of discrete
+                                          optimization problems, which are usually formulated over the integers, for arbitrary
+                                          (possibly non-commutative) groups. One of these problems is the knapsack prob-
+                                          lem for a finitely generated group G: The input is a sequence of group elements
+                                          g1 , . . . , gk , g ∈ G (specified by finite words over the generators of G) and it is asked
+                                          whether there exists a tuple (n1 , . . . , nk ) ∈ Nk such that g1n1 · · · gknk = g in G. For
+                                          the particular case G = Z (where the additive notation n1 · g1 + · · · + nk · gk = g
+                                          is usually preferred) this problem is NP-complete (resp., TC0 -complete) if the num-
+                                          bers g1 , . . . , gk , g ∈ Z are encoded in binary representation [12, 9] (resp., unary
+                                          notation [2]).
+                                              In [22], Myasnikov et al. encode elements of the finitely generated group G by
+                                          words over the group generators and their inverses, which corresponds to the unary
+                                          encoding of integers. There is also an encoding of words that corresponds to the
+                                          binary encoding of integers, so called straight-line programs, and knapsack problems
+                                          under this encoding have been studied in [18]. In this paper, we only consider the
+                                          case where input words are explicitly represented. Here is a list of known results
+                                          concerning the knapsack problem:
+                                                    • Knapsack can be solved in polynomial time for every hyperbolic group [22].
+                                                        In [4] this result was extended to free products of any finite number of
+                                                        hyperbolic groups and finitely generated abelian groups.
+                                                    • There are nilpotent groups of class 2 for which knapsack is undecidable.
+                                                        Examples are direct products of sufficiently many copies of the discrete
+                                                        Heisenberg group H3 (Z) [13], and free nilpotent groups of class 2 and suffi-
+                                                        ciently high rank [20].
+
+                                             This work has been supported by the DFG research project LO 748/13-1.
+                                                                                            1
+      • Knapsack for H3 (Z) is decidable [13]. In particular, together with the
+        previous point it follows that decidability of knapsack is not preserved under
+        direct products.
+      • Knapsack is decidable for every co-context-free group [13], i.e., groups where
+        the set of all words over the generators that do not represent the identity is
+        a context-free language. Lehnert and Schweitzer [15] have shown that the
+        Higman-Thompson groups are co-context-free.
+      • Knapsack belongs to NP for all virtually special groups (finite extensions
+        of subgroups of graph groups) [19]. The class of virtually special groups
+        is very rich. It contains all Coxeter groups, one-relator groups with tor-
+        sion, fully residually free groups, and fundamental groups of hyperbolic
+        3-manifolds. For graph groups (also known as right-angled Artin groups)
+        a complete classification of the complexity of knapsack was obtained in
+        [19]: If the underlying graph contains an induced path or cycle on 4 nodes,
+        then knapsack is NP-complete; in all other cases knapsack can be solved in
+        polynomial time (even in LogCFL).
+      • Decidability of knapsack is preserved under finite extensions, HNN-extensions
+        over finite associated subgroups and amalgamated free products over finite
+        subgroups [18].
+
+
+In this paper we further investigate the knapsack problem in hyperbolic groups.
+The definition of hyperbolic groups requires that all geodesic triangles in the Cayley-
+graph are δ-slim for a constant δ; see Section 3 for details. The class of hyperbolic
+groups has several alternative characterizations (e.g., it is the class of finitely gener-
+ated groups with a linear Dehn function), which gives hyperbolic groups a prominent
+role in geometric group theory. Moreover, in a certain probabilistic sense, almost
+all finitely presented groups are hyperbolic [8, 23]. Also from a computational view-
+point, hyperbolic groups have nice properties: it is known that the word problem
+and the conjugacy problem can be solved in linear time [3, 10]. As mentioned
+above, knapsack can be solved in polynomial time for every hyperbolic group [22].
+Our first main result of this paper provides a precise characterization of the com-
+plexity of knapsack for hyperbolic groups: for every hyperbolic group, knapsack
+belongs to LogCFL, which is the class of all problems that are logspace-reducible
+to a context-free language. LogCFL has several alternative characterizations, see
+Section 4 for details. The LogCFL upper bound for knapsack in hyperbolic groups
+improves the polynomial upper bound shown in [22], and also generalizes a result
+from [16], stating that the word problem for a hyperbolic group is in LogCFL. For
+hyperbolic groups that contain a copy of a non-abelian free group (such hyperbolic
+groups are called non-elementary) it follows from [19] that knapsack is LogCFL-
+complete. Hyperbolic groups that contain no copy of a non-abelian free group (so
+called elementary hyperbolic groups) are known to be virtually cyclic, in which case
+knapsack belongs to nondeterministic logspace (NL), which is contained in LogCFL.
+    In Section 8 we prove our second main result: for every hyperbolic group G and
+every tuple (g, g1 , . . . , gk ) of elements of G the set of all (n1 , . . . , nk ) ∈ Nk such that
+g = g1n1 · · · gknk in G is effectively semilinear. In other words: the set of all solutions
+of a knapsack instance in G is semilinear. Groups with this property are also called
+knapsack-semilinear. For the special case G = Z this is well-known (the set of
+solutions of a linear equation is Presburger definable and hence semilinear). Clearly,
+knapsack is decidable for every knapsack-semilinear group (due to the effectiveness
+assumption). In a series of recent papers it turned out that the class of knapsack-
+semilinear groups is surprisingly rich. It contains all virtually special groups [17]
+and all co-context-free group [13] and is closed under the following constructions:
+                                                2
+      • going to a finitely generated subgroup (this is trivial) and going to a finite
+        group extension [18],
+      • HNN-extensions over finite associated subgroups and amalgamated free
+        products over finite subgroups [18],
+      • direct products (in contrast, the class of groups with a decidable knapsack
+        problem is not closed under direct products),
+      • restricted wreath products [5].
+
+Our proof of the knapsack-semilinearity of a hyperbolic group shows an addi-
+tional quantitative statement: If the group elements g, g1 , . . . , gk are represented
+by words over the generators and the total length of these words is N , then the set
+{(n1 , . . . , nk ) ∈ Nk | g = g1n1 · · · gknk in G} has a semilinear representation, where all
+vectors only contain integers of size at most p(N ). Here, p(x) is a fixed polynomial
+that only depends on G. Groups with this property are called knapsack-tame in
+[19]. In [19], it is shown that the class of knapsack-tame groups is closed under free
+products and direct products with Z. Using this, we can show in Section 9 that
+knapsack can be solved in LogCFL for every group that belongs to the closure of
+hyperbolic groups under free products and direct products with Z.
+   Recently, it was shown that the compressed version of the knapsack problem,
+where input words are encoded by straight-line programs, is NP-complete for every
+infinite hyperbolic group [11].
+
+
+
+
+                                  2. General notations
+   We assume that the reader is familiar with basic concepts from group theory and
+formal languages. The empty word is denoted with ε. For a word w = a1 a2 · · · an
+let |w| = n be the length of w, and for 1 ≤ i ≤ j ≤ n let w[i] = ai , w[i : j] = ai · · · aj ,
+w[: i] = w[1 : i] and w[i :] = w[i : n]. Moreover, let w[i : j] = ε for i > j.
+   A set of vectors A ⊆ Nk is linear if there exist vectors v0 , . . . , vn ∈ Nk such that
+A = {v0 + λ1 · v1 + · · · + λn · vn | λ1 , . . . , λn ∈ N}. The tuple of vectors (v0 , . . . , vn )
+is a linear represention of A. Its magnitude is the largest number appearing in one
+the vectors v0 , . . . , vn . A set A ⊆ Nk is semilinear if it is a finite union of linear sets
+A1 , . . . , Am . A semilinear representation of A is a list of linear representations for
+the linear sets A1 , . . . , Am . Its magnitude is the maximal magnitude of the linear
+representations for the sets A1 , . . . , Am . The magnitude of a semilinear set A is the
+smallest magnitude among all semilinear representations of A.
+   In the context of knapsack problems, we will consider semilinear sets as sets of
+mappings f : {x1 , . . . , xk } → N for a finite set of variables X = {x1 , . . . , xk }. Such
+a mapping f can be identified with the vector (f (x1 ), . . . , f (xk )). This allows to
+use all vector operations (e.g. addition and scalar multiplication) on the set NX of
+all mappings from X to N. The pointwise product f · g of two mappings f, g ∈ NX
+is defined by (f · g)(x) = f (x) · g(x) for all x ∈ X. Moreover, for mappings f ∈ NX ,
+g ∈ NY with X ∩ Y = ∅ we define f ⊕ g : X ∪ Y → N by (f ⊕ g)(x) = f (x) for
+x ∈ X and (f ⊕ g)(y) = g(y) for y ∈ Y . All operations on NX will be extended to
+subsets of NX in the standard pointwise way.
+   It is well-known that the semilinear subsets of Nk are exactly the sets definable
+in Presburger arithmetic. These are those sets that can be defined with a first-order
+formula ϕ(x1 , . . . , xk ) over the structure (N, 0, +, ≤) [7]. Moreover, the transforma-
+tions between such a first-order formula and an equivalent semilinear representation
+are effective. In particular, the semilinear sets are effectively closed under Boolean
+operations.
+                                                3
+                                             r
+
+
+
+
+                                     Pp,r          Pq,r
+
+                                            Pp,q
+
+                     p                                              q
+
+         Figure 1. The shape of a geodesic triangle in a hyperbolic group
+
+                                3. Hyperbolic groups
+    Let G be a finitely generated group with the finite symmetric generating set Σ,
+i.e., a ∈ Σ implies that a−1 ∈ Σ. The Cayley-graph of G (with respect to Σ) is the
+undirected graph Γ = Γ(G) with node set G and all edges (g, ga) for g ∈ G and
+a ∈ Σ. We view Γ as a geodesic metric space, where every edge (g, ga) is identified
+with a unit-length interval. It is convenient to label the directed edge from g to ga
+with the generator a. The distance between two points p, q is denoted with dΓ (p, q).
+For g ∈ G let |g| = dΓ (1, g). For r ≥ 0, let Br (1) = {g ∈ G | dΓ (1, g) ≤ r}.
+    Paths can be defined in a very general way for metric spaces, but we only need
+paths that are induced by words over Σ. Given a word w ∈ Σ∗ of length n, one
+obtains a unique path P [w] : [0, n] → Γ, which is a continuous mapping from the
+real interval [0, n] to Γ. It maps the subinterval [i, i + 1] ⊆ [0, n] isometrically onto
+the edge (gi , gi+1 ) of Γ, where gi (resp., gi+1 ) is the group element represented
+by the word w[: i] (resp., w[: i + 1]). The path P [w] starts in 1 = g0 and ends
+in gn (the group element represented by w). We also say that P [w] is the unique
+path that starts in 1 and is labelled with the word w. More generally, for g ∈ G
+we denote with g · P [w] the path that starts in g and is labelled with w. When
+writing u · P [w] for a word u ∈ Σ∗ , we mean the path g · P [w], where g is the group
+element represented by u. A path P : [0, n] → Γ of the above form is geodesic
+if dΓ (P (0), P (n)) = n; it is a (λ, ǫ)-quasigeodesic if for all points p = P (a) and
+q = P (b) we have |a − b| ≤ λ · dΓ (p, q) + ε; and it is ζ-local (λ, ǫ)-quasigeodesic if for
+all points p = P (a) and q = P (b) with |a − b| ≤ ζ we have |a − b| ≤ λ · dΓ (p, q) + ε.
+    A word w ∈ Σ∗ is geodesic if the path P [w] is geodesic, which means that there
+is no shorter word representing the same group element from G. Similarly, we
+define the notion of (ζ-local) (λ, ǫ)-quasigeodesic words. A word w ∈ Σ∗ is shortlex
+reduced if it is the length-lexicographically smallest word that represents the same
+group element as w. For this, we have to fix an arbitrary linear order on Σ. Note
+that if u = xy is shortlex reduced then x and y are shortlex reduced too. For a word
+u ∈ Σ∗ we denote with shlex(u) the unique shortlex reduced word that represents
+the same group element as u.
+    A geodesic triangle consists of three points p, q, r ∈ G and geodesic paths P1 =
+Pp,q , P2 = Pp,r , P3 = Pq,r (the three sides of the triangle), where Px,y is a geodesic
+path from x to y. We call a geodesic triangle δ-slim for δ ≥ 0, if for all i ∈ {1, 2, 3},
+every point on Pi has distance at most δ from a point on Pj ∪ Pk , where {j, k} =
+{1, 2, 3} \ {i}. The group G is called δ-hyperbolic, if every geodesic triangle is δ-slim.
+                                             4
+                                              P2
+
+
+
+
+                                              P1
+
+               Figure 2. Paths that asynchronously K-fellow travel
+
+Finally, G is hyperbolic, if it is δ-hyperbolic for some δ ≥ 0. Figure 1 shows the
+shape of a geodesic triangle in a hyperbolic group. Finitely generated free groups
+are for instance 0-hyperbolic. The property of being hyperbolic is independent of
+the chosen generating set Σ. The word problem for every hyperbolic group can be
+decided in real time [10].
+   Let us fix a δ-hyperbolic group G with the finite symmetric generating set Σ for
+the rest of the section, and let Γ be the corresponding geodesic metric space. We
+will apply a couple of well-known results for hyperbolic groups.
+Lemma 3.1 (c.f. [6, 8.21]). Let g ∈ G be of infinite order and let n ≥ 0. Let u
+be a geodesic word representing g. Then the word un is (λ, ǫ)-quasigeodesic, where
+λ = N |g|, ǫ = 2N 2 |g|2 + 2N |g| and N = |B2δ (1)|.
+   Consider two paths P1 : [0, n1 ] → Γ, P2 : [0, n2 ] → Γ and let K be a positive real
+number. We say that P1 and P2 asynchronously K-fellow travel if there exist two
+continuous non-decreasing mappings ϕ1 : [0, 1] → [0, n1 ] and ϕ2 : [0, 1] → [0, n2 ]
+such that ϕ1 (0) = ϕ2 (0) = 0, ϕ1 (1) = n1 , ϕ2 (1) = n2 and for all 0 ≤ t ≤ 1,
+dΓ (P1 (ϕ1 (t)), P2 (ϕ2 (t))) ≤ K. Intuitively, this means that one can travel along
+the paths P1 and P2 asynchronously with variable speeds such that at any time
+instant the current points have distance at most K. By slightly increasing K one
+obtains a ladder graph of the form shown in Figure 2, where the edges connecting
+the horizontal P1 - and P2 -labelled paths represent paths of length at most K that
+connect elements from G.
+Lemma 3.2 (c.f. [21]). Let P1 and P2 be (λ, ǫ)-quasigeodesic paths in ΓG and
+assume that Pi starts in gi and ends in hi . Assume that dΓ (g1 , g2 ), dΓ (h1 , h2 ) ≤ h.
+Then there exists a computable bound K = K(δ, λ, ǫ, h) ≥ h such that P1 and P2
+asynchronously K-fellow travel.
+   Finally we need the following lemma for splitting quasigeodesic rectangles:
+Lemma 3.3. Fix constants λ, ǫ and let κ = K(δ, λ, ǫ, 0) be taken from Lemma 3.2.
+Let v1 , v2 ∈ Σ∗ be geodesic words and u1 , u2 ∈ Σ∗ (λ, ǫ)-quasigeodesic words such
+that v1 u1 = u2 v2 in G. Consider a factorization u1 = x1 y1 with |x1 | ≥ λ(|v1 | + 2δ +
+κ) + ǫ and |y1 | ≥ λ(|v2 | + 2δ + κ) + ǫ Then there exists a factorization u2 = x2 y2
+and c ∈ B2δ+2κ (1) such that v1 x1 = x2 c and cy1 = y2 v2 in G.
+Proof. The construction is shown in Figure 3.3. Let t1 , t2 , x′1 , y1′ be geodesic words
+with t1 = u1 , t2 = u2 , x1 = x′1 and y1 = y1′ in G. Since u1 is (λ, ǫ)-quasigeodesic,
+we get |x′1 | ≥ (|x1 | − ǫ)/λ ≥ |v1 | + 2δ + κ and |y1′ | ≥ (|y1 | − ǫ)/λ ≥ |v2 | + 2δ + κ.
+By Lemma 3.2 the paths P [t1 ] and P [u1 ] asynchronously κ-fellow travel. Hence,
+there exists a factorization t1 = r1 s1 and c1 ∈ Bκ (1) such that r1 c1 = x1 = x′1 and
+c1 y1′ = c1 y1 = s1 in G. This implies |r1 | ≥ |x′1 | − κ ≥ |v1 | + 2δ and |s1 | ≥ |y1′ | − κ ≥
+|v2 |+ 2δ. Consider the geodesic rectangle with the paths Q1 = P [v1 ], P1 = v1 ·P [t1 ],
+P2 = P [t2 ], and Q2 = u2 · P [v2 ]. Since geodesic rectangles are 2δ-slim, there exists
+                                              5
+                                 x1                   y1
+                                 x′1      c1          y1′
+                                  r1                  s1
+                     v1                    c   ′                   v2
+                                  r2                  s2
+                                          c2
+                                 x2                   y2
+
+
+     Figure 3. Splitting a quasigeodesic rectangle according to Lemma 3.3.
+
+
+a point p2 ∈ P2 ∪ Q1 ∪ Q2 that has distance at most 2δ from p1 = P1 (|r1 |). By
+the triangle inequality we must have p2 ∈ P2 . This yields a factorization t2 = r2 s2
+(where p2 = P2 (|r2 |)) and c′ ∈ B2δ (1) such that v1 r1 = r2 c′ and c′ s1 = s2 v2
+in G. Finally, since P [t2 ] and P [u2 ] asynchronously κ-fellow travel, we obtain a
+factorization u2 = x2 y2 and c2 ∈ Bκ (1) such that x2 c2 = r2 and c2 s2 = y2 in G.
+Let c = c2 c′ c1 ∈ B2δ+2κ (1). We get x2 c = x2 c2 c′ c1 = r2 c′ c1 = v1 r1 c1 = v1 x1 and
+cy1 = c2 c′ c1 y1 = c2 c′ s1 = c2 s2 v2 = y2 v2 .                                        
+
+
+                          4. The complexity class LogCFL
+   The complexity class LogCFL consists of all computational problems that are
+logspace reducible to a context-free language. The class LogCFL is included in the
+parallel complexity class NC2 and has several alternative characterizations (see e.g.
+[24, 26]):
+      • logspace bounded alternating Turing-machines with polynomial tree size,
+      • semi-unbounded Boolean circuits of polynomial size and logarithmic depth,
+        and
+      • logspace bounded auxiliary pushdown automata with polynomial running
+        time.
+For our purposes, the last characterization is most suitable. An AuxPDA (for
+auxiliary pushdown automaton) is a nondeterministic pushdown automaton with a
+two-way input tape and an additional work tape. Here we only consider AuxPDAs
+with the following two restrictions:
+      • The length of the work tape is restricted to O(log n) for an input of length
+        n (logspace bounded).
+      • There is a polynomial p(n), such that every computation path of the Aux-
+        PDA on an input of length n has length at most p(n) (polynomially time
+        bounded).
+Whenever we speak of an AuxPDA in the following, we implicitly assume that the
+AuxPDA is logspace bounded and polynomially time bounded. The class of lan-
+guages that are accepted by AuxPDAs is exactly LogCFL [24]. A one-way AuxPDA
+is an AuxPDA that never moves the input head to the left. Hence, in every step,
+the input head either does not move, or moves to the right.
+   For a finitely generated group G with the symmetric generating set Σ we define
+the word problem for G (with respect to Σ) as the set of all words w ∈ Σ∗ such
+that w = 1 in G. Let us say that a finitely generated group G belongs to the class
+OW-AuxPDA if the word problem for G is recognized by a one-way AuxPDA. It is
+easy to see that the latter property is independent of the generating set of G (this
+                                               6
+holds, since the class of languages recognized by one-way AuxPDAs is closed under
+inverse homomorphisms).
+Theorem 4.1. Every hyperbolic group belongs to the class OW-AuxPDA.
+Proof. Let G be a hyperbolic group. In [16] it is shown that the word problem for
+G is a growing context-sensitive language, i.e., it can be generated by a grammar
+where all productions are strictly length-increasing (except for the start production
+S → ε). In [1] it was shown that every growing context-sensitive language can be
+recognized by a one-way AuxPDA in logarithmic space and polynomial time. The
+result follows.                                                                     
+Theorem 4.2. If the groups G and H belong to OW-AuxPDA then also G ∗ H and
+G × Z belong to OW-AuxPDA.
+Proof. The proof is essentially the same as in [19, Lemma 4.8], but is presented
+for completeness. Let us first consider the group G × Z. Let P(G) be a one-way
+AuxPDA for the word problem of G. The one-way AuxPDA P(G × Z) for the
+word problem of G simulates P(G) on the generators of G. Moreover, it stores the
+current value of the Z-component in binary notation on the work tape. If the input
+word has length n, then O(log n) bits are sufficient for this. At the end, P(G × Z)
+accepts if and only if P(G) accepts and the Z-component on the work tape is zero.
+    Next, we consider the group G ∗ H. We have one-way AuxPDAs P(G) and P(H)
+for the word problems of G and H, respectively. We can assume that P(G) (resp.,
+P(H)) accepts an input word w if after reading w the stack is empty and P(G)
+(resp., P(H)) is in the unique final state qG (resp., qH ). This can be achieved by
+doing ε-transitions at the end of the computation. In the following, we call qG
+(resp., qH ) the 1-state of P(G) (resp., P(H)).
+    Let Σ (resp., Γ) be the input alphabet of P(G) (resp., P(H)), which is a sym-
+metric generating set for G (resp., H). We assume that Σ∩Γ = ∅. Consider now an
+input word w ∈ (Σ ∪ Γ)∗ . Let us assume that w = u1 v1 u2 v2 · · · uk vk with ui ∈ Σ+
+and vi ∈ Γ+ (other cases can be treated analogously). The AuxPDA P(G ∗ H)
+starts with empty stack and simulates the AuxPDA P(G) on the prefix u1 . If it
+turns out that u1 = 1 in G (which means that P(G) is in its 1-state and the stack
+is empty) then the AuxPDA P(G ∗ H) continues with simulating P(H) on v1 . On
+the other hand, if u1 6= 1 in G, then P(G ∗ H) pushes the state together with the
+work tape content of P(G) reached after reading u1 on the stack (on top of the final
+stack content of P(G)). This allows P(G ∗ H) to resume the computation of P(G)
+later. Then P(G ∗ H) continues with simulating P(H) on v1 .
+    The computation of P(G ∗ H) will continue in this way. More precisely, if after
+reading ui (resp. vi with i < k) the AuxPDA P(G) (resp. P(H)) is in its 1-state
+then either
+   (i) the stack is empty or
+  (ii) the top part of the stack is of the form sqt (t is the top), where s is a stack
+       content of P(H) (resp. P(G)), q is a state of P(H) (resp. P(G)) and t is a
+       work tape content of P(H) (resp. P(G)).
+In case (i), P(G ∗ H) continues with the simulation of P(H) (resp. P(G)) on the
+word vi (resp. ui+1 ) in the initial configuration. In case (ii), P(G ∗ H) continues
+with the simulation of P(H) (resp. P(G)) on the word vi (resp. ui+1 ), where
+the simulation is started with stack content s, state q, and work tape content t.
+On the other hand, if after reading ui (resp. vi with i < k) the AuxPDA P(G)
+(resp. P(H)) is not in its 1-state then P(G ∗ H) pushes on the stack the state and
+work tape content of P(G) reached after its simulation on ui . This concludes the
+description of the AuxPDA P(G ∗ H). It is a one-way AuxPDA that accepts the
+word problem of G ∗ H.                                                              
+                                          7
+                                5. Knapsack problems
+    Let G be a finitely generated group with the finite symmetric generating set
+Σ. Moreover, let X be a set of formal variables that take values from N. For
+a subset U ⊆ X, we use NU to denote the set of maps ν : U → N, which we
+call valuations. An exponent expression over G is a formal expression of the form
+E = ux1 1 v1 ux2 2 v2 · · · uxk k vk with k ≥ 1 and words ui , vi ∈ Σ∗ . Here, the variables
+do not have to be pairwise distinct. If every variable in an exponent expression
+occurs at most once, it is called a knapsack expression. Let XE = {x1 , . . . , xk }
+be the set of variables that occur in E. For a valuation ν ∈ NU such that
+XE ⊆ U (in which case we also say that ν is a valuation for E), we define
+                 ν(x )        ν(x )        ν(x )
+ν(E) = u1 1 v1 u2 2 v2 · · · uk k vk ∈ Σ∗ . We say that ν is a solution of the
+equation E = 1 if ν(E) evaluates to the identity element 1 of G. With sol(E) we
+denote the set of all solutions ν ∈ NXE of E. We can view sol(E) as a subset of
+Nk . The length of E is defined as |E| = ki=1 |ui | + |vi |, whereas k is its depth. We
+                                                     P
+define solvability of exponent equations over G as the following decision problem:
+        Input: A finite         Tnlist of exponent expressions E1 , . . . , En over G.
+        Question: Is i=1 sol(Ei ) non-empty?
+The knapsack problem for G is the following decision problem:
+        Input: A single knapsack expression E over G.
+        Question: Is sol(E) non-empty?
+It is easy to observe that the concrete choice of the generating set Σ has no in-
+fluence on the decidability and complexity status of these problems. Later, we
+will also allow exponent expressions of the form v0 ux1 1 v1 ux2 2 v2 · · · uxk k vk , which do
+not start with a power ux1 1 . Such an exponent expression can be replaced by
+ux1 1 v1 ux2 2 v2 · · · uxk k vk v0 without changing the set of solutions.
+    The group G is called knapsack-semilinear if for every knapsack expression E over
+G, the set sol(E) is a semilinear set of vectors and a semilinear representation can
+be effectively computed from E. Since the emptiness of the intersection of finitely
+many semilinear sets is decidable, solvability of exponent equations is decidable for
+every knapsack-semilinear group. As mentioned in the introduction, the class of
+knapsack-semilinear groups is very rich. An example of a group G, where knapsack
+is decidable but solvability of exponent equations is undecidable is the Heisenberg
+group H3 (Z) (which consists of all upper triangular (3×3)-matrices over the integers,
+where all diagonal entries are 1), see [13]. In particular, H3 (Z) is not knapsack-
+semilinear.
+    The group G is called polynomially knapsack-bounded if there is a fixed polyno-
+mial p(n) such that for a given a knapsack expression E over G, one has sol(E) 6= ∅
+if and only if there exists ν ∈ sol(E) with ν(x) ≤ p(|E|) for all variables x in E.
+    The group G is called knapsack-tame if there is a fixed polynomial p(n) such that
+for a given a knapsack expression E over G one can compute a semilinear represen-
+tation for sol(E) of magnitude at most p(|E|). Thus, every knapsack-tame group
+is knapsack-semilinear as well as polynomially knapsack-bounded. The following
+result was shown in [19]:
+Proposition 5.1 ([19, Proposition 4.11 and 4.17]). If G and H are knapsack-tame
+groups then also the free product G ∗ H and the direct product G × Z are knapsack-
+tame.
+
+                      6. Membership for acyclic automata
+    An acyclic NFA is a nondeterministic finite automaton A = (Q, Σ, ∆, q0 , F ) (Q is
+a finite set of states, Σ is the input alphabet, ∆ ⊆ Q × Σ∗ × Q is the set of transition
+                                              8
+triples, q0 ∈ Q is the initial state, and F ⊆ Q is the set of final states) such that
+the relation {(p, q) ∈ Q × Q | ∃w ∈ Σ∗ : (p, w, q) ∈ ∆} is acyclic. Note that we
+allow transitions labelled with words, which will be convenient in the following.
+   Let G be a finitely generated group with the finite symmetric generating set Σ.
+The membership problem for acyclic NFAs over G is the following computational
+problem:
+      Input: an acyclic NFA A with input alphabet Σ.
+      Question: does A accept a word w ∈ Σ∗ such that w = 1 in G?
+Again, the concrete choice of the generating set Σ has no influence on the decid-
+ability and complexity status of this problem.
+Theorem 6.1. If the group G belongs to the class OW-AuxPDA, then membership
+for acyclic NFAs over G belongs to LogCFL.
+Proof. Let P be a one-way AuxPDA for the word problem of G. An AuxPDA
+for the membership problem for acyclic NFAs over G guesses a path in the acyclic
+input NFA A and thereby simulates the AuxPDA P on the word spelled by the
+guessed path. If the final state of the input NFA A is reached and the AuxPDA P
+accepts at the same time, then the overall AuxPDA accepts. It is important that
+the AuxPDA P works one-way since the guessed path in A cannot be stored in
+logspace. This implies that the AuxPDA cannot re-access the input symbols that
+have already been processed. Also note that the AuxPDA is logspace bounded and
+polynomially time bounded since A is acyclic.                                 
+Theorem 6.2. Let G be a polynomially knapsack-bounded group. Then there is
+a logspace reduction from the knapsack problem for G to membership for acyclic
+NFAs over G.
+Proof. Let G be a polynomially knapsack-bounded group with the symmetric gen-
+erating set Σ. We present a logspace reduction from knapsack for G to the member-
+ship problem for acyclic NFAs. Consider a knapsack expression E = ux1 1 v1 ux2 2 v2 · · · uxk k vk
+over G. Since G is polynomially knapsack-bounded, there exists a polynomial p(x)
+such that sol(E) 6= ∅ if and only if there exists a solution ν ∈ sol(E) such that
+ν(xi ) ≤ p(|E|) for all 1 ≤ i ≤ k. We now construct an NFA A as follows: It has the
+state set Q = [1, k + 1] × [0, p(n)] and the following transitions. For each i ∈ [1, k]
+and j ∈ [0, p(n) − 1], there are two transitions from (i, j) to (i, j + 1); one labeled
+by ui and one labeled by ε. Furthermore, there is a transition from (i, p(n)) to
+(i + 1, 0) labeled vi for each i ∈ [1, k]. The initial state is (1, 0) and the unique final
+state is (k + 1, 0).
+    It is clear that A accepts a word that represents 1 if and only if sol(E) 6= ∅.
+Finally, the NFA can be clearly computed in logarithmic space from E.                    
+
+              7. Complexity of knapsack in hyperbolic groups
+   In this section we consider the complexity of the knapsack problem for a hyper-
+bolic group. In [22] it was shown that for every hyperbolic group, knapsack can be
+solved in polynomial time. Here, we improve the complexity to LogCFL. We need
+one more result from [22]:
+Theorem 7.1 (c.f. [22]). Every hyperbolic group is polynomially knapsack-bounded.
+   This result is also a direct corollary of Theorem 8.1 from the next section, stating
+that every hyperbolic group is knapsack-tame.
+   We can now easily derive the following two results:
+Corollary 7.2. Membership for acyclic NFAs over a hyperbolic group belongs to
+LogCFL.
+                                              9
+Proof. This follows from Theorem 4.1 and 6.1.                                           
+Corollary 7.3. For every hyperbolic groups G, knapsack can be solved in LogCFL.
+Moreover, if G contains a copy of F2 (the free group of rank 2) then knapsack for
+G is LogCFL-complete.
+Proof. The first statement follows from Theorems 6.2 and 7.1 and Corollary 7.2.
+The second statement follows from [19, Proposition 4.26], where it was shown that
+knapsack for F2 is LogCFL-complete.                                            
+
+               8. Hyperbolic groups are knapsack-semilinear
+   In this section, we prove the following strengthening of Theorem 7.1:
+Theorem 8.1. Every hyperbolic group is knapsack-tame.
+  Let us remark that the total number of vectors in a semilinear representation
+can be exponential, even for the simplest case G = Z. Take the (additively written)
+knapsack expression E = x1 + x2 + · · · + xn − n. Then sol(E) is finite and consists
+of 2n−1
+     n    ≥ 2n vectors.
+  Let us fix a δ-hyperbolic group G for the rest of Section 8 and let Σ be a finite
+symmetric generating set for G.
+8.1. Knapsack expressions of depth two. We first consider knapsack expres-
+sions of depth 2 where all powers are quasigeodesic. It is well known that the
+semilinear sets are exactly the Parikh images of the regular languages. We need a
+quantitative version of this result that was independently discovered by Kopczynski
+and Lin:
+Theorem 8.2 (c.f. [25, Theorem 4.1], see also [14]). Let k be a fixed constant.
+Given an NFA A over an alphabet of size k with n states, one can compute in
+polynomial time a semilinear representation of the Parikh image of L(A). Moreover,
+all numbers appearing in the semilinear representation are polynomially bounded
+in n (in other words: one can compute the semilinear representation with unary
+encoded numbers).
+Lemma 8.3. Let λ and ǫ be fixed constants. For all geodesic words u1 , v1 , u2 , v2 ∈
+Σ∗ such that u1 6= ε 6= u2 and un1 , un2 are (λ, ǫ)-quasigeodesic for all n ≥ 0, the set
+{(x1 , x2 ) ∈ N × N | v1 ux1 1 = ux2 2 v2 in G} is semilinear. Moreover, one can compute
+a semi-linear representation whose magnitude is bounded by p(|u1 |+|v1 |+|u2 |+|v2 |)
+for a fixed polynomial p(n).
+Proof. Let S := {(x1 , x2 ) ∈ N × N | v1 ux1 1 = ux2 2 v2 in G}. We will define an NFA
+A over the alphabet {a1 , a2 } such that the Parikh image of L(A) is S. Moreover,
+the number of states of A is polynomial in |u1 | + |u2 | + |v1 | + |v2 |. This allows us to
+apply Theorem 8.2. We will allow transitions that are labelled with words (having
+length polynomial in |u1 | + |u2 | + |v1 | + |v2 |). Moreover, instead of writing in the
+transitions these words, we write their Parikh images (so, for instance, a transition
+  a2 a3                    (2,3)
+p −−1−→  2
+            q is written as p −−−→ q.
+    Let ℓi = |ui | and mi = |vi |. Take the constant κ from Lemma 3.3 and define
+N1 = λ(m1 + 2δ + κ) + ǫ and N2 = λ(m2 + 2δ + κ) + ǫ. We split the set S into two
+parts:
+          • S1 = S ∩ {(n1 , n2 ) ∈ N × N | n1 < (N1 + N2 )/ℓ1 }
+          • S2 = S ∩ {(n1 , n2 ) ∈ N × N | n1 ≥ (N1 + N2 )/ℓ1 }
+For all (n1 , n2 ) ∈ S1 we have |un1 1 | = n1 ℓ1 < N1 + N2 . Hence, |shlex(un2 2 )| =
+|shlex(v1 un1 1 v2−1 )| < N1 + N2 + m1 + m2 . Since un2 2 is (λ, ǫ)-quasigeodesic we get
+|un2 2 | = n2 ℓ2 < λ(N1 + N2 + m1 + m2 ) + ǫ, i.e., n2 < (λ(N1 + N2 + m1 + m2 ) + ǫ)/ℓ2 .
+                                            10
+       u1                                                                                      u1
+            u1                                                                 z u1 u1
+                    u1 xu                                                      u1
+                              1   u1 u1                   y                  u
+                                              u1 u1 u1 u u u1 u1 u1       u1 1
+                                                        1   1
+ v1                                     c = c0                       d = c24                        v2
+                                                 u2   u2        u2   u2
+                                        u2                 y′                  u2
+                       u2                                                                u2
+         u2             x′                                                          z′        u2
+
+
+       Figure 4. Example for the construction from the proof of Lemma 8.3.
+
+
+Hence, the set S1 is finite and has a semilinear representation where all numbers
+are bounded by O(m1 + m2 ).
+    We now deal with pairs (n1 , n2 ) ∈ S2 , where v1 un1 1 = un2 2 v2 in G and n1 ≥ (N1 +
+N2 )/ℓ1 , i.e., |un1 1 | ≥ N1 + N2 . Consider such a pair (n1 , n2 ) and the quasigeodesic
+rectangle consisting of the four paths Q1 = P [v1 ], P1 = v1 · P [un1 1 ], P2 = P [un2 2 ],
+and Q2 = un2 2 · P [v2 ]. We factorize the word un1 1 as un1 1 = xyz with |x| = N1 and
+|z| = N2 . By Lemma 3.3 we can factorize un2 2 as un2 2 = x′ y ′ z ′ such that there exist
+c, d ∈ B2δ+2κ (1) with v1 x = x′ c and dz = z ′ v2 in G, see Figure 4 (where n1 = 20,
+n2 = 10, ℓ1 = 2 and ℓ2 = 4). Since un2 2 is (λ, ǫ)-quasigeodesic, we have
+(1)         |x′ | ≤           λ(m1 + |x| + 2δ + 2κ) + ǫ = λ(m1 + N1 + 2δ + 2κ) + ǫ,
+              ′
+(2)         |z | ≤            λ(m2 + |z| + 2δ + 2κ) + ǫ = λ(m2 + N2 + 2δ + 2κ) + ǫ.
+Consider now the subpath P1′ of P1 from P1 (|x|) to P1 (n1 ℓ1 − |z|) and the subpath
+P2′ of P2 from P2 (|x′ |) to P2 (n2 ℓ2 − |z ′ |). These are the paths labelled with y and
+y ′ , respectively, in Figure 4. By Lemma 3.2 these paths asynchronously γ-fellow
+travel, where γ := K(δ, λ, ǫ, 2δ + 2κ) is a constant. In Figure 4 this is visualized by
+the part between the c-labelled edge and the d-labelled edge. W.l.o.g. we assume
+that γ ≥ 2δ + 2κ.
+     We now define the NFA A over the alphabet {a1 , a2 } (recall the we replace edge
+labels from {a1 , a2 }∗ by their Parikh images). The state set of A is
+                   Q = {q0 , qf } ∪ {(i, b, j) | 0 ≤ i < ℓ1 , 0 ≤ j < ℓ2 , b ∈ Bγ (1)}.
+The unique initial state is q0 and the unique final state is qf . To define the
+transitions of A set p = ⌊N1 /ℓ1 ⌋ = ⌊|x|/|u1 |⌋, r = N1 mod ℓ1 = |x| mod |u1 |,
+s = ⌈N2 /ℓ1 ⌉ = ⌈|z|/|u1|⌉, t = −N2 mod ℓ1 = −|z| mod |u1 |. Thus, we have
+x = up1 u1 [: r] and z = us1 [t + 1 :]. There are the following types of transitions
+(transitions without a label are implicitly labelled by the zero vector (0, 0)), where
+0 ≤ i < ℓ1 , 0 ≤ j < ℓ2 , b, b′ ∈ Bγ (1).
+                  (p,p′ )
+      (1) q0 −−−→ (r, c, r′ ) if there exists a number 0 ≤ k ≤ λ(m1 + N1 + 2δ + 2κ) + ǫ
+          (this is the possible range for the length of x′ in (1)) such that p′ = ⌊k/ℓ2 ⌋,
+                                                    ′
+          r′ = k mod ℓ2 , and v1 up1 u1 [: r] = up2 u2 [: r′ ]c in G.
+                    → (i + 1, b′ , j) if i + 1 < ℓ1 and bu1 [i + 1] = b′ in G.
+      (2) (i, b, j) −
+                                      (1,0)
+      (3) (ℓ1 − 1, b, j) −−−→ (0, b′ , j) if bu1 [ℓ1 ] = b′ in G.
+                    → (i, b′ , j + 1) if j + 1 < ℓ2 and b = u2 [j + 1]b′ in G.
+      (4) (i, b, j) −
+                                  (0,1)
+      (5) (i, b, ℓ2 − 1) −−−→ (i, b′ , 0) if b = u2 [ℓ2 ]b′ in G.
+                            (s,s′ )
+      (6) (t, d, t′ ) −−−→ qf if there exists a number 0 ≤ k ≤ λ(m2 + N2 + 2δ + 2κ) + ǫ
+          (this is the possible range for the length of z ′ in (2)) such that s′ = ⌈k/ℓ2 ⌉,
+                                                                  ′
+          t′ = −k mod ℓ2 , and du1 [t + 1 :]us1 = u2 [t′ + 1 :]us2 v2 in G.
+                                                           11
+The construction is best explained using the example in Figure 4. As mentioned
+above, the vertical lines between c = c0 and d = c24 represent the asynchronous γ-
+fellow travelling. The vertical lines are labelled with group elements c0 , c1 , . . . , c23 , c24 ∈
+Bγ (1) from left to right. In order to not overload the figure we only show c0 and
+c24 . Note that x = u61 u1 [1], x′ = u32 u2 [1], z = u81 [2 :], z ′ = u42 [2 :]. Basically, the
+NFA A moves the vertical edges from left to right and thereby stores (i) the label
+ci of the vertical edge, (ii) the position in the current u2 -factor where the vertical
+edge starts (position 0 means that we have just completed a u2 -factor), and (iii)
+the position in the current u1 -factor where the vertical edge ends. If a u1 -factor
+(resp., u2 -factor) is completed then the automaton makes a (1, 0)-labelled (resp.,
+(0, 1)-labelled) transition. The automaton run corresponding to Figure 4 is:
+    (6,3)             (1,0)                                                      (0,1)
+q0 −−−→(1, c0 , 1) −−−→ (0, c1 , 1) → (1, c2 , 1) → (1, c3 , 2) → (1, c4 , 3) −−−→
+                      (1,0)                                        (1,0)
+            (1, c5 , 0) −−−→ (0, c6 , 0) → (0, c7 , 1) → (1, c8 , 1) −−−→ (0, c9 , 1) →
+                                                       (0,1)            (1,0)
+            (1, c10 , 1) → (1, c11 , 2) → (1, c12 , 3) −−−→ (1, c13 , 0) −−−→ (0, c14 , 0) →
+                                      (1,0)
+            (0, c15 , 1) → (1, c16 , 1) −−−→ (0, c17 , 1) → (1, c18 , 1) → (1, c19 , 2) →
+                        (1,0)             (0,1)                                             (8,4)
+            (1, c20 , 3) −−−→ (0, c21 , 3) −−−→ (0, c22 , 0) → (0, c23 , 1) → (1, c24 , 1) −−−→ qf
+With the above intuition it is straightforward to show that the Parikh image of
+L(A) is indeed S2 . Also note that the number of states of A is bounded by O(ℓ1 ℓ2 ).
+The statement of the lemma then follows directly from Theorem 8.2.               
+
+8.2. Reduction to quasi-geodesic knapsack expressions. Let us call a knap-
+sack expression E = ux1 1 v1 ux2 2 v2 · · · uxk k vk over G (λ, ǫ)-quasigeodesic if all words
+u1 , . . . , uk , v1 , . . . , vk are geodesic and for all 1 ≤ i ≤ k and all n ≥ 0 the word uni is
+(λ, ǫ)-quasigeodesic. We say that E has infinite order, if all ui represent group ele-
+ments of infinite order. The goal of this section is to reduce a knapsack expression
+to a finite number (in fact, exponentially many) of (λ, ǫ)-quasigeodesic knapsack
+expressions of infinite order for certain constants λ, ǫ:
+Proposition 8.4. There exist fixed constants λ, ǫ such that from a given knapsack
+expression E over G one can compute a finite list of knapsack expressions Ei (i ∈ I)
+over G such that              [                             
+                     sol(E) =     (mi · sol(Ei ) + di ) ⊕ Fi ,
+                                       i∈I
+where the following additional properties hold:
+      • every Fi is a semilinear subset of NY for a subset Y ⊆ XE ,
+      • the magnitude of every Fi is bounded by a constant that only depends on
+        G,
+      • every Ei is a (λ, ǫ)-quasigeodesic knapsack expression of infinite order with
+        variables from Z := XE \ Y ,
+      • the size of every Ei is bounded by O(|E|), and
+      • all mi and di are vectors from NZ where all entries are bounded by a con-
+        stant that only depends on G (here, mi · sol(Ei ) = {mi · z | z ∈ sol(E)} and
+        mi · z is the pointwise multiplication of the vectors mi and z).
+   Once Proposition 8.4 is shown, we can conclude the proof of Theorem 8.1 by
+showing that all sets sol(Ei ) are semilinear and that their magnitudes are bounded
+by p(|Ei |) for a fixed polynomial p(n). This will be achieved in the next section.
+   For the proof of Proposition 8.4 we mainly build on results from [3]. We fix the
+constants L = 34δ + 2 and K = |B4δ (1)|2 .
+                                                  12
+Lemma 8.5 (c.f. [3, Lemma 3.1]). Let u = u1 u2 be shortlex reduced, where |u1 | ≤
+|u2 | ≤ |u1 | + 1. Let ũ = shlex(u2 u1 ). If |ũ| ≥ 2L + 1 then for every n ≥ 0, the word
+ũn is L-local (1, 2δ)-quasigeodesic.
+  The following lemma is not stated explicitly in [3] but is shown in Section 3.2
+(where the main argument is attributed to Delzant).
+Lemma 8.6 (c.f. [3]). Let u be geodesic such that |u| ≥ 2L + 1 and for every n ≥ 0,
+the word un is L-local (1, 2δ)-quasigeodesic. Then one can compute c ∈ B4δ (1) and
+an integer 1 ≤ m ≤ K such that (shlex(c−1 um c))n is geodesic for all n ≥ 0.
+
+Proof of Proposition 8.4. We set λ = N (2L + 1) and ǫ = 2N 2 (2L + 1)2 + 2N (2L + 1),
+where N = |B2δ (1)|. Consider a knapsack expression E = ux1 1 v1 ux2 2 v2 · · · uxk k vk . We
+can assume that every ui is shortlex reduced. Let gi ∈ G be the group element
+represented by the word ui .
+Step 1. In this first step we show how to reduce to the case where all gi have infinite
+order. In a hyperbolic group G the order of torsion elements is bounded by a fixed
+constant that only depends on G, see also the proof of [22, Theorem 6.7]). This
+allows to check for each gi whether it has finite order, and to compute the order in
+the positive case. Let Y ⊆ {x1 , . . . , xk } be those variables xi such that gi has finite
+order. For xi ∈ Y let oi < ∞ be the order of gi . Let F be the set of mappings
+f : Y → N such that 0 ≤ f (xi ) < oi for all xi ∈ Y . For every such mapping f ∈ F
+let Ef be the knapsack expression that is obtained from E by replacing for every
+                             f (x )
+xi ∈ Y the power uxi i by ui i (which is merged with the word vi ). Moreover, let
+Ff be the set of all mappings g : Y → N such that g(xi ) ≡ f (xi ) mod oi for every
+xi ∈ Y . Then the set sol(E) can be written as
+                                           [
+                               sol(E) =        sol(Ef ) ⊕ Ff .
+                                          f ∈F
+
+Note that Ff is a semilinar set of magnitude O(1).
+Step 2. We now consider a knapsack expression from Ff . To simplify notation,
+we denote this expression again with E = ux1 1 v1 ux2 2 v2 · · · uxk k vk . For every i, the
+group element gi represented by ui has infinite order. We factorize ui uniquely as
+ui = ui,1 ui,2 where |ui,1 | ≤ |ui,2 | ≤ |ui,1 | + 1, and let ũi = shlex(ui,2 ui,1 ). Note that
+|ũi | ≤ |ui |. Let g̃i be the group element represented by ũi . Since g̃i is conjugated
+to gi , also g̃i has infinite order. By Lemma 3.1, for every n ≥ 0, the word ũni
+is (λi , ǫi )-quasigeodesic for λi = N |ũi |, ǫi = 2N 2 |ũi |2 + 2N |ũi |. If |ũi | < 2L + 1
+then ũni is (λ, ǫ)-quasigeodesic for the constants λ and ǫ defined at the beginning
+of the proof. We then replace uxi i by ui,1 ũxi i u−1      i,1 . Note that for every n ≥ 0,
+       n −1                       n −1               n     n
+ui,1 ũi ui,1 = ui,1 (ui,2 ui,1 ) ui,1 = (ui,1 ui,2 ) = ui in G.
+     Now assume that |ũi | ≥ 2L + 1. By Lemma 8.5, ũni is L-local (1, 2δ)-quasi-
+geodesic for every n ≥ 0. By Lemma 8.6, one can compute ci ∈ B4δ (1) and an
+integer 1 ≤ mi ≤ K such that (shlex(ci−1 ũm                   n
+                                                       i ci )) is geodesic (and hence (1, 0)-
+                                                         i
+
+
+quasigeodesic) for all n ≥ 0. We then produce for every number 0 ≤ di ≤ mi − 1
+                                                                                        xi −1 −1
+a new knapsack instance by replacing uxi i by ui,1 ũdi i ci (shlex(c−1        mi
+                                                                          i ũi ci )) ci ui,1 .
+To make the description of the resulting knapsack expression more uniform we
+set mi = 1 and ci = 1 in case |ũi | < 2L + 1. Then, the replacement of uxi i by
+ui,1 ũxi i u−1
+             i,1 in case |ũi | < 2L + 1 is the same as the one for the case |ũi | ≥ 2L + 1.
+Let m : {x1 , . . . , xk } → N be the mapping with m(xi ) = mi .
+     From the above discussion, we obtain a finite set of (λ, ǫ)-quasigeodesic knapsack
+expressions Ed that are parameterized by a mapping d : {x1 , . . . , xk } → N with
+                                              13
+                                                   un2 2
+                               v1                                  v2
+
+
+
+                                     un1 1                 un3 3
+
+
+
+
+                                                   v3
+
+          Figure 5. The 2k-gon for k = 3 from the proof of Theorem 8.1
+
+0 ≤ d(xi ) < mi for all 1 ≤ i ≤ k. Let D be the set of all such mappings. We then
+have                                [
+                           sol(E) =    (m · sol(Ed ) + d).
+                                             d∈D
+Note that the magnitude of every Ed is bounded linearly in the magnitude of E.
+  Finally, the statement of the proposition is directly obtained by combining the
+above steps 1 and 2.                                                           
+
+8.3. Proof of Theorem 8.1. We now come to the proof of Theorem 8.1. Consider
+a knapsack expression E = ux1 1 v1 ux2 2 v2 · · · uxk k vk . We can assume that all ui , vi are
+geodesic. By Proposition 8.4 we can moreover assume that for all 1 ≤ i ≤ k, ui
+represents a group element of infinite order and that uni is (λ, ǫ)-quasigeodesic for
+all n ≥ 0, where λ, ǫ are fixed constants. We want to show that sol(E) is semilinear
+and has a magnitude that is polynomially bounded by |E|.
+    For the case k = 1 we have to consider all natural numbers n with un1 = v1−1 in
+G. Since u1 represents a group element of infinite order there is at most one such n.
+Moreover, since uni is (λ, ǫ)-quasigeodesic, such an n has to satisfy |u1 |·n ≤ λ|v1 |+ǫ,
+which yields a linear bound on n.
+    For the case k = 2 we can directly use Proposition 8.3. Now assume that k ≥ 3.
+We want to show that the set sol(E) is a semilinear subset of Nk (later we will
+consider the magnitude of sol(E)). For this we construct a Presburger formula
+with free variables x1 , . . . , xk that is equivalent to E = 1. We do this by induction
+on the depth k. Therefore, we can use in our Presburger formula also knapsack
+equations of the form F = 1, where F has depth at most k − 1.
+                                                                                  k
+    It suffices to constructW a Presburger formula       V for sol(E) ∩ (N \ {0}) . Note that
+E = 1 is equivalent to I⊆{1,...,k} (EI = 1 ∧ i∈I xi > 0), where EI is obtained
+from E by removing for every i 6∈ I the power uxi i .
+    Consider a tuple (n1 , . . . , nk ) ∈ sol(E) ∩ (N \ {0})k and the corresponding 2k-gon
+                                                                             ni−1
+that is defined by the (λ, ǫ)-quasigeodesic paths Pi = (un1 1 v1 · · · ui−1       vi−1 ) · P [uni i ]
+                                       n1       ni
+and the geodesic paths Qi = (u1 v1 · · · ui ) · P [vi ], see Figure 5 for the case k = 3.
+Since all paths Pi and Qi are (λ, ǫ)-quasigeodesic, we can apply [22, Lemma 6.4]:
+Every side of the 2k-gon is contained in the h-neighborhoods of the other sides,
+where h = ξ + ξ log(2k) for a constant ξ that only depends on the constants δ, λ, ε.
+    Let us now consider the side P2 of the quasigeodesic (2k)-gon. It is labelled
+with ux2 2 . Its neighboring sides are Q1 and Q2 , which are labelled with v1 and v3 ,
+respectively. We distinguish several cases. In each case we cut the 2k-gon into
+smaller pieces along paths of length ≤ 2h + 1 (length h in some cases), and these
+smaller pieces will correspond to knapsack expressions of depth < k. This is done
+                                                    14
+                                            uy22                     uz22
+                                                     u2,1 u2,2
+                                    v1                                            v2
+
+
+
+                                            ux1 1      w             ux3 3
+
+
+
+
+                                                      v3,2 v3,1
+
+                     Figure 6. Case 1.1 from the proof of Theorem 8.1
+
+
+until all knapsack expressions have depth at most two. When we speak of a point
+on the 2k-gon, we mean a node of the Cayley graph (i.e., an element of the group
+G) and not a point in the interior of an edge. Moreover, when we speak of the
+successor point of a point p, we refer to the clockwise order on the 2k-gon, where
+the sides are traversed in the order P1 , Q1 , . . . , Pk , Qk . We now distinguish the
+following cases:
+Case 1: There is a point p ∈ P2 that has distance at most h from a point q that
+does not belong to P1 ∪ Q1 ∪ Q2 ∪ P3 . Thus q must belong to one of the paths
+Q3 , P4 , . . . Qk−1 , Pk , Qk . Let w be a geodesic word of length at most h that labels
+a path from p to q. There are two subcases:
+Case 1.1: q belongs to the paths Qi , where 3 ≤ i ≤ k. The situation is shown
+in Figure 6. We construct two new knapsack expressions Ft and Gt for all tuples
+t = (w, u2,1 , u2,2 , vi,1 , vi,2 ) such that w ∈ Σ∗ is of length at most h, u2 = u2,1 u2,2
+and vi = vi,1 vi,2 :
+                                                                x
+                     Ft   =       ux1 1 v1 uy22 (u2,1 wvi,2 )ui+1
+                                                               i+1
+                                                                   vi+1 · · · uxk k vk and
+                     Gt   =       u2,2 uz22 v2 ux3 3 v3 · · · uxi i (vi,1 w−1 )
+Here y2 and z2 are new variables. Note that Ft and Gt have depth at most k − 1.
+Moreover, let A1.1 be the following formula, where t ranges over all tuples of the
+above form:
+                     _
+              A1.1 =    ∃y2 , z2 : x2 = y2 + 1 + z2 ∧ Ft = 1 ∧ Gt = 1
+                              t
+
+Case 1.2: q belongs to the path Pi , where 4 ≤ i ≤ k (this case can only occur
+if k ≥ 4). This case is analogous to Case 1.1. We only have to split uxi i as
+uyi i (ui,1 ui,2 )uzi i (as we do for ux2 2 ). We construct two new knapsack expressions Ft
+and Gt for all tuples t = (w, u2,1 , u2,2 , ui,1 , ui,2 ) such that w ∈ Σ∗ is of length at
+most h, u2 = u2,1 u2,2 and ui = ui,1 ui,2 :
+                                                                    x
+                Ft     = ux1 1 v1 uy22 (u2,1 wui,2 )uzi i vi ui+1
+                                                               i+1
+                                                                   vi+1 · · · uxk k vk and
+                                                           x
+                Gt     = u2,2 uz22 v2 ux3 3 v3 · · · ui−1
+                                                       i−1
+                                                           vi−1 uyi i (ui,1 w−1 )
+Here y2 , z2 , yi , zi are new variables. Note that Ft and Gt have depth at most k − 1.
+Moreover, let A1.2 be the following formula, where t ranges over all tuples of the
+above form:
+           _
+  A1.2 =        ∃y2 , z2 , yi , zi : x2 = y2 + 1 + z2 ∧ xi = yi + 1 + zi ∧ Ft = 1 ∧ Gt = 1
+            t
+                                                           15
+                               v1,2                  ux2 2
+                              v1,1                                     v2
+                                                     w
+
+                                        ux1 1                ux3 3
+
+
+
+
+                                                      v3
+
+                 Figure 7. Case 2.1 from the proof of Theorem 8.1
+
+Case 2: Every point on P2 that has distance at most h from a point on P1 ∪ Q1 ∪
+Q2 ∪ P3 .
+Case 2.1: The end point of P2 (i.e., the point connecting P2 with Q2 ) has distance
+at most h from a point on Q1 , see Figure 7. For all tuples t = (w, v1,1 , v1,2 ) such
+that w ∈ Σ∗ is of length at most h and v1 = v1,1 v1,2 we construct two new knapsack
+expressions
+           Ft = ux2 2 (wv1,2 ) and Gt = ux1 1 (v1,1 w−1 v2 )ux3 3 v3 · · · uxk k vk
+and the formula                                 _
+                                     A2.1 =         Ft = 1 ∧ Gt = 1,
+                                                t
+where t ranges over all tuples of the above form. Note that Ft has depth one and
+Gt has depth k − 1.
+Case 2.2: The end point of P2 (i.e., the point connecting P2 with Q2 ) has distance at
+most h from a point on P1 , see Figure 8. For all tuples t = (w, u1,1 , u1,2 ) such that
+w ∈ Σ∗ is of length at most h and u1 = u1,1 u1,2 , we construct two new knapsack
+expressions
+       Ft = uz11 v1 ux2 2 (wu1,2 ) and Gt = uy11 (u1,1 w−1 v2 )ux3 3 v3 · · · uxk k vk
+and the formula
+                         _
+                A2.2 =        ∃y1 , z1 : x1 = y1 + 1 + z1 ∧ Ft = 1 ∧ Gt = 1,
+                          t
+
+where t ranges over all tuples of the above form. Note that Ft has depth two and
+Gt has depth k − 1.
+If on the other hand the end point of P2 has distance > h from all points on P1 ∪Q1 ,
+then there must be two points p1 , p2 on P2 such that p2 is the successor point of p1
+when travelling along P2 (i.e., d(p1 , p2 ) = 1), and p1 has distance at most h from a
+point q1 ∈ P1 ∪ Q1 , while p2 has distance at most h from a point on q2 ∈ Q2 ∪ P3 .
+Thus, the distance between q1 and q2 is at most 2h + 1. Let w be a word that labels
+a geodesic path from q1 to q2 (thus, |w| ≤ 2h + 1). This leads to the following four
+subcases.
+Case 2.3: q1 ∈ Q1 and q2 ∈ Q2 , see Figure 9. This case is very similar to Case 2.1.
+For every tuple t = (w, v1,1 , v1,2 , v2,1 , v2,2 ) with |w| ≤ 2h + 1, v1 = v1,1 v1,2 and
+v2 = v2,1 v2,2 we obtain two new knapsack expressions
+     Ft = Ft = v1,2 ux2 2 (v2,1 w) and Gt = ux1 1 (v1,1 w−1 v2,2 )ux3 3 v3 · · · uxk k vk
+                                                      16
+                                                          ux2 2
+                                  v1                                           v2
+
+                                    uz11                          w
+                                           u1,2
+                                                                      ux3 3
+                                              u1,1
+
+                                                  uy11
+                                                          v3
+
+                 Figure 8. Case 2.2 from the proof of Theorem 8.1
+
+                                 v1,2                     ux2 2               v2,1
+                                v1,1                                            v2,2
+                                                                  w
+
+                                            ux1 1                     ux3 3
+
+
+
+
+                                                          v3
+
+                 Figure 9. Case 2.3 from the proof of Theorem 8.1
+
+and the formula                                     _
+                                       A2.3 =            Ft = 1 ∧ Gt = 1,
+                                                    t
+where t ranges over all tuples of the above form.
+Case 2.4: q1 ∈ P1 and q2 ∈ Q2 , see Figure 10. This case is very similar to Case 2.2.
+For every tuple t = (w, u1,1 , u1,2 , v2,1 , v2,2 ) such that |w| ≤ 2h + 1, u1 = u1,1 u1,2 ,
+and v2 = v2,1 v2,2 we obtain two new knapsack expressions
+     Ft = u1,2 uz11 v1 ux2 2 (v2,1 w) and Gt = uy11 (u1,1 w−1 v2,2 )ux3 3 v3 · · · uxk k vk
+and the formula
+                          _
+                A2.4 =          ∃y1 , z1 : x1 = y1 + 1 + z1 ∧ Ft = 1 ∧ Gt = 1,
+                            t
+where t ranges over all tuples of the above form.
+Case 2.5: q1 ∈ Q1 and q2 ∈ P3 . This case is analogous to Case 2.4.
+Case 2.6: q1 ∈ P1 and q2 ∈ P3 , see Figure 11. For every tuple
+                         (w1 , w2 , w, u1,1 , u1,2 , u2,1 , u2,2 , u3,1 , u3,2 )
+such that |w| ≤ 2k + 1, |w1 | ≤ h, |w2 | ≤ h + 1, w = w1−1 w2 in G, u1 = u1,1 u1,2 ,
+u2 = u2,1 u2,2 , and u3 = u3,1 u3,2 we obtain three new knapsack expressions
+                       Ft       =      uz11 v1 uy22 (u2,1 w1 u1,2 ),
+                       Gt       =      uz22 v2 uy33 (u3,1 w2−1 u2,2 ) and
+                       Ht       =      uz33 v3 ux4 4 v4 · · · uxk k vk uy11 (u1,1 wu3,2 ).
+                                                           17
+                                                    ux2 2                  v2,1
+                            v1
+                                                                             v2,2
+
+                             uz11                            w
+                                    u1,2
+                                                                  ux3 3
+                                       u1,1
+
+                                            uy11
+                                                    v3
+
+                Figure 10. Case 2.4 from the proof of Theorem 8.1
+
+                                      uy22                        uz22
+                                               u2,1 u2,2
+                             v1                                              v2
+
+                              uz11             w1           w2             uy33
+                                     u1,2                           u3,1
+                                                     w
+                                       u1,1                      u3,2
+
+                                            uy11             uz33
+                                                     v3
+
+                Figure 11. Case 2.6 from the proof of Theorem 8.1
+
+and the formula
+         ^                                 3
+                                           ^
+  A2.6 =    ∃y1 , z1 , y2 , z2 , y3 , z3 :   xi = yi + 1 + zi ∧ Ft = 1 ∧ Gt = 1 ∧ Ht = 1,
+           t                            i=1
+
+where t ranges over all tuples of the above form. Note that Ft and Gt have depth
+2 and that Ht has depth k − 1.
+This concludes the construction of a Presburger formula for the set sol(E) and
+shows the semilinearity of sol(E). It remains to argue that the magnitude of sol(E)
+is bounded polynomially in |E|. Iterating the above splitting procedure results in
+an exponentially large disjunction of conjunctive formulas of the form
+                                     ^        ^
+(3)                 ∃y1 , . . . , ym   Ei = 1   zj = zj′ + zj′′ + 1
+                                       i∈I                j∈J
+
+where every Ei is a knapsack expression of depth at most two. Moreover, for
+i 6= j, Ei and Ej have no common variables. The existentially quantified vari-
+ables y1 , . . . , ym are the new variables that were introduced when splitting fac-
+tors uxi i (e.g., y2 , z2 in the formula A1.1 ). The variables zj , zj′ , zj′′ in (3) are from
+{x1 , . . . , xk , y1 , . . . , ym }. The equations zj = zj′ + zj′′ + 1 in (3) result from the
+splitting of factors uxi i . For instance, x2 = y2 + 1 + z2 in A1.1 is one such equation.
+   In order to bound the magnitude of sol(E) it suffices to consider a single conjunc-
+tive formula of the form (3), since disjunction corresponds to union of semilinear
+sets, which does not increase the magnitude. We can also ignore the existential
+quantifiers in (3), because existential quantification corresponds to projection onto
+                                                     18
+some of the coordinates, which cannot increase the magnitude. Hence, we have to
+consider the magnitude of the semilinear set A defined by
+                          ^         ^
+(4)                          Ei = 1    zj = zj′ + zj′′ + 1.
+                             i∈I         j∈J
+
+The splitting process that finally produces formula (4) can be seen as a tree T , where
+every node v is labelled with a knapsack expression E(v), the root is labelled with
+E, the leaves are labelled with the expressions Ei (i ∈ I) from (3) and the children
+of a node v are labelled with the expressions into which E(v) is decomposed. The
+number of children of every node is at most three (three children are only produced
+in Case 2.6).
+   Let us first show that the size of this tree T is bounded by O(k 2 ). We assign to
+each node v of T the number d(v) := depth of the knapsack expression E(v). Note
+that d(v) ≤ 2 if and only if v is a leaf. If E(v) is split according to one of the Cases
+2.1–2.6 then v has j ≤ 3 children v1 , . . . , vj , where v1 , . . . , vj−1 are leaves (their
+d-value is one or two) and d(vj ) = d(v) − 1. If E(v) is split according to Case 1.1
+or 1.2 then v has two children v1 and v2 such that (i) d(v1 ), d(v2 ) < d(v), (ii)
+d(v1 ), d(v2 ) ≥ 2 and d(v1 ) + d(v2 ) = d(v) + 1 in Case 1.1, and (iii) d(v1 ), d(v2 ) ≥ 3
+and d(v1 ) + d(v2 ) = d(v) + 2 in Case 1.2. Let T ′ be the tree that is obtained by
+removing all leaves with d-value at most 2. It suffices to show that the size of T ′
+is bounded by O(k 2 ). All leaves of T ′ have the d-value 3. Moreover, every non-leaf
+v of T ′ has either exactly one child v ′ with d(v) > d(v ′ ) or two children v1 and v2
+such that d(v) ≥ d(v1 ) + d(v2 ) − 2. Let n0 be the number of leaves of T ′ and n2 be
+the number of nodes of T ′ with exactly two children. From the above equations, it
+follows that the root r of T ′ satisfies k = d(r) ≥ 3n0 − 2n2 . Moreover, n2 = n0 − 1.
+We get k ≥ n0 + 2, i.e., n0 ≤ k − 2 and n2 ≤ k − 3. Since every path from the
+root to a leaf can contain at most k nodes having a single child, we must have
+n1 ≤ (k − 2)k. This shows that the size of T ′ and hence of T is bounded by O(k 2 ).
+Thus, we also have |I| ≤ O(k 2 ) in (4).
+   Next, we show that for every i ∈ I, |Ei | is bounded polynomially in |E|. To
+see this, consider a single splitting step. In each of the above Cases 1.1–2.6 the
+argument is similar. Consider for instance Case 2.6, where the knapsack expression
+E is replaced by three knapsack expressions Ft , Gt , Ht . We can bound the sizes
+of these expressions by |Ft | ≤ |E| + |u1,2 | + |u2,1 | + |w1 | ≤ |E| + |u1 | + |u2 | + h,
+|Gt | ≤ |E| + |u2,2 | + |u3,1 | + |w2 | ≤ |E| + |u2 | + |u3 | + h + 1, and Ht | ≤ |E| +
+|u1,1 | + |u3,2 | + |w| ≤ |E| + |u1 | + |u3 | + 2h + 1. The number of splitting steps that
+finally leads to an Ei is bounded by k (since the depth of the knapsack expressions
+is reduced in each step). Hence, the size of each knapsack expression Ei in (4) is
+bounded by |E| + 2k|E| + k(2h + 1) = (2k + 1)|E| + k(2ξ + 2ξ log(2k) + 1) ≤ O(|E|2 ).
+Since every Ei has depth at most two, there is a fixed polynomial p(n)      L such that the
+magnitude of every set sol(Ei ) is bounded by p(|E|). Hence, also i∈I sol(Ei ) is a
+semilinear set of magnitude at most p(|E|)       L(the ⊕-operator on semilinear sets does
+not increase the magnitude).
+                        V            Note  that    i∈I sol(Ei ) is the semilinear set defined
+by the conjunction i∈I Ei = 1.
+   To bound the magnitude of the semilinear set A defined by (4), one has to
+consider also the additional equations zj = zj′ + zj′′ + 1 for j ∈ J. Let U be the
+set of variables that L appear in the knapsack expressions Ei (i ∈ I). Note that
+the dimension of         i∈I sol(Ei ) is |U |. Since every knapsack expression
+                                                                             L Ei (i ∈ I)
+contains at most two variables, we can bound the dimension of                  i∈I sol(Ei ) by
+2|I| ≤ O(k 2 ). Note that for each equation zj = zj′ + zj′′ + 1 there exists a node v in
+the tree T with children v ′ , v ′′ such that zj is a variable from E(v), zj′ is a variable
+from E(v ′ ), and zj′′ is a variable from E(v ′′ ). This implies that every variable zj
+                                               19
+is a sum of pairwise different variables from U plus a constant that is bounded by
+|T | ≤ O(k 2 ). Therefore the magnitude of A is bounded by O(k 2 · p(|E|)), which is
+polynomial in |E|. This concludes the proof.                                      
+
+                   9. More groups with knapsack in LogCFL
+   Let C be the smallest class of groups such that (i) every hyperbolic group belongs
+to C, (ii) if G ∈ C then also G × Z ∈ C, and (iii) if G, H ∈ C then also G ∗ H ∈ C
+(where G ∗ H is the free product of G and H). The class C contains groups that
+are not hyperbolic (e.g., Z × Z). From Theorem 8.1 and Proposition 5.1 we get:
+Proposition 9.1. Every group from the class C is knapsack-tame and hence poly-
+nomially knapsack-bounded.
+   From Theorem 4.1 and 4.2 we get:
+Proposition 9.2. Every group from the class C belongs to OW-AuxPDA.
+   Proposition 9.1 and 9.2 together with Theorem 6.1 and 6.2 yield:
+Corollary 9.3. For every group G from the class C, membership for acyclic NFAs
+over G and knapsack for G both belong to LogCFL.
+   Corollary 9.3 generalizes Corollaries 7.2 and 7.3 as well as [4, Corollary 22], where
+it was shown that knapsack can be solved in polynomial time for a free product of
+hyperbolic groups and finitely generated abelian groups.
+
+                                     10. Conclusion
+   In this paper, it is shown that every hyperbolic group is knapsack-tame and that
+the knapsack problem can be solved in LogCFL. Here is a list of open problems
+that one might consider for future work.
+      • For the following important groups, it is not known whether the knapsack
+         problem is decidable: braid groups Bn (with n ≥ 3), solvable Baumslag-
+         Solitar groups BS1,p = ha, t | t−1 at = ap i (with p ≥ 2), and automatic
+         groups which are not in any of the known classes with a decidable knapsack
+         problem.
+      • In [13], it was shown that knapsack is decidable for every co-context-free
+         group. The algorithm from [13] has an exponential running time. Is there
+         a more efficient solution?
+      • Is there a polynomially knapsack-bounded group which is not knapsack-
+         tame?
+
+                                       References
+ [1] Gerhard Buntrock and Friedrich Otto. Growing context-sensitive languages and Church-
+     Rosser languages. Information and Computation, 141:1–36, 1998.
+ [2] Michael Elberfeld, Andreas Jakoby, and Till Tantau. Algorithmic meta theorems for circuit
+     classes of constant and logarithmic depth. Electronic Colloquium on Computational Com-
+     plexity (ECCC), 18:128, 2011.
+ [3] David B. A. Epstein and Derek F. Holt. The linearity of the conjugacy problem in word-
+     hyperbolic groups. International Journal of Algebra and Computation, 16(2):287–306, 2006.
+ [4] Elizaveta Frenkel, Andrey Nikolaev, and Alexander Ushakov. Knapsack problems in products
+     of groups. Journal of Symbolic Computation, 74:96–108, 2016.
+ [5] Moses Ganardi, Daniel König, Markus Lohrey, and Georg Zetzsche. Knapsack problems for
+     wreath products. In Proceedings of STACS 2018, volume 96 of LIPIcs, pages 32:1–32:13.
+     Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2018.
+ [6] Etienne Ghys and Pierre de La Harpe. Sur les groupes hyperboliques d’après Mikhael Gromov.
+     Progress in mathematics. Birkhäuser, 1990.
+ [7] Seymour Ginsburg and Edwin H. Spanier. Semigroups, Presburger formulas, and languages.
+     Pacific Journal of Mathematics, 16(2):285–296, 1966.
+                                              20
+ [8] Mikhail Gromov. Hyperbolic groups. In S. M. Gersten, editor, Essays in Group Theory,
+     number 8 in MSRI Publ., pages 75–263. Springer, 1987.
+ [9] Christoph Haase. On the complexity of model checking counter automata. PhD thesis, Uni-
+     versity of Oxford, St Catherine’s College, 2011.
+[10] Derek F. Holt. Word-hyperbolic groups have real-time word problem. International Journal
+     of Algebra and Computation, 10:221–228, 2000.
+[11] Derek F. Holt, Markus Lohrey, and Saul Schleimer. Compressed decision problems in hyper-
+     bolic groups. In Proceedings of STACS 2019, volume 126 of LIPIcs, pages 37:1–37:16. Schloss
+     Dagstuhl - Leibniz-Zentrum für Informatik, 2019.
+[12] Richard M. Karp. Reducibility among combinatorial problems. In R. E. Miller and J. W.
+     Thatcher, editors, Complexity of Computer Computations, pages 85–103. Plenum Press, 1972.
+[13] Daniel König, Markus Lohrey, and Georg Zetzsche. Knapsack and subset sum problems in
+     nilpotent, polycyclic, and co-context-free groups. In Algebra and Computer Science, volume
+     677 of Contemporary Mathematics, pages 138–153. American Mathematical Society, 2016.
+[14] Eryk Kopczynski and Anthony Widjaja To. Parikh images of grammars: Complexity and
+     applications. In Proceedings of LICS 2010, pages 80–89. IEEE Computer Society, 2010.
+[15] Jörg Lehnert and Pascal Schweitzer. The co-word problem for the Higman-Thompson group
+     is context-free. Bulletin of the London Mathematical Society, 39(2):235–241, 2007.
+[16] Markus Lohrey. Decidability and complexity in automatic monoids. International Journal of
+     Foundations of Computer Science, 16(4):707–722, 2005.
+[17] Markus Lohrey and Georg Zetzsche. Knapsack in graph groups, HNN-extensions and amal-
+     gamated products. CoRR, abs/1509.05957, 2015.
+[18] Markus Lohrey and Georg Zetzsche. Knapsack in graph groups, HNN-extensions and amal-
+     gamated products. In Proceedings of STACS 2016, volume 47 of LIPIcs, pages 50:1–50:14.
+     Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2016.
+[19] Markus Lohrey and Georg Zetzsche. Knapsack in graph groups. Theory of Computing Sys-
+     tems, 62(1):192–246, 2018.
+[20] Alexei Mishchenko and Alexander Treier. Knapsack problem for nilpotent groups. Groups
+     Complexity Cryptology, 9(1):87–98, 2017.
+[21] Alexei Myasnikov and Andrey Nikolaev. Verbal subgroups of hyperbolic groups have infinite
+     width. Journal of the London Mathematical Society, 90(2):573–591, 2014.
+[22] Alexei Myasnikov, Andrey Nikolaev, and Alexander Ushakov. Knapsack problems in groups.
+     Mathematics of Computation, 84:987–1016, 2015.
+[23] Alexander Yu. Ol’shanskii. Almost every group is hyperbolic. International Journal of Algebra
+     and Computation, 2(1):1–17, 1992.
+[24] Ivan H. Sudborough. On the tape complexity of deterministic context–free languages. Journal
+     of the ACM, 25(3):405–414, 1978.
+[25] Anthony Widjaja To. Parikh images of regular languages: Complexity and applications.
+     CoRR, abs/1002.1464, 2010. URL: http://arxiv.org/abs/1002.1464.
+[26] Heribert Vollmer. Introduction to Circuit Complexity. Springer-Verlag, 1999.
+
+   Universität Siegen, Germany
+   E-mail address: lohrey@eti.uni-siegen.de
+
+
+
+
+                                               21
+

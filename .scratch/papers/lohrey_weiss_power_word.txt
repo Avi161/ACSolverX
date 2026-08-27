@@ -1,0 +1,869 @@
+The Power Word Problem
+Markus Lohrey
+Universität Siegen, Germany
+
+Armin Weiß
+Universität Stuttgart, Germany
+
+      Abstract
+In this work we introduce a new succinct variant of the word problem in a finitely generated group
+G, which we call the power word problem: the input word may contain powers px , where p is a
+finite word over generators of G and x is a binary encoded integer. The power word problem is a
+restriction of the compressed word problem, where the input word is represented by a straight-line
+program (i.e., an algebraic circuit over G). The main result of the paper states that the power word
+problem for a finitely generated free group F is AC0 -Turing-reducible to the word problem for F .
+Moreover, the following hardness result is shown: For a wreath product G o Z, where G is either
+free of rank at least two or finite non-solvable, the power word problem is complete for coNP. This
+contrasts with the situation where G is abelian: then the power word problem is shown to be in TC0 .
+
+2012 ACM Subject Classification Theory of computation → Problems, reductions and completeness
+
+Keywords and phrases word problem, compressed word problem, free groups
+
+Digital Object Identifier 10.4230/LIPIcs.MFCS.2019.43
+
+Related Version A full version [27] of the paper is available on arXiv https://arxiv.org/abs/1904.
+08343.
+
+Funding Markus Lohrey: Funded by DFG project LO 748/12-1.
+Armin Weiß: Funded by DFG project DI 435/7-1.
+
+Acknowledgements We thank Laurent Bartholdi for pointing out the result [5, Theorem 6.6] on the
+bound of the order of elements in the Grigorchuk group, which allowed us to establish Theorem 10.
+
+
+ 1      Introduction
+Algorithmic problems in group theory have a long tradition, going back to the work of Dehn
+from 1911 [9]. One of the fundamental group theoretic decision problems introduced by
+Dehn is the word problem for a finitely generated group G (with a fixed finite generating set
+Σ): does a given word w ∈ Σ∗ evaluate to the group identity? Novikov [34] and Boone [8]
+independently proved in the 1950’s the existence of finitely presented groups with undecidable
+word problem. On the positive side, in many important classes of groups the word problem
+is decidable, and in many cases also the computational complexity is quite low. Famous
+examples are finitely generated linear groups, where the word problem belongs to deterministic
+logarithmic space (L for short) [22] and hyperbolic groups where the word problem can be
+solved in linear time [17] as well as in LOGCFL [23].
+    In recent years, also compressed versions of group theoretical decision problems, where
+input words are represented in a succinct form, have attracted attention. One such succinct
+representation are so-called straight-line programs, which are context-free grammars that
+produce exactly one word. The size of such a grammar can be much smaller than the
+word it produces. For instance, the word an can be produced by a straight-line program
+of size O(log n). For the compressed word problem for the group G the input consists of
+a straight-line program that produces a word w over the generators of G and it is asked
+whether w evaluates to the identity element of G. This problem is a reformulation of the
+            © Markus Lohrey and Armin Weiß;
+            licensed under Creative Commons License CC-BY
+44th International Symposium on Mathematical Foundations of Computer Science (MFCS 2019).
+Editors: Peter Rossmanith, Pinar Heggernes, and Joost-Pieter Katoen; Article No. 43; pp. 43:1–43:15
+                   Leibniz International Proceedings in Informatics
+                   Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+43:2    The Power Word Problem
+
+
+       circuit evaluation problem for G. The compressed word problem naturally appears when
+       one tries to solve the word problem in automorphism groups or semidirect products [25,
+       Section 4.2]. For the following classes of groups, the compressed word problem is known to
+       be solvable in polynomial time: finite groups (where the compressed word problem is either
+       P-complete or in NC2 [6]), finitely generated nilpotent groups [20] (where the complexity is
+       even in NC2 ), hyperbolic groups [18] (in particular, free groups), and virtually special groups
+       (i.e, finite extensions of subgroups of right-angled Artin groups) [25]. The latter class covers
+       for instance Coxeter groups, one-relator groups with torsion, fully residually free groups and
+       fundamental groups of hyperbolic 3-manifolds. For finitely generated linear groups there
+       is still a randomized polynomial time algorithm for the compressed word problem [26, 25].
+       Simple examples of groups where the compressed word problem is intractable are wreath
+       products G o Z with G a non-abelian group: for every such group the compressed word
+       problem is coNP-hard [25] (this includes for instance Thompson’s group F ); on the other
+       hand, if, in addition, G is finite, then the (ordinary) word problem for G o Z is in NC1 [37].
+             In this paper, we study a natural variant of the compressed word problem, called the
+       power word problem. An input for the power word problem for the group G is a tuple
+       (p1 , x1 , p2 , x2 , . . . , pn , xn ) where every pi is a word over the group generators and every xi
+       is a binary encoded integer (such a tuple is called a power word); the question is whether
+       px1 1 px2 2 · · · pxnn evaluates to the group identity of G.
+             From a power word (p1 , x1 , p2 , x2 , . . . , pn , xn ) one can easily (e.g. by an AC0 -reduction)
+       compute a straight-line program for the word px1 1 px2 2 · · · pxnn . In this sense, the power word
+       problem is at most as difficult as the compressed word problem. On the other hand, both
+       power words and straight-line programs achieve exponential compression in the best case; so
+       the additional difficulty of the the compressed word problem does not come from a higher
+       compression rate but rather because straight-line programs can generate more “complex”
+       words.
+             Our main results for the power word problem are the following; in each case we compare
+       our results with the corresponding results for the compressed word problem:
+             The power word problem for every finitely generated nilpotent group is in DLOGTIME-
+             uniform TC0 and hence has the same complexity as the word problem (or the problem of
+             multiplying binary encoded integers). The proof is a straightforward adaption of a proof
+             from [33]. There, the special case, where all words pi in the input power word are single
+             generators, was shown to be in DLOGTIME-uniform TC0 . The compressed word problem
+             for every finitely generated nilpotent group belongs to the class DET ⊆ NC2 and is hard
+             for the counting class C= L in case of a torsion-free nilpotent group [20].
+             The power word problem for a finitely generated group G is NC1 -many-one-reducible to
+             the power word problem for any finite index subgroup of G. An analogous result holds
+             for the compressed word problem as well [20].
+             The power word problem for a finitely generated free group is AC0 -Turing-reducible to
+             the word problem for F2 (the free group of rank two) and therefore belongs to L. In
+             contrast, it was shown in [24] that the compressed word problem for a finitely generated
+             free group of rank at least two is P-complete.
+             The power word problem for a wreath product G o Z with G finitely generated abelian
+             belongs to DLOGTIME-uniform TC0 . For the compressed word problem for G o Z with G
+             finitely generated abelian only the existence of a randomized polynomial time algorithm
+             for the complement is known [21].
+             The power word problem for the wreath products F2 o Z and every wreath product G o Z,
+             where G is finite and non-solvable, is coNP-complete. For these groups this sharpens the
+             corresponding coNP-hardness result for the compressed word problem [25].
+ M. Lohrey and A. Weiß                                                                                    43:3
+
+
+   Table 1 Our results on the power word problem compared to previous results on the (compressed)
+word problem. Here WP stands for “word problem”.
+
+ class of groups                      PowerWP           CompressedWP            WP
+ nilpotent groups                     TC0               DET, C= L-hard [20]     TC0 [35]
+                                        a)
+ Grigorchuk group G                   L                 PSPACE                  L [13]
+ non-abelian f.g. free                Lb)               P-complete [24]         L [22]
+                                           0
+ G o Z for G f.g. abelian             TC                coRP [21]               TC0 [30]
+ G o Z for G finite non-solvable      coNP-complete     PSPACE, coNP-hard [25] NC1 [37]
+ F2 o Z                               coNP-complete     PSPACE, coNP-hard [25] Lb) [37]
+                                                1
+ finite extension of a f.g. group H          NC -many-one-reducible to PowerWP(H)
+                                           (resp. CompressedWP(H) [20], resp. WP(H) [37])
+a) AC0 -many-one-reducible to the word problem of G.
+b) AC0 -Turing-reducible to the word problem of F2 .
+
+
+
+   The power word problem for the Grigorchuk group is uAC0 -many-one-reducible to the
+   word problem. The word problem for the Grigorchuk group is in L [13], which implies that
+   the compressed word problem is in PSPACE. However, there is no non-trivial lower-bound
+   known for the compressed word problem for the Grigorchuk group.
+Table 1 summarizes the above results. Due to space constraints we present only short proof
+skteches for our main theorems; proofs of all lemmas can be found in the full version [27].
+
+
+
+
+Related work. Implicitly, (variants of) the power word problem have been studied before.
+In the commutative setting, Ge [14] has shown that one can verify in polynomial time an
+identity α1x1 α2x2 · · · αnxn = 1, where the αi are elements of an algebraic number field and the
+xi are binary encoded integers.
+    Another problem related to the power word problem is the knapsack problem [12, 28, 31]
+for a finitely generated group G (with generating set Σ): for a given sequence of words
+w, w1 , . . . , wn ∈ Σ∗ , the question is whether there exist x1 , . . . , xn ∈ N such that w =
+w1x1 · · · wnxn holds in G. For many groups G one can show that if such x1 , . . . , xn ∈ N exist,
+then there exist such numbers of size 2poly(N ) , where N = |w| + |w1 | + · · · + |wn | is the input
+length. This holds for instance for right-angled Artin groups (also known as graph groups).
+In this case, one nondeterministically guesses the binary encodings of numbers x1 , . . . , xn and
+then verifies, using an algorithm for the power word problem, whether w1x1 · · · wnxn w−1 = 1
+holds. In this way, it was shown in [28] that for every right-angled Artin group the knapsack
+problem belongs to NP (using the fact that the compressed word problem and hence the
+power word problem for a right-angled Artin group belongs to P).
+   In [16], Gurevich and Schupp present a polynomial time algorithm for a compressed
+form of the subgroup membership problem for a free group F , where group elements are
+represented in the form ax1 1 ax2 2 · · · axnn with binary encoded integers xi . The ai must be
+standard generators of the free group F . This is the same input representation as in [33]
+and is more restrictive then our setting, where we allow powers of the form wx for w an
+arbitrary word over the group generators (on the other hand, Gurevich and Schupp consider
+the subgroup membership problem, which is more general than the word problem).
+
+
+
+                                                                                                       M FC S 2 0 1 9
+43:4    The Power Word Problem
+
+
+        2      Preliminaries
+       Words. An alphabet is a (finite or infinite) set Σ; an element a ∈ Σ is called a letter. The
+       free monoid over Σ is denoted by Σ∗ , its elements are called words. The multiplication of the
+       monoid is concatenation of words. The identity element is the empty word 1. The length
+       of a word w is denoted by |w|. If w, p, x, q are words such that w = pxq, then we call x a
+       factor of w, p a prefix of w, and q a suffix of w. We write v ≤pref w (resp. v <pref w) if v is
+       a (strict) prefix of w and v ≤suff w (resp. v <suff w) if v is a (strict) suffix of w.
+
+       String rewriting systems. Let Σ be an alphabet and S ⊆ Σ∗ × Σ∗ be a set of pairs, called
+       a string rewriting system. We write ` → r if (`, r) ∈ S. The corresponding rewriting
+       relation =⇒ over Σ∗ is defined by: u =⇒ v if and only if there exist ` → r ∈ S and words
+                   S                                   S
+       s, t ∈ Σ∗ such that u = s`t and v = srt. We also say that u can be rewritten to v in
+                              k
+       one step. We write u =⇒ v if u can be rewritten to v in exactly k steps, i.e., if there
+                                     S
+       are u0 , . . . , uk with u = u0 , v = uk and ui =⇒ ui+1 for 0 ≤ i ≤ k − 1. We denote the
+                                                        S
+                                          +    S      k
+       transitive closure of =⇒ by =⇒ =          k≥1 =⇒   and the reflexive and transitive closure by
+                                  S       S           S
+         ∗      S          k              ∗
+       =⇒ = k≥0 =⇒. Moreover ⇐⇒ is the reflexive, transitive, and symmetric closure of =⇒;
+        S                S                  S                                                                       S
+       it is the smallest congruence containing S. The set of irreducible word with respect to S is
+       IRR(S) = {w ∈ Σ∗ | there is no v with w =⇒ v}.
+                                                            S
+
+
+       Free groups. Let X be a set and X −1 = a−1 a ∈ X be a disjoint copy of X. We extend
+                                                 
+
+       the mapping a 7→ a−1 to an involution without fixed points on Σ = X ∪ X −1 by (a−1 )−1 = a
+                                                                                                  −1 −1
+       and finally to an involution without fixed points on Σ∗ by (a1 a2 · · · an )−1 = a−1
+                                                                                         n · · · a2 a1 .
+       For an
+             integer  z < 0 and w ∈ Σ∗ we write wz for (w−1 )−z . The string rewriting system
+                 −1
+       S = aa → 1 a ∈ Σ is strongly confluent and terminating meaning that for every
+                                                                                ∗
+       word w ∈ Σ∗ there exists a unique word red(w) ∈ IRR(S) with w =⇒ red(w) (for precise
+                                                                                            S
+       definitions see e.g. [7, 19]). Words from IRR(S) are called freely reduced. The system S
+       defines the free group FX = Σ∗ /S with basis X. More concretely, elements of FX can be
+       identified with freely reduced words, and the group product of u, v ∈ IRR(S) is defined
+       by red(uv). With this definition red : Σ∗ → FX becomes a monoid homomorphism that
+       commutes with the involution ·−1 : red(w)−1 = red(w−1 ) for all words w ∈ Σ∗ . If |X| = 2,
+       we write F2 for FX . It is known that for every countable set X, F2 contains an isomorphic
+       copy of FX .
+
+       Finitely generated groups and the power word problem. A group G is called finitely
+       generated if there exist a finite a finite set X and a surjective group homomorphism h : FX →
+       G. In this situation, the set Σ = X ∪ X −1 is called a finite (symmetric) generating set for G.
+       For words u, v ∈ Σ∗ we usually say that u = v in G or u =G v in case h(red(u)) = h(red(v)).
+       The word problem for the finitely generated group G, WP(G) for short, is defined as follows:
+             input: a word w ∈ Σ∗ .
+             question: does w =G 1 hold?
+       A power word (over Σ) is a tuple (p1 , x1 , p2 , x2 , . . . , pn , xn ) where p1 , . . . , pn ∈ Σ∗ are words
+       over the group generators (called the periods of the power word) and x1 , . . . , xn ∈ Z
+       are integers that are given in binary notation. Such a power word represents the word
+       px1 1 px2 2 · · · pxnn . Quite often, we will identify the power word (p1 , x1 , p2 , x2 , . . . , pn , xn ) with
+       the word px1 1 px2 2 · · · pxnn . Moreover, if xi = 1, then we usually omit the exponent 1 in a power
+ M. Lohrey and A. Weiß                                                                                    43:5
+
+
+word. The power word problem for the finitely generated group G, PowerWP(G) for short,
+is defined as follows:
+    input: a power word (p1 , x1 , p2 , x2 , . . . , pn , xn ).
+    question: does px1 1 px2 2 · · · pxnn =G 1 hold?
+Due to the binary encoded exponents, a power word can be seen as a succinct description
+of an ordinary word. Hence, a priori, the power word problem for a group G could be
+computationally more difficult than the word problem. We will see examples of groups G,
+where PowerWP(G) is indeed more difficult than WP(G) (under standard assumptions
+from complexity theory), as well as examples of groups G, where PowerWP(G) and WP(G)
+are equally difficult.
+
+                                                                                         L
+Wreath products. Let G and H be groups. Consider the direct sum K =                         h∈H Gh ,
+                                                           (H)
+where Gh is a copy of G. We view K as the set G                 of all mappings f : H → G such that
+supp(f ) := {h ∈ H | f (h) 6= 1} is finite, together with pointwise multiplication as the group
+operation. The set supp(f ) ⊆ H is called the support of f . The group H has a natural left
+action on G(H) given by hf (a) = f (h−1 a), where f ∈ G(H) and h, a ∈ H. The corresponding
+semidirect product G(H) o H is the (restricted) wreath product G o H. In other words:
+    Elements of G o H are pairs (f, h), where h ∈ H and f ∈ G(H) .
+    The multiplication in G o H is defined as follows: Let (f1 , h1 ), (f2 , h2 ) ∈ G o H. Then
+   (f1 , h1 )(f2 , h2 ) = (f, h1 h2 ), where f (a) = f1 (a)f2 (h−1
+                                                                1 a).
+
+
+Complexity. We assume that the reader is familiar with the complexity classes P, NP, and
+coNP and many-one reductions; see e.g. [2] for details. We use circuit complexity for classes
+below deterministic logspace (L for short).
+    A language L ⊆ {0, 1}∗ is AC0 -Turing-reducible to K ⊆ {0, 1}∗ if there is a family of
+constant-depth, polynomial-size Boolean circuits with oracle gates for K deciding L. More
+precisely, L ⊆ {0, 1}∗ belongs to AC0 (K) if there exists a family (Cn )n≥0 of circuits which,
+apart from the input gates x1 , . . . , xn are built up from not, and, or, and oracle gates for K
+(which output 1 if and only if their input is in K). All gates may have unbounded fan-in,
+but there is a polynomial bound on the number of gates and wires and a constant bound
+on the depth (length of a longest path from an input gate xi to the output gate o). Finally,
+Cn accepts exactly the words from L ∩ {0, 1}n , i.e., if each input gate xi receives the input
+ai ∈ {0, 1}, then a distinguished output gate evaluates to 1 if and only if a1 a2 · · · an ∈ L.
+    In the following, we only consider DLOGTIME-uniform AC0 (K) for which we write
+uAC0 (K). DLOGTIME-uniform means that there is a deterministic Turing machine which
+decides in time O(log n) on input of two gate numbers (given in binary) and the string 1n
+whether there is a wire between the two gates in the n-input circuit and also computes the
+type of a given gate. For more details on these definitions we refer to [36]. If the languages
+K and L in the above definition of uAC0 (K) are defined over a non-binary alphabet Σ, then
+one first has to fix a binary encoding of words over Σ.
+    The class uTC0 is defined as uAC0 (Majority) where Majority is the problem to
+determine whether the input contains more 1s than 0s. The class NC1 is the class of languages
+accepted by Boolean circuits of bounded fan-in and logarithmic depth. When talking about
+hardness for uTC0 or NC1 we use uAC0 -Turing reductions unless stated otherwise. As a
+consequence of Barrington’s theorem [3], we have NC1 = uAC0 (WP(A5 )) where A5 is the
+alternating group over 5 elements [36, Corollary 4.54]. Moreover, the word problem for any
+finite group G is in NC1 . Robinson proved that the word problem for the free group F2 is
+NC1 -hard [35], i.e., NC1 ⊆ uAC0 (WP(F2 )).
+
+
+
+                                                                                                       M FC S 2 0 1 9
+43:6    The Power Word Problem
+
+
+        3     Results
+       In this section we state our (and prove the easy) results on the power word problem. Outlines
+       of the proofs of Theorems 2, 8 and 9 can be found in Sections 4 and 5, respectively.
+
+       I Theorem 1. If G is a finitely generated nilpotent group, then PowerWP(G) is in uTC0 .
+
+       Proof. In [33], the so-called word problem with binary exponents was shown to be in uTC0
+       for finitely generated nilpotent groups. We can apply the same techniques as in [33]: we
+       compute Mal’cev normal forms of all pi [33, Theorem 5], then use the power polynomials
+       from [33, Lemma 2] to compute Mal’cev normal forms with binary exponents of all pxi i .
+       Finally, we compute the Mal’cev normal form of px1 1 · · · pxnn again using [33].      J
+
+       I Theorem 2. The power word problem for a finitely generated free group is AC0 -Turing-
+       reducible to the word problem for the free group F2 .
+
+       Notice that if the free group has rank one, then the power word problem is in uTC0 because
+       iterated addition is in uTC0 .
+       I Remark 3. If the input is of the form (p1 , x1 , p2 , x2 , . . . , pn , xn ) where all pi are freely
+       reduced, then the reduction in Theorem 2 is a uTC0 -many-one reduction.
+       I Remark 4. One can consider variants of the power word problem, where the exponents are
+       not given in binary representation but in even more compact forms. Power circuits as defined
+       in [32] are such a representation that allow non-elementary compression for some integers.
+       The proof of Theorem 2 involves iterated addition and comparison of exponents. For power
+       circuits iterated addition is in uAC0 (just putting the power circuits next to each other), but
+       comparison (even for equality) is P-complete [38]. Hence, the variant of the power word
+       problem, where exponents are encoded with power circuits is P-complete for free groups.
+       I Remark 5. The proof of Theorem 2 can be easily generalized to free products. However, in
+       order to have a simpler presentation we only state and prove the result for free groups and
+       postpone the free product case to a future full version.
+       It is easy to see that the power word problem for every finite group belongs to NC1 . The
+       following result generalizes this fact:
+
+       I Theorem 6. Let G be finitely generated and let H ≤ G have finite index.                       Then
+       PowerWP(G) is NC1 -many-one-reducible to PowerWP(H).
+
+       Proof sketch. W.l.o.g. we can assume that H is a finitely generated normal subgroup and
+       R is a finite set of representatives of Q := G/H with 1 ∈ R. As a first step we replace in
+       the input power word every pxi i by hyi i pzi i where xi = yi |Q| + zi , 0 ≤ zi < |Q| and hi is a
+                                               |Q|
+       word over the generators of H with pi =G hi . Moreover, we write pzi i as a word without
+       exponents. Using the conjugate collection process from [35, Theorem 5.2], the result can be
+       rewritten in the form hr where h is a power word in the subgroup H and r ∈ R.                  J
+
+          As an immediate consequence of Theorem 2, Theorem 6 and the NC1 -hardness of the
+       word problem for F2 [35, Theorem 6.3] we obtain:
+
+       I Corollary 7. The power word problem for every finitely generated virtually free group is
+       AC0 -Turing-reducible to the word problem for the free group F2 .
+
+       I Theorem 8. For every finitely generated abelian group G, PowerWP(G o Z) is in uTC0 .
+ M. Lohrey and A. Weiß                                                                                 43:7
+
+
+I Theorem 9. Let G be either a finite non-solvable group or a finitely generated free group
+of rank at least two. Then PowerWP(G o Z) is coNP-complete.
+
+I Theorem 10. The power word problem for the Grigorchuk group (as defined in [15] and
+also known as first Grigorchuk group) is uAC0 -many-one-reducible to its word problem.
+
+Theorem 10 applies only if the generating set contains a neutral letter. Otherwise, the
+reduction is in uTC0 . It is well-know that the word problem for the Grigorchuk group is in L
+(see e.g. [13]). Thus, also the power word problem is in L.
+
+Proof sketch of Theorem 10. By [5, Theorem 6.6], every element of length N in the Grig-
+orchuk group has order at most CN 3/2 for some constant C. Since the order of every element
+is a power of two, we can reduce all exponents modulo the smallest power of two ≥ CN 3/2
+where N is the length of the longest period pi . After that the words are short and can be
+written without exponents.                                                               J
+
+
+ 4       Proof of Theorem 2
+The proof of Theorem 2 consists of two main steps: first we do some preprocessing leading to
+a particularly nice instance of the power word problem. While this preprocessing is simple
+from a theoretical point of view, it is where the main part of the workload is performed
+during the execution of the algorithm. Then, in the second step, all exponents are reduced
+to polynomial size. After this shortening process, the power word problem can be solved by
+the ordinary word problem. The most difficult part is to prove correctness of the shortening
+process. For this, we introduce a rewriting system over an extended alphabet of words with
+exponents. We outline the proof in a sequence of lemmas which all follow rather easily from
+the previous ones and we give some small hints how to prove the lemmas.
+
+Preprocessing. We use the notations from the paragraph on free groups in Section 2. In
+particular, recall that S = aa−1 → 1 a ∈ Σ . Fix an arbitrary order on the input
+alphabet Σ. This gives us the lexicographic order on Σ∗ , which is denoted by . Let
+Ω ⊆ IRR(S) ⊆ Σ∗ denote the set of words w such that
+   w is non-empty,
+   w is cyclically reduced (i.e, w cannot be written as aua−1 for a ∈ Σ),
+   w is primitive (i.e, w cannot be written as un for n ≥ 2),
+   w is lexicographically minimal among all cyclic permutations of w and w−1 (i.e., w  uv
+   for all u, v ∈ Σ∗ with vu = w or vu = w−1 ).
+Notice that Ω consists of Lyndon words [29, Chapter 5.1] with the stronger requirement of
+being freely reduced, cyclically reduced and also minimal among the conjugacy class of the
+inverse. The first aim is to rewrite the input power word in the form
+
+             w = s0 px1 1 s1 · · · pxnn sn   with pi ∈ Ω and si ∈ IRR(S).                    (1)
+
+The reason for this lies in the following crucial lemma which essentially says that, if a long
+                                   x
+factor of pxi i cancels with some pj j , then already pi = pj . Thus, only the same pi can cancel
+implying that we can make the exponents of the different pi independently smaller.
+
+I Lemma 11. Let p, q ∈ Ω, x, y ∈ Z and let v be a factor of px and w a factor of q y . If
+    ∗
+vw =⇒ 1 and |v| = |w| ≥ |p| + |q| − 1, then p = q.
+     S
+
+
+
+
+                                                                                                    M FC S 2 0 1 9
+43:8    The Power Word Problem
+
+
+       Proof. Since p and q are cyclically reduced, v and w are freely reduced, i.e., v = w−1 as words.
+       Thus, v has two periods |p| and |q|. Since v is long enough, by the theorem of Fine and Wilf
+       [10] it has also a period of gcd(|p| , |q|). This means that also p and q have period gcd(|p| , |q|)
+       (since cyclic permutations of p and q are factors of v). Assuming gcd(|p| , |q|) < |p|, would
+       mean that p is a proper power contradicting the fact that p is primitive. Hence, |p| = |q|.
+       Since |v| ≥ |p| + |q| − 1 = 2 |p| − 1, p is a factor of v, which itself is a factor of q −y . Thus, p
+       is a cyclic permutation of q or of q −1 . By the last condition on Ω, this implies p = q.          J
+
+       I Lemma 12. The following is in uAC0 (WP(F2 )): given a power word v, compute a power
+       word w of the form (1) such that v =FX w.
+
+       The proof of this lemma is straightforward using [39, Proposition 20] in order to compute
+       freely reduced words. We call these steps the preprocessing steps. Henceforth, we will assume
+       that the inputs for the power word problem are given in the form (1).
+
+       The symbolic reduction system. We define the infinite alphabet ∆ = ∆0 ∪ ∆00 with
+       ∆0 = Ω × (Z \ {0}) and ∆00 = IRR(S) \ {1}. We write px for (p, x) ∈ ∆0 . A word over ∆ can
+       be read as a word over Σ in the natural way. Formally, we can define a canonical projection
+       π : ∆∗ → Σ∗ that maps a symbol a ∈ ∆ to the corresponding word over Σ, but most of the
+       times we will not write π explicitly.
+           Whenever there is the risk of confusion, we write |v|Σ to denote the length of v ∈ ∆∗
+       read over Σ (i.e., |v|Σ = |π(v)|) whereas |v|∆ is the length over ∆. Moreover, we denote
+       the number of occurrences of letters from ∆0 in w with |w|∆0 . Finally, for a symbol s ∈ ∆00
+       define λ(s) = |s|Σ and for px ∈ ∆0 set λ(px ) = |p|Σ . For u = a1 · · · am ∈ ∆∗ with ai ∈ ∆ for
+                                         Pm
+       1 ≤ i ≤ m we define λ(u) = i=1 λ(ai ). Thus, λ(u) is the number of letters from Σ required
+       to write down u ignoring the binary exponents.
+           A word w as in (1), which has been preprocessed as in the previous section, can be viewed
+       as word over ∆ with w ∈ ((∆00 ∪ {1})∆0 )∗ (∆00 ∪ {1}), |w|∆0 = n and |w|∆ ≤ 2n + 1 (we only
+       have ≤ because some si might be empty).
+           We define the infinite string rewriting system T over ∆∗ by the following rewrite rules,
+       where px , py , q y ∈ ∆0 , s, t ∈ ∆00 , r ∈ ∆00 ∪ {1}, and d, e ∈ Z. Here, p0 is identified with the
+       empty word. Note that the strings in the rewrite rules are over the alphabet ∆, whereas the
+       strings in the if-conditions are over the alphabet Σ.
+
+                  px py → px+y                                                                           (2)
+                                                               +
+                  px q y → px−d rq y−e        if p 6= q, px q y =⇒ px−d rq y−e ∈ IRR(S) for              (3)
+                                                               S
+
+                                              r = p0 q 0 with p <pref psign(x) and q 0 <suff q sign(y)
+                                                               0
+
+                                                     +
+                     st → r                   if st =⇒ r ∈ IRR(S)                                        (4)
+                                                     S
+                                                         +
+                    px s → px−d r             if px s =⇒ px−d r ∈ IRR(S) for                             (5)
+                                                       S
+
+                                              r = p s with p0 <pref psign(x) and s0 <suff s
+                                                    0 0
+
+                                                         +
+                    spx → rpx−d               if spx =⇒ rpx−d ∈ IRR(S) for                               (6)
+                                                       S
+
+                                              r = s p with s0 <pref s and p0 <suff psign(x)
+                                                    0 0
+
+
+       I Lemma 13. The following length bounds hold in the above rules:
+          in rule (3): 0 < |r|Σ ≤ |p|Σ + |q|Σ , |d| ≤ |q|Σ , and |e| ≤ |p|Σ
+          in rules (5) and (6): |d| ≤ |s|Σ .
+ M. Lohrey and A. Weiß                                                                                    43:9
+
+
+The inequalities |d| ≤ |q|Σ and |e| ≤ |p|Σ follow from Lemma 11. The other inequalities are
+obvious. The next lemma is also straightforward from the definition.
+                                                                             ∗
+I Lemma 14. For u ∈ ∆∗ we have u =FX 1 if and only if u =⇒ 1.
+                                                                             T
+                                           ∗              ≤k
+I Lemma 15. Let u ∈ ∆∗ . If u =⇒ v, then u =⇒ v for k = 2 |u|∆ + 4 |u|∆0 ≤ 6 |u|∆ .
+                                           T               T
+
+Proof sketch. The proof is based on the fact that at most 2|u|∆0 − 3 applications of rules of
+the form (3) can occur. These are the only length increasing rules. All other rules either
+decrease the number of non-reduced two-letter factors of u (this can happen at most |u|∆ − 1
+times) or decrease the length of u (this can happen at most |u|∆ + 2|u|∆0 − 3 times).      J
+
+    Consider a word u ∈ ∆∗ and p ∈ Ω. Let ∆p = {px | x ∈ Z \ {0}}. We can write u
+                                                                                 Pi
+uniquely as u = u0 py1 u1 · · · pym um with ui ∈ (∆ \ ∆p )∗ . We define ηpi (u) = j=1 yj and
+ηp (u) = ηpm (u). By Lemma 13 we know that all rules of T change ηp (·) by at most λ(u). We
+can use this observation in order to show the next lemma by induction on k.
+                              k
+I Lemma 16. Let u =⇒ v. Then for all v 0 ≤pref v with v 0 ∈ ∆∗ there is some u0 ∈ ∆∗ with
+                              T
+u0 ≤pref u and |ηp (u0 ) − ηp (v 0 )| ≤ (k + 1)2 λ(u).
+
+
+The shortened version of a word. Take a word u ∈ ∆∗ and p ∈ Ω and write u as
+u = u0 py1 u1 · · · pym um with ui ∈ (∆ \ ∆p )∗ (we are only interested in the case that px
+appears as a letter in u for some x ∈ Z). Let C be a finite set of finite, non-empty, non-
+overlapping intervals of integers, i.e., we can write C = { [`j , rj ] | 1 ≤ j ≤ k } for k = |C| and
+`j ≤ rj for all j. We can assume that the intervals are ordered increasingly, i.e., we have
+rj < `j+1 . We set dj = rj − `j + 1 > 0. We say that u is compatible with C if ηpi (u) 6∈ [`j , rj ]
+for any i, j. If w is compatible with C, we define the shortened version SC (u) of u: for
+i ∈ {1, . . . , m} we set
+                   (
+                          j       1 ≤ j ≤ k, ηpi−1 (u) < `j ≤ rj < ηpi (u)       if yi > 0
+   Ci = Ci (u) =      
+                          j       1 ≤ j ≤ k, ηpi (u) < `j ≤ rj < ηpi−1 (u)       if yi < 0,
+
+i.e., Ci collects all intervals between ηpi−1 (u) and ηpi (u). Then SC (u) is defined by
+
+   SC (u) = u0 pz1 u1 · · · pzm um     where
+                                        (     P
+                              X           yi − j∈Ci dj              if yi > 0,
+        zi = yi − sign(yi ) ·      dj =       P
+                              j∈Ci
+                                          yi + j∈Ci dj              if yi < 0.
+
+A straightforward computation yields the next lemma:
+
+I Lemma 17. For all i we have zi 6= 0 and sign(zi ) = sign(yi ). In particular, if u ∈ IRR(T ),
+then also SC (u) ∈ IRR(T ).
+                                                   
+Furthermore, we define distp (u, C) = min ηpi (u) − x               0 ≤ i ≤ m, x ∈ [`, r] ∈ C . Note
+that distp (u, C) > 0 if and only if u is compatible with C. Moreover, if distp (u, C) = a,
+v = v0 pz1 v1 · · · pzm vm , and ηpi (u) − ηpi (v) ≤ b for all i ≤ m, then distp (v, C) ≥ a − b.
+
+                                                                k                     k
+I Lemma 18. If distp (u, C) > (k + 1)2 λ(u) and u =⇒ v, then SC (u) =⇒ SC (v).
+                                                                T                     T
+
+
+
+
+                                                                                                       M FC S 2 0 1 9
+43:10    The Power Word Problem
+
+
+               c9
+               c8
+                                                                                                d7
+               c7
+               c6
+               c5
+
+                                                                                                d4
+               c4
+                                                                                                d3
+               c3
+               c2
+                                                                                                d1
+               c1
+
+                                                                                K
+            Figure 1 The red shaded parts represent the intervals from the set Cu,p in (7). The differences
+        c3 − c2 , c6 − c5 , c7 − c6 and c9 − c8 are strictly smaller than 2K.
+
+
+        Proof sketch. The first step for proving this lemma is to show that if distp (u, C) > λ(u) and
+        u =⇒ v, then SC (u) =⇒ SC (v). To see this this, we distinguish between the rules applied:
+           T                   T
+        When applying one of the rules (3)–(6), we have Ci (u) = Ci (v) for all i since the exponents
+        are only changed slightly. Thus, the shortening process does the same on v as on u. When
+        applying a rule (2), the exponents are added, which is compatible with the shortening process.
+        Now we obtain the lemma by induction on k. In order to see that distp (u, C) > λ(u) is
+        satisfied in the inductive step, we use Lemma 16.                                          J
+
+            We define a set of intervals which should be “cut out” from u as follows: We write
+        { c1 , . . . , cl } = ηpi (u) 0 ≤ i ≤ m with c1 < · · · < cl and we set
+
+            K
+           Cu,p = { [cj + K, cj+1 − K] | 1 ≤ j ≤ l − 1, cj+1 − cj ≥ 2K } .                             (7)
+
+                               K                      K
+        Notice that distp (u, Cu,p ) = K (given that Cu,p 6= ∅). The situation is shown in Figure 1.
+
+        I Proposition 19. Let p ∈ Ω, u = u0 py1 u1 · · · pym um ∈ ∆∗ with ui ∈ (∆ \ ∆p )∗ , and
+                                                                                      K
+        K = (6 |u|∆ + 1)2 λ(u) + 1. Then u =FX 1 if and only if SC (u) =FX 1 for C = Cu,p .
+                                                                    ∗
+        Proof. By Lemma 14 we have u =FX 1 if and only if u =⇒ 1. Let k = 6 |u|∆ . By Lemma 15,
+                                                                    T
+                    ∗                ≤k
+        for all u =⇒ v we have u =⇒ v. By the choice of C, we have distp (u, C) > (k + 1)2 λ(u).
+                    T                 T
+                                                                        ∗
+        Hence, we can apply Lemma 18, which implies that SC (u) =⇒ SC (v) where v is a T -reduced
+                                                                        T
+        (thus freely reduced) word for u. Clearly, if v is the empty word, then SC (v) will be the
+        empty word. On the other hand, if v is non-empty, then SC (v) is non-empty and T -reduced
+        by Lemma 17. Hence, we have u =FX 1 if and only if SC (u) =FX 1.                        J
+
+        I Lemma 20. Let p, u, K, and C be as in Proposition 19 and SC (u) = u0 pz1 u1 · · · pzm um .
+        Then |zi | ≤ m · (2 · (6 |u|∆ + 1)2 · λ(u) + 1) for all 1 ≤ i ≤ m.
+ M. Lohrey and A. Weiß                                                                                     43:11
+
+
+Proof of Theorem 2. We start with the preprocessing as described in Lemma 12 leading to
+a word w = s0 px1 1 s1 · · · pxnn sn with pi ∈ Ω and si ∈ IRR(S) as in (1). After that we apply
+the shortening procedure for all p ∈ { pi | 1 ≤ i ≤ n }. This can be done in parallel for all p,
+as the outcome of the shortening only depends on the p-exponents. By Lemma 20 this leads
+to a word ŵ of polynomial length. Finally, we can test whether ŵ =FX 1 using one oracle
+gate for WP(F2 ) (recall that F2 contains a copy of FX ). The computations for shortening
+only involve iterated addition (and comparisons of integers), which is in uTC0 and, thus, can
+be solved in uAC0 with oracle gates for WP(F2 ).                                              J
+
+ 5     The power word problem in wreath products
+The goal of this section is to prove Theorems 8 and 9. We first fix some notation. Let G
+be a finitely generated group with the finite symmetric generating set Σ. For Z we fix the
+generator a. Hence Σ ∪ {a, a−1 } is a symmetric generating set for the wreath product G o Z.
+For a word w = v0 ae1 v1 · · · aen vn with ei ∈ {−1, 1} and vi ∈ Σ∗ let σ(w) = e1 + · · · + en .
+With I(w) we denote the interval [b, c] ⊆ Z, where b (resp., c) is the minimal (resp., maximal)
+integer of the form e1 + · · · + ei for 0 ≤ i ≤ n. Note that if w represents (f, d) ∈ G o Z, then
+d = σ(w), supp(f ) ⊆ I(w) and 0, d ∈ I(w).
+
+Periodic words over groups. We recall a construction from [12]. With G+ we denote
+the set of all tuples (g0 , . . . , gq−1 ) over G of arbitrary length q ≥ 1. With Gω we denote
+the set of all mappings f : N → G. Elements of Gω can be seen as infinite sequences (or
+words) over the set G. We define the binary operation ⊗ on Gω by pointwise multiplication:
+(f ⊗ g)(n) = f (n)g(n). The identity element is the mapping id with id(n) = 1 for all n ∈ N.
+                                           Nn
+For f1 , f2 , . . . , fn ∈ Gω we write i=1 fi for f1 ⊗ f2 ⊗ · · · ⊗ fn . If G is abelian, we write
+Pn               Nn                            ω
+   i=1 fi for         i=1 fi . A function f ∈ G is periodic with period q ≥ 1 if f (k) = f (k + q) for
+all k ≥ 0. In this case, f can specified by the tuple (f (0), . . . , f (q − 1)). Vice versa, a tuple
+u = (g0 , . . . , gq−1 ) ∈ G+ defines the periodic function fu ∈ Gω with fu (n · q + r) = gr for
+n ≥ 0 and 0 ≤ r < q. One can view this mapping as the sequence uω obtained by taking
+infinitely many repetitions of u. Let Gρ be the set of all periodic functions from Gω . If f1
+is periodic with period q1 and f2 is periodic with period q2 , then f1 ⊗ f2 is periodic with
+period q1 q2 (in fact, lcm(q1 , q2 )). Hence, Gρ forms a countable subgroup of Gω . Note that
+Gρ is not finitely generated: The subgroup generated by elements fi ∈ Gρ with period qi
+(1 ≤ i ≤ n) contains only functions with period lcm(q1 , . . . , qn ). For n ≥ 0 we define the
+subgroup Gρn of all f ∈ Gρ with f (k) = 1 for all 0 ≤ k ≤ n − 1. We consider the uniform
+membership problem for subgroups Gρn , Membership(Gρ∗ ) for short:
+    input: tuples u1 , . . . , un ∈ G+ (elements of G are represented by finite words over Σ) and
+    a binary encoded number m.
+                           Nn
+    question: does i=1 fui belong to Gρm ?
+The following result was shown in [12]:
+
+I Theorem 21. For every finitely generated abelian group G, Membership(Gρ∗ ) is in uTC0 .
+
+I Lemma 22. Let w ∈ (Σ ∪ {a, a−1 })∗ with σ(w) 6= 0, n ≥ 1, and I(wn ) = [b, c]. Moreover,
+let s = c − b + 1 be the size of the interval I(w) and let (g, n · σ(w)) ∈ G o Z be the group
+element represented by wn . Then g is periodic on the interval [b + s, c − s] with period |σ(w)|.
+
+I Example 23. Let us consider the wreath product Z o Z and let the left copy of Z in the
+wreath product be generated by b. Consider the word w = ba−1 babab3 ab3 ab5 a−1 b and let
+n = 8. We have σ(w) = 2 and I(w) = [−1, 3]. Moreover, w represents the group element
+
+
+
+                                                                                                         M FC S 2 0 1 9
+43:12    The Power Word Problem
+
+
+        (f, 2) with f (−1) = 1, f (0) = 2, f (1) = 3, f (2) = 4, and f (3) = 5. Let us now consider the
+        word w8 . The following diagram shows how to obtain the corresponding element of Z o Z:
+              -1    0   1    2    3   4    5    6   7    8    9   10    11    12    13    14    15    16    17
+               1    2   3    4    5
+                        1    2    3   4    5
+                                  1   2    3    4   5
+                                           1    2   3    4    5
+                                                    1    2    3    4     5
+                                                              1    2     3     4     5
+                                                                         1     2     3    4     5
+                                                                                     1    2     3     4     5
+               1    2   4    6    9   6    9    6   9    6    9    6     9     6     9    6     8     4     5
+
+        We have I(w8 ) = [−1, 17] and σ(w8 ) = 8σ(w) = 16. If (g, 16) is the group element represented
+        by w8 , then the function g is periodic on the interval [2, 14] (which includes the interval
+        [−1 + s, 17 − s], where s = |I(w)| = 5) with period 2.
+
+        Proofs of Theorem 8 and 9. A conjunctive truth-table reduction is a Turing reduction
+        where the output is the conjunction over the outputs of all oracle gates.
+
+        I Proposition 24. For every finitely generated group G, PowerWP(G o Z) is conjunctive
+        truth-table uTC0 -reducible to Membership(Gρ∗ ) and PowerWP(G).
+
+        Proof sketch. Let w = ux1 1 ux2 2 · · · uxkk be the input power word and let (f, d) ∈ G o Z be the
+        element represented by w. We can check in uTC0 whether d = 0. The difficult part is to
+        check whether f is the zero-mapping. For this we compute an interval I (of exponential size)
+        that contains the support of f . We then partition I into two sets C and I \ C. The set C has
+        polynomial size and we can check whether f is the zero-mapping on C using polynomially
+        many oracle calls to PowerWP(G). The complement I \ C can be written as a union of
+        polynomially many intervals. The crucial property of C is that on each of these intervals f
+        can be written as a sum of periodic sequences; for this we use Lemma 22. Using oracle calls
+        to Membership(Gρ∗ ) allows us to check whether f is the zero mapping on I \ C.                  J
+
+        Since for a finitely generated abelian group G, one can solve PowerWP(G) in uTC0 ,
+        Theorem 8 is a consequence of Proposition 24 and Theorem 21.
+            We split the proof of Theorem 9 into three propositions: one for the upper bound and
+        two for the lower bounds. It is straightforward to show that if the word problem for the
+        finitely generated group G belongs to coNP, then also Membership(Gρ∗ ) belongs to coNP.
+        Since coNP is closed under conjunctive truth-table uTC0 -reducibility, Proposition 24 yields:
+
+        I Proposition 25. Let G be a finitely generated group such that PowerWP(G) belongs to
+        coNP. Then also PowerWP(G o Z) belongs to coNP.
+
+        I Proposition 26. If G is a finite, non-solvable group, PowerWP(G o Z) is coNP-hard.
+
+        Proof sketch. Barrington [4] proved the following result: Let C be a fan-in two boolean
+        circuit of depth d with n input gates x1 , . . . , xn . From C one can compute a sequence of
+        triples (a so-called G-program) PC = (k1 , g1 , h1 )(k2 , g2 , h2 ) · · · (k` , g` , h` ) ∈ ([1, n] × G × G)∗
+        of length ` ≤ (4|G|)d such that for every input valuation v : {x1 , . . . , xn } → {0, 1} the
+        following two statements are equivalent:
+        (a) C evaluates to 0 under the input valuation v.
+        (b) c1 c2 · · · c` = 1 in G, where ci = gi if v(xki ) = 0 and ci = hi if v(xki ) = 1.
+ M. Lohrey and A. Weiß                                                                                       43:13
+
+
+This G-program is constructed as a sequence of iterated commutators, based on the observa-
+tion that [g, h] = 1 if and only if g = 1 or h = 1 (given some reasonable assumptions on g
+and h). Every formula C in conjunctive normal form can be written as a circuit of depth
+O(log |C|). Hence the G-program PC has length polynomial in |C|. From [4] it is easy to see
+that on input of the formula C, the G-program PC can be computed in logspace.
+    Let PC = (k1 , g1 , h1 ) · · · (k` , g` , h` ) and x1 , . . . , xn be the variables in C. We compute
+                                                                    Qn
+in logspace the n first primes p1 , . . . , pn and M = i=1 pi (the latter in binary notation).
+Let a denote the generator of Z in the wreath product G o Z. We now compute for every
+1 ≤ i ≤ ` the power word wi = (hi (agi )pki −1 a)M/pki a−M and set wC = w1 w2 · · · w` . The
+group element of G o Z represented by wC is of the form (f, 0).
+    We claim that wC = 1 in GoZ if and only if C is unsatisfiable: For a number z ∈ [0, M −1]
+we define the valuation vz : {x1 , . . . , xn } → {0, 1} by vz (xi ) = 1 if z ≡ 0 mod pi and vz (xi ) =
+0 otherwise. By the Chinese remainder theorem, for every valuation v : {x1 , . . . , xn } → {0, 1}
+there exists z ∈ [0, M − 1] with v = vz . Based on the above statements (a) and (b), the final
+step of the proof checks that f (z) = 1 if and only if C evaluates to 0 under vz .                    J
+
+I Proposition 27. Let F be a finitely generated free group of rank at least two. Then
+PowerWP(F o Z) is coNP-hard.
+The proof is almost the same as for Proposition 26. The difference is that we mimic Robinson’s
+proof that the word problem for F2 is NC1 -hard [35] instead of Barrington’s result.
+
+ 6     Further Research
+We conjecture that the method of Section 4 can be generalized to right-angled Artin groups
+(RAAGs – also known as graph groups) and hyperbolic groups, and hence that the power word
+problem for a RAAG (resp., hyperbolic group) G is AC0 -Turing-reducible to the word problem
+for G. One may also try to prove transfer results for the power word problem with respect
+to group theoretical constructions, e.g., graph products, HNN extensions and amalgamated
+products over finite subgroups. For finitely generated linear groups, the power word problem
+leads to the problem of computing matrix powers with binary encoded exponents. The
+complexity of this problem is open; variants of this problem have been studied in [1, 11].
+     Another open question is what happens if we allow nested exponents. We conjecture
+that in the free group for any nesting depth bounded by a constant the problem is still in
+uAC0 (WP(F2 )). However, for unbounded nesting depth it is not clear what happens: we
+only know that it is in P since it is a special case of the compressed word problem; but it
+still could be in uAC0 (WP(F2 )) or it could be P-complete or somewhere in between.
+
+      References
+ 1    Eric Allender, Nikhil Balaji, and Samir Datta. Low-Depth Uniform Threshold Circuits and
+      the Bit-Complexity of Straight Line Programs. In Proceedings of the 39th International
+      Symposium on Mathematical Foundations of Computer Science, MFCS 2014, Part II, volume
+      8635 of Lecture Notes in Computer Science, pages 13–24. Springer-Verlag, 2014. doi:10.1007/
+      978-3-662-44465-8_2.
+ 2    Sanjeev Arora and Boaz Barak. Computational Complexity - A Modern Approach. Cambridge
+      University Press, 2009.
+ 3    David A. Mix Barrington. Bounded-Width Polynomial-Size Branching Programs Recognize
+      Exactly Those Languages in N C 1 . In Juris Hartmanis, editor, Proceedings of the 18th Annual
+      ACM Symposium on Theory of Computing, May 28-30, 1986, Berkeley, California, USA,
+      pages 1–5. ACM, 1986. doi:10.1145/12130.12131.
+
+
+
+
+                                                                                                           M FC S 2 0 1 9
+43:14   The Power Word Problem
+
+
+         4   David A. Mix Barrington. Bounded-Width Polynomial-Size Branching Programs Recognize
+             Exactly Those Languages in N C 1 . Journal of Computer and System Sciences, 38(1):150–164,
+             1989. doi:10.1016/0022-0000(89)90037-8.
+         5   Laurent Bartholdi, Rostislav I. Grigorchuk, and Zoran Šuniḱ. Branch groups. In Handbook of
+             algebra, Vol. 3, pages 989–1112. Elsevier/North-Holland, Amsterdam, 2003. doi:10.1016/
+             S1570-7954(03)80078-5.
+         6   Martin Beaudry, Pierre McKenzie, Pierre Péladeau, and Denis Thérien. Finite Monoids: From
+             Word to Circuit Evaluation. SIAM Journal on Computing, 26(1):138–152, 1997.
+         7   Ron Book and Friedrich Otto. String-Rewriting Systems. Springer-Verlag, 1993.
+         8   William W. Boone. The word problem. Annals of Mathematics, 70(2):207–265, 1959.
+         9   Max Dehn. Ueber unendliche diskontinuierliche Gruppen. Mathematische Annalen, 71:116–144,
+             1911.
+        10   Nathan J. Fine and Herbert S. Wilf. Uniqueness theorems for periodic functions. Proceedings
+             of the American Mathematical Society, 16:109–114, 1965.
+        11   Esther Galby, Joël Ouaknine, and James Worrell. On Matrix Powering in Low Dimensions. In
+             Proceedings of the 32nd International Symposium on Theoretical Aspects of Computer Science,
+             STACS 2015, volume 30 of LIPIcs, pages 329–340. Schloss Dagstuhl–Leibniz-Zentrum für
+             Informatik, 2015. doi:10.4230/LIPIcs.STACS.2015.329.
+        12   Moses Ganardi, Daniel König, Markus Lohrey, and Georg Zetzsche. Knapsack Problems for
+             Wreath Products. In Proceedings of the 35th Symposium on Theoretical Aspects of Computer
+             Science, STACS 2018, volume 96 of LIPIcs, pages 32:1–32:13. Schloss Dagstuhl–Leibniz-
+             Zentrum für Informatik, 2018. URL: http://www.dagstuhl.de/dagpub/978-3-95977-062-0.
+        13   Max Garzon and Yechezkel Zalcstein. The complexity of Grigorchuk groups with application
+             to cryptography. Theoretical Computer Science, 88(1):83–98, 1991.
+        14   Guoqiang Ge. Testing Equalities of Multiplicative Representations in Polynomial Time
+             (Extended Abstract). In Proceedings of the 34th Annual Symposium on Foundations of
+             Computer Science, FOCS 1993, pages 422–426. IEEE Computer Society, 1993.
+        15   Rostislaw I. Grigorchuk. Burnside’s problem on periodic groups. Functional Analysis and Its
+             Applications, 14:41–43, 1980.
+        16   Yuri Gurevich and Paul Schupp. Membership problem for the modular group. SIAM Journal
+             on Computing, 37:425–459, 2007.
+        17   Derek Holt. Word-hyperbolic groups have real-time word problem. International Journal of
+             Algebra and Computation, 10:221–227, 200.
+        18   Derek Holt, Markus Lohrey, and Saul Schleimer. Compressed Decision Problems in Hyperbolic
+             Groups. In Proceedings of the 36th International Symposium on Theoretical Aspects of
+             Computer Science, STACS 2019, volume 126 of LIPIcs, pages 37:1–37:16. Schloss Dagstuhl–
+             Leibniz-Zentrum für Informatik, 2019. doi:10.4230/LIPIcs.STACS.2019.37.
+        19   Matthias Jantzen. Confluent String Rewriting, volume 14 of EATCS Monographs on Theoretical
+             Computer Science. Springer-Verlag, 1988.
+        20   Daniel König and Markus Lohrey. Evaluation of Circuits Over Nilpotent and Polycyclic
+             Groups. Algorithmica, 80(5):1459–1492, 2018. doi:10.1007/s00453-017-0343-z.
+        21   Daniel König and Markus Lohrey. Parallel identity testing for skew circuits with big powers
+             and applications. International Journal of Algebra and Computation, 28(6):979–1004, 2018.
+             doi:10.1142/S0218196718500431.
+        22   Richard J. Lipton and Yechezkel Zalcstein. Word Problems Solvable in Logspace. Journal of
+             the ACM, 24:522–526, 1977.
+        23   Markus Lohrey. Decidability and complexity in automatic monoids. International Journal of
+             Foundations of Computer Science, 16(4):707–722, 2005.
+        24   Markus Lohrey. Word Problems and Membership Problems on Compressed Words. SIAM
+             Journal on Computing, 35(5):1210–1240, 2006. doi:10.1137/S0097539704445950.
+        25   Markus Lohrey. The Compressed Word Problem for Groups. Springer Briefs in Mathematics.
+             Springer-Verlag, 2014. doi:10.1007/978-1-4939-0748-9.
+M. Lohrey and A. Weiß                                                                                43:15
+
+
+26   Markus Lohrey and Saul Schleimer. Efficient computation in groups via compression. In
+     Proceedings of the 2nd International Symposium on Computer Science in Russia, CSR 2007,
+     volume 4649 of Lecture Notes in Computer Science, pages 249–258. Springer-Verlag, 2007.
+27   Markus Lohrey and Armin Weiß. The power word problem. CoRR, abs/1904.08343, 2019.
+     URL: https://arxiv.org/abs/1904.08343.
+28   Markus Lohrey and Georg Zetzsche. Knapsack in Graph Groups. Theory of Computing
+     Systems, 62(1):192–246, 2018. doi:10.1007/s00224-017-9808-3.
+29   M. Lothaire. Combinatorics on Words, volume 17 of Encyclopedia of Mathematics and Its
+     Applications. Addison-Wesley, 1983. Reprinted by Cambridge University Press, 1997.
+30   Alexei Miasnikov, Svetla Vassileva, and Armin Weiß. The Conjugacy Problem in Free Solvable
+     Groups and Wreath Products of Abelian Groups is in TC0 . Theory of Computing Systems,
+     63(4):809–832, 2018. doi:10.1007/s00224-018-9849-2.
+31   Alexei Myasnikov, Andrey Nikolaev, and Alexander Ushakov. Knapsack Problems in Groups.
+     Mathematics of Computation, 84(292):987–1016, 2015.
+32   Alexei Myasnikov, Alexander Ushakov, and Won Dong-Wook. Power Circuits, exponential
+     Algebra, and Time Complexity. International Journal of Algebra and Computation, 22(6):3–53,
+     2012.
+33   Alexei Myasnikov and Armin Weiß. TC0 circuits for algorithmic problems in nilpotent groups.
+     In Proceedings of the 42nd International Symposium on Mathematical Foundations of Computer
+     Science, MFCS 2017, volume 83 of LIPIcs, pages 23:1–23:14. Schloss Dagstuhl–Leibniz-Zentrum
+     für Informatik, 2017. doi:10.4230/LIPIcs.MFCS.2017.23.
+34   Pyotr S. Novikov. On the algorithmic unsolvability of the word problem in group theory.
+     Trudy Mat. Inst. Steklov, pages 1–143, 1955. In Russian.
+35   David Robinson. Parallel Algorithms for Group Word Problems. PhD thesis, University of
+     California, San Diego, 1993.
+36   Heribert Vollmer. Introduction to Circuit Complexity. Springer-Verlag, 1999.
+37   Stephan Waack. The parallel complexity of some constructions in combinatorial group theory.
+     Journal of Information Processing and Cybernetics, 26(5-6):265–281, 1990.
+38   Armin Weiß. On the Complexity of Conjugacy in Amalgamated Products and HNN Extensions.
+     Dissertation, Institut für Formale Methoden der Informatik, Universität Stuttgart, 2015.
+39   Armin Weiß. A Logspace Solution to the Word and Conjugacy problem of Generalized
+     Baumslag-Solitar Groups. In Algebra and Computer Science, volume 677 of Contemporary
+     Mathematics, pages 185–212. American Mathematical Society, 2016.
+
+
+
+
+                                                                                                   M FC S 2 0 1 9
+

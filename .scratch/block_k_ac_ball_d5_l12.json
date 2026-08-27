@@ -1,0 +1,17 @@
+{
+  "depth": 5,
+  "max_image_total": 12,
+  "proper_states_processed": 10130,
+  "raw_descents_checked": 0,
+  "records": [],
+  "states": 12306,
+  "states_by_first_seen_depth": [
+    1,
+    8,
+    51,
+    326,
+    1950,
+    9970
+  ],
+  "strict_nonautomorphic_floor_descents": 0
+}

@@ -1,0 +1,1012 @@
+{
+  "bounds": {
+    "max_word_len": null,
+    "min_word_len": 1
+  },
+  "hits": [],
+  "schema": "aca124-rank3-primitive-pairs-v1",
+  "summaries": [
+    {
+      "intermediates": 133,
+      "name": "aca_0",
+      "pairs": 399,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 133
+    },
+    {
+      "intermediates": 91,
+      "name": "aca_1",
+      "pairs": 273,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 91
+    },
+    {
+      "intermediates": 105,
+      "name": "aca_2",
+      "pairs": 315,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 105
+    },
+    {
+      "intermediates": 118,
+      "name": "aca_3",
+      "pairs": 354,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 118
+    },
+    {
+      "intermediates": 139,
+      "name": "aca_4",
+      "pairs": 417,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 139
+    },
+    {
+      "intermediates": 159,
+      "name": "aca_5",
+      "pairs": 477,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 159
+    },
+    {
+      "intermediates": 142,
+      "name": "aca_6",
+      "pairs": 426,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 142
+    },
+    {
+      "intermediates": 104,
+      "name": "aca_7",
+      "pairs": 312,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 104
+    },
+    {
+      "intermediates": 89,
+      "name": "aca_8",
+      "pairs": 267,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 89
+    },
+    {
+      "intermediates": 89,
+      "name": "aca_9",
+      "pairs": 267,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 89
+    },
+    {
+      "intermediates": 91,
+      "name": "aca_10",
+      "pairs": 273,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 91
+    },
+    {
+      "intermediates": 90,
+      "name": "aca_11",
+      "pairs": 270,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 90
+    },
+    {
+      "intermediates": 89,
+      "name": "aca_12",
+      "pairs": 267,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 89
+    },
+    {
+      "intermediates": 103,
+      "name": "aca_13",
+      "pairs": 309,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 103
+    },
+    {
+      "intermediates": 91,
+      "name": "aca_14",
+      "pairs": 273,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 91
+    },
+    {
+      "intermediates": 117,
+      "name": "aca_15",
+      "pairs": 351,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 117
+    },
+    {
+      "intermediates": 113,
+      "name": "aca_16",
+      "pairs": 339,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 113
+    },
+    {
+      "intermediates": 116,
+      "name": "aca_17",
+      "pairs": 348,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 116
+    },
+    {
+      "intermediates": 116,
+      "name": "aca_18",
+      "pairs": 348,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 116
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_19",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 116,
+      "name": "aca_20",
+      "pairs": 348,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 116
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_21",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_22",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_23",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 113,
+      "name": "aca_24",
+      "pairs": 339,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 113
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_25",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 117,
+      "name": "aca_26",
+      "pairs": 351,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 117
+    },
+    {
+      "intermediates": 117,
+      "name": "aca_27",
+      "pairs": 351,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 117
+    },
+    {
+      "intermediates": 117,
+      "name": "aca_28",
+      "pairs": 351,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 117
+    },
+    {
+      "intermediates": 120,
+      "name": "aca_29",
+      "pairs": 360,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 120
+    },
+    {
+      "intermediates": 126,
+      "name": "aca_30",
+      "pairs": 378,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 126
+    },
+    {
+      "intermediates": 117,
+      "name": "aca_31",
+      "pairs": 351,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 117
+    },
+    {
+      "intermediates": 113,
+      "name": "aca_32",
+      "pairs": 339,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 113
+    },
+    {
+      "intermediates": 115,
+      "name": "aca_33",
+      "pairs": 345,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 115
+    },
+    {
+      "intermediates": 136,
+      "name": "aca_34",
+      "pairs": 408,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 136
+    },
+    {
+      "intermediates": 139,
+      "name": "aca_35",
+      "pairs": 417,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 139
+    },
+    {
+      "intermediates": 126,
+      "name": "aca_36",
+      "pairs": 378,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 126
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_37",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_38",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 148,
+      "name": "aca_39",
+      "pairs": 444,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 148
+    },
+    {
+      "intermediates": 148,
+      "name": "aca_40",
+      "pairs": 444,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 148
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_41",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 148,
+      "name": "aca_42",
+      "pairs": 444,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 148
+    },
+    {
+      "intermediates": 143,
+      "name": "aca_43",
+      "pairs": 429,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 143
+    },
+    {
+      "intermediates": 146,
+      "name": "aca_44",
+      "pairs": 438,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 146
+    },
+    {
+      "intermediates": 143,
+      "name": "aca_45",
+      "pairs": 429,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 143
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_46",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_47",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 143,
+      "name": "aca_48",
+      "pairs": 429,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 143
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_49",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 147,
+      "name": "aca_50",
+      "pairs": 441,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 147
+    },
+    {
+      "intermediates": 149,
+      "name": "aca_51",
+      "pairs": 447,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 149
+    },
+    {
+      "intermediates": 149,
+      "name": "aca_52",
+      "pairs": 447,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 149
+    },
+    {
+      "intermediates": 139,
+      "name": "aca_53",
+      "pairs": 417,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 139
+    },
+    {
+      "intermediates": 141,
+      "name": "aca_54",
+      "pairs": 423,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 141
+    },
+    {
+      "intermediates": 148,
+      "name": "aca_55",
+      "pairs": 444,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 148
+    },
+    {
+      "intermediates": 148,
+      "name": "aca_56",
+      "pairs": 444,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 148
+    },
+    {
+      "intermediates": 149,
+      "name": "aca_57",
+      "pairs": 447,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 149
+    },
+    {
+      "intermediates": 174,
+      "name": "aca_58",
+      "pairs": 522,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 174
+    },
+    {
+      "intermediates": 155,
+      "name": "aca_59",
+      "pairs": 465,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 155
+    },
+    {
+      "intermediates": 160,
+      "name": "aca_60",
+      "pairs": 480,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 160
+    },
+    {
+      "intermediates": 160,
+      "name": "aca_61",
+      "pairs": 480,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 160
+    },
+    {
+      "intermediates": 186,
+      "name": "aca_62",
+      "pairs": 558,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 186
+    },
+    {
+      "intermediates": 186,
+      "name": "aca_63",
+      "pairs": 558,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 186
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_64",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 186,
+      "name": "aca_65",
+      "pairs": 558,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 186
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_66",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_67",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_68",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_69",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_70",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 164,
+      "name": "aca_71",
+      "pairs": 492,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 164
+    },
+    {
+      "intermediates": 162,
+      "name": "aca_72",
+      "pairs": 486,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 162
+    },
+    {
+      "intermediates": 185,
+      "name": "aca_73",
+      "pairs": 555,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 185
+    },
+    {
+      "intermediates": 187,
+      "name": "aca_74",
+      "pairs": 561,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 187
+    },
+    {
+      "intermediates": 176,
+      "name": "aca_75",
+      "pairs": 528,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 176
+    },
+    {
+      "intermediates": 178,
+      "name": "aca_76",
+      "pairs": 534,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 178
+    },
+    {
+      "intermediates": 178,
+      "name": "aca_77",
+      "pairs": 534,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 178
+    },
+    {
+      "intermediates": 215,
+      "name": "aca_78",
+      "pairs": 645,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 215
+    },
+    {
+      "intermediates": 178,
+      "name": "aca_79",
+      "pairs": 534,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 178
+    },
+    {
+      "intermediates": 174,
+      "name": "aca_80",
+      "pairs": 522,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 174
+    },
+    {
+      "intermediates": 218,
+      "name": "aca_81",
+      "pairs": 654,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 218
+    },
+    {
+      "intermediates": 194,
+      "name": "aca_82",
+      "pairs": 582,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 194
+    },
+    {
+      "intermediates": 195,
+      "name": "aca_83",
+      "pairs": 585,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 195
+    },
+    {
+      "intermediates": 195,
+      "name": "aca_84",
+      "pairs": 585,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 195
+    },
+    {
+      "intermediates": 218,
+      "name": "aca_85",
+      "pairs": 654,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 218
+    },
+    {
+      "intermediates": 193,
+      "name": "aca_86",
+      "pairs": 579,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 193
+    },
+    {
+      "intermediates": 229,
+      "name": "aca_87",
+      "pairs": 687,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 229
+    },
+    {
+      "intermediates": 239,
+      "name": "aca_88",
+      "pairs": 717,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 239
+    },
+    {
+      "intermediates": 229,
+      "name": "aca_89",
+      "pairs": 687,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 229
+    },
+    {
+      "intermediates": 229,
+      "name": "aca_90",
+      "pairs": 687,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 229
+    },
+    {
+      "intermediates": 230,
+      "name": "aca_91",
+      "pairs": 690,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 230
+    },
+    {
+      "intermediates": 229,
+      "name": "aca_92",
+      "pairs": 687,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 229
+    },
+    {
+      "intermediates": 230,
+      "name": "aca_93",
+      "pairs": 690,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 230
+    },
+    {
+      "intermediates": 230,
+      "name": "aca_94",
+      "pairs": 690,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 230
+    },
+    {
+      "intermediates": 180,
+      "name": "aca_95",
+      "pairs": 540,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 180
+    },
+    {
+      "intermediates": 229,
+      "name": "aca_96",
+      "pairs": 687,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 229
+    },
+    {
+      "intermediates": 268,
+      "name": "aca_97",
+      "pairs": 804,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 268
+    },
+    {
+      "intermediates": 268,
+      "name": "aca_98",
+      "pairs": 804,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 268
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_99",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 285,
+      "name": "aca_100",
+      "pairs": 855,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 285
+    },
+    {
+      "intermediates": 280,
+      "name": "aca_101",
+      "pairs": 840,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 280
+    },
+    {
+      "intermediates": 280,
+      "name": "aca_102",
+      "pairs": 840,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 280
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_103",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 280,
+      "name": "aca_104",
+      "pairs": 840,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 280
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_105",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_106",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 281,
+      "name": "aca_107",
+      "pairs": 843,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 281
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_108",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_109",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 281,
+      "name": "aca_110",
+      "pairs": 843,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 281
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_111",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 279,
+      "name": "aca_112",
+      "pairs": 837,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 279
+    },
+    {
+      "intermediates": 281,
+      "name": "aca_113",
+      "pairs": 843,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 281
+    },
+    {
+      "intermediates": 281,
+      "name": "aca_114",
+      "pairs": 843,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 281
+    },
+    {
+      "intermediates": 66,
+      "name": "aca_115",
+      "pairs": 198,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 66
+    },
+    {
+      "intermediates": 78,
+      "name": "aca_116",
+      "pairs": 234,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 78
+    },
+    {
+      "intermediates": 78,
+      "name": "aca_117",
+      "pairs": 234,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 78
+    },
+    {
+      "intermediates": 89,
+      "name": "aca_118",
+      "pairs": 267,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 89
+    },
+    {
+      "intermediates": 102,
+      "name": "aca_119",
+      "pairs": 306,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 102
+    },
+    {
+      "intermediates": 104,
+      "name": "aca_120",
+      "pairs": 312,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 104
+    },
+    {
+      "intermediates": 104,
+      "name": "aca_121",
+      "pairs": 312,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 104
+    },
+    {
+      "intermediates": 136,
+      "name": "aca_122",
+      "pairs": 408,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 136
+    },
+    {
+      "intermediates": 174,
+      "name": "aca_123",
+      "pairs": 522,
+      "primitive": 0,
+      "primitive_no_old_isolator": 0,
+      "words": 174
+    }
+  ],
+  "totals": {
+    "classes": 124,
+    "distinct_pairs": 24903,
+    "intermediates": 20842,
+    "pairs": 62526,
+    "primitive": 0,
+    "primitive_no_old_isolator": 0,
+    "words": 20842
+  },
+  "trace_sha256": "7ca8ce7b857f3e07495875e3cf8580f595cb95b118275d83d9e33628255e8592"
+}

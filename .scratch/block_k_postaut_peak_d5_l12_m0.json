@@ -1,0 +1,12 @@
+{
+  "ac_ball_states": 12306,
+  "depth": 5,
+  "distinct_normalized_proper_image_tuples": 6388,
+  "max_image_total": 12,
+  "normalized_raw_descents": 0,
+  "proper_states": 10130,
+  "records": [],
+  "strict_nonautomorphic_floor_descents": 0,
+  "target_whitehead_checks": 0,
+  "whitehead_margin": 0
+}

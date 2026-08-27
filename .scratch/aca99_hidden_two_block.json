@@ -1,0 +1,57 @@
+{
+  "hidden_insertions": 1,
+  "max_defining_length": 8,
+  "records": [
+    {
+      "best": {
+        "canonical_output": [
+          "YXYXXXXXXYXXXX",
+          "YXyxxxxyxxxxyxxxxyxxxxyxxxxyxxxxyxxxxyxYXXXXYXXXXYXXXXYXXXXYXXXXYXXXX"
+        ],
+        "expanded_spelling": "XXXXxYxxYY",
+        "expression_x": "Z",
+        "expression_y": "zXXXt",
+        "floor_delta": 0,
+        "nonautomorphic": false,
+        "output": [
+          "YXXXXYXXXXYXXXXYXXXXYXXXXYXXXXYXXXXYxyxxxxyxxxxyxxxxyxxxxyxxxxyxxxxyX",
+          "YXYXXXXXXYXXXX"
+        ],
+        "output_floor": 25,
+        "output_representative": [
+          "YYXXXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "rank3": [
+          "TxxxZTxxxZTxxxZTxxxZTxxxZTxxxZTxxxZTxxxZXzXXXtzXXXtzXXXtzXXXtzXXXtzXXXtzXXXtx",
+          "ZX",
+          "TxTxxxZxxTxxxZ"
+        ],
+        "second_isolator_index": 1,
+        "source_index": 0,
+        "source_orientation": "XXXYxxYY",
+        "template": "zXXXtY",
+        "word_t": "xYxxY",
+        "word_z": "X"
+      },
+      "distinct_output_count": 128,
+      "name": "aca_99",
+      "source": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_floor": 25,
+      "source_representative": [
+        "YYXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ]
+    }
+  ],
+  "schema": "aca124-two-block-corridor-v1",
+  "summary": {
+    "class_count": 1,
+    "classes_with_floor_descent": 0,
+    "classes_with_nonautomorphic_output": 0,
+    "classes_with_outputs": 1
+  }
+}

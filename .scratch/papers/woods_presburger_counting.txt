@@ -1,0 +1,838 @@
+                                         PRESBURGER ARITHMETIC, RATIONAL GENERATING FUNCTIONS,
+                                                        AND QUASI-POLYNOMIALS
+
+
+
+
+arXiv:1211.0020v2 [math.CO] 6 Jan 2015
+                                                                                   KEVIN WOODS
+
+
+
+
+                                                Abstract. Presburger arithmetic is the first-order theory of the natural numbers with
+                                             addition (but no multiplication). We characterize sets that can be defined by a Presburger
+                                             formula as exactly the sets whose characteristic functions can be represented by rational
+                                             generating functions; a geometric characterization of such sets is also given. In addition, if
+                                             p = (p1 , . . . , pn ) are a subset of the free variables in a Presburger formula, we can define
+                                             a counting function g(p) to be the number of solutions to the formula, for a given p. We
+                                             show that every counting function obtained in this way may be represented as, equivalently,
+                                             either a piecewise quasi-polynomial or a rational generating function. Finally, we translate
+                                             known computational complexity results into this setting and discuss open directions.
+
+
+
+
+                                           §1. Introduction. A broad and interesting class of sets are those that can
+                                         be defined over N = {0, 1, 2, . . . } with first order logic and addition.
+                                            Definition 1.1. A Presburger formula is a first-order formula in the language
+                                         of addition, evaluated over the natural numbers. We will denote a generic Pres-
+                                         burger formula as F (u), where u are the free variables (those not associated with
+                                         a quantifier); we use bold notation like u to indicate vectors of variables.
+                                            We say that a set S ⊆ Nd is a Presburger set if there exists a Presburger
+                                         formula F (u) such that S = {u ∈ Nd : F (u)}.
+                                           Example 1.2. The Presburger formula
+                                                               F (u) = u > 1 and ∃b ∈ N : b + b + 1 = u
+                                                                                                                        
+
+                                         defines the Presburger set {3, 5, 7, . . . }. Since multiplication by an integer is the
+                                         same as repeated addition, we can conceive of a Presburger formula as a Boolean
+                                         combination of integral linear (in)equalities, appropriately quantified: ∃b u > 1
+                                         and 2b + 1 = u .
+                                            Presburger proved [40] that the truth of a Presburger sentence (a formula with
+                                         no free variables) is decidable. We would like to understand more clearly the
+                                         structure of a given Presburger set. One way to attempt to do this is to encode
+                                         the elements of the set into a generating function.
+                                           Definition 1.3. Given a set S ⊆ Nd , its associated generating function is
+                                                                    X           X
+                                                         f (S; x) =   xs =              xs11 xs22 · · · xsdd .
+                                                                             s∈S         (s1 ,... ,sd )∈S
+
+
+                                           Extended abstract published in ICALP 2013.
+
+                                                                                            1
+2                                   KEVIN WOODS
+
+
+    For example, if S is the set defined by Example 1.2, then
+                                                        x3
+                       f (S; x) = x3 + x5 + x7 + · · · =    .
+                                                     1 − x2
+We see that, in this instance, the generating function has a nice form; this is not
+a coincidence.
+  Definition 1.4. A rational generating function is a function that can be writ-
+ten in the form
+                                    q(x)
+                                                      ,
+                          (1 − xb1 ) · · · (1 − xbk )
+where q(x) is a polynomial in Q[x] and bi ∈ Nd \ {0}.
+  We will prove that S ⊆ Nd is a Presburger set if and only if f (S; x) is a rational
+generating function. These are Properties 1 and 3 in the following theorem:
+    Theorem 1.5. Given a set S ⊆ Nd , the following are equivalent:
+    1. S is a Presburger set,
+    2. S is a finite union of sets of the form P ∩ (λ + Λ), where P is a polyhedron,
+       λ ∈ Zd , and Λ ⊆ Zd is a lattice.
+    3. f (S; x) is a rational generating function.
+   Property 2 gives a nice geometric characterization of Presburger sets; the set
+in Example 1.2 can be written as [3, ∞) ∩ (1 + 2Z).
+   We are particularly interested in generating functions because of their powerful
+flexibility: we can use algebraic manipulations to answer questions about the
+set. For example, f (S; 1, 1, . . . , 1) is exactly the cardinality of S (if finite). More
+generally, we may want to count solutions to a Presburger formula as a function
+of several parameter variables:
+   Definition 1.6. The Presburger counting function for a Presburger formula
+F (c, p) is
+                           gF (p) = #{c ∈ Nd : F (c, p)}.
+   Note that c (the counted variables) and p (the parameter variables) are free
+variables. We will restrict ourselves to counting functions such that gF (p) is
+finite for all p ∈ Nn . One could instead either include ∞ in the codomain of gF
+or restrict the domain of gF to where gF (p) is finite (the domain would itself be
+a Presburger set).
+   A classic example is to take F (c, p) to be the conjunction of linear inequalities
+of the form a1 c1 + · · ·+ ad cd ≤ a0 p, where ai ∈ Z. Then gF (p) counts the number
+of integer points in the pth dilate of a polyhedron.
+  Example 1.7. If F (c1 , c2 , p) is 2c1 +2c2 ≤ p, then the set of solutions (c1 , c2 ) ∈
+N2 lies in the triangle with vertices (0, 0), (0, p/2), (p/2, 0), and
+                                1 j p k      j p k      
+                      gF (p) =            +1           +2
+                                2
+                                (     2           2
+                                   1 2    3
+                                    p + p + 1 if p is even,
+                             = 18 2 41          3
+                                   8p + 2p + 8      if p is odd.
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                    3
+
+  The nice form of this function is also not a coincidence. For this particular
+type of Presburger formula (dilates of a polyhedron), Ehrhart proved [21] that
+the counting functions are quasi-polynomials:
+    Definition 1.8. A quasi-polynomial (over Q) is a function g : Nn → Q such
+that there exists an n-dimensional lattice Λ ⊆ Zn together with polynomials
+qλ̄ (p) ∈ Q[p], one for each λ̄ ∈ Zn /Λ, such that
+                             g(p) = qλ̄ (p), for p ∈ λ̄.
+  In Example 1.7, we can take the lattice Λ = 2Z and each coset (the evens
+and the odds) has its associated polynomial. We need something slightly more
+general to account for all Presburger counting functions:
+  Definition 1.9. A piecewise quasi-polynomial       is a function g : Nn → Q such
+that there exists a finite partition i (Pi ∩ Nn ) of Nn with Pi polyhedra (which
+                                    S
+may not all be full-dimensional) and there exist quasi-polynomials gi such that
+                           g(p) = gi (p) for p ∈ Pi ∩ Nn .
+  One last thing that is not a coincidence: For the triangle in Example 1.7, we
+can compute
+                 X
+                    gF (p)xp = 1 + x + 3x2 + 3x3 + 6x4 + · · ·
+                  p∈N
+                                           1
+                               =                     ,
+                                   (1 − x)(1 − x2 )2
+a rational generating function! The following theorem says that these ideas are
+– almost – equivalent.
+  Theorem 1.10. Given a function g : Nn → Q and the following three possible
+properties:
+  A. g is a Presburger counting function,
+  B. gPis a piecewise quasi-polynomial, and
+                   p
+  C.    p∈Nn g(p)x is a rational generating function,
+we have the implications
+                                   A ⇒ B ⇔ C.
+  Remark 1.11. Proving Theorem 1.10 will give us much of Theorem 1.5, using
+the following idea. A set S ⊆ Zd corresponds exactly to its characteristic function
+                                      (
+                                        1 if u ∈ S,
+                             χS (u) =
+                                        0 if u ∈
+                                               / S.
+If S is a Presburger set defined by F (u), then
+                        χS (u) = #{c ∈ N : F (u) and c = 0}
+is a Presburger counting function.
+  In light of Theorem 1.5, we might wonder if there is a sense in which B ⇒ A.
+Of course we would have to restrict g, for example requiring that its range be
+in N (Theorem 1.5 essentially restricts the range of g to {0, 1}, as it must be
+4                                 KEVIN WOODS
+
+
+a characteristic function). The implication still does not hold, however. For
+example, suppose the polynomial
+                                g(s, t) = (t − s2 )2
+were a Presburger counting function given by a Presburger formula F (c, s, t),
+that is,
+                         g(s, t) = #{c ∈ Nd : F (c, s, t)}.
+Then the set
+             (s, t) ∈ N2 : ∄c F (c, s, t) = {(s, t) ∈ N2 : g(s, t) = 0}
+           
+
+                                          = {(s, s2 ) : s ∈ N}
+would be a Presburger set. This is not the case, however, as it does not satisfy
+Property 2 in Theorem 1.5. If the parameter is univariate, however, the following
+proposition shows that we do have the implication B ⇒ A.
+  Proposition 1.12. Given a function g : N → Q, if g is a piecewise quasi-
+polynomial whose range is in N, then g is a Presburger counting function.
+  In Section 4, we prove Theorem 1.5, Theorem 1.10, and Proposition 1.12. In
+Section 2, we survey related work. In Section 3, we present the primary tools we
+need for the proofs. In Section 5, we turn to computational questions; this section
+surveys known results, but restates them in terms of Presburger arithmetic.
+
+   §2. Related work. Presburger arithmetic is a classical first order theory of
+logic, proven decidable by Presburger [40]. Bounds on the complexity of decision
+algorithms have been examined in the general case [8, 17, 22, 23, 38], as a function
+of the number of quantifier alternations [25, 28, 31, 43, 46], and for fixed (small)
+number of quantifier alternations [29, 45].
+   A finite automata approach to Presburger arithmetic was pioneered in [12, 15],
+and continues to be an active area of research (see, for example, [10, 16, 34, 55]).
+This approach is quite different from the present paper’s, but it can attack similar
+questions: for example, see [39] for results on counting solutions to Presburger
+formulas (non-parametrically).
+   The importance of understanding Presburger Arithmetic is highlighted by the
+fact that many problems in computer science and mathematics can be phrased in
+this language: for example, integer programming [35, 48], geometry of numbers
+[13, 33], Gröbner bases and algebraic integer programming [51, 53], neighborhood
+complexes and test sets [44, 52], the Frobenius problem [42], Ehrhart theory [7,
+21], monomial ideals [37], and toric varieties [24]. Several of the above references
+analyze the computational complexity of their specific problem. In most of the
+above references, the connection to Presburger arithmetic is only implicit.
+   The algorithmic complexity of specific rational generating function problems
+has been addressed in, for example, [1, 5, 9, 20, 30, 32]. Several of these results
+are summarized in Section 5 of this current paper.
+   Connections between subclasses of Presburger arithmetic and generating func-
+tions are made explicit in [3, 4, 5]. Connections between rational generating
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                     5
+
+functions and quasi-polynomials have been made in [21, 49, 50], and the algorith-
+mic complexity of their relationship was examined in [54]. Counting solutions
+to Presburger formulas has been examined in [41], though the exact scope of
+the results is not made explicit, and rational generating functions are not used.
+Similar counting algorithms appear in [14], and [18] proves that the counting
+functions for a special class of Presburger formuals (those whose parameters p
+only appear in terms ci ≤ pi ) are piecewise quasi-polynomials. This current
+paper is the first to state and prove a general connection between Presburger
+arithmetic, quasi-polynomials, and rational generating functions.
+   Theorem 1.5 was originally proved in the author’s thesis [56]; in this paper,
+it is put into context as a consequence of the more general Theorem 1.10. A
+simpler geometric characterization of Presburger sets (equivalent to Property 2
+of Theorem 1.5) was given in [26]: they are the semi-linear sets, those sets that
+                                                               Pk
+can be written as a finite union of sets of the form S = {a0 + i=1 ni ai : ni ∈ N},
+where ai ∈ Nd . Furthermore, if one takes these S to be disjoint and requires the
+a1 , . . . , ak to be linearly independent, for each S (as [26] implicitly prove can
+be done, made explicit in [18] as semi-simple sets), then each S can be encoded
+with the rational generating function
+                                          xa0
+                              (1 − xa1 1 ) · · · (1 − xakk )
+and we obtain a slightly different version of 2 ⇒ 3 in Theorem 1.5. There seems
+to be no previous result analogous to 3 ⇒ 2.
+  An extended abstract of this current paper appeared in ICALP 2013.
+
+   §3. Primary background theorems. Here we detail several tools we will
+use. When these tools have algorithmic (polynomial-time) versions, we mention
+them too, which will help our discussion in Section 5.
+   The first tool we need is a way to simplify Presburger formulas. As originally
+proved [40] by Presburger (see [38] for a nice exposition), we can completely
+eliminate the quantifiers if we are allowed to also use modular arithmetic.
+  Definition 3.1. An extended Presburger formula is a Boolean formula with
+variables in N expressible in the elementary language of Presburger Arithmetic
+extended by the mod k operations, for constants k > 1.
+  Theorem 3.2. Given a formula F (u) in extended Presburger arithmetic (and
+hence given any formula in Presburger arithmetic), there exists an equivalent
+quantifier-free formula G(u) such that
+                      {u ∈ Nd : F (u)} = {u ∈ Nd : G(u)}.
+  For instance, the set from Example 1.2 can be written as (u > 1 and u mod 2 =
+1).
+  Next, we give two theorems that tie in generating functions. The first gives us
+a way to convert from a specific type of Presburger set to a generating function.
+  Theorem 3.3. Given a point λ ∈ Zd , a lattice Λ ⊆ Zd , and a rational poly-
+hedron P ⊆ Rd≥0 , f P ∩ (λ + Λ); x (as given in Definition 1.3) is a rational
+6                                      KEVIN WOODS
+
+
+generating function. In addition, for fixed d, this rational generating function
+can be found in polynomial time.
+  The first step to proving this is to use Brion’s Theorem [11], which says that
+the generating
+               function can be decomposed into functions of the form f K ∩
+(λ + Λ); x , where K is a cone. Then, one can notice that integer points in cones
+have a natural structure that can be encoded as geometric series.
+   Example 3.4. Let K ⊆ R2 be the cone with vertex at the origin and extreme
+rays u = (1, 0) and v = (1, 2). Using the fact that the lattice (uZ+vZ) has index
+2 in Z2 , with coset representatives (0, 0) and (1, 1), every integer point in K can
+be written as either (0, 0) + λ1 u + λ2 v or (1, 1) + λ1 u + λ2 v, where λ1 , λ2 ∈ N.
+Therefore
+     f (K ∩ Z2 ; x) = (x(0,0) + x(1,1) )(1 + xu + x2u + · · · )(1 + xv + x2v + · · · )
+                          x(0,0) + x(1,1)
+                    =                      .
+                        (1 − xu )(1 − xv )
+  See [2, Chapter VIII], for example, for more details.
+  The complexity version of Theorem 3.3 is due to Barvinok [1]. For polynomial-
+time algorithms yielding generating functions, the output will generally be rep-
+resented as a sum of the basic rational functions given in Definition 1.4; getting
+a common denominator and simplifying into one fraction may take exponential
+time. Since the dimension is fixed, the input polyhedra may equivalently be
+given with either a vertex or hyperplane description.
+  Next, we would like to be able to perform substitutions on the variables in
+a rational generating function and still retain a rational generating function;
+particularly, we would like to substitute in 1’s for several of the variables.
+    Theorem 3.5. Given a rational generating function f (x), then
+                                g(z) = f (zl1 , zl2 , . . . , zld ),
+with li ∈ Nk , is also a rational generating function, assuming the substituted
+values do not lie entirely in the poles of f . In particular, substituting in xi =
+z0 = 1 yields a rational function, if xi = 1 is not entirely in the poles of f .
+   Furthermore, for a fixed bound on the number of binomials in the denominator
+of f , there is a polynomial time algorithm to compute g as a rational generating
+function.
+   The existence version of this theorem is immediate: if substituting in xi = zli
+would make any of the binomials in the denominator of f zero (when f is writ-
+ten in the form from Definition 1.4), then that binomial must be a factor of the
+numerator (or else xi = zli would lie entirely in the poles of f ); therefore, sub-
+stituting in xi = zli yields a new rational generating function. The complexity
+version is more difficult and is due to Barvinok and Woods [5]. The problem is
+that we may have the rational generating function input as a sum of rational
+functions. Unfortunately, the substituted values may be in the poles of some of
+the terms of the sum without being in the poles of the entire generating function;
+careful limits must be taken.
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                     7
+
+  Example 3.6. Suppose we would like to substitute x = 1 into
+                                          1   x1000
+                               f (x) =      −       .
+                                         1−x 1−x
+Combining and simplifying to f (x) = 1+x+· · ·+x999 is horribly inefficient. Since
+x = 1 is a pole of both fractions, we must be careful: Consider the respective
+Laurent series expansions of the terms:
+                1
+                    = c−1 (x − 1)−1 + c0 (x − 1)0 + c1 (x − 1)1 + · · · ,
+              1−x
+              x1000
+            −       = d−1 (x − 1)−1 + d0 (x − 1)0 + d1 (x − 1)1 + · · · .
+              1−x
+We know that 1 is not a pole of f (x), so c−1 + d−1 = 0. Substituting in x = 1
+into the sum, we will get simply c0 + d0 . Carefully calculating c0 and d0 will give
+us f (1) = 1000.
+  Finally, we need a connection between Presburger formulas and quasi-polyno-
+mials. This is given by Sturmfels [50]:
+  Definition 3.7. Given a1 , . . . , ad ∈ Nn , the vector partition function g :
+Nn → N is defined by
+             g(p) = #{(λ1 , . . . , λd ) ∈ Nd : p = λ1 a1 + · · · + λd ad },
+that is, the number of ways to partition the vector p into parts taken from {ai }.
+  Theorem 3.8. Any vector partition function is a piecewise quasi-polynomial.
+   See [6] for a self-contained explanation utilizing the partial fraction expansion
+of the generating function
+                        X                         1
+                             g(p)xp =                            ;
+                           n
+                                       (1 − x ) · · · (1 − xad )
+                                             a 1
+                      p∈N
+
+this equality can be obtained by rewriting the rational function as a product of
+infinite geometric series:
+                (1 + xa1 + x2a1 + · · · ) · · · (1 + xad + x2ad + · · · ).
+For example, if a1 = 1 and a2 = a3 = 2, then the vector partition function is
+encoded by the generating function
+                                          1
+                                                    .
+                                  (1 − x)(1 − x2 )2
+We saw previously that this generating function corresponds to the quasi-poly-
+nomial in Example 1.7.
+  A complexity version of Theorem 3.8 is discussed in Section 5.2; an appropriate
+representation for piecewise quasi-polynomials must first be decided on.
+
+  §4. Proofs.
+8                                       KEVIN WOODS
+
+
+  4.1. Proof of Theorem 1.10. A ⇒ C.
+  Given a Presburger counting function, g(p) = #{c ∈ Nd : F (c, p)}, we first
+apply Presburger Elimination (Theorem 3.2) to F to obtain a quantifier free
+formula, G(c, p), in extended Presburger arithmetic such that g(p) = #{c ∈
+Nd : G(c, p)}. Integers which satisfy a statement of the form
+              a1 p1 + · · · + an pn + an+1 c1 + · · · + an+d cd ≡ a0    mod m
+are exactly sets λ + Λ, where λ ∈ Zn+d and Λ is a lattice in Zn+d . Since G(c, p)
+is a Boolean combination of linear inequalities and these linear congruences, we
+may write the set, S, of points (c, p) which satisfy G(c, p) as a disjoint union
+                                        k
+                                        [
+                                 S=           Pi ∩ (λi + Λi ),
+                                        i=1
+
+where, for 1 ≤ i ≤ k, Pi ⊆ Rn+d≥0 is a polyhedron, Λi is a sublattice of Z
+                                                                          n+d
+                                                                              , and
+λi is in Zn+d
+              . (To see this, convert the formula into disjunctive normal form;
+each conjunction will be of this form Pi ∩ (λi + Λi ); these sets may overlap, but
+their overlap will also be of this form.)
+  Let Si = Pi ∩ (λi + Λi ). By Theorem 3.3, we know we can write f (Si ; y, x) as
+a rational generating function, and so
+                                X                   X
+                  f (S; y, x) =     f (Si ; y, x) =         yc xp
+                                    i                   (c,p): G(c,p)
+
+can be written as a rational generating function. Finally, we substitute y =
+(1, 1, . . . , 1), using Theorem 3.5, to obtain the rational generating function
+                         X                            X
+                            #{c ∈ Nd : G(c, p)}xp =       g(p)xp .
+                        p                                    p
+
+C ⇒ B.
+                                                               p
+                                                      P
+  It suffices to prove this for functions g such that   p g(p)x is a rational
+generating function of the form
+                                           xq
+                                                                  ,
+                            (1 − xa1 )(1 − xa2 ) · · · (1 − xak )
+where q ∈ Nn , ai ∈ Nn \ {0}, because the property of being a piecewise quasi-
+polynomial is preserved under linear combinations. Furthermore, we may take
+q = (0, 0, . . . , 0), because multiplying by xq only shifts the domain of the func-
+tion g. Expanding this rational generating function as a product of infinite
+geometric series,
+         X
+                g(p)xp = (1 + xa1 + x2a1 + · · · ) · · · (1 + xak + x2ak + · · · ),
+          p
+
+and we see that
+               g(p) = #{(λ1 , . . . , λk ) ∈ Nk : p = λ1 a1 + · · · + λk ak }.
+This is exactly a vector partition function, which Theorem 3.8 tells us is a piece-
+wise quasi-polynomial.
+B ⇒ C.
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                          9
+
+  Any piecewise quasi-polynomial can be written as a linear combination of
+functions of the form
+                             (
+                               pa if p ∈ P ∩ (λ + Λ),
+                      g(p) =
+                               0  otherwise,
+where a ∈ Nn , P ⊆ Rn≥0 is a polyhedron, λ ∈ Zn , and Λ is a sublattice of Zn .
+Since linear combinations of rational generating functions are rational generating
+functions, it suffices to prove it for such a g. Let cij , for 1 ≤ i ≤ n and 1 ≤ j ≤ ai ,
+be variables, and define the polyhedron
+                  Q = {(p, c) ∈ Nn+a1 +···+an :
+                               p ∈ P and 1 ≤ cij ≤ pi for all cij }.
+This Q is defined so that #{c : (p, c) ∈ Q} is pa1 1 · · · pann = pa for p ∈ P (and
+0 otherwise). Using Theorem 3.3, we can find the generating function for the
+set Q ∩ (λ + Λ) as a rational P
+                              generating function. Substituting c = (1, 1, . . . , 1),
+using Theorem 3.5, gives us p g(p)xp as a rational generating function.
+   4.2. Proof of Theorem 1.5. Given a set S ⊆ Zd , define the characteristic
+function, χS : Nd → {0, 1}, as in Remark 1.11. Define a new property:
+  2′ . χS is a piecewise quasi-polynomial.
+Translating Theorem 1.10 into properties of S and χS , we have
+                                    1 ⇒ (2′ ⇔ 3).
+So we need to prove 2 ⇒ 1 and 2′ ⇒ 2.
+2 ⇒ 1.
+  This is straightforward: the property of being an element of λ + Λ can be
+written using linear congruences and existential quantifiers, and the property of
+being an element of P can be written as a set of linear inequalities.
+2′ ⇒ 2.
+   Since χS is a piecewise quasi-polynomial, it is constituted from associated
+polynomials. Let us examine such a polynomial q(p) that agrees with χS on
+some P ∩ (λ + Λ), where P ⊆ Rn≥0 is a polyhedron, λ ∈ Zn , and Λ a sublattice
+of Zn . It suffices to prove that 2 holds for S ∩ P ∩ (λ + Λ), since S is the disjoint
+union of such pieces.
+   Ideally, we would like to argue that, since q only takes on the values 0 and 1,
+the polynomial q must be constant on P ∩ (λ + Λ), at least if P is unbounded.
+This is not quite true; for example, if
+                      P = (x, y) ∈ R2 : x ≥ 0 and 0 ≤ y ≤ 1 ,
+                           
+
+then the polynomial q(x, y) = y is 1 for y = 1 and 0 for y = 0.
+   What we can say is that q must be constant on any infinite ray contained in
+P ∩ (λ + Λ): if we parametrize the ray by x(t) = (x1 (t), · · · , xn (t)), then q(x(t))
+is a univariate polynomial that is either 0 or 1 at an infinite number of points,
+and so must be constant. Inductively, we can similarly show that q must be
+constant on any cone contained in P .
+   Let K be the cone with vertex at the origin
+                            K = {y ∈ Rn : y + P ⊆ P }.
+10                                KEVIN WOODS
+
+
+Then K is the largest cone such that the cones x + K are contained in P , for
+all x ∈ P ; K is often called the recession cone or characteristic cone of P (see
+Section 8.2 of [47]), and the polyhedron P can be decomposed into a Minkowski
+sum K + Q, where Q is a bounded polyhedron. We can write P ∩ (λ + Λ) as a
+finite union (possibly with overlap) of sets of the form
+
+                             Qj = (vj + K) ∩ (λ + Λ),
+
+for some vj , and on each of these pieces q must be constant. If q is the constant
+1 on Qj , then Qj is contained in S, and if q is the constant 0, then none of Qj
+is in S. Since S is a finite union of the appropriate Qj , S has the form needed
+for Property 2.
+   4.3. Proof of Proposition 1.12. Given that g is a piecewise quasi-poly-
+nomial with range in N, we must find a Frobenius formula F (c, p) such that
+g(p) = #{c ∈ Nd : F (c, p)}. It suffices to find an F that agrees with g for
+sufficiently large p, because for any finite set {pi } we may include
+                                                                    
+                  (p = pi ) ⇒ 1 ≤ c1 ≤ g(pi ) ∧ c2 = · · · = cd = 0
+
+in the creation of F , so that the number of c satisfying F is exactly g(pi ).
+   Since the domain of g is one-dimensional, a piecewise quasi-polynomial can
+be thought of as a function that is a quasi-polynomial for sufficiently large p.
+Therefore we may assume, without loss of generality, that g is a quasi-polynomial.
+Each lattice coset may be handled separately and combined to form the final
+formula, F . Therefore we may assume that g is a polynomial.
+   Let m be the least common multiple of the denominators of the coefficients of
+g ∈ Q[p]. Suppose p = mb + i, for some b (which can be encoded in a Presburger
+formula, with m and i constants and b a bound variable). Considering (mb + i)k
+as a polynomial in b, all coefficients but (possibly) the constant term are multiples
+of m, so considering g(mb + i) as a polynomial in b, all coefficients but (possibly)
+the constant term will be integral. Since g(mb + i) is integer-valued, the constant
+term must also be an integer, that is, g(mb + i) ∈ Z[b]. Since each residue class
+of p mod m can be handled separately and combined at the end, we may assume
+without loss of generality that m = 1 and g ∈ Z[p].
+   Let g(p) = ki=0 ai pi , ai ∈ Z. Since g(p) ≥ 0 for all p, the leading coefficient,
+              P
+ak , must be positive. Then ak pk is the number of c ∈ Nk+1 such that
+
+                (1 ≤ c0 ≤ ak ) ∧ (1 ≤ c1 ≤ p) ∧ · · · ∧ (1 ≤ ck ≤ p).
+
+All other positive terms of g can be similarly encoded as counting solutions to a
+Presburger formula (carefully defined so the solution sets are disjoint). To take
+care of a negative term ai pi , take p sufficiently large so that ak pk sufficiently
+dominates all other terms (as before, the finite set of smaller p can be dealt with
+separately); now remove ai pi points from the set of solutions. For example,
+                    
+                   ¬ (c0 = ci+2 = · · · = ck = 1) ∧ (1 ≤ c1 ≤ ai )
+                                                                
+                         ∧ (1 ≤ c2 ≤ p) ∧ · · · ∧ (1 ≤ ci+1 ≤ p)
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                         11
+
+removes ai pi solutions, as long as p ≥ ai (to do this for multiple i, define these
+subtractions carefully so that the solution sets do not overlap). All together, this
+give us our desired F (c, p) certifying that g is a Presburger counting function.
+
+   §5. Computational aspects. We first describe computational aspects of
+A ⇒ (B and C). Many partial results are known here, but there are several
+open problems. Then we discuss B ⇔ C, which works nicely: not only are
+B and C logically equivalent, but, after we make sense of the problem, they
+are computationally equivalent (in fixed dimension). Finally, we discuss other
+related complexity results.
+   5.1. A ⇒ (B and C). Note that another reasonable class of problems to
+study would be sentences where we are also allowed multiplication of variables,
+for example
+                           ∃a ∈ N, ∃b ∈ N : a2 + 2b2 ≤ 31.
+These problems, however, are very hard: undecidability, in the general case, is
+a consequence of Gödel’s First Incompleteness Theorem [27]. Even if we focus
+on sentences with only existential quantifiers and a fixed number of variables
+(restrictions that we shall see work well for Presburger arithmetic), it is still
+undecidable: In fact, there is a certain multivariate polynomial p(x0 , x1 , . . . , xd )
+such that the class of problems
+                 Given a ∈ N, decide whether ∃b1 , ∃b2 , . . . , ∃bd :
+                         p(a, b1 , b2 , . . . , bd ) = 0, with bi ∈ N
+is undecidable. This is a consequence of the DPRM-theorem (after Davis, Put-
+nam, Robinson, and Matiyasevich, see, for example, [19]), which solves Hilbert’s
+10th problem in the negative.
+   The Presburger arithmetic problem (deciding whether a Presburger sentence
+is true or false) is, at least, decidable, as originally proved [40] by Presburger in
+1929. Since then, better algorithms have been found. For example, D. Oppen
+gave an algorithm [38], based on work of D. Cooper [17], with running time
+  2cφ
+22 , where φ is the input size of the problem and c is a constant. Nevertheless,
+Fischer and Rabin gave lower bounds on the running time [23]: any algorithm
+                                                                              c′ φ
+that solves all Presburger arithmetic problems will sometimes take at least 22
+steps, where c′ is a constant.
+   Among the simplest Presburger sentences are integer programming problems,
+which are themselves NP-complete if the dimension is not fixed. This suggests
+that any interesting polynomial time results will require a fixed number of vari-
+ables.
+   We discuss three types of problems for a Presburger formula F (u):
+   • The decision problem: Is ∃u F (u) true or false?
+   • The counting problem: How many solutions P    u to F (u) are there?
+   • The generating function problem: Compute u: F (u) xu as a rational gen-
+      erating function.
+   Clearly, the
+             P counting problem is harder than the decision problem. Now no-
+tice that if u: F (u) xu can be computed in polynomial time, then the counting
+12                                  KEVIN WOODS
+
+
+problem #u F (u) can be solved in polynomial time: use Theorem 3.5 to plug
+in x = (1, 1, . . . , 1). Consequently, the generating function problem is the hard-
+est of the three and the decision problem ∃u F (u) is the easiest. Historically,
+polynomial time results have been discovered first for the decision problems, and
+these solutions have not needed generating functions. However, polynomial time
+results for counting problems have generally required the full power of generating
+functions. We now discuss several of these results.
+   First we examine, for a fixed number of variables and quantifier-free F (u), de-
+ciding ∃u F (u). This is effectively Lenstra’s algorithm for integer programming
+[35], which decides whether there exists a u satisfying the conjunction of several
+linear inequalities. The only additional step we need is to note that a Boolean
+combination of linear inequalities can be put in disjunctive normal form in poly-
+nomial time. This is slightly surprising, because it is not doable  Vn for general
+Boolean functions: for example, the disjunctive normal form for i=1 (Ai1 ∨ Ai2 )
+requires 2n disjunctions.
+
+  Proposition 5.1. Fix d. There is a polynomial time algorithm which, given
+a quantifier-free formula F (u1 , u2 , . . . , ud ) consisting of linear inequalities and
+Boolean operations, converts F into disjunctive normal form.
+
+   Proof. The inequalities appearing in F cut Rd into many polyhedral pieces.
+It might appear at first glance that the number of such pieces could be 2N , where
+N is the total number of inequalities in F . Nevertheless, the number of pieces
+is bounded by
+                                                    
+                                   N       N            N
+                     Φ(d, N ) =        +      + ··· +       .
+                                   0       1             d
+See Section 6.1 of [36] for a proof by induction. We have that Φ(d, N ) is a poly-
+nomial in N of degree at most d (where d is fixed), and following the inductive
+proof, we see that the description of each piece (and the lower-dimensional poly-
+hedral pieces on their boundaries) may be found in polynomial time. Within
+the interior of each piece, F is either
+                                  W     always true or always false. Then the dis-
+junctive normal form is simply P {x ∈ int(P )}, where the disjunction is taken
+over all polyhedral pieces P (including lower-dimensional ones) such that F is
+true.                                                                           ⊣
+   The counting and generating function problems for quantifier-free Presburger
+formulas were proven to be polynomial time by Barvinok [1].
+   Adding one quantifier alternation makes this problem hard, unfortunately:
+even with two variables, deciding ∃a∀b F (a, b) is NP-hard, as Schöning showed
+[46]. In general, Grädel showed [28] that these problems rapidly increase in
+difficulty with increased quantifier alternation, following the polynomial-time
+hierarchy.
+   The above discussion demonstrates that, if one considers only fixing the num-
+ber of quantifier alternations or number of variables, the tractability of Pres-
+burger arithmetic is understood (and see [31], where Haase gives a few more
+variations). A possible modification is to also fix the number of linear inequalities
+allowed. In this case, Kannan proved [33] that the decision problem ∃a∀b F (a, b)
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                 13
+
+can be solved in polynomial time, and Barvinok and Woods proved [5] that the
+counting and generating function problems could be solved in polynomial time.
+  With more quantifier alternation, the computational complexity of the prob-
+lem is unknown.
+  Conjecture 5.2. For a fixed number of variables and linear inequalities,
+there exists a polynomial time algorithm to compute the generating function
+for a Presburger set. Hence the counting problem and the decision problem may
+be answered in polynomial time.
+   5.2. B ⇔ C. The first question here is how to interpret the problem: how
+should a quasi-polynomial be represented? The obvious way, listing every con-
+stituent polynomial, is inefficient. For example, the generating function 1/(1 −
+xn ) corresponds to the quasi-polynomial g(x) = 1 if n x and g(x) = 0 otherwise;
+this requires n polynomials to represent. The solution of Verdoolaege and Woods
+[54] is to use piecewise step-polynomials:
+  Definition 5.3. A step-polynomial g : Nn → Q is a function written in the
+form
+                      Xm    Ydi
+              g(p) =     αi     ⌊aij1 p1 + · · · + aijn pn + bij ⌋ ,
+                          i=1    j=1
+
+where αi , aijk , bij ∈ Q and ⌊·⌋ is the greatest integer function.
+                                                              n
+  For example, the counting
+                       x  function
+                              x−1  corresponding to 1/(1 − x ) can be written
+at the step-polynomial n − n .
+  Definition 5.4. A piecewise step-polynomial     is a function g : Nn → Q such
+that there exists a finite partition i (Pi ∩ N ) of Nn with Pi polyhedra (which
+                                              n
+                                    S
+may not all be full dimensional) and there exists step-polynomials gi such that
+                           g(p) = gi (p) for p ∈ Pi ∩ Nn .
+   Verdoolaege and Woods prove [54] that one may convert between rational
+generating functions and piecewise step-polynomials in polynomial time (for fixed
+degree of the step-polynomial). Therefore, the conceptual equivalence, B ⇔
+C, is also an algorithmic equivalence, provided piecewise quasi-polynomials are
+suitably represented.
+   5.3. Other Complexity Relationships. One reason generating functions
+are so valuable is that algebraic manipulations can be brought into play. We’ve
+already seen that substituting in 1 for variables can be done in polynomial time,
+enabling us to compute cardinality. Several other interesting operations have
+polynomial time algorithms.
+   For example, given the generating functions for two sets S and T , the gener-
+ating functions for S ∩ T , S ∪ T , and S \ T can all be computed in polynomial
+time [5] (assuming fixed number of variables and fixed bound on the number of
+binomials in the denominators of the generating functions). This means that the
+Boolean operations and/or/not can be mirrored by generating functions. The
+key ingredient is the Hadamard product, which can be computed in polynomial
+time [5].
+14                                 KEVIN WOODS
+
+
+     Definition 5.5. The Hadamard product of
+                           X                   X
+                   f (x) =   c(p)xp and g(x) =   d(p)xp
+                           p∈Nn                         p∈Nn
+
+is
+                                          X
+                           (f ⋆ g)(x) =          c(p)d(p)xp .
+                                          p∈Nn
+
+   For example, the fact that f (S ∩ T ; x) = f (S; x) ⋆ f (T ; x) immediately shows
+us how to compute the generating function for S ∩ T , given f (S; x) and f (T ; x).
+   Unfortunately, the operation of quantification cannot be similarly mirrored
+efficiently with generating functions: if we are given f (S; x, y) for some S ⊆ Nd+1 ,
+and define T = {a ∈ Nd : ∀b ∈ N, (a, b) ∈ S}, then obtaining f (T ; x) is NP-
+hard. To see this, take S to be the Presburger set for a quantifier free formula,
+F (a, b). We can compute f (S; x, y) in polynomial time, as discussed in Section
+5.1. If we could compute f (T ; x) in polynomial time, then we would be able to
+decide ∃a∀b F (a, b) in polynomial time, by checking if f (T ; 1) 6= 0. But deciding
+this is NP-hard [46], as mentioned in Section 5.1.
+   Even simpler sounding tasks can be surprisingly difficult. There is no presently-
+known “nice” way to tell whether a rational generating function, g(x) (input as
+a sum of the basic rational functions from Definition 1.4), is identically zero. A
+heavy-handed – but polynomial time – algorithm is, after checking that 1 is not
+a pole of g, to substitute 1 into g ⋆ g: the coefficients of g ⋆ g are nonnegative, so
+(g ⋆ g)(1) = 0 if and only if g = 0.
+
+   Acknowledgements. My thanks to the referees for pointers to rel-
+evant related works. I am also grateful to them for helping me talk
+like a logician and like a theoretical computer scientist (when, in fact,
+I am a combinatorist).
+
+                                   REFERENCES
+
+    [1] Alexander Barvinok, A polynomial time algorithm for counting integral points
+in polyhedra when the dimension is fixed, Math. Oper. Res., vol. 19 (1994), no. 4,
+pp. 769–779.
+    [2]        , A Course in Convexity, Graduate Studies in Mathematics, vol. 54,
+American Mathematical Society, Providence, RI, 2002.
+    [3]        , The complexity of generating functions for integer points in polyhedra
+and beyond, International Congress of Mathematicians. Vol. III, Eur. Math. Soc.,
+Zürich, 2006, pp. 763–787.
+    [4] Alexander Barvinok and James Pommersheim, An algorithmic theory of lattice
+points in polyhedra, New perspectives in algebraic combinatorics (berkeley, ca, 1996–
+97), Math. Sci. Res. Inst. Publ., vol. 38, Cambridge Univ. Press, Cambridge, 1999,
+pp. 91–147.
+    [5] Alexander Barvinok and Kevin Woods, Short rational generating functions for
+lattice point problems, J. Amer. Math. Soc., vol. 16 (2003), no. 4, pp. 957–979.
+    [6] Matthias Beck, The partial-fractions method for counting solutions to integral
+linear systems, Discrete Comput. Geom., vol. 32 (2004), no. 4, pp. 437–446.
+    [7] Matthias Beck and Sinai Robins, Computing the continuous discretely, Under-
+graduate Texts in Mathematics, Springer, New York, 2007.
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                        15
+
+   [8] Leonard Berman, The complexity of logical theories, Theoret. Comput. Sci.,
+vol. 11 (1980), no. 1, pp. 57, 71–77.
+   [9] Vı́ctor Blanco, Pedro A. Garcı́a-Sánchez, and Justo Puerto, Counting numer-
+ical semigroups with short generating functions, Internat. J. Algebra Comput., vol. 21
+(2011), no. 7, pp. 1217–1235.
+   [10] Alexandre Boudet and Hubert Comon, Diophantine equations, Presburger
+arithmetic and finite automata, Trees in algebra and programming—CAAP ’96
+(Linköping, 1996), Lecture Notes in Comput. Sci., vol. 1059, Springer, Berlin,
+1996, pp. 30–43.
+   [11] Michel Brion, Points entiers dans les polyèdres convexes, Ann. Sci. École
+Norm. Sup., vol. 4 (1988), pp. 653–663.
+   [12] J. Richard Büchi, Weak second-order arithmetic and finite automata, Z. Math.
+Logik Grundlagen Math., vol. 6 (1960), pp. 66–92.
+   [13] J. W. S. Cassels, An introduction to the geometry of numbers, Classics in
+Mathematics, Springer-Verlag, Berlin, 1997, Corrected reprint of the 1971 edi-
+tion.
+   [14] Phillipe Clauss and Vincent Loechner, Parametric analysis of polyhedral iter-
+ation spaces, Journal of VLSI Signal Processing, vol. 19 (1998), no. 2, pp. 179–194.
+   [15] Alan Cobham, On the base-dependence of sets of numbers recognizable by finite
+automata, Math. Systems Theory, vol. 3 (1969), pp. 186–192.
+   [16] Hubert Comon and Yan Jurski, Multiple counters automata, safety analy-
+sis and Presburger arithmetic, Computer aided verification (Vancouver, BC, 1998),
+Lecture Notes in Comput. Sci., vol. 1427, Springer, Berlin, 1998, pp. 268–279.
+   [17] D.C. Cooper, Theorem proving in arithmetic without multiplication, Machine
+Intelligence, vol. 7 (1972), pp. 91–99.
+   [18] Flavio D’Alessandro, Benedetto Intrigila, and Stefano Varricchio, On some
+counting problems for semi-linear sets, arXiv preprint arXiv:0907.3005, (2009).
+   [19] Martin Davis, Hilbert’s tenth problem is unsolvable, Amer. Math. Monthly,
+vol. 80 (1973), pp. 233–269.
+   [20] Jesus De Loera, David Haws, Raymond Hemmecke, Peter Huggins, Bernd
+Sturmfels, and Ruriko Yoshida, Short rational functions for toric algebra, to appear
+in Journal of Symbolic Computation, 2004.
+   [21] Eugène Ehrhart, Sur les polyèdres rationnels homothétiques à n dimensions,
+C. R. Acad. Sci. Paris, vol. 254 (1962), pp. 616–618.
+   [22] Jeanne Ferrante and Charles W. Rackoff, The computational complexity of
+logical theories, Lecture Notes in Mathematics, vol. 718, Springer, Berlin, 1979.
+   [23] Michael Fischer and Michael Rabin, Super-exponential complexity of Pres-
+burger arithmetic, Complexity of computation (proc. siam-ams sympos., new york,
+1973), Amer. Math. Soc., Providence, R.I., 1974, pp. 27–41. SIAM–AMS Proc.,
+Vol. VII.
+   [24] William Fulton, Introduction to Toric Varieties, Annals of Mathematics
+Studies, vol. 131, Princeton University Press, Princeton, NJ, 1993.
+   [25] Martin Fürer, The complexity of Presburger arithmetic with bounded quantifier
+alternation depth, Theoret. Comput. Sci., vol. 18 (1982), no. 1, pp. 105–111.
+   [26] Seymour Ginsburg and Edwin Spanier, Semigroups, Presburger formulas and
+languages, Pacific Journal of Mathematics, vol. 16 (1966), no. 2, pp. 285–296.
+   [27] Kurt Gödel, Über formal unentscheidbare Sätze der principia mathematica und
+verwandter Systeme. I, Monatsh. Math., vol. 149 (2006), no. 1, pp. 1–30, Reprinted
+from Monatsh. Math. Phys. 38 (1931), 173–198 [MR1549910], With an introduc-
+tion by Sy-David Friedman.
+   [28] Erich Grädel, Subclasses of Presburger arithmetic and the polynomial-time
+hierarchy, Theoret. Comput. Sci., vol. 56 (1988), no. 3, pp. 289–301.
+   [29]          , Dominoes and the complexity of subclasses of logical theories, Annals
+of pure and applied logic, vol. 43 (1989), no. 1, pp. 1–30.
+   [30] Alan Guo and Ezra Miller, Lattice point methods for combinatorial games,
+Adv. in Appl. Math., vol. 46 (2011), no. 1-4, pp. 363–378.
+16                                 KEVIN WOODS
+
+
+   [31] Christoph Haase, Subclasses of presburger arithmetic and the weak exp hier-
+archy, arXiv preprint arXiv:1401.5266, (2014).
+   [32] Serkan Hoşten and Bernd Sturmfels, Computing the integer programming gap,
+to appear in Combinatorics, 2004.
+   [33] Ravi Kannan, Test sets for integer programs, ∀∃ sentences, Polyhedral combi-
+natorics (morristown, nj, 1989), DIMACS Ser. Discrete Math. Theoret. Comput.
+Sci., vol. 1, Amer. Math. Soc., Providence, RI, 1990, pp. 39–47.
+   [34] Felix Klaedtke, Bounds on the automata size for Presburger arithmetic, ACM
+Trans. Comput. Log., vol. 9 (2008), no. 2, pp. Art. 11, 34.
+   [35] Hendrik Lenstra, Jr., Integer programming with a fixed number of variables,
+Math. Oper. Res., vol. 8 (1983), no. 4, pp. 538–548.
+   [36] Jiri Matousek, Lectures on Discrete Geometry, Graduate Texts in Mathe-
+matics, vol. 212, Springer-Verlag, New York, 2002.
+   [37] Ezra Miller and Bernd Sturmfels, Combinatorial commutative algebra, Grad-
+uate Texts in Mathematics, vol. 227, Springer-Verlag, New York, 2005.
+   [38] Derek Oppen, A superexponential upper bound on the complexity of Presburger
+arithmetic, J. Comput. System Sci., vol. 16 (1978), no. 3, pp. 323–332.
+   [39] Erin Parker and Siddhartha Chatterjee, An automata-theoretic algorithm for
+counting solutions to presburger formulas, Compiler construction, Springer, 2004,
+pp. 104–119.
+   [40] Mojżesz Presburger, On the completeness of a certain system of arithmetic of
+whole numbers in which addition occurs as the only operation, Hist. Philos. Logic, vol.
+12 (1991), no. 2, pp. 225–233, Translated from the German and with commentaries
+by Dale Jacquette.
+   [41] William Pugh, Counting solutions to Presburger formulas: how and why, SIG-
+PLAN Not., vol. 29 (1994), no. 6, pp. 121–134.
+   [42] J. L. Ramı́rez Alfonsı́n, The Diophantine Frobenius problem, Oxford Lecture
+Series in Mathematics and its Applications, vol. 30, Oxford University Press,
+Oxford, 2005.
+   [43] Cattamanchi R Reddy and Donald W Loveland, Presburger arithmetic with
+bounded quantifier alternation, Proceedings of the tenth annual acm symposium on
+theory of computing, ACM, 1978, pp. 320–325.
+   [44] Herbert Scarf, Test sets for integer programs, Math. Programming, vol. 79
+(1997), no. 1-3, Ser. B, pp. 355–368.
+   [45] Bruno Scarpellini, Complexity of subcases of Presburger arithmetic, Transac-
+tions of the American Mathematical Society, vol. 284 (1984), no. 1, pp. 203–218.
+   [46] Uwe Schöning, Complexity of Presburger arithmetic with fixed quantifier di-
+mension, Theory Comput. Syst., vol. 30 (1997), no. 4, pp. 423–428.
+   [47] Alexander Schrijver, Theory of Linear and Integer Programming, Wiley-
+Interscience Series in Discrete Mathematics, John Wiley & Sons Ltd., Chichester,
+1986.
+   [48]        , Combinatorial optimization. Polyhedra and efficiency., Algorithms
+and Combinatorics, vol. 24, Springer-Verlag, Berlin, 2003.
+   [49] Richard P. Stanley, Decompositions of rational convex polytopes, Ann. Dis-
+crete Math., vol. 6 (1980), pp. 333–342, Combinatorial mathematics, optimal de-
+signs and their applications (Proc. Sympos. Combin. Math. and Optimal Design,
+Colorado State Univ., Fort Collins, Colo., 1978).
+   [50] Bernd Sturmfels, On vector partition functions, J. Combin. Theory Ser. A,
+vol. 72 (1995), no. 2, pp. 302–309.
+   [51]        , Gröbner Bases and Convex Polytopes, University Lecture Series,
+vol. 8, American Mathematical Society, Providence, RI, 1996.
+   [52] Rekha Thomas, A geometric Buchberger algorithm for integer programming,
+Math. Oper. Res., vol. 20 (1995), no. 4, pp. 864–884.
+   [53]        , The structure of group relaxations, to appear in Handbook of Dis-
+crete Optimization (eds: K. Aardal, G. Nemhauser, R. Weismantel), 2003.
+          PRESBURGER, GENERATING FUNCTIONS, QUASI-POLYNOMIALS                      17
+
+    [54] Sven Verdoolaege and Kevin Woods, Counting with rational generating func-
+tions, J. Symbolic Comput., vol. 43 (2008), no. 2, pp. 75–91.
+    [55] Pierre Wolper and Bernard Boigelot, An automata-theoretic approach to Pres-
+burger arithmetic constraints, Static analysis, 2nd intl. symp., Lecture Notes in Com-
+put. Sci., vol. 983, Springer, 1995, pp. 21–32.
+    [56] Kevin Woods, Rational generating functions and lattice point sets, Ph.D. the-
+sis, University of Michigan, 2004.
+
+  DEPARTMENT OF MATHEMATICS
+   OBERLIN COLLEGE
+     OBERLIN, OHIO 44074, USA
+  E-mail : Kevin.Woods@oberlin.edu
+  URL: http://www.oberlin.edu/faculty/kwoods/
+
