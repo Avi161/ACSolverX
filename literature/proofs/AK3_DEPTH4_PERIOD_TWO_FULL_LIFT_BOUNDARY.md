@@ -1351,6 +1351,160 @@ relative double cosets.  Green-cut pairs from different rows can still land
 in the same bucket, so (3.73)--(3.74) prove neither a leading term nor
 free-bucket noncancellation.
 
+### 3.9 Augmentation chords and double Green adjunction
+
+The augmentation-zero conclusion in Section 3.8 has an exact geometric
+meaning.  Let
+
+\[
+ P=\sum_mp_m m\in R,\qquad \varepsilon(P)=0,
+\]
+
+and in the left-Cayley tree of \(Q=C_2*\mathbb Z\) let \([1,m]\) be the
+oriented reduced-word geodesic from \(1\) to \(m\), traversing word letters
+rightmost first under the left action.  Define
+
+\[
+ \Gamma(P):=\sum_mp_m[1,m].
+\tag{3.75}
+\]
+
+Since \(\partial[1,m]=e_m-e_1\),
+
+\[
+ \boxed{\partial\Gamma(P)=P.}
+\tag{3.76}
+\]
+
+For an oriented double coset \(\Delta\), define the elementary bucket
+kernel
+
+\[
+ \kappa_\Delta^P(x,y)
+ :=\sum_mp_m
+ [H\widetilde x^{-1}m\widetilde yH=\Delta].
+\tag{3.77}
+\]
+
+If \(\gamma_P(u,u')\) is the coefficient of the oriented Cayley edge
+\([u,u']\) in \(\Gamma(P)\), finite Stokes gives
+
+\[
+\boxed{
+\begin{aligned}
+ \kappa_\Delta^P(x,y)
+ =\sum_{[u,u']}\gamma_P(u,u')
+ \bigl(
+ &[H\widetilde x^{-1}u'\widetilde yH=\Delta]\\
+ -&[H\widetilde x^{-1}u\widetilde yH=\Delta]
+ \bigr).
+\end{aligned}}
+\tag{3.78}
+\]
+
+This is independent of the representatives of \(x,y\): changing either
+representative is absorbed by the outer \(H\)-factors.  Consequently
+
+\[
+ \boxed{
+ \mathcal C_\Delta(f,g;P)
+ =\sum_{x,y}f(x)g(y)\kappa_\Delta^P(x,y)}
+\tag{3.79}
+\]
+
+is a finite signed sum of bucket changes along the fixed chord chain
+\(\Gamma(P)\).  For a kernel with nonzero augmentation, the scalar term
+\(\varepsilon(P)1\) must first be split off; (3.75)--(3.78) apply only to
+the augmentation-zero remainder.
+
+There is a dual exact removal of the forest flow.  Fix one root in each
+forest component.  For an edge cochain \(\omega\), define its tree
+potential by the signed path sum
+
+\[
+ \psi_\omega(z)
+ :=\left\langle[\operatorname{root},z],\omega\right\rangle.
+\tag{3.80}
+\]
+
+Then \(\delta\psi_\omega=\omega\).  If \(b\) is finite and
+component-balanced, \(\partial\mathfrak G(b)=b\), and
+\(\mathfrak J_s=-\mathfrak G_s(b)\), summation by parts gives
+
+\[
+ \boxed{
+ \sum_v\mathfrak J_s(v)\omega(E_s(v))
+ =-\sum_zb(z)\psi_\omega(z).}
+\tag{3.81}
+\]
+
+Here \(\omega\) is extended by zero on the other two forest-edge labels.
+Changing a component root adds a constant to \(\psi_\omega\), which is
+killed by component balance.
+
+Apply (3.81) to the cochain
+
+\[
+ \omega^{g,P}_{s,\Delta}(E_s(x))
+ :=\sum_y g(y)\kappa_\Delta^P(x,y).
+\]
+
+For the source pair \(f\), with boundary \(b(f)\), this yields the
+one-flow identity
+
+\[
+ \boxed{
+ \mathcal C_\Delta(\mathfrak J_s(f),g;P)
+ =-\sum_zb(f)(z)
+   \psi^{g,P}_{s,\Delta}(z).}
+\tag{3.82}
+\]
+
+If the second current is also a forest flow, define the rectangle potential
+
+\[
+\begin{aligned}
+ \Psi^P_{st,\Delta}(z,z')
+ :=\sum_{\substack{E_s(x)\in[\operatorname{root},z]\\
+                   E_t(y)\in[\operatorname{root},z']}}
+ \sigma_z(E_s(x))\sigma_{z'}(E_t(y))
+ \kappa_\Delta^P(x,y),
+\end{aligned}
+\]
+
+where each \(\sigma\) records agreement with the stored edge orientation.
+Applying (3.81) in both variables makes the two minus signs cancel:
+
+\[
+ \boxed{
+ \mathcal C_\Delta
+  (\mathfrak J_s(f),\mathfrak J_t(g);P)
+ =\sum_{z,z'}b(f)(z)b(g)(z')
+  \Psi^P_{st,\Delta}(z,z').}
+\tag{3.83}
+\]
+
+All sums are finite.  The source boundaries have finite support, the root
+paths to their vertices are finite, and \(\Gamma(P)\) is fixed and finite.
+The induced edge cochain need not have globally finite support.
+
+Every kernel in rows two and three of \(\mathbf H^\circ\) satisfies the
+augmentation hypothesis, and row four is zero.  Thus (3.78), (3.82), and
+(3.83) replace every forest-first term in the pulled-back Hessian by exact
+source-boundary path and chord incidences.  Source-first terms and the
+affine unary term remain.  No sign or path decomposition is hidden, but the
+rectangle sums can still collide in one double-coset bucket; their
+noncancellation is the next unresolved boundary.
+
+The Cayley chord chain in (3.75) and the stored \(A,B,G\)-forest are
+different chain complexes.  In particular, \(P\mathfrak J_t(g)\) is not
+itself a stored-forest boundary, and only the total relation
+\(\sum_{t=2}^4\mathcal L_t\mathfrak J_t(g)=-b(g)\) may be used.  The
+distinct left factors in (3.72) prevent factoring that total here.
+Likewise, swapping the two tensor variables exchanges \(\Delta\) with
+\(\Delta^{-1}\) and adjoints the kernel; the two oriented free buckets must
+not be identified.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
