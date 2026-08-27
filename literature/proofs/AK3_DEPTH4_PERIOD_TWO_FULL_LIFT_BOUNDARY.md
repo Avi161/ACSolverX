@@ -4732,9 +4732,7 @@ generator.  Suppose
 
 \[
  g=kc,
- \qquad
  P=\mathbf F^*k\alpha(\mathbf F),
- \qquad
  D:=k-\alpha(k)^{-1}.
  \tag{3.307}
 \]
@@ -4756,9 +4754,7 @@ injective Magnus expansion
 
 \[
  \mathbb QK\longrightarrow\mathbb Q\langle\langle X,Y\rangle\rangle,
- \qquad
  t\longmapsto1+X,
- \qquad
  ctc\longmapsto1+Y.
  \tag{3.309}
 \]
@@ -4799,8 +4795,8 @@ Now put
 \]
 
 Every actual paired $g_I$ has infinite order by (3.169)--(3.170), so
-$h\ne1$.  Let $r\geq1$ be the first Magnus degree of $h-1$, and let
-$H_r\ne0$ be its homogeneous initial form.  The identity
+$h\ne1$.  Let $d\geq1$ be the first Magnus degree of $h-1$, and let
+$H_d\ne0$ be its homogeneous initial form.  The identity
 
 \[
  \alpha(h)=\alpha(k)k=k^{-1}hk
@@ -4810,24 +4806,24 @@ $H_r\ne0$ be its homogeneous initial form.  The identity
 shows that
 
 \[
- \alpha(H_r)=H_r.
+ \alpha(H_d)=H_d.
  \tag{3.315}
 \]
 
 Indeed, conjugation by a group element with constant term one changes
-$h-1$ only in degrees strictly above $r$.  Moreover,
+$h-1$ only in degrees strictly above $d$.  Moreover,
 
 \[
  D=(h-1)\alpha(k)^{-1},
  \tag{3.316}
 \]
 
-so both $D$ and $\alpha(D)$ have the same degree-$r$ initial form $H_r$.
+so both $D$ and $\alpha(D)$ have the same degree-$d$ initial form $H_d$.
 Because all three factors involving $U$ in (3.312) have constant term one,
-the degree-$r$ part of its left side is
+the degree-$d$ part of its left side is
 
 \[
- H_r+H_r=2H_r\ne0
+ H_d+H_d=2H_d\ne0
  \tag{3.317}
 \]
 
@@ -4838,7 +4834,7 @@ over $\mathbb Q$.  This contradiction proves
  \varepsilon(\mathbf F)\ne0
  \Longrightarrow
  [f\wedge g_If]_Q\ne0
- \quad\text{for every odd paired }g_I.}
+ \text{ for every odd paired }g_I.}
  \tag{3.318}
 \]
 
@@ -4856,6 +4852,82 @@ chosen total order.  It does not apply when $\varepsilon(\mathbf F)=0$,
 does not treat the three even paired generators, and does not prevent the
 surviving paired coordinate from cancelling against another term of the
 complete laminar polygon or the affine unary value.
+
+### 3.42 The zero-mass residue is a balanced Magnus norm equation
+
+The same filtration gives an exact necessary equation without assuming
+nonzero mass.  Let $r$ be the first Magnus degree of a nonzero
+$\mathbf F\in\mathbb ZK$, and write $f_r\ne0$ for its homogeneous initial
+form.  On the associated graded free algebra, denote the involution induced
+by group inversion by a dagger.  Thus
+
+\[
+ X^\dagger=-X,
+ Y^\dagger=-Y,
+ (uv)^\dagger=v^\dagger u^\dagger.
+ \tag{3.320}
+\]
+
+Keep $H_d$ for the first nonzero Magnus form of $h-1$ from Section 3.41.
+Taking the degree $2r+d$ part of (3.308), and using
+$\alpha(H_d)=H_d$, gives
+
+\[
+ \boxed{
+ f_r^\dagger H_d\alpha(f_r)
+ +\alpha(f_r)^\dagger H_df_r=0.}
+ \tag{3.321}
+\]
+
+This is an identity in the free associative algebra
+$\mathbb Q\langle X,Y\rangle$.  Split the initial form into its two
+$\alpha$-eigenspaces:
+
+\[
+ f_+:=\frac{f_r+\alpha(f_r)}2,
+ f_-:=\frac{f_r-\alpha(f_r)}2.
+ \tag{3.322}
+\]
+
+Then
+
+\[
+ \alpha(f_+)=f_+,
+ \alpha(f_-)=-f_-,
+ f_r=f_++f_-.
+ \tag{3.323}
+\]
+
+Substitution into (3.321) cancels the two mixed terms and yields the
+balanced norm equation
+
+\[
+ \boxed{
+ f_+^\dagger H_df_+
+ =f_-^\dagger H_df_-.}
+ \tag{3.324}
+\]
+
+The free associative algebra is a domain and $H_d\ne0$.  Hence neither
+$f_+$ nor $f_-$ can vanish in a solution of (3.324): if one vanished, the
+other side would be a product of three nonzero factors equal to zero.
+Consequently
+
+\[
+ \boxed{
+ \substack{[f\wedge g_If]_Q=0\\g_I\text{ odd}\\f\ne0}
+ \Longrightarrow
+ f_+\ne0\text{ and }f_-\ne0.}
+ \tag{3.325}
+\]
+
+When $\varepsilon(\mathbf F)\ne0$, the first form $f_r$ is a nonzero
+scalar and has $f_-=0$; thus (3.325) recovers (3.318).  For a zero-mass
+current, (3.324) is the exact remaining leading-layer obstruction.  A
+complete odd-axis anisotropy theorem would follow from proving that its two
+opposite $\alpha$-eigenspace norms cannot agree for the particular
+$H_d$ of each paired word.  No such theorem is asserted here, and the
+complete laminar and affine cancellations remain separate.
 
 ## 4. Exact diagonal sieve
 
