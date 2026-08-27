@@ -3612,6 +3612,156 @@ coefficient equalities which must be resolved next.  It does not by itself
 force $\mathbf F=0$, and the other fourteen laminar pairings and the
 affine unary term remain outside this one-pair ledger.
 
+### 3.32 Complementary infinite-dihedral detector
+
+The height-blind part of (3.200) has a complementary one-dimensional
+quotient.  Impose the additional relation
+
+\[
+ ctc=t^{-1}
+ \tag{3.218}
+\]
+
+on $Q$.  The result is the infinite dihedral group, acting on
+
+\[
+ \mathbb Z\cong D_\infty/\langle c\rangle
+ \tag{3.219}
+\]
+
+by $t:i\mapsto i+1$ and $c:i\mapsto-i$.  Equivalently, on the free
+subgroup $K=F(t,ctc)$ this coordinate is the anti-height
+
+\[
+ \delta(t)=1,
+ \qquad
+ \delta(ctc)=-1.
+ \tag{3.220}
+\]
+
+The quotient $X\to\mathbb Z$ is $Q$-equivariant and therefore induces
+
+\[
+ \boxed{
+ \Omega_\delta:W_Q\longrightarrow
+ (\Lambda^2\mathbb Z[\mathbb Z])_{D_\infty}
+ \cong\bigoplus_{n\geq1}\mathbb Z/2.}
+ \tag{3.221}
+\]
+
+Translation makes a wedge depend only on the absolute distance of its two
+vertices.  Reflection reverses its orientation, so every positive-distance
+coordinate has order two; these are all relations.
+
+For a finite integral current $f$, let its parity anti-height profile be
+
+\[
+ \overline p_f(w)
+ :=\sum_{i\in\mathbb Z}
+ \left(\sum_{\delta(x)=i}f(x)\bmod2\right)w^i
+ \in\mathbb F_2[w,w^{-1}].
+ \tag{3.222}
+\]
+
+Suppose the image of $g\in Q$ acts by
+
+\[
+ i\longmapsto d+\sigma i,
+ \qquad d\in\mathbb Z,
+ \qquad \sigma\in\{1,-1\}.
+ \tag{3.223}
+\]
+
+If $\sigma=1$, the ordered relative polynomial of $f\wedge gf$ is
+
+\[
+ P(w)=w^d\overline p_f(w^{-1})\overline p_f(w).
+ \tag{3.224}
+\]
+
+The distance-$n$ coordinate adds the coefficients of $w^n$ and
+$w^{-n}$.  Hence all positive-distance coordinates vanish exactly when
+
+\[
+ (w^d+w^{-d})\overline p_f(w^{-1})\overline p_f(w)=0.
+ \tag{3.225}
+\]
+
+For $d\ne0$, the Laurent domain gives the exact translation criterion
+
+\[
+ \boxed{
+ \Omega_\delta([f\wedge gf])=0
+ \Longleftrightarrow
+ \overline p_f=0
+ \qquad(\sigma=1,\ d\ne0).}
+ \tag{3.226}
+\]
+
+If $\sigma=-1$, Frobenius in characteristic two gives instead
+
+\[
+ P(w)=w^d\overline p_f(w^{-1})^2
+ =\sum_i\overline f_i w^{d-2i},
+ \tag{3.227}
+\]
+
+where $\overline f_i$ is the coefficient in (3.222).  The exponents for
+$i$ and $d-i$ are opposite, while $i=d/2$, when integral, gives the
+discarded diagonal.  Therefore
+
+\[
+ \boxed{
+ \Omega_\delta([f\wedge gf])=0
+ \Longleftrightarrow
+ \overline p_f(w)=w^d\overline p_f(w^{-1})
+ \qquad(\sigma=-1).}
+ \tag{3.228}
+\]
+
+Thus a reflection row vanishes precisely when the parity profile is
+symmetric about $d/2$; a possible fixed coefficient at $d/2$ is
+unrestricted.
+
+For the sixteen occurrence prefixes, direct reduction through (3.218)
+gives the affine-action table
+
+\[
+\boxed{
+\begin{array}{c|rrrrrrrrrrrrrrrr}
+o&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16\\ \hline
+d_o&0&1&1&-6&-4&0&0&-7&-5&-3&-3&4&2&1&1&0\\
+\eta_o&0&1&1&0&1&1&1&0&1&0&0&1&0&0&0&0
+\end{array}}
+\tag{3.229}
+\]
+
+where $q_o:i\mapsto d_o+(-1)^{\eta_o}i$.  Consequently the eight paired
+generators have the following complete dihedral images:
+
+\[
+\boxed{
+\begin{array}{c|c|c}
+I&d_I&\sigma_I\\ \hline
+[3,4],[7,8],[11,12]&7&-1\\
+[2,5],[10,13]&5&1\\
+[1,6]&0&-1\\
+[9,14]&-6&-1\\
+[15,16]&-1&1
+\end{array}}
+\tag{3.230}
+\]
+
+Equations (3.226)--(3.230) give exact new tests on the height-blind
+residue.  The slot-one and slot-four paired tensors survive whenever their
+anti-height parity profile is nonzero.  The slot-zero, slot-two, and
+slot-three paired tensors survive unless their profiles have respectively
+the symmetries $i\leftrightarrow7-i$, $i\leftrightarrow-i$, and
+$i\leftrightarrow-6-i$.  These are individual paired-tensor statements.
+Different laminar pairings can occupy the same distance coordinate, and
+the affine unary image remains separate, so the dihedral detector does not
+prove nonvanishing of the complete defect.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
