@@ -183,7 +183,11 @@ def main(argv=None):
     _, rows = load_subset(subset_path)
     greedy = run_arm(rows, None, args.budget, args.max_relator_length)
     s20 = run_arm(rows, S20_MK2, args.budget, args.max_relator_length)
-    summary = summarise(greedy, s20, args.budget, args.max_relator_length, subset_path)
+    try:
+        subset_recorded = Path(subset_path).resolve().relative_to(_ROOT).as_posix()
+    except ValueError:
+        subset_recorded = str(subset_path)
+    summary = summarise(greedy, s20, args.budget, args.max_relator_length, subset_recorded)
     print_report(summary)
     out = args.out
     if out is None:
