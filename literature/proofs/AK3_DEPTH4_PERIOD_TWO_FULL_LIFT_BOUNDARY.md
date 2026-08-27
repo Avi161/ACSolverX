@@ -1224,6 +1224,133 @@ double-coset length or source shortlex.  The next free-bucket obligation is
 to prove a separation or noncancellation lemma for this exact cut ledger;
 the affine unary term remains separate.
 
+### 3.8 Forest-diagonal-free occurrence gauge
+
+The two remaining edge slots each occur exactly once positively and once
+negatively.  Put
+
+\[
+ (a_2,b_2)=(1,6),\qquad (a_3,b_3)=(9,14).
+\tag{3.68}
+\]
+
+Thus
+
+\[
+ \mathcal L_s=q_{a_s}-q_{b_s},\qquad
+ \mathbf H_{ss}
+ =1-q_{a_s}^{-1}q_{b_s}
+ =q_{a_s}^{-1}\mathcal L_s
+ \quad(s=2,3).
+\tag{3.69}
+\]
+
+Let \(\mathbf Q^{\mathrm{out}}\) be the column with
+
+\[
+ Q^{\mathrm{out}}_2=-q_1^{-1},\qquad
+ Q^{\mathrm{out}}_3=-q_9^{-1},\qquad
+ Q^{\mathrm{out}}_0=Q^{\mathrm{out}}_1
+ =Q^{\mathrm{out}}_4=0,
+\]
+
+and define a second restricted representative
+
+\[
+ \boxed{
+ \mathbf H^\circ
+ :=\widehat{\mathbf H}
+   +\mathbf Q^{\mathrm{out}}\mathcal L.}
+\tag{3.70}
+\]
+
+The added matrix belongs to the gauge subgroup (3.48), so it changes no
+free-bucket Hessian value on \(\mathcal K_M\).  It need not preserve the
+ambient adjoint identity (3.41).
+
+For \(s=2,3\), direct cancellation in the occurrence definition (3.40)
+gives the exact outside-interval row
+
+\[
+ \boxed{
+ \mathbf H^\circ_{st}
+ =
+ -q_{a_s}^{-1}
+  \sum_{\substack{p<a_s\\s_p=t}}\epsilon_pq_p
+ -q_{b_s}^{-1}
+  \sum_{\substack{p>b_s\\s_p=t}}\epsilon_pq_p
+ +\mathcal L_s^*\delta_{t4}.}
+\tag{3.71}
+\]
+
+Indeed, subtracting \(q_{a_s}^{-1}\mathcal L_t\) cancels the diagonal
+term and every slot-\(t\) occurrence in the closed chronology interval
+\([a_s,b_s]\).  Only occurrences strictly before the positive endpoint or
+strictly after the negative endpoint survive.  Formula (3.71) includes the
+additional fourth-column term from the earlier gauge.
+
+Expanding the two rows with the pinned occurrence table yields
+
+\[
+\begin{array}{lll}
+ \mathbf H^\circ_{20}
+  =-q_6^{-1}(q_7-q_8+q_{11}-q_{12}),&
+ \mathbf H^\circ_{21}
+  =-q_6^{-1}(q_{10}-q_{13}),&
+ \mathbf H^\circ_{22}=0,\\[2mm]
+ \mathbf H^\circ_{23}
+  =-q_6^{-1}\mathcal L_3,&
+ \mathbf H^\circ_{24}
+  =\mathcal L_2^*-q_6^{-1}\mathcal L_4,&\\[2mm]
+ \mathbf H^\circ_{30}
+  =-q_9^{-1}(q_3-q_4+q_7-q_8),&
+ \mathbf H^\circ_{31}
+  =-q_9^{-1}(q_2-q_5),&
+ \mathbf H^\circ_{32}
+  =-q_9^{-1}\mathcal L_2,\\[2mm]
+ \mathbf H^\circ_{33}=0,&
+ \mathbf H^\circ_{34}
+  =\mathcal L_3^*-q_{14}^{-1}\mathcal L_4.&
+\end{array}
+\tag{3.72}
+\]
+
+The prior row identity remains
+
+\[
+ \boxed{
+ \mathbf H^\circ_{22}=\mathbf H^\circ_{33}=0,\qquad
+ \mathbf H^\circ_{4t}=0\quad(0\leq t\leq4).}
+\tag{3.73}
+\]
+
+In particular, the complete forest--forest block is
+
+\[
+ \boxed{
+ (\mathbf H^\circ_{st})_{2\leq s,t\leq4}
+ =
+ \begin{pmatrix}
+ 0&-q_6^{-1}\mathcal L_3&
+   \mathcal L_2^*-q_6^{-1}\mathcal L_4\\
+ -q_9^{-1}\mathcal L_2&0&
+   \mathcal L_3^*-q_{14}^{-1}\mathcal L_4\\
+ 0&0&0
+ \end{pmatrix}.}
+\tag{3.74}
+\]
+
+Every entry in rows two and three has augmentation zero, and row four
+vanishes.  Thus every same-slot forest self-correlation has been removed;
+the remaining forest-first terms are finite differences coupling distinct
+forest slots or a forest slot to a source slot.  Equation (3.65) remains
+valid with \(\widehat{\mathbf H}\) replaced by \(\mathbf H^\circ\).
+
+This normal form reduces the fixed occurrence support but does not separate
+relative double cosets.  Green-cut pairs from different rows can still land
+in the same bucket, so (3.73)--(3.74) prove neither a leading term nor
+free-bucket noncancellation.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
