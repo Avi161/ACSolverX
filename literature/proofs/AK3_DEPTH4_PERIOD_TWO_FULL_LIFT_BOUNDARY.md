@@ -1090,7 +1090,89 @@ after the \(\mathbb F_2\) readout.  The one-vertex term \(\mathfrak T\) is
 already controlled, but the order-reversal term \(\mathfrak I\) remains.
 This is exactly the unbounded old--new comparison isolated below.
 
-A direct expansion of \(\mathfrak I\) contains the weighted prefix families
+The inversion remainder itself has a clean relative-action compression.
+For quotient actions \(q,r\), pairwise inversion parity gives
+
+\[
+ \operatorname{Inv}_{qr}(f)
+ =\operatorname{Inv}_q(rf)+q\operatorname{Inv}_r(f)
+ \qquad\text{in }\Lambda^2M\otimes\mathbb F_2.
+\tag{5.45f}
+\]
+
+Indeed, on one unordered source pair, the order is reversed by the
+composition exactly when it is reversed by one, but not both, of the two
+successive permutations.  The exterior target of the second term is
+transported by \(q\).  Differentiating (5.45f) and using invariance of
+\(\lambda\) gives
+
+\[
+ \mathfrak I_{\rho,\lambda}(qr;f,e)
+ =\mathfrak I_{\rho,\lambda}(q;rf,re)
+  +\mathfrak I_{\rho,\lambda}(r;f,e).
+\tag{5.45g}
+\]
+
+For a positive/negative occurrence pair with actions \(q_+,q_-\), put
+\(m=q_-q_+^{-1}\).  Taking \(q=m\) and \(r=q_+\) in (5.45g) yields
+
+\[
+\boxed{
+ \mathfrak I(q_+;f,e)+\mathfrak I(q_-;f,e)
+ =\mathfrak I(m;q_+f,q_+e).}
+\tag{5.45h}
+\]
+
+The six exact anchored occurrence pairs therefore reduce to
+
+| slot | \(q_+\) | \(q_-\) | \(m=q_-q_+^{-1}\) |
+|---:|---|---|---|
+| 0 | `tc` | `ctcTTTcttc` | `ctcTTTct` |
+| 0 | `ctcTcTctc` | `ctcTTTTcttc` | `ctcTTTTctctctcTc` |
+| 0 | `ctcTctc` | `cTTcttc` | `cTTctctcTc` |
+| 2 | \(1\) | `ctcTcTctc` | `ctcTcTctc` |
+| 3 | `ctcTTctt` | `t` | `TcttcTc` |
+| 4 | `t` | \(1\) | `T` |
+
+These are the same relative multipliers as the universal anchored
+inversion records; (5.45h) applies them here to the unary derivative.
+
+The three slot-zero terms vanish without a comparison.  The fixed
+correction has
+\(B_0=2e_{cT}-2e_{cTTct}-2e_{cTTctt}\) by (13) of
+[`AK3_DEPTH4_PERIOD_TWO_PHI4_ESCAPE.md`](AK3_DEPTH4_PERIOD_TWO_PHI4_ESCAPE.md),
+and (6.2) of
+[`AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md`](AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md)
+gives \(D_{i,0}=e_{y_i}+2e_T\).  Hence, after collision aggregation and
+reduction modulo two,
+
+\[
+ f_0=e_{y_i},
+ \qquad
+ e_0=e_{y_{i+2}}+e_{y_i},
+ \qquad
+ f_0+e_0=e_{y_{i+2}}.
+\tag{5.45i}
+\]
+
+Since the inversion quadratic of a singleton is zero,
+
+\[
+\boxed{
+ d\operatorname{Inv}_{q,f_0}(e_0)
+ =\operatorname{Inv}_q(f_0+e_0)+\operatorname{Inv}_q(f_0)
+ =0
+ \qquad(q\in Q).}
+\tag{5.45j}
+\]
+
+Thus only the slot-two, slot-three, and slot-four relative kernels in the
+last three rows of the table survive.  This compression evaluates no
+nonzero-slot value and does not improve the onset or finite verification
+window by itself.
+
+A direct expansion of those three \(\mathfrak I\)-kernels contains the
+weighted prefix families
 
 \[
 \boxed{

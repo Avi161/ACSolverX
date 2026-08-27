@@ -151,9 +151,13 @@ finite quotient do not close a route.
   unbounded weighted shortlex comparisons.  The two valid transport
   representations are transported-old-order plus one-vertex defect, or
   canonical-new-order plus the full section defect; mixing them would
-  double-count the order change.  The 152-schema common-phase/Fine--Wilf
-  argument and its source-bound onset 99 control the surviving inversion
-  parity:
+  double-count the order change.  The pure inversion cocycle now pairs
+  every positive/negative occurrence into one relative action
+  \(m=q_-q_+^{-1}\).  All three slot-zero relative kernels vanish because
+  the old and new slot-zero states are singletons modulo two.  Only the
+  slot-two, slot-three, and slot-four relative kernels remain; none is
+  evaluated yet.  The 152-schema common-phase/Fine--Wilf argument and its
+  source-bound onset 99 conservatively control their surviving parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
   Consequently the remaining all-index derivative identities are exactly
   the finite window \(1\leq k\leq14,\ 0\leq i\leq138\), comprising 1,946
