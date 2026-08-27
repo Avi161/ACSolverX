@@ -202,7 +202,19 @@ finite quotient do not close a route.
   allowance for whole-core cancellation, gives onset 130.  Hence the
   protected catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq130\),
   giving the 2,380-bit window above.  No remainder value in that window is
-  evaluated yet, so no vanishing or period-two claim is proved.
+  evaluated yet, so no vanishing or period-two claim is proved.  In the
+  fourth three-point coordinate, however, the powered element acts
+  trivially and every one-step-shell chord label has an all-index constant
+  projected color.  The frozen crossing set then proves termwise that the
+  coordinate-four new--new contribution \(Q_4(q_i)\) is constant from the
+  seed.  The coordinate-four local contribution is also constant on the
+  protected cell \(i\geq3\), because the raw first-half lists are fixed and
+  the moving central color is constant.  Its all-index extension is reduced
+  to the three finite seams between cells \(0,1,2,\geq3\).  A frozen
+  negative slot-two record shows why the scalar raw bit cannot decide those
+  seams: it has scalar weight zero but coordinate-four local weight one.
+  The new--new seed value, three local seams, and old--shell polarization
+  remain, so this is not a proof that \(R_{4,i}=0\).
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel

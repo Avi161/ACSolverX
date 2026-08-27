@@ -2961,6 +2961,154 @@ This is \(14\cdot170=2{,}380\) bits.  No value in (5.77) is evaluated
 here.  In particular, (5.76) is not a period-two theorem and proves no lift
 or AK(3) conclusion.
 
+### 5.7 Coordinate-four new--new covariance
+
+The fourth readout has an additional exact simplification.  Its permutation
+action and invariant covector are
+
+\[
+ \rho_4(c)=(1\ 2),\qquad \rho_4(t)=(0\ 1),\qquad
+ \lambda_4=\lambda_{01}+\lambda_{02}+\lambda_{12}.
+ \tag{5.78}
+\]
+
+If \(\operatorname{col}_4(x):=\rho_4(x)0\), its pair weight is therefore
+
+\[
+ w_4(x,y)=[\operatorname{col}_4(x)\ne\operatorname{col}_4(y)].
+ \tag{5.79}
+\]
+
+Let \(Q_4(q_i)\) denote the coordinate-four new--new term of the one-step
+pure-\(P\) shell.  The deterministic matching of Section 5 of the
+pure-\(P\) normal-form note expresses it as the sum of (5.79) over the
+crossing pairs of its 48 label-preserving chords.  The sole repeated chord
+label is nested, so it contributes no crossing.
+
+Every nonzero-slot chord label in the frozen common-phase catalog has the
+exact form
+
+\[
+ x_C(i)=\operatorname{cvert}
+ \bigl(L_C P_C^{\,i+\epsilon_C}R_C\bigr),
+ \tag{5.80}
+\]
+
+where \(P_C\) is conjugate to \(R_0^3\) and
+\(R_0=\texttt{cTctttcT}\).  Direct substitution in (5.78) gives
+
+\[
+ \rho_4(R_0^3)=1,
+ \qquad \rho_4(P_C)=1.
+ \tag{5.81}
+\]
+
+The terminal branch creates no seed exception.  The canonical source
+records in each of the cells \(i=0,1,2,i\geq3\), and the protected
+continuation of the last cell, end in \(\texttt t\); hence terminal-
+\(\texttt c\) deletion is inactive.  It follows from (5.80)--(5.81) that
+
+\[
+ \operatorname{col}_4(x_C(i+1))
+ =\operatorname{col}_4(x_C(i))
+ \qquad(i\geq0).
+ \tag{5.82}
+\]
+
+The slot-zero labels satisfy the independent all-index identity
+
+\[
+ y_i=(\texttt{cTc})(\gamma^{-1})^{i+1}\texttt t.
+ \tag{5.83}
+\]
+
+Since \(R_0^3\) is conjugate to \(\gamma^{-1}\), (5.81) also gives
+\(\rho_4(\gamma)=1\).  The actual slot-zero chord labels are
+
+\[
+ x_{o,\delta}(i)
+ =\operatorname{cvert}(q_o y_{i+\delta}),
+ \qquad
+ o\in\{3,4,7,8,11,12\},\quad \delta\in\{0,1\}.
+ \tag{5.83a}
+\]
+
+Each \(q_o\) is fixed and has length at most 11, whereas
+\(|y_0|=28\), and every \(y_r\) ends in \(\texttt t\).  Thus the fixed
+left prefix cannot cancel the whole powered word and terminal-\(\texttt c\)
+deletion is inactive.  Equations (5.81), (5.83), and (5.83a) give
+
+\[
+ \operatorname{col}_4(x_{o,\delta}(i+1))
+ =\operatorname{col}_4(x_{o,\delta}(i))
+ \qquad(i\geq0)
+ \tag{5.83b}
+\]
+
+for all twelve translated slot-zero tokens.
+
+The frozen chord assignment, occurrence order, and crossing set are the
+same in all four exhaustive cells.  Equations (5.79), (5.82), and (5.83b)
+therefore identify every crossing weight term by term across consecutive
+indices.  Thus
+
+\[
+ \boxed{Q_4(q_{i+1})=Q_4(q_i)\qquad(i\geq0).}
+ \tag{5.84}
+\]
+
+The local part also has an exact stable reduction.  For a correction record
+\((o,v)\), let \(\operatorname{FH}(q_o,v)\) be the first-half labels of its
+approved raw branch.  In coordinate four, (5.37) and (5.42) specialize to
+
+\[
+ \varrho_4(o,v)
+ =\sum_{\alpha\in\operatorname{FH}(q_o,v)}
+ [\operatorname{col}_4(\alpha)
+   \ne\operatorname{col}_4(\tau_o(v))].
+ \tag{5.85}
+\]
+
+For each of the 84 nonzero-slot records, the raw pump fixes the complete
+first-half list in the protected cell \(i\geq3\).  Its central label
+advances by a conjugate of \(\gamma^{-1}\), whose \(\rho_4\)-image is
+trivial.  Thus every summand in (5.85), and hence the collision-aggregated
+nonzero-slot xor, is constant.  The separate slot-zero locality proof is
+valid from \(i=0\).  Consequently
+
+\[
+ \boxed{L_4(q_i)=L_4(q_3)\qquad(i\geq3).}
+ \tag{5.86}
+\]
+
+This cannot be extended to the seed cells by substituting the scalar raw
+bit.  For example, the protected slot-two
+\(\texttt{long\_p1}\) record at negative occurrence 6 has first-half labels
+\(\texttt{ctcTcTct}\) and \(\texttt{ctcTcT}\).  Both are source-noncentral,
+but the second has the same coordinate-four color as the central label,
+whereas the first does not.  Hence this record has scalar raw bit zero and
+\(\varrho_4=1\).  Its positive occurrence partner has an empty first half
+and contributes zero.  Thus neither the source-noncentral-implies-
+bichromatic shortcut nor pointwise occurrence-pair cancellation is valid.
+
+The local all-index question is now exactly the three seam bits
+
+\[
+\boxed{
+\begin{aligned}
+ L_4(q_0)+L_4(q_1),\qquad
+ L_4(q_1)+L_4(q_2),\qquad
+ L_4(q_2)+L_4(q_3).
+\end{aligned}}
+\tag{5.87}
+\]
+
+Equation (5.84) evaluates no new--new seed value, and (5.87) evaluates none
+of the local seams.  The old--shell polarization also remains: equality of
+the projected shell colors does not determine its source-shortlex cut.
+Hence (5.84)--(5.87) do not prove \(R_{4,i}=0\), period two for \(V_i\), a
+lift, or AK(3).
+
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
   reaches \(F/\gamma_3N\).
