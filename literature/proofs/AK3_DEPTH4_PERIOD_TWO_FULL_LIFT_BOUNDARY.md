@@ -864,7 +864,7 @@ outer-product, inverse-self, or \(o_{q,r}\)-linear term built from those
 states is strictly \(2m_\rho\)-periodic from \(i=0\).  The fixed
 \(O_{q,r}\) has zero derivative.  This assertion excludes the ordered
 reader and one-vertex summand in the actual package (5.33e).  The latter
-is controlled below, and Lemma 5.2 decomposes the former.  The eleven
+is controlled below, and Lemma 5.1a decomposes the former.  The eleven
 action orders in (5.2) give the joint bound
 
 \[
@@ -981,7 +981,7 @@ The remaining order-reversal term can be isolated from the transported
 ordered-half leaf by an exact pairwise identity.  The identity does not
 cancel that term from the actual crossed derivative.
 
-#### Lemma 5.2 (ordered-reader decomposition)
+#### Lemma 5.1a (ordered-reader decomposition)
 
 Put
 
@@ -1159,7 +1159,7 @@ Since the inversion quadratic of a singleton is zero,
 
 \[
 \boxed{
- d\operatorname{Inv}_{q,f_0}(e_0)
+d\operatorname{Inv}_{q,f_0}(e_0)
  =\operatorname{Inv}_q(f_0+e_0)+\operatorname{Inv}_q(f_0)
  =0
  \qquad(q\in Q).}
@@ -1167,12 +1167,165 @@ Since the inversion quadratic of a singleton is zero,
 \]
 
 Thus only the slot-two, slot-three, and slot-four relative kernels in the
-last three rows of the table survive.  This compression evaluates no
-nonzero-slot value and does not improve the onset or finite verification
-window by itself.
+last three rows of the table survive.  They admit a smaller connector
+normal form.
 
-A direct expansion of those three \(\mathfrak I\)-kernels contains the
-weighted prefix families
+Let \(K_i\) be the diagonal connector chain
+
+\[
+ K_i=[x_{1,i},x_{3,i}]
+     +[x_{3,i},x_{4,i}]
+     +[x_{3,i},x_{5,i}]
+     +[x_{2,i},x_{6,i}]
+\tag{5.45k}
+\]
+
+from (3.1) of
+[`AK3_PURE_P_INCREMENT_NORMAL_FORM.md`](AK3_PURE_P_INCREMENT_NORMAL_FORM.md),
+and let \(K_{i,s}\) be its slot-\(s\) coefficient current.  Write
+\(\overline F\) for collision aggregation of an integral current \(F\)
+followed by coefficient reduction modulo two.  The integral six-family
+collision identity (2.3) of that note, reduced only after collision
+aggregation, gives
+
+\[
+\boxed{\overline D_{i,s}=K_{i,s}\qquad(s=2,3,4).}
+\tag{5.45l}
+\]
+
+Indeed, the doubled family \(2/6\) path disappears modulo two, the
+families \(1\) and \(3\) give the path
+\([x_{1,i},x_{3,i}]\), and the remaining \(w,z,w\) terms are exactly the
+three short connectors in (5.45k).  Therefore
+
+\[
+\boxed{\overline E_{i,s}=K_{i,s}+K_{i+2,s}.}
+\tag{5.45m}
+\]
+
+The fixed correction parities from (13) of the escape note are
+
+\[
+ \overline B_2=0,\qquad
+ \overline B_3=e_{\texttt{TTct}},\qquad
+ \overline B_4=e_{\texttt{Tct}}.
+\tag{5.45n}
+\]
+
+For the last three rows of the relative-action table, write
+
+\[
+\begin{aligned}
+ (q_2,m_2)&=(1,\texttt{ctcTcTctc}),\\
+ (q_3,m_3)&=(\texttt{ctcTTctt},\texttt{TcttcTc}),\\
+ (q_4,m_4)&=(\texttt t,\texttt T),
+\end{aligned}
+\]
+
+and define the connector inversion potentials
+
+\[
+ \Xi_{k,s}(i)
+ :=\lambda_k\Pi_{\rho_k}^\wedge
+   \operatorname{Inv}_{m_s}(q_sK_{i,s}).
+\tag{5.45o}
+\]
+
+If
+\(\operatorname{PInv}_m(u,v)
+ :=\operatorname{Inv}_m(u+v)+\operatorname{Inv}_m(u)
+   +\operatorname{Inv}_m(v)\),
+then quadratic expansion, (5.45l), and (5.45m) give the exact surviving
+source formula
+
+\[
+\boxed{
+\begin{aligned}
+ \mathfrak I_{\rho_k,\lambda_k}
+ &(m_s;q_s(B_s+D_{i,s}),q_sE_{i,s})\\
+ ={}&\Xi_{k,s}(i+2)+\Xi_{k,s}(i)\\
+ &+\lambda_k\Pi_{\rho_k}^\wedge
+  \operatorname{PInv}_{m_s}
+  \left(q_s\overline B_s,\,
+        q_s(K_{i,s}+K_{i+2,s})\right).
+\end{aligned}}
+\tag{5.45p}
+\]
+
+The last line is zero in slot two.  In slots three and four it pairs one
+fixed base singleton with the two-step shell.  Moreover
+\(K_i+K_{i+2}=(K_i+K_{i+1})+(K_{i+1}+K_{i+2})\), and each parenthesis is
+the proved 42-edge increment current.  Hence the base term has uniformly
+bounded support and contains no complete old ray.
+
+Formula (5.45p) reduces the unbounded order problem to the three second
+differences
+\(\Xi_{k,s}(i+2)+\Xi_{k,s}(i)\).  It evaluates none of them and does not
+improve the onset or finite verification window by itself.
+
+The slot-four potential has a further exact boundary-distance form.  Use
+the quotient-letter order \(T<c<t\), and say that a canonical vertex is
+\(t\)-initial when its reduced word begins in \(t\).  Left multiplication
+by \(T\) decreases length by one on a \(t\)-initial word and increases
+length by one on every other word.  Removing or adding the same initial
+letter preserves lexicographic order inside either class.  It follows
+that, for \(x<y\), left multiplication by \(T\) reverses their shortlex
+order exactly when
+
+\[
+ x\text{ is not \(t\)-initial},\qquad
+ y\text{ is \(t\)-initial},\qquad
+ |y|-|x|\in\{0,1\}.
+\tag{5.45q}
+\]
+
+For a length gap at least three, the two possible unit length changes
+cannot reverse order.  At gap two the transformed lengths tie, but the
+first transformed word begins in \(T\), while the second begins in \(c\)
+or \(t\), so the order is still preserved.  Canonical inputs do not end
+in \(c\), and left multiplication changes only the initial seam; hence
+the displayed \(Tx,Ty\) are already canonical.  This proves the
+all-current identity
+
+\[
+\boxed{
+ \operatorname{Inv}_T(h)
+ =\sum_{\substack{x\ {\rm not}\ t\text{-initial}\\
+                  y\ t\text{-initial}\\
+                  |y|-|x|\in\{0,1\}}}
+ h_xh_y\,e_{Tx}\wedge e_{Ty}.}
+\tag{5.45r}
+\]
+
+Apply (5.45r) to \(h=tK_{i,4}\).  A vertex \(tv\) is not \(t\)-initial
+exactly when \(v\) begins in \(T\); otherwise \(tw\) is \(t\)-initial.
+Moreover
+
+\[
+ |tv|=|v|-1,\quad |tw|=|w|+1,\quad
+ T(tv)=v,\quad T(tw)=w
+\]
+
+in the respective two cases.  Hence
+
+\[
+\boxed{
+ \Xi_{k,4}(i)
+ =\sum_{\substack{v,w\in\operatorname{supp}K_{i,4}\\
+                  v\text{ begins in }T,\ w\text{ does not}\\
+                  |v|-|w|\in\{1,2\}}}
+ K_{i,4}(v)K_{i,4}(w)\,
+ \lambda_k(e_{\rho_k(v)0}\wedge e_{\rho_k(w)0}).}
+\tag{5.45s}
+\]
+
+Thus slot four has no residual lexical comparison: it is a weighted
+incidence count across the exact distance-one and distance-two length
+boundaries of the connector chain.  The incidence value is not evaluated
+here.
+
+A direct expansion of the remaining slot-two and slot-three kernels
+contains the weighted prefix families
 
 \[
 \boxed{
@@ -1188,6 +1341,73 @@ together with the same comparison after left multiplication by each fixed
 occurrence prefix and \(\delta\in\{0,1,2\}\).  Equality and
 terminal-\(c\) branches are retained.  The new--new part is bounded, but
 the old--new sums run over the complete old \(P\)-ray.
+
+After the relative-action compression, those formal prefix sums are
+supported only at a bounded length boundary.  For a reduced multiplier
+\(m\), put
+
+\[
+ \ell(m):=|m|+1.
+\tag{5.46a}
+\]
+
+Reduced left multiplication changes the length of a canonical vertex by
+at most \(|m|\).  If the whole vertex cancels, the final choice of the
+canonical right-\(\langle c\rangle\) representative can remove at most one
+additional terminal \(c\).  Therefore
+
+\[
+ \bigl||\operatorname{cvert}(mx)|-|x|\bigr|\leq\ell(m).
+\tag{5.46b}
+\]
+
+If \(x<y\) and
+\(|y|-|x|>2\ell(m)\), (5.46b) leaves
+\(|\operatorname{cvert}(mx)|<
+  |\operatorname{cvert}(my)|\);
+the pair cannot invert.  Hence
+
+\[
+\boxed{
+ \operatorname{supp}\operatorname{Inv}_m
+ \subseteq
+ \{(x,y):x<y,\ |y|-|x|\leq2\ell(m)\}.}
+\tag{5.46c}
+\]
+
+For the two remaining multipliers,
+
+\[
+ |m_2|=9,\quad |m_3|=7,\qquad
+ 2\ell(m_2)=20,\quad2\ell(m_3)=16.
+\tag{5.46d}
+\]
+
+Expanding
+\(\Xi_{k,s}(i+2)+\Xi_{k,s}(i)\) against
+\(K_{i+2,s}=K_{i,s}+(K_{i,s}+K_{i+2,s})\) cancels every old--old pair.
+Only old--shell and shell--shell pairs remain.  On a protected old/shell
+template pair with
+
+\[
+ |U(h)|=24h+\alpha,\qquad |V(i)|=24i+\beta,
+\]
+
+an old--new inversion can occur only if
+
+\[
+ |24(h-i)+\alpha-\beta|\leq2\ell(m_s).
+\tag{5.46e}
+\]
+
+The interval of possible integers \(h-i\) has length
+\(4\ell(m_s)/24<2\).  Thus every protected template pair contributes on
+at most two affine boundary rays, rather than on a genuine prefix
+\(0\leq h\leq i\).  Finite unprotected levels and shell--shell terms remain
+a finite catalog of direct one-parameter families.  This boundary
+localization removes the parity prefix summation from the relative
+inversion remainder, but it does not evaluate the surviving rays or
+improve the certified onset \(99\).
 
 The four-cell raw pumps do not classify these individual prefixes.
 Sections 5.4--5.6 supply the required direct-comparator theorem and the

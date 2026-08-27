@@ -155,9 +155,18 @@ finite quotient do not close a route.
   every positive/negative occurrence into one relative action
   \(m=q_-q_+^{-1}\).  All three slot-zero relative kernels vanish because
   the old and new slot-zero states are singletons modulo two.  Only the
-  slot-two, slot-three, and slot-four relative kernels remain; none is
-  evaluated yet.  The 152-schema common-phase/Fine--Wilf argument and its
-  source-bound onset 99 conservatively control their surviving parity:
+  slot-two, slot-three, and slot-four relative kernels remain.  Modulo two,
+  the old diagonal source current is exactly the four-path connector
+  \(K_i\), and its two-step shell is \(K_i+K_{i+2}\); the fixed-base
+  remainder is zero in slot two and singleton--shell in slots three/four.
+  The slot-four \(T\)-kernel is exactly a weighted incidence across
+  length gaps one and two, with no lexical comparison.  The slot-two and
+  slot-three kernels have inversion bands 20 and 16; because all protected
+  cores have slope 24, each old/shell template pair survives on at most
+  two affine boundary rays.  Thus no genuine parity prefix sum remains,
+  although none of the boundary incidences is evaluated yet.  The
+  152-schema common-phase/Fine--Wilf argument and its source-bound onset 99
+  conservatively control their surviving parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
   Consequently the remaining all-index derivative identities are exactly
   the finite window \(1\leq k\leq14,\ 0\leq i\leq138\), comprising 1,946
