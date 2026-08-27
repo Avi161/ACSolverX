@@ -142,15 +142,13 @@ finite quotient do not close a route.
   the whole diagonal family.  Equivalently, for
   \(E_i=D_{i+2}-D_i\), the all-index target is
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
-  exact obligation is now its 126-bit coordinatewise window
-  \(1\leq k\leq14,\ 0\leq i\leq2m_k+2\), where
-  \(m_k=\operatorname{ord}\rho_k(\gamma)\).
+  proved exact obligation is its conservative 9,982-bit window
+  \(1\leq k\leq14,\ 0\leq i\leq712\).
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
   active occurrence counts are \((6,0,2,2,2)\), and the one-vertex part is
-  finite-periodic from \(i=3\), but the inversion term retains the
-  unbounded weighted shortlex comparisons.  The two valid transport
+  finite-periodic from \(i=3\).  The two valid transport
   representations are transported-old-order plus one-vertex defect, or
   canonical-new-order plus the full section defect; mixing them would
   double-count the order change.  The pure inversion cocycle now pairs
@@ -189,15 +187,18 @@ finite quotient do not close a route.
   Xoring all three slots gives the complete differentiated-inversion source
   `01010001000000` at the seed, coordinate nine alone on positive odd
   indices, and coordinate two alone on positive even indices.  Removing
-  this source leaves only the previously proved finite-state local and
-  one-vertex transport terms, of joint period forty from \(i=3\).  Hence
-  the complete derivatives satisfy \(R_{k,i+40}=R_{k,i}\) for every \(k\)
-  and \(i\geq3\), sharpening the conservative source-bound onset 99.  More
-  precisely, coordinate \(k\) admits period \(2m_k\), so the exact all-index
-  target is the 126-bit window
-  \(1\leq k\leq14,\ 0\leq i\leq2m_k+2\).  No post-inversion remainder
-  value in that window is evaluated yet, so no vanishing or period-two
-  claim is proved.
+  this source does not remove the four ordered product profiles
+  \(H_k(\delta a,qb)\), \(H_k(a,q\delta b)\),
+  \(H_k(\delta a,q\delta b)\), and
+  \(H_k(\delta a+q\delta b,o_{q,r})\).  Those profiles do not factor through
+  projected linear states.  A fully expanded residual-AST ledger has total
+  unreduced literal mass 216; with the leaf-schema bound 372, one fixed node
+  transport, one section defect, and one ancestor transport, the round
+  comparator bound \(L=2000\), with a two-sided allowance for whole-core
+  cancellation by fixed multipliers, gives onset 673.  Hence the protected
+  catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq673\), giving the 9,982-bit
+  window above.  No post-inversion remainder value in that window is
+  evaluated yet, so no vanishing or period-two claim is proved.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel

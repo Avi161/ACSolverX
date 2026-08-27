@@ -16,10 +16,9 @@ full-wedge readout, while every diagonal correction clears that one bit.
 
 The other fourteen finite-action coordinates reduce to the crossed
 derivatives \(R_{k,i}\).  Their entire differentiated-inversion source is
-now evaluated, and the remaining finite-state terms make the all-index
-target equivalent to 126 bits: for coordinate \(k\), only
-\(0\leq i\leq2m_k+2\) remains, where
-\(m_k=\operatorname{ord}\rho_k(\gamma)\).  None of those
+now evaluated, and the remaining ordered profiles plus finite-state terms
+make the all-index target equivalent to the conservative 9,982-bit window
+\(R_{k,i}\) with \(1\leq k\leq14\) and \(0\leq i\leq712\).  None of those
 post-inversion remainder values is evaluated here.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
@@ -683,7 +682,7 @@ and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
 the unbounded obstruction.  The analysis below evaluates the transported
 ordered-section order-reversal sum and reduces the remaining exact
-obligation to the 126 finite post-inversion values in (5.45co).
+obligation to the 9,982 finite values in (5.77).
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -836,13 +835,15 @@ double-count that representation change.  Lemma 5.1 removes the
 untransported shortlex sum, but it does not by itself evaluate the
 occurrence sum of the actual packages (5.33e).
 
-The terms outside the actual section package (5.33e) which factor only
-through projected linear states are finite-state.  To state this without
-confusing the right-deck action with the point action, lift \(\rho\) to the
-finite group-image basis \(\mathbb F_2[\rho(Q)]\).  Right multiplication by
-a powered endpoint is then a genuine permutation operator; evaluation at
-the base point is applied only afterward.  For the six pure-\(P\) source
-families, the exact path recurrence has the lifted form
+The projected linear states entering the terms outside the actual section
+package (5.33e) are finite-state.  This does not by itself make their
+ordered-half pairings finite-state.  To state the valid linear recurrence
+without confusing the right-deck action with the point action, lift \(\rho\)
+to the finite group-image basis \(\mathbb F_2[\rho(Q)]\).  Right
+multiplication by a powered endpoint is then a genuine permutation
+operator; evaluation at the base point is applied only afterward.  For the
+six pure-\(P\) source families, the exact path recurrence has the lifted
+form
 
 \[
  X_{\rho,\nu,s}(i)
@@ -865,13 +866,14 @@ appropriate image of the powered element.  If
 \tag{5.35}
 \]
 
-Thus every projected old linear state, two-step increment, and every
-outer-product, inverse-self, or \(o_{q,r}\)-linear term built from those
-states is strictly \(2m_\rho\)-periodic from \(i=0\).  The fixed
-\(O_{q,r}\) has zero derivative.  This assertion excludes the ordered
-reader and one-vertex summand in the actual package (5.33e).  The latter
-is controlled below, and Lemma 5.1a decomposes the former.  The eleven
-action orders in (5.2) give the joint bound
+Thus every projected old linear state and two-step increment is strictly
+\(2m_\rho\)-periodic from \(i=0\).  Algebraic outer-product,
+inverse-self, and \(o_{q,r}\)-linear tensors built after finite projection
+inherit that period, but their actual ordered-half readouts need not: the
+profiles (5.45cm) retain source shortlex before projection.  The fixed
+\(O_{q,r}\) has zero derivative.  The one-vertex summand is controlled
+below, while Sections 5.4--5.6 control the remaining ordered profiles.  The
+eleven action orders in (5.2) give the joint projected-state bound
 
 \[
  \operatorname{lcm}_\rho(2m_\rho)=40.
@@ -2150,92 +2152,79 @@ Thus the entire differentiated-inversion contribution is reduced to one
 alternating coordinate after the seed: coordinate 9 on odd indices and
 coordinate 2 on positive even indices.  The seed retains coordinates
 2, 4, and 8.  Formula (5.45ci) is not the full \(R_{k,i}\): the remaining
-one-vertex transport and the other finite-state local derivative terms must
-still be combined before any constancy or AK(3) conclusion.
+one-vertex transport and ordered local derivative profiles must still be
+combined before any constancy or AK(3) conclusion.
 
-There is nevertheless an immediate global improvement in the exact
-verification window.  Define the post-inversion remainder
+Define the post-inversion remainder
 
 \[
  \mathcal N_{k,i}:=R_{k,i}+\mathcal S_k(i).
 \tag{5.45cj}
 \]
 
-This definition removes exactly the differentiated inversion term in
-(5.45e), including all three surviving relative kernels and their fixed-base
-polarizations.  The common Green scalar has already cancelled slotwise in
-(5.45e).  Every remaining product, inverse-self, base, anchor, and
-quotient-section-linear derivative outside the actual ordered-section
-package factors through the lifted finite-group states (5.34), so
-(5.35)--(5.36) give it joint period dividing forty from \(i=0\).  The
-remaining one-vertex transport summand has joint period dividing twenty
-from \(i=3\) in slots two, three, and four by (5.40)--(5.42), and from
-\(i=0\) in slot zero by (5.43)--(5.45).  No ordered shortlex term remains
-in \(\mathcal N\): its Green part cancelled and its inversion part is the
-removed function \(\mathcal S\).  Consequently
+This definition removes exactly the differentiated section-order inversion
+term in (5.45e), including all three surviving relative kernels and their
+fixed-base polarizations.  It does not remove the ordered-half profiles of
+the product and inverse terms in (5.25)--(5.26).
+
+For source-labelled parity currents put
 
 \[
- \boxed{
-  \mathcal N_{k,i+40}=\mathcal N_{k,i}
-  \qquad(1\leq k\leq14,\ i\geq3).}
+ H_k(u,v)
+ :=\sum_{x<y}u_xv_y\,
+ \lambda_k\!\left(
+ e_{\rho_k(x)0}\wedge e_{\rho_k(y)0}
+ \right).
 \tag{5.45ck}
 \]
 
-Formula (5.45ci) is two-periodic from \(i=1\).  Since forty is even,
-(5.45cj)--(5.45ck) prove the sharper complete-derivative recurrence
+The two basic identities are
 
 \[
- \boxed{
-  R_{k,i+40}=R_{k,i}
-  \qquad(1\leq k\leq14,\ i\geq3).}
+ H_k(u,v)+H_k(v,u)=b_{\lambda_k}(\pi_ku,\pi_kv),
+ \qquad
+ H_k(v,v)=q_{\lambda_k}(\pi_kv).
 \tag{5.45cl}
 \]
 
-Thus the all-index vanishing target (5.28) is equivalent to the common
-rectangular window
+Thus a product node with old linear states \(a,b\), increments
+\(\delta a,\delta b\), left quotient \(q\), and fixed linear section defect
+\(o_{q,r}\) retains the four ordered profiles
 
 \[
- \boxed{
-  R_{k,i}=0
-  \qquad(1\leq k\leq14,\ 0\leq i\leq42),}
+\boxed{
+\begin{aligned}
+ &H_k(\delta a,qb),\qquad H_k(a,q\delta b),\\
+ &H_k(\delta a,q\delta b),\qquad
+ H_k(\delta a+q\delta b,o_{q,r}).
+\end{aligned}}
 \tag{5.45cm}
 \]
 
-a window of \(14\cdot43=602\) bits.  The same proof retains the smaller
-coordinatewise periods.  For coordinate \(k\), the projected local terms
-have period dividing \(2m_k\) by (5.35), the one-vertex term has period
-dividing \(m_k\), and the source (5.45ci) has period two; since
-\(2\mid2m_k\),
+At an inverse node, the self terms in (5.26) contribute
 
 \[
- \boxed{
-  R_{k,i+2m_k}=R_{k,i}
-  \qquad(1\leq k\leq14,\ i\geq3).}
+ b_{\lambda_k}(\pi_ka,\pi_k\delta a)
+ +q_{\lambda_k}(\pi_k\delta a),
 \tag{5.45cn}
 \]
 
-Consequently the exact coordinatewise verification window is
+before the subsequent fixed literal multiplication.  In particular, the
+direction-square term is not killed by the ordered-half reader; replacing
+that reader by the exterior quotient would incorrectly kill it.
 
-\[
- \boxed{
-  R_{k,i}=0
-  \qquad(1\leq k\leq14,\ 0\leq i\leq2m_k+2).}
-\tag{5.45co}
-\]
+The lifted finite-group states (5.34) determine the right sides of
+(5.45cl) and (5.45cn), but they do not determine an individual
+\(H_k(u,v)\) in (5.45cm): the strict source order \(x<y\) is applied before
+finite projection.  Likewise the one-vertex value (5.37) is not determined
+by the finite point \(\rho_k(x)0\).  Therefore neither a scalar projected
+state nor a finite exterior tensor state proves period from \(i=3\).
 
-The action-order list (5.45ae) has \(\sum_km_k=42\).  The number of bits
-in (5.45co) is therefore
-
-\[
- \sum_{k=1}^{14}(2m_k+3)=2\cdot42+3\cdot14=126.
-\tag{5.45cp}
-\]
-
-Equations (5.45ck)--(5.45cp) do not evaluate any post-inversion remainder
-value and do not prove (5.28).  They replace the conservative
-source-comparator onset ninety-nine by the already established finite-state
-onset three only because the entire unbounded inversion comparator has now
-been evaluated in (5.45ci).
+The exact next structural alternative is either to pair the complete AST
+xor of (5.45cm) into the finite-state combinations (5.45cl), or to retain
+all four ordered profiles in the protected comparator catalog of Sections
+5.4--5.6.  Until that evaluation is made, (5.45cj) supplies no smaller
+window than the conservative onset 673 proved below.
 
 Before the explicit reductions (5.45ao)--(5.45ci), a direct expansion of
 the slot-two and slot-three kernels
@@ -2321,12 +2310,14 @@ at most two affine boundary rays, rather than on a genuine prefix
 a finite catalog of direct one-parameter families.  This boundary
 localization removes the parity prefix summation from the relative
 inversion remainder.  At that stage it did not evaluate the surviving rays
-or improve the certified onset \(99\); the later exact source evaluations
-(5.45bd) and (5.45cg) supersede that limitation.
+or improve the leaf-schema onset \(99\); the later exact source evaluations
+(5.45bd) and (5.45cg) remove those inversion rays, while the full AST audit
+in Section 5.6 supplies the conservative onset 673 for the remaining
+ordered profiles.
 
 The four-cell raw pumps do not classify these individual prefixes.
 Sections 5.4--5.6 retain the direct-comparator theorem and the source-bound
-onset-99 bound as an independent conservative fallback.
+onset as an independent conservative fallback.
 
 ### 5.4 Common-phase comparator theorem
 
@@ -2490,6 +2481,21 @@ exponent-zero families.  Equality fibers are collision-aggregated before
 quadratic evaluation, and negative occurrences only reverse or complement
 the same finite comparator list.
 
+This catalog also contains every ordered local profile in (5.45cm).  At a
+fixed product node of the residual AST, the quotient words \(q,r\) and the
+section-defect current \(o_{q,r}\) are fixed.  Expanding each old linear
+state into its old path rows, base, anchors, and fixed literal current, and
+each increment into its two-step shell, turns the four \(H_k\)-terms into a
+finite sum of comparisons of the form (5.46).  The first two are old--shell
+profiles, the third is shell--shell, and the fourth is shell--fixed.
+Subsequent outer AST transports only add one of the finitely many fixed left
+multipliers already allowed in Theorem 5.2.  At inverse nodes (5.45cn) is a
+finite projected \(b/q\) expression; its subsequent fixed multiplication
+again produces only the same four typed profile families through (5.25).
+Thus the comparator maximum below covers the product, inverse, and
+\(o_{q,r}\) terms as well as the differentiated section-order inversion
+term.  It does not infer their values from projected linear states.
+
 The finite-action weights in (5.46) are bi-periodic on the lifted
 right-deck prefix states.  Theorems 5.2--5.3 therefore apply to every
 old--new order-reversal term; the new--new terms require only finitely many
@@ -2554,11 +2560,10 @@ after the protected threshold.  With the action orders in (5.2),
 
 At this point \(N\) is only effective: the terminal schemas bind the common
 core and factor order, not every pairwise comparison cutoff.  Sections
-5.5--5.6 instantiate a conservative source-bound value \(N=99\), certifying
-the redundant finite window \(0\leq i\leq138\).  This comparator argument
-alone does not give period from \(i=3\); the sharper recurrence (5.45cl)
-uses the later exact inversion-source evaluation.  No period two,
-\(R_{k,i}=0\), lift, or AK(3) conclusion follows.
+5.5--5.6 instantiate a conservative source-bound value \(N=673\),
+certifying the finite window \(0\leq i\leq712\).  Thus (5.61) is not period from
+\(i=3\), and no period two, \(R_{k,i}=0\), lift, or AK(3) conclusion
+follows.
 
 ### 5.5 Exact onset functional
 
@@ -2652,7 +2657,7 @@ cannot supply (5.65) by reuse.  Formula (5.65) is the exact next
 certificate interface.  Section 5.6 supplies a conservative source-bound
 onset without claiming the exact minimum of (5.65).
 
-### 5.6 A source-bound onset of 99
+### 5.6 A source-bound onset of 673
 
 The common-phase source formulas give a conservative numerical onset
 without enumerating parameter values.  First record a uniform bound on
@@ -2695,16 +2700,75 @@ The eight fixed-base module words have length at most six, and slot-zero
 fixed sides are shorter than (5.67).  Whole-word quotient reduction and
 \(\operatorname{cvert}\) can only shorten these raw bounds.
 
-Every unbounded normalized exponent offset is nonnegative and at most
+The ordered product profiles (5.45cm) require one additional fixed-AST
+ledger.  Count unreduced literal mass in the fully expanded residual AST;
+inversion preserves this mass, and correction leaves contribute zero.  The
+literal word lengths are
 
 \[
- 0\leq\delta\leq d:=2.
+ (|A|,|B|,|h_0|,|h_1|,|h_2|,|h_3|,
+   |\operatorname{TARGET}|)
+ =(23,18,7,0,6,1,1).
+\]
+
+Expansion of every conjugation into conjugator, payload, and inverse
+conjugator gives
+
+\[
+\begin{array}{c|c|r}
+\text{node}&\text{literal-mass recurrence}&\text{mass}\\ \hline
+r&23+18+2\cdot7&55\\
+s&18+55+2\cdot0&73\\
+u&55+73+2\cdot6&140\\
+z&140+73+2\cdot1&215\\
+\text{root}&215+1&216.
+\end{array}
+\tag{5.67a}
+\]
+
+The raw recursive expansion has 23 literal leaf occurrences, four of which
+are quotient-empty copies of \(h_1\); equivalently (5.67a) contains 19
+nonempty literal blocks.  The load-bearing datum is the total unreduced
+mass 216, not the block count.  Therefore every fixed node quotient and
+every composed ancestor transport has length at most 216.
+
+For a product node, the section-defect word representing \(o_{q,r}\) has
+length at most
+
+\[
+ |q|+|r|+|qr|\leq216+216+432=864,
+\tag{5.67b}
+\]
+
+so each of its Schreier support labels has length at most 864.  Higher
+products transport an existing tensor linearly; they do not concatenate a
+second defect current or a second old fixed side onto one comparator leg.
+All ancestor transports compose into the single 216-letter allowance.
+Thus assigning the leaf-schema bound, a node quotient, one section defect,
+and one ancestor transport to the same side gives the deliberately
+redundant uniform bound
+
+\[
+ \boxed{L_{\rm AST}\leq372+216+864+216=1668<2000.}
+\tag{5.67c}
+\]
+
+We henceforth use the round bound \(L=2000\).  Before multiplication by
+those fixed AST words, every unbounded source-domain exponent offset is
+nonnegative and at most
+
+\[
+ 0\leq\delta_{\rm src}\leq d:=2.
 \tag{5.68}
 \]
 
 The offsets zero and one are the exact one-step source offsets; reindexing
 the \(q_{i+1}\) half of \(E_i=q_i+q_{i+1}\) adds at most one.  Negative
-boundary cases have already been split into finite families.
+boundary cases have already been split into finite families.  This is not
+a bound on the powered exponent visible after normalization: a fixed
+multiplier can cancel complete 24-letter cores.  The estimates below
+therefore retain a two-sided fixed-word allowance instead of treating
+\(d\) as a normalized exponent bound.
 
 Put
 
@@ -2723,13 +2787,15 @@ reduction, relative core phase, the fixed suffix comparison, and the
 terminal-\(c\) branch are all protected.  Adding further complete cores
 cannot change the comparison.
 
-The length offsets of two protected words differ by at most \(2L+1\);
-the extra one is the possible terminal-\(c\) deletion.  Therefore a level
-at the moving strict cut or equality line satisfies
+The source offset contributes at most \(d\), while the two normalized
+words can each lose or gain the fixed allowance on both sides.  Including
+the possible terminal-\(c\) deletion gives the safe two-sided length
+allowance \(4L+1\).  Therefore a level at the moving strict cut or equality
+line satisfies
 
 \[
  h\geq
- i-d-\left\lfloor\frac{2L+1}{24}\right\rfloor-1.
+ i-d-\left\lfloor\frac{4L+1}{24}\right\rfloor-1.
 \tag{5.70}
 \]
 
@@ -2738,7 +2804,7 @@ Define
 \[
  N(L,d):=
  J(L)+d+
- \left\lfloor\frac{2L+1}{24}\right\rfloor+1.
+ \left\lfloor\frac{4L+1}{24}\right\rfloor+1.
 \tag{5.71}
 \]
 
@@ -2754,47 +2820,55 @@ protected range \(h\geq J(L)\).  The finitely many old levels
 whereas a protected shell word has
 
 \[
- |V(i)|\geq24i-1.
+ |V(i)|\geq24i-2L-1.
 \tag{5.73}
 \]
 
 At \(i=N(L,d)\), the difference between (5.73) and (5.72) is
 
 \[
- 24\left\lfloor\frac{2L+1}{24}\right\rfloor
- +47-2L>0.
+24\left\lfloor\frac{4L+1}{24}\right\rfloor
++47-4L>0.
 \tag{5.74}
 \]
+
+Indeed, if \(4L+1=24f+r\) with \(0\leq r<24\), the expression in
+(5.74) is \(48-r>0\).
 
 Thus every finite old level is permanently shorter than the shell.
 Direct endpoint/shell, shell/shell, slot-zero, fixed-base, and transported
 comparisons are already protected by the same \(N(L,d)\).
 
-Substituting \(L=372\) and \(d=2\) gives
+Substituting \(L=2000\) and \(d=2\) gives
 
 \[
- J=65,\qquad
- N=65+2+\left\lfloor\frac{745}{24}\right\rfloor+1=99.
+ J=\left\lceil\frac{8072}{24}\right\rceil=337,\qquad
+ N=337+2+\left\lfloor\frac{8001}{24}\right\rfloor+1=673.
 \tag{5.75}
 \]
 
-Combining (5.61) with this source-bound onset independently proves the
-weaker concrete theorem
+Combining (5.61) with this source-bound onset proves the concrete theorem
 
 \[
 \boxed{
  R_{k,i+40}=R_{k,i}
- \qquad(1\leq k\leq14,\ i\geq99).}
+ \qquad(1\leq k\leq14,\ i\geq673).}
 \tag{5.76}
 \]
 
-The sharper recurrence (5.45cl) subsumes (5.76), and its coordinatewise
-form (5.45cn) reduces the exact obligation further to the 126-bit range
-(5.45co).  Both the common 602-bit rectangle (5.45cm) and the earlier range
-\(0\leq i\leq138\) are redundant.  No post-inversion remainder value in
-the 126-bit window is evaluated here.  In particular, none of these
-recurrences is a period-two theorem, and none proves a lift or AK(3)
-conclusion.
+Consequently the all-index identities (5.28) are equivalent to the finite
+set
+
+\[
+\boxed{
+ R_{k,i}=0
+ \qquad(1\leq k\leq14,\ 0\leq i\leq712).}
+\tag{5.77}
+\]
+
+This is \(14\cdot713=9{,}982\) bits.  No value in (5.77) is evaluated
+here.  In particular, (5.76) is not a period-two theorem and proves no lift
+or AK(3) conclusion.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
