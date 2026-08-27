@@ -1505,6 +1505,158 @@ Likewise, swapping the two tensor variables exchanges \(\Delta\) with
 \(\Delta^{-1}\) and adjoints the kernel; the two oriented free buckets must
 not be identified.
 
+### 3.10 Laminar augmentation and the source bi-kernel
+
+In fact the chord hypothesis holds for every entry of the matrix.  Pair
+each positive occurrence with the matching later negative occurrence in
+the same correction block.  The eight signed intervals are
+
+\[
+\begin{aligned}
+ \mathscr I_0&=\{[3,4],[7,8],[11,12]\},&
+ \mathscr I_1&=\{[2,5],[10,13]\},\\
+ \mathscr I_2&=\{[1,6]\},&
+ \mathscr I_3&=\{[9,14]\},&
+ \mathscr I_4&=\{[15,16]\}.
+\end{aligned}
+\tag{3.84}
+\]
+
+The left endpoint of every interval has sign \(+1\), the right endpoint
+has sign \(-1\), and the family is laminar.  Its only proper containments
+are
+
+\[
+ [1,6]\supset[2,5]\supset[3,4],
+ \qquad
+ [9,14]\supset[10,13]\supset[11,12].
+\]
+
+For a diagonal entry, the signed occurrence sum in its slot is zero, so
+
+\[
+\begin{aligned}
+ \varepsilon(\mathbf H_{ss})
+ &=n_s+
+   \sum_{\substack{o<p\\s_o=s_p=s}}\epsilon_o\epsilon_p\\
+ &=n_s+
+   \frac{
+    \left(\sum_{s_o=s}\epsilon_o\right)^2
+    -\sum_{s_o=s}\epsilon_o^2}{2}
+ =n_s-n_s=0.
+\end{aligned}
+\tag{3.85}
+\]
+
+For \(s\ne t\), split the ordered occurrence sum into a pair of intervals,
+one from \(\mathscr I_s\) and one from \(\mathscr I_t\).  If they are
+disjoint, either the later signed pair contributes \(1-1=0\) or no ordered
+pair occurs.  If one contains the other, the outer positive endpoint sees
+both inner signs, or both inner endpoints see the outer negative endpoint;
+the contribution is again \(1-1=0\).  Therefore
+
+\[
+ \boxed{
+ \varepsilon(\mathbf H_{st})=0
+ \qquad(0\leq s,t\leq4).}
+\tag{3.86}
+\]
+
+Every \(\mathcal L_s\) also has augmentation zero.  Both gauge additions in
+(3.54) and (3.70) therefore preserve (3.86), giving
+
+\[
+ \boxed{
+ \varepsilon(\mathbf H^\circ_{st})=0
+ \qquad(0\leq s,t\leq4).}
+\tag{3.87}
+\]
+
+Thus the chord formula (3.78) applies to every nonzero mixed-Hessian
+kernel, with no scalar identity remainder.
+
+This gives a complete two-source presentation.  Let
+\(\sigma^{r,v}\) be the anchored source pair (3.20), and put
+
+\[
+ j^{r,v}:=\mathfrak J(\sigma^{r,v})=H_r(v).
+\]
+
+For an oriented free bucket \(\Delta^+\), define the absolute source
+bi-kernel
+
+\[
+\boxed{
+\begin{aligned}
+ \mathscr K^{\Delta^+}_{rr'}(v,w)
+ :=\sum_{s=0}^3\sum_{t=0}^4
+ \bigl(
+ &\mathcal C_{\Delta^+}
+  (j^{r,v}_s,j^{r',w}_t;\mathbf H^\circ_{st})\\
+ +&\mathcal C_{\Delta^+}
+  (j^{r',w}_s,j^{r,v}_t;\mathbf H^\circ_{st})
+ \bigr).
+\end{aligned}}
+\tag{3.88}
+\]
+
+For every two balanced finite source pairs \(f,g\), equations
+(3.22), (3.64), and bilinearity give
+
+\[
+\boxed{
+ B_{\Xi_{\mathbb Z},\Delta^+}
+  (\mathfrak J(f),\mathfrak J(g))
+ =
+ \sum_{r,r'=0}^1\sum_{v,w}
+ f_r(v)g_{r'}(w)
+ \mathscr K^{\Delta^+}_{rr'}(v,w).}
+\tag{3.89}
+\]
+
+Every entry of \(\mathscr K\) has the exact source-boundary form already
+proved: source--source terms use the direct chord kernel (3.78), terms with
+one forest leg use one Green potential as in (3.82) or its
+second-variable analogue, and terms with two forest legs use the rectangle
+potential (3.83).  Row four is zero.  Hence no explicit forest-flow
+coefficient remains in the mixed free-bucket Hessian.
+
+This is a \(2\times2\) bi-kernel indexed by the absolute source vertices,
+not a matrix over \(R\).  The map \(\mathfrak J\) is not \(Q\)-equivariant,
+and its potentials have arbitrarily long finite root paths.  Consequently
+\(\mathscr K^{\Delta^+}_{rr'}(v,w)\) need not be a function of
+\(v^{-1}w\), and no finite group-ring Schur complement, metabolic
+decomposition, or vanishing theorem follows.
+
+There is nevertheless one exact nonvanishing dichotomy.  Put
+
+\[
+ F_*=H_0(TTT),\qquad G_*=H_0(cTTT).
+\]
+
+The proved full-wedge value \(B_\infty(F_*,G_*)=1\), together with
+(3.15a)--(3.17), gives the finite identity
+
+\[
+\boxed{
+ 1=
+ \sum_{\{\Delta,\Delta^{-1}\}\in\mathscr D_2}
+  \bigl(
+   B_{\Xi_{\mathbb Z},\Delta^+}(F_*,G_*)\bmod2
+  \bigr)
+ +\sum_{\Delta\in\mathscr D_1}
+  B_{\Xi,\Delta}(F_*,G_*)
+ \quad\text{in }\mathbb F_2.}
+\tag{3.90}
+\]
+
+Thus this anchored pair has either a nonzero oriented free bucket or a
+nonzero inversion-fixed \(\mathbb Z/2\)-bucket.  Existing identities do
+not decide which.  Proving that the second sum in (3.90) vanishes is the
+smallest exact lemma that would force the first explicit free-bucket
+witness; even that witness would not by itself prove global
+noncancellation for arbitrary balanced sources.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
