@@ -143,21 +143,22 @@ finite quotient do not close a route.
   \(E_i=D_{i+2}-D_i\), the smallest missing lemma is the fourteen exact
   crossed-AST derivative values
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\).
-  The exact remaining unbounded family is the order-reversal derivative
-  in the transported section cocycle.  Its old--new terms are weighted
-  shortlex-prefix sums over the full old \(P\)-ray, before and after each
-  fixed occurrence action.  Protected common-phase templates, Fine--Wilf
-  on the affine equality ray, and parity counting of periodic prefixes now
-  prove that every \(R_{k,i}\) is ultimately periodic.  The 152 exact
-  common-phase schemas all use the length-eight primitive
-  `cTctttcT` with multiplier three; the integral collision normal form
-  leaves only equal-slope moving families.  Therefore the joint eventual
-  period divides 40.  A source-bound fixed-side inventory gives the
-  conservative onset 99:
+  The exact ordered-reader decomposition rewrites the actual transported
+  leaf as a common invariant Green scalar, the one-vertex defect, and the
+  differentiated inversion term.  The common scalar cancels because the
+  active occurrence counts are \((6,0,2,2,2)\), and the one-vertex part is
+  finite-periodic from \(i=3\), but the inversion term retains the
+  unbounded weighted shortlex comparisons.  The two valid transport
+  representations are transported-old-order plus one-vertex defect, or
+  canonical-new-order plus the full section defect; mixing them would
+  double-count the order change.  The 152-schema common-phase/Fine--Wilf
+  argument and its source-bound onset 99 control the surviving inversion
+  parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
   Consequently the remaining all-index derivative identities are exactly
-  the finite window \(1\leq k\leq14,\ 0\leq i\leq138\).  None of those
-  values is evaluated yet, so no vanishing or period-two claim is proved.
+  the finite window \(1\leq k\leq14,\ 0\leq i\leq138\), comprising 1,946
+  bits.  None is evaluated yet, so no vanishing or period-two claim is
+  proved.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel

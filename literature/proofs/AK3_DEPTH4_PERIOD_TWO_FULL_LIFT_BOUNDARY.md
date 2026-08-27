@@ -810,22 +810,27 @@ where
 \tag{5.33d}
 \]
 
-Thus the transported ordered-section contribution must be retained as the
-coupled package
+The exact crossed-product derivative (5.25) contains the transported leaf
+tensor and the one-vertex transport tensor, but it does not contain a
+second copy of the full section defect (5.33c).  Thus the actual
+ordered-section contribution is
 
 \[
 \boxed{
- \mathcal K_{\rho,\lambda}(q;f,e)
+ \mathcal A_{\rho,\lambda}(q;f,e)
  =\lambda\operatorname{Wdg}_\rho(q\,d\Sigma_f(e))
-  +\lambda\Pi_\rho^\wedge(d\kappa_{q,f}(e)).}
+  +\lambda\Pi_\rho^\wedge
+   \left(\sum_xe_x\tau_q(x)\right).}
 \tag{5.33e}
 \]
 
-Neither summand in (5.33e) may be discarded separately.  Lemma 5.1 removes
-the untransported shortlex sum, but it does not by itself evaluate the
-occurrence sum of the packages (5.33e).
+Formula (5.33c) describes the change from the transported old ordering to
+the canonical new ordering.  Adding all of \(d\kappa\) to (5.33e) would
+double-count that representation change.  Lemma 5.1 removes the
+untransported shortlex sum, but it does not by itself evaluate the
+occurrence sum of the actual packages (5.33e).
 
-The terms outside the coupled section package (5.33e) which factor only
+The terms outside the actual section package (5.33e) which factor only
 through projected linear states are finite-state.  To state this without
 confusing the right-deck action with the point action, lift \(\rho\) to the
 finite group-image basis \(\mathbb F_2[\rho(Q)]\).  Right multiplication by
@@ -858,8 +863,9 @@ Thus every projected old linear state, two-step increment, and every
 outer-product, inverse-self, or \(o_{q,r}\)-linear term built from those
 states is strictly \(2m_\rho\)-periodic from \(i=0\).  The fixed
 \(O_{q,r}\) has zero derivative.  This assertion excludes the ordered
-reader and \(d\kappa\) terms in (5.33e).  The eleven action orders in (5.2)
-give the joint bound
+reader and one-vertex summand in the actual package (5.33e).  The latter
+is controlled below, and Lemma 5.2 decomposes the former.  The eleven
+action orders in (5.2) give the joint bound
 
 \[
  \operatorname{lcm}_\rho(2m_\rho)=40.
@@ -971,9 +977,120 @@ is \(m_\rho\)-periodic from \(i=0\).  Together with the approved
 (5.33c): its slots \(2,3,4\) have joint period dividing \(20\) for
 \(i\geq3\), and slot zero has that bound from \(i=0\).
 
-The remaining unbounded term is not transport.  It is the
-order-reversal derivative (5.33d) coupled to the transported ordered-half
-leaf in (5.33e).  Its old--new part contains the weighted prefix families
+The remaining order-reversal term can be isolated from the transported
+ordered-half leaf by an exact pairwise identity.  The identity does not
+cancel that term from the actual crossed derivative.
+
+#### Lemma 5.2 (ordered-reader decomposition)
+
+Put
+
+\[
+ \mathfrak G_{\rho,\lambda}(f,e)
+ :=\lambda\operatorname{Wdg}_\rho(d\Sigma_f(e))
+\tag{5.45a}
+\]
+
+and
+
+\[
+\mathfrak T_{\rho,\lambda}(q;e)
+ :=\lambda\Pi_\rho^\wedge
+ \left(\sum_x e_x\tau_q(x)\right),
+ \qquad
+ \mathfrak I_{\rho,\lambda}(q;f,e)
+ :=\lambda\Pi_\rho^\wedge
+ \left(d\operatorname{Inv}_{q,f}(e)\right).
+\tag{5.45b}
+\]
+
+Then, for every quotient action \(q\),
+
+\[
+\boxed{
+ \lambda\operatorname{Wdg}_\rho(q\,d\Sigma_f(e))
+ +\lambda\Pi_\rho^\wedge(d\operatorname{Inv}_{q,f}(e))
+ =\mathfrak G_{\rho,\lambda}(qf,qe)
+ =\mathfrak G_{\rho,\lambda}(f,e).}
+\tag{5.45c}
+\]
+
+Consequently the actual package (5.33e) is
+
+\[
+\boxed{
+ \mathcal A_{\rho,\lambda}(q;f,e)
+ =\mathfrak G_{\rho,\lambda}(f,e)
+  +\mathfrak T_{\rho,\lambda}(q;e)
+  +\mathfrak I_{\rho,\lambda}(q;f,e).}
+\tag{5.45d}
+\]
+
+To prove the first equality in (5.45c), fix \(x<y\).  The coefficient of
+the unordered pair \(\{qx,qy\}\) in \(d\Sigma_{qf}(qe)\) is
+
+\[
+ f_xe_y+e_xf_y+e_xe_y.
+\]
+
+If \(qx<qy\), the transported ordered-half tensor supplies this
+coefficient and the inversion derivative supplies zero.  If \(qx>qy\),
+the ordered-half reader supplies zero and the inversion derivative supplies
+the same coefficient.  Collision aggregation is harmless because left
+multiplication by \(q\) is a bijection of \(X\).  Both sides kill tensor
+diagonals.  Summing the pairwise identity proves the first equality.
+
+For the second equality, apply Lemma 5.1 to \((qf,qe)\).  Since
+\(\pi_\rho(qf)=\rho(q)\pi_\rho(f)\), invariance of \(\lambda\) preserves
+both \(b_\lambda\) and the unordered-pair quadratic form \(q_\lambda\).
+Thus
+
+\[
+ \mathfrak G_{\rho,\lambda}(qf,qe)
+ =b_\lambda(\pi_\rho f,\pi_\rho e)
+  +q_\lambda(\pi_\rho e)
+ =\mathfrak G_{\rho,\lambda}(f,e).
+\]
+
+Finally, (5.33e) is the first term of (5.45c) plus
+\(\mathfrak T\).  Over \(\mathbb F_2\), (5.45c) rewrites that first term
+as \(\mathfrak G+\mathfrak I\), proving (5.45d).  Equivalently, one may
+use either of the equal representations
+
+\[
+ [q\,d\Sigma]+\mathfrak T
+ \qquad\text{or}\qquad
+ [d\Sigma_{qf}(qe)]+d\kappa.
+\]
+
+The hybrid expression \([q\,d\Sigma]+d\kappa\) is invalid because it
+counts the change of ordering twice.  The inverse-self derivatives of a
+negative correction leaf are the separate terms in (5.26), while the
+base--direction products occur separately in (5.25); neither alters
+(5.45d).
+
+The active occurrence counts by slot are \((6,0,2,2,2)\).  Hence, for
+\(f_s=B_s+D_{i,s}\) and \(e_s=E_{i,s}\),
+
+\[
+\boxed{
+ \sum_{o:s_o=s}p_o\mathcal A_{\rho,\lambda}(q_o;f_s,e_s)
+ =\sum_{o:s_o=s}p_o
+  \left(
+   \mathfrak T_{\rho,\lambda}(q_o;e_s)
+   +\mathfrak I_{\rho,\lambda}(q_o;f_s,e_s)
+  \right).}
+\tag{5.45e}
+\]
+
+Here the equality is read after reduction modulo two, where the signs
+\(p_o\) may be retained or omitted.  Equation (5.33), or equivalently the
+even active occurrence count in every slot, kills the common Green scalar
+after the \(\mathbb F_2\) readout.  The one-vertex term \(\mathfrak T\) is
+already controlled, but the order-reversal term \(\mathfrak I\) remains.
+This is exactly the unbounded old--new comparison isolated below.
+
+A direct expansion of \(\mathfrak I\) contains the weighted prefix families
 
 \[
 \boxed{
@@ -990,13 +1107,9 @@ occurrence prefix and \(\delta\in\{0,1,2\}\).  Equality and
 terminal-\(c\) branches are retained.  The new--new part is bounded, but
 the old--new sums run over the complete old \(P\)-ray.
 
-The four-cell raw pumps fix terminal shell records and the transport
-factors \(k_z\); they do not classify the full prefixes in (5.46).  The
-finite action periods in (5.2) likewise do not determine the two shortlex
-comparisons.  Section 5.4 proves that the required catalog is finite and
-that its weighted prefix sums are ultimately periodic.  The catalog must
-still be instantiated before a concrete period, finite window, (5.28), or
-any period-two or AK(3) conclusion is established.
+The four-cell raw pumps do not classify these individual prefixes.
+Sections 5.4--5.6 supply the required direct-comparator theorem and the
+source-bound onset-99 bound for their total weighted parity.
 
 ### 5.4 Common-phase comparator theorem
 
@@ -1222,14 +1335,12 @@ after the protected threshold.  With the action orders in (5.2),
 \tag{5.61}
 \]
 
-The onset \(N\) is effective but is not instantiated by the current
-manifest: the terminal schemas bind the common core and factor order, not
-every pairwise comparison cutoff.  Therefore (5.61) is eventual period
-40, not period from \(i=3\), and no finite verification window is yet
-certified.  The next exact obligation is to emit the protected data and
-cutoff/equality record for every family in (5.46), compute a concrete
-\(N\), and evaluate \(0\leq i\leq N+39\).  No period two,
-\(R_{k,i}=0\), lift, or AK(3) conclusion follows.
+At this point \(N\) is only effective: the terminal schemas bind the common
+core and factor order, not every pairwise comparison cutoff.  Sections
+5.5--5.6 instantiate a conservative source-bound value \(N=99\), certifying
+the finite window \(0\leq i\leq138\).  Thus (5.61) is not period from
+\(i=3\), and no period two, \(R_{k,i}=0\), lift, or AK(3) conclusion
+follows.
 
 ### 5.5 Exact onset functional
 
