@@ -4725,6 +4725,138 @@ graph already carrying finite local cycles.  The two height-zero graphs
 may have additional chords, and simultaneous vanishing over every
 $[q]$, every laminar term, and the affine unary value is still unresolved.
 
+### 3.41 Magnus leading terms exclude nonzero mass on odd axes
+
+The free corner equation has a sharper consequence for every odd paired
+generator.  Suppose
+
+\[
+ g=kc,
+ \qquad
+ P=\mathbf F^*k\alpha(\mathbf F),
+ \qquad
+ D:=k-\alpha(k)^{-1}.
+ \tag{3.307}
+\]
+
+The free-coordinate condition $S=S^*$ from (3.271) is equivalent to
+
+\[
+ \boxed{
+ \mathbf F^*D\alpha(\mathbf F)
+ +\alpha(\mathbf F^*)\alpha(D)\mathbf F=0.}
+ \tag{3.308}
+\]
+
+Indeed, the first term is $P-\alpha(P^*)$, while the second is
+$\alpha(P)-P^*$.
+
+Let $\mathfrak m$ be the augmentation ideal of $\mathbb QK$, and use the
+injective Magnus expansion
+
+\[
+ \mathbb QK\longrightarrow\mathbb Q\langle\langle X,Y\rangle\rangle,
+ \qquad
+ t\longmapsto1+X,
+ \qquad
+ ctc\longmapsto1+Y.
+ \tag{3.309}
+\]
+
+The standard Magnus theorem makes this embedding injective and the
+augmentation filtration separated.
+
+Assume that the integral mass
+
+\[
+ m:=\varepsilon(\mathbf F)=\sum_aF_a
+ \tag{3.310}
+\]
+
+is nonzero.  Then $\mathbf F$, $\mathbf F^*$, and
+$\alpha(\mathbf F)$ have nonzero constant term $m$ and are invertible in
+the completed Magnus algebra over $\mathbb Q$.  Put
+
+\[
+ U:=\alpha(\mathbf F)\mathbf F^{-1}.
+ \tag{3.311}
+\]
+
+It has constant term one, as do $U^*$ and $U^{-1}$.  Multiplying (3.308)
+on the left by $(\mathbf F^*)^{-1}$ and on the right by
+$\alpha(\mathbf F)^{-1}$ gives the exact completed corner equation
+
+\[
+ \boxed{D+U^*\alpha(D)U^{-1}=0.}
+ \tag{3.312}
+\]
+
+Now put
+
+\[
+ h:=g^2=k\alpha(k)\in K.
+ \tag{3.313}
+\]
+
+Every actual paired $g_I$ has infinite order by (3.169)--(3.170), so
+$h\ne1$.  Let $r\geq1$ be the first Magnus degree of $h-1$, and let
+$H_r\ne0$ be its homogeneous initial form.  The identity
+
+\[
+ \alpha(h)=\alpha(k)k=k^{-1}hk
+ \tag{3.314}
+\]
+
+shows that
+
+\[
+ \alpha(H_r)=H_r.
+ \tag{3.315}
+\]
+
+Indeed, conjugation by a group element with constant term one changes
+$h-1$ only in degrees strictly above $r$.  Moreover,
+
+\[
+ D=(h-1)\alpha(k)^{-1},
+ \tag{3.316}
+\]
+
+so both $D$ and $\alpha(D)$ have the same degree-$r$ initial form $H_r$.
+Because all three factors involving $U$ in (3.312) have constant term one,
+the degree-$r$ part of its left side is
+
+\[
+ H_r+H_r=2H_r\ne0
+ \tag{3.317}
+\]
+
+over $\mathbb Q$.  This contradiction proves
+
+\[
+ \boxed{
+ \varepsilon(\mathbf F)\ne0
+ \Longrightarrow
+ [f\wedge g_If]_Q\ne0
+ \quad\text{for every odd paired }g_I.}
+ \tag{3.318}
+\]
+
+The five odd intervals are
+
+\[
+ [1,6],\ [3,4],\ [7,8],\ [9,14],\ [11,12].
+ \tag{3.319}
+\]
+
+Thus arbitrary cross-axis support cannot cancel an odd paired tensor when
+its current has nonzero integral mass.  The argument uses a leading term
+in the characteristic-zero Magnus completion, not a bounded quotient or a
+chosen total order.  It does not apply when $\varepsilon(\mathbf F)=0$,
+does not treat the three even paired generators, and does not prevent the
+surviving paired coordinate from cancelling against another term of the
+complete laminar polygon or the affine unary value.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
