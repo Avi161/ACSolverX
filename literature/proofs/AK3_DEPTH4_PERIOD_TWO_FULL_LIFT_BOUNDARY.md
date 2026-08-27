@@ -1366,6 +1366,73 @@ In particular, unreduced common-phase fragments such as an initial
 \(\texttt{tT}\) may cancel; their blockwise first letter cannot be used in
 (5.45s).
 
+The fully reduced labels nevertheless give a constant-size source
+interface.  Index the three copies of
+\(E=\texttt{aGbAAG}\) in
+\(P_*=E^3\) by their zero-based forest positions.  For the slot-four heads
+in one powered \(P_*\)-block at level \(h\geq1\), the canonical first-letter and
+length data are
+
+\[
+\begin{array}{c|ccc}
+\text{positions}&0,6,12&3,9,15&4,10,16\\ \hline
+\text{first-letter class}&\text{not \(t\)-initial}&t\text{-initial}
+ &t\text{-initial}\\
+\text{length offsets from }24h&(5,13,21)&(5,13,21)&(6,14,22).
+\end{array}
+\tag{5.45v}
+\]
+
+Thus (5.45r) selects exactly
+
+\[
+ \mathcal P_4
+ =\{(0,3),(0,4),(6,9),(6,10),(12,15),(12,16)\}.
+\tag{5.45w}
+\]
+
+There are no other slot-four incidences.  The five \(P_1\) heads are all
+non-\(t\)-initial, with length offsets
+\(\{2,8,10,15,27\}\).  Against a \(P_*\) block at the same level none has
+gap zero or one; against the next level the smallest possible gap is two.
+Between successive \(P_*\)-blocks the smallest eligible gap is eight.
+The component-2 \(w\), component-3 \(w\), and component-3 \(z\) connector
+heads are non-\(t\)-initial; at the terminal level they have offsets
+\(5,6,7\) relative to the next \(P_*\)-block and are longer than every
+\(t\)-initial head in the last present block.  Hence they contribute no
+pair in (5.45r).
+
+For \(h\geq1\), let \(H_{h,r}\) be the canonical positive head at position
+\(r\) of the level-\(h\) \(P_*\)-block, and put
+
+\[
+ C_{k,4}(h)
+ :=\sum_{(r,s)\in\mathcal P_4}
+ \lambda_k\!\left(
+ e_{\rho_k(H_{h,r})0}\wedge e_{\rho_k(H_{h,s})0}
+ \right).
+\tag{5.45x}
+\]
+
+Invariance of \(\lambda_k\) permits the head labels in (5.45x) in place
+of the \(T\)-translated output labels of (5.45r).  At level zero the common
+initial \(\texttt a\)-edge of the \(P_1\) and \(P_*\) root paths cancels;
+this changes only the fixed seed value of \(\Xi_{k,4}\).  Every later
+block has the six incidences (5.45w).  When \(K_i\) is replaced by
+\(K_{i+2}\), all old blocks and the fixed seed cancel, and the connector
+exclusion above leaves
+
+\[
+\boxed{
+ \Xi_{k,4}(i+2)+\Xi_{k,4}(i)
+ =C_{k,4}(i+1)+C_{k,4}(i+2).}
+\tag{5.45y}
+\]
+
+Thus the complete slot-four source remainder is twelve explicit
+finite-action weights, not a growing old-ray sum.  Their xor is not
+evaluated here.
+
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families
 

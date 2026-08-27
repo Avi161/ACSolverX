@@ -163,7 +163,10 @@ finite quotient do not close a route.
   \(T\)-inversion split: the base head is \(ct\) of length two, while every
   \(t\)-initial shell head has length at least 29.
   The slot-four \(T\)-kernel is exactly a weighted incidence across
-  length gaps one and two, with no lexical comparison.  The slot-two and
+  length gaps one and two, with no lexical comparison.  Its complete
+  source remainder is the xor of six within-block weights in each of the
+  next two powered \(P_*\)-blocks, hence exactly twelve finite-action
+  weights; none is evaluated yet.  The slot-two and
   slot-three kernels have inversion bands 20 and 16; because all protected
   cores have slope 24, each old/shell template pair survives on at most
   two affine boundary rays.  Thus no genuine parity prefix sum remains,
