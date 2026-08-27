@@ -487,25 +487,161 @@ Thus (6.3) replaces part of the interior chronology calculation by stratum-
 boundary values while retaining two explicit interior tail sums.  This is
 the chain interface to use for the powered \(P,C,Q\) endpoint program.
 
-## 7. Remaining exact boundary
+## 7. Adjacent-source block paths
 
-The old--new forest load now has three complementary descriptions:
+Fix the positive chamber
+
+\[
+ i,j\geq 0,\qquad d=i-j\geq 1,
+ \qquad y_0=y_{ij},\quad y_1=y_{i,j+1}.
+ \tag{7.1}
+\]
+
+For each slot-zero occurrence
+\(o\in\{3,4,7,8,11,12\}\), the approved adjacent-ray
+complete-cover factorization places \(\tau_o(y_0)\) and \(\tau_o(y_1)\)
+in one source-tree component.  Let
+
+\[
+ \pi_o=\operatorname{path}_{\mathcal T}
+   \bigl(\tau_o(y_0),\tau_o(y_1)\bigr)
+ \tag{7.2}
+\]
+
+be the unique reduced path between them, collision-aggregated in the common
+stored edge basis, and put
+
+\[
+ \Pi_1=\pi_3+\pi_4,\qquad
+ \Pi_2=\pi_7+\pi_8,\qquad
+ \Pi_3=\pi_{11}+\pi_{12}.
+ \tag{7.3}
+\]
+
+In the exact endpoint-family order of the companion identity, the
+occurrences are
+
+\[
+ 3\mapsto\nu=1,\quad 4\mapsto\nu=5,\quad
+ 7\mapsto\nu=4,\quad 8\mapsto\nu=6,\quad
+ 11\mapsto\nu=3,\quad 12\mapsto\nu=2.
+\]
+
+Consequently \(\Pi_1\), \(\Pi_2\), and \(\Pi_3\) are respectively the
+paired \((1,5)\), \((4,6)\), and \((3,2)\) inverse-\(Q\) blocks from the
+exact adjacent-\(j\) recurrence.  This pairing statement is collision-safe
+only after all six paths have been aggregated in the common stored basis.
+
+Write \(\beta=\beta_2+\beta_3+\beta_4\) for the collision-aggregated
+forest current of this adjacent increment.  The approved factorization and
+finite forest-flow uniqueness give
+
+\[
+ \boxed{\beta=\Pi_1+\Pi_2+\Pi_3,\qquad
+        \partial\Pi_j=Z_j\quad(j=1,2,3).}
+ \tag{7.4}
+\]
+
+Indeed, the boundary of \(\pi_o\) is the sum of its two transported
+endpoints.  Pairing the occurrences as in (7.3) therefore gives exactly
+the three functions \(Z_j\) from (5.1).  The sum of the six paths has the
+same source boundary as \(\beta\); uniqueness of a finite flow with a
+prescribed boundary in a forest identifies the two currents.  Shared path
+edges cancel coefficientwise in the common stored basis.
+
+Define
+
+\[
+ F_2=\Pi_1+\beta_2,
+ \qquad
+ G_3=\Pi_3+\beta_3.
+ \tag{7.5}
+\]
+
+Theorem 5.1 and (7.4) now give the exact boundary identities
+
+\[
+ \boxed{R_2=\partial F_2,
+ \qquad W_3:=D_3+Z_3=\partial G_3.}
+ \tag{7.6}
+\]
+
+## 8. Head--tail boundary identity
+
+On stored edge atoms define the vertex-chain selectors
+
+\[
+ t_2(E_2(v))=\delta_{Bv},\qquad
+ t_3(E_3(v))=\delta_{tv},\qquad
+ h_3(E_3(v))=\delta_{U^{-1}v},
+ \tag{8.1}
+\]
+
+extended linearly over \(\mathbb F_2\).  Thus
+
+\[
+ \partial C_3=t_3C_3+h_3C_3.
+ \tag{8.2}
+\]
+
+By (5.5), (5.3), and (7.6),
+
+\[
+ R_3=W_3+D_4,
+ \qquad D_4=\partial\beta_4,
+ \qquad W_3=\partial G_3.
+ \tag{8.3}
+\]
+
+Substitute (7.6) and (8.3) into (6.3).  Using (8.2), the two copies of
+\(\langle t_3C_3,W_3\rangle\) cancel, and one obtains
+
+\[
+\boxed{
+\begin{aligned}
+ \langle C,\omega_T\rangle
+ ={}&\langle t_2C_2,\partial F_2\rangle
+    +\langle h_3C_3,\partial G_3\rangle\\
+   &+\langle\partial C_3,\partial\beta_4\rangle
+    +\langle\partial C_4,\bar b_4\rangle.
+\end{aligned}}
+ \tag{8.4}
+\]
+
+All chains in (7.2)--(8.4) are collision-aggregated in the same stored
+edge basis.  Orientation signs are not suppressed in the integral
+currents: head and tail are fixed by (3.1), and reduction to
+\(\mathbb F_2\) occurs only after those oriented currents have been placed
+in that basis.  The last term of (8.4) deliberately retains the
+unsymmetrized function \(\bar b_4\); it is not claimed to be a boundary.
+
+**Corollary 8.1 (powered increment reduction).** Applying (8.4) to each
+fixed \(P\)-, \(C\)-, or \(Q\)-increment reduces its complete old--new
+load to a finite xor of canonical powered endpoint equalities and labelled-
+stratum switches.  Formula (8.4) does not evaluate those equalities or
+switches, so this reduction proves no endpoint identity or vanishing
+claim.
+
+## 9. Remaining exact boundary
+
+The old--new forest load now has four complementary descriptions:
 
 1. the forest-overlap plus tie decomposition
    \(\omega_T=\beta_E+\tau_T\); and
 2. the occurrence-prefix formulas (3.4)--(3.7), with the complete slot-four
    collapse (4.7); and
-3. the chain-level tail-boundary identity (6.3).
+3. the chain-level tail-boundary identity (6.3); and
+4. the adjacent-source head--tail identity (8.4).
 
 The two surviving \(P\)-rays, the six-family \(C\)-chain, and the three
 paired \(Q\)-rectangles contain mixed slot-two, slot-three, and slot-four
-edges.  Equation (6.3) reduces their remaining loads to slot-three/four
-stratum-boundary values, an explicit slot-two tail sum, and an explicit
-slot-three tail-residual sum.  It does not evaluate those data on all
-powered endpoints.  The available coboundaries alone do not force a mixed
-path or rectangle to vanish.
+edges.  Equation (8.4) rewrites their remaining loads as paired-block
+boundary values, slot-three/four stratum-boundary values, and the retained
+unsymmetrized slot-four endpoint function.  It does not evaluate those data
+on all powered endpoints.  The available coboundaries alone do not force a
+mixed path or rectangle to vanish.
 
-The exact next obligation is to evaluate (6.3) on the two powered
+The exact next obligation is to evaluate (8.4) on the two powered
 \(P\)-rays, the six-family \(C\)-chain, and the three paired
 \(Q\)-rectangles.  If the boundary and tail-residual values do not pair, the
 honest remainder is their exact collision-aggregated symmetric difference,
