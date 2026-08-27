@@ -3109,6 +3109,161 @@ the projected shell colors does not determine its source-shortlex cut.
 Hence (5.84)--(5.87) do not prove \(R_{4,i}=0\), period two for \(V_i\), a
 lift, or AK(3).
 
+The remaining polarization nevertheless has a finite chronological form.
+
+#### Lemma 5.4 (equal-label chord polarization)
+
+Let \(a,e:\mathscr P\to\mathbb F_2\) be two activity masks.  Suppose the
+active atoms of \(e\) are paired into chords \((r,s)\), with
+\(r<_{\chi}s\) and \(\ell(r)=\ell(s)\).  Then
+
+\[
+\boxed{
+ \beta_k(a,e)
+ =\sum_{(r,s)}
+   \sum_{r<_{\chi}p<_{\chi}s}
+   a(p)w_k(\ell(p),\ell(r)).
+}
+\tag{5.88}
+\]
+
+This includes fixed raw and quotient-section atoms in \(a\), and it does
+not require the supports of \(a\) and \(e\) to be disjoint.
+
+Indeed, the local \(\varrho_k\)-terms cancel in the polarization.  Fix one
+chord with common label \(x\).  An \(a\)-atom before both endpoints or after
+both endpoints contributes twice with the same shortlex predicate and
+cancels.  For \(r<_{\chi}p<_{\chi}s\), the two endpoint contributions are
+
+\[
+ w_k(x,\ell(p))
+ \bigl([x<_{\rm sl}\ell(p)]+[\ell(p)<_{\rm sl}x]\bigr).
+\tag{5.89}
+\]
+
+This equals \(w_k(x,\ell(p))\) when the labels differ and is zero when they
+agree.  Endpoint overlaps also have equal labels and weight zero.  This
+proves (5.88).
+
+By bilinearity,
+
+\[
+ \beta_k(a,E_i)=\beta_k(a,q_i)+\beta_k(a,q_{i+1}).
+\tag{5.89a}
+\]
+
+Apply the lemma separately to the two frozen 48-chord matchings \(M_i\)
+and \(M_{i+1}\) on the right side.  Alternatively, splice the two incident
+chords through every atomic copy canceled in
+\(E_i=q_i+q_{i+1}\); discard the resulting alternating cycles and retain
+the descended label-preserving pairing of \(\operatorname{supp}E_i\).
+The literal union of the two matchings is not itself a pairing of that
+support.  Let
+
+\[
+ P_a(t):=\sum_{p<_{\chi}t}a(p)e_{\operatorname{col}_4(\ell(p))},
+ \qquad
+ u_c:=\sum_{d\ne c}e_d
+ \quad(c=0,1,2).
+\tag{5.90}
+\]
+
+For a chord \(C=(r_C,s_C)\) of color \(c_C\), (5.88) becomes
+
+\[
+ u_{c_C}\mathbin{\cdot}\bigl(P_a(r_C)+P_a(s_C)\bigr).
+\tag{5.91}
+\]
+
+The possible inclusion of the left endpoint in the prefix xor is harmless,
+because \(u_{c_C}\cdot e_{c_C}=0\).
+
+Corresponding chord types in \(M_i\) and \(M_{i+1}\) have the same color by
+(5.82)--(5.83b), and their two endpoint occurrence numbers are identical in
+the frozen topology; their cell-qualified atomic IDs are different.  Pair
+their contributions in (5.91).  At either endpoint occurrence, the complete
+chronological prefix strictly before that occurrence appears twice and
+cancels.  Consequently every fixed atom outside the two endpoint occurrence
+blocks, every complete intervening occurrence activity vector, and every
+occurrence-prefix base cancels identically.  Old fixed correction or base
+atoms inside an endpoint occurrence remain in its local prefix.
+
+For occurrence \(o\), let
+
+\[
+ P_{a,o}(v_0)
+ :=\sum_{\substack{v\ {\rm before}\ v_0\\
+                    {\rm inside\ occurrence}\ o}}
+ a(o,v)e_{\operatorname{col}_4(\tau_o(v))},
+\tag{5.92}
+\]
+
+using increasing module shortlex in a positive occurrence and decreasing
+module shortlex in a negative occurrence.  Let \(v_{C,o}(j)\) be the module
+coordinate of chord \(C\)'s endpoint in occurrence \(o\) in the matching
+\(M_j\).  The transported endpoint color
+
+\[
+ c_C=\operatorname{col}_4(\tau_o(v_{C,o}(j)))
+\tag{5.92a}
+\]
+
+is independent of the endpoint occurrence and of \(j\).  Put
+
+\[
+ \Delta P_{a,o,C}(i)
+ :=P_{a,o}(v_{C,o}(i))+P_{a,o}(v_{C,o}(i+1)).
+\tag{5.93}
+\]
+
+Taking \(a=a_{i+1}\), the exact old--shell polarization is now
+
+\[
+\boxed{
+ \beta_4(a_{i+1},E_i)
+ =\sum_{C=1}^{48}u_{c_C}\mathbin{\cdot}
+ \left(
+  \Delta P_{a_{i+1},o_C^-,C}(i)
+  +\Delta P_{a_{i+1},o_C^+,C}(i)
+ \right).
+}
+\tag{5.94}
+\]
+
+Here \(o_C^-,o_C^+\) denote the two endpoint occurrences in chronological
+order, not their polarities.
+
+Finally, the one-step decomposition and bilinearity give
+
+\[
+\begin{aligned}
+ R_{4,i}
+ ={}&L_4(q_{i+1})+L_4(q_i)\\
+ &+Q_4(q_{i+1})+Q_4(q_i)
+ +\beta_4(a_{i+1},E_i).
+\end{aligned}
+\tag{5.95}
+\]
+
+Using (5.84),
+
+\[
+\boxed{
+ R_{4,i}
+ =L_4(q_{i+1})+L_4(q_i)
+ +\beta_4(a_{i+1},E_i).
+}
+\tag{5.96}
+\]
+
+Thus for \(i\geq3\), (5.86) removes the local term and (5.94) is the entire
+coordinate-four derivative.  The remaining stable interface has 48 rows:
+each row records its chord color, its two endpoint occurrences and actions,
+the two three-bit within-occurrence prefix differences in (5.93), and their
+one output bit.  The three lower local seams in (5.87) remain separate.
+No scalar crossing or occurrence-type count determines the color-prefix
+xors in (5.93), so no vanishing is asserted.
+
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
   reaches \(F/\gamma_3N\).

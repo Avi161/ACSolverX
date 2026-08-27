@@ -213,8 +213,14 @@ finite quotient do not close a route.
   to the three finite seams between cells \(0,1,2,\geq3\).  A frozen
   negative slot-two record shows why the scalar raw bit cannot decide those
   seams: it has scalar weight zero but coordinate-four local weight one.
-  The new--new seed value, three local seams, and old--shell polarization
-  remain, so this is not a proof that \(R_{4,i}=0\).
+  Pairing the two-step shell by its two 48-chord matchings removes source
+  shortlex outside the endpoint blocks of the old--shell polarization:
+  every external fixed atom, complete intervening occurrence, and
+  occurrence-prefix base cancels between corresponding shifted chords.
+  Old fixed atoms inside an endpoint occurrence remain in its local prefix.
+  The exact survivor is a 48-row ledger of within-occurrence three-color
+  prefix differences.  The three local seams and those 48 color-prefix rows
+  remain unevaluated, so this is not a proof that \(R_{4,i}=0\).
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
