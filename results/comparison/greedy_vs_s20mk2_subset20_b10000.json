@@ -1,0 +1,302 @@
+{
+  "subset": "benchmark/subsets/benchmark_subset_20.json",
+  "n": 20,
+  "node_budget": 10000,
+  "budget_flag": "--budget",
+  "max_relator_length": 24,
+  "greedy": {
+    "entry": "experiments.search.heuristics.greedy_search_h(config=None)",
+    "config": null,
+    "n_solved": 14,
+    "solved_ids": [
+      0,
+      77,
+      203,
+      247,
+      344,
+      380,
+      455,
+      505,
+      537,
+      538,
+      546,
+      565,
+      581,
+      602
+    ],
+    "failed_ids": [
+      568,
+      605,
+      623,
+      633,
+      634,
+      636
+    ]
+  },
+  "s20mk2": {
+    "entry": "experiments.search.heuristics.greedy_search_h(config=S20_MK2)",
+    "formula": "L + 20*S + 2*MK",
+    "config": {
+      "segments": [
+        {
+          "upto": null,
+          "w": {
+            "L": 1.0,
+            "S": 20.0,
+            "MK": 2.0
+          }
+        }
+      ]
+    },
+    "n_solved": 18,
+    "solved_ids": [
+      0,
+      77,
+      203,
+      247,
+      344,
+      380,
+      455,
+      505,
+      537,
+      538,
+      546,
+      565,
+      568,
+      581,
+      602,
+      605,
+      633,
+      634
+    ],
+    "failed_ids": [
+      623,
+      636
+    ]
+  },
+  "both_solved": {
+    "n": 14,
+    "ids": [
+      0,
+      77,
+      203,
+      247,
+      344,
+      380,
+      455,
+      505,
+      537,
+      538,
+      546,
+      565,
+      581,
+      602
+    ],
+    "greedy_mean_path": 43.285714285714285,
+    "greedy_median_path": 24.0,
+    "s20mk2_mean_path": 46.0,
+    "s20mk2_median_path": 23.0
+  },
+  "rows": [
+    {
+      "pres_id": 0,
+      "bin": 0,
+      "greedy_solved": true,
+      "greedy_nodes": 3,
+      "greedy_path": 2,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 3,
+      "s20mk2_path": 2
+    },
+    {
+      "pres_id": 455,
+      "bin": 0,
+      "greedy_solved": true,
+      "greedy_nodes": 10,
+      "greedy_path": 9,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 9,
+      "s20mk2_path": 8
+    },
+    {
+      "pres_id": 77,
+      "bin": 1,
+      "greedy_solved": true,
+      "greedy_nodes": 11,
+      "greedy_path": 8,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 9,
+      "s20mk2_path": 8
+    },
+    {
+      "pres_id": 505,
+      "bin": 1,
+      "greedy_solved": true,
+      "greedy_nodes": 34,
+      "greedy_path": 23,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 138,
+      "s20mk2_path": 41
+    },
+    {
+      "pres_id": 247,
+      "bin": 2,
+      "greedy_solved": true,
+      "greedy_nodes": 46,
+      "greedy_path": 9,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 16,
+      "s20mk2_path": 10
+    },
+    {
+      "pres_id": 344,
+      "bin": 2,
+      "greedy_solved": true,
+      "greedy_nodes": 98,
+      "greedy_path": 24,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 81,
+      "s20mk2_path": 23
+    },
+    {
+      "pres_id": 203,
+      "bin": 3,
+      "greedy_solved": true,
+      "greedy_nodes": 116,
+      "greedy_path": 16,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 39,
+      "s20mk2_path": 17
+    },
+    {
+      "pres_id": 380,
+      "bin": 3,
+      "greedy_solved": true,
+      "greedy_nodes": 381,
+      "greedy_path": 39,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 190,
+      "s20mk2_path": 34
+    },
+    {
+      "pres_id": 546,
+      "bin": 4,
+      "greedy_solved": true,
+      "greedy_nodes": 398,
+      "greedy_path": 24,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 94,
+      "s20mk2_path": 23
+    },
+    {
+      "pres_id": 537,
+      "bin": 4,
+      "greedy_solved": true,
+      "greedy_nodes": 579,
+      "greedy_path": 73,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 551,
+      "s20mk2_path": 70
+    },
+    {
+      "pres_id": 538,
+      "bin": 5,
+      "greedy_solved": true,
+      "greedy_nodes": 2261,
+      "greedy_path": 25,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 338,
+      "s20mk2_path": 22
+    },
+    {
+      "pres_id": 565,
+      "bin": 5,
+      "greedy_solved": true,
+      "greedy_nodes": 1404,
+      "greedy_path": 145,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 2390,
+      "s20mk2_path": 178
+    },
+    {
+      "pres_id": 602,
+      "bin": 6,
+      "greedy_solved": true,
+      "greedy_nodes": 6285,
+      "greedy_path": 56,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 452,
+      "s20mk2_path": 46
+    },
+    {
+      "pres_id": 581,
+      "bin": 6,
+      "greedy_solved": true,
+      "greedy_nodes": 9567,
+      "greedy_path": 153,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 1584,
+      "s20mk2_path": 162
+    },
+    {
+      "pres_id": 568,
+      "bin": 7,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 1724,
+      "s20mk2_path": 45
+    },
+    {
+      "pres_id": 633,
+      "bin": 7,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 7063,
+      "s20mk2_path": 111
+    },
+    {
+      "pres_id": 605,
+      "bin": 8,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 5447,
+      "s20mk2_path": 340
+    },
+    {
+      "pres_id": 623,
+      "bin": 8,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": false,
+      "s20mk2_nodes": 10000,
+      "s20mk2_path": null
+    },
+    {
+      "pres_id": 634,
+      "bin": 9,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": true,
+      "s20mk2_nodes": 3165,
+      "s20mk2_path": 66
+    },
+    {
+      "pres_id": 636,
+      "bin": 9,
+      "greedy_solved": false,
+      "greedy_nodes": 10000,
+      "greedy_path": null,
+      "s20mk2_solved": false,
+      "s20mk2_nodes": 10000,
+      "s20mk2_path": null
+    }
+  ]
+}
