@@ -4627,6 +4627,104 @@ reduction supplies no automatic nonzero coordinate: finite cross-incidence
 cycles or cancellation against other laminar terms remain possible, and
 the affine unary value is still separate.
 
+### 3.40 Every paired torsion graph contains squares
+
+The degree alternatives in Section 3.39 can be sharpened for the actual
+paired words.  Fix $s=s_q$ and define the two outgoing permutations
+
+\[
+ T_\sigma(a):=
+ \alpha^\epsilon(k^{-1}as^\sigma),
+ \qquad \sigma\in\{+1,-1\}.
+ \tag{3.299}
+\]
+
+The four possible cancellations between an outgoing and an incoming edge
+at $a$ are exactly the fixed-point equations
+$T_\tau T_\sigma(a)=a$.  If $\epsilon=0$, direct multiplication gives
+
+\[
+ T_\tau T_\sigma(a)=k^{-2}as^{\sigma+\tau}.
+ \tag{3.300}
+\]
+
+When $\tau=-\sigma$, a fixed point would give $k^2=1$.  When
+$\tau=\sigma$, it would give
+
+\[
+ a^{-1}k^2a=s^{2\sigma}.
+ \tag{3.301}
+\]
+
+Both sides of (3.301) lie in the free group $K$.  Unique roots in a free
+group give $a^{-1}ka=s^\sigma$.  Since $s$ is reversible by
+$csc=s^{-1}$, this would make $k=g_I$ reversible and contradict (3.172).
+
+If $\epsilon=1$, put $h:=k\alpha(k)=g^2$.  Since
+$\alpha(s)=s^{-1}$,
+
+\[
+ \boxed{
+ T_\tau T_\sigma(a)=h^{-1}as^{\sigma-\tau}.}
+ \tag{3.302}
+\]
+
+For $\tau=\sigma$, a fixed point would give $h=1$, contrary to the
+infinite order of $g$.  For $\tau=-\sigma$, it would give
+$a^{-1}ha=s^{2\sigma}$.  This is the equality
+$(a^{-1}ga)^2=(s^\sigma)^2$ of nontrivial hyperbolic squares.  Their
+common centralizer in the free product is infinite cyclic, so the two
+roots are equal.  Hence $g$ is conjugate to $s^\sigma$, again
+contradicting (3.172).  Thus none of the four second compositions has a
+fixed point.  The four neighbors in (3.296)--(3.297) are all distinct, so
+
+\[
+ \boxed{\deg_{\Gamma_q^g}(a)=4
+ \qquad(a\in K) .}
+ \tag{3.303}
+\]
+
+Every component is infinite.  This follows from the nonzero height drift
+for six rows.  For either height-zero row, (3.302) gives
+$T_\sigma^2(a)=h^{-1}a$, whose orbit is infinite because $h$ has infinite
+order.
+
+The graphs nevertheless contain canonical four-cycles.  In the even
+case the two permutations commute at the second step:
+
+\[
+ T_+T_-(a)=T_-T_+(a)=k^{-2}a.
+ \tag{3.304}
+\]
+
+In the odd case their equal-sign squares coincide:
+
+\[
+ T_+^2(a)=T_-^2(a)=h^{-1}a.
+ \tag{3.305}
+\]
+
+Together with the absence of loops and cancelled edges, these identities
+give respectively the simple cycles
+
+\[
+\begin{aligned}
+ &a, T_+(a), k^{-2}a, T_-(a), a
+ &&(\epsilon=0),\\
+ &a, T_+(a), h^{-1}a, T_-(a), a
+ &&(\epsilon=1).
+\end{aligned}
+\tag{3.306}
+\]
+
+For the six nonzero-height generators these squares are induced, because
+the two possible chords join vertices of the same height parity.  Thus an
+acyclic or diagonal-leading argument cannot prove survival of the fixed
+torsion sector: its exact incidence graph is an infinite four-regular
+graph already carrying finite local cycles.  The two height-zero graphs
+may have additional chords, and simultaneous vanishing over every
+$[q]$, every laminar term, and the affine unary value is still unresolved.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
