@@ -149,27 +149,64 @@ So at tiny budgets on this benchmark the move set is not the binding constraint 
 for short children, essentially saturated by substitution; that is now a measured fact
 with a mechanism, not a hunch.
 
-## Where new moves can still win
+## Stage 2 — multi-factor rewrites and the automorphism portal, measured
 
-The measurement above rules out one thing precisely: *one-step* widenings of the rank-2
-move set paying off at tiny budgets on this benchmark. It does not rule out moves that
-change **multi-step** reachability, which is where the design's remaining stages live:
+Two of the design's remaining stages are now arms
+(`python -m experiments.search.bench_new_moves --stage2`, data in
+`results/new_moves/stage2_*`):
 
-* **Cap tunnels** — a two-move composite certified as one edge whose intermediate exceeds
-  `max_relator_length` but whose endpoint is short. The cap-24 search refuses every path
-  through a longer intermediate; a tunnel reaches states that currently need the cap
-  raised (and the budget multiplied). Composite certificates are two entries in
-  `path_certs`; the verifier needs nothing new.
-* **Multi-factor normal-closure rewrites** — a chain of donor macros certified as one
-  edge, with conjugators extracted from a factorisation certificate rather than guessed.
-  The single-factor case is what `goal_conjugators` does; the multi-factor case is
-  exactly the sequential-donor certificate format already validated on MMS02 elsewhere in
-  this project, and it is the version whose precondition is not starved by the length
-  match.
-* **Portal edges with explicit `relation_kind`** — CoV/Lemma-11 (`STABLE_EQ`) and ambient
-  automorphism (`AC_TRIVIAL_IFF`) edges in a proof DAG, scored on their own scoreboard
-  rather than smuggled into an `AC_EQ` solve count.
+**The multi-factor normal-closure rewrite** (`ncrw`) is the search-usable distillate of
+the forest-flow / class-two pipeline, specialised to one donor: to replace `r_i` by a
+short `s` in one edge, factor the defect `ρ(r_i⁻¹s)` into conjugates of `r_j^±1` — an
+abelianisation obstruction filter first (the class-repair pattern: `ab(f) = t·ab(r_j)`
+must have an integer solution), then a peeling lift (the flow pattern: an occurrence of a
+rotated donor copy `f = p·ρ·q` peels off as the exact factor `(pρp⁻¹)·(pq)`). A hit is
+one certificate, `["ncrw", i, [[ε₁,w₁],…]]`, an exact chained-donor AC composite whose
+intermediates live inside the edge — so it also tunnels through the length cap.
 
-The engine, certificate format, and independent verifier in this change are the
-infrastructure all three need; the benchmark harness is the honesty gate that keeps their
-claims separated.
+**The change-of-variables portal** (`cov`) applies Whitehead peak reduction
+(`experiments/analysis/whitehead.py`) to land on the Aut(F₂)-orbit's minimal-length
+representative, then runs the plain substitution search on the image. Solving the image
+proves the original AC-trivial (`AC_TRIVIAL_IFF`); no path for the original is
+materialised, and the claim column keeps that distinction explicit everywhere.
+
+| arm | moves | ordering | claim | @100 | @250 | @500 | @1000 | wall s |
+|---|---|---|---|---:|---:|---:|---:|---:|
+| greedy | sub | `L` | AC_EQ path | 17 | 20 | 26 | **29** | 37.7 |
+| s20_mk2 | sub | `s20_mk2` | AC_EQ path | 21 | 28 | 35 | **37** | 57.6 |
+| ncrw_L | sub+goal+ncrw | `L` | AC_EQ path | 17 | 20 | 26 | **29** | 84.7 |
+| ncrw_s20_mk2 | sub+goal+ncrw | `s20_mk2` | AC_EQ path | 21 | 28 | 35 | **37** | 56.6 |
+| cov_L | Whitehead → sub | `L` | AC_TRIVIAL_IFF | 20 | 24 | 32 | **36** | 43.4 |
+| cov_s20_mk2 | Whitehead → sub | `s20_mk2` | AC_TRIVIAL_IFF | 22 | 30 | 35 | **37** | 43.7 |
+
+What the per-row data says:
+
+* **The rewrite edges fire and help — the first nonzero move-set effect — but by 1–3
+  pops.** Unlike the blind donors, `ncrw`/goal edges sit on the solved paths of 28
+  (`L`) and 36 (`s20_mk2`) of the 60 rows, and on every such row `solved_at` strictly
+  improves (9→6, 7→4, 10→7, …), never worsens. The savings are endgame jumps — one
+  rewrite replaces the last few substitution pops — and at 1–3 pops each they never
+  cross a budget checkpoint, so the solve counts tie. Path lengths shorten too (median
+  22→20 under `s20_mk2`).
+* **The portal is a strict improvement on its baseline and reaches rows nothing else
+  does.** `cov_L` solves every row `greedy` solves plus 7 more (538, 544, 565, 575,
+  609, 628, 633); `cov_s20_mk2` weakly dominates `s20_mk2` early (+1 @100, +2 @250) and
+  ties late. Across all arms the union of rows **proved AC-trivial is 41/60 — s20_mk2
+  alone proves 37** — with rows 565, 575, 628, 633 reached only through the portal.
+  (Pooling the union is legitimate because both claim types prove AC-triviality; the
+  split — 37 with explicit paths, +4 portal-only — must travel with the number.)
+* **Tiny coordinate changes, outsized effect.** Whitehead reduction shortens 38 of the
+  60 starts by a mean of only 1.2 letters (max 5, mean 1.2 automorphism steps) — yet
+  that is worth +7 solves to the length-ordered greedy. Orbit-minimal coordinates and
+  the `s20_mk2` ordering exploit overlapping structure (both prefer untangled words),
+  which is why the portal lifts the weak ordering far more than the strong one.
+
+Still untested from the design: general two-gluing composites ("cap tunnels" whose
+factors are substitutions rather than factorizable defects), Lemma-11/CoV `STABLE_EQ`
+portals on a stable scoreboard, and deeper linear layers (finite-quotient relation-module
+solving) feeding the factorizer when peeling stalls. The engine, certificate format, and
+verifier here are the infrastructure all of them plug into; the claim column is the
+honesty gate that keeps their scoreboards separated. The powered-connector rewrite (I)
+has no search analogue — nothing in this pipeline evaluates cochain invariants — and
+collision-first batching (J) appears here only as the aggregation discipline inside the
+abelian filter.

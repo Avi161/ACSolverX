@@ -52,6 +52,15 @@ typed certificates (``path_certs``), one per edge:
 
     ["sub",   target, jsign, k1, k2]     Definition 2.1 substitution
     ["donor", target, jsign, w]          conjugate-donor with conjugator w
+    ["ncrw",  target, [[jsign, w], ..]]  multi-factor normal-closure rewrite:
+                                         r_i <- r_i . Π w_k r_j^{ε_k} w_k⁻¹,
+                                         an exact chained-donor composite found
+                                         by ``defect_factorization`` (the
+                                         forest-flow/class-two pattern: abelian
+                                         obstruction filter, then a peeling
+                                         lift). Its intermediates live INSIDE
+                                         the edge, so it also tunnels through
+                                         the per-relator length cap.
 
 ``path_moves`` is intentionally left empty: donor edges are not expressible as
 Definition 2.1 four-tuples, and half a certificate would be worse than none.
@@ -190,6 +199,103 @@ def goal_conjugators(r1_str, r2_str, smax=2):
     return out
 
 
+def abelian_vec(w):
+    """Exponent-sum vector (e_x, e_y) of an 'xXyY' word."""
+    ex = sum(1 for c in w if c == "x") - sum(1 for c in w if c == "X")
+    ey = sum(1 for c in w if c == "y") - sum(1 for c in w if c == "Y")
+    return ex, ey
+
+
+def defect_factorization(f, donor, max_factors=4):
+    """Exact factorization of ``f`` as a product of conjugates of ``donor^±1``.
+
+    The search-usable distillate of the forest-flow / class-two pipeline
+    (solve a linear relaxation, then lift to a literal identity), specialised
+    to one donor at rank 2:
+
+      * layer-0 obstruction (the class-repair pattern): in the abelianisation,
+        ``ab(f) = t·ab(donor)`` must hold for an integer ``t`` with
+        ``|t| <= max_factors`` — when ``ab(donor) != 0`` this rejects most
+        candidates before any string work;
+      * the lift (the flow pattern): greedily PEEL rotated copies of the donor
+        out of the defect — if ``f = p·ρ·q`` with ``ρ`` a rotation of
+        ``donor^ε``, then ``f = (p ρ p⁻¹)·(p q)``, one conjugate factor plus a
+        strictly shorter residual. Leftmost occurrence first, deterministic.
+
+    Returns ``[(jsign, w), ...]`` with ``f == Π w_k donor^{jsign_k} w_k⁻¹``
+    EXACTLY (free-group identity, factors in order), or ``None``. Every letter
+    of the input is accounted for: success requires the final residual to be
+    the empty word.
+    """
+    if not donor or not f:
+        return None
+    av_d = abelian_vec(donor)
+    av_f = abelian_vec(f)
+    if av_d != (0, 0):
+        # t·av_d == av_f for integer t, |t| <= max_factors
+        ok = False
+        for t in range(-max_factors, max_factors + 1):
+            if (t * av_d[0], t * av_d[1]) == av_f:
+                ok = True
+                break
+        if not ok:
+            return None
+    elif av_f != (0, 0):
+        return None
+    n = len(donor)
+    rot_of = {}                       # rotated string -> (jsign, k)
+    for jsign, base in ((1, donor), (-1, inv_word(donor))):
+        for k in range(n):
+            rot = base[k:] + base[:k]
+            rot_of.setdefault(rot, (jsign, k))
+    factors = []
+    while f:
+        if len(factors) >= max_factors or len(f) < n:
+            return None
+        hit = None
+        for pos in range(len(f) - n + 1):
+            info = rot_of.get(f[pos:pos + n])
+            if info is not None:
+                hit = (pos, info)
+                break
+        if hit is None:
+            return None
+        pos, (jsign, k) = hit
+        p = f[:pos]
+        base = donor if jsign == 1 else inv_word(donor)
+        w = _reduce_str(p + inv_word(base[:k]))   # rot_k(base) = base[:k]⁻¹·base·base[:k]
+        factors.append((jsign, w))
+        f = _reduce_str(p + f[pos + n:])
+    return factors
+
+
+def ncrw_conjugates(r1_str, r2_str, smax=2, max_factors=4):
+    """Multi-factor normal-closure rewrite proposals: ``r_i -> s`` in ONE edge.
+
+    For each target ``i`` and each short ``s`` (``1 <= |s| <= smax``), factor
+    the right defect ``ρ(r_i⁻¹ s)`` into conjugates of the OTHER relator via
+    ``defect_factorization``. A hit with ``m >= 2`` factors is returned as
+    ``{(target, s): [(jsign, w), ...]}`` (single-factor hits are already the
+    goal-directed donor proposer's). Each hit is an exact AC composite:
+    ``r_i · Π (w_k r_j^{ε_k} w_k⁻¹) = s`` letter for letter.
+    """
+    out = {}
+    small = [s for s in short_words(smax) if s]
+    for target in (1, 2):
+        ri, ro = (r1_str, r2_str) if target == 1 else (r2_str, r1_str)
+        if not ri or not ro:
+            continue
+        ri_inv = inv_word(ri)
+        for s in small:
+            f = _reduce_str(ri_inv + s)
+            if not f:
+                continue
+            factors = defect_factorization(f, ro, max_factors=max_factors)
+            if factors is not None and len(factors) >= 2:
+                out[(target, s)] = factors
+    return out
+
+
 def _w_arrays(w):
     hit = _W_ARR_CACHE.get(w)
     if hit is None:
@@ -253,13 +359,15 @@ class MacroSolver:
 
     def __init__(self, r1, r2, max_nodes=10000, max_relator_length=24,
                  cyclic_reduce=True, config=None, donor_wmax=2, donor_subw=None,
-                 goal_smax=2):
+                 goal_smax=2, ncrw_smax=0, ncrw_max_factors=4):
         self.max_nodes = max_nodes
         self.max_relator_length = max_relator_length
         self.cyclic_reduce = cyclic_reduce
         self.donor_wmax = donor_wmax
         self.donor_subw = donor_subw
         self.goal_smax = goal_smax
+        self.ncrw_smax = ncrw_smax
+        self.ncrw_max_factors = ncrw_max_factors
         self.priority = make_priority(config)
 
         # ONE dict per discovered state: key -> (parent key, certificate of the
@@ -294,6 +402,16 @@ class MacroSolver:
             extra = (goal_conjugators(key[0], key[1], smax=self.goal_smax)
                      if self.goal_smax >= 1 else None)
             out.extend(donor_children(r1, r2, fam, self.cyclic_reduce, extra=extra))
+        if self.ncrw_smax >= 1:
+            hits = ncrw_conjugates(key[0], key[1], smax=self.ncrw_smax,
+                                   max_factors=self.ncrw_max_factors)
+            for (target, s), factors in sorted(hits.items()):
+                cert = ("ncrw", target, tuple((int(j), w) for j, w in factors))
+                child = str_to_arr(s)
+                if target == 1:
+                    out.append((child, r2, cert))
+                else:
+                    out.append((r1, child, cert))
         return out
 
     def solve(self, progress=None):
@@ -378,6 +496,18 @@ def cert_child_raw(r1, r2, cert):
             piece = np.concatenate((ri, wa, oj, inverse_relator_nj(wa)))
         else:
             piece = np.concatenate((ri, oj))
+    elif kind == "ncrw":
+        _, target, factors = cert
+        ri, ro = (r1, r2) if target == 1 else (r2, r1)
+        parts = [ri]
+        for jsign, w in factors:
+            oj = ro if jsign == 1 else inverse_relator_nj(ro)
+            if w:
+                wa = str_to_arr(w)
+                parts.extend((wa, oj, inverse_relator_nj(wa)))
+            else:
+                parts.append(oj)
+        piece = np.concatenate(parts)
     else:
         raise ValueError(f"unknown certificate kind {kind!r}")
     if cert[1] == 1:
@@ -404,6 +534,8 @@ def macro_cost(cert):
     """Certificate-level action count of one edge (the graph-traversal cost)."""
     if cert[0] == "sub":
         return 1
+    if cert[0] == "ncrw":
+        return sum(3 if j == 1 else 5 for j, _ in cert[2])
     return 3 if cert[2] == 1 else 5
 
 
@@ -413,11 +545,14 @@ def elementary_cost(cert, parent_lens):
     Substitution: rotating the target by k1 is min(k1, n1-k1) conjugations (left
     or right, whichever is shorter); the source rotation must also be undone
     (2x), plus the multiply, plus an invert/restore pair when jsign is -1.
-    Donor: 2|w| + 1, plus 2 when jsign is -1.
+    Donor: 2|w| + 1, plus 2 when jsign is -1. A multi-factor rewrite sums its
+    factors' donor costs.
     """
     if cert[0] == "donor":
         _, _, jsign, w = cert
         return 2 * len(w) + 1 + (2 if jsign == -1 else 0)
+    if cert[0] == "ncrw":
+        return sum(2 * len(w) + 1 + (2 if j == -1 else 0) for j, w in cert[2])
     _, target, jsign, k1, k2 = cert
     n1 = parent_lens[0] if target == 1 else parent_lens[1]
     n2 = parent_lens[1] if target == 1 else parent_lens[0]
@@ -428,9 +563,17 @@ def elementary_cost(cert, parent_lens):
 
 # --------------------------------------------------------------------------- entry
 
+def _jsonable_cert(cert):
+    """Certificate tuple -> nested lists (json-safe; ncrw factors included)."""
+    if cert[0] == "ncrw":
+        return ["ncrw", cert[1], [[j, w] for j, w in cert[2]]]
+    return list(cert)
+
+
 def macro_greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
                         cyclic_reduce=True, config=None, donor_wmax=2,
-                        donor_subw=None, goal_smax=2, progress=None):
+                        donor_subw=None, goal_smax=2, ncrw_smax=0,
+                        ncrw_max_factors=4, progress=None):
     """Run the macro greedy on one presentation; return the baseline stats dict + extras.
 
     The eleven baseline keys are unchanged in meaning. ``path_moves`` is always
@@ -453,6 +596,8 @@ def macro_greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         donor_wmax=donor_wmax,
         donor_subw=donor_subw,
         goal_smax=goal_smax,
+        ncrw_smax=ncrw_smax,
+        ncrw_max_factors=ncrw_max_factors,
     )
     path, certs, nodes_visited = solver.solve(progress)
 
@@ -463,18 +608,23 @@ def macro_greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     solved = path is not None
     if solved:
         path_states = [[k[0], k[1]] for k in path]
-        path_certs = [list(c) for c in certs]
+        path_certs = [_jsonable_cert(c) for c in certs]
         parent_lens = [(len(k[0]), len(k[1])) for k in path[:-1]]
         mcost = sum(macro_cost(c) for c in certs)
         ecost = sum(elementary_cost(c, pl) for c, pl in zip(certs, parent_lens))
         n_donor = sum(1 for c in certs if c[0] == "donor")
+        n_ncrw = sum(1 for c in certs if c[0] == "ncrw")
         path_length = len(path_states) - 1
     else:
         path_states, path_certs = [], []
-        mcost = ecost = n_donor = None
+        mcost = ecost = n_donor = n_ncrw = None
         path_length = None
 
-    donor_on = solver.donor_enabled
+    parts = ["sub"]
+    if solver.donor_enabled:
+        parts.append("donor")
+    if solver.ncrw_smax >= 1:
+        parts.append("ncrw")
     return {
         "solved": solved,
         "nodes_explored": nodes_visited,
@@ -487,9 +637,10 @@ def macro_greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         "max_relator_expanded": [exp_key[0], exp_key[1]],
         "path": path_states,
         "path_moves": [],
-        "engine": "sub+donor" if donor_on else "sub",
+        "engine": "+".join(parts),
         "path_certs": path_certs,
         "macro_cost": mcost,
         "elementary_cost": ecost,
         "n_donor_edges": n_donor,
+        "n_ncrw_edges": n_ncrw,
     }

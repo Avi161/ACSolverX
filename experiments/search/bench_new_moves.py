@@ -50,6 +50,34 @@ MRL = 24
 
 ARMS = ("greedy", "s20_mk2", "macro_L", "macro_s20_mk2")
 
+# Stage 2 (--stage2): the factorization-rewrite move set and the change-of-
+# variables portal, against the same two baselines. The cov arms make a
+# DIFFERENT CLAIM than the rest: solving the Whitehead-reduced image proves the
+# original AC-trivial via the Aut(F2) iff-portal (AC moves commute with any
+# automorphism), without materialising a path for the original — every row and
+# table carries its claim label so the two are never silently pooled.
+STAGE2_ARMS = ("greedy", "s20_mk2", "ncrw_L", "ncrw_s20_mk2", "cov_L", "cov_s20_mk2")
+
+
+def _peak_reduce_trace(r1, r2):
+    """whitehead.peak_reduce, step for step, but recording WHICH automorphism
+    was applied at each descent step. Same tie-breaks, same endpoint."""
+    from experiments.analysis.whitehead import AUTOS, apply_auto, canon_pair, total
+    cur = canon_pair(r1, r2)
+    trace = []
+    while True:
+        best = None
+        best_name = None
+        for name, img in AUTOS:
+            nxt = apply_auto(cur, img)
+            if total(nxt) < total(cur) and (best is None or total(nxt) < total(best)):
+                best = nxt
+                best_name = name
+        if best is None:
+            return cur, trace
+        trace.append(best_name)
+        cur = best
+
 
 def load_rows():
     with open(SUBSET_CSV) as f:
@@ -68,23 +96,37 @@ def _run_one(job):
     from experiments.search.certify import verify_solution
 
     r1, r2 = row["r1"], row["r2"]
+    image = None
+    aut_trace = None
     t0 = time.perf_counter()
     if arm == "greedy":
         res = greedy_search(r1, r2, budget, MRL)
     elif arm == "s20_mk2":
         res = greedy_search_h(r1, r2, budget, MRL, config=S20_MK2)
-    elif arm == "macro_L":
-        res = macro_greedy_search(r1, r2, budget, MRL, config=None,
+    elif arm in ("macro_L", "macro_s20_mk2"):
+        cfg = None if arm == "macro_L" else S20_MK2
+        res = macro_greedy_search(r1, r2, budget, MRL, config=cfg,
                                   goal_smax=goal_smax, donor_subw=subw)
-    elif arm == "macro_s20_mk2":
-        res = macro_greedy_search(r1, r2, budget, MRL, config=S20_MK2,
-                                  goal_smax=goal_smax, donor_subw=subw)
+    elif arm in ("ncrw_L", "ncrw_s20_mk2"):
+        # lean move set: substitution + goal-directed donor + multi-factor
+        # rewrite; the blind short-word family stays off (measured: pure cost)
+        cfg = None if arm == "ncrw_L" else S20_MK2
+        res = macro_greedy_search(r1, r2, budget, MRL, config=cfg,
+                                  donor_wmax=-1, donor_subw=None, goal_smax=2,
+                                  ncrw_smax=2, ncrw_max_factors=4)
+    elif arm in ("cov_L", "cov_s20_mk2"):
+        (i1, i2), aut_trace = _peak_reduce_trace(r1, r2)
+        image = [i1, i2]
+        cfg = None if arm == "cov_L" else S20_MK2
+        res = greedy_search_h(i1, i2, budget, MRL, config=cfg)
     else:
         raise ValueError(arm)
     wall = time.perf_counter() - t0
 
+    is_cert_arm = arm.startswith(("macro_", "ncrw_"))
     out = {
         "arm": arm,
+        "claim": "AC_TRIVIAL_IFF" if arm.startswith("cov_") else "AC_EQ",
         "pres_id": row["pres_id"],
         "bin": row["bin"],
         "solved": res["solved"],
@@ -97,9 +139,14 @@ def _run_one(job):
         "macro_cost": res.get("macro_cost"),
         "elementary_cost": res.get("elementary_cost"),
         "n_donor_edges": res.get("n_donor_edges"),
+        "n_ncrw_edges": res.get("n_ncrw_edges"),
     }
+    if arm.startswith("cov_"):
+        out["image"] = image
+        out["aut_steps"] = len(aut_trace)
+        out["aut_trace"] = aut_trace
     if res["solved"]:
-        if arm.startswith("macro_"):
+        if is_cert_arm:
             report = verify_solution(
                 r1, r2, [tuple(s) for s in res["path"]],
                 [tuple(c) for c in res["path_certs"]])
@@ -107,7 +154,11 @@ def _run_one(job):
             out["verify_reason"] = report["reason"]
             out["n_primitives"] = report["n_primitives"]
         else:
-            states = moves_to_states(r1, r2, [str_to_move(m) for m in res["path_moves"]])
+            # plain arms: replay the Definition 2.1 moves from the searched
+            # start — for cov arms that start is the Whitehead image, and the
+            # verified object is the IMAGE's path (the portal supplies the rest)
+            s1, s2 = (image if image is not None else (r1, r2))
+            states = moves_to_states(s1, s2, [str_to_move(m) for m in res["path_moves"]])
             last = states[-1]
             out["verified"] = (states == res["path"]
                               and len(last[0]) == 1 and len(last[1]) == 1
@@ -116,10 +167,10 @@ def _run_one(job):
     return out
 
 
-def summarise(rows, budget, checkpoints):
+def summarise(rows, budget, checkpoints, arms=ARMS):
     """Per-arm summary dicts + the markdown table lines."""
     per_arm = {}
-    for arm in ARMS:
+    for arm in arms:
         sub = [r for r in rows if r["arm"] == arm]
         assert len(sub) == 60, (arm, len(sub))
         solved = [r for r in sub if r["solved"] and r["verified"]]
@@ -139,59 +190,75 @@ def summarise(rows, budget, checkpoints):
             "nodes_per_s": round(sum(r["nodes_explored"] or 0 for r in sub)
                                  / max(wall, 1e-9)),
         }
-        donor_rows = [r for r in solved if (r.get("n_donor_edges") or 0) > 0]
-        entry["solves_using_donor_edges"] = len(donor_rows) if arm.startswith("macro_") else None
+        donor_rows = [r for r in solved
+                      if (r.get("n_donor_edges") or 0) + (r.get("n_ncrw_edges") or 0) > 0]
+        entry["solves_using_donor_edges"] = (len(donor_rows)
+                                             if arm.startswith(("macro_", "ncrw_")) else None)
         per_arm[arm] = entry
     return per_arm
 
 
-def write_outputs(rows, per_arm, budget, checkpoints, wall_total, regen_cmd):
+ARM_META = {
+    "greedy": ("sub", "L", "AC_EQ path"),
+    "s20_mk2": ("sub", "s20_mk2", "AC_EQ path"),
+    "macro_L": ("sub+donor", "L", "AC_EQ path"),
+    "macro_s20_mk2": ("sub+donor", "s20_mk2", "AC_EQ path"),
+    "ncrw_L": ("sub+goal+ncrw", "L", "AC_EQ path"),
+    "ncrw_s20_mk2": ("sub+goal+ncrw", "s20_mk2", "AC_EQ path"),
+    "cov_L": ("Whitehead reduce, then sub", "L", "AC_TRIVIAL_IFF portal"),
+    "cov_s20_mk2": ("Whitehead reduce, then sub", "s20_mk2", "AC_TRIVIAL_IFF portal"),
+}
+
+
+def write_outputs(rows, per_arm, budget, checkpoints, wall_total, regen_cmd,
+                  arms=ARMS, prefix=""):
     os.makedirs(OUT_DIR, exist_ok=True)
-    jsonl = os.path.join(OUT_DIR, "bench60_newmoves.jsonl")
+    jsonl = os.path.join(OUT_DIR, f"{prefix}bench60_newmoves.jsonl")
     with open(jsonl, "w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
 
-    csv_path = os.path.join(OUT_DIR, "bench60_newmoves_summary.csv")
-    cols = ["arm"] + [f"solved_at_{b}" for b in checkpoints] + [
+    csv_path = os.path.join(OUT_DIR, f"{prefix}bench60_newmoves_summary.csv")
+    cols = ["arm", "claim"] + [f"solved_at_{b}" for b in checkpoints] + [
         "unverified_solves", "median_nodes_solved", "median_path",
         "solves_using_donor_edges", "total_wall_s", "nodes_per_s"]
     with open(csv_path, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(cols)
-        for arm in ARMS:
+        for arm in arms:
             e = per_arm[arm]
-            w.writerow([arm] + [e["solved_at_checkpoint"][b] for b in checkpoints] + [
+            w.writerow([arm, ARM_META[arm][2]]
+                       + [e["solved_at_checkpoint"][b] for b in checkpoints] + [
                 e["unverified_solves"], e["median_nodes_solved"], e["median_path"],
                 e["solves_using_donor_edges"], e["total_wall_s"], e["nodes_per_s"]])
 
-    md = os.path.join(OUT_DIR, "SUMMARY.md")
+    md = os.path.join(OUT_DIR, f"{prefix}SUMMARY.md")
     lines = [
-        "# New moves on subset-60 at tiny budgets",
+        "# New moves on subset-60 at tiny budgets"
+        + (" — stage 2" if prefix else ""),
         "",
         f"One {budget:,}-node run per arm per presentation "
         "(`solved_at` gives every smaller budget); cap 24, cyclic reduction on. "
         "Solve counts include ONLY independently verified paths "
-        "(`certify.verify_solution` for macro arms, `moves_to_states` replay for "
-        "plain arms); unverified solves are listed separately and count as failures.",
+        "(`certify.verify_solution` for certificate arms, `moves_to_states` replay "
+        "for plain arms — for cov arms the verified object is the Whitehead "
+        "image's path; the portal supplies the rest of the claim); unverified "
+        "solves are listed separately and count as failures. The `claim` column "
+        "is load-bearing: an `AC_TRIVIAL_IFF` solve proves the original "
+        "presentation AC-trivial without materialising a path for it, and must "
+        "never be pooled with `AC_EQ path` counts as if it were one.",
         "",
-        "| arm | moves | ordering | " +
+        "| arm | moves | ordering | claim | " +
         " | ".join(f"@{b}" for b in checkpoints) +
-        " | median nodes | median path | donor-edge solves | wall s | nodes/s |",
-        "|---|---|---|" + "---:|" * (len(checkpoints) + 5),
+        " | median nodes | median path | macro-edge solves | wall s | nodes/s |",
+        "|---|---|---|---|" + "---:|" * (len(checkpoints) + 5),
     ]
-    meta = {
-        "greedy": ("sub", "L"),
-        "s20_mk2": ("sub", "s20_mk2"),
-        "macro_L": ("sub+donor", "L"),
-        "macro_s20_mk2": ("sub+donor", "s20_mk2"),
-    }
-    for arm in ARMS:
+    for arm in arms:
         e = per_arm[arm]
-        mv, ordr = meta[arm]
+        mv, ordr, claim = ARM_META[arm]
         cp = e["solved_at_checkpoint"]
         lines.append(
-            f"| {arm} | {mv} | {ordr} | " +
+            f"| {arm} | {mv} | {ordr} | {claim} | " +
             " | ".join(str(cp[b]) for b in checkpoints) +
             f" | {e['median_nodes_solved']} | {e['median_path']} | "
             f"{'-' if e['solves_using_donor_edges'] is None else e['solves_using_donor_edges']} | "
@@ -224,13 +291,18 @@ def main():
                          "(the breadth ablation), e.g. --subw 3 4")
     ap.add_argument("--job-timeout", type=int, default=900,
                     help="seconds before one search is recorded as lost")
+    ap.add_argument("--stage2", action="store_true",
+                    help="run the stage-2 arms (ncrw + cov portal) instead of "
+                         "the stage-1 grid; outputs get a 'stage2_' prefix")
     args = ap.parse_args()
     checkpoints = tuple(b for b in CHECKPOINTS if b <= args.budget)
+    arms = STAGE2_ARMS if args.stage2 else ARMS
+    prefix = "stage2_" if args.stage2 else ""
 
     rows = load_rows()
     subw = tuple(args.subw) if args.subw else None
     jobs = [(arm, row, args.budget, args.goal_smax, subw)
-            for arm in ARMS for row in rows]
+            for arm in arms for row in rows]
     t0 = time.perf_counter()
     if args.jobs > 1:
         # apply_async + per-future timeout instead of imap: if a worker is
@@ -260,15 +332,18 @@ def main():
         results = [_run_one(j) for j in jobs]
     wall_total = time.perf_counter() - t0
 
-    results.sort(key=lambda r: (ARMS.index(r["arm"]), r["pres_id"]))
-    per_arm = summarise(results, args.budget, checkpoints)
+    results.sort(key=lambda r: (arms.index(r["arm"]), r["pres_id"]))
+    per_arm = summarise(results, args.budget, checkpoints, arms=arms)
     regen = f"python -m experiments.search.bench_new_moves --budget {args.budget}"
+    if args.stage2:
+        regen += " --stage2"
     if args.goal_smax != 2:
         regen += f" --goal-smax {args.goal_smax}"
     if subw:
         regen += f" --subw {subw[0]} {subw[1]}"
-    paths = write_outputs(results, per_arm, args.budget, checkpoints, wall_total, regen)
-    for arm in ARMS:
+    paths = write_outputs(results, per_arm, args.budget, checkpoints, wall_total,
+                          regen, arms=arms, prefix=prefix)
+    for arm in arms:
         e = per_arm[arm]
         print(f"{arm:18s} " +
               " ".join(f"@{b}={e['solved_at_checkpoint'][b]}" for b in checkpoints) +

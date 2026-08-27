@@ -117,6 +117,21 @@ def _rot_ops(word, k, slot):
     return ops, w
 
 
+def _donor_factor_ops(tgt, oth, jsign, w):
+    """Primitives appending ``w r_oth^jsign w⁻¹`` to slot ``tgt``, donor restored."""
+    ops = []
+    if jsign == -1:
+        ops.append(("inv", oth))
+    for g in inv_word(w):               # conj by word w^-1 => r_oth <- w r_oth w^-1
+        ops.append(("conj", oth, g))
+    ops.append(("mul", tgt, oth))
+    for g in reversed(inv_word(w)):     # undo, letter by letter, in reverse
+        ops.append(("conj", oth, _INV[g]))
+    if jsign == -1:
+        ops.append(("inv", oth))
+    return ops
+
+
 def expand_edge(parent, cert):
     """Primitive ops realising one certificate from the STORED parent pair.
 
@@ -143,15 +158,14 @@ def expand_edge(parent, cert):
             ops.append(("inv", oth))
     elif kind == "donor":
         _, _, jsign, w = cert
-        if jsign == -1:
-            ops.append(("inv", oth))
-        for g in inv_word(w):           # conj by word w^-1 => r_oth <- w r_oth w^-1
-            ops.append(("conj", oth, g))
-        ops.append(("mul", tgt, oth))
-        for g in reversed(inv_word(w)):  # undo, letter by letter, in reverse
-            ops.append(("conj", oth, _INV[g]))
-        if jsign == -1:
-            ops.append(("inv", oth))
+        ops.extend(_donor_factor_ops(tgt, oth, jsign, w))
+    elif kind == "ncrw":
+        # multi-factor normal-closure rewrite: one donor expansion per factor,
+        # in certificate order — the donor is restored between factors, so each
+        # factor's primitives are exactly a donor edge's
+        _, _, factors = cert
+        for jsign, w in factors:
+            ops.extend(_donor_factor_ops(tgt, oth, jsign, w))
     else:
         raise ValueError(f"unknown certificate kind {kind!r}")
     return ops

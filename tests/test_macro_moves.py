@@ -27,8 +27,9 @@ import pytest
 from experiments.search.greedy_baseline import greedy_search
 from experiments.search.heuristics import S20_MK2, make_priority, phi
 from experiments.search.macro_moves import (
-    certs_to_states, donor_children, donor_conjugators, goal_conjugators,
-    inv_word, macro_greedy_search, short_words, str_to_arr,
+    abelian_vec, certs_to_states, defect_factorization, donor_children,
+    donor_conjugators, goal_conjugators, inv_word, macro_greedy_search,
+    ncrw_conjugates, short_words, str_to_arr,
 )
 from experiments.search.certify import (
     apply_ops, cyclic_class, expand_edge, free_reduce, hop_ops, swap_ops,
@@ -206,6 +207,67 @@ def test_goal_conjugators_find_planted_one_edge_replacements():
         if s in got:
             hits += 1
     assert hits >= 40          # the planted jump is found in the vast majority
+
+
+def test_defect_factorization_is_exact_whenever_it_answers():
+    """Any returned factorization must reconstruct the defect LETTER FOR LETTER."""
+    rng = random.Random(23)
+    found = 0
+    for _ in range(120):
+        donor = _random_cyclic_word(rng, rng.randint(2, 6))
+        m = rng.randint(2, 3)
+        f = ""
+        for _ in range(m):
+            w = _random_reduced_word(rng, rng.randint(0, 2))
+            eps = rng.choice((1, -1))
+            base = donor if eps == 1 else inv_word(donor)
+            f = free_reduce(f + w + base + inv_word(w))
+        if not f:
+            continue
+        factors = defect_factorization(f, donor, max_factors=4)
+        if factors is None:
+            continue                     # peeling may legitimately miss hidden copies
+        found += 1
+        prod = ""
+        for jsign, w in factors:
+            base = donor if jsign == 1 else inv_word(donor)
+            prod = free_reduce(prod + w + base + inv_word(w))
+        assert prod == f
+    assert found >= 40                   # visible-copy plants are the common case
+
+
+def test_defect_factorization_abelian_filter_and_lift_reject():
+    # layer-0: donor xy has ab (1,1); defect ab (1,0) admits no integer multiple
+    assert defect_factorization("x", "xy") is None
+    # lift: ab passes (t=1) but no rotated donor copy is visible in the defect
+    assert abelian_vec("xyxYx") == abelian_vec("xxx")
+    assert defect_factorization("xyxYx", "xxx") is None
+
+
+def test_ncrw_edge_verifies_and_mutates_closed():
+    """A planted 2-factor rewrite: engine child == s, independent replay agrees,
+    and corrupting a factor breaks it."""
+    donor = "xyy"
+    f = free_reduce("x" + donor + "X" + donor)        # (x·d·X)·(d)
+    s = "yX"
+    r1 = free_reduce(s + inv_word(f))
+    hits = ncrw_conjugates(r1, donor, smax=2, max_factors=4)
+    assert (1, s) in hits, hits
+    factors = hits[(1, s)]
+    assert len(factors) >= 2
+    cert = ("ncrw", 1, tuple((j, w) for j, w in factors))
+    parent = (r1, donor)
+    ops = expand_edge(parent, cert)
+    words = apply_ops(list(parent), ops)
+    assert words == [s, donor]           # target rewritten, donor restored exactly
+    bad = ("ncrw", 1, tuple((-j, w) for j, w in factors))
+    words_bad = apply_ops(list(parent), expand_edge(parent, bad))
+    assert words_bad != [s, donor]
+
+
+def test_abelian_vec():
+    assert abelian_vec("xxYXy") == (1, 0)
+    assert abelian_vec("") == (0, 0)
 
 
 # ------------------------------------------------------------------ mutation gate

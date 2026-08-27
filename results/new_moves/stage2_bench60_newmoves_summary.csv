@@ -1,0 +1,7 @@
+arm,claim,solved_at_100,solved_at_250,solved_at_500,solved_at_1000,unverified_solves,median_nodes_solved,median_path,solves_using_donor_edges,total_wall_s,nodes_per_s
+greedy,AC_EQ path,17,20,26,29,0,61,16,,37.7,958
+s20_mk2,AC_EQ path,21,28,35,37,0,52,22,,57.6,497
+ncrw_L,AC_EQ path,17,20,26,29,0,60,15,28,84.7,426
+ncrw_s20_mk2,AC_EQ path,21,28,35,37,0,51,20,36,56.6,505
+cov_L,AC_TRIVIAL_IFF portal,20,24,32,36,0,65.5,16.0,,43.4,710
+cov_s20_mk2,AC_TRIVIAL_IFF portal,22,30,35,37,0,45,19,,43.7,642
