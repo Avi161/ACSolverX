@@ -2495,6 +2495,122 @@ cross-axis terms have not been shown to lower axis depth, and the affine
 unary defect is still present.  The axis energies are therefore exact
 leading candidates, not a full class-two obstruction.
 
+### 3.21 Ray-depth filtration and a terminal-dominance criterion
+
+The \(c\)-syllable count gives a uniform support bound for every fixed
+Hessian kernel.  For a finite vertex function \(f\), put
+
+\[
+ d(f):=\max\{
+  \operatorname{dep}(\langle t\rangle x):
+  f(x)\ne0
+ \},
+\tag{3.141}
+\]
+
+with \(d(0)=-\infty\).  For a finite group-ring element
+\(P=\sum_mp_mm\), put
+
+\[
+ c(P):=\max\{\#_c(m):p_m\ne0\},
+\tag{3.142}
+\]
+
+where \(\#_c(m)\) is the number of \(c\)-syllables in its reduced word.
+
+Suppose a correlation term
+\(\mathcal C_{\mathcal O}(f,g;P)\) contributes to a ray coordinate
+\(\mathcal O\) of depth \(k\).  Some supported \(x,y,m\) then has
+
+\[
+ Hx^{-1}myH
+ =D_{\mathcal O}
+ \quad\text{or}\quad
+ D_{\mathcal O}^{-1}.
+\]
+
+Writing \(x=t^i\rho_{\mathbf a}H\) and
+\(y=t^j\rho_{\mathbf b}H\), the reduced word \(x^{-1}my\) has at most
+
+\[
+ \operatorname{dep}(\operatorname{ray}(x))
+ +\operatorname{dep}(\operatorname{ray}(y))
+ +\#_c(m)
+\]
+
+\(c\)-syllables.  Free reduction and endpoint \(H\)-normalization can
+only decrease this number.  A depth-\(k\) ray representative or its
+inverse has exactly \(2k\) \(c\)-syllables.  Therefore
+
+\[
+\boxed{
+ \mathcal C_{\mathcal O}(f,g;P)\ne0
+ \quad\Longrightarrow\quad
+ 2\operatorname{dep}(\mathcal O)
+ \le d(f)+d(g)+c(P).}
+\tag{3.143}
+\]
+
+This applies termwise to a group-ring sum and to both tensor orientations.
+
+Split the homogeneous quadratic free-bucket form using the gauged
+representative into the terminal contribution (3.112) and the remaining
+block
+
+\[
+ \sum_{s=0}^3\sum_{t=0}^3
+ F_s\otimes\mathbf H^\circ_{st}F_t.
+\tag{3.144}
+\]
+
+Let \(d_s=d(F_s)\), let \(d_4>-\infty\), and choose a deepest ray
+\(\mathcal O\) meeting \(\operatorname{supp}F_4\).  Finally, let
+\(d_{\mathrm{aff}}(F)\) be the largest ray depth in the finite
+constant-plus-unary projection
+
+\[
+ \Xi_{\mathrm{ray}}(\Theta(F))
+ -\Xi_{\mathrm{ray}}(\Theta_2(F)),
+\tag{3.145}
+\]
+
+where \(\Theta_2\) is the homogeneous degree-two part.  The literal-stream
+formula (3.30) makes this a finite, exact quantity for each \(F\).
+
+If
+
+\[
+\boxed{
+\begin{aligned}
+ d_4&>d_{\mathrm{aff}}(F),\\
+ 2d_4&>
+ d_s+d_t+c(\mathbf H^\circ_{st})
+ \quad
+ (0\le s,t\le3,\ \mathbf H^\circ_{st}\ne0),
+\end{aligned}}
+\tag{3.146}
+\]
+
+then (3.143) excludes every nonterminal quadratic and affine contribution
+from the \(\mathcal O\)-coordinate.  Equation (3.132) remains there, so
+
+\[
+\boxed{
+ \text{conditions (3.146)}
+ \quad\Longrightarrow\quad
+ [\Xi_{\mathrm{ray}}(\Theta(F))]_{\mathcal O}
+ =-\frac12\sum_i(f_i-f_{i-2})^2<0.}
+\tag{3.147}
+\]
+
+Thus every terminal-dominant finite correction is obstructed in the full
+class-two cokernel.  This is a genuine class of arbitrary-support
+corrections, but not all of them: (3.146) can fail when another slot has
+comparable ray depth or when the affine unary support reaches the same
+ray.  The remaining global task is to prove that some forest-axis
+filtration is dominant for every nonzero balanced source, or to analyze
+the finite set of tied top symbols.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
