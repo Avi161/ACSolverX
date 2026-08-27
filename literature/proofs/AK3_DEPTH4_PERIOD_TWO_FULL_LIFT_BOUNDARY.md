@@ -1231,6 +1231,97 @@ cutoff/equality record for every family in (5.46), compute a concrete
 \(N\), and evaluate \(0\leq i\leq N+39\).  No period two,
 \(R_{k,i}=0\), lift, or AK(3) conclusion follows.
 
+### 5.5 Exact onset functional
+
+The missing onset is a finite maximum, not an unspecified compactness
+constant.  After normalizing either the identity action or one fixed
+occurrence action \(q\), write every old branch and shell branch as
+
+\[
+\begin{aligned}
+ |U_{\alpha,q}(h)|&=24h+\ell_{\alpha,q}
+ &&(h\geq H_{\alpha\beta q}),\\
+ |V_{\beta,q}(i)|&=24i+\ell_{\beta,q}
+ &&(i\geq I_{\alpha\beta q}),
+\end{aligned}
+\tag{5.62}
+\]
+
+where the pairwise protection bases include the whole-word reduction,
+terminal-\(c\), Fine--Wilf/common-root phase, and fixed-suffix lexical
+windows.  Let \(\delta_\alpha\) be the exact old-domain offset in
+\(0\leq h\leq i+\delta_\alpha\), and put
+
+\[
+ d_{\alpha\beta q}
+ :=\frac{\ell_{\alpha,q}-\ell_{\beta,q}}{24}.
+\tag{5.63}
+\]
+
+When \(d_{\alpha\beta q}\in\mathbb Z\), the only unbounded equality line is
+\(h=i-d_{\alpha\beta q}\).  A conservative onset for this ordered pair is
+
+\[
+\begin{aligned}
+ N_{\alpha\beta q}:=\max\Bigg\{&
+ I_{\alpha\beta q},\
+ H_{\alpha\beta q}+
+   \max\!\left(
+   \left\lceil d_{\alpha\beta q}\right\rceil,
+   -\delta_\alpha,0\right),\\
+ &1+
+ \max_{0\leq h<H_{\alpha\beta q}}
+ \left\lfloor
+ \frac{|U_{\alpha,q}(h)|-\ell_{\beta,q}}{24}
+ \right\rfloor
+ \Bigg\},
+\end{aligned}
+\tag{5.64}
+\]
+
+with empty maxima omitted and negative entries clipped at zero.  The
+second term places the moving length cut and every integral equality
+offset inside the protected old branch and places the active domain cap
+\(i+\delta_\alpha\) there as well.  The third ensures that each
+permanently present unprotected old level is strictly shorter than the
+growing shell; its remaining finite-action weight is then periodic
+without further shortlex changes.
+
+For a direct one-parameter pair, including an endpoint connector against a
+shell row or two new shell rows, let
+\(N^{\mathrm{dir}}_{\beta\gamma q}\) be its pairwise protected comparison
+onset.  Take the maxima over every slot-compatible pair and over the
+identity and actual occurrence prefixes:
+
+\[
+\boxed{
+ N_{\mathrm{cat}}
+ :=\max\!\left\{
+ \max_{\alpha,\beta,q}N_{\alpha\beta q},\
+ \max_{\beta,\gamma,q}N^{\mathrm{dir}}_{\beta\gamma q}
+ \right\}.}
+\tag{5.65}
+\]
+
+Once the catalog verifies all protected forms and collision branches,
+\(N=N_{\mathrm{cat}}\) is valid in (5.61).  The required records are
+exactly:
+
+1. all \(P_1/P_*\) old block-position families, including the inactive
+   collision fibers, the fixed base rows, and endpoint connectors;
+2. the \(q_i\) and \(q_{i+1}\) shell families and both slot-zero
+   singletons;
+3. collision/equality, old-before-shell, and
+   \(q\)-transported order for every occurrence prefix of the slot;
+4. the \(q_i\)-versus-\(q_{i+1}\) new--new shell comparisons; and
+5. every finite level \(0\leq h<H_{\alpha\beta q}\).
+
+The existing 1,128-pair chord ledger and 4,560-pair direct ledger compare
+the tokens inside one increment \(q_i\).  They do not contain the complete
+old \(D_i\) prefix against the two-step shell \(E_i=q_i+q_{i+1}\), so they
+cannot supply (5.65) by reuse.  Formula (5.65) is the exact next
+certificate interface; no value of \(N_{\mathrm{cat}}\) is asserted here.
+
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
   reaches \(F/\gamma_3N\).

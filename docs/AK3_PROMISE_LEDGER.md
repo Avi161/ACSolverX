@@ -155,7 +155,10 @@ finite quotient do not close a route.
   period divides 40:
   \(\exists N\,\forall k\,\forall i\geq N,\ R_{k,i+40}=R_{k,i}\).
   The pairwise comparator/collision catalog is still required to
-  instantiate the effective onset \(N\); no preperiod-three claim, finite
+  instantiate the effective onset \(N\).  The proof now gives it as an
+  explicit maximum of protected branch bases, affine equality offsets, and
+  the last length crossing of every finite old level; the catalog must
+  supply those finite fields.  No preperiod-three claim, finite
   \(i\)-window, or vanishing is proved.  The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
