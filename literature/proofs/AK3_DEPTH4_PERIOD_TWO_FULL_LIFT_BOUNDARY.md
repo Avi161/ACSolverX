@@ -26,7 +26,10 @@ cut form.  The all-index target is therefore equivalent to the conservative
 \(R_{4,i}=0\) for \(3\leq i\leq169\), and Section 5.8 closes the three
 coordinate-four seeds.  Thus all 170 coordinate-four values vanish and
 exactly 2,210 values in the other thirteen coordinates remain unevaluated.
-Even simultaneous
+Section 3.1 now replaces that finite shadow by a universal
+relative-displacement quotient of the full class-two cokernel.  It is
+infinite-dimensional over \(\mathbb F_2\) and gives the next exact gate for
+arbitrary balanced source-pair corrections.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
@@ -282,6 +285,239 @@ shows that the fifteen recorded covectors detect all of \(\mathcal C_2\).
 The known finite-dimensional obstruction spans and the remote syzygies prove
 that a fixed bounded list of directions or covectors cannot be treated as a
 global classification.
+
+### 3.1 Infinite relative-displacement quotient
+
+Put \(H=\langle c\rangle\), so \(X=Q/H\), and reduce the exterior module
+modulo two:
+
+\[
+ \overline W:=\Lambda^2\mathbb Z[X]\otimes\mathbb F_2.
+\tag{3.11}
+\]
+
+Its basis is the set of unordered two-element subsets of \(X\).  Define the
+relative-displacement index set
+
+\[
+ \mathscr D:=
+ \left(
+  (H\backslash Q/H)\setminus\{H\}
+ \right)\big/\left(D\sim D^{-1}\right).
+\tag{3.12}
+\]
+
+For two distinct vertices, put
+
+\[
+ \boxed{
+ \Xi_0(e_{qH}\wedge e_{rH})
+ :=\delta_{[Hq^{-1}rH]_\pm}
+ \in\mathbb F_2^{(\mathscr D)}.}
+\tag{3.13}
+\]
+
+This is well defined.  Changing the representatives of \(qH\) and \(rH\)
+changes \(q^{-1}r\) only inside its \(H\)-double coset; diagonal left
+translation leaves that double coset unchanged; and swapping the two
+vertices replaces it by its inverse.  Conversely, equality of the
+unoriented double cosets constructs a diagonal \(Q\)-translation between
+the two unordered pairs.  Hence (3.13) is exactly the coinvariant map and
+
+\[
+ \boxed{
+ \overline W_Q\cong\mathbb F_2^{(\mathscr D)}.}
+\tag{3.14}
+\]
+
+The index set is explicit and infinite.  Every nontrivial \(H\)-double
+coset has a unique reduced representative
+
+\[
+ t^{n_0}c\,t^{n_1}c\cdots c\,t^{n_k},
+ \qquad n_j\ne0,
+\tag{3.15}
+\]
+
+and inversion sends the exponent sequence
+\((n_0,\ldots,n_k)\) to \((-n_k,\ldots,-n_0)\).  Working modulo two removes
+the only orientation caveat: an orbit stabilizer which exchanges the two
+vertices acts by minus one integrally but by one on \(\overline W\).
+
+For \(L_r=\sum_g a_{r,g}g\), diagonal \(Q\)-invariance gives
+
+\[
+\begin{aligned}
+ \Xi_0(L_r^{(2)}w)
+ &=\sum_g a_{r,g}\Xi_0(gw)\\
+ &=\varepsilon(L_r)\Xi_0(w)=0,
+ \qquad 0\le r\le4,
+\end{aligned}
+\tag{3.16}
+\]
+
+because all five exact operators have augmentation zero.  Therefore
+\(\Xi_0\) descends through every second-layer correction and gives a
+surjective quotient
+
+\[
+ \boxed{
+ \Xi:\mathcal C_2\twoheadrightarrow
+ \mathbb F_2^{(\mathscr D)},
+ \qquad
+ \Xi([w])=\Xi_0(w\bmod2).}
+\tag{3.17}
+\]
+
+In particular, \(\mathcal C_2\) has an infinite-dimensional
+characteristic-two quotient.  Every candidate first-layer correction must
+satisfy the exact necessary condition
+
+\[
+ \boxed{\Xi(\Theta(F))=0.}
+\tag{3.18}
+\]
+
+The fifteen tracked bits factor through this single vector-valued
+obstruction.  Indeed, an invariant finite-action pair weight is constant on
+each diagonal \(Q\)-orbit of unordered pairs, so it is a scalar functional
+of (3.13).  The full-wedge bit is the augmentation which sums every
+\(\mathscr D\)-coordinate.  Thus \(\Xi\) strictly organizes and refines the
+existing finite shadows; it is not another bounded point-action quotient.
+
+Equation (3.18) is not sufficient for (3.8).  A global class-two
+obstruction would follow from proving
+\(\Xi(\Theta(F))\ne0\) for every finite balanced source pair.  If a
+balanced source pair kills (3.18), its complete class in \(\mathcal C_2\)
+must still be evaluated.  Neither alternative is decided here.
+
+### 3.2 Complete balanced-source expansion
+
+The forest parametrization in Section 2 gives an exact anchored generating
+family for
+the complete source-pair space, including the formerly unused \(f_1\)
+source.  Let \(\mathcal T_0,\mathcal T_1\) be the two forest components and,
+for \(r\in\{0,1\}\), define
+
+\[
+ \lambda_r(v):=
+ \sum_{x\in\mathcal T_0}[e_x](L_re_v).
+\tag{3.19}
+\]
+
+Every \(L_r\) has total augmentation zero, so the two component sums of
+\(L_re_v\) are \((\lambda_r(v),-\lambda_r(v))\).  Keep the slot-zero anchor
+\(a=T\), for which \(\lambda_0(a)=1\).  For a source atom \((r,v)\), form
+the source pair
+
+\[
+ s^{r,v}_j
+ :=[j=r]e_v-[j=0]\lambda_r(v)e_a,
+ \qquad j\in\{0,1\}.
+\tag{3.20}
+\]
+
+Its boundary \(L_0s^{r,v}_0+L_1s^{r,v}_1\) is component-balanced.  Let
+\(H_r(v)\in\mathcal H_{\mathrm{fin}}\) be (3.20) completed by the unique
+finite forest flow in slots \(2,3,4\).  For \(r=0\), this is the anchored
+direction \(H(v)\) used in the unary theorem.
+
+If \(F\in\mathcal H_{\mathrm{fin}}\) has source pair \((f_0,f_1)\), its
+balance condition is exactly
+
+\[
+ \sum_{r=0}^1\sum_v f_r(v)\lambda_r(v)=0.
+\tag{3.21}
+\]
+
+The source pair of the finite sum
+\(\sum_{r,v}f_r(v)H_r(v)\) equals \((f_0,f_1)\): the only additional source
+is the anchor coefficient given by the negative of (3.21).  Both sides
+have the same boundary, and finite forest boundary injectivity makes their
+forest flows equal.  Therefore
+
+\[
+ \boxed{
+ F=\sum_{r=0}^1\sum_v f_r(v)H_r(v).}
+\tag{3.22}
+\]
+
+This is an integral identity of all five correction slots, not merely a
+spanning statement modulo two.
+
+Put
+
+\[
+\begin{aligned}
+ q_\Xi(F)&:=\Xi(\Theta(F)),&
+ C_\Xi&:=q_\Xi(0),\\
+ U_\Xi(D)&:=q_\Xi(D)+C_\Xi,&
+ B_\Xi(D,E)&:=q_\Xi(D+E)+q_\Xi(D)+q_\Xi(E)+C_\Xi.
+\end{aligned}
+\tag{3.23}
+\]
+
+Universal affine quadraticity and the tensor-diagonal propagation theorem
+apply before every exterior readout, not only before the fifteen scalar
+ones.  Consequently \(q_\Xi\) factors through
+\(\mathcal H_{\mathrm{fin}}/2\mathcal H_{\mathrm{fin}}\), while \(B_\Xi\)
+is biadditive and alternating.  Choose any total order on the source atoms
+\(\alpha=(r,v)\), and write
+\(\bar f_\alpha=f_r(v)\bmod2\).  Equations (3.22)--(3.23) give the exact
+finite expansion
+
+\[
+\boxed{
+\begin{aligned}
+ q_\Xi(F)
+ ={}&C_\Xi
+ +\sum_\alpha \bar f_\alpha U_\Xi(H_\alpha)\\
+ &+\sum_{\alpha<\beta}
+   \bar f_\alpha\bar f_\beta
+   B_\Xi(H_\alpha,H_\beta).
+\end{aligned}}
+\tag{3.24}
+\]
+
+The already excluded anchored family is detected by this stronger map:
+
+\[
+ \boxed{q_\Xi(D_{ij})\ne0\qquad(i,j\geq0).}
+\tag{3.25}
+\]
+
+For \(i\ne j\), the full-wedge functional of \(q_\Xi(D_{ij})\) is one by
+(4.4).  For \(i=j\), Section 5.8 and the base vector give
+
+\[
+ S_4(D_{ii})
+ =U_4(D_{ii})+S_4(0)
+ =V_{i,4}+(C_{14})_4
+ =1+0=1.
+\tag{3.25a}
+\]
+
+Since both scalar readouts factor through \(\Xi\), (3.25) follows.
+
+Equation (3.24) also identifies why (3.25) does not settle (3.18).
+Different translated wedges can occupy the same relative-displacement
+bucket, and the mixed terms \(B_\Xi(H_\alpha,H_\beta)\) may cancel the
+unary buckets.  For example, whenever the displayed vertices are distinct,
+
+\[
+ \Xi_0\left(
+ e_H\wedge e_{gH}
+ +e_{qH}\wedge e_{qgH}
+ \right)=0,
+\tag{3.26}
+\]
+
+because both wedges have the same relative double coset.  No existing
+theorem excludes such bucket-paired tensors from the pulled-back mixed
+polarization.  The exact next obligation is therefore to prove
+noncancellation in at least one \(\mathscr D\)-coordinate for every finite
+coefficient set in (3.24), or to construct a balanced coefficient set for
+which the complete vector vanishes.
 
 ## 4. Exact diagonal sieve
 

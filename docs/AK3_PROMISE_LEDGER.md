@@ -134,7 +134,19 @@ finite quotient do not close a route.
   `11101011010101` before a diagonal candidate can pass the recorded
   syndrome.  The next constructive target is the full quadratic cokernel
   equation on arbitrary balanced source-pair corrections, with every mixed
-  polarization retained.  The weighted Green identity removes the untransported
+  polarization retained.  The universal relative-displacement map
+  \(\Xi\) sends a wedge \(e_{qH}\wedge e_{rH}\) to the unoriented double
+  coset of \(q^{-1}r\).  Since all five lifting operators have augmentation
+  zero, it gives a surjection from the full class-two cokernel onto the
+  infinite-dimensional vector space indexed by nontrivial
+  \(H\backslash Q/H\) modulo inversion.  Thus every candidate must satisfy
+  \(\Xi(\Theta(F))=0\).  The complete balanced source pair has an exact
+  anchored expansion through both source slots, and its \(\Xi\)-defect is
+  the affine constant plus all anchored unary buckets plus every mixed
+  bucket.  The anchored family has nonzero \(\Xi\)-defect, but no theorem
+  controls all mixed buckets; per-double-coset noncancellation is now the
+  exact global obstruction target.  The weighted Green identity removes the
+  untransported
   merged-support shortlex sum, but the correct ordered-half wedge reader is
   not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
   occurrence augmentation.  Projected linear/outer terms outside that
