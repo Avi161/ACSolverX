@@ -1851,14 +1851,50 @@ There is an unavoidable first collision.  For every \(k\in\mathbb Z\),
 \tag{3.98}
 \]
 
+This is the complete fiber.
+
+\[
+\boxed{
+ \mathscr D(v)=\mathscr D(w)
+ \quad\Longleftrightarrow\quad
+ wH=t^kvH\text{ for some }k\in\mathbb Z.}
+\tag{3.99}
+\]
+
+For the reverse implication use (3.98), allowing the harmless right
+\(H\)-representative.  Conversely, write
+
+\[
+ w^{-1}t^{-1}w=h_1v^{-1}t^{-1}vh_2,
+ \qquad h_1,h_2\in H.
+\tag{3.100}
+\]
+
+After removing the maximal initial \(t\)-power from a canonical
+representative of \(vH\), the reduced conjugate
+\(v^{-1}t^{-1}v\) has odd free-product syllable length and begins and ends
+with \(t\)-syllables.  Every conjugate of \(t^{-1}\) has odd syllable
+length.  If exactly one of \(h_1,h_2\) is \(c\), the right side of (3.100)
+has even syllable length, which is impossible.  If both are trivial,
+equality of the two conjugates and
+
+\[
+ C_Q(t^{-1})=\langle t\rangle
+\]
+
+give \(w=t^kv\).  If both are \(c\), then
+\(h_1v^{-1}t^{-1}vh_2=(vc)^{-1}t^{-1}(vc)\), and the same centralizer
+argument gives \(w=t^kvc\), which represents \(t^kvH\).  This proves
+(3.99).
+
 Thus terminal vertices on one left \(t\)-ray cannot be separated by these
-conjugate buckets.  The relevant coefficient is the ray-aggregated
-correlation (3.97), and distinct rays may still share a double coset.
-Moreover (3.96) is only the selected part of one external occurrence pair;
-the other occurrence terms and the affine unary defect remain.  A sound
-leading-bucket theorem must therefore prove noncancellation after grouping
-by the complete fibers of \(v\mapsto\mathscr D(v)\), rather than treating
-the \(-1\) in (3.93) as a pointwise pivot.
+conjugate buckets, but distinct rays do separate.  Formula (3.97) is
+exactly one finite ray-aggregated correlation.  Nevertheless (3.96) is
+only the selected part of one external occurrence pair; the other
+occurrence terms and the affine unary defect can still enter the same
+bucket.  A sound leading-bucket theorem must separate those remaining
+terms after ray aggregation, rather than treating the \(-1\) in (3.93) as
+a pointwise pivot.
 
 ## 4. Exact diagonal sieve
 
