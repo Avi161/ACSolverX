@@ -646,18 +646,349 @@ The powered outer load is (6.8), and the three finite-old values are
 This completes the inverse old--new term only.  It is independent of
 \(n\), but it is not the complete \(J^-_{n,e}\) edge law.
 
-## 7. Honest remaining boundary
+## 7. Exact joint pure-increment reduction
+
+### 7.1 Equivalent remaining scalar
+
+The pure-increment value is
+
+\[
+ \Phi(b^-_{n,e})=L(b^-_{n,e})+Q(b^-_{n,e}).
+ \tag{7.1}
+\]
+
+By (0.3) and the proved old--new value (6.15), the inverse edge law
+
+\[
+ J^-_{n,e}=[e=0]
+ \tag{7.2}
+\]
+
+is equivalent to
+
+\[
+ \boxed{\Phi(b^-_{n,e})=L(b^-_{n,e})+Q(b^-_{n,e})=1.}
+ \tag{7.3}
+\]
+
+Write
+
+\[
+ L(b^-_{n,e})
+ =L((b^-_{n,e})^{(0)})+L_{\ne0}(b^-_{n,e}).
+ \tag{7.4}
+\]
+
+The reviewed slot-zero identity (1.12) then makes (7.3) equivalent to
+
+\[
+ \boxed{
+ L_{\ne0}(b^-_{n,e})+Q(b^-_{n,e})=[e\geq1].}
+ \tag{7.5}
+\]
+
+Equations (7.3)--(7.5) are equivalences, not evaluations of the displayed
+pure-increment terms.
+
+### 7.2 Exact slot-zero order
+
+Put
+
+\[
+ y_e
+ =\texttt{cT}\,\Gamma^{-e}\texttt c\,
+   \Gamma^{-(n+1)}\texttt t,
+ \qquad |\Gamma|=24.
+ \tag{7.6}
+\]
+
+Exact free reduction gives
+
+\[
+ |y_0|=24(n+1)+4,
+ \tag{7.7}
+\]
+
+and, for \(e\geq1\),
+
+\[
+ |y_e|=24(e+n+1)+2.
+ \tag{7.8}
+\]
+
+Thus \(|y_1|-|y_0|=22\), while
+\(|y_{e+1}|-|y_e|=24\) for \(e\geq1\).  Shortlex compares length first, so
+
+\[
+ \boxed{y_e<_{\rm sl}y_{e+1}\qquad(e\geq0).}
+ \tag{7.9}
+\]
+
+Consequently the unique slot-zero coordinate-order predicate is
+
+\[
+ \pi_0(e):=[y_e<_{\rm sl}y_{e+1}]=1.
+ \tag{7.10}
+\]
+
+### 7.3 The 36 nonzero-slot coordinates
+
+For a literal path word \(X=X_0\cdots X_{r-1}\), define
+
+\[
+\boxed{
+ V(\nu,h;X,k)
+ :=\operatorname{cvert}\!\left(
+ m_{X_k}E(X_{<k})q_\nu^{-h}c_\nu p_\nu^n r_\nu
+ \right).}
+ \tag{7.11}
+\]
+
+The full displayed product is formed before the final canonicalization.
+The multiplier \(m_{X_k}\) and the incidence sign are those of the
+authoritative stored-letter table.
+
+Use the abbreviations
+
+\[
+\begin{aligned}
+ A&=\mathsf A^-=\texttt{gABBgAbaBgAgAg},\\
+ B&=\mathsf B^-=\texttt{BgAbaBgAgAggAB},\\
+ Z&=\texttt{baG},\qquad W=U=\texttt{aG}.
+\end{aligned}
+ \tag{7.12}
+\]
+
+After collision aggregation, the slot-two coordinate set is
+
+\[
+\boxed{
+\begin{aligned}
+ \mathcal S_2={}&
+ \{V(1,e;A,k):k\in\{2,3,6,8\}\}\\
+ &{}\cup\{V(3,e;B,k):k\in\{0,3,5\}\}\\
+ &{}\cup\{V(3,e;Z,0)\}.
+\end{aligned}}
+ \tag{7.13}
+\]
+
+The slot-three coordinate set is
+
+\[
+\boxed{
+\begin{aligned}
+ \mathcal S_3={}&
+ \{V(1,e;A,k):k\in\{0,4,9,11,13\}\}\\
+ &{}\cup\{V(3,e;B,k):k\in\{1,6,8,10\}\}\\
+ &{}\cup\{V(3,e;Z,2)\}\\
+ &{}\cup\{V(3,h;W,1):h\in\{e,e+1\}\}\\
+ &{}\cup\{V(2,h;U,1):h\in\{e,e+1\}\}.
+\end{aligned}}
+ \tag{7.14}
+\]
+
+The slot-four coordinate set is
+
+\[
+\boxed{
+\begin{aligned}
+ \mathcal S_4={}&
+ \{V(1,e;A,k):k\in\{1,5,7,10,12\}\}\\
+ &{}\cup\{V(3,e;B,k):k\in\{2,4,7,9\}\}\\
+ &{}\cup\{V(3,e;Z,1)\}\\
+ &{}\cup\{V(3,h;W,0):h\in\{e,e+1\}\}\\
+ &{}\cup\{V(2,h;U,0):h\in\{e,e+1\}\}.
+\end{aligned}}
+ \tag{7.15}
+\]
+
+The three omitted terminal \(B\)-positions cancel the new \(Z\)-copy:
+
+\[
+\begin{aligned}
+ V(3,e;B,11)&=V(3,e+1;Z,2),\\
+ V(3,e;B,12)&=V(3,e+1;Z,1),\\
+ V(3,e;B,13)&=V(3,e+1;Z,0).
+\end{aligned}
+ \tag{7.16}
+\]
+
+They have even collision coefficients and do not belong to
+\(\mathcal S_2\sqcup\mathcal S_3\sqcup\mathcal S_4\).  Hence
+
+\[
+ |\mathcal S_2|=8,\qquad
+ |\mathcal S_3|=|\mathcal S_4|=14.
+ \tag{7.17}
+\]
+
+Together with the two slot-zero coordinates \(y_e,y_{e+1}\), this gives
+exactly \(38\) collision-aggregated module coordinates.
+
+### 7.4 Raw cochain and endpoint potential
+
+For the positive/negative occurrence pair
+
+\[
+ (o_2^+,o_2^-)=(1,6),\quad
+ (o_3^+,o_3^-)=(9,14),\quad
+ (o_4^+,o_4^-)=(15,16),
+ \tag{7.18}
+\]
+
+define the paired raw bit
+
+\[
+ R_s(v)
+ :=\rho_{o_s^+}(v)+\rho_{o_s^-}(v)
+ \qquad(v\in X).
+ \tag{7.19}
+\]
+
+Define the raw edge cochain \(\mathcal R\) by
+
+\[
+ \mathcal R(E_s(v))=R_s(v).
+ \tag{7.20}
+\]
+
+The nonzero-slot raw term is exactly the sum of the 36 raw bits
+obtained by restricting this global cochain to the current mask support:
+
+\[
+\boxed{
+ L_{\ne0}(b^-_{n,e})
+ =\sum_{s=2}^4\sum_{v\in\mathcal S_s}R_s(v)
+ =\langle\beta^-_e,\mathcal R\rangle.}
+ \tag{7.21}
+\]
+
+Choose one root in each source-tree component and set
+
+\[
+ \psi_R(x)
+ :=\sum_{f\in[\mathrm{root},x]}\mathcal R(f),
+ \qquad
+ \Psi_n(h):=\sum_{\nu=1}^6\psi_R(\widetilde v_\nu(h)).
+ \tag{7.22}
+\]
+
+The forest endpoint identity and
+\(\beta^-_e=\widetilde C_Q(e)\) give the exact raw endpoint potential
+
+\[
+ \boxed{
+ L_{\ne0}(b^-_{n,e})
+ =\Psi_n(e)+\Psi_n(e+1).}
+ \tag{7.23}
+\]
+
+This is a telescoping identity for the raw cochain.  It does not evaluate
+either endpoint potential.
+
+### 7.5 Source-tree matching and the joint target
+
+Let \(C_{84}\) be the literal chronological list of decorated tokens of
+\(b^-_{n,e}\).  Each of the two slot-zero coordinates has six occurrence
+copies, while each of the 36 edge coordinates has its two slot occurrences:
+
+\[
+ 2\cdot6+36\cdot2=84.
+ \tag{7.24}
+\]
+
+Let \(M\) be the exact source-tree matching: boundary tokens are paired to
+the first and last incident edge events, and consecutive edge events are
+paired at their common canonical tree vertex along each unique source-tree
+path.  At every integral collision fiber, retain one deterministic
+provenance copy exactly when the aggregated coefficient is odd.  Pair all
+other copies first across opposite signs and then in same-sign pairs, and
+replicate those label-preserving cancellation edges at each occurrence.
+The union of the virtual source matching and these cancellation edges is a
+disjoint union of alternating cycles and paths.  Discard the cycles and
+pair the two actual endpoints of every path.  The resulting collision-first
+matching \(M\) is a fixed-point-free, label-preserving perfect matching of
+\(C_{84}\).
+
+For two chords of \(M\), call them crossing when their endpoints alternate
+in \(C_{84}\), and let
+
+\[
+ \operatorname{cr}_{\ne}(C_{84},M)
+ \tag{7.25}
+\]
+
+be the parity of crossings between chords with distinct canonical labels.
+The heterochromatic chord formula gives
+
+\[
+ \boxed{
+ Q(b^-_{n,e})=\operatorname{cr}_{\ne}(C_{84},M).}
+ \tag{7.26}
+\]
+
+The slot-zero order predicate \(\pi_0\) is fixed by (7.10).  The remaining
+same-occurrence module-order data are exactly the pairwise predicates within
+the three nonzero slots:
+
+\[
+ \binom82+\binom{14}2+\binom{14}2
+ =28+91+91=210.
+ \tag{7.27}
+\]
+
+No value for those 210 predicates is asserted here.  Combining
+(7.5), (7.21), and (7.26) gives the exact joint remaining scalar:
+
+\[
+\boxed{
+ \sum_{s=2}^4\sum_{v\in\mathcal S_s}R_s(v)
+ +\operatorname{cr}_{\ne}(C_{84},M)
+ \stackrel{\rm open}{=}[e\geq1].}
+ \tag{7.28}
+\]
+
+Equation (7.28) is equivalent to \(\Phi(b^-_{n,e})=1\) and hence to the
+inverse edge law, but it is not proved.
+
+### 7.6 Why topology does not finish the scalar
+
+The source-tree topology determines the 38 module coordinates, the 84
+decorated tokens, the matching \(M\), and the endpoint expression (7.23).
+It does not determine the occurrence-wise raw weights \(R_s(v)\) or the
+within-occurrence canonical shortlex order represented by the 210
+predicates in (7.27).
+
+In particular, the exact counterexample in
+period_two_crossing_parity_induction.md, Section 5, equations (5.4)--(5.5),
+shows that \(\rho_o(v)\) is not a function only of the central
+post-\(\operatorname{cvert}\) label.  A label-preserving source-tree
+matching therefore cannot erase the local raw mirrors.  Nor does path
+distance determine canonical quotient shortlex.
+
+Consequently
+
+\[
+ \boxed{\Phi(b^-_{n,e})=1}
+ \tag{7.29}
+\]
+
+remains open.
+
+## 8. Honest remaining boundary
 
 The following terms are not evaluated here:
 
-1. the remaining non-slot-zero part of \(L(b^-_{n,e})\);
-2. \(Q(b^-_{n,e})\) and the required new--new contributions;
+1. the joint raw/crossing identity (7.28), comprising the 36 raw bits and
+   210 unresolved same-slot order predicates;
+2. equivalently, \(Q(b^-_{n,e})\), the non-slot-zero raw term, and the
+   required new--new contribution;
 3. the complete target \(J^-_{n,e}=[e=0]\);
 4. the diagonal defect and the unary delta identity; and
 5. the period-two lift, AK(3), stable Andrews--Curtis, and
    Andrews--Curtis.
 
-The exact chain, topology, tie, and finite-old identities above make no
-claim that any of these remaining terms vanishes.  In particular, this
+The exact chain, topology, tie, finite-old, and joint-reduction identities
+above make no claim that the open scalar vanishes.  In particular, this
 note is not a complete nonpositive-chamber edge-law proof and contains no
 AK3 or Andrews--Curtis conclusion.

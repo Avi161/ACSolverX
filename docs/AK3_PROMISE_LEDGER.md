@@ -43,7 +43,9 @@ finite quotient do not close a route.
   \(\mathbb B(A^-_{n,e},b^-_{n,e})=[e\geq1]\), independently of \(n\).
 - **Resume point:** prove the joint inverse scalar identity
   \(L_{\ne0}(b^-_{n,e})+Q(b^-_{n,e})=[e\geq1]\), equivalently the remaining
-  non-slot-zero raw plus quadratic load, then the diagonal defect.
+  pure-increment theorem \(\Phi(b^-_{n,e})=1\).  Its exact unresolved schema
+  is 36 paired raw bits plus 210 same-slot module-order predicates on the
+  collision-aggregated 84-token stream.  Then prove the diagonal defect.
 - **Nonclaim:** positive covariance is not by itself the \(j\)-edge values and
   does not prove the other chambers, diagonal identity, unary delta,
   period-two lift, AK(3), stable AC, or AC.
