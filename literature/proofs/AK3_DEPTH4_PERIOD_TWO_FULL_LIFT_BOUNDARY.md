@@ -2611,6 +2611,142 @@ ray.  The remaining global task is to prove that some forest-axis
 filtration is dominant for every nonzero balanced source, or to analyze
 the finite set of tied top symbols.
 
+### 3.22 Exact top-ray splice rule
+
+The equality case of the ray-depth bound has no hidden free reductions.
+This turns every tied top symbol into a finite splice test on exponent
+sequences.
+
+Write two supported vertices as
+
+\[
+ x=t^i\rho_{\mathbf a}H,\qquad
+ y=t^j\rho_{\mathbf b}H,
+ \tag{3.148}
+\]
+
+where \(\mathbf a=(a_1,\ldots,a_r)\) and
+\(\mathbf b=(b_1,\ldots,b_s)\).  Put a reduced kernel monomial in the
+form
+
+\[
+ m=t^{p_0}c\,t^{p_1}c\cdots c\,t^{p_h},
+ \tag{3.149}
+\]
+
+where \(h=\#_c(m)\), the interior exponents are nonzero, and either
+endpoint exponent may be zero.  A depth-\(k\) ray bucket, in one of its
+two orientations, has exponent sequence
+
+\[
+ (-u_k,\ldots,-u_1,\eta,u_1,\ldots,u_k),
+ \qquad \eta\in\{-1,1\}.
+ \tag{3.150}
+\]
+
+**Theorem 3.22 (top-ray splice).**  Suppose
+\(Hx^{-1}myH\) is a ray bucket of depth \(k\) and equality holds in
+(3.143):
+
+\[
+ 2k=r+s+h.
+ \tag{3.151}
+\]
+
+If \(h\geq1\), then \(p_0-i\ne0\), \(p_h+j\ne0\), and the literal
+concatenation
+
+\[
+ \boxed{
+ (-a_r,\ldots,-a_1,
+   p_0-i,p_1,\ldots,p_{h-1},p_h+j,
+   b_1,\ldots,b_s)
+ =(-u_k,\ldots,-u_1,\eta,u_1,\ldots,u_k).}
+ \tag{3.152}
+\]
+
+If \(h=0\), the corresponding identity is
+
+\[
+ \boxed{
+ (-a_r,\ldots,-a_1,p_0-i+j,b_1,\ldots,b_s)
+ =(-u_k,\ldots,-u_1,\eta,u_1,\ldots,u_k),}
+ \tag{3.153}
+\]
+
+and in particular \(p_0-i+j\ne0\).  Conversely, either displayed
+sequence identity implies the indicated oriented ray-bucket equality and
+(3.151).
+
+Indeed,
+
+\[
+ x^{-1}my
+ =\rho_{\mathbf a}^{-1}t^{-i}mt^j\rho_{\mathbf b}.
+ \tag{3.154}
+\]
+
+Before reduction it contains \(r+s+h\) \(c\)-syllables.  Equality in
+(3.143) says that all of them survive free reduction and endpoint
+\(H\)-normalization.  Thus the adjusted endpoint powers in (3.152) cannot
+vanish, and reading the surviving \(t\)-blocks gives its left side.  The
+normal form of a ray bucket or its inverse is (3.150), proving necessity.
+The converse follows by reconstructing the same reduced word.  The
+\(h=0\) case merely combines the three adjacent pure \(t\)-powers into
+the middle block in (3.153).
+
+In particular, if \(h=0\) and the target depth equals the larger source
+depth, then (3.151) forces \(r=s=k\), and (3.153) forces
+\(\mathbf a=\mathbf b=\mathbf u\).  Thus the pure-\(t\) equality symbol is
+entirely same-ray.  If finite \(f,g\) are supported on that ray and
+\(f_i=f(t^i\rho_{\mathbf u}H)\) and
+\(g_i=g(t^i\rho_{\mathbf u}H)\), the oriented reader is the explicit
+one-dimensional difference
+
+\[
+ \boxed{
+ \mathfrak A_{\mathcal O}(f,t^pg)
+ =\sum_i f_i
+   \bigl(g_{i-p-1}-g_{i-p+1}\bigr).}
+ \tag{3.155}
+\]
+
+The independently guarded occurrence replay gives the complete pure-
+\(t\) part of the gauged matrix:
+
+\[
+\boxed{
+\begin{array}{c|cccccccc}
+(s,t)&(0,0)&(1,0)&(1,1)&(1,3)&(1,4)&(2,0)&(2,4)&(3,4)\\ \hline
+[\mathbf H^\circ_{st}]_{c=0}
+ &3&2&2&t^{-1}&-t^{-1}&-1&1&-1
+\end{array}}
+\tag{3.156}
+\]
+
+with every unlisted entry zero.  The checker
+\(\texttt{.scratch/period\_two\_h\_circ\_static\_expansion\_checker.py}\)
+has SHA-256
+\(\texttt{17926f4a279c0aa1ddc56d5a7a0d109e18894b954f3db98f61b9f57529b0159e}\);
+it reconstructs all 25 entries from (3.40), (3.54), and (3.70), obtaining
+row supports \((42,28,10,10,0)\) and matrix digest
+\(\texttt{d8ff2cfe1976d3c1fe7657c18a6b66b0e6fcb1083450cb5adb0d5682b0b025f3}\).
+Equation (3.155) now turns every entry in (3.156) into an explicit
+same-ray shift pairing.
+
+For a fixed finite kernel and a fixed target ray, (3.152)--(3.153) leave
+only finitely many top-depth source-ray pairs: the two source sequences
+must be the displayed outer segments of the target sequence, while the
+kernel occupies the intervening segment.  For \(h\geq1\) it determines
+the two height adjustments; for \(h=0\) it determines their difference,
+and finite current support leaves only finitely many pairs.  Therefore the
+associated top-ray part of every entry of
+\(\mathbf H^\circ\) is a finite sparse splice operator, not an unrestricted
+pair correlation.  Lower-depth terms can still arise after cancellations,
+and different valid splices can cancel integrally.  The splice theorem
+does not prove anisotropy in the tied case, but it is the exact
+coefficient-level interface for that remaining problem.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
