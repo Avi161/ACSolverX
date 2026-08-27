@@ -4,6 +4,8 @@
 
 ## The ordering
 
+`S20_MK2` is the **recommended** heap ordering — the one tuned vector this module ships.
+
 ```
 priority(r1, r2) = L + 20·S + 2·MK
 ```

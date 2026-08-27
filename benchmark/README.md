@@ -2,7 +2,7 @@
 
 Fixed row lists for scoring a search technique, so two techniques are compared on the same presentations rather than on whichever ones each happened to run.
 
-All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem.
+All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem. The recommended heap ordering for searching these rows is `S20_MK2` — see [`experiments/search/HEURISTICS.md`](../experiments/search/HEURISTICS.md).
 
 ## The census these rows sit inside
 

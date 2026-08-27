@@ -1,7 +1,8 @@
 # AC-SolverX — what a session needs to know before touching the search
 
-Four settled facts. They are recorded here because the code on this branch does
-**not** yet reflect the first three; read this file before trusting a docstring.
+Four settled facts. The code on this branch reflects the first two; the third
+is about modules that live on other branches. Read this file before trusting a
+docstring found elsewhere.
 
 ## 1. The best heuristic is `S20_MK2`
 
@@ -10,8 +11,8 @@ priority(r1, r2) = L + 20*S + 2*MK
 ```
 
 `S` = smaller mean block (mean run length of the thinner generator), `MK` = max
-knots over the two relators, `L` = total length. Lower pops first. Where a
-default heap ordering is needed, this is it.
+knots over the two relators, `L` = total length. Lower pops first. `S20_MK2` is
+the **recommended** heap ordering — where a default is needed, this is it.
 
 Provenance, stated as a pair — a number without both halves is not readable:
 *selected on* the ac1m_hard_aut train 120 (54/120, against the length control's
@@ -37,13 +38,9 @@ validated against, and its 60-row campaign used subset-60 as its own row list.
 So every margin ever published for it -- 10/20 -> 15/20, the 60-row cost tables
 -- is largely in-sample: a statement about the tuner, not about the ordering.
 
-⚠ **This branch still ships it.** `experiments/search/heuristics.py` defines
-`RECOMMENDED`, `experiments/search/HEURISTICS.md` still headlines its formula,
-`benchmark/subsets/ARMS.md` still calls it "the recommended heap ordering", and
-two tests in `tests/test_greedy_heuristic.py` assert it beats the baseline on
-its own tuning rows. Treat all of that as stale. A corrected version of those
-files -- `S20_MK2` installed, the circular tests replaced by a guard against the
-weights returning -- exists on `claude/heuristic-search-benchmark-e1f9l8`.
+This branch ships `S20_MK2` instead. Both the name `RECOMMENDED` and the
+withdrawn weight map are guarded against returning by
+`tests/test_greedy_heuristic.py::test_module_ships_no_overfit_weight_vector`.
 
 The runs `RECOMMENDED` produced are real and should be kept as the record of
 what that campaign cost (the `heur_*` columns of the arms tables); it is the
@@ -70,4 +67,4 @@ bound** from a bounded AC-move search (caps 30–36, unanimous across five arms,
 not proven converged), and the exact `Aut(F₂)` step between 261 and 124 is
 **168** — no change of variables does better than 168. Derivation and the
 machine-checked merges are in `results/equivalence_classes/EQUIVALENCE_FINDING.md`
-on the research branches.
+on the research branches; `docs/BRANCH_MAP.md` says which branch holds what.

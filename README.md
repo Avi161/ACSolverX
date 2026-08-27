@@ -177,7 +177,9 @@ checkpoint required. The notebook:
 - maintains presentations in **canonical form** (minimal cyclic rotation via
   Booth's algorithm, inversion, and relator ordering);
 - expands states in order of total length (`|r1| + |r2|`), exploring shorter
-  presentations first;
+  presentations first — the recommended tuned heap ordering, `S20_MK2` =
+  `L + 20·S + 2·MK`, lives in `experiments/search/heuristics.py` and is
+  documented in `experiments/search/HEURISTICS.md`;
 - recognizes the trivial presentation and known potential counterexamples
   (`AK(n)`, the length-14 pairs).
 

@@ -26,7 +26,7 @@ retired as **overfit** — selected on a slice containing fourteen of the twenty
 against, and campaigned on subset-60, which was its own row list. The runs are real and are kept as
 the record of what that campaign cost; the ordering is not a recommendation and nothing imports it.
 
-**The production ordering is `S20_MK2` = `L + 20·S + 2·MK`**, in
+**The recommended ordering is `S20_MK2` = `L + 20·S + 2·MK`**, in
 [`experiments/search/heuristics.py`](../../experiments/search/heuristics.py) — selected on the
 ac1m_hard_aut train 120 and evaluated on an automorphism-disjoint fresh holdout, so it does not
 share this failure. It has not been run on these subsets, so it has no column here.
