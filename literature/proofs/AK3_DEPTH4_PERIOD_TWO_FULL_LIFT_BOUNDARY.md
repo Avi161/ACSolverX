@@ -2747,6 +2747,172 @@ and different valid splices can cancel integrally.  The splice theorem
 does not prove anisotropy in the tied case, but it is the exact
 coefficient-level interface for that remaining problem.
 
+### 3.23 The complete occurrence polygon
+
+The entire homogeneous ray obstruction has an occurrence-prefix form,
+not only the terminal summand.  For the sixteen literal occurrences put
+
+\[
+ z_o:=\epsilon_o q_oF_{s_o}\in M,
+ \qquad
+ S_p:=\sum_{o=1}^p z_o,
+ \qquad S_0=0.
+ \tag{3.157}
+\]
+
+Homogeneity and (3.39) give the closed-polygon identity
+
+\[
+ \boxed{S_{16}=\sum_{s=0}^4\mathcal L_sF_s=0.}
+ \tag{3.158}
+\]
+
+Let \(\Theta_2(F)\) denote the homogeneous degree-two part of the
+canonical defect.  Then every ray coordinate is exactly
+
+\[
+ \boxed{
+ [\Xi_{\mathrm{ray}}(\Theta_2(F))]_{\mathcal O}
+ =\sum_{1\leq o<p\leq16}
+   \mathfrak A_{\mathcal O}(z_o,z_p)
+ =\sum_{p=1}^{16}
+   \mathfrak A_{\mathcal O}(S_{p-1},z_p).}
+ \tag{3.159}
+\]
+
+Indeed, the integral ray target is torsion-free, so the homogeneous
+quadratic value is uniquely determined by the polarization (3.43).
+Diagonal coinvariance changes the \((o,p)\) kernel
+\(q_o^{-1}q_p\) in (3.40) into the two transported currents
+\(q_oF_{s_o},q_pF_{s_p}\).  Their occurrence signs give the first sum.
+The internal terms \(n_sF_s\otimes F_s\) vanish under the skew reader by
+(3.119a).  Summing first over \(o<p\) gives the second expression.
+
+Formula (3.159) recovers the terminal energy without a gauge.  The last
+two currents are
+
+\[
+ z_{15}=tF_4,\qquad z_{16}=-F_4,
+ \qquad S_{14}=-(t-1)F_4,qquad S_{15}=F_4.
+ \tag{3.160}
+\]
+
+Consequently their two polygon summands are
+
+\[
+\begin{aligned}
+ \mathfrak A_{\mathcal O}(S_{14},z_{15})
+ +\mathfrak A_{\mathcal O}(S_{15},z_{16})
+ &=\mathfrak A_{\mathcal O}(F_4,tF_4),
+\end{aligned}
+ \tag{3.161}
+\]
+
+which is exactly (3.120).
+
+More generally, take any consecutive occurrence block \([a,b]\), let
+\(D_{a,b}=\sum_{p=a}^bz_p\), and define its internal prefixes
+\(I_{p}=\sum_{o=a}^pz_o\), with \(I_{a-1}=0\).  Its complete contribution
+to (3.159) is the finite block-Stokes identity
+
+\[
+ \boxed{
+ \sum_{p=a}^b
+  \mathfrak A_{\mathcal O}(S_{a-1}+I_{p-1},z_p)
+ =\mathfrak A_{\mathcal O}(S_{a-1},D_{a,b})
+  +\sum_{p=a}^b
+    \mathfrak A_{\mathcal O}(I_{p-1},z_p).}
+ \tag{3.162}
+\]
+
+Thus the laminar occurrence intervals (3.84) can be collapsed recursively
+into their boundary currents and internal axis energies.  Unlike a bounded
+source replay, (3.159)--(3.162) hold for every finitely supported
+homogeneous correction.  A closed polygon can nevertheless have zero
+oriented area, and the affine unary ray value is not part of
+\(\Theta_2\).  The identities therefore expose the complete tied
+quadratic interaction but do not yet prove global anisotropy or a lift
+obstruction.
+
+### 3.24 Laminar compression to fifteen ray pairings
+
+The interval nesting in (3.84) compresses the polygon further.  For one
+paired interval \(I=[a,b]\in\mathscr I_s\), put
+
+\[
+ A_I:=q_aF_s,\qquad B_I:=q_bF_s.
+ \tag{3.163}
+\]
+
+The only immediate-child relations are
+
+\[
+ [1,6]\succ[2,5]\succ[3,4],
+ \qquad
+ [9,14]\succ[10,13]\succ[11,12].
+ \tag{3.164}
+\]
+
+All other intervals have empty child.  For the empty child set
+\(D_\varnothing=0\) and \(Q_\varnothing(\mathcal O)=0\).  Recursively
+define the net current and internal ray area of \(I\) by
+
+\[
+\boxed{
+\begin{aligned}
+ D_I&=A_I+D_{\operatorname{ch}(I)}-B_I,\\
+ Q_I(\mathcal O)
+ &=Q_{\operatorname{ch}(I)}(\mathcal O)
+   -\mathfrak A_{\mathcal O}(A_I,B_I)
+   +\mathfrak A_{\mathcal O}
+      (A_I+B_I,D_{\operatorname{ch}(I)}).
+\end{aligned}}
+\tag{3.165}
+\]
+
+For an empty child the last term is zero.  Formula (3.165) is (3.162)
+applied to the outer positive occurrence, its complete child block, and
+the outer negative occurrence: skewness combines the two parent--child
+terms as
+
+\[
+ \mathfrak A(A_I,D)-\mathfrak A(D,B_I)
+ =\mathfrak A(A_I+B_I,D).
+\]
+
+The four root intervals, in chronology order, are
+
+\[
+ R_1=[1,6],\qquad R_2=[7,8],\qquad
+ R_3=[9,14],\qquad R_4=[15,16].
+ \tag{3.166}
+\]
+
+They partition all sixteen occurrences, and (3.158) says
+\(D_{R_1}+D_{R_2}+D_{R_3}+D_{R_4}=0\).  Applying (3.162) once more and
+eliminating \(D_{R_4}\) by this closure gives
+
+\[
+\boxed{
+\begin{aligned}
+ [\Xi_{\mathrm{ray}}(\Theta_2(F))]_{\mathcal O}
+ ={}&\sum_{r=1}^4Q_{R_r}(\mathcal O)\\
+ &+\mathfrak A_{\mathcal O}(D_{R_1},D_{R_2})
+  +\mathfrak A_{\mathcal O}(D_{R_1},D_{R_3})
+  +\mathfrak A_{\mathcal O}(D_{R_2},D_{R_3}).
+\end{aligned}}
+\tag{3.167}
+\]
+
+Fully expanding (3.165)--(3.167) uses exactly eight paired-occurrence
+terms, four parent--child terms, and three root terms: fifteen sparse ray
+pairings replace the 120 external occurrence pairs.  This is an all-source
+identity.  It does not assert that the fifteen terms have separate signs
+or supports; cancellation between them and against the affine unary value
+is still possible.  The remaining anisotropy problem is now the exact
+laminar form (3.167), with each pairing evaluated by the splice rule
+(3.152)--(3.155).
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
