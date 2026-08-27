@@ -35,6 +35,21 @@ DIRECT_PATH = ROOT / ".scratch/period_two_seven_family_covariance_checker.py"
 THEORY_PATH = ROOT / "literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md"
 MANIFEST_PATH = ROOT / ".scratch/period_two_diagonal_pure_p_quadratic_manifest.json"
 
+THEORY_INTERVAL_MARKERS = (
+    (
+        "matching_and_order",
+        "### 5.1 Deterministic 48-chord matching\n",
+        "## 6. Exact head--tail interface\n",
+        False,
+    ),
+    (
+        "certificate_interface",
+        "### 7.1 Minimal quadratic certificate interface\n",
+        "<!-- AK3_PURE_P_Q_SECTION_7_1_END -->\n",
+        True,
+    ),
+)
+
 SLOT_ZERO_OCCURRENCES = (3, 4, 7, 8, 11, 12)
 OCCURRENCES_BY_SLOT = {2: (1, 6), 3: (9, 14), 4: (15, 16)}
 ACTIVE_OCCURRENCES = (1, 3, 4, 6, 7, 8, 9, 11, 12, 14, 15, 16)
@@ -92,6 +107,48 @@ def canonical_json(value: Any) -> bytes:
 
 def sha256_path(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def exact_marked_interval(
+    path: Path,
+    interval_id: str,
+    start_marker: str,
+    end_marker: str,
+    include_end_marker: bool,
+) -> dict[str, Any]:
+    data = path.read_bytes()
+    start = start_marker.encode()
+    end = end_marker.encode()
+    if data.count(start) != 1:
+        raise AssertionError((interval_id, "start_marker_count", data.count(start)))
+    if data.count(end) != 1:
+        raise AssertionError((interval_id, "end_marker_count", data.count(end)))
+    start_offset = data.index(start)
+    end_offset = data.index(end)
+    if end_offset <= start_offset:
+        raise AssertionError((interval_id, "reversed_markers"))
+    if include_end_marker:
+        end_offset += len(end)
+    payload = data[start_offset:end_offset]
+    return {
+        "id": interval_id,
+        "start_marker": start_marker.rstrip("\n"),
+        "end_marker": end_marker.rstrip("\n"),
+        "include_end_marker": include_end_marker,
+        "byte_length": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest(),
+    }
+
+
+def theory_source_binding() -> dict[str, Any]:
+    return {
+        "path": str(THEORY_PATH.relative_to(ROOT)),
+        "validation": "two exact unique byte intervals; edits outside them are irrelevant",
+        "intervals": [
+            exact_marked_interval(THEORY_PATH, interval_id, start, end, include_end)
+            for interval_id, start, end, include_end in THEORY_INTERVAL_MARKERS
+        ],
+    }
 
 
 def shortlex(word: tuple[int, ...]) -> tuple[int, tuple[int, ...]]:
@@ -733,7 +790,6 @@ def binding_paths() -> dict[str, Path]:
         "normalizer": NORMALIZER_PATH,
         "generator": GENERATOR_PATH,
         "direct_replay": DIRECT_PATH,
-        "theory": THEORY_PATH,
         "checker": CHECKER_PATH,
         "tests": TEST_PATH,
     }
@@ -750,7 +806,7 @@ def source_bindings() -> dict[str, Any]:
     bindings["raw_manifest"]["validation"] = (
         "full hash plus live structure; raw manifest carries the stable Section 4.1 digest"
     )
-    bindings["theory"]["sections"] = ["5.1", "5.2", "5.3", "7.1"]
+    bindings["theory"] = theory_source_binding()
     return bindings
 
 
@@ -824,6 +880,8 @@ def verification_failures(
         for name, path in binding_paths().items():
             if manifest["source_bindings"][name]["sha256"] != sha256_path(path):
                 failures.append(f"source_hash:{name}")
+        if manifest["source_bindings"].get("theory") != theory_source_binding():
+            failures.append("source_interval:theory")
         if manifest["topology"] != {
             "chord_count": 48,
             "boundary_count": 12,

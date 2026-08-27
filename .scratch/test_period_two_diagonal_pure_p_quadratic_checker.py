@@ -226,6 +226,26 @@ class DiagonalPurePQuadraticCheckerTests(unittest.TestCase):
             "source_hash:raw_checker",
         )
 
+    def test_theory_binding_is_scoped_and_mutations_are_rejected(self) -> None:
+        binding = self.manifest["source_bindings"]["theory"]
+        self.assertNotIn("sha256", binding)
+        self.assertEqual(
+            [interval["id"] for interval in binding["intervals"]],
+            ["matching_and_order", "certificate_interface"],
+        )
+        self.assertTrue(
+            all(
+                interval["byte_length"] > 0 and len(interval["sha256"]) == 64
+                for interval in binding["intervals"]
+            )
+        )
+        self.assert_rejected(
+            lambda manifest: manifest["source_bindings"]["theory"]["intervals"][0].__setitem__(
+                "sha256", "0" * 64
+            ),
+            "source_interval:theory",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

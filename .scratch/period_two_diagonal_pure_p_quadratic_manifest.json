@@ -21380,7 +21380,7 @@
     },
     "checker": {
       "path": ".scratch/period_two_diagonal_pure_p_quadratic_checker.py",
-      "sha256": "356b0c995d78c43e854ebaf596a0e97cb702383465321a9f0b1fed81969cd33c"
+      "sha256": "4a98fb5b652799a2ca290d9f8005f21ddd4a238a38cc0d4adf94a03755477555"
     },
     "direct_replay": {
       "path": ".scratch/period_two_seven_family_covariance_checker.py",
@@ -21405,17 +21405,29 @@
     },
     "tests": {
       "path": ".scratch/test_period_two_diagonal_pure_p_quadratic_checker.py",
-      "sha256": "cfc76de0ddf083abce23eec534a2e32d0234cd6dfe08ae4935c073dca80f1636"
+      "sha256": "b932212f7ab760a4fee22b50836d33a0679bfb51a1890d36c6d05349e54505f2"
     },
     "theory": {
-      "path": "literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md",
-      "sections": [
-        "5.1",
-        "5.2",
-        "5.3",
-        "7.1"
+      "intervals": [
+        {
+          "byte_length": 5378,
+          "end_marker": "## 6. Exact head--tail interface",
+          "id": "matching_and_order",
+          "include_end_marker": false,
+          "sha256": "f70266a9450905f21dad47a92a6ad83bf95c88c04f35bfbef05ba43180df7675",
+          "start_marker": "### 5.1 Deterministic 48-chord matching"
+        },
+        {
+          "byte_length": 2248,
+          "end_marker": "<!-- AK3_PURE_P_Q_SECTION_7_1_END -->",
+          "id": "certificate_interface",
+          "include_end_marker": true,
+          "sha256": "00f1c0b649eaa11db3303dffb6de35bc4684f45a50bcea145fd885bcbb4664b6",
+          "start_marker": "### 7.1 Minimal quadratic certificate interface"
+        }
       ],
-      "sha256": "cea85ea518961ae715bd6fc55c81bd7937730eb46a091e4dd0d8932c3f256531"
+      "path": "literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md",
+      "validation": "two exact unique byte intervals; edits outside them are irrelevant"
     }
   },
   "topology": {

@@ -1180,3 +1180,5 @@ Proving (7.1) makes all \(c_i\) equal. The exact seed \(u_{00}=1\) gives
 \(c_0=0\), so the diagonal identity and unary delta would then follow from
 the already proved reductions. Until (7.1) is proved, those conclusions and
 every period-two/AK3/AC conclusion remain open.
+
+<!-- AK3_PURE_P_Q_SECTION_7_1_END -->
