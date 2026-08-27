@@ -836,18 +836,118 @@ candidate vertex-equality predicates.  Formula (6.7) is an exhaustive
 inventory before equality collisions or parity cancellations; it is not a
 minimal predicate count and supplies no value for any term in (6.4).
 
+### 6.2 Exact finite-old subtotal
+
+Only four occurrence blocks of \(q_i\) have odd cardinality:
+
+\[
+ |S_2|=9\quad(o=1,6),\qquad
+ |S_3|=15\quad(o=9,14).
+ \tag{6.8}
+\]
+
+The slot-zero blocks have size two, the slot-four blocks size eighteen, and
+slot one is empty.  The authoritative literal AST places the seventy fixed
+events in the strict intervals cut by \(1,6,9,14\) as follows:
+
+\[
+\begin{array}{c|ccccc}
+\text{interval}
+&\text{before }1&(1,6)&(6,9)&(9,14)&\text{after }14\\ \hline
+\text{fixed events}&0&28&18&24&0\\
+R^\chi_{q_i}&0&1&0&1&0.
+\end{array}
+ \tag{6.9}
+\]
+
+Thus their total chronology rank is
+
+\[
+ \sum_{f\in\mathcal F_{\rm tok}}R^\chi_{q_i}(f)
+ =28+24=52=0\pmod2.
+ \tag{6.10}
+\]
+
+The exact fixed-label table has maximum source-forest radius nine in the
+\(\mathrm{ct}\)-component and six in the \(\mathrm{eps}\)-component.
+Every label of \(q_i\) lies on the support or boundary of (3.5).  Its
+minimum radii, including \(i=0\), are fourteen at
+\(X_{1,0}=P_1\) in the first component and nineteen at
+\(X_{2,0}=\texttt A\,D\,\texttt{BaGb}\) in the second.  Therefore
+
+\[
+ H_{q_i}(f)=0\qquad(f\in\mathcal F_{\rm tok}).
+ \tag{6.11}
+\]
+
+The even transported-label-fiber theorem identifies the remaining
+transported-label rank with this equal-label prefix:
+\(R^\rho_{q_i}(f)=H_{q_i}(f)\).  Combining (6.10)--(6.11) gives
+
+\[
+ \boxed{E_{{\rm fixed},i}=0.}
+ \tag{6.12}
+\]
+
+The two base edges are
+\(E_3(\texttt{TTct})\) and \(E_4(\texttt{Tct})\), forming the core path
+
+\[
+ \texttt{ct}-\texttt{Tct}-\texttt{ctcT}
+ \tag{6.13}
+\]
+
+at radii \(0,1,2\).  The same separation excludes both membership in
+\(\beta_i\) and every equal-label tie at these three vertices.  Hence
+
+\[
+ \boxed{E_{{\rm base},i}=0.}
+ \tag{6.14}
+\]
+
+Finally, the old singleton coordinate \(y_{i,i}\) belongs to the
+two-point slot-zero support
+\(\{y_{i,i},y_{i+1,i+1}\}\), so its membership bit is one.  In occurrence
+order \((3,4,7,8,11,12)\), its incident partner occurrences and strict
+prefix bits are
+
+\[
+\begin{array}{c|rrrrrr}
+o&3&4&7&8&11&12\\ \hline
+\text{partner}&15&9&6&9&6&15\\
+H_{q_i}(\iota_o(y_{i,i}))&0&0&1&0&1&0.
+\end{array}
+ \tag{6.15}
+\]
+
+The prefix xor is zero.  Therefore
+
+\[
+ \boxed{E_{{\rm singleton},i}=1.}
+ \tag{6.16}
+\]
+
+Equations (6.12), (6.14), and (6.16) prove the finite-old subtotal
+
+\[
+ \boxed{
+ E_{{\rm fixed},i}+E_{{\rm base},i}+E_{{\rm singleton},i}=1.}
+ \tag{6.17}
+\]
+
+This does not evaluate the powered head--tail load in (6.4).
+
 ## 7. Smallest remaining lemma
 
 Let \(E_{{\rm fixed},i},E_{{\rm base},i},E_{{\rm singleton},i}\) be the
 finite-old contributions to \(\mathbb B(A_i^\Delta,q_i)\). They are not
 imported from the positive-\(j\) or inverse-\(Q\) increments. Combining
-(4.13) and (6.4), the remaining joint two-ray \(P\)-period lemma is
+(4.13), (6.4), and (6.17), the remaining joint two-ray \(P\)-period lemma is
 
 \[
 \boxed{
 \begin{aligned}
-0={}&Q(q_i)
- +E_{{\rm fixed},i}+E_{{\rm base},i}+E_{{\rm singleton},i}\\
+0={}&1+Q(q_i)\\
  &+\langle t_2K_{i,2},\partial F_{i,2}\rangle
   +\langle h_3K_{i,3},\partial G_{i,3}\rangle\\
  &+\langle\partial K_{i,3},\partial\beta_{i,4}\rangle

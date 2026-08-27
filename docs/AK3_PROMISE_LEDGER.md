@@ -95,16 +95,24 @@ finite quotient do not close a route.
   old--new head--tail interface has an exact uncompressed
   \(1262(i+1)+188\)-predicate same-component ledger.  These are reductions,
   not values.
+- **Diagonal finite-old terms proved:** exact AST interval counts
+  \(0,28,18,24,0\) give fixed chronology parity
+  \(28+24=52=0\); source-forest separation kills the fixed equal-label
+  prefixes and, by the even-fiber theorem, their transported-label ranks.
+  The radius-two base core is disjoint from the mask, while the singleton
+  has membership one and prefix bits \((0,0,1,0,1,0)\).  Hence
+  \(E_{\rm fixed}=0\), \(E_{\rm base}=0\), and
+  \(E_{\rm singleton}=1\) for every \(i\geq0\).
 - **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
   pure-\(P\) normal-form note:
   \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
   proved zero, and the complete nonzero raw part is now also proved zero.
   The remaining exact scalar is
   \(\mathbb B(A_i^\Delta,q_i)+Q(q_i)\) on the 96-token quadratic stream;
-  evaluate the 294 quadratic module-order predicates jointly with the
-  finite-old and four head--tail ledgers.  The old--new and new--new terms
-  remain one open joint xor.  With the seed, its vanishing would prove
-  \(u_{ij}=\delta_{ij}\).
+  equivalently, prove \(1+Q(q_i)+H_1+H_2+H_3+H_4=0\).  Evaluate the 294
+  quadratic module-order predicates jointly with the four head--tail
+  ledgers.  The powered old--new and new--new terms remain one open joint
+  xor.  With the seed, its vanishing would prove \(u_{ij}=\delta_{ij}\).
 - **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
   law; the reduction does not prove the diagonal identity.  The unary delta,
   period-two lift, AK(3), stable AC, and AC remain open.
