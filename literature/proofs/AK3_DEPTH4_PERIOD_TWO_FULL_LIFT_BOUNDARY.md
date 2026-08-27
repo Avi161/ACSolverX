@@ -4911,23 +4911,57 @@ balanced norm equation
 The free associative algebra is a domain and $H_d\ne0$.  Hence neither
 $f_+$ nor $f_-$ can vanish in a solution of (3.324): if one vanished, the
 other side would be a product of three nonzero factors equal to zero.
-Consequently
+
+In fact, the two nonzero products in (3.324) have disjoint monomial
+supports.  Make the invertible linear change of free generators
 
 \[
- \boxed{
- \substack{[f\wedge g_If]_Q=0\\g_I\text{ odd}\\f\ne0}
- \Longrightarrow
- f_+\ne0\text{ and }f_-\ne0.}
+ \mathsf A:=X+Y,
+ \mathsf B:=X-Y.
  \tag{3.325}
 \]
 
-When $\varepsilon(\mathbf F)\ne0$, the first form $f_r$ is a nonzero
-scalar and has $f_-=0$; thus (3.325) recovers (3.318).  For a zero-mass
-current, (3.324) is the exact remaining leading-layer obstruction.  A
-complete odd-axis anisotropy theorem would follow from proving that its two
-opposite $\alpha$-eigenspace norms cannot agree for the particular
-$H_d$ of each paired word.  No such theorem is asserted here, and the
-complete laminar and affine cancellations remain separate.
+Then
+
+\[
+ \alpha(\mathsf A)=\mathsf A,
+ \alpha(\mathsf B)=-\mathsf B,
+ \mathsf A^\dagger=-\mathsf A,
+ \mathsf B^\dagger=-\mathsf B.
+ \tag{3.326}
+\]
+
+The monomial basis in $\mathbb Q\langle\mathsf A,\mathsf B\rangle$ is
+therefore diagonal for $\alpha$.  Every monomial of $f_+$ contains an even
+number of $\mathsf B$ letters, and every monomial of $f_-$ contains an odd
+number.  The dagger reverses a word and changes its overall sign but
+preserves its number of $\mathsf B$ letters.
+
+All monomials in either side of (3.324) have length $2r+d$.  In a monomial
+of $f_+^\dagger H_df_+$, the first $r$ letters come from
+$f_+^\dagger$ and contain an even number of $\mathsf B$ letters.  In a
+monomial of $f_-^\dagger H_df_-$, the first $r$ letters come from
+$f_-^\dagger$ and contain an odd number.  For $r\geq1$, one word cannot
+belong to both supports.  Each product is nonzero by the domain property,
+so equality (3.324) is impossible.  If $r=0$, then $f_r$ is a nonzero
+scalar and $f_-=0$, which was already impossible.
+
+Thus the odd paired-tensor problem is completely anisotropic:
+
+\[
+ \boxed{
+ \substack{\mathbf F\ne0\\g_I\text{ odd paired}}
+ \Longrightarrow
+ [f\wedge g_If]_Q\ne0.}
+ \tag{3.327}
+\]
+
+This is an arbitrary finite cross-support theorem for each of the five
+odd intervals in (3.319), including the two height-zero forest axes.  It
+does not imply that the surviving coordinate of one paired term is absent
+from the other fourteen laminar terms or the affine unary value.  The
+three even paired axes and the complete polygon cancellation therefore
+remain open.
 
 ## 4. Exact diagonal sieve
 
