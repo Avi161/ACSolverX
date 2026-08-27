@@ -210,3 +210,40 @@ honesty gate that keeps their scoreboards separated. The powered-connector rewri
 has no search analogue — nothing in this pipeline evaluates cochain invariants — and
 collision-first batching (J) appears here only as the aggregation discipline inside the
 abelian filter.
+
+## Stage 3 — no heuristic, deep: where the new moves lead on their own
+
+Stage 3 removes the heuristic layer entirely (plain length ordering everywhere) and runs
+deep — `--stage3 --budget 10000`, data in `results/new_moves/stage3_*`. Four arms: the
+baseline, the new AC moves, the portal, and the two stacked. Two rows were re-run solo
+after a worker OOM (a single 10k-node macro search peaks at 7–9 GB of visited states) and
+patched in; final table has zero lost jobs and zero unverified solves.
+
+| arm | moves | claim | @100 | @1000 | @2500 | @5000 | @10000 |
+|---|---|---|---:|---:|---:|---:|---:|
+| greedy | sub | AC_EQ path | 17 | 29 | 36 | 36 | **40** |
+| ncrw_L | sub+goal+ncrw | AC_EQ path | 17 | 29 | 36 | 36 | **40** |
+| cov_L | Whitehead → sub | AC_TRIVIAL_IFF | 20 | 36 | 39 | 42 | **49** |
+| covncrw_L | Whitehead → sub+goal+ncrw | AC_TRIVIAL_IFF | 20 | 36 | 39 | 42 | **49** |
+
+Where it leads:
+
+* **The portal's lead grows with budget: +7 at 1,000 nodes, +9 at 10,000 (49 vs 40).**
+  `cov_L` solves every row `greedy` solves plus nine (568, 575, 578, 583, 596, 605, 610,
+  628, 633) and loses none, and on the rows both solve it halves the median cost (87 vs
+  197 nodes). With no heuristic anywhere, changing coordinates is the single
+  intervention with a real, compounding effect on this benchmark.
+* **The new AC moves keep their stage-2 character at depth: uniformly helpful,
+  uniformly small.** `ncrw_L`'s solved set ties `greedy`'s at every checkpoint, but on
+  the 40 rows it solves, 39 carry rewrite/goal edges and `solved_at` strictly improves
+  on all 39 (never worsens, max gain 3 pops). The savings are real endgame jumps that
+  never accumulate enough to cross a checkpoint.
+* **Stacking adds nothing the portal didn't already buy**: `covncrw_L` ties `cov_L` at
+  every checkpoint (with the same per-row ncrw speedups inside), so at these budgets the
+  two effects don't compound — the portal moves which basin the search starts in; the
+  rewrites shave its last few pops.
+
+Bottom line for the no-heuristic question: at 10,000 nodes the presentations proved
+AC-trivial go 40 (plain greedy, explicit paths) → 49 (plus the automorphism portal,
+`AC_TRIVIAL_IFF`), and the new AC-move machinery is measurably active but never
+decisive. The move set that matters is the change of coordinates.
