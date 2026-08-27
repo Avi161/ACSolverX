@@ -3233,30 +3233,78 @@ Taking \(a=a_{i+1}\), the exact old--shell polarization is now
 Here \(o_C^-,o_C^+\) denote the two endpoint occurrences in chronological
 order, not their polarities.
 
-The complete self-prefix sum for \(q_i\) does vanish by double-counting
-chord crossings.  It cannot be subtracted after (5.94), however.  Formula
-(5.94) is already restricted to prefixes inside each endpoint occurrence:
-the external occurrence prefixes were canceled when corresponding chords
-of \(M_i\) and \(M_{i+1}\) were paired.  The full self-prefix cancellation
-also uses the relative-order terms between positive and negative
-occurrences and the cross-occurrence terms from blocks enclosed by their
-chronology intervals.  Those terms are absent from the local prefixes in
-(5.93).  Applying the complete crossing cancellation to only the local
-pieces would therefore mix two incompatible decompositions.
-
-Equivalently, a full block expansion retains the relative-order kernels for
+There is one further exact cancellation.  Define the shift-prefix seam
 
 \[
- m_2=B,\qquad m_3=G^{-1},\qquad m_4=A^{-1},
+ \Theta_{o,C}(i)
+ :=\Delta P_{a_{i+1},o,C}(i)
+   +P_{q_i,o}(v_{C,o}(i)),
 \tag{5.94a}
 \]
 
-as well as the slot-zero blocks enclosed by the occurrence intervals
-\((1,6)\) and \((9,14)\).  The collision-deleted old
-\(S^{(3)}_{w,i}\) comparisons must also remain in the common
-collision-aggregated basis.  Hence (5.94), with all 48 local prefix rows,
-is the current safe exact boundary; no smaller shifted-prefix identity is
-asserted.
+where \(P_{q_i,o}\) is (5.92) with old activity \(a\) replaced by the
+one-step shell activity \(q_i\).  Since \(q_i=a_i+a_{i+1}\),
+
+\[
+\boxed{
+ \Theta_{o,C}(i)
+ =P_{a_i,o}(v_{C,o}(i))
+  +P_{a_{i+1},o}(v_{C,o}(i+1)).
+}
+\tag{5.94aa}
+\]
+
+The sum of the added local \(q_i\)-prefix terms is zero.  Work
+collision-first, so the two occurrences in each polarity pair carry the
+same slot mask \(e_s\).  The chord endpoints in either occurrence run
+exactly once through its active coordinates.  For the positive occurrence,
+module chronology is increasing; for its negative partner it is
+decreasing.  Their combined local self-prefix is therefore
+
+\[
+\begin{aligned}
+ &\sum_{v<x}e_s(v)e_s(x)
+   w_4(\tau_{o^{\rm pos}}(v),\tau_{o^{\rm pos}}(x))\\
+ &\quad+
+ \sum_{v>x}e_s(v)e_s(x)
+   w_4(\tau_{o^{\rm neg}}(v),\tau_{o^{\rm neg}}(x)).
+\end{aligned}
+\tag{5.94ab}
+\]
+
+Diagonal invariance and symmetry of \(w_4\) turn (5.94ab) into
+
+\[
+ \sum_{v<x}e_s(v)e_s(x)
+ \bigl(w_4(v,x)+w_4(x,v)\bigr)=0.
+\tag{5.94ac}
+\]
+
+This applies to the three edge-slot pairs \((1,6),(9,14),(15,16)\) and
+separately to the three slot-zero pairs
+\((3,4),(7,8),(11,12)\).  A collision deletes both polarity copies and
+does not disturb the argument.
+
+All chronology strictly before an endpoint occurrence was already canceled
+between the corresponding \(M_i\) and \(M_{i+1}\) endpoints in deriving
+(5.94).  Thus (5.94ab)--(5.94ac) introduce no relative-order kernel or
+enclosed-block term: only the within-occurrence prefixes (5.92) are being
+modified.  Substitution in (5.94) proves
+
+\[
+\boxed{
+ \beta_4(a_{i+1},E_i)
+ =\sum_{C=1}^{48}u_{c_C}\mathbin{\cdot}
+ \left(
+  \Theta_{o_C^-,C}(i)+\Theta_{o_C^+,C}(i)
+ \right).
+}
+\tag{5.94b}
+\]
+
+Equation (5.94b) is a natural-side simultaneous-shift seam.  It is not a
+vanishing theorem: pairwise common-phase covariance alone does not evaluate
+the 48 \(\Theta\)-rows.
 
 Finally, the one-step decomposition and bilinearity give
 
@@ -3282,12 +3330,13 @@ Using (5.84),
 \]
 
 Thus for \(i\geq3\), (5.86) removes the local term and (5.94) is the entire
-coordinate-four derivative.  The remaining stable interface has 48 rows:
+coordinate-four derivative.  Equivalently, (5.94b) makes its old--shell
+part the natural-side shift seam.  The remaining stable interface has 48 rows:
 each row records its chord color, its two endpoint occurrences and actions,
-the two three-bit within-occurrence prefix differences in (5.93), and their
-one output bit.  The three lower local seams in (5.87) remain separate.
-No scalar crossing or occurrence-type count determines those color-prefix
-xors, so no vanishing is asserted.
+the two three-bit \(\Theta\)-vectors in (5.94a), and their one output bit.
+The three lower local seams in (5.87) remain separate.  No scalar crossing
+or occurrence-type count determines these shifted prefixes, so no
+vanishing is asserted.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
