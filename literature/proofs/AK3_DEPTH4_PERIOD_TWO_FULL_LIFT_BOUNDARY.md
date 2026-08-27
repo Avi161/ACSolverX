@@ -1430,8 +1430,132 @@ exclusion above leaves
 \]
 
 Thus the complete slot-four source remainder is twelve explicit
-finite-action weights, not a growing old-ray sum.  Their xor is not
-evaluated here.
+finite-action weights, not a growing old-ray sum.  Their evaluation is
+sharpened below.
+
+The repeated block gives an exact covariance description, but not a
+general vanishing theorem.  In the forest basis put
+
+\[
+ A=t,\qquad
+ D=AB^{-1}GA^{-1}=\texttt{tcTctcTc},\qquad
+ \delta=GA^2B^{-1}GA^{-1}=\texttt{ctcTTctttcTctcTc}.
+\tag{5.45z}
+\]
+
+Here \(\delta\) is the quotient endpoint action of one stored
+\(E=\texttt{aGbAAG}\) copy.  If that copy starts at \(z\), its three
+untransformed incidence vertices at positions \(0,3,4\) are
+
+\[
+ A^{-1}z,\qquad B^{-1}GA^{-1}z,\qquad AB^{-1}GA^{-1}z.
+\]
+
+Translate them simultaneously by the positive occurrence action \(q_4=A\).
+By invariance of \(\lambda_k\), the two weights are unchanged, while the
+translated positive heads are
+
+\[
+ z,\qquad Dz,\qquad ADz.
+\tag{5.45aa}
+\]
+
+All products in (5.45aa)--(5.45ad) denote the left action on \(X\) followed
+by canonicalization.
+
+For \(h\geq1\), if \(z_0\) includes the fixed component root and
+\(z_{h,j}=\delta^{3h+j}z_0\), then the six-pair formula (5.45x) is exactly
+
+\[
+\boxed{
+ C_{k,4}(h)
+ =\sum_{j=0}^2\lambda_k\!\left(
+ e_{\rho_k(z_{h,j})0}\wedge e_{\rho_k(Dz_{h,j})0}
+ +e_{\rho_k(z_{h,j})0}\wedge e_{\rho_k(ADz_{h,j})0}
+ \right).}
+\tag{5.45ab}
+\]
+
+This formula retains the side on which the powered endpoint acts.  In
+particular, advancing one copy conjugates the position-dependent left
+multipliers; it is not one common left translate of both heads.
+
+There is a useful exact local reduction.  Put
+\(\widetilde\lambda_k=\lambda_k\circ\Pi_{\rho_k}^{\wedge}\).  Since
+\(L_4=A-1\), reduction modulo two gives in the infinite exterior module
+
+\[
+ L_4^{(2)}(e_{A^{-1}z}\wedge e_{Dz})
+ =e_z\wedge e_{ADz}+e_{A^{-1}z}\wedge e_{Dz}.
+\tag{5.45ac}
+\]
+
+Every \(\widetilde\lambda_k\) kills the left side.  Consequently
+
+\[
+\boxed{
+ \widetilde\lambda_k(e_z\wedge e_{Dz}+e_z\wedge e_{ADz})
+ =\widetilde\lambda_k((e_z+e_{A^{-1}z})\wedge e_{Dz}).}
+\tag{5.45ad}
+\]
+
+The right side is a one-sided \(A\)-boundary, not the diagonal boundary
+in (5.45ac), so cokernel annihilation does not force it to vanish.
+Likewise, quotient-action invariance does not identify different copies:
+the left multiplier at position \(r\) advances by
+\(\alpha_r\delta\alpha_r^{-1}\), which depends on \(r\).  Thus neither
+\(C_{k,4}(h)=0\) nor constancy in \(h\) follows from invariance alone.
+
+Finite-action periodicity does follow.  Put
+
+\[
+ r_k=\operatorname{ord}(\rho_k(\delta^3)).
+\]
+
+The complete-cover factorization gives the load-bearing identity
+
+\[
+ \delta^3=\operatorname{ev}_L(P_*)
+ =Z_3=b_3^{-1}\gamma^{-1}b_3.
+\]
+
+Thus \(\delta^3\) is conjugate to \(\gamma^{-1}\), and its permutation
+order is the order already listed for \(\gamma\) in (5.2).
+
+In the established coordinate order, the eleven actions support coordinate
+groups
+
+\[
+ (1),(2),(3),(4),(5),(6,7),(8),(9),(10),(11,12),(13,14).
+\]
+
+Thus their orders in (5.2) expand across the fourteen covectors as
+
+\[
+ (r_1,\ldots,r_{14})
+ =(2,4,1,1,2,4,4,1,4,1,5,5,4,4).
+\tag{5.45ae}
+\]
+
+Equation (5.45ab) therefore proves
+
+\[
+ C_{k,4}(h+r_k)=C_{k,4}(h)\qquad(h\geq1).
+\tag{5.45af}
+\]
+
+Combining (5.45af) with (5.45y) completely evaluates the slot-four source
+term in the four order-one coordinates:
+
+\[
+\boxed{
+ \Xi_{k,4}(i+2)+\Xi_{k,4}(i)=0
+ \qquad(k\in\{3,4,8,10\},\ i\geq0).}
+\tag{5.45ag}
+\]
+
+For the other ten coordinates, (5.45y) is periodic with the corresponding
+period in (5.45ae), but its value remains unevaluated.
 
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families
