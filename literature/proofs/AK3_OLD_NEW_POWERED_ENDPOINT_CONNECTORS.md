@@ -10,9 +10,10 @@ obligations into one outer connector evaluation.  It is useful for the
 old--new load calculation, but it is not an independent Andrews--Curtis
 result.
 
-The identity does not evaluate the outer connector, the finite old terms, or
-positive-chamber covariance.  It proves no period-two lift, AK(3), stable
-Andrews--Curtis, or Andrews--Curtis claim.
+The terminal-incidence theorem below evaluates the combined powered
+\(P,C,Q\) forest load as \([d=1]\).  It does not evaluate the finite old
+terms or positive-chamber covariance, and it proves no period-two lift,
+AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
 
 ## 1. Parameters and endpoint conventions
 
@@ -441,13 +442,195 @@ so
  \tag{4.12}
 \]
 
-This completely evaluates only the forest-overlap, or membership, part of
-the combined powered \(P,C,Q\) outer load.  It does not evaluate the
-tie/occurrence term \(\langle K_Q(d),\tau_T\rangle\), the finite old terms,
+Taken alone, this section completely evaluates only the forest-overlap, or
+membership, part of the combined powered \(P,C,Q\) outer load.  Its
+tie/occurrence term is evaluated in the next section.  The finite old terms,
 positive-chamber covariance, the period-two lift, AK(3), stable
-Andrews--Curtis, or Andrews--Curtis.
+Andrews--Curtis, and Andrews--Curtis remain open.
 
-## 5. Cochain loads and the occurrence sweep
+## 5. Exact terminal-incidence theorem
+
+The terminal literal words needed for the outer connector are
+
+\[
+\begin{aligned}
+ A&=Q_1=\texttt{GaGaGbABaGbbaG},\\
+ B&=C=Q_2=\texttt{baGGaGaGbABaGb}.
+\end{aligned}
+ \tag{5.1}
+\]
+
+Let \(A_j,B_j,C_j\) be the vertex reached after the first \(j\) letters of
+the corresponding transported terminal copy have been followed under the
+anti-homomorphic path convention.  Thus \(A_j\) belongs to the \(A\)-copy,
+and \(B_j,C_j\) retain the two distinct transported-copy names even though
+\(B=C\) as literal words.  By the same letters \(A,B,C\), also denote the
+resulting collision-aggregated mod-two terminal edge chains.
+
+Write the old connectors from \(K_Q(d-1)\) and the new connectors from
+\(K_Q(d)\) as
+
+\[
+\begin{aligned}
+ z^-&=S_z^{(3)}(d-1),& z^+&=S_z^{(3)}(d),\\
+ w_3^-&=S_w^{(3)}(d-1),& w_3^+&=S_w^{(3)}(d),\\
+ w_2^-&=S_w^{(2)}(d-1),& w_2^+&=S_w^{(2)}(d).
+\end{aligned}
+ \tag{5.2}
+\]
+
+The old \(z^-\) starts at \(B_0\).  Its transported literal word
+\(\texttt{baG}\) coincides with terminal \(B\)-edges \(0,1,2\), so those
+three edges cancel coefficientwise in
+\(\beta_E=K_Q(d-1)+K_Q(d)\).  The connectors
+\(z^+,w_3^+,w_2^+\) are the three new short connectors contained in
+\(K_Q(d)\).
+
+The collision-aggregated adjacent-source block chains are exactly
+
+\[
+\begin{aligned}
+ \Pi_1&=A+B+z^-+z^+,\\
+ \Pi_2&=B+C+w_3^-+w_3^++w_2^-+w_2^+,\\
+ \Pi_3&=B+C,
+\end{aligned}
+ \tag{5.3}
+\]
+
+and the established paired-boundary chains are
+
+\[
+ F_2=\Pi_1+\beta_2,\qquad
+ G_3=\Pi_3+\beta_3.
+ \tag{5.4}
+\]
+
+Put \(K=K_Q(d)\) and let \(K_s\) be its slot-\(s\) subchain.  The stored
+selectors use the following literal incidence conventions:
+
+- \(t_2\) selects the post-letter vertex for \(\texttt B\) and the
+  pre-letter vertex for \(\texttt b\);
+- \(h_3\) selects the post-letter vertex for \(\texttt G\) and the
+  pre-letter vertex for \(\texttt g\); and
+- the \(\bar b_4\) tail coordinate selects the pre-letter vertex for
+  \(\texttt A\) and the post-letter vertex for \(\texttt a\).
+
+These rules place the integral family and incidence signs before
+collision aggregation and parity reduction.  The established head--tail
+boundary identity, applied to \(K\), is
+
+\[
+\begin{aligned}
+ \langle K,\omega_T\rangle
+ ={}&\langle t_2K_2,\partial F_2\rangle
+    +\langle h_3K_3,\partial G_3\rangle\\
+   &+\langle\partial K_3,\partial\beta_4\rangle
+    +\langle\partial K_4,\bar b_4\rangle.
+\end{aligned}
+ \tag{5.5}
+\]
+
+The following four rows audit every remaining parity.  Set brackets such
+as \([d=1]\) and \([d>1]\) denote truth indicators, and each displayed
+integer total is reduced modulo two only at the end.
+
+First, the slot-two tail-selector row is
+
+\[
+\begin{aligned}
+ \langle t_2K_2,\partial F_2\rangle
+ &=\underbrace{|\{A_5,A_8,A_{10}\}|}_{A:\ 3}
+   +\underbrace{|\{B_8,B_{11},B_{13}\}|}_{B/\text{new }z:\ 3}\\
+ &=6=0\pmod2.
+\end{aligned}
+ \tag{5.6}
+\]
+
+Second, the slot-three head-selector row is
+
+\[
+\begin{aligned}
+ \langle h_3K_3,\partial G_3\rangle
+ &=\underbrace{5+[d>1]}_{A}
+   +\underbrace{7+[d=1]}_{B/\text{new }z/w_3}
+   +\underbrace{1}_{\text{component 2 new }w_2}\\
+ &=14=0\pmod2.
+\end{aligned}
+ \tag{5.7}
+\]
+
+Here the predecessor of \(A_0\) is the final \(\texttt b\) of \(P_1\)
+when \(d=1\), but the final \(\texttt G\) of the preceding \(Q_1\)-copy
+when \(d>1\).  The predecessor of \(B_0\) is the final \(\texttt G\) of
+\(P_*\) when \(d=1\), but the final \(\texttt b\) of the preceding
+\(Q_2\)-copy when \(d>1\).  Since \(d\geq1\),
+\([d=1]+[d>1]=1\), which gives the displayed total \(14\).
+
+Third, the slot-three/slot-four boundary-incidence row is
+
+\[
+\begin{aligned}
+ \langle\partial K_3,\partial\beta_4\rangle
+ &=\underbrace{|\{A_1,A_2,A_3,A_4,A_9,A_{13}\}|}_{A:\ 6}\\
+ &\quad+\underbrace{|\{B_4,B_5,B_6,B_7,B_{12}\}|}_{B:\ 5}
+   +\underbrace{[d=1]}_{\text{old }w_3^-:\ B_0}\\
+ &\quad+\underbrace{1+1+1}_{\text{new }z^+,w_3^+,w_2^+}\\
+ &=14+[d=1]=[d=1]\pmod2.
+\end{aligned}
+ \tag{5.8}
+\]
+
+In this row the old \(z^-\) cancellation removes the
+\(B_1\longrightarrow B_2\) slot-four edge along with the other two initial
+\(B\)-edges.  The old \(w_3^-\) contributes \(B_0\) exactly when \(d=1\);
+each of \(z^+,w_3^+,w_2^+\) contributes one.
+
+Fourth, the slot-four tail-coordinate row is
+
+\[
+\begin{aligned}
+ \langle\partial K_4,\bar b_4\rangle
+ &=\underbrace{|\{A_2,A_4,A_6,A_9,A_{13}\}|}_{A:\ 5}
+   +\underbrace{|\{B_5,B_7,B_9,B_{12}\}|}_{B:\ 4}\\
+ &\quad+\underbrace{1+1+1}_{\text{new }z^+,w_3^+,w_2^+}\\
+ &=12=0\pmod2.
+\end{aligned}
+ \tag{5.9}
+\]
+
+Substitution of (5.6)--(5.9) into (5.5) proves the exact outer load
+
+\[
+ \boxed{\langle K_Q(d),\omega_T\rangle=[d=1].}
+ \tag{5.10}
+\]
+
+Together with the already proved forest-overlap identity (4.12) and
+\(\omega_T=\beta_E+\tau_T\), this also gives
+
+\[
+ \boxed{\langle K_Q(d),\tau_T\rangle=[d=1].}
+ \tag{5.11}
+\]
+
+Pairing the chain telescope (3.16) with \(\omega_T\) therefore closes the
+combined powered \(P,C,Q\) forest load:
+
+\[
+ \boxed{
+ \sum_{h=0}^{i-1}\langle C_P(h),\omega_T\rangle
+ +\langle C_C(i),\omega_T\rangle
+ +\sum_{h=0}^{d-1}\langle C_Q(h),\omega_T\rangle
+ =[d=1].}
+ \tag{5.12}
+\]
+
+This closes only the combined powered \(P,C,Q\) forest load.  The finite
+old fixed, base, and singleton terms, positive-chamber covariance, the
+period-two lift, AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
+open.
+
+## 6. Cochain loads and the occurrence sweep
 
 For any edge cochain
 \(\omega\in C^1(\mathcal T;\mathbb F_2)\), pairing (3.16) with \(\omega\)
@@ -459,7 +642,7 @@ gives
  +\langle C_C(i),\omega\rangle
  +\sum_{h=0}^{d-1}\langle C_Q(h),\omega\rangle
  =\langle K_Q(d),\omega\rangle.}
- \tag{5.1}
+ \tag{6.1}
 \]
 
 Specialize now to the complete collision-aggregated old--new cochain
@@ -468,12 +651,12 @@ restriction is the proved coboundary
 
 \[
  \omega_T(E_4(v))=\bar b_4(v)+\bar b_4(tv),
- \tag{5.2}
+ \tag{6.2}
 \]
 
 and its mixed-slot values have the exact occurrence-prefix and
 head--tail boundary descriptions already established there.  Formula
-(5.1) couples the previous separate powered \(P,C,Q\) program into the
+(6.1) couples the previous separate powered \(P,C,Q\) program into the
 single outer evaluation
 
 \[
@@ -482,12 +665,11 @@ single outer evaluation
  +\langle C_C(i),\omega_T\rangle
  +\sum_{h=0}^{d-1}\langle C_Q(h),\omega_T\rangle
  =\langle K_Q(d),\omega_T\rangle.}
- \tag{5.3}
+ \tag{6.3}
 \]
 
-This connector theorem does not evaluate \(\langle K_Q(d),\omega_T\rangle\).
-It also does not evaluate the finite old terms or positive-chamber
-covariance, and it supplies no AK(3), stable Andrews--Curtis, or
-Andrews--Curtis conclusion.  Its exact contribution is the chain-level
-replacement of three powered interior programs by one explicit outer
-connector load.
+The terminal-incidence theorem (5.10) evaluates the right-hand side of
+(6.3) as \([d=1]\).  This still does not evaluate the finite old fixed,
+base, and singleton terms or positive-chamber covariance, and it supplies
+no period-two lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis
+conclusion.
