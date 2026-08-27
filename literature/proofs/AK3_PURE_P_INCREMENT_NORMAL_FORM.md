@@ -937,23 +937,164 @@ Equations (6.12), (6.14), and (6.16) prove the finite-old subtotal
 
 This does not evaluate the powered head--tail load in (6.4).
 
-## 7. Smallest remaining lemma
+### 6.3 Exact powered head--tail value
 
-Let \(E_{{\rm fixed},i},E_{{\rm base},i},E_{{\rm singleton},i}\) be the
-finite-old contributions to \(\mathbb B(A_i^\Delta,q_i)\). They are not
-imported from the positive-\(j\) or inverse-\(Q\) increments. Combining
-(4.13), (6.4), and (6.17), the remaining joint two-ray \(P\)-period lemma is
+Index the two terminal blocks by
+
+\[
+ A_j=X_{1,i}P_{1,<j}\quad(0\leq j\leq14),\qquad
+ B_j=X_{3,i}P_{*,<j}\quad(0\leq j\leq18).
+ \tag{6.18}
+\]
+
+Thus \(A_0=X_{1,i}\), \(B_0=X_{3,i}\), and
+\(B_{18}=X_{3,i+1}\).  Put
+
+\[
+\begin{aligned}
+ z_j&=B_0z_{<j},&z'_j&=B_{18}z_{<j}&&(0\leq j\leq3),\\
+ w'_j&=B_{18}w_{<j}&&(0\leq j\leq2),\\
+ u_j&=X_{2,i}w_{<j},&u'_j&=X_{2,i+1}w_{<j}
+ &&(0\leq j\leq2).
+\end{aligned}
+ \tag{6.19}
+\]
+
+The active pieces of \(\beta_i\) are the full \(A\)-block, the residual
+\(B\)-block \(B_2,\ldots,B_{18}\), the old and new \(z\)-paths, the new
+component-3 \(w\)-path, and the old and new component-2 \(w\)-paths.
+This is exactly the two-edge cancellation in (3.7)--(3.9).
+
+For the first term of (6.4), literal slot-two run boundaries give
+
+\[
+\begin{aligned}
+\operatorname{supp}\partial F_{i,2}
+=\{&
+A_0,A_1,A_2,A_9,A_{11},A_{13},\\
+&B_0,B_2,B_3,B_8,B_9,B_{14},B_{15},B_{18},
+z_1,z_3,z'_1,z'_3\}.
+\end{aligned}
+ \tag{6.20}
+\]
+
+The tail selector \(t_2K_{i,2}\) meets this set only at \(B_0\), supplied
+by the initial old-\(z\) letter \(\texttt b\).  In particular, the
+terminal \(P_1\) \(\texttt b\)-edge selects its prevertex rather than
+\(A_0\), and \(B_2\) is selected by the canceled old-\(w\)
+\(\texttt G\)-edge through \(h_3\), not by \(t_2\).  Hence
+
+\[
+ H_1=\langle t_2K_{i,2},\partial F_{i,2}\rangle=1.
+ \tag{6.21}
+\]
+
+For the second term, the componentwise support is
+
+\[
+\begin{aligned}
+\operatorname{supp}_{\rm ct}\partial G_{i,3}
+=\{&
+A_2,A_3,A_4,A_5,A_6,A_8,A_{11},A_{12},\\
+&B_0,B_5,B_6,B_7,B_8,B_{11},B_{12},B_{13},B_{14},B_{17},\\
+&z_2,z_3,z'_2,z'_3,w'_1,w'_2\},\\
+\operatorname{supp}_{\rm eps}\partial G_{i,3}
+=\{&X_{2,i},X_{2,i+1},u_1,u_2,u'_1,u'_2\}.
+\end{aligned}
+ \tag{6.22}
+\]
+
+The residual terminal-\(\texttt G\) boundary at \(B_{18}\) cancels the
+\(Z_3\)-endpoint there, leaving \(B_0\).  The head selector \(h_3K_{i,3}\)
+meets (6.22) exactly at
+
+\[
+ \{B_0,z_3,u_2\}.
+\]
+
+These are the postvertices of the final uppercase-\(\texttt G\) edges in
+the old terminal \(P_*\), old \(z\), and old component-2 \(w\) paths.
+Therefore
+
+\[
+ H_2=\langle h_3K_{i,3},\partial G_{i,3}\rangle=3=1.
+ \tag{6.23}
+\]
+
+For the third term,
+
+\[
+\begin{aligned}
+\operatorname{supp}_{\rm ct}\partial\beta_{i,4}
+=\{&
+A_0,A_1,A_3,A_4,A_5,A_6,A_8,A_9,A_{12},A_{13},\\
+&B_3,B_5,B_6,B_7,B_9,B_{11},B_{12},B_{13},B_{15},B_{17},\\
+&z_1,z_2,z'_1,z'_2,B_{18},w'_1\},\\
+\operatorname{supp}_{\rm eps}\partial\beta_{i,4}
+=\{&X_{2,i},u_1,X_{2,i+1},u'_1\}.
+\end{aligned}
+ \tag{6.24}
+\]
+
+Its intersection with \(\operatorname{supp}\partial K_{i,3}\) is exactly
+\(\{z_2,u_1\}\): each vertex is the prevertex of a final old
+\(\texttt G\)-edge and an endpoint of the old \(\texttt a\)-edge.
+Consequently \(H_3=2=0\).
+
+Finally, the unsymmetrized slot-four tail support is
+
+\[
+\begin{aligned}
+\operatorname{supp}_{\rm ct}\bar q_{i,4}
+=\{&
+A_1,A_3,A_5,A_8,A_{12},\\
+&B_3,B_4,B_7,B_9,B_{10},B_{13},B_{15},B_{16},\\
+&z_2,z'_2,w'_1\},\\
+\operatorname{supp}_{\rm eps}\bar q_{i,4}
+=\{&u_1,u'_1\}.
+\end{aligned}
+ \tag{6.25}
+\]
+
+Here the slot-four tail convention selects the prevertex for uppercase
+\(\texttt A\) and the postvertex for lowercase \(\texttt a\).
+The intersection with \(\operatorname{supp}\partial K_{i,4}\) is again
+exactly \(\{z_2,u_1\}\), so \(H_4=2=0\).
+
+There are no omitted intersections.  The terminal \(P_1\) piece meets old
+\(K_i\) only at \(A_0\); after cancellation the residual \(P_*\) piece
+meets it only at \(B_2\).  The old \(z\) and old component-2 \(w\) paths
+are the only active short paths already contained in \(K_i\).  The new
+component-3 branches leave \(B_{18}\) in directions distinct from the
+residual terminal direction, and the old/new component-2 paths are
+separated by the exact \(\texttt B/\texttt g\) fork in (5.6).  Different
+components cannot meet.  These cone arguments include \(i=0\).
+
+Thus
 
 \[
 \boxed{
-\begin{aligned}
-0={}&1+Q(q_i)\\
- &+\langle t_2K_{i,2},\partial F_{i,2}\rangle
-  +\langle h_3K_{i,3},\partial G_{i,3}\rangle\\
- &+\langle\partial K_{i,3},\partial\beta_{i,4}\rangle
-  +\langle\partial K_{i,4},\bar q_{i,4}\rangle,
- \qquad i\geq0.
-\end{aligned}}
+(H_1,H_2,H_3,H_4)=(1,1,0,0),\qquad
+\langle K_i,\omega_i\rangle=0.}
+ \tag{6.26}
+\]
+
+Together with (6.17), this proves the complete old--new value
+
+\[
+\boxed{\mathbb B(A_i^\Delta,q_i)=1\qquad(i\geq0).}
+ \tag{6.27}
+\]
+
+No value of \(Q(q_i)\) is used or inferred.
+
+## 7. Smallest remaining lemma
+
+Combining the complete raw theorem (4.13) with the old--new theorem (6.27),
+the remaining two-ray \(P\)-period lemma is exactly
+
+\[
+\boxed{Q(q_i)=1\qquad(i\geq0).}
  \tag{7.1}
 \]
 
@@ -965,11 +1106,75 @@ Equivalently,
  \tag{7.2}
 \]
 
-Formula (3.5) makes (7.1) a constant-number, collision-first
-powered-template proof interface. It does not evaluate any summand.
+Equations (5.9)--(5.14) reduce (7.1) to the 294 nonzero-slot
+module-shortlex order predicates of the deterministic 48-chord matching.
 All cross terms between \(C_P(i+1)\) and the three short-connector
-differences remain inside \(Q(q_i)\). A valid proof may group the displayed
-terms jointly; no termwise vanishing is asserted.
+differences remain inside \(Q(q_i)\); no familywise value is asserted.
+
+### 7.1 Minimal quadratic certificate interface
+
+The same common-phase normal forms partition the remaining order problem
+into the four exhaustive cells
+
+\[
+ i=0,\qquad i=1,\qquad i=2,\qquad i\geq3.
+ \tag{7.3}
+\]
+
+Within one cell, it is enough to certify the three total module-shortlex
+orders on the active slot sets of sizes \(9,15,18\).  Transitivity reduces
+this to
+
+\[
+ (9-1)+(15-1)+(18-1)=39
+ \tag{7.4}
+\]
+
+adjacent order witnesses.  Partner polarity supplies the negative
+occurrence order by reversal:
+
+\[
+ r^-_{c,s}(v)=|S_s|-1-r^+_{c,s}(v).
+ \tag{7.5}
+\]
+
+The exact all-power comparison census is sharper still: among the 362
+same-slot provenance pairs in a cell, 359 are decided by strict affine
+length, two are the canceled equality fibers, and one uses a fixed-prefix
+first mismatch.  Thus the ranked active lists require at most one genuine
+lexical witness per cell; all other adjacent witnesses are affine integer
+inequalities.
+
+The occurrence-type multisets (5.10)--(5.11) do not determine crossing
+parity by themselves.  A valid certificate must instantiate the
+coordinate-to-chord assignment.  Order its 48 deterministic chord rows as
+\(C_k=(a_k,b_k)\).  For each \(k\), put
+
+\[
+ \lambda_k
+ :=\sum_{j<k}
+ \left(
+ [a_j\in(a_k,b_k)]+[b_j\in(a_k,b_k)]
+ \right).
+ \tag{7.6}
+\]
+
+Exactly one endpoint of \(C_j\) lies in the open chronological interval of
+\(C_k\) precisely when the two chords cross.  Therefore
+
+\[
+ \boxed{
+ Q(q_i)=\operatorname{cr}(M_i)
+ =\sum_{k=1}^{48}\lambda_k\pmod2.}
+ \tag{7.7}
+\]
+
+Each \(\lambda_k\) is obtained from fixed whole-occurrence counts and at
+most two prefix-rank lookups in the ranked boundary blocks.  The smallest
+remaining certificate therefore consists of 48 coordinate-bound chord
+rows, the three ranked slot lists in each cell, 39 adjacent witnesses per
+cell, and the 48 prefix-sweep parities.  Its computed value is not imposed;
+until it gives one on every cell, (7.1) remains open.
 
 Proving (7.1) makes all \(c_i\) equal. The exact seed \(u_{00}=1\) gives
 \(c_0=0\), so the diagonal identity and unary delta would then follow from

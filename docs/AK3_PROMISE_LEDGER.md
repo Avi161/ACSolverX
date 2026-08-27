@@ -103,16 +103,21 @@ finite quotient do not close a route.
   has membership one and prefix bits \((0,0,1,0,1,0)\).  Hence
   \(E_{\rm fixed}=0\), \(E_{\rm base}=0\), and
   \(E_{\rm singleton}=1\) for every \(i\geq0\).
+- **Diagonal old--new term proved:** exact indexed support lists for the four
+  powered head--tail pairings give
+  \((H_1,H_2,H_3,H_4)=(1,1,0,0)\).  The powered subtotal is therefore
+  zero; adding the finite-old subtotal gives
+  \(\mathbb B(A_i^\Delta,q_i)=1\) for every \(i\geq0\).
 - **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
   pure-\(P\) normal-form note:
   \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
   proved zero, and the complete nonzero raw part is now also proved zero.
-  The remaining exact scalar is
-  \(\mathbb B(A_i^\Delta,q_i)+Q(q_i)\) on the 96-token quadratic stream;
-  equivalently, prove \(1+Q(q_i)+H_1+H_2+H_3+H_4=0\).  Evaluate the 294
-  quadratic module-order predicates jointly with the four head--tail
-  ledgers.  The powered old--new and new--new terms remain one open joint
-  xor.  With the seed, its vanishing would prove \(u_{ij}=\delta_{ij}\).
+  The old--new term is one, so the sole remaining scalar is
+  \(Q(q_i)=1\) on the deterministic 48-chord matching.  Evaluate its 294
+  nonzero-slot module-order predicates by three ranked slot lists: 39
+  adjacent order witnesses in each of the four cells, followed by the
+  48-row chord prefix sweep (7.6)--(7.7).  With the seed, \(Q=1\) would
+  prove \(u_{ij}=\delta_{ij}\).
 - **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
   law; the reduction does not prove the diagonal identity.  The unary delta,
   period-two lift, AK(3), stable AC, and AC remain open.
