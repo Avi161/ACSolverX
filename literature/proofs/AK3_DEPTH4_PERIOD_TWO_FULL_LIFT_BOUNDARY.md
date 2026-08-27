@@ -1631,6 +1631,180 @@ index:
 This is only the differentiated-inversion source contribution from slot
 four.  It is not the complete crossed derivative \(R_{k,i}\).
 
+The fixed-base polarization in slot three also vanishes.  Recall
+\(\overline B_3=e_{\texttt{TTct}}\).  Direct canonical reduction gives
+
+\[
+ q_3\texttt{TTct}=\texttt{ctcT},
+ \qquad
+ \operatorname{cvert}(m_3\texttt{ctcT})=\texttt{Tct},
+\tag{5.45al}
+\]
+
+of lengths four and three.  Put
+\(\beta_i=K_i+K_{i+1}\).  The frozen occurrence-9 canonical records and
+their approved all-power pump give
+
+\[
+ \min\{|x|:x\in\operatorname{supp}(q_3\beta_{i,3})\}
+ =32+24i.
+\tag{5.45am}
+\]
+
+The two-step shell is
+\(q_3(K_{i,3}+K_{i+2,3})
+  =q_3(\beta_{i,3}+\beta_{i+1,3})\);
+collision aggregation can only delete equal rows.  Since
+\(|m_3|=7\), (5.46b) lowers a shell length by at most eight.  Thus every
+transformed shell head has length at least \(24\), while the transformed
+base in (5.45al) has length three.  The base precedes every shell head
+both before and after multiplication by \(m_3\).  Therefore
+
+\[
+\boxed{
+ \lambda_k\Pi_{\rho_k}^{\wedge}
+ \operatorname{PInv}_{m_3}
+ \left(q_3\overline B_3,\,
+       q_3(K_{i,3}+K_{i+2,3})\right)
+ =0
+ \qquad(k=1,\ldots,14,\ i\geq0).}
+\tag{5.45an}
+\]
+
+Slot two has an exact constant-size source interface.  Here
+\(m_2=B=\texttt{ctcTcTctc}\) and
+\(B^{-1}=\texttt{cTctctcTc}\).  For a protected canonical vertex \(x\),
+let \(\kappa_B(x)\) be the cancellation depth between its prefix and
+\(B^{-1}\).  The stable slot-two rows at level \(h\geq1\) are the four
+\(P_1\) rows \(a,b,c,d\) at positions \(1,9,10,13\), the three \(P_*\)
+rows \(e,f,g\) at positions \(2,8,14\), and the sole terminal \(z\)-row.
+Their complete canonical length data are
+
+\[
+\begin{array}{c|rrrrrrrr}
+ &a&b&c&d&e&f&g&z\\ \hline
+ |x|-24h&3&15&22&26&4&12&20&6\\
+ \kappa_B(x)&0&1&1&9&9&9&9&9\\
+ |Bx|-24h&12&22&29&17&-5&3&11&-3.
+\end{array}
+\tag{5.45ao}
+\]
+
+All these protected words are longer than \(B\), and their terminal
+canonical branch is fixed, so
+\(|Bx|=|x|+9-2\kappa_B(x)\).  The original within-level order is
+
+\[
+ a<e<f<b<g<c<d,
+\]
+
+whereas the transformed order is
+
+\[
+ e<f<g<a<d<b<c.
+\]
+
+Consequently the exact reversal sets are
+
+\[
+\begin{aligned}
+ W_h={}&\{(a_h,e_h),(a_h,f_h),(a_h,g_h),
+          (b_h,g_h),(b_h,d_h),(c_h,d_h)\},\\
+ A_h={}&\{(b_h,e_{h+1}),(c_h,e_{h+1}),(c_h,f_{h+1})\},\\
+ T_h={}&\{(b_h,z_{h+1}),(c_h,z_{h+1})\}.
+\end{aligned}
+\tag{5.45ap}
+\]
+
+There are no transformed-length ties.  Levels separated by at least two
+cannot interact, and no other slot-two connector row exists.  The only
+\(P_1/P_*\) common edge lies in slot four, so (5.45ao)--(5.45ap) are already
+collision-first in slot two.
+
+Put
+
+\[
+ \omega_k(x,y)
+ :=\widetilde\lambda_k(e_{Bx}\wedge e_{By})
+ =\widetilde\lambda_k(e_x\wedge e_y),
+\qquad
+ \omega_k(S):=\sum_{(x,y)\in S}\omega_k(x,y),
+\tag{5.45aq}
+\]
+
+where the second equality is diagonal \(B\)-invariance.  Cancellation of
+all shared old pairs between \(K_i\) and \(K_{i+2}\) now gives, for every
+\(i\geq1\),
+
+\[
+\boxed{
+ \Xi_{k,2}(i+2)+\Xi_{k,2}(i)
+ =\omega_k(W_{i+1})+\omega_k(W_{i+2})
+  +\omega_k(A_i)+\omega_k(A_{i+1})
+  +\omega_k(T_i)+\omega_k(T_{i+2}).}
+\tag{5.45ar}
+\]
+
+This is exactly \(6+6+3+3+2+2=22\) finite-action weights.  It is only the
+slot-two inversion source, not the complete \(R_{k,i}\), and invariance
+does not force its xor to vanish.  At \(i=0\), the stable terms
+\(W_1,W_2,A_1,T_2\) remain valid; only the seed seam \(A_0\) and seed
+terminal set \(T_0\) need a separate collision-aggregated finite table.
+
+Finally, slot three has a sharper exact cancellation signature than the
+generic band (5.46d).  Write
+
+\[
+ G=\texttt{ctcTTct},\qquad
+ q_3=GA,\qquad m_3=G^{-1},\qquad m_3q_3=A.
+\tag{5.45as}
+\]
+
+For \(u=\operatorname{cvert}(Av)\), the before/after labels in the
+inversion test are \(\operatorname{cvert}(Gu)\) and \(u\).  Define
+
+\[
+ d(u)=\operatorname{LCP}(u,G^{-1})\in\{0,\ldots,7\}.
+\tag{5.45at}
+\]
+
+On a protected word longer than seven, terminal-\(c\) deletion is inert and
+\[
+ |\operatorname{cvert}(Gu)|=|u|+7-2d(u).
+\tag{5.45au}
+\]
+
+Pairs of equal depth retain their length difference and lexical order, so
+they never reverse.  A reversing pair has distinct depths and pre-\(G\)
+length gap at most fourteen.  Its exact truth is determined by the two
+depths, the affine length offset, the first eight letters of each protected
+word, and its terminal branch.  The eighth letter is required when depth
+seven cancels the whole \(G^{-1}\) prefix.  More precisely, after a maximal
+matched prefix of depth \(d\), reducedness forbids the next remainder
+letter from being the inverse of the last matched letter, equivalently from
+being the next residual \(G\)-letter.  Thus transformed words of unequal
+depth differ at the first post-depth letter, and positions through
+\(d+1\leq8\) suffice.
+
+The complete semantic inventory consists of eleven powered families:
+\(P_1\) positions \(2,4,6,7,11\), \(P_*\) positions
+\(1,5,7,11,13,17\), and the three terminal families \(w_3,z_3,w_2\).
+After collision aggregation, the two-step shell has 26 slot-three
+coordinates.  Each shell coordinate sees at most two levels from each
+powered family and the three terminal rows, giving at most
+
+\[
+ 26(2\cdot11+3)+\binom{26}{2}=650+325=975
+\tag{5.45av}
+\]
+
+prefiltered old--shell and shell--shell comparisons.  The strict depth,
+length, and prefix tests remove further rows.  On the protected rays the
+comparison bits are constant and the projected wedge weights have joint
+period dividing \(20\).  The bounded level-zero \(P_*\)-position-1 /
+terminal-\(w_3\) collision remains one separate exact seed table.  No
+slot-three source value is claimed.
+
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families
 

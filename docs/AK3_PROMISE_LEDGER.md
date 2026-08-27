@@ -171,11 +171,15 @@ finite quotient do not close a route.
   finite actions now evaluates it completely: its all-index fourteen-bit
   vector is `01000000100000`, with ones only in coordinates two and nine.
   This is a slot-four inversion-source term, not the complete crossed
-  derivative.  The slot-two and
-  slot-three kernels have inversion bands 20 and 16; because all protected
-  cores have slope 24, each old/shell template pair survives on at most
-  two affine boundary rays.  Thus no genuine parity prefix sum remains,
-  although none of the boundary incidences is evaluated yet.  The
+  derivative.  The slot-three fixed-base polarization is also zero by an
+  exact length gap.  For \(i\geq1\), the slot-two source is exactly 22
+  finite-action weights on two new levels, two adjacent seams, and two
+  terminal incidences; \(i=0\) needs only its seed seam/terminal table.
+  The slot-three source has an exact \(G\)-cancellation-depth signature and
+  at most 975 prefiltered comparisons plus one bounded seed table; its
+  protected part has joint period dividing 20.  Thus no genuine parity
+  prefix sum remains, although the slot-two and slot-three source values
+  are not yet evaluated.  The
   152-schema common-phase/Fine--Wilf argument and its source-bound onset 99
   conservatively control their surviving parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
