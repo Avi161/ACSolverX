@@ -179,6 +179,13 @@ BASELINE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
 RECOMMENDED = {"segments": [
     {"upto": None, "w": {"L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
 
+# The research branch's block-ordering arm ``s20_mk2`` (L + 20*S + 2*MK), ported verbatim from
+# cursor/heur-u124-s20mk2-a42e `runners/run_ac19_autmin_scale.py` so the benchmark in
+# ``bench_new_moves.py`` can score the exact arm those campaigns named. Same feature definitions
+# (``S`` smaller mean block, ``MK`` max knots); only the weight vector differs from RECOMMENDED.
+S20_MK2 = {"segments": [
+    {"upto": None, "w": {"L": 1.0, "S": 20.0, "MK": 2.0}}]}
+
 
 def make_priority(config=None):
     """Compile a config into the ``(r1, r2) -> key`` callable the solver pushes with.
