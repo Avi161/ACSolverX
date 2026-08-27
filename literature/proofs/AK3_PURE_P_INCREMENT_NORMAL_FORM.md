@@ -553,6 +553,193 @@ quadratic value. The approved adjacent inverse-\(Q\) masks are source-tree
 boundaries but satisfy \(Q(b^-_{n,e})=1\). Hence no boundary-only,
 single-transport, central-label, or familywise involution proves the target.
 
+### 5.1 Deterministic 48-chord matching
+
+Apply the source-tree matching construction to the exact path sum (3.5):
+pair each boundary token with the first or last incident edge event and pair
+consecutive edge events at their common canonical forest vertex.  At the
+unique two-edge collision, first pair the opposite-sign old-\(w\) and
+terminal-\(P_*\) provenance copies, separately at the \(a\)-occurrences
+\((15,16)\) and the \(G\)-occurrences \((9,14)\).  Splicing the resulting
+alternating paths is deterministic after the literal source rows have been
+ordered.
+
+The surviving source pieces and their chord counts are
+
+\[
+\begin{array}{c|c|c}
+\text{piece}&\text{edge length}&\text{chords}\\ \hline
+\text{terminal }P_1&14&15\\
+\text{old and new component-2 }w&2+2&6\\
+\text{old component-3 }z&3&4\\
+\text{residual terminal }P_*&16&17\\
+\text{new component-3 }w,z&2+3&6.
+\end{array}
+ \tag{5.2}
+\]
+
+For the last row, the two terminal boundary chords and the \(1+2\)
+internal adjacency chords are supplemented by one chord pairing the two
+initial \(w,z\) edge events at their common vertex.  Thus the
+collision-first matching \(M_i\) has
+
+\[
+ \boxed{|M_i|=15+6+4+17+6=48}
+ \tag{5.3}
+\]
+
+label-preserving chords on the 96 decorated tokens.
+
+### 5.2 Exact chord-label separation
+
+All vertices below are vertices of the common canonical source forest
+\(X\).  Hence two distinct reduced source-tree vertices in one component,
+or vertices in distinct components, have distinct transported canonical
+labels; there is no further quotient identification after
+\(\operatorname{cvert}\).
+
+The terminal \(P_1\) piece lies in the reduced prefix cone
+\(\texttt{aB}\), whereas every component-3 piece lies in the cone
+\(\texttt{aG}\).  The component-2 pieces lie in the other forest
+component.  To separate the two component-2 copies without ignoring free
+reduction, put
+
+\[
+ D=\texttt{gABBgAbaBgAgAg}.
+ \tag{5.4}
+\]
+
+The exact literal words are
+
+\[
+ P_2=\texttt A\,D\,\texttt a,\qquad
+ C_2=\texttt A\,D\,\texttt{BaGb},
+ \tag{5.5}
+\]
+
+and cancellation of the intervening \(\texttt{aA}\) seams gives, uniformly
+for \(i\geq0\),
+
+\[
+\boxed{
+ X_{2,i}
+ =\operatorname{red}(P_2^iC_2)
+ =\texttt A\,D^{\,i+1}\texttt{BaGb}.}
+ \tag{5.6}
+\]
+
+Thus \(X_{2,i}\) and \(X_{2,i+1}\) have maximal common prefix
+\(\texttt A\,D^{i+1}\), after which the old word continues through
+\(\texttt B\) and the new word through \(\texttt g\).  Appending
+\(w=\texttt{aG}\) creates no backtracking to that fork.  The two
+component-2 \(w\)-paths therefore have disjoint vertex sets.
+
+In component 3, the canceled old \(w=\texttt{aG}\) is exactly positions
+zero and one of the newly added \(P_*\)-block.  The residual path consists
+of positions \(2,\ldots,17\), from
+\(X_{3,i}\texttt{aG}=X_{4,i}\) to
+
+\[
+ B:=X_{3,i+1}=P_*^{\,i+2}.
+ \tag{5.7}
+\]
+
+The old \(z\)-path leaves \(X_{3,i}\) through \(\texttt b\), while the
+canceled \(w/P_*\) branch starts through \(\texttt a\); the residual path
+does not contain the fork vertex.  At \(B\), the residual terminal branch
+and the new \(w,z\) branches are incident through the three distinct
+literal directions \(\texttt G,\texttt a,\texttt b\).  Forest uniqueness
+therefore gives no further meeting.
+
+Consequently \(B\) is the only source-tree vertex which supports two
+chords of \(M_i\).  They are the residual-\(P_*\) boundary chord of
+occurrence type \((9,11)\) and the new-\(w\)/new-\(z\) initial-incidence
+chord of type \((6,15)\).  Since
+
+\[
+ 6<9<11<15,
+ \tag{5.8}
+\]
+
+the sole equal-label chord pair is nested and does not cross.  Every
+crossing pair is therefore heterochromatic, and the heterochromatic chord
+formula simplifies to
+
+\[
+ \boxed{Q(q_i)=\operatorname{cr}(M_i).}
+ \tag{5.9}
+\]
+
+This removes the transported-label equality predicates, but it does not
+evaluate the crossing parity.
+
+### 5.3 Remaining order predicates
+
+The twelve boundary-chord occurrence types are
+
+\[
+\begin{gathered}
+(1,3),\ (3,15),\ 2(4,9),\ (6,11),\ (6,7),\ (9,11),\\
+(7,9),\ 2(8,9),\ 2(12,15),
+\end{gathered}
+ \tag{5.10}
+\]
+
+and the thirty-six adjacency-chord types are
+
+\[
+\begin{gathered}
+4(1,16),\ 4(6,9),\ 11(14,16),\ 4(9,15),\ (9,14),\\
+3(1,15),\ (1,6),\ 2(6,15),\ 3(15,16),\ 3(14,15).
+\end{gathered}
+ \tag{5.11}
+\]
+
+Among the \(\binom{48}{2}=1128\) chord pairs, literal occurrence order
+forces 148 crossings and 472 noncrossings.  The remaining 508 pairs share
+an occurrence block.  Indeed, the occurrence degrees give
+
+\[
+ d_1=d_6=9,\quad d_9=d_{14}=15,\quad d_{15}=d_{16}=18,
+ \quad
+ d_3=d_4=d_7=d_8=d_{11}=d_{12}=2,
+ \tag{5.12}
+\]
+
+and therefore
+
+\[
+ \sum_o\binom{d_o}{2}=594,
+ \tag{5.13}
+\]
+
+while pairs of identical occurrence type contribute
+\(\sum_\theta\binom{m_\theta}{2}=86\); hence 422 pairs share exactly one
+block and 86 share both.
+
+Partner polarity reverses module order at the negative occurrence, so the
+594 atomic within-block comparisons reduce to
+
+\[
+ |y_{i,i}|=24(i+1)+4,\qquad
+ |y_{i+1,i+1}|=24(i+2)+4.
+\]
+
+Thus the single slot-zero predicate is fixed:
+\([y_{i,i}<_{\rm sl}y_{i+1,i+1}]=1\).  The complete order inventory is
+
+\[
+\boxed{
+ \binom92+\binom{15}2+\binom{18}2+1
+ =294+1}
+ \tag{5.14}
+\]
+
+order predicates.  The last predicate is the single slot-zero order, fixed
+by the displayed endpoint lengths; the 294 nonzero-slot module-shortlex
+predicates remain unevaluated.  Thus (5.9)--(5.14) are a finite
+all-power proof interface, not a value of \(Q(q_i)\).
+
 ## 6. Exact head--tail interface
 
 For \(o\in\{3,4,7,8,11,12\}\), let \(\pi_{o,i}\) be the unique path
@@ -603,6 +790,51 @@ Here \(\omega_i\) is the complete old--new edge load induced by \(q_i\);
 the last vertex function is the unsymmetrized slot-four activity of
 \(q_i\). All chains are collision-aggregated in one stored basis and all
 integral incidence signs are placed before reduction modulo two.
+
+### 6.1 Exact head--tail comparison inventory
+
+Put \(m=i+1\).  Expanding the literal run boundaries in (3.5) and (6.1)
+gives the following componentwise support counts:
+
+\[
+\begin{array}{c|cc}
+\text{vertex chain or function}&\mathrm{ct}&\mathrm{eps}\\ \hline
+t_2K_{i,2}&7m+1&0\\
+\partial F_{i,2}&18&0\\
+h_3K_{i,3}&11m+2&1\\
+\partial G_{i,3}&24&6\\
+\partial K_{i,3}&20m+4&2\\
+\partial\beta_{i,4}&26&4\\
+\partial K_{i,4}&22m&2\\
+\bar q_{i,4}&16&2.
+\end{array}
+ \tag{6.5}
+\]
+
+Vertices in different forest components cannot pair.  Therefore the four
+terms in (6.4) have the following exact uncompressed same-component
+comparison-ledger sizes:
+
+\[
+\begin{aligned}
+ H_1&=(7m+1)18=126m+18,\\
+ H_2&=(11m+2)24+1\cdot6=264m+54,\\
+ H_3&=(20m+4)26+2\cdot4=520m+112,\\
+ H_4&=(22m)16+2\cdot2=352m+4.
+\end{aligned}
+ \tag{6.6}
+\]
+
+Thus the complete literal head--tail ledger has
+
+\[
+ \boxed{H_1+H_2+H_3+H_4=1262m+188}
+ \tag{6.7}
+\]
+
+candidate vertex-equality predicates.  Formula (6.7) is an exhaustive
+inventory before equality collisions or parity cancellations; it is not a
+minimal predicate count and supplies no value for any term in (6.4).
 
 ## 7. Smallest remaining lemma
 
