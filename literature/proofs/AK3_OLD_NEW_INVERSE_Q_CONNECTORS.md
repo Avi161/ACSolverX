@@ -40,9 +40,18 @@ The desired nonpositive-chamber edge law would be
 \]
 
 This note does not prove (0.4).  It proves the exact inverse-\(Q\) powered
-chain telescope, terminal topology, support count, and forest-membership
-pairing needed for its old--new term.  No symmetry with the positive
-chamber is asserted or used.
+chain telescope, terminal topology, support count, and complete old--new
+pairing
+
+\[
+ \boxed{
+ \mathbb B(A^-_{n,e},b^-_{n,e})
+ =1+[e=0]=[e\geq1].}
+ \tag{0.5}
+\]
+
+No symmetry with the positive chamber is asserted or used.  The remaining
+raw and new--new terms in (0.3) are not evaluated here.
 
 All chains are collision-aggregated in the common stored-edge basis.
 Integral family and incidence signs are placed before reduction modulo two.
@@ -411,22 +420,244 @@ so its parity is zero.  Consequently
 This evaluates only the inverse-\(Q\) forest-overlap, or membership, part
 of the total powered old--new load.
 
-## 6. Honest remaining boundary
+## 6. Exact inverse tie and finite-old terms
+
+### 6.1 Terminal nodes and paired boundary chains
+
+Fix \(e\geq0\), and give the three short paths their literal transported
+nodes:
+
+\[
+\begin{aligned}
+ Z_e:\quad&B_0=z_0\longrightarrow z_1\longrightarrow z_2
+              \longrightarrow z_3,
+              &&\text{word }\texttt{baG},\\
+ W_e:\quad&B_0=w_0\longrightarrow w_1\longrightarrow w_2,
+              &&\text{word }\texttt{aG},\\
+ U_e:\quad&C_0=u_0\longrightarrow u_1\longrightarrow u_2,
+              &&\text{word }\texttt{aG}.
+\end{aligned}
+ \tag{6.1}
+\]
+
+Here \(B_0=\widetilde v_3(e)\) and
+\(C_0=\widetilde v_2(e)\).  Let \(A,B,C\) denote the three inverse-word
+increment chains \(A_e,B_e,C_e\), where
+
+\[
+ C_e=[\widetilde v_2(e),\widetilde v_2(e+1)]
+ \tag{6.2}
+\]
+
+and \(A_e,B_e\) are defined in (4.3).  The exact paired occurrence-block
+chains are
+
+\[
+\begin{aligned}
+ \Pi_1&=A+B+Z_e+Z_{e+1},\\
+ \Pi_2&=B+C+W_e+W_{e+1}+U_e+U_{e+1},\\
+ \Pi_3&=B+C.
+\end{aligned}
+ \tag{6.3}
+\]
+
+The associated boundary chains are
+
+\[
+ F_2=\Pi_1+\beta^-_{e,2},
+ \qquad
+ G_3=\Pi_3+\beta^-_{e,3}.
+ \tag{6.4}
+\]
+
+In the collision-aggregated mask, \(Z_{e+1}\) cancels edges
+\(11,12,13\) of the \(B\)-increment.  This is the terminal
+\(\texttt{gAB}\) cancellation from Section 4.
+
+Put \(K=\widetilde K(e)\), and let \(K_s\) be its slot-\(s\) subchain.
+The established head--tail identity is
+
+\[
+\begin{aligned}
+ \langle K,\omega^-_e\rangle
+ ={}&\langle t_2K_2,\partial F_2\rangle
+    +\langle h_3K_3,\partial G_3\rangle\\
+   &+\langle\partial K_3,\partial\beta^-_{e,4}\rangle
+    +\langle\partial K_4,\bar b^-_{e,4}\rangle,
+\end{aligned}
+ \tag{6.5}
+\]
+
+where
+
+\[
+ \omega^-_e=\beta^-_e+\tau^-_e.
+ \tag{6.6}
+\]
+
+### 6.2 Four exact head--tail intersections
+
+The four collision-first intersection rows are:
+
+| pairing row | seam \(e=0\) intersection | stable \(e\geq1\) intersection | integer count | value in \(\mathbb F_2\) |
+|:---|:---|:---|:---|:---|
+| \(\langle t_2K_2,\partial F_2\rangle\) | \(\varnothing\) | \(\varnothing\) | \(0\) | \(0\) |
+| \(\langle h_3K_3,\partial G_3\rangle\) | \(\{B_0,z_3,w_2,u_2\}\) | \(\{w_2,u_2\}\) | \(2+2[e=0]\) | \(0\) |
+| \(\langle\partial K_3,\partial\beta^-_{e,4}\rangle\) | \(\{B_0,z_2,w_1,u_1\}\) | \(\{w_1,u_1\}\) | \(2+2[e=0]\) | \(0\) |
+| \(\langle\partial K_4,\bar b^-_{e,4}\rangle\) | \(\{z_2,w_1,u_1\}\) | \(\{w_1,u_1\}\) | \(2+[e=0]\) | \([e=0]\) |
+
+In the first row the only seam candidate is \(B_0\), but
+
+\[
+ (\partial F_2)(B_0)=0,
+ \tag{6.7}
+\]
+
+so the intersection is empty.  The seam-only \(B_0\) entries in the second
+and third rows arise from the old \(P_*\) terminal uppercase
+\(\texttt G\), which is the stored slot-three head at \(B_0\).  They do
+not arise from a lowercase terminal letter or from a symmetry convention.
+
+For \(e\geq1\), the retraced \(Z_e\)-segment is absent from the support of
+\(\widetilde K(e)\), because it cancels against the final three edges of
+the long connector.  It nevertheless remains part of
+\(\beta^-_e\) through the expansion (4.5).  This distinction is used in
+the third and fourth rows and is why an incidence table for
+\(\widetilde K(e)\) cannot replace the mask table for \(\beta^-_e\).
+
+Substitution into (6.5) proves
+
+\[
+ \boxed{\langle\widetilde K(e),\omega^-_e\rangle=[e=0].}
+ \tag{6.8}
+\]
+
+Together with the membership result (5.5),
+
+\[
+ \boxed{\langle\widetilde K(e),\beta^-_e\rangle=[e=0],}
+ \tag{6.9}
+\]
+
+and (6.6), this gives the complete inverse tie/occurrence value
+
+\[
+ \boxed{\langle\widetilde K(e),\tau^-_e\rangle=0.}
+ \tag{6.10}
+\]
+
+### 6.3 Fixed and base exclusion
+
+The exact same-component radius separation is:
+
+| chamber | minimum \(T\)-label radius in \(\texttt{ct}\) | minimum \(T\)-label radius in \(\mathrm{eps}\) | maximum fixed radius in \(\texttt{ct}\) | maximum fixed radius in \(\mathrm{eps}\) | base-core radius |
+|:---|---:|---:|---:|---:|---:|
+| \(e=0\) | \(14\) | \(19\) | \(9\) | \(6\) | \(2\) |
+| \(e\geq1\) | \(28\) | \(25\) | \(9\) | \(6\) | \(2\) |
+
+At \(e=0\), the individual \(C_e\)-path retraces four edges from radius
+\(19\) to radius \(15\).  Those edges do not survive collision aggregation:
+equation (4.5) shows that the complete \(\mathrm{eps}\)-component mask
+support is exactly \(U_e+U_{e+1}\), with slot-zero endpoints included
+separately.  Hence its surviving \(T\)-labels have radius at least \(19\)
+at \(e=0\) and at least \(25\) for \(e\geq1\).  In the
+\(\texttt{ct}\)-component, \(A_e,B_e\) move outward and \(Z_e\) retraces
+only the stated three edges, giving the bounds \(14\) and \(28\).
+
+All distances in one comparison are measured in the same source-tree
+component.  The lower bounds already allow the exact short-connector
+retracing, and collision aggregation can only delete edges.  Hence no fixed
+label and no base-core label equals a label of \(T\).
+
+The fixed tokens lie outside the correction blocks, and every complete
+earlier occurrence block has even size
+
+\[
+ 2,\ 8,\ 14,\ 14
+ \tag{6.11}
+\]
+
+in slots \(0,2,3,4\), respectively.  Thus their chronology ranks and
+equal-label ranks both vanish.  The base edges are also disjoint from the
+mask support and have no equal-label incident token.  Therefore
+
+\[
+ \boxed{E^-_{\rm fixed}=0,\qquad E^-_{\rm base}=0.}
+ \tag{6.12}
+\]
+
+This is a same-forest radius argument, not a comparison between forest-word
+length and canonical quotient-label length.
+
+### 6.4 Corrected singleton mask incidence
+
+The singleton calculation must use incidence in the mask
+\(\beta^-_e\), not incidence in \(\widetilde K(e)\).  For all \(e\geq0\),
+the complete table is:
+
+| slot-zero occurrence \(o\) | transported label | incident source in \(\beta^-_e\) | equal-label occurrence set | strictly earlier set | count |
+|---:|:---|:---|:---|:---|---:|
+| \(3\) | \(\widetilde v_1(e)\) | initial \(\texttt g\) of \(\mathsf A^-\) | \(\{9\}\) | \(\varnothing\) | \(0\) |
+| \(4\) | \(\widetilde v_5(e)=z_3\) | final \(\texttt G\) of \(Z_e\) | \(\{9\}\) | \(\varnothing\) | \(0\) |
+| \(7\) | \(\widetilde v_4(e)=w_2\) | final \(\texttt G\) of \(W_e\) | \(\{9\}\) | \(\varnothing\) | \(0\) |
+| \(8\) | \(\widetilde v_6(e)=u_2\) | final \(\texttt G\) of \(U_e\) | \(\{9\}\) | \(\varnothing\) | \(0\) |
+| \(11\) | \(\widetilde v_3(e)=B_0\) | initial \(\texttt B\) of \(\mathsf B^-\); initial \(\texttt b\) of \(Z_e\); initial \(\texttt a\) of \(W_e\) | \(\{1,6,15\}\) | \(\{1,6\}\) | \(2\) |
+| \(12\) | \(\widetilde v_2(e)=C_0\) | initial \(\texttt a\) of \(U_e\) | \(\{15\}\) | \(\varnothing\) | \(0\) |
+
+The chronology counts are exactly
+
+\[
+ (0,0,0,0,2,0),
+ \tag{6.13}
+\]
+
+so every occurrence-prefix parity vanishes.  Thus the singleton
+tie/occurrence contribution is zero.  Its slot-zero membership contribution
+is one, and hence
+
+\[
+ \boxed{
+ E^-_{\rm singleton,tie}=0,\qquad
+ E^-_{\rm singleton,membership}=1,\qquad
+ E^-_{\rm singleton}=1.}
+ \tag{6.14}
+\]
+
+For \(e\geq1\), the initial-\(\texttt b\) row at \(B_0\) is still present
+because \(Z_e\) is part of \(\beta^-_e\), even though that retraced segment
+is absent from \(\widetilde K(e)\).
+
+### 6.5 Complete inverse old--new value
+
+The powered outer load is (6.8), and the three finite-old values are
+(6.12) and (6.14).  Therefore
+
+\[
+\begin{aligned}
+ \mathbb B(A^-_{n,e},b^-_{n,e})
+ &=\langle\widetilde K(e),\omega^-_e\rangle
+   +E^-_{\rm fixed}+E^-_{\rm base}+E^-_{\rm singleton}\\
+ &=[e=0]+0+0+1\\
+ &=1+[e=0]=[e\geq1].
+\end{aligned}
+ \tag{6.15}
+\]
+
+This completes the inverse old--new term only.  It is independent of
+\(n\), but it is not the complete \(J^-_{n,e}\) edge law.
+
+## 7. Honest remaining boundary
 
 The following terms are not evaluated here:
 
-1. the inverse tie/occurrence load
-   \(\langle\widetilde K(e),\tau^-_e\rangle\);
-2. the fixed, base, and singleton old terms at the seam and in the negative
-   chamber;
-3. the remaining non-slot-zero part of \(L(b^-_{n,e})\);
-4. \(Q(b^-_{n,e})\) and the required new--new contributions;
-5. the complete target \(J^-_{n,e}=[e=0]\);
-6. the diagonal defect and the unary delta identity; and
-7. the period-two lift, AK(3), stable Andrews--Curtis, and
+1. the remaining non-slot-zero part of \(L(b^-_{n,e})\);
+2. \(Q(b^-_{n,e})\) and the required new--new contributions;
+3. the complete target \(J^-_{n,e}=[e=0]\);
+4. the diagonal defect and the unary delta identity; and
+5. the period-two lift, AK(3), stable Andrews--Curtis, and
    Andrews--Curtis.
 
-The exact chain, topology, and membership identities above make no claim
-that any of these remaining terms vanishes.  In particular, this note is
-not a nonpositive-chamber covariance proof and contains no AK3 or
-Andrews--Curtis conclusion.
+The exact chain, topology, tie, and finite-old identities above make no
+claim that any of these remaining terms vanishes.  In particular, this
+note is not a complete nonpositive-chamber edge-law proof and contains no
+AK3 or Andrews--Curtis conclusion.

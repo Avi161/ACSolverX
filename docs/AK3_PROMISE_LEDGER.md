@@ -35,12 +35,15 @@ finite quotient do not close a route.
   \(E_{\rm singleton}=1\). Hence
   \(\mathbb B(A_{n,d},b_{n,d})=[d>1]\) for \(d\geq1\), independently of
   \(n\). Bound commits: `bc4338cb`, `c172c173`.
-- **Inverse seam proved:** the inverse-\(Q\) chain telescope, piecewise
-  connector topology, 36-edge \((8,14,14)\) support, and membership pairing
-  \(\langle\widetilde K(e),\beta^-_e\rangle=[e=0]\) are proved.
-- **Resume point:** evaluate the inverse tie/occurrence load, finite old
-  terms, non-slot-zero raw load, \(Q(b^-)\), and new--new chamber terms,
-  then the diagonal defect.
+- **Inverse old--new load proved:** the inverse-\(Q\) chain telescope,
+  piecewise connector topology, 36-edge \((8,14,14)\) support, and membership
+  pairing are proved.  The exact occurrence sweep gives outer load
+  \([e=0]\) and tie load `0`; fixed/base loads vanish and the singleton
+  load is `1`.  Hence
+  \(\mathbb B(A^-_{n,e},b^-_{n,e})=[e\geq1]\), independently of \(n\).
+- **Resume point:** prove the joint inverse scalar identity
+  \(L_{\ne0}(b^-_{n,e})+Q(b^-_{n,e})=[e\geq1]\), equivalently the remaining
+  non-slot-zero raw plus quadratic load, then the diagonal defect.
 - **Nonclaim:** positive covariance is not by itself the \(j\)-edge values and
   does not prove the other chambers, diagonal identity, unary delta,
   period-two lift, AK(3), stable AC, or AC.
