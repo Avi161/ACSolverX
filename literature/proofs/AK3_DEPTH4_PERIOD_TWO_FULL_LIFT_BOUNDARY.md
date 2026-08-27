@@ -1782,6 +1782,84 @@ slot-zero--terminal term simultaneously from those collisions; the single
 odd row cannot be transported by an unproved \(Q\)-equivariance of the
 Green map.
 
+### 3.13 Free conjugate-ray seed
+
+The local term (3.94) has an all-vertex free-bucket form.  Let
+\(\nu_t:Q\to\mathbb Z\) be the exponent-sum homomorphism with
+\(\nu_t(t)=1\) and \(\nu_t(c)=0\).  For a module vertex \(v\), use its
+canonical representative and put
+
+\[
+ \mathscr D(v):=H v^{-1}t^{-1}vH.
+\tag{3.95}
+\]
+
+Every \(\mathscr D(v)\) is non-self-inverse.  Indeed,
+\(\nu_t(v^{-1}t^{-1}v)=-1\), and multiplying on either side by an element
+of \(H\) does not change this value, whereas every element of the inverse
+double coset has exponent sum \(+1\).  Thus \(\mathscr D(v)\) always
+indexes a free \(\mathbb Z\)-summand of (3.15a).
+
+Select from (3.94) the slot-zero atoms at \(cv\) and the slot-four atoms
+at \(v\).  Since
+
+\[
+ tc\,(cvH)=tvH,
+\]
+
+their exact tensor subledger is
+
+\[
+\boxed{
+ \mathcal S_{3,16}(F,G)
+ =-\sum_{v\in X}
+ \bigl(
+  F_0(cv)G_4(v)+G_0(cv)F_4(v)
+ \bigr)e_{tv}\otimes e_v.}
+\tag{3.96}
+\]
+
+The relative displacement of the displayed pair is
+
+\[
+ (tv)^{-1}v=v^{-1}t^{-1}v,
+\]
+
+so every summand in (3.96) lands in the free bucket
+\(\mathscr D(v)\).  Consequently, before choosing the sign of the
+oriented generator, the selected contribution to a fixed double coset
+\(D\) is the finite correlation
+
+\[
+\boxed{
+ -\sum_{\{v:\mathscr D(v)=D\}}
+ \bigl(
+  F_0(cv)G_4(v)+G_0(cv)F_4(v)
+ \bigr).}
+\tag{3.97}
+\]
+
+This is an exact infinite-family extension of the atom in (3.93), not an
+extrapolation from its finite replay.
+
+There is an unavoidable first collision.  For every \(k\in\mathbb Z\),
+
+\[
+ \mathscr D(t^kv)
+ =H v^{-1}t^{-k}t^{-1}t^kvH
+ =\mathscr D(v).
+\tag{3.98}
+\]
+
+Thus terminal vertices on one left \(t\)-ray cannot be separated by these
+conjugate buckets.  The relevant coefficient is the ray-aggregated
+correlation (3.97), and distinct rays may still share a double coset.
+Moreover (3.96) is only the selected part of one external occurrence pair;
+the other occurrence terms and the affine unary defect remain.  A sound
+leading-bucket theorem must therefore prove noncancellation after grouping
+by the complete fibers of \(v\mapsto\mathscr D(v)\), rather than treating
+the \(-1\) in (3.93) as a pointwise pivot.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
