@@ -142,8 +142,9 @@ finite quotient do not close a route.
   the whole diagonal family.  Equivalently, for
   \(E_i=D_{i+2}-D_i\), the all-index target is
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
-  exact obligation is now its 602-bit window
-  \(1\leq k\leq14,\ 0\leq i\leq42\).
+  exact obligation is now its 126-bit coordinatewise window
+  \(1\leq k\leq14,\ 0\leq i\leq2m_k+2\), where
+  \(m_k=\operatorname{ord}\rho_k(\gamma)\).
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
@@ -191,11 +192,12 @@ finite quotient do not close a route.
   this source leaves only the previously proved finite-state local and
   one-vertex transport terms, of joint period forty from \(i=3\).  Hence
   the complete derivatives satisfy \(R_{k,i+40}=R_{k,i}\) for every \(k\)
-  and \(i\geq3\), sharpening the conservative source-bound onset 99.  The
-  remaining all-index target is exactly the 602-bit window
-  \(1\leq k\leq14,\ 0\leq i\leq42\).  No post-inversion remainder value
-  in that window is evaluated yet, so no vanishing or period-two claim is
-  proved.
+  and \(i\geq3\), sharpening the conservative source-bound onset 99.  More
+  precisely, coordinate \(k\) admits period \(2m_k\), so the exact all-index
+  target is the 126-bit window
+  \(1\leq k\leq14,\ 0\leq i\leq2m_k+2\).  No post-inversion remainder
+  value in that window is evaluated yet, so no vanishing or period-two
+  claim is proved.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel

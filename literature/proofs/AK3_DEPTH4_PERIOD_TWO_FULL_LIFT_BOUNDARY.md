@@ -17,8 +17,9 @@ full-wedge readout, while every diagonal correction clears that one bit.
 The other fourteen finite-action coordinates reduce to the crossed
 derivatives \(R_{k,i}\).  Their entire differentiated-inversion source is
 now evaluated, and the remaining finite-state terms make the all-index
-target equivalent to the 602 bits
-\(R_{k,i}\) with \(1\leq k\leq14\) and \(0\leq i\leq42\).  None of those
+target equivalent to 126 bits: for coordinate \(k\), only
+\(0\leq i\leq2m_k+2\) remains, where
+\(m_k=\operatorname{ord}\rho_k(\gamma)\).  None of those
 post-inversion remainder values is evaluated here.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
@@ -682,7 +683,7 @@ and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
 the unbounded obstruction.  The analysis below evaluates the transported
 ordered-section order-reversal sum and reduces the remaining exact
-obligation to the 602 finite post-inversion values in (5.45cm).
+obligation to the 126 finite post-inversion values in (5.45co).
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -2190,7 +2191,8 @@ Formula (5.45ci) is two-periodic from \(i=1\).  Since forty is even,
 \tag{5.45cl}
 \]
 
-Thus the all-index vanishing target (5.28) is equivalent to exactly
+Thus the all-index vanishing target (5.28) is equivalent to the common
+rectangular window
 
 \[
  \boxed{
@@ -2199,11 +2201,41 @@ Thus the all-index vanishing target (5.28) is equivalent to exactly
 \tag{5.45cm}
 \]
 
-a window of \(14\cdot43=602\) bits.  Equations (5.45ck)--(5.45cm) do
-not evaluate any post-inversion remainder value and do not prove (5.28).
-They replace the conservative source-comparator onset ninety-nine by the
-already established finite-state onset three only because the entire
-unbounded inversion comparator has now been evaluated in (5.45ci).
+a window of \(14\cdot43=602\) bits.  The same proof retains the smaller
+coordinatewise periods.  For coordinate \(k\), the projected local terms
+have period dividing \(2m_k\) by (5.35), the one-vertex term has period
+dividing \(m_k\), and the source (5.45ci) has period two; since
+\(2\mid2m_k\),
+
+\[
+ \boxed{
+  R_{k,i+2m_k}=R_{k,i}
+  \qquad(1\leq k\leq14,\ i\geq3).}
+\tag{5.45cn}
+\]
+
+Consequently the exact coordinatewise verification window is
+
+\[
+ \boxed{
+  R_{k,i}=0
+  \qquad(1\leq k\leq14,\ 0\leq i\leq2m_k+2).}
+\tag{5.45co}
+\]
+
+The action-order list (5.45ae) has \(\sum_km_k=42\).  The number of bits
+in (5.45co) is therefore
+
+\[
+ \sum_{k=1}^{14}(2m_k+3)=2\cdot42+3\cdot14=126.
+\tag{5.45cp}
+\]
+
+Equations (5.45ck)--(5.45cp) do not evaluate any post-inversion remainder
+value and do not prove (5.28).  They replace the conservative
+source-comparator onset ninety-nine by the already established finite-state
+onset three only because the entire unbounded inversion comparator has now
+been evaluated in (5.45ci).
 
 Before the explicit reductions (5.45ao)--(5.45ci), a direct expansion of
 the slot-two and slot-three kernels
@@ -2756,11 +2788,13 @@ weaker concrete theorem
 \tag{5.76}
 \]
 
-The sharper recurrence (5.45cl) subsumes (5.76).  Consequently the smallest
-proved verification window is the 602-bit range (5.45cm), not the earlier
-redundant range \(0\leq i\leq138\).  No post-inversion remainder value in
-that window is evaluated here.  In particular, neither recurrence is a
-period-two theorem, and neither proves a lift or AK(3) conclusion.
+The sharper recurrence (5.45cl) subsumes (5.76), and its coordinatewise
+form (5.45cn) reduces the exact obligation further to the 126-bit range
+(5.45co).  Both the common 602-bit rectangle (5.45cm) and the earlier range
+\(0\leq i\leq138\) are redundant.  No post-inversion remainder value in
+the 126-bit window is evaluated here.  In particular, none of these
+recurrences is a period-two theorem, and none proves a lift or AK(3)
+conclusion.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
