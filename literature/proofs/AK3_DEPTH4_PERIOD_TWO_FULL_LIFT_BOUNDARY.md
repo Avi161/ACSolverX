@@ -1324,6 +1324,48 @@ incidence count across the exact distance-one and distance-two length
 boundaries of the connector chain.  The incidence value is not evaluated
 here.
 
+The fixed-base part of slot four does vanish.  By (5.45n),
+
+\[
+ q_4\overline B_4=t\,e_{\texttt{Tct}}=e_{\texttt{ct}},
+\tag{5.45t}
+\]
+
+so the translated base vertex is not \(t\)-initial and has length two.
+For one 42-edge increment, the frozen canonical labels in
+[`.scratch/period_two_diagonal_pure_p_raw_manifest.json`](../../.scratch/period_two_diagonal_pure_p_raw_manifest.json)
+give the following exact minimum among its \(t\)-initial slot-four heads;
+their independent replay and all-power pump are bound in
+[`.scratch/period_two_diagonal_pure_p_raw_certificate.md`](../../.scratch/period_two_diagonal_pure_p_raw_certificate.md):
+
+\[
+\begin{array}{c|cccc}
+i&0&1&2&\geq3\\ \hline
+\min |tv|&29&53&77&101+24(i-3).
+\end{array}
+\]
+
+The two-step shell is the xor of the increments at \(i\) and \(i+1\);
+collisions can only delete rows.  A non-\(t\)-initial shell head is in the
+same class as the base and cannot invert under \(T\).  A \(t\)-initial
+shell head has length at least \(29\), so its gap from the base is greater
+than one and (5.45q) again excludes inversion.  Therefore
+
+\[
+\boxed{
+ \lambda_k\Pi_{\rho_k}^\wedge
+  \operatorname{PInv}_{T}
+  \left(e_{\texttt{ct}},\,t(K_{i,4}+K_{i+2,4})\right)
+ =0
+ \qquad(k=1,\ldots,14,\ i\geq0).}
+\tag{5.45u}
+\]
+
+The source incidence \(\Xi_{k,4}(i+2)+\Xi_{k,4}(i)\) remains unevaluated.
+In particular, unreduced common-phase fragments such as an initial
+\(\texttt{tT}\) may cancel; their blockwise first letter cannot be used in
+(5.45s).
+
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families
 

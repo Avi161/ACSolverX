@@ -158,7 +158,10 @@ finite quotient do not close a route.
   slot-two, slot-three, and slot-four relative kernels remain.  Modulo two,
   the old diagonal source current is exactly the four-path connector
   \(K_i\), and its two-step shell is \(K_i+K_{i+2}\); the fixed-base
-  remainder is zero in slot two and singleton--shell in slots three/four.
+  remainder is zero in slots two and four and singleton--shell only in
+  slot three.  Slot-four fixed-base vanishing follows from the exact
+  \(T\)-inversion split: the base head is \(ct\) of length two, while every
+  \(t\)-initial shell head has length at least 29.
   The slot-four \(T\)-kernel is exactly a weighted incidence across
   length gaps one and two, with no lexical comparison.  The slot-two and
   slot-three kernels have inversion bands 20 and 16; because all protected
