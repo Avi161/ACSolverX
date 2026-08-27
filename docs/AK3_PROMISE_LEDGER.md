@@ -121,8 +121,16 @@ finite quotient do not close a route.
 - **Resume point:** keep the free-group period-two lift separate.  The unary
   theorem lives after the complete-cover/\(c^2=1\) reduction and neither
   constructs literal correction words in \(F(c,t)\) nor cancels their
-  nonabelian residual in \([N,N]\).  The companion cross kernels and other
-  primitive families also remain open; no full-Hessian rank claim follows.
+  nonabelian residual in \([N,N]\).  It does give the exact sieve
+  \(S_\infty(D_{ij})=1+\delta_{ij}\), excluding every off-diagonal anchored
+  correction.  The next constructive target is the fourteen-coordinate
+  all-power diagonal sequence
+  \(V_i=(U_1(D_{ii}),\ldots,U_{14}(D_{ii}))\), which must equal
+  `11101011010101` before a diagonal candidate can pass the recorded
+  syndrome.  Any survivor must then solve the full exterior-module cokernel
+  equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
+  companion cross kernels and other primitive families remain open; no
+  full-Hessian rank claim follows.
 - **Nonclaim:** no period-two free-group witness, AK(3), stable AC, or AC
   conclusion is proved.  Even a successful lift still needs a separately
   proved implication to the relevant AK(3) move/factorization target.

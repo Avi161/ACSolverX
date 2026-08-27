@@ -2,10 +2,13 @@
 
 ## Status
 
-This note closes Task 3 only as a documented-open boundary.  It records the
+This note originally closed Task 3 only as a documented-open boundary.  It records the
 exact crossed Fox--Magnus Hessian, its pullback through the anchored tree-flow
 map, the surviving first-family ray identities, and the exact unary
-recurrence.  It does **not** decide finite versus infinite diagonal-left rank.
+recurrence.  The later independently replayed theorem in
+<code>AK3_PURE_P_INCREMENT_NORMAL_FORM.md</code> now proves the narrow unary
+identity \(u_{ij}=\delta_{ij}\).  It does **not** decide the full
+validity-plus-syndrome Hessian rank.
 
 The status split is essential.
 
@@ -14,11 +17,13 @@ The status split is essential.
 - The first ray family's primitive kernel satisfies
   \(P_{ij}=\delta_{ij}\) for every \(i,j\geq0\), and its complete-cover paths
   obey exact all-index recurrences.
-- The ten cross cells and ten unary cells below are exact bounded fixtures.
+- The ten cross cells and ten unary cells below remain exact bounded fixtures
+  for the coordinates not covered by the later unary theorem.
 - The former all-index companion identity, the row-2/row-3 primitive and
   companion identities, and all conclusions derived from them are withdrawn.
-- Finite rank, infinite rank, the period-two lift, stable
-  Andrews--Curtis, and Andrews--Curtis all remain open.
+- The last-coordinate first-family unary contribution now has infinite rank.
+  The full Hessian rank, the period-two lift, stable Andrews--Curtis, and
+  Andrews--Curtis remain open.
 
 The executable source is
 [`depth4_period_two_phi_infinity_hessian_certificate.py`](../../experiments/stable_ac/depth4_period_two_phi_infinity_hessian_certificate.py),
