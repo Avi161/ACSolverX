@@ -32,11 +32,11 @@ Consequently
 \]
 
 The specialization \(j=i\) is the narrowest diagonal target: its source
-words contain powers of \(P_\nu\), but no \(Q_\nu\)-factor. The slot-zero
-raw contribution is already zero. The joint nonzero-raw, old--new, and
-new--new xor remains open. No diagonal identity, unary delta identity,
-period-two lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis claim is
-made.
+words contain powers of \(P_\nu\), but no \(Q_\nu\)-factor.  The all-power
+certificate in Section 4 proves the complete raw contribution zero.  The
+joint old--new and new--new xor remains open.  No diagonal identity, unary
+delta identity, period-two lift, AK(3), stable Andrews--Curtis, or
+Andrews--Curtis claim is made.
 
 ## 1. Exact diagonal source words
 
@@ -496,6 +496,37 @@ strict central-length conditions record by record.  The bounded cells are
 evaluated by direct expansion.  This lemma extends those exact records; it
 does not supply their xor.
 
+### 4.2 All-power raw theorem
+
+The frozen primary certificate evaluates the 46 signed source traversals,
+their 44 collision fibers, the 42 active coordinates of profile
+\((9,15,18)\), and all 84 literal raw observables in every cell (4.11).
+The computed values are
+
+\[
+ L_{\ne0}(q_i)=0
+ \qquad(i=0,1,2,\text{ and }i\geq3).
+ \tag{4.12}
+\]
+
+An independent replay reconstructs the complete source selection, factor
+order, powered schemas, collision partition, raw observables, and every
+hypothesis of the pump in Section 4.1 without importing the producing
+checker or assuming the xor.  Its nine hostile mutations are rejected.
+Guarded primary generation, canonical replay, and both mutation suites pass.
+The final bindings and review record are in
+.scratch/period_two_diagonal_pure_p_raw_certificate.md.
+
+Together with the slot-zero identity (4.2), this proves
+
+\[
+\boxed{L(q_i)=L_0(q_i)+L_{\ne0}(q_i)=0\qquad(i\geq0).}
+ \tag{4.13}
+\]
+
+Equivalently, (4.7) now gives \(\Psi_i=\Psi_{i+1}\).  This is an exact raw
+theorem only; it evaluates neither the old--new term nor \(Q(q_i)\).
+
 ## 5. Why transport alone cannot close the increment
 
 After integral collision and parity, the two surviving long actions are
@@ -578,12 +609,12 @@ integral incidence signs are placed before reduction modulo two.
 Let \(E_{{\rm fixed},i},E_{{\rm base},i},E_{{\rm singleton},i}\) be the
 finite-old contributions to \(\mathbb B(A_i^\Delta,q_i)\). They are not
 imported from the positive-\(j\) or inverse-\(Q\) increments. Combining
-(4.2) and (6.4), the remaining joint two-ray \(P\)-period lemma is
+(4.13) and (6.4), the remaining joint two-ray \(P\)-period lemma is
 
 \[
 \boxed{
 \begin{aligned}
-0={}&L_{\ne0}(q_i)+Q(q_i)
+0={}&Q(q_i)
  +E_{{\rm fixed},i}+E_{{\rm base},i}+E_{{\rm singleton},i}\\
  &+\langle t_2K_{i,2},\partial F_{i,2}\rangle
   +\langle h_3K_{i,3},\partial G_{i,3}\rangle\\
@@ -598,7 +629,7 @@ Equivalently,
 
 \[
  \boxed{
- L_{\ne0}(q_i)+\mathbb B(A_i^\Delta,q_i)+Q(q_i)=0.}
+ \mathbb B(A_i^\Delta,q_i)+Q(q_i)=0.}
  \tag{7.2}
 \]
 

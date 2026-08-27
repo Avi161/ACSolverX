@@ -75,13 +75,24 @@ finite quotient do not close a route.
   the \(c_i\) constant; the proved seed \(u_{00}=1\) forces \(c_0=0\).
   Hence proving this diagonal pure-\(P\) increment zero proves the full
   diagonal identity.
+- **Pure-\(P\) raw theorem proved:** the
+  [all-power certificate](../.scratch/period_two_diagonal_pure_p_raw_certificate.md)
+  collision-aggregates 46 signed rows to 42 active coordinates of profile
+  \((9,15,18)\) and evaluates all 84 literal raw observables on the four
+  exhaustive cells \(i=0,1,2,\geq3\).  A separate replay reconstructs the
+  source rows, factor order, fibers, observables, and source-bound pump
+  premises without importing the producing checker.  Both replays give
+  \(L_{\ne0}(q_i)=0\), and the slot-zero theorem gives \(L(q_i)=0\) for
+  every \(i\geq0\).  Final hash prefixes: manifest 96da011f, independent
+  replay 3b0d94f8, independent tests 1a5e18ba.
 - **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
   pure-\(P\) normal-form note:
   \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
-  proved zero.  Collision aggregation leaves 42 nonzero-slot raw coordinate
-  templates (84 literal occurrence observables) and a 96-token quadratic
-  stream; the nonzero raw, old--new, and new--new terms remain one open joint
-  xor.  With the seed, this would prove \(u_{ij}=\delta_{ij}\).
+  proved zero, and the complete nonzero raw part is now also proved zero.
+  The remaining exact scalar is
+  \(\mathbb B(A_i^\Delta,q_i)+Q(q_i)\) on the 96-token quadratic stream;
+  the old--new and new--new terms remain one open joint xor.  With the seed,
+  its vanishing would prove \(u_{ij}=\delta_{ij}\).
 - **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
   law; the reduction does not prove the diagonal identity.  The unary delta,
   period-two lift, AK(3), stable AC, and AC remain open.
