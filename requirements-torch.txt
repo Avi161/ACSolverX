@@ -6,9 +6,12 @@
 # preinstalled on the Colab / vast.ai GPU image, and reinstalling it there breaks CUDA
 # wheel matching (see experiments/ppo/VAST_AI.md and the SETUP cell of
 # experiments/notebooks/ppo/ppo_baseline.ipynb). This file exists so CI and a laptop can
-# install a CPU build and run the suite:
+# install a CPU build and run the suite. Note that on Linux, PyPI's default torch wheel
+# is the CUDA build, and pip prefers it even with --extra-index-url -- to force the CPU
+# wheel, install torch alone with the index pinned:
 #
-#   pip install -r requirements-torch.txt --extra-index-url https://download.pytorch.org/whl/cpu
+#   pip install numpy==2.1.3
+#   pip install "torch>=2.2" --index-url https://download.pytorch.org/whl/cpu
 #
 # Floor is 2.2: everything used is long-stable, and every torch.load call already passes
 # weights_only=False explicitly, so torch >= 2.6's default flip is a non-issue.
