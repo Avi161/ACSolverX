@@ -1940,11 +1940,112 @@ powered family and the three terminal rows, giving at most
 \]
 
 prefiltered old--shell and shell--shell comparisons.  The strict depth,
-length, and prefix tests remove further rows.  On the protected rays the
-comparison bits are constant and the projected wedge weights have joint
-period dividing \(20\).  The bounded level-zero \(P_*\)-position-1 /
-terminal-\(w_3\) collision remains one separate exact seed table.  No
-slot-three source value is claimed.
+length, and prefix tests in fact collapse this bound to a fixed
+within-level graph.
+
+Use the level variable \(n\geq1\), and name the five \(P_1\) families
+\(a,b,c,d,e\) at positions \(2,4,6,7,11\), and the six \(P_*\) families
+\(f,g,h,j,k,l\) at positions \(1,5,7,11,13,17\).  Their complete
+protected signatures are
+
+\[
+\begin{array}{c|r|r|c|r}
+x&|u_x|-24n&d(u_x)&\text{first eight letters}
+  &|\operatorname{cvert}(Gu_x)|-24n\\ \hline
+a&11&3&\texttt{TctcTctc}&12\\
+b&9&3&\texttt{TctctcTc}&10\\
+c&9&4&\texttt{TctttcTc}&8\\
+d&16&7&\texttt{TcttcTcT}&9\\
+e&28&3&\texttt{TctcTctt}&29\\
+f&6&3&\texttt{TctcTTct}&7\\
+g&6&0&\texttt{ttcTcTct}&13\\
+h&14&3&\texttt{TctcTTct}&15\\
+j&14&0&\texttt{ttcTcTct}&21\\
+k&22&3&\texttt{TctcTTct}&23\\
+l&22&0&\texttt{ttcTcTct}&29.
+\end{array}
+\tag{5.45bw}
+\]
+
+Every row ends in \(\texttt t\).  The output \(u_x\)-order is
+
+\[
+ f<g<b<c<a<h<j<d<k<l<e,
+\]
+
+while the input \(Gu_x\)-order before applying \(m_3=G^{-1}\) is
+
+\[
+ f<c<d<b<a<g<h<j<k<l<e.
+\]
+
+The length-\(29\) input tie \(l/e\) does not reverse: the respective
+prefixes are \(\texttt{ctcTT}\) and \(\texttt{ctcTc}\), and \(T<c\).
+Thus the exact within-level reversal graph is
+
+\[
+\begin{aligned}
+ \mathcal W_n=\{&
+ (g_n,b_n),(g_n,c_n),(g_n,a_n),(g_n,d_n),\\
+ &(b_n,c_n),(b_n,d_n),(a_n,d_n),
+ (h_n,d_n),(j_n,d_n)\}.
+\end{aligned}
+\tag{5.45bx}
+\]
+
+There is no cross-level reversal:
+
+\[
+ 28<24+6,\qquad 29<24+7.
+\tag{5.45by}
+\]
+
+The terminal families have the exact signatures
+
+\[
+\begin{array}{c|c|c|c}
+ &|u|&|\operatorname{cvert}(Gu)|&d\\ \hline
+ w_{3,i}=f_{i+1}&24i+30&24i+31&3\\
+ z_{3,i}&24i+31&24i+34&2\\
+ w_{2,i}&24i+32&24i+35&2.
+\end{array}
+\tag{5.45bz}
+\]
+
+Their order never reverses, and they remain strictly beyond the last
+powered level.  The equality \(w_{3,i}=f_{i+1}\) is a semantic collision
+and is merged before comparisons; it contributes no omitted pair.
+
+Because the inversion input is \(Gu_x\) and its \(m_3\)-output is \(u_x\),
+put
+
+\[
+ \theta_k(x,y)
+ :=\widetilde\lambda_k(e_{u_x}\wedge e_{u_y}),
+\qquad
+ \theta_k(S):=\sum_{(x,y)\in S}\theta_k(x,y).
+\tag{5.45ca}
+\]
+
+The \(u\)-labels in (5.45ca) are the output weights; the reversal predicate
+itself remains the comparison between the input \(Gu\)-order and output
+\(u\)-order.  All common old powered blocks cancel between the two
+potentials; by (5.45bz) the terminal rows contribute no reversal, and the
+collision \(w_{3,i}=f_{i+1}\) has already been merged.  Therefore, for
+every \(i\geq0\),
+
+\[
+\boxed{
+ \Xi_{k,3}(i+2)+\Xi_{k,3}(i)
+ =\theta_k(\mathcal W_{i+1})
+  +\theta_k(\mathcal W_{i+2}).}
+\tag{5.45cb}
+\]
+
+This is exactly \(9+9=18\) finite-action weights.  There is no seed
+exception: the unprotected level zero is common to both potentials and
+cancels, while both surviving levels are at least one.  No slot-three
+source value is claimed.
 
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families

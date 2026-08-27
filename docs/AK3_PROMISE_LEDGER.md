@@ -178,11 +178,12 @@ finite quotient do not close a route.
   `10000000000010`, with survivors \(k=1,13\).  The separately evaluated
   seed is `10010001000010`, with survivors \(k=1,4,8,13\).  Thus the
   slot-two inversion source is completely known for every index.
-  The slot-three source has an exact \(G\)-cancellation-depth signature and
-  at most 975 prefiltered comparisons plus one bounded seed table; its
-  protected part has joint period dividing 20.  Thus no genuine parity
-  prefix sum remains, although the slot-three source values are not yet
-  evaluated.  The
+  The slot-three source has an exact \(G\)-cancellation-depth signature.
+  Collision-first ranking reduces it to nine within-level reversals on
+  each of the two new powered levels, hence exactly 18 finite-action
+  weights for every index.  There are no cross-level, terminal, or seed
+  contributions.  Thus no genuine parity prefix sum remains, although
+  the 18 slot-three weights are not yet evaluated.  The
   152-schema common-phase/Fine--Wilf argument and its source-bound onset 99
   conservatively control their surviving parity:
   \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
