@@ -28,33 +28,22 @@ finite quotient do not close a route.
   ordinal fields to reject booleans/floats that compare equal to integers.
 - **Nonclaim:** neither first leg alone proves the bridge, AC, or stable AC.
 
-## 2. Seven-family grouped old--new covariance certificate — active
+## 2. Old--new covariance program — active
 
-- **Mathematical value:** the generator completed all 9,408 source loads,
-  17,760 occurrence-loads, and 1,491,840 atomic comparisons, deriving the
-  narrow positive-chamber family table. This is promising mathematics awaiting
-  independent replay.
-- **Engineering boundary:** the first changed full write produced a
-  371,878,372-byte temporary manifest before the enclosing 30-second test timed
-  out. Exact process group 54916, the guard lock, artifact, and all proof
-  runtimes were verified gone. The unchanged command is permanently retired.
-- **Verified package-v2 foundation:** the advisor-approved architecture is
-  frozen as one canonical root index plus one shared and six fixed-order
-  content-addressed JSONL shards. Independent generator/verifier codecs now
-  reject noncanonical JSON and malformed 84-bit masks, round-trip a tiny
-  logical-v1 fixture, and verify PREPARED/COMMITTED publication failures,
-  object reuse, the production cap, and metrics byte identity. This checkpoint
-  did not run the retired generator or create a production package.
-- **Resume point:** implement the streaming production adapter without calling
-  the monolithic logical-v1 builder, then add full independent semantic replay,
-  fixed-run receipt/attestation coordination, a 60-second preflight, hostile
-  whole review, and only afterward the guarded production experiment. Commit,
-  log, and push the reviewed same-code-path implementation before that
-  experiment.
-- **Nonclaim:** a generated or sharded payload is not a theorem until an
-  independent verifier reconstructs every source, template, load, family xor,
-  and semantic mutation. The fixture and preflight are not certificates and
-  do not close `d=0`, the unary `Q(A)` law, AC, or stable AC.
+- **Proved positive-chamber load:** algebraically,
+  \(E_{P/C/Q}=[d=1]\), \(E_{\rm fixed}=0\), \(E_{\rm base}=0\), and
+  \(E_{\rm singleton}=1\). Hence
+  \(\mathbb B(A_{n,d},b_{n,d})=[d>1]\) for \(d\geq1\), independently of
+  \(n\). Bound commits: `bc4338cb`, `c172c173`.
+- **Inverse seam proved:** the inverse-\(Q\) chain telescope, piecewise
+  connector topology, 36-edge \((8,14,14)\) support, and membership pairing
+  \(\langle\widetilde K(e),\beta^-_e\rangle=[e=0]\) are proved.
+- **Resume point:** evaluate the inverse tie/occurrence load, finite old
+  terms, non-slot-zero raw load, \(Q(b^-)\), and new--new chamber terms,
+  then the diagonal defect.
+- **Nonclaim:** positive covariance is not by itself the \(j\)-edge values and
+  does not prove the other chambers, diagonal identity, unary delta,
+  period-two lift, AK(3), stable AC, or AC.
 
 ## 3. Thickenability frontier — preserved
 
