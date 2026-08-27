@@ -1320,7 +1320,156 @@ The existing 1,128-pair chord ledger and 4,560-pair direct ledger compare
 the tokens inside one increment \(q_i\).  They do not contain the complete
 old \(D_i\) prefix against the two-step shell \(E_i=q_i+q_{i+1}\), so they
 cannot supply (5.65) by reuse.  Formula (5.65) is the exact next
-certificate interface; no value of \(N_{\mathrm{cat}}\) is asserted here.
+certificate interface.  Section 5.6 supplies a conservative source-bound
+onset without claiming the exact minimum of (5.65).
+
+### 5.6 A source-bound onset of 99
+
+The common-phase source formulas give a conservative numerical onset
+without enumerating parameter values.  First record a uniform bound on
+each normalized fixed side of every comparator:
+
+\[
+\begin{array}{c|r}
+\text{fixed factor}&\text{length bound}\\ \hline
+\text{occurrence prefix}&11\\
+\text{stored-edge multiplier}&9\\
+\text{proper }P_1/P_*\text{ path prefix}&17\cdot9=153\\
+\text{powered-end cyclic/rephasing side}&18\cdot9+8=170\\
+\text{connector }w/z\text{ material}&3\cdot9=27\\
+\text{component root}&2
+\end{array}
+\tag{5.66}
+\]
+
+The generator-image lengths are
+\((1,9,7,1,9,7)\) for \(A,B,G,a,b,g\), so both path evaluation and the
+edge-rule multipliers satisfy the displayed bounds.  The longest \(P\)
+block has 18 forest letters; a proper prefix has at most 17.  Cyclic
+reduction removes matching end pairs, and common-reference rephasing adds
+less than one copy of the length-eight primitive.  The connector words
+have forest length at most three, and the component roots are
+\(\texttt{ct}\) or the identity.  Assigning all possible material to one
+side is deliberately redundant but proves
+
+\[
+\boxed{L\leq11+9+153+170+27+2=372.}
+\tag{5.67}
+\]
+
+This inventory covers all 46 pre-collision path contexts, including the
+inactive fibers.  Their module and two occurrence-label schemas give 138
+common-phase schemas.  The two slot-zero module schemas and their twelve
+occurrence-label schemas give the other 14.  Thus all 152 schemas in
+(5.58), as well as the direct shell pairs formed from them, are covered.
+The eight fixed-base module words have length at most six, and slot-zero
+fixed sides are shorter than (5.67).  Whole-word quotient reduction and
+\(\operatorname{cvert}\) can only shorten these raw bounds.
+
+Every unbounded normalized exponent offset is nonnegative and at most
+
+\[
+ 0\leq\delta\leq d:=2.
+\tag{5.68}
+\]
+
+The offsets zero and one are the exact one-step source offsets; reindexing
+the \(q_{i+1}\) half of \(E_i=q_i+q_{i+1}\) adds at most one.  Negative
+boundary cases have already been split into finite families.
+
+Put
+
+\[
+ J(L):=\max\!\left(
+ 3,\left\lceil\frac{4L+72}{24}\right\rceil
+ \right).
+\tag{5.69}
+\]
+
+The repeated core has length \(24\).  The quantity \(4L+72\) contains all
+four fixed sides of a pair, a complete common-core overlap of length 24,
+and both terminal windows with total allowance \(48\).  Hence, once both
+exponents are at least \(J(L)\), fixed-left multiplication, whole-word
+reduction, relative core phase, the fixed suffix comparison, and the
+terminal-\(c\) branch are all protected.  Adding further complete cores
+cannot change the comparison.
+
+The length offsets of two protected words differ by at most \(2L+1\);
+the extra one is the possible terminal-\(c\) deletion.  Therefore a level
+at the moving strict cut or equality line satisfies
+
+\[
+ h\geq
+ i-d-\left\lfloor\frac{2L+1}{24}\right\rfloor-1.
+\tag{5.70}
+\]
+
+Define
+
+\[
+ N(L,d):=
+ J(L)+d+
+ \left\lfloor\frac{2L+1}{24}\right\rfloor+1.
+\tag{5.71}
+\]
+
+Then \(i\geq N(L,d)\) puts every moving cut and equality level inside the
+protected range \(h\geq J(L)\).  The finitely many old levels
+\(h<J(L)\) have the raw upper bound
+
+\[
+ |U(h)|\leq24(J(L)-1+d)+2L,
+\tag{5.72}
+\]
+
+whereas a protected shell word has
+
+\[
+ |V(i)|\geq24i-1.
+\tag{5.73}
+\]
+
+At \(i=N(L,d)\), the difference between (5.73) and (5.72) is
+
+\[
+ 24\left\lfloor\frac{2L+1}{24}\right\rfloor
+ +47-2L>0.
+\tag{5.74}
+\]
+
+Thus every finite old level is permanently shorter than the shell.
+Direct endpoint/shell, shell/shell, slot-zero, fixed-base, and transported
+comparisons are already protected by the same \(N(L,d)\).
+
+Substituting \(L=372\) and \(d=2\) gives
+
+\[
+ J=65,\qquad
+ N=65+2+\left\lfloor\frac{745}{24}\right\rfloor+1=99.
+\tag{5.75}
+\]
+
+Combining (5.61) with this source-bound onset proves the concrete theorem
+
+\[
+\boxed{
+ R_{k,i+40}=R_{k,i}
+ \qquad(1\leq k\leq14,\ i\geq99).}
+\tag{5.76}
+\]
+
+Consequently the all-index identities (5.28) are equivalent to the finite
+set
+
+\[
+\boxed{
+ R_{k,i}=0
+ \qquad(1\leq k\leq14,\ 0\leq i\leq138).}
+\tag{5.77}
+\]
+
+No value in (5.77) is evaluated here.  In particular, (5.76) is not a
+period-two theorem and proves no lift or AK(3) conclusion.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation

@@ -152,14 +152,13 @@ finite quotient do not close a route.
   common-phase schemas all use the length-eight primitive
   `cTctttcT` with multiplier three; the integral collision normal form
   leaves only equal-slope moving families.  Therefore the joint eventual
-  period divides 40:
-  \(\exists N\,\forall k\,\forall i\geq N,\ R_{k,i+40}=R_{k,i}\).
-  The pairwise comparator/collision catalog is still required to
-  instantiate the effective onset \(N\).  The proof now gives it as an
-  explicit maximum of protected branch bases, affine equality offsets, and
-  the last length crossing of every finite old level; the catalog must
-  supply those finite fields.  No preperiod-three claim, finite
-  \(i\)-window, or vanishing is proved.  The section cocycle is not killed pointwise by
+  period divides 40.  A source-bound fixed-side inventory gives the
+  conservative onset 99:
+  \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
+  Consequently the remaining all-index derivative identities are exactly
+  the finite window \(1\leq k\leq14,\ 0\leq i\leq138\).  None of those
+  values is evaluated yet, so no vanishing or period-two claim is proved.
+  The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
