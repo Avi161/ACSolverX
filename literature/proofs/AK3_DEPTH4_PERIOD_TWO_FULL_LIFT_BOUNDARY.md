@@ -4362,6 +4362,143 @@ $\mathbf F$ satisfying (3.272)--(3.273).  Even a resolution of this
 one-pair question would still leave cancellation among the fifteen
 laminar terms and against the affine unary value.
 
+### 3.38 Fixed torsion coordinates as Hilbert--90 correlations
+
+The mod-two conditions in (3.273) have a canonical word
+parameterization.  For $q\in K$, put
+
+\[
+ s_q:=q\alpha(q^{-1}).
+ \tag{3.276}
+\]
+
+Then
+
+\[
+ \alpha(s_q)=\alpha(q)q^{-1}=s_q^{-1},
+ \qquad
+ (s_qc)^2=1.
+ \tag{3.277}
+\]
+
+Conversely, suppose $s\ne1$ and $\alpha(s)=s^{-1}$.  The element $sc$
+is an involution in the free product $Q=C_2*\mathbb Z$, so the free-product
+torsion theorem gives $sc=ucu^{-1}$ for some $u\in Q$.  Write
+$u=qc^\delta$ with $q\in K$.  Since $c^\delta$ centralizes $c$,
+
+\[
+ sc=qcq^{-1}=q\alpha(q^{-1})c,
+ \qquad s=s_q.
+ \tag{3.278}
+\]
+
+This $q$ is unique.  Indeed, $s_q=s_r$ implies
+$r^{-1}q\in C_Q(c)\cap K=\langle c\rangle\cap K=1$.  Moreover,
+
+\[
+ s_q=1\Longleftrightarrow q=1,
+ \qquad
+ s_{\alpha(q)}=\alpha(q)q^{-1}=s_q^{-1}=\alpha(s_q).
+ \tag{3.279}
+\]
+
+By uniqueness, $[s_q]_\alpha=[s_r]_\alpha$ holds exactly when
+$r=q$ or $r=\alpha(q)$.  Therefore the nontrivial inversion-fixed
+$\alpha$-orbits in (3.211) are parameterized exactly by
+
+\[
+ \boxed{
+ (K\setminus\{1\})/(q\sim\alpha(q))
+ \longrightarrow
+ \{d\in\mathscr D_K:d=\iota d\},
+ \qquad [q]\longmapsto[s_q]_\alpha.}
+ \tag{3.280}
+\]
+
+There is no additional universal identification $q\sim q^{-1}$.
+
+The resulting torsion coefficients are explicit finite correlations.
+Extend the parity coefficients $\overline F_a:=F_a\bmod2$ by zero off the
+finite support of $\mathbf F$.  From
+
+\[
+ P=\mathbf F^*k\alpha^\epsilon(\mathbf F)=\sum_uA_u u
+ \tag{3.281}
+\]
+
+one reads
+
+\[
+ A_u=\sum_{a\in K}
+ F_aF_{\alpha^\epsilon(k^{-1}au)}.
+ \tag{3.282}
+\]
+
+Consequently the exact $\mathbb Z/2$-coordinate belonging to (3.280) is
+
+\[
+\boxed{
+\begin{aligned}
+ \kappa_{[q]}
+ &:=A_{s_q}+A_{s_q^{-1}}\pmod2\\
+ &=\sum_{a\in K}\overline F_a
+ \left(
+  \overline F_{\alpha^\epsilon(k^{-1}as_q)}
+  +\overline F_{\alpha^\epsilon(k^{-1}as_q^{-1})}
+ \right).
+\end{aligned}}
+\tag{3.283}
+\]
+
+For the two semidirect parities this becomes
+
+\[
+\boxed{
+ \kappa^{(0)}_{[q]}
+ =\sum_a\overline F_a
+ \left(
+  \overline F_{k^{-1}a\,q\alpha(q^{-1})}
+  +\overline F_{k^{-1}a\,\alpha(q)q^{-1}}
+ \right),}
+\tag{3.284}
+\]
+
+and
+
+\[
+\boxed{
+ \kappa^{(1)}_{[q]}
+ =\sum_a\overline F_a
+ \left(
+  \overline F_{\alpha(k)^{-1}\alpha(a)\,\alpha(q)q^{-1}}
+  +\overline F_{\alpha(k)^{-1}\alpha(a)\,q\alpha(q^{-1})}
+ \right).}
+\tag{3.285}
+\]
+
+Replacing $q$ by $\alpha(q)$ swaps the two summands, so (3.283) is
+well defined on (3.280).  It depends only on $\mathbf F\bmod2$.  The
+left gauge change
+
+\[
+ (\mathbf F,k)\longmapsto
+ \bigl(h\mathbf F,\,hk\alpha^\epsilon(h^{-1})\bigr)
+ \tag{3.286}
+\]
+
+leaves $P$ itself unchanged, while simultaneous application of $\alpha$
+to $(\mathbf F,k)$ sends $P$ to $\alpha(P)$ and therefore preserves all
+coordinates (3.283).
+
+Equations (3.280)--(3.285) remove the abstract fixed-orbit quantifier from
+(3.273): after the free self-adjointness equation (3.272), full integral
+vanishing holds exactly when $\kappa_{[q]}=0$ for every nontrivial
+$\alpha$-pair $[q]$.  The formulas do not make those parities automatic,
+and no support involution is presently known that forces one of them to
+survive.  Thus they sharpen the labelled one-pair problem but do not prove
+paired anisotropy, do not control the other laminar terms, and do not
+resolve the affine unary value.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
