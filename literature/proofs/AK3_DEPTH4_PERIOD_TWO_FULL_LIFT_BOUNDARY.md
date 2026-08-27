@@ -1963,6 +1963,88 @@ necessary filter: equal height displacement does not imply equality of
 left \(t\)-ray in (3.99), and the affine unary tensor must be filtered
 separately.  No cancellation theorem follows from height alone.
 
+### 3.15 Canonical ray summand
+
+Let
+
+\[
+ \mathscr R:=\langle t\rangle\backslash X
+\tag{3.106}
+\]
+
+be the set of left \(t\)-rays in the module tree.  Equations
+(3.95), (3.98), and (3.99) give an injection
+
+\[
+\boxed{
+ \iota:\mathscr R\hookrightarrow\mathscr D_2,\qquad
+ \iota(\langle t\rangle v)
+ =\{\mathscr D(v),\mathscr D(v)^{-1}\}.}
+\tag{3.107}
+\]
+
+This subfamily has a canonical orientation: choose the double coset of
+height \(-1\), namely \(\mathscr D(v)\), rather than its height-\(+1\)
+inverse.  Coordinate projection in (3.15a) therefore defines a
+surjection
+
+\[
+\boxed{
+ \Xi_{\mathrm{ray}}:\mathcal C_2
+ \twoheadrightarrow
+ \bigoplus_{\mathcal O\in\mathscr R}\mathbb Z.}
+\tag{3.108}
+\]
+
+Explicitly, an oriented wedge pair contributes \(+\delta_{\mathcal O}\)
+when its relative double coset is \(\mathscr D(v)\) with
+\(\mathcal O=\langle t\rangle v\), contributes
+\(-\delta_{\mathcal O}\) for the inverse double coset, and contributes
+zero outside the image of \(\iota\).  This is well defined by (3.99).
+It descends through every second-layer operator because it is a direct
+coordinate projection of \(\Xi_{\mathbb Z}\), which already kills
+\(\mathcal I_2\).
+
+Every class-two lift must now satisfy the narrower exact necessary
+condition
+
+\[
+ \boxed{\Xi_{\mathrm{ray}}(\Theta(F))=0.}
+\tag{3.109}
+\]
+
+The selected occurrence term (3.96) has an especially simple mixed
+coordinate.  For each ray \(\mathcal O\),
+
+\[
+\boxed{
+ [\mathcal S_{3,16}(F,G)]_{\mathcal O}
+ =-\sum_{v\in\mathcal O}
+ \bigl(
+  F_0(cv)G_4(v)+G_0(cv)F_4(v)
+ \bigr).}
+\tag{3.110}
+\]
+
+The sum is finite.  For the anchored witness, \(TTT\) lies on the
+principal ray \(\mathcal O_0=\langle t\rangle H\), and the complete
+mixed coordinate is
+
+\[
+ \boxed{
+ [B_{\Xi_{\mathrm{ray}}}(F_*,G_*)]_{\mathcal O_0}=-1.}
+\tag{3.111}
+\]
+
+Thus the first free witness lives in a canonical infinite-rank ray
+summand, not merely in an arbitrarily oriented double-coset coordinate.
+Equation (3.110) is only one summand of its Hessian, and (3.109) still
+contains the complete affine unary value.  To obstruct every balanced
+source, one must show that on at least one extremal ray the remaining
+internal, external, and unary ray coefficients cannot cancel (3.110), or
+else construct a finite balanced source for which all ray and non-ray
+coordinates vanish.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
