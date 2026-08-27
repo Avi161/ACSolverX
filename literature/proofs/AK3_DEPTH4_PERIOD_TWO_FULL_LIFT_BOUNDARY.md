@@ -2303,6 +2303,98 @@ coordinate.  For terminal support on several rays, cross-ray pairs can
 also enter ray coordinates.  Controlling those two effects is the next
 global boundary.
 
+### 3.19 Maximal-ray separation
+
+Cross-ray terminal pairs cannot reach a deepest occupied ray.  Every
+\(\mathcal O\in\mathscr R\) has a unique normalized representative
+
+\[
+ \rho_{\mathbf n}
+ =ct^{n_1}c\,t^{n_2}\cdots c\,t^{n_r},
+ \qquad n_i\ne0,
+\tag{3.127}
+\]
+
+with the empty word when \(r=0\).  Define
+\(\operatorname{dep}(\mathcal O):=r\).  Every vertex on this ray has a
+unique form \(t^i\rho_{\mathbf n}H\).
+
+Let \(x=t^i\rho_{\mathbf a}H\) and
+\(y=t^j\rho_{\mathbf b}H\), with ray depths \(r\) and \(s\), and put
+\(N=j-i+1\).  Before endpoint \(H\)-normalization,
+
+\[
+ x^{-1}ty
+ =\rho_{\mathbf a}^{-1}t^N\rho_{\mathbf b}.
+\tag{3.128}
+\]
+
+Suppose its double coset belongs to a ray bucket of depth \(k\).  If
+\(N\ne0\), the reduced word in (3.128) has exactly \(r+s\)
+\(c\)-syllables.  A depth-\(k\) conjugate
+\(\rho_{\mathbf u}^{-1}t^{\pm1}\rho_{\mathbf u}\) has exactly \(2k\)
+\(c\)-syllables.  Hence \(2k=r+s\).  If
+\(k=\max(r,s)\), then \(r=s=k\), and uniqueness of the reduced exponent
+sequence forces
+
+\[
+ \mathbf a=\mathbf b=\mathbf u,\qquad N=\pm1.
+\tag{3.129}
+\]
+
+If \(N=0\) and \(r,s>0\), the two central \(c\)-syllables cancel, and any
+further cancellation only decreases the count.  Thus
+
+\[
+ 2k\le r+s-2<2\max(r,s)
+\tag{3.130}
+\]
+
+whenever the two rays are distinct.  If one depth is zero, endpoint
+\(H\)-normalization removes the exposed initial or terminal \(c\), again
+giving \(k<\max(r,s)\); if both are zero, (3.128) is trivial.  Therefore
+
+\[
+\boxed{
+ \operatorname{dep}(\text{target ray})
+ \le\max\bigl(
+  \operatorname{dep}(\text{ray}(x)),
+  \operatorname{dep}(\text{ray}(y))
+ \bigr),
+}
+\tag{3.131}
+\]
+
+and equality is possible only when both source vertices and the target
+lie on the same ray.
+
+Now let \(F_4\ne0\) be arbitrary and choose any ray
+\(\mathcal O\) of maximal depth meeting its support.  By (3.131), every
+term contributing to the \(\mathcal O\)-coordinate of
+\(\Xi_{\mathrm{ray}}(F_4\otimes tF_4)\) has both vertices on
+\(\mathcal O\).  Equation (3.125) applies to the restriction
+\(f_i=F_4(t^i\rho_{\mathbf n})\), giving
+
+\[
+\boxed{
+\begin{aligned}
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}
+ &=-\frac12\sum_i(f_i-f_{i-2})^2<0,\\
+ F_4\ne0
+ &\Longrightarrow
+ Q^{(4)}_{\mathrm{ray}}(F)\ne0.
+\end{aligned}}
+\tag{3.132}
+\]
+
+Thus the terminal homogeneous quadratic ray map is integrally anisotropic
+on every nonzero finite terminal flow, not only on single-ray flows.  This
+still does not prove (3.109): the other rows of the gauged Hessian and the
+affine unary ray defect can contribute to the same maximal coordinate.
+The exact remaining task is now narrower--compare those terms with the
+strict negative energy (3.132), or prove that their maximal-ray
+contribution has smaller depth.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
