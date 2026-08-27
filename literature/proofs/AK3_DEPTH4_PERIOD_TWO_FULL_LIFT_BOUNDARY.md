@@ -993,11 +993,243 @@ the old--new sums run over the complete old \(P\)-ray.
 The four-cell raw pumps fix terminal shell records and the transport
 factors \(k_z\); they do not classify the full prefixes in (5.46).  The
 finite action periods in (5.2) likewise do not determine the two shortlex
-comparisons.  The exact next theorem is a common-phase/Fine--Wilf
-comparator catalog for (5.46), followed by its weighted prefix sums.  Until
-that catalog proves cancellation or a period for the complete packages
-(5.33e), neither a period for \(R_{k,i}\), a finite \(i\)-window, (5.28),
-nor any period-two or AK(3) conclusion is established.
+comparisons.  Section 5.4 proves that the required catalog is finite and
+that its weighted prefix sums are ultimately periodic.  The catalog must
+still be instantiated before a concrete period, finite window, (5.28), or
+any period-two or AK(3) conclusion is established.
+
+### 5.4 Common-phase comparator theorem
+
+The required comparator has a general eventual-period theorem.  Call
+
+\[
+ U(h)=\operatorname{cvert}(AR^hB),
+ \qquad
+ V(i)=\operatorname{cvert}(CS^{i+\delta}D)
+\tag{5.47}
+\]
+
+protected beyond \((H,I)\) if \(R,S\) are nonempty cyclically reduced
+words, the displayed power seams survive reduction for \(h\geq H\) and
+\(i\geq I\), and the terminal-\(c\) branch of
+\(\operatorname{cvert}\) is fixed on each template.  Fixed left
+multiplication is normalized before this definition is applied; one may
+not apply \(\operatorname{cvert}\) factorwise.
+
+#### Theorem 5.2 (eventual semilinear comparator)
+
+For protected templates (5.47), there are effectively computable
+\(N_{\mathrm{cmp}}\) and \(\epsilon\in\{0,1\}\) such that, for
+\(h,i\geq N_{\mathrm{cmp}}\),
+
+\[
+\boxed{
+ [U(h)<_{\mathrm{sl}}V(i)]
+ =
+ [ah+\alpha<bi+\beta]
+ +\epsilon[ah+\alpha=bi+\beta],}
+\tag{5.48}
+\]
+
+where \(a=|R|\), \(b=|S|\), and \(\alpha,\beta\) include the fixed
+offsets and terminal deletions.  The two terms on the right are disjoint.
+The same conclusion holds after any two fixed left multipliers, after
+splitting the finitely many boundary phases needed to obtain protected
+templates.
+
+#### Proof
+
+Unequal lengths decide shortlex order and give the first term in (5.48).
+On the equality line
+
+\[
+ ah+\alpha=bi+\beta,
+\tag{5.49}
+\]
+
+put \(g=\gcd(a,b)\).  If \(g\nmid\beta-\alpha\), there is no equality
+case.  Otherwise the nonnegative solutions form one arithmetic ray
+
+\[
+ (h,i)=(h_0+(b/g)t,\ i_0+(a/g)t).
+\tag{5.50}
+\]
+
+Compare the two periodic interiors after their fixed prefixes.  If they
+disagree, their first mismatch is fixed once both cores reach it.  If they
+agree through an overlap of length \(a+b-g\), Fine--Wilf gives a common
+primitive word with compatible phase.  Absorb that phase into the fixed
+ends.  Once the repeated interiors also exceed the terminal window
+\(|B|+|D|+a+b\), the lexical comparison is a single fixed boundary
+comparison, or the two words are equal.  Hence the equality-line bit is
+eventually the constant \(\epsilon\).  This proves (5.48).
+
+A fixed left word cancels only a bounded prefix.  After that boundary is
+shielded, its whole-word reduction and final
+\(\operatorname{cvert}\) again have protected form.  This proves the last
+assertion. \(\square\)
+
+Equivalently, every comparator in Theorem 5.2 is semilinear outside finite
+horizontal and vertical strips: it is one rational affine half-plane plus,
+possibly, the tail of one arithmetic equality ray.
+
+#### Theorem 5.3 (weighted prefix periodicity)
+
+Let \(w(h,i)\in\mathbb F_2\) be eventually bi-periodic, with \(h\)-period
+\(r\) and \(i\)-period \(s\).  Then
+
+\[
+ F(i)=\sum_{0\leq h\leq i}
+ w(h,i)[U(h)<_{\mathrm{sl}}V(i)]
+\tag{5.51}
+\]
+
+is ultimately periodic.  Its preperiod and a valid period are effectively
+computable from the protected templates and \(r,s\).
+
+#### Proof
+
+In the stable range, the strict-length part is a periodic prefix cut at
+
+\[
+ M(i)=\min\!\left(
+ i,\left\lfloor\frac{bi+\beta-\alpha-1}{a}\right\rfloor
+ \right).
+\tag{5.52}
+\]
+
+For fixed \(i\bmod s\), the prefix xor of an \(r\)-periodic sequence has
+endpoint period dividing \(2r\).  Put
+\(a'=a/g\), \(b'=b/g\).  One safe period for (5.52) is
+
+\[
+ P_{\mathrm{cut}}
+ =\operatorname{lcm}\!\left(
+ s,\ 2r,\
+ a'\frac{2r}{\gcd(2r,b')}
+ \right).
+\tag{5.53}
+\]
+
+The third entry makes the affine floor advance by a multiple of \(2r\);
+the second also covers the branch \(M(i)=i\).
+
+If the equality ray (5.50) is present and \(\epsilon=1\), its weight has
+\(t\)-period
+
+\[
+ T_{\mathrm{eq}}
+ =\operatorname{lcm}\!\left(
+ \frac r{\gcd(r,b')},
+ \frac s{\gcd(s,a')}
+ \right),
+\tag{5.54}
+\]
+
+and hence \(i\)-period \(P_{\mathrm{eq}}=a'T_{\mathrm{eq}}\).
+Thus
+
+\[
+ P=\operatorname{lcm}(P_{\mathrm{cut}},P_{\mathrm{eq}})
+\tag{5.55}
+\]
+
+is valid after increasing the preperiod past the protected-normal-form,
+Fine--Wilf, terminal-window, weight-period, and floor-branch thresholds.
+Omit \(P_{\mathrm{eq}}\) when the equality correction is absent.
+The finitely many values \(h<H\) contribute an eventually \(s\)-periodic
+term.  This proves the theorem. \(\square\)
+
+Every old path row in \(D_i\) has the finite-family form
+
+\[
+ \operatorname{cvert}\!\left(
+ m_{\nu k}E(P_{\nu,<k})p_\nu^h r_\nu
+ \right),
+ \qquad
+ 0\leq h\leq i+\delta_{\nu k},
+ \quad \delta_{\nu k}\in\mathbb Z\text{ fixed},
+\tag{5.56}
+\]
+
+and cyclic reduction absorbs the fixed conjugating ends into a protected
+template; finitely many negative-boundary cases are split off.  Every row
+of the shell \(E_i\) is fixed or has protected
+one-core exponent \(i+\delta\).  The fixed base and doubled anchors are
+exponent-zero families.  Equality fibers are collision-aggregated before
+quadratic evaluation, and negative occurrences only reverse or complement
+the same finite comparator list.
+
+The finite-action weights in (5.46) are bi-periodic on the lifted
+right-deck prefix states.  Theorems 5.2--5.3 therefore apply to every
+old--new order-reversal term; the new--new terms require only finitely many
+shell comparisons.  Taking the maximum preperiod and least common multiple
+over this finite catalog proves
+
+\[
+\boxed{
+ \text{For each }1\leq k\leq14,\quad
+ (R_{k,i})_{i\geq0}\text{ is ultimately periodic}.}
+\tag{5.57}
+\]
+
+The exact common-phase data sharpen the period.  The frozen quadratic
+manifest and its independent replay bind all 46 signed source contexts,
+including the inactive collision fibers, to 152 path and slot-zero schemas
+with
+
+\[
+ R_0=\texttt{cTctttcT},
+ \qquad |R_0|=8,
+ \qquad p_{\mathrm{multiplier}}=3.
+\tag{5.58}
+\]
+
+The integral collision identity (2.3), applied before reduction modulo
+two, removes the canceled long families and leaves the \(P_1\) and
+\(P_*\) rays plus endpoint-transported fixed connectors.  Internal old
+levels reuse the same protected terminal schemas; the initial level,
+fixed base, doubled anchors, and short connectors are finite boundary
+families.  Hence every unbounded old and shell template gains
+\(R_0^3\) per unit parameter and has length slope
+
+\[
+ a=b=3|R_0|=24.
+\tag{5.59}
+\]
+
+Fixed left occurrence words and whole-word \(\operatorname{cvert}\) can
+alter the protected threshold and length offset, but not this slope.
+For coordinate \(k\), take the two weight periods in Theorem 5.3 to be
+\(r=s=m_k:=\operatorname{ord}\rho_k(\gamma)\).  Then
+\(g=24\) and \(a'=b'=1\), so (5.53)--(5.55) give
+
+\[
+ P_{\mathrm{cut}}\mid2m_k,
+ \qquad
+ P_{\mathrm{eq}}\mid m_k,
+ \qquad
+ \operatorname{per}(R_k)\mid2m_k
+\tag{5.60}
+\]
+
+after the protected threshold.  With the action orders in (5.2),
+
+\[
+\boxed{
+ \exists N\ \forall k\in\{1,\ldots,14\}\ \forall i\geq N:
+ \quad R_{k,i+40}=R_{k,i}.}
+\tag{5.61}
+\]
+
+The onset \(N\) is effective but is not instantiated by the current
+manifest: the terminal schemas bind the common core and factor order, not
+every pairwise comparison cutoff.  Therefore (5.61) is eventual period
+40, not period from \(i=3\), and no finite verification window is yet
+certified.  The next exact obligation is to emit the protected data and
+cutoff/equality record for every family in (5.46), compute a concrete
+\(N\), and evaluate \(0\leq i\leq N+39\).  No period two,
+\(R_{k,i}=0\), lift, or AK(3) conclusion follows.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation

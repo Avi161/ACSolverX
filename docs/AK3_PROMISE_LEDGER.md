@@ -146,9 +146,17 @@ finite quotient do not close a route.
   The exact remaining unbounded family is the order-reversal derivative
   in the transported section cocycle.  Its old--new terms are weighted
   shortlex-prefix sums over the full old \(P\)-ray, before and after each
-  fixed occurrence action.  A common-phase/Fine--Wilf comparator catalog
-  is still required; no period or finite \(i\)-window for the complete
-  \(R_{k,i}\) is proved.  The section cocycle is not killed pointwise by
+  fixed occurrence action.  Protected common-phase templates, Fine--Wilf
+  on the affine equality ray, and parity counting of periodic prefixes now
+  prove that every \(R_{k,i}\) is ultimately periodic.  The 152 exact
+  common-phase schemas all use the length-eight primitive
+  `cTctttcT` with multiplier three; the integral collision normal form
+  leaves only equal-slope moving families.  Therefore the joint eventual
+  period divides 40:
+  \(\exists N\,\forall k\,\forall i\geq N,\ R_{k,i+40}=R_{k,i}\).
+  The pairwise comparator/collision catalog is still required to
+  instantiate the effective onset \(N\); no preperiod-three claim, finite
+  \(i\)-window, or vanishing is proved.  The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
