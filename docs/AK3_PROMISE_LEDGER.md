@@ -78,8 +78,10 @@ finite quotient do not close a route.
 - **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
   pure-\(P\) normal-form note:
   \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
-  proved zero; the nonzero raw, old--new, and new--new terms remain one open
-  joint xor.  With the seed, this would prove \(u_{ij}=\delta_{ij}\).
+  proved zero.  Collision aggregation leaves 42 nonzero-slot raw coordinate
+  templates (84 literal occurrence observables) and a 96-token quadratic
+  stream; the nonzero raw, old--new, and new--new terms remain one open joint
+  xor.  With the seed, this would prove \(u_{ij}=\delta_{ij}\).
 - **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
   law; the reduction does not prove the diagonal identity.  The unary delta,
   period-two lift, AK(3), stable AC, and AC remain open.

@@ -326,6 +326,104 @@ coordinate aggregation. Formula (4.4), together with the \(96\)-token
 theorem (3.10), bounds the exact proof interface; it supplies no parity
 value.
 
+After cross-endpoint aggregation, the exact raw interface is smaller. For
+a path word \(Y\), letter position \(k\), powered base \(a\), and component
+root \(r\), put
+
+\[
+ \mathcal V(Y,k;a,r)
+ :=\operatorname{cvert}\!\left(
+ m_{Y_k}E(Y_{<k})\,a\,r
+ \right).
+ \tag{4.4a}
+\]
+
+The integral \(P/C\) cancellation gives precisely the following five
+families:
+
+\[
+\begin{array}{c|c|c}
+\text{family}&\text{domain}&\text{slot profile}\\ \hline
+\mathcal V(P_1,k;p_1^{i+1},r_1)&0\le k<14&(4,5,5)\\
+\mathcal V(P_*,k;p_*^{i+1},r_3)&2\le k<18&(3,5,8)\\
+\mathcal V(z,k;p_*^{i+1},r_3),\
+\mathcal V(z,k;p_*^{i+2},r_3)&0\le k<3&(2,2,2)\\
+\mathcal V(w,k;p_*^{i+2},r_3)&0\le k<2&(0,1,1)\\
+\mathcal V(w,k;c_2p_2^i,r_2),\
+\mathcal V(w,k;c_2p_2^{i+1},r_2)&0\le k<2&(0,2,2).
+\end{array}
+ \tag{4.4b}
+\]
+
+Indeed, for \(\nu=1,3\), the terminal \(P\)-copy cancels the old
+\(C_\nu=P_\nu\) boundary and leaves the new shifted \(P\)-copy. The old
+component-\(3\) \(w=\texttt{aG}\) copy then cancels positions \(0,1\) of
+the surviving \(P_*\)-block. Families \(2,6\) and \(4,5\) reduce by the
+same integral identities used in (2.3). The five row counts are
+
+\[
+ 14+16+6+2+4=42,
+ \qquad
+ (4,5,5)+(3,5,8)+(2,2,2)+(0,1,1)+(0,2,2)
+ =(9,15,18).
+ \tag{4.4c}
+\]
+
+Thus (4.4b) is the minimal collision-first raw template list. Its fixed
+prefixes remain row-specific, so the displayed cancellations do not pair
+their raw weights.
+
+There is also an exact endpoint reduction after collision aggregation.
+For a stored edge put
+
+\[
+ \mathcal R(E_s(v))
+ :=R_s(v)
+ :=\rho_{o_s^+}(v)+\rho_{o_s^-}(v).
+ \tag{4.5}
+\]
+
+For the literal occurrence table, these are
+
+\[
+\boxed{
+\begin{aligned}
+ R_2&=\rho_{\mathrm{eps}}+\rho_{\texttt{ctcTcTctc}},\\
+ R_3&=\rho_{\texttt{ctcTTctt}}+\rho_{\texttt t},\\
+ R_4&=\rho_{\texttt t}+\rho_{\mathrm{eps}}.
+\end{aligned}}
+ \tag{4.5a}
+\]
+
+Choose a root in each forest component and integrate this edge cochain:
+
+\[
+ \psi_R(x):=\sum_{e\in[\mathrm{root},x]}\mathcal R(e),
+ \qquad
+ \Psi_i:=\sum_{\nu=1}^6\psi_R(x_{\nu,i}).
+ \tag{4.6}
+\]
+
+Equations (3.2)--(3.3) and finite forest Stokes give
+
+\[
+\boxed{
+\begin{aligned}
+ L_{\ne0}(q_i)
+ &=\langle\beta_i,\mathcal R\rangle\\
+ &=\langle K_i+K_{i+1},\mathcal R\rangle
+ =\Psi_i+\Psi_{i+1}.
+\end{aligned}}
+ \tag{4.7}
+\]
+
+Thus the raw term may be represented either by the at-most-\(110\)
+collision-safe provenance rows before final aggregation, by the \(42\)
+active coordinate bits \(R_s(v)\), or by twelve endpoint-potential values.
+Each of the \(42\) coordinate bits still contains its two literal
+occurrence weights, so an atomic raw ledger has \(84\) evaluations.
+Formula (4.7) is a telescope, not an evaluation of \(\Psi_i\).
+
 ## 5. Why transport alone cannot close the increment
 
 After integral collision and parity, the two surviving long actions are
