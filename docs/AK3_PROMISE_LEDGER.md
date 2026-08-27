@@ -66,19 +66,20 @@ finite quotient do not close a route.
   augmented equality
   \(\mathscr C(a,g)=\mathbb B(b,f)+\mathbb B(b,g)+\mathbb B(f,g)\), without
   termwise vanishing.
-- **Sharper boundary target:** \(c_i=u_{i,i+1}\).  Diagonal vanishing makes
+- **Sharper boundary target:** the
+  [pure-\(P\) normal form](../literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md)
+  specializes the defect at \(j=i\).  Its endpoint words are
+  \(\operatorname{red}(P_\nu^iC_\nu)\), with no \(Q_\nu\)-factor, and its
+  forest mask is one two-ray \(P\)-connector plus three differences of
+  literal short connectors.  Diagonal vanishing makes
   the \(c_i\) constant; the proved seed \(u_{00}=1\) forces \(c_0=0\).
-  Hence the diagonal identity is equivalent to the pure-\(P\) ray
-  \(u_{i,i+1}=0\).  Its source words are
-  \(\operatorname{red}(P_\nu^iC_\nu Q_\nu^{-1})\), with no powered
-  \(Q_\nu\), whereas \(\mathcal D_{i0}\) uses the two-power words
-  \(\operatorname{red}(P_\nu^iC_\nu Q_\nu^i)\).
-- **Resume point:** prove the one-parameter pure-\(P\) ray
-  through its inverse-level increment
-  \(\mathscr C(A^-_{i,1},A^-_{i+1,1}+A^-_{i,1})=0\).  Its slot-zero raw
-  part is proved zero; the nonzero raw, old--new, and new--new terms remain
-  one open joint xor.  Proving that xor, together with the seed, would prove
-  \(u_{i,i+1}=0\) for every \(i\geq0\).
+  Hence proving this diagonal pure-\(P\) increment zero proves the full
+  diagonal identity.
+- **Resume point:** prove the joint two-ray \(P\)-period lemma (7.1) in the
+  pure-\(P\) normal-form note:
+  \(\mathscr C(A_{i,i},A_{i+1,i+1}+A_{i,i})=0\).  Its slot-zero raw part is
+  proved zero; the nonzero raw, old--new, and new--new terms remain one open
+  joint xor.  With the seed, this would prove \(u_{ij}=\delta_{ij}\).
 - **Nonclaim:** the completed \(j\)-edge law does not prove the \(i\)-edge
   law; the reduction does not prove the diagonal identity.  The unary delta,
   period-two lift, AK(3), stable AC, and AC remain open.
