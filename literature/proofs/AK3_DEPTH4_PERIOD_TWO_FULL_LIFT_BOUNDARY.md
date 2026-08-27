@@ -2045,6 +2045,84 @@ internal, external, and unary ray coefficients cannot cancel (3.110), or
 else construct a finite balanced source for which all ray and non-ray
 coordinates vanish.
 
+### 3.16 Terminal quadratic ray pivot
+
+The fourth-column boundary identity has a direct consequence for the
+homogeneous quadratic part of the defect itself.  Polarizing
+
+\[
+ F_4\otimes\mathcal L_4F_4
+\]
+
+gives exactly (3.58).  The ray target is torsion-free, and the degree-two
+part is homogeneous, so diagonal polarization determines its quadratic
+value uniquely.  Define the complete slot-four ray contribution by
+
+\[
+ Q^{(4)}_{\mathrm{ray}}(F)
+ :=\Xi_{\mathrm{ray}}
+   \bigl(F_4\otimes(t-1)F_4\bigr).
+\tag{3.112}
+\]
+
+Fix a ray \(\mathcal O\) and let
+\(D_{\mathcal O}=\mathscr D(v)\) for any \(v\in\mathcal O\), oriented by
+height \(-1\).  Put
+
+\[
+ \kappa_{\mathcal O}(x,y)
+ :=
+ [Hx^{-1}yH=D_{\mathcal O}]
+ -[Hx^{-1}yH=D_{\mathcal O}^{-1}].
+\tag{3.113}
+\]
+
+Splitting the tensor sum into equal and unequal source vertices gives
+
+\[
+\boxed{
+\begin{aligned}
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}
+ ={}&
+ -\sum_{v\in\mathcal O}F_4(v)^2
+ +\mathcal R^{(4)}_{\mathcal O}(F),\\
+ \mathcal R^{(4)}_{\mathcal O}(F)
+ :={}&
+ \sum_{\substack{x,y\in X\\x\ne y}}
+ F_4(x)F_4(y)
+ \bigl(
+  \kappa_{\mathcal O}(x,ty)
+  -\kappa_{\mathcal O}(x,y)
+ \bigr).
+\end{aligned}}
+\tag{3.114}
+\]
+
+Indeed, the equal-vertex atom at \(v\) has relative displacement
+\(v^{-1}tv=D_{\mathcal O}^{-1}\) in the \(tF_4\) part, while the
+corresponding identity-kernel atom is diagonal and vanishes in the
+exterior module.  Thus it contributes with the displayed minus sign.
+For unequal vertices both the \(t\)-kernel and identity-kernel terms must
+remain in \(\mathcal R^{(4)}\).  All sums are finite.  Reducing (3.114)
+modulo two turns the square into a linear parity:
+
+\[
+\boxed{
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}\bmod2
+ =
+ \sum_{v\in\mathcal O}\overline{F_4(v)}
+ +\overline{\mathcal R}^{(4)}_{\mathcal O}(F).}
+\tag{3.115}
+\]
+
+Thus every ray equation contains a canonical terminal-flow parity pivot.
+This does not yet make the ray obstruction triangular.  Off-diagonal
+terminal pairs can contribute through
+\(\mathcal R^{(4)}_{\mathcal O}\), the rows \(0\) through \(3\) of the
+gauged Hessian contribute additional quadratic terms, and the affine
+unary defect remains.  The next separation problem is to control those
+three residual classes on an extremal occupied ray.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
