@@ -483,6 +483,201 @@ both nonzero.  If (5.11) is proved, (5.10) makes \(V_i\) two-periodic and
 (5.13) excludes every diagonal \(D_i\).  Until then, (5.13) excludes only
 \(i=0,1\).
 
+### 5.1 No invariant-covector shortcut
+
+Let \(\rho\) be one of the finite actions and let \(\lambda\) be its
+invariant wedge covector.  Applying \(\lambda\) to the section cocycle (5.5)
+does not produce an ordinary scalar cocycle.  If
+
+\[
+a_q^\lambda(f):=\lambda(\kappa_q(f)),
+\tag{5.14}
+\]
+
+then the corrected composition law is
+
+\[
+\boxed{
+a_{gh}^\lambda(f)+a_g^\lambda(hf)+a_h^\lambda(f)
+=\lambda\!\left(
+\overline\omega(g,h)\wedge\overline{ghf}
+\right).}
+\tag{5.15}
+\]
+
+Invariance removes the outer \(g\)-action but not the quotient-section
+residual on the right.
+
+This residual is active on the actual ray.  For the identity four-point
+action
+
+\[
+\rho(c)=1,\qquad \rho(t)=(0\,1\,2\,3),
+\tag{5.16}
+\]
+
+take the two tracked covectors corresponding to coordinates 6 and 7.  Since
+\(\omega(c,c)=c^2\) projects linearly to \(E_0\), while
+
+\[
+\rho(y_{ii})0=\rho(t^{-(i+1)})0=(3,2,1,0)
+\quad(i\bmod4),
+\tag{5.17}
+\]
+
+the right side of (5.15) has the exact respective signatures
+
+\[
+(0,1,0,0),\qquad(1,0,1,0).
+\tag{5.18}
+\]
+
+Thus \(Q\)-invariance alone neither kills nor cobounds the section/transport
+term.  Cancellation may still occur after summing the complete literal AST,
+but it must be evaluated there.
+
+### 5.2 One exact two-step crossed derivative
+
+Put
+
+\[
+E_i:=\Delta_i+\Delta_{i+1}=D_{i+2}-D_i.
+\tag{5.19}
+\]
+
+Biadditivity and alternation of \(\beta_{14}\) reduce (5.10) to
+
+\[
+\boxed{
+G_{i+1}+G_i
+=u_{14}(E_i)+\beta_{14}(D_i,E_i).}
+\tag{5.20}
+\]
+
+The pure-\(P\) right-deck recurrence gives
+
+\[
+\begin{aligned}
+E_{i,0}
+ &=e_{y_{i+2,i+2}}-e_{y_{ii}},&
+E_{i,1}&=0,\\
+E_{i,s}
+ &=\sum_{\nu=1}^6\epsilon_\nu
+ \left(
+ \mathsf E_s(P_\nu^2)
+ +(p_\nu^2-1)x^s_{\nu,i,i}
+ \right),
+ &&s=2,3,4,
+\end{aligned}
+\tag{5.21}
+\]
+
+where
+
+\[
+\mathsf E_s(P_\nu^2)
+=\mathsf E_s(P_\nu)+p_\nu\mathsf E_s(P_\nu).
+\tag{5.22}
+\]
+
+The doubled anchors cancel from \(E_i\), but remain in the old state \(D_i\).
+The slot-zero component in (5.21) is the difference of two distinct powered
+singleton vertices, so \(E_i\) is not an even direction and the separate
+coefficient-period-two theorem does not apply.
+
+There is a closed recursive formula for the complete residual in (5.20).
+At a correction leaf of slot \(s\), put
+
+\[
+f=B_s+D_{i,s},\qquad e=E_{i,s}.
+\tag{5.23}
+\]
+
+The linear increment is \(\delta a=e\).  For the ordered tensor coordinate
+\(\Sigma\) from (5.4),
+
+\[
+\begin{aligned}
+d\Sigma_f(e)
+&:=\Sigma(f+e)-\Sigma(f)\\
+&=\sum_x
+ \left(f_xe_x+\binom{e_x}{2}\right)e_x\otimes e_x\\
+&\quad{}+
+ \sum_{x<y}
+ \left(f_xe_y+e_xf_y+e_xe_y\right)e_x\otimes e_y.
+\end{aligned}
+\tag{5.24}
+\]
+
+This retains the merged shortlex section, fixed base, and doubled anchors
+integrally.
+
+For old node coordinates \(X=(q,a,A)\), \(Y=(r,b,B)\) and increments
+\((\delta a,\delta A)\), \((\delta b,\delta B)\), let \(q\) act on module
+vertices by \(q e_x=e_{\operatorname{cvert}(qx)}\) and diagonally on tensors.
+Differentiating the exact crossed product gives
+
+\[
+\begin{aligned}
+\delta c
+ &=\delta a+q\delta b,\\
+\delta C
+ &=\delta A+q\delta B+\tau_q(\delta b)\\
+&\quad{}+\delta a\otimes(qb)
+ +a\otimes(q\delta b)
+ +\delta a\otimes(q\delta b)\\
+&\quad{}+(\delta a+q\delta b)\otimes o_{q,r}.
+\end{aligned}
+\tag{5.25}
+\]
+
+The fixed \(O_{q,r}\) has zero local derivative, while its associated
+linear defect \(o_{q,r}\) remains explicitly in (5.25) and in every
+downstream old state.  Literal leaves have zero increment but retain their
+complete old coordinates.
+
+For inversion, first use
+
+\[
+\begin{aligned}
+\delta(-a)&=-\delta a,\\
+\delta(-A+a\otimes a)
+&=-\delta A+a\otimes\delta a+\delta a\otimes a
+  +\delta a\otimes\delta a,
+\end{aligned}
+\tag{5.26}
+\]
+
+then multiply on the left by the fixed literal coordinate
+\(\Lambda(q^{-1})\) using (5.25).  Conjugation is differentiated in the
+literal order \(X\star Y\star\operatorname{Inv}(X)\).
+
+Recursing (5.24)--(5.26) through the exact residual AST yields a root
+increment \((1,0,\delta A_{\mathrm{root},i})\).  For the fourteen tracked
+action/covector pairs \((\rho_k,\lambda_k)\), define
+
+\[
+\boxed{
+R_{k,i}
+:=\lambda_k\Pi_{\rho_k}(\delta A_{\mathrm{root},i})
+=\lambda_k\Pi_{\rho_k}
+ \left(M_B(D_{i+2})-M_B(D_i)\right).}
+\tag{5.27}
+\]
+
+The exact missing lemma is
+
+\[
+\boxed{R_{k,i}=0\qquad(1\leq k\leq14,\ i\geq0).}
+\tag{5.28}
+\]
+
+Equations (5.20) and (5.27) prove that (5.28) is equivalent to
+\(G_{i+1}=G_i\).  The current pure-\(P\) schemas supply the powered supports
+and canonical vertices in (5.21), but they do not yet prove the shortlex
+merge, transport, base--direction, inverse, and quotient-section
+cancellations in (5.24)--(5.27).
+
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
   reaches \(F/\gamma_3N\).

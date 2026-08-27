@@ -133,7 +133,13 @@ finite quotient do not close a route.
   \(\Delta_i=D_{i+1}-D_i\), the exact period-two proof object is
   \(G_i=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i)\); proving
   \(G_{i+1}=G_i\) would make the two known nonzero boundary values exclude
-  the whole diagonal family.  Any survivor must then solve the full exterior-module cokernel
+  the whole diagonal family.  Equivalently, for
+  \(E_i=D_{i+2}-D_i\), the smallest missing lemma is the fourteen exact
+  crossed-AST derivative values
+  \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\).
+  The section cocycle is not killed by invariant covectors: two tracked
+  four-point coordinates have explicit nonzero quotient-section residuals,
+  so the complete AST sum is mandatory.  Any survivor must then solve the full exterior-module cokernel
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
   companion cross kernels and other primitive families remain open; no
   full-Hessian rank claim follows.
