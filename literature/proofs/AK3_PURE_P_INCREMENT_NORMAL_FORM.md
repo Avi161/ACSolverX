@@ -424,6 +424,78 @@ Each of the \(42\) coordinate bits still contains its two literal
 occurrence weights, so an atomic raw ledger has \(84\) evaluations.
 Formula (4.7) is a telescope, not an evaluation of \(\Psi_i\).
 
+### 4.1 Raw boundary-locality pump
+
+The all-power extension of a literal raw record uses the following
+finite-prefix lemma.  Fix a raw occurrence action \(q\), and let
+\(\rho_q(v)\) be the raw weight obtained from the exact branch word
+\(zccz^{-1}\) for the canonical module word \(v\).  Suppose a common-phase
+canonical template has one changing intact block
+
+\[
+ v_m=A R^{r m+s}B,\qquad m\geq m_0,
+ \tag{4.8}
+\]
+
+where \(R\) is cyclically reduced, \(r>0\), and the two boundary copies of
+\(R\) survive quotient reduction.  Let \(d\) be the insertion split before
+the next \(r\) copies.  Assume
+
+\[
+ d+r|R|>|q|+1.
+ \tag{4.9}
+\]
+
+Assume also that direct expansion at \(m_0\) and \(m_0+1\) gives the same
+complete raw signature
+
+\[
+ (\text{ordered first-half labels},
+   \text{central-equality bits},\rho),
+ \tag{4.10}
+\]
+
+that every displayed first-half label is noncentral, and that the central
+label is strictly longer than all of them and has positive affine length
+slope.
+
+Then the signature (4.10), and hence \(\rho_q(v_m)\), is constant for every
+\(m\geq m_0\).
+
+Indeed, the overlap branch for \(qv_m\) consumes at most \(|q|\) initial
+letters of \(v_m\).  After those cancellations, the remaining part of
+\(v_m\) is a canonical quotient suffix: it has no negative \(c\), and no
+two positive \(c\)'s are adjacent.  By the literal event rule, that suffix
+creates no first-half raw event.  Thus every such event lies in the
+surviving finite action prefix or at its first boundary with \(v_m\).
+The possible terminal-\(c\) deletion is determined by the terminal letter
+of the fixed suffix \(B\), or by the fixed terminal letter of \(R\) when
+\(B\) is empty, and is unchanged by adding whole copies of \(R\).
+
+Inequality (4.9) places every future insertion beyond the complete
+event-producing boundary.  An event label is the canonical quotient prefix
+at that event, so letters inserted later cannot change it.  The exact first
+transition (4.10) verifies the protected boundary state and the
+terminal-\(c\) case at the pump base.  The intact common-phase form preserves
+both on every later insertion.  Hence induction fixes the ordered first-half
+list.  Its equality bits stay false because the list is fixed while the
+central length increases.  This proves the claim.
+
+For the five families in (4.4b), the exact all-power interface is therefore
+the four disjoint cells
+
+\[
+ i=0,\qquad i=1,\qquad i=2,\qquad i\geq3.
+ \tag{4.11}
+\]
+
+In the unbounded cell each of the \(84\) literal occurrence records has one
+positive affine core.  A valid certificate must replay the module word at
+\(i=3,4\), verify (4.9), compare the full signatures (4.10), and check the
+strict central-length conditions record by record.  The bounded cells are
+evaluated by direct expansion.  This lemma extends those exact records; it
+does not supply their xor.
+
 ## 5. Why transport alone cannot close the increment
 
 After integral collision and parity, the two surviving long actions are
