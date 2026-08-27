@@ -16,3 +16,14 @@ main.tex
 literature
 
 .env
+
+# pytest: --basetemp is project-relative (agent sandboxes deny /tmp).
+.pytest_tmp/
+.pytest_cache/
+# experiments/ppo run output (checkpoints, beam jsonl, reports) -- never committed.
+results/ppo/
+# Datasets the PPO tests and runner BUILD from shipped files; regenerated on demand.
+data/benchmark60.txt
+data/AC19_extended_ho60*.txt
+# The two PPO arm notebooks are GENERATED: python3 -m experiments.ppo.make_arm_notebooks
+experiments/notebooks/ppo/ppo_arm_*.ipynb
