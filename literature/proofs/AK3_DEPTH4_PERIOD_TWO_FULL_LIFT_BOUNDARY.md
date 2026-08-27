@@ -1554,8 +1554,82 @@ term in the four order-one coordinates:
 \tag{5.45ag}
 \]
 
-For the other ten coordinates, (5.45y) is periodic with the corresponding
-period in (5.45ae), but its value remains unevaluated.
+The remaining values can now be obtained by direct finite-action
+substitution, without a source-forest census.  Put
+
+\[
+ p_{0,k}=\rho_k(\texttt{ct})0,\quad
+ a_k=\rho_k(A),\quad d_k=\rho_k(D),\quad
+ \eta_k=\rho_k(\delta),
+\]
+
+and, for a finite-action point \(p\), define
+
+\[
+ \phi_k(p)
+ :=\lambda_k(e_p\wedge e_{d_kp}+e_p\wedge e_{a_kd_kp}).
+\tag{5.45ah}
+\]
+
+Equation (5.45ab) becomes the finite orbit sum
+
+\[
+ C_{k,4}(h)
+ =\sum_{j=0}^2\phi_k(\eta_k^{3h+j}p_{0,k}).
+\tag{5.45ai}
+\]
+
+Substitution of the pinned eleven permutation actions and fourteen
+covectors gives the following complete table.  Each \(C\)-row is indexed by
+\(h\bmod r_k\), on the proved domain \(h\geq1\); the \(S\)-row is indexed by
+\(i\bmod r_k\), where
+\(S_{k,4}(i)=C_{k,4}(i+1)+C_{k,4}(i+2)\).
+
+\[
+\begin{array}{c|c|c|c}
+k&r_k&C_{k,4}&S_{k,4}\\ \hline
+1&2&(0,0)&(0,0)\\
+2&4&(0,1,0,1)&(1,1,1,1)\\
+3&1&(1)&(0)\\
+4&1&(0)&(0)\\
+5&2&(1,1)&(0,0)\\
+6&4&(0,0,0,0)&(0,0,0,0)\\
+7&4&(1,1,1,1)&(0,0,0,0)\\
+8&1&(0)&(0)\\
+9&4&(1,0,1,0)&(1,1,1,1)\\
+10&1&(1)&(0)\\
+11&5&(0,0,0,0,0)&(0,0,0,0,0)\\
+12&5&(1,1,1,1,1)&(0,0,0,0,0)\\
+13&4&(0,0,0,0)&(0,0,0,0)\\
+14&4&(1,1,1,1)&(0,0,0,0).
+\end{array}
+\tag{5.45aj}
+\]
+
+For a structural check on the constant rows, whenever \(\rho_k(c)=1\),
+the literal words give \(d_k=1\) and \(\eta_k=a_k\).  Then
+\(\phi_k(p)=\lambda_k(e_p\wedge e_{a_kp})\) is constant along the powered
+orbit by invariance.  This covers coordinates \(3,5,6,7,11,12\).  In the
+only two nonzero source rows, the local orbit weights alternate: direct
+substitution gives \(C_{2,4}=(0,1,0,1)\) and
+\(C_{9,4}=(1,0,1,0)\).  The remaining pinned rows are the constant or zero
+rows displayed in (5.45aj).  Terminal-\(c\) canonicalization does not alter
+the table because every pinned \(\rho_k(c)\) fixes the distinguished point
+zero.
+
+Thus the slot-four source remainder is completely evaluated for every
+index:
+
+\[
+\boxed{
+ \bigl(S_{1,4}(i),\ldots,S_{14,4}(i)\bigr)
+ =\texttt{01000000100000}
+ \qquad(i\geq0).}
+\tag{5.45ak}
+\]
+
+This is only the differentiated-inversion source contribution from slot
+four.  It is not the complete crossed derivative \(R_{k,i}\).
 
 A direct expansion of the remaining slot-two and slot-three kernels
 contains the weighted prefix families

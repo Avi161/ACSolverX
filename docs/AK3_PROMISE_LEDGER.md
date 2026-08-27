@@ -167,9 +167,11 @@ finite quotient do not close a route.
   source remainder is the xor of six within-block weights in each of the
   next two powered \(P_*\)-blocks, hence exactly twelve finite-action
   weights.  Repeated-block covariance does not kill the resulting one-sided
-  \(L_4\)-boundary in general, but the four powered-order-one coordinates
-  \(k=3,4,8,10\) vanish identically; the other ten have exact periods
-  \(2,4\), or \(5\) and remain unevaluated.  The slot-two and
+  \(L_4\)-boundary in general.  Exact substitution in the eleven pinned
+  finite actions now evaluates it completely: its all-index fourteen-bit
+  vector is `01000000100000`, with ones only in coordinates two and nine.
+  This is a slot-four inversion-source term, not the complete crossed
+  derivative.  The slot-two and
   slot-three kernels have inversion bands 20 and 16; because all protected
   cores have slope 24, each old/shell template pair survives on at most
   two affine boundary rays.  Thus no genuine parity prefix sum remains,
