@@ -4499,6 +4499,134 @@ survive.  Thus they sharpen the labelled one-pair problem but do not prove
 paired anisotropy, do not control the other laminar terms, and do not
 resolve the affine unary value.
 
+### 3.39 The paired torsion sector is purely cross-incidental
+
+For the eight actual generators in (3.168), no one-atom current can hit an
+inversion-fixed coordinate.  Define
+
+\[
+ \chi_q(u):=[u=s_q]+[u=s_q^{-1}]\in\mathbb F_2
+ \tag{3.287}
+\]
+
+and, for $g=kc^\epsilon$,
+
+\[
+ \rho_q^g(a,b):=
+ \chi_q\left(a^{-1}k\alpha^\epsilon(b)\right).
+ \tag{3.288}
+\]
+
+Equation (3.283) is equivalently
+
+\[
+ \boxed{
+ \kappa_{[q]}(\overline F)
+ =\sum_{a,b\in K}
+ \overline F_a\overline F_b\rho_q^g(a,b).}
+ \tag{3.289}
+\]
+
+The occurrence parities of the eight intervals are
+
+\[
+\boxed{
+\begin{array}{c|cccccccc}
+I&[1,6]&[2,5]&[3,4]&[7,8]&[9,14]&[10,13]&[11,12]&[15,16]\\ \hline
+\epsilon_I&1&0&1&1&1&0&1&0.
+\end{array}}
+\tag{3.290}
+\]
+
+Suppose first that $\epsilon=1$ and
+$\rho_q^g(a,a)=1$.  Put
+$s=a^{-1}k\alpha(a)\in\{s_q,s_q^{-1}\}$.  Then
+
+\[
+ sc=a^{-1}kc a=a^{-1}ga,
+ \tag{3.291}
+\]
+
+while $\alpha(s)=s^{-1}$ gives $(sc)^2=1$.  This contradicts the
+infinite order of every $g_I$ proved in (3.169)--(3.170).  If
+$\epsilon=0$, the same assumption makes
+$s=a^{-1}ga$ and $csc=s^{-1}$.  Thus $s$, and hence $g$, is conjugate
+in $Q$ to its inverse, contradicting (3.172).  Therefore
+
+\[
+ \boxed{\rho_q^{g_I}(a,a)=0
+ \qquad(a\in K,\ q\ne1, I\text{ paired}).}
+ \tag{3.292}
+\]
+
+Define a symmetric mod-two adjacency on distinct vertices by
+
+\[
+ E_q^g(a,b):=\rho_q^g(a,b)+\rho_q^g(b,a).
+ \tag{3.293}
+\]
+
+Regrouping (3.289) by unordered pairs now gives the exact graph form
+
+\[
+ \boxed{
+ \kappa_{[q]}(\overline F)
+ =\sum_{\{a,b\}\subset K}
+ E_q^g(a,b)\overline F_a\overline F_b.}
+ \tag{3.294}
+\]
+
+In particular,
+
+\[
+ \boxed{
+ \kappa_{[q]}(e_a+e_b)
+ =\chi_q\left(a^{-1}k\alpha^\epsilon(b)\right)
+  +\chi_q\left(b^{-1}k\alpha^\epsilon(a)\right)
+ \qquad(a\ne b).}
+ \tag{3.295}
+\]
+
+The graph in (3.293) is locally finite and Eulerian.  For fixed $a$, the
+two outgoing targets of $\rho_q^g(a,-)$ are
+
+\[
+ \alpha^\epsilon(k^{-1}as_q),
+ \qquad
+ \alpha^\epsilon(k^{-1}as_q^{-1}),
+ \tag{3.296}
+\]
+
+and the two incoming targets detected by $\rho_q^g(-,a)$ are
+
+\[
+ k\alpha^\epsilon(a)s_q,
+ \qquad
+ k\alpha^\epsilon(a)s_q^{-1}.
+ \tag{3.297}
+\]
+
+Each pair is distinct because $K$ is torsion-free and $s_q\ne1$.
+Passing to the symmetric difference (3.293) leaves every vertex with
+degree $0$, $2$, or $4$.
+
+Finally, $\nu_t\circ\alpha=\nu_t$ and therefore
+$\nu_t(s_q)=0$.  An edge of (3.293) satisfies
+
+\[
+ \nu_t(b)-\nu_t(a)=\pm\nu_t(g).
+ \tag{3.298}
+\]
+
+For the six nonzero-height rows of (3.169), the difference is $\pm1$;
+their graphs are bipartite by height parity.  The two height-zero forest
+rows preserve each height layer.  Thus every fixed-torsion coordinate of
+an actual paired tensor is a pure cross-support parity, and for six rows
+it vanishes on a current supported in one height layer.  This exact graph
+reduction supplies no automatic nonzero coordinate: finite cross-incidence
+cycles or cancellation against other laminar terms remain possible, and
+the affine unary value is still separate.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
