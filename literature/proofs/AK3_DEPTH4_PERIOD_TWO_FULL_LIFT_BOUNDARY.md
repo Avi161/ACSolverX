@@ -3305,6 +3305,155 @@ cycle: every retained target moves to strictly larger radius.  Arbitrary
 cross-support pairs in a general finite current need not arise from this
 specific transition, so (3.191) is not a global anisotropy theorem.
 
+### 3.30 The exact height-polygon quotient
+
+There is a second all-bucket quotient which sees every nonzero-height
+paired tensor at once.  Let
+
+\[
+ \mathfrak h:M\longrightarrow \mathbb Z[z,z^{-1}],
+ \qquad
+ \mathfrak h(f)=\sum_{x\in X}f(x)z^{h(x)}.
+ \tag{3.192}
+\]
+
+The height map is $Q$-equivariant when $q\in Q$ acts on the target by
+multiplication by $z^{\nu_t(q)}$.  It therefore induces a map from
+$W_Q$ to the translation coinvariants of
+\(\Lambda^2\mathbb Z[\mathbb Z]\).  Identify the latter with the
+anti-reciprocal Laurent polynomials by
+
+\[
+ [e_i\wedge e_j]\longmapsto z^{j-i}-z^{i-j}.
+ \tag{3.193}
+\]
+
+Write $p^*(z)=p(z^{-1})$.  For finite currents $f,g$, the image of
+$[f\wedge g]$ is
+
+\[
+ \boxed{\mathfrak h(f)^*\mathfrak h(g)
+       -\mathfrak h(g)^*\mathfrak h(f).}
+ \tag{3.194}
+\]
+
+In particular, if $p=\mathfrak h(f)\ne0$ and
+$n=\nu_t(g)\ne0$, then
+
+\[
+ \boxed{
+ [f\wedge gf]\longmapsto
+ (z^n-z^{-n})p^*p\ne0.}
+ \tag{3.195}
+\]
+
+The last inequality uses only that the integral Laurent ring is a domain.
+Thus each of the six nonzero-height paired generators in (3.169) is
+globally anisotropic after the complete height-bucket projection whenever
+the corresponding current has nonzero height profile.  This statement is
+about the individual paired tensor; other laminar terms can still cancel
+it in the complete polygon.
+
+The entire sixteen-occurrence polygon also has a closed height formula.
+Put
+
+\[
+ p_s:=\mathfrak h(F_s),
+ \qquad
+ \langle u,v\rangle_h:=u^*v-v^*u.
+ \tag{3.196}
+\]
+
+Using (3.102), the five signed height symbols are
+
+\[
+\boxed{
+\begin{aligned}
+ l_0&=2z-1-z^{-1}=(z-1)(2+z^{-1}),\\
+ l_1&=2z-2z^2=-2z(z-1),\\
+ l_2&=l_3=0,\\
+ l_4&=z-1.
+\end{aligned}}
+\tag{3.197}
+\]
+
+Height projection of the homogeneous relation gives
+
+\[
+ \sum_{s=0}^4l_sp_s=0,
+ \qquad
+ \boxed{p_4=2zp_1-(2+z^{-1})p_0.}
+ \tag{3.198}
+\]
+
+The cancellation of $z-1$ is legitimate because the Laurent ring is a
+domain.  Let
+
+\[
+ a:=p_0,
+ \qquad r:=p_0-zp_1,
+ \qquad q:=p_2+zp_3,
+ \qquad s:=r+z^{-1}a.
+ \tag{3.199}
+\]
+
+If $A_h(F)$ denotes the height image of the complete homogeneous
+polygon (3.159), then recursive block Stokes gives the exact factorization
+
+\[
+ \boxed{
+ A_h(F)=2\left(
+  (z-z^{-1})(s^*s+2a^*a)
+  +\langle q,(z-1)r\rangle_h
+ \right).}
+ \tag{3.200}
+\]
+
+To verify (3.200), the two nested roots $[1,6]$ and $[9,14]$ have the
+same net current
+
+\[
+ D=(z-1)(p_0-zp_1)=(z-1)r.
+ \tag{3.201}
+\]
+
+Their three root-cross pairings cancel as
+
+\[
+ \langle D,D_2\rangle_h+
+ \langle D,D\rangle_h+
+ \langle D_2,D\rangle_h=0.
+ \tag{3.202}
+\]
+
+The outer slot-two and slot-three terms are
+$2\langle p_2+zp_3,D\rangle_h$.  The three slot-zero, two slot-one,
+and one slot-four paired energies, together with the two identical
+parent--child terms, reduce after (3.198) to
+
+\[
+ 2(z-z^{-1})(s^*s+2a^*a),
+ \tag{3.203}
+\]
+
+which proves the formula.
+
+This quotient is already decisive on two exact subclasses.  If $r=0$
+and $a\ne0$, then
+
+\[
+ A_h(F)=6(z-z^{-1})a^*a\ne0.
+ \tag{3.204}
+\]
+
+If $q=0$, then (3.200) is nonzero unless $a=s=0$, because the constant
+coefficient of $s^*s+2a^*a$ is a sum of nonnegative squares and is
+positive whenever $(s,a)\ne(0,0)$.  In the general case the final
+pairing in (3.200) can cancel the norm term.  Moreover the affine unary
+height value is not contained in $A_h$, and the height quotient is blind
+to the residual subspace $p_0=p_1=p_4=0$.  Thus (3.200) is an exact
+global reduction, not a class-two obstruction or a lift theorem.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
