@@ -115,7 +115,17 @@ beam/
 scripts/
   check_checkpoint_paths.py  validate stored paths in a checkpoint's solve_data
 data/                initial-state datasets (one Python-literal presentation per line)
+experiments/ppo/     PyTorch reproduction of the substitution PPO (torch only; never
+                     imports the JAX tree above)
+docs/                results, learnings, and the branch map
 ```
+
+## Results and learnings
+
+The summer's research — the `S20_MK2` heuristic and its validation ladder, the PyTorch
+PPO reproduction, the benchmark work, and the stable-AC program's conclusions — is
+collected under [`docs/RESULTS.md`](docs/RESULTS.md). What lives on which branch, and how
+to retrieve anything not collected here, is [`docs/BRANCH_MAP.md`](docs/BRANCH_MAP.md).
 
 ## Datasets (`data/`)
 
