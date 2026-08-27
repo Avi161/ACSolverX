@@ -3232,6 +3232,79 @@ rows of (3.179) cannot telescope around a finite cycle using only direct
 \(H\widetilde y^{-1}g_I\widetilde xH\), another laminar term, or the
 affine unary value.
 
+### 3.29 The reverse bucket also moves outward
+
+The reverse term in (3.180) cannot close the two-atom remainder.  Retain
+\(z=g_I^{-1}x\), \(y=\Phi_I(x)=r_zx\), and suppose first that \(g_I\)
+is hyperbolic.  Put \(r=r_I(x)\) and \(\tau=\tau_I\).  Reflection gives
+
+\[
+ d(y,z)=d(x,z)=\tau+2r,
+ \tag{3.186}
+\]
+
+while \(gx=g_I^2z\) gives
+
+\[
+ d(z,gx)=2\tau+2r.
+ \tag{3.187}
+\]
+
+The two geodesics concatenate at \(z\).  If \(r>0\), the first leaves
+\(z\) away from the axis and the second leaves toward it.  If \(r=0\),
+the stabilizer reflection sends the segment toward \(x\) onto the
+opposite axis edge, while the segment toward \(gx\) starts in the positive
+direction.  Therefore, for every \(r\geq0\),
+
+\[
+ \boxed{d(y,gx)=3\tau+4r.}
+ \tag{3.188}
+\]
+
+If the reverse double coset \(Hy^{-1}gxH\) belongs to the conjugate-
+\(g_I\) family at an axis \(\mathcal O_w\), endpoint \(H\)-multipliers
+and orientation reversal preserve Bass--Serre displacement.  Hence
+
+\[
+ \tau+2r_I(w)=3\tau+4r,
+ \qquad
+ \boxed{r_I(w)=\tau+2r.}
+ \tag{3.189}
+\]
+
+For \(g_I=t^{-1}\), let \(r\) be distance to its fixed
+\(\langle t\rangle\)-vertex.  Distinct powers occupy distinct branches,
+so \(d(y,z)=2r\), \(d(z,gx)=2r\), and the paths again concatenate.
+Thus
+
+\[
+ \boxed{d(y,gx)=4r,
+ \qquad r_I(w)=2r}
+ \tag{3.190}
+\]
+
+whenever the reverse bucket belongs to the terminal axis family.
+
+In every case the reverse target, if present, has strictly larger radius
+than \(x\).  It is also distinct from the diagonal target at \(y\): for a
+hyperbolic off-axis vertex their radii are \(\tau+2r\) and
+\(\tau+3r\); at radius zero they are \(\tau\) and a value strictly between
+zero and \(\tau\); in the terminal case they are \(2r\) and \(3r\).
+If the reverse bucket is absent from the axis family, only the nonzero
+\(-\delta_{\mathscr D_I(y)}\) remains in (3.180).  Therefore
+
+\[
+ \boxed{
+ \Pi_I\left(-(e_x-e_{\Phi_I(x)})
+ \otimes g_I(e_x-e_{\Phi_I(x)})\right)\ne0.}
+ \tag{3.191}
+\]
+
+The specific direct/reverse collider transition has no finite directed
+cycle: every retained target moves to strictly larger radius.  Arbitrary
+cross-support pairs in a general finite current need not arise from this
+specific transition, so (3.191) is not a global anisotropy theorem.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
