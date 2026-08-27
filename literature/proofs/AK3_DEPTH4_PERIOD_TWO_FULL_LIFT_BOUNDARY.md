@@ -1651,11 +1651,72 @@ The proved full-wedge value \(B_\infty(F_*,G_*)=1\), together with
 \]
 
 Thus this anchored pair has either a nonzero oriented free bucket or a
-nonzero inversion-fixed \(\mathbb Z/2\)-bucket.  Existing identities do
-not decide which.  Proving that the second sum in (3.90) vanishes is the
-smallest exact lemma that would force the first explicit free-bucket
-witness; even that witness would not by itself prove global
+nonzero inversion-fixed \(\mathbb Z/2\)-bucket.  The next subsection
+evaluates both parts for this pair.  It does not decide global
 noncancellation for arbitrary balanced sources.
+
+### 3.11 First explicit free relative bucket
+
+Keep \(H=\langle c\rangle\), write \(T=t^{-1}\), and orient every
+non-self-inverse double-coset pair by choosing the representative of
+minimum word-length and then minimum integer-word tuple between the class
+and its inverse.  With this convention, the class \(HTH\) is the positive
+orientation.  The anchored directions from (3.90) satisfy
+
+\[
+\boxed{
+ B_{\Xi_{\mathbb Z},HTH}
+ \bigl(H_0(TTT),H_0(cTTT)\bigr)=-1.}
+\tag{3.91}
+\]
+
+In particular, the mixed free-bucket Hessian is not the zero form on the
+balanced source space.
+
+Here is the exact finite verification after the preceding theory
+reductions.  Collision aggregation of the complete sixteen-occurrence
+mixed tensor gives 505 supported ordered word pairs with integral
+\(\ell^1\)-mass 2353.  Exact \(H\)-double-coset reduction gives 238
+oriented free coordinates with nonzero integral coefficient.  Modulo two,
+exactly 51 buckets are odd: 49 free buckets and two self-inverse buckets.
+The latter have canonical word representatives
+
+\[
+ \texttt{tttcTTT},\qquad \texttt{ttctcTcTT},
+\]
+
+so their total parity is zero.  The free parity is therefore one, as
+required independently by (3.90), and the particular \(HTH\)-coordinate
+is the integer \(-1\) in (3.91).
+
+Two fail-closed replays establish the ledger.  The derived projection
+starts from the production mixed wedge.  A separate four-corner replay
+constructs the two anchored source-flow directions, evaluates the four
+residual AST coordinates at
+\((0,0),(F_*,0),(0,G_*),(F_*,G_*)\), and then forms the signed mixed
+tensor and double-coset ledger without calling the production symbolic
+mixed-tensor or mixed-wedge functions, or the first checker.  It shares
+only the pinned quotient/module algebra, source-flow construction, and
+direct AST-coordinate interpreter.  Both routes give ledger digest
+
+\[
+ \texttt{87941b50f9d3b1fe8b6844a5235141a9f938550c186ff3160de295a43ddfeb90}.
+\]
+
+The [derived projection checker](../../.scratch/period_two_anchored_relative_bucket_checker.py)
+and [direct four-corner replay](../../.scratch/period_two_anchored_relative_bucket_independent_replay.py)
+have digests respectively
+\(\texttt{04c4f8a6f9b760a49fec74242936e944a6930a02a3ac0f72d3c98db4629c9652}\)
+and
+\(\texttt{a2d9fd8647fa187e2d7586a547b2b30ca33d6dc9912d023a71cf6e967328e2ae}\).
+Every imported certificate source is pinned by SHA-256 before evaluation.
+
+Equation (3.91) proves one explicit nonzero free relative bucket and rules
+out the possibility that the known anchored full-wedge witness is carried
+only by torsion.  It does not prove that every nonzero balanced source has
+a surviving free bucket, that the affine defect cannot cancel this mixed
+value, that the full class-two lift equation is obstructed, or any
+AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion.
 
 ## 4. Exact diagonal sieve
 
