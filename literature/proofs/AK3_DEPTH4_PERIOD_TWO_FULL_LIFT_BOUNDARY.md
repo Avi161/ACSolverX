@@ -14,8 +14,12 @@ correction space.  It gives a sharp class-two sieve on the anchored
 two-parameter family: every off-diagonal anchored correction fails the
 full-wedge readout, while every diagonal correction clears that one bit.
 
-The smallest constructive next obligation is to evaluate the other fourteen
-finite-action unary coordinates on the diagonal family.  Even simultaneous
+The other fourteen finite-action coordinates reduce to the crossed
+derivatives \(R_{k,i}\).  Their entire differentiated-inversion source is
+now evaluated, and the remaining finite-state terms make the all-index
+target equivalent to the 602 bits
+\(R_{k,i}\) with \(1\leq k\leq14\) and \(0\leq i\leq42\).  None of those
+post-inversion remainder values is evaluated here.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
@@ -665,7 +669,7 @@ R_{k,i}
 \tag{5.27}
 \]
 
-The exact missing lemma is
+The exact all-index target is
 
 \[
 \boxed{R_{k,i}=0\qquad(1\leq k\leq14,\ i\geq0).}
@@ -676,8 +680,9 @@ Equations (5.20) and (5.27) prove that (5.28) is equivalent to
 \(G_{i+1}=G_i\).  The current pure-\(P\) schemas supply the powered supports
 and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
-the unbounded obstruction.  The transported ordered-section
-order-reversal sum remains open.
+the unbounded obstruction.  The analysis below evaluates the transported
+ordered-section order-reversal sum and reduces the remaining exact
+obligation to the 602 finite post-inversion values in (5.45cm).
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -2144,10 +2149,64 @@ Thus the entire differentiated-inversion contribution is reduced to one
 alternating coordinate after the seed: coordinate 9 on odd indices and
 coordinate 2 on positive even indices.  The seed retains coordinates
 2, 4, and 8.  Formula (5.45ci) is not the full \(R_{k,i}\): the remaining
-old--new forest load and the other local derivative terms must still be
-combined before any constancy or AK(3) conclusion.
+one-vertex transport and the other finite-state local derivative terms must
+still be combined before any constancy or AK(3) conclusion.
 
-A direct expansion of the remaining slot-two and slot-three kernels
+There is nevertheless an immediate global improvement in the exact
+verification window.  Define the post-inversion remainder
+
+\[
+ \mathcal N_{k,i}:=R_{k,i}+\mathcal S_k(i).
+\tag{5.45cj}
+\]
+
+This definition removes exactly the differentiated inversion term in
+(5.45e), including all three surviving relative kernels and their fixed-base
+polarizations.  The common Green scalar has already cancelled slotwise in
+(5.45e).  Every remaining product, inverse-self, base, anchor, and
+quotient-section-linear derivative outside the actual ordered-section
+package factors through the lifted finite-group states (5.34), so
+(5.35)--(5.36) give it joint period dividing forty from \(i=0\).  The
+remaining one-vertex transport summand has joint period dividing twenty
+from \(i=3\) in slots two, three, and four by (5.40)--(5.42), and from
+\(i=0\) in slot zero by (5.43)--(5.45).  No ordered shortlex term remains
+in \(\mathcal N\): its Green part cancelled and its inversion part is the
+removed function \(\mathcal S\).  Consequently
+
+\[
+ \boxed{
+  \mathcal N_{k,i+40}=\mathcal N_{k,i}
+  \qquad(1\leq k\leq14,\ i\geq3).}
+\tag{5.45ck}
+\]
+
+Formula (5.45ci) is two-periodic from \(i=1\).  Since forty is even,
+(5.45cj)--(5.45ck) prove the sharper complete-derivative recurrence
+
+\[
+ \boxed{
+  R_{k,i+40}=R_{k,i}
+  \qquad(1\leq k\leq14,\ i\geq3).}
+\tag{5.45cl}
+\]
+
+Thus the all-index vanishing target (5.28) is equivalent to exactly
+
+\[
+ \boxed{
+  R_{k,i}=0
+  \qquad(1\leq k\leq14,\ 0\leq i\leq42),}
+\tag{5.45cm}
+\]
+
+a window of \(14\cdot43=602\) bits.  Equations (5.45ck)--(5.45cm) do
+not evaluate any post-inversion remainder value and do not prove (5.28).
+They replace the conservative source-comparator onset ninety-nine by the
+already established finite-state onset three only because the entire
+unbounded inversion comparator has now been evaluated in (5.45ci).
+
+Before the explicit reductions (5.45ao)--(5.45ci), a direct expansion of
+the slot-two and slot-three kernels
 contains the weighted prefix families
 
 \[
@@ -2229,12 +2288,13 @@ at most two affine boundary rays, rather than on a genuine prefix
 \(0\leq h\leq i\).  Finite unprotected levels and shell--shell terms remain
 a finite catalog of direct one-parameter families.  This boundary
 localization removes the parity prefix summation from the relative
-inversion remainder, but it does not evaluate the surviving rays or
-improve the certified onset \(99\).
+inversion remainder.  At that stage it did not evaluate the surviving rays
+or improve the certified onset \(99\); the later exact source evaluations
+(5.45bd) and (5.45cg) supersede that limitation.
 
 The four-cell raw pumps do not classify these individual prefixes.
-Sections 5.4--5.6 supply the required direct-comparator theorem and the
-source-bound onset-99 bound for their total weighted parity.
+Sections 5.4--5.6 retain the direct-comparator theorem and the source-bound
+onset-99 bound as an independent conservative fallback.
 
 ### 5.4 Common-phase comparator theorem
 
@@ -2402,7 +2462,7 @@ The finite-action weights in (5.46) are bi-periodic on the lifted
 right-deck prefix states.  Theorems 5.2--5.3 therefore apply to every
 old--new order-reversal term; the new--new terms require only finitely many
 shell comparisons.  Taking the maximum preperiod and least common multiple
-over this finite catalog proves
+over this finite catalog independently proves
 
 \[
 \boxed{
@@ -2463,9 +2523,10 @@ after the protected threshold.  With the action orders in (5.2),
 At this point \(N\) is only effective: the terminal schemas bind the common
 core and factor order, not every pairwise comparison cutoff.  Sections
 5.5--5.6 instantiate a conservative source-bound value \(N=99\), certifying
-the finite window \(0\leq i\leq138\).  Thus (5.61) is not period from
-\(i=3\), and no period two, \(R_{k,i}=0\), lift, or AK(3) conclusion
-follows.
+the redundant finite window \(0\leq i\leq138\).  This comparator argument
+alone does not give period from \(i=3\); the sharper recurrence (5.45cl)
+uses the later exact inversion-source evaluation.  No period two,
+\(R_{k,i}=0\), lift, or AK(3) conclusion follows.
 
 ### 5.5 Exact onset functional
 
@@ -2685,7 +2746,8 @@ Substituting \(L=372\) and \(d=2\) gives
 \tag{5.75}
 \]
 
-Combining (5.61) with this source-bound onset proves the concrete theorem
+Combining (5.61) with this source-bound onset independently proves the
+weaker concrete theorem
 
 \[
 \boxed{
@@ -2694,18 +2756,11 @@ Combining (5.61) with this source-bound onset proves the concrete theorem
 \tag{5.76}
 \]
 
-Consequently the all-index identities (5.28) are equivalent to the finite
-set
-
-\[
-\boxed{
- R_{k,i}=0
- \qquad(1\leq k\leq14,\ 0\leq i\leq138).}
-\tag{5.77}
-\]
-
-No value in (5.77) is evaluated here.  In particular, (5.76) is not a
-period-two theorem and proves no lift or AK(3) conclusion.
+The sharper recurrence (5.45cl) subsumes (5.76).  Consequently the smallest
+proved verification window is the 602-bit range (5.45cm), not the earlier
+redundant range \(0\leq i\leq138\).  No post-inversion remainder value in
+that window is evaluated here.  In particular, neither recurrence is a
+period-two theorem, and neither proves a lift or AK(3) conclusion.
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation

@@ -140,9 +140,10 @@ finite quotient do not close a route.
   \(G_i=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i)\); proving
   \(G_{i+1}=G_i\) would make the two known nonzero boundary values exclude
   the whole diagonal family.  Equivalently, for
-  \(E_i=D_{i+2}-D_i\), the smallest missing lemma is the fourteen exact
-  crossed-AST derivative values
-  \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\).
+  \(E_i=D_{i+2}-D_i\), the all-index target is
+  \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
+  exact obligation is now its 602-bit window
+  \(1\leq k\leq14,\ 0\leq i\leq42\).
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
@@ -182,14 +183,18 @@ finite quotient do not close a route.
   Collision-first ranking reduces it to nine within-level reversals on
   each of the two new powered levels, hence exactly 18 finite-action
   weights for every index.  There are no cross-level, terminal, or seed
-  contributions.  Thus no genuine parity prefix sum remains, although
-  the 18 slot-three weights are not yet evaluated.  The
-  152-schema common-phase/Fine--Wilf argument and its source-bound onset 99
-  conservatively control their surviving parity:
-  \(R_{k,i+40}=R_{k,i}\) for every \(k\) and \(i\geq99\).
-  Consequently the remaining all-index derivative identities are exactly
-  the finite window \(1\leq k\leq14,\ 0\leq i\leq138\), comprising 1,946
-  bits.  None is evaluated yet, so no vanishing or period-two claim is
+  contributions.  Exact finite-action substitution gives slot-three vector
+  `10000000100010` on even indices and `11000000000010` on odd indices.
+  Xoring all three slots gives the complete differentiated-inversion source
+  `01010001000000` at the seed, coordinate nine alone on positive odd
+  indices, and coordinate two alone on positive even indices.  Removing
+  this source leaves only the previously proved finite-state local and
+  one-vertex transport terms, of joint period forty from \(i=3\).  Hence
+  the complete derivatives satisfy \(R_{k,i+40}=R_{k,i}\) for every \(k\)
+  and \(i\geq3\), sharpening the conservative source-bound onset 99.  The
+  remaining all-index target is exactly the 602-bit window
+  \(1\leq k\leq14,\ 0\leq i\leq42\).  No post-inversion remainder value
+  in that window is evaluated yet, so no vanishing or period-two claim is
   proved.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
