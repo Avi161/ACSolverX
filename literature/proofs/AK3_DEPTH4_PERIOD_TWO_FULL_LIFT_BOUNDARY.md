@@ -789,6 +789,123 @@ evaluated; (3.36) leaves unbounded relative cross-correlations of the
 complete balanced source currents.  Unary local and base terms also remain
 separate.
 
+### 3.5 Fox--Hessian matrix and adjoint identity
+
+The 120 external occurrence pairs in (3.36) assemble into one finite
+group-ring matrix.  With involution \(g^*=g^{-1}\), put
+
+\[
+ \mathcal L_s:=
+ \sum_{o:s_o=s}\epsilon_oq_o=L_s
+\tag{3.39}
+\]
+
+and define
+
+\[
+ \boxed{
+ \mathbf H_{st}
+ :=
+ n_s\delta_{st}\,1
+ +\sum_{\substack{o<p\\s_o=s,\ s_p=t}}
+ \epsilon_o\epsilon_p\,q_o^{-1}q_p.}
+\tag{3.40}
+\]
+
+The equality in (3.39) is the exact signed-occurrence first-derivative
+theorem.  The matrix satisfies
+
+\[
+ \boxed{
+ \mathbf H_{st}+\mathbf H_{ts}^*
+ =\mathcal L_s^*\mathcal L_t.}
+\tag{3.41}
+\]
+
+Indeed, the strict pairs with \(o<p\) occur in \(\mathbf H_{st}\), while
+those with \(p<o\) occur in \(\mathbf H_{ts}^*\).  If \(s\ne t\), these
+partition every term of \(\mathcal L_s^*\mathcal L_t\).  If \(s=t\), the
+terms with \(o=p\) contribute \(2n_s\,1\); the two diagonal terms
+\(n_s\,1\) in (3.40) supply exactly that coefficient.
+
+Extend (3.34) linearly in a group-ring kernel:
+
+\[
+ \mathcal C_{\Delta^+}(f,g;P)
+ :=\sum_m [P]_m\mathcal C_{\Delta^+}(f,g;m).
+\tag{3.42}
+\]
+
+Then (3.36) becomes
+
+\[
+\boxed{
+B_{\Xi_{\mathbb Z},\Delta^+}(F,G)
+=\sum_{s,t}
+\left(
+ \mathcal C_{\Delta^+}(F_s,G_t;\mathbf H_{st})
+ +\mathcal C_{\Delta^+}(G_s,F_t;\mathbf H_{st})
+\right).}
+\tag{3.43}
+\]
+
+Thus all literal chronology of the free mixed buckets is stored in the
+fixed \(5\times5\) matrix \(\mathbf H\).
+
+The adjoint identity proves that (3.43) is an exterior class, not that it
+vanishes.  In the diagonal \(Q\)-coinvariant tensor module, put
+
+\[
+ \mathcal T_{\mathbf H}(F,G)
+ :=
+ \sum_{s,t}
+ \left(
+  F_s\otimes\mathbf H_{st}G_t
+  +G_s\otimes\mathbf H_{st}F_t
+ \right).
+\tag{3.44}
+\]
+
+Coinvariants give
+\([hA\otimes B]=[A\otimes h^*B]\).  If \(\tau\) swaps the two tensor
+factors, (3.41) therefore gives
+
+\[
+\begin{aligned}
+[\mathcal T_{\mathbf H}+\tau\mathcal T_{\mathbf H}]
+={}&
+\left[
+ \left(\sum_s\mathcal L_sF_s\right)
+ \otimes
+ \left(\sum_t\mathcal L_tG_t\right)
+\right]\\
+&+
+\left[
+ \left(\sum_s\mathcal L_sG_s\right)
+ \otimes
+ \left(\sum_t\mathcal L_tF_t\right)
+\right].
+\end{aligned}
+\tag{3.45}
+\]
+
+For homogeneous directions every displayed first-derivative sum is zero.
+Hence
+
+\[
+ \boxed{
+ [\tau\mathcal T_{\mathbf H}]
+ =-[\mathcal T_{\mathbf H}].}
+\tag{3.46}
+\]
+
+This is the exact antisymmetry needed for the free integral buckets.
+Identifying the \(\Delta^+\) and \((\Delta^+)^{-1}\) readers while using
+(3.41) would falsely turn antisymmetry into vanishing.  The oriented
+coordinates in (3.43) can be nonzero.  The remaining free-bucket problem is
+therefore the restriction of this fixed Fox--Hessian form to the complete
+anchored generating family (3.22), together with the affine unary term.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and

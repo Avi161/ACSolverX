@@ -160,8 +160,14 @@ finite quotient do not close a route.
   tensors and gives an exact signed cross-correlation formula with the 120
   relative occurrence multipliers.  Hence mixed-Hessian shortlex difficulty
   is confined to inversion-fixed \(\mathbb Z/2\)-buckets; the free
-  correlations remain unbounded and unevaluated.  The weighted Green
-  identity removes the untransported
+  correlations remain unbounded and unevaluated.  Those 120
+  occurrence pairs further compress to a fixed \(5\times5\) integral
+  Fox--Hessian matrix \(\mathbf H\) satisfying
+  \(\mathbf H_{st}+\mathbf H_{ts}^*=L_s^*L_t\).  On homogeneous directions
+  this proves the free-bucket tensor is antisymmetric; it does not make any
+  oriented bucket vanish.  The remaining free problem is the restriction
+  of this form to the complete anchored generating family plus its affine
+  unary term.  The weighted Green identity removes the untransported
   merged-support shortlex sum, but the correct ordered-half wedge reader is
   not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
   occurrence augmentation.  Projected linear/outer terms outside that
