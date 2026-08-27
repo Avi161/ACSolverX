@@ -16,9 +16,11 @@ full-wedge readout, while every diagonal correction clears that one bit.
 
 The other fourteen finite-action coordinates reduce to the crossed
 derivatives \(R_{k,i}\).  Their entire differentiated-inversion source is
-now evaluated, and the remaining ordered profiles plus finite-state terms
-make the all-index target equivalent to the conservative 9,982-bit window
-\(R_{k,i}\) with \(1\leq k\leq14\) and \(0\leq i\leq712\).  None of those
+now evaluated.  Literal-stream flattening absorbs every remaining product,
+inverse, transport, and quotient-section ordered profile into one weighted
+cut form.  The all-index target is therefore equivalent to the conservative
+2,380-bit window \(R_{k,i}\) with \(1\leq k\leq14\) and
+\(0\leq i\leq169\).  None of those
 post-inversion remainder values is evaluated here.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
@@ -682,7 +684,7 @@ and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
 the unbounded obstruction.  The analysis below evaluates the transported
 ordered-section order-reversal sum and reduces the remaining exact
-obligation to the 9,982 finite values in (5.77).
+obligation to the 2,380 finite values in (5.77).
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -2220,11 +2222,134 @@ finite projection.  Likewise the one-vertex value (5.37) is not determined
 by the finite point \(\rho_k(x)0\).  Therefore neither a scalar projected
 state nor a finite exterior tensor state proves period from \(i=3\).
 
-The exact next structural alternative is either to pair the complete AST
-xor of (5.45cm) into the finite-state combinations (5.45cl), or to retain
-all four ordered profiles in the protected comparator catalog of Sections
-5.4--5.6.  Until that evaluation is made, (5.45cj) supplies no smaller
-window than the conservative onset 673 proved below.
+There is, however, an exact global pairing at the resolution of the literal
+kernel stream.  It uses associativity of the complete typed coordinate, not
+a finite-state value for any individual profile in (5.45cm).
+
+#### Lemma 5.1b (literal-stream flattening)
+
+For an arbitrary tensor \(T\), define its coordinate-\(k\) ordered-half
+readout by
+
+\[
+ W_k(T):=
+ \sum_{x<_{\rm sl}y}T_{x,y}\,
+ \lambda_k\!\left(
+  e_{\rho_k(x)0}\wedge e_{\rho_k(y)0}
+ \right)\pmod2.
+\tag{5.45co}
+\]
+
+Let \(\mathscr P\) be the fixed decorated atomic-token universe obtained by
+fully expanding the literal residual stream.  It contains every raw kernel
+event emitted at a fixed literal position and every correction coordinate
+\(p=(o,v)\).  Its order \(<_\chi\) is literal AST order, raw-letter order
+inside a fixed block, increasing module shortlex inside a positive
+correction occurrence, and decreasing module shortlex inside a negative
+occurrence.  Write \(\ell(p)\) for the central canonical label of an atom.
+Thus, at a correction coordinate,
+
+\[
+ \ell(o,v)=\operatorname{cvert}(q_ov).
+\]
+
+Let \(T_p\) be the exact local tensor of that one atomic block, including
+its actual occurrence prefix and polarity, and put
+
+\[
+ \varrho_k(p):=W_k(T_p),
+ \qquad
+ w_k(x,y):=
+ \lambda_k\!\left(
+  e_{\rho_k(x)0}\wedge e_{\rho_k(y)0}
+ \right).
+\tag{5.45cp}
+\]
+
+The value \(\varrho_k(p)\) is coordinate-specific.  It is not the scalar
+full-wedge raw-mirror weight.  For a fixed raw event it is read from its
+one-event local tensor; for a correction atom it retains the complete local
+bridge, one-vertex transport, inverse, and terminal-normalization data.
+
+For an integral homogeneous endpoint \(F\), let \(a_F(p)\) be the parity
+of the collision-aggregated activity of \(p\).  Fixed raw-event tokens have
+activity one.  Define
+
+\[
+\boxed{
+\begin{aligned}
+ \Phi_k(a_F):={}&
+ \sum_{p\in\mathscr P}a_F(p)\varrho_k(p)\\
+ &+\sum_{p<_\chi q}a_F(p)a_F(q)\,
+   w_k(\ell(p),\ell(q))
+   [\ell(p)<_{\rm sl}\ell(q)].
+\end{aligned}}
+\tag{5.45cq}
+\]
+
+On the zero-linear residual domain,
+
+\[
+ \boxed{
+  \lambda_k\Pi_{\rho_k}\bigl(M_B(F)\bigr)=\Phi_k(a_F).}
+\tag{5.45cr}
+\]
+
+Indeed, after each active correction coordinate is replaced by its exact
+atomic kernel block, every atom has coordinate
+\((1,\pm e_{\ell(p)},T_p)\).  Multiplying these coordinates in literal
+chronology gives the sum of the local tensors and, for each
+\(p<_\chi q\), the cross tensor
+\(e_{\ell(p)}\otimes e_{\ell(q)}\), with integral signs.  Applying
+\(W_k\) gives (5.45cq).  Multiple integral copies reduce to activity parity:
+same-coordinate copy terms are diagonal, while every cross multiplicity is
+the product of the two parities.  Negative signs disappear modulo two, but
+negative correction occurrences still reverse \(<_\chi\).  A finite-action
+collision has wedge weight zero.
+
+The expansion is the exact `_KernelStream` expansion of the typed product.
+Consequently quotient-section events, fixed literals, transport bridges,
+inverse blocks, and the local tensors \(T_p\) are all present.  No recursive
+\(o_{q,r}\)-term has been discarded.  The residual's linear coordinate is
+zero, so its final tensor is diagonal-free and antisymmetric before the
+wedge readout.  Inverting the second endpoint adds neither a self term nor
+an endpoint cross term because that endpoint also has zero linear
+coordinate.  This proves (5.45cr).  The assertion is not made for an
+arbitrary activity outside the zero-linear residual domain.
+
+Now put
+
+\[
+ a_i:=a_{D_i},\qquad e_i:=a_{D_{i+2}}+a_{D_i}.
+\]
+
+Fixed raw-event tokens have \(e_i(p)=0\).  Polarizing (5.45cq) proves the
+complete crossed-derivative identity
+
+\[
+\boxed{
+\begin{aligned}
+ R_{k,i}={}&\sum_p e_i(p)\varrho_k(p)\\
+ &+\sum_{p<_\chi q}
+ w_k(\ell(p),\ell(q))
+ [\ell(p)<_{\rm sl}\ell(q)]\\
+ &\qquad\cdot
+ \bigl(a_i(p)e_i(q)+e_i(p)a_i(q)+e_i(p)e_i(q)\bigr).
+\end{aligned}}
+\tag{5.45cs}
+\]
+
+Thus the product and inverse profiles (5.45cm)--(5.45cn) need not cancel
+node by node.  Their complete xor, including every fixed-defect leg, is
+exactly the literal-stream weighted cut (5.45cs).  The local weights
+\(\varrho_k\) are controlled separately by (5.37)--(5.45): the approved
+84-record first-half pump handles slots two through four from index three,
+and the slot-zero locality argument handles that slot from index zero.
+Every moving leg in the remaining unbounded order tests is the central
+label of one of the sixteen correction occurrences; the other leg may be
+one of the finite fixed raw or quotient-section events bounded in Section
+5.6.  The moving legs therefore return to the leaf-schema comparator
+catalog of Sections 5.4--5.6.
 
 Before the explicit reductions (5.45ao)--(5.45ci), a direct expansion of
 the slot-two and slot-three kernels
@@ -2311,9 +2436,9 @@ a finite catalog of direct one-parameter families.  This boundary
 localization removes the parity prefix summation from the relative
 inversion remainder.  At that stage it did not evaluate the surviving rays
 or improve the leaf-schema onset \(99\); the later exact source evaluations
-(5.45bd) and (5.45cg) remove those inversion rays, while the full AST audit
-in Section 5.6 supplies the conservative onset 673 for the remaining
-ordered profiles.
+(5.45bd) and (5.45cg) remove those inversion rays.  Lemma 5.1b then flattens
+the remaining recursive profiles back to the leaf catalog, and Section 5.6
+supplies the sound two-sided onset 130.
 
 The four-cell raw pumps do not classify these individual prefixes.
 Sections 5.4--5.6 retain the direct-comparator theorem and the source-bound
@@ -2481,20 +2606,17 @@ exponent-zero families.  Equality fibers are collision-aggregated before
 quadratic evaluation, and negative occurrences only reverse or complement
 the same finite comparator list.
 
-This catalog also contains every ordered local profile in (5.45cm).  At a
-fixed product node of the residual AST, the quotient words \(q,r\) and the
-section-defect current \(o_{q,r}\) are fixed.  Expanding each old linear
-state into its old path rows, base, anchors, and fixed literal current, and
-each increment into its two-step shell, turns the four \(H_k\)-terms into a
-finite sum of comparisons of the form (5.46).  The first two are old--shell
-profiles, the third is shell--shell, and the fourth is shell--fixed.
-Subsequent outer AST transports only add one of the finitely many fixed left
-multipliers already allowed in Theorem 5.2.  At inverse nodes (5.45cn) is a
-finite projected \(b/q\) expression; its subsequent fixed multiplication
-again produces only the same four typed profile families through (5.25).
-Thus the comparator maximum below covers the product, inverse, and
-\(o_{q,r}\) terms as well as the differentiated section-order inversion
-term.  It does not infer their values from projected linear states.
+Lemma 5.1b replaces the recursive ordered profiles by the literal-stream
+form (5.45cs).  Every unbounded pair there compares two central labels from
+the sixteen correction occurrences.  Expanding the old activity into its
+old path rows, base, anchors, and fixed current, and the toggle into its
+two-step shell, gives exactly the old--shell, shell--shell, and fixed--shell
+comparisons of the form (5.46).  Fixed literal and quotient-section events
+are exponent-zero families.  No product-node quotient, section-defect
+support, or ancestor transport remains on a moving label after flattening.
+The local one-token weights \(\varrho_k\) are not inferred from this comparison
+catalog; they are the separately controlled raw-pump terms identified after
+(5.45cs).
 
 The finite-action weights in (5.46) are bi-periodic on the lifted
 right-deck prefix states.  Theorems 5.2--5.3 therefore apply to every
@@ -2560,8 +2682,8 @@ after the protected threshold.  With the action orders in (5.2),
 
 At this point \(N\) is only effective: the terminal schemas bind the common
 core and factor order, not every pairwise comparison cutoff.  Sections
-5.5--5.6 instantiate a conservative source-bound value \(N=673\),
-certifying the finite window \(0\leq i\leq712\).  Thus (5.61) is not period from
+5.5--5.6 instantiate a conservative source-bound value \(N=130\),
+certifying the finite window \(0\leq i\leq169\).  Thus (5.61) is not period from
 \(i=3\), and no period two, \(R_{k,i}=0\), lift, or AK(3) conclusion
 follows.
 
@@ -2657,7 +2779,7 @@ cannot supply (5.65) by reuse.  Formula (5.65) is the exact next
 certificate interface.  Section 5.6 supplies a conservative source-bound
 onset without claiming the exact minimum of (5.65).
 
-### 5.6 A source-bound onset of 673
+### 5.6 A source-bound onset of 130
 
 The common-phase source formulas give a conservative numerical onset
 without enumerating parameter values.  First record a uniform bound on
@@ -2700,61 +2822,30 @@ The eight fixed-base module words have length at most six, and slot-zero
 fixed sides are shorter than (5.67).  Whole-word quotient reduction and
 \(\operatorname{cvert}\) can only shorten these raw bounds.
 
-The ordered product profiles (5.45cm) require one additional fixed-AST
-ledger.  Count unreduced literal mass in the fully expanded residual AST;
-inversion preserves this mass, and correction leaves contribute zero.  The
-literal word lengths are
+The fixed leg of (5.45cs) also includes the raw literal and implicit
+quotient-section events.  Their source bound is exact.  Expanding every
+conjugation into conjugator, payload, and inverse conjugator gives the
+successive unreduced fixed-literal masses
 
 \[
- (|A|,|B|,|h_0|,|h_1|,|h_2|,|h_3|,
-   |\operatorname{TARGET}|)
- =(23,18,7,0,6,1,1).
-\]
-
-Expansion of every conjugation into conjugator, payload, and inverse
-conjugator gives
-
-\[
-\begin{array}{c|c|r}
-\text{node}&\text{literal-mass recurrence}&\text{mass}\\ \hline
-r&23+18+2\cdot7&55\\
-s&18+55+2\cdot0&73\\
-u&55+73+2\cdot6&140\\
-z&140+73+2\cdot1&215\\
-\text{root}&215+1&216.
-\end{array}
+ 55,\quad 73,\quad 140,\quad 215,\quad 216
 \tag{5.67a}
 \]
 
-The raw recursive expansion has 23 literal leaf occurrences, four of which
-are quotient-empty copies of \(h_1\); equivalently (5.67a) contains 19
-nonempty literal blocks.  The load-bearing datum is the total unreduced
-mass 216, not the block count.  Therefore every fixed node quotient and
-every composed ancestor transport has length at most 216.
+for \(R,S,U,Z\), and the root, respectively.  Correction blocks have
+quotient identity, so they add no quotient letters to this fixed stream.
+Every fixed raw or quotient-section event label is a Schreier prefix of the
+216-letter stream (possibly after the single event deletion in the raw
+rule), and therefore has length at most \(216<372\).  Thus the 152 schemas
+cover every moving leg, while this finite event list supplies every fixed
+leg of a fixed--shell comparison under the same bound \(L=372\).
 
-For a product node, the section-defect word representing \(o_{q,r}\) has
-length at most
-
-\[
- |q|+|r|+|qr|\leq216+216+432=864,
-\tag{5.67b}
-\]
-
-so each of its Schreier support labels has length at most 864.  Higher
-products transport an existing tensor linearly; they do not concatenate a
-second defect current or a second old fixed side onto one comparator leg.
-All ancestor transports compose into the single 216-letter allowance.
-Thus assigning the leaf-schema bound, a node quotient, one section defect,
-and one ancestor transport to the same side gives the deliberately
-redundant uniform bound
-
-\[
- \boxed{L_{\rm AST}\leq372+216+864+216=1668<2000.}
-\tag{5.67c}
-\]
-
-We henceforth use the round bound \(L=2000\).  Before multiplication by
-those fixed AST words, every unbounded source-domain exponent offset is
+Lemma 5.1b shows that no recursive AST quotient, section-defect support, or
+ancestor transport remains on a moving comparison leg.  The complete local
+effect of those words is in \(\varrho_k(p)\), already controlled by the raw pump;
+the pair term uses only the central labels covered by (5.67).  We therefore
+use \(L=372\).  Before multiplication by those fixed leaf words, every
+unbounded source-domain exponent offset is
 nonnegative and at most
 
 \[
@@ -2839,11 +2930,11 @@ Thus every finite old level is permanently shorter than the shell.
 Direct endpoint/shell, shell/shell, slot-zero, fixed-base, and transported
 comparisons are already protected by the same \(N(L,d)\).
 
-Substituting \(L=2000\) and \(d=2\) gives
+Substituting \(L=372\) and \(d=2\) gives
 
 \[
- J=\left\lceil\frac{8072}{24}\right\rceil=337,\qquad
- N=337+2+\left\lfloor\frac{8001}{24}\right\rfloor+1=673.
+ J=\left\lceil\frac{1560}{24}\right\rceil=65,\qquad
+ N=65+2+\left\lfloor\frac{1489}{24}\right\rfloor+1=130.
 \tag{5.75}
 \]
 
@@ -2852,7 +2943,7 @@ Combining (5.61) with this source-bound onset proves the concrete theorem
 \[
 \boxed{
  R_{k,i+40}=R_{k,i}
- \qquad(1\leq k\leq14,\ i\geq673).}
+ \qquad(1\leq k\leq14,\ i\geq130).}
 \tag{5.76}
 \]
 
@@ -2862,11 +2953,11 @@ set
 \[
 \boxed{
  R_{k,i}=0
- \qquad(1\leq k\leq14,\ 0\leq i\leq712).}
+ \qquad(1\leq k\leq14,\ 0\leq i\leq169).}
 \tag{5.77}
 \]
 
-This is \(14\cdot713=9{,}982\) bits.  No value in (5.77) is evaluated
+This is \(14\cdot170=2{,}380\) bits.  No value in (5.77) is evaluated
 here.  In particular, (5.76) is not a period-two theorem and proves no lift
 or AK(3) conclusion.
 

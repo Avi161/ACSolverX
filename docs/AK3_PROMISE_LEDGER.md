@@ -142,8 +142,8 @@ finite quotient do not close a route.
   the whole diagonal family.  Equivalently, for
   \(E_i=D_{i+2}-D_i\), the all-index target is
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
-  proved exact obligation is its conservative 9,982-bit window
-  \(1\leq k\leq14,\ 0\leq i\leq712\).
+  proved exact obligation is its conservative 2,380-bit window
+  \(1\leq k\leq14,\ 0\leq i\leq169\).
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
@@ -191,13 +191,17 @@ finite quotient do not close a route.
   \(H_k(\delta a,qb)\), \(H_k(a,q\delta b)\),
   \(H_k(\delta a,q\delta b)\), and
   \(H_k(\delta a+q\delta b,o_{q,r})\).  Those profiles do not factor through
-  projected linear states.  A fully expanded residual-AST ledger has total
-  unreduced literal mass 216; with the leaf-schema bound 372, one fixed node
-  transport, one section defect, and one ancestor transport, the round
-  comparator bound \(L=2000\), with a two-sided allowance for whole-core
-  cancellation by fixed multipliers, gives onset 673.  Hence the protected
-  catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq673\), giving the 9,982-bit
-  window above.  No post-inversion remainder value in that window is
+  projected linear states.  Literal-stream flattening nevertheless absorbs
+  their complete AST xor, including inverse, transport, and quotient-section
+  legs, into a coordinate-specific local weight plus one weighted cut on the
+  central labels of the sixteen occurrences.  The local weights are covered
+  by the approved raw pump, while the 152 leaf schemas cover every moving
+  label comparison.  The fully expanded fixed literal stream has unreduced
+  mass 216, so every fixed-event comparison leg also has length below 372.
+  The leaf bound \(L=372\), with the sound two-sided
+  allowance for whole-core cancellation, gives onset 130.  Hence the
+  protected catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq130\),
+  giving the 2,380-bit window above.  No remainder value in that window is
   evaluated yet, so no vanishing or period-two claim is proved.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
