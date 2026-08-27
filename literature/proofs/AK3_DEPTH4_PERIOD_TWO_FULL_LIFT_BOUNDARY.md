@@ -4079,6 +4079,112 @@ source correction.  It is also not the full kernel of $\Pi_{\rm ab}$, and
 the affine unary term is absent.  The refinement eliminates the false
 slot-zero symmetry but leaves an exact two-reflection forest residue.
 
+### 3.35 A common nilpotent profile removes every paired symmetry
+
+The two genuine reflections in (3.252) are also artifacts of truncating
+the free subgroup too early.  Let
+
+\[
+ \gamma_1K:=K,
+ \qquad
+ \gamma_{r+1}K:=[\gamma_rK,K]
+ \tag{3.254}
+\]
+
+be its lower central series.  Since $K$ is a free group, it is residually
+torsion-free nilpotent:
+
+\[
+ \bigcap_{r\geq1}\gamma_rK=1,
+ \qquad
+ K/\gamma_rK\ \text{is torsion-free nilpotent}.
+ \tag{3.255}
+\]
+
+Every $\gamma_rK$ is characteristic, so the involution $\alpha$ descends
+to every quotient.
+
+Write a paired generator from (3.168) as
+
+\[
+ g_I=k_Ic^{\epsilon_I}
+ \qquad(k_I\in K,\ \epsilon_I\in\{0,1\}).
+ \tag{3.256}
+\]
+
+Define an element of $K$ by
+
+\[
+ h_I:=
+ \begin{cases}
+  g_I,&\epsilon_I=0,\\
+  g_I^2=k_I\alpha(k_I),&\epsilon_I=1.
+ \end{cases}
+ \tag{3.257}
+\]
+
+Every $h_I$ is nontrivial.  In the even case this follows from the
+infinite order of $g_I$.  In the odd case, $h_I=1$ would give
+$g_I^2=1$, contradicting the same proved infinite-order statement.
+There are only eight intervals.  Residual nilpotence therefore supplies
+one integer $r_*$ such that every $h_I$ survives in the common quotient
+
+\[
+ \boxed{N:=K/\gamma_{r_*}K.}
+ \tag{3.258}
+\]
+
+Because $N$ is torsion-free, every surviving $\overline h_I$ has infinite
+order.  The quotient $K\to N$ induces a $Q$-equivariant profile map
+
+\[
+ \mathfrak n:M\longrightarrow\mathbb Z[N],
+ \tag{3.259}
+\]
+
+where $Q$ acts through $N\rtimes_\alpha\langle c\rangle$.  For
+$\epsilon_I=0$, the permutation $\overline g_I$ acts on $N$ by left
+translation with an infinite-order element, so all its orbits are
+infinite.  For $\epsilon_I=1$, its square acts by left translation with
+$\overline h_I$.  A finite $\overline g_I$-orbit would therefore give a
+finite orbit for a nonzero even power and force a nonzero power of
+$\overline h_I$ to be the identity, again impossible.  Hence
+
+\[
+ \boxed{
+ 1-\overline g_I:\mathbb Z[N]_{\rm fin}
+ \longrightarrow\mathbb Z[N]_{\rm fin}
+ \text{ is injective for every paired interval }I.}
+ \tag{3.260}
+\]
+
+Indeed, an element in the kernel is a finitely supported coefficient
+function constant on every $\overline g_I$-orbit, and every such orbit is
+infinite.
+
+After the harmless positive endpoint translation in (3.168), every paired
+boundary is exactly $(1-\overline g_I)P_s$.  Thus this single finite-step
+nilpotent profile has no nonzero simultaneous paired-boundary kernel:
+
+\[
+ \boxed{
+ (1-\overline g_I)P_{s(I)}=0\ \text{for all eight }I
+ \Longrightarrow
+ P_0=P_1=P_2=P_3=P_4=0.}
+ \tag{3.261}
+\]
+
+The zeros in (3.261) are zeros in $\mathbb Z[N]$; the profile map can
+aggregate a nonzero original current in $M$ to zero.
+
+This removes the two-reflection blind subspace (3.252) without a bounded
+source enumeration.  It does not make a paired boundary a leading polygon
+coordinate: nonzero paired areas can still cancel against the four
+parent--child and three root pairings, and the affine unary value remains
+separate.  The next obstruction must control those area cancellations in
+the common nilpotent profile rather than infer them from boundary
+injectivity alone.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
