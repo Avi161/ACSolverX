@@ -3016,6 +3016,30 @@ parity of the number of \(c\)-letters, whereas two conjugates of \(g_I\)
 have the same parity.  Zero or two endpoint multipliers reduce to (3.172),
 with the two-sided multiplier absorbed by the right \(H\)-representative.
 
+The coordinate calculation below also needs to exclude higher powers of
+\(g_I\) from the same oriented bucket.  If \(\nu_t(g_I)\ne0\), equality
+
+\[
+ Hu^{-1}g_I^NuH=Hu^{-1}g_I^{\pm1}uH
+\]
+
+forces \(N=\pm1\) immediately by the height homomorphism.  For the two
+height-zero generators \(g_2,g_3\), use the Bass--Serre tree of
+\(Q=H*\langle t\rangle\).  They are hyperbolic.  If \(\mathcal A_I\) is
+the translation axis and \(\tau(g_I)>0\), then for every \(H\)-vertex
+\(x=uH\) and \(N\ne0\),
+
+\[
+ d(x,g_I^Nx)=|N|\tau(g_I)+2d(x,\mathcal A_I).
+ \tag{3.174a}
+\]
+
+Both endpoint factors in an \(H\)-double-coset equality fix the base
+\(H\)-vertex, so they preserve this displacement.  Equality with the
+\(g_I^{\pm1}\)-bucket therefore again forces \(|N|=1\).  The height
+argument is deliberately retained for \(g_I=t^{-1}\), which lies in the
+\(\langle t\rangle\)-factor and is elliptic in this Bass--Serre tree.
+
 Orient the free bucket in (3.173) by \(g_I\).  If a finite slot current
 \(f\) is supported on one \(g_I\)-axis and
 \(f_j=f(g_I^ju)\), the paired term in (3.165) has coordinate
@@ -3041,9 +3065,12 @@ and verifies the eight reduced words, cycles, heights, primitivity flags,
 and inverse-cyclic flags with paired-axis digest
 \(\texttt{3195cf72e33b9e53e7bd3b6f3c1649e7bae5742b2414827689263ca440f293c0}\).
 
-Thus every nonzero slot current has a strict negative paired-axis energy.
-The other fourteen laminar terms may still enter that same bucket, so the
-eight energies do not yet add to a global sign-definite form.
+Thus every nonzero current supported on one paired axis has a strict
+negative paired-axis energy.  For a current supported on several axes,
+cross-axis pairs from the same tensor \(f\otimes g_If\) may enter the
+chosen bucket; the other fourteen laminar terms may enter it as well.
+The eight single-axis energies therefore do not yet add to a global
+sign-definite form.
 
 ## 4. Exact diagonal sieve
 
