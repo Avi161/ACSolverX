@@ -2123,6 +2123,106 @@ gauged Hessian contribute additional quadratic terms, and the affine
 unary defect remains.  The next separation problem is to control those
 three residual classes on an extremal occupied ray.
 
+### 3.17 Two-neighbor ray reader
+
+The off-diagonal terminal residual has an exact bounded-degree form.  Fix
+\(\mathcal O\in\mathscr R\), choose \(u\in X\) on that ray, and put
+
+\[
+ d_{\mathcal O}:=u^{-1}t^{-1}u.
+\tag{3.116}
+\]
+
+For a vertex \(x=qH\), define the two positive and two negative neighbor
+sets
+
+\[
+\begin{aligned}
+ \mathcal N^+_{\mathcal O}(x)
+ &:=
+ \{qd_{\mathcal O}H,\;qcd_{\mathcal O}H\},\\
+ \mathcal N^-_{\mathcal O}(x)
+ &:=
+ \{qd_{\mathcal O}^{-1}H,\;qcd_{\mathcal O}^{-1}H\}.
+\end{aligned}
+\tag{3.117}
+\]
+
+Changing the representative \(q\) to \(qc\) only swaps the two entries.
+Changing \(u\) within its left \(t\)-ray or by a right \(H\)-representative
+does not change the underlying double cosets.  Malnormality of \(H\) and
+the non-self-inverse conclusion in (3.95) show that the two entries in
+each set are distinct and that the positive and negative sets do not
+intersect.
+
+For finite vertex functions \(f,g\), put
+
+\[
+\boxed{
+ \mathfrak A_{\mathcal O}(f,g)
+ :=
+ \sum_{x\in X}f(x)
+ \left(
+  \sum_{z\in\mathcal N^+_{\mathcal O}(x)}g(z)
+  -\sum_{z\in\mathcal N^-_{\mathcal O}(x)}g(z)
+ \right).}
+\tag{3.118}
+\]
+
+The double-coset definition gives the exact reader identity
+
+\[
+ \boxed{
+ [\Xi_{\mathrm{ray}}(f\otimes g)]_{\mathcal O}
+ =\mathfrak A_{\mathcal O}(f,g).}
+\tag{3.119}
+\]
+
+Indeed,
+\(Hq^{-1}rH=Hd_{\mathcal O}H\) holds exactly when
+\(rH=qd_{\mathcal O}H\) or \(qcd_{\mathcal O}H\); the inverse orientation
+gives the second set in (3.117).
+
+Applying (3.119) to (3.112) removes the unrestricted off-diagonal sum:
+
+\[
+\boxed{
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}
+ =
+ \mathfrak A_{\mathcal O}
+ \bigl(F_4,(t-1)F_4\bigr),}
+\tag{3.120}
+\]
+
+where, coefficientwise,
+
+\[
+ [(t-1)F_4](z)=F_4(t^{-1}z)-F_4(z).
+\tag{3.121}
+\]
+
+Likewise the complete mixed slot-four contribution is
+
+\[
+\boxed{
+\begin{aligned}
+ [B^{(4)}_{\mathrm{ray}}(F,G)]_{\mathcal O}
+ ={}&
+ \mathfrak A_{\mathcal O}
+  \bigl(F_4,(t-1)G_4\bigr)\\
+ &+\mathfrak A_{\mathcal O}
+  \bigl(G_4,(t-1)F_4\bigr).
+\end{aligned}}
+\tag{3.122}
+\]
+
+Thus the terminal part of every ray equation is a four-neighbor local
+adjacency pairing on \(X\), not an all-pairs comparison.  Its support is
+still unbounded because \(F_4\) is the Green flow of arbitrary finite
+sources.  The remaining proof obligation is to combine this sparse reader
+with the source-boundary formula for \(F_4\) and then compare it with the
+other gauged rows and affine unary term on an extremal ray.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
