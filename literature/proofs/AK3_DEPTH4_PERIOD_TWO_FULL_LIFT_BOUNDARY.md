@@ -2241,6 +2241,68 @@ sources.  The remaining proof obligation is to combine this sparse reader
 with the source-boundary formula for \(F_4\) and then compare it with the
 other gauged rows and affine unary term on an extremal ray.
 
+### 3.18 Single-ray terminal anisotropy
+
+The terminal quadratic form is already anisotropic on a single ray.
+Suppose that the finite current \(F_4\) is supported on one
+\(\mathcal O=\langle t\rangle u\), and write
+
+\[
+ f_i:=F_4(t^iu),\qquad i\in\mathbb Z.
+\tag{3.123}
+\]
+
+For \(x=t^iu\) and \(y=t^ju\),
+
+\[
+ x^{-1}ty
+ =u^{-1}t^{\,j-i+1}u.
+\tag{3.124}
+\]
+
+This lies in the negative-height ray bucket \(D_{\mathcal O}\) exactly
+when \(j=i-2\), and in its inverse exactly when \(j=i\).  If
+\(|j-i+1|\ne1\), its exponent sum is not \(\pm1\), so it lies outside the
+entire ray summand.  Therefore (3.120) gives
+
+\[
+\boxed{
+\begin{aligned}
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}
+ &=-\sum_i f_i^2+\sum_i f_if_{i-2}\\
+ &=-\frac12\sum_i(f_i-f_{i-2})^2,
+\end{aligned}}
+\tag{3.125}
+\]
+
+and every other ray coordinate of \(Q^{(4)}_{\mathrm{ray}}(F)\) is zero.
+The last identity follows by shifting the finite sum:
+
+\[
+ \sum_i(f_i-f_{i-2})^2
+ =2\sum_i f_i^2-2\sum_i f_if_{i-2}.
+\]
+
+A finitely supported sequence satisfying \(f_i=f_{i-2}\) for every \(i\)
+is zero.  Hence
+
+\[
+\boxed{
+ F_4\ne0,\quad
+ \operatorname{supp}F_4\subseteq\mathcal O
+ \quad\Longrightarrow\quad
+ [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}<0.}
+\tag{3.126}
+\]
+
+This is an integral noncancellation theorem, stronger than its mod-two
+shadow.  It applies only to the terminal quadratic piece.  A complete
+defect with single-ray \(F_4\) still contains the other gauged Hessian
+rows and the affine unary ray value, which could contribute to the same
+coordinate.  For terminal support on several rays, cross-ray pairs can
+also enter ray coordinates.  Controlling those two effects is the next
+global boundary.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
