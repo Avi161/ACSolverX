@@ -1768,14 +1768,14 @@ following complete residue table for \(i\geq1\):
 \begin{array}{c|c|c}
 k&r_k&S_{k,2}(i\bmod r_k)\\ \hline
 1&2&(1,1)\\
-2&4&(1,1,1,1)\\
+2&4&(0,0,0,0)\\
 3&1&(0)\\
 4&1&(0)\\
 5&2&(0,0)\\
 6&4&(0,0,0,0)\\
 7&4&(0,0,0,0)\\
 8&1&(0)\\
-9&4&(1,1,1,1)\\
+9&4&(0,0,0,0)\\
 10&1&(0)\\
 11&5&(0,0,0,0,0)\\
 12&5&(0,0,0,0,0)\\
@@ -1789,16 +1789,17 @@ For a structural check, the \(c\)-trivial actions turn every row into an
 affine phase on the corresponding \(t\)-cycle, so the paired
 \(W/A/T\)-terms cancel in coordinates \(3,5,6,7,11,12\).  The order-one
 rows \(4,8,10\) cancel directly.  In the remaining finite orbits, exact
-substitution leaves the constant survivors \(1,2,9,13\).  The terminal row
-is indexed as \(z_h\), while \(T_h\) uses \(z_{h+1}\); this shift is part of
-the calculation.
+substitution leaves the constant survivors \(1,13\).  The old terminal
+schema at exponent \(h\) already contains the base \(P_*\)-block and hence
+represents the physical row \(z_{h+1}\) used by \(T_h\); applying a second
+residue shift would be incorrect.
 
 Hence the stable slot-two inversion source is
 
 \[
 \boxed{
  \bigl(S_{1,2}(i),\ldots,S_{14,2}(i)\bigr)
- =\texttt{11000000100010}
+ =\texttt{10000000000010}
  \qquad(i\geq1).}
 \tag{5.45ay}
 \]

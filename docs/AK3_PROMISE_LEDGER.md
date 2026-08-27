@@ -175,7 +175,7 @@ finite quotient do not close a route.
   exact length gap.  For \(i\geq1\), the slot-two source is exactly 22
   finite-action weights on two new levels, two adjacent seams, and two
   terminal incidences; their evaluated all-index stable vector is
-  `11000000100010`, with survivors \(k=1,2,9,13\).  The case \(i=0\)
+  `10000000000010`, with survivors \(k=1,13\).  The case \(i=0\)
   still needs only its seed seam/terminal table.
   The slot-three source has an exact \(G\)-cancellation-depth signature and
   at most 975 prefiltered comparisons plus one bounded seed table; its
