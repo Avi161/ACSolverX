@@ -127,7 +127,13 @@ finite quotient do not close a route.
   all-power diagonal sequence
   \(V_i=(U_1(D_{ii}),\ldots,U_{14}(D_{ii}))\), which must equal
   `11101011010101` before a diagonal candidate can pass the recorded
-  syndrome.  Any survivor must then solve the full exterior-module cokernel
+  syndrome.  Finite permutation orders give only a mod-four projected-current
+  shadow of period at most 80; shortlex section and transport defects prevent
+  any inferred period for \(V_i\).  With
+  \(\Delta_i=D_{i+1}-D_i\), the exact period-two proof object is
+  \(G_i=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i)\); proving
+  \(G_{i+1}=G_i\) would make the two known nonzero boundary values exclude
+  the whole diagonal family.  Any survivor must then solve the full exterior-module cokernel
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
   companion cross kernels and other primitive families remain open; no
   full-Hessian rank claim follows.

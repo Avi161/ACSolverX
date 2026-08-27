@@ -328,7 +328,7 @@ two diagonal members only, not an induction or an all-index obstruction.
 
 ## 5. Smallest constructive next obligation
 
-The next exact theorem should determine the fourteen-coordinate sequence
+Put \(D_i:=D_{ii}\) and define the fourteen-coordinate sequence
 
 \[
 V_i:=\bigl(U_1(D_{ii}),\ldots,U_{14}(D_{ii})\bigr)
@@ -338,11 +338,150 @@ V_i:=\bigl(U_1(D_{ii}),\ldots,U_{14}(D_{ii})\bigr)
 \]
 
 On the diagonal, the source words are the already normalized pure-\(P\)
-words \(\operatorname{red}(P_\nu^iC_\nu)\).  Each of the fourteen readouts
-factors through a fixed finite \(Q\)-set action.  Thus the required proof is
-an all-power finite-action normal form on the same source schemas, with
-exact period/preperiod and boundary cells proved from the action, not a grid
-sample.
+words \(\operatorname{red}(P_\nu^iC_\nu)\).  The finite permutation actions
+alone do not prove that \(V_i\) is periodic.  For the eleven actions used by
+the fourteen readouts, direct substitution gives the orders
+
+\[
+(2,4,1,1,2,4,1,4,1,5,4)
+\tag{5.2}
+\]
+
+for the images of \(\gamma=g^3\); their least common multiple is 20.  Thus
+every projected endpoint state has period dividing 20.  For a finite action
+\(\rho\), the projected linear path currents satisfy
+
+\[
+\bar x_{\rho,\nu,i+20}
+=\bar x_{\rho,\nu,i}+S_{\rho,\nu}
+\tag{5.3}
+\]
+
+for fixed currents \(S_{\rho,\nu}\), and hence their coefficientwise mod-four
+shadow has period dividing 80.  Any ordinary affine-quadratic polynomial of
+those projected currents would inherit a period dividing 80.
+
+The actual crossed evaluator does not factor through that shadow.  The
+degree-two coordinate of its canonical correction section is
+
+\[
+\Sigma(f)
+=\sum_x\binom{f_x}{2}e_x\otimes e_x+
+\sum_{x<y}f_xf_y\,e_x\otimes e_y.
+\tag{5.4}
+\]
+
+The first term needs coefficients modulo four.  The second depends on the
+global source-forest shortlex order.  Put
+\(\operatorname{key}(x)=(|x|,x)\).  Under a quotient action \(q\), the
+transport defect contains both the one-vertex defects and the order-reversal
+count.  For the projected module \(\bar V_\rho\), the exact section cocycle
+has
+\(\tau_q(x),\kappa_q(f)\in\Lambda^2\bar V_\rho\) and
+
+\[
+\kappa_q(f)
+=\sum_xf_x\tau_q(x)+
+\sum_{\operatorname{key}(x)<\operatorname{key}(y),\
+       \operatorname{key}(\operatorname{cvert}(qx))>
+       \operatorname{key}(\operatorname{cvert}(qy))}
+   f_xf_y\,e_{\operatorname{cvert}(qx)}
+          \wedge e_{\operatorname{cvert}(qy)}.
+\tag{5.5}
+\]
+
+Finite point images do not determine (5.5).  The fixed-base--direction
+products, inverse self terms, quotient-section defects, doubled anchors,
+negative occurrences, terminal-\(c\) normalization, and final pre-wedge
+diagonal cancellation must also remain.  Therefore neither period two nor
+period 80 for \(V_i\) follows from (5.2)--(5.3).
+
+There is an exact period-two proof object.  Put
+
+\[
+\Delta_i:=D_{i+1}-D_i.
+\tag{5.6}
+\]
+
+The right-deck path recurrence gives
+
+\[
+\begin{aligned}
+\Delta_{i,0}
+ &=e_{y_{i+1,i+1}}-e_{y_{ii}},&
+\Delta_{i,1}&=0,\\
+\Delta_{i,s}
+ &=\sum_{\nu=1}^6\epsilon_\nu
+ \left(
+ \mathsf E_s(P_\nu)
+ +p_\nu x^s_{\nu,i,i}
+ -x^s_{\nu,i,i}
+ \right),
+ &&s=2,3,4.
+\end{aligned}
+\tag{5.7}
+\]
+
+Let \(u_{14}\) be the base-subtracted fourteen-coordinate unary evaluator
+and let
+
+\[
+\beta_{14}(D,E)
+:=u_{14}(D+E)+u_{14}(D)+u_{14}(E)
+\tag{5.8}
+\]
+
+be its alternating polarization.  Affine quadraticity gives
+
+\[
+\boxed{
+G_i:=V_{i+1}+V_i
+=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i).}
+\tag{5.9}
+\]
+
+Consequently
+
+\[
+\boxed{V_{i+2}+V_i=G_{i+1}+G_i.}
+\tag{5.10}
+\]
+
+The exact period-two target is therefore the fourteen all-index identities
+
+\[
+\boxed{G_{i+1}=G_i\qquad(i\geq0).}
+\tag{5.11}
+\]
+
+Every term in (5.4)--(5.5) must be retained when expanding (5.9).  The
+existing pure-\(P\) schemas prove the moving source words and module orders,
+but they do not yet sum the complete section, transport, base, and inverse
+terms in \(G_i\).
+
+The exact finite data are
+
+\[
+\begin{aligned}
+C_{14}&=\texttt{11101011010101},\\
+V_0&=\texttt{01011110011011},\\
+V_1&=\texttt{10111011000101}.
+\end{aligned}
+\tag{5.12}
+\]
+
+Thus the residual fourteen-bit values at \(i=0,1\) are respectively
+
+\[
+\texttt{10110101001110},
+\qquad
+\texttt{01010000010000},
+\tag{5.13}
+\]
+
+both nonzero.  If (5.11) is proved, (5.10) makes \(V_i\) two-periodic and
+(5.13) excludes every diagonal \(D_i\).  Until then, (5.13) excludes only
+\(i=0,1\).
 
 - If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
   second-layer equation (3.9).  Only that full exterior-module equation
