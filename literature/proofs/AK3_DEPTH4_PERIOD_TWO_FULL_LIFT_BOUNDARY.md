@@ -909,11 +909,15 @@ anchored generating family (3.22), together with the affine unary term.
 ### 3.6 Kernel gauge and the terminal slot-four row
 
 The displayed chronological matrix is not itself the invariant object on
-homogeneous directions.  Put \(R=\mathbb Z[Q]\), regard
+homogeneous directions.  Put \(R=\mathbb Z[Q]\) and
+\(M=\mathbb Z[Q/\langle c\rangle]\).  The row \(\mathcal L\) acts on
+\(M^5\); put
 
 \[
- \mathcal L=(\mathcal L_0,\ldots,\mathcal L_4):R^5\longrightarrow R,
- \qquad \mathcal K:=\ker \mathcal L,
+ \mathcal K_M
+ :=\ker\!\left(
+   \mathcal L=(\mathcal L_0,\ldots,\mathcal L_4):
+   M^5\longrightarrow M\right).
 \tag{3.47}
 \]
 
@@ -934,7 +938,7 @@ If
 \tag{3.49}
 \]
 
-then for \(F,G\in\mathcal K\), diagonal tensor coinvariance gives
+then for \(F,G\in\mathcal K_M\), diagonal tensor coinvariance gives
 
 \[
 \begin{aligned}
@@ -953,7 +957,7 @@ matrix in \(\mathcal G\) vanishes in the symmetrized tensor (3.44).
 Consequently the restricted free-bucket Hessian depends only on
 
 \[
- \boxed{[\mathbf H]_{\mathcal K}
+ \boxed{[\mathbf H]_{\mathcal K_M}
  \in\operatorname{Mat}_5(R)/\mathcal G.}
 \tag{3.51}
 \]
@@ -986,12 +990,83 @@ For the standard row vector \(\mathbf e_4\), set
  \widehat{\mathbf H}:=\mathbf H+\mathcal L^*\mathbf e_4.
 \]
 
-This changes no value on \(\mathcal K\times\mathcal K\) by (3.50), and
+This changes no value on \(\mathcal K_M\times\mathcal K_M\) by (3.50), and
 
 \[
  \boxed{\widehat{\mathbf H}_{4t}=0\qquad(0\leq t\leq4).}
 \tag{3.54}
 \]
+
+The remaining fourth column is also explicit.  For \(s\ne4\), (3.41) and
+\(\mathbf H_{4s}=0\) give
+
+\[
+ \boxed{
+ \widehat{\mathbf H}_{s4}
+ =\mathcal L_s^*(\mathcal L_4+1)
+ =\mathcal L_s^*t\quad(0\leq s\leq3),\qquad
+ \widehat{\mathbf H}_{44}=0.}
+\tag{3.55}
+\]
+
+Hence the gauged tensor has no slot-four first leg:
+
+\[
+ \mathcal T_{\widehat{\mathbf H}}(F,G)
+ =\sum_{s=0}^3\sum_{t=0}^4
+ \left(
+  F_s\otimes\widehat{\mathbf H}_{st}G_t
+  +G_s\otimes\widehat{\mathbf H}_{st}F_t
+ \right).
+\tag{3.56}
+\]
+
+Its surviving fourth-column part is a boundary pairing.  Homogeneity and
+coinvariance give
+
+\[
+\begin{aligned}
+ \sum_{s=0}^3[F_s\otimes\mathcal L_s^*tG_4]
+ &=
+ \left[\left(\sum_{s=0}^3\mathcal L_sF_s\right)
+       \otimes tG_4\right]\\
+ &=[-\mathcal L_4F_4\otimes tG_4]
+  =[F_4\otimes\mathcal L_4G_4].
+\end{aligned}
+\tag{3.57}
+\]
+
+Thus the symmetrized fourth-column contribution is exactly
+
+\[
+ [F_4\otimes\mathcal L_4G_4
+   +G_4\otimes\mathcal L_4F_4],
+\tag{3.58}
+\]
+
+which need not vanish.  On finitely supported currents,
+\(\mathcal L_4=t-1\) is injective because \(t\) acts freely on
+\(Q/\langle c\rangle\).  Let
+
+\[
+ (t-1)_{\mathrm{fin}}^{-1}:
+ \operatorname{im}\!\left(
+  (t-1):M_{\mathrm{fin}}\longrightarrow M_{\mathrm{fin}}\right)
+ \longrightarrow M_{\mathrm{fin}}
+\]
+
+denote the inverse on this image.  For a homogeneous \(F\), the required
+right side lies in the image because it equals \((t-1)F_4\).  Thus
+
+\[
+ F_4=-(t-1)_{\mathrm{fin}}^{-1}
+       \sum_{s=0}^3\mathcal L_sF_s,
+\tag{3.59}
+\]
+
+but this inverse is the finite prefix-sum operator on \(t\)-orbits, not
+multiplication by an element of \(R\).  It replaces the finite matrix by
+arbitrarily long finite path prefixes.
 
 Thus the terminal slot-four row is gauge-null.  No further triangularization
 follows from this one-sided gauge.  Further elimination by
@@ -1007,6 +1082,147 @@ may be carried entirely by inversion-fixed \(\mathbb Z/2\)-buckets and is
 therefore not a free-bucket witness.  A free obstruction still requires an
 explicit nonzero oriented bucket on the anchored generators (3.22), or a
 new leading-double-coset separation theorem for their exact forest flows.
+
+### 3.7 Exact source pullback by half-tree cuts
+
+The nonlocal inverse in (3.59) is one part of the full forest Green map.
+Let \(\mathcal S_{\mathrm{fin}}\) be the finite source pairs
+\(f=(f_0,f_1)\) for which
+
+\[
+ b(f):=\mathcal L_0f_0+\mathcal L_1f_1
+\tag{3.60}
+\]
+
+has coefficient sum zero on each of the two forest components.  Use the
+stored oriented edges
+
+\[
+ E_2(v):Bv\longrightarrow v,\qquad
+ E_3(v):tv\longrightarrow U^{-1}v,\qquad
+ E_4(v):v\longrightarrow tv.
+\tag{3.61}
+\]
+
+Delete \(E_s(v)\) from its tree and let
+\(\mathcal C^+_{s,v}\) be the half-tree containing its head.  The unique
+finite Green flow with boundary \(b\) has coefficients
+
+\[
+ \boxed{
+ \mathfrak G_s(b)(v)
+ =\sum_{x\in\mathcal C^+_{s,v}}b(x)
+ =-\sum_{x\in\mathcal C^-_{s,v}}b(x)
+ \qquad(s=2,3,4).}
+\tag{3.62}
+\]
+
+Indeed, summing the boundary over the head half-tree cancels every internal
+edge and retains the coefficient of \(E_s(v)\).  The second equality is
+component balance.  Formula (3.62) is finite because \(b\) is finitely
+supported.  It also shows that \(\mathfrak G(b)\) is supported inside the
+componentwise finite convex hull of \(\operatorname{supp}b\): outside that
+hull the head side contains either none or all of the supported vertices.
+
+Define
+
+\[
+ \boxed{
+ \mathfrak J(f_0,f_1)
+ :=
+ \bigl(f_0,f_1,
+       -\mathfrak G_2(b(f)),
+       -\mathfrak G_3(b(f)),
+       -\mathfrak G_4(b(f))\bigr).}
+\tag{3.63}
+\]
+
+Then \(\mathfrak J\) is \(\mathbb Z\)-linear,
+\(\mathcal L\mathfrak J(f)=0\), and source projection makes
+
+\[
+ \mathfrak J:\mathcal S_{\mathrm{fin}}
+ \stackrel{\cong}{\longrightarrow}\mathcal H_{\mathrm{fin}}
+\tag{3.64}
+\]
+
+a bijection.  Surjectivity is the forest parametrization of Section 2;
+injectivity follows immediately from the first two coordinates.  In
+particular, for the anchored atom \(H_r(v)\), its three forest coordinates
+are obtained from (3.62) using the boundary of (3.20), without choosing an
+endpoint pairing or a path decomposition.
+
+The free-bucket Hessian now pulls back to an exact source-only ledger.  For
+an oriented non-self-inverse double coset \(\Delta^+\), put
+
+\[
+ \widehat B_{\Delta^+}(f,g)
+ :=
+ B_{\Xi_{\mathbb Z},\Delta^+}
+   (\mathfrak J(f),\mathfrak J(g)).
+\]
+
+Equations (3.43), (3.54), and (3.63) give
+
+\[
+\boxed{
+\begin{aligned}
+ \widehat B_{\Delta^+}(f,g)
+ =\sum_{s=0}^3\sum_{t=0}^4
+ \bigl(
+ &\mathcal C_{\Delta^+}
+   (\mathfrak J_s(f),\mathfrak J_t(g);
+    \widehat{\mathbf H}_{st})\\
+ +&\mathcal C_{\Delta^+}
+   (\mathfrak J_s(g),\mathfrak J_t(f);
+    \widehat{\mathbf H}_{st})
+ \bigr).
+\end{aligned}}
+\tag{3.65}
+\]
+
+For \(s\geq2\), every coefficient in (3.65) is the explicit cut sum
+
+\[
+ \mathfrak J_s(f)(v)
+ =-\sum_{x\in\mathcal C^+_{s,v}}
+   (\mathcal L_0f_0+\mathcal L_1f_1)(x).
+\tag{3.66}
+\]
+
+Writing
+\(\widehat{\mathbf H}_{st}=\sum_mh_{st}(m)m\), the only candidate buckets
+in one value of (3.65) are therefore the finite set
+
+\[
+ \left\{
+ \begin{array}{c|c}
+ D=H\widetilde v^{-1}m\widetilde wH&
+ \begin{gathered}
+ 0\leq s\leq3,\quad0\leq t\leq4,\quad h_{st}(m)\ne0,\\
+ \mathfrak J_s(f)(v)\mathfrak J_t(g)(w)\ne0
+ \ \text{or}\
+ \mathfrak J_s(g)(v)\mathfrak J_t(f)(w)\ne0,\\
+ D\ne H,\qquad D\ne D^{-1}
+ \end{gathered}
+ \end{array}
+ \right\}.
+\tag{3.67}
+\]
+
+This is an exact elimination of arbitrary forest pairings, not a
+group-ring matrix pullback.  The map \(\mathfrak J\) is only
+\(\mathbb Z\)-linear on the balanced finite source space; the forest Green
+map is not being asserted \(Q\)-equivariant.  In particular, a notation
+such as \(\mathfrak J^*\mathbf H\mathfrak J\) would be false as an identity
+of matrices over \(R\).
+
+The finite candidate set (3.67) does not yet supply a leading term.
+Distinct cut pairs can occupy the same double-coset bucket, component
+balance can cancel extremal cuts, and forest distance is not automatically
+double-coset length or source shortlex.  The next free-bucket obligation is
+to prove a separation or noncancellation lemma for this exact cut ledger;
+the affine unary term remains separate.
 
 ## 4. Exact diagonal sieve
 
