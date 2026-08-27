@@ -37,3 +37,32 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+  tests-ppo:
+    # experiments/ppo/ is a pure-torch package; tests/ppo/ skips itself when torch is
+    # absent, which is why the `tests` job above stays numpy+numba. This job is what
+    # actually runs it. No numba here: nothing under tests/ppo touches the njit solver,
+    # so there is no cold-start compile to pay for. CPU wheels only -- the suite runs
+    # one real PPO update and a few beams, so the timeout carries headroom; if it ever
+    # times out, split the job rather than trimming tests.
+    # Enable as a required status check alongside `tests` once one run exists.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+          cache-dependency-path: requirements-torch.txt
+
+      - name: Install pytest + CPU torch
+        run: |
+          python -m pip install --upgrade pip pytest
+          python -m pip install -r requirements-torch.txt \
+            --extra-index-url https://download.pytorch.org/whl/cpu
+
+      - name: Run the PPO suite
+        run: pytest tests/ppo

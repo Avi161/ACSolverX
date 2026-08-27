@@ -1,0 +1,16 @@
+# PyTorch-only stack for experiments/ppo/ and tests/ppo/. Nothing there imports JAX, so
+# this file is deliberately NOT a superset of requirements.txt -- installing that would
+# pull the whole JAX/orbax/flax training stack for a package that never touches it.
+#
+# No CUDA build is pinned on purpose: the training runs use the torch that ships
+# preinstalled on the Colab / vast.ai GPU image, and reinstalling it there breaks CUDA
+# wheel matching (see experiments/ppo/VAST_AI.md and the SETUP cell of
+# experiments/notebooks/ppo/ppo_baseline.ipynb). This file exists so CI and a laptop can
+# install a CPU build and run the suite:
+#
+#   pip install -r requirements-torch.txt --extra-index-url https://download.pytorch.org/whl/cpu
+#
+# Floor is 2.2: everything used is long-stable, and every torch.load call already passes
+# weights_only=False explicitly, so torch >= 2.6's default flip is a non-issue.
+torch>=2.2
+numpy==2.1.3
