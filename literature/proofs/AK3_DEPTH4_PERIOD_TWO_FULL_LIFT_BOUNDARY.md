@@ -2090,10 +2090,7 @@ Splitting the tensor sum into equal and unequal source vertices gives
  :={}&
  \sum_{\substack{x,y\in X\\x\ne y}}
  F_4(x)F_4(y)
- \bigl(
-  \kappa_{\mathcal O}(x,ty)
-  -\kappa_{\mathcal O}(x,y)
- \bigr).
+ \kappa_{\mathcal O}(x,ty).
 \end{aligned}}
 \tag{3.114}
 \]
@@ -2102,9 +2099,18 @@ Indeed, the equal-vertex atom at \(v\) has relative displacement
 \(v^{-1}tv=D_{\mathcal O}^{-1}\) in the \(tF_4\) part, while the
 corresponding identity-kernel atom is diagonal and vanishes in the
 exterior module.  Thus it contributes with the displayed minus sign.
-For unequal vertices both the \(t\)-kernel and identity-kernel terms must
-remain in \(\mathcal R^{(4)}\).  All sums are finite.  Reducing (3.114)
-modulo two turns the square into a linear parity:
+For unequal vertices an individual identity-kernel atom can hit a ray
+bucket, but
+
+\[
+ \kappa_{\mathcal O}(y,x)=-\kappa_{\mathcal O}(x,y).
+\]
+
+The coefficients of \(F_4\otimes F_4\) are symmetric in \(x,y\), so all
+of its off-diagonal ray contributions cancel in swapped pairs.  This,
+rather than a height argument, removes the complete identity-kernel
+tensor.  All sums are finite.  Reducing (3.114) modulo two turns the
+square into a linear parity:
 
 \[
 \boxed{
@@ -2181,7 +2187,17 @@ The double-coset definition gives the exact reader identity
 Indeed,
 \(Hq^{-1}rH=Hd_{\mathcal O}H\) holds exactly when
 \(rH=qd_{\mathcal O}H\) or \(qcd_{\mathcal O}H\); the inverse orientation
-gives the second set in (3.117).
+gives the second set in (3.117).  Swapping the tensor legs exchanges the
+two orientations, so
+
+\[
+ \boxed{
+ \mathfrak A_{\mathcal O}(g,f)
+ =-\mathfrak A_{\mathcal O}(f,g),
+ \qquad
+ \mathfrak A_{\mathcal O}(f,f)=0.}
+\tag{3.119a}
+\]
 
 Applying (3.119) to (3.112) removes the unrestricted off-diagonal sum:
 
@@ -2190,11 +2206,11 @@ Applying (3.119) to (3.112) removes the unrestricted off-diagonal sum:
  [Q^{(4)}_{\mathrm{ray}}(F)]_{\mathcal O}
  =
  \mathfrak A_{\mathcal O}
- \bigl(F_4,(t-1)F_4\bigr),}
+ \bigl(F_4,tF_4\bigr).}
 \tag{3.120}
 \]
 
-where, coefficientwise,
+Here (3.119a) cancels the identity-kernel term.  Coefficientwise,
 
 \[
  [(t-1)F_4](z)=F_4(t^{-1}z)-F_4(z).
@@ -2209,14 +2225,16 @@ Likewise the complete mixed slot-four contribution is
  [B^{(4)}_{\mathrm{ray}}(F,G)]_{\mathcal O}
  ={}&
  \mathfrak A_{\mathcal O}
-  \bigl(F_4,(t-1)G_4\bigr)\\
+  \bigl(F_4,tG_4\bigr)\\
  &+\mathfrak A_{\mathcal O}
-  \bigl(G_4,(t-1)F_4\bigr).
+  \bigl(G_4,tF_4\bigr).
 \end{aligned}}
 \tag{3.122}
 \]
 
-Thus the terminal part of every ray equation is a four-neighbor local
+The two omitted identity-kernel cross terms cancel each other by
+(3.119a).  Thus the terminal part of every ray equation is a
+four-neighbor local
 adjacency pairing on \(X\), not an all-pairs comparison.  Its support is
 still unbounded because \(F_4\) is the Green flow of arbitrary finite
 sources.  The remaining proof obligation is to combine this sparse reader
