@@ -4,13 +4,11 @@ One 1,000-node run per arm per presentation (`solved_at` gives every smaller bud
 
 | arm | moves | ordering | @100 | @250 | @500 | @1000 | median nodes | median path | donor-edge solves | wall s | nodes/s |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| greedy | sub | L | 17 | 20 | 26 | 29 | 61 | 16 | - | 65.2 | 554 |
-| s20_mk2 | sub | s20_mk2 | 21 | 28 | 35 | 37 | 52 | 22 | - | 80.7 | 355 |
-| recommended | sub | RECOMMENDED | 20 | 31 | 37 | 43 | 106 | 25 | - | 74.7 | 351 |
-| macro_L | sub+donor | L | 17 | 20 | 26 | 29 | 61 | 16 | 0 | 369.5 | 98 |
-| macro_s20_mk2 | sub+donor | s20_mk2 | 21 | 28 | 35 | 37 | 52 | 22 | 0 | 298.5 | 96 |
-| macro_recommended | sub+donor | RECOMMENDED | 20 | 31 | 37 | 43 | 106 | 25 | 0 | 261.1 | 100 |
+| greedy | sub | L | 17 | 20 | 26 | 29 | 61 | 16 | - | 56.5 | 639 |
+| s20_mk2 | sub | s20_mk2 | 21 | 28 | 35 | 37 | 52 | 22 | - | 58.2 | 492 |
+| macro_L | sub+donor | L | 17 | 20 | 26 | 29 | 61 | 16 | 0 | 213.6 | 169 |
+| macro_s20_mk2 | sub+donor | s20_mk2 | 21 | 28 | 35 | 37 | 52 | 22 | 0 | 164.0 | 175 |
 
-Total wall time for the whole grid: 385 s. Node budgets are pop counts; the macro arms pay more wall time per pop (see nodes/s), so read the table twice — once at equal nodes, once at equal time via the nodes/s column.
+Total wall time for the whole grid: 176 s. Node budgets are pop counts; the macro arms pay more wall time per pop (see nodes/s), so read the table twice — once at equal nodes, once at equal time via the nodes/s column.
 
-Regenerate: `python -m experiments.search.bench_new_moves --goal-smax 0 --subw 3 4`.
+Regenerate: `python -m experiments.search.bench_new_moves --budget 1000 --goal-smax 0 --subw 3 4`.

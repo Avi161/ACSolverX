@@ -1,20 +1,20 @@
 """Score the macro move set against the greedy baseline and s20_mk2 on subset-60.
 
-Six arms, one 1,000-node run each per presentation (a budget-B search is the
+Four arms, one 1,000-node run each per presentation (a budget-B search is the
 first B pops of any longer one, so ``solved_at`` yields the whole 100..1000
 curve from a single run):
 
     greedy             baseline substitution greedy, priority = total length
     s20_mk2            same move set, priority = L + 20*S + 2*MK
-    recommended        same move set, the shipped RECOMMENDED ordering
     macro_L            substitution + conjugate-donor moves, priority = length
     macro_s20_mk2      substitution + donor, s20_mk2 ordering
-    macro_recommended  substitution + donor, RECOMMENDED ordering
 
-The 2x3 grid separates the two effects: a macro-vs-plain column difference at a
+The 2x2 grid separates the two effects: a macro-vs-plain column difference at a
 fixed ordering is attributable to the MOVE SET; a row difference at a fixed move
 set is attributable to the ORDERING. All arms run at the benchmark's cap
-(max_relator_length 24, cyclic reduction on).
+(max_relator_length 24, cyclic reduction on). The tuned five-feature RECOMMENDED
+vector is deliberately NOT an arm: its weights were fitted on rows this subset
+overlaps, so it reads as overfit here and was dropped from the comparison.
 
 Honesty rules:
 
@@ -48,10 +48,7 @@ BUDGET = 1000
 CHECKPOINTS = (100, 250, 500, 1000)
 MRL = 24
 
-ARMS = (
-    "greedy", "s20_mk2", "recommended",
-    "macro_L", "macro_s20_mk2", "macro_recommended",
-)
+ARMS = ("greedy", "s20_mk2", "macro_L", "macro_s20_mk2")
 
 
 def load_rows():
@@ -66,7 +63,7 @@ def _run_one(job):
     arm, row, budget, goal_smax, subw = job
     # imports inside the worker: numba compiles per process, cache=True amortises
     from experiments.search.greedy_baseline import greedy_search, moves_to_states, str_to_move
-    from experiments.search.heuristics import RECOMMENDED, S20_MK2, greedy_search_h
+    from experiments.search.heuristics import S20_MK2, greedy_search_h
     from experiments.search.macro_moves import macro_greedy_search
     from experiments.search.certify import verify_solution
 
@@ -76,16 +73,11 @@ def _run_one(job):
         res = greedy_search(r1, r2, budget, MRL)
     elif arm == "s20_mk2":
         res = greedy_search_h(r1, r2, budget, MRL, config=S20_MK2)
-    elif arm == "recommended":
-        res = greedy_search_h(r1, r2, budget, MRL, config=RECOMMENDED)
     elif arm == "macro_L":
         res = macro_greedy_search(r1, r2, budget, MRL, config=None,
                                   goal_smax=goal_smax, donor_subw=subw)
     elif arm == "macro_s20_mk2":
         res = macro_greedy_search(r1, r2, budget, MRL, config=S20_MK2,
-                                  goal_smax=goal_smax, donor_subw=subw)
-    elif arm == "macro_recommended":
-        res = macro_greedy_search(r1, r2, budget, MRL, config=RECOMMENDED,
                                   goal_smax=goal_smax, donor_subw=subw)
     else:
         raise ValueError(arm)
@@ -191,10 +183,8 @@ def write_outputs(rows, per_arm, budget, checkpoints, wall_total, regen_cmd):
     meta = {
         "greedy": ("sub", "L"),
         "s20_mk2": ("sub", "s20_mk2"),
-        "recommended": ("sub", "RECOMMENDED"),
         "macro_L": ("sub+donor", "L"),
         "macro_s20_mk2": ("sub+donor", "s20_mk2"),
-        "macro_recommended": ("sub+donor", "RECOMMENDED"),
     }
     for arm in ARMS:
         e = per_arm[arm]

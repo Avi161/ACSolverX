@@ -94,35 +94,35 @@ reordered edges, truncated paths all fail), and the degenerate-endpoint rejectio
 
 ## Benchmark
 
-`python -m experiments.search.bench_new_moves` runs the 2×3 grid — move set
-{substitution, substitution+donor} × ordering {length, `s20_mk2`, `RECOMMENDED`} — on
+`python -m experiments.search.bench_new_moves` runs the 2×2 grid — move set
+{substitution, substitution+donor} × ordering {length, `s20_mk2`} — on
 [`benchmark_subset_60`](../../benchmark/subsets/benchmark_subset_60.csv), one 1,000-node run
 per arm per row (a budget-B search is the first B pops of a longer one, so one run yields
 the whole 100–1,000 curve). Cap 24, cyclic reduction on. A solve counts only if its path
 verifies; `s20_mk2 = L + 20·S + 2·MK` is the research branch's arm, ported verbatim as
-`heuristics.S20_MK2`.
+`heuristics.S20_MK2`. The tuned five-feature `RECOMMENDED` vector is deliberately not an
+arm: its weights were fitted on rows this subset overlaps, so its numbers here read as
+overfit and it was dropped from the comparison.
 
 ### Results
 
 All solves verified; nothing unverified, no lost jobs. Full per-row data in
 [`results/new_moves/`](../../results/new_moves/): `bench60_newmoves.*` is this table's run
 (defaults), `ablation1000_blind_*` the subword-bridge family at the same budget
-(`--goal-smax 0 --subw 3 4`), `smoke100_blind_*` the same family's budget-100 smoke.
+(`--goal-smax 0 --subw 3 4`).
 
 | arm | moves | ordering | @100 | @250 | @500 | @1000 | median nodes | wall s |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| greedy | sub | `L` | 17 | 20 | 26 | **29** | 61 | 65.0 |
-| s20_mk2 | sub | `s20_mk2` | 21 | 28 | 35 | **37** | 52 | 86.6 |
-| recommended | sub | `RECOMMENDED` | 20 | 31 | 37 | **43** | 106 | 71.8 |
-| macro_L | sub+donor | `L` | 17 | 20 | 26 | **29** | 61 | 199.9 |
-| macro_s20_mk2 | sub+donor | `s20_mk2` | 21 | 28 | 35 | **37** | 52 | 153.8 |
-| macro_recommended | sub+donor | `RECOMMENDED` | 20 | 31 | 37 | **43** | 106 | 131.2 |
+| greedy | sub | `L` | 17 | 20 | 26 | **29** | 61 | 40.2 |
+| s20_mk2 | sub | `s20_mk2` | 21 | 28 | 35 | **37** | 52 | 56.1 |
+| macro_L | sub+donor | `L` | 17 | 20 | 26 | **29** | 61 | 114.3 |
+| macro_s20_mk2 | sub+donor | `s20_mk2` | 21 | 28 | 35 | **37** | 52 | 77.2 |
 
 **The macro arms tie their plain counterparts exactly — not just in solve counts but
-per row**: all 60 presentations, all three orderings, identical `(solved, solved_at,
+per row**: all 60 presentations, both orderings, identical `(solved, solved_at,
 path_length)`, zero donor edges on any solved path. The donor children are generated and
 enter the frontier by the tens of thousands, and not one of them wins a heap pop inside
-1,000 nodes. Node budgets are pop counts and the macro arms pay 1.5–3× the wall time per
+1,000 nodes. Node budgets are pop counts and the macro arms pay 1.4–2.8× the wall time per
 pop, so at equal *time* the macro arms are strictly worse here.
 
 ### Why, mechanistically
@@ -133,7 +133,7 @@ pop, so at equal *time* the macro arms are strictly worse here.
   ordering the blind donor children never outrank the best substitution children. Measured
   twice: this run's short-word family, and the full subword-bridge family at the same
   1,000-node budget (`ablation1000_blind_*`: `--goal-smax 0 --subw 3 4`, hundreds of
-  extra children per node) — exact ties again, at 3.5–5.5× the plain arms' wall time.
+  extra children per node) — exact ties again, at 2.8–3.8× the plain arms' wall time.
 * The goal-directed proposer is the one source of genuinely *short* children — but its
   precondition (`|cyc(r_i⁻¹s)| = |r_j|`) needs near-matched relator lengths. Instrumented
   over 7 benchmark rows: it fires on **7 of 4,384 expanded states**, every one an endgame
@@ -145,7 +145,7 @@ pop, so at equal *time* the macro arms are strictly worse here.
   6–9, 7k–272k baseline nodes) is deep in pops, not one edge away.
 
 So at tiny budgets on this benchmark the move set is not the binding constraint — the
-**ordering** is (29 → 37 → 43 at a fixed move set). The one-step AC neighbourhood is,
+**ordering** is (29 → 37 at a fixed move set). The one-step AC neighbourhood is,
 for short children, essentially saturated by substitution; that is now a measured fact
 with a mechanism, not a hunch.
 
