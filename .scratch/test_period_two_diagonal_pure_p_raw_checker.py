@@ -212,6 +212,39 @@ class DiagonalPurePRawCheckerTests(unittest.TestCase):
             "source_hash:raw",
         )
 
+    def test_theory_section_binding_is_exact_and_scoped(self) -> None:
+        binding = self.manifest["source_bindings"]["theory"]
+        self.assertEqual(binding, self.checker.theory_section_binding())
+        data = self.checker.PROOF_PATH.read_bytes()
+        self.assertEqual(
+            self.checker.exact_section_record(data),
+            self.checker.exact_section_record(data + b"\noutside-bound-section\n"),
+        )
+        with self.assertRaises(AssertionError):
+            self.checker.exact_section_record(data + self.checker.THEORY_SECTION_START)
+        with self.assertRaises(AssertionError):
+            self.checker.exact_section_record(
+                data.replace(self.checker.THEORY_SECTION_START, b"", 1)
+            )
+        with self.assertRaises(AssertionError):
+            self.checker.exact_section_record(
+                self.checker.THEORY_SECTION_END
+                + b"reversed"
+                + self.checker.THEORY_SECTION_START
+            )
+        for field, value in (
+            ("section_sha256", "0" * 64),
+            ("start_marker", "wrong start"),
+            ("end_marker", "wrong end"),
+            ("byte_length", binding["byte_length"] + 1),
+        ):
+            self.assert_rejected(
+                lambda manifest, field=field, value=value: manifest["source_bindings"][
+                    "theory"
+                ].__setitem__(field, value),
+                "source_section:theory",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

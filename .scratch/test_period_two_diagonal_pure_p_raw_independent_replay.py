@@ -151,13 +151,38 @@ class IndependentDiagonalRawReplayTests(unittest.TestCase):
             "computed",
         )
 
-    def test_mutated_source_hash_rejected(self) -> None:
-        self.assert_rejected(
-            lambda manifest: manifest["source_bindings"]["theory"].__setitem__(
-                "sha256", "0" * 64
-            ),
-            "source_hash:theory",
+    def test_theory_section_binding_is_exact_and_scoped(self) -> None:
+        binding = self.manifest["source_bindings"]["theory"]
+        self.assertEqual(binding, self.replay.theory_section_binding())
+        data = self.replay.THEORY_PATH.read_bytes()
+        self.assertEqual(
+            self.replay.exact_section_record(data),
+            self.replay.exact_section_record(data + b"\noutside-bound-section\n"),
         )
+        with self.assertRaises(AssertionError):
+            self.replay.exact_section_record(data + self.replay.THEORY_SECTION_START)
+        with self.assertRaises(AssertionError):
+            self.replay.exact_section_record(
+                data.replace(self.replay.THEORY_SECTION_START, b"", 1)
+            )
+        with self.assertRaises(AssertionError):
+            self.replay.exact_section_record(
+                self.replay.THEORY_SECTION_END
+                + b"reversed"
+                + self.replay.THEORY_SECTION_START
+            )
+        for field, value in (
+            ("section_sha256", "0" * 64),
+            ("start_marker", "wrong start"),
+            ("end_marker", "wrong end"),
+            ("byte_length", binding["byte_length"] + 1),
+        ):
+            self.assert_rejected(
+                lambda manifest, field=field, value=value: manifest["source_bindings"][
+                    "theory"
+                ].__setitem__(field, value),
+                "source_section:theory",
+            )
 
 
 if __name__ == "__main__":

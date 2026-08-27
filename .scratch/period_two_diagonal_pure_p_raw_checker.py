@@ -35,6 +35,8 @@ RAW_PATH = ROOT / ".scratch/period_two_residual_augmented_defect_raw_checker.py"
 GENERATOR_PATH = ROOT / ".scratch/period_two_raw_stream_manifest_generator.py"
 PROOF_PATH = ROOT / "literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md"
 MANIFEST_PATH = ROOT / ".scratch/period_two_diagonal_pure_p_raw_manifest.json"
+THEORY_SECTION_START = b"### 4.1 Raw boundary-locality pump\n"
+THEORY_SECTION_END = b"### 4.2 All-power raw theorem\n"
 Word = tuple[int, ...]
 
 
@@ -75,6 +77,30 @@ def load_module(name: str, path: Path) -> Any:
 
 def sha256_path(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def exact_section_record(data: bytes) -> dict[str, Any]:
+    if data.count(THEORY_SECTION_START) != 1 or data.count(THEORY_SECTION_END) != 1:
+        raise AssertionError("theory_section_markers")
+    start = data.index(THEORY_SECTION_START) + len(THEORY_SECTION_START)
+    end = data.index(THEORY_SECTION_END)
+    if end < start:
+        raise AssertionError("theory_section_order")
+    section = data[start:end]
+    return {
+        "start_marker": THEORY_SECTION_START.decode().removesuffix("\n"),
+        "end_marker": THEORY_SECTION_END.decode().removesuffix("\n"),
+        "byte_length": len(section),
+        "section_sha256": hashlib.sha256(section).hexdigest(),
+    }
+
+
+def theory_section_binding() -> dict[str, Any]:
+    return {
+        "path": str(PROOF_PATH.relative_to(ROOT)),
+        "scope": "source-bound raw boundary-locality induction only",
+        **exact_section_record(PROOF_PATH.read_bytes()),
+    }
 
 
 def canonical_json(value: Any) -> bytes:
@@ -698,11 +724,7 @@ def source_bindings() -> dict[str, Any]:
                 "later insertions cannot change the horizon prefix."
             ),
         },
-        "theory": {
-            "path": str(PROOF_PATH.relative_to(ROOT)),
-            "sections": ["1", "2", "3", "4", "6"],
-            "sha256": sha256_path(PROOF_PATH),
-        },
+        "theory": theory_section_binding(),
         "checker": {
             "path": str(CHECKER_PATH.relative_to(ROOT)),
             "sha256": sha256_path(CHECKER_PATH),
@@ -785,7 +807,6 @@ def binding_paths() -> dict[str, Path]:
         "approved_helpers": APPROVED_PATH,
         "normalizer": NORMALIZER_PATH,
         "raw": RAW_PATH,
-        "theory": PROOF_PATH,
         "checker": CHECKER_PATH,
         "tests": TEST_PATH,
     }
@@ -837,6 +858,8 @@ def verification_failures(
         for name, path in binding_paths().items():
             if manifest["source_bindings"][name]["sha256"] != sha256_path(path):
                 failures.append(f"source_hash:{name}")
+        if manifest["source_bindings"].get("theory") != theory_section_binding():
+            failures.append("source_section:theory")
         for result in manifest["cell_results"]:
             cell_id = result["cell"]["id"]
             fibers = result["collision"]["fibers"]

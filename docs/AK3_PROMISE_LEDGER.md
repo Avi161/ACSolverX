@@ -83,8 +83,9 @@ finite quotient do not close a route.
   source rows, factor order, fibers, observables, and source-bound pump
   premises without importing the producing checker.  Both replays give
   \(L_{\ne0}(q_i)=0\), and the slot-zero theorem gives \(L(q_i)=0\) for
-  every \(i\geq0\).  Final hash prefixes: manifest 96da011f, independent
-  replay 3b0d94f8, independent tests 1a5e18ba.
+  every \(i\geq0\).  Current hash prefixes: manifest 6f83559c, independent
+  replay 179e868d, independent tests a08021d7; the source-bound raw-locality
+  section digest is 4e0de9fd.
 - **Quadratic label blocker closed:** deterministic collision splicing gives
   a 48-chord label-preserving matching of the 96-token stream.  Exact
   reduced-cone separation proves that its sole repeated chord label occurs

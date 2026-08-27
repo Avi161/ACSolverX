@@ -106,16 +106,23 @@ independence boundary, and final theorem (0.2).
 
 | artifact | SHA-256 |
 |:---|:---|
-| primary checker | 57b70bd181aa376855d87f209e72ae98b39d45afc9c68d8149103dbbda7aab17 |
-| primary tests | 2439745e302ad01cae1908814d48aad3afff228ac767f03bbc0ae9d5cc112f07 |
-| primary manifest | 96da011ff66adb4bf8f0c74903895c39762bb80e58bf60f874766ea6499dd00c |
-| independent replay | 3b0d94f8eb3e686cbeed155f25b8ccdcdd1b1b5a618ae18b5c190685ccea4a51 |
-| independent tests | 1a5e18ba464328707ece0452563559be8f3fbd373e5dc1b7c255f0562db328d4 |
+| primary checker | 5b52f43ae6f6cd64711b24dae69dcea1796cfd647193767d8c23888933daebcf |
+| primary tests | 929f25be8ca711014c8668e7044f6b4cad50223967964c90fa2b7456ef4dc7e5 |
+| primary manifest | 6f83559c4edfb27575beac7df28a774732a92dd81738656036278da00ddde9ef |
+| independent replay | 179e868d475197fcaffa78ccf889d2a3ac4e1f138a5ed7d147a96aa54aef99e9 |
+| independent tests | a08021d769b94df732bbb8fad35283b2c58359d3186d041b4fd649aa185b0e10 |
+| raw-locality section | 4e0de9fda1b2b87cabd92f65db260ac82c194b4e0aada3e78bd509c08f75e2d8 |
 
 Guarded primary generation and canonical replay pass with zero generation
-failures. The 13 primary mutation tests and nine independent hostile tests
+failures. The 14 primary mutation tests and nine independent hostile tests
 pass. The final independent replay returns 46 provenance rows, 42 active
 coordinates, and cell xors \(0,0,0,0\).
+
+The theory binding hashes exactly 2,801 raw bytes after the unique marker
+"### 4.1 Raw boundary-locality pump" and before the unique marker
+"### 4.2 All-power raw theorem".  Missing, duplicated, or reversed markers
+fail closed.  Later theorem sections are deliberately outside this scoped
+binding and cannot stale the raw pump certificate.
 
 ## 5. Remaining scalar
 

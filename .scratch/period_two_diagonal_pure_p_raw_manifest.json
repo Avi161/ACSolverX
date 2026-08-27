@@ -22883,7 +22883,7 @@
     },
     "checker": {
       "path": ".scratch/period_two_diagonal_pure_p_raw_checker.py",
-      "sha256": "57b70bd181aa376855d87f209e72ae98b39d45afc9c68d8149103dbbda7aab17"
+      "sha256": "5b52f43ae6f6cd64711b24dae69dcea1796cfd647193767d8c23888933daebcf"
     },
     "generator": {
       "functions": [
@@ -22911,18 +22911,15 @@
     },
     "tests": {
       "path": ".scratch/test_period_two_diagonal_pure_p_raw_checker.py",
-      "sha256": "2439745e302ad01cae1908814d48aad3afff228ac767f03bbc0ae9d5cc112f07"
+      "sha256": "929f25be8ca711014c8668e7044f6b4cad50223967964c90fa2b7456ef4dc7e5"
     },
     "theory": {
+      "byte_length": 2801,
+      "end_marker": "### 4.2 All-power raw theorem",
       "path": "literature/proofs/AK3_PURE_P_INCREMENT_NORMAL_FORM.md",
-      "sections": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "6"
-      ],
-      "sha256": "7882ca634822e15d3c2e0a17ef76384919c2b3bf849e28bad0981b13c5053be6"
+      "scope": "source-bound raw boundary-locality induction only",
+      "section_sha256": "4e0de9fda1b2b87cabd92f65db260ac82c194b4e0aada3e78bd509c08f75e2d8",
+      "start_marker": "### 4.1 Raw boundary-locality pump"
     }
   }
 }
