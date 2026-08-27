@@ -123,11 +123,18 @@ finite quotient do not close a route.
   constructs literal correction words in \(F(c,t)\) nor cancels their
   nonabelian residual in \([N,N]\).  It does give the exact sieve
   \(S_\infty(D_{ij})=1+\delta_{ij}\), excluding every off-diagonal anchored
-  correction.  The next constructive target is the fourteen-coordinate
+  correction.  The coordinate-four theorem proves \(R_{4,i}=0\) for every
+  \(i\geq0\), so \(V_{i,4}\) is two-periodic.  Its seed values are both one
+  while the required fourth target bit is zero; every diagonal anchored
+  correction is therefore excluded as well.  The complete anchored family
+  \(D_{ij}\) now fails a necessary class-two syndrome.  The former
+  constructive target was the fourteen-coordinate
   all-power diagonal sequence
   \(V_i=(U_1(D_{ii}),\ldots,U_{14}(D_{ii}))\), which must equal
   `11101011010101` before a diagonal candidate can pass the recorded
-  syndrome.  The weighted Green identity removes the untransported
+  syndrome.  The next constructive target is the full quadratic cokernel
+  equation on arbitrary balanced source-pair corrections, with every mixed
+  polarization retained.  The weighted Green identity removes the untransported
   merged-support shortlex sum, but the correct ordered-half wedge reader is
   not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
   occurrence augmentation.  Projected linear/outer terms outside that
@@ -138,15 +145,16 @@ finite quotient do not close a route.
   slot-zero transport bound directly from \(i=0\).  With
   \(\Delta_i=D_{i+1}-D_i\), the exact period-two proof object is
   \(G_i=u_{14}(\Delta_i)+\beta_{14}(D_i,\Delta_i)\); proving
-  \(G_{i+1}=G_i\) would make the two known nonzero boundary values exclude
-  the whole diagonal family.  Equivalently, for
+  \(G_{i+1}=G_i\) would prove the complete fourteen-coordinate recurrence.
+  Its fourth coordinate is now proved separately and already excludes the
+  whole diagonal family.  Equivalently, for
   \(E_i=D_{i+2}-D_i\), the all-index target is
   \(R_{k,i}=\lambda_k\Pi_{\rho_k}(M_B(D_{i+2})-M_B(D_i))=0\); the smallest
   proved exact obligation is its conservative 2,380-bit window
   \(1\leq k\leq14,\ 0\leq i\leq169\).  Coordinate four is now evaluated
-  to zero for \(3\leq i\leq169\), leaving exactly 2,213 unevaluated values:
-  2,210 in the other thirteen coordinates and the three coordinate-four
-  seeds.
+  to zero for every index, leaving exactly 2,210 unevaluated values in the
+  other thirteen coordinates.  These remaining diagonal coordinates are
+  no longer needed to exclude the anchored family.
   The exact ordered-reader decomposition rewrites the actual transported
   leaf as a common invariant Green scalar, the one-vertex defect, and the
   differentiated inversion term.  The common scalar cancels because the
@@ -205,8 +213,8 @@ finite quotient do not close a route.
   allowance for whole-core cancellation, gives onset 130.  Hence the
   protected catalog proves only \(R_{k,i+40}=R_{k,i}\) for \(i\geq130\),
   giving the 2,380-bit window above.  The fourth coordinate now contributes
-  167 proved zeros inside that window; 2,213 values remain unevaluated, so
-  no all-coordinate vanishing or period-two claim is proved.  In the
+  all 170 proved zeros inside that window; 2,210 values remain unevaluated,
+  so no all-coordinate vanishing or period-two claim is proved.  In the
   fourth three-point coordinate, however, the powered element acts
   trivially and every one-step-shell chord label has an all-index constant
   projected color.  The frozen crossing set then proves termwise that the
@@ -229,9 +237,12 @@ finite quotient do not close a route.
   48 rows to the natural-side simultaneous-shift seams \(\Theta\).  The
   aggregate seam then vanishes: the projected shell mask is index-independent
   in each slot, consecutive old masks differ by that shell, and the
-  resulting self-pair is zero by alternation.  Hence
-  \(R_{4,i}=0\) for every \(i\geq3\).  The three lower local seams remain
-  unevaluated, so all-index coordinate-four vanishing is still open.
+  resulting self-pair is zero by alternation.  The source-bound seam
+  projection then evaluates the nonzero-slot local term as zero in the four
+  exhaustive cells \(i=0,1,2,i\geq3\).  The separate slot-zero occurrence
+  weights are index-independent and cancel between the two consecutive
+  shell atoms.  Hence \(L_4(q_i)=0\) and \(R_{4,i}=0\) for every
+  \(i\geq0\), excluding the complete anchored family as stated above.
   The section cocycle is not killed pointwise by
   invariant covectors: two tracked four-point coordinates have explicit
   nonzero quotient-section residuals.  Any survivor must then solve the full exterior-module cokernel

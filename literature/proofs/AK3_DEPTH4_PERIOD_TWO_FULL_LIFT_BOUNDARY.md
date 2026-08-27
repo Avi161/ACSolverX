@@ -10,9 +10,11 @@ u_{ij}=\delta_{ij}
 \]
 
 does not construct a free-group lift and does not obstruct the complete
-correction space.  It gives a sharp class-two sieve on the anchored
+correction space.  Together with the coordinate-four theorem of Section
+5.8, it gives a sharp class-two obstruction on the entire anchored
 two-parameter family: every off-diagonal anchored correction fails the
-full-wedge readout, while every diagonal correction clears that one bit.
+full-wedge readout, and every diagonal anchored correction fails the fourth
+finite-action readout.
 
 The other fourteen finite-action coordinates reduce to the crossed
 derivatives \(R_{k,i}\).  Their entire differentiated-inversion source is
@@ -21,9 +23,10 @@ inverse, transport, and quotient-section ordered profile into one weighted
 cut form.  The all-index target is therefore equivalent to the conservative
 2,380-bit window \(R_{k,i}\) with \(1\leq k\leq14\) and
 \(0\leq i\leq169\).  Section 5.7 proves the 167 coordinate-four values
-\(R_{4,i}=0\) for \(3\leq i\leq169\), leaving 2,213 unevaluated values:
-2,210 in the other thirteen coordinates and the three coordinate-four
-seeds.  Even simultaneous
+\(R_{4,i}=0\) for \(3\leq i\leq169\), and Section 5.8 closes the three
+coordinate-four seeds.  Thus all 170 coordinate-four values vanish and
+exactly 2,210 values in the other thirteen coordinates remain unevaluated.
+Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
@@ -331,8 +334,9 @@ For a diagonal direction, all fifteen recorded bits vanish precisely when
 \tag{4.5}
 \]
 
-The exact fixtures at \(i=0,1\) fail (4.5).  This is bounded exclusion of
-two diagonal members only, not an induction or an all-index obstruction.
+The exact fixtures at \(i=0,1\) fail (4.5).  At this point that is only a
+bounded exclusion; Section 5.8 upgrades it to an all-index coordinate-four
+obstruction for the complete diagonal family.
 
 ## 5. Smallest constructive next obligation
 
@@ -487,9 +491,10 @@ Thus the residual fourteen-bit values at \(i=0,1\) are respectively
 \tag{5.13}
 \]
 
-both nonzero.  If (5.11) is proved, (5.10) makes \(V_i\) two-periodic and
-(5.13) excludes every diagonal \(D_i\).  Until then, (5.13) excludes only
-\(i=0,1\).
+both nonzero.  The complete fourteen-coordinate identity (5.11) remains
+open.  Section 5.8 proves its fourth coordinate, which is already enough to
+exclude every diagonal \(D_i\), because the fourth target bit differs from
+both seed bits.
 
 ### 5.1 No invariant-covector shortcut
 
@@ -686,8 +691,9 @@ and canonical vertices in (5.21).  Section 5.3 removes the shortlex,
 base--direction, inverse, and one-vertex transport families from part of
 the unbounded obstruction.  The analysis below evaluates the transported
 ordered-section order-reversal sum and reduces the remaining exact
-obligation to the 2,380 finite values in (5.77).  Section 5.7 subsequently
-evaluates 167 of them and leaves the exact 2,213-value remainder.
+obligation to the 2,380 finite values in (5.77).  Sections 5.7--5.8
+subsequently evaluate all 170 coordinate-four values and leave the exact
+2,210-value remainder.
 
 ### 5.3 Weighted Green reduction and the order-reversal remainder
 
@@ -2960,17 +2966,18 @@ set
 \tag{5.77}
 \]
 
-This is \(14\cdot170=2{,}380\) bits.  Section 5.7 proves
-\(R_{4,i}=0\) for \(3\leq i\leq169\), so the exact unevaluated part of
+This is \(14\cdot170=2{,}380\) bits.  Sections 5.7--5.8 prove
+\(R_{4,i}=0\) for every \(i\geq0\), so the exact unevaluated part of
 (5.77) has
 
 \[
- 13\cdot170+3=2{,}213
+ 13\cdot170=2{,}210
 \tag{5.77a}
 \]
 
-values.  In particular, (5.76) is not a period-two theorem and the partial
-evaluation proves no lift or AK(3) conclusion.
+values.  The complete fourteen-coordinate period-two theorem still
+requires those 2,210 values.  The coordinate-four result alone excludes
+the anchored family, but proves no lift or AK(3) conclusion.
 
 ### 5.7 Coordinate-four new--new covariance
 
@@ -3395,24 +3402,101 @@ derivative values:
 \tag{5.97}
 \]
 
-The coordinate-four all-index target is now exactly the three lower local
-seams in (5.87).  None is evaluated here.  Thus (5.97) proves no
-all-index period two, lift, or AK(3) conclusion.
+Through (5.97), the coordinate-four all-index target is exactly the three
+lower local seams in (5.87).  They are evaluated next; (5.97) alone proves
+no all-index period two, lift, or AK(3) conclusion.
 
-- If some \(i\) satisfies (4.5), freeze \(F=D_{ii}\) and solve the complete
-  second-layer equation (3.9).  Only that full exterior-module equation
-  reaches \(F/\gamma_3N\).
-- If no \(i\) satisfies (4.5), the complete diagonal anchored ansatz is
-  excluded, but arbitrary balanced source pairs remain.
-- For sums of source directions, the mixed polarizations of \(\Theta\) are
-  mandatory.  The unary delta theorem determines no such cross term.
+### 5.8 Coordinate-four seed seams and the anchored-family obstruction
 
-If the diagonal ansatz fails, the next global formulation is the quadratic
-cokernel equation (3.8) on the exact balanced source-pair parametrization of
-Section 2.  A genuine obstruction must be a covector or structural theorem
-on the full cokernel \(\mathcal C_2\) that detects every finite balanced
-source pair.  The full-wedge covector cannot do this, because every
-\(D_{ii}\) already kills it.
+Write \(L_{4,\ne0}(q_i)\) and \(L_{4,0}(q_i)\) for the nonzero-slot and
+slot-zero parts of the local term in (5.85).  The frozen collision-first
+raw manifest has 42 active nonzero-slot coordinates: nine in slot two,
+fifteen in slot three, and eighteen in slot four.  Each coordinate occurs
+at exactly the prescribed polarity pair
+
+\[
+ \{1,6\},\qquad \{9,14\},\qquad \{15,16\},
+\tag{5.98}
+\]
+
+so its 84 records are precisely the occurrence records required by
+(5.85), with no virtual-row multiplicity.
+
+The source-bound finite projection
+<code>.scratch/period_two_coordinate4_local_seams_checker.py</code>
+applies the authoritative rightmost-first action (5.78) to every central
+and first-half label.  It is bound to the independently replayed raw
+manifest of SHA-256
+<code>6f83559c4edfb27575beac7df28a774732a92dd81738656036278da00ddde9ef</code>
+and to the exact Section 5.7 source interval of SHA-256
+<code>749ab9456dc3fb2adce711baaa757151c3dddd5f37f9ca29246f0615f792ff8c</code>.
+The evaluator SHA-256 is
+<code>54a55bd29758506e916b90a05dfb319ef56bf7df0ead5179139f8cb0b9b708d9</code>.
+Its four exhaustive cell values are
+
+\[
+\begin{array}{c|cccc}
+ i&0&1&2&i\geq3\\ \hline
+ L_{4,\ne0}(q_i)&0&0&0&0.
+\end{array}
+\tag{5.99}
+\]
+
+This is a projection of the literal first-half lists, not the scalar raw
+bit.  The evaluator compares its word action with the existing finite-wedge
+point action, checks every coordinate pair in (5.98), and checks all 84
+protected-cell pumps.  In the protected cell the first-half lists agree
+after one increment and every central color agrees; the source-bound
+horizon induction and (5.81) then extend the last column of (5.99) to every
+\(i\geq3\).  The three consecutive nonzero-slot seams are all zero.
+
+Slot zero requires no finite evaluation.  Equations (5.43)--(5.45) make
+each of its six first-half factors independent of \(i\), while (5.81)
+makes the corresponding central color independent of \(i\).  Hence each
+slot-zero occurrence weight in (5.85) is constant.  The one-step shell has
+the two consecutive slot-zero atoms \(e_{y_i}+e_{y_{i+1}}\), so
+
+\[
+ L_{4,0}(q_i)=0\qquad(i\geq0).
+\tag{5.100}
+\]
+
+Combining (5.99)--(5.100) with (5.96) closes the three seams in (5.87):
+
+\[
+ \boxed{L_4(q_i)=0,\qquad R_{4,i}=0\qquad(i\geq0).}
+\tag{5.101}
+\]
+
+By the definition of the crossed derivative,
+\(R_{4,i}=V_{i+2,4}+V_{i,4}\).  Thus \(V_{i,4}\) is two-periodic.  The
+fixtures (5.12) have
+
+\[
+ V_{0,4}=V_{1,4}=1,
+ \qquad (C_{14})_4=0,
+\tag{5.102}
+\]
+
+so \(V_{i,4}=1\) for every \(i\geq0\), and no diagonal \(D_{ii}\) satisfies
+(4.5).  Together with the full-wedge exclusion (4.4) for \(i\ne j\), this
+excludes every member of the complete anchored family \(D_{ij}\) through
+the necessary class-two syndrome.
+
+This is not an obstruction to arbitrary balanced source-pair corrections.
+Those remain governed by the full quadratic cokernel equation (3.8), and
+even a solution there would still require the literal higher-defect step
+(1.10).
+
+For sums of source directions, the mixed polarizations of \(\Theta\) are
+mandatory.  The unary delta theorem determines no such cross term.
+
+With the anchored ansatz excluded, the next global formulation is the
+quadratic cokernel equation (3.8) on the exact balanced source-pair
+parametrization of Section 2.  A genuine obstruction must be a covector or
+structural theorem on the full cokernel \(\mathcal C_2\) that detects every
+finite balanced source pair.  The full-wedge covector cannot do this,
+because every \(D_{ii}\) already kills it.
 
 ## 6. Literal and AK(3) boundaries
 
