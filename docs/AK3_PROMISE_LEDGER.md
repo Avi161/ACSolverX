@@ -137,10 +137,13 @@ finite quotient do not close a route.
   polarization retained.  The universal relative-displacement map
   \(\Xi\) sends a wedge \(e_{qH}\wedge e_{rH}\) to the unoriented double
   coset of \(q^{-1}r\).  Since all five lifting operators have augmentation
-  zero, it gives a surjection from the full class-two cokernel onto the
-  infinite-dimensional vector space indexed by nontrivial
-  \(H\backslash Q/H\) modulo inversion.  Thus every candidate must satisfy
-  \(\Xi(\Theta(F))=0\).  The complete balanced source pair has an exact
+  zero, it gives an integral surjection from the full class-two cokernel:
+  non-self-inverse double-coset pairs contribute signed \(\mathbb Z\)
+  buckets, while inversion-fixed classes contribute \(\mathbb Z/2\).
+  Reducing gives the infinite-dimensional mod-two histogram indexed by
+  nontrivial \(H\backslash Q/H\) modulo inversion.  Thus every candidate
+  must kill both the integral and mod-two relative-displacement maps.  The
+  complete balanced source pair has an exact
   anchored expansion through both source slots, and its \(\Xi\)-defect is
   the affine constant plus all anchored unary buckets plus every mixed
   bucket.  The anchored family has nonzero \(\Xi\)-defect, but no theorem
@@ -151,8 +154,14 @@ finite quotient do not close a route.
   central-label comparisons retain their actual source shortlex predicate
   and relative double-coset bucket.  Diagonal \(Q\)-invariance cannot be
   applied to intermediate ordered-half tensors, so this consolidation is
-  not an order-free cancellation.  The weighted Green identity removes the
-  untransported
+  not an order-free cancellation.  Integrally, however, every
+  non-self-inverse bucket admits a \(Q\)-invariant orientation.  Pairing the
+  equal positive/negative occurrence counts cancels its section-order
+  tensors and gives an exact signed cross-correlation formula with the 120
+  relative occurrence multipliers.  Hence mixed-Hessian shortlex difficulty
+  is confined to inversion-fixed \(\mathbb Z/2\)-buckets; the free
+  correlations remain unbounded and unevaluated.  The weighted Green
+  identity removes the untransported
   merged-support shortlex sum, but the correct ordered-half wedge reader is
   not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
   occurrence augmentation.  Projected linear/outer terms outside that

@@ -28,8 +28,9 @@ coordinate-four seeds.  Thus all 170 coordinate-four values vanish and
 exactly 2,210 values in the other thirteen coordinates remain unevaluated.
 Section 3.1 now replaces that finite shadow by a universal
 relative-displacement quotient of the full class-two cokernel.  It is
-infinite-dimensional over \(\mathbb F_2\) and gives the next exact gate for
-arbitrary balanced source-pair corrections.  Even simultaneous
+integrally of infinite free rank with additional infinite two-torsion, and
+its mod-two reduction gives the next exact gate for arbitrary balanced
+source-pair corrections.  Even simultaneous
 vanishing of all fifteen recorded bits would be only a necessary condition
 for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
@@ -344,6 +345,49 @@ and inversion sends the exponent sequence
 the only orientation caveat: an orbit stabilizer which exchanges the two
 vertices acts by minus one integrally but by one on \(\overline W\).
 
+There is a stronger integral form.  Let \(\mathscr D_2\) be the set of
+two-element inversion orbits \(\{D,D^{-1}\}\), and let \(\mathscr D_1\) be
+the set of nonidentity inversion-fixed double cosets.  Then
+
+\[
+ \boxed{
+ W_Q\cong
+ \bigoplus_{\mathscr D_2}\mathbb Z
+ \ \oplus\
+ \bigoplus_{\mathscr D_1}\mathbb Z/2.}
+\tag{3.15a}
+\]
+
+Choose one orientation \(D^+\) in every member of \(\mathscr D_2\).  If
+\(D=Hq^{-1}rH\), the integral coinvariant map is
+
+\[
+ \Xi_{\mathbb Z}(e_{qH}\wedge e_{rH})
+ =
+ \begin{cases}
+  +z_{\{D,D^{-1}\}},&D=D^+,\\
+  -z_{\{D,D^{-1}\}},&D^{-1}=D^+,\\
+  \bar z_D\in\mathbb Z/2,&D=D^{-1}.
+ \end{cases}
+\tag{3.15b}
+\]
+
+There are no further relations.  The free factor \(H\) is malnormal in
+\(C_2*\mathbb Z\), so the pointwise stabilizer of two distinct vertices is
+trivial.  A setwise stabilizer can only be the unique endpoint swap.  Such
+a swap exists exactly when \(D=D^{-1}\), and it imposes only
+\(z_D=-z_D\).  In the exponent normal form (3.15), this fixed-point
+condition is
+
+\[
+ (n_0,\ldots,n_k)=(-n_k,\ldots,-n_0).
+\tag{3.15c}
+\]
+
+In particular, a self-inverse sequence has an even number of \(t\)-blocks;
+an odd number would force its nonzero middle exponent to equal its
+negative.
+
 For \(L_r=\sum_g a_{r,g}g\), diagonal \(Q\)-invariance gives
 
 \[
@@ -357,8 +401,27 @@ For \(L_r=\sum_g a_{r,g}g\), diagonal \(Q\)-invariance gives
 \]
 
 because all five exact operators have augmentation zero.  Therefore
-\(\Xi_0\) descends through every second-layer correction and gives a
-surjective quotient
+\(\Xi_{\mathbb Z}\) and \(\Xi_0\) both descend through every second-layer
+correction.  Integrally this gives the surjection
+
+\[
+ \boxed{
+ \Xi_{\mathbb Z}:\mathcal C_2\twoheadrightarrow W_Q
+ \cong
+ \bigoplus_{\mathscr D_2}\mathbb Z
+ \oplus
+ \bigoplus_{\mathscr D_1}\mathbb Z/2.}
+\tag{3.17}
+\]
+
+The one-block sequences \((n)\), paired with \((-n)\), give infinitely
+many free summands, while the anti-palindromic two-block sequences
+\((n,-n)\) give infinitely many inversion-fixed summands.  Thus
+\(\mathcal C_2\) has a quotient of infinite free rank and also a quotient
+with infinite \(\mathbb Z/2\)-rank.
+
+Reducing the free coordinates modulo two and retaining the
+inversion-fixed torsion coordinates recovers the surjective quotient
 
 \[
  \boxed{
@@ -366,7 +429,7 @@ surjective quotient
  \mathbb F_2^{(\mathscr D)},
  \qquad
  \Xi([w])=\Xi_0(w\bmod2).}
-\tag{3.17}
+\tag{3.17a}
 \]
 
 In particular, \(\mathcal C_2\) has an infinite-dimensional
@@ -374,7 +437,10 @@ characteristic-two quotient.  Every candidate first-layer correction must
 satisfy the exact necessary condition
 
 \[
- \boxed{\Xi(\Theta(F))=0.}
+ \boxed{
+ \Xi_{\mathbb Z}(\Theta(F))=0,
+ \qquad\text{hence}\qquad
+ \Xi(\Theta(F))=0.}
 \tag{3.18}
 \]
 
@@ -387,9 +453,11 @@ existing finite shadows; it is not another bounded point-action quotient.
 
 Equation (3.18) is not sufficient for (3.8).  A global class-two
 obstruction would follow from proving
-\(\Xi(\Theta(F))\ne0\) for every finite balanced source pair.  If a
-balanced source pair kills (3.18), its complete class in \(\mathcal C_2\)
-must still be evaluated.  Neither alternative is decided here.
+\(\Xi_{\mathbb Z}(\Theta(F))\ne0\) for every finite balanced source pair;
+the stronger mod-two claim \(\Xi(\Theta(F))\ne0\) would also suffice.  If a
+balanced source pair kills the mod-two histogram, its signed integral
+buckets, and then its complete class in \(\mathcal C_2\), must still be
+evaluated.  Neither alternative is decided here.
 
 ### 3.2 Complete balanced-source expansion
 
@@ -619,6 +687,107 @@ Combining (3.22) and (3.31) gives every mixed bucket in (3.24) without a
 bounded source census.  It replaces the four equality, six inversion, and
 66 external scalar kernels by one exact double-coset-valued ordered cut.
 It does not evaluate that cut or prove bucket noncancellation.
+
+### 3.4 Free buckets are shortlex-free
+
+The integral refinement separates the genuinely ordered part of the mixed
+Hessian from its free relative-displacement coordinates.  Fix one oriented
+representative \(\Delta^+\) of a non-self-inverse double-coset pair and
+define, on an arbitrary integral tensor,
+
+\[
+ \mathcal R_{\Delta^+}(T):=
+ \sum_{Hx^{-1}yH=\Delta^+}T_{x,y}.
+\tag{3.33}
+\]
+
+Unlike the ordered-half reader (3.27), this is diagonally
+\(Q\)-invariant on every intermediate tensor.  On a final diagonal-free
+antisymmetric tensor it is exactly the chosen free \(\mathbb Z\)-coordinate
+of \(\Xi_{\mathbb Z}\).  For finite module currents \(f,g\) and \(m\in Q\),
+put
+
+\[
+ \mathcal C_{\Delta^+}(f,g;m)
+ :=
+ \sum_{x,y}f(x)g(y)
+ [H\widetilde x^{-1}m\widetilde yH=\Delta^+].
+\tag{3.34}
+\]
+
+The value is independent of the representatives \(\widetilde x,\widetilde
+y\).  Let the sixteen exact correction occurrences be
+\((s_o,\epsilon_o,q_o)\), in literal order, and put
+
+\[
+ m_{op}:=q_o^{-1}q_p.
+\tag{3.35}
+\]
+
+For integral homogeneous directions \(F,G\), write
+\(B_{\Xi_{\mathbb Z},\Delta^+}(F,G)\) for the \(\Delta^+\)-coordinate of
+the four-corner polarization of
+\(\Xi_{\mathbb Z}(\Theta)\).  Then
+
+\[
+\boxed{
+\begin{aligned}
+B_{\Xi_{\mathbb Z},\Delta^+}(F,G)
+={}&
+\sum_{s=0}^4 n_s
+\left(
+ \mathcal C_{\Delta^+}(F_s,G_s;1)
+ +\mathcal C_{\Delta^+}(G_s,F_s;1)
+\right)\\
+&+\sum_{o<p}\epsilon_o\epsilon_p
+\left(
+ \mathcal C_{\Delta^+}(F_{s_o},G_{s_p};m_{op})
+ +\mathcal C_{\Delta^+}(G_{s_o},F_{s_p};m_{op})
+\right),
+\end{aligned}}
+\tag{3.36}
+\]
+
+where
+
+\[
+ (n_0,n_1,n_2,n_3,n_4)=(3,2,1,1,1).
+\tag{3.37}
+\]
+
+To prove (3.36), use the complete conjugated canonical-section mixed tensor
+at each occurrence, not a bare section tensor.  Its positive jet is
+\(\Gamma_+(F_s,G_s)\), while its inverse jet is
+
+\[
+ \Gamma_-(F_s,G_s)
+ =-\Gamma_+(F_s,G_s)
+  +F_s\otimes G_s+G_s\otimes F_s.
+\tag{3.38}
+\]
+
+Each slot has equally many positive and negative occurrences, with common
+count (3.37).  Applying the \(Q\)-invariant reader
+\(\mathcal R_{\Delta^+}\) removes the absolute occurrence transports, so
+the two \(\Gamma_+\)-terms cancel in every polarity pair and leave the
+symmetrized outer term in the first line of (3.36).  The external mixed
+tensor between occurrences \(o<p\) retains its integral sign
+\(\epsilon_o\epsilon_p\); left normalization by \(q_o^{-1}\) gives the
+relative multiplier (3.35) and the second line of (3.36).  Propagated
+tensor diagonals lie in the trivial double coset and contribute nothing.
+Fixed-base and one-vertex terms have zero mixed polarization.  The exact
+sixteen-occurrence tensor theorem ensures that no local mixed term has been
+omitted.
+
+For an inversion-fixed double coset, no invariant oriented reader such as
+(3.33) exists: its endpoint swap reverses the integral wedge orientation.
+Summing both tensor orientations kills a final antisymmetric pair modulo
+two, so one must retain the ordered-half reader (3.27).  Consequently all
+source-shortlex and section-inversion difficulty in the mixed Hessian is
+confined to the \(\mathbb Z/2\)-buckets.  The free buckets are not thereby
+evaluated; (3.36) leaves unbounded relative cross-correlations of the
+complete balanced source currents.  Unary local and base terms also remain
+separate.
 
 ## 4. Exact diagonal sieve
 
