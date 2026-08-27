@@ -1718,6 +1718,70 @@ a surviving free bucket, that the affine defect cannot cancel this mixed
 value, that the full class-two lift equation is obstructed, or any
 AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion.
 
+### 3.12 Literal origin of the free witness
+
+The \(HTH\)-coordinate has a sharper occurrence-level description.  Before
+collecting double cosets, its complete wedge support consists of fourteen
+ordered vertex pairs.  The integral production subtotals are
+
+\[
+ \boxed{
+ B_{HTH}^{\mathrm{positive\ internal}}=-5,\qquad
+ B_{HTH}^{\mathrm{external}}=4,\qquad
+ B_{HTH}^{\mathrm{negative\ internal}}
+ =B_{HTH}^{\mathrm{propagated\ diagonal}}=0.}
+\tag{3.92}
+\]
+
+Thus their sum is the coefficient \(-1\) in (3.91).  Thirteen of the
+fourteen ordered-pair coefficients are even.  The unique odd row is
+
+\[
+ \boxed{
+ (e_{TT}\wedge e_{TTT})\text{ with coefficient }-1.}
+\tag{3.93}
+\]
+
+It comes from exactly one external occurrence term.  In one-based literal
+order, occurrence \(3\) has slot zero, sign \(+1\), and action \(tc\);
+occurrence \(16\) has slot four, sign \(-1\), and identity action.  For
+arbitrary homogeneous directions \(F,G\), this occurrence pair contributes
+
+\[
+ \boxed{
+ \mathcal E_{3,16}(F,G)
+ =-(tc\,F_0)\otimes G_4-(tc\,G_0)\otimes F_4.}
+\tag{3.94}
+\]
+
+For \(F=F_*\) and \(G=G_*\),
+
+\[
+ G_{*,0}(cTTT)=1,\qquad
+ F_{*,4}(TTT)=1,\qquad
+ tc(cTTT)=TT.
+\]
+
+Hence the second term of (3.94) contains
+\(-e_{TT}\otimes e_{TTT}\), proving the odd row in (3.93).
+The complete external loop has been replayed with literal occurrence
+indices and agrees coefficient-for-coefficient with the production
+external subtotal; the
+[provenance checker](../../.scratch/period_two_anchored_relative_bucket_hth_provenance.py)
+has SHA-256
+\(\texttt{f700ee1495342d83f9cfdc4ec703ef12288de2f6bc563ffbd4a9ad0f02f9b354}\),
+and its fourteen-row ledger has digest
+\(\texttt{5a47688c050b8fe7efb09e7a99381f6e0d891fea91a6ac01c6999be4029f4f42}\).
+
+Formula (3.94) is the local seed for a possible leading-bucket theorem:
+it couples a genuine source atom to the terminal \(t\)-forest flow.  It is
+not itself such a theorem.  For general sources the remaining occurrences
+can occupy the same double coset, and the affine unary tensor can also
+contribute.  Any global noncancellation argument must separate the
+slot-zero--terminal term simultaneously from those collisions; the single
+odd row cannot be transported by an unproved \(Q\)-equivariance of the
+Green map.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
