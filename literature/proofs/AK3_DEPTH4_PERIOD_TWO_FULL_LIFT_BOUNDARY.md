@@ -1896,6 +1896,73 @@ bucket.  A sound leading-bucket theorem must separate those remaining
 terms after ray aggregation, rather than treating the \(-1\) in (3.93) as
 a pointwise pivot.
 
+### 3.14 Height-band collision filter
+
+The exponent homomorphism gives an exact first filter on every possible
+collision with the conjugate-ray buckets.  Since \(H\subset\ker\nu_t\),
+the height
+
+\[
+ h(qH):=\nu_t(q)
+\tag{3.101}
+\]
+
+is well defined on \(X\).  For the sixteen literal occurrence actions,
+put \(a_o=\nu_t(q_o)\).  The pinned occurrence table gives
+
+\[
+\boxed{
+ (a_1,\ldots,a_{16})
+ =(0,1,1,0,2,0,0,-1,1,1,1,0,2,1,1,0).}
+\tag{3.102}
+\]
+
+Consider an external tensor atom whose first leg is the vertex \(x\) in
+occurrence \(o\) and whose second leg is \(y\) in occurrence \(p>o\).
+After the literal actions its relative displacement has height
+
+\[
+\begin{aligned}
+ \nu_t\bigl((q_ox)^{-1}q_py\bigr)
+ =h(y)-h(x)+a_p-a_o.
+\end{aligned}
+\tag{3.103}
+\]
+
+Every \(\mathscr D(v)\) has height \(-1\), and its inverse has height
+\(+1\).  Hence this atom can contribute to the corresponding free
+summand only on one of the two diagonals
+
+\[
+\boxed{
+ h(y)-h(x)=a_o-a_p-1
+ \quad\text{or}\quad
+ h(y)-h(x)=a_o-a_p+1.}
+\tag{3.104}
+\]
+
+The first equality is the \(\mathscr D(v)\)-orientation and the second is
+its inverse.  Internal positive or negative occurrence tensors use the
+same action on both legs, so their necessary height condition is simply
+
+\[
+ \boxed{h(y)-h(x)=\pm1.}
+\tag{3.105}
+\]
+
+For the unique odd seed, \(o=3\), \(p=16\), and
+\((a_3,a_{16})=(1,0)\).  Its negative-height orientation in (3.104)
+therefore requires \(h(y)=h(x)\), exactly as in
+\(x=cTTT\), \(y=TTT\) before the actions in (3.94).
+
+Equations (3.102)--(3.105) replace an unrestricted pair comparison by two
+fixed height diagonals for each of the 120 external occurrence pairs and
+the adjacent-height diagonals for every internal term.  They are only a
+necessary filter: equal height displacement does not imply equality of
+\(H\)-double cosets.  The remaining normal-form test must identify the
+left \(t\)-ray in (3.99), and the affine unary tensor must be filtered
+separately.  No cancellation theorem follows from height alone.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
