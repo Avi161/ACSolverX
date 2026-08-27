@@ -153,7 +153,7 @@ def summarise(rows, budget, checkpoints):
     return per_arm
 
 
-def write_outputs(rows, per_arm, budget, checkpoints, wall_total):
+def write_outputs(rows, per_arm, budget, checkpoints, wall_total, regen_cmd):
     os.makedirs(OUT_DIR, exist_ok=True)
     jsonl = os.path.join(OUT_DIR, "bench60_newmoves.jsonl")
     with open(jsonl, "w") as f:
@@ -213,7 +213,7 @@ def write_outputs(rows, per_arm, budget, checkpoints, wall_total):
         "(see nodes/s), so read the table twice — once at equal nodes, once at "
         "equal time via the nodes/s column.",
         "",
-        "Regenerate: `python -m experiments.search.bench_new_moves`.",
+        f"Regenerate: `{regen_cmd}`.",
     ]
     with open(md, "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -272,7 +272,12 @@ def main():
 
     results.sort(key=lambda r: (ARMS.index(r["arm"]), r["pres_id"]))
     per_arm = summarise(results, args.budget, checkpoints)
-    paths = write_outputs(results, per_arm, args.budget, checkpoints, wall_total)
+    regen = f"python -m experiments.search.bench_new_moves --budget {args.budget}"
+    if args.goal_smax != 2:
+        regen += f" --goal-smax {args.goal_smax}"
+    if subw:
+        regen += f" --subw {subw[0]} {subw[1]}"
+    paths = write_outputs(results, per_arm, args.budget, checkpoints, wall_total, regen)
     for arm in ARMS:
         e = per_arm[arm]
         print(f"{arm:18s} " +

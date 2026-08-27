@@ -1,0 +1,7 @@
+arm,solved_at_100,solved_at_250,solved_at_500,solved_at_1000,unverified_solves,median_nodes_solved,median_path,solves_using_donor_edges,total_wall_s,nodes_per_s
+greedy,17,20,26,29,0,61,16,,65.0,555
+s20_mk2,21,28,35,37,0,52,22,,86.6,331
+recommended,20,31,37,43,0,106,25,,71.8,366
+macro_L,17,20,26,29,0,61,16,0,199.9,181
+macro_s20_mk2,21,28,35,37,0,52,22,0,153.8,186
+macro_recommended,20,31,37,43,0,106,25,0,131.2,200
