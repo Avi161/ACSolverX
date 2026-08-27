@@ -519,6 +519,107 @@ noncancellation in at least one \(\mathscr D\)-coordinate for every finite
 coefficient set in (3.24), or to construct a balanced coefficient set for
 which the complete vector vanishes.
 
+### 3.3 Exact vector-valued mixed kernel
+
+The relative-displacement quotient packages the complete mixed
+polarization, but it does not remove source shortlex.  Use the
+collision-aggregated atomic-token universe \(\mathscr P\), literal
+chronology \(<_\chi\), central labels \(\ell(p)\), and exact local tensors
+\(T_p\) from Lemma 5.1b.  For an arbitrary intermediate tensor, define the
+ordered-half histogram
+
+\[
+ W_\Xi(T):=
+ \sum_{x<_{\rm sl}y}T_{x,y}\,
+ \delta_{[Hx^{-1}yH]_\pm}
+ \pmod2.
+\tag{3.27}
+\]
+
+This map is only a bookkeeping reader on an intermediate tensor.  On the
+final diagonal-free antisymmetric residual tensor it agrees with \(\Xi\);
+it is not \(Q\)-equivariant term by term before that final cancellation.
+Put
+
+\[
+\begin{aligned}
+ \zeta_\Xi(p)&:=W_\Xi(T_p),\\
+ K_\Xi(p,q)&:=
+ [\ell(p)<_{\rm sl}\ell(q)]\,
+ \delta_{[H\ell(p)^{-1}\ell(q)H]_\pm},
+ \qquad p<_\chi q,
+\end{aligned}
+\tag{3.28}
+\]
+
+with \(K_\Xi(p,q)=0\) when the two labels agree.  For any zero-linear
+endpoint with activity mask \(a\), the literal-stream theorem applied
+coordinatewise in \(\mathbb F_2^{(\mathscr D)}\) gives
+
+\[
+ \boxed{
+ \Phi_\Xi(a)
+ =\sum_p a(p)\zeta_\Xi(p)
+ +\sum_{p<_\chi q}a(p)a(q)K_\Xi(p,q).}
+\tag{3.29}
+\]
+
+If \(a\) is the fixed base mask and \(d\) is the toggle mask of a
+homogeneous direction \(D\), polarization of (3.29) gives the exact unary
+formula
+
+\[
+\boxed{
+\begin{aligned}
+ U_\Xi(D)
+ ={}&\sum_p d(p)\zeta_\Xi(p)\\
+ &+\sum_{p<_\chi q}
+ \bigl(
+  a(p)d(q)+d(p)a(q)+d(p)d(q)
+ \bigr)K_\Xi(p,q).
+\end{aligned}}
+\tag{3.30}
+\]
+
+For two homogeneous directions with toggle masks \(d,e\), polarizing once
+more cancels every base and one-token term:
+
+\[
+\boxed{
+ B_\Xi(D,E)
+ =\sum_{p<_\chi q}
+ \bigl(d(p)e(q)+e(p)d(q)\bigr)K_\Xi(p,q).}
+\tag{3.31}
+\]
+
+Thus local bridges, one-vertex transport defects, and terminal
+normalization remain mandatory in the unary term (3.30), through
+\(\zeta_\Xi\) and the base--direction cuts.  The one-token terms and every
+fixed base, raw, or quotient-section leg cancel from the bilinear Hessian
+(3.31).  The pairwise effects of transported sections and inverses survive
+exactly in the ordered kernel \(K_\Xi\).  It includes within-occurrence
+canonical-section inversion, with decreasing chronology in a negative
+occurrence, and every external occurrence comparison.
+
+It would be unsound to apply diagonal \(Q\)-invariance of \(\Xi\) to the
+individual transported section tensors and replace (3.31) by an unordered
+relative cross-correlation.  The ordered-half reader (3.27) is not
+\(Q\)-equivariant on those intermediate tensors.  The nonzero proved value
+
+\[
+ B_\infty(H(TTT),H(cTTT))=1
+\tag{3.32}
+\]
+
+is a concrete guard: any order-free occurrence formula which forces every
+homogeneous mixed polarization to vanish contradicts this scalar
+functional of \(\Xi\).
+
+Combining (3.22) and (3.31) gives every mixed bucket in (3.24) without a
+bounded source census.  It replaces the four equality, six inversion, and
+66 external scalar kernels by one exact double-coset-valued ordered cut.
+It does not evaluate that cut or prove bucket noncancellation.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and

@@ -145,7 +145,13 @@ finite quotient do not close a route.
   the affine constant plus all anchored unary buckets plus every mixed
   bucket.  The anchored family has nonzero \(\Xi\)-defect, but no theorem
   controls all mixed buckets; per-double-coset noncancellation is now the
-  exact global obstruction target.  The weighted Green identity removes the
+  exact global obstruction target.  The mixed \(\Xi\)-Hessian is now one
+  exact vector-valued literal-stream cut: one-token local and fixed-base
+  terms cancel under polarization, while within-occurrence and external
+  central-label comparisons retain their actual source shortlex predicate
+  and relative double-coset bucket.  Diagonal \(Q\)-invariance cannot be
+  applied to intermediate ordered-half tensors, so this consolidation is
+  not an order-free cancellation.  The weighted Green identity removes the
   untransported
   merged-support shortlex sum, but the correct ordered-half wedge reader is
   not \(Q\)-equivariant, so transported leaf terms do not cancel by signed
