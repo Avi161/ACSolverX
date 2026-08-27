@@ -4185,6 +4185,77 @@ separate.  The next obstruction must control those area cancellations in
 the common nilpotent profile rather than infer them from boundary
 injectivity alone.
 
+### 3.36 Metric radius alone cannot order arbitrary colliders
+
+The special outward motion in (3.183)--(3.190) does not extend to an
+arbitrary retained cross pair by tree geometry alone.  Suppose a positive
+cross pair $(x,y)$ hits the conjugate-$g$ bucket at $w$.  Equality of the
+oriented double cosets gives a diagonal tree isometry $q$ such that
+
+\[
+ qx=w,
+ \qquad
+ qgy=gw.
+ \tag{3.262}
+\]
+
+Let $\mathcal A$ be the axis of $g$, and put
+
+\[
+ h:=q^{-1}gq,
+ \qquad
+ \mathcal B:=q^{-1}\mathcal A.
+ \tag{3.263}
+\]
+
+Then $\mathcal B$ is the axis of $h$, and (3.262) gives the exact radius
+translation
+
+\[
+\boxed{
+\begin{aligned}
+ r_{\mathcal A}(w)&=d(x,\mathcal B),\\
+ r_{\mathcal A}(x)&=d(x,\mathcal A),\\
+ r_{\mathcal A}(y)&=d(hx,\mathcal A).
+\end{aligned}}
+\tag{3.264}
+\]
+
+Indeed, the first equality follows by applying $q^{-1}$, while
+$gy=hx$ and $g\mathcal A=\mathcal A$ give the third.
+
+There is no metric inequality
+
+\[
+ d(x,\mathcal B)
+ \leq\max\{d(x,\mathcal A),d(hx,\mathcal A)\}
+ \tag{3.265}
+\]
+
+for type-preserving actions on the same biregular tree.  Choose a line
+$\mathcal B$, a depth-$R$ vertex $x$ above it, and a hyperbolic $h$ which
+translates $\mathcal B$ by $\tau$ while carrying the branch containing
+$x$ to the corresponding depth-$R$ branch at the translated projection.
+Let $x'=hx$, choose a line $\mathcal A$ containing the geodesic
+$[x,x']$, and choose a conjugate hyperbolic $g$ of translation length
+$\tau$ with axis $\mathcal A$.  Then
+
+\[
+ d(x,\mathcal A)=d(hx,\mathcal A)=0,
+ \qquad
+ d(x,\mathcal B)=R>0.
+ \tag{3.266}
+\]
+
+This configuration uses the full type-preserving automorphism group of
+the tree; it is not asserted to come from a word $q\in C_2*\mathbb Z$ for
+one of the eight paired generators.  Its role is exact and limited: no
+proof based only on the unlabeled Bass--Serre metric can promote maximal
+source radius to a leading paired bucket.  Any such theorem in the present
+group must use the reduced $C_2*\mathbb Z$ labels, equivalently the
+free-subgroup orbit equations (3.214)--(3.216), to exclude the
+counterconfiguration.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
