@@ -4256,6 +4256,112 @@ group must use the reduced $C_2*\mathbb Z$ labels, equivalently the
 free-subgroup orbit equations (3.214)--(3.216), to exclude the
 counterconfiguration.
 
+### 3.37 Exact corner equation for global paired anisotropy
+
+The complete one-pair anisotropy question from (3.216) has a concise
+corner form, but the group-ring domain property does not decide it.  Keep
+
+\[
+ g=kc^\epsilon,
+ \qquad
+ P:=\mathbf F^*k\alpha^\epsilon(\mathbf F),
+ \qquad
+ S:=P+\alpha(P),
+ \tag{3.267}
+\]
+
+and put
+
+\[
+ \mathbf A:=\mathbf F(1+c)\in\mathbb ZQ.
+ \tag{3.268}
+\]
+
+For both values of $\epsilon$, direct semidirect multiplication gives
+
+\[
+\boxed{
+ \mathbf A^*g\mathbf A
+ =(1+c)P(1+c)
+ =S(1+c).}
+\tag{3.269}
+\]
+
+For $\epsilon=1$, the middle expression initially contains $Pc$, but
+$c(1+c)=1+c$ gives the same formula.  The element $S$ is
+$\alpha$-invariant.  Hence
+
+\[
+ (\mathbf A^*g\mathbf A)^*=S^*(1+c).
+ \tag{3.270}
+\]
+
+If $T\in\mathbb ZK$, then $T(1+c)=T+Tc=0$ forces $T=0$, because the
+$K$ and $Kc$ supports are disjoint.  Therefore
+
+\[
+ \boxed{
+ \mathbf A^*g\mathbf A\ \text{is self-adjoint}
+ \Longleftrightarrow
+ S=S^*.}
+ \tag{3.271}
+\]
+
+Writing $P=\sum_sA_s s$ and
+$C_{[s]_\alpha}=A_s+A_{\alpha(s)}$ as in (3.215), equation (3.271) is
+exactly the vanishing of all nonfixed free coordinates:
+
+\[
+ C_d=C_{\iota d}
+ \qquad(d\ne\iota d).
+ \tag{3.272}
+\]
+
+The inversion-fixed coordinates are not decided by self-adjointness; full
+integral wedge vanishing additionally requires
+
+\[
+ C_d\equiv0\pmod2
+ \qquad(d=\iota d).
+ \tag{3.273}
+\]
+
+Consequently global paired-tensor anisotropy for this $g$ is exactly the
+assertion that no nonzero finite $\mathbf F\in\mathbb ZK$ satisfies
+
+\[
+ \boxed{
+ \mathbf F^*k\alpha^\epsilon(\mathbf F)
+ \in
+ \mathbb Z\,1+(1+*)\mathbb ZK+(1-\alpha)\mathbb ZK.}
+ \tag{3.274}
+\]
+
+Two tempting domain shortcuts do not prove (3.274).  First,
+$\mathbb ZQ$ has the torsion zero divisor
+
+\[
+ (1-c)(1+c)=0,
+ \tag{3.275}
+\]
+
+and $\mathbf A$ already contains the factor $1+c$.  Formula (3.269)
+reduces the corner honestly to the equation $S=S^*$ in $\mathbb ZK$ but
+does not cancel $\mathbf A$.  Second, no total order on $K$ can be
+$\alpha$-invariant.  If an order-preserving involution sent some element
+$u$ to a distinct $\alpha(u)$, one of the two strict inequalities between
+them would be reversed after applying $\alpha$; hence every element would
+have to be fixed, whereas $\alpha$ swaps $t$ and $ctc$.
+
+Thus the ordinary leading-term proof for a group-ring domain cannot compare
+the extrema of $P$ and $\alpha(P)$ in one invariant order.  No finite
+solution of (3.274) is constructed here, and no impossibility theorem is
+claimed.  The exact labelled task is now either to prove a leading-term
+theorem for the symmetrized corner $S$, or to exhibit a nonzero finite
+$\mathbf F$ satisfying (3.272)--(3.273).  Even a resolution of this
+one-pair question would still leave cancellation among the fifteen
+laminar terms and against the affine unary value.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
