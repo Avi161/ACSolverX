@@ -146,17 +146,25 @@ finite quotient do not close a route.
   factor left free.  Thus every metabelian quotient of the tagged ambient
   group is blind.  This does not lift the conjugacy to `Q_A` or close the
   relative Peiffer class.
+- **Unchanged metabelian conjugator does not lift:** the literal defect
+  `E=D^-1*q*D*B^-1` lies in `Q_A''` but is nontrivial.  After shifting into
+  the Magnus base it has Britton form
+  `delta^-1*b*x^-1*delta^2*x*b^-1`; the middle word has nonzero
+  `a`-exponent and cannot lie in the associated subgroup.  This closes only
+  conjugation by the displayed `D^-1`.  A `Q_A''`-corrected conjugator,
+  multi-row Peiffer lift, or different full relative path remains possible.
+  Do not open a finite conjugator ledger.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
   one-tag endpoint.  Do not escalate through more ambient lower-central
   quotients or metabelian quotients: they are all blind.  For the tagged route,
-  lifting the exact metabelian conjugacy through `Q_A''` in the full relative
-  crossed module is one available route; another full relative path may bypass
-  it.  Do not add another finite alternation category.  The lifts are complete,
-  but no closure to `(A,B,Xyz)` is proved. Do not add another sequential cleanup
-  or pinned-donor category. No fixed-base or failed-search result is evidence
-  against the bridge.
+  a `Q_A''`-corrected lift in the full relative crossed module is one available
+  route; another full relative path may bypass it.  The unchanged conjugator is
+  closed.  Do not add another finite alternation or conjugator category.  The
+  lifts are complete, but no closure to `(A,B,Xyz)` is proved. Do not add
+  another sequential cleanup or pinned-donor category. No fixed-base or
+  failed-search result is evidence against the bridge.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See

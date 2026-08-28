@@ -172,6 +172,8 @@ def test_mms02_tagged_buffer_exact_word_replay():
     A_bar = substitute(A, {"z": "Yx"})
     B_bar = substitute(B, {"z": "Yx"})
     r_bar = substitute(r, {"z": "Yx"})
+    E = substitute(product(inverse(D), q, D, inverse(B)), {"z": "Yx"})
+    assert E == substitute(product(inverse(D), q, D, D, inverse(q)), {"z": "Yx"})
     assert exponent_vector(A_bar, "xy") == (0, 1)
     assert exponent_vector(r_bar, "xy") == (0, 1)
     assert exponent_vector(q, "xy") == (-1, 1)

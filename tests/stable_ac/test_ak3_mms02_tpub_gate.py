@@ -104,6 +104,70 @@ def test_gate_a_magnus_base_and_defect_normal_form() -> None:
     assert _substitute_d_inverse(shifted_defect) == reduced_defect
     assert _free_reduce(reduced_defect) == reduced_defect
 
+    def a_exponent(word: tuple[int, ...]) -> int:
+        return sum(1 if letter == 1 else -1 if letter == -1 else 0 for letter in word)
+
+    delta = reduced_defect
+    delta_squared = _free_reduce((*delta, *delta))
+    d_inverse = (2, -1, -2, 1, -2, -2)
+    d = tuple(-letter for letter in reversed(d_inverse))
+    phi_a = (2,)
+    phi_b = d
+    assert a_exponent(delta) == -1
+    assert a_exponent(delta_squared) == -2
+    assert a_exponent(phi_a) == 0
+    assert a_exponent(phi_b) == 0
+
+    shifted_q_tokens = ["x", "x", "X", "a", "X", "X"]
+    freely_reduced_tokens: list[str] = []
+    for token in shifted_q_tokens:
+        if freely_reduced_tokens and {freely_reduced_tokens[-1], token} == {"x", "X"}:
+            freely_reduced_tokens.pop()
+        else:
+            freely_reduced_tokens.append(token)
+    assert freely_reduced_tokens == ["x", "a", "X", "X"]
+    assert freely_reduced_tokens[:3] == ["x", "a", "X"]
+    hnn_reduced_tokens = ["b", *freely_reduced_tokens[3:]]
+    assert hnn_reduced_tokens == ["b", "X"]
+    shifted_q = ((2,), hnn_reduced_tokens[1])
+
+    def inverse_hnn(word: tuple[tuple[int, ...] | str, ...]):
+        inverse_word: list[tuple[int, ...] | str] = []
+        for syllable in reversed(word):
+            if isinstance(syllable, str):
+                inverse_word.append(syllable.swapcase())
+            else:
+                inverse_word.append(tuple(-letter for letter in reversed(syllable)))
+        return tuple(inverse_word)
+
+    def product_hnn(*words: tuple[tuple[int, ...] | str, ...]):
+        output: list[tuple[int, ...] | str] = []
+        for word in words:
+            for syllable in word:
+                if output and isinstance(output[-1], tuple) and isinstance(syllable, tuple):
+                    merged = _free_reduce((*output.pop(), *syllable))
+                    if merged:
+                        output.append(merged)
+                else:
+                    output.append(syllable)
+        return tuple(output)
+
+    shifted_d = (delta,)
+    shifted_e = product_hnn(
+        inverse_hnn(shifted_d),
+        shifted_q,
+        shifted_d,
+        shifted_d,
+        inverse_hnn(shifted_q),
+    )
+    assert shifted_e == (
+        _free_reduce((*tuple(-letter for letter in reversed(delta)), 2)),
+        "X",
+        delta_squared,
+        "x",
+        (-2,),
+    )
+
 
 def test_gate_b_nielsen_magnus_base_and_defect_normal_form() -> None:
     relator_at = _xy_to_at("XyyXYXyxYYxy")
