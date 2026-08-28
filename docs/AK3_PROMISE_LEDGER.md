@@ -48,11 +48,21 @@ finite quotient do not close a route.
   `(E_A,B,V_A)` or `(A,E_B,V_B)`, with exactly one base residual in
   `normal_closure(A,B)` and one relative kill-word residual. No third residual
   is required.
+- **Two residuals now have finite symbolic SLP certificates:** the 134-primitive
+  `Txy` replay gives a literal conjugate-product `H` in `zYX` with
+  `H*(Xyz)^-1` in `normal_closure(A,B)`. The 53-move published corridor plus
+  the AK3 normal-closure certificate gives a literal conjugate-product `K` in
+  `Xyz` with `(zYX)^-1*K^-1` in the same normal closure. Build--kill--swap
+  therefore reaches `(E_A,B,H_A)` or `(A,E_B,H_B)` with both displayed
+  residuals certified in `normal_closure(A,B)`. Four focused checks pass.
+  The endpoint substitutions and donor-restoring macros are not flattened by
+  the checker; finiteness follows by structural induction on the SLP.
 - **Resume point:** both sequential donor completions are closed. Work on the
-  first-row-active or second-row-active two-residual lift from `Txy` to
-  `Tpub`; no fixed-base or failed-search result is evidence against it. Before
-  extending the JSON schema, harden ordinal fields to reject booleans/floats
-  that compare equal to integers.
+  Peiffer/basic-substitution closure of the first-row-active or
+  second-row-active residual pair; the SLP lift itself is complete, but no
+  closure to `(A,B,Xyz)` is proved. No fixed-base or failed-search result is
+  evidence against the bridge. Before extending the JSON schema, harden
+  ordinal fields to reject booleans/floats that compare equal to integers.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See
