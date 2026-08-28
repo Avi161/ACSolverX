@@ -120,6 +120,18 @@ bounded whenever three of its pulled-back axes have disjoint ends.
 Section 3.67 verifies that transversality for the genuine torsion cell:
 its pulled-back family contains the slot-two axis and the two basis axes
 of $F(t,ctc)$.
+Section 3.68 chooses the collision matching so that the balanced active
+source graph splits into simple cycles.  Removing the slot-zero and
+slot-one chords leaves unique paths in the proven $A,B,G$ forest.
+Section 3.69 removes the remaining matching choice: the entire forest
+subchain is the unique finite forest filling of the five-family
+slot-zero/one chord boundary.
+Section 3.70 proves an additive radius transfer through that filling.  A
+parity-radius maximizer in a forest slot forces a slot-zero/one active
+coordinate within one fixed additive constant of the same radius.
+Section 3.71 decomposes the entire parity chain into one-chord forest loops
+and two-chord forest rectangles.  The remaining gluing term is therefore
+the quadratic polarization between those explicit cells.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -7649,6 +7661,352 @@ paired bucket may still collide in the quadratic kernel.  It also does not
 place an arbitrary radius-maximizing boundary edge inside one realized
 torsion cell.  Those are respectively the annular parity and multi-cell
 gluing obligations left after the torsion geometry is closed.
+
+### 3.68 Simple-cycle and forest-polygon normal form
+
+For a parity correction $F$, define the finite marked multigraph
+$\Gamma_F$ as follows.  Its vertex set $V_F\subset X$ is the finite set
+of transported labels incident to the edges below.  For every interval
+$I=[a,b]\in\mathscr I_s$ and every
+$v\in\operatorname{supp}_2(F_s)$, include one edge
+
+\[
+ E_{I,v}:
+ \operatorname{cvert}(q_av)
+ \longleftrightarrow
+ \operatorname{cvert}(q_bv).
+ \tag{3.498}
+\]
+
+The edge is marked by $(I,v)$, so parallel edges are retained.  It is not
+a loop: a loop would make the infinite-order paired element $g_I$ fix the
+vertex $vH$, contrary to (3.170).
+
+The degree of $x\in X$ in $\Gamma_F$, reduced modulo two, is exactly the
+left side of (3.455).  Hence
+
+\[
+ \boxed{
+ \begin{aligned}
+ \deg_{\Gamma_F}(x)&=0\pmod2,\\
+ x&\in V_F.
+ \end{aligned}
+ }
+ \tag{3.499}
+\]
+
+Every finite even-degree multigraph is an edge-disjoint union of simple
+cycles.  Choose such a decomposition.  At each transported label, pair
+the two incident occurrence tokens which are consecutive on the selected
+cycle.  This is an allowed collision matching in Section 3.62, and its
+alternating cycles are precisely the chosen simple graph cycles.
+Consequently the matching may be chosen so that, on every alternating
+cycle of length $r$ with successive collision labels $y_0,\ldots,y_r$,
+
+\[
+ \boxed{
+ \begin{aligned}
+ y_r&=y_0,\\
+ y_i&\ne y_j.
+ \end{aligned}
+ }
+ \tag{3.500}
+\]
+
+The second line holds for $0\le i<j<r$.
+
+In the partial-product notation of (3.485), this says that no proper
+contiguous source subword sends its intermediate label back to itself.
+In particular no such subword is the identity in $Q$; nor can it be the
+nontrivial element of that label's order-two stabilizer.
+
+Now retain only the three forest interval types
+
+\[
+ \mathscr I_{\mathrm{for}}
+ :=\{[1,6],[9,14],[15,16]\}.
+ \tag{3.501}
+\]
+
+By (3.477), their edges are exactly the $B$-, $G$-, and $A$-edges of the
+$K_{\mathrm{for}}$-orbit graph, with harmless orientation inversions.
+The binomial-forest theorem identifies that graph with a disjoint union of
+two Cayley trees.  Therefore, after deleting all slot-zero and slot-one
+edges from one of the simple cycles in (3.500), every nonempty remaining
+component is the unique forest path between its two boundary vertices.
+There must be at least one deleted edge, because a forest contains no
+cycle.  Thus every balanced parity correction has an edge-disjoint
+decomposition into polygons of the form
+
+\[
+ \boxed{
+ \text{slot-zero/one chord}
+ \longleftrightarrow
+ \text{unique finite forest path}
+ \longleftrightarrow\cdots .
+ }
+ \tag{3.502}
+\]
+
+Zero-length forest sides are allowed when two source chords meet at one
+label.  This normal form is exact and support-independent.  It does not
+bound the number of chords or the lengths of the forest sides, and simple
+cycles in the marked source graph can still be arbitrarily long.  Its use
+is that the multi-cell gluing problem is now a tree-path problem: the only
+unbounded interiors are unique forest geodesics, while all nonforest turns
+come from the five fixed slot-zero/one interval types.  The next obligation
+is to combine their endpoint sweep with the annular quadratic parity.
+
+### 3.69 The forest subchain is determined by the source chords
+
+Work over $\mathbb F_2$ and let $\mathsf C_F$ be the sum of all marked
+edges in $\Gamma_F$.  Split it as
+
+\[
+ \begin{aligned}
+ \mathsf Z_F
+ &:=\sum_{s=0}^1
+ \sum_{I\in\mathscr I_s}
+ \sum_{v\in\operatorname{supp}_2(F_s)}E_{I,v},\\
+ \mathsf P_F
+ &:=\sum_{s=2}^4
+ \sum_{I\in\mathscr I_s}
+ \sum_{v\in\operatorname{supp}_2(F_s)}E_{I,v},\\
+ \mathsf C_F&=\mathsf Z_F+\mathsf P_F.
+ \end{aligned}
+ \tag{3.503}
+\]
+
+Equation (3.499) is precisely the chain identity
+
+\[
+ \partial\mathsf C_F=0.
+ \tag{3.504}
+\]
+
+Consequently
+
+\[
+ \boxed{
+ \partial_{\mathrm{for}}\mathsf P_F
+ =\partial\mathsf Z_F.
+ }
+ \tag{3.505}
+\]
+
+Here $\partial_{\mathrm{for}}$ is the boundary map on the disjoint union
+of the two $A,B,G$ Cayley trees.  Its restriction to finite edge chains is
+injective by the leaf-removal argument.  Therefore, whenever the chord
+boundary on the right lies in its image, it has one and only one finite
+forest filling.  Denote this inverse on the image by
+$\mathsf G_{\mathrm{for}}$.  Then every balanced parity correction obeys
+
+\[
+ \boxed{
+ \mathsf P_F
+ =\mathsf G_{\mathrm{for}}(\partial\mathsf Z_F).
+ }
+ \tag{3.506}
+\]
+
+The map $\mathsf G_{\mathrm{for}}$ is linear on its domain.  Since the
+three marked forest edge families are free orbit coordinates, (3.506)
+determines the parity supports of $F_2,F_3,F_4$ from the five chord
+families carried by $F_0,F_1$.  It also shows that neither the arbitrary
+fiber matching in Section 3.62 nor the simple-cycle decomposition in
+Section 3.68 changes the aggregate forest chain.
+
+Thus the remaining global object can be written without a van Kampen
+choice as
+
+\[
+ \boxed{
+ \mathsf C_F
+ =\mathsf Z_F
+ +\mathsf G_{\mathrm{for}}(\partial\mathsf Z_F).
+ }
+ \tag{3.507}
+\]
+
+This is a linear chain normal form, not a quadratic evaluation.  The
+annular kernel still compares pairs of transported occurrence tokens, so
+it is not determined by the boundary alone.  The gain is exact: every
+unbounded forest interior is now the unique Green filling of five fixed
+source-chord families, the same interface on which the occurrence-sweep
+endpoint formulas operate.
+
+### 3.70 Forest filling preserves radius up to one constant
+
+The forest Cayley trees and the free Cayley tree $\mathcal T_K$ use
+different edge sets, but their vertex metrics are uniformly compatible.
+The semidirect product $Q=K\rtimes\langle c\rangle$ acts properly and
+cocompactly on $\mathcal T_K$: the subgroup $K$ is vertex-transitive and
+every vertex stabilizer in $Q$ is a conjugate of the order-two subgroup
+$H$.  The finite-index subgroup $K_{\mathrm{for}}$ from (3.476) inherits a
+proper cocompact action.  Its vertex stabilizers are trivial because it is
+free and hence torsion-free.  Its two vertex orbits are the two forest
+components used in (3.501).  Therefore the orbit map from either $A,B,G$
+Cayley tree to $\mathcal T_K$ is a quasi-isometry.  A geodesic in the
+forest tree maps to a uniform quasi-geodesic in $\mathcal T_K$; since the
+target is a tree, there is a fixed constant $D_{\mathrm{for}}$ such that
+its image lies in the $D_{\mathrm{for}}$-neighborhood of the target
+geodesic with the same endpoints.
+
+Define the source parity radius
+
+\[
+ R_{01}(F):=\max\left(
+ \{0\}\cup
+ \{|v|_K:v\in\operatorname{supp}_2(F_s),s\in\{0,1\}\}
+ \right).
+ \tag{3.508}
+\]
+
+Take a forest edge in $\operatorname{supp}\mathsf P_F$.  In a tree, every
+supported edge of the unique finite filling in (3.506) lies on the forest
+geodesic between two vertices
+$z_-,z_+\in\operatorname{supp}(\partial\mathsf Z_F)$.  Therefore each of
+its endpoint labels $x$ satisfies
+
+\[
+ |x|_K
+ \le\max\{|z_-|_K,|z_+|_K\}+D_{\mathrm{for}}.
+ \tag{3.509}
+\]
+
+If this edge is the forest occurrence pair for an active coordinate $v$,
+then one endpoint has the form $x=\operatorname{cvert}(q_ov)$ for a fixed
+forest occurrence $o$.  Since $q_o=m_oc^{\eta_o}$ acts on $K$ as
+$m_o\alpha^{\eta_o}$,
+
+\[
+ \bigl||x|_K-|v|_K\bigr|\le|m_o|_K\le M_*.
+ \tag{3.510}
+\]
+
+Each $z\in\operatorname{supp}(\partial\mathsf Z_F)$ is incident to at
+least one slot-zero/one chord, so
+$z=\operatorname{cvert}(q_pu)$ for some
+$u\in\operatorname{supp}_2(F_0)\cup\operatorname{supp}_2(F_1)$ and a
+fixed occurrence $p$.  The same estimate gives
+
+\[
+ |z|_K\le R_{01}(F)+M_*.
+ \tag{3.511}
+\]
+
+Combining (3.509)--(3.511), and treating a source-slot maximizer directly,
+proves the two-sided radius transfer
+
+\[
+ \boxed{
+ R_{01}(F)
+ \le R(F)
+ \le R_{01}(F)+D_{\mathrm{for}}+2M_*.
+ }
+ \tag{3.512}
+\]
+
+Thus no balanced parity correction can hide arbitrarily remote activity
+only in the forest slots.  Up to one fixed additive loss, a radius
+maximizer is visible on one of the five slot-zero/one chord families.  This
+does not yet force a transverse relator cell or a surviving annular bucket,
+but it reduces the global gluing problem to cycles containing a uniformly
+near-maximal source chord.
+
+### 3.71 One-chord loops and two-chord rectangles span the chain
+
+Write the forest as $\mathcal T_{\mathrm{for}}=\mathcal T_0\sqcup
+\mathcal T_1$.  Call an edge of $\mathsf Z_F$ internal when both endpoints
+lie in the same component and crossing when its endpoints lie in different
+components.  If an internal chord $e$ has endpoints $x,y\in\mathcal T_j$,
+define its fundamental loop
+
+\[
+ \mathsf L(e):=e+[x,y]_{\mathcal T_j}.
+ \tag{3.513}
+\]
+
+Here $[x,y]_{\mathcal T_j}$ is the unique forest path, read as an
+$\mathbb F_2$ edge chain.  If $e$ and $e'$ are crossing chords with
+endpoints $x_0,x_1$ and $x'_0,x'_1$ in $\mathcal T_0,\mathcal T_1$,
+respectively, define the paired rectangle
+
+\[
+ \mathsf R(e,e')
+ :=e+e'
+ +[x_0,x'_0]_{\mathcal T_0}
+ +[x_1,x'_1]_{\mathcal T_1}.
+ \tag{3.514}
+\]
+
+Both displayed chains have zero boundary.  The number of crossing chords
+in $\mathsf Z_F$ is even.  Indeed, each crossing chord contributes one
+endpoint to each forest component, while the boundary of a finite edge
+chain in one tree has even total coefficient.
+
+If there are crossing chords, choose one of them, denoted $e_*$.  Let
+$\mathscr Z_{\mathrm{int}}$ and $\mathscr Z_{\mathrm{cross}}$ be the
+internal and crossing chord sets.  Then the exact chain decomposition is
+
+\[
+ \boxed{
+ \mathsf C_F
+ =\sum_{e\in\mathscr Z_{\mathrm{int}}}\mathsf L(e)
+ +\sum_{e\in\mathscr Z_{\mathrm{cross}}\setminus\{e_*\}}
+ \mathsf R(e,e_*).
+ }
+ \tag{3.515}
+\]
+
+When there are no crossing chords, the second sum is empty.  To prove
+(3.515), first compare chord parts.  Every nonreference chord occurs once,
+and $e_*$ occurs one fewer time than the even number of crossing chords,
+hence also once over $\mathbb F_2$.  Thus the chord part is $\mathsf Z_F$.
+The forest part has boundary $\partial\mathsf Z_F$; injectivity of the
+finite forest boundary makes it equal to $\mathsf P_F$ by (3.506).
+
+The choice of $e_*$ changes the displayed rectangles but not their sum.
+Moreover, the near-maximal source chord supplied by (3.512) may always be
+placed in one of the displayed cells: it determines its own loop when
+internal, and it may be chosen as $e_*$ when crossing.  Hence every remote
+balanced correction has a one- or two-chord cell carrying a uniformly
+near-maximal active source coordinate.
+
+This is still a chain statement.  Individual forest sides in (3.513)--
+(3.514) can cancel between cells and need not be active subchains of
+$\mathsf P_F$.  More fundamentally, the nonforest chord edges are not
+independent occurrence coordinates.  One active slot-zero coordinate
+produces three tied chord edges, and one active slot-one coordinate
+produces two.  Define their tied bundles by
+
+\[
+ \begin{aligned}
+ \mathsf U_{s,v}&:=\sum_{I\in\mathscr I_s}E_{I,v},\\
+ s&\in\{0,1\}.
+ \end{aligned}
+ \tag{3.516}
+\]
+
+Then
+
+\[
+ \boxed{
+ \mathsf Z_F
+ =\sum_{s=0}^1
+ \sum_{v\in\operatorname{supp}_2(F_s)}\mathsf U_{s,v}.
+ }
+ \tag{3.517}
+\]
+
+The decomposition (3.515) may place different edges of one bundle in
+different cells.  Such a cell is not by itself an occurrence-coordinate
+current and cannot be inserted into $\mathscr Q_\Xi$.  Thus the exact
+remaining gluing obligation is more specific than ordinary quadratic
+polarization: refine (3.515) in a way that respects every tied bundle
+$\mathsf U_{s,v}$, or evaluate the cross-cell polarization while retaining
+the bundle-incidence data.  Only after that step can the near-maximal cell
+be compared with the annular bucket.
 
 ## 4. Exact diagonal sieve
 
