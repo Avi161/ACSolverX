@@ -37,16 +37,22 @@ finite quotient do not close a route.
   Equation (28) of the two-gate note, so `delta_K != 1` in `Q_B`. This refutes
   only the S2 sequential completion.
 - **Quotient ceiling proved:** in `G_-=<x,y,z | A,B>`, the two kill words
-  `zYX` and `Xyz` are normal generators. A general two-row transfer lemma
-  proves `(1,1,zYX) ~AC (1,1,Xyz)` inside `G_-`. Therefore no finite,
+  `zYX` and `Xyz` are normal generators. A general one-buffer transfer lemma
+  proves `(1,zYX) ~AC (1,Xyz)` inside `G_-`. Therefore no finite,
   Alexander, metabelian, or other quotient invariant of the image triple can
   obstruct the unrestricted all-row path. The remaining gate is the literal
   relation-identity lift through `normal_closure(A,B)`.
+- **Lift concentrated to two residuals:** the quotient transfer can use only
+  the first and third rows, leaving `B` literally fixed, or only the second
+  and third rows, leaving `A` literally fixed. A lift therefore ends in
+  `(E_A,B,V_A)` or `(A,E_B,V_B)`, with exactly one base residual in
+  `normal_closure(A,B)` and one relative kill-word residual. No third residual
+  is required.
 - **Resume point:** both sequential donor completions are closed. Work on the
-  unrestricted lift of a quotient transfer path from `Txy` to `Tpub`; no
-  fixed-base or failed-search result is evidence against it. Before extending
-  the JSON schema, harden ordinal fields to reject booleans/floats that compare
-  equal to integers.
+  first-row-active or second-row-active two-residual lift from `Txy` to
+  `Tpub`; no fixed-base or failed-search result is evidence against it. Before
+  extending the JSON schema, harden ordinal fields to reject booleans/floats
+  that compare equal to integers.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See

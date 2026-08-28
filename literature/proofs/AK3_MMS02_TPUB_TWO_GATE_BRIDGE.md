@@ -21,7 +21,7 @@ AK(3).
 
 Section 6 proves that quotient reachability for the unrestricted path is
 automatic: after killing $A,B$, any two normal generators become
-AC-equivalent once the two identity rows are retained.  Thus further
+AC-equivalent once one identity row is retained.  Thus further
 quotient obstructions cannot decide the bridge.  The remaining gate is the
 literal relation-identity lift back through the normal closure of $A,B$.
 
@@ -378,7 +378,7 @@ This closes only the S2 sequential completion.  Together with (17), it
 shows that neither verified first-leg donor branch can be completed while
 holding its new row and $v$ as the two donor families.
 
-## 6. Quotient reachability is automatic with two redundant rows
+## 6. Quotient reachability is automatic with one redundant row
 
 The unrestricted bridge cannot be disproved by extending the fixed-base
 $A_5$ or Alexander tests to another quotient of the same deficiency-one
@@ -387,7 +387,7 @@ group.  The reason is a general redundant-row transfer lemma.
 Write $\operatorname{Ncl}_G(S)$ for the normal closure of a subset $S$ in
 $G$.
 
-**Lemma 6.1 (two-row normal-generator transfer).**  Let $G$ be any group,
+**Lemma 6.1 (one-row normal-generator transfer).**  Let $G$ be any group,
 and let $g,h\in G$ satisfy
 
 \[
@@ -397,10 +397,10 @@ and let $g,h\in G$ satisfy
  \tag{30}
 \]
 
-Then the redundant triples are Andrews--Curtis equivalent in $G$:
+Then the redundant pairs are Andrews--Curtis equivalent in $G$:
 
 \[
- \boxed{(1,1,g)\sim_{\rm AC}(1,1,h).}
+ \boxed{(1,g)\sim_{\rm AC}(1,h).}
  \tag{31}
 \]
 
@@ -409,30 +409,22 @@ entry or its inverse.  Such a macro is a finite AC1--AC3 sequence: conjugate
 the source, multiply it into the target, and restore the source, with two
 source inversions when the negative sign is used.
 
-**Proof.**  Choose finite normal-closure factorizations of $h$, $g^{-1}$,
-and $g$ by conjugates of $g^{\pm1}$, $h^{\pm1}$, and $h^{\pm1}$,
-respectively.  Build the required products in the two identity entries and
-then use ordinary target multiplications:
+**Proof.**  Choose finite normal-closure factorizations of $h$ and
+$g^{-1}$ by conjugates of $g^{\pm1}$ and $h^{\pm1}$, respectively.  Build
+$h$ in the identity entry from the $g$-entry, then append the chosen
+factorization of $g^{-1}$ to the second entry:
 
 \[
- \begin{aligned}
- (1,1,g)
- &\sim(h,1,g)
- \sim(h,g^{-1},g)
- \sim(h,g^{-1},1)\\
- &\sim(h,g^{-1},h)
- \sim(1,g^{-1},h)
- \sim(1,1,h).
- \end{aligned}
+ (1,g)
+ \sim(h,g)
+ \sim(h,1)
+ \sim(1,h).
  \tag{32}
 \]
 
-The third arrow multiplies the third entry by the second, the fourth
-multiplies it by the first, and the fifth multiplies the first by the
-inverse of the third.  The last arrow appends the chosen factorization of
-$g$ using the third entry.  Every other arrow appends one of the chosen
-finite products while preserving its source.  Thus every arrow expands
-into AC1--AC3 moves.  $\square$
+The last arrow swaps the two entries.  A swap is the standard six-step
+sequence multiply--invert--multiply--invert--multiply--invert.  Thus every
+arrow expands into AC1--AC3 moves.  $\square$
 
 Apply the lemma to
 
@@ -450,14 +442,73 @@ $v=Xyz$.  The verified trivialization of $(A,B,u)$ gives
 $\operatorname{Ncl}_{G_-}(\overline u)=G_-$.  The published
 reduction of $(A,B,v)$ to the AK(3) presentation, together with the
 elementary fact that AK(3) presents the trivial group, gives the same
-statement for $\overline v$.  Lemma 6.1 therefore proves
+statement for $\overline v$.  It remains only to make that elementary
+triviality fact literal.
+
+For completeness, the last fact has a short normal-closure proof.  Write
+
+\[
+ \begin{aligned}
+ R&=x^3y^{-4},\\
+ S&=xyxYXY,\\
+ \Delta&=xyx.
+ \end{aligned}
+\]
+
+The two literal defects
+
+\[
+ \begin{aligned}
+ \Delta x\Delta^{-1}y^{-1}&=S,\\
+ \Delta y\Delta^{-1}x^{-1}&=xS^{-1}x^{-1}.
+ \end{aligned}
+ \tag{33a}
+\]
+
+show that conjugation by $\Delta$ exchanges $x$ and $y$ modulo
+$\operatorname{Ncl}(S)$.  Thus $R=1$ and its $\Delta$-conjugate give
+
+\[
+ \begin{aligned}
+ x^3&=y^4,\\
+ y^3&=x^4.
+ \end{aligned}
+ \tag{33b}
+\]
+
+Consequently
+
+\[
+ \begin{aligned}
+ x^9&=y^{12}=x^{16},\\
+ y^9&=x^{12}=y^{16}.
+ \end{aligned}
+\]
+
+so $x^7=y^7=1$.  Now
+$y=y^8=(y^4)^2=x^6=x^{-1}$.  Substitution in the braid relation gives
+$x=x^{-1}$, hence $x^2=1$.  The coprime relations $x^2=x^7=1$ force
+$x=1$, and then $y=1$.  Every step is a product, inverse, conjugate, or
+power of the two displayed relator defects, so it expands to a finite
+normal-closure factorization.
+
+The dependency-free verifier
+`tests/stable_ac/test_ak3_normal_closure_certificate.py` expands every
+factor as a conjugate of $R^{\pm1}$ or $S^{\pm1}$, checks every displayed
+equality defect, and checks that the final left sides are literally $x,y$
+while the right sides are empty.  All three focused checks pass.
+
+Lemma 6.1 therefore proves
 
 \[
  \boxed{
+ \begin{aligned}
  (1,1,\overline u)
- \sim_{\rm AC}
- (1,1,\overline v)
+ &\sim_{\rm AC}(\overline v,1,\overline u)\\
+ &\sim_{\rm AC}(\overline v,1,1)\\
+ &\sim_{\rm AC}(1,1,\overline v)
  \text{ in }G_-.
+ \end{aligned}
  }
  \tag{34}
 \]
@@ -468,22 +519,38 @@ Alexander, metabelian, or other quotient of $G_-$ can obstruct the
 unrestricted all-row bridge.  Those tests remain valid for fixed-base
 ansatzes, where the first two entries are required to stay equal to one.
 
-Equation (34) does not prove the free-group bridge.  Lifting a chosen path
-from (34) to $F$ ends with rows $E_1,E_2,E_3$ satisfying
+Equation (34) does not prove the free-group bridge.  It does sharpen the
+lift gate.  Use the first identity row as the active buffer and lift the
+two normal-closure factorizations in (32) to words of $F$.  The second base
+row remains literally equal to $B$ throughout, and the lifted path has the
+form
 
 \[
  \begin{aligned}
- E_1,E_2&\in N,\\
- E_3v^{-1}&\in N.
+ (A,B,u)&\sim_{\rm AC}(E_A,B,V_A),\\
+ \rho_A:=E_AA^{-1}&\in N,\\
+ \sigma_A:=V_Av^{-1}&\in N.
  \end{aligned}
- \tag{35}
+ \tag{35a}
 \]
 
-but it need not end at the literal tuple $(A,B,v)$.  The exact remaining
-gate is to choose and lift the normal-closure factorizations in (32) so that
-the three $N$-valued identity residuals close by AC moves.  This is a
-relation-identity lift problem.  Quotient reachability itself is complete,
-and further quotient hunting cannot evaluate that lift.
+Using the second identity row instead gives the symmetric branch
+
+\[
+ \begin{aligned}
+ (A,B,u)&\sim_{\rm AC}(A,E_B,V_B),\\
+ \rho_B:=E_BB^{-1}&\in N,\\
+ \sigma_B:=V_Bv^{-1}&\in N.
+ \end{aligned}
+ \tag{35b}
+\]
+
+Thus one base row can stay literally fixed, and each branch has exactly two
+$N$-valued lift residuals.  It need not end at the literal tuple
+$(A,B,v)$.  The exact remaining gate is to choose one branch and its two
+normal-closure factorizations so that its two residuals close by AC moves.
+This is a relation-identity lift problem.  Quotient reachability itself is
+complete, and further quotient hunting cannot evaluate that lift.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -498,8 +565,8 @@ The logical gates remain separate:
    not the unrestricted all-row bridge;
 3. the fixed-base $A_5$ and Alexander obstructions do not apply to a path
    which moves $A$ and $B$;
-4. Lemma 6.1 closes only quotient reachability and does not close the
-   relation-identity lift in (35);
+4. Lemma 6.1 closes only quotient reachability and does not close either
+   two-residual relation-identity lift in (35a)--(35b);
 5. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
 6. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
