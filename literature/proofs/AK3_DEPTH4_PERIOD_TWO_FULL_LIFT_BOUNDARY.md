@@ -153,6 +153,17 @@ Section 3.77 localizes every internal collider of a slope-two anchored-cell
 bucket to a uniformly bounded neighborhood of its moving transported
 boundary labels.  Long Green-path interiors cannot participate, but the
 finite endpoint germ has not yet been evaluated.
+Section 3.78 proves remote conjugate-bucket rigidity.  A fixed multiplier
+different from a paired generator and its inverse can hit that paired
+conjugate bucket at no more than six source cosets.
+Section 3.79 combines this with endpoint localization: outside one finite
+exceptional set, the complete isolated-cell coefficient is a function of
+finitely many terminal activity and shortlex types.  That finite function
+is not yet evaluated.
+Section 3.80 gives the complementary clustered incidence law.  Every mixed
+term aimed at a paired bucket places the second source atom on one of four
+explicit branches from the first, so the localized mixed-collision graph
+has uniformly bounded degree.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -8577,6 +8588,218 @@ cancel the paired bucket.  The remaining isolated-cell problem is the
 finite endpoint germ in (3.552), together with the finite shortlex cone in
 (3.545).  No parity value of that germ is asserted here; clustered cells
 remain governed by the mixed-radius polarization of Section 3.73.
+
+### 3.78 Remote conjugate buckets have fixed multipliers
+
+The equality test inside the finite endpoint germ also stabilizes without a
+support enumeration.  Let $g$ be one of the paired generators in (3.446),
+let $h\in Q$ be fixed, and put
+
+\[
+ \Delta_h(u):=[Hu^{-1}huH]_\pm.
+ \tag{3.553}
+\]
+
+All paired generators are hyperbolic and nonreversible by Sections
+3.25--3.26.  If $h\notin\{g,g^{-1}\}$, then
+
+\[
+ \boxed{
+ \#\{uH:\Delta_h(u)=\Delta_g(u)\}\le6.
+ }
+ \tag{3.554}
+\]
+
+Indeed, write $r_u:=ucu^{-1}$.  Equality of the two unoriented double
+cosets is equivalent to one of the eight equations
+
+\[
+ \begin{aligned}
+ h&=r_u^\delta g^\epsilon r_u^{\delta'},\\
+ \epsilon&\in\{1,-1\},\\
+ \delta,\delta'&\in\{0,1\}.
+ \end{aligned}
+ \tag{3.555}
+\]
+
+When $\delta=\delta'=0$, equation (3.555) contradicts the hypothesis on
+$h$.  If exactly one of $\delta,\delta'$ is one, the equation determines
+$r_u$ uniquely.  A conjugate of $c$ determines the coset $uH$ uniquely
+because $H$ is malnormal.
+
+It remains to treat $\delta=\delta'=1$.  Suppose two involutions $r,r'$ of
+the conjugacy class of $c$ satisfy
+
+\[
+ r g^\epsilon r=r'g^\epsilon r'=h.
+ \tag{3.556}
+\]
+
+Then $z=r'r$ centralizes $g$.  If $z\ne1$, the cyclic-centralizer theorem
+puts $z$ in the infinite cyclic centralizer of the primitive root of $g$.
+Since $r'=zr$ is an involution, $rzr=z^{-1}$.  Unique roots then make $r$
+reverse that primitive centralizer, and hence $rgr=g^{-1}$.  Equation
+(3.556) would give $h=g^{-\epsilon}$, again contrary to the hypothesis.
+Thus $z=1$ and $r=r'$.  For each of the two choices of $\epsilon$, the
+left-only, right-only, and two-sided cases contribute at most one coset,
+proving (3.554).
+
+Now fix the slope-two constant $E$ used after (3.551).  Every transported
+label in the terminal neighborhood of an anchored cell has the form
+
+\[
+ x_i(u)=\operatorname{cvert}(r_i u)
+ \tag{3.557}
+\]
+
+for some $r_i$ in one fixed finite list $\mathcal R_{s,E}\subset Q$.
+Indeed, a moving boundary label is $\operatorname{cvert}(q_ou)$, and a
+bounded forest neighborhood is obtained by left multiplying it by a word
+from a fixed ball in $K_{\mathrm{for}}$.  Terminal canonicalization changes
+the representative but not its right $H$-coset.
+
+For a candidate pair $i,j$, put $h_{ij}:=r_i^{-1}r_j$.  Its bucket is
+$\Delta_{h_{ij}}(u)$.  Taking the union of the exceptional sets in (3.554)
+over the finite list of pairs proves that there is a finite set
+$\mathcal E_{s,E}\subset X$ such that
+
+\[
+ \boxed{
+ u\notin\mathcal E_{s,E}
+ \Longrightarrow
+ \left(
+ \Delta_{h_{ij}}(u)=\mathscr D_s(u)
+ \Longleftrightarrow
+ h_{ij}\in\{g_s,g_s^{-1}\}
+ \right).
+ }
+ \tag{3.558}
+\]
+
+Thus no moving double-coset equation remains in the remote isolated cell.
+Only fixed word equalities in the finite multiplier list survive.
+
+### 3.79 The complete isolated coefficient is finite type
+
+For remote $u$, define its terminal type $\mathfrak t_s(u)$ to record
+
+1. which labels $x_i(u)$ from (3.557) are actual tokens of
+   $\mathbf h_{(s,u)}$;
+2. their occurrence indices and chronology; and
+3. the shortlex bits $[x_i(u)<_{\mathrm{sl}}x_j(u)]$ for the pairs with
+   $h_{ij}\in\{g_s,g_s^{-1}\}$.
+
+The multiplier list and the occurrence list are fixed and finite, so only
+finitely many terminal types occur.  The order bits in item 3 are themselves
+finite cone data by the cancellation argument of Section 3.76.  The active
+subset in item 1 is the bounded terminal germ of the unique forest Green
+paths.  It has only finitely many possibilities because the forest degree
+and terminal radius are fixed.
+
+Equations (3.544), (3.552), and (3.558) now give one finite function
+$\mathfrak q_s$ with
+
+\[
+ \boxed{
+ u\notin\mathcal E_{s,E}
+ \Longrightarrow
+ [\mathscr Q_\Xi(\mathbf h_{(s,u)})]_{\mathscr D_s(u)}
+ =\mathfrak q_s(\mathfrak t_s(u)).
+ }
+ \tag{3.559}
+\]
+
+This is a support-independent finiteness theorem, not an evaluation of the
+table.  To finish the isolated case, one must prove that every realizable
+terminal type compatible with the gap hypothesis has $\mathfrak q_s=1$, or
+classify the zero types and show that they force a second near-maximal
+source atom.  The clustered case and every higher free-group defect remain
+open.
+
+### 3.80 Mixed clustered colliders have four source branches
+
+The mixed part of a clustered pair also has a finite algebraic incidence
+law.  For fixed multipliers $r,r'\in Q$, put
+
+\[
+ \begin{aligned}
+ x_r(u)&:=\operatorname{cvert}(ru),\\
+ h&:=r^{-1}r'.
+ \end{aligned}
+ \tag{3.560}
+\]
+
+For source cosets $uH,vH$ and a target paired generator $g_s$, direct
+double-coset expansion gives
+
+\[
+ \boxed{
+ [Hx_r(u)^{-1}x_{r'}(v)H]_\pm=\mathscr D_s(u)
+ \Longleftrightarrow
+ vH=\Phi_{h,s}^{\epsilon,\delta}(u)H
+ \text{ for some }(\epsilon,\delta)\in\{1,-1\}\times\{0,1\},
+ }
+ \tag{3.561}
+\]
+
+where
+
+\[
+ \begin{aligned}
+ \Phi_{h,s}^{\epsilon,\delta}(u)
+ &:=h^{-1}r_u^\delta g_s^\epsilon u,\\
+ r_u&:=ucu^{-1}.
+ \end{aligned}
+ \tag{3.562}
+\]
+
+To prove (3.561), equality of the unoriented buckets is equivalent to
+
+\[
+ u^{-1}hv
+ =c^\delta u^{-1}g_s^\epsilon u c^{\delta'}
+ \tag{3.563}
+\]
+
+for some $\epsilon\in\{1,-1\}$ and $\delta,\delta'\in\{0,1\}$.  Multiplying
+on the left by $u$ and solving for $v$ gives
+
+\[
+ v=h^{-1}r_u^\delta g_s^\epsilon u c^{\delta'}.
+ \tag{3.564}
+\]
+
+The final factor belongs to $H$ and disappears from the source coset,
+leaving exactly the four branches in (3.561).  Conversely, every displayed
+source coset satisfies (3.563) after choosing a representative, so no branch
+has been lost.
+
+The induced action on the conjugate involution attached to the source coset
+is also explicit.  If $vH=\Phi_{h,s}^{\epsilon,\delta}(u)H$, then
+
+\[
+ \boxed{
+ r_v
+ =h^{-1}(r_u^\delta g_s^\epsilon)
+ r_u
+ (r_u^\delta g_s^\epsilon)^{-1}h.
+ }
+ \tag{3.565}
+\]
+
+Thus a mixed collider transports the vertex involution by one of four
+fixed-word formulas.  Whenever Section 3.77 localizes two clustered cells
+to finite multiplier lists, each target atom has only finitely many possible
+mixed-collider source cosets, with a bound independent of its radius.  This
+turns the mixed clustered incidence into a bounded-degree directed graph on
+the active source atoms.
+
+Formula (3.561) concerns mixed terms with one token based at the target atom
+$u$ and one at another atom $v$.  It does not evaluate the finite shortlex
+weight of such an edge, and it does not include a self term of a different
+cell whose conjugate bucket happens to equal $\mathscr D_s(u)$.  Those two
+effects, together with the zero terminal types from Section 3.79, are the
+exact remaining clustered branches.
 
 ## 4. Exact diagonal sieve
 
