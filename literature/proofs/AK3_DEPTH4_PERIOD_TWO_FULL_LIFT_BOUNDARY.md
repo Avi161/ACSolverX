@@ -222,6 +222,16 @@ Section 3.95 separates the target-independent power cycles exactly.  When
 the marked target word is a power of $g_s$, its exponent is odd and the
 relative source $vu^{-1}$ lies on one fixed coset of the cyclic centralizer
 of $g_s$.  All other odd cycles retain a genuine target-involution word.
+Section 3.96 identifies the global graph-boundary term with one balanced
+mixed polarization: it is the free-coordinate correlation between the two
+spanning-forest color classes of non-target anchored cells.
+Section 3.97 assembles the complete remote paired-target coefficient above
+the affine cutoff.  Its only terms are the known slot baseline, four
+explicit local/corridor remainders, the balanced color cut, and the pinned
+odd-cycle parity.
+Section 3.98 adds two support filters.  A nonzero color cut requires the two
+color-class radii to reach the paired target jointly, while a nonzero odd
+cycle requires at least three distinct non-target anchored atoms.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -9958,6 +9968,216 @@ noncyclic conjugacy equation (3.636) and the translation bound (3.633).
 The two cases are exhaustive, but neither corridor parity is asserted to
 vanish.  In particular, long power cycles and long target-involution cycles
 can still contribute to the odd-cycle sum in (3.624).
+
+### 3.96 The graph boundary is one balanced color-cut polarization
+
+Keep the target and spanning-forest coloring from Section 3.93.  Split the
+non-target graph vertices into the two color classes and form the integral
+balanced directions
+
+\[
+ \begin{aligned}
+ F_u^{(0)}&:=\sum_{\substack{\alpha\in V(G_u)\\
+ \chi_u(\alpha)=0}}H_\alpha,\\
+ F_u^{(1)}&:=\sum_{\substack{\alpha\in V(G_u)\\
+ \chi_u(\alpha)=1}}H_\alpha,\\
+ F_u^{\rm nt}&:=F_u^{(0)}+F_u^{(1)}.
+ \end{aligned}
+ \tag{3.640}
+\]
+
+Each summand $H_\alpha$ lies in $\mathcal H_{\rm fin}$ by Section 3.2, so
+all three displayed directions are balanced.  For a graph vertex $\alpha$,
+bilinearity and alternation give
+
+\[
+ \boxed{
+ [\delta_\alpha](\partial G_u)
+ =
+ [B_\Xi(H_\alpha,F_u^{\rm nt})]_{\mathscr D_s(u)}.
+ }
+ \tag{3.641}
+\]
+
+Indeed, expanding the right side sums the target-bucket mixed coefficient
+over every other active non-target atom; the diagonal term vanishes and the
+remaining terms are exactly the graph edges incident to $\alpha$.
+
+Multiply (3.641) by $\chi_u(\alpha)$ and sum over the vertices.  A second
+use of bilinearity and alternation gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ \sum_\alpha[\delta_\alpha](\partial G_u)\chi_u(\alpha)
+ &=
+ [B_\Xi(F_u^{(1)},F_u^{\rm nt})]_{\mathscr D_s(u)}\\
+ &=
+ [B_\Xi(F_u^{(1)},F_u^{(0)})]_{\mathscr D_s(u)}.
+ \end{aligned}
+ }
+ \tag{3.642}
+\]
+
+Substitution in (3.624) yields the exact general non-target mixed formula
+
+\[
+ \boxed{
+ \begin{aligned}
+ |E(G_u)|
+ ={}&[B_\Xi(F_u^{(1)},F_u^{(0)})]_{\mathscr D_s(u)}\\
+ &+\sum_{e\in E(G_u)\setminus E(S_u)}\omega_u(e).
+ \end{aligned}
+ }
+ \tag{3.643}
+\]
+
+For the remote paired target of Section 3.82, the bucket is a free integral
+coordinate.  Therefore the first term in (3.643) is evaluated directly by
+the shortlex-free correlation ledger (3.36), applied to the two complete
+balanced color-class directions.  The formula does not make that
+correlation zero, and the pinned odd-cycle sum remains separate.  Its gain
+is exact: the many branch-dependent boundary colors have collapsed to one
+ordinary balanced polarization.
+
+### 3.97 Complete remote paired-target residual ledger
+
+Let $\alpha_u=(s,u)$ be an active anchored source atom with
+$s\in\{0,1\}$, let $D=\mathscr D_s(u)$ be remote and free as in Section
+3.82, and assume
+
+\[
+ \ell_K(D)>T(F).
+ \tag{3.644}
+\]
+
+The affine-linear and base parts then vanish in the $D$-coordinate by
+Section 3.58, so $[q_\Xi(F)]_D=[\mathscr Q_\Xi(F)]_D$.  Define four exact
+remainders over $\mathbb F_2$:
+
+\[
+ \begin{aligned}
+ \mathcal S_{s,u}(F)
+ &:={}
+ \sum_{\substack{\alpha\in\mathcal A(F)\\
+ \alpha\ne\alpha_u}}
+ [\mathscr Q_\Xi(H_\alpha)]_D,\\
+ \mathcal T_{s,u}(F)
+ &:={}
+ \sum_{\substack{\beta\in\mathcal A(F)\\
+ \beta\ne\alpha_u}}
+ [B_\Xi(H_{\alpha_u},H_\beta)]_D,\\
+ \mathcal C_{s,u}(F)
+ &:=[B_\Xi(F_u^{(1)},F_u^{(0)})]_D,\\
+ \mathcal O_{s,u}(F)
+ &:={}
+ \sum_{e\in E(G_u)\setminus E(S_u)}\omega_u(e).
+ \end{aligned}
+ \tag{3.645}
+\]
+
+Here $\mathcal S$ is the complete other-cell self sum, $\mathcal T$ is the
+complete target-incident mixed sum, and $\mathcal C+\mathcal O$ is the
+general non-target mixed sum by (3.643).
+
+Combining the anchored expansion (3.589), the target-cell identity (3.572),
+and (3.643) gives
+
+\[
+ \boxed{
+ [q_\Xi(F)]_{\mathscr D_s(u)}
+ =n_s+\overline{\kappa^{\mathbb Z}_{s,u}}
+ +\mathcal S_{s,u}(F)
+ +\mathcal T_{s,u}(F)
+ +\mathcal C_{s,u}(F)
+ +\mathcal O_{s,u}(F).
+ }
+ \tag{3.646}
+\]
+
+All terms are in $\mathbb F_2$, and $(n_0,n_1)=(3,2)$.  Thus the slot-zero
+baseline in (3.646) is one and the slot-one baseline is zero.
+
+No contribution is hidden in this decomposition.  Section 3.83 confines
+$\mathcal S$ to other-cell centralizer corridors.  Section 3.80 makes
+$\mathcal T$ a finite target-incident branch sum.  Section 3.96 evaluates
+$\mathcal C$ by the integral shortlex-free correlation ledger.  Sections
+3.93--3.95 confine $\mathcal O$ to pinned odd conjugacy cycles.  The target
+remainder $\overline{\kappa^{\mathbb Z}_{s,u}}$ is the finite endpoint germ
+from Sections 3.77--3.82.  Equation (3.646) does not assert a parity for
+their sum; it is the exact residual identity that a vanishing remote target
+must satisfy.
+
+### 3.98 Radius and cardinality filters for the global mixed terms
+
+Put
+
+\[
+ \begin{aligned}
+ R_j(u)&:=R(F_u^{(j)}),\\
+ j&\in\{0,1\},
+ \end{aligned}
+ \tag{3.647}
+\]
+
+with radius zero for the zero direction.  Every transported token of
+$F_u^{(j)}$ has length at most $R_j(u)+M_*$.  Therefore the same endpoint
+estimate as in (3.526) gives
+
+\[
+ \boxed{
+ \mathcal C_{s,u}(F)\ne0
+ \Longrightarrow
+ \ell_K(\mathscr D_s(u))
+ \le R_0(u)+R_1(u)+2M_*.
+ }
+ \tag{3.648}
+\]
+
+Using the paired-axis identity (3.442), this becomes
+
+\[
+ \boxed{
+ \mathcal C_{s,u}(F)\ne0
+ \Longrightarrow
+ R_0(u)+R_1(u)
+ \ge \tau_s^K+2d(u,\mathcal A_s^K)-2M_*.
+ }
+ \tag{3.649}
+\]
+
+In particular, both color classes must be nonempty.  If both radii are at
+most $R_{\rm nt}$, then each one satisfies the individual necessary bound
+
+\[
+ \boxed{
+ \min\{R_0(u),R_1(u)\}
+ \ge
+ \ell_K(\mathscr D_s(u))-2M_*-R_{\rm nt}.
+ }
+ \tag{3.650}
+\]
+
+The odd-cycle term has a separate combinatorial threshold.  The graph
+$G_u$ has one mod-two edge per unordered pair of distinct anchored atoms,
+so it is loopless and has no parallel edges.  Every odd cycle in it has
+length at least three.  Hence
+
+\[
+ \boxed{
+ \mathcal O_{s,u}(F)\ne0
+ \Longrightarrow
+ |V(G_u)|\ge3.
+ }
+ \tag{3.651}
+\]
+
+Thus, with at most two active non-target anchored atoms, the complete
+general non-target mixed term in (3.646) is only the balanced color cut
+$\mathcal C$.  With more atoms, a nonzero $\mathcal C$ still requires the
+two-sided radius tie (3.649), while a nonzero $\mathcal O$ requires a pinned
+odd conjugacy cycle from Sections 3.93--3.95.  These filters do not evaluate
+the local terms $\overline\kappa$, $\mathcal S$, or $\mathcal T$.
 
 ## 4. Exact diagonal sieve
 
