@@ -160,6 +160,23 @@ def test_the_report_shouts_on_a_sub_1m_solve(tmp_path, capsys):
     assert "which the 1M run says is impossible" in text
 
 
+def test_the_floor_alarm_stands_down_at_a_different_cap(tmp_path, capsys):
+    """At cap 64 the 1M floor (established at cap 48) does not apply: an early
+    solve is the interesting outcome, not evidence of the wrong search."""
+    out_dir = str(tmp_path)
+    rows = load_rows_5m("s20_mk2")[0][:3]
+    with open(out_path_5m("s20_mk2", out_dir, 1, 1, mrl=64), "w") as fh:
+        for r in rows:
+            fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
+                                 "solved": True,
+                                 "nodes_explored": 400_000}) + "\n")
+    report_5m("s20_mk2", out_dir, chunks=1, mrl=64, log=print)
+    text = capsys.readouterr().out
+    assert "impossible" not in text
+    assert "Legitimate at cap 64" in text
+    assert "wider corridor" in text
+
+
 def test_a_complete_merged_run_writes_the_id_lists(tmp_path):
     out_dir = str(tmp_path)
     rows = load_rows_5m("s20_mk2")[0]
@@ -260,6 +277,10 @@ def test_the_notebook_runs_end_to_end_on_its_smoke_path(cells, tmp_path):
         exec(cells[stem][0], ns)
         ns["MOUNT_DRIVE"] = False
         ns["LOCAL_OUT_DIR"] = str(tmp_path)
+        # a NON-default cap, exactly what the user does for a cap-64 run: the
+        # REPORT cell must read back the cap the RUN wrote, not the module
+        # default -- with both at 48 this bug is invisible
+        ns["MAX_RELATOR_LENGTH"] = 24
         exec(cells[stem][1], ns)
         exec(cells[stem][2], ns)
         exec(cells[stem][3], ns)
@@ -273,6 +294,9 @@ def test_the_notebook_runs_end_to_end_on_its_smoke_path(cells, tmp_path):
     assert ns["OUT_DIR"].endswith("_smoke")
     rows = read_rows(ns["out"])
     assert len(rows) == 2
-    assert "_c3of4_" in ns["out"]
+    assert "_c3of4_" in ns["out"] and "_mrl24" in ns["out"]
+    # REPORT found the rows the RUN just wrote -- at the run's cap, not the default
+    assert ns["c_chunk"] is not None and ns["c_chunk"]["n"] == 2
+    assert ns["c_all"] is not None
     assert ns["c_chunk"]["solved_at_5m"] == []          # unsolvable in 2,000 nodes
     assert ns["c_chunk"]["solved_at_or_below_1m"] == []

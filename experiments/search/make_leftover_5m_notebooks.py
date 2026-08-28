@@ -225,9 +225,13 @@ REPORT = '''# ==================== REPORT ======================================
 # OUT_DIR so far -- the merged table is the experiment's answer, and it also
 # flags (loudly) any row solved at or below 1,000,000 nodes, which the 1M run
 # says is impossible for these lists.
+# mrl is part of the jsonl filename, so REPORT must be told the SAME cap the
+# run used -- defaulting it here is the bug that once made a finished run
+# report as "no rows yet" (a cap-64 run read back at the cap-48 default).
 c_chunk = report_5m(ARM, OUT_DIR, chunks=CHUNKS, chunk_index=CHUNK_INDEX,
-                    budget=budget)
-c_all = report_5m(ARM, OUT_DIR, chunks=CHUNKS, budget=budget)
+                    budget=budget, mrl=MAX_RELATOR_LENGTH)
+c_all = report_5m(ARM, OUT_DIR, chunks=CHUNKS, budget=budget,
+                  mrl=MAX_RELATOR_LENGTH)
 '''
 
 

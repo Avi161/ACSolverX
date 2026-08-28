@@ -230,12 +230,22 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     for cp in sorted(c["anytime"]):
         log(f"      <= {cp:>9,} : {c['anytime'][cp]}")
     if c["solved_at_or_below_1m"]:
-        log(f"    !! {len(c['solved_at_or_below_1m'])} row(s) solved at or below "
-            f"1,000,000 nodes, which the 1M run says is impossible: "
-            f"{c['solved_at_or_below_1m'][:5]}")
-        log("       -> the search being run is not the one that built this list; "
-            "stop and check the arm, the cap and the row list before reading "
-            "anything above.")
+        if mrl == MAX_RELATOR_LENGTH:
+            # same cap as the 1M run, so the prefix property applies exactly
+            log(f"    !! {len(c['solved_at_or_below_1m'])} row(s) solved at or "
+                f"below 1,000,000 nodes, which the 1M run says is impossible: "
+                f"{c['solved_at_or_below_1m'][:5]}")
+            log("       -> the search being run is not the one that built this "
+                "list; stop and check the arm, the cap and the row list before "
+                "reading anything above.")
+        else:
+            # a different cap is a different search space: the 1M floor was
+            # established at cap 48, so an early solve here is legitimate --
+            # and it is the interesting outcome, not an error
+            log(f"    note: {len(c['solved_at_or_below_1m'])} row(s) solved at "
+                f"or below 1,000,000 nodes. Legitimate at cap {mrl} (the 1M "
+                f"floor holds only at cap {MAX_RELATOR_LENGTH}); these are "
+                f"rows the wider corridor cracked cheaply.")
 
     if write_ids and chunk_index is None and len(rows) == expected:
         for stem, ids in (("solved_at_5m", c["solved_at_5m"]),
