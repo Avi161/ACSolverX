@@ -195,6 +195,20 @@ Section 3.89 computes the remaining branch offsets for the two source slots.
 In slot zero the only profile-preserving translation lies on one explicit
 anti-height layer; in slot one it occurs only for the two fixed multiplier
 values with dihedral displacement $5$ or $-5$.
+Section 3.90 uses the full rank-two free subgroup rather than either
+one-dimensional quotient.  Every nonfixed edge of an individual
+three-source branch telescopes to its active boundary; the only interior
+residue is supported on one explicitly described finite or cyclic
+centralizer corridor.
+Section 3.91 observes that a fixed loop cannot occur between two distinct
+anchored cells from the same source slot.  Same-source-slot mixed branches
+therefore telescope completely to their active boundaries; corridor loops
+are supported only where slot-zero and slot-one source atoms occupy the
+same coset.
+Section 3.92 combines the height and anti-height fixed-point equations.
+Every surviving corridor-loop multiplier has height $1$ or $-1$ and odd
+dihedral displacement.  A slot-one translation loop has the unique signed
+abelianized multiplier type $(3,-2)$ or $(-3,2)$ in $K=F(t,ctc)$.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -9422,6 +9436,273 @@ No reflection-paired contribution is discarded.  Equations
 slot-zero target layer, two slot-one multiplier displacements, and the
 listed reflection fibers.  The remaining parity is still a rank-two
 free-group incidence problem.
+
+### 3.90 Every three-source branch telescopes off its fixed corridor
+
+The full free subgroup resolves the two profile-preserving cases without
+choosing another quotient.  Fix $u,h,s,\epsilon,\eta$ in (3.595) and put
+
+\[
+ k:=k_s^{\epsilon,\eta}(u).
+ \tag{3.603}
+\]
+
+Assume the branch parity condition $\sigma(k)=\sigma(h)$.  In the
+infinite-dihedral quotient, the sign is exactly the semidirect $c$-parity
+from (3.205).  Thus there are $a,b\in K$ and $e\in\{0,1\}$ with
+
+\[
+ \begin{aligned}
+ h&=ac^e,\\
+ k&=bc^e.
+ \end{aligned}
+ \tag{3.604}
+\]
+
+The right coset in (3.579) consequently has the unique representative
+
+\[
+ \boxed{
+ T(v):=h^{-1}vk
+ =\alpha^e(a^{-1}vb)
+ \in K.
+ }
+ \tag{3.605}
+\]
+
+This is a permutation of $K$.  If $e=0$, then
+
+\[
+ T^n(v)=a^{-n}vb^n.
+ \tag{3.606}
+\]
+
+If $T^n(v)=v$ for some $n>0$, then
+$a^n=vb^nv^{-1}$.  The unique-root property of the free group $K$ gives
+$a=vbv^{-1}$, and hence $T(v)=v$.  Therefore an even-parity branch has
+only fixed or infinite orbits.
+
+If $e=1$, direct semidirect multiplication gives
+
+\[
+ \boxed{
+ T^2(v)
+ =\left(a\alpha(a)\right)^{-1}
+ v\left(b\alpha(b)\right).
+ }
+ \tag{3.607}
+\]
+
+The preceding argument applies to the even affine permutation $T^2$.
+Any periodic point of $T$ is periodic for $T^2$, so (3.607) fixes it.
+Every finite orbit of an odd-parity branch therefore has length one or
+two.  In either parity, every nonfixed orbit admits a coloring
+
+\[
+ \begin{gathered}
+ \chi_T(T(v))=\chi_T(v)+1,\\
+ \text{equality in }\mathbb F_2.
+ \end{gathered}
+ \tag{3.608}
+\]
+
+Let $E_T$ be any finite mod-two set of active branch edges
+$v\longrightarrow T(v)$, let $L_T$ be its subset of fixed loops, and use
+the unoriented boundary from (3.592).  Extend $\chi_T$ by zero on the fixed
+set.  Summing (3.608) gives the exact full-rank telescope
+
+\[
+ \boxed{
+ \begin{gathered}
+ |E_T|
+ =|L_T|
+ +\sum_x[\delta_x](\partial E_T)\chi_T(x),\\
+ \text{equality in }\mathbb F_2.
+ \end{gathered}
+ }
+ \tag{3.609}
+\]
+
+The loop set has an equally explicit description.  Formula (3.605) gives
+
+\[
+ T(v)=v
+ \Longleftrightarrow
+ h=vkv^{-1}.
+ \tag{3.610}
+\]
+
+The element $k$ is nontrivial: otherwise (3.603) would make the
+infinite-order paired generator $g_s$ conjugate to either the identity or
+the involution $c$.  If (3.610) has one solution $v_0\in K$, then all its
+solutions are
+
+\[
+ \boxed{
+ \operatorname{Fix}(T)
+ =v_0\left(C_Q(k)\cap K\right).
+ }
+ \tag{3.611}
+\]
+
+In the free product $Q=C_2*\mathbb Z$, the centralizer of a nontrivial
+element is finite cyclic in the torsion case and infinite cyclic otherwise.
+Since $K$ is torsion-free, (3.611) is empty, a single point, or one cyclic
+corridor in $K$.
+
+Thus the unbounded interior matching count in Section 3.85 has disappeared
+branchwise.  Every nonfixed contribution is an active-boundary color, and
+every remaining loop lies on the explicit conjugacy corridor (3.611).
+Different branch boundaries and corridor loops may still cancel in the
+complete correlation ledger (3.589); (3.609) does not assert that their
+aggregate is nonzero.
+
+### 3.91 Fixed branch loops are purely cross-source-slot
+
+The mixed sum in (3.589) is indexed by distinct anchored source atoms
+$\alpha<\beta$.  Write such atoms as
+
+\[
+ \begin{aligned}
+ \alpha&=(r,v),\\
+ \beta&=(r',w),\\
+ r,r'&\in\{0,1\}.
+ \end{aligned}
+ \tag{3.612}
+\]
+
+On one branch from Section 3.90, their source representatives satisfy
+$w=T(v)$.  A loop in (3.609) has $T(v)=v$, hence $w=v$.  If also $r=r'$,
+then $\alpha=\beta$, contrary to the indexing of the mixed term.  Therefore
+
+\[
+ \boxed{
+ \begin{aligned}
+ r=r'&\Longrightarrow L_T=\varnothing,\\
+ L_T\ne\varnothing&\Longrightarrow \{r,r'\}=\{0,1\}.
+ \end{aligned}
+ }
+ \tag{3.613}
+\]
+
+Let
+
+\[
+ A_r(F):=\{v\in K:\overline f_r(v)=1\}.
+ \tag{3.614}
+\]
+
+For a cross-source-slot branch, (3.611) and (3.613) give the sharper loop
+support
+
+\[
+ \boxed{
+ V(L_T)
+ \subseteq
+ A_0(F)\cap A_1(F)\cap
+ v_0\left(C_Q(k)\cap K\right),
+ }
+ \tag{3.615}
+\]
+
+with the right side empty when the conjugacy equation (3.610) has no
+solution.  Token-leg activity can remove points from (3.615), so equality
+is not asserted.
+
+Consequently every same-source-slot general mixed branch satisfies the
+loop-free identity
+
+\[
+ \boxed{
+ \begin{gathered}
+ |E_T|
+ =\sum_x[\delta_x](\partial E_T)\chi_T(x),\\
+ \text{equality in }\mathbb F_2.
+ \end{gathered}
+ }
+ \tag{3.616}
+\]
+
+The only branch-interior terms left by the rank-two telescope are finite
+token-weighted subsets of the cross-slot overlap corridors (3.615).  This
+does not control the active-boundary colors or prove that the cross-slot
+loop parity vanishes.  It identifies the two exact remaining clustered
+objects: the aggregate branch boundary and the same-coset slot-zero/one
+polarization along finite or cyclic conjugacy corridors.
+
+### 3.92 Fixed corridors satisfy a two-coordinate multiplier sieve
+
+A loop has $w=v$, so its height shift in (3.590) is zero.  The paired
+generator table (3.169) gives
+
+\[
+ \begin{aligned}
+ \nu_t(g_0)&=-1,\\
+ \nu_t(g_1)&=1.
+ \end{aligned}
+ \tag{3.617}
+\]
+
+Combining this condition with the four anti-height rows in (3.601) yields
+the complete loop table
+
+\[
+ \boxed{
+ \begin{array}{c|c|c|c}
+ s&\sigma(h)&\nu_t(h)&\text{anti-height loop equation}\\ \hline
+ 0&1&-\epsilon&2\delta(u)=7+d(h)\\
+ 0&-1&-\epsilon&2(\delta(v)-\delta(u))=d(h)-7\\
+ 1&1&\epsilon&d(h)=5\epsilon\\
+ 1&-1&\epsilon&2\delta(v)=5\epsilon+d(h).
+ \end{array}
+ }
+ \tag{3.618}
+\]
+
+Every row of (3.618) has the two immediate necessary conditions
+
+\[
+ \boxed{
+ \begin{aligned}
+ |\nu_t(h)|&=1,\\
+ d(h)&\equiv1\pmod2.
+ \end{aligned}
+ }
+ \tag{3.619}
+\]
+
+Indeed, the height assertion is displayed in the third column.  In the
+slot-zero rows, the parity of the fourth column forces $d(h)$ to have the
+same parity as $7$; in the slot-one translation row it equals
+$5\epsilon$; and in the remaining reflection row it has the same parity
+as $5\epsilon$.
+
+The slot-one translation row is sharper.  There $\sigma(h)=1$, so $h\in K$.
+If its abelianization in the free basis $(t,ctc)$ is $(p,q)$, then
+
+\[
+ \begin{aligned}
+ \nu_t(h)&=p+q,\\
+ d(h)&=\delta(h)=p-q.
+ \end{aligned}
+ \tag{3.620}
+\]
+
+Using the third and fourth entries of that row gives
+
+\[
+ \boxed{
+ (p,q)=(3\epsilon,-2\epsilon).
+ }
+ \tag{3.621}
+\]
+
+Thus the corridor-loop audit of the finite endpoint-multiplier list can
+discard every multiplier outside (3.619), and in the slot-one translation
+case every multiplier outside the two signed abelianized types (3.621).
+This is a necessary sieve, not an enumeration of the remaining finite
+list.  The boundary-color sum and the token weights on surviving
+cross-source-slot corridors remain unevaluated.
 
 ## 4. Exact diagonal sieve
 
