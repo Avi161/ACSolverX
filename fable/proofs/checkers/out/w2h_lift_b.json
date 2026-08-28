@@ -1,0 +1,210 @@
+{
+ "schema": "acsolverx.w2h.lift.v1",
+ "summary": {
+  "windows": 8,
+  "verified_layer1_solutions": 5,
+  "unsolved_at_rho": 3,
+  "mutation_control_run": true,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 23,
+   "rho": 2,
+   "variables": 5402,
+   "solvable_over_Z": false,
+   "x_terms": null,
+   "residual_after_lift": null,
+   "VERIFIED_layer1_solution": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 30,
+   "rho": 2,
+   "variables": 12472,
+   "solvable_over_Z": true,
+   "x_terms": [
+    0,
+    8,
+    10,
+    12,
+    6
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 14,
+   "rho": 2,
+   "variables": 4425,
+   "solvable_over_Z": false,
+   "x_terms": null,
+   "residual_after_lift": null,
+   "VERIFIED_layer1_solution": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 13,
+   "rho": 2,
+   "variables": 4132,
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    4,
+    5,
+    6,
+    3
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 17,
+   "rho": 2,
+   "variables": 5684,
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    4,
+    7,
+    6,
+    3
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 11,
+   "rho": 2,
+   "variables": 3634,
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    4,
+    5,
+    5,
+    3
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 11,
+   "rho": 2,
+   "variables": 4820,
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    5,
+    12,
+    10,
+    2
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 16,
+   "rho": 2,
+   "variables": 4886,
+   "solvable_over_Z": false,
+   "x_terms": null,
+   "residual_after_lift": null,
+   "VERIFIED_layer1_solution": false
+  }
+ ]
+}

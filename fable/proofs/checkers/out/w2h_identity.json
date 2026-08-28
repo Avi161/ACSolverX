@@ -1,0 +1,1220 @@
+{
+ "schema": "acsolverx.w2h.identity.v1",
+ "summary": {
+  "chains": 67,
+  "all_passed": true,
+  "identity_checks": 25460,
+  "identity_mismatches": 0,
+  "l234_row_checks": 38190,
+  "l234_nonvanishing": 0,
+  "radius": 6
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "finite_core": false,
+   "n_core": 12,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "finite_core": false,
+   "n_core": 12,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "finite_core": false,
+   "n_core": 12,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "finite_core": false,
+   "n_core": 9,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "finite_core": false,
+   "n_core": 9,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 6,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": false,
+   "n_core": 8,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_core": true,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "finite_core": false,
+   "n_core": 4,
+   "base_pinned_gamma_gens_trace_to_base": true,
+   "identity_checks": 380,
+   "identity_mismatches": 0,
+   "l234_row_checks": 570,
+   "l234_nonvanishing": 0,
+   "corruption_breaks_identity": true,
+   "corruption_breaks_vanishing": true,
+   "passed": true
+  }
+ ]
+}
