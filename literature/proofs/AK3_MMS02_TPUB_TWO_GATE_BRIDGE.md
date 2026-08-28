@@ -43,6 +43,13 @@ of the four tail-free boundary-cancelling moves by a cyclic conjugate of
 $v^{\pm1}$ produces a thickenable complex.  Arbitrary surviving conjugator
 tails and multi-move paths remain outside that theorem.
 
+Section 6.11 gives a separate stable reduction.  One fresh tagged row lets
+the certified $A$-branch run while retaining $rt$; the same two-factor
+$B$-donor macro applied to $rt$ then reaches $B_t$.  Each direct sequential
+cleanup order fails at its first substitution.  The remaining sufficient
+object at this endpoint is one named interleaved relative Peiffer class, not
+another sequential ledger.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1331,6 +1338,168 @@ invariant.  Theorem 6.4 therefore does not obstruct the unrestricted bridge
 and proves none of stable AK(3), ordinary AK(3), stable Andrews--Curtis, or
 Andrews--Curtis.
 
+### 6.11. One tagged stabilization isolates the interleaved gate
+
+Write ${}^g w=gwg^{-1}$ and use the commutator convention
+$[a,b]=aba^{-1}b^{-1}$.  The pinned words satisfy the literal identities
+
+\[
+ \begin{aligned}
+ rC&=x,&qu&=vh,\\
+ C&=({}^xq)({}^{x^2}q^{-1})({}^{x^2}v)({}^xq^{-1}),\\
+ K^{-1}&=C({}^uC^{-1}),&
+ D^{-1}&=({}^hr)({}^{hX}r^{-1}).
+ \end{aligned}
+ \tag{73}
+\]
+
+The last line is the factorwise form of the two certified donor branches.
+Introduce a fresh stabilization generator and row $t$, write
+$F_t=F(x,y,z,t)$, and put
+
+\[
+ \begin{aligned}
+ s&=rt,&D(w)&={}^h[X,w],&B_t&=qD(rt)^{-1}.
+ \end{aligned}
+ \tag{74}
+\]
+
+There is a literal finite path
+
+\[
+ (r,q,v,t)
+ \sim_{\mathrm{AC}}(r,q,v,rt)
+ \sim_{\mathrm{AC}}(A,q,v,rt)
+ \sim_{\mathrm{AC}}(A,B_t,v,rt).
+ \tag{75}
+\]
+
+For the first arrow, conjugate the $r$-row by $t^{-1}$, multiply it into
+the $t$-row, and restore the $r$-row.  The second arrow is the certified
+$A$-branch and leaves the tagged row literal.  The final arrow uses
+
+\[
+ D(rt)^{-1}=({}^h(rt))({}^{hX}(rt)^{-1}),
+ \tag{76}
+\]
+
+so it uses only the current $rt$-row as donor.
+
+The commutator interchange identity
+
+\[
+ [X,rt]=[X,r]({}^r[X,t])
+ \tag{77}
+\]
+
+gives
+
+\[
+ \begin{aligned}
+ D(rt)&=D({}^{hr}[X,t]),\\
+ B_t&=L_tB,&L_t&={}^{qhr}[X,t]^{-1}.
+ \end{aligned}
+ \tag{78}
+\]
+
+Thus (75) has exactly two visible cleanup residuals: $L_t$ in the second
+row and $r$ in the fourth row.  Both direct first cleanup substitutions are
+false.
+
+First clean $B_t$.  Replacing it by $B$ while the other three rows remain
+fixed would require
+
+\[
+ \mathsf T_B:
+ L_t\in\operatorname{Ncl}_{F_t}(A,v,rt).
+ \tag{79}
+\]
+
+In the quotient on the right, $rt=1$ gives $t=r^{-1}$.  Since conjugation
+and inversion do not affect triviality, (79) would force
+$[X,r^{-1}]=1$, equivalently $[X,r]=1$, in
+
+\[
+ Q_A=\langle x,y,z\mid A,v\rangle.
+\]
+
+Section 4 proves that $D=h[X,r]h^{-1}$ is nontrivial in this quotient.
+Therefore $\mathsf T_B$ is false.
+
+Now restore the tagged row first.  Replacing $rt$ by $t$ while
+$A,B_t,v$ remain fixed would require
+
+\[
+ \mathsf T_t:
+ r\in\operatorname{Ncl}_{F_t}(A,B_t,v).
+ \tag{80}
+\]
+
+Kill $v$ and use the Section 4 Magnus group
+$Q_A=\langle x,y\mid\overline A\rangle$.  Equation $B_t=1$ is equivalent
+to
+
+\[
+ \begin{aligned}
+ [X,t]&={}^{g^{-1}}B,&g&=qhr=X^2r.
+ \end{aligned}
+ \tag{81}
+\]
+
+Because $[X,t]=Xtxt^{-1}$, this is the HNN relation
+
+\[
+ \begin{aligned}
+ t x t^{-1}&=w,\\
+ w&=x({}^{g^{-1}}B)=r^{-1}x^2yx^{-2}r.
+ \end{aligned}
+ \tag{82}
+\]
+
+The last word is conjugate to $y$.  In the Magnus decomposition of Section
+4, $x$ is the stable letter and $y=a$ lies in the embedded free base, so
+both $\langle x\rangle$ and $\langle w\rangle$ are infinite cyclic.
+Britton's lemma embeds $Q_A$ in the HNN extension (82).  Moreover $r$ is
+nontrivial in $Q_A$, since $[X,r]$ is nontrivial there.  Hence $r$ remains
+nontrivial after imposing $B_t=1$, and $\mathsf T_t$ is false.
+
+**Theorem 6.5 (tagged stable reduction).**  The canonical one-tag path
+reaches the relative Peiffer problem
+
+\[
+ (A,B_t,v,rt)\longrightarrow(A,B,v,t),
+ \tag{83}
+\]
+
+whose positive closure is sufficient for the stable bridge.  Neither
+of the two direct sequential basic-substitution orders from the displayed
+endpoint can begin: each fails at its first substitution.
+
+The common tempting shortcut is invalid.  The identities
+$q=B_tD(rt)$ and $K\in\operatorname{Ncl}(q,v)$ show only
+
+\[
+ r=AK\in\operatorname{Ncl}(A,B_t,v,rt),
+ \tag{84}
+\]
+
+which uses the $rt$-row while trying to replace that same row.  It is not a
+basic substitution.  The remaining sufficient object at this canonical
+endpoint is the genuinely interleaved relative Peiffer class (83), modulo
+the two failed direct first substitutions.  No necessity is claimed: another
+stabilized path may bypass this endpoint.  No Hall--Witt cancellation of its
+higher interchange terms is proved here.
+
+The dependency-free replay
+`tests/stable_ac/test_ak3_mms02_tagged_buffer.py` checks every literal identity
+in (73), (77)--(78), and (81)--(82), including both quotient substitutions.
+The Magnus and HNN injectivity arguments remain the proof-theoretic steps.
+
+Theorem 6.5 does not close (83).  A positive interleaved closure would prove
+the stable MMS02 bridge and stable AK(3); the two negative sequential gates
+prove neither.  Ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis
+remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -1352,10 +1521,14 @@ The logical gates remain separate:
 6. the exact $T_{\rm pub}$ complex and all four pinned-seam donor neighbours
    are nonthickenable, but this does not obstruct another AC-equivalent
    thickenable representative;
-7. no MMS02 statement evaluates the period-two class-two ledger or its
+7. the one-tag path reaches (83), and both direct first cleanup substitutions
+   fail, but its interleaved relative Peiffer class remains open;
+8. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-8. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+9. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
-The active priority is now the unrestricted stable bridge
-$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$ with all rows allowed to move.
+The active priority is the interleaved relative class (83), together with
+the unrestricted rank-three bridge
+$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$.  No further sequential or pinned-donor
+ledger is opened.

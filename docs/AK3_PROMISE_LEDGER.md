@@ -111,14 +111,23 @@ finite quotient do not close a route.
   tail-free boundary-cancelling class. Do not extend it to another donor
   census; surviving conjugator tails, unshortened products, multi-move paths,
   retained stabilizations, the bridge, and stable AK(3) remain open.
+- **One-tag stable endpoint isolated:** one fresh row gives a literal path
+  `(r,q,v,t) ~ (A,B_t,v,rt)`, where the second-row discrepancy is the exact
+  commutator `L_t`. Cleaning `B_t` first is obstructed by the already-proved
+  nontriviality of `[X,r]` in the Gate-A Magnus group. Restoring `rt` first is
+  obstructed by a new HNN extension which embeds that same group and retains
+  `r != 1`. Freeze these two direct first-substitution gates. The sufficient
+  open object at this endpoint is the interleaved relative Peiffer class
+  `(A,B_t,v,rt) -> (A,B,v,t)`; it is not necessary, is not closed, and gives
+  no stable-AK(3) claim.
 - **Resume point:** both sequential donor completions are closed. Work on the
-  unrestricted common-kill target or the genuinely interleaved
-  Peiffer/basic-substitution closure of one symbolic residual pair; the SLP
-  lift itself is complete, but no closure to `(A,B,Xyz)` is proved. Do not
-  add another sequential cleanup category. No fixed-base or failed-search
-  result is evidence against the bridge. Before extending the JSON schema,
-  harden ordinal fields to reject booleans/floats that compare equal to
-  integers.
+  unrestricted common-kill target, the genuinely interleaved closure of one
+  symbolic residual pair, or the named relative class at the one-tag endpoint.
+  The lifts are complete, but no closure to `(A,B,Xyz)` is proved. Do not add
+  another sequential cleanup or pinned-donor category. No fixed-base or
+  failed-search result is evidence against the bridge. Before extending the
+  JSON schema, harden ordinal fields to reject booleans/floats that compare
+  equal to integers.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See
