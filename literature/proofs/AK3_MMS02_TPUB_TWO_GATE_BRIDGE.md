@@ -87,6 +87,14 @@ the normal closure of the three fixed/current donor rows.  The remaining
 relative problem is precisely the tagged normal-generator gate
 $(q,t)\to(B,t)$ in $Q_A*\langle t\rangle$.
 
+Section 6.19 identifies the first derived defect module for that gate.  The
+kernel created by restoring $Q_A''$ is a free product of its conjugates with
+no extra Kurosh free factor, so its abelianization is the induced module from
+$L=Q_A''/Q_A'''$.  The canonical quotient path has residual $([E],0)$ in
+the identity-coset summand.  Arbitrary tame lifts of quotient AC loops,
+including transformations which project to the identity loop, may still
+move or cancel that residual.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -2342,6 +2350,107 @@ stable-letter syllables.  No tag-rigidity or destabilization theorem is
 proved.  The gate (130), the unrestricted MMS02 bridge, stable AK(3), and
 ordinary AK(3) remain open.
 
+### 6.19. The first tagged defect module is induced without a free summand
+
+The correct linear ambient object for (130) is not $L$ alone.  Put
+
+\[
+ \begin{aligned}
+ H&=Q_A/Q_A'',&
+ \overline G&=H*\langle t\rangle,\\
+ G_t&=Q_A*\langle t\rangle,&
+ N_t&=\ker(G_t\longrightarrow\overline G),\\
+ L&=Q_A''/Q_A''',&
+ \mathcal M&=N_t/[N_t,N_t].
+ \end{aligned}
+ \tag{131}
+\]
+
+Give $L$ its left $H$-module structure by conjugation.  There is an exact
+left $\mathbb Z[\overline G]$-module isomorphism
+
+\[
+ \boxed{
+ \mathcal M\cong
+ \mathbb Z[\overline G]\otimes_{\mathbb Z[H]}L.
+ }
+ \tag{132}
+\]
+
+Here $\mathbb Z[\overline G]$ is a right $\mathbb Z[H]$-module by
+multiplication.  To prove (132), use the Bass--Serre tree $T$ of
+$G_t=Q_A*\langle t\rangle$.  The quotient graph $N_t\backslash T$ has
+
+\[
+ \begin{aligned}
+ \text{first vertices}&=\overline G/H,&
+ \text{tag vertices}&=\overline G/\langle t\rangle,&
+ \text{edges}&=\overline G.
+ \end{aligned}
+\]
+
+With the natural incidence maps, this is exactly the Bass--Serre tree of
+$\overline G=H*\langle t\rangle$.  In particular, it is a tree, not merely
+a connected graph.  The Kurosh decomposition of $N_t$ therefore has no
+free factor from the quotient graph.  Its only nontrivial vertex groups are
+the conjugates of $Q_A''$ at the first vertices:
+
+\[
+ N_t
+ \cong
+ \mathop{\ast}_{gH\in\overline G/H}gQ_A''g^{-1}.
+ \tag{133}
+\]
+
+Abelianizing (133) gives the direct sum of the conjugate copies of $L$.
+The $\overline G$-action permutes the cosets and uses the $H$-conjugation
+action inside a fixed copy.  This is exactly the induced module (132).
+
+The identity-coset factor in (133) also proves that the natural map
+
+\[
+ L\longrightarrow\mathcal M
+\]
+
+is injective.  Hence the nonzero class $[E]\in L$ from Section 6.16 remains
+nonzero in $\mathcal M$.
+
+Now follow the canonical path in $\overline G$: conjugate the first entry
+$q$ by $D^{-1}$ and leave the tag $t$ fixed.  Its literal lift in $G_t$
+ends at $(EB,t)$, so its complete first-derived residual is
+
+\[
+ \boxed{\kappa_0=([E],0)\in\mathcal M^2.}
+ \tag{134}
+\]
+
+**Theorem 6.13 (induced tagged defect module).**  The first derived kernel
+for the tagged gate (130) is the induced module (132), with no additional
+Kurosh free summand, and the canonical quotient path has the nonzero residual
+(134).
+
+Nonzero $\kappa_0$ does not yet obstruct the full tagged gate.  Another
+quotient path differs from the canonical path by an Andrews--Curtis loop at
+$(B,t)$ in $\overline G$, but a quotient loop has no canonical affine action
+on $\mathcal M^2$.  One must choose a tame lift of every operator move, and
+different lifts by $N_t$ can add vertical defects.  This includes tame
+transformations which project to the identity quotient loop.
+
+Fix the literal lift producing $\kappa_0$.  Define $\mathcal D$ to be the
+set of all first-derived defects obtained by composing that lift with every
+tame full-group transformation whose projection is an Andrews--Curtis loop
+at $(B,t)$ in $\overline G$.  Thus $\mathcal D$ uses the full preimage of the
+quotient-loop stabilizer, not one chosen section of it.  A full path for
+(130) forces $0\in\mathcal D$; proving $0\notin\mathcal D$ would obstruct
+(130).  Conversely, $0\in\mathcal D$ would close only this first-derived
+obstruction, not construct a full path.
+
+The exact next obligation is to evaluate the complete lifted defect set
+$\mathcal D$, not another finite move ledger.  It must retain both the
+quotient stabilizer and the vertical kernel of the tame operator action.
+The relative Peiffer class, the MMS02 bridge, stable AK(3), and ordinary
+AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2380,9 +2489,13 @@ The logical gates remain separate:
 12. the coefficient $r$ can be removed from the tagged source, so the exact
     open core is $(q,t)\to(B,t)$, but literal nonconjugacy does not decide this
     two-row Andrews--Curtis orbit;
-13. no MMS02 statement evaluates the period-two class-two ledger or its
+13. the first derived tagged kernel is the induced module from
+    $Q_A''/Q_A'''$ and the canonical quotient path has residual $([E],0)$,
+    but the complete defect set over all tame lifts of quotient AC loops has
+    not been evaluated;
+14. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-14. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+15. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

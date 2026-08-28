@@ -178,6 +178,18 @@ finite quotient do not close a route.
   class is now exactly the tagged normal-generator gate `(q,t) -> (B,t)` in
   `Q_A*<t>`.  Nonconjugacy of `q` and `B` does not decide this two-row AC
   orbit; no tag-rigidity or destabilization theorem is known here.
+- **First tagged defect module identified:** for
+  `G_t=Q_A*<t> -> (Q_A/Q_A'')*<t>`, Bass--Serre theory shows that the kernel
+  is the free product of the conjugates of `Q_A''` indexed by the quotient
+  factor cosets.  The quotient graph is itself the Bass--Serre tree of the
+  quotient free product, so there is no extra Kurosh free factor.  Its
+  abelianization is therefore the induced module
+  `Z[Gbar] tensor_{Z[H]} (Q_A''/Q_A''')`, and the identity-coset copy embeds.
+  The canonical quotient conjugation has exact residual `([E],0)` in this
+  module.  This is not yet an obstruction to the tagged pair: arbitrary AC
+  loops at `(B,t)` may have affine Fox defects which cancel it.  A quotient
+  loop has no canonical lift; the complete defect set must include every
+  tame lift and the vertical kernel projecting to the identity loop.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
@@ -185,9 +197,13 @@ finite quotient do not close a route.
   quotients or metabelian quotients: they are all blind.  For the tagged route,
   every literal conjugator from `q` to `B` is now closed, and the coefficient
   `r` has been removed from the source.  Work on the complete tagged gate
-  `(q,t) -> (B,t)` through a relative crossed-module invariant or constructive
-  path.  A multi-row Peiffer lift or another full relative path may bypass
-  the closed single-row gate.  Do not add another finite
+  `(q,t) -> (B,t)` by evaluating the complete lifted defect set of `([E],0)`
+  in the induced kernel module, including the vertical tame-operator kernel,
+  or by constructing a full path.
+  If the linear orbit contains zero, escalate once to the tame relative
+  crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or
+  another full relative path may bypass the closed single-row gate.  Do not
+  add another finite
   alternation or conjugator category.  The lifts are complete, but no closure
   to `(A,B,Xyz)` is proved. Do not add
   another sequential cleanup or pinned-donor category. No fixed-base or
