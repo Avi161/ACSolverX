@@ -5413,15 +5413,26 @@ homomorphism: the images of $x,y$ freely generate $K$ in $Q$, so a relation
 between their displayed lifts in $F(c,t)$ would give the same relation in
 $K$.
 
-The fixed Schreier representative $\widetilde a$ from (1.4) need not be
-$\widehat a$.  Record that second section comparison by
+The fixed Schreier representative $\widetilde a$ from (1.4) need not lift
+the element $a\in K$ itself.  It lifts the same right $H$-coset, so there
+is a unique $\rho(a)\in\{0,1\}$ such that its quotient value is
+$ac^{\rho(a)}$.  Record the second section comparison by
 
 \[
  \begin{aligned}
- \mu(a)&:=\widetilde a\widehat a^{-1}\in N,\\
+ \mu(a)&:=\widetilde a
+  \left(\widehat a c^{\rho(a)}\right)^{-1}\in N,\\
  E(a)&:=\overline{\mu(a)}\in M.
  \end{aligned}
  \tag{3.355a}
+\]
+
+If $r_a^j:=\widehat a c^2\widehat a^{-1}$, then the terminal
+$c^{\rho(a)}$ centralizes $c^2$ and
+
+\[
+ \boxed{r_a=\mu(a)r_a^j\mu(a)^{-1}.}
+ \tag{3.355b}
 \]
 
 Define the kernel defect and its relation-module current by
@@ -5494,26 +5505,29 @@ For the odd semidirect lift,
  \tag{3.359}
 \]
 
-Put $b=m_o\alpha^{\eta_o}(a)$.  Substituting
-$\widetilde a=\mu(a)\widehat a$ at the source and
-$\widehat b=\mu(b)^{-1}\widetilde b$ at the destination gives
+Put $b=m_o\alpha^{\eta_o}(a)$ and set
+$\delta_0(a)=1$, $\delta_1(a)=\delta(a)$.  Equations (3.355b) and (3.359)
+give the exact conjugating factor
 
 \[
- \widehat q_o\widetilde a
- =\lambda_o
+ \begin{aligned}
+ k_{o,a}
+ ={}&\lambda_o
   \left(
    \widehat m_oc^{\eta_o}\mu(a)c^{-\eta_o}\widehat m_o^{-1}
   \right)
   \left(
    \widehat m_o\delta_{\eta_o}(a)\widehat m_o^{-1}
   \right)
-  \mu(b)^{-1}\widetilde b c^{\eta_o},
+  \mu(b)^{-1},\\
+ \widehat q_o r_a\widehat q_o^{-1}
+ ={}&k_{o,a}r_bk_{o,a}^{-1}.
+ \end{aligned}
  \tag{3.359a}
 \]
 
-where $\delta_0(a)=1$ and $\delta_1(a)=\delta(a)$.  The terminal
-$c^{\eta_o}$ centralizes $c^2$.  Combining (3.348), (3.358), and (3.359a)
-therefore gives the exact literal-prefix data
+Abelianizing (3.359a) and using (3.358) therefore gives the exact
+literal-prefix data
 
 \[
  \boxed{
