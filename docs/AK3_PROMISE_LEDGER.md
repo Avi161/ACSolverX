@@ -26,15 +26,24 @@ finite quotient do not close a route.
   and exact branch endpoints. The two reduced second-stage gates are
   `Q_A=<x,y | xYxYXyyXYxyXy>` with defect `YXyyXYxyxY`, and
   `Q_B=<x,y | XyyXYXyxYYxy>` with defect `YxYXyxYYxyXyyyXY`.
-- **Resume point:** prove a second-stage normal-closure factorization or give an
-  exact homomorphism refuting only its named sequential ansatz. Do not use a
-  failed quotient search as evidence. Before extending the JSON schema, harden
+- **Gate A closed negatively:** exact Magnus rewriting makes `Q_A` an
+  ascending HNN extension of a free rank-two base. After shifting the defect
+  into that base it freely reduces to
+  `ba^-1ba^-1b^-1ab^-2`, so `delta_D != 1` in `Q_A`. This refutes only the
+  S1 sequential completion.
+- **Gate B closed negatively:** after the Nielsen change `a=xY,t=y`, exact
+  Magnus rewriting again gives an ascending HNN extension of a free rank-two
+  base. The shifted defect freely reduces to the nonempty 13-letter word in
+  Equation (28) of the two-gate note, so `delta_K != 1` in `Q_B`. This refutes
+  only the S2 sequential completion.
+- **Resume point:** both sequential donor completions are closed. Work on the
+  unrestricted all-row bridge `Tpub ~AC Txy`; no fixed-base or failed-search
+  result is evidence against it. Before extending the JSON schema, harden
   ordinal fields to reject booleans/floats that compare equal to integers.
-- **Two-gate theorem:** either `delta_D=1` in `Q_A` or `delta_K=1` in `Q_B`
-  gives a constructive AC-trivialization of `Tpub`; see
-  `literature/proofs/AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`. Nontriviality of both
-  defects would close only the two sequential donor completions, not the
-  unrestricted bridge.
+- **Two-gate theorem:** either positive gate would have constructively
+  AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
+  sequential ansatz without closing the bridge. See
+  `literature/proofs/AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`.
 - **Nonclaim:** neither first leg alone proves the bridge, AC, or stable AC.
 
 ## 2. Old--new covariance program — active
