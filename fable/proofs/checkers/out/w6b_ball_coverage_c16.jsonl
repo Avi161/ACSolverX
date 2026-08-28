@@ -1,0 +1,17 @@
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XYXyxy", "Z"], "total_length": 14, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZ", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyz", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyzz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxy", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZ", "XYXyxyZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxyz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZ", "XYXyxy", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxy", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxyZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyz", "XYXyxyz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzz", "XYXyxy", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXyxYxYXy", "XYXyxy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXyyyXYxy", "XYXyxy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XYXyxy", "XYYxyXyyy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XYXyxy", "XYxYxyXyy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}

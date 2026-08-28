@@ -1,0 +1,170 @@
+{
+  "_fails": [],
+  "pinned": [
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 288,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "exact_Tpub_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YxyZ",
+        "XYxz",
+        "YxZx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 4320,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zX",
+        "yxzxxy",
+        "XZyyxz"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 1440,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "XZxyZY",
+        "XZXX",
+        "XYY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 1152,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zyyy",
+        "Xyzz",
+        "xyzxZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 34560,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "zYYzx",
+        "yZxzyZ",
+        "yXZZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 2,
+      "compatible_orderings": 34560,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xzYXyy",
+        "zYXyzy",
+        "XXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 34560,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Tpub_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "XXXZ",
+        "zxYYY",
+        "xYxxzy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 1440,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Txy_support",
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "ZyxYX",
+        "yxZX",
+        "ZXyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 288,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Txy_support",
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "ZxZYZX",
+        "zYX",
+        "zYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 5760,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Txy_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "XZYzxY",
+        "xyZY",
+        "YxYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 1440,
+      "family": "BOOK",
+      "macro_rotations": 4,
+      "tag": "iso_Txy_support",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YzyX",
+        "zzyyX",
+        "YYZX"
+      ]
+    }
+  ],
+  "sweep": {
+    "disagreements": [],
+    "seed": 4242,
+    "tally": {
+      "gamma_0": 27,
+      "gamma_positive": 223,
+      "iso_Tpub": 212,
+      "iso_Txy": 38
+    },
+    "tested": 250
+  }
+}

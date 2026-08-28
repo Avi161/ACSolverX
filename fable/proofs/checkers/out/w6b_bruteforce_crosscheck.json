@@ -1,0 +1,346 @@
+{
+  "_fails": [],
+  "pinned": [
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 14400,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YYxYYx",
+        "XyxxYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 4320,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "yyyyx",
+        "XXYxyy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yXXXXy",
+        "XyXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 576,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yyyx",
+        "YxxxxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 144,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "YXyX",
+        "XYYXX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 34560,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YZyxZY",
+        "Yxxyyx",
+        "xYZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 30240,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "ZZXzY",
+        "YYYY",
+        "yyyxz"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 1440,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zyxz",
+        "ZYZxzy",
+        "xZY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 288,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yzYxZX",
+        "YX",
+        "Zxxy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 288,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "ZZxZ",
+        "yx",
+        "yxxzXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 40320,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "yxyxxx",
+        "xxxxx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 48,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xyxx",
+        "yxyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "YXYX",
+        "XYYYXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "XXXX",
+        "xxyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 720,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "Y",
+        "zYYYY",
+        "xzYYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 120,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xxx",
+        "XX",
+        "ZxYY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 120,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zzyx",
+        "yyyx",
+        "YY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 48,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "Yxzx",
+        "xY",
+        "zzzz"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 24,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "reason": null,
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "xzYzxz",
+        "YX",
+        "YY"
+      ]
+    },
+    {
+      "agrees": null,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 6,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": "A-link contains a loop",
+      "verdict": "UNSUPPORTED",
+      "words": [
+        "yx",
+        "yxXX"
+      ]
+    },
+    {
+      "agrees": null,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 4,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "reason": "A-link contains a loop",
+      "verdict": "UNSUPPORTED",
+      "words": [
+        "XYyyX",
+        "X"
+      ]
+    },
+    {
+      "agrees": null,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 12,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "reason": "A-link contains a loop",
+      "verdict": "UNSUPPORTED",
+      "words": [
+        "x",
+        "xxyxYy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 2,
+      "compatible_orderings": 86400,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 2,
+      "reason": null,
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    }
+  ],
+  "sweep": {
+    "disagreements": [],
+    "family_counts": {
+      "BOOK": 203,
+      "SPLIT_ENDPOINT": 47
+    },
+    "seed": 4242,
+    "tested": 250
+  }
+}

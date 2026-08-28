@@ -1,0 +1,396 @@
+{
+  "_fails": [],
+  "quarantined_positives": [],
+  "targets": [
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 5,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-4",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 5,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 2
+        },
+        {
+          "bundle": "1-4",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-5",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-5",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0). The link graph is CONNECTED, so AK3_NEUWIRTH Theorem 2 applies as an equivalence (thickenable iff gamma_N = 0); the negative does not rest on the necessity half alone.",
+      "compatible_orderings": 20858412072960000,
+      "counters": {
+        "closed_component_assignments": 124,
+        "component_seed_attempts": 15600,
+        "component_seed_budget": 15600,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 3120,
+        "phase_tuples_considered": 3120,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xyz",
+      "link_connected": true,
+      "macro_rotations": 4,
+      "name": "Txy_certified_AC_trivial",
+      "reason": null,
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "zYX"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-4",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 2
+        },
+        {
+          "bundle": "1-4",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-5",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-4",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-5",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0). The link graph is CONNECTED, so AK3_NEUWIRTH Theorem 2 applies as an equivalence (thickenable iff gamma_N = 0); the negative does not rest on the necessity half alone.",
+      "compatible_orderings": 20858412072960000,
+      "counters": {
+        "closed_component_assignments": 96,
+        "component_seed_attempts": 18720,
+        "component_seed_budget": 18720,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 3120,
+        "phase_tuples_considered": 3120,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xyz",
+      "link_connected": true,
+      "macro_rotations": 4,
+      "name": "Tpub",
+      "reason": null,
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "Xyz"
+      ]
+    },
+    {
+      "brute_force_decided": true,
+      "brute_force_gamma_N": 2,
+      "bundles": [],
+      "claim": "UNSUPPORTED by this family; no claim",
+      "compatible_orderings": 86400,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 0,
+        "component_seed_budget": 0,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": false,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 0,
+        "phase_tuples_considered": 0,
+        "scheme_budget": 0,
+        "schemes_considered": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "UNSUPPORTED",
+      "gens": "xyz",
+      "macro_rotations": 0,
+      "name": "ak3_stabilized",
+      "reason": "A-link is disconnected",
+      "spherical": null,
+      "verdict": "UNSUPPORTED",
+      "witness": null,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY",
+        "z"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [],
+      "claim": "UNSUPPORTED by this family; no claim",
+      "compatible_orderings": 22596613079040000,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 0,
+        "component_seed_budget": 0,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": false,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 0,
+        "phase_tuples_considered": 0,
+        "scheme_budget": 0,
+        "schemes_considered": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "UNSUPPORTED",
+      "gens": "xyz",
+      "macro_rotations": 0,
+      "name": "Q_stabilized",
+      "reason": "A-link is disconnected",
+      "spherical": null,
+      "verdict": "UNSUPPORTED",
+      "witness": null,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy",
+        "z"
+      ]
+    },
+    {
+      "agrees_with_brute_force": true,
+      "brute_force_decided": true,
+      "brute_force_gamma_N": 2,
+      "bundles": [
+        {
+          "bundle": "0-1",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "2-3",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0). The link graph is CONNECTED, so AK3_NEUWIRTH Theorem 2 applies as an equivalence (thickenable iff gamma_N = 0); the negative does not rest on the necessity half alone.",
+      "compatible_orderings": 86400,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 84,
+        "phase_tuples_considered": 84,
+        "scheme_budget": 2,
+        "schemes_considered": 2,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xy",
+      "link_connected": true,
+      "macro_rotations": 2,
+      "name": "ak3_rank2",
+      "reason": null,
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 7,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "BOOK",
+          "multiplicity": 7,
+          "pieces": 1
+        },
+        {
+          "bundle": "2-3",
+          "class": "SPLIT_BOTH_ENDS (K4-e shape; not in this family)",
+          "multiplicity": 3,
+          "pieces": 2
+        }
+      ],
+      "claim": "UNSUPPORTED by this family; no claim",
+      "compatible_orderings": 22596613079040000,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 0,
+        "component_seed_budget": 0,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": false,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 0,
+        "phase_tuples_considered": 0,
+        "scheme_budget": 0,
+        "schemes_considered": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "UNSUPPORTED",
+      "gens": "xy",
+      "macro_rotations": 0,
+      "name": "Q_rank2",
+      "reason": "bundle 2-3 has two pieces touching both endpoints",
+      "spherical": null,
+      "verdict": "UNSUPPORTED",
+      "witness": null,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    }
+  ]
+}

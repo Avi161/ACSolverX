@@ -1,0 +1,125 @@
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XXyXyyyXy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyXyyyXyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyXyyyXyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XXyxYXyyy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyxYXyyyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyxYXyyyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XXyyyXYxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyyyXYxyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyy", "XXyyyXYxyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XYXyxy", "Z"], "total_length": 14, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZ", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZZZ", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyZZZZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyz", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyzz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyzzz", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyy", "XYXyxyzzzz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XYYYxyXyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXXyyyy", "XYxYYYxyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyZ", "XXyXyyyXy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyZ", "XXyxYXyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyZ", "XXyyyXYxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxy", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZ", "XYXyxyZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZ", "XYXyxyZZ", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZ", "XYXyxyZZZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxyz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxyzz", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZ", "XYXyxyzzz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZ", "XYXyxy", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZZ", "XYXyxyZ", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZZ", "XYXyxyZZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZ", "XYXyxyz", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZ", "XYXyxyzz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZZ", "XYXyxy", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyZZZ", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZZ", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyZZZZ", "XYXyxy", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyz", "XXyXyyyXy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyz", "XXyxYXyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXXyyyyz", "XXyyyXYxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxy", "Z"], "total_length": 15, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxyZ", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxyZZ", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyz", "XYXyxyZZZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyz", "XYXyxyz", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyz", "XYXyxyzz", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyz", "XYXyxyzzz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzz", "XYXyxy", "Z"], "total_length": 16, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzz", "XYXyxyZ", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzz", "XYXyxyZZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyzz", "XYXyxyz", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyzz", "XYXyxyzz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzzz", "XYXyxy", "Z"], "total_length": 17, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzzz", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 2, "reason": null, "state": ["XXXyyyyzzz", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXXyyyyzzzz", "XYXyxy", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXYxyXyxYxY", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXyxYXyyy", "XYXyxy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyy", "XYXyxyZ", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyy", "XYXyxyZZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyy", "XYXyxyz", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyy", "XYXyxyzz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyyZ", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXyxYXyyyZ", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 8, "reason": null, "state": ["XXyxYXyyyZ", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyyZZ", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyyz", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 8, "reason": null, "state": ["XXyxYXyyyz", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXyxYXyyyz", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYXyyyzz", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXyxYxYXy", "XYXyxy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXy", "XYXyxyZ", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXy", "XYXyxyZZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXy", "XYXyxyz", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXy", "XYXyxyzz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyZ", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyZ", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyZ", "XYXyxyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyZZ", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyz", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyz", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyz", "XYXyxyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyxYxYXyzz", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XXyyyXYxy", "XYXyxy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxy", "XYXyxyZ", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxy", "XYXyxyZZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxy", "XYXyxyz", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxy", "XYXyxyzz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxyZ", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXyyyXYxyZ", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 8, "reason": null, "state": ["XXyyyXYxyZ", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxyZZ", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxyz", "XYXyxy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 8, "reason": null, "state": ["XXyyyXYxyz", "XYXyxyZ", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": true, "family": "BOOK", "macro_rotations": 4, "reason": null, "state": ["XXyyyXYxyz", "XYXyxyz", "Z"], "total_length": 18, "verdict": "NOT_SPHERICAL"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XXyyyXYxyzz", "XYXyxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XYXyxy", "XYYxyXyyy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYYxyXyyyZ", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYYxyXyyyZZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYYxyXyyyz", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYYxyXyyyzz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XYXyxy", "XYxYXyxYYxy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "A-link is disconnected", "state": ["XYXyxy", "XYxYxyXyy", "Z"], "total_length": 16, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYxYxyXyyZ", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYxYxyXyyZZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYxYxyXyyz", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxy", "XYxYxyXyyzz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYYxyXyyy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYYxyXyyyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYYxyXyyyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYxYxyXyy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYxYxyXyyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyZ", "XYxYxyXyyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyZZ", "XYYxyXyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyZZ", "XYxYxyXyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYYxyXyyy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYYxyXyyyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYYxyXyyyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYxYxyXyy", "Z"], "total_length": 17, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYxYxyXyyZ", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyz", "XYxYxyXyyz", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 2-3 has two pieces touching both endpoints", "state": ["XYXyxyzz", "XYYxyXyyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}
+{"exhaustive": false, "family": "UNSUPPORTED", "macro_rotations": 0, "reason": "bundle 1-3 has two pieces touching both endpoints", "state": ["XYXyxyzz", "XYxYxyXyy", "Z"], "total_length": 18, "verdict": "UNSUPPORTED"}

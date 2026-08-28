@@ -1,0 +1,25 @@
+{
+  "_fails": [],
+  "ball_states": 503,
+  "ceiling": 20,
+  "classified": 503,
+  "complete": true,
+  "decided": 178,
+  "family_counts": {
+    "BOOK": 178,
+    "UNSUPPORTED": 325
+  },
+  "jsonl": "/home/user/ACSolverX/fable/proofs/checkers/out/w6b_ball_coverage_c20.jsonl",
+  "quarantined_positive_states": [],
+  "unsupported_reasons": {
+    "A-link is disconnected": 27,
+    "bundle 1-2 has two pieces touching both endpoints": 4,
+    "bundle 1-3 has two pieces touching both endpoints": 218,
+    "bundle 2-3 has 3 pieces (>2)": 8,
+    "bundle 2-3 has two pieces touching both endpoints": 68
+  },
+  "verdict_counts": {
+    "NOT_SPHERICAL": 178,
+    "UNSUPPORTED": 325
+  }
+}

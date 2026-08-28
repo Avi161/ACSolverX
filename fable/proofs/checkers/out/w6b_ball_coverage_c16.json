@@ -1,0 +1,21 @@
+{
+  "_fails": [],
+  "ball_states": 17,
+  "ceiling": 16,
+  "classified": 17,
+  "complete": true,
+  "decided": 12,
+  "family_counts": {
+    "BOOK": 12,
+    "UNSUPPORTED": 5
+  },
+  "jsonl": "/home/user/ACSolverX/fable/proofs/checkers/out/w6b_ball_coverage_c16.jsonl",
+  "quarantined_positive_states": [],
+  "unsupported_reasons": {
+    "A-link is disconnected": 5
+  },
+  "verdict_counts": {
+    "NOT_SPHERICAL": 12,
+    "UNSUPPORTED": 5
+  }
+}

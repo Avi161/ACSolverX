@@ -1,0 +1,39 @@
+{
+  "_fails": [],
+  "pinned_p4": [
+    {
+      "agrees": true,
+      "factorial_accepting": 1,
+      "my_family": "BOOK",
+      "my_verdict": "SPHERICAL_REQUIRES_REGINA",
+      "repo_support": "P4",
+      "repo_verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "X",
+        "XY"
+      ]
+    },
+    {
+      "agrees": true,
+      "factorial_accepting": 0,
+      "my_family": "SPLIT_ENDPOINT",
+      "my_verdict": "NOT_SPHERICAL",
+      "repo_support": "P4",
+      "repo_verdict": "NOT_SPHERICAL",
+      "words": [
+        "X",
+        "XXXYXY"
+      ]
+    }
+  ],
+  "sweep": {
+    "disagreements": [],
+    "repo_supports": {
+      "C4": 30,
+      "K4": 5,
+      "K4-e": 24,
+      "P4": 61
+    },
+    "tested": 120
+  }
+}

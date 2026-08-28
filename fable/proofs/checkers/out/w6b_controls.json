@@ -1,0 +1,604 @@
+{
+  "_fails": [],
+  "corruption_bundle_reversal": {
+    "moved": [
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "yXXXXy",
+          "XyXY"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "yyyx",
+          "YxxxxY"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "YXyX",
+          "XYYXX"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "zyxz",
+          "ZYZxzy",
+          "xZY"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "yzYxZX",
+          "YX",
+          "Zxxy"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "ZZxZ",
+          "yx",
+          "yxxzXy"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "YXYX",
+          "XYYYXY"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "XXXX",
+          "xxyx"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "zzyx",
+          "yyyx",
+          "YY"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "Yxzx",
+          "xY",
+          "zzzz"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "gens": "xyz",
+        "true_gamma_N": 0,
+        "words": [
+          "xzYzxz",
+          "YX",
+          "YY"
+        ]
+      },
+      {
+        "broken": "UNSUPPORTED",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "yx",
+          "yxXX"
+        ]
+      },
+      {
+        "broken": "UNSUPPORTED",
+        "gens": "xy",
+        "true_gamma_N": 0,
+        "words": [
+          "x",
+          "xxyxYy"
+        ]
+      }
+    ]
+  },
+  "corruption_genus": {
+    "positive_instance": [
+      [
+        "zyxz",
+        "ZYZxzy",
+        "xZY"
+      ],
+      "xyz"
+    ],
+    "replay_reachability_on_negatives": {
+      "negatives_examined": 10,
+      "negatives_reaching_a_full_assignment": 0
+    },
+    "verdict_after_offset": "NOT_SPHERICAL",
+    "verdict_before": "SPHERICAL_REQUIRES_REGINA"
+  },
+  "corruption_macro_completeness": [
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "one_macro_only": "NOT_SPHERICAL",
+      "words": [
+        "yzYxZX",
+        "YX",
+        "Zxxy"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "one_macro_only": "NOT_SPHERICAL",
+      "words": [
+        "ZZxZ",
+        "yx",
+        "yxxzXy"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "one_macro_only": "NOT_SPHERICAL",
+      "words": [
+        "xzYzxz",
+        "YX",
+        "YY"
+      ]
+    }
+  ],
+  "corruption_shift_completeness": [
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "shift_0_only": "NOT_SPHERICAL",
+      "words": [
+        "XXXX",
+        "xxyx"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "shift_0_only": "NOT_SPHERICAL",
+      "words": [
+        "zzyx",
+        "yyyx",
+        "YY"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": "SPHERICAL_REQUIRES_REGINA",
+      "shift_0_only": "NOT_SPHERICAL",
+      "words": [
+        "Yxzx",
+        "xY",
+        "zzzz"
+      ]
+    }
+  ],
+  "dictionary_agreement": [
+    {
+      "identical": true,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "identical": true,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    },
+    {
+      "identical": true,
+      "words": [
+        "yx",
+        "yxXX"
+      ]
+    },
+    {
+      "identical": true,
+      "words": [
+        "XYyyX",
+        "X"
+      ]
+    },
+    {
+      "identical": true,
+      "words": [
+        "x",
+        "xxyxYy"
+      ]
+    }
+  ],
+  "fail_closed": [
+    {
+      "family": "BOOK",
+      "name": "Txy_certified_AC_trivial",
+      "reason": null,
+      "verdict": "NOT_SPHERICAL"
+    },
+    {
+      "family": "BOOK",
+      "name": "Tpub",
+      "reason": null,
+      "verdict": "NOT_SPHERICAL"
+    },
+    {
+      "family": "UNSUPPORTED",
+      "name": "ak3_stabilized",
+      "reason": "A-link is disconnected",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "family": "UNSUPPORTED",
+      "name": "Q_stabilized",
+      "reason": "A-link is disconnected",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "family": "BOOK",
+      "name": "ak3_rank2",
+      "reason": null,
+      "verdict": "NOT_SPHERICAL"
+    },
+    {
+      "family": "UNSUPPORTED",
+      "name": "Q_rank2",
+      "reason": "bundle 2-3 has two pieces touching both endpoints",
+      "verdict": "UNSUPPORTED"
+    }
+  ],
+  "independent_witness_rescoring": [
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xy",
+      "independent_genus": 0,
+      "words": [
+        "yXXXXy",
+        "XyXY"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xy",
+      "independent_genus": 0,
+      "words": [
+        "yyyx",
+        "YxxxxY"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xy",
+      "independent_genus": 0,
+      "words": [
+        "YXyX",
+        "XYYXX"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "zyxz",
+        "ZYZxzy",
+        "xZY"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "yzYxZX",
+        "YX",
+        "Zxxy"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "ZZxZ",
+        "yx",
+        "yxxzXy"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xy",
+      "independent_genus": 0,
+      "words": [
+        "YXYX",
+        "XYYYXY"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xy",
+      "independent_genus": 0,
+      "words": [
+        "XXXX",
+        "xxyx"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "zzyx",
+        "yyyx",
+        "YY"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "Yxzx",
+        "xY",
+        "zzzz"
+      ]
+    },
+    {
+      "b_reversal_recomputed": true,
+      "gens": "xyz",
+      "independent_genus": 0,
+      "words": [
+        "xzYzxz",
+        "YX",
+        "YY"
+      ]
+    },
+    {
+      "gens": "xy",
+      "skipped": "A-link contains a loop",
+      "words": [
+        "yx",
+        "yxXX"
+      ]
+    },
+    {
+      "gens": "xy",
+      "skipped": "A-link contains a loop",
+      "words": [
+        "x",
+        "xxyxYy"
+      ]
+    }
+  ],
+  "lemma_b_bijection": [
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 16,
+      "family": "BOOK",
+      "gens": "xy",
+      "macro_rotations": 2,
+      "predicted": 16,
+      "words": [
+        "YXyX",
+        "XYYXX"
+      ]
+    },
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 32,
+      "family": "BOOK",
+      "gens": "xyz",
+      "macro_rotations": 4,
+      "predicted": 32,
+      "words": [
+        "yzYxZX",
+        "YX",
+        "Zxxy"
+      ]
+    },
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 64,
+      "family": "BOOK",
+      "gens": "xyz",
+      "macro_rotations": 8,
+      "predicted": 64,
+      "words": [
+        "ZZxZ",
+        "yx",
+        "yxxzXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 384,
+      "family": "SPLIT_ENDPOINT",
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "predicted": 384,
+      "words": [
+        "zzyx",
+        "yyyx",
+        "YY"
+      ]
+    },
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 384,
+      "family": "SPLIT_ENDPOINT",
+      "gens": "xyz",
+      "macro_rotations": 1,
+      "predicted": 384,
+      "words": [
+        "Yxzx",
+        "xY",
+        "zzzz"
+      ]
+    },
+    {
+      "agrees": true,
+      "counted_spherical_rotation_systems": 64,
+      "family": "SPLIT_ENDPOINT",
+      "gens": "xyz",
+      "macro_rotations": 4,
+      "predicted": 64,
+      "words": [
+        "xzYzxz",
+        "YX",
+        "YY"
+      ]
+    }
+  ],
+  "lemma_d_gauge": [
+    {
+      "base": false,
+      "gamma_N": 1,
+      "regauged": false,
+      "words": [
+        "YYxYYx",
+        "XyxxYX"
+      ]
+    },
+    {
+      "base": false,
+      "gamma_N": 1,
+      "regauged": false,
+      "words": [
+        "yyyyx",
+        "XXYxyy"
+      ]
+    },
+    {
+      "base": true,
+      "gamma_N": 0,
+      "regauged": true,
+      "words": [
+        "yXXXXy",
+        "XyXY"
+      ]
+    },
+    {
+      "base": true,
+      "gamma_N": 0,
+      "regauged": true,
+      "words": [
+        "yyyx",
+        "YxxxxY"
+      ]
+    },
+    {
+      "base": true,
+      "gamma_N": 0,
+      "regauged": true,
+      "words": [
+        "YXyX",
+        "XYYXX"
+      ]
+    },
+    {
+      "base": false,
+      "gamma_N": 1,
+      "regauged": false,
+      "words": [
+        "YZyxZY",
+        "Yxxyyx",
+        "xYZ"
+      ]
+    },
+    {
+      "base": false,
+      "gamma_N": 1,
+      "regauged": false,
+      "words": [
+        "ZZXzY",
+        "YYYY",
+        "yyyxz"
+      ]
+    },
+    {
+      "base": true,
+      "gamma_N": 0,
+      "regauged": true,
+      "words": [
+        "zyxz",
+        "ZYZxzy",
+        "xZY"
+      ]
+    }
+  ],
+  "rank3_dictionary_agreement": [
+    {
+      "identical": true,
+      "name": "Txy_certified_AC_trivial"
+    },
+    {
+      "identical": true,
+      "name": "Tpub"
+    },
+    {
+      "identical": true,
+      "name": "ak3_stabilized"
+    },
+    {
+      "identical": true,
+      "name": "Q_stabilized"
+    }
+  ],
+  "scheme_sphericity": [
+    {
+      "euler_characteristics": [
+        2
+      ],
+      "name": "Txy_certified_AC_trivial",
+      "schemes": 4
+    },
+    {
+      "euler_characteristics": [
+        2
+      ],
+      "name": "Tpub",
+      "schemes": 4
+    },
+    {
+      "euler_characteristics": [
+        2
+      ],
+      "name": "ak3_rank2",
+      "schemes": 2
+    }
+  ]
+}
