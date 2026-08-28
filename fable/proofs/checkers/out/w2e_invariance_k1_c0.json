@@ -1,0 +1,9238 @@
+{
+ "summary": {
+  "k_range": [
+   -1,
+   1
+  ],
+  "k1_range": [
+   -1,
+   1
+  ],
+  "class_slice": [
+   0,
+   3
+  ],
+  "gamma_check": false,
+  "windows_per_chain": 81,
+  "windows_evaluated": 486,
+  "windows_one_hop_live": 123,
+  "windows_one_hop_unsolvable": 363,
+  "aligned_window_pairs": 81,
+  "aligned_window_mismatches": 58,
+  "strict_window_pairs": 243,
+  "strict_window_mismatches": 131,
+  "verdict": "COUNTEREXAMPLE_TO_WINDOW_ALIGNED_INVARIANCE",
+  "controls": {
+   "fixed_h_witness": "passed",
+   "centralizer_generates_every_conjugator": true,
+   "non_vacuity_and_dynamic_range": true,
+   "transformation_law_verified": true,
+   "mutation_detects_flipped_bit": true
+  },
+  "nonclaims": [
+   "chain-level NOT_LIVE_AT_TESTED_WINDOWS stays inconclusive; only window-level comparisons carry evidence",
+   "K and cap 12 are ceilings, not budgets",
+   "no claim about the free-group class, AK(3), stable AC, or AC"
+  ]
+ },
+ "partition_R_cycS_U": [
+  {
+   "key": [
+    "TTTcTctcttc",
+    "TcTcttc",
+    "TTTcTcttct"
+   ],
+   "members": [
+    [
+     "TTTcTctcttc",
+     "cTTcTcttctc",
+     "TTTcTcttct"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTTcTctcttc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "members": [
+    [
+     "TTTcTctcttc",
+     "cTTcTcttctc",
+     "TTcTcttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTcTctttc",
+     "TTctttcTTc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTcTctttc",
+     "TcttcTTcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTctttcTc",
+    "TTcTTctttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTctttcTct",
+     "TTcTTctttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcTcttc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcTcttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTctcTcTctct"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTctcTcTctct"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcttcTc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcttcTc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TcTTcttcTctc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TcTTcttcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TctcTcTctc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TctcTcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "tcTcTTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "members": [
+    [
+     "tcTcTTTcttc",
+     "ctcTcTctc",
+     "TcTTcttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "tcTcTTTcttc",
+    "TcTcttc",
+    "tcTcTTct"
+   ],
+   "members": [
+    [
+     "tcTcTTTcttc",
+     "ctcTcTctc",
+     "tcTcTTct"
+    ]
+   ]
+  }
+ ],
+ "partition_R_cycS_cycU": [
+  {
+   "key": [
+    "TTTcTctcttc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "members": [
+    [
+     "TTTcTctcttc",
+     "cTTcTcttctc",
+     "TTTcTcttct"
+    ],
+    [
+     "TTTcTctcttc",
+     "cTTcTcttctc",
+     "TTcTcttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTcTctttc",
+     "TTctttcTTc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTcTctcTcttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTcTctttc",
+     "TcttcTTcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TTctttcTc",
+    "TTcTTctttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTctttcTct",
+     "TTcTTctttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcTcttc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcTcttc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcttcTc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcttcTc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTctcTc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TcTTcttcTctc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TcTTcttcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTctcTctc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTctcTcTctct"
+    ],
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TctcTcTctc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTctcTcTctct"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TctcTcTctc"
+    ]
+   ]
+  },
+  {
+   "key": [
+    "tcTcTTTcttc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "members": [
+    [
+     "tcTcTTTcttc",
+     "ctcTcTctc",
+     "TcTTcttc"
+    ],
+    [
+     "tcTcTTTcttc",
+     "ctcTcTctc",
+     "tcTcTTct"
+    ]
+   ]
+  }
+ ],
+ "class_reports": [
+  {
+   "class_key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcTcttc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcTcttc"
+    ]
+   ],
+   "pairs": [
+    {
+     "member1": [
+      "TTctcTctc",
+      "TcTcttc",
+      "TTcTcttc"
+     ],
+     "gamma": "Tctt",
+     "g_shared": true,
+     "zeta_h1_shared": true,
+     "by_gamma": [
+      {
+       "gamma": "Tctt",
+       "aligned_windows": 27,
+       "agree": 6,
+       "mismatch": 21,
+       "member0_live_windows": 21,
+       "member1_live_windows": 0,
+       "transformation_law_verified": true,
+       "L0_L1_changed": [
+        true,
+        true
+       ],
+       "no_uniform_right_unit_intertwiner": true,
+       "strict_windows": 81,
+       "strict_mismatch": 41,
+       "strict_member0_solvable": 40,
+       "strict_member1_solvable": 0,
+       "strict_example_mismatch": {
+        "k": [
+         -1,
+         -1,
+         -1,
+         0
+        ],
+        "member0": {
+         "2": true,
+         "3": true,
+         "5": true
+        },
+        "member1": {
+         "2": false,
+         "3": false,
+         "5": false
+        },
+        "defect0": [
+         47,
+         72
+        ],
+        "defect1": [
+         45,
+         68
+        ],
+        "status": "MISMATCH"
+       },
+       "rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        }
+       ],
+       "strict_rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          48,
+          74
+         ],
+         "defect1": [
+          47,
+          72
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          47,
+          72
+         ],
+         "defect1": [
+          45,
+          68
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          52,
+          76
+         ],
+         "defect1": [
+          50,
+          72
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          70
+         ],
+         "defect1": [
+          44,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          62
+         ],
+         "defect1": [
+          42,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          45,
+          72
+         ],
+         "defect1": [
+          47,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          44,
+          70
+         ],
+         "defect1": [
+          44,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          42,
+          68
+         ],
+         "defect1": [
+          42,
+          66
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          48,
+          72
+         ],
+         "defect1": [
+          47,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          39,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          37,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          42,
+          60
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          36,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          32,
+          56
+         ],
+         "defect1": [
+          34,
+          54
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          39,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          36,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          35,
+          58
+         ],
+         "defect1": [
+          34,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          60
+         ],
+         "defect1": [
+          39,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          39,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          37,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          40,
+          64
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          37,
+          64
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          58
+         ],
+         "defect1": [
+          31,
+          50
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          38,
+          62
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          38,
+          66
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          36,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          39,
+          64
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          36
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          38
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          32,
+          42
+         ],
+         "defect1": [
+          30,
+          38
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          20,
+          32
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          20,
+          26
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          34
+         ],
+         "defect1": [
+          26,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          32
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          22,
+          34
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          36
+         ],
+         "defect1": [
+          26,
+          34
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          20
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          24
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          18,
+          26
+         ],
+         "defect1": [
+          20,
+          22
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          18
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          12,
+          20
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          22
+         ],
+         "defect1": [
+          16,
+          18
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          22
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          22
+         ],
+         "defect1": [
+          16,
+          18
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          24
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          18,
+          26
+         ],
+         "defect1": [
+          18,
+          26
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          20
+         ],
+         "defect1": [
+          13,
+          22
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          12,
+          20
+         ],
+         "defect1": [
+          13,
+          22
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          22
+         ],
+         "defect1": [
+          16,
+          24
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          22
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          22
+         ],
+         "defect1": [
+          13,
+          22
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          16,
+          24
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          48
+         ],
+         "defect1": [
+          30,
+          50
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          46
+         ],
+         "defect1": [
+          28,
+          46
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          50
+         ],
+         "defect1": [
+          33,
+          50
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          56
+         ],
+         "defect1": [
+          32,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          46
+         ],
+         "defect1": [
+          30,
+          52
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          58
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          32,
+          56
+         ],
+         "defect1": [
+          32,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          52
+         ],
+         "defect1": [
+          30,
+          52
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          58
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          44
+         ],
+         "defect1": [
+          24,
+          42
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          42
+         ],
+         "defect1": [
+          22,
+          38
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          46
+         ],
+         "defect1": [
+          27,
+          42
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          22,
+          52
+         ],
+         "defect1": [
+          26,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          42
+         ],
+         "defect1": [
+          24,
+          44
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          54
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          52
+         ],
+         "defect1": [
+          26,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          48
+         ],
+         "defect1": [
+          24,
+          44
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          52
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          48
+         ],
+         "defect1": [
+          27,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          48
+         ],
+         "defect1": [
+          24,
+          44
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          50
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          52
+         ],
+         "defect1": [
+          28,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          48
+         ],
+         "defect1": [
+          19,
+          40
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          54
+         ],
+         "defect1": [
+          30,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          32,
+          56
+         ],
+         "defect1": [
+          30,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          52
+         ],
+         "defect1": [
+          27,
+          52
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          32,
+          56
+         ],
+         "status": "MISMATCH"
+        }
+       ]
+      }
+     ],
+     "mismatch": 21,
+     "aligned_windows": 27,
+     "agree": 6,
+     "example_mismatch": {
+      "k": [
+       -1,
+       -1,
+       0
+      ],
+      "member0": {
+       "2": true,
+       "3": true,
+       "5": true
+      },
+      "member1": {
+       "2": false,
+       "3": false,
+       "5": false
+      },
+      "member0_live": true,
+      "member1_live": false,
+      "n_h1": [
+       3,
+       3
+      ],
+      "status": "MISMATCH"
+     },
+     "gamma_independent_verdict": true
+    }
+   ]
+  },
+  {
+   "class_key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTctcTcTctct"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTctcTcTctct"
+    ]
+   ],
+   "pairs": [
+    {
+     "member1": [
+      "TTctcTctc",
+      "TcTcttc",
+      "TTctcTcTctct"
+     ],
+     "gamma": "Tctt",
+     "g_shared": true,
+     "zeta_h1_shared": true,
+     "by_gamma": [
+      {
+       "gamma": "Tctt",
+       "aligned_windows": 27,
+       "agree": 7,
+       "mismatch": 20,
+       "member0_live_windows": 19,
+       "member1_live_windows": 0,
+       "transformation_law_verified": true,
+       "L0_L1_changed": [
+        true,
+        true
+       ],
+       "no_uniform_right_unit_intertwiner": true,
+       "strict_windows": 81,
+       "strict_mismatch": 44,
+       "strict_member0_solvable": 40,
+       "strict_member1_solvable": 0,
+       "strict_example_mismatch": {
+        "k": [
+         -1,
+         -1,
+         -1,
+         1
+        ],
+        "member0": {
+         "2": true,
+         "3": true,
+         "5": true
+        },
+        "member1": {
+         "2": false,
+         "3": false,
+         "5": false
+        },
+        "defect0": [
+         50,
+         76
+        ],
+        "defect1": [
+         49,
+         72
+        ],
+        "status": "MISMATCH"
+       },
+       "rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        }
+       ],
+       "strict_rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          48,
+          72
+         ],
+         "defect1": [
+          47,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          46,
+          72
+         ],
+         "defect1": [
+          47,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          50,
+          76
+         ],
+         "defect1": [
+          49,
+          72
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          44,
+          70
+         ],
+         "defect1": [
+          45,
+          68
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          41,
+          70
+         ],
+         "defect1": [
+          45,
+          68
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          41,
+          62
+         ],
+         "defect1": [
+          47,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          46,
+          70
+         ],
+         "defect1": [
+          46,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          44,
+          70
+         ],
+         "defect1": [
+          46,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          46,
+          74
+         ],
+         "defect1": [
+          48,
+          72
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          62
+         ],
+         "defect1": [
+          39,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          60
+         ],
+         "defect1": [
+          39,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          41,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          62
+         ],
+         "defect1": [
+          37,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          37,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          39,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          62
+         ],
+         "defect1": [
+          38,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          38,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          40,
+          60
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          39,
+          64
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          64
+         ],
+         "defect1": [
+          38,
+          62
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          41,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          37,
+          62
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          36,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          60
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          40,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          64
+         ],
+         "defect1": [
+          39,
+          64
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          64
+         ],
+         "defect1": [
+          40,
+          66
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          36
+         ],
+         "defect1": [
+          26,
+          34
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          34
+         ],
+         "defect1": [
+          26,
+          34
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          40
+         ],
+         "defect1": [
+          28,
+          36
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          32
+         ],
+         "defect1": [
+          24,
+          32
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          32
+         ],
+         "defect1": [
+          24,
+          32
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          24
+         ],
+         "defect1": [
+          26,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          34
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          32
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          38
+         ],
+         "defect1": [
+          27,
+          36
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          16,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          20
+         ],
+         "defect1": [
+          16,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          24
+         ],
+         "defect1": [
+          18,
+          20
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          14,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          12,
+          18
+         ],
+         "defect1": [
+          14,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          16,
+          18
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          24
+         ],
+         "defect1": [
+          17,
+          20
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          16,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          16,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          24
+         ],
+         "defect1": [
+          18,
+          26
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          14,
+          22
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          14,
+          22
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          16,
+          24
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          17,
+          24
+         ],
+         "defect1": [
+          17,
+          26
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          17,
+          26
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          24
+         ],
+         "defect1": [
+          17,
+          26
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          58
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          32,
+          50
+         ],
+         "defect1": [
+          32,
+          50
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          56
+         ],
+         "defect1": [
+          32,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          56
+         ],
+         "defect1": [
+          32,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          46
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          54
+         ],
+         "defect1": [
+          33,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          31,
+          54
+         ],
+         "defect1": [
+          33,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          48
+         ],
+         "defect1": [
+          30,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          54
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          52
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          46
+         ],
+         "defect1": [
+          26,
+          42
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          52
+         ],
+         "defect1": [
+          26,
+          46
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          22,
+          52
+         ],
+         "defect1": [
+          26,
+          46
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          40
+         ],
+         "defect1": [
+          23,
+          40
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          44
+         ],
+         "defect1": [
+          27,
+          46
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          44
+         ],
+         "defect1": [
+          27,
+          46
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          22,
+          42
+         ],
+         "defect1": [
+          24,
+          40
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          32,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          30,
+          56
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          50
+         ],
+         "defect1": [
+          29,
+          48
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          31,
+          58
+         ],
+         "defect1": [
+          28,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          27,
+          54
+         ],
+         "defect1": [
+          26,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          48
+         ],
+         "defect1": [
+          19,
+          36
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          31,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          29,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          50
+         ],
+         "defect1": [
+          26,
+          46
+         ],
+         "status": "MISMATCH"
+        }
+       ]
+      }
+     ],
+     "mismatch": 20,
+     "aligned_windows": 27,
+     "agree": 7,
+     "example_mismatch": {
+      "k": [
+       -1,
+       -1,
+       1
+      ],
+      "member0": {
+       "2": true,
+       "3": true,
+       "5": true
+      },
+      "member1": {
+       "2": false,
+       "3": false,
+       "5": false
+      },
+      "member0_live": true,
+      "member1_live": false,
+      "n_h1": [
+       3,
+       3
+      ],
+      "status": "MISMATCH"
+     },
+     "gamma_independent_verdict": true
+    }
+   ]
+  },
+  {
+   "class_key": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "members": [
+    [
+     "TTctcTctc",
+     "TTTcttcTctt",
+     "TTcttcTc"
+    ],
+    [
+     "TTctcTctc",
+     "TcTcttc",
+     "TTcttcTc"
+    ]
+   ],
+   "pairs": [
+    {
+     "member1": [
+      "TTctcTctc",
+      "TcTcttc",
+      "TTcttcTc"
+     ],
+     "gamma": "Tctt",
+     "g_shared": true,
+     "zeta_h1_shared": true,
+     "by_gamma": [
+      {
+       "gamma": "Tctt",
+       "aligned_windows": 27,
+       "agree": 10,
+       "mismatch": 17,
+       "member0_live_windows": 18,
+       "member1_live_windows": 3,
+       "transformation_law_verified": true,
+       "L0_L1_changed": [
+        true,
+        true
+       ],
+       "no_uniform_right_unit_intertwiner": true,
+       "strict_windows": 81,
+       "strict_mismatch": 46,
+       "strict_member0_solvable": 40,
+       "strict_member1_solvable": 3,
+       "strict_example_mismatch": {
+        "k": [
+         -1,
+         -1,
+         -1,
+         1
+        ],
+        "member0": {
+         "2": true,
+         "3": true,
+         "5": true
+        },
+        "member1": {
+         "2": false,
+         "3": false,
+         "5": false
+        },
+        "defect0": [
+         50,
+         76
+        ],
+        "defect1": [
+         46,
+         70
+        ],
+        "status": "MISMATCH"
+       },
+       "rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member0_live": true,
+         "member1_live": true,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member0_live": true,
+         "member1_live": true,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": false,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member0_live": true,
+         "member1_live": true,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "member0_live": true,
+         "member1_live": false,
+         "n_h1": [
+          3,
+          3
+         ],
+         "status": "MISMATCH"
+        }
+       ],
+       "strict_rows": [
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          46,
+          72
+         ],
+         "defect1": [
+          42,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          42,
+          62
+         ],
+         "defect1": [
+          40,
+          62
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          50,
+          76
+         ],
+         "defect1": [
+          46,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          45,
+          70
+         ],
+         "defect1": [
+          45,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          43,
+          66
+         ],
+         "defect1": [
+          43,
+          66
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          45,
+          66
+         ],
+         "defect1": [
+          46,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          45,
+          70
+         ],
+         "defect1": [
+          45,
+          70
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          43,
+          66
+         ],
+         "defect1": [
+          43,
+          66
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          47,
+          72
+         ],
+         "defect1": [
+          46,
+          70
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          36,
+          62
+         ],
+         "defect1": [
+          36,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          56
+         ],
+         "defect1": [
+          34,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          39,
+          60
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          37,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          31,
+          54
+         ],
+         "defect1": [
+          35,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          35,
+          58
+         ],
+         "defect1": [
+          38,
+          58
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          37,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          35,
+          56
+         ],
+         "defect1": [
+          35,
+          54
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          38,
+          58
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          62
+         ],
+         "defect1": [
+          37,
+          62
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          35,
+          58
+         ],
+         "defect1": [
+          35,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          64
+         ],
+         "defect1": [
+          39,
+          64
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          39,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "defect0": [
+          33,
+          56
+         ],
+         "defect1": [
+          37,
+          60
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          38,
+          62
+         ],
+         "defect1": [
+          37,
+          64
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          40,
+          64
+         ],
+         "defect1": [
+          39,
+          66
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          60
+         ],
+         "defect1": [
+          37,
+          60
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          -1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          39,
+          64
+         ],
+         "defect1": [
+          38,
+          64
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          34
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          20,
+          24
+         ],
+         "defect1": [
+          21,
+          28
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          40
+         ],
+         "defect1": [
+          26,
+          36
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          32
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          28
+         ],
+         "defect1": [
+          21,
+          28
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          30
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          23,
+          32
+         ],
+         "defect1": [
+          23,
+          32
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          28
+         ],
+         "defect1": [
+          21,
+          28
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": true,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          36
+         ],
+         "defect1": [
+          25,
+          34
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          11,
+          16
+         ],
+         "defect1": [
+          11,
+          12
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          24
+         ],
+         "defect1": [
+          17,
+          20
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          20
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          9,
+          14
+         ],
+         "defect1": [
+          11,
+          12
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          22
+         ],
+         "defect1": [
+          13,
+          16
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          18
+         ],
+         "defect1": [
+          11,
+          12
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          24
+         ],
+         "defect1": [
+          15,
+          18
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          20
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          11,
+          16
+         ],
+         "defect1": [
+          13,
+          20
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          24
+         ],
+         "defect1": [
+          16,
+          26
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          14,
+          20
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "defect0": [
+          9,
+          14
+         ],
+         "defect1": [
+          14,
+          20
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          15,
+          22
+         ],
+         "defect1": [
+          14,
+          24
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          22
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          13,
+          18
+         ],
+         "defect1": [
+          14,
+          20
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          0,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          16,
+          24
+         ],
+         "defect1": [
+          15,
+          24
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          56
+         ],
+         "defect1": [
+          29,
+          50
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          46
+         ],
+         "defect1": [
+          27,
+          46
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          37,
+          60
+         ],
+         "defect1": [
+          33,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          56
+         ],
+         "defect1": [
+          33,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          52
+         ],
+         "defect1": [
+          31,
+          52
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          52
+         ],
+         "defect1": [
+          34,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          56
+         ],
+         "defect1": [
+          33,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          52
+         ],
+         "defect1": [
+          31,
+          52
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          -1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          35,
+          58
+         ],
+         "defect1": [
+          34,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          25,
+          52
+         ],
+         "defect1": [
+          25,
+          46
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          38
+         ],
+         "defect1": [
+          23,
+          42
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          0,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          29,
+          56
+         ],
+         "defect1": [
+          28,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          52
+         ],
+         "defect1": [
+          27,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          21,
+          48
+         ],
+         "defect1": [
+          25,
+          44
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          22,
+          42
+         ],
+         "defect1": [
+          28,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          26,
+          52
+         ],
+         "defect1": [
+          27,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          24,
+          48
+         ],
+         "defect1": [
+          25,
+          44
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          0,
+          1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          54
+         ],
+         "defect1": [
+          28,
+          48
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          27,
+          50
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          28,
+          50
+         ],
+         "defect1": [
+          23,
+          44
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          -1,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          31,
+          56
+         ],
+         "defect1": [
+          30,
+          54
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          -1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          31,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          0
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "defect0": [
+          27,
+          50
+         ],
+         "defect1": [
+          27,
+          52
+         ],
+         "status": "AGREE"
+        },
+        {
+         "k": [
+          1,
+          1,
+          0,
+          1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          27,
+          52
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          -1
+         ],
+         "member0": {
+          "2": true,
+          "3": true,
+          "5": true
+         },
+         "member1": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          34,
+          58
+         ],
+         "defect1": [
+          31,
+          56
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          0
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          30,
+          54
+         ],
+         "defect1": [
+          27,
+          52
+         ],
+         "status": "MISMATCH"
+        },
+        {
+         "k": [
+          1,
+          1,
+          1,
+          1
+         ],
+         "member0": {
+          "2": false,
+          "3": false,
+          "5": false
+         },
+         "member1": {
+          "2": true,
+          "3": false,
+          "5": false
+         },
+         "defect0": [
+          33,
+          58
+         ],
+         "defect1": [
+          31,
+          56
+         ],
+         "status": "MISMATCH"
+        }
+       ]
+      }
+     ],
+     "mismatch": 17,
+     "aligned_windows": 27,
+     "agree": 10,
+     "example_mismatch": {
+      "k": [
+       -1,
+       -1,
+       0
+      ],
+      "member0": {
+       "2": true,
+       "3": true,
+       "5": true
+      },
+      "member1": {
+       "2": false,
+       "3": false,
+       "5": false
+      },
+      "member0_live": true,
+      "member1_live": false,
+      "n_h1": [
+       3,
+       3
+      ],
+      "status": "MISMATCH"
+     },
+     "gamma_independent_verdict": true
+    }
+   ]
+  }
+ ]
+}
