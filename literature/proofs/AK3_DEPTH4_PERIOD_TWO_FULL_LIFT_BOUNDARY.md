@@ -5219,9 +5219,10 @@ The gap after (3.344) must be closed before applying an exterior reader.
 An individual correction occurrence has nonzero relation-module value, so
 its ordered tensor is not itself a class in $\Lambda^2M$.  Let $\sigma(f)$
 be the canonical first-layer section of a finite current $f$, and write
-$\widehat q_o$ for the chosen literal free-group lift of the quotient
-prefix $q_o$.  For $F\in\mathcal H_{\mathrm{fin}}$, form the
-correction-only word
+$\widehat q_o$ for the same letter string as the pinned quotient-reduced
+prefix $q_o$, now interpreted in $F(c,t)$.  This fixes the lift; it is not
+an arbitrary representative of $q_o$.  For $F\in\mathcal H_{\mathrm{fin}}$,
+form the correction-only word
 
 \[
  \mathcal R_{\mathrm{corr}}(F)
@@ -5693,6 +5694,167 @@ literal-prefix offsets and the source/destination vertex-section
 comparisons, and does not assert that the parity survives the
 canonical-section, inverse-square, external, or fixed-literal terms still
 present in the complete tensor.
+
+### 3.47 Section comparisons as an exact raw-event cocycle
+
+The two section comparisons in (3.367) can be evaluated and recombined
+without a support bound.  Let
+
+\[
+ U(a):=\operatorname{red}\left(\widehat a c^{\rho(a)}\right)
+ =u_1\cdots u_L,
+ \tag{3.368}
+\]
+
+and let $p_j$ be the quotient-reduced prefix of $u_1\cdots u_j$, with
+$p_0=1$.  For each position define a signed event
+
+\[
+ (\sigma_j,\ell_j)
+ :=
+ \begin{cases}
+ \left(1,\operatorname{cvert}(p_{j-1}^{-})\right),
+ &u_j=c\text{ and }p_{j-1}\text{ ends in }c,\\
+ \left(-1,\operatorname{cvert}(p_{j-1})\right),
+ &u_j=c^{-1}\text{ and }p_{j-1}\text{ does not end in }c,\\
+ (0,H),&\text{otherwise},
+ \end{cases}
+ \tag{3.369}
+\]
+
+where $p_{j-1}^{-}$ deletes the terminal $c$.  The exact vertex-section
+current is
+
+\[
+ \boxed{E(a)=-\sum_{j=1}^L\sigma_je_{\ell_j}.}
+ \tag{3.370}
+\]
+
+Indeed, scanning $U(a)$ from left to right, the two nonzero cases in
+(3.369) are exactly the positive and negative $c^2$ Schreier events.
+Their current is the kernel factor $k(a)$ in
+$U(a)=k(a)\widetilde a$.  Definition (3.355a) gives
+$\mu(a)=\widetilde aU(a)^{-1}=k(a)^{-1}$, proving (3.370).  Thus $E(a)$
+is an exact finite event word for every $a$, not an unspecified section
+potential.
+
+The fixed literal-prefix current $P_o$ is determined by the same data.
+Because the pinned $\widehat q_o$ is the reduced quotient word for
+$q_o=m_oc^{\eta_o}$, the four cases
+$\rho(m_o),\eta_o\in\{0,1\}$ give
+
+\[
+ \boxed{
+ P_o
+ =E(m_o)+(1-\eta_o)\rho(m_o)e_{m_o}.}
+ \tag{3.371}
+\]
+
+The only extra term occurs when $m_o$ ends in $c$ and $\eta_o=0$: then
+the reduced lift is
+$\widetilde m_oc=\mu(m_o)\widehat m_oc^2$, so its comparison with
+$\widehat m_o$ contains one copy of the Schreier generator at $m_oH$.
+In the other three cases the comparison factor is $\mu(m_o)$.
+
+Define the exact twisted section cocycle
+
+\[
+ \mathcal J_\eta(m,a)
+ :=E(m)+m\alpha^\eta(E(a))-E\left(m\alpha^\eta(a)\right),
+ \tag{3.372}
+\]
+
+and put
+
+\[
+ \boxed{
+ B_o(a)
+ :=m_o^{-1}\mathcal J_{\eta_o}(m_o,a)
+ +(1-\eta_o)\rho(m_o)e_1.}
+ \tag{3.373}
+\]
+
+Substituting (3.371) into (3.358) and comparing with $C_o(a)$ in
+(3.360) gives the pointwise identity
+
+\[
+ \boxed{B_o(a)=\widetilde P_o+C_o(a).}
+ \tag{3.374}
+\]
+
+Therefore the literal-prefix and vertex-section bridge classes combine to
+
+\[
+ \boxed{
+ \mathfrak b_o(f)
+ :=\operatorname{Wdg}\left(
+ \sum_{a\in K}f(a)
+ \left(
+ B_o(a)\otimes e_{\alpha^{\eta_o}(a)}
+ -e_{\alpha^{\eta_o}(a)}\otimes B_o(a)
+ \right)
+ \right)
+ =\mathfrak p_o(f)+\mathfrak v_o(f).}
+ \tag{3.375}
+\]
+
+Together with (3.364), this yields the shorter exact terminal identity
+
+\[
+ \boxed{
+ \begin{aligned}
+ &
+ \Xi_{\mathbb Z}\left(
+ \operatorname{Wdg}\left(
+ \sum_{o=1}^{16}\epsilon_o\mathscr T_o(F_{s_o})
+ \right)
+ \right)\\
+ &
+ =\Xi_{\mathbb Z}\left(
+ \mathfrak t(F_0-F_2+F_3)
+ +\sum_{o=1}^{16}\epsilon_o\mathfrak b_o(F_{s_o})
+ \right).
+ \end{aligned}}
+ \tag{3.376}
+\]
+
+For the fixed orbit parameter $q\in K\setminus\{1\}$, define
+
+\[
+ \boxed{
+ \vartheta^b_{[q]}(F)
+ :=\sum_{o=1}^{16}\sum_{a\in K}\overline{F_{s_o}(a)}
+ \left(
+ [e_{\alpha^{\eta_o}(a)s_q}]B_o(a)
+ +[e_{\alpha^{\eta_o}(a)s_q^{-1}}]B_o(a)
+ \right)
+ \pmod2.}
+ \tag{3.377}
+\]
+
+Equations (3.366), (3.366a), and (3.374) give
+
+\[
+ \vartheta^b_{[q]}(F)
+ =\vartheta^{\mathrm{pre}}_{[q]}(F)
+  +\vartheta^{\mathrm{ver}}_{[q]}(F).
+ \tag{3.378}
+\]
+
+Hence the complete terminal Hilbert--90 parity is equivalently
+
+\[
+ \boxed{
+ \vartheta_{[s_q]_\alpha}(F)
+ =\vartheta^b_{[q]}(F)
+  +\vartheta^c_{[q]}(F_0+F_2+F_3).}
+ \tag{3.379}
+\]
+
+Equations (3.369)--(3.379) replace both abstract section comparisons by
+literal event currents and one explicit twisted cocycle.  They do not
+show that the terminal parity or any other term survives the remaining
+correction-only and fixed-literal contributions.
 
 ## 4. Exact diagonal sieve
 
