@@ -67,6 +67,13 @@ finite quotient do not close a route.
   `<x,y,z | B,AH>` and `<x,y,z | A,BH>`. The first fails by Laurent-span
   degree and the second by a pinned nonzero long-division remainder. This
   closes only base-first cleanup; interleaved Peiffer cleanup remains open.
+- **Sequential cleanup ledger frozen:** A kill-first fails at
+  `H_A*(Xyz)^-1 in Ncl(E_A,B)`; its second gate passes only the necessary
+  Alexander filter. B kill-first fails at
+  `E_B*B^-1 in Ncl(A,Xyz)`, so its first gate is unnecessary. Together with
+  the two restoration-first failures, every ordering that restores each
+  residual exactly once is closed. Do not add more sequential categories;
+  only genuinely interleaved Peiffer cleanup remains.
 - **Resume point:** both sequential donor completions are closed. Work on the
   Peiffer/basic-substitution closure of the first-row-active or
   second-row-active residual pair; the SLP lift itself is complete, but no

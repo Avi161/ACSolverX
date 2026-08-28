@@ -334,7 +334,7 @@ def free_proof(left, right):
     return Proof(left, right, lit(""), frozenset(), "free")
 
 
-def test_mms02_relation_lift_certificate_dag():
+def relation_lift_data():
     rows = rank_three_rows()
     v_expr = prod(rows[2], inverse(rows[1]), inverse(rows[0]))
     assert v_expr.value == V
@@ -389,6 +389,24 @@ def test_mms02_relation_lift_certificate_dag():
     verify(e_b_eq_one)
     assert (e_a, leaf("B"), h_a)[1].value == B
     assert (leaf("A"), e_b, h_b)[0].value == A
-    assert e_a_eq_one.support <= {"A", "B"} and h_a_eq_v.support <= {"A", "B"}
-    assert e_b_eq_one.support <= {"A", "B"} and h_b_eq_v.support <= {"A", "B"}
-    assert nodes(e_a) < 25_000 and nodes(e_b) < 25_000
+    return {
+        "h": h,
+        "k": k,
+        "h_a": h_a,
+        "h_b": h_b,
+        "e_a": e_a,
+        "e_b": e_b,
+        "h_a_eq_v": h_a_eq_v,
+        "h_b_eq_v": h_b_eq_v,
+        "e_a_eq_one": e_a_eq_one,
+        "e_b_eq_one": e_b_eq_one,
+    }
+
+
+def test_mms02_relation_lift_certificate_dag():
+    data = relation_lift_data()
+    assert data["e_a_eq_one"].support <= {"A", "B"}
+    assert data["h_a_eq_v"].support <= {"A", "B"}
+    assert data["e_b_eq_one"].support <= {"A", "B"}
+    assert data["h_b_eq_v"].support <= {"A", "B"}
+    assert nodes(data["e_a"]) < 25_000 and nodes(data["e_b"]) < 25_000

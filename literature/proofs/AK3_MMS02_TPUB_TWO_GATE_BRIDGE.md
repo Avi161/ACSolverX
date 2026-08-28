@@ -826,6 +826,74 @@ Equation (51) closes only the strategy which restores the active base row
 first and then cleans the kill row.  An unrestricted closure may interleave
 both residual rows, and the MMS02 bridge remains open.
 
+### 6.5. The sequential cleanup ledger is exhausted
+
+For completeness, name the two gates in the opposite cleanup order:
+
+\[
+ \begin{aligned}
+ \mathsf K_{A,1}:&\ H_Av^{-1}\in\operatorname{Ncl}_F(E_A,B),&
+ \mathsf K_{A,2}:&\ E_AA^{-1}\in\operatorname{Ncl}_F(B,v),\\
+ \mathsf K_{B,1}:&\ H_Bv^{-1}\in\operatorname{Ncl}_F(A,E_B),&
+ \mathsf K_{B,2}:&\ E_BB^{-1}\in\operatorname{Ncl}_F(A,v).
+ \end{aligned}
+ \tag{52}
+\]
+
+The A-active kill-first order needs both $\mathsf K_{A,1}$ and
+$\mathsf K_{A,2}$.  Exact SLP Fox evaluation gives
+
+\[
+ \begin{aligned}
+ \mathsf K_{A,1}&\text{ is false},\\
+ \mathsf K_{A,2}&\text{ passes the Alexander row-span test}.
+ \end{aligned}
+ \tag{53}
+\]
+
+The first verdict uses cyclic weights $(1,1,1)$ and the nonzero Cramer
+remainder
+
+\[
+ R_{A,1}=t^2-5+14t^{-1}-9t^{-2}-2t^{-3}
+ +7t^{-4}-4t^{-5}+t^{-6}.
+ \tag{54}
+\]
+
+Thus the A-active kill-first order is impossible; the pass in (53) is only
+a necessary-filter pass and is not a membership claim.
+
+For the B-active kill-first order, it is enough to test the second gate.
+With cyclic weights $(1,0,1)$, its $x,y$ minor is $2-t$ and exact division
+leaves
+
+\[
+ R_{B,2}=-3664388358890479647198t^{-33}.
+ \tag{55}
+\]
+
+Hence $\mathsf K_{B,2}$ is false, independently of the unevaluated
+$\mathsf K_{B,1}$.
+
+There are now no further sequential cleanup orders.  In either active
+branch, a completion which restores each residual row once and never alters
+it again must restore the base row first or the kill row first.  Equations
+(51), (53), and (55) close both choices in both branches.  The exact bounded
+conclusion is
+
+\[
+ \boxed{\text{Every two-substitution sequential completion of the two
+ residual endpoints is impossible.}}
+ \tag{56}
+\]
+
+The checker `tests/stable_ac/test_ak3_mms02_kill_first_alexander.py`
+evaluates the endpoint SLP directly, without expanding $K$, and pins the
+two nonzero remainders.  Equation (56) does not obstruct a completion which
+alters the two residual rows repeatedly or interleaves their Peiffer
+transformations.  That genuinely interleaved relation-identity problem is
+the sole remaining MMS02 closure category.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -841,8 +909,9 @@ The logical gates remain separate:
    which moves $A$ and $B$;
 4. Lemma 6.1 closes quotient reachability and Section 6.2 gives two finite
    symbolic residual endpoints, but neither result closes the residuals;
-5. $\mathsf C_A$ and $\mathsf C_B$ are both false, which closes only the
-   two restoration-first completions, not an interleaved Peiffer closure;
+5. the finite cleanup ledger closes every completion which restores each
+   residual exactly once, but not an interleaved Peiffer closure which may
+   alter the rows repeatedly;
 6. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
 7. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
