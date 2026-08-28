@@ -1,4 +1,6 @@
+from collections import defaultdict, deque
 from dataclasses import dataclass
+from itertools import permutations, product
 from runpy import run_path
 import sys
 
@@ -123,6 +125,60 @@ def whitehead_minimum(pair, automorphisms):
             return current, tuple(path)
         _, current, step = min(candidates)
         path.append(step)
+
+
+def exponent_vector(word):
+    return (
+        word.count("x") - word.count("X"),
+        word.count("y") - word.count("Y"),
+    )
+
+
+def matrix_determinant(matrix):
+    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+
+
+def matrix_inverse(matrix):
+    determinant = matrix_determinant(matrix)
+    assert abs(determinant) == 1
+    return (
+        (matrix[1][1] // determinant, -matrix[0][1] // determinant),
+        (-matrix[1][0] // determinant, matrix[0][0] // determinant),
+    )
+
+
+def matrix_multiply(left, right):
+    return tuple(
+        tuple(
+            sum(left[row][middle] * right[middle][column] for middle in range(2))
+            for column in range(2)
+        )
+        for row in range(2)
+    )
+
+
+def ambient_automorphism_representatives(required_matrices):
+    generators = (
+        {"x": "y", "y": "x"},
+        {"x": "X", "y": "y"},
+        {"x": "xy", "y": "y"},
+    )
+    identity_matrix = ((1, 0), (0, 1))
+    representatives = {identity_matrix: {"x": "x", "y": "y"}}
+    queue = deque(representatives.values())
+    while required_matrices - representatives.keys():
+        assert queue and len(representatives) < 1_000
+        current = queue.popleft()
+        for generator in generators:
+            image = {
+                letter: apply_images(current[letter], generator)
+                for letter in ("x", "y")
+            }
+            matrix = tuple(exponent_vector(image[letter]) for letter in ("x", "y"))
+            if matrix not in representatives:
+                representatives[matrix] = image
+                queue.append(image)
+    return representatives
 
 
 @dataclass(frozen=True)
@@ -432,6 +488,73 @@ def test_common_kill_projected_pairs_have_distinct_whitehead_floors() -> None:
             >= sum(map(len, minimum))
             for images in automorphisms
         )
+
+
+def test_one_projected_base_multiplication_cannot_reach_common_kill_target() -> None:
+    quotient = {"x": "x", "y": "y", "z": "Yx"}
+    source = tuple(apply_images(word, quotient) for word in (A, B))
+    target = tuple(
+        apply_images(signed_involution(word), quotient) for word in (A, B)
+    )
+    source_matrix = tuple(exponent_vector(word) for word in source)
+    target_matrix = tuple(exponent_vector(word) for word in target)
+    assert source_matrix == ((0, 1), (-1, 1))
+    assert target_matrix == ((0, 1), (1, -2))
+
+    cases = []
+    required_matrices = set()
+    for changed in (0, 1):
+        unchanged = 1 - changed
+        for old_sign, donor_sign in product((1, -1), repeat=2):
+            changed_matrix = list(source_matrix)
+            changed_matrix[changed] = tuple(
+                old_sign * source_matrix[changed][coordinate]
+                + donor_sign * source_matrix[unchanged][coordinate]
+                for coordinate in range(2)
+            )
+            changed_matrix = tuple(changed_matrix)
+            for assignment in permutations((0, 1)):
+                for target_signs in product((1, -1), repeat=2):
+                    oriented_target = tuple(
+                        tuple(
+                            target_signs[row]
+                            * target_matrix[assignment[row]][coordinate]
+                            for coordinate in range(2)
+                        )
+                        for row in range(2)
+                    )
+                    ambient_matrix = matrix_multiply(
+                        matrix_inverse(changed_matrix), oriented_target
+                    )
+                    required_matrices.add(ambient_matrix)
+                    cases.append(
+                        (
+                            changed,
+                            unchanged,
+                            assignment,
+                            ambient_matrix,
+                        )
+                    )
+
+    assert len(cases) == 64
+    assert len(required_matrices) == 32
+    representatives = ambient_automorphism_representatives(required_matrices)
+    length_table = defaultdict(set)
+    for changed, unchanged, assignment, ambient_matrix in cases:
+        images = representatives[ambient_matrix]
+        assert tuple(exponent_vector(images[letter]) for letter in ("x", "y")) == ambient_matrix
+        unchanged_image = canonical_cyclic_word(apply_images(source[unchanged], images))
+        target_word = canonical_cyclic_word(target[assignment[unchanged]])
+        assert unchanged_image != target_word
+        length_table[(changed, assignment[unchanged])].add(len(unchanged_image))
+
+    assert dict(length_table) == {
+        (0, 0): {11, 13, 15, 17},
+        (0, 1): {13, 15, 19},
+        (1, 0): {11, 13, 15, 17},
+        (1, 1): {11, 15, 19},
+    }
+    assert tuple(len(canonical_cyclic_word(word)) for word in target) == (7, 17)
 
 
 def h_step(words, rows, move):

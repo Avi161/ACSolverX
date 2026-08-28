@@ -26,11 +26,11 @@ quotient obstructions cannot decide the bridge.  The remaining gate is the
 Peiffer/basic-substitution closure of one explicit pair of lift residuals
 in the normal closure of $A,B$.
 
-Sections 6.6--6.7 give an equivalent common-kill target and close its
-ambient-automorphism-only subcase by exact rank-two Whitehead minima.  This
-does not add another sequential cleanup category: a successful path must
-still use a genuine base-row multiplication visible after projection or
-alter the kill row.
+Sections 6.6--6.8 give an equivalent common-kill target and close both its
+ambient-automorphism-only and one-projected-multiplication subcases.  This
+does not add another sequential cleanup category: within this low-depth
+common-kill mechanism, a successful path must use at least two base-row
+multiplications visible after projection or alter the kill row.
 
 ## 1. Pinned words and verified first legs
 
@@ -1021,6 +1021,92 @@ AC multiplication between its two live base rows, or an unrestricted path
 may alter the $v$-row.  Those are exactly outside the Aut-orbit comparison.
 The focused checker enumerates all twelve Whitehead maps, replays both
 strict descents, and verifies the no-descent condition at both minima.
+
+### 6.8. One projected base-row multiplication is still insufficient
+
+Write $P=(p_0,p_1)$ and $P_\phi=(q_0,q_1)$ for the pairs in Section
+6.7.  Up to independent row conjugation and inversion, one multiplication
+changing row $i$ has the form
+
+\[
+ \begin{aligned}
+ p_i^\alpha g p_j^\beta g^{-1},&p_j,\\
+ \{i,j\}=\{0,1\},&\alpha,\beta\in\{1,-1\}.
+ \end{aligned}
+ \tag{64}
+\]
+
+The relative conjugator $g\in F_2$ is arbitrary.  It disappears from
+abelianization and does not change the untouched row $p_j$.
+
+Using rows for exponent vectors, the source and target matrices are
+
+\[
+ \begin{aligned}
+ S&=\begin{pmatrix}0&1\\-1&1\end{pmatrix},&
+ T&=\begin{pmatrix}0&1\\1&-2\end{pmatrix}.
+ \end{aligned}
+ \tag{65}
+\]
+
+Choose the changed row, the signs $\alpha,\beta$, the assignment of the
+two target rows, and their two orientations.  This gives exactly
+$2\mathbin\cdot4\mathbin\cdot2\mathbin\cdot4=64$ oriented cases and 32
+distinct required ambient matrices
+
+\[
+ M=C^{-1}T',
+ \tag{66}
+\]
+
+where $C$ is the exponent matrix after (64) and $T'$ is the oriented,
+assigned target matrix.  Every $M$ is unimodular.  The kernel of
+$\operatorname{Aut}(F_2)\longrightarrow\operatorname{GL}_2(\mathbb Z)$
+is the inner automorphism group.  Therefore, for fixed $M$, the cyclic
+conjugacy class of the image of the untouched row is independent of the
+chosen automorphism lifting $M$.
+
+Exact Nielsen decompositions of all 32 matrices give the following complete
+cyclic-length table.  The second column records which target row is assigned
+to the untouched source slot.
+
+| changed source | assigned target | possible untouched-image lengths | target length |
+|---|---:|---:|---:|
+| $p_0$ | $q_0$ | $11,13,15,17$ | $7$ |
+| $p_0$ | $q_1$ | $13,15,19$ | $17$ |
+| $p_1$ | $q_0$ | $11,13,15,17$ | $7$ |
+| $p_1$ | $q_1$ | $11,15,19$ | $17$ |
+
+No row has matching cyclic length.  Hence the untouched row cannot be
+conjugate to either orientation of its assigned target row in any of the 64
+cases.  This contradiction is independent of $g$.
+
+Simultaneous ambient automorphisms commute past the unique multiplication
+after replacing $g$ by its image, so all such automorphisms may be composed
+and placed after (64).  Independent row normalizations are already absorbed
+by the signs, target assignments, and cyclic classes above.  Steps using
+the $v$-row only as a donor disappear after $\pi_v$.  We have therefore
+proved the exact bounded mechanism theorem
+
+\[
+ \boxed{
+ \begin{gathered}
+ \text{No common-kill path with exactly one quotient-visible base-row}\
+ \text{multiplication, ambient automorphisms preserving }
+ \operatorname{Ncl}(v),\
+ \text{base-row normalizations, and }v\text{-donor cleanup closes (61).}
+ \end{gathered}}
+ \tag{67}
+\]
+
+The conjugator in that one multiplication is unrestricted.  Equation (67)
+does not exclude a path with two or more quotient-visible base-row
+multiplications, a path which alters the $v$-row by a base-row donor, an
+ambient map which does not preserve $\operatorname{Ncl}(v)$, or a more
+general stable path retaining an auxiliary stabilization row.  The
+common-kill low-depth ledger stops here; increasing the multiplication count
+would create another bounded category rather than evaluate the open
+interleaved Peiffer problem.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 

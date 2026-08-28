@@ -86,9 +86,17 @@ finite quotient do not close a route.
   Whitehead floors 21 and 19. They are not in the same ambient Aut orbit.
   Thus no stable ambient automorphism preserving the kill row's normal
   closure, followed only by base-row normalization and kill-row donor
-  cleanup, proves the bridge. A successful common-kill path must contain
-  genuine base-row multiplication visible after projection or alter the
-  kill row.
+  cleanup, proves the bridge. Within this ambient-automorphism-only
+  mechanism, an escape needs genuine base-row multiplication visible after
+  projection or alteration of the kill row.
+- **One projected multiplication also closed:** normalizing one arbitrary-
+  conjugator base-row multiplication gives 64 oriented cases and 32 ambient
+  matrices. In every case the unchanged row's cyclic length misses its
+  assigned common-kill target length. Thus a successful path within this
+  low-depth inventory must contain at least two base-row multiplications
+  visible after projection or alter the kill row. Retained stabilization
+  rows remain outside this theorem. Freeze the ledger here; do not add a
+  two-multiplication census as another bounded category.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target or the genuinely interleaved
   Peiffer/basic-substitution closure of one symbolic residual pair; the SLP
