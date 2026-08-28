@@ -201,6 +201,16 @@ finite quotient do not close a route.
   \(I_{ij}=[i-j=-1]+[i-j=0]\).  The last-coordinate first-family unary
   matrix therefore has infinite rank, even after its row-only and constant
   rank-one terms.
+- **Full-lift quotient scope:** Equation (1.10) is exact only over the fixed
+  quotient witness $\mathbf h^*$.  The row-centralizer gauge is not
+  complete: four literal-lift-compatible prefix-Hurwitz symmetries preserve
+  the recurrence, and iterating the first carries $\mathbf h^*$ through
+  infinitely many row-gauge classes.  The fixed-fiber terminal theorem
+  therefore transfers to this whole Hurwitz orbit.  Full quotient promotion
+  can follow from Hrg-Class plus RG-Lift, another complete lift-compatible
+  action, or direct obstructions on the remaining quotient fibers.  Even
+  after such coverage, the terminal theorem obstructs only the named
+  depth-four recurrence $(8,3,5,-3,5)$, not AK(3).
 - **Resume point:** keep the free-group period-two lift separate.  The unary
   theorem lives after the complete-cover/\(c^2=1\) reduction and neither
   constructs literal correction words in \(F(c,t)\) nor cancels their
