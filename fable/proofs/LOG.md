@@ -361,3 +361,21 @@ law — if uniform, Ξ_Z(Θ) has a periodic normal form on the Hecke module and
 attainability reduces to one finite block plus a shift. Note:
 W2M_THETA_COCYCLE.md; checker theta_cocycle.py. No AK(3), stable AC, or AC
 claim.
+
+## 2026-08-28 · cycle 24 (handoff) · `6986b64`
+
+Program wound down at user request. W2n was stopped mid-analysis; its
+measurements are checkpointed with controls green and NO note: the
+coordinate-window law holds on 49/51 analysable chains (0 failures, 2
+underpowered, transient ≤ 11, shift predictions exact outside the transient),
+and the span probe answers W2m's caveat negatively — 64/95 probe directions
+lie outside the Hecke span on 13/13 chains tested, so a periodic normal form
+on the Hecke module alone cannot decide the complete family. Resume points,
+in order of leverage: (1) W2n — prove the window law as an identity from
+W2m's K1/K2 and characterize what generates V_{H_fin} beyond Hecke
+translates (checkers/hecke_window_law.py modes law/span/blocks + the four
+w2n records); (2) the W6 residual (shared-vertex multi-cut family, 58 states
+at c22) and production-scale ball closures; (3) the Colab handoffs recorded
+in W1C/W3A. State of the program: SYNTHESIS.md (cycles 1–21) plus cycles
+22–23 (synthesis; cocycle proved / finite generation refuted). AK(3) remains
+open in both directions; no conclusion was reached, and none is claimed.
