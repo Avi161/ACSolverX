@@ -187,6 +187,14 @@ only their incidence parity remains.
 Section 3.87 splits every general matching branch by $t$-height.  A
 nonzero-shift branch telescopes exactly to its finite active endpoints;
 only its boundary colors and the height-preserving matching cycles remain.
+Section 3.88 applies the complementary anti-height quotient to those
+height-preserving cycles.  Every nonzero anti-height translation again
+telescopes to its finite active boundary, leaving only profile-preserving
+and reflection-paired fibers.
+Section 3.89 computes the remaining branch offsets for the two source slots.
+In slot zero the only profile-preserving translation lies on one explicit
+anti-height layer; in slot one it occurs only for the two fixed multiplier
+values with dihedral displacement $5$ or $-5$.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -9255,6 +9263,165 @@ three-source part of (3.589) splits exactly into nonzero-height boundary
 terms (3.593) and a finite family of height-preserving matching residuals.
 The next obligation is to evaluate those residual cycles together with the
 displayed boundary colors; neither sum is asserted to vanish.
+
+### 3.88 Anti-height splits the zero-height residual
+
+Use the infinite-dihedral quotient from Section 3.32.  For $q\in Q$, write
+its action on the anti-height line as
+
+\[
+ \begin{aligned}
+ i&\longmapsto d(q)+\sigma(q)i,\\
+ d(q)&\in\mathbb Z,\\
+ \sigma(q)&\in\{1,-1\}.
+ \end{aligned}
+ \tag{3.594}
+\]
+
+To avoid confusing the anti-height map $\delta$ with the branch bit, write
+$\eta\in\{0,1\}$ for that bit and put
+
+\[
+ k_s^{\epsilon,\eta}(u)
+ :=c^\eta u^{-1}g_s^\epsilon u.
+ \tag{3.595}
+\]
+
+The branch equation is $wH=h^{-1}vk_s^{\epsilon,\eta}(u)H$.  Since the
+sources $v,w$ lie in $K$, the branch can occur only when
+$\sigma(k_s^{\epsilon,\eta}(u))=\sigma(h)$.  The affine multiplication law
+then gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ \delta(w)&=\sigma(h)\delta(v)+b_{h,s}^{\epsilon,\eta}(u),\\
+ b_{h,s}^{\epsilon,\eta}(u)
+ &:=\sigma(h)\left(
+ d(k_s^{\epsilon,\eta}(u))-d(h)
+ \right).
+ \end{aligned}
+ }
+ \tag{3.596}
+\]
+
+Suppose first that $\sigma(h)=1$.  The branch acts by translation on
+anti-height.  If $b_{h,s}^{\epsilon,\eta}(u)\ne0$, color each residue class
+modulo its absolute value so that
+
+\[
+ \psi(n+b_{h,s}^{\epsilon,\eta}(u))=\psi(n)+1.
+ \tag{3.597}
+\]
+
+For its finite active edge set $E$, the proof of (3.593), with $\delta$ in
+place of $\nu_t$, gives
+
+\[
+ \boxed{
+ \begin{gathered}
+ |E|
+ =\sum_x[\delta_x](\partial E)\psi(\delta(x)),\\
+ \text{equality in }\mathbb F_2.
+ \end{gathered}
+ }
+ \tag{3.598}
+\]
+
+Thus a zero-$t$-shift branch with nonzero anti-height translation also
+telescopes to active endpoints.  If the translation offset is zero, the
+branch preserves both the height and anti-height profiles and remains a
+genuine fiberwise residual.
+
+If $\sigma(h)=-1$, formula (3.596) is the reflection
+$n\mapsto b_{h,s}^{\epsilon,\eta}(u)-n$.  It pairs the anti-height layers
+$n$ and $b_{h,s}^{\epsilon,\eta}(u)-n$, with one possible fixed layer when
+the offset is even.  No cancellation is inferred inside those paired
+layers; the full free-group matching may still have branching and cycles.
+
+Consequently the height-preserving remainder of Section 3.87 has three
+exact pieces: anti-height translation boundaries (3.598), profile-preserving
+fibers, and reflection-paired fibers.  The last two are precisely the parts
+invisible to both one-dimensional quotients.  A further argument must use
+the rank-two free-group labels or the common nilpotent profile from Section
+3.35; neither residual is asserted to vanish.
+
+### 3.89 The source-slot anti-height branch table is explicit
+
+Only source slots zero and one occur in the anchored-cell decomposition.
+Their paired generators have dihedral data
+
+\[
+ \begin{array}{c|cc}
+ s&d(g_s)&\sigma(g_s)\\ \hline
+ 0&7&-1\\
+ 1&5&1.
+ \end{array}
+ \tag{3.599}
+\]
+
+Write $a=\delta(u)$.  Conjugation by the translation $u$ sends affine
+data $(d,\sigma)$ to $(d+(\sigma-1)a,\sigma)$, and left multiplication by
+$c^\eta$ sends it to $((-1)^\eta d,(-1)^\eta\sigma)$.  Since a reflection
+is its own inverse in its affine image whereas the inverse of a translation
+reverses its displacement, (3.595) gives the complete table
+
+\[
+ \boxed{
+ \begin{array}{c|cc}
+ s&d(k_s^{\epsilon,\eta}(u))
+   &\sigma(k_s^{\epsilon,\eta}(u))\\ \hline
+ 0&(-1)^\eta(7-2a)&(-1)^{\eta+1}\\
+ 1&(-1)^\eta5\epsilon&(-1)^\eta.
+ \end{array}
+ }
+ \tag{3.600}
+\]
+
+The branch condition in Section 3.88 forces the last column to equal
+$\sigma(h)$.  Substitution in (3.596) therefore gives four mutually
+exclusive cases:
+
+\[
+ \boxed{
+ \begin{array}{c|c|c|c}
+ s&\sigma(h)&\eta&b_{h,s}^{\epsilon,\eta}(u)\\ \hline
+ 0&1&1&2\delta(u)-7-d(h)\\
+ 0&-1&0&2\delta(u)+d(h)-7\\
+ 1&1&0&5\epsilon-d(h)\\
+ 1&-1&1&5\epsilon+d(h).
+ \end{array}
+ }
+ \tag{3.601}
+\]
+
+In the translation rows, (3.598) removes every active branch except where
+its displayed offset is zero.  Hence the exact profile-preserving locus is
+
+\[
+ \boxed{
+ \begin{aligned}
+ s=0:&\ 2\delta(u)=7+d(h),\\
+ s=1:&\ d(h)=5\epsilon.
+ \end{aligned}
+ }
+ \tag{3.602}
+\]
+
+The first equation selects at most one anti-height layer of target sources
+for each multiplier $h$.  The second is independent of the target and can
+hold only when the multiplier has one of the two indicated signed
+displacements.
+
+In the reflection rows, the possible fixed anti-height layer is also
+explicit.  It exists exactly when the corresponding offset in (3.601) is
+even, and then lies at half that offset.  For slot zero its parity depends
+only on $d(h)-7$; for slot one it depends only on $d(h)+5\epsilon$.
+No reflection-paired contribution is discarded.  Equations
+(3.600)--(3.602) merely reduce the unresolved two-quotient residue to one
+slot-zero target layer, two slot-one multiplier displacements, and the
+listed reflection fibers.  The remaining parity is still a rank-two
+free-group incidence problem.
 
 ## 4. Exact diagonal sieve
 
