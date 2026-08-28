@@ -1,0 +1,112 @@
+{
+ "schema": "acsolverx.w2i.d2.v1",
+ "summary": {
+  "chains": 4,
+  "z_classes": 34,
+  "chains_fully_blind": 4,
+  "blocks_total": 136,
+  "blocks_with_extra_obstruction": 0,
+  "torsion_gens_total": 0,
+  "swap_witnesses": 0,
+  "swap_witnesses_missing": 0,
+  "d2_values_seen": [
+   "1"
+  ],
+  "controls_passed": true,
+  "verdict": "BLIND_THROUGH_LAYER_2_BEYOND_XI"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "blocks": 34,
+   "blocks_image_is_ker_xi": 34,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 6,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "blocks": 34,
+   "blocks_image_is_ker_xi": 34,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 6,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "blocks": 34,
+   "blocks_image_is_ker_xi": 34,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 6,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "blocks": 34,
+   "blocks_image_is_ker_xi": 34,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 6,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  }
+ ]
+}

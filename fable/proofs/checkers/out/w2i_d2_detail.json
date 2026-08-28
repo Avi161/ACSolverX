@@ -1,0 +1,144 @@
+{
+ "schema": "acsolverx.w2i.d2.v1",
+ "summary": {
+  "chains": 1,
+  "z_classes": 4,
+  "chains_fully_blind": 1,
+  "blocks_total": 4,
+  "blocks_with_extra_obstruction": 0,
+  "torsion_gens_total": 0,
+  "swap_witnesses": 0,
+  "swap_witnesses_missing": 0,
+  "d2_values_seen": [
+   "1"
+  ],
+  "controls_passed": true,
+  "verdict": "BLIND_THROUGH_LAYER_2_BEYOND_XI"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "blocks": 4,
+   "blocks_image_is_ker_xi": 4,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 2,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": [
+    {
+     "z": "T",
+     "d_plus": "T",
+     "self_inverse": false,
+     "n_gens": 4,
+     "n_torsion_gens": 0,
+     "A2": {
+      "free": 4,
+      "torsion": []
+     },
+     "rows": 24,
+     "row_support_inside_block": true,
+     "C2": {
+      "free": 1,
+      "torsion": []
+     },
+     "WQ": {
+      "free": 1,
+      "torsion": []
+     },
+     "image_is_ker_xi": true,
+     "d2": 1
+    },
+    {
+     "z": "TcT",
+     "d_plus": "TcT",
+     "self_inverse": false,
+     "n_gens": 4,
+     "n_torsion_gens": 0,
+     "A2": {
+      "free": 4,
+      "torsion": []
+     },
+     "rows": 24,
+     "row_support_inside_block": true,
+     "C2": {
+      "free": 1,
+      "torsion": []
+     },
+     "WQ": {
+      "free": 1,
+      "torsion": []
+     },
+     "image_is_ker_xi": true,
+     "d2": 1
+    },
+    {
+     "z": "Tct",
+     "d_plus": "Tct",
+     "self_inverse": true,
+     "n_gens": 2,
+     "n_torsion_gens": 0,
+     "A2": {
+      "free": 2,
+      "torsion": []
+     },
+     "rows": 24,
+     "row_support_inside_block": true,
+     "C2": {
+      "free": 0,
+      "torsion": [
+       2
+      ]
+     },
+     "WQ": {
+      "free": 0,
+      "torsion": [
+       2
+      ]
+     },
+     "image_is_ker_xi": true,
+     "d2": 1
+    },
+    {
+     "z": "tcT",
+     "d_plus": "tcT",
+     "self_inverse": true,
+     "n_gens": 2,
+     "n_torsion_gens": 0,
+     "A2": {
+      "free": 2,
+      "torsion": []
+     },
+     "rows": 24,
+     "row_support_inside_block": true,
+     "C2": {
+      "free": 0,
+      "torsion": [
+       2
+      ]
+     },
+     "WQ": {
+      "free": 0,
+      "torsion": [
+       2
+      ]
+     },
+     "image_is_ker_xi": true,
+     "d2": 1
+    }
+   ]
+  }
+ ]
+}

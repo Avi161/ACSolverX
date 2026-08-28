@@ -1,0 +1,408 @@
+{
+ "schema": "acsolverx.w2i.probe.v1",
+ "summary": {
+  "chains": 22,
+  "detector_fired": 22,
+  "blocks_tested": 528,
+  "all_controls_passed": true,
+  "note": "the synthetic system doubles L0 and L1, so its image lies in 2 A_2 and cannot contain a primitive ker-Xi vector; on the real system the same vector IS in the image, with a witness re-multiplied out term by term, and the Smith-normal-form path agrees with the echelon path on every block"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "blocks_tested": 24,
+   "primitive_in_real_image": 24,
+   "primitive_in_synthetic_image": 0,
+   "real_witness_reverified": 24,
+   "snf_agrees_with_echelon": 24,
+   "detector_fires_on_synthetic": true,
+   "detector_silent_on_real": true,
+   "witnesses_reverified": true,
+   "independent_paths_agree": true,
+   "passed": true
+  }
+ ]
+}

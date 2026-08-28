@@ -1,0 +1,938 @@
+{
+ "schema": "acsolverx.w2i.lambda1.v1",
+ "summary": {
+  "finite_index_chains": 44,
+  "reference_rows": 44,
+  "agree_with_w2g_omega_all": 44,
+  "d_values": [
+   1
+  ],
+  "all_agree": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -3,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -3
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": 2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": 2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d": 1,
+   "m": 2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": 1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "d": 1,
+   "m": -3,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -3
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -4,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -4
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": -2,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -2
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": -5,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -5
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -5,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -5
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -5,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -5
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": -5,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -5
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": 0,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    0
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d": 1,
+   "m": -1,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    -1
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d": 1,
+   "m": 0,
+   "n_omega": 2,
+   "|P|": 12,
+   "l234_rows_nonvanishing": 0,
+   "w2g_d": [
+    1
+   ],
+   "w2g_m": [
+    0
+   ],
+   "w2g_n_omega": 2,
+   "agrees_with_w2g": true
+  }
+ ]
+}

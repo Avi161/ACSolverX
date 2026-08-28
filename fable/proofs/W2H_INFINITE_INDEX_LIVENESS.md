@@ -544,3 +544,16 @@ believed before it has survived a corruption control.
 | every census baseline spawns its own layer-2 obligation; their number is unbounded | **PROVED** / **EVIDENCED** (§5.3) |
 | layer 2 is `Λ²M` with the same operators, so `d₂` is defined and computable | **PROVED** (§5.4); `d₂` itself **uncomputed** |
 | anything about lifting, the bridge, AK(3), stable AC, or AC | **no claim** |
+
+## Post-hoc correction (cycle 18)
+
+`W2I_LAYER2_D2.md` (§1.3–1.4) corrects two points of this note's part (b):
+(i) the Λ²M identification needs two hypotheses this note did not state (N
+free on the Schreier basis — true; and the "same coefficients" variation
+identity (3.5), which the source asserts in one sentence — everything at
+layer 2 is conditional on it); (ii) the "d₂ = 1 ⇒ blind" branch as framed
+here is unreachable, because (3.16)/(3.17) already kill every L^{(2)} in the
+full Q-coinvariants — the honest analogue of d = 1 is "operator image =
+ker Ξ_Z", which W2i then proves (Ξ_Z is an isomorphism). The predicted
+layer-2 2-torsion is identically absent: Γ is torsion-free on all 67 chains,
+a reason independent of the operators.

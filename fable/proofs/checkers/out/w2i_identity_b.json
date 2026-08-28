@@ -1,0 +1,644 @@
+{
+ "schema": "acsolverx.w2i.identity.v1",
+ "summary": {
+  "chains": 33,
+  "all_passed": true,
+  "l234_layer2_row_checks": 36432,
+  "l234_layer2_nonvanishing": 0,
+  "xi_row_checks": 24288,
+  "xi_nonzero": 0,
+  "gamma_invariance_checks": 7920,
+  "gamma_invariance_failures": 0,
+  "z_classes": 8,
+  "radius": 4
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "finite_index": true,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "finite_index": false,
+   "base_pinned": true,
+   "l234_layer2_row_checks": 1104,
+   "l234_layer2_nonvanishing": 0,
+   "xi_row_checks": 736,
+   "xi_nonzero": 0,
+   "gamma_invariance_checks": 240,
+   "gamma_invariance_failures": 0,
+   "non_gamma_element_moves_class": 192,
+   "corruption_breaks_l234_vanishing": true,
+   "passed": true
+  }
+ ]
+}
