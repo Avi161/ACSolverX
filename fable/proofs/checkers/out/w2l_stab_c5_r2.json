@@ -15,9 +15,160 @@
    "g": "c",
    "steps": [
     {
+     "m_requested": 4,
+     "m": 4,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 5,
+     "universe_coords": 824,
+     "c0_support": 58,
+     "mod2_residual_weight": 11,
+     "mod2_V_rank": 9,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TTTctct"
+      ],
+      [
+       "f",
+       "TTct"
+      ],
+      [
+       "f",
+       "TTctct"
+      ],
+      [
+       "f",
+       "TcTctctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcTTctttcT"
+      ],
+      [
+       "f",
+       "TcttcTTctttcT"
+      ],
+      [
+       "f",
+       "TctttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcTT"
+      ],
+      [
+       "t",
+       "tcT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 3.03
+    },
+    {
+     "m_requested": 8,
+     "m": 8,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 22,
+     "universe_coords": 1468,
+     "c0_support": 58,
+     "mod2_residual_weight": 11,
+     "mod2_V_rank": 26,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TTTctct"
+      ],
+      [
+       "f",
+       "TTct"
+      ],
+      [
+       "f",
+       "TTctct"
+      ],
+      [
+       "f",
+       "TcTctctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcTTctttcT"
+      ],
+      [
+       "f",
+       "TcttcTTctttcT"
+      ],
+      [
+       "f",
+       "TctttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcTT"
+      ],
+      [
+       "t",
+       "tcT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 5.16
+    },
+    {
      "m_requested": 12,
      "m": 12,
      "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
      "minus_c0_in_V": {
       "2^1": false,
       "Q": null
@@ -80,12 +231,17 @@
      },
      "coordinate_certificates_Q": null,
      "coordinate_certificates_mod2": [],
-     "secs": 6.96
+     "secs": 7.62
     },
     {
      "m_requested": 16,
      "m": 16,
      "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
      "minus_c0_in_V": {
       "2^1": false,
       "Q": null
@@ -148,7 +304,7 @@
      },
      "coordinate_certificates_Q": null,
      "coordinate_certificates_mod2": [],
-     "secs": 11.65
+     "secs": 11.38
     }
    ]
   }

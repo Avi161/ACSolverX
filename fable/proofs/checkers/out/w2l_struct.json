@@ -1,0 +1,316 @@
+{
+ "schema": "acsolverx.w2l.struct.v1",
+ "summary": {
+  "chains": 20,
+  "with_directions": 16,
+  "linear_mod2": 3,
+  "quadratic_mod2": 14,
+  "pairs": 216,
+  "nonlinear_pairs": 185,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 90,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 2.79
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 85,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.83
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 67,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.17
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 83,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.86
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 0,
+   "mod2_affine_linear": true,
+   "base_mod2_support": 5,
+   "status": "LINEAR_MOD2",
+   "passed": true,
+   "secs": 2.0
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 12,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 7,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.77
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 5,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 41,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.29
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 3,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 2.94
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 13,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 2.63
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "directions": 0,
+   "pairs": 0,
+   "nonlinear_pairs": 0,
+   "mod2_affine_linear": true,
+   "base_mod2_support": 13,
+   "status": "LINEAR_MOD2",
+   "passed": true,
+   "secs": 3.81
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 8,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 4.95
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "directions": 4,
+   "pairs": 6,
+   "nonlinear_pairs": 3,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 12,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.83
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "directions": 1,
+   "pairs": 0,
+   "nonlinear_pairs": 0,
+   "mod2_affine_linear": true,
+   "base_mod2_support": 1,
+   "status": "LINEAR_MOD2",
+   "passed": true,
+   "secs": 3.75
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 4,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 4.1
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 3,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 4.59
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 1,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.88
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "directions": 6,
+   "pairs": 15,
+   "nonlinear_pairs": 15,
+   "mod2_affine_linear": false,
+   "base_mod2_support": 20,
+   "status": "QUADRATIC_MOD2",
+   "passed": true,
+   "secs": 3.1
+  }
+ ]
+}

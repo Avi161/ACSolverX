@@ -16,6 +16,8 @@
   "witnesses": 0,
   "mod2_unattainable_on_S": 51,
   "mod2_undecided_on_S": 0,
+  "C9_positive_control_run": 51,
+  "C9_positive_control_fires": 51,
   "controls_passed": true,
   "C3_corruption_run": 0,
   "C3_corruption_fires": 0
@@ -297,6 +299,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -306,7 +309,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 11.88
+   "secs": 11.9
   },
   {
    "chain": [
@@ -660,6 +663,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -669,7 +673,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 8.7
+   "secs": 8.87
   },
   {
    "chain": [
@@ -858,6 +862,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -867,7 +872,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 9.12
+   "secs": 9.34
   },
   {
    "chain": [
@@ -1220,6 +1225,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -1229,7 +1235,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 7.95
+   "secs": 8.02
   },
   {
    "chain": [
@@ -1256,6 +1262,39 @@
    "variation_generators": 61,
    "universe_coords": 1010,
    "c0_support": 16,
+   "mod2_residual_weight": 7,
+   "mod2_V_rank": 8,
+   "mod2_residual_support": [
+    [
+     "f",
+     "T"
+    ],
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TTTctttcT"
+    ],
+    [
+     "f",
+     "TctttcT"
+    ],
+    [
+     "f",
+     "tcTTT"
+    ],
+    [
+     "f",
+     "tcTTTcTctttcT"
+    ],
+    [
+     "f",
+     "tcTTTcttcTTTctttcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1323,6 +1362,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -1332,7 +1372,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.85
+   "secs": 4.28
   },
   {
    "chain": [
@@ -1359,6 +1399,55 @@
    "variation_generators": 64,
    "universe_coords": 1468,
    "c0_support": 58,
+   "mod2_residual_weight": 11,
+   "mod2_V_rank": 26,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TTTctct"
+    ],
+    [
+     "f",
+     "TTct"
+    ],
+    [
+     "f",
+     "TTctct"
+    ],
+    [
+     "f",
+     "TcTctctttcT"
+    ],
+    [
+     "f",
+     "TcTctttcT"
+    ],
+    [
+     "f",
+     "TcTctttcTTctttcT"
+    ],
+    [
+     "f",
+     "TcttcTTctttcT"
+    ],
+    [
+     "f",
+     "TctttcT"
+    ],
+    [
+     "f",
+     "tcTTTcttcT"
+    ],
+    [
+     "f",
+     "tcTTTcttcTT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1425,6 +1514,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -1434,7 +1524,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 6.69
+   "secs": 7.19
   },
   {
    "chain": [
@@ -1462,6 +1552,31 @@
    "variation_generators": 62,
    "universe_coords": 836,
    "c0_support": 105,
+   "mod2_residual_weight": 5,
+   "mod2_V_rank": 21,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TTTct"
+    ],
+    [
+     "f",
+     "TcttcTTTct"
+    ],
+    [
+     "f",
+     "TctttcTT"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1529,6 +1644,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -1538,7 +1654,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.46
+   "secs": 5.58
   },
   {
    "chain": [
@@ -1566,6 +1682,15 @@
    "variation_generators": 51,
    "universe_coords": 158,
    "c0_support": 8,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 30,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1634,6 +1759,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -1643,7 +1769,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.21
+   "secs": 3.24
   },
   {
    "chain": [
@@ -1670,6 +1796,63 @@
    "variation_generators": 62,
    "universe_coords": 471,
    "c0_support": 17,
+   "mod2_residual_weight": 13,
+   "mod2_V_rank": 28,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TTTctcT"
+    ],
+    [
+     "f",
+     "TTTctcTct"
+    ],
+    [
+     "f",
+     "TTTctcTctt"
+    ],
+    [
+     "f",
+     "TTctcTcTctcT"
+    ],
+    [
+     "f",
+     "TTctcTcTctcTct"
+    ],
+    [
+     "f",
+     "TTctcTcTctcTctt"
+    ],
+    [
+     "f",
+     "TTctcTctctcT"
+    ],
+    [
+     "f",
+     "TTctcTctctcTct"
+    ],
+    [
+     "f",
+     "TctcTcTctcT"
+    ],
+    [
+     "f",
+     "TctcTcTctcTct"
+    ],
+    [
+     "f",
+     "TctcTctctcT"
+    ],
+    [
+     "f",
+     "tcTcTctcT"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1736,6 +1919,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 128,
    "mod2_enumeration_truncated": false,
@@ -1745,7 +1929,21 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.09
+   "secs": 4.32
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "directions_exact": true,
+   "direction_corruption_fires": false,
+   "directions": 0,
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true,
+   "secs": 3.55
   },
   {
    "chain": [
@@ -1782,6 +1980,43 @@
    "variation_generators": 57,
    "universe_coords": 424,
    "c0_support": 13,
+   "mod2_residual_weight": 8,
+   "mod2_V_rank": 21,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TTT"
+    ],
+    [
+     "f",
+     "TctcTTT"
+    ],
+    [
+     "f",
+     "tcTTT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ],
+    [
+     "f",
+     "tcTcTT"
+    ],
+    [
+     "f",
+     "tctcTT"
+    ],
+    [
+     "f",
+     "tctcTTT"
+    ],
+    [
+     "f",
+     "ttcTcTT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -1850,6 +2085,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 64,
    "mod2_enumeration_truncated": false,
@@ -1859,7 +2095,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.44
+   "secs": 6.31
   },
   {
    "chain": [
@@ -1980,6 +2216,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 16,
    "mod2_distinct_values": 8,
    "mod2_enumeration_truncated": false,
@@ -1989,7 +2226,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.0
+   "secs": 4.17
   },
   {
    "chain": [
@@ -2112,6 +2349,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 2,
    "mod2_distinct_values": 2,
    "mod2_enumeration_truncated": false,
@@ -2121,7 +2359,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.21
+   "secs": 4.36
   },
   {
    "chain": [
@@ -2148,6 +2386,31 @@
    "variation_generators": 56,
    "universe_coords": 262,
    "c0_support": 43,
+   "mod2_residual_weight": 5,
+   "mod2_V_rank": 33,
+   "mod2_residual_support": [
+    [
+     "f",
+     "T"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TcTcttcT"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "coordinate_certificates": [
@@ -2301,6 +2564,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -2310,7 +2574,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.4
+   "secs": 4.62
   },
   {
    "chain": [
@@ -2337,6 +2601,23 @@
    "variation_generators": 50,
    "universe_coords": 78,
    "c0_support": 11,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 14,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -2406,6 +2687,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 32,
    "mod2_enumeration_truncated": false,
@@ -2415,7 +2697,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.43
+   "secs": 5.69
   },
   {
    "chain": [
@@ -2453,6 +2735,15 @@
    "variation_generators": 52,
    "universe_coords": 145,
    "c0_support": 11,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 30,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -2522,6 +2813,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -2531,7 +2823,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.28
+   "secs": 4.44
   },
   {
    "chain": [
@@ -2559,6 +2851,91 @@
    "variation_generators": 69,
    "universe_coords": 1404,
    "c0_support": 32,
+   "mod2_residual_weight": 20,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TTct"
+    ],
+    [
+     "f",
+     "TTctcTct"
+    ],
+    [
+     "f",
+     "TTctcTctcT"
+    ],
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TcTctcTct"
+    ],
+    [
+     "f",
+     "TcTctcTctcT"
+    ],
+    [
+     "f",
+     "TctcT"
+    ],
+    [
+     "f",
+     "TctcTcTct"
+    ],
+    [
+     "f",
+     "TctcTcTctcTct"
+    ],
+    [
+     "f",
+     "TctcTcTctcTctcT"
+    ],
+    [
+     "f",
+     "TctcTctctcTctcT"
+    ],
+    [
+     "f",
+     "TctcTcttcT"
+    ],
+    [
+     "f",
+     "TctctcTctcT"
+    ],
+    [
+     "f",
+     "TcttcT"
+    ],
+    [
+     "f",
+     "tcTTctcTctcT"
+    ],
+    [
+     "f",
+     "tcTctcTcTctcTctcT"
+    ],
+    [
+     "t",
+     "TctcTct"
+    ],
+    [
+     "t",
+     "tcT"
+    ],
+    [
+     "t",
+     "tcTctcT"
+    ],
+    [
+     "t",
+     "tcTctcTctcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -2627,6 +3004,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -2636,7 +3014,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.53
+   "secs": 4.82
   },
   {
    "chain": [
@@ -2663,6 +3041,91 @@
    "variation_generators": 18,
    "universe_coords": 95,
    "c0_support": 32,
+   "mod2_residual_weight": 20,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TTct"
+    ],
+    [
+     "f",
+     "TTctcTct"
+    ],
+    [
+     "f",
+     "TTctcTctcT"
+    ],
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TcTctcTct"
+    ],
+    [
+     "f",
+     "TcTctcTctcT"
+    ],
+    [
+     "f",
+     "TctcT"
+    ],
+    [
+     "f",
+     "TctcTcTct"
+    ],
+    [
+     "f",
+     "TctcTcTctcTct"
+    ],
+    [
+     "f",
+     "TctcTcTctcTctcT"
+    ],
+    [
+     "f",
+     "TctcTctctcTctcT"
+    ],
+    [
+     "f",
+     "TctcTcttcT"
+    ],
+    [
+     "f",
+     "TctctcTctcT"
+    ],
+    [
+     "f",
+     "TcttcT"
+    ],
+    [
+     "f",
+     "tcTTctcTctcT"
+    ],
+    [
+     "f",
+     "tcTctcTcTctcTctcT"
+    ],
+    [
+     "t",
+     "TctcTct"
+    ],
+    [
+     "t",
+     "tcT"
+    ],
+    [
+     "t",
+     "tcTctcT"
+    ],
+    [
+     "t",
+     "tcTctcTctcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -2731,6 +3194,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 8,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -2740,7 +3204,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.83
+   "secs": 4.4
   },
   {
    "chain": [
@@ -2927,6 +3391,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -2936,7 +3401,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 9.12
+   "secs": 9.24
   },
   {
    "chain": [
@@ -2983,6 +3448,23 @@
    "variation_generators": 54,
    "universe_coords": 211,
    "c0_support": 7,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 31,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3050,6 +3532,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -3059,7 +3542,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.01
+   "secs": 2.8
   },
   {
    "chain": [
@@ -3086,6 +3569,27 @@
    "variation_generators": 61,
    "universe_coords": 406,
    "c0_support": 6,
+   "mod2_residual_weight": 4,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TctcTcT"
+    ],
+    [
+     "f",
+     "TctcTcTct"
+    ],
+    [
+     "f",
+     "TctctcT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3154,6 +3658,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -3163,7 +3668,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.03
+   "secs": 3.02
   },
   {
    "chain": [
@@ -3190,6 +3695,15 @@
    "variation_generators": 13,
    "universe_coords": 80,
    "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3256,6 +3770,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -3265,7 +3780,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 2.26
+   "secs": 2.99
   },
   {
    "chain": [
@@ -3292,6 +3807,15 @@
    "variation_generators": 61,
    "universe_coords": 435,
    "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3358,6 +3882,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -3367,7 +3892,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 2.32
+   "secs": 2.34
   },
   {
    "chain": [
@@ -3394,6 +3919,23 @@
    "variation_generators": 47,
    "universe_coords": 67,
    "c0_support": 6,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 9,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3462,6 +4004,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 16,
    "mod2_enumeration_truncated": false,
@@ -3471,7 +4014,22 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 2.88
+   "secs": 3.62
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "directions_exact": true,
+   "direction_corruption_fires": false,
+   "x0_corruption_fires": true,
+   "directions": 0,
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true,
+   "secs": 3.27
   },
   {
    "chain": [
@@ -3580,6 +4138,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -3589,7 +4148,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.91
+   "secs": 6.01
   },
   {
    "chain": [
@@ -3600,7 +4159,6 @@
    "g": "",
    "directions_exact": true,
    "direction_corruption_fires": true,
-   "x0_corruption_fires": true,
    "directions": 3,
    "model_complete": true,
    "mod2_only": false,
@@ -3767,6 +4325,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 8,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -3776,7 +4335,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.21
+   "secs": 5.62
   },
   {
    "chain": [
@@ -3803,6 +4362,51 @@
    "variation_generators": 61,
    "universe_coords": 1380,
    "c0_support": 15,
+   "mod2_residual_weight": 10,
+   "mod2_V_rank": 28,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcTT"
+    ],
+    [
+     "f",
+     "TctctcTTT"
+    ],
+    [
+     "f",
+     "tcTT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ],
+    [
+     "f",
+     "tcTcTT"
+    ],
+    [
+     "f",
+     "tctcTT"
+    ],
+    [
+     "f",
+     "tctcTTT"
+    ],
+    [
+     "f",
+     "ttcTcTT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -3870,6 +4474,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 128,
    "mod2_enumeration_truncated": false,
@@ -3879,7 +4484,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.44
+   "secs": 4.31
   },
   {
    "chain": [
@@ -4064,6 +4669,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 8,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -4073,7 +4679,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.44
+   "secs": 3.65
   },
   {
    "chain": [
@@ -4282,6 +4888,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 2,
    "mod2_distinct_values": 2,
    "mod2_enumeration_truncated": false,
@@ -4291,7 +4898,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 2.34
+   "secs": 2.43
   },
   {
    "chain": [
@@ -4328,6 +4935,55 @@
    "variation_generators": 65,
    "universe_coords": 483,
    "c0_support": 24,
+   "mod2_residual_weight": 11,
+   "mod2_V_rank": 28,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TctcT"
+    ],
+    [
+     "f",
+     "TctcTctcTTct"
+    ],
+    [
+     "f",
+     "TcttcTctcTTTct"
+    ],
+    [
+     "f",
+     "TcttcTctcTcT"
+    ],
+    [
+     "f",
+     "TcttcTctcTcTctcTTct"
+    ],
+    [
+     "f",
+     "TcttcTctctcT"
+    ],
+    [
+     "f",
+     "TctttcT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ],
+    [
+     "t",
+     "Tct"
+    ],
+    [
+     "t",
+     "TcttcTctcTTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -4396,6 +5052,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 128,
    "mod2_enumeration_truncated": false,
@@ -4405,7 +5062,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.65
+   "secs": 4.35
   },
   {
    "chain": [
@@ -4432,6 +5089,23 @@
    "variation_generators": 18,
    "universe_coords": 61,
    "c0_support": 5,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "T"
+    ],
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TcTcttcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -4500,6 +5174,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 16,
    "mod2_distinct_values": 8,
    "mod2_enumeration_truncated": false,
@@ -4509,7 +5184,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.79
+   "secs": 3.6
   },
   {
    "chain": [
@@ -4556,6 +5231,15 @@
    "variation_generators": 5,
    "universe_coords": 13,
    "c0_support": 5,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 1,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -4624,6 +5308,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 2,
    "mod2_distinct_values": 2,
    "mod2_enumeration_truncated": false,
@@ -4633,7 +5318,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.53
+   "secs": 3.07
   },
   {
    "chain": [
@@ -4660,6 +5345,23 @@
    "variation_generators": 50,
    "universe_coords": 91,
    "c0_support": 11,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 13,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -4727,6 +5429,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 32,
    "mod2_enumeration_truncated": false,
@@ -4736,7 +5439,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.42
+   "secs": 4.37
   },
   {
    "chain": [
@@ -4763,6 +5466,27 @@
    "variation_generators": 63,
    "universe_coords": 567,
    "c0_support": 11,
+   "mod2_residual_weight": 4,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TctcTcT"
+    ],
+    [
+     "f",
+     "TctcTcTct"
+    ],
+    [
+     "f",
+     "TctctcT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -4829,6 +5553,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -4838,7 +5563,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.59
+   "secs": 3.5
   },
   {
    "chain": [
@@ -4849,6 +5574,7 @@
    "g": "",
    "directions_exact": true,
    "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
    "directions": 2,
    "model_complete": true,
    "mod2_only": false,
@@ -4945,6 +5671,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 2,
    "mod2_enumeration_truncated": false,
@@ -4954,7 +5681,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.64
+   "secs": 5.49
   },
   {
    "chain": [
@@ -4982,6 +5709,15 @@
    "variation_generators": 65,
    "universe_coords": 692,
    "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5048,6 +5784,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5057,7 +5794,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.63
+   "secs": 3.64
   },
   {
    "chain": [
@@ -5068,7 +5805,6 @@
    "g": "",
    "directions_exact": true,
    "direction_corruption_fires": true,
-   "x0_corruption_fires": true,
    "directions": 8,
    "model_complete": true,
    "mod2_only": false,
@@ -5085,6 +5821,23 @@
    "variation_generators": 53,
    "universe_coords": 252,
    "c0_support": 11,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 33,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5152,6 +5905,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5161,7 +5915,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.97
+   "secs": 5.18
   },
   {
    "chain": [
@@ -5188,6 +5942,15 @@
    "variation_generators": 13,
    "universe_coords": 93,
    "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5254,6 +6017,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -5263,7 +6027,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 3.31
+   "secs": 4.01
   },
   {
    "chain": [
@@ -5290,6 +6054,51 @@
    "variation_generators": 27,
    "universe_coords": 208,
    "c0_support": 14,
+   "mod2_residual_weight": 10,
+   "mod2_V_rank": 10,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcTT"
+    ],
+    [
+     "f",
+     "TctctcTTT"
+    ],
+    [
+     "f",
+     "tcTT"
+    ],
+    [
+     "f",
+     "tcTcT"
+    ],
+    [
+     "f",
+     "tcTcTT"
+    ],
+    [
+     "f",
+     "tctcTT"
+    ],
+    [
+     "f",
+     "tctcTTT"
+    ],
+    [
+     "f",
+     "ttcTcTT"
+    ],
+    [
+     "t",
+     "tcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5357,6 +6166,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 32,
    "mod2_distinct_values": 16,
    "mod2_enumeration_truncated": false,
@@ -5366,7 +6176,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 8.03
+   "secs": 7.97
   },
   {
    "chain": [
@@ -5479,6 +6289,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5488,7 +6299,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 6.0
+   "secs": 5.8
   },
   {
    "chain": [
@@ -5515,6 +6326,47 @@
    "variation_generators": 70,
    "universe_coords": 2159,
    "c0_support": 39,
+   "mod2_residual_weight": 9,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "T"
+    ],
+    [
+     "f",
+     "TctctcTTT"
+    ],
+    [
+     "f",
+     "tcTT"
+    ],
+    [
+     "f",
+     "tcTTT"
+    ],
+    [
+     "f",
+     "tcTctctcTTT"
+    ],
+    [
+     "f",
+     "tctcTT"
+    ],
+    [
+     "f",
+     "tctcTTT"
+    ],
+    [
+     "f",
+     "ttcTTT"
+    ],
+    [
+     "f",
+     "ttcTctctcTTT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5583,6 +6435,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5592,7 +6445,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 8.11
+   "secs": 8.3
   },
   {
    "chain": [
@@ -5608,11 +6461,26 @@
    "chain": [
     "cTcTctcTTcttc",
     "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "directions_exact": true,
+   "direction_corruption_fires": false,
+   "directions": 0,
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true,
+   "secs": 8.34
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
     "cTTTcttcTTcttc"
    ],
    "g": "cTTc",
    "directions_exact": true,
    "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
    "directions": 8,
    "model_complete": true,
    "mod2_only": false,
@@ -5739,6 +6607,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5748,51 +6617,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.52
-  },
-  {
-   "chain": [
-    "TTcTTctcTcttt",
-    "TTTcttcTctt",
-    "TTcTctcTcTcttt"
-   ],
-   "g": "TTc",
-   "directions_exact": true,
-   "direction_corruption_fires": false,
-   "x0_corruption_fires": true,
-   "directions": 0,
-   "status": "NO_KERNEL_DIRECTION_FOUND",
-   "passed": true,
-   "secs": 3.76
-  },
-  {
-   "chain": [
-    "TTctcTctc",
-    "TTTcttcTctt",
-    "TctcTcTctc"
-   ],
-   "g": "",
-   "directions_exact": true,
-   "direction_corruption_fires": false,
-   "x0_corruption_fires": true,
-   "directions": 0,
-   "status": "NO_KERNEL_DIRECTION_FOUND",
-   "passed": true,
-   "secs": 3.11
-  },
-  {
-   "chain": [
-    "cTcTctcTTcttc",
-    "TTTcttcTctt",
-    "TcTTcttc"
-   ],
-   "g": "Tc",
-   "directions_exact": true,
-   "direction_corruption_fires": false,
-   "directions": 0,
-   "status": "NO_KERNEL_DIRECTION_FOUND",
-   "passed": true,
-   "secs": 8.11
+   "secs": 5.37
   },
   {
    "chain": [
@@ -5803,6 +6628,7 @@
    "g": "cTTc",
    "directions_exact": true,
    "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
    "directions": 8,
    "model_complete": true,
    "mod2_only": false,
@@ -5819,6 +6645,15 @@
    "variation_generators": 58,
    "universe_coords": 364,
    "c0_support": 3,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -5888,6 +6723,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -5897,7 +6733,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 4.56
+   "secs": 4.85
   },
   {
    "chain": [
@@ -5934,6 +6770,59 @@
    "variation_generators": 62,
    "universe_coords": 834,
    "c0_support": 14,
+   "mod2_residual_weight": 12,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "T"
+    ],
+    [
+     "f",
+     "TTTct"
+    ],
+    [
+     "f",
+     "TTTctcT"
+    ],
+    [
+     "f",
+     "TTTctct"
+    ],
+    [
+     "f",
+     "TTcT"
+    ],
+    [
+     "f",
+     "TTcTct"
+    ],
+    [
+     "f",
+     "TTcTctt"
+    ],
+    [
+     "f",
+     "TTct"
+    ],
+    [
+     "f",
+     "TTctct"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -6000,6 +6889,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -6036,6 +6926,23 @@
    "variation_generators": 8,
    "universe_coords": 13,
    "c0_support": 6,
+   "mod2_residual_weight": 3,
+   "mod2_V_rank": 1,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ],
+    [
+     "f",
+     "TcT"
+    ],
+    [
+     "t",
+     "Tct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -6103,6 +7010,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 2,
    "mod2_enumeration_truncated": false,
@@ -6112,7 +7020,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 6.75
+   "secs": 6.97
   },
   {
    "chain": [
@@ -6139,6 +7047,15 @@
    "variation_generators": 61,
    "universe_coords": 505,
    "c0_support": 36,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "tcTcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "missing_column": [
@@ -6230,6 +7147,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -6239,7 +7157,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.09
+   "secs": 5.28
   },
   {
    "chain": [
@@ -6266,6 +7184,15 @@
    "variation_generators": 65,
    "universe_coords": 676,
    "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "tcTcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -6334,6 +7261,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -6343,7 +7271,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.2
+   "secs": 5.1
   },
   {
    "chain": [
@@ -6370,6 +7298,27 @@
    "variation_generators": 13,
    "universe_coords": 44,
    "c0_support": 6,
+   "mod2_residual_weight": 4,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ],
+    [
+     "f",
+     "TcTctcT"
+    ],
+    [
+     "f",
+     "TctctcT"
+    ],
+    [
+     "f",
+     "tcTcTctcT"
+    ]
+   ],
+   "mod2_residual_order_invariant": false,
    "blocking": {
     "2^2": {
      "blocking_column": [
@@ -6436,6 +7385,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": true,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 8,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -6445,7 +7395,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 5.31
+   "secs": 4.17
   },
   {
    "chain": [
@@ -6456,11 +7406,10 @@
    "g": "Tc",
    "directions_exact": true,
    "direction_corruption_fires": false,
-   "x0_corruption_fires": true,
    "directions": 0,
    "status": "NO_KERNEL_DIRECTION_FOUND",
    "passed": true,
-   "secs": 9.75
+   "secs": 8.94
   },
   {
    "chain": [
@@ -6488,6 +7437,15 @@
    "variation_generators": 62,
    "universe_coords": 505,
    "c0_support": 65,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "coordinate_certificates": [
@@ -6645,6 +7603,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -6654,7 +7613,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 6.68
+   "secs": 6.69
   },
   {
    "chain": [
@@ -6665,6 +7624,7 @@
    "g": "cTTc",
    "directions_exact": true,
    "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
    "directions": 8,
    "model_complete": true,
    "mod2_only": false,
@@ -6681,6 +7641,15 @@
    "variation_generators": 67,
    "universe_coords": 833,
    "c0_support": 23,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 36,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
     "2^2": {
      "coordinate_certificates": [
@@ -6838,6 +7807,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -6847,7 +7817,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 6.61
+   "secs": 6.62
   },
   {
    "chain": [
@@ -6955,6 +7925,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
@@ -6964,7 +7935,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 8.56
+   "secs": 8.45
   },
   {
    "chain": [
@@ -7223,6 +8194,7 @@
    "no_linear_certificate": false,
    "no_coordinate_certificate": false,
    "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 256,
    "mod2_distinct_values": 256,
    "mod2_enumeration_truncated": false,
@@ -7232,7 +8204,7 @@
    "mod2_consistency": true,
    "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
-   "secs": 7.99
+   "secs": 8.18
   }
  ]
 }

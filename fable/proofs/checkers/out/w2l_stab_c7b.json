@@ -1,0 +1,53 @@
+{
+ "schema": "acsolverx.w2l.stability.v1",
+ "summary": {
+  "chains": 1,
+  "controls_passed": true,
+  "monotone_membership_violations": 0
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "steps": [
+    {
+     "m_requested": 24,
+     "m": 20,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 153,
+     "universe_coords": 556,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 63,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 31.64
+    }
+   ]
+  }
+ ]
+}

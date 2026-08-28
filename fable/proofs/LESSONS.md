@@ -169,3 +169,50 @@ one you already suspect, and widen the probe set before declaring the others
 clean. W2j proved `L0` wrong and columns 1–4 clean on six probe vertices; the
 repair re-derived all five from the variation and re-probed on the whole
 radius-4 ball (20 vertices, 6,700 checks, 67 chains) before saying so.
+
+### Periodicity is not linearity — check the polarisation before planning
+
+[TRAP] W2j proved `G(n) mod 2` depends only on `n mod 2` for a degree-≤2
+integer-coefficient map (`2·quadratic + linear shifts` are even), and the
+next plan read that as "mod 2 the map is affine-LINEAR, so mod-2
+attainability is GF(2) linear algebra on `ker(L) mod 2`". It is not:
+`n_j² = n_j` over `F₂` absorbs only the DIAGONAL coefficient; the
+polarisations `b_jk` survive and were odd on 979 of 1,047 measured cross
+pairs. The decision problem is a system of `F₂`-quadratic forms, and the
+planned method does not exist.
+
+[WORKS] Before building on "the map is linear mod q", measure the
+polarisation directly on literal evaluations — `Φ(e_j+e_k) − Φ(e_j) − Φ(e_k)
++ Φ(0)` — on real data, by a code path that does not go through the fitted
+model, and count how many pairs are odd. It costs one evaluation per pair.
+
+### A bounded non-attainability is never an obstruction, at ANY modulus
+
+[TRAP] The instinct that "a failure mod `p^k` is window-independent" is
+backwards for an attainability question. Enlarging the direction set can only
+enlarge the value set, so "no solution mod `p^k` on `S`" says nothing about
+`S ∪ {F}` — exactly the same monotonicity that makes W2f's dead strata a
+statement about the truncation. The only finite computation that transfers is
+the *membership* `−c₀ ∈ V_S` (the linear relaxation): it is monotone in `S`,
+so a YES kills every linear certificate on the whole family at once.
+
+[WORKS] And check whether that useful branch can fire before spending the
+budget. Here `rank V_S ≤ m + m(m−1)/2 + m` while the coordinate universe grows
+at least as fast, so `−c₀ ∈ V_S` is a measure-zero coincidence at every rank
+reachable — the finite computation is one-sided in precisely the direction
+that cannot fire, and no amount of enlarging `S` changes that. Say so instead
+of shipping 51 "unattainable on S" lines as if they accumulated.
+
+### Report a diagnostic only after testing that it is basis-independent
+
+[TRAP] The Hamming weight and support of `−c₀` reduced modulo the variation
+space looked like a canonical invariant: on one baseline the SAME 11
+coordinates survived as the space's rank grew 9 → 119 across three direction
+families. Re-running the elimination on the reversed generator list — which
+re-indexes every coordinate — showed the reduced representative is
+order-dependent on 17 of 35 baselines. Only the boolean membership is an
+invariant.
+
+[WORKS] Any quantity computed by an elimination should be recomputed under a
+permuted input before it is named in a note; make that a control (it can
+fail, and it did).

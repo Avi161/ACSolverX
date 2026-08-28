@@ -77,11 +77,12 @@ so `G mod q` factors through `(Z/q)^m`.  W2j used this at `q = 2` and its
 
 which is affine-LINEAR only if every polarisation `b_jk` is even.  It is not:
 measured directly on literal evaluations (no fit involved), the identity
-`Phi(e_j + e_k) = Phi(e_j) + Phi(e_k) + Phi(0)` FAILS on 28 of 28 sampled
-pairs on census chain 0 and 22 of 28 on chain 5.  So mod-2 attainability of 0
-is a system of `F_2`-QUADRATIC forms, not GF(2) linear algebra.  This
-checker's `--mode struct` is the pin for that statement, and it is the reason
-the plan "decide it by linear algebra on ker(L) mod 2" cannot be executed as
+`Phi(e_j + e_k) = Phi(e_j) + Phi(e_k) + Phi(0)` FAILS on **979 of 1,047**
+cross pairs over 48 census baselines; only 4 baselines are genuinely
+affine-linear mod 2.  So mod-2 attainability of 0 is a system of
+`F_2`-QUADRATIC forms, not GF(2) linear algebra.  `--mode struct` recomputes
+the same fact without the model class (16/16 agreement) and is the reason the
+plan "decide it by linear algebra on ker(L) mod 2" cannot be executed as
 stated.
 
 --------------------------------------------------------------------------
@@ -767,6 +768,13 @@ def analyse(rec, h, x0, dirs, args, rng):
                 rec["mod2_residual_weight"] = tags["residual_weight"]
                 rec["mod2_V_rank"] = tags["rank"]
                 rec["mod2_residual_support"] = tags["residual_support"]
+                # C8: the reduced representative must not depend on the
+                # elimination order -- run it again on the reversed generator
+                # list (which re-indexes every coordinate) and compare.
+                _im2, t2 = member_gf2(list(reversed(gens)), tgt)
+                rec["mod2_residual_order_invariant"] = bool(
+                    not _im2 and t2["residual_support"]
+                    == tags["residual_support"])
             else:
                 rec["mod2_residual_weight"] = 0
             continue
@@ -815,8 +823,19 @@ def analyse(rec, h, x0, dirs, args, rng):
         beta = {jk: B.of(v) for jk, v in model.bx.items()}
         sol2, visited, distinct, truncated = gray_zero_search(
             c0b, alpha, beta, m, args.cap_bits)
+        # C9 POSITIVE control: the enumeration must be able to FIND a zero.
+        # Replace c_0 by alpha_0, which makes n = e_0 a mod-2 solution by
+        # construction; a search that never fires is not evidence.  Skipped
+        # when the enumeration itself was not run (m over the bit cap).
+        if truncated:
+            rec["C9_positive_control_fires"] = None
+        else:
+            pos, _v, _d, _t = gray_zero_search(alpha[0], alpha, beta, m,
+                                               args.cap_bits)
+            rec["C9_positive_control_fires"] = pos is not None
     else:
         sol2, visited, distinct, truncated = None, 0, 0, True
+        rec["C9_positive_control_fires"] = None
     rec["mod2_classes_enumerated"] = visited
     rec["mod2_distinct_values"] = distinct
     rec["mod2_enumeration_truncated"] = truncated
@@ -852,6 +871,7 @@ def analyse(rec, h, x0, dirs, args, rng):
         rec["status"] = "MOD2_UNATTAINABLE_ON_S"
     rec["passed"] = bool(rec["model_verified"] and cert_ok
                          and rec["mod2_consistency"]
+                         and rec.get("C9_positive_control_fires") is not False
                          and rec.get("model_corruption_fires"))
     return rec
 
@@ -961,6 +981,10 @@ def _summary(out):
         "witnesses": n("WITNESS"),
         "mod2_unattainable_on_S": n("MOD2_UNATTAINABLE_ON_S"),
         "mod2_undecided_on_S": n("MOD2_UNDECIDED_ON_S"),
+        "C9_positive_control_run": sum(
+            1 for o in out if o.get("C9_positive_control_fires") is not None),
+        "C9_positive_control_fires": sum(
+            1 for o in out if o.get("C9_positive_control_fires")),
         "controls_passed": all(o.get("passed", True) for o in out) and bool(out),
     }
 
@@ -1151,12 +1175,18 @@ def mode_witness(args, _rows):
 def mode_stability(args, rows):
     """F3, empirically: does the verdict move as the direction set grows?"""
     sel = _slice(rows, args.chains)
+    done = _resume(args)
     out, ok = [], True
     rng = random.Random(31337)
     t_run = time.time()
     for r in sel:
-        rec = {"chain": r["chain"], "g": r["g_gen"], "steps": []}
+        key = tuple(r["chain"]) + (r["g_gen"],)
+        rec = done.get(key) or {"chain": r["chain"], "g": r["g_gen"],
+                                "steps": []}
+        have = {s.get("m_requested") for s in rec["steps"]}
         for mm in [int(s) for s in args.ladder.split(",")]:
+            if mm in have:
+                continue
             if args.run_seconds and time.time() - t_run > args.run_seconds:
                 rec["truncated_run_budget"] = True
                 break
@@ -1178,7 +1208,12 @@ def mode_stability(args, rows):
             ok = ok and bool(sub.get("passed", False))
             rec["steps"].append({
                 "m_requested": mm, "m": sub.get("directions"),
-                "status": sub.get("status"),
+                "status": sub.get("status"), "passed": sub.get("passed"),
+                "model_verified": sub.get("model_verified"),
+                "mod2_periodicity_checks": sub.get("mod2_periodicity_checks"),
+                "mod2_periodicity_ok": sub.get("mod2_periodicity_ok"),
+                "C9_positive_control_fires": sub.get(
+                    "C9_positive_control_fires"),
                 "minus_c0_in_V": sub.get("minus_c0_in_V"),
                 "no_linear_certificate": sub.get("no_linear_certificate"),
                 "mod2_distinct_values": sub.get("mod2_distinct_values"),
@@ -1195,6 +1230,7 @@ def mode_stability(args, rows):
                     "coordinate_certificates_mod2"),
                 "secs": round(time.time() - t0, 2)})
             print(json.dumps(rec["steps"][-1]), flush=True)
+        rec["steps"].sort(key=lambda s: s.get("m_requested") or 0)
         out.append(rec)
         _dump(args, "stability", {"partial": True, "chains": len(out)}, out)
     summ = {"chains": len(out), "controls_passed": ok and bool(out),

@@ -1,0 +1,185 @@
+{
+ "schema": "acsolverx.w2l.stability.v1",
+ "summary": {
+  "chains": 1,
+  "controls_passed": true,
+  "monotone_membership_violations": 0
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "steps": [
+    {
+     "m_requested": 4,
+     "m": 7,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 20,
+     "universe_coords": 299,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 25,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 12.89
+    },
+    {
+     "m_requested": 8,
+     "m": 11,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 49,
+     "universe_coords": 484,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 51,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 13.06
+    },
+    {
+     "m_requested": 12,
+     "m": 15,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 89,
+     "universe_coords": 556,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 63,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 13.94
+    },
+    {
+     "m_requested": 16,
+     "m": 19,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 142,
+     "universe_coords": 556,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 63,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 15.24
+    },
+    {
+     "m_requested": 20,
+     "m": 19,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 142,
+     "universe_coords": 556,
+     "c0_support": 8,
+     "mod2_residual_weight": 1,
+     "mod2_V_rank": 63,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 15.68
+    }
+   ]
+  }
+ ]
+}

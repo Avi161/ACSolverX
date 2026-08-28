@@ -15,10 +15,13 @@
    "direction_corruption_fires": true,
    "x0_corruption_fires": true,
    "directions": 2,
-   "holdout_checks": 6,
-   "holdout_agree": 6,
-   "mod2_periodicity_checks": 6,
-   "mod2_periodicity_ok": 6,
+   "model_complete": true,
+   "mod2_only": false,
+   "cross_terms_evaluated": 1,
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
    "model_verified": true,
    "model_corruption_fires": 1,
    "cross_pairs": 1,
@@ -26,14 +29,17 @@
    "mod2_affine_linear": false,
    "variation_generators": 12,
    "universe_coords": 73,
+   "c0_support": 2,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 3,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TcTct"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
    "blocking": {
-    "2^1": {
-     "blocking_column": [
-      "f",
-      "TcTct"
-     ],
-     "value": 1
-    },
     "2^2": {
      "blocking_column": [
       "f",
@@ -76,6 +82,16 @@
      ]
     }
    },
+   "coordinate_certificates": {
+    "2^1": 0,
+    "2^2": 0,
+    "2^3": 0,
+    "3^1": 0,
+    "3^2": 0,
+    "5^1": 0
+   },
+   "coordinate_certificates_mod2": [],
+   "coordinate_certificates_Q": 0,
    "minus_c0_in_V": {
     "2^1": false,
     "2^2": false,
@@ -87,13 +103,17 @@
    },
    "membership_recheck_ok": true,
    "no_linear_certificate": false,
+   "no_coordinate_certificate": true,
+   "no_mod2_linear_certificate": false,
+   "C9_positive_control_fires": true,
    "mod2_classes_enumerated": 4,
    "mod2_distinct_values": 4,
    "mod2_enumeration_truncated": false,
    "mod2_zero_class": null,
    "integral_witness": null,
-   "evaluations": 12,
-   "status": "LINEAR_CERTIFICATE_CANDIDATE_ON_S",
+   "evaluations": 14,
+   "mod2_consistency": true,
+   "status": "MOD2_UNATTAINABLE_ON_S",
    "passed": true,
    "certificate_residual_lengths": [
     82,

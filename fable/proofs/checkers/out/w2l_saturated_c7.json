@@ -1,0 +1,84 @@
+{
+ "schema": "acsolverx.w2l.decide.v1",
+ "summary": {
+  "chains": 1,
+  "with_directions": 1,
+  "layer1_unsolved": 0,
+  "model_verified": 1,
+  "mod2_affine_linear": 0,
+  "mod2_quadratic": 1,
+  "no_linear_certificate": 0,
+  "no_mod2_linear_certificate": 0,
+  "no_coordinate_certificate": 0,
+  "chains_with_mod2_coordinate_certificate": 0,
+  "coord_certs_mod2_total": 0,
+  "mod2_attainable": 0,
+  "witnesses": 0,
+  "mod2_unattainable_on_S": 1,
+  "mod2_undecided_on_S": 0,
+  "controls_passed": true,
+  "C3_corruption_run": 1,
+  "C3_corruption_fires": 1
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "directions_exact": true,
+   "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
+   "directions": 20,
+   "model_complete": true,
+   "mod2_only": true,
+   "cross_terms_evaluated": 190,
+   "holdout_checks": 0,
+   "holdout_agree": 0,
+   "mod2_periodicity_checks": 4,
+   "mod2_periodicity_ok": 4,
+   "model_verified": true,
+   "model_corruption_fires": 1,
+   "cross_pairs": 190,
+   "cross_pairs_odd": 153,
+   "mod2_affine_linear": false,
+   "variation_generators": 223,
+   "universe_coords": 556,
+   "c0_support": 8,
+   "mod2_residual_weight": 1,
+   "mod2_V_rank": 63,
+   "mod2_residual_support": [
+    [
+     "f",
+     "TT"
+    ]
+   ],
+   "mod2_residual_order_invariant": true,
+   "coordinate_certificates": {
+    "2^1": 0
+   },
+   "coordinate_certificates_mod2": [],
+   "coordinate_certificates_Q": null,
+   "minus_c0_in_V": {
+    "2^1": false,
+    "Q": null
+   },
+   "membership_recheck_ok": true,
+   "no_linear_certificate": false,
+   "no_coordinate_certificate": false,
+   "no_mod2_linear_certificate": false,
+   "mod2_classes_enumerated": 1048576,
+   "mod2_distinct_values": 4096,
+   "mod2_enumeration_truncated": false,
+   "mod2_zero_class": null,
+   "integral_witness": null,
+   "evaluations": 215,
+   "mod2_consistency": true,
+   "status": "MOD2_UNATTAINABLE_ON_S",
+   "passed": true,
+   "secs": 34.65
+  }
+ ]
+}

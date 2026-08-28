@@ -18,6 +18,11 @@
      "m_requested": 8,
      "m": 15,
      "status": "MOD2_UNDECIDED_ON_S",
+     "passed": true,
+     "model_verified": true,
+     "mod2_periodicity_checks": 4,
+     "mod2_periodicity_ok": 4,
+     "C9_positive_control_fires": null,
      "minus_c0_in_V": {
       "2^1": false,
       "Q": null
@@ -80,7 +85,7 @@
      },
      "coordinate_certificates_Q": null,
      "coordinate_certificates_mod2": [],
-     "secs": 29.68
+     "secs": 30.57
     }
    ]
   }
