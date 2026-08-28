@@ -1,0 +1,1691 @@
+{
+ "schema": "acsolverx.w2f.chains.v1",
+ "meta": {
+  "cap_counts": {
+   "12": 17,
+   "13": 36,
+   "14": 55,
+   "15": 67
+  },
+  "caps_nested": true,
+  "cap12_equals_committed_census": true,
+  "unique_parametrization": true
+ },
+ "chains": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "params": [
+    4,
+    6,
+    0,
+    3,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    11,
+    15,
+    10
+   ],
+   "maxlen": 15,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "params": [
+    4,
+    6,
+    0,
+    3,
+    4,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    11,
+    15,
+    8
+   ],
+   "maxlen": 15,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "params": [
+    4,
+    6,
+    4,
+    6,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    11,
+    11,
+    10
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "params": [
+    4,
+    6,
+    4,
+    6,
+    4,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    11,
+    11,
+    8
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "params": [
+    6,
+    3,
+    3,
+    3,
+    1,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "c",
+   "lens": [
+    15,
+    13,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "params": [
+    6,
+    3,
+    3,
+    3,
+    6,
+    6
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "c",
+   "lens": [
+    15,
+    13,
+    8
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "params": [
+    6,
+    3,
+    3,
+    4,
+    5,
+    8
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "c",
+   "lens": [
+    15,
+    13,
+    8
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "params": [
+    0,
+    2,
+    0,
+    2,
+    3,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    11,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "params": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    0
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    11,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    0,
+    2,
+    6,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    0,
+    2,
+    9,
+    6
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TcTTc",
+   "lens": [
+    13,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "params": [
+    0,
+    2,
+    0,
+    3,
+    3,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    2,
+    0,
+    0
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    9,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    2,
+    9,
+    7
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTTc",
+   "lens": [
+    13,
+    9,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    7,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    3,
+    1,
+    0
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    7,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    3,
+    6,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    7,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    2,
+    3,
+    9,
+    6
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TcTTc",
+   "lens": [
+    13,
+    7,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "params": [
+    0,
+    2,
+    6,
+    8,
+    3,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    13,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "params": [
+    0,
+    2,
+    6,
+    8,
+    1,
+    0
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    13,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    6,
+    8,
+    6,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    13,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    6,
+    8,
+    9,
+    6
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TcTTc",
+   "lens": [
+    13,
+    13,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "params": [
+    0,
+    2,
+    7,
+    7,
+    3,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "params": [
+    0,
+    2,
+    7,
+    8,
+    5,
+    7
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "TTc",
+   "lens": [
+    13,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctctctcTctcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    5,
+    4,
+    7
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTTTctctttcTctc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    2,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    8
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    12
+   ],
+   "maxlen": 12,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    0,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    1,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    8
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    6,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    12
+   ],
+   "maxlen": 12,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    2,
+    5,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    10
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    3,
+    2,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    10
+   ],
+   "maxlen": 11,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    3,
+    0,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    0,
+    3,
+    6,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    2,
+    1,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    9,
+    10
+   ],
+   "maxlen": 10,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    2,
+    5,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    9,
+    12
+   ],
+   "maxlen": 12,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    2,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    8
+   ],
+   "maxlen": 9,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    12
+   ],
+   "maxlen": 12,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    0,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    1,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    8
+   ],
+   "maxlen": 9,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    6,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    12
+   ],
+   "maxlen": 12,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    2,
+    3,
+    5,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    7,
+    10
+   ],
+   "maxlen": 10,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    2,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    8
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    0,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    1,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    8
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    6,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    6,
+    8,
+    5,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    13,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "params": [
+    2,
+    1,
+    7,
+    7,
+    2,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    15,
+    10
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "params": [
+    2,
+    1,
+    7,
+    7,
+    0,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "params": [
+    2,
+    1,
+    7,
+    7,
+    6,
+    4
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctttcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "params": [
+    2,
+    1,
+    7,
+    8,
+    4,
+    7
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "",
+   "lens": [
+    9,
+    15,
+    14
+   ],
+   "maxlen": 15,
+   "cyc_S": "TTctctctcTctcTc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    0,
+    2,
+    7,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    11,
+    8
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    0,
+    2,
+    8,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    0,
+    2,
+    5,
+    5
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    11,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "params": [
+    7,
+    6,
+    0,
+    2,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    11,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    2,
+    2,
+    7,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    9,
+    12
+   ],
+   "maxlen": 13,
+   "cyc_S": "TTcTctttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    2,
+    3,
+    7,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    7,
+    8
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    2,
+    3,
+    8,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    7,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    2,
+    3,
+    5,
+    5
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    7,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "params": [
+    7,
+    6,
+    2,
+    3,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    7,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    6,
+    8,
+    7,
+    1
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    13,
+    8
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    6,
+    8,
+    8,
+    3
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    13,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "params": [
+    7,
+    6,
+    6,
+    8,
+    5,
+    5
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "cTTc",
+   "lens": [
+    13,
+    13,
+    14
+   ],
+   "maxlen": 14,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "params": [
+    7,
+    6,
+    6,
+    8,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    13,
+    13,
+    10
+   ],
+   "maxlen": 13,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "params": [
+    6,
+    4,
+    3,
+    2,
+    6,
+    6
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    11,
+    9,
+    8
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "params": [
+    6,
+    4,
+    3,
+    2,
+    0,
+    2
+   ],
+   "n_parametrizations": 1,
+   "g_gen": "Tc",
+   "lens": [
+    11,
+    9,
+    8
+   ],
+   "maxlen": 11,
+   "cyc_S": "TcTcttc",
+   "is_witness": false
+  }
+ ]
+}
