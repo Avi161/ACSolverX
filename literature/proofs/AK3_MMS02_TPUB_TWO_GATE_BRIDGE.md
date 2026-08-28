@@ -379,6 +379,11 @@ This closes only the S2 sequential completion.  Together with (17), it
 shows that neither verified first-leg donor branch can be completed while
 holding its new row and $v$ as the two donor families.
 
+Sections 6.2--6.4 construct two finite symbolic lift endpoints and then
+disprove both strategies which restore the active base row first.  The
+remaining MMS02 gate is an interleaved Peiffer/basic-substitution closure;
+it is not another quotient-reachability problem.
+
 ## 6. Quotient reachability is automatic with one redundant row
 
 The unrestricted bridge cannot be disproved by extending the fixed-base
@@ -698,6 +703,129 @@ $(E_A,B,H_A)$ or $(A,E_B,H_B)$ to $(A,B,v)$.  The remaining gate is the
 Peiffer/basic-substitution closure of one displayed pair of $N$-valued
 residuals.
 
+### 6.3. One residual restoration is enough
+
+The two-residual endpoint does not require two independent closing
+memberships.  For the first branch, consider
+
+\[
+ \mathsf C_A:
+ E_AA^{-1}\in\operatorname{Ncl}_F(B,H_A).
+ \tag{46a}
+\]
+
+If $\mathsf C_A$ holds, the basic substitution principle first replaces
+$E_A$ by $A$ while preserving $B,H_A$.  Equation (45) then replaces
+$H_A$ by $v$ using $A,B$.  Therefore
+
+\[
+ \mathsf C_A\Longrightarrow
+ (E_A,B,H_A)\sim_{\rm AC}(A,B,H_A)
+ \sim_{\rm AC}(A,B,v).
+ \tag{46b}
+\]
+
+The symmetric sufficient gate is
+
+\[
+ \mathsf C_B:
+ E_BB^{-1}\in\operatorname{Ncl}_F(A,H_B).
+ \tag{46c}
+\]
+
+and gives $(A,E_B,H_B)\sim_{\rm AC}(A,B,v)$.
+
+Both gates have the same defect word.  Indeed, quotienting the first gate
+by $B,H_A$ sets $H_A=AH=1$.  Hence $A^{-1}=H$, while
+$K[H_A]=K[1]=1$ and $E_A=u$.  The second branch is identical with
+$A,B$ exchanged.  Consequently
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathsf C_A
+ &\Longleftrightarrow
+ d=1\text{ in }Q_A^{\rm cl}
+ :=\langle x,y,z\mid B,AH\rangle,\\
+ \mathsf C_B
+ &\Longleftrightarrow
+ d=1\text{ in }Q_B^{\rm cl}
+ :=\langle x,y,z\mid A,BH\rangle,\\
+ d&:=uH.
+ \end{aligned}
+ }
+ \tag{47}
+\]
+
+The projected expression gives a freely reduced $H$ of length $337$ and
+a freely reduced $d$ of length $340$.  Its exponent vector is zero.  Thus
+each closing gate is now one exact deficiency-one word problem.  A
+normal-closure factorization for either occurrence of $d$ proves the
+MMS02 bridge and hence stable AK(3); nontriviality closes only that branch.
+
+### 6.4. Both restoration gates fail in the Alexander relation module
+
+The two word problems in (47) have canonical epimorphisms to the infinite
+cyclic group.  Their generator weights are
+
+\[
+ \begin{aligned}
+ \phi_A(x),\phi_A(y),\phi_A(z)&=(2,2,3),\\
+ \phi_B(x),\phi_B(y),\phi_B(z)&=(2,1,2).
+ \end{aligned}
+ \tag{48}
+\]
+
+Let $\Lambda=\mathbb Z[t,t^{-1}]$.  Abelianize the Fox derivatives using
+the appropriate weight in (48).  If a word $w$ lies in the normal closure
+of two relators $r_1,r_2$, then
+
+\[
+ \partial_\phi w
+ \in\Lambda\partial_\phi r_1+\Lambda\partial_\phi r_2.
+ \tag{49}
+\]
+
+Indeed, a conjugate $q r_i^\epsilon q^{-1}$ contributes
+$\epsilon t^{\phi(q)}\partial_\phi r_i$.  Thus failure of the row-span
+condition proves nonmembership in the free group.
+
+Use the $x,y$ columns of the two Fox rows.  Their determinant $D_A$ for
+$Q_A^{\rm cl}$ is nonzero and has Laurent span $21$.  The Cramer numerator
+$N_{A,\alpha}$ for the defect row is nonzero and has span $19$.  A nonzero
+Laurent multiple of $D_A$ cannot have smaller span.  Hence $D_A$ does not
+divide $N_{A,\alpha}$ in $\Lambda$.
+
+For $Q_B^{\rm cl}$, exact Laurent long division in the same two columns
+leaves the remainder
+
+\[
+ \begin{aligned}
+ R_B={}&8t^{-14}+3t^{-13}-12t^{-12}-3t^{-11}
+ +12t^{-10}+2t^{-9}\\
+ &+9t^{-8}+4t^{-7}-7t^{-6}+17t^{-5}+13t^{-4}.
+ \end{aligned}
+ \tag{50}
+\]
+
+It is nonzero, so its Cramer numerator is not divisible by $D_B$.  Equation
+(49) proves
+
+\[
+ \boxed{\mathsf C_A\text{ is false and }\mathsf C_B\text{ is false}.}
+ \tag{51}
+\]
+
+The focused checker
+`tests/stable_ac/test_ak3_mms02_residual_alexander_gates.py` derives $H$
+from the primitive transcript, verifies the weighted Fox fundamental
+identity for all five rows, performs both exact divisions, checks the
+Cramer reconstruction identities, and pins the nonzero remainder (50).
+
+Equation (51) closes only the strategy which restores the active base row
+first and then cleans the kill row.  An unrestricted closure may interleave
+both residual rows, and the MMS02 bridge remains open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -711,11 +839,13 @@ The logical gates remain separate:
    not the unrestricted all-row bridge;
 3. the fixed-base $A_5$ and Alexander obstructions do not apply to a path
    which moves $A$ and $B$;
-4. Lemma 6.1 closes only quotient reachability and does not close either
-   two-residual relation-identity lift in (35a)--(35b);
-5. no MMS02 statement evaluates the period-two class-two ledger or its
+4. Lemma 6.1 closes quotient reachability and Section 6.2 gives two finite
+   symbolic residual endpoints, but neither result closes the residuals;
+5. $\mathsf C_A$ and $\mathsf C_B$ are both false, which closes only the
+   two restoration-first completions, not an interleaved Peiffer closure;
+6. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-6. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+7. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is now the unrestricted stable bridge

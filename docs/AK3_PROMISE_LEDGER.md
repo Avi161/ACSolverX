@@ -57,6 +57,16 @@ finite quotient do not close a route.
   residuals certified in `normal_closure(A,B)`. Four focused checks pass.
   The endpoint substitutions and donor-restoring macros are not flattened by
   the checker; finiteness follows by structural induction on the SLP.
+- **Closure reduced to two named word problems:** restoring the active base
+  residual first makes the kill-word residual automatic. Both branches have
+  the same defect `d=(zYX)H`: test `d=1` in `<x,y,z | B,AH>` or in
+  `<x,y,z | A,BH>`. A positive factorization in either quotient proves the
+  bridge; a negative result closes only its named branch.
+- **Both restoration-first gates are false:** weighted Fox rows over
+  `Z[t,t^-1]` put the common defect outside the relator row span for both
+  `<x,y,z | B,AH>` and `<x,y,z | A,BH>`. The first fails by Laurent-span
+  degree and the second by a pinned nonzero long-division remainder. This
+  closes only base-first cleanup; interleaved Peiffer cleanup remains open.
 - **Resume point:** both sequential donor completions are closed. Work on the
   Peiffer/basic-substitution closure of the first-row-active or
   second-row-active residual pair; the SLP lift itself is complete, but no
