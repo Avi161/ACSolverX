@@ -257,6 +257,10 @@ Section 3.104 isolates the literal prefix shadows.  Every natural source
 pair in slots zero and one has a second fixed occurrence pair with the same
 paired multiplier; actual cancellation between the pair and its shadow is
 controlled only by source and Green-path activity.
+Section 3.105 evaluates that activity at the moving source of an anchored
+cell.  Four of the five direct shadows are absent.  The sole possible
+slot-zero shadow is exactly one oriented half-tree cut of the slot-two
+Green flow, while the direct slot-one shadow contribution is zero.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10624,6 +10628,88 @@ prefixes do not justify canceling a natural baseline atom without evaluating
 that activity.  They identify the first exact incidence rows in the
 terminal-boundary graph (3.661); all nonduplicate candidates still pass
 through the four-state and bounded-word filters of Sections 3.99--3.103.
+
+### 3.105 Moving-source activity kills four direct shadows
+
+Write the integral anchored direction as
+
+\[
+ \begin{gathered}
+ H_s(u)=
+ \left(F_0^{s,u},F_1^{s,u},F_2^{s,u},F_3^{s,u},F_4^{s,u}\right),\\
+ s\in\{0,1\}.
+ \end{gathered}
+ \tag{3.677}
+\]
+
+and assume $u\ne a$, where $a$ is the fixed slot-zero anchor.  The source
+pair (3.567) gives the pointwise moving coefficients
+
+\[
+ \boxed{
+ \begin{array}{c|cc}
+ s&\overline{F_0^{s,u}(u)}&\overline{F_1^{s,u}(u)}\\ \hline
+ 0&1&0\\
+ 1&0&1.
+ \end{array}
+ }
+ \tag{3.678}
+\]
+
+Let $\overline\kappa^{\rm dir}_{s,u}$ denote the part of the endpoint
+remainder consisting only of the five fixed-prefix shadow pairs in
+(3.675)--(3.676), at the moving coordinate $u$ and with no nontrivial
+terminal forest word inserted.  Occurrence tags are retained, so the
+three slot-zero shadow atoms have activity products
+
+\[
+ \begin{aligned}
+ \overline{F_1^{0,u}(u)}\overline{F_0^{0,u}(u)},\\
+ \overline{F_2^{0,u}(u)}\overline{F_0^{0,u}(u)},\\
+ \overline{F_1^{0,u}(u)}\overline{F_0^{0,u}(u)}.
+ \end{aligned}
+ \tag{3.679}
+\]
+
+while the two slot-one shadow atoms both have activity product
+$\overline{F_0^{1,u}(u)}\overline{F_1^{1,u}(u)}$.  Substitution of
+(3.678) proves
+
+\[
+ \boxed{
+ \begin{aligned}
+ \overline\kappa^{\rm dir}_{0,u}
+ &=\overline{F_2^{0,u}(u)},\\
+ \overline\kappa^{\rm dir}_{1,u}
+ &=0.
+ \end{aligned}
+ }
+ \tag{3.680}
+\]
+
+The remaining slot-zero bit is already an exact source-boundary cut.  For
+$H_0(u)$, formulas (3.567), (3.60), and (3.62) give
+
+\[
+ \boxed{
+ \overline{F_2^{0,u}(u)}
+ =
+ \sum_{x\in\mathcal C^+_{2,u}}
+ [e_x]\left(
+ \mathcal L_0e_u-\lambda_0(u)\mathcal L_0e_a
+ \right)
+ \pmod2.
+ }
+ \tag{3.681}
+\]
+
+The anchor term in (3.681) is retained: the orientation of the head
+half-tree can place fixed anchor boundary labels on either side, so
+remoteness alone does not delete it.  Equations (3.680)--(3.681) evaluate
+all direct fixed-prefix shadows without a terminal-word enumeration.  They
+do not include a nontrivial $w,w'$ in (3.668), a collision based at another
+source coordinate, or a nonduplicate endpoint pair.  Those terms remain in
+the terminal-boundary value (3.661).
 
 ## 4. Exact diagonal sieve
 
