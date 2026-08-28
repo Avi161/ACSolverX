@@ -103,6 +103,13 @@ Section 3.62 turns the even transported-label fibers into alternating
 collision cycles.  Every cycle carries a fixed occurrence word which must
 fix its starting correction vertex; a nonidentity cycle word has only one
 possible starting vertex.
+Section 3.63 proves that the remaining identity-word types have a finite
+normal grammar: after orienting the eight source intervals, their words
+lie in the kernel of one marked epimorphism onto a finitely generated
+virtually free subgroup of $Q$.
+Section 3.64 gives an explicit semilinear quotient ledger for those marked
+relators and rules out identity collision cycles with fewer than three
+source steps.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -7099,6 +7106,217 @@ length can grow with the correction support, and identity words can be
 formed by cancellation among the fixed multipliers in (3.458).  The exact
 next cycle-level obligation is to classify those identity-word cycles or
 show that any long one forces a quadratic bucket in the annulus (3.438).
+
+### 3.63 Identity cycles have a finite normal grammar
+
+Let $\sigma$ be the fixed-point-free involution of the sixteen occurrence
+indices whose orbits are the eight intervals in (3.84).  For an oriented
+occurrence endpoint $p$, define the source-step element
+
+\[
+ S_p:=q_{\sigma(p)}q_p^{-1}.
+ \tag{3.461}
+\]
+
+If $I=[a,b]$ is oriented from its positive endpoint $a$ to its negative
+endpoint $b$, then
+
+\[
+ \begin{aligned}
+ S_a&=q_bq_a^{-1},\\
+ S_b&=S_a^{-1}.
+ \end{aligned}
+ \tag{3.462}
+\]
+
+Let $\mathbb F_{\mathscr I}$ be the free group on the eight marked
+generators $e_I$, and define
+
+\[
+ \begin{aligned}
+ \phi:\mathbb F_{\mathscr I}&\longrightarrow Q,\\
+ e_{[a,b]}&\longmapsto q_bq_a^{-1}.
+ \end{aligned}
+ \tag{3.463}
+\]
+
+Return to an alternating cycle from Section 3.62.  After its $i$th
+collision step, the source edge runs from $p_i$ to
+$o_{i+1}=\sigma(p_i)$, with cyclic convention $o_{r+1}=o_1$.  Put
+
+\[
+ \varepsilon(p):=
+ \begin{cases}
+ 1,&p=a\text{ for }I=[a,b],\\
+ -1,&p=b\text{ for }I=[a,b],
+ \end{cases}
+ \tag{3.464}
+\]
+
+and form the marked source word
+
+\[
+ w_{\mathcal C}
+ :=e_{I(p_r)}^{\varepsilon(p_r)}
+ \cdots
+ e_{I(p_1)}^{\varepsilon(p_1)}.
+ \tag{3.465}
+\]
+
+If $y_1=q_{o_1}v_1H$ is the first collision label, the successive source
+steps act on labels by $S_{p_1},\ldots,S_{p_r}$.  Direct multiplication,
+using $q_{\sigma(p_i)}=q_{o_{i+1}}$, gives
+
+\[
+ \boxed{
+ \phi(w_{\mathcal C})
+ =q_{o_1}h_{\mathcal C}q_{o_1}^{-1}.
+ }
+ \tag{3.466}
+\]
+
+Consequently an alternating cycle is freely moving at the closure
+condition exactly when its marked word lies in $\ker\phi$.
+
+The marked word $w_{\mathcal C}$ is cyclically freely reduced.  Indeed,
+two consecutive inverse source letters would make consecutive source
+steps traverse the same interval in opposite directions.  The collision
+edge between them would then have both endpoints in the same occurrence.
+Since left multiplication by that occurrence prefix is bijective on $X$,
+equal transported labels in one occurrence force equal source coordinates;
+the collision edge would be a forbidden matching loop.  The same argument
+applies across the cyclic seam.  Thus a nonempty identity cycle cannot be
+explained by free cancellation in the eight marked source letters.
+
+This kernel has a finite normal generating set.  Indeed, the image
+
+\[
+ G_{\mathscr I}:=\phi(\mathbb F_{\mathscr I})\le Q=C_2*\mathbb Z
+ \tag{3.467}
+\]
+
+is finitely generated.  By the Kurosh subgroup theorem it is a free product
+of a finite-rank free group and finitely many order-two factors.  In
+particular it is finitely presented.  Rewriting such a presentation in the
+eight marked generators gives a finite set
+$\mathscr R_{\mathrm{id}}\subset\ker\phi$ with
+
+\[
+ \boxed{
+ \ker\phi
+ =\left\langle\left\langle
+ \mathscr R_{\mathrm{id}}
+ \right\rangle\right\rangle_{\mathbb F_{\mathscr I}}.
+ }
+ \tag{3.468}
+\]
+
+Thus every identity-cycle word is a finite product of conjugates of a
+fixed finite collection of marked relators and their inverses.  Equivalently,
+its marked loop admits a van Kampen filling by translates of finitely many
+relator cells.  This removes an infinite list of unrelated identity-word
+types, but it does not bound the conjugating corridors in such a filling
+and does not preserve quadratic bucket coefficients cell by cell.  The
+next exact task is therefore finite at the relator level but still
+unbounded in placement: determine a marked Kurosh presentation for
+$G_{\mathscr I}$ and prove either annular survival or a controlled
+quadratic gluing law for its relator cells.
+
+### 3.64 Explicit semilinear gate for identity relators
+
+The two-dimensional semilinear quotient from Section 3.34 supplies an
+immediate finite-ledger gate on $\ker\phi$.  Write its elements as
+$(z,\delta)\in\mathbb Z^2\rtimes\langle\alpha\rangle$, where $\alpha$
+swaps the two coordinates and $\delta\in\{0,1\}$.  Applying the occurrence
+ledger (3.247) to the eight positively oriented source generators in
+(3.463) gives
+
+\[
+\begin{array}{c|c|c}
+ I&\zeta_I&\delta_I\\ \hline
+ [3,4]&(-3,2)&1\\
+ [7,8]&(-4,3)&1\\
+ [11,12]&(0,-1)&1\\
+ [2,5]&(-2,3)&0\\
+ [10,13]&(3,-2)&0\\
+ [1,6]&(0,0)&1\\
+ [9,14]&(-2,2)&1\\
+ [15,16]&(-1,0)&0
+\end{array}
+\tag{3.469}
+\]
+
+That is, the image of $\phi(e_I)$ is $(\zeta_I,\delta_I)$.  The inverse
+orientation has the exact pair
+
+\[
+ (\zeta_I,\delta_I)^{-1}
+ =(-\alpha^{\delta_I}(\zeta_I),\delta_I).
+ \tag{3.470}
+\]
+
+For the successive source steps $p_1,\ldots,p_r$ of a collision cycle,
+let $(\zeta_i,\delta_i)$ be the pair from (3.469) or (3.470) selected by
+the orientation of $p_i$.  Starting at $(Z_0,\Delta_0)=(0,0)$, define
+
+\[
+ \begin{aligned}
+ Z_i&=\zeta_i+\alpha^{\delta_i}(Z_{i-1}),\\
+ \Delta_i&=\delta_i+\Delta_{i-1}\pmod2.
+ \end{aligned}
+ \tag{3.471}
+\]
+
+The recursion is ordered this way because
+$\phi(w_{\mathcal C})=S_{p_r}\cdots S_{p_1}$.  Every identity cycle must
+satisfy
+
+\[
+ \boxed{
+ \begin{aligned}
+ Z_r&=0,\\
+ \Delta_r&=0.
+ \end{aligned}
+ }
+ \tag{3.472}
+\]
+
+There are two useful scalar consequences.  Let $n_I$ be the signed
+exponent sum of $e_I$ in $w_{\mathcal C}$, and let $N_I$ be the unsigned
+number of its appearances.  The height row (3.169) and the semidirect
+parity row of (3.469) give
+
+\[
+ \boxed{
+ n_{[2,5]}+n_{[10,13]}
+ =n_{[3,4]}+n_{[7,8]}+n_{[11,12]}+n_{[15,16]}.
+ }
+ \tag{3.473}
+\]
+
+and
+
+\[
+ \boxed{
+ N_{[3,4]}+N_{[7,8]}+N_{[11,12]}
+ +N_{[1,6]}+N_{[9,14]}
+ =0\pmod2.
+ }
+ \tag{3.474}
+\]
+
+In particular an identity collision cycle has at least three source
+steps.  A one-letter word is impossible because every source generator is
+conjugate to one of the infinite-order paired generators from (3.169).
+For a cyclically reduced two-letter word, identity would make two distinct
+marked source generators equal up to inversion, or make the square of one
+generator trivial.  The oriented pairs in (3.469)--(3.470) distinguish
+different marked generators, while infinite order excludes the square.
+
+Equations (3.469)--(3.474) are necessary, not sufficient: abelianizing
+$K$ erases the noncommutative part of a marked relator.  They nevertheless
+give a support-independent gate before any full free-product reduction or
+quadratic relator-cell calculation.
 
 ## 4. Exact diagonal sieve
 
