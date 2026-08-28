@@ -96,6 +96,13 @@ length plus twice the correction vertex's distance from one affine axis in
 the Cayley tree of $K$.
 Section 3.60 records that repeated occurrence pairs in slots zero and one
 have identical paired words, so they supply no transverse same-slot axes.
+Section 3.61 supplies the cross-slot replacement: any three distinct slot
+axes have pairwise disjoint ends, and their thickened intersection is
+controlled by one finite central subtree.
+Section 3.62 turns the even transported-label fibers into alternating
+collision cycles.  Every cycle carries a fixed occurrence word which must
+fix its starting correction vertex; a nonidentity cycle word has only one
+possible starting vertex.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6902,6 +6909,196 @@ do not force a support vertex away from one of several axes; their axes
 coincide exactly.  Any universal annular-survival proof must instead use
 cross-slot forest closure, a non-paired occurrence multiplier, or a direct
 parity analysis of the collider fibers.
+
+### 3.61 Three distinct slot axes have finite central overlap
+
+The five affine axes in (3.446) have pairwise disjoint endpoint sets in
+$\partial\mathcal T_K$.  To see this, suppose two paired isometries shared
+an end.  Their integer translations along a common tail have nonzero signed
+powers with equal oriented displacement.  The quotient of those powers
+fixes that tail.  Edge stabilizers for the $Q$-action on $\mathcal T_K$ are
+finite, and the action is faithful because the core of the malnormal
+subgroup $H$ is trivial.  Thus a further power makes the two isometries
+commensurable.  The cyclic centralizer and primitivity statements in
+(3.171)--(3.172) then force the
+two primitive paired words to be equal or inverse.  The exact list (3.446)
+rules this out for distinct slots.  Hence
+
+\[
+ \boxed{
+ \begin{aligned}
+ \partial\mathcal A_s^K\cap\partial\mathcal A_t^K&=\varnothing,\\
+ s&\ne t.
+ \end{aligned}}
+ \tag{3.448}
+\]
+
+Fix three distinct slots $s,t,u$.  In the convex hull of
+$\mathcal A_s^K\cup\mathcal A_t^K\cup\mathcal A_u^K$, remove the six open
+axis rays beyond all branch and bridge points.  Equation (3.448) makes the
+remaining central subtree $\mathcal C_{stu}$ finite.  Put
+
+\[
+ B_{stu}:=\max_{z\in\mathcal C_{stu}}|z|_K.
+ \tag{3.449}
+\]
+
+Every component of $\mathcal T_K\setminus\mathcal C_{stu}$ contains at
+most one of the six axis rays.  Therefore, for every vertex $v$,
+
+\[
+ \boxed{
+ |v|_K
+ \le B_{stu}
+ +\max\left\{
+ d(v,\mathcal A_s^K),
+ d(v,\mathcal A_t^K),
+ d(v,\mathcal A_u^K)
+ \right\}.
+ }
+ \tag{3.450}
+\]
+
+Indeed, outside the central subtree at least two axes lie in other
+components, so the path from $v$ to either one passes through
+$\mathcal C_{stu}$.  Thus one of the displayed axis distances is at least
+$d(v,\mathcal C_{stu})$, and the triangle inequality from the identity to
+the nearest central vertex proves (3.450).
+
+This gives a quantitative cross-slot cluster criterion.  Set
+
+\[
+ K_*:=\max\{C_0,C_*\}.
+ \tag{3.451}
+\]
+
+Suppose $v\in\operatorname{supp}_2(F_s)$ has $|v|_K=R(F)$, and there are
+$v_t\in\operatorname{supp}_2(F_t)$ and
+$v_u\in\operatorname{supp}_2(F_u)$ with
+
+\[
+ \begin{aligned}
+ d(v,v_t)&\le L,\\
+ d(v,v_u)&\le L.
+ \end{aligned}
+ \tag{3.452}
+\]
+
+If none of the three slots has a paired same-coordinate bucket beyond
+$T(F)$, then (3.447) gives
+
+\[
+ \begin{aligned}
+ d(v,\mathcal A_s^K)&\le\frac{T(F)}2,\\
+ d(v,\mathcal A_t^K),d(v,\mathcal A_u^K)
+ &\le L+\frac{T(F)}2.
+ \end{aligned}
+ \tag{3.453}
+\]
+
+Using $T(F)\le R(F)+K_*$ in (3.450) yields
+
+\[
+ \boxed{
+ R(F)\le2B_{stu}+2L+K_*.
+ }
+ \tag{3.454}
+\]
+
+Thus a correction whose parity radius exceeds the bound in (3.454) cannot
+simultaneously have a uniformly clustered active triple and keep all three
+paired diagonal families below the leading annulus.  This still does not
+prove annular coefficient survival: a long paired bucket can collide.
+The next cross-slot obligation is to derive a uniform cluster such as
+(3.452) from the balanced forest boundary, or to analyze the complementary
+unclustered boundary flows directly.
+
+### 3.62 Even-label fibers give alternating collision cycles
+
+The balanced relation (3.346), reduced modulo two and evaluated at one
+transported label $x\in X$, gives
+
+\[
+ \boxed{
+ \sum_{o=1}^{16}
+ \sum_{v\in\operatorname{supp}_2(F_{s_o})}
+ [x(o,v)=x]=0
+ \pmod2.
+ }
+ \tag{3.455}
+\]
+
+Thus every transported-label fiber of the parity-active occurrence tokens
+has even cardinality.  Choose a perfect matching inside each nonempty
+fiber; call these the collision edges.  Independently, for every active
+source coordinate $(s,v)$, pair its occurrence copies by the natural
+positive/negative intervals $I\in\mathscr I_s$ from (3.84).  Call these
+the source edges.  Every token is incident to exactly one edge of each
+kind, so their union is a disjoint union of finite alternating even cycles.
+
+Orient one such cycle and record its collision steps as
+
+\[
+ \begin{aligned}
+ (o_i,v_i)&\longrightarrow(p_i,v_{i+1}),\\
+ 1&\le i\le r.
+ \end{aligned}
+\tag{3.456}
+\]
+
+where the intervening source edge changes only the occurrence index and
+$v_{r+1}=v_1$.  The collision equality is
+
+\[
+ \begin{aligned}
+ q_{o_i}v_iH&=q_{p_i}v_{i+1}H,\\
+ v_{i+1}H&=q_{p_i}^{-1}q_{o_i}v_iH.
+ \end{aligned}
+\tag{3.457}
+\]
+
+Define the cycle word, with composition read rightmost first, by
+
+\[
+ h_{\mathcal C}
+ :=(q_{p_r}^{-1}q_{o_r})
+   \cdots
+   (q_{p_1}^{-1}q_{o_1})\in Q.
+ \tag{3.458}
+\]
+
+Closing the cycle gives the exact stabilizer condition
+
+\[
+ \boxed{
+ \begin{aligned}
+ h_{\mathcal C}v_1H&=v_1H,\\
+ v_1^{-1}h_{\mathcal C}v_1&\in H.
+ \end{aligned}
+ }
+\tag{3.459}
+\]
+
+If $h_{\mathcal C}\ne1$, it is therefore an involution conjugate to $c$.
+Malnormality of $H$ makes its fixed vertex in $X$ unique: if it fixed both
+$vH$ and $wH$, then the nontrivial intersection
+$vHv^{-1}\cap wHw^{-1}$ would force $vH=wH$.  Consequently
+
+\[
+ \boxed{
+ h_{\mathcal C}\ne1
+ \Longrightarrow
+ v_1H\text{ is uniquely determined by the occurrence-type cycle}.
+ }
+ \tag{3.460}
+\]
+
+The only cycle types which allow a freely moving starting vertex are those
+with $h_{\mathcal C}=1$.  This is not yet a finite classification: cycle
+length can grow with the correction support, and identity words can be
+formed by cancellation among the fixed multipliers in (3.458).  The exact
+next cycle-level obligation is to classify those identity-word cycles or
+show that any long one forces a quadratic bucket in the annulus (3.438).
 
 ## 4. Exact diagonal sieve
 
