@@ -209,6 +209,19 @@ Section 3.92 combines the height and anti-height fixed-point equations.
 Every surviving corridor-loop multiplier has height $1$ or $-1$ and odd
 dihedral displacement.  A slot-one translation loop has the unique signed
 abelianized multiplier type $(3,-2)$ or $(-3,2)$ in $K=F(t,ctc)$.
+Section 3.93 consolidates all general non-target mixed branches into one
+finite graph.  Its edge parity is a graph-boundary pairing plus odd
+fundamental cycles.  Every odd cycle has nonzero odd-height right word, so
+its closure is a genuine conjugacy equation; no freely moving identity-word
+odd cycle remains.
+Section 3.94 pulls the target conjugator out of every odd-cycle right word.
+Conjugacy with the bounded endpoint-multiplier word forces the resulting
+marked word in $r_u=ucu^{-1}$ and $g_s$ to have translation length at most
+linear in the cycle length.
+Section 3.95 separates the target-independent power cycles exactly.  When
+the marked target word is a power of $g_s$, its exponent is odd and the
+relative source $vu^{-1}$ lies on one fixed coset of the cyclic centralizer
+of $g_s$.  All other odd cycles retain a genuine target-involution word.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -9703,6 +9716,248 @@ case every multiplier outside the two signed abelianized types (3.621).
 This is a necessary sieve, not an enumeration of the remaining finite
 list.  The boundary-color sum and the token weights on surviving
 cross-source-slot corridors remain unevaluated.
+
+### 3.93 General mixed parity is boundary plus pinned odd cycles
+
+Fix a paired target $\mathscr D_s(u)$ with $s\in\{0,1\}$.  Remove the
+target-incident mixed terms already isolated in Section 3.80.  On the
+remaining active non-target anchored atoms, form a finite graph $G_u$ by
+putting one mod-two edge $\{\alpha,\beta\}$ exactly when the complete
+terminal-leg sum in
+
+\[
+ [B_\Xi(H_\alpha,H_\beta)]_{\mathscr D_s(u)}
+ \tag{3.622}
+\]
+
+is one.  Parallel token realizations are aggregated before this edge is
+inserted.  The graph has no vertex loops because the mixed expansion uses
+$\alpha<\beta$.  Its edge cardinality modulo two is exactly the general
+non-target mixed contribution to (3.589).
+
+Choose a spanning forest $S_u\subseteq G_u$.  On each component, choose a
+root and the unique coloring $\chi_u$ which changes across every forest
+edge.  For a nonforest edge $e=\{x,y\}$, put
+
+\[
+ \omega_u(e):=1+\chi_u(x)+\chi_u(y).
+ \tag{3.623}
+\]
+
+Summing the pointwise identity
+$1=\chi_u(x)+\chi_u(y)+\omega_u(e)$ over all edges, with
+$\omega_u=0$ on $S_u$, gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ |E(G_u)|
+ ={}&\sum_x[\delta_x](\partial G_u)\chi_u(x)\\
+ &+\sum_{e\in E(G_u)\setminus E(S_u)}\omega_u(e)
+ \end{aligned}
+ }
+ \tag{3.624}
+\]
+
+in $\mathbb F_2$.  The value $\omega_u(e)$ is one exactly when the
+fundamental cycle formed by $e$ and its forest path has odd length.  Thus
+the second line of (3.624) is an exact odd-cycle residual, independent of
+the earlier branchwise color choices.
+
+Every graph edge has at least one surviving terminal-token realization by
+a branch from (3.579).  Choose one such realization for each edge of an
+odd cycle $C$, orient the cycle, and invert the branch data when the chosen
+edge direction opposes the traversal.  Write the resulting signed branch
+maps as
+
+\[
+ \begin{aligned}
+ T_i(v)&=h_i^{-1}v k_i,\\
+ 1&\le i\le m.
+ \end{aligned}
+ \tag{3.625}
+\]
+
+Repeated use of (3.605) gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ T_m\cdots T_1(v)&=H_C^{-1}vK_C,\\
+ H_C&:=h_1\cdots h_m,\\
+ K_C&:=k_1\cdots k_m.
+ \end{aligned}
+ }
+ \tag{3.626}
+\]
+
+Consequently the cycle closes at $v$ exactly when
+
+\[
+ \boxed{
+ H_C=vK_Cv^{-1}.
+ }
+ \tag{3.627}
+\]
+
+For every signed source-slot branch,
+
+\[
+ \begin{gathered}
+ k_i=c^{\eta_i}u^{-1}g_s^{\epsilon_i}u
+ \text{ or its inverse}.
+ \end{gathered}
+ \tag{3.628}
+\]
+
+Equations (3.169) and (3.628) imply
+
+\[
+ \nu_t(k_i)\equiv1\pmod2.
+ \tag{3.629}
+\]
+
+If $C$ is odd, then
+
+\[
+ \boxed{
+ \nu_t(K_C)\equiv |C|\equiv1\pmod2,
+ }
+ \tag{3.630}
+\]
+
+so $K_C$ is nontrivial.  Hence an odd cycle can never come from a marked
+identity word $H_C=K_C=1$.  Equation (3.627) instead pins its starting
+source to a coset of $C_Q(K_C)\cap K$.  Since $K_C$ has nonzero height, it
+has infinite order, and this intersection is one infinite cyclic corridor.
+
+The general non-target mixed parity has therefore been reduced to the
+global graph-boundary term in (3.624) and odd conjugacy-cycle corridors.
+This does not yet evaluate either parity: different pinned cycles may
+overlap, and the target-incident, other-cell self, and isolated unary terms
+remain separate in (3.589).
+
+### 3.94 Odd cycles obey a target-word translation bound
+
+The target dependence in $K_C$ has one common conjugator.  For a forward
+branch letter in (3.628), put $r_u:=ucu^{-1}$.  Then
+
+\[
+ c^\eta u^{-1}g_s^\epsilon u
+ =u^{-1}\left(r_u^\eta g_s^\epsilon\right)u.
+ \tag{3.631}
+\]
+
+The inverse branch letter is the conjugate by $u$ of the inverse of the
+parenthesized word.  Hence an oriented cycle of length $m$ has
+
+\[
+ \boxed{
+ \begin{aligned}
+ K_C&=u^{-1}W_C(u)u,\\
+ W_C(u)&=z_1(u)\cdots z_m(u),\\
+ z_i(u)&\in
+ \left\{
+ \left(r_u^\eta g_s^\epsilon\right)^\rho:
+ \eta\in\{0,1\},
+ \epsilon,\rho\in\{1,-1\}
+ \right\}.
+ \end{aligned}
+ }
+ \tag{3.632}
+\]
+
+Restore the fixed finite endpoint-multiplier alphabet from Sections
+3.77--3.85.  In the Bass--Serre tree of $Q=C_2*\mathbb Z$, fix a base
+vertex $x_*$ and let $B_*$ be the largest displacement
+$d_{\rm BS}(x_*,hx_*)$ among the signed branch multipliers in that finite
+alphabet.  Let $\tau_{\rm BS}$ denote translation length in the same tree.
+The cycle closure (3.627), conjugacy invariance, and the triangle inequality
+give
+
+\[
+ \boxed{
+ \tau_{\rm BS}(W_C(u))
+ =\tau_{\rm BS}(K_C)
+ =\tau_{\rm BS}(H_C)
+ \le B_*m.
+ }
+ \tag{3.633}
+\]
+
+For an odd cycle, (3.630) also gives
+
+\[
+ \nu_t(W_C(u))\equiv1\pmod2,
+ \tag{3.634}
+\]
+
+so the marked word in (3.632) is nontrivial.  Thus an odd-cycle residual
+cannot be a freely moving relator cell: it is a nontrivial word in the
+target involution and paired generator whose cyclic translation is bounded
+by the length of the endpoint-multiplier cycle.  Equation (3.633) does not
+give a uniform bound on $m$ and does not exclude long axis-tracking cycles;
+those remain part of the pinned odd-cycle parity.
+
+### 3.95 Power cycles are relative paired-axis corridors
+
+Put
+
+\[
+ z_C:=vu^{-1}\in K.
+ \tag{3.635}
+\]
+
+Substituting (3.632) in the closure equation (3.627) gives the target-word
+conjugacy equation
+
+\[
+ \boxed{
+ H_C=z_CW_C(u)z_C^{-1}.
+ }
+ \tag{3.636}
+\]
+
+Suppose first that the reduced marked word belongs to the paired cyclic
+subgroup:
+
+\[
+ W_C(u)=g_s^N.
+ \tag{3.637}
+\]
+
+Since $\nu_t(g_s)$ is $1$ or $-1$, equation (3.634) forces
+
+\[
+ \boxed{
+ N\equiv1\pmod2.
+ }
+ \tag{3.638}
+\]
+
+The conjugacy test (3.636) is then independent of the target.  If it has
+one solution $z_0\in K$, all solutions are
+
+\[
+ \boxed{
+ \begin{aligned}
+ z_C&\in z_0\left(C_Q(g_s)\cap K\right),\\
+ v&\in z_0\left(C_Q(g_s)\cap K\right)u.
+ \end{aligned}
+ }
+ \tag{3.639}
+\]
+
+The intersection in (3.639) is infinite cyclic because $g_s$ has infinite
+order.  Thus every power-type odd cycle places its first source on a
+paired-axis corridor at one fixed relative position from the target.
+
+If $W_C(u)\notin\langle g_s\rangle$, at least one target-involution letter
+survives in the reduced marked word.  That cycle remains governed by the
+noncyclic conjugacy equation (3.636) and the translation bound (3.633).
+The two cases are exhaustive, but neither corridor parity is asserted to
+vanish.  In particular, long power cycles and long target-involution cycles
+can still contribute to the odd-cycle sum in (3.624).
 
 ## 4. Exact diagonal sieve
 
