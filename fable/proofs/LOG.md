@@ -191,3 +191,24 @@ for the program: layer 1 of the period-two quotient obstructs NOTHING on the
 finite-index part — the scope gap moves to layer 2 ([N,N]) or to the
 infinite-index chains. Note: W2G_G_STRATUM_DEATH.md; checker
 g_stratum_death.py. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 15 · `ef08153`
+
+W6b: the missing certified family from W6 is built, proved, and decides Tpub.
+Lemma A (bundle arcs cut S^2 into m regions) + Lemma B (decoupling, proved
+outright: bundles in book form with pinned reversal alignment whenever H minus
+each multi-bundle's endpoints stays connected — strictly weaker than the
+3-connectivity the K6-E(P5) argument needed) + Lemma C (P4 shifts, for repo
+agreement). Tpub: 2.0858e16 orderings collapse to 3,120 cases, all consumed,
+0 spherical — gamma_N >= 1, NOT thickenable for this exact spelling (link
+connected, so Theorem 2 is an equivalence there). Txy control NOT_SPHERICAL,
+doctrine-consistent. Validation: 0 disagreements vs complete brute force on
+344 instances including AK(3) (86,400 orderings) and 71 truncated instances in
+Tpub's own macro structure with both verdicts present; both pinned P4
+decisions reproduced; 153 PASS / 0 FAIL controls; zero quarantine events on
+real targets. Ball coverage: 902/2,513 rank-3 AC-ball states decided, all
+NOT_SPHERICAL. The W5.1 positive route is now closed for the three recorded
+spellings AND Tpub; the target moves to AC-reachable respellings (cut family
+next: unblocks 898 of 1,204 undecided ceiling-22 states). Note:
+W6B_TPUB_DECISION.md; checker rank3_shift_family_solver.py. No AK(3), stable
+AC, AC, or thickenability-positive claim.
