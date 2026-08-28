@@ -1,0 +1,12 @@
+{"pres_id": "aca_115", "rung": 0, "mu": 13, "rep": ["YXYxyx", "YYYYxxx"], "pair": ["YXYxyx", "YYYYxxx"], "parent_rep": null, "z": null, "iso_gen": null, "iso_index": null, "n_subs": null}
+{"pres_id": "aca_115", "rung": 1, "mu": 14, "rep": ["YXXYx", "YYYYXyyyx"], "pair": ["XXXXYxxxy", "YYxyx"], "parent_rep": ["YXYxyx", "YYYYxxx"], "z": "xy", "iso_gen": "x", "iso_index": 0, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 15, "rep": ["YXXYx", "YYYYXYxyyX"], "pair": ["XYYYYxYXyyxx", "YXYxx"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "Xy", "iso_gen": "x", "iso_index": 1, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 15, "rep": ["YYXXyx", "YXXXyxxxx"], "pair": ["XXXXYxxYXXyxxxxx", "YXXXyxxxx"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "Xy", "iso_gen": "y", "iso_index": 0, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 20, "rep": ["YYXXXyxYx", "YYXyyxYYXyx"], "pair": ["XXYxyxyyX", "YYxyyXYxyyX"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "xx", "iso_gen": "x", "iso_index": 0, "n_subs": 3}
+{"pres_id": "aca_115", "rung": 2, "mu": 15, "rep": ["YXXYx", "YYYYYXXyyx"], "pair": ["XXyXXyXXyXXyXYxxYxxy", "YYxxx"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "xy", "iso_gen": "x", "iso_index": 1, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 19, "rep": ["YXXXXyxxx", "YYXXXXXyxx"], "pair": ["xxxxYxxYXXyx", "YxxxyXXXX"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "xy", "iso_gen": "y", "iso_index": 0, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 15, "rep": ["YXXYx", "YYYXYxyyyX"], "pair": ["yxYYYXyyyX", "YxxYX"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "yX", "iso_gen": "x", "iso_index": 1, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 16, "rep": ["YYXXXyx", "YXXXXyxxx"], "pair": ["YxxxYxyXXX", "YxxxyXXXX"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "yX", "iso_gen": "y", "iso_index": 0, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 15, "rep": ["YXXYx", "YYYYXXyyyx"], "pair": ["yXXyXXyXXYxxYxxYxxYx", "YxxxY"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "yx", "iso_gen": "x", "iso_index": 1, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 19, "rep": ["YXXXXyxxx", "YYXXXyxxxx"], "pair": ["XXXYYxxxxy", "YXXXyxxxx"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "yx", "iso_gen": "y", "iso_index": 0, "n_subs": 2}
+{"pres_id": "aca_115", "rung": 2, "mu": 20, "rep": ["YXXXyxx", "YYXyxYXyxYXyx"], "pair": ["XXXyxxY", "YXyxYXyxYXyxY"], "parent_rep": ["YXXYx", "YYYYXyyyx"], "z": "xxx", "iso_gen": "x", "iso_index": 0, "n_subs": 2}
