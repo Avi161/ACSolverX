@@ -95,6 +95,12 @@ the identity-coset summand.  Arbitrary tame lifts of quotient AC loops,
 including transformations which project to the identity loop, may still
 move or cancel that residual.
 
+Section 6.20 derives the elementary affine defect formulas and isolates one
+candidate covector.  It survives all vertical component conjugations and two
+universal tag-interchange loops.  Its invariance under the complete tame loop
+stabilizer is equivalent to three explicit containment laws; those laws are
+the sole remaining first-derived gate and are not yet proved.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -2451,6 +2457,128 @@ quotient stabilizer and the vertical kernel of the tame operator action.
 The relative Peiffer class, the MMS02 bridge, stable AK(3), and ordinary
 AK(3) remain open.
 
+### 6.20. Exact affine covector gate for all lifted loops
+
+The induced decomposition (132) has a distinguished identity-coset
+projection
+
+\[
+ p:\mathcal M\longrightarrow L.
+\]
+
+Define the candidate covector
+
+\[
+ \lambda(m,n)=p(m)\pmod{(B-1)L}.
+ \tag{135}
+\]
+
+Theorem 6.10 says $\lambda(\kappa_0)=[E]\ne0$.  To test whether this value
+survives the complete lifted defect set, use left-kernel coordinates.  Over
+a current quotient pair $(u,v)$, the elementary linear updates on the first
+defect coordinate are
+
+\[
+ \begin{aligned}
+ \text{invert }r_1:& m\longmapsto-u^{-1}m,\\
+ r_1\longmapsto r_1r_2:& m\longmapsto m+un,\\
+ r_1\longmapsto{}^{k\widehat g}r_1:
+ & m\longmapsto k+gm-(gug^{-1})k.
+ \end{aligned}
+ \tag{136}
+\]
+
+Here $g\in\overline G$, $k\in\mathcal M$, and $\widehat g$ is a chosen
+lift.  A fixed section can contribute its fixed affine cocycle, and swapping
+the rows swaps the two coordinates.  Thus no splitting of the extension is
+being assumed.
+
+At the target $(B,t)$, changing a conjugator lift by $k$ adds
+
+\[
+ \begin{aligned}
+ \text{first row: }&((1-B)k,0),&
+ \text{tag row: }&(0,(1-t)k).
+ \end{aligned}
+ \tag{137}
+\]
+
+Because $B\in H$ preserves the identity coset,
+$p((1-B)k)=(1-B)p(k)$.  Hence every vertical component-conjugation lift
+preserves (135).
+
+Two nontrivial quotient loops also give exact off-diagonal checks.  Conjugate
+the tag row first by the current $B$-row and then by ambient $B^{-1}$; or
+conjugate the $B$-row first by the current tag and then by ambient $t^{-1}$.
+Their defect actions are respectively
+
+\[
+ \begin{aligned}
+ (m,n)&\longmapsto(m,n+(1-t)B^{-1}m),\\
+ (m,n)&\longmapsto(m+(1-B)t^{-1}n,n).
+ \end{aligned}
+ \tag{138}
+\]
+
+Both preserve $\lambda$.  These checks are examples, not generators of the
+full stabilizer.
+
+For an arbitrary tame lift in the complete preimage of a quotient loop at
+$(B,t)$, write its affine first coordinate as
+
+\[
+ m'=J_{11}m+J_{12}n+c_1.
+ \tag{139}
+\]
+
+Then $\lambda$ is invariant under every such lift if and only if, for every
+element of that complete preimage,
+
+\[
+ \boxed{
+ \begin{aligned}
+ p((J_{11}-1)\mathcal M)&\subseteq(B-1)L,\\
+ p(J_{12}\mathcal M)&\subseteq(B-1)L,\\
+ p(c_1)&\in(B-1)L.
+ \end{aligned}
+ }
+ \tag{140}
+\]
+
+For the single starting defect $\kappa_0=([E],0)$, survival under the
+complete lifted preimage requires the following weaker condition for every
+element of that preimage:
+
+\[
+ p((J_{11}-1)[E]+c_1)\in(B-1)L.
+ \tag{141}
+\]
+
+The projection $p$ is not $\overline G$-equivariant.  Consequently neither
+(132) nor the generator formulas (136) prove (140).  Relation loops inside
+$H$ and vertical tame transformations projecting to the identity must both
+be included.
+
+**Theorem 6.14 (first-derived affine gate).**  The candidate $\lambda$
+detects the canonical defect and is invariant under the vertical
+component-conjugation subgroup and the two tag-interchange loops (138).
+Its invariance under the full tame preimage is equivalent to (140), and its
+survival on the canonical defect is equivalent to the universal version of
+(141).
+
+No additional loop-family ledger is opened.  The next tagged checkpoint must
+either prove universal (141), with (140) as a stronger sufficient theorem,
+or exhibit one symbolic loop violating (141).  A loop violating (140) but
+not (141) does not decide the candidate obstruction.  If the checkpoint only
+produces further proper loop families, freeze
+Sections 6.12--6.20 as a publishable first-derived tagged theorem and return
+to a constructive Hall--Witt path or the unrestricted common-kill bridge.
+A loop which sends the $\lambda$-value of one defect to zero refutes only
+this covector obstruction; it does not put the zero defect in $\mathcal D$.
+Only an actual zero in $\mathcal D$ closes the complete first-derived layer,
+and even that would not prove (130).  The relative Peiffer class, the MMS02
+bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2493,9 +2621,12 @@ The logical gates remain separate:
     $Q_A''/Q_A'''$ and the canonical quotient path has residual $([E],0)$,
     but the complete defect set over all tame lifts of quotient AC loops has
     not been evaluated;
-14. no MMS02 statement evaluates the period-two class-two ledger or its
+14. the candidate identity-coset covector survives vertical conjugations and
+    two universal tag loops, but its full invariance is exactly the unproved
+    three-part containment law (140);
+15. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-15. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+16. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

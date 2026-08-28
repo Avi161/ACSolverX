@@ -190,6 +190,18 @@ finite quotient do not close a route.
   loops at `(B,t)` may have affine Fox defects which cancel it.  A quotient
   loop has no canonical lift; the complete defect set must include every
   tame lift and the vertical kernel projecting to the identity loop.
+- **Exact first-derived affine gate isolated:** identity-coset projection
+  modulo `(B-1)L` detects `[E]`.  Exact affine formulas show that this
+  covector survives every vertical component conjugation and two universal
+  tag-interchange loops.  For an arbitrary lifted loop with first coordinate
+  `J11*m+J12*n+c1`, full invariance is equivalent to three uniform
+  containments: the identity-coset projections of `(J11-1)M`, `J12*M`, and
+  `c1` must lie in `(B-1)L`.  These laws are not proved because projection to
+  one coset is not `Gbar`-equivariant; relation loops in `H` and the vertical
+  tame kernel remain.  For the canonical defect alone, the weaker universal
+  condition is that every lifted loop preserve `[E]` under the first affine
+  coordinate modulo `(B-1)L`.  A failure of the stronger three containments
+  need not violate this weaker condition.  Do not list more loop families.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
@@ -200,6 +212,13 @@ finite quotient do not close a route.
   `(q,t) -> (B,t)` by evaluating the complete lifted defect set of `([E],0)`
   in the induced kernel module, including the vertical tame-operator kernel,
   or by constructing a full path.
+  The next tagged checkpoint must prove the weaker canonical-defect condition
+  universally, with the three affine containments as a stronger sufficient
+  theorem, or give one symbolic loop violating the weaker condition.  A loop
+  violating only the stronger condition is inconclusive.  If the checkpoint
+  produces only more proper loop families, freeze Sections 6.12--6.20 as the bounded
+  first-derived tagged theorem and switch to Hall--Witt construction or the
+  unrestricted common-kill bridge.
   If the linear orbit contains zero, escalate once to the tame relative
   crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or
   another full relative path may bypass the closed single-row gate.  Do not
