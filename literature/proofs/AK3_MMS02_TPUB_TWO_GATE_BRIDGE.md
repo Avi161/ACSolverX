@@ -38,6 +38,11 @@ thickenability route for this one complex only.  Thickenability is not known
 to be invariant under Andrews--Curtis moves, so the unrestricted bridge and
 stable AK(3) remain open.
 
+Section 6.10 closes and freezes the next finite thickenability class: none
+of the four tail-free boundary-cancelling moves by a cyclic conjugate of
+$v^{\pm1}$ produces a thickenable complex.  Arbitrary surviving conjugator
+tails and multi-move paths remain outside that theorem.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1228,6 +1233,104 @@ invariants in this argument.  A later AC-equivalent representative may be
 thickenable.  Thus Theorem 6.3 neither proves nor disproves the bridge,
 stable AK(3), ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
 
+### 6.10. Tail-free boundary donor moves are also nonthickenable
+
+Let $\operatorname{cyc}(w)$ denote the freely and cyclically reduced word
+representing $w$, and let
+
+\[
+ \mathcal C_v=\{Xyz,yzX,zXy,ZYx,YxZ,xZY\}
+ \tag{70}
+\]
+
+be the cyclic shifts of $v$ and $v^{-1}$.  Define the pinned-seam class
+$\mathcal P_\partial$ as follows.  Choose $R=A$ or $R=B$, replace that row
+by $Rc$ for one $c\in\mathcal C_v$, and retain the result exactly when
+
+\[
+ |\operatorname{cyc}(Rc)|<|R|+3.
+ \tag{71}
+\]
+
+Each replacement is one AC multiplication by a conjugate of the third row,
+followed only by row conjugation and literal free equality.  The definition
+is deliberately narrow: no letters of an arbitrary conjugator may survive
+outside the three donor letters.
+
+Inspecting the two cyclic seams gives exactly four outputs.
+
+| changed row | cyclic donor | exact reduced row |
+|---|---|---|
+| $A$ | `yzX` | `zYXyxZXYxyZyz` |
+| $A$ | `zXy` | `xzYXyxZXYxyXy` |
+| $B$ | `ZYx` | `xZXYXyxzXYxyZ` |
+| $B$ | `YxZ` | `XyxZXYXyxzXYxxZ` |
+
+The other eight products have cyclic length $|R|+3$ and are outside
+$\mathcal P_\partial$.  The four displayed words are the exact inputs to
+the occurrence dictionaries below; no further reduction or occurrence
+identification is made.
+
+Three of the four supports have the same rigidity property used in Section
+6.9: deleting the endpoints of every repeated support class leaves the
+simple support connected.  Their repeated classes are therefore reversed
+blocks, and normalized face tracing supplies every spherical macro scheme.
+
+For the row `xzYXyxZXYxyXy`, the doubled $XY$ class is the unique exception.
+Deleting $X,Y$ leaves three components: the edge $xy$ and the two isolated
+vertices $z,Z$.  Keep both $XY$ slots while collapsing every other repeated
+class to one block.  At $X$ and $Y$ the two neighbour multisets each have
+$12=(5-1)!/2!$ cyclic orders.  The other four vertices have one order each,
+and the two $XY$ slots have two endpoint pairings.  Thus
+
+\[
+ 12\mathbin\cdot12\mathbin\cdot2=288
+ \tag{72}
+\]
+
+partial-expansion schemes exhaust the nonblock case.  Exact face tracing
+retains twelve spherical schemes.
+
+The complete signed-rank results are:
+
+| changed row and donor | support-rotation budget | spherical schemes | scheme--phase pairs | component seeds | closed component assignments | complete combinations |
+|---|---:|---:|---:|---:|---:|---:|
+| $A$, `yzX` | 864 | 2 | 1,848 | 11,088 | 96 | 0 |
+| $A$, `zXy` | 288 | 12 | 9,240 | 120,120 | 338 | 0 |
+| $B$, `ZYx` | 16 | 2 | 1,512 | 12,096 | 40 | 0 |
+| $B$, `YxZ` | 144 | 4 | 3,528 | 38,808 | 120 | 0 |
+
+Every scheme, phase, and seed budget is reached.  In each row, some
+individual relator-cycle assignments close, but no scheme--phase pair closes
+all three cycles.  Hence no global rank partition survives.
+
+**Theorem 6.4 (pinned-seam donor boundary).**  Every exact presentation
+complex in $\mathcal P_\partial$ is nonthickenable.
+
+**Proof.**  The three rigid cases are complete by the connected-deletion
+block argument.  Equation (72) is complete for the sole nonblock class, so
+the retained twelve schemes cover every spherical rotation there.  The
+three-pipe signed-rank criterion is necessary and sufficient on each listed
+scheme, and the exhaustive table has no compatible survivor.  Each
+presentation is AC-equivalent to $T_{\rm pub}$ and hence presents the trivial
+group.  The Euler-only Neuwirth criterion and the orientation-character
+argument from Theorem 6.3 rule out all PL thickenings. $\square$
+
+The exact finite certificate and focused replay are
+
+```text
+experiments/stable_ac/thickenable/mms02_tpub_boundary_donor_certificate.py
+tests/stable_ac/test_mms02_tpub_boundary_donor_certificate.py
+```
+
+The class $\mathcal P_\partial$ is now frozen.  Its negative verdict does
+not cover a donor conjugate with a surviving tail, an unshortened cyclic
+donor product, a base-row multiplication, two or more moves, or a retained
+stabilization row.  Exact-complex thickenability is still not an AC
+invariant.  Theorem 6.4 therefore does not obstruct the unrestricted bridge
+and proves none of stable AK(3), ordinary AK(3), stable Andrews--Curtis, or
+Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -1246,8 +1349,9 @@ The logical gates remain separate:
 5. the finite cleanup ledger closes every completion which restores each
    residual exactly once, but not an interleaved Peiffer closure which may
    alter the rows repeatedly;
-6. the exact $T_{\rm pub}$ complex is not thickenable, but this does not
-   obstruct an AC-equivalent thickenable representative;
+6. the exact $T_{\rm pub}$ complex and all four pinned-seam donor neighbours
+   are nonthickenable, but this does not obstruct another AC-equivalent
+   thickenable representative;
 7. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
 8. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and

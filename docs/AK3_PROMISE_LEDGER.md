@@ -104,6 +104,13 @@ finite quotient do not close a route.
   compatible spherical rotation. Hence this one word-realized presentation
   complex is not thickenable. This is not AC-invariant and does not obstruct
   an AC-equivalent thickenable representative, the bridge, or stable AK(3).
+- **Pinned-seam donor class frozen:** among the twelve products obtained by
+  multiplying displayed $A$ or $B$ by a cyclic shift of $v^{\pm1}$, exactly
+  four shorten at a cyclic seam. Complete spherical-scheme and signed-rank
+  audits find all four exact complexes nonthickenable. This closes only the
+  tail-free boundary-cancelling class. Do not extend it to another donor
+  census; surviving conjugator tails, unshortened products, multi-move paths,
+  retained stabilizations, the bridge, and stable AK(3) remain open.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target or the genuinely interleaved
   Peiffer/basic-substitution closure of one symbolic residual pair; the SLP
