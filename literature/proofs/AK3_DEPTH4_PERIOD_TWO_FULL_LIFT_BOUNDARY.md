@@ -237,6 +237,10 @@ finite word schema: reduced products $wq_o$ with $w$ in one fixed ball of
 the $A,B,G$ forest group.  Both the isolated paired-word audit and the
 clustered loop sieve reduce to explicit finite word equalities in this
 schema.
+Section 3.100 shows that the isolated endpoint-pair graph is bipartite.
+Right multiplication by the infinite-order paired word gives a canonical
+alternating color on every multiplier orbit, so the complete endpoint
+remainder is one finite terminal-boundary pairing with no odd-cycle term.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10287,6 +10291,79 @@ terminal activity and chronology only on the finite paired-word schema
 (3.656)--(3.657).  This makes the finite obligation explicit without
 claiming its parity or replacing the all-support proof by a bounded source
 enumeration.
+
+### 3.100 The isolated endpoint remainder is a terminal boundary
+
+Fix $s\in\{0,1\}$ and consider the right action of $\langle g_s\rangle$
+on $Q$.  Since $g_s$ has infinite order, each orbit is indexed freely by
+$\mathbb Z$.  Choose one representative in every orbit and define
+
+\[
+ \chi_s(rg_s^n):=n\pmod2.
+ \tag{3.659}
+\]
+
+The choice of orbit representative changes $\chi_s$ by a constant on that
+orbit and will not affect the edge identity below.  Every candidate pair
+in (3.658) satisfies
+
+\[
+ \boxed{
+ \begin{gathered}
+ \chi_s(r')=\chi_s(r)+1,\\
+ r^{-1}r'\in\{g_s,g_s^{-1}\}.
+ \end{gathered}
+ }
+ \tag{3.660}
+\]
+
+For a remote target $u$, retain occurrence tags on the actual active
+terminal tokens and label each tagged token $\xi$ by its fixed multiplier
+$r(\xi)\in\mathcal R_E^{\rm can}$.  Reduce the integral endpoint remainder
+in (3.571) modulo two, aggregate repeated coefficient atoms, and make one
+edge between the two tagged tokens of every surviving atom.  Denote this
+finite edge set by $E_{s,u}^{\kappa}$.  The $n_s$ natural correlation atoms
+removed in the definition of $\kappa^{\mathbb Z}_{s,u}$ are not included.
+By (3.558) and (3.658), every retained edge joins multipliers which satisfy
+(3.660).
+
+Let $\partial E_{s,u}^{\kappa}$ be the mod-two degree chain on the tagged
+terminal-token vertices.  Summing (3.660) over all retained edges gives
+
+\[
+ \boxed{
+ \overline{\kappa^{\mathbb Z}_{s,u}}
+ =\sum_\xi
+ [\delta_\xi](\partial E_{s,u}^{\kappa})
+ \chi_s(r(\xi)).
+ }
+ \tag{3.661}
+\]
+
+Equivalently, the endpoint multiplier graph is bipartite even when several
+occurrence-tagged tokens carry the same multiplier.  Parallel coefficient
+atoms have already been aggregated modulo two, and no edge is a loop
+because $g_s$ is nontrivial.  Hence there is no endpoint odd-cycle residual.
+
+Formula (3.661) reduces the isolated slot-zero obligation to one exact
+local boundary value.  Combining it with (3.572) gives
+
+\[
+ \boxed{
+ [\mathscr Q_\Xi(\mathbf h_{(s,u)})]_{\mathscr D_s(u)}
+ =n_s+
+ \sum_\xi
+ [\delta_\xi](\partial E_{s,u}^{\kappa})
+ \chi_s(r(\xi)).
+ }
+ \tag{3.662}
+\]
+
+For slot zero, the isolated paired target survives exactly when the
+terminal-boundary pairing in (3.662) is zero.  For slot one, it survives
+exactly when that pairing is one.  Even vertex degrees would settle the
+slot-zero case, but are not asserted; the slot-one case still requires a
+different parity pivot.
 
 ## 4. Exact diagonal sieve
 
