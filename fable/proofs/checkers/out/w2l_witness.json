@@ -1,0 +1,151 @@
+{
+ "schema": "acsolverx.w2l.witness.v1",
+ "summary": {
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "directions_exact": true,
+   "direction_corruption_fires": true,
+   "x0_corruption_fires": true,
+   "directions": 2,
+   "holdout_checks": 6,
+   "holdout_agree": 6,
+   "mod2_periodicity_checks": 6,
+   "mod2_periodicity_ok": 6,
+   "model_verified": true,
+   "model_corruption_fires": 1,
+   "cross_pairs": 1,
+   "cross_pairs_odd": 1,
+   "mod2_affine_linear": false,
+   "variation_generators": 12,
+   "universe_coords": 73,
+   "blocking": {
+    "2^1": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "2^2": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "2^3": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "3^1": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "3^2": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "5^1": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ],
+     "value": 1
+    },
+    "Q": {
+     "blocking_column": [
+      "f",
+      "TcTct"
+     ]
+    }
+   },
+   "minus_c0_in_V": {
+    "2^1": false,
+    "2^2": false,
+    "2^3": false,
+    "3^1": false,
+    "3^2": false,
+    "5^1": false,
+    "Q": false
+   },
+   "membership_recheck_ok": true,
+   "no_linear_certificate": false,
+   "mod2_classes_enumerated": 4,
+   "mod2_distinct_values": 4,
+   "mod2_enumeration_truncated": false,
+   "mod2_zero_class": null,
+   "integral_witness": null,
+   "evaluations": 12,
+   "status": "LINEAR_CERTIFICATE_CANDIDATE_ON_S",
+   "passed": true,
+   "certificate_residual_lengths": [
+    82,
+    442,
+    678,
+    614
+   ],
+   "certificate_lengths_expected": [
+    82,
+    442,
+    678,
+    614
+   ],
+   "certificate_obstruction_bits": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "certificate_bits_expected": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "C6_certificate_reproduced": true,
+   "C6_w2j_agreement": true,
+   "controls_passed": true
+  }
+ ]
+}

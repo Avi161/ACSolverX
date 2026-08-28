@@ -1,0 +1,89 @@
+{
+ "schema": "acsolverx.w2l.stability.v1",
+ "summary": {
+  "chains": 1,
+  "controls_passed": true,
+  "monotone_membership_violations": 0
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "steps": [
+    {
+     "m_requested": 8,
+     "m": 8,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 22,
+     "universe_coords": 1468,
+     "c0_support": 58,
+     "mod2_residual_weight": 11,
+     "mod2_V_rank": 26,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TTTctct"
+      ],
+      [
+       "f",
+       "TTct"
+      ],
+      [
+       "f",
+       "TTctct"
+      ],
+      [
+       "f",
+       "TcTctctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcT"
+      ],
+      [
+       "f",
+       "TcTctttcTTctttcT"
+      ],
+      [
+       "f",
+       "TcttcTTctttcT"
+      ],
+      [
+       "f",
+       "TctttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcT"
+      ],
+      [
+       "f",
+       "tcTTTcttcTT"
+      ],
+      [
+       "t",
+       "tcT"
+      ]
+     ],
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [],
+     "secs": 42.86
+    }
+   ],
+   "truncated_run_budget": true
+  }
+ ]
+}

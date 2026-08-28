@@ -1,0 +1,76 @@
+{
+ "schema": "acsolverx.w2l.stability.v1",
+ "summary": {
+  "chains": 1,
+  "controls_passed": true,
+  "monotone_membership_violations": 0
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "steps": [
+    {
+     "m_requested": 8,
+     "m": 4,
+     "status": "MOD2_UNATTAINABLE_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 4,
+     "universe_coords": 158,
+     "c0_support": 58,
+     "mod2_residual_weight": null,
+     "mod2_V_rank": null,
+     "mod2_residual_support": null,
+     "coordinate_certificates": {
+      "2^1": 1
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [
+      [
+       "f",
+       "tcTTTcttcT"
+      ]
+     ],
+     "secs": 3.24
+    },
+    {
+     "m_requested": 12,
+     "m": 4,
+     "status": "MOD2_UNATTAINABLE_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 0,
+     "cross_pairs_odd": 4,
+     "universe_coords": 158,
+     "c0_support": 58,
+     "mod2_residual_weight": null,
+     "mod2_V_rank": null,
+     "mod2_residual_support": null,
+     "coordinate_certificates": {
+      "2^1": 1
+     },
+     "coordinate_certificates_Q": null,
+     "coordinate_certificates_mod2": [
+      [
+       "f",
+       "tcTTTcttcT"
+      ]
+     ],
+     "secs": 3.18
+    }
+   ]
+  }
+ ]
+}

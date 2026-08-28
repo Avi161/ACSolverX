@@ -1,0 +1,229 @@
+{
+ "schema": "acsolverx.w2l.stability.v1",
+ "summary": {
+  "chains": 1,
+  "controls_passed": true,
+  "monotone_membership_violations": 0
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "steps": [
+    {
+     "m_requested": 2,
+     "m": 2,
+     "status": "LINEAR_CERTIFICATE_CANDIDATE_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "2^2": false,
+      "2^3": false,
+      "3^1": false,
+      "3^2": false,
+      "5^1": false,
+      "Q": false
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 4,
+     "cross_pairs_odd": 1,
+     "universe_coords": 526,
+     "c0_support": 145,
+     "coordinate_certificates": {
+      "2^1": 42,
+      "2^2": 47,
+      "2^3": 45,
+      "3^1": 43,
+      "3^2": 44,
+      "5^1": 44
+     },
+     "coordinate_certificates_Q": 44,
+     "coordinate_certificates_mod2": [
+      [
+       "f",
+       "TTTcTcT"
+      ],
+      [
+       "f",
+       "TTTcTctcTcTctcttt"
+      ],
+      [
+       "f",
+       "TTTcTctcTcTctt"
+      ],
+      [
+       "f",
+       "TTTcTctcTct"
+      ],
+      [
+       "f",
+       "TTTcTctctcTT"
+      ],
+      [
+       "f",
+       "TTTcTctctcTTct"
+      ],
+      [
+       "f",
+       "TTTcTctctcTctct"
+      ],
+      [
+       "f",
+       "TTTcTctctcTctt"
+      ],
+      [
+       "f",
+       "TTTcTctctct"
+      ],
+      [
+       "f",
+       "TTTcTctcttcTT"
+      ],
+      [
+       "f",
+       "TTTcTctcttcTTct"
+      ],
+      [
+       "f",
+       "TTTcTctcttcTctct"
+      ]
+     ],
+     "secs": 1.82
+    },
+    {
+     "m_requested": 4,
+     "m": 4,
+     "status": "LINEAR_CERTIFICATE_CANDIDATE_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "2^2": false,
+      "2^3": false,
+      "3^1": false,
+      "3^2": false,
+      "5^1": false,
+      "Q": false
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 16,
+     "cross_pairs_odd": 6,
+     "universe_coords": 1156,
+     "c0_support": 145,
+     "coordinate_certificates": {
+      "2^1": 13,
+      "2^2": 19,
+      "2^3": 17,
+      "3^1": 16,
+      "3^2": 15,
+      "5^1": 15
+     },
+     "coordinate_certificates_Q": 15,
+     "coordinate_certificates_mod2": [
+      [
+       "f",
+       "TTctcTcTctt"
+      ],
+      [
+       "f",
+       "TTctctcTctct"
+      ],
+      [
+       "f",
+       "TTctcttcTT"
+      ],
+      [
+       "f",
+       "TTctcttcTTct"
+      ],
+      [
+       "f",
+       "TTctcttcTctct"
+      ],
+      [
+       "f",
+       "TTctctttcTTct"
+      ],
+      [
+       "f",
+       "TcTcT"
+      ],
+      [
+       "f",
+       "TcTctcTcTT"
+      ],
+      [
+       "f",
+       "TcTctcTcTctct"
+      ],
+      [
+       "f",
+       "TcTctctcTTct"
+      ],
+      [
+       "f",
+       "TcTctcttcTTct"
+      ],
+      [
+       "f",
+       "TcttcTTcTT"
+      ]
+     ],
+     "secs": 2.49
+    },
+    {
+     "m_requested": 8,
+     "m": 8,
+     "status": "LINEAR_CERTIFICATE_CANDIDATE_ON_S",
+     "minus_c0_in_V": {
+      "2^1": false,
+      "2^2": false,
+      "2^3": false,
+      "3^1": false,
+      "3^2": false,
+      "5^1": false,
+      "Q": false
+     },
+     "no_linear_certificate": false,
+     "mod2_distinct_values": 256,
+     "cross_pairs_odd": 28,
+     "universe_coords": 5133,
+     "c0_support": 145,
+     "coordinate_certificates": {
+      "2^1": 5,
+      "2^2": 9,
+      "2^3": 7,
+      "3^1": 6,
+      "3^2": 6,
+      "5^1": 6
+     },
+     "coordinate_certificates_Q": 6,
+     "coordinate_certificates_mod2": [
+      [
+       "f",
+       "TTctcTcTctt"
+      ],
+      [
+       "f",
+       "TTctcttcTT"
+      ],
+      [
+       "f",
+       "TTctcttcTctct"
+      ],
+      [
+       "f",
+       "TcTctcTcTT"
+      ],
+      [
+       "f",
+       "TcTctcTcTctct"
+      ]
+     ],
+     "secs": 10.6
+    }
+   ]
+  }
+ ]
+}
