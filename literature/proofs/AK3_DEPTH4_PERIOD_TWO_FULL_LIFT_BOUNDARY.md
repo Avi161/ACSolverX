@@ -90,6 +90,10 @@ buckets of length at most $R$ plus one uniform constant.
 Section 3.58 applies the same bound to every mod-two bucket and confines
 the only possible leading quadratic obstruction to an explicit
 slope-one/slope-two annulus.
+Section 3.59 identifies the natural slope-two candidates exactly: every
+paired same-coordinate bucket has length equal to a fixed translation
+length plus twice the correction vertex's distance from one affine axis in
+the Cayley tree of $K$.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6198,7 +6202,9 @@ Then the exact complete mod-two obstruction is
 The set of active base tokens is finite.  Let $\mathcal Y_{\mathrm{base}}$
 contain their central labels and the supports of every fixed raw,
 quotient-section, and prefix-defect current in their one-token tensors.
-Enlarge it by the terminal prefix set (3.385):
+For an integral current $f$, put
+$\operatorname{supp}_2(f):=\{v:\overline{f(v)}=1\}$.  Enlarge the fixed
+set by the terminal prefix set (3.385):
 
 \[
  \mathcal Y_{\mathrm{aff}}
@@ -6218,7 +6224,7 @@ representative with one endpoint in $\mathcal Y_{\mathrm{aff}}$:
  \begin{array}{l}
  y\in\mathcal Y_{\mathrm{aff}},\\
  x\in\displaystyle\bigcup_{o=1}^{16}
-       q_o\operatorname{supp}(F_{s_o})
+       q_o\operatorname{supp}_2(F_{s_o})
  \end{array}
  \right\}.}
  \tag{3.402}
@@ -6643,12 +6649,13 @@ Write $q_o=m_oc^{\eta_o}$ as in (3.336), and define the fixed constants
  \tag{3.429}
 \]
 
-An empty maximum is read as zero.  For a finite correction tuple, put
+An empty maximum is read as zero.  Using the parity support from (3.402),
+put
 
 \[
  R(F):=\max\left(
   \{0\}\cup
-  \{|v|_K:F_s(v)\ne0,\ 0\le s\le4\}
+  \{|v|_K:v\in\operatorname{supp}_2(F_s),\ 0\le s\le4\}
  \right).
  \tag{3.430}
 \]
@@ -6725,7 +6732,7 @@ There is also a uniform upper bound.  Every endpoint in the quadratic
 kernel belongs to
 
 \[
- \bigcup_{o=1}^{16}q_o\operatorname{supp}(F_{s_o}),
+ \bigcup_{o=1}^{16}q_o\operatorname{supp}_2(F_{s_o}),
  \tag{3.436}
 \]
 
@@ -6756,6 +6763,89 @@ $q_\Xi(F)\ne0$ immediately, without evaluating the base, seam, or other
 affine-linear terms.  The annulus can be empty for small support, and no
 present argument forces a surviving coordinate when it is nonempty.
 Thus (3.438) is the exact leading-bucket target, not an AK(3) obstruction.
+
+### 3.59 Paired diagonal buckets have exact slope-two length
+
+Fix one of the eight paired intervals $I=[a,b]$ from (3.84), and write
+
+\[
+ g_I=q_a^{-1}q_b=k_Ic^{\epsilon_I}
+ \tag{3.439}
+\]
+
+in the semidirect decomposition (3.206).  Its action on $X=K$ is the
+affine isometry
+
+\[
+ T_I(v):=k_I\alpha^{\epsilon_I}(v)
+ \tag{3.440}
+\]
+
+of the free Cayley tree $\mathcal T_K$ of $K=F(x,y)$.  Every $g_I$ has
+infinite order by (3.169)--(3.170), and its action on $X$ has no finite
+orbit by the proof of (3.170).  Hence $T_I$ is hyperbolic.  Let
+$\mathcal A_I^K$ be its axis and let $\tau_I^K>0$ be its translation
+length.
+
+For a correction coordinate $v$, the positive and negative occurrence
+copies in $I$ have double coset
+
+\[
+ \mathscr D_I(v)
+ =H v^{-1}k_I\alpha^{\epsilon_I}(v)H.
+ \tag{3.441}
+\]
+
+This follows by applying the common left action $q_a^{-1}$ to the two
+transported endpoints.  Therefore
+
+\[
+ \begin{aligned}
+ \ell_K(\mathscr D_I(v))
+ &=|v^{-1}T_I(v)|_K\\
+ &=d_{\mathcal T_K}(v,T_I(v))\\
+ &=\tau_I^K+2d_{\mathcal T_K}(v,\mathcal A_I^K).
+ \end{aligned}
+ \tag{3.442}
+\]
+
+The last equality is the displacement formula for a hyperbolic tree
+isometry.  In particular,
+
+\[
+ \boxed{
+ d_{\mathcal T_K}(v,\mathcal A_I^K)
+ >\frac{T(F)-\tau_I^K}{2}
+ \Longrightarrow
+ \ell_K(\mathscr D_I(v))>T(F).
+ }
+ \tag{3.443}
+\]
+
+Thus every parity-active coordinate far enough from a paired affine axis
+supplies a canonical external paired bucket in the leading annulus.
+Conversely, if no paired same-coordinate bucket in slot $s$ reaches beyond
+$T(F)$, then
+
+\[
+ \boxed{
+ \operatorname{supp}_2(F_s)
+ \subseteq
+ \bigcap_{I\in\mathscr I_s}
+ \left\{
+ v:d_{\mathcal T_K}(v,\mathcal A_I^K)
+ \le\frac{T(F)-\tau_I^K}{2}
+ \right\}.
+ }
+ \tag{3.444}
+\]
+
+Equations (3.443)--(3.444) concern bucket location, not coefficient
+survival.  A far paired diagonal contribution can still be canceled by a
+cross-support collider from the same tensor, another occurrence pair, or
+another quadratic term.  The new reduction isolates the two remaining
+tasks: control those annular collider parities, and separately analyze the
+axis-tube configurations in (3.444).
 
 ## 4. Exact diagonal sieve
 
