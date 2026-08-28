@@ -212,3 +212,20 @@ spellings AND Tpub; the target moves to AC-reachable respellings (cut family
 next: unblocks 898 of 1,204 undecided ceiling-22 states). Note:
 W6B_TPUB_DECISION.md; checker rank3_shift_family_solver.py. No AK(3), stable
 AC, AC, or thickenability-positive claim.
+
+## 2026-08-28 · cycle 16 · `2f81a0a`
+
+W6c: the cut family is proved and implemented (Lemma G piece contraction,
+Lemma H cut decoupling — verified as a SET identity against directly
+enumerated rotation systems — Lemma I book contraction with a declared
+fail-closed budget, Lemma F generalised bare-row splitting). Validation 279
+checks / 0 failures; K4-e degeneracy in the strong form; 7 corruption
+controls each move a verdict; W6b delegation verdict-identical, 0 decisions
+lost. +1,027 ball states decided, all NOT_SPHERICAL; ceilings 16 and 18 are
+COMPLETE (17/17, 125/125): no thickenable state anywhere in the closed
+rank-3 AC ball around (AK3,z) at ceilings <= 18 for the declared move set —
+a clean bounded null. Ceiling 20: 479/503; ceiling 22: 1,691/1,868. Zero
+quarantine events on real targets. Residual: shared-vertex multi-cut (58 at
+c22, 4 at c20) is the next family; remaining buckets are closure-size
+limited. Note: W6C_CUT_FAMILY.md; checker rank3_cut_family_solver.py. No
+AK(3), stable AC, AC, or thickenability-positive claim.
