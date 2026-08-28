@@ -241,6 +241,10 @@ Section 3.100 shows that the isolated endpoint-pair graph is bipartite.
 Right multiplication by the infinite-order paired word gives a canonical
 alternating color on every multiplier orbit, so the complete endpoint
 remainder is one finite terminal-boundary pairing with no odd-cycle term.
+Section 3.101 gives the complementary chronology picture.  Pairing each
+even terminal-label fiber into chords on the literal token order turns the
+same isolated coefficient into a pairing-independent mod-two chord-crossing
+number.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10364,6 +10368,70 @@ terminal-boundary pairing in (3.662) is zero.  For slot one, it survives
 exactly when that pairing is one.  Even vertex degrees would settle the
 slot-zero case, but are not asserted; the slot-one case still requires a
 different parity pivot.
+
+### 3.101 Terminal parity is an equal-label chord-crossing number
+
+Let $\mathcal L_{s,u}$ be the finite set of terminal transported labels
+which occur in the remote paired-word audit.  For $x\in\mathcal L_{s,u}$,
+let $\mathcal T_x$ be the occurrence-tagged active tokens with label $x$,
+ordered by the complete literal chronology $<_\chi$.  The even-label fiber
+identity from Section 3.62 gives
+
+\[
+ |\mathcal T_x|=0\pmod2.
+ \tag{3.663}
+\]
+
+Pair the elements of each $\mathcal T_x$ arbitrarily and draw one chord on
+the chronology line for each pair.  Denote the resulting chord set by
+$M_x$.  For two distinct labels, let
+$\operatorname{cr}(M_x,M_y)\in\mathbb F_2$ be the parity of pairs of chords
+whose four endpoints interlace.
+
+Assume $x<_{\rm sl}y$.  The ordered-kernel contribution of this label pair
+is
+
+\[
+ I(x,y)
+ :=\sum_{\substack{p\in\mathcal T_x, q\in\mathcal T_y\\
+ p<_\chi q}}1.
+ \tag{3.664}
+\]
+
+For a point on the chronology line, the parity of the number of $x$-tokens
+to its left is the sum of the indicator functions of the chord intervals
+in $M_x$.  Summing that prefix parity over the $y$-tokens gives $I(x,y)$.
+After pairing the $y$-tokens, one $x$-chord contributes one exactly when
+its interval contains one endpoint of a $y$-chord, which is precisely the
+interlacing condition.  Hence
+
+\[
+ \boxed{
+ I(x,y)=\operatorname{cr}(M_x,M_y).
+ }
+ \tag{3.665}
+\]
+
+This also proves that the total crossing parity is independent of every
+equal-label pairing choice.  Summing (3.665) over the unordered terminal
+label pairs in the target double coset gives
+
+\[
+ \boxed{
+ [\mathscr Q_\Xi(\mathbf h_{(s,u)})]_{\mathscr D_s(u)}
+ =\sum_{\substack{\{x,y\}\subset\mathcal L_{s,u}\\
+ [Hx^{-1}yH]_\pm=\mathscr D_s(u)}}
+ \operatorname{cr}(M_x,M_y).
+ }
+ \tag{3.666}
+\]
+
+All nonterminal pairs are absent by Section 3.77, and same-label pairs are
+diagonal and do not enter the exterior target.  Combining (3.666) with
+(3.662) identifies the terminal-boundary pairing with the same crossing
+number plus the fixed baseline $n_s$.  This is an exact topological form of
+the local parity obligation, not a proof that the crossing number has the
+slot-zero value one.
 
 ## 4. Exact diagonal sieve
 
