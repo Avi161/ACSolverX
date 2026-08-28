@@ -1,0 +1,308 @@
+{
+ "schema": "acsolverx.w2m.ladder.v1",
+ "summary": {
+  "chains": 1,
+  "with_directions": 1,
+  "rank_grew_beyond_native": 1,
+  "hecke_translates_rejected": 0,
+  "hecke_dirs_outside_native_Z_span": 22,
+  "chains_with_hecke_dirs_outside_native_span": 1,
+  "chains_with_coordinate_certificates_destroyed": 0,
+  "chains_with_a_native_coordinate_certificate": 0,
+  "any_mod2_zero": 0,
+  "decision_MOD2_UNATTAINABLE_ON_S": 1,
+  "decision_MOD2_ATTAINABLE": 0,
+  "C9_positive_control_fires": 1,
+  "C9_positive_control_run": 1,
+  "minus_c0_in_V_ever": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "steps": [
+    {
+     "tag": "native",
+     "directions": 6,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "model_verified": true,
+     "universe_coords": 80,
+     "mod2_V_rank": 18,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 15,
+     "cross_pairs_odd": 15,
+     "evaluations": 25,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 0,
+     "mod2_distinct_values": 0,
+     "mod2_enumeration_truncated": true,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": null,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    },
+    {
+     "tag": "hecke:t",
+     "directions": 11,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "model_verified": true,
+     "universe_coords": 317,
+     "mod2_V_rank": 45,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 55,
+     "cross_pairs_odd": 54,
+     "evaluations": 70,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 0,
+     "mod2_distinct_values": 0,
+     "mod2_enumeration_truncated": true,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": null,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    },
+    {
+     "tag": "hecke:t,tt",
+     "directions": 17,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "model_verified": true,
+     "universe_coords": 710,
+     "mod2_V_rank": 108,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 136,
+     "cross_pairs_odd": 133,
+     "evaluations": 157,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 0,
+     "mod2_distinct_values": 0,
+     "mod2_enumeration_truncated": true,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": null,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    },
+    {
+     "tag": "hecke:t,tt,T",
+     "directions": 23,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "model_verified": true,
+     "universe_coords": 1227,
+     "mod2_V_rank": 198,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 253,
+     "cross_pairs_odd": 247,
+     "evaluations": 280,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 0,
+     "mod2_distinct_values": 0,
+     "mod2_enumeration_truncated": true,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": null,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    },
+    {
+     "tag": "hecke:t,tt,T,TT,ct",
+     "directions": 29,
+     "status": "MOD2_UNDECIDED_ON_S",
+     "model_verified": true,
+     "universe_coords": 1924,
+     "mod2_V_rank": 315,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 406,
+     "cross_pairs_odd": 396,
+     "evaluations": 439,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 0,
+     "mod2_distinct_values": 0,
+     "mod2_enumeration_truncated": true,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": null,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    },
+    {
+     "tag": "decide:14",
+     "directions": 14,
+     "status": "MOD2_UNATTAINABLE_ON_S",
+     "model_verified": true,
+     "universe_coords": 467,
+     "mod2_V_rank": 76,
+     "mod2_residual_weight": 1,
+     "mod2_residual_support": [
+      [
+       "f",
+       "TT"
+      ]
+     ],
+     "mod2_residual_order_invariant": true,
+     "c0_support": 8,
+     "cross_pairs": 91,
+     "cross_pairs_odd": 90,
+     "evaluations": 109,
+     "minus_c0_in_V": {
+      "2^1": false,
+      "Q": null
+     },
+     "coordinate_certificates": {
+      "2^1": 0
+     },
+     "mod2_classes_enumerated": 16384,
+     "mod2_distinct_values": 8192,
+     "mod2_enumeration_truncated": false,
+     "mod2_zero_class": null,
+     "C9_positive_control_fires": true,
+     "no_mod2_linear_certificate": false,
+     "passed": true
+    }
+   ],
+   "native_directions": 6,
+   "hecke_translates_rejected": 0,
+   "hecke_dirs_outside_native_Z_span": 22,
+   "mod2_coordinate_certificate_ladder": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coordinate_certificates_destroyed": false,
+   "rank_ladder": [
+    18,
+    45,
+    108,
+    198,
+    315,
+    76
+   ],
+   "universe_ladder": [
+    80,
+    317,
+    710,
+    1227,
+    1924,
+    467
+   ],
+   "rank_grew_beyond_native": true,
+   "residuals": [
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ],
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ],
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ],
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ],
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ],
+    [
+     [
+      "f",
+      "TT"
+     ]
+    ]
+   ],
+   "any_mod2_zero": false,
+   "decision_status": "MOD2_UNATTAINABLE_ON_S",
+   "C9_fires": true,
+   "minus_c0_in_V_ever": false,
+   "passed": true
+  }
+ ]
+}

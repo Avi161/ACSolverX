@@ -1,0 +1,39 @@
+{
+ "schema": "acsolverx.w2m.lemma.v1",
+ "summary": {
+  "L0_theta_is_codex": "20/20",
+  "L2_conjugation_identity": "168/168",
+  "L2_corruption_fires": "168/168",
+  "L1_kappa_in_commutator": "480/480",
+  "L1_corruption_fires": "8/8",
+  "L3_closed_form": "480/480",
+  "L3_corruption_fires": "255/255",
+  "evaluations_with_nonzero_linear_part": 157,
+  "evaluations_with_nonzero_bilinear_part": 98,
+  "L4_cocycle_identity": "64/64",
+  "L7_reordering_half_grounded": "480/480",
+  "L7_nonvacuous_cases": 98,
+  "group_words": [
+   "c",
+   "t",
+   "T",
+   "ct",
+   "tc",
+   "cT",
+   "Tc",
+   "ctc",
+   "tt",
+   "TT",
+   "tct",
+   "ctct"
+  ],
+  "vertices": 14,
+  "y_samples": 40,
+  "y_from_real_chain_data": 32,
+  "theta_kappa_nonzero": 174,
+  "theta_kappa_2_divisible": 14,
+  "xi_z_of_theta_kappa_zero": 0,
+  "controls_passed": true
+ },
+ "rows": []
+}

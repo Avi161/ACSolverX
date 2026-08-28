@@ -1,0 +1,260 @@
+{
+ "schema": "acsolverx.w2m.action.v1",
+ "summary": {
+  "chains": 10,
+  "with_directions": 9,
+  "Q_translates_tested": 324,
+  "Q_translates_still_in_H_fin": 0,
+  "hecke_translates_tested": 135,
+  "hecke_translates_in_H_fin": 135,
+  "L5_corrupt_hecke_tested": 135,
+  "L5_corrupt_hecke_leaves_H_fin": 125,
+  "hecke_commutation_checks": 1500,
+  "hecke_commutation_ok": 1500,
+  "hecke_commutation_corruption_fires": 175,
+  "chains_with_trivial_centralizer": 10,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 15,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 15,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 15,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 15,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 30,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 10,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 30,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 10,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 25,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 10,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "directions": 3,
+   "directions_exact": true,
+   "Q_translates_tested": 36,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 15,
+   "hecke_translates_in_H_fin": 15,
+   "L5_corrupt_hecke_tested": 15,
+   "L5_corrupt_hecke_leaves_H_fin": 15,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 10,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "directions": 0,
+   "directions_exact": true,
+   "Q_translates_tested": 0,
+   "Q_translates_still_in_H_fin": 0,
+   "hecke_translates_tested": 0,
+   "hecke_translates_in_H_fin": 0,
+   "L5_corrupt_hecke_tested": 0,
+   "L5_corrupt_hecke_leaves_H_fin": 0,
+   "hecke_commutation_checks": 150,
+   "hecke_commutation_ok": 150,
+   "hecke_commutation_corruption_tested": 150,
+   "hecke_commutation_corruption_fires": 10,
+   "centralizer_words": [
+    ""
+   ],
+   "passed": true
+  }
+ ]
+}

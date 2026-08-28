@@ -522,3 +522,18 @@ layer-1 solver finds, and finding it needs the family described, not sampled.
 finitely many generators up to the `Q`-action, and both branches of Lemma C
 become decidable on the complete family — which is exactly what W2k §12
 asked for and what this note could not supply.
+
+## Post-hoc correction (cycle 23)
+
+`W2M_THETA_COCYCLE.md` withdraws this note's chain-7 **saturation** reading:
+the 20-direction rank-63 stabilisation was a bounded-set artifact — six
+native plus 23 Hecke-translated directions raise it to rank 315 in a
+universe of 1,924, with 22 directions outside the native Z-span
+(double-confirmed four ways). `rank V_{H_fin} = ∞`: growing any direction
+set S can never decide attainability at any modulus, in either direction.
+The per-baseline verdicts here remain correct as stated (bounded by S);
+what is withdrawn is only the suggestion that chain 7's S was complete.
+The conjectured finite generation "up to the Q-action" is refuted — no
+Q-action on H_fin exists; the object that acts is the Hecke algebra
+Z[<c>\Q/<c>], and the surviving candidate structure is the fixed-width
+coordinate-window law under Hecke translation (W2M §6).

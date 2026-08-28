@@ -216,3 +216,74 @@ invariant.
 [WORKS] Any quantity computed by an elimination should be recomputed under a
 permuted input before it is named in a note; make that a control (it can
 fail, and it did).
+
+### The missing symmetry was the wrong symmetry — check the action exists before proving its cocycle
+
+[TRAP] W2k §12 and W2l §12 named one lemma as the fork of the whole W2 chain:
+write down the section's translation cocycle `κ(g,x)`, and `V_{H_fin}` becomes
+"finitely generated up to the Q-action". The cocycle is real — it has a closed
+form (a linear conjugation defect plus the shortlex-inversion form) and it
+verifies 480/480 literally. The consequence is false, and the reason was never
+checked: `L_r` is LEFT multiplication by a non-central `λ_r ∈ Z[Q]`, so
+`H_fin = ker(L)` is **not Q-stable at all** — 0 of 2,172 tested `(g,F)` pairs
+survived, and the joint centralizer of the operators is trivial. There was no
+action to be finitely generated over. Worse, `Ξ_Z` is *exactly* Q-invariant
+(W2j K4), so even a real Q-action would have bought nothing in the target:
+"up to the Q-action" reduces to plain finite generation.
+
+[WORKS] Before proving the equivariance law for a group action, spend one
+computation asking whether the object is stable under that action. `g·F` and
+`IL.verify` is three lines. The group that *does* act here is the Hecke
+algebra `End_{Z[Q]}(M) = Z[H\Q/H]` acting on the right — it commutes with
+every left multiplication by construction (8,250/8,250) and maps `H_fin` into
+itself (905/905). Naming the correct symmetry is what settled the question;
+proving the cocycle for the wrong one would not have.
+
+### An empirical saturation measures the generator, not the space
+
+[TRAP] W2l's strongest single piece of evidence was that on census chain 7 the
+direction generator SATURATED — 20 directions, `rank V = 63`, universe 556,
+unchanged under eight far-translate seed families — and the note read that as
+"the generator cannot extend this family". Feeding the same baseline Hecke
+translates of six native directions (each verified in `H_fin` exactly) gives
+`rank V = 315` and universe 1,924, with 22 of them provably outside the Z-span
+of the native family. The saturation was a property of `kernel_directions`.
+Census-wide: 134 such directions on 51/51 baselines, and 17 of the 27
+baselines with a mod-2 coordinate certificate lost it to a SINGLE Hecke word.
+
+[WORKS] A saturation claim needs a family built by a *structurally different*
+mechanism, not by re-seeding the same generator at translated points. If the
+space has any provable symmetry (here: `T_a(ker L) ⊆ ker L` because `T_a`
+commutes with left multiplication), use it to manufacture elements the
+generator's mechanism cannot reach — and if it has none, say the saturation is
+about the generator.
+
+### Refute finite generation with a support window, not with a rank trend
+
+[WORKS] "rank grows and shows no sign of stopping" is a trend, not a proof.
+The effective version: measure where the generators LIVE. On chain 7 the cross
+generator `b(F, T_{t^k}F)` occupies `Ξ_Z` coordinates of double-coset length
+in `[k−1, k+11]` — a window of fixed width 13 that translates linearly with
+`k`. Disjointly-supported nonzero vectors are independent, so a subsequence
+spaced by 13 is an independent family of any length: `rank V_{H_fin} = ∞`,
+from ONE direction. Chain 5 reproduces it with width 21.
+
+[TRAP] And pair more than one direction before reading the result: on chain 5
+the FIRST native direction gives `b(F, T_{t^k}F) ≡ 0 mod 2` for every k tested
+(integral support 128, every entry even). A one-direction probe would have
+reported "no growth on this baseline".
+
+### A corruption control that cannot fire — twice, in one file
+
+[TRAP] Two controls in `theta_cocycle.py` scored green-looking numbers while
+testing nothing. (i) The conjugation identity `g r_v g⁻¹ = n r_{g·v} n⁻¹` was
+"corrupted" by flipping the exponent `ε` in `n = g v c^{-ε} u⁻¹` — but `c`
+commutes with `c²`, so both values give the SAME conjugate: 0/168 fires. (ii)
+The closed-form control dropped the linear or the bilinear half of `Θ(κ)` and
+scored 247/912, because 665 of those cases had a zero half to drop.
+
+[WORKS] Fix (i) by corrupting outside the stabiliser you are quotienting by
+(multiply `n` by a relation generator at a different vertex: 168/168). Fix
+(ii) by *counting only the non-vacuous cases*: 255/255 with 157 linear and 98
+bilinear cases recorded separately, so the reader can see the guard fired on
+something.
