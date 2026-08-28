@@ -8,3 +8,11 @@ outcomes, complete-closure (not budgeted-search) methodology, and disjoint from 
 codex class-two tower. Opus agents launched: plan review (ac-advisor), independent
 derivation of the A5 data, and a known-results sweep on AC-graphs of finite groups.
 No AK(3), stable AC, or AC claim is made.
+
+## 2026-08-28 · cycle 1 · ``
+
+W1 first theorem: complete A5 closure proves the A5 obstruction blind for the full
+bridge (all 6 nontrivial hom classes connect; surjective orbits are all of A5^3 minus
+the frozen identity tuple; controls green). Note: `W1_BRIDGE_FINITE_TEST.md`. Next:
+generator-reduced move set, larger quotients (W1b), and rank-3 greedy preflight on
+Tpub within the 1,000-node cap.
