@@ -154,12 +154,32 @@ planned for: reopen, Run All, and nothing already recorded is recomputed; a wipe
 
 ## Tests
 
-`tests/test_leftovers_1m.py` (58 checks): notebook shape, that `BRANCH` names the
-branch the code is actually on, that the committed notebooks are what the
-generator writes, the CSVs re-derived from the 100k jsonl, the 39 ⊂ 222 relation,
-the 221/222 denominator, the RAM-bound worker maths, the lean-solver equivalence,
-and an end-to-end smoke (run → resume → report) at a budget that measures nothing.
-Nothing in the suite runs a 1M search.
+`tests/test_leftovers_1m.py`. **Nothing in the suite runs a 1M search** — the
+budgets are small enough that the whole file is under a minute.
+
+What it holds:
+
+- **The row lists are derived, not trusted** — both CSVs re-read from the 100k
+  jsonl, the solved counts checked against `RESULTS.md`, 39 ⊂ 222, and the
+  221/222 denominator.
+- **The notebooks are what the generator writes**, `BRANCH` names the branch the
+  code is actually on, and each notebook is **executed end-to-end** on its smoke
+  path — the only thing that catches a CONFIG name the RUN cell does not define.
+- **The engine is the same search.** `hcompact` agrees field-for-field with the
+  Python solver on real rows from these lists, the greedy arm still reproduces
+  the length baseline exactly, and the arms genuinely *call* the engine rather
+  than silently falling back — a quiet fallback would cost ~10× and look fine.
+- **The run survives.** Progress from pool workers reaches the parent, a wiped
+  local jsonl reseeds from the Drive mirror, and a local jsonl ahead of the
+  mirror is not clobbered.
+- **The docs match the code.** This file must name the engine that is actually
+  importable and must not claim it is absent while the code calls it, and its
+  cost table must quote `est_gb` and the worker count `resolve_workers` returns.
+
+A count of checks is deliberately not stated here: it is a number no test can
+verify, and it went stale three times while the code around it changed. The
+current count is in the PR description, which is a snapshot; this file, which
+lives with the code, only claims things the suite itself enforces.
 
 Regenerate the notebooks after editing the template:
 

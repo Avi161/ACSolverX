@@ -751,3 +751,15 @@ def test_the_readme_quotes_the_engines_real_measured_cost():
     workers = resolve_workers("s20_mk2", "auto", available_gb=51.0, cpu_count=8)[0]
     assert f"**{workers}** |" in readme, (
         f"README cost table does not show {workers} workers on 51 GB")
+
+
+def test_the_readme_makes_no_unverifiable_test_count_claim():
+    """A "(N checks)" line in a doc is a fact no test can check, and this one went
+    stale three times while the code around it moved. The count belongs in the PR
+    description, which is a snapshot; this file lives with the code and should
+    only claim what the suite enforces."""
+    import re
+    readme = open(os.path.join(mk.NB_DIR, "README.md")).read()
+    stale = re.findall(r"\(\s*\d+\s+(?:checks|tests)\s*\)"
+                       r"|\b\d+\s+(?:checks|tests)\b", readme)
+    assert not stale, f"README states a test count nothing verifies: {stale}"
