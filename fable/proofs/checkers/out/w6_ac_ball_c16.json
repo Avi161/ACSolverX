@@ -1,0 +1,262 @@
+{
+  "_fails": [],
+  "canonical_states": 17,
+  "ceiling": 16,
+  "closed_under_cap": true,
+  "frontier_left": 0,
+  "gamma_N_counts": {
+    "2": 13
+  },
+  "gamma_budget": 200000,
+  "gens": "xyz",
+  "in_certified_family": 0,
+  "planar_simple_support": 17,
+  "pop_cap": 1000,
+  "pops_used": 17,
+  "rigid_verdicts": {},
+  "start": [
+    "XXXyyyy",
+    "XYXyxy",
+    "Z"
+  ],
+  "states": [
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "gamma_N": 2,
+      "n_components": 2,
+      "planar": true,
+      "state": [
+        "XXXyyyy",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "DISCONNECTED",
+      "total_length": 14
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyy",
+        "XYXyxyZ",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 15
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyy",
+        "XYXyxyZZ",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyy",
+        "XYXyxyz",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 15
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyy",
+        "XYXyxyzz",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyZ",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 15
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyZ",
+        "XYXyxyZ",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyZ",
+        "XYXyxyz",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyZZ",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyz",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 15
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyz",
+        "XYXyxyZ",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyz",
+        "XYXyxyz",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 172800,
+      "gamma_N": 2,
+      "n_components": 1,
+      "planar": true,
+      "state": [
+        "XXXyyyyzz",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "OTHER",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 3628800,
+      "n_components": 2,
+      "planar": true,
+      "state": [
+        "XXyxYxYXy",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "DISCONNECTED",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 3628800,
+      "n_components": 2,
+      "planar": true,
+      "state": [
+        "XXyyyXYxy",
+        "XYXyxy",
+        "Z"
+      ],
+      "support_kind": "DISCONNECTED",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 4838400,
+      "n_components": 2,
+      "planar": true,
+      "state": [
+        "XYXyxy",
+        "XYYxyXyyy",
+        "Z"
+      ],
+      "support_kind": "DISCONNECTED",
+      "total_length": 16
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 3628800,
+      "n_components": 2,
+      "planar": true,
+      "state": [
+        "XYXyxy",
+        "XYxYxyXyy",
+        "Z"
+      ],
+      "support_kind": "DISCONNECTED",
+      "total_length": 16
+    }
+  ],
+  "support_kind_counts": {
+    "DISCONNECTED": 5,
+    "OTHER": 12
+  }
+}

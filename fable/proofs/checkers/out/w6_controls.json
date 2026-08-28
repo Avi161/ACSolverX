@@ -1,0 +1,345 @@
+{
+  "_fails": [],
+  "graph_controls": [
+    {
+      "expected_planar": false,
+      "minor_oracle": false,
+      "name": "K5",
+      "reason": "K5 minor",
+      "rotation_oracle": false
+    },
+    {
+      "expected_planar": false,
+      "minor_oracle": false,
+      "name": "K3,3",
+      "reason": "K3,3 minor",
+      "rotation_oracle": false
+    },
+    {
+      "expected_planar": true,
+      "minor_oracle": true,
+      "name": "K4",
+      "reason": "at most four vertices",
+      "rotation_oracle": true
+    },
+    {
+      "expected_planar": true,
+      "minor_oracle": true,
+      "name": "C4",
+      "reason": "at most four vertices",
+      "rotation_oracle": true
+    },
+    {
+      "expected_planar": true,
+      "minor_oracle": true,
+      "name": "P4",
+      "reason": "at most four vertices",
+      "rotation_oracle": true
+    },
+    {
+      "expected_planar": true,
+      "minor_oracle": true,
+      "name": "K6-E(P5)",
+      "reason": "no K5 and no K3,3 minor (Wagner)",
+      "rotation_oracle": true
+    },
+    {
+      "expected_planar": true,
+      "minor_oracle": true,
+      "name": "K5-e",
+      "reason": "no K5 and no K3,3 minor (Wagner)",
+      "rotation_oracle": true
+    }
+  ],
+  "nonplanar_word_control": {
+    "certified_family": false,
+    "compatible_orderings": 69120,
+    "components": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    ],
+    "degrees": [
+      4,
+      4,
+      4,
+      3,
+      3,
+      4
+    ],
+    "gens": "xyz",
+    "germ_labels": [
+      "x+",
+      "x-",
+      "y+",
+      "y-",
+      "z+",
+      "z-"
+    ],
+    "germ_vertices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "loop_germs": [],
+    "n_components": 1,
+    "n_corner_edges": 16,
+    "parallel_multiplicities": {
+      "0-1": 2,
+      "0-2": 1,
+      "0-3": 1,
+      "0-5": 2,
+      "1-2": 1,
+      "1-3": 2,
+      "1-5": 1,
+      "2-4": 2,
+      "2-5": 1,
+      "3-4": 2,
+      "4-5": 1
+    },
+    "planarity_reason": "K5 minor",
+    "simple_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "simple_support_planar": false,
+    "support_kind": "OTHER",
+    "total_length": 16,
+    "words": [
+      "YZyzzx",
+      "zxxxZY",
+      "YXyX"
+    ]
+  },
+  "repo_builder_agreement": [
+    {
+      "A_B": true,
+      "edges": true,
+      "germ": true,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "A_B": true,
+      "edges": true,
+      "germ": true,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    },
+    {
+      "A_B": true,
+      "edges": true,
+      "germ": true,
+      "words": [
+        "yx",
+        "yxXX"
+      ]
+    },
+    {
+      "A_B": true,
+      "edges": true,
+      "germ": true,
+      "words": [
+        "XYyyX",
+        "X"
+      ]
+    },
+    {
+      "A_B": true,
+      "edges": true,
+      "germ": true,
+      "words": [
+        "x",
+        "xxyxYy"
+      ]
+    }
+  ],
+  "repo_calibrations": [
+    {
+      "cases": 6,
+      "expected_cases": 6,
+      "expected_min_genus": 0,
+      "gamma_N": 0,
+      "words": [
+        "yx",
+        "yxXX"
+      ]
+    },
+    {
+      "cases": 4,
+      "expected_cases": 4,
+      "expected_min_genus": 1,
+      "gamma_N": 1,
+      "words": [
+        "XYyyX",
+        "X"
+      ]
+    },
+    {
+      "cases": 12,
+      "expected_cases": 12,
+      "expected_min_genus": 0,
+      "gamma_N": 0,
+      "words": [
+        "x",
+        "xxyxYy"
+      ]
+    }
+  ],
+  "standard_positive_control": {
+    "classification": {
+      "certified_family": false,
+      "compatible_orderings": 1,
+      "components": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "gens": "xyz",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-",
+        "z+",
+        "z-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "loop_germs": [],
+      "n_components": 3,
+      "n_corner_edges": 3,
+      "parallel_multiplicities": {
+        "0-1": 1,
+        "2-3": 1,
+        "4-5": 1
+      },
+      "planarity_reason": "fewer than nine simple edges",
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "DISCONNECTED",
+      "total_length": 3,
+      "words": [
+        "x",
+        "y",
+        "z"
+      ]
+    },
+    "gamma": {
+      "cases": 1,
+      "components": 3,
+      "decided": true,
+      "gamma_N": 0,
+      "scanned": 1,
+      "spherical_candidate": true
+    }
+  },
+  "z_row_splitting": {
+    "rank2": {
+      "cases": 86400,
+      "components": 1,
+      "decided": true,
+      "gamma_N": 2,
+      "scanned": 86400,
+      "spherical_candidate": false
+    },
+    "rank3": {
+      "cases": 86400,
+      "components": 2,
+      "decided": true,
+      "gamma_N": 2,
+      "scanned": 86400,
+      "spherical_candidate": false
+    }
+  }
+}

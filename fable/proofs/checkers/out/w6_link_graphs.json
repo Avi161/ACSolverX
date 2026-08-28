@@ -1,0 +1,663 @@
+{
+  "_fails": [],
+  "dispatch_crosscheck": [
+    {
+      "agrees": true,
+      "my_gamma_N": 2,
+      "repo_support": "K4",
+      "repo_verdict": "NOT_SPHERICAL",
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "my_gamma_N": null,
+      "repo_support": "K4-e",
+      "repo_verdict": "NOT_SPHERICAL",
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    },
+    {
+      "rank2_pair": [
+        "xxxYYYY",
+        "xyxYXY"
+      ],
+      "rank2_support": "K4",
+      "rank2_verdict": "NOT_SPHERICAL",
+      "rank3_verdict": "NOT_THICKENABLE (transported by z-row splitting)",
+      "transport_target": "ak3_stabilized"
+    },
+    {
+      "rank2_pair": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ],
+      "rank2_support": "K4-e",
+      "rank2_verdict": "NOT_SPHERICAL",
+      "rank3_verdict": "NOT_THICKENABLE (transported by z-row splitting)",
+      "transport_target": "Q_stabilized"
+    },
+    {
+      "reason": "simple support is not K6 minus P5",
+      "rigid_target": "Tpub",
+      "support": "UNSUPPORTED",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "reason": "simple support is not K6 minus P5",
+      "rigid_target": "Txy",
+      "support": "UNSUPPORTED",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "reason": "A-link is disconnected",
+      "rigid_target": "ak3_stabilized",
+      "support": "UNSUPPORTED",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "reason": "A-link is disconnected",
+      "rigid_target": "Q_stabilized",
+      "support": "UNSUPPORTED",
+      "verdict": "UNSUPPORTED"
+    }
+  ],
+  "targets": [
+    {
+      "certified_family": false,
+      "compatible_orderings": 86400,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "degrees": [
+        3,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "gamma": {
+        "cases": 86400,
+        "components": 2,
+        "decided": true,
+        "gamma_N": 2,
+        "scanned": 86400,
+        "spherical_candidate": false
+      },
+      "gens": "xyz",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-",
+        "z+",
+        "z-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "loop_germs": [],
+      "n_components": 2,
+      "n_corner_edges": 14,
+      "name": "ak3_stabilized",
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 2,
+        "1-2": 2,
+        "1-3": 2,
+        "2-3": 3,
+        "4-5": 1
+      },
+      "planarity_reason": "fewer than nine simple edges",
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "DISCONNECTED",
+      "total_length": 14,
+      "verdict": "NOT_THICKENABLE (gamma_N > 0, necessity direction)",
+      "words": [
+        "xxxYYYY",
+        "xyxYXY",
+        "z"
+      ]
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 22596613079040000,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "gamma": {
+        "cases": 22596613079040000,
+        "decided": false,
+        "reason": "factorial budget exceeded (22596613079040000 > 200000)"
+      },
+      "gens": "xyz",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-",
+        "z+",
+        "z-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "loop_germs": [],
+      "n_components": 2,
+      "n_corner_edges": 26,
+      "name": "Q_stabilized",
+      "parallel_multiplicities": {
+        "0-2": 7,
+        "0-3": 4,
+        "1-2": 4,
+        "1-3": 7,
+        "2-3": 3,
+        "4-5": 1
+      },
+      "planarity_reason": "fewer than nine simple edges",
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "DISCONNECTED",
+      "total_length": 26,
+      "verdict": "UNDECIDED_HERE (factorial budget)",
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy",
+        "z"
+      ]
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 20858412072960000,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "degrees": [
+        3,
+        4,
+        2,
+        4,
+        3,
+        2
+      ],
+      "gamma": {
+        "cases": 20858412072960000,
+        "decided": false,
+        "reason": "factorial budget exceeded (20858412072960000 > 200000)"
+      },
+      "gens": "xyz",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-",
+        "z+",
+        "z-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "loop_germs": [],
+      "n_components": 1,
+      "n_corner_edges": 29,
+      "name": "Tpub",
+      "parallel_multiplicities": {
+        "0-2": 6,
+        "0-3": 6,
+        "0-4": 1,
+        "1-2": 4,
+        "1-3": 1,
+        "1-4": 4,
+        "1-5": 4,
+        "3-4": 1,
+        "3-5": 2
+      },
+      "planarity_reason": "no K5 and no K3,3 minor (Wagner)",
+      "rigidity": {
+        "rigid_whitney_pair": false,
+        "spherical_rotations_of_simple_support": 4,
+        "three_connected": false,
+        "vertex_connectivity": 2
+      },
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "OTHER",
+      "total_length": 29,
+      "verdict": "UNDECIDED_HERE (factorial budget)",
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "Xyz"
+      ]
+    },
+    {
+      "certified_family": false,
+      "compatible_orderings": 20858412072960000,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "degrees": [
+        3,
+        4,
+        2,
+        3,
+        2,
+        2
+      ],
+      "gamma": {
+        "cases": 20858412072960000,
+        "decided": false,
+        "reason": "factorial budget exceeded (20858412072960000 > 200000)"
+      },
+      "gens": "xyz",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-",
+        "z+",
+        "z-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "loop_germs": [],
+      "n_components": 1,
+      "n_corner_edges": 29,
+      "name": "Txy_certified_trivial",
+      "parallel_multiplicities": {
+        "0-2": 5,
+        "0-3": 6,
+        "0-4": 2,
+        "1-2": 5,
+        "1-3": 1,
+        "1-4": 4,
+        "1-5": 3,
+        "3-5": 3
+      },
+      "planarity_reason": "fewer than nine simple edges",
+      "rigidity": {
+        "rigid_whitney_pair": false,
+        "spherical_rotations_of_simple_support": 4,
+        "three_connected": false,
+        "vertex_connectivity": 2
+      },
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "OTHER",
+      "total_length": 29,
+      "verdict": "UNDECIDED_HERE (factorial budget)",
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "zYX"
+      ]
+    },
+    {
+      "certified_family": true,
+      "compatible_orderings": 86400,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "degrees": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "gamma": {
+        "cases": 86400,
+        "components": 1,
+        "decided": true,
+        "gamma_N": 2,
+        "scanned": 86400,
+        "spherical_candidate": false
+      },
+      "gens": "xy",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop_germs": [],
+      "n_components": 1,
+      "n_corner_edges": 13,
+      "name": "ak3_rank2_degenerate",
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 2,
+        "1-2": 2,
+        "1-3": 2,
+        "2-3": 3
+      },
+      "planarity_reason": "at most four vertices",
+      "rigidity": {
+        "rigid_whitney_pair": true,
+        "spherical_rotations_of_simple_support": 2,
+        "three_connected": true,
+        "vertex_connectivity": 3
+      },
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "K4",
+      "total_length": 13,
+      "verdict": "NOT_THICKENABLE (gamma_N > 0, necessity direction)",
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "certified_family": true,
+      "compatible_orderings": 22596613079040000,
+      "components": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        3,
+        3
+      ],
+      "gamma": {
+        "cases": 22596613079040000,
+        "decided": false,
+        "reason": "factorial budget exceeded (22596613079040000 > 200000)"
+      },
+      "gens": "xy",
+      "germ_labels": [
+        "x+",
+        "x-",
+        "y+",
+        "y-"
+      ],
+      "germ_vertices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop_germs": [],
+      "n_components": 1,
+      "n_corner_edges": 25,
+      "name": "Q_rank2",
+      "parallel_multiplicities": {
+        "0-2": 7,
+        "0-3": 4,
+        "1-2": 4,
+        "1-3": 7,
+        "2-3": 3
+      },
+      "planarity_reason": "at most four vertices",
+      "rigidity": {
+        "rigid_whitney_pair": true,
+        "spherical_rotations_of_simple_support": 2,
+        "three_connected": false,
+        "vertex_connectivity": 2
+      },
+      "simple_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "simple_support_planar": true,
+      "support_kind": "K4-e",
+      "total_length": 25,
+      "verdict": "UNDECIDED_HERE (factorial budget)",
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    }
+  ]
+}
