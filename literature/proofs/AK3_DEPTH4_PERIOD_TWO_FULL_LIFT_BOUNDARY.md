@@ -110,6 +110,16 @@ virtually free subgroup of $Q$.
 Section 3.64 gives an explicit semilinear quotient ledger for those marked
 relators and rules out identity collision cycles with fewer than three
 source steps.
+Section 3.65 identifies the marked source image itself: the three forest
+intervals contain the index-four free subgroup $\langle A,B,G\rangle$,
+and one slot-zero interval enlarges it to all of $Q$.  The identity grammar
+therefore has an exact nine-relator marked presentation schema.
+Section 3.66 pulls the five slot axes back around any fixed realized
+relator cycle.  A relator containing a parity-radius maximizer is uniformly
+bounded whenever three of its pulled-back axes have disjoint ends.
+Section 3.67 verifies that transversality for the genuine torsion cell:
+its pulled-back family contains the slot-two axis and the two basis axes
+of $F(t,ctc)$.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -7317,6 +7327,328 @@ Equations (3.469)--(3.474) are necessary, not sufficient: abelianizing
 $K$ erases the noncommutative part of a marked relator.  They nevertheless
 give a support-independent gate before any full free-product reduction or
 quadratic relator-cell calculation.
+
+### 3.65 The marked source image is all of $Q$
+
+The abstract image in (3.467) can be identified without a support search.
+Use the forest notation
+
+\[
+ \begin{aligned}
+ A&:=t,\\
+ B&:=q_6=\texttt{ctcTcTctc},\\
+ G&:=q_9t^{-1}=\texttt{ctcTTct},
+ \end{aligned}
+ \tag{3.475}
+\]
+
+and put $K_{\mathrm{for}}:=\langle A,B,G\rangle$.  The binomial-forest
+theorem proves
+
+\[
+ \boxed{
+ \begin{aligned}
+ K_{\mathrm{for}}&\cong F(A,B,G),\\
+ [Q:K_{\mathrm{for}}]&=4.
+ \end{aligned}
+ }
+ \tag{3.476}
+\]
+
+The three forest source intervals in (3.84) give directly
+
+\[
+ \begin{aligned}
+ S_{[1,6]}&=B,\\
+ S_{[9,14]}&=G^{-1},\\
+ S_{[15,16]}&=A^{-1}.
+ \end{aligned}
+ \tag{3.477}
+\]
+
+Hence $K_{\mathrm{for}}\le G_{\mathscr I}$.  This containment is strict.
+Recall the exact four-state right-coset action for $K_{\mathrm{for}}$,
+
+\[
+ \begin{aligned}
+ c&=(0\ 1)(2\ 3),\\
+ t&=(1\ 2\ 3),
+ \end{aligned}
+ \tag{3.478}
+\]
+
+whose base-state stabilizer is $K_{\mathrm{for}}$.  For the slot-zero
+interval $[3,4]$, the pinned prefixes are
+$q_3=\texttt{tc}$ and $q_4=\texttt{ctcTTTcttc}$.  Direct use of (3.478)
+gives
+
+\[
+ \begin{aligned}
+ 0q_3&=1,\\
+ 0q_4&=0.
+ \end{aligned}
+ \tag{3.479}
+\]
+
+Therefore $S_{[3,4]}=q_4q_3^{-1}$ does not fix the base state and is not
+in $K_{\mathrm{for}}$.
+
+Since $K_{\mathrm{for}}<G_{\mathscr I}\le Q$ and
+$[Q:K_{\mathrm{for}}]=4$, a proper $G_{\mathscr I}$ would have index two
+in $Q$.  Every index-two subgroup is the kernel of a nonzero homomorphism
+$\chi:Q\to C_2$.  Containment of $A=t$ would give $\chi(t)=0$, while
+containment of $B$, which has odd $c$-parity, would then give
+$\chi(c)=0$.  This makes $\chi$ trivial, a contradiction.  Thus
+
+\[
+ \boxed{G_{\mathscr I}=Q.}
+ \tag{3.480}
+\]
+
+This also makes the finite normal grammar concrete.  Put
+$S_0:=S_{[3,4]}$.  Direct free reduction gives
+
+\[
+ \begin{aligned}
+ S_0&=\texttt{ctcTTTct},\\
+ S_0G^{-1}&=\texttt{ctcTcTc},\\
+ B&=(S_0G^{-1})Ac.
+ \end{aligned}
+ \tag{3.481}
+\]
+
+Thus the two marked words
+
+\[
+ \begin{aligned}
+ u_A&:=e_{[15,16]}^{-1},\\
+ u_c&:=e_{[15,16]}e_{[9,14]}^{-1}
+ e_{[3,4]}^{-1}e_{[1,6]}
+ \end{aligned}
+ \tag{3.482}
+\]
+
+satisfy $\phi(u_A)=t$ and $\phi(u_c)=c$.  For $I=[a,b]$, let
+$r_I(c,t)$ be the fixed reduced $c,t$-word for $q_bq_a^{-1}$, and put
+$\widetilde r_I:=r_I(u_c,u_A)$.  Then
+
+\[
+ \boxed{
+ \ker\phi
+ =\left\langle\left\langle
+ \{u_c^2\}
+ \cup
+ \{e_I\widetilde r_I^{-1}:I\in\mathscr I\}
+ \right\rangle\right\rangle_{\mathbb F_{\mathscr I}}.
+ }
+ \tag{3.483}
+\]
+
+Indeed, the displayed relations express all eight marked generators in
+$u_c,u_A$ and impose $u_c^2=1$.  They give mutually inverse maps between
+the resulting quotient and $\langle c,t\mid c^2=1\rangle$.  Thus the
+identity-cycle problem has one torsion cell and eight fixed definition
+cells.  What remains unbounded is their placement inside a van Kampen
+filling and the interaction of that placement with the quadratic annular
+bucket, not the list of relator shapes.
+
+### 3.66 Fixed relator cycles have fixed pulled-back axes
+
+Let
+
+\[
+ r=e_{I_r}^{\varepsilon_r}\cdots e_{I_1}^{\varepsilon_1}
+ \in\ker\phi
+ \tag{3.484}
+\]
+
+be one fixed cyclically reduced marked relator which is realized as the
+source word of an alternating collision cycle.  For $I_i=[a_i,b_i]$,
+take $p_i=a_i$ when $\varepsilon_i=1$ and $p_i=b_i$ when
+$\varepsilon_i=-1$.  Let $s_i$ be the slot of $I_i$, and define the fixed
+partial products
+
+\[
+ \begin{aligned}
+ P_0&:=1,\\
+ P_i&:=S_{p_i}P_{i-1},\\
+ \mathcal R_i&:=q_{p_i}^{-1}P_{i-1}.
+ \end{aligned}
+ \tag{3.485}
+\]
+
+Here each $\mathcal R_i$ is an affine isometry of the free Cayley tree
+$\mathcal T_K$, and $P_r=1$ because $r\in\ker\phi$.  If $y$ is the first
+collision label, then the parity-active source coordinate on the $i$th
+source edge is exactly
+
+\[
+ v_i=\mathcal R_i(y).
+ \tag{3.486}
+\]
+
+Indeed, the label before that source step is $P_{i-1}y=q_{p_i}v_i$.
+Pull the paired axis for slot $s_i$ back to the starting label by
+
+\[
+ \mathcal B_i(r):=\mathcal R_i^{-1}(\mathcal A_{s_i}^K).
+ \tag{3.487}
+\]
+
+If slot $s_i$ has no paired same-coordinate bucket beyond $T(F)$, equation
+(3.447) and isometry invariance give
+
+\[
+ \boxed{
+ d(y,\mathcal B_i(r))
+ \le\frac{T(F)-\tau_{s_i}^K}{2}
+ \le\frac{T(F)}2.
+ }
+ \tag{3.488}
+\]
+
+This converts the moving support problem into a fixed finite axis problem
+for each relator shape.  Suppose three indices $i,j,k$ have pulled-back
+axes with pairwise disjoint endpoint sets.  Define
+$B_{r;i,j,k}$ from their finite central subtree exactly as in (3.449), and
+put
+
+\[
+ C_r:=\max_{1\le i\le r}d(1,\mathcal R_i(1)).
+ \tag{3.489}
+\]
+
+If one of the source coordinates on this realized relator cycle has length
+$R(F)$ and none of the three selected slots has a paired bucket beyond
+$T(F)$, then (3.450), (3.488), and the isometry triangle inequality give
+
+\[
+ \begin{aligned}
+ |y|_K&\le B_{r;i,j,k}+\frac{T(F)}2,\\
+ R(F)&\le |y|_K+C_r.
+ \end{aligned}
+ \tag{3.490}
+\]
+
+Using $T(F)\le R(F)+K_*$ proves the uniform relator-cell bound
+
+\[
+ \boxed{
+ R(F)\le2B_{r;i,j,k}+2C_r+K_*.
+ }
+ \tag{3.491}
+\]
+
+The genuine torsion relator from (3.482) is already explicit:
+
+\[
+ \boxed{
+ r_{\mathrm{tor}}
+ :=u_c^2
+ =\left(
+ e_{[15,16]}e_{[9,14]}^{-1}
+ e_{[3,4]}^{-1}e_{[1,6]}
+ \right)^2.
+ }
+ \tag{3.492}
+\]
+
+It is cyclically freely reduced, has eight source steps, and uses slots
+four, three, zero, and two twice each.  Equation (3.491) will therefore
+control every realized torsion-template cycle containing a radius
+maximizer as soon as one transverse triple among its eight pulled-back axes
+is verified.
+
+This does not yet handle an arbitrary product of conjugated relator cells.
+A van Kampen factorization is algebraic: its individual cells need not be
+realized as alternating subcycles of the active token matching.  The next
+finite obligation is to evaluate the pulled-back axes for (3.492) and the
+eight definition templates in (3.483); the remaining global obligation is
+then a gluing theorem which transfers a radius maximizer from a multi-cell
+boundary to one realized cell or directly to an annular quadratic bucket.
+
+### 3.67 The torsion cell contains a transverse forest triple
+
+Read the eight letters of $r_{\mathrm{tor}}$ in source-step order, from
+right to left.  One four-step half is
+
+\[
+ ([1,6],+),
+ ([3,4],-),
+ ([9,14],-),
+ ([15,16],+),
+ \tag{3.493}
+\]
+
+and the second half repeats it.  With $S_0=S_{[3,4]}$, the corresponding
+partial products are
+
+\[
+ \begin{aligned}
+ P_0&=1,\\
+ P_1&=B,\\
+ P_2&=S_0^{-1}B,\\
+ P_3&=GS_0^{-1}B,\\
+ P_4&=A^{-1}GS_0^{-1}B=c.
+ \end{aligned}
+ \tag{3.494}
+\]
+
+The second half ends at $P_8=c^2=1$.  Formula (3.485) therefore gives,
+at source steps one, four, and eight,
+
+\[
+ \begin{aligned}
+ \mathcal R_1&=1,\\
+ \mathcal R_4&=c,\\
+ \mathcal R_8&=1.
+ \end{aligned}
+ \tag{3.495}
+\]
+
+Their pulled-back axes are consequently
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathcal B_1(r_{\mathrm{tor}})&=\mathcal A_2^K,\\
+ \mathcal B_4(r_{\mathrm{tor}})&=c\mathcal A_4^K,\\
+ \mathcal B_8(r_{\mathrm{tor}})&=\mathcal A_4^K.
+ \end{aligned}
+ }
+ \tag{3.496}
+\]
+
+These three axes have pairwise disjoint endpoint sets.  Under
+$K=F(x,y)$ with $x=t$ and $y=ctc$, the slot-four axis
+$\mathcal A_4^K$ is the $x$-axis, while $c\mathcal A_4^K$ is the
+$y$-axis because $c$ acts by the involution $\alpha(x)=y$.  Their ends
+are disjoint.  If the slot-two axis shared an end with either basis axis,
+the common-end argument from Section 3.61 would make a nonzero power of
+the primitive slot-two element $B$ commensurable with a nonzero power of
+$t$ or $ctc$.  This is impossible under the height homomorphism: $B$ has
+height zero by (3.169), whereas both $t$ and $ctc$ have height one.
+
+Let $B_{\mathrm{tor}}$ be the finite central-subtree constant for the
+triple in (3.496), and put $C_{\mathrm{tor}}:=C_{r_{\mathrm{tor}}}$.
+For every realized torsion-template cycle containing a radius maximizer,
+applying (3.491) proves
+
+\[
+ \boxed{
+ R(F)>2B_{\mathrm{tor}}+2C_{\mathrm{tor}}+K_*
+ \Longrightarrow
+ \text{a paired bucket beyond }T(F)
+ \text{ occurs in slot two or slot four.}
+ }
+ \tag{3.497}
+\]
+
+This is a bucket-location conclusion, not coefficient survival: the long
+paired bucket may still collide in the quadratic kernel.  It also does not
+place an arbitrary radius-maximizing boundary edge inside one realized
+torsion cell.  Those are respectively the annular parity and multi-cell
+gluing obligations left after the torsion geometry is closed.
 
 ## 4. Exact diagonal sieve
 
