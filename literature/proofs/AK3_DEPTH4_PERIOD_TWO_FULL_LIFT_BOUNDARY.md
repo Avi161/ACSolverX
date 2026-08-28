@@ -132,6 +132,19 @@ coordinate within one fixed additive constant of the same radius.
 Section 3.71 decomposes the entire parity chain into one-chord forest loops
 and two-chord forest rectangles.  The remaining gluing term is therefore
 the quadratic polarization between those explicit cells.
+Section 3.72 repairs that decomposition at occurrence-coordinate level:
+neutral tied bundles fill alone, charged bundles pair, and the complete
+parity correction becomes a sum of valid one- or two-source cells.
+Section 3.73 proves the cross-cell leading-support theorem: above the sum
+of the largest and second-largest cell radii, every quadratic bucket is
+owned solely by the largest cell.
+Section 3.74 combines that theorem with the slot-zero/one axes.  A largest
+cell separated from the second-largest by one fixed constant has a paired
+candidate beyond every cross-cell bucket; only its internal parity remains.
+Section 3.75 removes the arbitrary charged-bundle pairing by one fixed
+anchor.  It gives one canonical balanced parity cell per active source
+atom, with cell radius differing from source radius by a fixed additive
+constant.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -8007,6 +8020,353 @@ polarization: refine (3.515) in a way that respects every tied bundle
 $\mathsf U_{s,v}$, or evaluate the cross-cell polarization while retaining
 the bundle-incidence data.  Only after that step can the near-maximal cell
 be compared with the annular bucket.
+
+### 3.72 Bundle charge gives valid one- and two-source cells
+
+The tied bundles in (3.516) have a single two-component obstruction to
+being filled separately.  For any finite chord chain $Z$, define its
+component-zero charge by
+
+\[
+ \lambda_{\mathrm{for}}(Z)
+ :=\sum_{x\in\mathcal T_0}[e_x](\partial Z)
+ \in\mathbb F_2.
+ \tag{3.518}
+\]
+
+The total coefficient of $\partial Z$ is zero, so the component-one charge
+has the same value.  Hence $\partial Z$ lies in the image of the finite
+forest boundary exactly when $\lambda_{\mathrm{for}}(Z)=0$.
+
+Call a tied bundle $\mathsf U_{s,v}$ neutral or charged according as its
+charge is zero or one.  Equation (3.505) implies
+
+\[
+ \boxed{
+ \sum_{s=0}^1
+ \sum_{v\in\operatorname{supp}_2(F_s)}
+ \lambda_{\mathrm{for}}(\mathsf U_{s,v})=0.
+ }
+ \tag{3.519}
+\]
+
+Thus the charged bundles occur in even number.  Partition the active
+bundle set into blocks $W$ by taking every neutral bundle as a singleton
+and pairing the charged bundles arbitrarily.  For each block define the
+bundle-respecting cycle chain
+
+\[
+ \mathsf D_W
+ :=\sum_{\mathsf U\in W}\mathsf U
+ +\mathsf G_{\mathrm{for}}\left(
+ \partial\sum_{\mathsf U\in W}\mathsf U
+ \right).
+ \tag{3.520}
+\]
+
+The Green term exists because every block has zero charge.  Each
+$\mathsf D_W$ has zero boundary and contains all chord copies belonging to
+each of its source coordinates.  Moreover,
+
+\[
+ \boxed{
+ \mathsf C_F=\sum_W\mathsf D_W.
+ }
+ \tag{3.521}
+\]
+
+Indeed, the chord parts sum to $\mathsf Z_F$.  The sum of the forest parts
+has boundary $\partial\mathsf Z_F$, so finite-forest injectivity identifies
+it with $\mathsf P_F$.
+
+Because the three forest edge families are free marked coordinates, every
+$\mathsf D_W$ determines a unique five-slot parity vector
+$\mathbf d_W$: its block supplies one or two complete source coordinates,
+and its Green term supplies the three forest-slot supports.  Consequently
+
+\[
+ \boxed{
+ \overline F=\sum_W\mathbf d_W
+ }
+ \tag{3.522}
+\]
+
+in the ambient finite-support occurrence-coordinate space over
+$\mathbb F_2$.  Here $\overline F$ is the coefficientwise parity of $F$.
+No integral lift of an individual $\mathbf d_W$ is asserted or needed for
+the quadratic token polynomial.
+
+Let $\mathscr B_\Xi$ be the polarization of $\mathscr Q_\Xi$ on that
+ambient parity space, and fix any total order on the blocks.  The
+bundle-respecting decomposition now gives the legitimate quadratic
+expansion
+
+\[
+ \boxed{
+ \mathscr Q_\Xi(F)
+ =\sum_W\mathscr Q_\Xi(\mathbf d_W)
+ +\sum_{W<W'}\mathscr B_\Xi(\mathbf d_W,\mathbf d_{W'}).
+ }
+ \tag{3.523}
+\]
+
+The pairing of charged bundles changes the individual cells but not their
+sum.  By (3.512), it can be chosen so that one block contains a source
+coordinate whose radius is at least
+
+\[
+ R(F)-D_{\mathrm{for}}-2M_*.
+ \tag{3.524}
+\]
+
+Thus the gluing problem has been reduced to a near-maximal cell with at
+most two source atoms and the explicit cross-cell polarization in (3.523).
+The remaining task is nonlinear but no longer has a tied-occurrence
+ambiguity: prove that the polarization cannot cancel every annular bucket
+of that cell, or identify the exact paired extremal cell which does.
+
+### 3.73 Cross-cell polarization has mixed radius
+
+For a bundle-respecting cell, define
+
+\[
+ R_W:=\max\left(
+ \{0\}\cup
+ \{|v|_K:v\in\operatorname{supp}(\mathbf d_{W,s}),0\le s\le4\}
+ \right).
+ \tag{3.525}
+\]
+
+Every transported token of $\mathbf d_W$ has length at most $R_W+M_*$.
+Consequently the self and mixed quadratic supports satisfy
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\mathscr Q_\Xi(\mathbf d_W)]_D\ne0
+ &\Longrightarrow \ell_K(D)\le2R_W+2M_*,\\
+ [\mathscr B_\Xi(\mathbf d_W,\mathbf d_{W'})]_D\ne0
+ &\Longrightarrow \ell_K(D)\le R_W+R_{W'}+2M_*.
+ \end{aligned}
+ }
+ \tag{3.526}
+\]
+
+The second line holds because every polarized pair has one endpoint from
+each cell.  No balance or cancellation claim enters these support bounds.
+
+Order the finitely many cells so that
+
+\[
+ R_1\ge R_2\ge\cdots,
+ \tag{3.527}
+\]
+
+and put $R_2=0$ when only one cell is present.  Choose one maximal cell
+$W_1$.  If several cells have radius $R_1$, take $R_2=R_1$.  Then (3.523)
+and (3.526) give the pointwise leading-support identity
+
+\[
+ \boxed{
+ \ell_K(D)>R_1+R_2+2M_*
+ \Longrightarrow
+ [\mathscr Q_\Xi(F)]_D
+ =[\mathscr Q_\Xi(\mathbf d_{W_1})]_D.
+ }
+ \tag{3.528}
+\]
+
+Indeed, every mixed term involving $W_1$ is bounded by the displayed
+threshold.  Every self or mixed term involving only other cells is bounded
+by $2R_2+2M_*$, which is no larger because $R_2\le R_1$.
+
+Combining (3.528) with the affine cutoff (3.434) gives the complete gate
+
+\[
+ \boxed{
+ \ell_K(D)>
+ \max\{T(F),R_1+R_2+2M_*\}
+ \Longrightarrow
+ [q_\Xi(F)]_D
+ =[\mathscr Q_\Xi(\mathbf d_{W_1})]_D.
+ }
+ \tag{3.529}
+\]
+
+Thus cross-cell polarization cannot cancel a sufficiently long bucket of
+an isolated largest cell.  If no such bucket survives, the remaining
+alternatives are explicit: the maximal-cell self-support stops below the
+displayed threshold because of axis geometry or internal parity, the top
+two cell radii make the cross threshold too high, or the affine cutoff
+dominates.  Cross-cell terms are excluded only above the threshold in
+(3.529).
+
+### 3.74 An isolated largest cell has an isolated paired candidate
+
+Put
+
+\[
+ \begin{aligned}
+ C_{\mathrm{rad}}&:=D_{\mathrm{for}}+2M_*,\\
+ A_{01}&:=\max_{s\in\{0,1\}}d(1,\mathcal A_s^K),\\
+ \tau_{01}&:=\min\{\tau_0^K,\tau_1^K\},\\
+ E_{01}&:=\max\{0,2C_{\mathrm{rad}}+2A_{01}-\tau_{01}\}.
+ \end{aligned}
+ \tag{3.530}
+\]
+
+Apply the radius transfer (3.512) to the maximal cell
+$\mathbf d_{W_1}$.  It contains a source coordinate
+$u\in\operatorname{supp}(\mathbf d_{W_1,s})$ for some
+$s\in\{0,1\}$ with
+
+\[
+ |u|_K\ge R_1-C_{\mathrm{rad}}.
+ \tag{3.531}
+\]
+
+By (3.445), every paired interval in slot $s$ gives the same bucket; call
+it $\mathscr D_s(u)$.  The paired same-coordinate length satisfies, by
+(3.442),
+
+\[
+ \begin{aligned}
+ \ell_K(\mathscr D_s(u))
+ &=\tau_s^K+2d(u,\mathcal A_s^K)\\
+ &\ge\tau_{01}+2|u|_K-2A_{01}\\
+ &\ge2R_1-E_{01}.
+ \end{aligned}
+ \tag{3.532}
+\]
+
+Suppose the two strict inequalities
+
+\[
+ \begin{aligned}
+ R_1-R_2&>E_{01}+2M_*,\\
+ 2R_1-E_{01}&>T(F)
+ \end{aligned}
+ \tag{3.533}
+\]
+
+hold.  Then (3.532) places $\mathscr D_s(u)$ above both thresholds in
+(3.529):
+
+\[
+ \ell_K(\mathscr D_s(u))
+ >\max\{T(F),R_1+R_2+2M_*\}.
+ \tag{3.534}
+\]
+
+Therefore
+
+\[
+ \boxed{
+ [q_\Xi(F)]_{\mathscr D_s(u)}
+ =[\mathscr Q_\Xi(\mathbf d_{W_1})]_{\mathscr D_s(u)}.
+ }
+ \tag{3.535}
+\]
+
+Each chosen paired occurrence term contributes one to the coefficient on
+the right, but the repeated paired copies in its source bundle and other
+token pairs inside the same one- or two-source cell can still cancel it.
+Thus (3.535) is an isolation theorem, not yet a noncancellation theorem.  It
+proves that every hypothetical vanishing solution satisfying (3.533) must
+realize the complete internal parity cancellation of the near-maximal
+paired bucket inside $\mathbf d_{W_1}$.  Cross-cell, affine, base, and seam
+terms cannot supply that cancellation.
+
+### 3.75 A fixed anchor gives one canonical cell per source atom
+
+Use the pinned forest-flow anchor $a=T$ from the anchored one-source
+theorem.  Its slot-zero tied bundle
+
+\[
+ \mathsf U_*:=\mathsf U_{0,a}
+ \tag{3.536}
+\]
+
+has $\lambda_{\mathrm{for}}(\mathsf U_*)=1$.  For an active source atom
+$\alpha=(s,v)$ with $s\in\{0,1\}$, put
+
+\[
+ \begin{aligned}
+ \lambda_\alpha&:=\lambda_{\mathrm{for}}(\mathsf U_{s,v}),\\
+ \mathsf Z_\alpha&:=\mathsf U_{s,v}+\lambda_\alpha\mathsf U_*,\\
+ \mathsf H_\alpha&:=\mathsf Z_\alpha
+ +\mathsf G_{\mathrm{for}}(\partial\mathsf Z_\alpha).
+ \end{aligned}
+ \tag{3.537}
+\]
+
+The chain $\mathsf Z_\alpha$ has zero component charge, so its Green term
+exists and $\partial\mathsf H_\alpha=0$.  Let $\mathbf h_\alpha$ be the
+unique five-slot parity vector encoded by this complete tied chord chain
+and its forest filling.
+
+The total charge identity (3.519) makes all anchor copies cancel:
+
+\[
+ \begin{aligned}
+ \sum_\alpha\mathsf Z_\alpha&=\mathsf Z_F,\\
+ \sum_\alpha\mathsf H_\alpha&=\mathsf C_F,\\
+ \overline F&=\sum_\alpha\mathbf h_\alpha.
+ \end{aligned}
+ \tag{3.538}
+\]
+
+Thus (3.538) is a canonical bundle-respecting decomposition, independent
+of any pairing of the charged source atoms.  Its quadratic expansion is
+
+\[
+ \boxed{
+ \mathscr Q_\Xi(F)
+ =\sum_\alpha\mathscr Q_\Xi(\mathbf h_\alpha)
+ +\sum_{\alpha<\beta}
+ \mathscr B_\Xi(\mathbf h_\alpha,\mathbf h_\beta),
+ }
+ \tag{3.539}
+\]
+
+after fixing any total order on the finite active source set.
+
+The cell radius is uniformly equivalent to the radius of its moving source
+atom.  More precisely, there is a fixed constant $C_{\mathrm{anc}}$ such
+that
+
+\[
+ \boxed{
+ |v|_K-C_{\mathrm{anc}}
+ \le R(\mathbf h_{(s,v)})
+ \le |v|_K+C_{\mathrm{anc}}.
+ }
+ \tag{3.540}
+\]
+
+For the lower bound, the source coordinate $(s,v)$ is retained unless it
+is the fixed anchor itself; that exceptional coordinate has fixed length
+and is absorbed by $C_{\mathrm{anc}}$.  For the upper bound, every chord endpoint of
+$\mathsf Z_\alpha$ is either a fixed translate of $v$ or belongs to the
+fixed anchor bundle.  Its length is at most $|v|_K$ plus one fixed
+constant.  The Green filling lies on forest geodesics between those
+endpoints, and the uniform quasi-geodesic bound from Section 3.70 adds only
+$D_{\mathrm{for}}$; converting a forest edge endpoint back to its marked
+coordinate adds at most $M_*$.  These fixed losses are absorbed by
+$C_{\mathrm{anc}}$.
+
+Consequently, if the active source radii are ordered
+
+\[
+ r_1\ge r_2\ge\cdots,
+ \tag{3.541}
+\]
+
+the two largest anchored-cell radii differ from $r_1,r_2$ by at most
+$C_{\mathrm{anc}}$.  The isolated-cell condition in (3.533) is therefore
+an additive gap condition on the actual slot-zero/one support, not an
+artifact of pairing charged bundles.  The remaining clustered case has at
+least two genuinely near-maximal source atoms.
 
 ## 4. Exact diagonal sieve
 
