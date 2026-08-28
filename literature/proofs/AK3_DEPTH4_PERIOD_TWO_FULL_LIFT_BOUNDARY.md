@@ -161,14 +161,21 @@ exceptional set, the complete isolated-cell coefficient is a function of
 finitely many terminal activity and shortlex types.  That finite function
 is not yet evaluated.
 Section 3.80 gives the complementary clustered incidence law.  Every mixed
-term aimed at a paired bucket places the second source atom on one of four
-explicit branches from the first, so the localized mixed-collision graph
-has uniformly bounded degree.
+term with one token based at the target source places its second source atom
+on one of four explicit branches.  Mixed terms between two non-target cells
+retain one free source and are treated separately in Section 3.84.
 Section 3.81 identifies each canonical anchored parity cell as the
 coefficientwise mod-two reduction of the integral balanced direction from
 Section 3.2.  Section 3.82 can therefore use the nonfixed integral free
 coordinate: the natural paired baseline is $-3$ in slot zero and $-2$ in
 slot one before the finite endpoint remainder is added.
+Section 3.83 controls the remaining self term of a different clustered
+cell.  Its source lies on one of at most eight finite or cyclic centralizer
+corridors; a fixed-width radius cluster meets each corridor in uniformly
+boundedly many atoms.
+Section 3.84 records the unresolved general mixed term honestly.  When both
+tokens come from non-target cells, one source remains free and the other
+lies on four explicit three-source branches; bounded degree does not follow.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -8795,16 +8802,17 @@ is also explicit.  If $vH=\Phi_{h,s}^{\epsilon,\delta}(u)H$, then
 Thus a mixed collider transports the vertex involution by one of four
 fixed-word formulas.  Whenever Section 3.77 localizes two clustered cells
 to finite multiplier lists, each target atom has only finitely many possible
-mixed-collider source cosets, with a bound independent of its radius.  This
-turns the mixed clustered incidence into a bounded-degree directed graph on
-the active source atoms.
+target-incident mixed-collider source cosets, with a bound independent of
+its radius.  This bounds only the part of the mixed incidence in which one
+token belongs to the target cell.
 
 Formula (3.561) concerns mixed terms with one token based at the target atom
 $u$ and one at another atom $v$.  It does not evaluate the finite shortlex
 weight of such an edge, and it does not include a self term of a different
-cell whose conjugate bucket happens to equal $\mathscr D_s(u)$.  Those two
-effects, together with the zero terminal types from Section 3.79, are the
-exact remaining clustered branches.
+cell whose conjugate bucket happens to equal $\mathscr D_s(u)$.  It also
+does not include a mixed term between two different cells neither of which
+is based at $u$.  The self term is treated in Section 3.83; the general
+three-source mixed term is treated in Section 3.84.
 
 ### 3.81 Every canonical parity cell has an integral balanced lift
 
@@ -8917,6 +8925,147 @@ free-coordinate decomposition (3.571), not term by term in the ordered
 kernel.  The isolated slot-zero problem is now to show that the finite
 endpoint remainder in (3.572) is even; the slot-one problem requires a
 different pivot.  Neither parity is asserted here.
+
+### 3.83 Other self cells lie on centralizer corridors
+
+The self term of a different clustered cell also has a controlled source
+set.  Retain fixed hyperbolic $g$ and a fixed endpoint multiplier $h$.  If
+
+\[
+ \Delta_h(v)=\Delta_g(u),
+ \tag{3.573}
+\]
+
+put $w:=vu^{-1}$ and $r_u:=ucu^{-1}$.  Expanding the two $H$-sides and the
+unoriented representative shows that (3.573) is equivalent to one of the
+eight conjugacy equations
+
+\[
+ \boxed{
+ \begin{aligned}
+ w^{-1}hw
+ &=k_{\epsilon,\delta,\delta'}(u),\\
+ k_{\epsilon,\delta,\delta'}(u)
+ &:=r_u^\delta g^\epsilon r_u^{\delta'}.
+ \end{aligned}
+ }
+ \tag{3.574}
+\]
+
+where $\epsilon\in\{1,-1\}$ and $\delta,\delta'\in\{0,1\}$.  None of the
+eight right sides is trivial: the zero- or two-involution cases are
+conjugates of the hyperbolic element $g^\epsilon$, while a one-involution
+case could be trivial only if a conjugate of $c$ equaled $g^{-\epsilon}$.
+
+Fix one branch and suppose $w_0$ solves (3.574).  Every solution, and no
+other one, has the form
+
+\[
+ \boxed{
+ \begin{aligned}
+ w&=w_0z,\\
+ z&\in C_Q(k_{\epsilon,\delta,\delta'}(u)).
+ \end{aligned}
+ }
+ \tag{3.575}
+\]
+
+Indeed, the quotient of two conjugators centralizes the common target.
+The centralizer in (3.575) is finite when the target is elliptic and
+infinite cyclic when it is hyperbolic.  Consequently the possible source
+cosets of the other self cell lie on at most eight finite or cyclic
+corridors
+
+\[
+ vH\in
+ w_0C_Q(k_{\epsilon,\delta,\delta'}(u))uH.
+ \tag{3.576}
+\]
+
+This also gives a uniform clustered-radius bound.  Fix $C\ge0$ and retain
+only sources satisfying
+
+\[
+ \bigl||v|_K-|u|_K\bigr|\le C.
+ \tag{3.577}
+\]
+
+An elliptic centralizer contributes at most two cosets.  On a hyperbolic
+centralizer corridor, successive powers move along one tree axis by a
+positive integral translation length.  Distance from the fixed root along
+that orbit is a V-shaped function of the exponent.  Its intersection with
+the width-$2C$ radial band in (3.577) therefore has uniformly bounded
+cardinality, depending only on $C$ and not on $u$.  Since the endpoint
+multiplier list is finite, unrelated self-cell collisions also have
+uniformly bounded degree inside every clustered radius band.
+
+Together, Sections 3.80 and 3.83 reduce the target-incident mixed terms and
+the other-cell self terms to four explicit branches and finitely many cyclic
+self-corridors.  Mixed terms between two non-target cells retain one free
+source parameter and are the subject of the next section.
+
+### 3.84 General mixed collisions retain one free source
+
+The final sentence of Section 3.83 applies only to target-incident mixed
+terms and other-cell self terms.  Let the target bucket be
+$\mathscr D_s(u)$, while two different non-target cells have source atoms
+$v,w$ and terminal multipliers $r,r'$.  Put $h:=r^{-1}r'$.  Then
+
+\[
+ [H x_r(v)^{-1}x_{r'}(w)H]_\pm=\mathscr D_s(u)
+ \tag{3.578}
+\]
+
+if and only if
+
+\[
+ \boxed{
+ wH=\Psi_{h,s}^{\epsilon,\delta}(u,v)H
+ \text{ for some }(\epsilon,\delta)\in\{1,-1\}\times\{0,1\},
+ }
+ \tag{3.579}
+\]
+
+where
+
+\[
+ \Psi_{h,s}^{\epsilon,\delta}(u,v)
+ :=h^{-1}vc^\delta u^{-1}g_s^\epsilon u.
+ \tag{3.580}
+\]
+
+Indeed, (3.578) is equivalent to
+
+\[
+ v^{-1}hw
+ =c^\delta u^{-1}g_s^\epsilon u c^{\delta'}
+ \tag{3.581}
+\]
+
+for some $\epsilon\in\{1,-1\}$ and $\delta,\delta'\in\{0,1\}$.  Solving
+for $w$ gives
+
+\[
+ w=h^{-1}vc^\delta u^{-1}g_s^\epsilon u c^{\delta'},
+ \tag{3.582}
+\]
+
+and the last factor disappears modulo the right $H$-coset.  This proves the
+four branches in (3.579), with $v$ still free.
+
+Thus the complete non-target mixed incidence is not bounded-degree merely
+from Section 3.80: for each target $u$ and each first source $v$, there are
+at most four possible second sources $w$, but the clustered support may
+contain arbitrarily many choices of $v$.  Endpoint localization makes the
+multiplier list finite and the branch formulas exact; it does not remove
+this free source parameter.
+
+The remaining clustered problem is therefore a genuine three-source
+incidence parity.  A valid completion must either pair the contributions in
+(3.579), derive a second extremal filtration which bounds the possible
+first sources $v$, or identify the exact finite collision cycles after both
+source parameters are retained.  No bounded-degree or cancellation claim
+for this general mixed term is made here.
 
 ## 4. Exact diagonal sieve
 
