@@ -1,4 +1,5 @@
 from collections import defaultdict
+from fractions import Fraction
 
 
 def clean(terms):
@@ -117,6 +118,39 @@ def substitute(expression, values):
     return constant, clean(remaining)
 
 
+def semidirect_multiply(left, right):
+    left_coordinate, left_height = left
+    right_coordinate, right_height = right
+    return (
+        left_coordinate + Fraction(2) ** left_height * right_coordinate,
+        left_height + right_height,
+    )
+
+
+def semidirect_inverse(element):
+    coordinate, height = element
+    return -Fraction(2) ** (-height) * coordinate, -height
+
+
+def semidirect_power(element, exponent_value):
+    if exponent_value < 0:
+        return semidirect_power(semidirect_inverse(element), -exponent_value)
+    result = (Fraction(0), 0)
+    base = element
+    while exponent_value:
+        if exponent_value & 1:
+            result = semidirect_multiply(result, base)
+        base = semidirect_multiply(base, base)
+        exponent_value //= 2
+    return result
+
+
+def semidirect_conjugate(conjugator, element):
+    return semidirect_multiply(
+        semidirect_multiply(conjugator, element), semidirect_inverse(conjugator)
+    )
+
+
 def test_second_derived_fox_correction_and_direct_limit():
     d = "bbAbaB"
     delta = "bAbABaBB"
@@ -193,3 +227,33 @@ def test_reduced_mahler_coefficient_contradiction_at_four_scales():
 
         constant, remaining = substitute(coefficient_equation(6 * s, s), values)
         assert (constant, remaining, rhs.get(6 * s, 0)) == (1, {}, 0)
+
+
+def test_second_derived_fraction_semidirect_conjugator_family():
+    q = (Fraction(1, 2), -1)
+    D = (Fraction(-3, 4), 0)
+    B = (Fraction(7, 8), -1)
+    c0 = (Fraction(3, 4), 0)
+    assert semidirect_inverse(D) == c0
+    assert semidirect_conjugate(c0, q) == B
+
+    for k in range(-12, 13):
+        two_to_k = Fraction(2) ** k
+        expected_m = 1 - two_to_k
+        residual_at_zero = semidirect_multiply((Fraction(0), k), q)[0] - semidirect_multiply(
+            q, (Fraction(0), k)
+        )[0]
+        residual_at_one = semidirect_multiply((Fraction(1), k), q)[0] - semidirect_multiply(
+            q, (Fraction(1), k)
+        )[0]
+        slope = residual_at_one - residual_at_zero
+        assert slope == Fraction(1, 2)
+        assert -residual_at_zero / slope == expected_m
+        left = semidirect_multiply((expected_m, k), q)
+        right = semidirect_multiply(q, (expected_m, k))
+        assert left == right
+        assert semidirect_power(q, -k) == (expected_m, k)
+
+    for power in range(-12, 13):
+        conjugator = semidirect_multiply(c0, semidirect_power(q, power))
+        assert semidirect_conjugate(conjugator, q) == B

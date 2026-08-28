@@ -163,14 +163,22 @@ finite quotient do not close a route.
   element of the complete coset `Q_A''*D^-1` conjugates `q` to `B`.  This
   does not classify other metabelian conjugators or obstruct multi-row
   Peiffer lifts and different full paths.
+- **All literal conjugators obstructed:** in the factorwise metabelian group,
+  the centralizer of `q=(1/2,-1)` is exactly `<q>`.  Therefore every quotient
+  conjugator from `q` to `B` is `D^-1*q^j`.  Any literal lift has the form
+  `n*D^-1*q^j` with `n in Q_A''`; the power of `q` cancels around `q`, leaving
+  the same twisted-coboundary equation already disproved for every `n`.
+  Hence `q` and `B` are not conjugate in `Q_A`.  This closes every single-row
+  literal conjugation lift of (105), not a multi-row Peiffer lift, another
+  quotient path, or the unrestricted bridge.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
   one-tag endpoint.  Do not escalate through more ambient lower-central
   quotients or metabelian quotients: they are all blind.  For the tagged route,
-  the complete `Q_A''`-correction coset of the displayed metabelian conjugator
-  is now closed.  Another metabelian conjugator, a multi-row Peiffer lift, or
-  another full relative path may bypass it.  Do not add another finite
+  every literal conjugator from `q` to `B` is now closed.  A multi-row Peiffer
+  lift, another quotient path, or another full relative path may bypass this
+  single-row gate.  Do not add another finite
   alternation or conjugator category.  The lifts are complete, but no closure
   to `(A,B,Xyz)` is proved. Do not add
   another sequential cleanup or pinned-donor category. No fixed-base or
