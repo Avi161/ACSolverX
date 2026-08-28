@@ -53,7 +53,19 @@ and literal--correction affine terms remain outside that ledger.  Section
 3.46 further splits every terminal defect into its literal-prefix offset,
 source/destination Schreier-section comparison, and one universal
 $\alpha$-crossed derivation.  Only the universal odd-prefix part collapses,
-to the current $F_0-F_2+F_3$.
+to the current $F_0-F_2+F_3$.  Section 3.48 gives the complementary direct
+normal-form description: every terminal bridge is a bounded seam operator
+which inspects at most eleven initial letters of a correction vertex and
+has its event endpoint in one fixed finite prefix set.
+
+For every inversion-fixed double coset, Section 3.49 consequently splits
+the correction-only parity into the external Hilbert--90 correlation, the
+degree-two canonical-section/inverse core, and the bounded seam-linear
+term.  The fixed-literal affine part of the complete defect remains
+separate.  Section 3.50 turns vanishing of all nonfixed external free
+buckets into one coefficientwise weighted norm equation.  Its identity
+coefficient is strictly negative for every nonzero correction, but that
+coefficient is discarded by the coinvariant map.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -5864,6 +5876,271 @@ Equations (3.369)--(3.379) replace both abstract section comparisons by
 literal event currents and one explicit twisted cocycle.  They do not
 show that the terminal parity or any other term survives the remaining
 correction-only and fixed-literal contributions.
+
+### 3.48 Terminal bridges are bounded seam operators
+
+The literal form of the terminal ledger has a stronger locality property.
+In the fixed normal form for $Q=C_2*\mathbb Z$, every $c$-syllable is
+written as $c$.  Each pinned prefix $q_o$ is quotient-reduced, and every
+canonical vertex word $\widetilde v$ is quotient-reduced with no terminal
+$c$.
+
+Fix such a prefix $q$ and vertex word $\widetilde v$.  Start with quotient
+prefix $p=q$ and scan the letters of $\widetilde v$.  Ordinary inverse
+$t$-letters cancel freely.  Whenever the next letter is $c$ and $p$ ends
+in $c$, record
+
+\[
+ \ell=\operatorname{cvert}(p^{-}),
+ \tag{3.380}
+\]
+
+where $p^{-}$ deletes its terminal $c$, and then delete that terminal
+$c$ from $p$.  Let $\mathcal E(q,v)$ be the resulting multiset of recorded
+labels, and let
+
+\[
+ x(q,v):=\operatorname{cvert}(qv).
+ \tag{3.381}
+\]
+
+The exact terminal bridge tensor is
+
+\[
+ \boxed{
+ \mathscr T_q(e_v)
+ =\sum_{\ell\in\mathcal E(q,v)}
+ \left(
+ e_\ell\otimes e_{x(q,v)}
+ -e_{x(q,v)}\otimes e_\ell
+ \right).}
+ \tag{3.382}
+\]
+
+To prove (3.382), all letters internal to $q$ and $\widetilde v$ are
+already quotient-reduced.  The only new relation event is therefore a
+displayed seam $cc$.  At such a seam,
+
+\[
+ uccw=(uc^2u^{-1})uw,
+ \tag{3.383}
+\]
+
+so the event contributes the Schreier generator at $uH$, which is exactly
+the label in (3.380).  Iterating gives a conjugator current
+$\sum_{\ell\in\mathcal E(q,v)}e_\ell$.  At the end, a possible terminal
+$c$ lies in $H$ and centralizes $c^2$.  This current can differ from the
+terminal-normalized current $K_{q,v}$ only by a multiple of
+$e_{x(q,v)}$, by the centralizer argument after (3.359a); that multiple
+cancels from the antisymmetric tensor.  This proves (3.382).
+
+Every scanned letter which participates in the seam reduction removes one
+letter from the still-unmatched suffix of $q$.  Once a letter of
+$\widetilde v$ fails to cancel, the remaining concatenation is reduced and
+no later seam event is possible.  Consequently
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathcal E(q,v)
+ &\text{ depends only on the first }|q|\text{ letters of }\widetilde v,\\
+ |\mathcal E(q,v)|&\le \#_c(q),\\
+ \mathcal E(q,v)&\subseteq\mathcal Y(q),
+ \end{aligned}}
+ \tag{3.384}
+\]
+
+where $\#_c(q)$ counts the letters $c$ and $\mathcal Y(q)$ is the finite
+set of canonical labels of prefixes of $q$.  For the sixteen occurrence
+prefixes, $|q_o|\le11$ by (5.66).  Hence
+
+\[
+ \mathcal Y_*:=\bigcup_{o=1}^{16}\mathcal Y(q_o)
+ \tag{3.385}
+\]
+
+is a fixed finite set, independent of the correction support.
+
+Combining (3.354) and (3.382), every inversion-fixed terminal parity is
+equivalently
+
+\[
+ \boxed{
+ \vartheta_D(F)
+ =\sum_{o=1}^{16}\sum_{v\in X}\overline{F_{s_o}(v)}
+  \sum_{\ell\in\mathcal E(q_o,v)}
+  [Hx(q_o,v)^{-1}\ell H=D]
+ \pmod2.}
+ \tag{3.386}
+\]
+
+Thus the terminal term is a finite-prefix linear star: one endpoint lies
+in $\mathcal Y_*$ and the other is the transported correction vertex.
+This does not make its relative double-coset support finite, because the
+transported endpoint can be arbitrarily deep.  It does remove every
+unbounded terminal-normalization search from the remaining fixed-parity
+problem.
+
+### 3.49 Exact fixed parity: external, core, and seam
+
+Remove the terminal bridges from (3.351) and put
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathscr A_{\mathrm{core}}(F)
+ :={}&\sum_{o=1}^{16}\epsilon_oq_o\Sigma(F_{s_o})
+ +\sum_{\epsilon_o=-1}a_o\otimes a_o\\
+ &+\sum_{1\le o<p\le16}
+   \epsilon_o\epsilon_p a_o\otimes a_p.
+ \end{aligned}}
+ \tag{3.387}
+\]
+
+The terminal sum
+
+\[
+ \mathscr A_{\mathrm{term}}(F)
+ :=\sum_{o=1}^{16}\epsilon_o\mathscr T_o(F_{s_o})
+ \tag{3.388}
+\]
+
+is diagonal-free and antisymmetric term by term.  Since
+$\mathscr A_{\mathrm{corr}}$ has the same properties by (3.351b), so does
+$\mathscr A_{\mathrm{core}}=\mathscr A_{\mathrm{corr}}-
+\mathscr A_{\mathrm{term}}$.  Therefore
+
+\[
+ \boxed{
+ \Theta^{\mathrm{corr}}(F)
+ =\operatorname{Wdg}(\mathscr A_{\mathrm{core}}(F))
+  +\operatorname{Wdg}(\mathscr A_{\mathrm{term}}(F)).}
+ \tag{3.389}
+\]
+
+Define the core correction to the strict external wedge by
+
+\[
+ \mathscr D_{\mathrm{core}}(F)
+ :=\operatorname{Wdg}(\mathscr A_{\mathrm{core}}(F))
+  -\Theta_2^{\mathrm{ext}}(F).
+ \tag{3.390}
+\]
+
+For every inversion-fixed nontrivial double coset $D\in\mathscr D_1$,
+equations (3.340), (3.386), and (3.389)--(3.390) give the exact parity
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))]_D
+ ={}&[\pi_K(\mathscr P_2(\mathbf F))]_D\\
+ &+[\Xi_{\mathbb Z}(\mathscr D_{\mathrm{core}}(F))]_D
+  +\vartheta_D(F).
+ \end{aligned}}
+ \tag{3.391}
+\]
+
+The first term is the external Hilbert--90 correlation from
+(3.339)--(3.341) and Section 3.38, the second is the degree-two
+canonical-section/inverse correction, and the third is the bounded
+seam-linear star (3.386).  No terminal bridge remains
+hidden in the core.  Equation (3.391) is exact for arbitrary finite
+balanced corrections, but it neither proves that one of its three terms
+survives nor includes the fixed-literal affine contribution to the complete
+defect $\Theta(F)$.
+
+### 3.50 External free cancellation is a weighted norm equation
+
+The closed occurrence polygon gives a sharper form of (3.344).  Put
+
+\[
+ \begin{aligned}
+ z_o&:=\epsilon_o\mathbf G_o\in\mathbb ZK,\\
+ N_s&:=\mathbf F_s^*\mathbf F_s.
+ \end{aligned}
+ \tag{3.392}
+\]
+
+Equation (3.158) becomes $\sum_o z_o=0$, while
+$\mathscr P_2=\sum_{o<p}z_o^*z_p$.  Therefore
+
+\[
+ \boxed{
+ \mathscr P_2+\mathscr P_2^*
+ =-\sum_{o=1}^{16}z_o^*z_o.}
+ \tag{3.393}
+\]
+
+Indeed, (3.393) is the off-diagonal part of
+$(\sum_oz_o)^*(\sum_oz_o)=0$.  Reading the $\eta_o$ row in (3.338) gives
+
+\[
+ \sum_{o=1}^{16}z_o^*z_o
+ =3(N_0+\alpha(N_0))
+  +2(N_1+\alpha(N_1))
+  +(N_2+\alpha(N_2))
+  +(N_3+\alpha(N_3))
+  +2N_4.
+ \tag{3.394}
+\]
+
+Define the $\alpha$-symmetric weighted norm
+
+\[
+ \boxed{
+ \mathscr N(\mathbf F)
+ :=3(N_0+\alpha(N_0))
+   +2(N_1+\alpha(N_1))
+   +(N_2+\alpha(N_2))
+   +(N_3+\alpha(N_3))
+   +(N_4+\alpha(N_4)).}
+ \tag{3.395}
+\]
+
+Adding $\alpha$ of (3.393) to (3.393) shows
+
+\[
+ (\mathscr P_2+\alpha\mathscr P_2)
+ +(\mathscr P_2^*+\alpha\mathscr P_2^*)
+ =-2\mathscr N(\mathbf F).
+ \tag{3.396}
+\]
+
+Since $\mathbb ZK$ is torsion-free as an abelian group, the nonfixed free
+zero equation (3.344) is now equivalent to
+
+\[
+ \boxed{
+ \mathscr P_2+\alpha\mathscr P_2
+ =-\mathscr N(\mathbf F).}
+ \tag{3.397}
+\]
+
+The implication from (3.344) follows by comparing the two equal summands
+on the left of (3.396).  Conversely, $\mathscr N^*=\mathscr N$, so taking
+the involution of (3.397) recovers (3.344).
+
+At the identity coefficient, (3.397) forces
+
+\[
+ [1]\mathscr P_2
+ =-\left(
+ 3\|\mathbf F_0\|_2^2
+ +2\|\mathbf F_1\|_2^2
+ +\|\mathbf F_2\|_2^2
+ +\|\mathbf F_3\|_2^2
+ +\|\mathbf F_4\|_2^2
+ \right).
+ \tag{3.398}
+\]
+
+This coefficient is strictly negative for every nonzero correction tuple,
+but $\pi_K$ discards the identity coefficient.  Thus (3.398) is not an
+obstruction by itself.  Equation (3.397) relocates the remaining external
+free-bucket problem to the nonidentity coefficients of one weighted norm
+equation; the fixed Hilbert--90 parities, core correction, seam term, and
+fixed-literal affine contribution remain separate.
 
 ## 4. Exact diagonal sieve
 
