@@ -44,6 +44,13 @@ the two height-zero forest generators.  This does not yet obstruct the
 complete occurrence polygon: a surviving paired coordinate can still be
 occupied by a different paired, parent--child, root, or affine-unary term.
 
+Section 3.45 now gives an exact correction-only ordered-tensor ledger.  It
+retains canonical-section tensors, inverse squares, external cross terms,
+and the terminal-normalization defects from (5.41) until the complete
+zero-linear tensor is antisymmetric.  This repairs the false shortcut that
+treated quotient transport as literal free-group transport.  Fixed-literal
+and literal--correction affine terms remain outside that ledger.
+
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
 ## 1. Literal lift equation
@@ -5132,7 +5139,7 @@ Applying the coinvariant map (3.209) term by term to (3.339a) gives
 
 \[
  \boxed{
- [\Xi_{\mathbb Z}(\Theta_2^{\mathrm{ext}}(F))]
+ \Xi_{\mathbb Z}(\Theta_2^{\mathrm{ext}}(F))
  =\pi_K\left(\mathscr P_2(\mathbf F)\right).}
  \tag{3.340}
 \]
@@ -5201,6 +5208,187 @@ coinvariant after passage to $W_Q$.  The affine constant-plus-unary part of
 $\Theta(F)$ is also separate.  Thus (3.339)--(3.344) unify the exact
 external collision ledger but do not assert that the complete homogeneous
 or affine-quadratic class survives.
+
+### 3.45 Exact correction-only tensor ledger with terminal defects
+
+The gap after (3.344) must be closed before applying an exterior reader.
+An individual correction occurrence has nonzero relation-module value, so
+its ordered tensor is not itself a class in $\Lambda^2M$.  Let $\sigma(f)$
+be the canonical first-layer section of a finite current $f$, and write
+$\widehat q_o$ for the chosen literal free-group lift of the quotient
+prefix $q_o$.  For $F\in\mathcal H_{\mathrm{fin}}$, form the
+correction-only word
+
+\[
+ \mathcal R_{\mathrm{corr}}(F)
+ :=\prod_{o=1}^{16}
+ \widehat q_o\sigma(F_{s_o})^{\epsilon_o}\widehat q_o^{-1}
+ \tag{3.345}
+\]
+
+in literal occurrence order.  Its relation-module value is
+
+\[
+ \sum_{o=1}^{16}\epsilon_oq_oF_{s_o}
+ =\sum_{s=0}^4L_sF_s=0.
+ \tag{3.346}
+\]
+
+For an occurrence $o$ and a basis vertex $v$, put
+
+\[
+ x_{o,v}:=\operatorname{cvert}(q_ov).
+ \tag{3.347}
+\]
+
+Apply the exact terminal normalization (5.40)--(5.41) and write
+
+\[
+ \begin{aligned}
+ \widehat q_o r_v\widehat q_o^{-1}
+ &=k_{o,v}r_{x_{o,v}}k_{o,v}^{-1},\\
+ K_{o,v}&:=\overline{k_{o,v}}\in M.
+ \end{aligned}
+ \tag{3.348}
+\]
+
+The complete one-vertex transport tensor at occurrence $o$ is
+
+\[
+ \boxed{
+ \mathscr T_o(f)
+ :=\sum_{v\in X}f(v)
+ \left(
+ K_{o,v}\otimes e_{x_{o,v}}
+ -e_{x_{o,v}}\otimes K_{o,v}
+ \right).}
+ \tag{3.349}
+\]
+
+Let $\Sigma(f)$ be the ordered canonical-section tensor (5.4), and define
+
+\[
+ \begin{aligned}
+ a_o&:=q_oF_{s_o},\\
+ A_o&:=q_o\Sigma(F_{s_o})+\mathscr T_o(F_{s_o}).
+ \end{aligned}
+ \tag{3.350}
+\]
+
+Here $q_o$ acts diagonally on the two tensor factors.  The exact tensor of
+the correction-only word (3.345) is
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathscr A_{\mathrm{corr}}(F)
+ ={}&\sum_{o=1}^{16}\epsilon_oA_o
+ +\sum_{\epsilon_o=-1}a_o\otimes a_o\\
+ &+\sum_{1\le o<p\le16}
+   \epsilon_o\epsilon_p a_o\otimes a_p.
+ \end{aligned}}
+ \tag{3.351}
+\]
+
+After the quotient conjugation in (3.348), all coordinates lie in $N$.
+Their exact degree-two multiplication and inversion laws are
+
+\[
+ \begin{aligned}
+ (a,A)(b,B)&=(a+b,A+B+a\otimes b),\\
+ (a,A)^{-1}&=(-a,-A+a\otimes a).
+ \end{aligned}
+ \tag{3.351a}
+\]
+
+Formula (3.348) and (3.351a) give
+$q_o\Sigma(f)+\mathscr T_o(f)$ for a positive transported section.
+The inverse law sends a coordinate $(a,A)$ to
+$(-a,-A+a\otimes a)$, giving the second sum in (3.351).  Multiplying the
+sixteen occurrence coordinates adds the strict external cross tensors in
+the third sum.  This proves (3.351) without projecting any open occurrence
+tensor to an exterior class.
+
+The degree-two Magnus identities for a coordinate $(a,A)$ are
+
+\[
+ \begin{aligned}
+ A_{xy}+A_{yx}&=a_xa_y &&(x\ne y),\\
+ 2A_{xx}&=a_x(a_x-1).
+ \end{aligned}
+ \tag{3.351b}
+\]
+
+They follow inductively from (3.351a), starting with one Schreier power.
+Equation (3.346) sets $a=0$, so (3.351b) proves that the final tensor
+(3.351) is diagonal-free and antisymmetric.
+For such a tensor put
+
+\[
+ \operatorname{Wdg}(A)
+ :=\sum_{x<_{\mathrm{sl}}y}
+ \bigl([e_x\otimes e_y]A\bigr)e_x\wedge e_y.
+ \tag{3.352}
+\]
+
+The correction-only class and its exact comparison with the external
+ledger are therefore
+
+\[
+ \boxed{
+ \begin{aligned}
+ \Theta^{\mathrm{corr}}(F)
+ &=\operatorname{Wdg}(\mathscr A_{\mathrm{corr}}(F)),\\
+ \Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))
+ &=\pi_K(\mathscr P_2(\mathbf F))
+   +\Xi_{\mathbb Z}(\mathscr D_{\mathrm{corr}}(F)),\\
+ \mathscr D_{\mathrm{corr}}(F)
+ &:=\operatorname{Wdg}(\mathscr A_{\mathrm{corr}}(F))
+   -\Theta_2^{\mathrm{ext}}(F).
+ \end{aligned}}
+ \tag{3.353}
+\]
+
+Unlike the rejected termwise-wedge shortcut, (3.351)--(3.353) retain the
+canonical-section tensors, inverse squares, terminal bridges, and external
+cross tensors inside the single ordered tensor (3.351) until its
+antisymmetry has been proved.  They are an explicit all-support formula for
+the correction $\mathscr D_{\mathrm{corr}}$.
+
+The terminal part of every inversion-fixed parity is already pointwise.
+If $D=HhH\in\mathscr D_1$ with $h\in Q$, define
+
+\[
+ \boxed{
+ \vartheta_D(F)
+ :=\sum_{o=1}^{16}\sum_{v,y\in X}
+ F_{s_o}(v)[e_y]K_{o,v}
+ [Hx_{o,v}^{-1}yH=D]
+ \pmod2.}
+ \tag{3.354}
+\]
+
+Applying the ordered half-reader to (3.349) shows that $\vartheta_D(F)$ is
+exactly the contribution of all terminal bridges to the $D$-coordinate of
+$\Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))$.  For a coefficient
+$[e_y]K_{o,v}$, if $y<_{\mathrm{sl}}x_{o,v}$ the ordered reader selects
+$e_y\otimes e_{x_{o,v}}$ and sees the inverse double coset $D^{-1}=D$; if
+$x_{o,v}<_{\mathrm{sl}}y$ it selects
+$-e_{x_{o,v}}\otimes e_y$ and sees $D$.  Thus (3.354) counts exactly one
+ordered entry in either case.  Its tensor sign and the occurrence sign
+disappear only because the target is $\mathbb Z/2$.  The remaining terms
+of that coordinate are read directly from the other three sums in (3.351).
+
+The value $\vartheta_D$ depends on the actual terminal defects $k_{o,v}$;
+it is not determined by the quotient vertices $x_{o,v}$.  In particular,
+replacing (3.348) by the false literal transport
+$\widehat q_o r_v\widehat q_o^{-1}=r_{x_{o,v}}$ erases an active summand
+of the exact tensor.
+The fixed-literal constant and literal--correction cross terms of the
+complete defect $\Theta(F)$ also remain separate.  Equations
+(3.351)--(3.354) close the correction-only tensor interface but do not
+assert that its coinvariant, the complete class-two obstruction, or AK(3)
+is nonzero.
 
 ## 4. Exact diagonal sieve
 
