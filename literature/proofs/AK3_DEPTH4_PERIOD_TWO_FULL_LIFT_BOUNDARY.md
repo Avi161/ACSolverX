@@ -175,7 +175,18 @@ corridors; a fixed-width radius cluster meets each corridor in uniformly
 boundedly many atoms.
 Section 3.84 records the unresolved general mixed term honestly.  When both
 tokens come from non-target cells, one source remains free and the other
-lies on four explicit three-source branches; bounded degree does not follow.
+lies on four explicit three-source branches; no uniform bound on the total
+number of contributions follows.
+Section 3.85 sharpens that statement for one fixed target bucket: each
+branch is injective, so its non-target incidence is a finite union of
+matchings with bounded local degree but unbounded total size.
+Section 3.86 applies the integral anchored expansion to the complete paired
+target.  All isolated, self-corridor, target-incident, and three-source
+terms are evaluated by the order-free free-coordinate correlation ledger;
+only their incidence parity remains.
+Section 3.87 splits every general matching branch by $t$-height.  A
+nonzero-shift branch telescopes exactly to its finite active endpoints;
+only its boundary colors and the height-preserving matching cycles remain.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -9053,12 +9064,12 @@ for $w$ gives
 and the last factor disappears modulo the right $H$-coset.  This proves the
 four branches in (3.579), with $v$ still free.
 
-Thus the complete non-target mixed incidence is not bounded-degree merely
-from Section 3.80: for each target $u$ and each first source $v$, there are
-at most four possible second sources $w$, but the clustered support may
-contain arbitrarily many choices of $v$.  Endpoint localization makes the
-multiplier list finite and the branch formulas exact; it does not remove
-this free source parameter.
+Thus the number of non-target mixed contributions to one target bucket is
+not uniformly bounded merely from Section 3.80: for each target $u$ and
+each first source $v$, there are at most four possible second sources $w$,
+but the clustered support may contain arbitrarily many choices of $v$.
+Endpoint localization makes the multiplier list finite and the branch
+formulas exact; it does not remove this free source parameter.
 
 The remaining clustered problem is therefore a genuine three-source
 incidence parity.  A valid completion must either pair the contributions in
@@ -9066,6 +9077,184 @@ incidence parity.  A valid completion must either pair the contributions in
 first sources $v$, or identify the exact finite collision cycles after both
 source parameters are retained.  No bounded-degree or cancellation claim
 for this general mixed term is made here.
+
+### 3.85 The three-source branches are injective matchings
+
+Although the first source in (3.579) remains free, each individual branch
+is injective.  Fix $u,h,\epsilon,\delta$ and put
+
+\[
+ k:=c^\delta u^{-1}g_s^\epsilon u.
+ \tag{3.583}
+\]
+
+If two source representatives $v,v'\in K$ have the same image under that
+branch, then
+
+\[
+ h^{-1}vkH=h^{-1}v'kH,
+ \tag{3.584}
+\]
+
+so
+
+\[
+ v'^{-1}v\in kHk^{-1}\cap K.
+ \tag{3.585}
+\]
+
+The first group on the right of (3.585) has order two, while $K$ is free
+and torsion-free.  Their intersection is trivial, and hence $v=v'$.  Thus,
+for a fixed target $u$, each of the four branches in (3.579) is a matching
+from first sources to second sources.
+
+After the finite endpoint multiplier list is restored, the non-target
+mixed incidence graph for one target bucket has uniformly bounded local
+degree.  Its total number of edges is still unbounded because it may contain
+arbitrarily many first sources.  Therefore the exact remaining object is a
+finite union of weighted matchings, not a finite list of isolated colliders.
+Different matchings can overlap to create branching and cycles.  The
+transported shortlex formulation records their total parity; the next
+section replaces those weights by the order-free integral reader.
+
+### 3.86 The complete paired-target expansion is order-free
+
+Let $F\in\mathcal H_{\mathrm{fin}}$ be integral and use the exact anchored
+decomposition (3.22):
+
+\[
+ \begin{aligned}
+ F&=\sum_\alpha c_\alpha H_\alpha,\\
+ \alpha&=(s,u),\\
+ c_\alpha&=f_s(u).
+ \end{aligned}
+ \tag{3.586}
+\]
+
+For any nonfixed oriented free coordinate $\Delta^+$, homogeneity and
+polarization of (3.569) give
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathscr Q_{\Delta^+}^{\mathbb Z}(F)
+ ={}&\sum_\alpha c_\alpha^2
+ \mathscr Q_{\Delta^+}^{\mathbb Z}(H_\alpha)\\
+ &+\sum_{\alpha<\beta}c_\alpha c_\beta
+ B_{\Xi_{\mathbb Z},\Delta^+}(H_\alpha,H_\beta).
+ \end{aligned}
+ }
+ \tag{3.587}
+\]
+
+Each term on the right is evaluated by the shortlex-free correlation ledger
+(3.36) and its diagonal half (3.570).  Reduce (3.587) modulo two and put
+
+\[
+ \mathcal A(F):=\{\alpha:\overline{c_\alpha}=1\}.
+ \tag{3.588}
+\]
+
+For the paired target $\Delta_s^+(u)$, which is free by Section 3.82, one
+obtains
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\mathscr Q_\Xi(\overline F)]_{\mathscr D_s(u)}
+ ={}&\sum_{\alpha\in\mathcal A(F)}
+ \overline{\mathscr Q_{\Delta_s^+(u)}^{\mathbb Z}(H_\alpha)}\\
+ &+\sum_{\substack{\alpha<\beta\\
+ \alpha,\beta\in\mathcal A(F)}}
+ \overline{B_{\Xi_{\mathbb Z},\Delta_s^+(u)}
+ (H_\alpha,H_\beta)}.
+ \end{aligned}
+ }
+ \tag{3.589}
+\]
+
+Formula (3.589) is the complete anchored-cell expansion of the quadratic
+paired target.  It contains the isolated baseline (3.571), other-cell self
+corridors from Section 3.83, target-incident four-branch terms from Section
+3.80, and general three-source matchings from Sections 3.84--3.85.  No
+transported-label shortlex predicate remains.  The correlation ledger keeps
+the fixed orientation $\Delta_s^+(u)$ integrally, and its final coefficient
+reduces to the unordered mod-two target $\mathscr D_s(u)$.
+
+Thus the remaining clustered obstruction is an incidence parity in the
+explicit correlation ledger, not an order-weighted parity.  The number of
+general matching edges is still unbounded, so (3.589) does not prove
+noncancellation; it identifies the exact order-free sum which must be paired
+or shown odd.
+
+### 3.87 Nonzero-height matching interiors telescope
+
+The height homomorphism removes the interior of every three-source branch
+with nonzero shift.  Fix a target $u$, a multiplier $h$, and one branch
+$(\epsilon,\delta)$ from (3.579).  Since $\nu_t(c)=0$, its endpoints satisfy
+
+\[
+ \boxed{
+ \begin{aligned}
+ \nu_t(w)-\nu_t(v)
+ &=d_{h,s}^\epsilon,\\
+ d_{h,s}^\epsilon&:=\epsilon\nu_t(g_s)-\nu_t(h).
+ \end{aligned}
+ }
+ \tag{3.590}
+\]
+
+The right side is independent of $u,v$, and $\delta$.  Assume it is
+nonzero.  On each residue class modulo $|d_{h,s}^\epsilon|$, choose the
+two-coloring
+
+\[
+ \begin{aligned}
+ \chi_{h,s}^\epsilon(n+d_{h,s}^\epsilon)
+ &=\chi_{h,s}^\epsilon(n)+1,\\
+ \chi_{h,s}^\epsilon&:\mathbb Z\longrightarrow\mathbb F_2.
+ \end{aligned}
+ \tag{3.591}
+\]
+
+Let $E_{h,s}^{\epsilon,\delta}(u)$ be any finite mod-two set of active
+branch edges $v\longrightarrow w$, and let its unoriented vertex boundary
+be
+
+\[
+ \partial E_{h,s}^{\epsilon,\delta}(u)
+ :=\sum_{v\to w\in E_{h,s}^{\epsilon,\delta}(u)}
+ (\delta_v+\delta_w).
+ \tag{3.592}
+\]
+
+Summing (3.591) over its edges gives the exact telescope
+
+\[
+ \boxed{
+ \begin{gathered}
+ |E_{h,s}^{\epsilon,\delta}(u)|
+ =\sum_x
+ [\delta_x]\left(\partial E_{h,s}^{\epsilon,\delta}(u)\right)
+ \chi_{h,s}^\epsilon(\nu_t(x)),\\
+ \text{equality in }\mathbb F_2.
+ \end{gathered}
+ }
+ \tag{3.593}
+\]
+
+Thus every nonzero-height matching contributes only its finite path-end
+values.  It has no directed cycle, because height changes by the same
+nonzero amount at every step.  The unbounded interior can survive only
+through unmatched endpoints of the active support.
+
+When $d_{h,s}^\epsilon=0$, the branch preserves every height layer and the
+coloring (3.591) does not exist.  Those zero-shift matchings can contain
+cycles and retain genuine interior parity.  Consequently the general
+three-source part of (3.589) splits exactly into nonzero-height boundary
+terms (3.593) and a finite family of height-preserving matching residuals.
+The next obligation is to evaluate those residual cycles together with the
+displayed boundary colors; neither sum is asserted to vanish.
 
 ## 4. Exact diagonal sieve
 
