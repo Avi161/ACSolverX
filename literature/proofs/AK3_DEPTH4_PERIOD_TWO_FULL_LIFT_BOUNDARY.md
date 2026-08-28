@@ -8268,14 +8268,18 @@ Therefore
  \tag{3.535}
 \]
 
-Each chosen paired occurrence term contributes one to the coefficient on
-the right, but the repeated paired copies in its source bundle and other
-token pairs inside the same one- or two-source cell can still cancel it.
-Thus (3.535) is an isolation theorem, not yet a noncancellation theorem.  It
-proves that every hypothetical vanishing solution satisfying (3.533) must
-realize the complete internal parity cancellation of the near-maximal
-paired bucket inside $\mathbf d_{W_1}$.  Cross-cell, affine, base, and seam
-terms cannot supply that cancellation.
+The chronological token pair attached to a paired interval contributes to
+the coefficient on the right only when its two transported labels satisfy
+the shortlex predicate in $K_\Xi$.  The paired-axis argument proves that the
+labels are distinct and identifies their double-coset bucket, but it does
+not determine that order predicate.  Repeated paired copies in the source
+bundle and other token pairs inside the same one- or two-source cell can
+also change the same coefficient.  Thus (3.535) is an isolation theorem,
+not yet a noncancellation theorem.  It proves that every hypothetical
+vanishing solution satisfying (3.533) must make the exact ordered internal
+coefficient of the near-maximal paired bucket vanish inside
+$\mathbf d_{W_1}$.  Cross-cell, affine, base, and seam terms cannot supply
+that vanishing.
 
 ### 3.75 A fixed anchor gives one canonical cell per source atom
 
