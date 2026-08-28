@@ -340,3 +340,24 @@ Synthesis: SYNTHESIS.md consolidates cycles 1–21 — the honest AK(3) verdict
 the ranked deciding levers (W2m lemma; a thickenable AC-reachable rank-3
 spelling; a uniform layer-≥2 argument; production-scale closures). PROGRAM.md
 gains a status pointer. W2m (the Θ translation cocycle lemma) is in flight.
+
+## 2026-08-28 · cycle 23 · `110e43e`
+
+W2m: the cocycle lemma decided both ways. PROVED: K1 conjugation law, K2
+cocycle (κ ∈ [N,N] unconditionally; Θ(κ) in exact closed form — linear
+conjugation-defect half + shortlex-inversion bilinear half, NOT bilinear as
+conjectured; 1-cocycle law), and the direction-translation law with its
+corollary that Θ∘σ is exactly Q-equivariant mod 2 — all machine-verified
+literally with firing corruption controls. REFUTED: finite generation — no
+Q-action on H_fin exists at all; the acting object is the Hecke algebra
+Z[<c>\Q/<c>], whose translations generate ≥15 disjointly-supported directions
+from one (fixed-width window translating linearly): rank V_{H_fin} = ∞.
+W2l's chain-7 saturation WITHDRAWN as a bounded-set artifact (rank 63 → 315,
+22 directions outside the native span, quadruple-confirmed); W2L gains a
+post-hoc correction; census on larger S: 51/51 still unattainable-on-S, no
+witness, no obstruction — and growing S is now closed in principle as a
+decision route at any modulus. Surviving structure: the coordinate-window
+law — if uniform, Ξ_Z(Θ) has a periodic normal form on the Hecke module and
+attainability reduces to one finite block plus a shift. Note:
+W2M_THETA_COCYCLE.md; checker theta_cocycle.py. No AK(3), stable AC, or AC
+claim.
