@@ -154,15 +154,25 @@ finite quotient do not close a route.
   conjugation by the displayed `D^-1`.  A `Q_A''`-corrected conjugator,
   multi-row Peiffer lift, or different full relative path remains possible.
   Do not open a finite conjugator ledger.
+- **Complete displayed correction coset obstructed:** the infinite family
+  `n*D^-1`, with `n in Q_A''`, reduces in `Q_A''/Q_A'''` to one twisted
+  coboundary equation.  The ascending-HNN direct limit and exact Fox
+  coefficient reduce it to a Laurent Mahler equation.  Dividing its forced
+  dyadic product leaves coefficient equations at degrees `0,2p,4p,6p`
+  which require the same coefficient to equal both one and zero.  Hence no
+  element of the complete coset `Q_A''*D^-1` conjugates `q` to `B`.  This
+  does not classify other metabelian conjugators or obstruct multi-row
+  Peiffer lifts and different full paths.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
   one-tag endpoint.  Do not escalate through more ambient lower-central
   quotients or metabelian quotients: they are all blind.  For the tagged route,
-  a `Q_A''`-corrected lift in the full relative crossed module is one available
-  route; another full relative path may bypass it.  The unchanged conjugator is
-  closed.  Do not add another finite alternation or conjugator category.  The
-  lifts are complete, but no closure to `(A,B,Xyz)` is proved. Do not add
+  the complete `Q_A''`-correction coset of the displayed metabelian conjugator
+  is now closed.  Another metabelian conjugator, a multi-row Peiffer lift, or
+  another full relative path may bypass it.  Do not add another finite
+  alternation or conjugator category.  The lifts are complete, but no closure
+  to `(A,B,Xyz)` is proved. Do not add
   another sequential cleanup or pinned-donor category. No fixed-base or
   failed-search result is evidence against the bridge.
 - **Two-gate theorem:** either positive gate would have constructively
