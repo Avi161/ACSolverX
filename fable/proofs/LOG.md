@@ -167,3 +167,27 @@ holds. Checker rank3_link_graph.py, 29 controls green. Next: build the missing
 certified family (2-connected planar 6-germ, four macro rotations, P4-style
 shifts) with certified-AC-trivial Txy as its free positive control. Note:
 W6_RANK3_FEASIBILITY.md. No AK(3), stable AC, AC, or thickenability-positive claim.
+
+## 2026-08-28 · cycle 14 · `3dc0d61`
+
+W2g: W2F §8's death-certificate hunt REVERSED into a liveness theorem. Exact
+operator identities give L2M+L3M+L4M = I_Γ·M (Γ = <R,U,w>, telescoping), so
+M/(L2+L3+L4)M ≅ Z[Ω] with Ω = Γ\Q/<c> — a double-coset character no finite
+quotient of Q can see (W2F §8's own route executed over 221 finite quotients:
+blind, only the augmentation survives). Stallings folding: [Q:Γ] = 4 on 44/67
+census chains, ∞ on 23. On all 44 the image of L0M+L1M in Z[Ω] is exactly
+ker ε (d = 1): EVERY window is layer-1 solvable over Z — every k, every K,
+every prime — covering 15/22 g-stratum chains. W2f's zero-mod-3/5 strata are
+one-hop support-truncation artifacts on that part, confirmed constructively by
+27 explicit verified integral corrections at windows the sweep calls dead at
+all primes. 7 infinite-index stratum chains stay open. Review caught a real
+defect pre-commit: union-find re-rooted the base coset during folding (3
+spurious d = 2 chains, failed lift); fixed by pinning the base root, and
+caught by replacing an inert mutation control with an effective vanishing
+control (Ω-rows of L2..L4 identically zero; corruption breaks it). W2F gains
+§6.5 post-hoc correction; two lessons filed. Verdict:
+NO_DEATH_CERTIFICATE_AND_PROVABLY_LIVE on the finite-index part. Consequence
+for the program: layer 1 of the period-two quotient obstructs NOTHING on the
+finite-index part — the scope gap moves to layer 2 ([N,N]) or to the
+infinite-index chains. Note: W2G_G_STRATUM_DEATH.md; checker
+g_stratum_death.py. No AK(3), stable AC, or AC claim.
