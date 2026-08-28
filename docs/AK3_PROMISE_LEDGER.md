@@ -171,14 +171,23 @@ finite quotient do not close a route.
   Hence `q` and `B` are not conjugate in `Q_A`.  This closes every single-row
   literal conjugation lift of (105), not a multi-row Peiffer lift, another
   quotient path, or the unrestricted bridge.
+- **Tagged source normalized completely:** modulo `q=Xy` and `v=Xyz`, one
+  has `y=x`, `z=1`, and both `A` and `r` freely reduce to `x`.  Thus
+  `r*A^-1 in Ncl(q,v)` and `r in Ncl(A,q,v)`, so exact donor macros remove
+  `r` from `rt` while restoring all three donor rows.  The canonical relative
+  class is now exactly the tagged normal-generator gate `(q,t) -> (B,t)` in
+  `Q_A*<t>`.  Nonconjugacy of `q` and `B` does not decide this two-row AC
+  orbit; no tag-rigidity or destabilization theorem is known here.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
   one-tag endpoint.  Do not escalate through more ambient lower-central
   quotients or metabelian quotients: they are all blind.  For the tagged route,
-  every literal conjugator from `q` to `B` is now closed.  A multi-row Peiffer
-  lift, another quotient path, or another full relative path may bypass this
-  single-row gate.  Do not add another finite
+  every literal conjugator from `q` to `B` is now closed, and the coefficient
+  `r` has been removed from the source.  Work on the complete tagged gate
+  `(q,t) -> (B,t)` through a relative crossed-module invariant or constructive
+  path.  A multi-row Peiffer lift or another full relative path may bypass
+  the closed single-row gate.  Do not add another finite
   alternation or conjugator category.  The lifts are complete, but no closure
   to `(A,B,Xyz)` is proved. Do not add
   another sequential cleanup or pinned-donor category. No fixed-base or

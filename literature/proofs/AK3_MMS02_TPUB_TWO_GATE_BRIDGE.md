@@ -81,6 +81,12 @@ with $q$ already in $Q_A$.  Thus every possible literal conjugator has the
 same correction equation from Section 6.16.  The words $q$ and $B$ are not
 conjugate in $Q_A$, but multi-row relative paths remain open.
 
+Section 6.18 removes the coefficient $r$ from the tagged source exactly.
+Modulo $q$ and $v$, both $A$ and $r$ reduce to $x$, so $r$ is already in
+the normal closure of the three fixed/current donor rows.  The remaining
+relative problem is precisely the tagged normal-generator gate
+$(q,t)\to(B,t)$ in $Q_A*\langle t\rangle$.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -2273,6 +2279,69 @@ not project to the particular quotient path (105).  The interleaved relative
 class (83), the unrestricted MMS02 bridge, stable AK(3), and ordinary AK(3)
 remain open.
 
+### 6.18. The tagged coefficient can be removed exactly
+
+There is one further simplification of the normalized source (86) which
+does not open another cleanup ledger.  Work first in the quotient of
+$F(x,y,z)$ by $q=Xy$ and $v=Xyz$.  The two equations give $y=x$ and $z=1$.
+Direct free reduction then gives
+
+\[
+ \begin{aligned}
+ A&\longmapsto x,&
+ r&\longmapsto x.
+ \end{aligned}
+\]
+
+Therefore
+
+\[
+ \begin{aligned}
+ rA^{-1}&\in\operatorname{Ncl}_{F(x,y,z)}(q,v),&
+ r&\in\operatorname{Ncl}_{F(x,y,z)}(A,q,v).
+ \end{aligned}
+ \tag{127}
+\]
+
+Choose any finite normal-closure factorization of $r^{-1}$ by conjugates of
+$A^{\pm1},q^{\pm1},v^{\pm1}$.  The standard donor macro appends its factors
+to the tagged row while restoring every donor.  Hence
+
+\[
+ (A,q,v,rt)\sim_{\mathrm{AC}}(A,q,v,t).
+ \tag{128}
+\]
+
+Combining (85) and (128), the endpoint-local problem (83) is equivalent to
+
+\[
+ (A,q,v,t)\longrightarrow(A,B,v,t).
+ \tag{129}
+\]
+
+Equivalently, after passing to the relative ambient group, its exact open
+core is
+
+\[
+ \boxed{
+ (q,t)\longrightarrow(B,t)
+ \text{ in }Q_A*\langle t\rangle.
+ }
+ \tag{130}
+\]
+
+**Theorem 6.12 (tagged normal-generator reduction).**  Closure of the
+canonical relative class (83) is equivalent to closure of the tagged gate
+(130).  Both $q$ and $B$ normally generate $Q_A$, while Theorem 6.11 proves
+that they are not conjugate there.
+
+The final sentence does not turn literal nonconjugacy into tagged-pair
+inequivalence.  Arbitrary Andrews--Curtis paths may multiply the first row
+by conjugates of the tag row, move the tag row, and later cancel the added
+stable-letter syllables.  No tag-rigidity or destabilization theorem is
+proved.  The gate (130), the unrestricted MMS02 bridge, stable AK(3), and
+ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2308,9 +2377,12 @@ The logical gates remain separate:
     complete $Q_A''$-correction coset is obstructed, and the metabelian
     centralizer classification rules out every literal conjugator from $q$
     to $B$, but multi-row Peiffer lifts and full relative paths remain open;
-12. no MMS02 statement evaluates the period-two class-two ledger or its
+12. the coefficient $r$ can be removed from the tagged source, so the exact
+    open core is $(q,t)\to(B,t)$, but literal nonconjugacy does not decide this
+    two-row Andrews--Curtis orbit;
+13. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-13. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+14. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

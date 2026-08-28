@@ -180,6 +180,10 @@ def test_mms02_tagged_buffer_exact_word_replay():
     assert exponent_vector(B_bar, "xy") == (-1, 1)
     assert substitute(A_bar, {"y": ""}) == ""
     assert substitute(q, {"y": ""}) == "X"
+    assert substitute(q, {"y": "x"}) == ""
+    A_after_q = substitute(A_bar, {"y": "x"})
+    r_after_q = substitute(r_bar, {"y": "x"})
+    assert A_after_q == r_after_q == "x"
     assert substitute(B_bar, {"y": ""}) == "X"
 
     def evaluate(word: str) -> tuple[Fraction, int]:
