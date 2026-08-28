@@ -80,7 +80,13 @@ canonical-section/inverse core.  Section 3.54 identifies that abstract
 core with one explicit reverse-block tensor, so its remaining fixed
 coordinates can be evaluated without subtracting two wedge classes.
 Section 3.55 expands that tensor into a finite reverse-block inversion
-count on the actual correction tokens.
+count on the actual correction tokens.  Section 3.56 combines this with
+the finite-star theorem: the complete fixed gate is exactly one
+coefficientwise equation between the reverse quadratic count and a
+finite-star affine-linear value plus the base constant.
+Section 3.57 gives the metric form of that statement: if the correction
+support has free radius $R$, the affine-linear side occupies only fixed
+buckets of length at most $R$ plus one uniform constant.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6540,6 +6546,144 @@ Thus every remaining correction-only fixed value is the sum of one
 quadratic reverse-block inversion count and the bounded linear seam count.
 The fixed-literal affine term and base constant remain separate, and no
 nonvanishing claim is made.
+
+### 3.56 Complete fixed gate: reverse quadratic versus finite star
+
+The reverse count also identifies the fixed part of the quadratic token
+kernel in (3.399).  For $D\in\mathscr D_1$, put
+
+\[
+ \begin{aligned}
+ c_D&:=[C_\Xi]_D,\\
+ \lambda_D(F)&:=[\mathscr L_\Xi(F)]_D.
+ \end{aligned}
+ \tag{3.424}
+\]
+
+Then
+
+\[
+ \boxed{
+ [\mathscr Q_\Xi(F)]_D=\kappa_D^{\mathrm{rev}}(F).
+ }
+ \tag{3.425}
+\]
+
+Indeed, $\mathscr Q_\Xi$ counts pairs of homogeneous correction tokens in
+forward literal block order, with increasing local module order in a
+positive occurrence and decreasing local module order in a negative one.
+The local orders are the same in (3.420), while the strict order of two
+different occurrence blocks is reversed.  For one cross-occurrence token
+pair with distinct transported labels, the forward and reverse shortlex
+predicates add to one.  For equal labels, both sides are zero in every
+nontrivial double coset.  Therefore the difference between the forward and
+reverse counts in a fixed coordinate is exactly the corresponding
+coordinate of the strict external wedge.  It vanishes globally by (3.407),
+proving (3.425).  One-token transport tensors are in
+$\mathscr L_\Xi$, not in this comparison; their correction-only fixed part
+is the seam term in (3.423).
+
+Substitution in (3.400) gives the complete fixed coordinate
+
+\[
+ \boxed{
+ [q_\Xi(F)]_D
+ =c_D+\lambda_D(F)+\kappa_D^{\mathrm{rev}}(F).
+ }
+ \tag{3.426}
+\]
+
+Consequently all inversion-fixed coordinates vanish exactly when
+
+\[
+ \boxed{
+ \begin{aligned}
+ \kappa_D^{\mathrm{rev}}(F)&=c_D+\lambda_D(F),\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.427}
+\]
+
+The right side has the finite-star support from (3.402), together with the
+fixed finite support of $C_\Xi$.  Thus outside those buckets, (3.427)
+requires the reverse quadratic count itself to vanish.  This is an exact
+support reduction, not a separation theorem: a reverse moving--moving pair
+can still occupy a finite-star bucket.  The remaining fixed-sector task is
+to prove that (3.427) has no balanced finite solution, or to retain any
+solution when testing the nonfixed and higher lift equations.
+
+### 3.57 The affine side has a uniform slope-one radius
+
+Use the identification $X=K$ from (3.206)--(3.207), with free basis
+$x=t$ and $y=ctc$.  If a nonidentity double coset has representative
+$D=HsH$ with $s\in K$, define
+
+\[
+ \ell_K(D):=|s|_K.
+ \tag{3.428}
+\]
+
+This is well defined on the unoriented double-coset index: the two
+$K$-representatives of $HsH$ are $s$ and $\alpha(s)$, while inversion
+replaces them by $s^{-1}$ and $\alpha(s^{-1})$; both operations preserve
+free reduced length.
+
+Write $q_o=m_oc^{\eta_o}$ as in (3.336), and define the fixed constants
+
+\[
+ \begin{aligned}
+ M_*&:=\max_{1\le o\le16}|m_o|_K,\\
+ Y_*^{\mathrm{aff}}&:=\max_{y\in\mathcal Y_{\mathrm{aff}}}|y|_K,\\
+ C_*&:=M_*+Y_*^{\mathrm{aff}},\\
+ C_0&:=\max\{\ell_K(D):[C_\Xi]_D\ne0\}.
+ \end{aligned}
+ \tag{3.429}
+\]
+
+An empty maximum is read as zero.  For a finite correction tuple, put
+
+\[
+ R(F):=\max\left(
+  \{0\}\cup
+  \{|v|_K:F_s(v)\ne0,\ 0\le s\le4\}
+ \right).
+ \tag{3.430}
+\]
+
+Every bucket in $\operatorname{supp}\mathscr L_\Xi(F)$ has the form
+$[Hy^{-1}m_o\alpha^{\eta_o}(v)H]_\pm$ from (3.402).  The free triangle
+inequality therefore gives the uniform bound
+
+\[
+ \boxed{
+ [\mathscr L_\Xi(F)]_D\ne0
+ \Longrightarrow
+ \ell_K(D)\le R(F)+C_*.
+ }
+ \tag{3.431}
+\]
+
+Combining (3.427) and (3.431), vanishing of every inversion-fixed
+coordinate forces
+
+\[
+ \boxed{
+ \begin{aligned}
+ \kappa_D^{\mathrm{rev}}(F)&=0,\\
+ D&\in\mathscr D_1,\\
+ \ell_K(D)&>\max\{C_0,R(F)+C_*\}.
+ \end{aligned}}
+ \tag{3.432}
+\]
+
+Thus the remaining fixed obstruction has a precise leading-tail form.
+The constant and affine-linear terms have slope at most one in correction
+radius, while a reverse moving--moving relative word can have length near
+$2R(F)$.  No theorem here forces such a slope-two bucket to survive:
+conjugate pairs can stay short along an axis, and different reverse pairs
+can collide.  The next exact fixed-sector obligation is to prove survival
+beyond (3.432), or to classify the finite-support configurations for which
+the entire reverse tail cancels.
 
 ## 4. Exact diagonal sieve
 
