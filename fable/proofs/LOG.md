@@ -249,3 +249,25 @@ first genuine obstruction, at exactly the prime (p = 2) layer 1 found
 permissive. The WIP checkpoint d39f105 is superseded by this reviewed state.
 Note: W2H_INFINITE_INDEX_LIVENESS.md; checker infinite_index_liveness.py.
 No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 18 · `8db0718`
+
+W2i: the layer-2 fork resolves to BLINDNESS-WITH-STRUCTURE. Γ = <R,U,w> is
+torsion-free on 67/67 chains, so Λ²M's coinvariants are free — W2h's predicted
+2-torsion at p = 2 is identically absent, for a reason independent of the
+operators. Lemma 6 block-diagonalizes pair orbits over displacement classes
+(layer 2 = layer 1 one level finer, on Γ\Q); d₂ = 1 on 1,936 sampled blocks and
+at every displacement class of all 44 finite-index chains by the z-free
+reduction (Lemma 7); the operator image exactly fills ker Ξ_Z, upgrading the
+source's (3.17) surjection to an isomorphism Ξ_Z: C₂ ≅ W_Q. Consequence:
+Ξ_Z(Θ(F)) = 0 is necessary AND sufficient for the layer-2 equation (3.8) —
+the entire layer-2 question is the affine-quadratic residual class Θ, nothing
+else; a linear obstruction cannot exist. Two corrections to W2h recorded
+(hypotheses of the Λ²M identification; the unreachable "d₂ = 1 ⇒ blind"
+framing), W2H gains a post-hoc correction section. Controls: 73,968 vanishing
+rows / 0, 49,312 Ξ rows / 0, 16,080 Γ-invariance / 0 with fold-found
+witnesses, corruptions fire 67/67, Λ¹ specialization reproduces W2g 44/44,
+synthetic fires 1,056/1,056, torsion path fired on the deliberate Γ' control
+(268/268 verified swap witnesses). Next: evaluate Ξ_Z(Θ(F)) beyond the codex
+witness — now the whole layer-2 question. Note: W2I_LAYER2_D2.md; checker
+layer2_d2_invariant.py. No AK(3), stable AC, or AC claim.
