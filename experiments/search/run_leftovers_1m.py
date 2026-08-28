@@ -63,8 +63,10 @@ import heapq
 import json
 import multiprocessing as mp
 import os
+import queue as _queue
 import shutil
 import sys
+import threading
 import time
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -77,6 +79,27 @@ from experiments.search.greedy_baseline import (  # noqa: E402
     key_lengths, pack_key, unpack_arrays, unpack_key,
 )
 from experiments.search.heuristics import make_priority  # noqa: E402
+
+# The packed-arena engine: a nibble arena, an int32 binary heap and an
+# open-addressing table, all in numba, at ~76-84 B/state against the Python
+# solvers' ~390 B. Measured on ac19_7284 from this very row list, budget 60,000,
+# cap 48: 802 n/s against LeanHeuristicSolver's 290, and 7.6 GB at 1M against 46
+# -- which is 6 workers on a 51 GB runtime instead of 1. Between them that is
+# more than an order of magnitude of wall clock.
+#
+# Imported behind a guard so this module still works where the engine is absent
+# (it is not on `main`); the Python solvers below stay as the fallback AND as the
+# oracle the tests check the engine against.
+try:  # pragma: no cover - exercised by whichever branch this sits on
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.heuristic_search.core.hsolve import LENGTH_ONLY
+    from experiments.search.greedy_compact import (
+        _RESERVE_SLACK, est_states, row_width)
+    HAVE_HCOMPACT = True
+except ImportError:  # pragma: no cover
+    greedy_search_hcompact = None
+    LENGTH_ONLY = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
+    HAVE_HCOMPACT = False
 
 ROOT = _ROOT
 SCREEN_DIR = os.path.join(
@@ -289,12 +312,34 @@ def greedy_search_h_lean(r1_str, r2_str, node_budget, max_relator_length=24,
 
 
 def _run_greedy(r1, r2, budget, mrl, progress=None):
+    if HAVE_HCOMPACT:
+        return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
+                                      config=LENGTH_ONLY, progress=progress)
     return greedy_search(r1, r2, budget, mrl, high_speedup=True, progress=progress)
 
 
 def _run_s20_mk2(r1, r2, budget, mrl, progress=None):
+    if HAVE_HCOMPACT:
+        return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
+                                      config=S20_MK2, progress=progress)
     return greedy_search_h_lean(r1, r2, budget, mrl, config=S20_MK2,
                                 progress=progress)
+
+
+def est_gb(budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
+    """Peak GB one search costs, for sizing the pool. Not a limit, an estimate.
+
+    With the arena engine this is its own reservation formula, so the number the
+    pool is sized by and the number the search actually allocates are the same
+    quantity rather than two guesses that can drift apart. Without it, the
+    fallback Python solvers are measured: ~16 GB at 1M for the greedy arm's lean
+    solver and ~46 GB for the heuristic one, so the larger is used -- undersizing
+    is an OOM, oversizing is only a slower run.
+    """
+    if not HAVE_HCOMPACT:
+        return max(1.0, 46.0 * budget / 1_000_000)
+    n = max(1024, int(est_states(budget) * _RESERVE_SLACK)) + 4 * (mrl + 1) ** 2
+    return n * (row_width(mrl) + 31) / 2 ** 30 + 0.6
 
 
 # name -> the search, its 100k-unsolved CSV, the 100k jsonl that CSV was read off,
@@ -311,7 +356,6 @@ ARMS = {
         "jsonl": "ac19_unsolved10k_baseline_b100000_mrl48.jsonl",
         "n_rows": 222,
         "n_common": 221,
-        "gb_per_worker": 16.0,   # measured: 2.71 GB at 200k pops on ac19_420
         "label": "greedy (total-length ordering; the screen's `baseline` arm)",
     },
     "s20_mk2": {
@@ -320,7 +364,6 @@ ARMS = {
         "jsonl": "ac19_unsolved10k_s20_mk2_b100000_mrl48.jsonl",
         "n_rows": 39,
         "n_common": 39,
-        "gb_per_worker": 46.0,   # measured: 1.17 GB at 25.6k pops on ac19_7284
         "label": "s20_mk2 (priority = L + 20*S + 2*MK)",
     },
 }
@@ -426,7 +469,8 @@ def _available_gb():
         return 8.0
 
 
-def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None):
+def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None,
+                    budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
     """``(n_workers, gb_per_worker)`` -- RAM-bound, not CPU-bound.
 
     A 1M-node search is a memory event before it is a compute one, and it grows
@@ -445,8 +489,8 @@ def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None):
     worker is always allowed even when the estimate says there is no room, because
     the estimate is linear and a real row may well be cheaper.
     """
-    _, spec = resolve_arm(arm)
-    per = spec["gb_per_worker"]
+    resolve_arm(arm)
+    per = est_gb(budget, mrl)
     cpus = cpu_count or os.cpu_count() or 1
     if n_workers not in (None, "auto"):
         return max(1, int(n_workers)), per
@@ -484,6 +528,31 @@ def _in_search_heartbeat(name, budget, every=60.0, log=print):
     return progress
 
 
+# Set in each pool worker by ``_init_worker``. A spawn worker is a fresh
+# interpreter whose ``sys.stdout`` is the real fd 1 -- which under Colab is the
+# kernel's log, NOT the cell output -- so anything a worker prints is invisible in
+# the notebook. That is why the heartbeat showed up on the single-worker arm
+# (which runs in the parent) and vanished on the three-worker one. Workers hand
+# their lines to the parent over this queue instead of printing them.
+_WORKER_LOG_Q = None
+
+
+def _init_worker(q):
+    global _WORKER_LOG_Q
+    _WORKER_LOG_Q = q
+
+
+def _worker_log(msg):
+    """Send one line to the parent, or print it when running in the parent."""
+    if _WORKER_LOG_Q is None:
+        print(msg, flush=True)
+        return
+    try:
+        _WORKER_LOG_Q.put_nowait(msg)
+    except Exception:                  # a full or closed queue must not kill a row
+        pass
+
+
 def _job(args):
     arm, row, budget, mrl, heartbeat_secs = args
     _, spec = resolve_arm(arm)
@@ -495,7 +564,8 @@ def _job(args):
     t = time.time()
     st = spec["run"](row["r1"], row["r2"], budget, mrl,
                      progress=_in_search_heartbeat(row["name"], budget,
-                                                   heartbeat_secs))
+                                                   heartbeat_secs,
+                                                   log=_worker_log))
     return {
         "name": row["name"],
         "arm": arm,
@@ -593,12 +663,13 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     seen = _done(out) if resume else set()
     todo = [r for r in rows if r["name"] not in seen]
 
-    n_workers, per_gb = resolve_workers(key, n_workers)
+    n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl)
     log(f"  arm     : {key} -- {spec['label']}")
     log(f"  rows    : {len(rows)} from {used}"
         + ("  [common denominator]" if common_denominator else ""))
     log(f"  budget  : {budget:,} nodes, cap {mrl}")
-    log(f"  workers : {n_workers} (~{per_gb:.0f} GB/search reserved)")
+    log(f"  engine  : {'hcompact (packed arena, numba)' if HAVE_HCOMPACT else 'python fallback'}")
+    log(f"  workers : {n_workers} (~{per_gb:.1f} GB/search reserved)")
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
     log(f"  -> {out}")
 
@@ -608,7 +679,7 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     done = 0
     if jobs:
         with open(out, "a") as fh:
-            for rec in _iter_results(jobs, n_workers):
+            for rec in _iter_results(jobs, n_workers, log):
                 fh.write(json.dumps(rec) + "\n")
                 fh.flush()
                 done += 1
@@ -619,18 +690,44 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     return out
 
 
-def _iter_results(jobs, n_workers):
+def _iter_results(jobs, n_workers, log=print):
     if n_workers <= 1:
-        for j in jobs:
+        for j in jobs:                 # in-process: the heartbeat prints directly
             yield _job(j)
         return
     # maxtasksperchild=1: every row gets a fresh interpreter, so one row's peak
     # RSS cannot become the next row's floor. The cost is a numba re-import per
     # row (seconds, and cached on disk) against a search measured in hours.
+    #
+    # The queue goes in through `initializer`, not as a task argument -- a
+    # multiprocessing Queue cannot be pickled into an imap payload. The parent is
+    # blocked on imap_unordered for the length of a row, so a daemon thread does
+    # the draining; printing is the parent's job because only the parent's stdout
+    # is the one Colab renders.
     ctx = mp.get_context("spawn")
-    with ctx.Pool(n_workers, maxtasksperchild=1) as pool:
-        for rec in pool.imap_unordered(_job, jobs):
-            yield rec
+    q = ctx.Queue()
+    stop = threading.Event()
+
+    def drain():
+        while True:
+            try:
+                log(q.get(timeout=0.25))
+            except _queue.Empty:
+                if stop.is_set():
+                    return
+            except (OSError, ValueError):      # queue closed under us
+                return
+
+    pump = threading.Thread(target=drain, daemon=True)
+    pump.start()
+    try:
+        with ctx.Pool(n_workers, initializer=_init_worker, initargs=(q,),
+                      maxtasksperchild=1) as pool:
+            for rec in pool.imap_unordered(_job, jobs):
+                yield rec
+    finally:
+        stop.set()
+        pump.join(timeout=5.0)
 
 
 def _beat(rec, done, total, t0, last, every, out, mirror_dir, log):

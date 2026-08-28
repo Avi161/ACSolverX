@@ -21,9 +21,10 @@ from experiments.search import make_leftover_notebooks as mk
 from experiments.search.greedy_baseline import greedy_search
 from experiments.search.heuristics import greedy_search_h
 from experiments.search.run_leftovers_1m import (
-    ARMS, COMMON_DENOMINATOR_EXCLUDED, NODE_BUDGET, S20_MK2, SCREEN_DIR,
-    _in_search_heartbeat, classify, greedy_search_h_lean, load_rows, out_path,
-    read_rows, report, resolve_arm, resolve_workers, run_arm, unsolved_at_100k,
+    ARMS, COMMON_DENOMINATOR_EXCLUDED, HAVE_HCOMPACT, NODE_BUDGET, S20_MK2,
+    SCREEN_DIR, _in_search_heartbeat, classify, est_gb, greedy_search_h_lean,
+    load_rows, out_path, read_rows, report, resolve_arm, resolve_workers,
+    run_arm, unsolved_at_100k,
 )
 
 ROOT = mk.ROOT
@@ -273,21 +274,33 @@ def test_one_worker_is_always_allowed_even_when_ram_looks_too_small():
         assert n == 1
 
 
-def test_the_heuristic_arm_reserves_more_than_the_greedy_one():
-    """Same solver, different orderings -- and the orderings go different places.
-    s20_mk2 prefers thicker blocks, so it queues longer relators and a wider
-    frontier: measured ~46 GB at 1M against the greedy arm's ~16 GB."""
-    _, g = resolve_workers("greedy", 1)
-    _, s = resolve_workers("s20_mk2", 1)
-    assert s > g
-    assert 10.0 <= g <= 24.0
-    assert 30.0 <= s <= 60.0
+def test_the_reservation_is_the_engines_own_arena_formula():
+    """Sizing the pool and sizing the arena must be the SAME number, not two
+    guesses that drift. With the arena engine, `est_gb` is its reservation."""
+    if not HAVE_HCOMPACT:
+        pytest.skip("packed-arena engine not on this branch")
+    from experiments.search.greedy_compact import (
+        _RESERVE_SLACK, est_states, row_width)
+    n = max(1024, int(est_states(NODE_BUDGET) * _RESERVE_SLACK)) + 4 * 49 ** 2
+    assert est_gb(NODE_BUDGET, 48) == pytest.approx(
+        n * (row_width(48) + 31) / 2 ** 30 + 0.6)
+    assert 6.0 <= est_gb(NODE_BUDGET, 48) <= 10.0
 
 
-def test_the_heuristic_arm_gets_one_worker_on_a_51gb_high_ram_runtime():
-    """The reservation is only useful if it actually bites on the target box."""
-    assert resolve_workers("s20_mk2", "auto", available_gb=51.0, cpu_count=8)[0] == 1
-    assert resolve_workers("greedy", "auto", available_gb=51.0, cpu_count=8)[0] == 3
+def test_the_reservation_scales_with_the_budget():
+    """A 2,000-node smoke must not reserve the 1M footprint and drop to 1 worker."""
+    assert est_gb(2_000, 48) < est_gb(NODE_BUDGET, 48)
+    assert resolve_workers("greedy", "auto", available_gb=51.0, cpu_count=8,
+                           budget=2_000)[0] == 8
+
+
+def test_both_arms_fit_several_workers_on_a_51gb_high_ram_runtime():
+    """The whole point of the arena engine: 1 worker became 6."""
+    for arm in ARM_NAMES:
+        n, gb = resolve_workers(arm, "auto", available_gb=51.0, cpu_count=8)
+        assert n == max(1, int((51.0 - 2.0) // gb))
+        if HAVE_HCOMPACT:
+            assert n >= 5, (arm, n, gb)
 
 
 def test_an_explicit_worker_count_is_taken_literally():
@@ -496,12 +509,21 @@ def _exec_notebook(cells, tmp_path):
 @pytest.mark.parametrize("arm", ARM_NAMES)
 def test_the_notebook_runs_end_to_end_on_its_smoke_path(arm, cells, tmp_path):
     cwd = os.getcwd()
-    saved = dict(sys.modules)
+    saved = {k: v for k, v in sys.modules.items()
+             if k == "experiments" or k.startswith("experiments.")}
     try:
         ns = _exec_notebook(cells[arm], tmp_path)
     finally:
         os.chdir(cwd)
-        sys.modules.clear()
+        # Undo ONLY what the notebook's SETUP purges. A blanket
+        # `sys.modules.clear()` also drops stdlib entries, and re-importing
+        # `multiprocessing.connection` afterwards yields a second module object
+        # whose `rebuild_connection` is not the one ForkingPickler expects --
+        # which broke a later pool test, not this one. Test isolation that
+        # reaches past its own subject is not isolation.
+        for k in [k for k in sys.modules
+                  if k == "experiments" or k.startswith("experiments.")]:
+            del sys.modules[k]
         sys.modules.update(saved)
 
     assert ns["SMOKE_RUN"] is True, "the notebook must ship smoke-first"
@@ -615,3 +637,84 @@ def test_a_missing_or_unreadable_mirror_does_not_stop_the_run(tmp_path):
     run_arm("greedy", str(tmp_path), budget=300, mrl=24, n_workers=1, limit=1,
             mirror_dir=str(tmp_path / "never" / "mounted"), log=lambda *a: None)
     assert len(read_rows(out_path("greedy", str(tmp_path), 300, 24))) == 1
+
+
+def test_progress_from_pool_workers_reaches_the_parent(tmp_path):
+    """The bug the single-worker arm hid.
+
+    A spawn worker is a fresh interpreter whose ``sys.stdout`` is the real fd 1 --
+    under Colab that is the kernel log, not the cell output -- so a worker's own
+    print is invisible in the notebook. The single-worker arm ran in the parent
+    and reported fine; the three-worker arm went silent. Workers must hand their
+    lines back over the queue and let the PARENT print them.
+    """
+    lines = []
+    run_arm("greedy", str(tmp_path), budget=6_000, mrl=24, n_workers=2, limit=2,
+            heartbeat_secs=0.0, log=lines.append)
+    beats = [ln for ln in lines if "nodes (" in ln and "n/s" in ln]
+    assert beats, f"no in-search progress reached the parent: {lines}"
+    assert len(read_rows(out_path("greedy", str(tmp_path), 6_000, 24))) == 2
+
+
+def test_the_worker_log_falls_back_to_print_in_the_parent(capsys):
+    """`_job` runs in-process on the single-worker path, where there is no queue."""
+    from experiments.search import run_leftovers_1m as r
+    assert r._WORKER_LOG_Q is None
+    r._worker_log("hello from the parent")
+    assert "hello from the parent" in capsys.readouterr().out
+
+
+# --------------------------------------------------- the packed-arena engine
+#
+# Swapping the engine under a run that has already produced published numbers is
+# only legitimate if it is the SAME search. hcompact argues that from its layout;
+# these check it against the Python solvers on the rows this experiment actually
+# runs, which is the claim that matters here.
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+@pytest.mark.parametrize("arm", ARM_NAMES)
+def test_the_arena_engine_agrees_with_the_python_solver_on_real_rows(arm):
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.heuristic_search.core.hsolve import LENGTH_ONLY
+    cfg = LENGTH_ONLY if arm == "greedy" else S20_MK2
+    for row in load_rows(arm)[0][:3]:
+        fast = greedy_search_hcompact(row["r1"], row["r2"], 800,
+                                      max_relator_length=48, config=cfg)
+        slow = greedy_search_h_lean(row["r1"], row["r2"], 800, 48, config=cfg)
+        for k in ("solved", "nodes_explored", "path_length",
+                  "min_relator_length", "max_relator_length_expanded"):
+            assert fast[k] == slow[k], (arm, row["name"], k)
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_greedy_arm_still_reproduces_the_length_baseline_exactly():
+    """The control gate: whatever engine runs it, the greedy arm IS the baseline."""
+    from experiments.search.greedy_baseline import greedy_search
+    for row in load_rows("greedy")[0][:3]:
+        got = ARMS["greedy"]["run"](row["r1"], row["r2"], 800, 48)
+        want = greedy_search(row["r1"], row["r2"], 800, 48, high_speedup=True)
+        assert (got["solved"], got["nodes_explored"]) == \
+               (want["solved"], want["nodes_explored"]), row["name"]
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_engine_is_what_the_arms_actually_call():
+    """A fallback that silently stays selected would quietly cost 10x."""
+    import experiments.search.run_leftovers_1m as r
+    calls = []
+    real = r.greedy_search_hcompact
+
+    def spy(*a, **kw):
+        calls.append(kw.get("config"))
+        return real(*a, **kw)
+
+    r.greedy_search_hcompact = spy
+    try:
+        ARMS["greedy"]["run"]("xyx", "yx", 50, 24)
+        ARMS["s20_mk2"]["run"]("xyx", "yx", 50, 24)
+    finally:
+        r.greedy_search_hcompact = real
+    assert len(calls) == 2
+    assert calls[1] == S20_MK2
+    assert calls[0]["segments"][0]["w"] == {"L": 1.0}

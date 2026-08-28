@@ -80,18 +80,23 @@ COMMON_DENOMINATOR = False
 NODE_BUDGET = 1_000_000      # the lift this notebook exists to run
 MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
 
-# "auto" sizes the pool by FREE RAM, not by core count. Measured on ac19_420 from
-# this list: 2.71 GB by 200,000 pops at ~1050 nodes/s, growing with what the
-# search DISCOVERS rather than what it pops, so a 1M-node search wants ~16 GB.
-# On a 51 GB high-RAM runtime that is 3 workers. Oversubscribing does not make a
-# slow run, it makes an OOM that loses the session.
+# Engine: `hcompact` -- the packed arena (nibble arena, int32 binary heap,
+# open-addressing table, all in numba) at ~76-84 B/state against the Python
+# solvers' ~390 B. Measured on a row from these lists at cap 48: 802 nodes/s
+# against the pure-Python lean solver's 290, and 7.6 GB at 1M against 46.
+#
+# "auto" sizes the pool by FREE RAM, not by core count, using the engine's OWN
+# arena formula -- so the number the pool is sized by and the number the search
+# allocates are the same quantity. On a 51 GB high-RAM runtime that is 6 workers.
+# Oversubscribing does not make a slow run, it makes an OOM that loses the
+# session; SETUP prints the engine and the worker count it resolved.
 N_WORKERS = "auto"
 RESUME    = True             # rows already in the jsonl are skipped
 
-# EXPECT A LONG RUN, AND EXPECT TO RESUME IT. A row that uses its whole budget
-# takes ~16 min, so 222 of them at 3 workers is on the order of 20 hours. Colab
-# will disconnect first -- that is fine and planned for: reopen, Run All, and
-# RESUME picks up from the Drive-mirrored jsonl. Nothing is recomputed.
+# EXPECT TO RESUME. Colab will disconnect before 222 rows are done -- that is
+# planned for: reopen, Run All, and RESUME picks up from the Drive-mirrored
+# jsonl. Nothing already recorded is recomputed, and a wiped /content reseeds
+# from Drive.
 
 LOCAL_OUT_DIR = "results/heuristic_search/leftovers_1m"
 DRIVE_OUT_DIR = "/content/drive/MyDrive/acsolverx/leftovers_1m_greedy"
@@ -144,24 +149,23 @@ COMMON_DENOMINATOR = False
 NODE_BUDGET = 1_000_000      # the lift this notebook exists to run
 MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
 
-# "auto" sizes the pool by FREE RAM, not by core count. THIS ARM IS THE HUNGRY
-# ONE and the runtime must be High-RAM.
+# Engine: `hcompact` -- the packed arena (nibble arena, int32 binary heap,
+# open-addressing table, all in numba) at ~76-84 B/state against the Python
+# solvers' ~390 B. This arm is why it matters: `heuristics.greedy_search_h` keeps
+# a parent map keyed by string tuples and measured 1.64 GB by 12,288 pops, past
+# 100 GB at 1M. Measured on ac19_7284 from this list at cap 48, hcompact does
+# 802 nodes/s against the pure-Python lean fallback's 290, in 7.6 GB at 1M
+# against 46 -- 6 workers on a 51 GB runtime instead of 1.
 #
-# It does NOT run heuristics.greedy_search_h: that solver keeps a parent map and a
-# move map keyed by string tuples so it can rebuild certificates, and it measured
-# 1.64 GB by 12,288 pops on a row from this screen -- past 100 GB at 1M. It runs
-# LeanHeuristicSolver instead, the same memory-lean solver the greedy arm uses
-# with the heap ordering swapped. Measured on ac19_7284 from this list: 1.17 GB by
-# 25,600 pops at ~330 nodes/s, so ~46 GB at 1M.
-#
-# That is still more than the greedy arm's ~16 GB, because the orderings go
-# different places -- s20_mk2 prefers thicker blocks, so it queues longer relators
-# and a wider frontier. On a 51 GB high-RAM runtime it fits ONE worker. A standard
-# (non-high-RAM) runtime has ~13 GB and cannot run this arm at 1M at all; SETUP
-# prints the worker count it resolved, so check that line before walking away.
-# 39 rows at ~50 min each is on the order of a day and a half, resumable.
+# "auto" sizes the pool by FREE RAM, not by core count, using the engine's OWN
+# arena formula, so the number the pool is sized by and the number the search
+# allocates are the same quantity. SETUP prints the engine and the worker count
+# it resolved -- check that line before walking away.
 N_WORKERS = "auto"
 RESUME    = True             # rows already in the jsonl are skipped
+
+# EXPECT TO RESUME: reopen, Run All, and RESUME picks up from the Drive-mirrored
+# jsonl; a wiped /content reseeds from Drive.
 
 LOCAL_OUT_DIR = "results/heuristic_search/leftovers_1m"
 DRIVE_OUT_DIR = "/content/drive/MyDrive/acsolverx/leftovers_1m_s20_mk2"
