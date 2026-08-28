@@ -68,3 +68,32 @@ letter) — the search had looped back to the original problem.
 start, eliminate the auxiliary generator at the floor state and aut_canon
 the residue; if it lands in the source orbit, the descent is a self-loop
 and the route's difficulty equals the source's.
+
+### Ask what a SUCCESSFUL separation would prove, before hunting invariants
+
+[TRAP] W5 opened as "find an invariant separating the MMS02 bridge triples".
+A five-lemma reduction (basis change + z-elimination + the certified rank-2
+replays) then showed the bridge is EQUIVALENT to "AK(3) is AC-trivial after
+exactly one stabilization" — so any separating invariant is a partial negative
+resolution of the headline open problem. The hunt was never a shortcut, and
+every null it produces is the expected behaviour of a cheap invariant on a hard
+question, not evidence.
+
+[WORKS] Before building an invariant battery, spend the first hour reducing
+the two endpoints to canonical form. If the reduction lands on a known open
+statement, say so and re-aim; if a probe then *does* separate, treat it as a
+red flag on the probe, not as a discovery.
+
+### A constructive connectivity method needs its positive control at every parameter
+
+[TRAP] The free-nilpotent chain construction succeeded at class 2, failed at
+class 3 with row-local gadgets, and fails at class 4 today. Each failure looks
+like "the quotient might separate the bridge" and is nothing of the kind: the
+certified-AC-trivial triple's own control failed in exactly the same runs, i.e.
+the gadget pool was too small. Class 3 was fixed by adding a cross-row
+`transfer` gadget (row-local corrections span only rank 6 of the 8-dimensional
+degree-3 Lie layer).
+
+[WORKS] Run the positive control at EVERY parameter value, and have the
+checker withhold the verdict automatically when the control fails, rather than
+printing a null the reader has to discount by hand.

@@ -1,0 +1,150 @@
+{
+ "Tpub->Txy": {
+  "degree": 4,
+  "src": [
+   "xzYXyxZXYxyZ",
+   "XyxZXYXyxzXYxy",
+   "Xyz"
+  ],
+  "tgt": [
+   "xzYXyxZXYxyZ",
+   "XyxZXYXyxzXYxy",
+   "zYX"
+  ],
+  "ab_src": [
+   [
+    1,
+    0,
+    -1
+   ],
+   [
+    -1,
+    1,
+    0
+   ],
+   [
+    -1,
+    1,
+    1
+   ]
+  ],
+  "ab_tgt": [
+   [
+    1,
+    0,
+    -1
+   ],
+   [
+    -1,
+    1,
+    0
+   ],
+   [
+    -1,
+    -1,
+    1
+   ]
+  ],
+  "phase_A_moves": 11,
+  "status": "layer 4: integer solve failed (540 gadget columns, dim 243)",
+  "unsolved_layer": 4
+ },
+ "Txy->STD": {
+  "degree": 4,
+  "src": [
+   "xzYXyxZXYxyZ",
+   "XyxZXYXyxzXYxy",
+   "zYX"
+  ],
+  "tgt": [
+   "x",
+   "y",
+   "z"
+  ],
+  "ab_src": [
+   [
+    1,
+    0,
+    -1
+   ],
+   [
+    -1,
+    1,
+    0
+   ],
+   [
+    -1,
+    -1,
+    1
+   ]
+  ],
+  "ab_tgt": [
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    1
+   ]
+  ],
+  "phase_A_moves": 6,
+  "status": "layer 4: integer solve failed (540 gadget columns, dim 243)",
+  "unsolved_layer": 4
+ },
+ "zz->STD": {
+  "degree": 4,
+  "src": [
+   "x",
+   "y",
+   "zz"
+  ],
+  "tgt": [
+   "x",
+   "y",
+   "z"
+  ],
+  "ab_src": [
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    2
+   ]
+  ],
+  "ab_tgt": [
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    1
+   ]
+  ],
+  "status": "refused: abelianised matrix not in GL3(Z)"
+ }
+}

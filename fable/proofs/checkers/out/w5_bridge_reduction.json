@@ -1,0 +1,116 @@
+{
+ "alpha": {
+  "x": "x",
+  "y": "y",
+  "z": "Yxz"
+ },
+ "beta": {
+  "x": "x",
+  "y": "y",
+  "z": "zxy"
+ },
+ "tpub_after_basis_change": [
+  "xYxzYXyxZXyXYxyZXy",
+  "XyxZXyXYXyxYxzXYxy",
+  "z"
+ ],
+ "txy_after_basis_change": [
+  "xzyxYXZXYZ",
+  "XyxYXZXYXyxzxyXYxy",
+  "z"
+ ],
+ "Q": [
+  "xYxYXyyXYxyXy",
+  "XyyXYXyxYYxy"
+ ],
+ "P": [
+  "xyxYXXY",
+  "XyxYXXYXyxxyXYxy"
+ ],
+ "n_moves_pub": 5,
+ "n_moves_xy": 5,
+ "moves_pub": [
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": -1,
+   "conj": "YxzYXyxYxzXYxy",
+   "before": "xYxzYXyxZXyXYxyZXy",
+   "after": "xYxYXyxZXyXYxyZXy"
+  },
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": 1,
+   "conj": "YxzYXyxYx",
+   "before": "xYxYXyxZXyXYxyZXy",
+   "after": "xYxYXyyXYxyZXy"
+  },
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": 1,
+   "conj": "Yx",
+   "before": "xYxYXyyXYxyZXy",
+   "after": "xYxYXyyXYxyXy"
+  },
+  {
+   "row": 1,
+   "donor": 2,
+   "exp": 1,
+   "conj": "YXyxZXyXYxyxYx",
+   "before": "XyxZXyXYXyxYxzXYxy",
+   "after": "XyyXYXyxYxzXYxy"
+  },
+  {
+   "row": 1,
+   "donor": 2,
+   "exp": -1,
+   "conj": "YXyx",
+   "before": "XyyXYXyxYxzXYxy",
+   "after": "XyyXYXyxYYxy"
+  }
+ ],
+ "moves_xy": [
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": -1,
+   "conj": "zyxzxyXY",
+   "before": "xzyxYXZXYZ",
+   "after": "xyxYXZXYZ"
+  },
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": 1,
+   "conj": "zyx",
+   "before": "xyxYXZXYZ",
+   "after": "xyxYXXYZ"
+  },
+  {
+   "row": 0,
+   "donor": 2,
+   "exp": 1,
+   "conj": "",
+   "before": "xyxYXXYZ",
+   "after": "xyxYXXY"
+  },
+  {
+   "row": 1,
+   "donor": 2,
+   "exp": 1,
+   "conj": "YXyxYXZXYxyx",
+   "before": "XyxYXZXYXyxzxyXYxy",
+   "after": "XyxYXXYXyxzxyXYxy"
+  },
+  {
+   "row": 1,
+   "donor": 2,
+   "exp": -1,
+   "conj": "YXyxYX",
+   "before": "XyxYXXYXyxzxyXYxy",
+   "after": "XyxYXXYXyxxyXYxy"
+  }
+ ]
+}
