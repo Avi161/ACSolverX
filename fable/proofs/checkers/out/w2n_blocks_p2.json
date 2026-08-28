@@ -1,0 +1,2168 @@
+{
+ "schema": "acsolverx.w2n.blocks.v1",
+ "summary": {
+  "chains": 67,
+  "analysable": 51,
+  "corner_forces_truncation": 25,
+  "corner_kernel_nonempty": 4,
+  "corner_vacuous": 0,
+  "forcing_single_direction": 0,
+  "CB1_control_violations": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 809,
+   "pure_power_sources": 37,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "147",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 1347,
+   "pure_power_sources": 48,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "46",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 2346,
+   "pure_power_sources": 45,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "119",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 1967,
+   "pure_power_sources": 34,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "129",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 322,
+   "pure_power_sources": 21,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "46",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 444,
+   "pure_power_sources": 10,
+   "corner": {
+    "8": {
+     "corner_coords": 109,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 109,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 109,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 18.43
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 392,
+   "pure_power_sources": 42,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "65",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 57,
+   "pure_power_sources": 18,
+   "corner": {
+    "8": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 5.88
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 426,
+   "pure_power_sources": 20,
+   "corner": {
+    "8": {
+     "corner_coords": 126,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 126,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 126,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 20.05
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 477,
+   "pure_power_sources": 24,
+   "corner": {
+    "8": {
+     "corner_coords": 168,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 168,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 168,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 18.77
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 263,
+   "pure_power_sources": 18,
+   "corner": {
+    "8": {
+     "corner_coords": 42,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 42,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 42,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 19.68
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native_directions": 1,
+   "directions_used": 1,
+   "source_classes_total": 149,
+   "pure_power_sources": 5,
+   "corner": {
+    "8": {
+     "corner_coords": 62,
+     "unbounded_skipped": 3,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 62,
+     "unbounded_skipped": 3,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 62,
+     "unbounded_skipped": 3,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 5.19
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 173,
+   "pure_power_sources": 9,
+   "corner": {
+    "8": {
+     "corner_coords": 82,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 82,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 82,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 7.24
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 111,
+   "pure_power_sources": 25,
+   "corner": {
+    "8": {
+     "corner_coords": 15,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3
+      ],
+      [
+       0,
+       -2
+      ],
+      [
+       0,
+       -1
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       3
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 15,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3
+      ],
+      [
+       0,
+       -2
+      ],
+      [
+       0,
+       -1
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       3
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 15,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3
+      ],
+      [
+       0,
+       -2
+      ],
+      [
+       0,
+       -1
+      ],
+      [
+       0,
+       1
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       3
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": false,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": true,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 14.42
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 163,
+   "pure_power_sources": 13,
+   "corner": {
+    "8": {
+     "corner_coords": 19,
+     "unbounded_skipped": 4,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 19,
+     "unbounded_skipped": 4,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 19,
+     "unbounded_skipped": 4,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": false,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": true,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 12.16
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 1162,
+   "pure_power_sources": 23,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "0",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "native_directions": 3,
+   "directions_used": 2,
+   "source_classes_total": 219,
+   "pure_power_sources": 17,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "3",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 130,
+   "pure_power_sources": 30,
+   "corner": {
+    "8": {
+     "corner_coords": 19,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 19,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 19,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 18.58
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 133,
+   "pure_power_sources": 15,
+   "corner": {
+    "8": {
+     "corner_coords": 24,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 24,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 24,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 9.15
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 474,
+   "pure_power_sources": 29,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "35",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "native_directions": 2,
+   "directions_used": 2,
+   "source_classes_total": 353,
+   "pure_power_sources": 22,
+   "corner": {
+    "8": {
+     "corner_coords": 100,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 100,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 100,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 18.16
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 826,
+   "pure_power_sources": 26,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "12",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 57,
+   "pure_power_sources": 18,
+   "corner": {
+    "8": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 9,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 5.18
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 201,
+   "pure_power_sources": 29,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "7",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "native_directions": 3,
+   "directions_used": 2,
+   "source_classes_total": 110,
+   "pure_power_sources": 30,
+   "corner": {
+    "8": {
+     "corner_coords": 16,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 16,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 16,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 17.66
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 402,
+   "pure_power_sources": 20,
+   "corner": {
+    "8": {
+     "corner_coords": 120,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 120,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 120,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 13.88
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "native_directions": 3,
+   "directions_used": 2,
+   "source_classes_total": 469,
+   "pure_power_sources": 24,
+   "corner": {
+    "8": {
+     "corner_coords": 162,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 162,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 162,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 16.92
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "native_directions": 1,
+   "directions_used": 1,
+   "source_classes_total": 106,
+   "pure_power_sources": 10,
+   "corner": {
+    "8": {
+     "corner_coords": 36,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 36,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 36,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 5.98
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 402,
+   "pure_power_sources": 9,
+   "corner": {
+    "8": {
+     "corner_coords": 103,
+     "unbounded_skipped": 3,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 103,
+     "unbounded_skipped": 3,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 103,
+     "unbounded_skipped": 3,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 13.64
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 121,
+   "pure_power_sources": 10,
+   "corner": {
+    "8": {
+     "corner_coords": 43,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 43,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 43,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 5.77
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "native_directions": 1,
+   "directions_used": 1,
+   "source_classes_total": 30,
+   "pure_power_sources": 7,
+   "corner": {
+    "8": {
+     "corner_coords": 5,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 5,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 5,
+     "unbounded_skipped": 4,
+     "nonzero_values": 6,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 3.85
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 153,
+   "pure_power_sources": 23,
+   "corner": {
+    "8": {
+     "corner_coords": 35,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 35,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 35,
+     "unbounded_skipped": 6,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 12.3
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 625,
+   "pure_power_sources": 25,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "63",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "native_directions": 2,
+   "directions_used": 2,
+   "source_classes_total": 257,
+   "pure_power_sources": 16,
+   "corner": {
+    "8": {
+     "corner_coords": 97,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 97,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 97,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 16.01
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 864,
+   "pure_power_sources": 14,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "240",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 94,
+   "pure_power_sources": 27,
+   "corner": {
+    "8": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": false,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": true,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 19.1
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "native_directions": 2,
+   "directions_used": 2,
+   "source_classes_total": 345,
+   "pure_power_sources": 17,
+   "corner": {
+    "8": {
+     "corner_coords": 69,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 69,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 69,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 20.41
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 336,
+   "pure_power_sources": 15,
+   "corner": {
+    "8": {
+     "corner_coords": 115,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 115,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 115,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 16.07
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 204,
+   "pure_power_sources": 25,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "25",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 380,
+   "pure_power_sources": 18,
+   "corner": {
+    "8": {
+     "corner_coords": 121,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 121,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 121,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 15.63
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 376,
+   "pure_power_sources": 17,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "82",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 400,
+   "pure_power_sources": 31,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "6",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 201,
+   "pure_power_sources": 29,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "1",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "native_directions": 2,
+   "directions_used": 2,
+   "source_classes_total": 42,
+   "pure_power_sources": 18,
+   "corner": {
+    "8": {
+     "corner_coords": 6,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 6,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 6,
+     "unbounded_skipped": 5,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 9.67
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 294,
+   "pure_power_sources": 39,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "3",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 459,
+   "pure_power_sources": 35,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "17",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "native_directions": 3,
+   "directions_used": 2,
+   "source_classes_total": 111,
+   "pure_power_sources": 24,
+   "corner": {
+    "8": {
+     "corner_coords": 13,
+     "unbounded_skipped": 7,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 13,
+     "unbounded_skipped": 7,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 13,
+     "unbounded_skipped": 7,
+     "nonzero_values": 42,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       -3,
+       0
+      ],
+      [
+       -2,
+       0
+      ],
+      [
+       -1,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": false,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": true,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 16.92
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 410,
+   "pure_power_sources": 17,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "108",
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 392,
+   "pure_power_sources": 15,
+   "corner": {
+    "8": {
+     "corner_coords": 124,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 124,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 124,
+     "unbounded_skipped": 4,
+     "nonzero_values": 48,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 19.97
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "native_directions": 2,
+   "directions_used": 2,
+   "source_classes_total": 253,
+   "pure_power_sources": 18,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "25",
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "native_directions": 4,
+   "directions_used": 2,
+   "source_classes_total": 253,
+   "pure_power_sources": 26,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "20",
+   "passed": true
+  }
+ ]
+}

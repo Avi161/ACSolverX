@@ -1,0 +1,314 @@
+{
+ "schema": "acsolverx.w2n.span.v1",
+ "summary": {
+  "chains": 16,
+  "analysable": 13,
+  "hecke_rejected_total": 0,
+  "probe_directions": 95,
+  "probe_outside_hecke_span": 64,
+  "chains_where_hecke_span_catches_all": 0,
+  "chains_with_a_probe_outside": 13,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 10,
+   "probe_outside_hecke_span": 8,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "far:TT": 2,
+    "far:ct": 2,
+    "nosrc": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 20.59
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 10,
+   "probe_outside_hecke_span": 8,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "far:TT": 2,
+    "far:ct": 2,
+    "nosrc": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 26.84
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 10,
+   "probe_outside_hecke_span": 8,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "far:TT": 2,
+    "far:ct": 2,
+    "nosrc": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 24.6
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 10,
+   "probe_outside_hecke_span": 8,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "far:TT": 2,
+    "far:ct": 2,
+    "nosrc": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 40.46
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 10,
+   "probe_outside_hecke_span": 6,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "far:TT": 2,
+    "far:ct": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 32.23
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 4,
+   "probe_outside_by_tag": {
+    "far:ct": 2,
+    "nosrc": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 36.16
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 2,
+   "probe_outside_by_tag": {
+    "far:ct": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 38.76
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 4,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "rho:3": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 34.79
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 3,
+   "probe_outside_by_tag": {
+    "far:ct": 1,
+    "rho:3": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 40.84
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "native": 0,
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 5,
+   "probe_outside_by_tag": {
+    "far:tt": 2,
+    "rho:3": 2,
+    "nosrc": 1
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 30.15
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 3,
+   "probe_outside_by_tag": {
+    "far:TT": 2,
+    "rho:3": 1
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 28.67
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native": 1,
+   "hecke_closure": 8,
+   "hecke_rejected": 0,
+   "probe_directions": 3,
+   "probe_outside_hecke_span": 2,
+   "probe_outside_by_tag": {
+    "rho:3": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 54.52
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native": 4,
+   "hecke_closure": 32,
+   "hecke_rejected": 0,
+   "probe_directions": 6,
+   "probe_outside_hecke_span": 3,
+   "probe_outside_by_tag": {
+    "far:ct": 1,
+    "rho:3": 2
+   },
+   "hecke_span_catches_all_probes": false,
+   "passed": true,
+   "secs": 52.64
+  }
+ ]
+}

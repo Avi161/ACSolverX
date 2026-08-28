@@ -1,0 +1,292 @@
+{
+ "schema": "acsolverx.w2n.blocks.v1",
+ "summary": {
+  "chains": 9,
+  "analysable": 6,
+  "corner_forces_truncation": 1,
+  "corner_kernel_nonempty": 1,
+  "corner_vacuous": 0,
+  "forcing_single_direction": 0,
+  "CB1_control_violations": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 1574,
+   "pure_power_sources": 46,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "86",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 558,
+   "pure_power_sources": 63,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "103",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 124,
+   "pure_power_sources": 45,
+   "corner": {
+    "8": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 336,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3,
+       0
+      ],
+      [
+       0,
+       -2,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       2,
+       0
+      ],
+      [
+       0,
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 336,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3,
+       0
+      ],
+      [
+       0,
+       -2,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       2,
+       0
+      ],
+      [
+       0,
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 10,
+     "unbounded_skipped": 8,
+     "nonzero_values": 336,
+     "kernel_size": 6,
+     "kernel_sample": [
+      [
+       0,
+       -3,
+       0
+      ],
+      [
+       0,
+       -2,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       2,
+       0
+      ],
+      [
+       0,
+       3,
+       0
+      ]
+     ],
+     "forces_top_zero": false,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": false,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": true,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 25.43
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 1224,
+   "pure_power_sources": 36,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "128",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "status": "NO_KERNEL_DIRECTION_FOUND",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 724,
+   "pure_power_sources": 50,
+   "status": "SKIPPED_TIME_BUDGET",
+   "detail": "19",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "native_directions": 4,
+   "directions_used": 3,
+   "source_classes_total": 305,
+   "pure_power_sources": 36,
+   "corner": {
+    "8": {
+     "corner_coords": 45,
+     "unbounded_skipped": 5,
+     "nonzero_values": 342,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "10": {
+     "corner_coords": 45,
+     "unbounded_skipped": 5,
+     "nonzero_values": 342,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    },
+    "12": {
+     "corner_coords": 45,
+     "unbounded_skipped": 5,
+     "nonzero_values": 342,
+     "kernel_size": 0,
+     "kernel_sample": [],
+     "forces_top_zero": true,
+     "vacuous": false
+    }
+   },
+   "corner_forces_truncation": true,
+   "corner_vacuous": false,
+   "corner_kernel_nonempty": false,
+   "CB1_c0_coords_claimed_isolated": 0,
+   "passed": true,
+   "secs": 34.68
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  }
+ ]
+}
