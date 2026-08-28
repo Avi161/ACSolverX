@@ -232,6 +232,11 @@ odd-cycle parity.
 Section 3.98 adds two support filters.  A nonzero color cut requires the two
 color-class radii to reach the paired target jointly, while a nonzero odd
 cycle requires at least three distinct non-target anchored atoms.
+Section 3.99 replaces the abstract endpoint-multiplier list by a canonical
+finite word schema: reduced products $wq_o$ with $w$ in one fixed ball of
+the $A,B,G$ forest group.  Both the isolated paired-word audit and the
+clustered loop sieve reduce to explicit finite word equalities in this
+schema.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10178,6 +10183,110 @@ $\mathcal C$.  With more atoms, a nonzero $\mathcal C$ still requires the
 two-sided radius tie (3.649), while a nonzero $\mathcal O$ requires a pinned
 odd conjugacy cycle from Sections 3.93--3.95.  These filters do not evaluate
 the local terms $\overline\kappa$, $\mathcal S$, or $\mathcal T$.
+
+### 3.99 Canonical finite schema for the endpoint alphabet
+
+Fix the slope-two slack $E$ from Section 3.77 and put
+
+\[
+ \begin{aligned}
+ L_E&:=L_{\rm end}(E),\\
+ \mathcal B_{\rm for}(E)
+ &:=\{w\in K_{\rm for}:|w|_{\{A,B,G\}}\le L_E\}.
+ \end{aligned}
+ \tag{3.652}
+\]
+
+Every moving boundary label has the form $\operatorname{cvert}(q_ou)$.
+A label in its forest $L_E$-neighborhood is obtained by left multiplication
+by one word $w\in\mathcal B_{\rm for}(E)$, and hence has source coset
+
+\[
+ wq_ouH.
+ \tag{3.653}
+\]
+
+Define the canonical finite multiplier superset
+
+\[
+ \boxed{
+ \mathcal R_E^{\rm can}
+ :=\left\{
+ \operatorname{red}(wq_o):
+ w\in\mathcal B_{\rm for}(E),
+ 1\le o\le16
+ \right\}.
+ }
+ \tag{3.654}
+\]
+
+Terminal canonicalization changes only the chosen representative of the
+right $H$-coset, not (3.653).  Therefore the finite list used in (3.557)
+may be chosen so that
+
+\[
+ \boxed{
+ \begin{gathered}
+ \mathcal R_{s,E}\subseteq\mathcal R_E^{\rm can},\\
+ s\in\{0,1\}.
+ \end{gathered}
+ }
+ \tag{3.655}
+\]
+
+The inclusion is deliberate: occurrence activity and the terminal
+directions of the unique Green paths select the actual subset.  No virtual
+element of the superset is counted as a token.
+
+All endpoint-difference multipliers now lie in the explicit finite set
+
+\[
+ \boxed{
+ \mathcal H_E^{\rm can}
+ :=\left\{
+ q_o^{-1}w^{-1}w'q_p:
+ w,w'\in\mathcal B_{\rm for}(E),
+ 1\le o,p\le16
+ \right\}.
+ }
+ \tag{3.656}
+\]
+
+Indeed, for $r=wq_o$ and $r'=w'q_p$, the candidate multiplier is
+$h=r^{-1}r'=q_o^{-1}w^{-1}w'q_p$.  Consequently the clustered fixed-loop
+audit needs only the elements of (3.656) satisfying
+
+\[
+ \begin{aligned}
+ |\nu_t(h)|&=1,\\
+ d(h)&\equiv1\pmod2,
+ \end{aligned}
+ \tag{3.657}
+\]
+
+with the sharper slot-one translation type (3.621).
+
+For the isolated endpoint germ, remote bucket rigidity (3.558) reduces the
+candidate pairs further to
+
+\[
+ \boxed{
+ \mathcal P_{s,E}^{\rm pair}
+ :=\left\{
+ (r,r')\in
+ \mathcal R_E^{\rm can}\times\mathcal R_E^{\rm can}:
+ r^{-1}r'\in\{g_s,g_s^{-1}\}
+ \right\}.
+ }
+ \tag{3.658}
+\]
+
+Thus $\overline{\kappa^{\mathbb Z}_{s,u}}$ is determined by actual
+terminal activity and chronology only on the finite paired-word schema
+(3.658), while the corridor terms use the filtered multiplier schema
+(3.656)--(3.657).  This makes the finite obligation explicit without
+claiming its parity or replacing the all-support proof by a bounded source
+enumeration.
 
 ## 4. Exact diagonal sieve
 
