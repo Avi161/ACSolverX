@@ -97,6 +97,13 @@ finite quotient do not close a route.
   visible after projection or alter the kill row. Retained stabilization
   rows remain outside this theorem. Freeze the ledger here; do not add a
   two-multiplication census as another bounded category.
+- **Direct Tpub thickenability route closed:** the exact 29-corner link has
+  nine parallel classes and four spherical macro rotations among 144. Every
+  repeated class is forced into one reversed block. Exhausting all four
+  schemes, 3,120 scheme--phase pairs, and 18,720 component seeds finds no
+  compatible spherical rotation. Hence this one word-realized presentation
+  complex is not thickenable. This is not AC-invariant and does not obstruct
+  an AC-equivalent thickenable representative, the bridge, or stable AK(3).
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target or the genuinely interleaved
   Peiffer/basic-substitution closure of one symbolic residual pair; the SLP

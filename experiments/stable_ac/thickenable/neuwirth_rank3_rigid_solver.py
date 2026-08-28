@@ -473,22 +473,12 @@ def _freeze(
     )
 
 
-def solve_rigid_spherical(words: tuple[str, ...]) -> RigidRankDecision:
-    words = tuple(words)
-    support = classify_rigid_support(words)
-    if support.kind != "K6-P5":
-        return RigidRankDecision(
-            words,
-            "UNSUPPORTED",
-            None,
-            support,
-            None,
-            RigidSearchCounters(),
-            reason=support.reason,
-        )
-
-    data = support.data
-    scheme = rigid_embedding_scheme(support)
+def _search_signed_ranks(
+    data: base.LinkData,
+    schemes: tuple[base.Scheme, ...],
+) -> tuple[RigidRankWitness | None, RigidSearchCounters]:
+    if not schemes:
+        raise ValueError("at least one slot scheme is required")
     constraints = _constraints(data)
     components = base._constraint_components(
         len(data.edge_darts),
@@ -508,95 +498,89 @@ def solve_rigid_spherical(words: tuple[str, ...]) -> RigidRankDecision:
         len(data.class_edges[data.edge_class[component[0][0]]])
         for component in components
     )
-    values["scheme_budget"] = 1
-    values["phase_tuple_budget"] = phase_budget
+    values["scheme_budget"] = len(schemes)
+    values["phase_tuple_budget"] = len(schemes) * phase_budget
     values["component_seed_budget"] = (
-        phase_budget * seed_budget_per_phase
+        len(schemes) * phase_budget * seed_budget_per_phase
     )
-    values["schemes_considered"] = 1
 
-    for phases in itertools.product(*phase_ranges):
-        values["phase_tuples_considered"] += 1
-        per_component = []
-        for component in components:
-            seed_edge = component[0][0]
-            seed_domain = len(
-                data.class_edges[data.edge_class[seed_edge]]
+    for scheme in schemes:
+        values["schemes_considered"] += 1
+        for phases in itertools.product(*phase_ranges):
+            values["phase_tuples_considered"] += 1
+            per_component = []
+            for component in components:
+                seed_edge = component[0][0]
+                seed_domain = len(
+                    data.class_edges[data.edge_class[seed_edge]]
+                )
+                solutions = []
+                for seed_rank in range(seed_domain):
+                    values["component_seed_attempts"] += 1
+                    solution, within_collision = base._propagate_component(
+                        data,
+                        scheme,
+                        constraints,
+                        component,
+                        phases,
+                        seed_rank,
+                    )
+                    if within_collision:
+                        values["within_cycle_collision_rejections"] += 1
+                    elif solution is not None:
+                        values["closed_component_assignments"] += 1
+                        solutions.append(solution)
+                per_component.append(tuple(solutions))
+
+            if any(not solutions for solutions in per_component):
+                continue
+            values["component_combination_budget"] += math.prod(
+                len(solutions) for solutions in per_component
             )
-            solutions = []
-            for seed_rank in range(seed_domain):
-                values["component_seed_attempts"] += 1
-                solution, within_collision = base._propagate_component(
+            for combination in itertools.product(*per_component):
+                values["component_combinations_considered"] += 1
+                assignments: dict[int, int] = {}
+                masks: dict[base.ClassKey, int] = {}
+                collision = False
+                for solution in combination:
+                    for edge, rank in solution.assignments:
+                        if edge in assignments and assignments[edge] != rank:
+                            raise AssertionError(
+                                "constraint components share an A-edge"
+                            )
+                        assignments[edge] = rank
+                    for key, mask in solution.class_masks:
+                        if masks.get(key, 0) & mask:
+                            collision = True
+                        masks[key] = masks.get(key, 0) | mask
+                if collision:
+                    values["cross_cycle_collision_rejections"] += 1
+                    continue
+                values["union_cardinality_checks"] += 1
+                if any(
+                    masks.get(key, 0).bit_count() != len(edges)
+                    for key, edges in data.class_edges.items()
+                ):
+                    values["union_cardinality_rejections"] += 1
+                    continue
+                if set(assignments) != set(range(len(data.edge_darts))):
+                    values["union_cardinality_rejections"] += 1
+                    continue
+                ranks = tuple(
+                    assignments[edge]
+                    for edge in range(len(data.edge_darts))
+                )
+                witness = _replay_witness(
                     data,
                     scheme,
                     constraints,
-                    component,
                     phases,
-                    seed_rank,
+                    ranks,
                 )
-                if within_collision:
-                    values["within_cycle_collision_rejections"] += 1
-                elif solution is not None:
-                    values["closed_component_assignments"] += 1
-                    solutions.append(solution)
-            per_component.append(tuple(solutions))
-
-        if any(not solutions for solutions in per_component):
-            continue
-        values["component_combination_budget"] += math.prod(
-            len(solutions) for solutions in per_component
-        )
-        for combination in itertools.product(*per_component):
-            values["component_combinations_considered"] += 1
-            assignments: dict[int, int] = {}
-            masks: dict[base.ClassKey, int] = {}
-            collision = False
-            for solution in combination:
-                for edge, rank in solution.assignments:
-                    if edge in assignments and assignments[edge] != rank:
-                        raise AssertionError(
-                            "constraint components share an A-edge"
-                        )
-                    assignments[edge] = rank
-                for key, mask in solution.class_masks:
-                    if masks.get(key, 0) & mask:
-                        collision = True
-                    masks[key] = masks.get(key, 0) | mask
-            if collision:
-                values["cross_cycle_collision_rejections"] += 1
-                continue
-            values["union_cardinality_checks"] += 1
-            if any(
-                masks.get(key, 0).bit_count() != len(edges)
-                for key, edges in data.class_edges.items()
-            ):
-                values["union_cardinality_rejections"] += 1
-                continue
-            if set(assignments) != set(range(len(data.edge_darts))):
-                values["union_cardinality_rejections"] += 1
-                continue
-            ranks = tuple(
-                assignments[edge]
-                for edge in range(len(data.edge_darts))
-            )
-            witness = _replay_witness(
-                data,
-                scheme,
-                constraints,
-                phases,
-                ranks,
-            )
-            if witness is None:
-                values["witness_replay_failures"] += 1
-                continue
-            return RigidRankDecision(
-                words,
-                "SPHERICAL",
-                True,
-                support,
-                witness,
-                _freeze(values, exhaustive=False),
-            )
+                if witness is None:
+                    values["witness_replay_failures"] += 1
+                    continue
+                return witness, _freeze(values, exhaustive=False)
 
     exhaustive = (
         values["schemes_considered"] == values["scheme_budget"]
@@ -608,11 +592,41 @@ def solve_rigid_spherical(words: tuple[str, ...]) -> RigidRankDecision:
     )
     if not exhaustive:
         raise AssertionError("negative rigid search did not exhaust its budget")
+    return None, _freeze(values, exhaustive=True)
+
+
+def solve_rigid_spherical(words: tuple[str, ...]) -> RigidRankDecision:
+    words = tuple(words)
+    support = classify_rigid_support(words)
+    if support.kind != "K6-P5":
+        return RigidRankDecision(
+            words,
+            "UNSUPPORTED",
+            None,
+            support,
+            None,
+            RigidSearchCounters(),
+            reason=support.reason,
+        )
+
+    witness, counters = _search_signed_ranks(
+        support.data,
+        (rigid_embedding_scheme(support),),
+    )
+    if witness is not None:
+        return RigidRankDecision(
+            words,
+            "SPHERICAL",
+            True,
+            support,
+            witness,
+            counters,
+        )
     return RigidRankDecision(
         words,
         "NOT_SPHERICAL",
         False,
         support,
         None,
-        _freeze(values, exhaustive=True),
+        counters,
     )

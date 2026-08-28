@@ -32,6 +32,12 @@ does not add another sequential cleanup category: within this low-depth
 common-kill mechanism, a successful path must use at least two base-row
 multiplications visible after projection or alter the kill row.
 
+Section 6.9 independently proves that the exact word-realized presentation
+complex of $T_{\rm pub}$ is not thickenable.  This closes the direct
+thickenability route for this one complex only.  Thickenability is not known
+to be invariant under Andrews--Curtis moves, so the unrestricted bridge and
+stable AK(3) remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1108,6 +1114,120 @@ common-kill low-depth ledger stops here; increasing the multiplication count
 would create another bounded category rather than evaluate the open
 interleaved Peiffer problem.
 
+### 6.9. The exact published complex is not thickenable
+
+Apply the harmless generator renaming $y\mapsto z$, $z\mapsto t$ so that the
+six germs have the solver labels $x,X,z,Z,t,T$.  The three exact cyclic words
+become
+
+```text
+xtZXzxTXZxzT
+XzxTXZXzxtXZxz
+Xzt
+```
+
+No free or cyclic reduction is made.  Reading the 29 cyclic corners gives
+the following complete parallel-class table in the original germ labels.
+
+| support edge | multiplicity |
+|---|---:|
+| $Xz$ | 4 |
+| $ZY$ | 2 |
+| $yX$ | 4 |
+| $xy$ | 6 |
+| $Yx$ | 6 |
+| $XZ$ | 4 |
+| $zx$ | 1 |
+| $YX$ | 1 |
+| $Yz$ | 1 |
+
+The underlying simple graph is obtained from a $K_4$ on
+$\{X,Y,x,z\}$ by subdividing the edge $Xx$ with $y$ and adjoining a second
+$X$--$Y$ path subdivided by $Z$.  Fixing the least neighbour first at every
+vertex leaves
+
+\[
+ (4-1)!(4-1)!(3-1)!(3-1)!=144
+ \tag{68}
+\]
+
+macro rotation systems.  Direct face tracing finds exactly four spherical
+systems.  They are the two choices for the side of the $X$--$Y$ edge which
+contains the $X$--$Z$--$Y$ ear, together with their global reflections.
+
+The parallel expansion has no hidden rotations.  For every support edge
+$ab$ except $XY$, deleting $a,b$ leaves the simple support connected.  The
+class-block argument of `AK3_RANK3_RIGID_THICKENABILITY.md`, Theorem 3.1,
+therefore forces every repeated $ab$-class to be one cyclic interval at
+both endpoints, with reversed linear orders.  Deleting $X,Y$ disconnects
+the support, but the $XY$ class has multiplicity one, so its block and order
+conditions are vacuous.  Thus expanding the four macro rotations by
+all-different class ranks gives every spherical rotation of the exact
+multigraph.
+
+The proof of the three-pipe signed-rank criterion in
+`AK3_RANK3_RIGID_THICKENABILITY.md`, Theorem 4.1, uses the rigid support only
+to supply this complete finite list of injective slot schemes.  Its phase
+lemma and constraint-cycle propagation therefore apply unchanged to the
+four schemes just obtained.
+
+Run the three-pipe phase equations on all four slot schemes.  The exact
+positive-germ degrees are $13,10,6$, so there are 780 phase triples per
+scheme.  The exact exhaustion is
+
+\[
+ \begin{array}{c|r}
+ \text{macro schemes}&4\\
+ \text{scheme--phase pairs}&3{,}120\\
+ \text{component seeds}&18{,}720\\
+ \text{closed component assignments}&96\\
+ \text{complete cross-relator combinations}&0.
+ \end{array}
+ \tag{69}
+\]
+
+The scheme, phase, and seed budgets are reached exactly.  Although 96
+individual constraint-cycle assignments close, no scheme--phase pair closes
+all three relator cycles, so no global rank partition and no compatible
+spherical rotation survives.
+
+**Theorem 6.3 (exact-complex thickenability boundary).**  The canonical
+word-realized presentation complex of
+$T_{\rm pub}=(A,B,Xyz)$ is not thickenable.
+
+**Proof.**  The link is connected.  The block argument above and the
+144-state macro enumeration prove that the four schemes in (69) cover every
+spherical rotation.  The signed-rank criterion is necessary and sufficient
+inside each scheme, and the exhaustive search finds none compatible with
+the generator-end reversal.  The Euler-only Neuwirth criterion therefore
+rules out an orientable PL thickening.  The presented group is trivial by
+the published Tietze reduction and the literal normal-closure proof
+(33a)--(33b), so a regular neighbourhood cannot be nonorientable: its
+orientation character would give a nontrivial homomorphism of its
+fundamental group to $\mathbb Z/2$.  Hence no PL thickening exists.
+$\square$
+
+The focused certificate independently reconstructs the corner table,
+enumerates the 144 macro systems and four spherical survivors, and checks
+the signed-rank budgets.  It also replays the generalized rank solver on an
+affordable 17,280-order factorial fixture.  The implementation is
+
+```text
+experiments/stable_ac/thickenable/mms02_tpub_neuwirth_certificate.py
+```
+
+with focused checks in
+
+```text
+tests/stable_ac/test_mms02_tpub_neuwirth_certificate.py
+```
+
+Theorem 6.3 is not an obstruction to the unrestricted bridge.  The
+Neuwirth potential and exact-complex thickenability are not Andrews--Curtis
+invariants in this argument.  A later AC-equivalent representative may be
+thickenable.  Thus Theorem 6.3 neither proves nor disproves the bridge,
+stable AK(3), ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -1126,9 +1246,11 @@ The logical gates remain separate:
 5. the finite cleanup ledger closes every completion which restores each
    residual exactly once, but not an interleaved Peiffer closure which may
    alter the rows repeatedly;
-6. no MMS02 statement evaluates the period-two class-two ledger or its
+6. the exact $T_{\rm pub}$ complex is not thickenable, but this does not
+   obstruct an AC-equivalent thickenable representative;
+7. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-7. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+8. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is now the unrestricted stable bridge
