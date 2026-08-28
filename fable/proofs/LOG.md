@@ -31,3 +31,11 @@ Composed the MMS02 corridor with the mu/orbit machinery (own idea): mu(Q)=21 (ne
 orbit), Tpub floor state proved a disguised AK(3) self-loop (W1c downgraded), and a
 second elimination yields a new mu=14 stable rep. All basins drain to the 13-floor.
 Note: W4_CORRIDOR_REPS.md. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 4 · `975a5ba`
+
+W2 census: the period-two backward system has 17 essential gauge-free solutions at
+caps (12,12,12,g5) — the witness plus 16 others, all hyperbolic-S, independently
+verified. Quantifies the uniqueness gap: the codex anchored family (1.10) covers one
+of 17. Next: layer-1 liveness per extra baseline (W2b). Note:
+W2_PERIOD_TWO_BASELINE_CENSUS.md. No AK(3), stable AC, or AC claim.
