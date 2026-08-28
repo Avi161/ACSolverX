@@ -24,3 +24,10 @@ ac-advisor BLOCK on W1 sustained and repaired: the finite test was theorem-force
 of the earlier inferences; five lessons recorded; W3 repointed at the Lackenby
 thickenability lever (thickenable => unstable AC-trivializable), pending its own
 advisor gate. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 3 · `f7a696d`
+
+Composed the MMS02 corridor with the mu/orbit machinery (own idea): mu(Q)=21 (new
+orbit), Tpub floor state proved a disguised AK(3) self-loop (W1c downgraded), and a
+second elimination yields a new mu=14 stable rep. All basins drain to the 13-floor.
+Note: W4_CORRIDOR_REPS.md. No AK(3), stable AC, or AC claim.
