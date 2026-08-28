@@ -164,6 +164,11 @@ Section 3.80 gives the complementary clustered incidence law.  Every mixed
 term aimed at a paired bucket places the second source atom on one of four
 explicit branches from the first, so the localized mixed-collision graph
 has uniformly bounded degree.
+Section 3.81 identifies each canonical anchored parity cell as the
+coefficientwise mod-two reduction of the integral balanced direction from
+Section 3.2.  Section 3.82 can therefore use the nonfixed integral free
+coordinate: the natural paired baseline is $-3$ in slot zero and $-2$ in
+slot one before the finite endpoint remainder is added.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -8800,6 +8805,118 @@ weight of such an edge, and it does not include a self term of a different
 cell whose conjugate bucket happens to equal $\mathscr D_s(u)$.  Those two
 effects, together with the zero terminal types from Section 3.79, are the
 exact remaining clustered branches.
+
+### 3.81 Every canonical parity cell has an integral balanced lift
+
+The anchored cells of Section 3.75 are reductions of the integral anchored
+directions already constructed in Section 3.2.  Let $H_s(u)$ be the
+direction from (3.20), completed by its unique integral forest flow.  Then
+
+\[
+ \boxed{
+ \overline{H_s(u)}=\mathbf h_{(s,u)}.
+ }
+ \tag{3.566}
+\]
+
+Indeed, the source pair of $H_s(u)$ is
+
+\[
+ (e_u\text{ in slot }s)
+ -(\lambda_s(u)e_a\text{ in slot }0).
+ \tag{3.567}
+\]
+
+After reduction modulo two, its tied chord chain is exactly
+$\mathsf U_{s,u}+\lambda_{\mathrm{for}}(\mathsf U_{s,u})\mathsf U_*$.
+The integral forest flow reduces to a mod-two forest chain with the boundary
+of that chord chain.  Finite-forest boundary injectivity identifies it with
+the Green filling in (3.537), proving (3.566).
+
+This lift is special to the fixed-anchor decomposition.  An arbitrary
+one- or two-bundle cell from Section 3.72 still need not have a chosen
+integral lift.
+
+### 3.82 The integral free coordinate gives an order-free baseline
+
+Fix a remote source coordinate $u\ne a$ in slot $s\in\{0,1\}$.  Its paired
+bucket is not inversion-fixed.  Otherwise the one-atom diagonal would enter
+the paired torsion sector, contrary to (3.292).  Choose the oriented free
+representative
+
+\[
+ \Delta_s^+(u):=Hu^{-1}g_suH.
+ \tag{3.568}
+\]
+
+For an integral balanced direction $F$, define the homogeneous quadratic
+free coordinate by
+
+\[
+ \mathscr Q_{\Delta^+}^{\mathbb Z}(F)
+ :=\frac12 B_{\Xi_{\mathbb Z},\Delta^+}(F,F).
+ \tag{3.569}
+\]
+
+Formula (3.36) makes the right side visibly integral and gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathscr Q_{\Delta^+}^{\mathbb Z}(F)
+ ={}&\sum_{r=0}^4n_r
+ \mathcal C_{\Delta^+}(F_r,F_r;1)\\
+ &+\sum_{o<p}\epsilon_o\epsilon_p
+ \mathcal C_{\Delta^+}(F_{s_o},F_{s_p};m_{op}).
+ \end{aligned}
+ }
+ \tag{3.570}
+\]
+
+Apply (3.570) to $F=H_s(u)$ and
+$\Delta^+=\Delta_s^+(u)$.  For each natural interval
+$I=[a,b]\in\mathscr I_s$, the occurrence sign is
+$\epsilon_a\epsilon_b=-1$, the multiplier is $m_{ab}=g_s$, and the
+coefficient of $e_u$ in the moving source slot is one.  Hence the diagonal
+correlation atom $(u,u)$ contributes $-1$.  There are $n_s$ such intervals.
+Define $\kappa^{\mathbb Z}_{s,u}$ to be the remainder of (3.570) after
+removing exactly those $n_s$ atoms.  Then
+
+\[
+ \boxed{
+ \mathscr Q_{\Delta_s^+(u)}^{\mathbb Z}(H_s(u))
+ =-n_s+\kappa^{\mathbb Z}_{s,u}.
+ }
+ \tag{3.571}
+\]
+
+Because $\Delta_s^+(u)$ is a free coordinate, reducing (3.570)
+coefficientwise modulo two gives the quadratic token coordinate (3.399) of
+the parity direction (3.566).  Therefore
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\mathscr Q_\Xi(\mathbf h_{(s,u)})]_{\mathscr D_s(u)}
+ &=n_s+\overline{\kappa^{\mathbb Z}_{s,u}},\\
+ (n_0,n_1)&=(3,2).
+ \end{aligned}
+ }
+ \tag{3.572}
+\]
+
+In particular, the order-free natural baseline is odd in slot zero and even
+in slot one.  This does not contradict the cone values in (3.547): that
+formula isolates selected chronological $K_\Xi$ terms before the complete
+balanced tensor is antisymmetrized, while (3.572) uses the final integral
+free coordinate.  Their difference is part of the exact internal remainder
+$\kappa^{\mathbb Z}_{s,u}$.
+
+Thus raw paired multiplicity is valid only inside the complete integral
+free-coordinate decomposition (3.571), not term by term in the ordered
+kernel.  The isolated slot-zero problem is now to show that the finite
+endpoint remainder in (3.572) is even; the slot-one problem requires a
+different pivot.  Neither parity is asserted here.
 
 ## 4. Exact diagonal sieve
 
