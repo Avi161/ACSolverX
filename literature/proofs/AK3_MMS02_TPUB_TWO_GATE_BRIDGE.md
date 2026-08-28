@@ -101,6 +101,12 @@ universal tag-interchange loops.  Its invariance under the complete tame loop
 stabilizer is equivalent to three explicit containment laws; those laws are
 the sole remaining first-derived gate and are not yet proved.
 
+Section 6.21 evaluates the proposed Hall--Witt shortcut.  One cyclic triple
+commutator is legally tag-donatable, but the exact cyclic exchange leaves the
+mixed term ${}^h[t,[X,r]]$.  Its triviality and donor membership are
+unevaluated, so the mechanism is frozen at that one obligation and no higher
+Hall--Witt remainder ladder is opened.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -2579,6 +2585,101 @@ Only an actual zero in $\mathcal D$ closes the complete first-derived layer,
 and even that would not prove (130).  The relative Peiffer class, the MMS02
 bridge, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.21. Hall--Witt leaves one mixed third commutator
+
+The constructive Hall--Witt shortcut can also be evaluated without opening
+an interchange ladder.  Put $s=rt$.  The identities
+
+\[
+ \begin{aligned}
+ [X,rt]&=[X,r]{}^r[X,t],&
+ rt&=[r,t]tr
+ \end{aligned}
+\]
+
+give two exact decompositions of the same commutator:
+
+\[
+ \boxed{
+ [X,r]{}^r[X,t]
+ =[X,[r,t]]{}^{[r,t]}[X,t]{}^{[r,t]t}[X,r].
+ }
+ \tag{142}
+\]
+
+The first cyclic factor on the right is legally tag-donatable.  Indeed,
+
+\[
+ [r,t]=[s,r^{-1}]\in\operatorname{Ncl}(s),
+ \tag{143}
+\]
+
+so $[X,[r,t]]$ and all its conjugates lie in the normal closure of the
+current $s$-row.
+
+For clarity, name the three cyclic third commutators
+
+\[
+ \begin{aligned}
+ H_X&=[X,[r,t]],&
+ H_r&=[r,[t,X]],&
+ H_t&=[t,[X,r]].
+ \end{aligned}
+ \tag{144}
+\]
+
+With the present left-conjugation convention, one exact Hall--Witt spelling
+is
+
+\[
+ {}^{r^{-1}}[[X^{-1},r]^{-1},t^{-1}]
+ {}^{t^{-1}}[[r^{-1},t]^{-1},X^{-1}]
+ {}^{X^{-1}}[[t^{-1},X]^{-1},r^{-1}]=1.
+ \tag{145}
+\]
+
+The standard inverse-conjugacy identities turn (145) into an exchange of a
+conjugate representative of $H_X$ for conjugate representatives of $H_r$
+and $H_t$.  Thus deleting the donor-legal $H_X$ term from the interchange
+does not delete the cyclic class.  A convenient representative of the
+remaining mixed term is
+
+\[
+ \boxed{
+ \mathcal T:={}^{h}[t,[X,r]]
+ ={}^h({}^t[X,r][X,r]^{-1}).
+ }
+ \tag{146}
+\]
+
+Killing the current tag row $s=rt$ substitutes $t=r^{-1}$ and sends this
+representative to
+
+\[
+ \mathcal T\longmapsto{}^h[r^{-1},[X,r]].
+ \tag{147}
+\]
+
+No theorem established above makes (147) trivial.  The other cyclic
+representative $H_r$ is a consequence of $r$, while $H_t$ is a consequence
+of $D={}^h[X,r]$.  The gates $\mathsf T_t$ and $\mathsf T_B$ rule out using
+$r$, $D$, or the original $[X,t]$ factor in the corresponding direct
+cleanups.  They do not decide whether $H_r$, $H_t$, or $\mathcal T$ lies in
+the normal closure of a relevant donor row.
+
+**Theorem 6.15 (Hall--Witt remainder).**  In the canonical tagged
+interchange, the Hall--Witt identity makes the $H_X$ factor donor-legal but
+reduces the shortcut to the mixed cyclic term $\mathcal T$.  The identity
+alone supplies neither a legal basic-substitution closure nor a negative
+obstruction for $(B_t,rt)\to(B,t)$.
+
+This theorem does not prove $\mathcal T\ne1$, determine its donor membership,
+prove that its displayed representative is invariant under another
+interchange, or obstruct a different interleaved path.  It freezes the
+proposed Hall--Witt mechanism at the single named obligation $\mathcal T$;
+no higher cyclic-commutator ledger is opened.  The tagged gate (130), the
+unrestricted MMS02 bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2624,9 +2725,11 @@ The logical gates remain separate:
 14. the candidate identity-coset covector survives vertical conjugations and
     two universal tag loops, but its full invariance is exactly the unproved
     three-part containment law (140);
-15. no MMS02 statement evaluates the period-two class-two ledger or its
+15. Hall--Witt makes $H_X$ donor-legal but leaves the mixed term $\mathcal T$,
+    whose triviality and donor membership are both unproved;
+16. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-16. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+17. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

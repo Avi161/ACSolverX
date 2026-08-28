@@ -202,6 +202,15 @@ finite quotient do not close a route.
   condition is that every lifted loop preserve `[E]` under the first affine
   coordinate modulo `(B-1)L`.  A failure of the stronger three containments
   need not violate this weaker condition.  Do not list more loop families.
+- **Hall--Witt shortcut reduced and frozen:** for `s=rt`, the exact
+  interchange has a donor-legal cyclic factor `[X,[r,t]]` because
+  `[r,t]=[s,r^-1]`.  The Hall--Witt exchange leaves the mixed term
+  `T=^h[t,[X,r]]`; killing `s` sends it to `^h[r^-1,[X,r]]`.  Neither its
+  triviality nor its membership in a relevant donor normal closure is proved.
+  The earlier gates block direct use of `r`, `D=^h[X,r]`, and `[X,t]`, but do
+  not imply nonmembership for the cyclic terms.  This is a reduction to one
+  obligation, not a positive closure or negative obstruction.  Do not open a
+  higher cyclic-commutator ladder.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
@@ -216,9 +225,11 @@ finite quotient do not close a route.
   universally, with the three affine containments as a stronger sufficient
   theorem, or give one symbolic loop violating the weaker condition.  A loop
   violating only the stronger condition is inconclusive.  If the checkpoint
-  produces only more proper loop families, freeze Sections 6.12--6.20 as the bounded
-  first-derived tagged theorem and switch to Hall--Witt construction or the
-  unrestricted common-kill bridge.
+  produces only more proper loop families, freeze Sections 6.12--6.20 as the
+  bounded first-derived tagged theorem.  The Hall--Witt construction is also
+  frozen at the single membership/triviality obligation `T`; do not expand it
+  cyclically.  Resume the unrestricted common-kill bridge unless a genuinely
+  complete stabilizer theorem or a direct evaluation of `T` appears.
   If the linear orbit contains zero, escalate once to the tame relative
   crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or
   another full relative path may bypass the closed single-row gate.  Do not

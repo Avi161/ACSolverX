@@ -78,6 +78,36 @@ def test_mms02_tagged_buffer_exact_word_replay():
         conjugate(h, r),
         conjugate(product(h, "X"), inverse(r)),
     )
+
+    s = product(r, "t")
+    rt_commutator = commutator(r, "t")
+    interchange_left = product(
+        commutator("X", r),
+        conjugate(r, commutator("X", "t")),
+    )
+    interchange_right = product(
+        commutator("X", rt_commutator),
+        conjugate(rt_commutator, commutator("X", "t")),
+        conjugate(product(rt_commutator, "t"), commutator("X", r)),
+    )
+    assert interchange_left == interchange_right == commutator("X", s)
+    assert rt_commutator == commutator(s, inverse(r))
+
+    hall_witt = product(
+        conjugate(
+            inverse(r),
+            commutator(inverse(commutator("x", r)), "T"),
+        ),
+        conjugate(
+            "T",
+            commutator(inverse(commutator(inverse(r), "t")), "x"),
+        ),
+        conjugate(
+            "x",
+            commutator(inverse(commutator("T", "X")), inverse(r)),
+        ),
+    )
+    assert hall_witt == ""
     assert A == product(r, inverse(K))
     assert B == product(q, inverse(D))
 
