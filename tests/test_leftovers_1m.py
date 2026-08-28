@@ -22,8 +22,8 @@ from experiments.search.greedy_baseline import greedy_search
 from experiments.search.heuristics import greedy_search_h
 from experiments.search.run_leftovers_1m import (
     ARMS, COMMON_DENOMINATOR_EXCLUDED, NODE_BUDGET, S20_MK2, SCREEN_DIR,
-    classify, greedy_search_h_lean, load_rows, out_path, read_rows, report,
-    resolve_arm, resolve_workers, run_arm, unsolved_at_100k,
+    _in_search_heartbeat, classify, greedy_search_h_lean, load_rows, out_path,
+    read_rows, report, resolve_arm, resolve_workers, run_arm, unsolved_at_100k,
 )
 
 ROOT = mk.ROOT
@@ -521,3 +521,97 @@ def test_the_notebook_runs_end_to_end_on_its_smoke_path(arm, cells, tmp_path):
     # nothing in this list is solvable in 2,000 nodes -- they all survived 100,000
     assert ns["c"]["solved_at_1m"] == []
     assert ns["c"]["solved_at_or_below_100k"] == []
+
+
+# ------------------------------------------------------ progress from inside a row
+#
+# A row at this budget is 25-80 minutes. Without a callback reaching into the
+# search, the run prints nothing for that whole time and a working session is
+# indistinguishable from a hung one. These pin that it reports, that it is
+# rate-limited by wall clock rather than by node count, and -- the part that
+# actually broke -- that the arms forward it to the solver at all.
+
+
+def test_the_heartbeat_reports_progress_rate_and_eta():
+    lines = []
+    hb = _in_search_heartbeat("ac19_420", 1_000_000, every=0.0, log=lines.append)
+    hb(250_000)
+    assert len(lines) == 1
+    assert "ac19_420" in lines[0]
+    assert "250,000/1,000,000" in lines[0] and "25.0%" in lines[0]
+    assert "n/s" in lines[0] and "min left" in lines[0]
+
+
+def test_the_heartbeat_is_gated_by_wall_clock_not_by_node_count():
+    """It fires every 1024 pops -- roughly once a second -- so without the gate
+    a 1M-node row would print about a thousand lines."""
+    lines = []
+    hb = _in_search_heartbeat("r", 1_000_000, every=3600.0, log=lines.append)
+    for n in range(1024, 200_000, 1024):
+        hb(n)
+    assert lines == []
+
+
+@pytest.mark.parametrize("arm", ARM_NAMES)
+def test_each_arm_forwards_the_progress_callback_to_its_solver(arm):
+    """The bug this pins: the arm wrappers dropped `progress`, so the callback
+    existed and was never called."""
+    seen = []
+    ARMS[arm]["run"]("XyyxYYY", "XyxxyXX", 3_000, 24, progress=seen.append)
+    assert seen, "solver never called progress"
+    assert all(n % 1024 == 0 for n in seen)
+
+
+@pytest.mark.parametrize("arm", ARM_NAMES)
+def test_a_real_run_prints_progress_from_inside_the_row(arm, tmp_path, capsys):
+    """End to end: a single row long enough to cross the gate must report while
+    it is still running, not only when it finishes."""
+    run_arm(arm, str(tmp_path), budget=5_000, mrl=24, n_workers=1, limit=1,
+            heartbeat_secs=0.0, log=lambda *a: None)
+    out = capsys.readouterr().out
+    assert "nodes (" in out and "n/s" in out, out[-400:]
+
+
+# ------------------------------------------------- resuming onto a wiped runtime
+#
+# Colab recycles /content -- the clone and the results directory with it -- while
+# Drive survives. RESUME reads the LOCAL jsonl, so without seeding it back the
+# session re-runs every row it already paid for.
+
+
+def test_resume_seeds_the_local_jsonl_back_from_the_drive_mirror(tmp_path, capsys):
+    local, drive = tmp_path / "local", tmp_path / "drive"
+    local.mkdir(), drive.mkdir()
+    run_arm("greedy", str(local), budget=300, mrl=24, n_workers=1, limit=2,
+            mirror_dir=str(drive), log=lambda *a: None)
+    out = out_path("greedy", str(local), 300, 24)
+    mirrored = os.path.join(str(drive), os.path.basename(out))
+    assert len(read_rows(mirrored)) == 2
+
+    os.remove(out)                      # the VM recycle
+    run_arm("greedy", str(local), budget=300, mrl=24, n_workers=1, limit=2,
+            mirror_dir=str(drive), log=print)
+    assert "seeded 2 row(s) back from the Drive mirror" in capsys.readouterr().out
+    assert len(read_rows(out)) == 2, "should have resumed, not re-run"
+
+
+def test_a_local_jsonl_ahead_of_the_mirror_is_not_clobbered(tmp_path):
+    """The mirror is written from local, so local is normally the newer of the
+    two; seeding must never walk it backwards."""
+    local, drive = tmp_path / "local", tmp_path / "drive"
+    local.mkdir(), drive.mkdir()
+    run_arm("greedy", str(local), budget=300, mrl=24, n_workers=1, limit=1,
+            mirror_dir=str(drive), log=lambda *a: None)
+    out = out_path("greedy", str(local), 300, 24)
+    run_arm("greedy", str(local), budget=300, mrl=24, n_workers=1, limit=3,
+            mirror_dir=None, log=lambda *a: None)          # local pulls ahead
+    assert len(read_rows(out)) == 3
+    run_arm("greedy", str(local), budget=300, mrl=24, n_workers=1, limit=3,
+            mirror_dir=str(drive), log=lambda *a: None)
+    assert len(read_rows(out)) == 3
+
+
+def test_a_missing_or_unreadable_mirror_does_not_stop_the_run(tmp_path):
+    run_arm("greedy", str(tmp_path), budget=300, mrl=24, n_workers=1, limit=1,
+            mirror_dir=str(tmp_path / "never" / "mounted"), log=lambda *a: None)
+    assert len(read_rows(out_path("greedy", str(tmp_path), 300, 24))) == 1

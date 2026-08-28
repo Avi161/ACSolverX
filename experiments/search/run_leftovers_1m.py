@@ -288,12 +288,13 @@ def greedy_search_h_lean(r1_str, r2_str, node_budget, max_relator_length=24,
     }
 
 
-def _run_greedy(r1, r2, budget, mrl):
-    return greedy_search(r1, r2, budget, mrl, high_speedup=True)
+def _run_greedy(r1, r2, budget, mrl, progress=None):
+    return greedy_search(r1, r2, budget, mrl, high_speedup=True, progress=progress)
 
 
-def _run_s20_mk2(r1, r2, budget, mrl):
-    return greedy_search_h_lean(r1, r2, budget, mrl, config=S20_MK2)
+def _run_s20_mk2(r1, r2, budget, mrl, progress=None):
+    return greedy_search_h_lean(r1, r2, budget, mrl, config=S20_MK2,
+                                progress=progress)
 
 
 # name -> the search, its 100k-unsolved CSV, the 100k jsonl that CSV was read off,
@@ -455,8 +456,36 @@ def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None):
 
 
 # ------------------------------------------------------------------------- run
+def _in_search_heartbeat(name, budget, every=60.0, log=print):
+    """A ``progress`` callback that reports from INSIDE one row's search.
+
+    Without this the run is silent for the length of a whole row -- 25 to 80
+    minutes at a 1,000,000-node budget -- because the only other progress line
+    is emitted when a row *finishes*. A quiet hour is indistinguishable from a
+    hung session, which is the wrong thing to make someone guess about.
+
+    The solvers call ``progress`` every ``_HB_CHECK_EVERY`` (1024) pops, i.e.
+    about once a second, so the wall-clock gate here is what sets the rate; the
+    callback itself is result-neutral. The row name leads every line because
+    with more than one worker these interleave.
+    """
+    state = {"t0": time.time(), "last": time.time()}
+
+    def progress(n):
+        now = time.time()
+        if now - state["last"] < every:
+            return
+        state["last"] = now
+        elapsed = now - state["t0"]
+        rate = n / elapsed if elapsed > 0 else 0.0
+        eta = (budget - n) / rate if rate > 0 else float("inf")
+        log(f"      {name}: {n:,}/{budget:,} nodes ({100.0 * n / budget:.1f}%) "
+            f"{rate:,.0f} n/s, ~{eta / 60:.0f} min left on this row")
+    return progress
+
+
 def _job(args):
-    arm, row, budget, mrl = args
+    arm, row, budget, mrl, heartbeat_secs = args
     _, spec = resolve_arm(arm)
     # Both caches in heuristics are module-level and unbounded, so in a worker
     # that handles more than one row they carry the previous row's states into
@@ -464,7 +493,9 @@ def _job(args):
     _heur._STATE_CACHE.clear()
     _heur._WORD_CACHE.clear()
     t = time.time()
-    st = spec["run"](row["r1"], row["r2"], budget, mrl)
+    st = spec["run"](row["r1"], row["r2"], budget, mrl,
+                     progress=_in_search_heartbeat(row["name"], budget,
+                                                   heartbeat_secs))
     return {
         "name": row["name"],
         "arm": arm,
@@ -557,6 +588,8 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
 
     os.makedirs(out_dir, exist_ok=True)
     out = out_path(key, out_dir, budget, mrl)
+    if resume:
+        _seed_from_mirror(out, mirror_dir, log)
     seen = _done(out) if resume else set()
     todo = [r for r in rows if r["name"] not in seen]
 
@@ -571,7 +604,7 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
 
     t0 = time.time()
     last = t0
-    jobs = [(key, r, budget, mrl) for r in todo]
+    jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
     done = 0
     if jobs:
         with open(out, "a") as fh:
@@ -601,9 +634,10 @@ def _iter_results(jobs, n_workers):
 
 
 def _beat(rec, done, total, t0, last, every, out, mirror_dir, log):
+    """Print the completed-row line. Not rate-limited: a row is 25-80 minutes at
+    this budget, so every one of them is worth a line. The per-second reporting
+    happens inside the search, in ``_in_search_heartbeat``."""
     now = time.time()
-    if now - last < every and done != total:
-        return last
     rate = done / max(now - t0, 1e-9)
     eta = (total - done) / rate if rate else float("inf")
     log(f"    [{done}/{total}] {rec['name']} solved={rec['solved']} "
@@ -611,6 +645,33 @@ def _beat(rec, done, total, t0, last, every, out, mirror_dir, log):
         f"{rate * 3600:.1f} rows/h, eta {eta / 3600:.1f} h")
     _mirror(out, mirror_dir)
     return now
+
+
+def _seed_from_mirror(out, mirror_dir, log=print):
+    """Copy the Drive jsonl back down when it holds rows the local one does not.
+
+    RESUME reads the LOCAL jsonl, but Colab recycles ``/content`` -- the clone,
+    the results directory and all -- while Drive survives. Without this, a
+    session that comes back to a wiped VM re-runs every row it already paid for,
+    which at 25-80 minutes a row is the difference between resuming and starting
+    over. The mirror is written whole-file from the local copy, so normally Drive
+    is a prefix of local and this is a no-op; it only fires when local is behind.
+    """
+    if not mirror_dir:
+        return
+    src = os.path.join(mirror_dir, os.path.basename(out))
+    try:
+        if not os.path.exists(src):
+            return
+        theirs, ours = len(_done(src)), len(_done(out))
+        if theirs > ours:
+            os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+            shutil.copyfile(src, out)
+            log(f"  resume  : seeded {theirs} row(s) back from the Drive mirror "
+                f"(local had {ours})")
+    except OSError as e:
+        log(f"  [warn] could not read the Drive mirror ({e}); "
+            f"resuming from the local jsonl only")
 
 
 def _mirror(out, mirror_dir):
