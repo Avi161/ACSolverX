@@ -8,7 +8,11 @@ finite quotient do not close a route.
 
 ## 1. MMS02 rank-three donor factorization — active
 
-- **Exact target:** `(A,B,zYX) ~AC (A,B,Xyz)` by rank-three AC1--AC3 moves.
+- **Priority:** highest-value active theory route to stable AK(3).
+- **Exact target:** with `Tpub=(A,B,Xyz)` and
+  `Txy=(A,B,zYX)`, prove `Txy ~AC Tpub` by rank-three AC1--AC3 moves, or
+  directly AC-trivialize `Tpub`. The verified corridor makes this sufficient
+  for stable AK(3), not ordinary AK(3).
 - **Current reduction:** with `r=xyxZXY`, `q=Xy`, `v=Xyz`, the target is an
   exact donor-indexed factorization from `(r,q,v)` to `(A,B,v)`. The full
   factorization is equivalent to the open bridge, not an auxiliary theorem.
@@ -26,6 +30,11 @@ finite quotient do not close a route.
   exact homomorphism refuting only its named sequential ansatz. Do not use a
   failed quotient search as evidence. Before extending the JSON schema, harden
   ordinal fields to reject booleans/floats that compare equal to integers.
+- **Two-gate theorem:** either `delta_D=1` in `Q_A` or `delta_K=1` in `Q_B`
+  gives a constructive AC-trivialization of `Tpub`; see
+  `literature/proofs/AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`. Nontriviality of both
+  defects would close only the two sequential donor completions, not the
+  unrestricted bridge.
 - **Nonclaim:** neither first leg alone proves the bridge, AC, or stable AC.
 
 ## 2. Old--new covariance program — active
