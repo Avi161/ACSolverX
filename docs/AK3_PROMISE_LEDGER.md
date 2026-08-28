@@ -211,6 +211,18 @@ finite quotient do not close a route.
   not imply nonmembership for the cyclic terms.  This is a reduction to one
   obligation, not a positive closure or negative obstruction.  Do not open a
   higher cyclic-commutator ladder.
+- **Raw omission exchange evaluated and frozen:** in the misprinted
+  fourteen-row corridor, omitting `r14` instead of the published `r12` gives
+  an exact fourteen-step stable trivialization, while omission of `r12`
+  reduces to `Tpub`.  Holding the thirteen common rows fixed, eleven exact
+  substitutions and five Whitehead automorphisms reduce the two probes to
+  `p=Xt` and `q=TXtxTxttXTx` in
+  `<x,t | TTXtXTTxttx>`.  An exact `A5` image sends `p` to cycle type `(3)`
+  and both `q` and `q^-1` to `(5)`, so inversion, conjugation, and common-row
+  donor multiplication cannot exchange the omitted rows.  This closes only
+  the fixed-core typo repair.  Interleaved changes to the common rows, the
+  unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.  Do not
+  open an omission ledger.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
@@ -228,7 +240,8 @@ finite quotient do not close a route.
   produces only more proper loop families, freeze Sections 6.12--6.20 as the
   bounded first-derived tagged theorem.  The Hall--Witt construction is also
   frozen at the single membership/triviality obligation `T`; do not expand it
-  cyclically.  Resume the unrestricted common-kill bridge unless a genuinely
+  cyclically.  The fixed-core raw omission exchange is frozen at its `A5`
+  obstruction.  Resume the unrestricted common-kill bridge unless a genuinely
   complete stabilizer theorem or a direct evaluation of `T` appears.
   If the linear orbit contains zero, escalate once to the tame relative
   crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or

@@ -107,6 +107,15 @@ mixed term ${}^h[t,[X,r]]$.  Its triviality and donor membership are
 unevaluated, so the mechanism is frozen at that one obligation and no higher
 Hall--Witt remainder ladder is opened.
 
+Section 6.22 returns to the raw MMS02 corridor and changes which printed row
+is omitted.  Omitting row fourteen instead of row twelve gives an exact
+fourteen-step stable trivialization.  The tempting direct exchange of those
+two omitted rows is nevertheless impossible: after exact substitutions and
+five Whitehead automorphisms it maps onto an $A_5$ quotient in which the two
+row probes have cycle types $(3)$ and $(5)$.  This freezes one fixed-core typo
+repair only; arbitrary changes to the common rows and the unrestricted bridge
+remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -2680,6 +2689,166 @@ proposed Hall--Witt mechanism at the single named obligation $\mathcal T$;
 no higher cyclic-commutator ledger is opened.  The tagged gate (130), the
 unrestricted MMS02 bridge, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.22. The alternate MMS omission is stably trivial, but direct exchange fails
+
+The original printed fourteen-row corridor has a second exact normalization
+which keeps the typo rather than repairing it.  Write
+$a=x_1,b=x_2,\ldots,n=x_{14}$.  For $R_i$ use the based equation defect
+$x_i c_i^{-1}$, where the printed right sides are
+
+\[
+ \begin{array}{c|ccccccc}
+ i&1&2&3&4&5&6&7\\
+ \hline
+ c_i&jnJ&Jaj&Aba&Fcf&ldL&Geg&Dfd
+ \end{array}
+ \hspace{1em}
+ \begin{array}{c|ccccccc}
+ i&8&9&10&11&12&13&14\\
+ \hline
+ c_i&agA&Khk&niN&Bjb&Aka&elE&amA.
+ \end{array}
+ \tag{148}
+\]
+
+Thus the misprinted row is $R_{13}$ with $c_{13}=elE$; the diagrammatic
+correction would replace it by $dlD$.  Keep the printed row and put
+
+\[
+ w=Egl=x_5^{-1}x_7x_{12},
+ \hspace{1em}
+ \mathcal P_j=(R_1,\ldots,\widehat R_j,\ldots,R_{14},w).
+ \tag{149}
+\]
+
+The published elimination deletes $R_{12}$.  Its exact substitution order
+
+\[
+ n=b, k=i, i=h, m=elE, h=agA, d=Fcf, c=Aba,
+ f=Geg, j=bagAB, b=aelEA, a=elEgelEGeLE
+ \tag{150}
+\]
+
+leaves the generators $(e,g,l)$ and the two rows which, after the renaming
+$(e,g,l)=(x,y,z)$, are exactly $A,B$.  The last row remains $w=Xyz$.
+Consequently
+
+\[
+ \mathcal P_{12}\sim_{\rm stAC}(A,B,Xyz)=T_{\rm pub}.
+ \tag{151}
+\]
+
+Now omit $R_{14}$ instead.  Repeated substitution and removal follows the
+literal order
+
+\[
+ e,f,a,b,h,i,j,l,d,c,g,m,k,n
+ \tag{152}
+\]
+
+with respective replacement words
+
+\[
+ gl, lg, jnJ, n, kiK, Njn, nkN, Gmg, GMgmmg,
+ nkNKnknKN, nkNKNknknKN, nkNKNknknKN, 1, 1.
+ \tag{153}
+\]
+
+At every stage the chosen current defining row contains the displayed
+generator exactly once.  The substitution-and-removal lemma therefore gives
+
+\[
+ \boxed{\mathcal P_{14}\sim_{\rm stAC}\varnothing.}
+ \tag{154}
+\]
+
+This supplies a genuine stably trivial target near the misprinted corridor.
+It does not by itself exchange the omitted rows.  To evaluate the most direct
+exchange, keep the thirteen common rows
+
+\[
+ \mathcal C=(R_1,\ldots,R_{11},R_{13},w)
+ \tag{155}
+\]
+
+fixed and compare the probes $R_{12}$ and $R_{14}$.  Eleven exact
+unique-occurrence substitutions reduce $\mathcal C$ to two rows on
+$F(k,m,n)$ and send the probes to
+
+```text
+S1 = MnkNKNknknKNmmnkNKNKnknKNMnkNKNkNKnknKNmnkNKNknknKN
+S2 = MMnkNKNKnknKNmnkNKNKnknKNMMnkNKNknknKNmmnkNKNknknKN
+p12 = nkNKNKnknKNm
+p14 = nknKNMnkNK.
+```
+
+Rename $(k,m,n)=(x,t,z)$.  The five Whitehead automorphisms
+
+\[
+ (Zx,t,z), (x,t,Xzx), (x,Ztz,z), (x,Xtx,z), (xz,Ztz,z)
+ \tag{156}
+\]
+
+send the four cyclic rows respectively to
+
+```text
+TxttXTxZXtx,  TTXtXTTxttx,  Xt,  Tz.
+```
+
+The first row contains $z$ exactly once and gives
+
+\[
+ z=XtxTxttXTx.
+\]
+
+After removing it, the common quotient and probes are
+
+\[
+ \boxed{
+ H=\langle x,t\mid TTXtXTTxttx\rangle,
+ \hspace{1em} p=Xt,
+ \hspace{1em} q=TXtxTxttXTx.}
+ \tag{157}
+\]
+
+There is an exact epimorphism $H\to A_5$ given in one-line notation by
+
+\[
+ x\longmapsto(1,2,3,4,0),
+ \hspace{1em}
+ t\longmapsto(1,3,0,4,2).
+ \tag{158}
+\]
+
+The relator maps to the identity, the two images generate all sixty even
+permutations, and
+
+\[
+ \operatorname{ctype}(p)=(3),
+ \hspace{1em}
+ \operatorname{ctype}(q)=\operatorname{ctype}(q^{-1})=(5).
+ \tag{159}
+\]
+
+Hence $p$ is conjugate to neither $q$ nor $q^{-1}$ in $H$.
+Any fixed-$\mathcal C$ exchange would make the probe image differ only by
+inversion, conjugation, and a product from the normal closure of the common
+rows.  It would therefore make $p$ conjugate to $q$ or $q^{-1}$ in $H$,
+contradicting (159).
+
+**Theorem 6.16 (fixed-core omission exchange).**  The alternate printed
+omission $\mathcal P_{14}$ is stably AC-trivial by the explicit fourteen-step
+substitution table (152)--(153), while $\mathcal P_{12}$ is the stable lift of
+$T_{\rm pub}$.  No exchange which holds every row of $\mathcal C$ fixed and
+changes only $R_{14}$ by inversion, conjugation, and multiplication by those
+common donor rows can replace it by $R_{12}$.
+
+The theorem closes the direct raw-corridor typo repair, not the omission
+exchange under interleaved changes to the common rows.  It supplies neither a
+stable equivalence $\mathcal P_{12}\sim\mathcal P_{14}$ nor the unrestricted
+rank-three bridge.  No new omission ledger is opened.  Stable AK(3), ordinary
+AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2727,12 +2896,16 @@ The logical gates remain separate:
     three-part containment law (140);
 15. Hall--Witt makes $H_X$ donor-legal but leaves the mixed term $\mathcal T$,
     whose triviality and donor membership are both unproved;
-16. no MMS02 statement evaluates the period-two class-two ledger or its
-   literal higher lift; and
-17. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
-   Andrews--Curtis are not claimed.
+16. the alternate raw omission is stably trivial, but the $A_5$ witness closes
+    only the fixed-common-row exchange of $R_{14}$ for $R_{12}$; interleaved
+    changes to the common rows remain open;
+17. no MMS02 statement evaluates the period-two class-two ledger or its
+    literal higher lift; and
+18. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with
 the unrestricted rank-three bridge
-$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$.  No further sequential or pinned-donor
+$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$.  The fixed-core omission exchange is
+frozen at Theorem 6.16.  No further sequential, pinned-donor, or omission
 ledger is opened.
