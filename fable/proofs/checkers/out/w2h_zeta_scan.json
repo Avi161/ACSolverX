@@ -1,0 +1,494 @@
+{
+ "schema": "acsolverx.w2h.period.v1",
+ "summary": {
+  "chains": 23,
+  "all_windows_solvable": 19,
+  "zeta_trivial_on_ball": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    4
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    4
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    8
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    8
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 0,
+   "margins": [
+    7
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    3
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    1
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    1
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    2
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    3
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    3
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    3
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    2
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    2
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 0,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 0,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 0,
+   "margins": [
+    5
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    1
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    10
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "K": 0,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 1,
+   "windows_with_piD_in_lattice": 1,
+   "margins": [
+    10
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": true
+  }
+ ]
+}

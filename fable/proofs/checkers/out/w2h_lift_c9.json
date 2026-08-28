@@ -1,0 +1,40 @@
+{
+ "schema": "acsolverx.w2h.lift.v1",
+ "summary": {
+  "windows": 1,
+  "verified_layer1_solutions": 1,
+  "unsolved_at_rho": 0,
+  "mutation_control_run": true,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 23,
+   "rho": 3,
+   "variables": 118282,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    0,
+    4,
+    17,
+    27,
+    22
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  }
+ ]
+}

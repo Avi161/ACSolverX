@@ -1,0 +1,198 @@
+{
+ "schema": "acsolverx.w2h.probe.v1",
+ "summary": {
+  "chains": 11,
+  "detector_fired": 11,
+  "all_controls_passed": true,
+  "note": "the real lattice contains pi(D) on every chain, so no real chain can be certified dead; the detector is shown able to fire on a synthetic doubled system, and the independent one-hop solver agrees"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": false,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "real_piD_in_lattice": false,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "real_piD_in_lattice": false,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "real_piD_in_lattice": true,
+   "synthetic_primitive_in_lattice": false,
+   "synthetic_double_in_lattice": true,
+   "one_hop_solvable_mod2": false,
+   "primitive_in_real_lattice": true,
+   "detector_fires_on_primitive": true,
+   "detector_silent_on_double": true,
+   "one_hop_agrees_primitive_dead_mod2": true,
+   "passed": true
+  }
+ ]
+}

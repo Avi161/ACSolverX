@@ -1,0 +1,53 @@
+{
+ "schema": "acsolverx.w2h.period.v1",
+ "summary": {
+  "chains": 2,
+  "all_windows_solvable": 0,
+  "zeta_trivial_on_ball": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "K": 1,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 81,
+   "windows_with_piD_in_lattice": 45,
+   "margins": [
+    4
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "K": 1,
+   "L": 10,
+   "zeta2_acts_trivially_on_ball": false,
+   "zeta3_acts_trivially_on_ball": false,
+   "windows": 81,
+   "windows_with_piD_in_lattice": 45,
+   "margins": [
+    4
+   ],
+   "augmentations": [
+    0
+   ],
+   "all_windows_solvable": false
+  }
+ ]
+}

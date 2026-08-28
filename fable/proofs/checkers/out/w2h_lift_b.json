@@ -1,9 +1,9 @@
 {
  "schema": "acsolverx.w2h.lift.v1",
  "summary": {
-  "windows": 8,
+  "windows": 7,
   "verified_layer1_solutions": 5,
-  "unsolved_at_rho": 3,
+  "unsolved_at_rho": 2,
   "mutation_control_run": true,
   "controls_passed": true
  },
@@ -24,6 +24,7 @@
    "defect_terms": 23,
    "rho": 2,
    "variables": 5402,
+   "route": "hop_expansion",
    "solvable_over_Z": false,
    "x_terms": null,
    "residual_after_lift": null,
@@ -44,14 +45,15 @@
    ],
    "defect_terms": 30,
    "rho": 2,
-   "variables": 12472,
+   "variables": 16205,
+   "route": "omega_seeded",
    "solvable_over_Z": true,
    "x_terms": [
     0,
-    8,
-    10,
+    7,
+    9,
     12,
-    6
+    8
    ],
    "residual_after_lift": 0,
    "VERIFIED_layer1_solution": true
@@ -72,6 +74,7 @@
    "defect_terms": 14,
    "rho": 2,
    "variables": 4425,
+   "route": "hop_expansion",
    "solvable_over_Z": false,
    "x_terms": null,
    "residual_after_lift": null,
@@ -92,14 +95,15 @@
    ],
    "defect_terms": 13,
    "rho": 2,
-   "variables": 4132,
+   "variables": 20163,
+   "route": "omega_seeded",
    "solvable_over_Z": true,
    "x_terms": [
     1,
-    4,
     5,
-    6,
-    3
+    9,
+    13,
+    10
    ],
    "residual_after_lift": 0,
    "VERIFIED_layer1_solution": true
@@ -119,14 +123,15 @@
    ],
    "defect_terms": 17,
    "rho": 2,
-   "variables": 5684,
+   "variables": 20488,
+   "route": "omega_seeded",
    "solvable_over_Z": true,
    "x_terms": [
     1,
-    4,
-    7,
-    6,
-    3
+    5,
+    15,
+    10,
+    10
    ],
    "residual_after_lift": 0,
    "VERIFIED_layer1_solution": true
@@ -146,14 +151,15 @@
    ],
    "defect_terms": 11,
    "rho": 2,
-   "variables": 3634,
+   "variables": 20388,
+   "route": "omega_seeded",
    "solvable_over_Z": true,
    "x_terms": [
     1,
-    4,
     5,
-    5,
-    3
+    11,
+    16,
+    10
    ],
    "residual_after_lift": 0,
    "VERIFIED_layer1_solution": true
@@ -173,38 +179,18 @@
    ],
    "defect_terms": 11,
    "rho": 2,
-   "variables": 4820,
+   "variables": 26649,
+   "route": "omega_seeded",
    "solvable_over_Z": true,
    "x_terms": [
     1,
-    5,
-    12,
-    10,
-    2
+    6,
+    15,
+    25,
+    15
    ],
    "residual_after_lift": 0,
    "VERIFIED_layer1_solution": true
-  },
-  {
-   "chain": [
-    "TTctcTctc",
-    "TTcTctttc",
-    "TcttcTTcTctc"
-   ],
-   "g": "",
-   "window": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "defect_terms": 16,
-   "rho": 2,
-   "variables": 4886,
-   "solvable_over_Z": false,
-   "x_terms": null,
-   "residual_after_lift": null,
-   "VERIFIED_layer1_solution": false
   }
  ]
 }
