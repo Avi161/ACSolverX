@@ -9,7 +9,7 @@ codex class-two tower. Opus agents launched: plan review (ac-advisor), independe
 derivation of the A5 data, and a known-results sweep on AC-graphs of finite groups.
 No AK(3), stable AC, or AC claim is made.
 
-## 2026-08-28 · cycle 1 · ``
+## 2026-08-28 · cycle 1 · `1e8d86b`
 
 W1 first theorem: complete A5 closure proves the A5 obstruction blind for the full
 bridge (all 6 nontrivial hom classes connect; surjective orbits are all of A5^3 minus
