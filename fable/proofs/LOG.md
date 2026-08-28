@@ -311,3 +311,24 @@ change the answer: is 0 attainable for Ξ_Z∘Θ over the complete correction
 lattice for even one baseline. Post-hoc sections in six notes; lesson filed.
 Note: W2K_CORRECTED_REVERIFY.md; checkers corrected_operators.py,
 w2k_reverify.py. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 21 · `ced2551`
+
+W2l: the attainability question, with corrected premises. W2j's mod-2
+periodicity is not linearity — the F2 polarisations survive (979/1,047 cross
+pairs odd; only 4 baselines affine-linear; independent path agrees 16/16), so
+mod-2 attainability is a system of F2-quadratic forms. Complete Gray-coded
+mod-2 enumerations (complete over Z^m by periodicity): 9,338 classes across
+51/51 analysable baselines, 0 attainable, planted-zero control fires 51/51;
+chain 7's direction generator saturates and all 1,048,576 classes are
+enumerated — no zero. The integral hunt never fires. NO OBSTRUCTION CLAIMED:
+the would-be window-independent certificate is one-sided in exactly the
+direction that cannot fire (dimension count: rank V_S ≪ universe median 406);
+the mod-p^k premise is corrected the same way. Codex escape-certificate
+calibration exact. Verdict: MOD2_UNATTAINABLE_ON_S (bounded by S) on 51; no
+baseline decided either way. The missing lemma is now precise: a translation
+cocycle law for Θ (κ(g,x) ∈ [N,N] with Θ(κ) bilinear) would make V_{H_fin}
+finitely generated up to the Q-action and the question decidable — enlarging
+direction sets is not a plan. Three lessons filed. Note:
+W2L_THETA_ATTAINABILITY.md; checker theta_attainability.py. No AK(3), stable
+AC, or AC claim.
