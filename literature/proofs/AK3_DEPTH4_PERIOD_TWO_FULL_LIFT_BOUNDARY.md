@@ -49,7 +49,11 @@ retains canonical-section tensors, inverse squares, external cross terms,
 and the terminal-normalization defects from (5.41) until the complete
 zero-linear tensor is antisymmetric.  This repairs the false shortcut that
 treated quotient transport as literal free-group transport.  Fixed-literal
-and literal--correction affine terms remain outside that ledger.
+and literal--correction affine terms remain outside that ledger.  Section
+3.46 further splits every terminal defect into its literal-prefix offset,
+source/destination Schreier-section comparison, and one universal
+$\alpha$-crossed derivation.  Only the universal odd-prefix part collapses,
+to the current $F_0-F_2+F_3$.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -5389,6 +5393,292 @@ complete defect $\Theta(F)$ also remain separate.  Equations
 (3.351)--(3.354) close the correction-only tensor interface but do not
 assert that its coinvariant, the complete class-two obstruction, or AK(3)
 is nonzero.
+
+### 3.46 Terminal ledger: one derivation and two section comparisons
+
+The bridge currents in (3.348) admit a uniform all-support formula.  Put
+
+\[
+ \begin{aligned}
+ x&:=t,\\
+ y&:=ctc,\\
+ K&=F(x,y).
+ \end{aligned}
+ \tag{3.355}
+\]
+
+Use the free-group section $j:K\to F(c,t)$ determined by
+$j(x)=t$ and $j(y)=ctc$, and write $\widehat a=j(a)$.  This is a genuine
+homomorphism: the images of $x,y$ freely generate $K$ in $Q$, so a relation
+between their displayed lifts in $F(c,t)$ would give the same relation in
+$K$.
+
+The fixed Schreier representative $\widetilde a$ from (1.4) need not be
+$\widehat a$.  Record that second section comparison by
+
+\[
+ \begin{aligned}
+ \mu(a)&:=\widetilde a\widehat a^{-1}\in N,\\
+ E(a)&:=\overline{\mu(a)}\in M.
+ \end{aligned}
+ \tag{3.355a}
+\]
+
+Define the kernel defect and its relation-module current by
+
+\[
+ \begin{aligned}
+ \delta(a)&:=c\widehat a c^{-1}
+              \widehat{\alpha(a)}^{-1}\in N,\\
+ D(a)&:=\overline{\delta(a)}\in M=\mathbb Z[K].
+ \end{aligned}
+ \tag{3.356}
+\]
+
+Then $D$ is the explicit $\alpha$-crossed derivation
+
+\[
+ \boxed{
+ \begin{aligned}
+ D(ab)&=D(a)+\alpha(a)D(b),\\
+ D(x)&=-e_y,\\
+ D(y)&=e_1.
+ \end{aligned}}
+ \tag{3.357}
+\]
+
+Indeed,
+
+\[
+ \delta(ab)
+ =\delta(a)\widehat{\alpha(a)}
+  \delta(b)\widehat{\alpha(a)}^{-1},
+ \tag{3.357a}
+\]
+
+which gives the first row after abelianization.  For the generators,
+
+\[
+ \begin{aligned}
+ \delta(x)
+ &=c\bigl(t c^{-2}t^{-1}\bigr)c^{-1},\\
+ \delta(y)&=c^2.
+ \end{aligned}
+ \tag{3.357b}
+\]
+
+The first word is the inverse Schreier generator at the vertex $yH$ and
+the second is the generator at $H$, proving the last two rows of (3.357).
+
+Now use the semidirect decomposition (3.336), $q_o=m_oc^{\eta_o}$.  The
+literal lift in (3.345) need not equal the multiplicative semidirect lift.
+Define their exact comparison factor by
+
+\[
+ \begin{aligned}
+ \lambda_o
+ &:=\widehat q_o
+   \left(\widehat m_oc^{\eta_o}\right)^{-1}\in N,\\
+ P_o&:=\overline{\lambda_o}\in M,\\
+ \widetilde P_o&:=m_o^{-1}P_o\in M.
+ \end{aligned}
+ \tag{3.358}
+\]
+
+For the odd semidirect lift,
+
+\[
+ \widehat m_o c\widehat a
+ =\left(\widehat m_o\delta(a)\widehat m_o^{-1}\right)
+  \widehat{m_o\alpha(a)}c.
+ \tag{3.359}
+\]
+
+Put $b=m_o\alpha^{\eta_o}(a)$.  Substituting
+$\widetilde a=\mu(a)\widehat a$ at the source and
+$\widehat b=\mu(b)^{-1}\widetilde b$ at the destination gives
+
+\[
+ \widehat q_o\widetilde a
+ =\lambda_o
+  \left(
+   \widehat m_oc^{\eta_o}\mu(a)c^{-\eta_o}\widehat m_o^{-1}
+  \right)
+  \left(
+   \widehat m_o\delta_{\eta_o}(a)\widehat m_o^{-1}
+  \right)
+  \mu(b)^{-1}\widetilde b c^{\eta_o},
+ \tag{3.359a}
+\]
+
+where $\delta_0(a)=1$ and $\delta_1(a)=\delta(a)$.  The terminal
+$c^{\eta_o}$ centralizes $c^2$.  Combining (3.348), (3.358), and (3.359a)
+therefore gives the exact literal-prefix data
+
+\[
+ \boxed{
+ \begin{aligned}
+ x_{o,a}&=m_o\alpha^{\eta_o}(a),\\
+ C_o(a)&:=\alpha^{\eta_o}(E(a))
+  -m_o^{-1}E\left(m_o\alpha^{\eta_o}(a)\right),\\
+ K_{o,a}&=P_o+m_o\left(C_o(a)+D_{\eta_o}(a)\right),\\
+ D_0(a)&:=0,\\
+ D_1(a)&:=D(a).
+ \end{aligned}}
+ \tag{3.360}
+\]
+
+The currents $P_o$ are fixed finite data of the sixteen literal prefixes,
+while $C_o(a)$ retains the source and destination Schreier-section
+comparisons.  Neither can be discarded.  Define the universal odd-prefix
+class
+
+\[
+ \boxed{
+ \mathfrak t(f)
+ :=\operatorname{Wdg}\left(
+ \sum_{a\in K}f(a)
+ \left(
+ D(a)\otimes e_{\alpha(a)}
+ -e_{\alpha(a)}\otimes D(a)
+ \right)
+ \right),}
+ \tag{3.361}
+\]
+
+and the fixed prefix-offset classes
+
+\[
+ \boxed{
+ \mathfrak p_o(f)
+ :=\operatorname{Wdg}\left(
+ \sum_{a\in K}f(a)
+ \left(
+ \widetilde P_o\otimes e_{\alpha^{\eta_o}(a)}
+ -e_{\alpha^{\eta_o}(a)}\otimes\widetilde P_o
+ \right)
+ \right).}
+ \tag{3.362}
+\]
+
+Define also the vertex-section comparison classes
+
+\[
+ \boxed{
+ \mathfrak v_o(f)
+ :=\operatorname{Wdg}\left(
+ \sum_{a\in K}f(a)
+ \left(
+ C_o(a)\otimes e_{\alpha^{\eta_o}(a)}
+ -e_{\alpha^{\eta_o}(a)}\otimes C_o(a)
+ \right)
+ \right).}
+ \tag{3.362a}
+\]
+
+All tensors in (3.361)--(3.362a) are already antisymmetric.  Equation
+(3.360) says that the bridge at occurrence $o$ is the diagonal
+$m_o$-translate of $\mathfrak p_o(f)+\mathfrak v_o(f)$, plus the
+corresponding translate of $\mathfrak t(f)$ when $\eta_o=1$.  Those
+diagonal translations vanish in $Q$-coinvariants.  The signed odd
+occurrence counts read from (3.338) are
+
+\[
+ \begin{array}{c|rrrrr}
+ s&0&1&2&3&4\\ \hline
+ \sum_{\substack{o:s_o=s\\\eta_o=1}}\epsilon_o&1&0&-1&1&0.
+ \end{array}
+ \tag{3.363}
+\]
+
+Consequently the exact terminal part of (3.351) is
+
+\[
+ \boxed{
+ \begin{aligned}
+ &
+ \Xi_{\mathbb Z}\left(
+ \operatorname{Wdg}\left(
+ \sum_{o=1}^{16}\epsilon_o\mathscr T_o(F_{s_o})
+ \right)
+ \right)\\
+ &
+ =\Xi_{\mathbb Z}\left(
+ \mathfrak t(F_0-F_2+F_3)
+ +\sum_{o=1}^{16}\epsilon_o
+  \left(
+   \mathfrak p_o(F_{s_o})+\mathfrak v_o(F_{s_o})
+  \right)
+ \right).
+ \end{aligned}}
+ \tag{3.364}
+\]
+
+This also evaluates the Hilbert--90 parities in closed form.  For
+$q\in K\setminus\{1\}$, retain $s_q=q\alpha(q^{-1})$ from (3.276).  For a
+finite current $f=\sum_a f(a)e_a$, put
+
+\[
+ \boxed{
+ \vartheta^c_{[q]}(f)
+ :=\sum_{a\in K}\overline{f(a)}
+ \left(
+ [e_{\alpha(a)s_q}]D(a)
+ +[e_{\alpha(a)s_q^{-1}}]D(a)
+ \right)
+ \pmod2,}
+ \tag{3.365}
+\]
+
+and
+
+\[
+ \boxed{
+ \vartheta^{\mathrm{pre}}_{[q]}(F)
+ :=\sum_{o=1}^{16}\sum_{a\in K}\overline{F_{s_o}(a)}
+ \left(
+ [e_{\alpha^{\eta_o}(a)s_q}]\widetilde P_o
+ +[e_{\alpha^{\eta_o}(a)s_q^{-1}}]\widetilde P_o
+ \right)
+ \pmod2.}
+ \tag{3.366}
+\]
+
+The vertex-section part is
+
+\[
+ \boxed{
+ \vartheta^{\mathrm{ver}}_{[q]}(F)
+ :=\sum_{o=1}^{16}\sum_{a\in K}\overline{F_{s_o}(a)}
+ \left(
+ [e_{\alpha^{\eta_o}(a)s_q}]C_o(a)
+ +[e_{\alpha^{\eta_o}(a)s_q^{-1}}]C_o(a)
+ \right)
+ \pmod2.}
+ \tag{3.366a}
+\]
+
+The two coefficients in each formula are precisely the two
+$K$-representatives of the fixed double coset $[s_q]_\alpha$.  Equations
+(3.354), (3.360), and (3.363) now give the full terminal parity
+
+\[
+ \boxed{
+ \vartheta_{[s_q]_\alpha}(F)
+ =\vartheta^{\mathrm{pre}}_{[q]}(F)
+  +\vartheta^{\mathrm{ver}}_{[q]}(F)
+  +\vartheta^c_{[q]}(F_0+F_2+F_3).}
+ \tag{3.367}
+\]
+
+Replacing $q$ by $\alpha(q)$ swaps $s_q$ and $s_q^{-1}$, so
+(3.365)--(3.367) are well defined on the parameter orbit
+$q\sim\alpha(q)$.  Formula (3.367) is an exact arbitrary-support
+evaluation of every terminal fixed-orbit parity.  It keeps both the
+literal-prefix offsets and the source/destination vertex-section
+comparisons, and does not assert that the parity survives the
+canonical-section, inverse-square, external, or fixed-literal terms still
+present in the complete tensor.
 
 ## 4. Exact diagonal sieve
 
