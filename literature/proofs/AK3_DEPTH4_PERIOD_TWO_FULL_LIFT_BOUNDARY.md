@@ -65,7 +65,15 @@ term.  The fixed-literal affine part of the complete defect remains
 separate.  Section 3.50 turns vanishing of all nonfixed external free
 buckets into one coefficientwise weighted norm equation.  Its identity
 coefficient is strictly negative for every nonzero correction, but that
-coefficient is discarded by the coinvariant map.
+coefficient is discarded by the coinvariant map.  Section 3.51 proves that
+the complete mod-two affine-linear part is a finite-star operator.  Only
+the separate quadratic token kernel has two independently moving endpoints,
+though the two support types can still occupy the same relative double
+coset.
+Section 3.52 proves that the strict external polygon has identically zero
+inversion-fixed two-torsion.  Its integral vanishing is therefore exactly
+the nonfixed weighted norm equation; the core, seam, affine, and higher
+free-group defects remain open.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6141,6 +6149,151 @@ obstruction by itself.  Equation (3.397) relocates the remaining external
 free-bucket problem to the nonidentity coefficients of one weighted norm
 equation; the fixed Hilbert--90 parities, core correction, seam term, and
 fixed-literal affine contribution remain separate.
+
+### 3.51 The complete affine-linear term is a finite-star operator
+
+The fixed-literal affine-linear contribution left open after (3.391) also
+has a uniform support description.  Use the fixed base activity mask $a$
+and the homogeneous toggle mask $d_F$ from (3.30).  Split that formula as
+
+\[
+ \boxed{
+ \begin{aligned}
+ \mathscr L_\Xi(F)
+ :={}&\sum_p d_F(p)\zeta_\Xi(p)\\
+ &+\sum_{p<_\chi q}
+ \left(
+  a(p)d_F(q)+d_F(p)a(q)
+ \right)K_\Xi(p,q),\\
+ \mathscr Q_\Xi(F)
+ :={}&\sum_{p<_\chi q}d_F(p)d_F(q)K_\Xi(p,q).
+ \end{aligned}}
+ \tag{3.399}
+\]
+
+Then the exact complete mod-two obstruction is
+
+\[
+ \boxed{
+ q_\Xi(F)=C_\Xi+\mathscr L_\Xi(F)+\mathscr Q_\Xi(F).}
+ \tag{3.400}
+\]
+
+The set of active base tokens is finite.  Let $\mathcal Y_{\mathrm{base}}$
+contain their central labels and the supports of every fixed raw,
+quotient-section, and prefix-defect current in their one-token tensors.
+Enlarge it by the terminal prefix set (3.385):
+
+\[
+ \mathcal Y_{\mathrm{aff}}
+ :=\mathcal Y_{\mathrm{base}}\cup\mathcal Y_*.
+ \tag{3.401}
+\]
+
+This set is fixed and finite.  Every bucket in the affine term has a
+representative with one endpoint in $\mathcal Y_{\mathrm{aff}}$:
+
+\[
+ \boxed{
+ \operatorname{supp}\mathscr L_\Xi(F)
+ \subseteq
+ \left\{
+ [Hy^{-1}xH]_\pm:
+ \begin{array}{l}
+ y\in\mathcal Y_{\mathrm{aff}},\\
+ x\in\displaystyle\bigcup_{o=1}^{16}
+       q_o\operatorname{supp}(F_{s_o})
+ \end{array}
+ \right\}.}
+ \tag{3.402}
+\]
+
+For the base--direction terms in (3.399), this is immediate because the
+base endpoint is fixed.  For the one-token value $\zeta_\Xi(p)$, tensor
+diagonals do not enter a nontrivial double coset, while every transport or
+terminal bridge has its other endpoint in the fixed prefix/section support;
+the terminal part is exactly (3.382).  These exhaust the local tensors in
+the literal-stream theorem, proving (3.402).
+
+Thus the affine value is a finite-star linear operator, while
+$\mathscr Q_\Xi$ is the only part of (3.400) with two independently moving
+correction endpoints.  A moving--moving pair can still have the same
+relative double coset as a fixed--moving pair, so (3.402) is not a support
+separation theorem and does not prove noncancellation.
+
+### 3.52 The external polygon has no fixed two-torsion
+
+The fixed Hilbert--90 part of the strict external ledger vanishes
+identically.  Write
+
+\[
+ \begin{aligned}
+ \mathscr P_2&=\sum_{u\in K}A_u u,\\
+ \mathscr S&:=\sum_{o=1}^{16}z_o^*z_o.
+ \end{aligned}
+ \tag{3.403}
+\]
+
+Let $s\ne1$ satisfy $\alpha(s)=s^{-1}$.  Taking the coefficient of $s$ in
+(3.393) gives
+
+\[
+ \boxed{A_s+A_{s^{-1}}=-[s]\mathscr S.}
+ \tag{3.404}
+\]
+
+Every norm $N_r=\mathbf F_r^*\mathbf F_r$ is self-adjoint.  Hence
+
+\[
+ [s]\alpha(N_r)
+ =[\alpha(s)]N_r
+ =[s^{-1}]N_r
+ =[s]N_r.
+ \tag{3.405}
+\]
+
+Formula (3.394) writes $\mathscr S$ as a sum of terms
+$N_r+\alpha(N_r)$ for $0\le r\le3$, with integral multiplicities, and the
+term $2N_4$.  Equations (3.404)--(3.405) therefore imply
+
+\[
+ \boxed{A_s+A_{s^{-1}}\equiv0\pmod2.}
+ \tag{3.406}
+\]
+
+Since the nontrivial fixed orbits are exactly the
+$[s_q]_\alpha$ from Section 3.38, (3.406) proves
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\pi_K(\mathscr P_2(\mathbf F))]_D&=0,\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.407}
+\]
+
+Thus the fixed conditions in (3.342) are automatic for the complete
+strict external occurrence polygon.  Its full integral vanishing is
+equivalent solely to the nonfixed weighted norm equation (3.397).
+
+For the correction-only tensor, (3.391) sharpens to
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))]_D
+ &= [\Xi_{\mathbb Z}(\mathscr D_{\mathrm{core}}(F))]_D
+   +\vartheta_D(F),\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.408}
+\]
+
+This is a global cancellation among all 120 strict external pairs; it does
+not say that an individual paired tensor has zero fixed coordinate.  The
+remaining fixed torsion is concentrated in the canonical-section/inverse
+core, the bounded terminal seam, and the fixed-literal affine term.
 
 ## 4. Exact diagonal sieve
 
