@@ -68,3 +68,20 @@ representatives are now a first-class artifact, reproducing every count the comm
 ladder summary holds. Bounded null: 8 relabels are not the Aut(F₂)-orbit, and only a
 validated positive decides. Note: W3B_ORBIT_THICKENABILITY.md. No AK(3), stable AC, or
 AC claim.
+
+## 2026-08-28 · cycle 9 · `1721718`
+
+W2d uniform structure: the growing period-two baseline family collapses to a
+six-parameter normal form. Each step `NEW = P·(conj of Q^-1)` obeys
+`|NEW| = |P| + |cyc Q^-1| + 2k - 2d`, so a length cap PINS the conjugator to a
+literal prefix of `P^-1` — one lemma at all three levels, indexing a chain by three
+prefix lengths, three rotation indices and a terminal conjugator. New checker
+`period_two_normal_form.py` runs it as a generator against the census enumeration:
+exact at caps 12–17 (17/36/55/67/91/106, 0 missed, 0 spurious), with a non-vacuity
+control that asserts strict pinning at cap 19 where it must fail (64 census R, 32
+pinned, 32 missed). Also: the U-fiber depends on S only through `cyc(S)` (proved from
+the verifier's conditions), so 17 chains are 9 invariant triples and one of W2b's six
+live baselines is the witness's own class at a different S representative; the R-count
+is exponential, not linear. Note: `W2D_UNIFORM_STRUCTURE_DRAFT.md` (DRAFT; only the
+normal form is checker-backed). Limits: nothing claimed past cap 18, GPAD ceiling 5
+under-counts, pinning lemma unproved. No AK(3), stable AC, or AC claim.
