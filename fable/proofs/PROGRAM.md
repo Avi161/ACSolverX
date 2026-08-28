@@ -16,27 +16,34 @@ promoted beyond its proof.
 
 ## Workstreams
 
-- **W1 — Finite AC-graph decision for the MMS02 bridge.** The bridge
-  `(A,B,zYX) ~AC (A,B,Xyz)` in `F(x,y,z)` (promise-ledger route 1) is the single
-  known finite target implying AK(3) stably AC-trivial. The misprinted base group
-  `G_mis = <x,y,z | A,B>` is nontrivial, so finite quotients bite on the *bridge*
-  (unlike rank-2 AK(3), where any hom killing both relators kills everything).
-  For every hom `phi: F(x,y,z) -> G` (G finite) with `phi(A)=phi(B)=1`, an AC path
-  forces `(1,1,phi(zYX))` and `(1,1,phi(Xyz))` into one orbit of the AC-move action
-  on `G^3` (entrywise inversion; conjugation by `im(phi)`; row_i <- row_i * c with c
-  a conjugate of row_j^{±1}, i≠j). This orbit question is a **complete finite
-  closure**, not a budgeted search: decide it by exact BFS.
-  - Refuted orbit equality for any single phi ⇒ the bridge is FALSE (major negative
-    course-correction for route 1; does not decide AK(3) itself).
-  - Orbit equality for all tested phi ⇒ the known A5 fixed-base obstruction dies
-    entirely; the bridge survives as a search target.
+- **W1 — CLOSED (method-closure theorem; original premise retracted).** The
+  original premise ("`G_mis` nontrivial ⇒ finite quotients bite on the bridge")
+  was FALSE: with the base rows killed, the third entry normally generates the
+  image on both sides, forcing orbit equality in ANY group (vacuity theorem,
+  `W1_BRIDGE_FINITE_TEST.md`), and Borovik–Lubotzky–Myasnikov 2005 closes every
+  finite quotient for the non-base-killing variant too. Deliverables kept: the
+  blindness theorem, the move-model regression pins, and the retraction record.
+  Refuting the bridge now requires infinite-quotient / noncommutative invariants
+  (Alexander–Fox, Quinn-type); proving it requires search or structure
+  (`W1C_TPUB_PREFLIGHT.md` production handoff stands: greedy descends 29 → 14
+  within 1,000 nodes; production budget is the user's, on Colab).
 - **W2 — Period-two baseline uniqueness.** The agreed scope gap in the codex tower:
   classify solutions of the backward conjugacy system in `C_2 * Z` up to gauge, and
   either prove the chosen witness is the unique baseline (making a completed
   noncancellation close the signature at class two) or exhibit a second baseline
   (bounding what the tower can conclude). Outcome is valuable in both directions.
-- **W3 (reserve) — all-depth potential.** Only if W1/W2 produce structure suggesting
-  a well-founded potential surviving the self-loop/gauge analysis.
+- **W3 — Thickenability / Lackenby lever (plan pending advisor gate).**
+  Lackenby (arXiv:2606.06122, 2026) proves thickenable balanced presentations of
+  the trivial group satisfy the UNSTABLE Andrews–Curtis conjecture, with an
+  explicit (tower) bound. Therefore exhibiting ANY thickenable presentation
+  AC-equivalent to AK(3) proves AK(3) AC-trivializable — a theorem-backed
+  decisive endpoint, and the only known one for the unstable question. The repo's
+  route 3 frontier (1,000-map Aut(F2) scan, bounded null) barely scratches this.
+  Before any work: read `experiments/stable_ac/thickenable/`,
+  `results/stable_ac/theory/*THICKENABILITY*`, pin Lackenby's exact statement,
+  and gate a plan through ac-advisor.
+- **W4 (reserve) — all-depth potential.** Only if W2/W3 produce structure
+  suggesting a well-founded potential surviving the self-loop/gauge analysis.
 
 ## Rules of operation
 
