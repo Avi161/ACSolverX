@@ -145,6 +145,14 @@ Section 3.75 removes the arbitrary charged-bundle pairing by one fixed
 anchor.  It gives one canonical balanced parity cell per active source
 atom, with cell radius differing from source radius by a fixed additive
 constant.
+Section 3.76 restores the ordered shortlex bit in the natural paired
+candidate.  That bit is finite cone data rather than raw occurrence
+multiplicity; on the full cone beginning with $t$, the slot-zero baseline
+is even and the slot-one baseline is odd.
+Section 3.77 localizes every internal collider of a slope-two anchored-cell
+bucket to a uniformly bounded neighborhood of its moving transported
+boundary labels.  Long Green-path interiors cannot participate, but the
+finite endpoint germ has not yet been evaluated.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -8371,6 +8379,204 @@ $C_{\mathrm{anc}}$.  The isolated-cell condition in (3.533) is therefore
 an additive gap condition on the actual slot-zero/one support, not an
 artifact of pairing charged bundles.  The remaining clustered case has at
 least two genuinely near-maximal source atoms.
+
+### 3.76 The paired shortlex baseline is finite cone data
+
+For an interval $I=[a,b]\in\mathscr I_s$ and a source coordinate $u$, let
+$p_{a,u}$ and $p_{b,u}$ be its two chronological occurrence tokens and put
+
+\[
+ \begin{aligned}
+ x_{I,a}(u)&:=\operatorname{cvert}(q_au),\\
+ x_{I,b}(u)&:=\operatorname{cvert}(q_bu),\\
+ \varepsilon_I(u)&:=[x_{I,a}(u)<_{\mathrm{sl}}x_{I,b}(u)],\\
+ \varepsilon_s(u)&:=\sum_{I\in\mathscr I_s}\varepsilon_I(u).
+ \end{aligned}
+ \tag{3.542}
+\]
+
+The two labels in (3.542) are distinct.  Otherwise $q_a^{-1}q_b$ would fix
+$uH$, contrary to the hyperbolicity established in Section 3.59.  The
+natural same-coordinate part of the ordered kernel is therefore exactly
+
+\[
+ \boxed{
+ \left[
+  \sum_{I=[a,b]\in\mathscr I_s}K_\Xi(p_{a,u},p_{b,u})
+ \right]_{\mathscr D_s(u)}
+ =\varepsilon_s(u).
+ }
+ \tag{3.543}
+\]
+
+If a parity cell $\mathbf d$ contains the complete source coordinate $u$ in
+slot $s$, define $\kappa^\circ_{s,u}(\mathbf d)$ by summing all chronological
+token pairs of $\mathbf d$ which hit $\mathscr D_s(u)$ except the natural
+pairs displayed in (3.543).  This is an exclusion from the exact kernel,
+not a geometric approximation.  Hence
+
+\[
+ \boxed{
+ [\mathscr Q_\Xi(\mathbf d)]_{\mathscr D_s(u)}
+ =\varepsilon_s(u)+\kappa^\circ_{s,u}(\mathbf d).
+ }
+ \tag{3.544}
+\]
+
+The order bit in (3.542) is infinite-index data, but it is not an
+unbounded-prefix problem.  Write $\operatorname{nf}(u)$ for the pinned
+canonical quotient normal word and set
+
+\[
+ L_I:=\max\{|q_a|,|q_b|\}.
+ \tag{3.545}
+\]
+
+When $|\operatorname{nf}(u)|>L_I$, the value $\varepsilon_I(u)$ is
+determined by the first $L_I$ letters of $\operatorname{nf}(u)$.  Indeed,
+reducing either $q_au$ or $q_bu$ can cancel only a suffix of the fixed
+prefix against the initial segment of $u$.  Beyond the first $L_I$ letters,
+the two reduced products have the same untouched suffix.  Their last letter
+is the last letter of the same suffix.  If terminal $c$-normalization occurs,
+it deletes that same final letter from both products, subtracts one from both
+lengths, and leaves their first difference unchanged.  If the reduced prefix
+lengths differ, shortlex is decided by length; if they agree, the first
+lexicographic difference occurs before the common suffix.  Equality cannot
+occur by the preceding fixed-point argument.
+
+Thus every $\varepsilon_I$, and hence every $\varepsilon_s$, is constant on
+each member of a finite cone partition outside a finite normal-form ball.
+The values are not raw occurrence multiplicities.  For example, on the
+entire canonical cone whose first letter is $t$, no relevant prefix
+cancellation occurs.  Direct comparison of the five pinned slot-zero/one
+pairs gives
+
+\[
+ \begin{array}{c|ccccc}
+ I&[3,4]&[7,8]&[11,12]&[2,5]&[10,13]\\ \hline
+ \varepsilon_I(u)&1&1&0&1&0
+ \end{array}
+ \tag{3.546}
+\]
+
+and consequently
+
+\[
+ \boxed{
+ \operatorname{nf}(u)\text{ begins with }t
+ \Longrightarrow
+ \begin{cases}
+ \varepsilon_0(u)=0,\\
+ \varepsilon_1(u)=1.
+ \end{cases}
+ }
+ \tag{3.547}
+\]
+
+For the equal-length pair $[11,12]$, the second letters are respectively
+$t$ and $T$, and the pinned letter order puts the latter first.  Formula
+(3.547) exhibits both sides of the shortlex obstruction: the three-copy
+slot-zero baseline can vanish, while the two-copy slot-one baseline can be
+odd.  Any universal isolated-cell argument must therefore retain the cone
+of $u$ and the collider term in (3.544).
+
+### 3.77 Extremal internal colliders lie at moving endpoints
+
+The anchored cell has long forest sides, but only bounded terminal pieces
+can meet a slope-two paired bucket.  Fix $E\ge0$.  Consider an anchored cell
+$\mathbf h_{(s,u)}$ and two of its correction tokens with source
+coordinates $v,w$.  If their ordered kernel contributes to a bucket $D$
+with
+
+\[
+ \ell_K(D)\ge2|u|_K-E,
+ \tag{3.548}
+\]
+
+then the token support bound used in (3.526) gives
+
+\[
+ 2|u|_K-E
+ \le |v|_K+|w|_K+2M_*.
+ \tag{3.549}
+\]
+
+Every coordinate of $\mathbf h_{(s,u)}$ has length at most
+$|u|_K+C_{\mathrm{anc}}$ by (3.540).  Applying that bound to one coordinate
+at a time in (3.549) proves
+
+\[
+ \boxed{
+ \begin{aligned}
+ \min\{|v|_K,|w|_K\}
+ &\ge |u|_K-C_{\mathrm{pair}}(E),\\
+ C_{\mathrm{pair}}(E)&:=E+C_{\mathrm{anc}}+2M_*.
+ \end{aligned}
+ }
+ \tag{3.550}
+\]
+
+Let $x=\ell(p)$ and $y=\ell(q)$ be the transported labels of the two tokens.
+Every occurrence action moves radial length by at most $M_*$.  Thus (3.550)
+implies
+
+\[
+ \boxed{
+ \begin{aligned}
+ \min\{|x|_K,|y|_K\}
+ &\ge |u|_K-C_{\mathrm{label}}(E),\\
+ C_{\mathrm{label}}(E)&:=C_{\mathrm{pair}}(E)+M_*.
+ \end{aligned}
+ }
+ \tag{3.551}
+\]
+
+Let $\mathcal B_{\mathrm{mov}}(s,u)$ be the fixed-size set of boundary
+labels of $\mathsf Z_{(s,u)}$ which depend on $u$.  There is a constant
+$L_{\mathrm{end}}(E)$, depending only on $E$ and the pinned data, such that
+each transported label satisfying the lower bound in (3.551) lies within
+forest distance $L_{\mathrm{end}}(E)$ of
+$\mathcal B_{\mathrm{mov}}(s,u)$, once $|u|_K$ exceeds a fixed bound.
+
+For a source token, its transported label is a chord boundary label, so the
+claim is immediate unless it belongs to the fixed anchor bundle.  Those
+fixed labels lie in a fixed ball and are excluded by (3.551) for remote
+$u$.  For a forest token, its transported labels are endpoints of the
+stored forest edge selected by its occurrence pair.  A supported forest
+edge lies on one of the root paths forming the Green filling.  The image of
+such a root path in $\mathcal T_K$ is a uniform quasi-geodesic by Section
+3.70.  A path ending at a fixed anchor boundary stays in a fixed ball.  A
+path ending at a moving boundary has endpoint length at most $|u|_K$ plus a
+fixed constant.  The tree Morse bound places the path uniformly close to
+the geodesic from the fixed root to that endpoint.  On this geodesic, a
+label satisfying (3.551) is within a bounded terminal distance of the
+endpoint.  Pulling back through the forest quasi-isometry gives the asserted
+$L_{\mathrm{end}}(E)$.
+
+By (3.442), the natural paired bucket $\mathscr D_s(u)$ satisfies (3.548)
+for the fixed choice
+$E=\max_{s\in\{0,1\}}\{0,2d(1,\mathcal A_s^K)-\tau_s^K\}$.
+Since the forest has bounded degree and the number of moving centers is
+fixed, the union of these terminal neighborhoods contains at most a fixed
+number of transported labels.  Left multiplication by one occurrence
+prefix is bijective on $X$, and there are only sixteen occurrences, so at
+most a fixed number $N_{\mathrm{end}}(E)$ of collision-aggregated tokens can
+occur over those labels.  Therefore
+
+\[
+ \boxed{
+ \kappa^\circ_{s,u}(\mathbf h_{(s,u)})
+ \text{ at any bucket satisfying (3.548) is a uniformly bounded
+ terminal-endpoint sum.}
+ }
+ \tag{3.552}
+\]
+
+In particular, the long interiors of the anchored Green paths cannot
+cancel the paired bucket.  The remaining isolated-cell problem is the
+finite endpoint germ in (3.552), together with the finite shortlex cone in
+(3.545).  No parity value of that germ is asserted here; clustered cells
+remain governed by the mixed-radius polarization of Section 3.73.
 
 ## 4. Exact diagonal sieve
 
