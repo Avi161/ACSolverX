@@ -153,6 +153,67 @@ regimes together and describes neither.
 on 16,306 rows, longer on 23,855, tied on 30,475 — it loses that comparison, as it
 has in every wave. The gain is node efficiency. Do not claim shorter proofs.
 
+### Is the trend real, or an artifact of how the bins were cut?
+
+The table above bins by **`greedy`'s own node count**, which selects on a quantity
+correlated with the ratio being reported: a row where the length ordering happened
+to do badly lands in a hard bin, and its `s20_mk2` number is not conditioned the
+same way. That inflates the extremes in both directions. The trend has to be
+re-cut against difficulty measures that know about neither arm.
+
+Binned by **total relator length** — a pure property of the presentation:
+
+| `|r1|+|r2|` | n | `greedy` med | `s20_mk2` med | geo ratio | `s20` wins | `greedy` wins |
+|---|---:|---:|---:|---:|---:|---:|
+| [0, 12) | 117 | 4 | 4 | 0.999 | 4 | 3 |
+| [12, 16) | 2,202 | 7 | 8 | 0.910 | 593 | 414 |
+| [16, 20) | 62,850 | 13 | 13 | 0.808 | 28,056 | 14,959 |
+| [20, 24) | 5,198 | 733 | 342 | 0.688 | 3,396 | 1,499 |
+| [24, 28) | 256 | 3,425 | 1,752 | **0.505** | 191 | 60 |
+
+Binned by a **third arm's** node count (`s20_f4`, which is not in this comparison):
+
+| `s20_f4` nodes | n | `greedy` med | `s20_mk2` med | geo ratio | `s20` wins | `greedy` wins |
+|---|---:|---:|---:|---:|---:|---:|
+| [0, 10) | 18,817 | 6 | 7 | 1.000 | 2,297 | 2,033 |
+| [10, 100) | 33,787 | 16 | 15 | 0.905 | 16,474 | 10,771 |
+| [100, 1,000) | 12,692 | 302 | 156 | 0.569 | 9,468 | 3,038 |
+| [1,000, 10,000) | 3,781 | 3,510 | 2,015 | **0.348** | 3,010 | 770 |
+
+**The direction and the monotonicity survive both instruments**, and the
+head-to-head win counts move with them (near-even on the easiest bins, 3–4:1 in
+favour of `s20_mk2` on the hardest). So the finding holds: the advantage grows
+with difficulty, and near the easy end the ordering is worth nothing or slightly
+negative.
+
+**The magnitude in the self-binned table does not survive.** Its top bin reads
+0.012; the arm-independent cuts top out around 0.35–0.51. Quote those, not 0.012.
+
+The evidence immune to this concern entirely is the **solve rate**, which is
+measured at a fixed budget rather than conditioned on outcome: `s20_mk2` is a
+strict superset of `greedy` at every wave — McNemar 591–32 at 10,000 and 25–0 at
+1,000,000. That is the load-bearing result.
+
+### The relator cap never bound
+
+`max_relator_length_expanded` in these files is the **total** of both relators
+while the cap is applied **per relator at discovery**, so the field cannot answer
+this on its own — and a neighbour pruned by the cap is never expanded, so it
+leaves no trace in the expanded statistics at all.
+
+Tested directly instead: all 14 rows unsolved by both arms at 1M, both orderings,
+re-run at cap 48 and cap 64 for 20,000 nodes.
+
+**0 of 28 changed.** Identical `nodes_explored` *and* identical
+`max_relator_length_expanded` at both caps — the searches explored exactly the
+same states, so nothing was being pruned. Consistent with the totals: the greedy
+arm's longest expanded state over all 222 rows totals 40 across both relators
+(so no single relator exceeds 39), against a ceiling of 96.
+
+These 14 are hard because the search space is hard, not because the cap fenced
+them in. (Established over the first 20,000 nodes of each; not a proof for the
+whole 1,000,000, though nothing in the expanded lengths suggests it changes.)
+
 ### Which wave cracked each row
 
 | arm | ≤10,000 | ≤100,000 | ≤1,000,000 |
