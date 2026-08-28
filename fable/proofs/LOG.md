@@ -332,3 +332,11 @@ finitely generated up to the Q-action and the question decidable — enlarging
 direction sets is not a plan. Three lessons filed. Note:
 W2L_THETA_ATTAINABILITY.md; checker theta_attainability.py. No AK(3), stable
 AC, or AC claim.
+
+## 2026-08-28 · cycle 22 · `df1fc75`
+
+Synthesis: SYNTHESIS.md consolidates cycles 1–21 — the honest AK(3) verdict
+(open both ways), both directions' results, the three self-corrections, and
+the ranked deciding levers (W2m lemma; a thickenable AC-reachable rank-3
+spelling; a uniform layer-≥2 argument; production-scale closures). PROGRAM.md
+gains a status pointer. W2m (the Θ translation cocycle lemma) is in flight.
