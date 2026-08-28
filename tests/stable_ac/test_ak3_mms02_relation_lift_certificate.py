@@ -39,6 +39,92 @@ def signed_involution(word):
     )
 
 
+def apply_images(word, images):
+    return red(
+        "".join(
+            images[letter]
+            if letter.islower()
+            else inv(images[letter.lower()])
+            for letter in word
+        )
+    )
+
+
+def canonical_cyclic_word(word):
+    word = red(word)
+    while len(word) > 1 and word[0] == word[-1].swapcase():
+        word = red(word[1:-1])
+    orientations = (word, inv(word))
+    return min(
+        oriented[index:] + oriented[:index]
+        for oriented in orientations
+        for index in range(len(oriented))
+    )
+
+
+def canonical_cyclic_pair(pair):
+    return tuple(sorted(canonical_cyclic_word(word) for word in pair))
+
+
+def rank_two_whitehead_automorphisms():
+    signed = ("x", "X", "y", "Y")
+    unique = {}
+    for multiplier in signed:
+        others = tuple(
+            letter
+            for letter in signed
+            if letter not in (multiplier, multiplier.swapcase())
+        )
+        for mask in range(1 << len(others)):
+            subset = {multiplier}
+            subset.update(
+                letter
+                for index, letter in enumerate(others)
+                if mask & (1 << index)
+            )
+            images = {}
+            for generator in ("x", "y"):
+                positive = generator in subset
+                negative = generator.upper() in subset
+                if generator in (multiplier, multiplier.swapcase()):
+                    images[generator] = generator
+                elif positive and not negative:
+                    images[generator] = generator + multiplier
+                elif negative and not positive:
+                    images[generator] = multiplier.swapcase() + generator
+                elif positive and negative:
+                    images[generator] = multiplier.swapcase() + generator + multiplier
+                else:
+                    images[generator] = generator
+            key = tuple(images[generator] for generator in ("x", "y"))
+            if key != ("x", "y"):
+                unique[key] = images
+    return tuple(unique[key] for key in sorted(unique))
+
+
+def whitehead_minimum(pair, automorphisms):
+    current = canonical_cyclic_pair(pair)
+    path = []
+    while True:
+        candidates = []
+        for images in automorphisms:
+            image = canonical_cyclic_pair(
+                tuple(apply_images(word, images) for word in current)
+            )
+            if sum(map(len, image)) < sum(map(len, current)):
+                candidates.append(
+                    (
+                        sum(map(len, image)),
+                        image,
+                        tuple(images[generator] for generator in ("x", "y")),
+                    )
+                )
+        if not candidates:
+            return current, tuple(path)
+        _, current, step = min(candidates)
+        path.append(step)
+
+
 @dataclass(frozen=True)
 class Expr:
     kind: str
@@ -312,6 +398,40 @@ def test_signed_involution_common_kill_target() -> None:
         current = tuple(rows)
         assert current == tuple(signed_involution(word) for word in step.after)
     assert current == ("x", "y", "z")
+
+
+def test_common_kill_projected_pairs_have_distinct_whitehead_floors() -> None:
+    quotient = {"x": "x", "y": "y", "z": "Yx"}
+    source = tuple(apply_images(word, quotient) for word in (A, B))
+    target = tuple(
+        apply_images(signed_involution(word), quotient) for word in (A, B)
+    )
+    assert source == (M0, M1)
+    assert target == ("XXyxYxy", "YxYXyxYxxYXyXYxyX")
+
+    automorphisms = rank_two_whitehead_automorphisms()
+    assert len(automorphisms) == 12
+    source_minimum, source_path = whitehead_minimum(source, automorphisms)
+    target_minimum, target_path = whitehead_minimum(target, automorphisms)
+    assert source_minimum == ("XXYYXyxYxy", "XYXYXyxYxyy")
+    assert target_minimum == ("XXYxY", "XXYxyXYYYXyxxY")
+    assert source_path == (("xy", "y"), ("x", "xy"))
+    assert target_path == (("x", "xy"), ("xy", "y"))
+    assert sum(map(len, source_minimum)) == 21
+    assert sum(map(len, target_minimum)) == 19
+    for minimum in (source_minimum, target_minimum):
+        assert all(
+            sum(
+                map(
+                    len,
+                    canonical_cyclic_pair(
+                        tuple(apply_images(word, images) for word in minimum)
+                    ),
+                )
+            )
+            >= sum(map(len, minimum))
+            for images in automorphisms
+        )
 
 
 def h_step(words, rows, move):

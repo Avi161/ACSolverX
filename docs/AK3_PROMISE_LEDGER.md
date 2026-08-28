@@ -81,6 +81,14 @@ finite quotient do not close a route.
   equivalently `(A,B,Xyz) ~AC (phi(A),phi(B),Xyz)`. This is not a fixed-kill
   path and does not reopen the frozen sequential ledger; it gives an exact
   alternative target with the published kill row already literal.
+- **Ambient-automorphism-only common-kill route closed:** after killing
+  `Xyz`, the source and common-kill target base pairs have exact rank-two
+  Whitehead floors 21 and 19. They are not in the same ambient Aut orbit.
+  Thus no stable ambient automorphism preserving the kill row's normal
+  closure, followed only by base-row normalization and kill-row donor
+  cleanup, proves the bridge. A successful common-kill path must contain
+  genuine base-row multiplication visible after projection or alter the
+  kill row.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target or the genuinely interleaved
   Peiffer/basic-substitution closure of one symbolic residual pair; the SLP

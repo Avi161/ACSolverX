@@ -26,6 +26,12 @@ quotient obstructions cannot decide the bridge.  The remaining gate is the
 Peiffer/basic-substitution closure of one explicit pair of lift residuals
 in the normal closure of $A,B$.
 
+Sections 6.6--6.7 give an equivalent common-kill target and close its
+ambient-automorphism-only subcase by exact rank-two Whitehead minima.  This
+does not add another sequential cleanup category: a successful path must
+still use a genuine base-row multiplication visible after projection or
+alter the kill row.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -956,6 +962,65 @@ intermediate path may alter all three rows.  It neither repairs any failed
 sequential gate in Sections 6.3--6.5 nor proves the bridge.  It does isolate
 an alternative unrestricted target whose kill row is already the literal
 published word $v$.
+
+### 6.7. The ambient-automorphism-only common-kill route is closed
+
+Use the free basis $(x,y,v)$ of $F$.  The quotient which kills $v$ is the
+retraction
+
+\[
+ \begin{aligned}
+ \pi_v:F(x,y,z)&\longrightarrow F(x,y),&
+ \pi_v(z)&=Yx.
+ \end{aligned}
+ \tag{62}
+\]
+
+The two unordered pairs of conjugacy classes at the endpoints of (61) are
+represented by
+
+```text
+P       = (xYxYXyyXYxyXy, XyyXYXyxYYxy)
+P_phi   = (XXyxYxy, YxYXyxYxxYXyXYxyX)
+```
+
+Run exact Whitehead descent on each pair, quotienting only independent
+cyclic conjugation, inversion, and row order.  There are twelve nonidentity
+second-kind Whitehead automorphisms in rank two.  The complete strict
+descents terminate at
+
+```text
+min(P)     = (XXYYXyxYxy, XYXYXyxYxyy), total 21
+min(P_phi) = (XXYxY, XXYxyXYYYXyxxY), total 19
+```
+
+At each displayed endpoint, all twelve second-kind automorphisms have
+nondecreasing total cyclic length.  Whitehead's theorem therefore makes
+21 and 19 the exact orbit minima.  In particular,
+
+\[
+ \boxed{[P]_{\operatorname{Aut}(F_2)}\neq
+ [P_\phi]_{\operatorname{Aut}(F_2)}.}
+ \tag{63}
+\]
+
+This has one precise bridge consequence.  Any ambient automorphism of the
+free factor $F(x,y)$ extends to $F(x,y,v)$ while fixing $v$.  More
+generally, an automorphism $\theta$ satisfying
+$\theta(\operatorname{Ncl}(v))=\operatorname{Ncl}(v)$ descends to an
+automorphism of $F/\operatorname{Ncl}(v)$: the maps induced by $\theta$ and
+$\theta^{-1}$ are mutual inverses.  Independent base-row conjugations,
+inversions, and permutations do not change the unordered conjugacy-class
+pair, while cleanup by conjugates of $v$ disappears under $\pi_v$.
+Equation (63) therefore rules out a common-kill bridge consisting only of
+such a stable ambient automorphism, base-row normalizations, and $v$-donor
+cleanup.
+
+It does not rule out (61).  A successful common-kill path may use a genuine
+AC multiplication between its two live base rows, or an unrestricted path
+may alter the $v$-row.  Those are exactly outside the Aut-orbit comparison.
+The focused checker enumerates all twelve Whitehead maps, replays both
+strict descents, and verifies the no-descent condition at both minima.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
