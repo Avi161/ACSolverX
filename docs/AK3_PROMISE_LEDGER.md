@@ -74,12 +74,21 @@ finite quotient do not close a route.
   the two restoration-first failures, every ordering that restores each
   residual exactly once is closed. Do not add more sequential categories;
   only genuinely interleaved Peiffer cleanup remains.
+- **Common-kill target normalization:** the signed involution
+  `phi(x,y,z)=(Z,Y,X)` exchanges `zYX` and `Xyz`. Applying it to the
+  certified 134-primitive trivialization proves
+  `(phi(A),phi(B),Xyz) ~AC (x,y,z)`. Hence the unrestricted bridge is
+  equivalently `(A,B,Xyz) ~AC (phi(A),phi(B),Xyz)`. This is not a fixed-kill
+  path and does not reopen the frozen sequential ledger; it gives an exact
+  alternative target with the published kill row already literal.
 - **Resume point:** both sequential donor completions are closed. Work on the
-  Peiffer/basic-substitution closure of the first-row-active or
-  second-row-active residual pair; the SLP lift itself is complete, but no
-  closure to `(A,B,Xyz)` is proved. No fixed-base or failed-search result is
-  evidence against the bridge. Before extending the JSON schema, harden
-  ordinal fields to reject booleans/floats that compare equal to integers.
+  unrestricted common-kill target or the genuinely interleaved
+  Peiffer/basic-substitution closure of one symbolic residual pair; the SLP
+  lift itself is complete, but no closure to `(A,B,Xyz)` is proved. Do not
+  add another sequential cleanup category. No fixed-base or failed-search
+  result is evidence against the bridge. Before extending the JSON schema,
+  harden ordinal fields to reject booleans/floats that compare equal to
+  integers.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See

@@ -17,9 +17,11 @@ mod-two coboundary of the collision-aggregated slot-four activity:
  \omega_T(E_4(v))=\bar b_4(v)+\bar b_4(tv).
 \]
 
-This does not evaluate the mixed-slot \(P,C,Q\) endpoint chains, the finite
-old terms, or positive-chamber covariance.  It proves no period-two lift,
-AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
+This note itself does not evaluate the mixed-slot $P,C,Q$ endpoint
+chains, the finite old terms, or positive-chamber covariance.  Those
+calculations are completed in `AK3_OLD_NEW_POWERED_ENDPOINT_CONNECTORS.md`
+and `AK3_OLD_NEW_SINGLETON_TERMINAL_INCIDENCE.md`.  This note proves no
+period-two lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
 
 ## 1. Transported occurrence activities
 
@@ -618,11 +620,12 @@ unsymmetrized function \(\bar b_4\); it is not claimed to be a boundary.
 **Corollary 8.1 (powered increment reduction).** Applying (8.4) to each
 fixed \(P\)-, \(C\)-, or \(Q\)-increment reduces its complete old--new
 load to a finite xor of canonical powered endpoint equalities and labelled-
-stratum switches.  Formula (8.4) does not evaluate those equalities or
-switches, so this reduction proves no endpoint identity or vanishing
-claim.
+stratum switches.  Formula (8.4) does not itself evaluate those equalities
+or switches.  Their powered endpoint evaluation is supplied by
+`AK3_OLD_NEW_POWERED_ENDPOINT_CONNECTORS.md`; this reduction alone proves
+no endpoint identity or vanishing claim.
 
-## 9. Remaining exact boundary
+## 9. Reduction boundary and subsequent discharge
 
 The old--new forest load now has four complementary descriptions:
 
@@ -641,11 +644,13 @@ unsymmetrized slot-four endpoint function.  It does not evaluate those data
 on all powered endpoints.  The available coboundaries alone do not force a
 mixed path or rectangle to vanish.
 
-The exact next obligation is to evaluate (8.4) on the two powered
-\(P\)-rays, the six-family \(C\)-chain, and the three paired
-\(Q\)-rectangles.  If the boundary and tail-residual values do not pair, the
-honest remainder is their exact collision-aggregated symmetric difference,
-with its powered endpoint schemas retained.  Until those values are
-evaluated, the endpoint identities, finite old terms, positive-chamber
-covariance, the period-two lift, AK(3), stable Andrews--Curtis, and
-Andrews--Curtis remain open.
+At this stage, the next obligation was to evaluate (8.4) on the two powered
+$P$-rays, the six-family $C$-chain, and the three paired
+$Q$-rectangles.  That calculation is completed in
+`AK3_OLD_NEW_POWERED_ENDPOINT_CONNECTORS.md`, which evaluates the combined
+powered $P,C,Q$ forest load as $[d=1]$.
+`AK3_OLD_NEW_SINGLETON_TERMINAL_INCIDENCE.md` then evaluates the finite old
+terms and proves the positive-chamber old--new covariance lemma.  Later
+chamber, diagonal, and unary calculations lie outside this note.  No
+period-two free-group lift, AK(3), stable Andrews--Curtis, or
+Andrews--Curtis conclusion follows here.

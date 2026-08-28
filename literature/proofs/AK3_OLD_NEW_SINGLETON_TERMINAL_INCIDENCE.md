@@ -39,8 +39,9 @@ The actual mask \(T=b\) has collision-aggregated slot-zero support
 All statements are over \(\mathbb F_2\) after integral coefficients have
 been aggregated at their canonical coordinates.  Equation (0.2) proves only
 the positive-chamber old--new covariance lemma.  Other chambers, boundary
-values, the period-two lift, the unary delta identity, AK(3), stable
-Andrews--Curtis, and Andrews--Curtis remain open.
+values, and the later unary calculation are outside this note and are
+treated in subsequent documents.  No period-two free-group lift, AK(3),
+stable Andrews--Curtis, or Andrews--Curtis conclusion follows here.
 
 ## 1. Reduction to six chronology prefixes
 
@@ -462,9 +463,10 @@ old--new covariance lemma and nothing beyond it.
 
 ## 8. Remaining boundary and hostile audit
 
-Other chambers and boundary values remain open, as do the period-two lift,
-the unary delta identity, AK(3), stable Andrews--Curtis, and
-Andrews--Curtis.
+Other chambers, boundary values, and the unary calculation are outside this
+note and are treated in subsequent documents.  The period-two free-group
+lift, AK(3), stable Andrews--Curtis, and Andrews--Curtis are not proved
+here.
 
 **Hostile-audit note.**  No proof above uses the rejected cross-metric
 annulus argument.  The singleton proof uses only the collision-aggregated

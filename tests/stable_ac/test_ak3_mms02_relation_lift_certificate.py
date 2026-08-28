@@ -9,6 +9,7 @@ sys.setrecursionlimit(100_000)
 A, B, U, V = "xzYXyxZXYxyZ", "XyxZXYXyxzXYxy", "zYX", "Xyz"
 M0, M1, R, S = "xYxYXyyXYxyXy", "XyyXYXyxYYxy", "xxxYYYY", "xyxYXY"
 WORDS = {"A": A, "B": B, "u": U, "v": V, "M0": M0, "M1": M1, "R": R, "S": S}
+SIGNED_INVOLUTION = {"x": "Z", "y": "Y", "z": "X"}
 VALUE_LIMIT = 100_000
 NODE_BUDGET = 100_000
 
@@ -25,6 +26,17 @@ def red(word):
         else:
             stack.append(letter)
     return "".join(stack)
+
+
+def signed_involution(word):
+    return red(
+        "".join(
+            SIGNED_INVOLUTION[letter]
+            if letter.islower()
+            else inv(SIGNED_INVOLUTION[letter.lower()])
+            for letter in word
+        )
+    )
 
 
 @dataclass(frozen=True)
@@ -269,6 +281,37 @@ def rank_three_rows():
         assert rows[step.target].value == step.after[step.target]
     assert tuple(row.value for row in rows) == states[-1] == ("Z", "Y", "X")
     return tuple(rows)
+
+
+def test_signed_involution_common_kill_target() -> None:
+    code = run_path(".scratch/mms02_u_xy_bridge_checker.py")
+    _, steps = code["expand_path"](
+        code["MISPRINTED_RANK_THREE"], code["RANK_THREE_MOVES"]
+    )
+    assert tuple(signed_involution(word) for word in (A, B, U, V)) == (
+        "ZXyzYZxzyZYx",
+        "zYZxzyzYZXzyZY",
+        V,
+        U,
+    )
+    assert all(
+        signed_involution(signed_involution(word)) == word
+        for word in (A, B, U, V)
+    )
+
+    current = tuple(signed_involution(word) for word in code["MISPRINTED_RANK_THREE"])
+    for step in steps:
+        rows = list(current)
+        if step.kind == "AC1":
+            rows[step.target] = red(rows[step.target] + rows[step.operand])
+        elif step.kind == "AC2":
+            rows[step.target] = inv(rows[step.target])
+        else:
+            conjugator = signed_involution(step.operand)
+            rows[step.target] = red(conjugator + rows[step.target] + inv(conjugator))
+        current = tuple(rows)
+        assert current == tuple(signed_involution(word) for word in step.after)
+    assert current == ("x", "y", "z")
 
 
 def h_step(words, rows, move):

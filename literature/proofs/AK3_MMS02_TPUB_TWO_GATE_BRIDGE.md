@@ -894,6 +894,69 @@ alters the two residual rows repeatedly or interleaves their Peiffer
 transformations.  That genuinely interleaved relation-identity problem is
 the sole remaining MMS02 closure category.
 
+### 6.6. A common-kill normalization of the unrestricted bridge
+
+There is a second exact normalization which does not enlarge the sequential
+cleanup ledger.  Let $\phi\in\operatorname{Aut}(F)$ be the signed
+permutation
+
+\[
+ \begin{aligned}
+ \phi(x)&=Z,&\phi(y)&=Y,&\phi(z)&=X.
+ \end{aligned}
+ \tag{57}
+\]
+
+It is an involution and sends the two kill words to one another:
+
+\[
+ \begin{aligned}
+ \phi(u)&=v,&\phi(v)&=u.
+ \end{aligned}
+ \tag{58}
+\]
+
+Its base-row images are the literal words
+
+```text
+phi(A) = ZXyzYZxzyZYx
+phi(B) = zYZxzyzYZXzyZY
+```
+
+Apply $\phi$ to every row and every conjugator in the certified
+134-primitive path
+
+\[
+ (A,B,u)\sim_{\rm AC}(Z,Y,X).
+ \tag{59}
+\]
+
+Since $\phi(Z)=x$, $\phi(Y)=y$, and $\phi(X)=z$, this gives the literal
+classical path
+
+\[
+ \boxed{(\phi(A),\phi(B),v)\sim_{\rm AC}(x,y,z).}
+ \tag{60}
+\]
+
+Both $(A,B,u)$ and $(\phi(A),\phi(B),v)$ are therefore classically
+AC-equivalent to the standard basis.  Consequently the unrestricted bridge
+has the equivalent common-third-row formulation
+
+\[
+ \boxed{
+ (A,B,v)\sim_{\rm AC}(A,B,u)
+ \Longleftrightarrow
+ (A,B,v)\sim_{\rm AC}(\phi(A),\phi(B),v).}
+ \tag{61}
+\]
+
+Equation (61) is a target normalization, not a fixed-$v$ theorem: an
+intermediate path may alter all three rows.  It neither repairs any failed
+sequential gate in Sections 6.3--6.5 nor proves the bridge.  It does isolate
+an alternative unrestricted target whose kill row is already the literal
+published word $v$.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between

@@ -11,9 +11,10 @@ old--new load calculation, but it is not an independent Andrews--Curtis
 result.
 
 The terminal-incidence theorem below evaluates the combined powered
-\(P,C,Q\) forest load as \([d=1]\).  It does not evaluate the finite old
-terms or positive-chamber covariance, and it proves no period-two lift,
-AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
+$P,C,Q$ forest load as $[d=1]$.  The finite old terms and
+positive-chamber covariance are outside this note's scope and are completed
+in `AK3_OLD_NEW_SINGLETON_TERMINAL_INCIDENCE.md`.  This note proves no
+period-two lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis claim.
 
 ## 1. Parameters and endpoint conventions
 
@@ -625,10 +626,12 @@ combined powered \(P,C,Q\) forest load:
  \tag{5.12}
 \]
 
-This closes only the combined powered \(P,C,Q\) forest load.  The finite
-old fixed, base, and singleton terms, positive-chamber covariance, the
-period-two lift, AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
-open.
+This closes only the combined powered $P,C,Q$ forest load.  The finite
+old fixed, base, and singleton terms and positive-chamber covariance are
+completed in `AK3_OLD_NEW_SINGLETON_TERMINAL_INCIDENCE.md`.  Later chamber,
+diagonal, and unary calculations lie outside this note.  No period-two
+free-group lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis
+conclusion follows here.
 
 ## 6. Cochain loads and the occurrence sweep
 
@@ -669,7 +672,8 @@ single outer evaluation
 \]
 
 The terminal-incidence theorem (5.10) evaluates the right-hand side of
-(6.3) as \([d=1]\).  This still does not evaluate the finite old fixed,
-base, and singleton terms or positive-chamber covariance, and it supplies
-no period-two lift, AK(3), stable Andrews--Curtis, or Andrews--Curtis
-conclusion.
+(6.3) as $[d=1]$.  This establishes the combined powered $P,C,Q$
+forest load only.  The finite old terms and positive-chamber covariance are
+completed in `AK3_OLD_NEW_SINGLETON_TERMINAL_INCIDENCE.md`; this supplies no
+period-two free-group lift, AK(3), stable Andrews--Curtis, or
+Andrews--Curtis conclusion.
