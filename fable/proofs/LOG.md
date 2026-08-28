@@ -103,3 +103,22 @@ under the §4.1 transformation law. Checker `period_two_liveness_invariance.py`
 (controls mutation-verified, exit 2 on control failure) independently reproduces
 W2b's six live chains. Note: W2E_LIVENESS_CLASS_INVARIANCE.md. No AK(3), stable AC,
 or AC claim.
+
+## 2026-08-28 · cycle 11 · `19ee7dd`
+
+W5 (open-exploration lane, non-base-killing regime): the MMS02 bridge is proved
+EQUIVALENT to "AK(3) is AC-trivial after exactly one stabilization" (Theorem
+W5.1, four machine-checked lemmas: Aut-invariance via Nielsen, the two basis
+changes, literal AC2 z-elimination, and the recorded rank-2 endpoints Q and P;
+Q ~AC AK(3) re-verified with the existing 53-move Appendix-F checker). Corollary:
+any invariant separating the two bridge triples is a partial negative resolution
+of the open stable-AC question for AK(3) — the invariant hunt is not a shortcut.
+Battery: abelianization blind (11-op chain exhibited); Fox/Alexander over
+Z[F3^ab] blind by theorem (junk ideal = augmentation ideal), "det J up to units"
+refuted by its own certified-positive control, cyclic Alexander Δ = t^4-3t^3+
+5t^2-3t+1 identical on both sides; free nilpotent class 2 and class 3 blind by
+explicit verified chains (47 and 991 moves), class 4 verdict withheld (positive
+control fails). Zero states popped anywhere. Notes: W5_BRIDGE_INVARIANTS.md;
+checkers bridge_reduction.py, bridge_invariant_probe.py, nilpotent_bridge_chain.py,
+w5_words.py, w5_linalg.py. Two lessons appended. No AK(3), stable AC, AC, or
+bridge claim.
