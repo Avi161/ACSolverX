@@ -1,0 +1,67 @@
+{
+  "16": {
+    "all_negative": true,
+    "ball_states": 17,
+    "complete": true,
+    "newly_decided_by_w6c": 5,
+    "quarantined_positive_states": [],
+    "residual_profile": {},
+    "undecided": 0,
+    "w6b_decided": 12,
+    "w6b_decisions_lost": [],
+    "w6c_decided": 17
+  },
+  "18": {
+    "all_negative": true,
+    "ball_states": 125,
+    "complete": true,
+    "newly_decided_by_w6c": 77,
+    "quarantined_positive_states": [],
+    "residual_profile": {},
+    "undecided": 0,
+    "w6b_decided": 48,
+    "w6b_decisions_lost": [],
+    "w6c_decided": 125
+  },
+  "20": {
+    "all_negative": true,
+    "ball_states": 503,
+    "complete": false,
+    "newly_decided_by_w6c": 301,
+    "quarantined_positive_states": [],
+    "residual_profile": {
+      "CUT_2": 4,
+      "MIXED:MIXEDx2": 6,
+      "MIXED:MIXEDx2,PIECES3x1": 8,
+      "MIXED:MIXEDx3": 4,
+      "MIXED:MIXEDx4,PIECES3x1": 2
+    },
+    "undecided": 24,
+    "w6b_decided": 178,
+    "w6b_decisions_lost": [],
+    "w6c_decided": 479
+  },
+  "22": {
+    "all_negative": true,
+    "ball_states": 1868,
+    "complete": false,
+    "newly_decided_by_w6c": 1027,
+    "quarantined_positive_states": [],
+    "residual_profile": {
+      "CUT_2": 58,
+      "MIXED:CUTx1,MIXEDx2": 2,
+      "MIXED:MIXEDx2": 51,
+      "MIXED:MIXEDx2,PIECES3x1": 36,
+      "MIXED:MIXEDx2,PIECES3x2": 2,
+      "MIXED:MIXEDx3": 16,
+      "MIXED:MIXEDx3,PIECES3x1": 4,
+      "MIXED:MIXEDx4": 4,
+      "MIXED:MIXEDx4,PIECES3x1": 4
+    },
+    "undecided": 177,
+    "w6b_decided": 664,
+    "w6b_decisions_lost": [],
+    "w6c_decided": 1691
+  },
+  "_fails": []
+}

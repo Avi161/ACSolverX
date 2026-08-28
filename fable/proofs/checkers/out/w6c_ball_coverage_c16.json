@@ -1,0 +1,23 @@
+{
+  "_fails": [],
+  "ball_states": 17,
+  "ceiling": 16,
+  "classified": 17,
+  "complete": true,
+  "decided": 17,
+  "family_counts": {
+    "BARE_ROW": 5,
+    "BOOK": 12
+  },
+  "jsonl": "/home/user/ACSolverX/fable/proofs/checkers/out/w6c_ball_coverage_c16.jsonl",
+  "quarantined_positive_states": [],
+  "residual_blockers": {},
+  "route_counts": {
+    "LEMMA_F_CUT": 1,
+    "LEMMA_F_W6b_DELEGATED": 4,
+    "W6b_DELEGATED": 12
+  },
+  "verdict_counts": {
+    "NOT_SPHERICAL": 17
+  }
+}

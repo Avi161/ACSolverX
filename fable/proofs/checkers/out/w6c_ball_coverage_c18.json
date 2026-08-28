@@ -1,0 +1,27 @@
+{
+  "_fails": [],
+  "ball_states": 125,
+  "ceiling": 18,
+  "classified": 125,
+  "complete": true,
+  "decided": 125,
+  "family_counts": {
+    "BARE_ROW": 13,
+    "BOOK": 48,
+    "CUT": 56,
+    "REDUCED": 8
+  },
+  "jsonl": "/home/user/ACSolverX/fable/proofs/checkers/out/w6c_ball_coverage_c18.jsonl",
+  "quarantined_positive_states": [],
+  "residual_blockers": {},
+  "route_counts": {
+    "CUT": 56,
+    "HHAT": 8,
+    "LEMMA_F_CUT": 1,
+    "LEMMA_F_W6b_DELEGATED": 12,
+    "W6b_DELEGATED": 48
+  },
+  "verdict_counts": {
+    "NOT_SPHERICAL": 125
+  }
+}

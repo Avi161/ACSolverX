@@ -1,0 +1,660 @@
+{
+  "_fails": [],
+  "corruption_block_reversal": {
+    "moved": [
+      {
+        "broken": "NOT_SPHERICAL",
+        "true_gamma_N": 0,
+        "words": [
+          "xzYY",
+          "ZY",
+          "zYYz"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "true_gamma_N": 0,
+        "words": [
+          "yZ",
+          "zXzY",
+          "xZyz"
+        ]
+      },
+      {
+        "broken": "NOT_SPHERICAL",
+        "true_gamma_N": 0,
+        "words": [
+          "ZZZX",
+          "xzx",
+          "Xy"
+        ]
+      }
+    ]
+  },
+  "corruption_one_scheme": [
+    {
+      "flipped": true,
+      "full": true,
+      "gens": "xyz",
+      "one_scheme": false,
+      "words": [
+        "xzYY",
+        "ZY",
+        "zYYz"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": true,
+      "gens": "xyz",
+      "one_scheme": false,
+      "words": [
+        "yyXYz",
+        "yZ",
+        "Y"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": true,
+      "gens": "xyz",
+      "one_scheme": false,
+      "words": [
+        "zzx",
+        "YZZ",
+        "y"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": true,
+      "gens": "xyz",
+      "one_scheme": false,
+      "words": [
+        "yXX",
+        "XZX",
+        "x"
+      ]
+    },
+    {
+      "flipped": true,
+      "full": true,
+      "gens": "xyz",
+      "one_scheme": false,
+      "words": [
+        "xYY",
+        "X",
+        "zYY"
+      ]
+    }
+  ],
+  "pinned": [
+    {
+      "agrees": true,
+      "blocked_by": "bundle 2-3 is MIXED",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 48,
+        "reduced_rotation_closure": 1728,
+        "spherical_reduced_rotations": 48
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "xzYY",
+        "ZY",
+        "zYYz"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 4-5 is MIXED",
+      "gamma_N": 1,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 24,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 24
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "ZZ",
+        "zyZyx",
+        "Y"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 4-5 is PIECES3",
+      "gamma_N": 1,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "yZX",
+        "yZXZ",
+        "ZZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 3-5 is MIXED",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 12,
+        "reduced_rotation_closure": 24,
+        "spherical_reduced_rotations": 12
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yZ",
+        "zXzY",
+        "xZyz"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 4-5 is PIECES3",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 12,
+        "reduced_rotation_closure": 12,
+        "spherical_reduced_rotations": 12
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zxz",
+        "z",
+        "YZX"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 2-3 is PIECES4",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 36,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 36
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "xy",
+        "Y",
+        "yzy"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 1-3 is MIXED",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 256,
+        "reduced_rotation_closure": 576,
+        "spherical_reduced_rotations": 256
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "xx",
+        "yX",
+        "ZXyX"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 2-3 is PIECES3",
+      "gamma_N": 2,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 300,
+        "reduced_rotation_closure": 57600,
+        "spherical_reduced_rotations": 300
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "ZY",
+        "yyy",
+        "xYXXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 2-3 is PIECES4",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 72,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 72
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yyXYz",
+        "yZ",
+        "Y"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 4-5 is PIECES3",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zzx",
+        "YZZ",
+        "y"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 2-3 is PIECES3",
+      "gamma_N": 1,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "ZY",
+        "ZZ",
+        "yXyy"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 0-1 is PIECES4",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 288,
+        "reduced_rotation_closure": 576,
+        "spherical_reduced_rotations": 288
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yXX",
+        "XZX",
+        "x"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 1-4 is MIXED",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 36,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 36
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "ZZZX",
+        "xzx",
+        "Xy"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 0-1 is PIECES3",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "X",
+        "ZXYX",
+        "YZXX"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "more than one split bundle",
+      "gamma_N": 0,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 324,
+        "reduced_rotation_closure": 1296,
+        "spherical_reduced_rotations": 324
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "XXZ",
+        "zx",
+        "zyzx"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 4-5 is MIXED",
+      "gamma_N": 1,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 96,
+        "reduced_rotation_closure": 2304,
+        "spherical_reduced_rotations": 96
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "yxz",
+        "zXXzz",
+        "z"
+      ]
+    },
+    {
+      "agrees": true,
+      "blocked_by": "bundle 0-1 is PIECES3",
+      "gamma_N": 1,
+      "gens": "xyz",
+      "scheme_stats": {
+        "distinct_schemes": 48,
+        "reduced_rotation_closure": 5760,
+        "spherical_reduced_rotations": 48
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "X",
+        "zXYxYX",
+        "xzYx"
+      ]
+    }
+  ],
+  "shape_identity": [
+    {
+      "built": 96,
+      "gens": "xyz",
+      "spherical_rotation_systems": 96,
+      "stats": {
+        "distinct_schemes": 48,
+        "reduced_rotation_closure": 1728,
+        "spherical_reduced_rotations": 48
+      },
+      "words": [
+        "xzYY",
+        "ZY",
+        "zYYz"
+      ]
+    },
+    {
+      "built": 24,
+      "gens": "xyz",
+      "spherical_rotation_systems": 24,
+      "stats": {
+        "distinct_schemes": 24,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 24
+      },
+      "words": [
+        "ZZ",
+        "zyZyx",
+        "Y"
+      ]
+    },
+    {
+      "built": 72,
+      "gens": "xyz",
+      "spherical_rotation_systems": 72,
+      "stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "words": [
+        "yZX",
+        "yZXZ",
+        "ZZ"
+      ]
+    },
+    {
+      "built": 144,
+      "gens": "xyz",
+      "spherical_rotation_systems": 144,
+      "stats": {
+        "distinct_schemes": 12,
+        "reduced_rotation_closure": 24,
+        "spherical_reduced_rotations": 12
+      },
+      "words": [
+        "yZ",
+        "zXzY",
+        "xZyz"
+      ]
+    },
+    {
+      "built": 24,
+      "gens": "xyz",
+      "spherical_rotation_systems": 24,
+      "stats": {
+        "distinct_schemes": 12,
+        "reduced_rotation_closure": 12,
+        "spherical_reduced_rotations": 12
+      },
+      "words": [
+        "zxz",
+        "z",
+        "YZX"
+      ]
+    },
+    {
+      "built": 36,
+      "gens": "xyz",
+      "spherical_rotation_systems": 36,
+      "stats": {
+        "distinct_schemes": 36,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 36
+      },
+      "words": [
+        "xy",
+        "Y",
+        "yzy"
+      ]
+    },
+    {
+      "built": 256,
+      "gens": "xyz",
+      "spherical_rotation_systems": 256,
+      "stats": {
+        "distinct_schemes": 256,
+        "reduced_rotation_closure": 576,
+        "spherical_reduced_rotations": 256
+      },
+      "words": [
+        "xx",
+        "yX",
+        "ZXyX"
+      ]
+    },
+    {
+      "built": 300,
+      "gens": "xyz",
+      "spherical_rotation_systems": 300,
+      "stats": {
+        "distinct_schemes": 300,
+        "reduced_rotation_closure": 57600,
+        "spherical_reduced_rotations": 300
+      },
+      "words": [
+        "ZY",
+        "yyy",
+        "xYXXy"
+      ]
+    },
+    {
+      "built": 144,
+      "gens": "xyz",
+      "spherical_rotation_systems": 144,
+      "stats": {
+        "distinct_schemes": 72,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 72
+      },
+      "words": [
+        "yyXYz",
+        "yZ",
+        "Y"
+      ]
+    },
+    {
+      "built": 18,
+      "gens": "xyz",
+      "spherical_rotation_systems": 18,
+      "stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "words": [
+        "zzx",
+        "YZZ",
+        "y"
+      ]
+    },
+    {
+      "built": 36,
+      "gens": "xyz",
+      "spherical_rotation_systems": 36,
+      "stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "words": [
+        "ZY",
+        "ZZ",
+        "yXyy"
+      ]
+    },
+    {
+      "built": 288,
+      "gens": "xyz",
+      "spherical_rotation_systems": 288,
+      "stats": {
+        "distinct_schemes": 288,
+        "reduced_rotation_closure": 576,
+        "spherical_reduced_rotations": 288
+      },
+      "words": [
+        "yXX",
+        "XZX",
+        "x"
+      ]
+    },
+    {
+      "built": 72,
+      "gens": "xyz",
+      "spherical_rotation_systems": 72,
+      "stats": {
+        "distinct_schemes": 36,
+        "reduced_rotation_closure": 144,
+        "spherical_reduced_rotations": 36
+      },
+      "words": [
+        "ZZZX",
+        "xzx",
+        "Xy"
+      ]
+    },
+    {
+      "built": 72,
+      "gens": "xyz",
+      "spherical_rotation_systems": 72,
+      "stats": {
+        "distinct_schemes": 18,
+        "reduced_rotation_closure": 36,
+        "spherical_reduced_rotations": 18
+      },
+      "words": [
+        "X",
+        "ZXYX",
+        "YZXX"
+      ]
+    },
+    {
+      "built": 324,
+      "gens": "xyz",
+      "spherical_rotation_systems": 324,
+      "stats": {
+        "distinct_schemes": 324,
+        "reduced_rotation_closure": 1296,
+        "spherical_reduced_rotations": 324
+      },
+      "words": [
+        "XXZ",
+        "zx",
+        "zyzx"
+      ]
+    },
+    {
+      "built": 96,
+      "gens": "xyz",
+      "spherical_rotation_systems": 96,
+      "stats": {
+        "distinct_schemes": 96,
+        "reduced_rotation_closure": 2304,
+        "spherical_reduced_rotations": 96
+      },
+      "words": [
+        "yxz",
+        "zXXzz",
+        "z"
+      ]
+    },
+    {
+      "built": 96,
+      "gens": "xyz",
+      "spherical_rotation_systems": 96,
+      "stats": {
+        "distinct_schemes": 48,
+        "reduced_rotation_closure": 5760,
+        "spherical_reduced_rotations": 48
+      },
+      "words": [
+        "X",
+        "zXYxYX",
+        "xzYx"
+      ]
+    }
+  ],
+  "starved_budget_verdicts": [
+    "UNSUPPORTED"
+  ],
+  "sweep": {
+    "cut_vs_hhat": [],
+    "disagreements": [],
+    "families": {
+      "BOOK": 77,
+      "CUT": 9,
+      "SPLIT_ENDPOINT": 13,
+      "UNSUPPORTED": 21
+    },
+    "inexact": [],
+    "seed": 6161,
+    "tally": {
+      "cut_cross_checked": 40,
+      "gamma_0": 65,
+      "gamma_positive": 55
+    },
+    "tested": 120
+  }
+}

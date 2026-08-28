@@ -1,0 +1,36 @@
+{
+  "_fails": [],
+  "ball_states": 503,
+  "ceiling": 20,
+  "classified": 503,
+  "complete": true,
+  "decided": 479,
+  "family_counts": {
+    "BARE_ROW": 27,
+    "BOOK": 178,
+    "CUT": 254,
+    "REDUCED": 20,
+    "UNSUPPORTED": 24
+  },
+  "jsonl": "/home/user/ACSolverX/fable/proofs/checkers/out/w6c_ball_coverage_c20.jsonl",
+  "quarantined_positive_states": [],
+  "residual_blockers": {
+    "CUT_2": 4,
+    "MIXED:MIXEDx2": 6,
+    "MIXED:MIXEDx2,PIECES3x1": 8,
+    "MIXED:MIXEDx3": 4,
+    "MIXED:MIXEDx4,PIECES3x1": 2
+  },
+  "route_counts": {
+    "CUT": 254,
+    "HHAT": 20,
+    "LEMMA_F_CUT": 4,
+    "LEMMA_F_W6b_DELEGATED": 23,
+    "NONE": 24,
+    "W6b_DELEGATED": 178
+  },
+  "verdict_counts": {
+    "NOT_SPHERICAL": 479,
+    "UNSUPPORTED": 24
+  }
+}

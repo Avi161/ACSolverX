@@ -1,0 +1,468 @@
+{
+  "_fails": [],
+  "pinned": [
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 24,
+      "cut_multiplicity": 3,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "Xyy",
+        "yyyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 6,
+      "cut_multiplicity": 2,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "YxYY",
+        "yx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 720,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "XYxy",
+        "yxyxxx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "cut_multiplicity": 5,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 24,
+        "generated": 48,
+        "kept": 6,
+        "non_spherical": 18
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "XXXYXX",
+        "xxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 48,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "yXYX",
+        "YYYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 24,
+      "cut_multiplicity": 3,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YY",
+        "xyyXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "cut_multiplicity": 2,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "XYXYY",
+        "YxYYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 24,
+      "cut_multiplicity": 3,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "x",
+        "xxxYXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 48,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xy",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "XXyX",
+        "xyxy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 720,
+      "cut_multiplicity": 2,
+      "exhaustive": false,
+      "gens": "xy",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "Yxyyyx",
+        "YxYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 36,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YXZ",
+        "xYZxY",
+        "yX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 48,
+      "cut_multiplicity": 2,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 28,
+        "generated": 48,
+        "kept": 6,
+        "non_spherical": 14
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zxzy",
+        "zyXzz",
+        "Y"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 48,
+      "cut_multiplicity": 2,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "Yzx",
+        "YZXX",
+        "XZX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 24,
+      "cut_multiplicity": 3,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "zXz",
+        "Xy",
+        "ZZYZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 48,
+      "cut_multiplicity": 3,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "Xz",
+        "YY",
+        "zzzzYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 24,
+      "cut_multiplicity": 3,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "Y",
+        "ZZZxY",
+        "ZXZ"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 0,
+      "compatible_orderings": 240,
+      "cut_multiplicity": 4,
+      "exhaustive": false,
+      "gens": "xyz",
+      "pinned_gamma_N": 0,
+      "scheme_stats": {
+        "duplicate": 80,
+        "generated": 160,
+        "kept": 20,
+        "non_spherical": 60
+      },
+      "verdict": "SPHERICAL_REQUIRES_REGINA",
+      "words": [
+        "yyX",
+        "yyxyy",
+        "xz"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 720,
+      "cut_multiplicity": 3,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 96,
+        "generated": 192,
+        "kept": 24,
+        "non_spherical": 72
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "ZXXZx",
+        "X",
+        "Zxxzy"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 240,
+      "cut_multiplicity": 3,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 32,
+        "generated": 64,
+        "kept": 8,
+        "non_spherical": 24
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "zzxx",
+        "XYYXz",
+        "xx"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 1440,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 28,
+        "generated": 48,
+        "kept": 6,
+        "non_spherical": 14
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xxYZ",
+        "yyyZ",
+        "ZXyxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 480,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 28,
+        "generated": 48,
+        "kept": 6,
+        "non_spherical": 14
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "YxzY",
+        "xyyZY",
+        "ZyX"
+      ]
+    },
+    {
+      "agrees": true,
+      "brute_gamma_N": 1,
+      "compatible_orderings": 14400,
+      "cut_multiplicity": 2,
+      "exhaustive": true,
+      "gens": "xyz",
+      "pinned_gamma_N": 1,
+      "scheme_stats": {
+        "duplicate": 56,
+        "generated": 96,
+        "kept": 12,
+        "non_spherical": 28
+      },
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xzyx",
+        "ZxZZ",
+        "zXZxYX"
+      ]
+    }
+  ],
+  "sweep": {
+    "disagreements": [],
+    "seed": 6161,
+    "tally": {
+      "gamma_0": 51,
+      "gamma_positive": 69,
+      "rank2": 65,
+      "rank3": 55
+    },
+    "tested": 120
+  }
+}
