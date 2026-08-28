@@ -271,3 +271,23 @@ synthetic fires 1,056/1,056, torsion path fired on the deliberate Γ' control
 (268/268 verified swap witnesses). Next: evaluate Ξ_Z(Θ(F)) beyond the codex
 witness — now the whole layer-2 question. Note: W2I_LAYER2_D2.md; checker
 layer2_d2_invariant.py. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 19 · `ea3da2a`
+
+W2j: the literal Θ evaluator reproduces the codex escape certificate exactly
+(all four parity classes, bit for bit) and evaluates Ξ_Z(Θ) across the census:
+nonzero on 55/55 chains with exact layer-1 solutions, affine-quadratic
+confirmed, and 0 unattainable on every tested sublattice (window-bounded; the
+constant-parity route to a window-independent obstruction is closed by data —
+parity is non-constant on 24/24 families). CRITICAL FINDING UNDERNEATH: the
+lane's build_operators_general has a wrong L0 column on 59/67 chains (missing
+q(h1) factor; the exact variation conjugates δ_R by S·q(h1)) — it coincides
+with truth exactly at the codex witness (H1 = ()), where every prior control
+was anchored. Literal probes: 354/2,010 mismatches, all column 0; corrected
+operator 2,010/2,010. Consequence: W2b/W2e/W2f/W2g/W2h/W2i layer-1 and d₂
+claims that ran through L0 on the 59 h1-nontrivial chains are SUSPENDED
+pending re-derivation (cycle 20); operator-independent results stand (census,
+normal form, Γ structure, torsion-freeness, W3/W5/W6 lanes). Lesson filed: a
+solution verified through the operators that produced it is not verified.
+Note: W2J_THETA_RESIDUAL.md; checker theta_residual_evaluator.py. No AK(3),
+stable AC, or AC claim.
