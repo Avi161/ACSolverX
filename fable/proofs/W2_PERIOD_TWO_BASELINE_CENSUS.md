@@ -77,3 +77,24 @@ python3 scripts/run_proof_guarded.py --timeout-seconds 60 -- \
 python3 scripts/run_proof_guarded.py --timeout-seconds 60 -- \
   python3 fable/proofs/checkers/period_two_census_verify.py
 ```
+
+## W2c addendum: cap growth curve
+
+Rerunning the census at higher caps (GPAD fixed at 5):
+
+| CAP | admissible R | (R,S) pairs' S-total | chains |
+|---:|---:|---:|---:|
+| 12 | 3 | 8 | **17** |
+| 13 | 7 | 25 | **36** |
+| 14 | 7 | 25 | **55** |
+| 15 | 14 | 70 | **67** |
+
+The essential-chain count grows strictly with the cap and shows no
+plateau; the witness is re-found at every cap, elliptic-S hits stay zero.
+Together with W2b (live fraction 6/17 at cap 12), the working conclusion
+is that the period-two quotient layer carries an unboundedly growing —
+plausibly infinite — family of essential baselines, a nontrivial fraction
+of them live at layer 1. A per-baseline tower cannot terminate; closing
+the signature through this quotient requires a uniform argument over all
+baselines (or a different quotient). Caps are ceilings: every number is a
+lower bound.

@@ -42,8 +42,8 @@ from __future__ import annotations
 import json
 import sys
 
-CAP = 12      # max reduced length of each of R, S, U (witness: 9, 11, 8)
-GPAD = 5      # max length of the final conjugator g (witness: g = t^2? see run)
+CAP = int(sys.argv[1]) if len(sys.argv) > 1 else 12
+GPAD = int(sys.argv[2]) if len(sys.argv) > 2 else 5
 
 _BALL_CACHE = {}
 
