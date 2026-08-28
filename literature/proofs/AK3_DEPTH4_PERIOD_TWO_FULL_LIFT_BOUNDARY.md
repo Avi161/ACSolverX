@@ -5512,7 +5512,7 @@ give the exact conjugating factor
 
 \[
  \begin{aligned}
- k_{o,a}
+ \kappa_{o,a}
  ={}&\lambda_o
   \left(
    \widehat m_oc^{\eta_o}\mu(a)c^{-\eta_o}\widehat m_o^{-1}
@@ -5520,15 +5520,18 @@ give the exact conjugating factor
   \left(
    \widehat m_o\delta_{\eta_o}(a)\widehat m_o^{-1}
   \right)
-  \mu(b)^{-1},\\
+ \mu(b)^{-1},\\
  \widehat q_o r_a\widehat q_o^{-1}
- ={}&k_{o,a}r_bk_{o,a}^{-1}.
+ ={}&\kappa_{o,a}r_b\kappa_{o,a}^{-1}.
  \end{aligned}
  \tag{3.359a}
 \]
 
-Abelianizing (3.359a) and using (3.358) therefore gives the exact
-literal-prefix data
+The terminal-normalized conjugator $k_{o,a}$ in (3.348) and the algebraic
+conjugator $\kappa_{o,a}$ in (3.359a) differ by an element centralizing
+$r_b$.  Since $N$ is free on the Schreier generators, that centralizer is
+$\langle r_b\rangle$.  Abelianizing (3.359a) and using (3.358) therefore
+gives the exact bridge data
 
 \[
  \boxed{
@@ -5536,12 +5539,18 @@ literal-prefix data
  x_{o,a}&=m_o\alpha^{\eta_o}(a),\\
  C_o(a)&:=\alpha^{\eta_o}(E(a))
   -m_o^{-1}E\left(m_o\alpha^{\eta_o}(a)\right),\\
- K_{o,a}&=P_o+m_o\left(C_o(a)+D_{\eta_o}(a)\right),\\
+ K_{o,a}&\equiv
+ P_o+m_o\left(C_o(a)+D_{\eta_o}(a)\right)
+ \pmod{\mathbb Z e_{x_{o,a}}},\\
  D_0(a)&:=0,\\
  D_1(a)&:=D(a).
  \end{aligned}}
  \tag{3.360}
 \]
+
+Adding a multiple of $e_{x_{o,a}}$ to $K_{o,a}$ changes (3.349) by zero.
+Thus the congruence in (3.360) is an exact identity for every terminal
+bridge tensor and every nontrivial double-coset coordinate below.
 
 The currents $P_o$ are fixed finite data of the sixteen literal prefixes,
 while $C_o(a)$ retains the source and destination Schreier-section
