@@ -128,6 +128,15 @@ finite quotient do not close a route.
   closes lower-central invariants of the boundary words only.  It is not a
   class-two crossed-module calculation or a Peiffer lift; those require
   explicit 2-cell lifts and the relative move action.
+- **First legal interchange evaluated and frozen:** a no-self-donor path
+  transforms the normalized pair `(q,rt)` to `(q0,Omega*t)`.  The middle
+  discrepancy is the old `L_t`, and its direct cleanup is still blocked by
+  `T_B`; the final `Omega` is outside `Ncl(A,v,q0)` by `T_t`.  This closes
+  only those cleanups at their respective checkpoints.  Cleaning the first
+  row after the third arrow and further alternating changes to both live rows
+  remain open.  Do not add another finite
+  alternation category: the next tagged checkpoint must construct a genuine
+  continuation or control the full relative Peiffer class.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the

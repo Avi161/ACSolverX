@@ -54,6 +54,11 @@ Section 6.12 proves that the normalized source and target of that relative
 class are literally identical in every nilpotent quotient.  This evaluates
 all lower-central shadows at once but does not supply a literal Peiffer lift.
 
+Section 6.13 executes the first legal no-self-donor interchange.  It proves
+that the middle first-row cleanup and the final second-row cleanup are
+impossible at their respective checkpoints.  This closes one interchange
+mechanism, not unrestricted interleaving.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1598,6 +1603,152 @@ of relative crossed-module or Peiffer class-two closure, literal higher
 lifting, the MMS02 bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis.
 
+### 6.13. The first legal interchange blocks two checkpoint cleanups
+
+Continue with the normalized relative pair (86), keeping $A,v$ fixed.  For
+a variable row $P$, define
+
+\[
+ \begin{aligned}
+ C(P,v)&=({}^xP)({}^{x^2}P^{-1})({}^{x^2}v)({}^xP^{-1}),\\
+ K(P,v)&=[u,C(P,v)].
+ \end{aligned}
+ \tag{91}
+\]
+
+Thus $K=K(q,v)$ and (73) gives $r=AK$.  Put
+
+\[
+ \begin{aligned}
+ \Delta&=D(A),&
+ \Theta&={}^{hA}[X,K],&
+ W&=Kt,\\
+ J&={}^{hA}[X,W],&
+ \Xi&={}^{hAK}[X,t].
+ \end{aligned}
+ \tag{92}
+\]
+
+The identity $[X,ab]=[X,a]({}^a[X,b])$ gives
+
+\[
+ \begin{aligned}
+ D(r)&=\Delta\Theta,&
+ D(rt)&=\Delta J,&
+ J&=\Theta\Xi.
+ \end{aligned}
+ \tag{93}
+\]
+
+Define
+
+\[
+ \begin{aligned}
+ p_*&=q\Theta^{-1},&
+ q_0&=qJ^{-1},&
+ \Lambda&={}^q\Xi^{-1}.
+ \end{aligned}
+ \tag{94}
+\]
+
+Then
+
+\[
+ \begin{aligned}
+ B&=p_*\Delta^{-1},&
+ B_t&=q_0\Delta^{-1},&
+ q_0&=\Lambda p_*.
+ \end{aligned}
+ \tag{95}
+\]
+
+Since $AK=r$, the last multiplier is exactly the old tagged discrepancy,
+
+\[
+ \Lambda={}^{qhr}[X,t]^{-1}=L_t.
+ \tag{96}
+\]
+
+There is now a literal finite interchange which never uses a row as its own
+donor:
+
+\[
+ (q,rt)\longrightarrow(q,W)\longrightarrow(q_0,W)
+ \longrightarrow(q_0,\Omega t).
+ \tag{97}
+\]
+
+The first arrow uses $rt=AW$.  For the second arrow, the exact factorization
+
+\[
+ J^{-1}=({}^{hA}W)({}^{hAX}W^{-1})
+ \tag{98}
+\]
+
+uses only the other row $W$.  For the last arrow put
+
+\[
+ \begin{aligned}
+ K_0&=K(q_0,v),&
+ \Omega&=K_0^{-1}K(q_0J,v).
+ \end{aligned}
+ \tag{99}
+\]
+
+Because $q_0J=q$, one has $K=K_0\Omega$ and $W=K_0\Omega t$.
+Formula (91) writes $K_0$ as a finite product of conjugates of
+$q_0^{\pm1}$ and $v^{\pm1}$, so those two donor rows remove $K_0$.
+
+Two checkpoint-local direct continuations fail.  At the middle pair
+$(q_0,W)$, one has
+
+\[
+ q_0B^{-1}=\Lambda({}^{p_*}\Delta).
+\]
+
+Because ${}^{p_*}\Delta\in\operatorname{Ncl}(A)$, replacing $q_0$ directly
+by $B$ would force
+
+\[
+ \Lambda\in\operatorname{Ncl}(A,v,W)
+ =\operatorname{Ncl}(A,v,rt),
+\]
+
+contrary to $\mathsf T_B$.  In particular, even the preliminary replacement
+$q_0=\Lambda p_*$ by $p_*$ is impossible.  At the final pair, replacing
+$\Omega t$ by $t$
+would require $\Omega\in\operatorname{Ncl}(A,v,q_0)$.  But
+$q_0=B_t\Delta$ with $\Delta\in\operatorname{Ncl}(A)$, so $\mathsf T_t$
+and $r=AK$ imply
+
+\[
+ K\notin\operatorname{Ncl}(A,v,q_0).
+\]
+
+Since $K=K_0\Omega$ and $K_0\in\operatorname{Ncl}(q_0,v)$, this proves
+
+\[
+ \boxed{\Omega\notin\operatorname{Ncl}(A,v,q_0).}
+ \tag{100}
+\]
+
+**Theorem 6.7 (one-interchange boundary).**  The legal interchange (97)
+trades the higher commutator $\Theta$ for the exact pair
+$(\Lambda,\Omega)$.  The first-row cleanup is impossible at the middle
+checkpoint $(q_0,W)$, and the second-row cleanup is impossible at the final
+checkpoint $(q_0,\Omega t)$.  No assertion is made about cleaning the first
+row after the third arrow changes the available donor row.  This closes this
+one-interchange mechanism only, not the relative Peiffer class (83).
+
+There is also no fixed-donor Hall--Witt shortcut.  After killing $A,v$ one
+has $\Delta=1$, $r=K$, and $\Theta=D(r)\ne1$ by Section 4.  Therefore no
+commutator rewriting which keeps the donor normal closure
+$\operatorname{Ncl}(A,v,t)$ fixed can absorb $\Theta$.  Further
+interleavings which alter both live rows and hence the available donor normal
+closure remain open.  Freeze the bounded tagged ledger here: a subsequent
+checkpoint must either construct a genuine continuation or control the full
+relative Peiffer class, not introduce another finite alternation category.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -1623,9 +1774,13 @@ The logical gates remain separate:
    fail, but its interleaved relative Peiffer class remains open;
 8. the normalized tagged source and target agree in every nilpotent quotient,
    but this boundary-image equality is not a crossed-module or Peiffer lift;
-9. no MMS02 statement evaluates the period-two class-two ledger or its
+9. the first legal no-self-donor interchange blocks the middle first-row
+   cleanup and final second-row cleanup at their respective checkpoints, but
+   the first row after the third arrow and unrestricted interleaving remain
+   open;
+10. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-10. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+11. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

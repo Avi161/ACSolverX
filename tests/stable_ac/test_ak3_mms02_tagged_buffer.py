@@ -78,6 +78,17 @@ def test_mms02_tagged_buffer_exact_word_replay():
     assert A == product(r, inverse(K))
     assert B == product(q, inverse(D))
 
+    def Cfun(P: str) -> str:
+        return product(
+            conjugate("x", P),
+            conjugate("xx", inverse(P)),
+            conjugate("xx", v),
+            conjugate("x", inverse(P)),
+        )
+
+    def Kfun(P: str) -> str:
+        return commutator(u, Cfun(P))
+
     def Dfun(word: str) -> str:
         return conjugate(h, commutator("X", word))
 
@@ -91,6 +102,45 @@ def test_mms02_tagged_buffer_exact_word_replay():
         conjugate(product(h, r), commutator("X", "t")),
     )
     assert Bt == product(Lt, B)
+
+    Delta = Dfun(A)
+    Theta = conjugate(product(h, A), commutator("X", K))
+    W = product(K, "t")
+    J = conjugate(product(h, A), commutator("X", W))
+    Xi = conjugate(product(h, A, K), commutator("X", "t"))
+    p_star = product(q, inverse(Theta))
+    q0 = product(q, inverse(J))
+    Lambda = conjugate(q, inverse(Xi))
+    K0 = Kfun(q0)
+    Omega = product(inverse(K0), Kfun(product(q0, J)))
+
+    assert D == product(Delta, Theta)
+    assert Dfun(rt) == product(Delta, J)
+    assert J == product(Theta, Xi)
+    assert rt == product(A, W)
+    assert B == product(p_star, inverse(Delta))
+    assert Bt == product(q0, inverse(Delta))
+    assert q0 == product(Lambda, p_star)
+    assert product(q0, inverse(B)) == product(Lambda, conjugate(p_star, Delta))
+    assert Lambda == conjugate(g, inverse(commutator("X", "t"))) == Lt
+    assert inverse(J) == product(
+        conjugate(product(h, A), W),
+        conjugate(product(h, A, "X"), inverse(W)),
+    )
+    assert product(q0, J) == q
+
+    assert inverse(K0) == product(
+        conjugate("x", q0),
+        conjugate("xx", inverse(q0)),
+        conjugate("xx", v),
+        conjugate("x", inverse(q0)),
+        conjugate(u, conjugate("x", q0)),
+        conjugate(u, conjugate("xx", inverse(v))),
+        conjugate(u, conjugate("xx", q0)),
+        conjugate(u, conjugate("x", inverse(q0))),
+    )
+    assert K == product(K0, Omega)
+    assert W == product(K0, Omega, "t")
 
     assert substitute(rt, {"t": inverse(r)}) == ""
     assert substitute(
