@@ -90,6 +90,80 @@ Including censored rows, over every row each arm ran:
 | `greedy` | 222 | 598,636 | 527,710 | 88 |
 | `s20_mk2` | 39 | 538,238 | 259,825 | 14 |
 
+## Census-wide: the 70,636 orbits both arms solve
+
+The sections above cover only the hard tail this run escalated. Splicing all
+three waves — 10k census, 100k residual, 1M residual — gives the per-arm
+`solved_at` for every orbit, and a fair paired cost comparison over the whole
+screen. All three ran `hcompact` at cap 48, so node counts splice without
+adjustment.
+
+| | |
+|---|---:|
+| joint denominator (a row for **both** arms) | **70,723** |
+| `greedy` solves | 70,636 — 87 unsolved |
+| `s20_mk2` solves | 70,709 — 14 unsolved |
+| **solved by both** | **70,636** (99.88%) |
+
+`s20_mk2`'s 14 unsolved are a strict subset of `greedy`'s 87. Nothing the length
+ordering solves is lost.
+
+### Nodes and path on the 70,636 solved by both
+
+| arm | mean nodes | median | mean path | median path |
+|---|---:|---:|---:|---:|
+| `greedy` | **1,197.8** | **14** | 23.58 | 10 |
+| `s20_mk2` | **284.2** | **14** | 26.64 | 11 |
+
+Node geo-mean ratio `s20_mk2`/`greedy`: **0.800**. Total node-work across the set:
+84,611,237 against 20,076,547 — a **4.2×** reduction in aggregate search.
+
+The identical medians and the 4.2× mean gap are the same fact seen twice: most of
+the census is trivial (p50 is 14 nodes for both arms), and the entire saving lives
+in the tail.
+
+| arm | p50 | p75 | p90 | p99 | p99.9 | max |
+|---|---:|---:|---:|---:|---:|---:|
+| `greedy` nodes | 14 | 100 | 786 | 10,771 | 253,986 | 948,266 |
+| `s20_mk2` nodes | 14 | 61 | 372 | 4,165 | 32,914 | 95,944 |
+| `greedy` path | 10 | 22 | 55 | 191 | — | 502 |
+| `s20_mk2` path | 11 | 23 | 57 | 248 | — | 783 |
+
+### The ratio is monotone in difficulty
+
+Binned by how hard the row was for the **length baseline**, so the strata are
+defined without reference to the arm being judged:
+
+| `greedy` nodes | n | `greedy` mean | med | `s20_mk2` mean | med | geo ratio | `g` path | `s` path |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| [0, 10) | 23,537 | 7 | 7 | 8 | 7 | **1.092** | 6 | 6 |
+| [10, 100) | 29,431 | 29 | 19 | 27 | 16 | 0.890 | 11 | 12 |
+| [100, 1,000) | 11,165 | 331 | 268 | 267 | 126 | 0.542 | 38 | 37 |
+| [1,000, 10,000) | 5,761 | 3,005 | 2,833 | 1,714 | 1,211 | 0.364 | 101 | 121 |
+| [10,000, 100,000) | 608 | 29,082 | 22,524 | 7,762 | 3,200 | 0.166 | 68 | 66 |
+| [100,000, +) | 134 | 335,054 | 254,160 | 11,356 | 3,118 | **0.012** | 67 | 61 |
+
+`s20_mk2` is **slightly worse than length on the trivial rows** (ratio 1.09 on the
+23,537 that finish inside ten nodes — the structural terms buy nothing there and
+cost a little), and the advantage grows monotonically with difficulty to ~80×
+fewer nodes on the hardest bin. A single headline ratio averages those two
+regimes together and describes neither.
+
+**Path length is still not improved.** Across the joint set `s20_mk2` is shorter
+on 16,306 rows, longer on 23,855, tied on 30,475 — it loses that comparison, as it
+has in every wave. The gain is node efficiency. Do not claim shorter proofs.
+
+### Which wave cracked each row
+
+| arm | ≤10,000 | ≤100,000 | ≤1,000,000 |
+|---|---:|---:|---:|
+| `greedy` | 69,894 | 608 | 134 |
+| `s20_mk2` | 70,440 | 196 | 0 |
+
+`s20_mk2` contributes 0 at the 1M column *of the joint set* by construction: its 25
+solves there are all rows `greedy` never solved, so they cannot be in a
+both-solved denominator.
+
 ## The residual: 14 orbits survive both orderings at 1,000,000
 
 Unsolved by `greedy` **and** `s20_mk2` at a million nodes, cap 48:
