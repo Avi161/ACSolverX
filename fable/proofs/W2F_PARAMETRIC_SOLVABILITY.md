@@ -369,6 +369,23 @@ Exit 2 = control failure, run void.
 
 ---
 
+## 6.5 Post-hoc correction (same day, cycle 14): the dead strata are truncation artifacts
+
+`W2G_G_STRATUM_DEATH.md` (cycle 14) answers §8's question in the opposite
+direction: for every finite-index chain — 44 of 67, including 15 of the 22
+g-stratum chains — the full-module image satisfies `Σ L_i M = ker ε` exactly
+(`d = 1` in the double-coset invariant), so EVERY window is layer-1 solvable
+over `Z`, and 27 explicit integral corrections were built and verified at
+windows this note's sweep calls dead at all three primes. The numbers in this
+note stand **as one-hop numbers** (the truncation is decidable and the sweep
+is exact on it), but the reading "dead stratum ⇒ candidate module
+obstruction" is refuted: the one-hop support truncation, not the module, is
+what killed those windows. §7's first bullet ("evidence about the tested
+window family, never a proof") was the operative caveat and W2g made it
+decisive. §8's finite-quotient proposal is also executed there and shown
+blind (only the augmentation survives). The 23 infinite-index chains remain
+outside W2g's theorem.
+
 ## 7. Scope and nonclaims
 
 - **`NOT_LIVE_AT_TESTED_WINDOWS` stays inconclusive at chain level.** W2b's

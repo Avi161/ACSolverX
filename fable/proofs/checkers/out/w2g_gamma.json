@@ -1,0 +1,809 @@
+{
+ "schema": "acsolverx.w2g.gamma.v1",
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": true,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "gamma_index": 4,
+   "n_omega": 2,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "gamma_index": null,
+   "n_omega": null,
+   "live": false,
+   "stratum": true
+  }
+ ]
+}

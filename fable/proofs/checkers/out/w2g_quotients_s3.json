@@ -1,0 +1,19 @@
+{
+ "schema": "acsolverx.w2g.quotients.v1",
+ "summary": {
+  "chain": [
+   "TTcTTctcTcttt",
+   "TTTcttcTctt",
+   "TcTTcTctcTcttt"
+  ],
+  "g": "TcTTc",
+  "degree": 4,
+  "quotients_tested": 221,
+  "quotients_with_ge2_gamma_orbits": 24,
+  "max_joint_left_null_dim": 1,
+  "death_certificates_found": 0,
+  "note": "left null dim 1 = the augmentation alone, which always kills a defect of augmentation 0",
+  "control_dynamic_range": true
+ },
+ "hits": []
+}

@@ -97,3 +97,30 @@ degree-3 Lie layer).
 [WORKS] Run the positive control at EVERY parameter value, and have the
 checker withhold the verdict automatically when the control fails, rather than
 printing a null the reader has to discount by hand.
+
+### A dead stratum in a truncated support is a statement about the truncation
+
+[TRAP] W2f found five parameter strata (32 of 67 chains) with ZERO one-hop
+solvable windows mod 3 or mod 5 — read as candidate module obstructions. W2g
+then proved the opposite on the whole finite-index part: the full-module image
+is exactly ker(eps) (`d = 1`), every window is solvable over Z, and explicit
+integral corrections exist at 27 windows the sweep called dead at every prime.
+The one-hop restriction (corrections supported near the defect) was the killer,
+not the module. Before reading any truncated-search null as an obstruction,
+state the truncation as a hypothesis and test the un-truncated question in a
+quotient where it is decidable — here one Stallings fold + a finite double-coset
+computation settled in milliseconds what 5,427 window solves could not.
+
+### Pin the base coset before trusting any coset-table invariant
+
+[TRAP] W2g's first release computed every trace from the wrong coset: union-find
+re-rooted the base class during folding, `find(0) != 0`, and the generators of
+Gamma no longer traced to the base state — producing 3 spurious `d = 2` chains
+and a failed constructive lift, while all controls stayed green because none
+checked the algebraic fiat directly. The catch came from replacing an inert
+mutation control (asserting a quantity the code excluded by construction) with
+an EFFECTIVE one: assert the omega-rows of the L2..L4 columns vanish
+identically (the fiat, made checkable) and that a corrupted operator breaks the
+vanishing. A control must assert the load-bearing step itself, not a shadow of
+it; and any union-find under a distinguished base point must pin that base's
+root explicitly.

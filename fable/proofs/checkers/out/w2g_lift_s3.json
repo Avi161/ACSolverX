@@ -1,0 +1,460 @@
+{
+ "schema": "acsolverx.w2g.lift.v1",
+ "summary": {
+  "chain": [
+   "TTcTTctcTcttt",
+   "TTTcttcTctt",
+   "TcTTcTctcTcttt"
+  ],
+  "g": "TcTTc",
+  "windows": 9,
+  "one_hop_dead_windows": 9,
+  "windows_with_verified_layer1_solution": 9,
+  "one_hop_dead_but_layer1_solved": 9,
+  "mutation_control_run": true,
+  "controls_passed": true
+ },
+ "windows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    -1,
+    0,
+    -1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 38,
+   "route_stats": {
+    "routed": 44,
+    "unroutable": 0,
+    "max_path": 172,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    260,
+    554,
+    599
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    -1,
+    0,
+    0,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 37,
+   "route_stats": {
+    "routed": 43,
+    "unroutable": 0,
+    "max_path": 172,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    193,
+    419,
+    452
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    -1,
+    0,
+    1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 39,
+   "route_stats": {
+    "routed": 45,
+    "unroutable": 0,
+    "max_path": 172,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    232,
+    503,
+    546
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    0,
+    0,
+    -1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 24,
+   "route_stats": {
+    "routed": 30,
+    "unroutable": 0,
+    "max_path": 138,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    154,
+    325,
+    349
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 24,
+   "route_stats": {
+    "routed": 30,
+    "unroutable": 0,
+    "max_path": 105,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    111,
+    240,
+    257
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 26,
+   "route_stats": {
+    "routed": 32,
+    "unroutable": 0,
+    "max_path": 105,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    145,
+    311,
+    335
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    1,
+    0,
+    -1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 30,
+   "route_stats": {
+    "routed": 36,
+    "unroutable": 0,
+    "max_path": 188,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    231,
+    493,
+    533
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 28,
+   "route_stats": {
+    "routed": 34,
+    "unroutable": 0,
+    "max_path": 188,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    171,
+    369,
+    397
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "window": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "one_hop_solvable": {
+    "2": false,
+    "3": false,
+    "5": false
+   },
+   "defect_terms": 31,
+   "route_stats": {
+    "routed": 37,
+    "unroutable": 0,
+    "max_path": 188,
+    "short_gamma_moves": 48,
+    "gamma_lengths": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "back_index_sizes": [
+     44377,
+     44377
+    ],
+    "reason": "ok"
+   },
+   "x_terms": [
+    1,
+    0,
+    205,
+    442,
+    477
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true,
+   "algebra_consistent": true
+  }
+ ]
+}

@@ -1,0 +1,602 @@
+{
+ "schema": "acsolverx.w2g.probe.v2",
+ "summary": {
+  "chains": 15,
+  "d_real_values": [
+   1
+  ],
+  "all_d_divide_m": true,
+  "vanishing_holds": true,
+  "corruption_detected": true,
+  "detector_fired_on_synthetic": 15,
+  "all_controls_passed": true,
+  "note": "d = 1 on every real system, so no real chain can be certified dead; the detector is shown able to fire on a synthetic d = 2 system, cross-confirmed by the independent one-hop solver"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d_real": 1,
+   "m_real": -1,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d_real": 1,
+   "m_real": 2,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "d_real": 1,
+   "m_real": 1,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": -2,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -4,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -4,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": -2,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": -5,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -5,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -5,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": -5,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": 0,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -1,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "d_real": 1,
+   "m_real": -1,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "d_real": 1,
+   "m_real": 0,
+   "d_divides_m": true,
+   "l234_omega_rows_vanish": true,
+   "corruption_breaks_vanishing": true,
+   "d_synthetic": 2,
+   "synthetic": {
+    "odd": {
+     "class_m": 1,
+     "certificate_fires": [
+      2
+     ],
+     "one_hop_solvable": {
+      "2": false,
+      "3": false,
+      "5": false
+     }
+    },
+    "even": {
+     "class_m": 2,
+     "certificate_fires": [],
+     "one_hop_solvable": {
+      "2": true,
+      "3": false,
+      "5": false
+     }
+    }
+   },
+   "detector_fires_on_odd": true,
+   "detector_silent_on_even": true,
+   "one_hop_agrees_odd_dead_mod2": true
+  }
+ ]
+}

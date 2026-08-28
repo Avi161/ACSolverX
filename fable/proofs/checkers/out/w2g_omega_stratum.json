@@ -1,0 +1,551 @@
+{
+ "schema": "acsolverx.w2g.omega.v1",
+ "summary": {
+  "chains_reported": 22,
+  "finite_index": 15,
+  "infinite_index": 7,
+  "image_is_ker_eps": 15,
+  "with_death_certificate": 0,
+  "d_values_seen": [
+   [
+    1
+   ]
+  ],
+  "controls_passed": true,
+  "verdict": "NO_DEATH_CERTIFICATE_AND_PROVABLY_LIVE"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    2
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 8,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -2
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 14,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 16,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -2
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 3,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 5,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 5,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 3,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    0
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 11,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 14,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 7,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    0
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  }
+ ]
+}
