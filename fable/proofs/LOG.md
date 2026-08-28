@@ -52,3 +52,9 @@ and absorbed into the method. Note: W2B_BASELINE_LIVENESS.md.
 W2c cap curve: 17 -> 36 -> 55 -> 67 essential baselines at caps 12-15, strictly
 growing. With W2b (6 live at cap 12), the period-two route needs a uniform argument;
 per-baseline towers cannot terminate. Addendum in W2_PERIOD_TWO_BASELINE_CENSUS.md.
+
+## 2026-08-28 · cycle 7 · `cbe0d8c`
+
+W3a: independent component probe cross-validates the certified ceiling-17 closure
+(1,000 states exactly) and proves ceiling 18 exceeds the local pop law (>=1,243).
+Colab handoff recorded. Note: W3A_COMPONENT_CEILING.md.
