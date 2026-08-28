@@ -16,6 +16,16 @@ promoted beyond its proof.
 
 ## Workstreams
 
+> **Status after 21 cycles (2026-08-28): see [`SYNTHESIS.md`](SYNTHESIS.md).**
+> W1 closed (vacuity theorem). W2 ran far past its original scope: census →
+> normal form → layer-1 obstruction-free theorem (W2g/W2h) → layer-2 collapse
+> to `Ξ_Z(Θ) = 0` (W2i) → complete mod-2 exclusions with no claimable
+> obstruction (W2l); the open item is the W2m cocycle lemma. W3 grew into the
+> W6 chain: rank-3 machinery, `Tpub` decided not thickenable as spelled, the
+> closed rank-3 ball fully decided at ceilings ≤ 18 (all negative). W5 proved
+> the bridge IS one-stabilization AK(3) and the invariant battery blind.
+> AK(3): open both ways; the deciding levers are ranked in the synthesis.
+
 - **W1 — CLOSED (method-closure theorem; original premise retracted).** The
   original premise ("`G_mis` nontrivial ⇒ finite quotients bite on the bridge")
   was FALSE: with the base rows killed, the third entry normally generates the
