@@ -58,3 +58,13 @@ per-baseline towers cannot terminate. Addendum in W2_PERIOD_TWO_BASELINE_CENSUS.
 W3a: independent component probe cross-validates the certified ceiling-17 closure
 (1,000 states exactly) and proves ceiling 18 exceeds the local pop law (>=1,243).
 Colab handoff recorded. Note: W3A_COMPONENT_CEILING.md.
+
+## 2026-08-28 · cycle 8 · `bb29a0e`
+
+W3b orbit sweep: all 1,508 AK(3) μ-ladder orbits × 8 signed relabels decided —
+12,064/12,064, of which 12,016 NOT_SPHERICAL and 48 UNSUPPORTED (6 orbits, none
+mixed). Zero SPHERICAL verdicts, so the Pipeline-B tripwire never fired. The orbit
+representatives are now a first-class artifact, reproducing every count the committed
+ladder summary holds. Bounded null: 8 relabels are not the Aut(F₂)-orbit, and only a
+validated positive decides. Note: W3B_ORBIT_THICKENABILITY.md. No AK(3), stable AC, or
+AC claim.
