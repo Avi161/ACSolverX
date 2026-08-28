@@ -1,0 +1,279 @@
+{
+ "schema": "acsolverx.w2j.validate.v1",
+ "summary": {
+  "K2_codex_reproduction": {
+   "residual_lengths_general": [
+    82,
+    442,
+    678,
+    614
+   ],
+   "residual_lengths_certificate": [
+    82,
+    442,
+    678,
+    614
+   ],
+   "kernel_lengths_general": [
+    24,
+    104,
+    212,
+    178
+   ],
+   "kernel_lengths_certificate": [
+    24,
+    104,
+    212,
+    178
+   ],
+   "obstructions_general": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "obstructions_certificate": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "passed": true
+  },
+  "K2_codex_xi": [
+   {
+    "free": {
+     "TcTct": -1
+    },
+    "tors": {},
+    "zero": false
+   },
+   {
+    "free": {
+     "T": 5,
+     "TcTct": -1,
+     "TT": -1,
+     "tcTT": -1,
+     "TctctcT": 2,
+     "TTTct": -1,
+     "TctttcT": 1,
+     "TcTTct": 1,
+     "TctctcTT": -1,
+     "TctctcTTTct": -1,
+     "TctcTctcTcTct": -1,
+     "TctctcTctcTTct": 1,
+     "TcTctcTcTct": -1,
+     "TctctcTcTctcTcTct": -1,
+     "TctctcTctctcT": 1,
+     "TctctcTctcT": 1,
+     "TctcTcTTct": -1,
+     "TcttcTcTTct": -1,
+     "TcTcTTct": -1,
+     "TcttctctcT": 1,
+     "TcttctcT": 1,
+     "TctcTctcT": -1,
+     "TcTctcT": -1,
+     "tcTcTctcT": -1,
+     "TcTcTct": -1,
+     "TctctctcT": 1,
+     "TcTcT": -1,
+     "tcTcT": -2,
+     "TctcTcT": -1,
+     "tcTcTcT": -1,
+     "TcttcTctcT": -1,
+     "TcttcTcT": -1,
+     "TctctcTcTcTTct": -1,
+     "TctctcTcTctcT": -1,
+     "TctctcTcTcTct": -1,
+     "TctctcTcTcT": -1,
+     "TctctcTcT": -1
+    },
+    "tors": {
+     "Tct": 1,
+     "tcTctcT": 1,
+     "TctcTct": 1
+    },
+    "zero": false
+   },
+   {
+    "free": {
+     "T": -80,
+     "TT": -11,
+     "TTct": -24,
+     "TTTct": -4,
+     "TctcT": -76,
+     "TcTct": -18,
+     "TTctcT": -12,
+     "tcTT": -24,
+     "TcttcT": 2,
+     "TctctcT": 44,
+     "TTctctcT": 11,
+     "TcT": -38,
+     "TTctctcTT": 4,
+     "TTctctcTTTct": 2,
+     "TTctctcTTct": 2,
+     "TTctctcTcTct": 6,
+     "TTctcTTct": -6,
+     "TctcTTct": -12,
+     "TctttcT": 12,
+     "TcTTct": -14,
+     "TTctctcTct": -7,
+     "TTctctcTctcT": -4,
+     "TTctctcTctct": -2,
+     "TTctctcTctcTTct": -2,
+     "TTctctcTctcTct": -2,
+     "TTctctcTcTctcTcTctt": -1,
+     "TTctctcTctctcT": -6,
+     "TcttctcT": 8,
+     "TcTcTTct": -4,
+     "TcttcTcTTct": -4,
+     "TctcTcTTct": -4,
+     "TcttctctcT": 12,
+     "TcTctcT": -12,
+     "TctcTctcT": -12,
+     "tcTcTctcT": -36,
+     "TcTcTct": -4,
+     "TctcTcTct": -4,
+     "TctctctcT": 12,
+     "tcTcT": -46,
+     "TcTcT": -8,
+     "TctcTcT": -8,
+     "tcTcTcT": -24,
+     "TcttcTctcT": -12,
+     "TctctcTTct": 4,
+     "TcttcTcT": -8,
+     "TTctctcTcTcTTct": 2,
+     "TTctctcTcTctcT": 6,
+     "TTctctcTcTcTct": 2,
+     "TTctctcTcTcT": 4,
+     "TTctctcTcT": 5
+    },
+    "tors": {
+     "TTctctcTcTctt": 1
+    },
+    "zero": false
+   },
+   {
+    "free": {
+     "T": -48,
+     "TT": -9,
+     "TTct": -12,
+     "TTTct": -2,
+     "TcTct": -9,
+     "TctcT": -49,
+     "TTctcT": -9,
+     "tcTT": -15,
+     "TcttcT": 1,
+     "TctctcT": 32,
+     "TTctctcT": 9,
+     "TcT": -26,
+     "TcTcTct": -2,
+     "TctctcTTct": 2,
+     "TTctctcTT": 3,
+     "TTctctcTTTct": 1,
+     "TTctctcTTct": 1,
+     "TTctctcTcTct": 4,
+     "TTctcTTct": -3,
+     "TctctcTT": 3,
+     "TctctcTTTct": 1,
+     "TctcTTct": -5,
+     "TctttcT": 5,
+     "TcTTct": -6,
+     "TctcTcTct": 5,
+     "TTctctcTct": -6,
+     "TTctctcTctcT": -3,
+     "TTctctcTctct": -2,
+     "TTctctcTctcTTct": -1,
+     "TTctctcTctcTct": -1,
+     "TTctctcTcTctcTcTctt": -1,
+     "TTctctcTctctcTcTct": 1,
+     "TTctctcTctctcT": -5,
+     "TctctcTctcT": -3,
+     "TcTctcTcTct": 2,
+     "TctctcTctcTTct": -1,
+     "TctcTctcTcTct": 1,
+     "TctctcTcTctcTcTct": -1,
+     "TctctcTctctcT": -5,
+     "TcttctcT": 3,
+     "TcTcTTct": -2,
+     "TcttcTcTTct": -1,
+     "TctcTcTTct": -1,
+     "TcttctctcT": 5,
+     "TcTctcT": -10,
+     "TctcTctcT": -5,
+     "tcTcTctcT": -25,
+     "TctctctcT": 5,
+     "tcTcT": -29,
+     "TcTcT": -6,
+     "TctcTcT": -3,
+     "tcTcTcT": -15,
+     "TcttcTctcT": -5,
+     "TcttcTcT": -3,
+     "TctctcTcTcTTct": 1,
+     "TctctcTcTctcT": 5,
+     "TctctcTcTcTct": 1,
+     "TctctcTcTcT": 3,
+     "TctctcTcT": 4,
+     "TTctctcTcTctcTcTct": -1,
+     "TTctctcTcTcTTct": 1,
+     "TTctctcTcTctcT": 5,
+     "TTctctcTcTcTct": 1,
+     "TTctctcTcTcT": 3,
+     "TTctctcTcT": 4
+    },
+    "tors": {
+     "TTctctcTcTctt": 1,
+     "TctctcTcTct": 1,
+     "tcTctcT": 1
+    },
+    "zero": false
+   }
+  ],
+  "K3_theta_algebra": {
+   "commutator_basis_checks": 30,
+   "commutator_ok": 30,
+   "additivity_checks": 64,
+   "additivity_ok": 64,
+   "Q_equivariance_checks": 72,
+   "Q_equivariance_ok": 72,
+   "gamma3_vanishing_checks": 24,
+   "gamma3_vanishing_ok": 24,
+   "passed": true
+  },
+  "K4_xi_z": {
+   "diagonal_Q_invariance_checks": 60,
+   "invariance_ok": 60,
+   "operator_image_checks_3_16": 60,
+   "operator_image_zero": 60,
+   "corruption_checks": 60,
+   "corruption_fires": 60,
+   "passed": true
+  },
+  "all_controls_passed": true
+ },
+ "rows": []
+}

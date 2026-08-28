@@ -1,0 +1,436 @@
+{
+ "schema": "acsolverx.w2j.family.v1",
+ "summary": {
+  "chains": 11,
+  "with_directions": 10,
+  "affine_quadratic_verified": 8,
+  "zero_unattainable_on_sublattice": 8,
+  "zero_attained": 0,
+  "families_non_constant_mod2": 8,
+  "mod2_open": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "ct",
+    "TTctt",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.35,
+   "direction_terms": [
+    [
+     0,
+     1,
+     3,
+     4,
+     2
+    ],
+    [
+     1,
+     2,
+     7,
+     9,
+     5
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.41
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "Tctt",
+    "TTcTcttt",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.32,
+   "direction_terms": [
+    [
+     2,
+     0,
+     10,
+     7,
+     12
+    ],
+    [
+     1,
+     0,
+     5,
+     5,
+     7
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.44
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "tt",
+    "TTctctt",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.65,
+   "direction_terms": [
+    [
+     2,
+     0,
+     8,
+     6,
+     6
+    ],
+    [
+     1,
+     1,
+     8,
+     6,
+     7
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.71
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "cTcttt",
+    "t",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 1.57,
+   "direction_terms": [
+    [
+     2,
+     0,
+     4,
+     11,
+     10
+    ],
+    [
+     2,
+     0,
+     6,
+     12,
+     12
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 1.72
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "cTctct",
+    "Tct",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.88,
+   "direction_terms": [
+    [
+     0,
+     1,
+     3,
+     4,
+     2
+    ],
+    [
+     0,
+     1,
+     4,
+     3,
+     2
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.9
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "",
+    "cTctcTcttt",
+    "TcTcttt",
+    ""
+   ],
+   "directions": 0,
+   "direction_secs": 3.16,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "Tctc",
+    "c",
+    "TTct",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 1.77,
+   "direction_terms": [
+    [
+     0,
+     2,
+     4,
+     5,
+     4
+    ],
+    [
+     0,
+     4,
+     7,
+     9,
+     6
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 1.85
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "Tctc",
+    "Tct",
+    "TTctcTct",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 4.66,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "Tctc",
+    "cTctc",
+    "Tc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 1.39,
+   "direction_terms": [
+    [
+     0,
+     2,
+     7,
+     4,
+     4
+    ],
+    [
+     0,
+     2,
+     6,
+     5,
+     4
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 1.49
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cT",
+    "cttc",
+    "Tctt",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 3.08,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cT",
+    "cTctcttc",
+    "Tcttc",
+    ""
+   ],
+   "directions": 1,
+   "direction_secs": 1.89,
+   "direction_terms": [
+    [
+     1,
+     3,
+     9,
+     12,
+     5
+    ]
+   ],
+   "holdout_checks": 4,
+   "holdout_agree": 4,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 2,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 2,
+   "mod2_periodicity_checks": 4,
+   "mod2_periodicity_ok": 4,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 1.94
+  }
+ ]
+}

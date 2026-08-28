@@ -124,3 +124,23 @@ identically (the fiat, made checkable) and that a corrupted operator breaks the
 vanishing. A control must assert the load-bearing step itself, not a shadow of
 it; and any union-find under a distinguished base point must pin that base's
 root explicitly.
+
+### A solution verified through the operators that produced it is not verified
+
+[TRAP] W2b–W2i all check a layer-1 solution by recomputing `D + Σ L_i x_i`
+with the same `L_i` that built the system. That is an identity, not a test:
+`build_operators_general`'s `L0` column omits a `q(h1)` factor (the exact
+variation of `S` conjugates `δ_R` by `S·q(h1)`, not by `S`), so on the 59 of
+67 census chains with `q(h1) ≠ 1` a "VERIFIED layer-1 solution" is not a
+solution at all — and every control in five notes stayed green. The codex
+witness has `H1 = ()`, which is exactly why the original certificate is right
+and the generalisation is not: the bug lives in the coordinate the reference
+case sets to zero.
+
+[WORKS] Verify a solution in the object the equation is about, not in the
+linearisation. Here: put `n_r = σ(x_r)`, replay the literal recurrence in
+`F(c,t)`, and assert the residual lands in `[N,N]`. 354 mismatches over 2,010
+probes, all in column 0, and the corrected operator matches 2,010/2,010. When
+a derived calculus generalises a worked example, probe every column against
+the ground truth on a case where the example's special value (`h1 = 1`,
+`g = 1`, `k = 0`) is NOT taken.

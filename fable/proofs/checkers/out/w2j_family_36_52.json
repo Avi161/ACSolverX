@@ -1,0 +1,341 @@
+{
+ "schema": "acsolverx.w2j.family.v1",
+ "summary": {
+  "chains": 16,
+  "with_directions": 9,
+  "affine_quadratic_verified": 2,
+  "zero_unattainable_on_sublattice": 2,
+  "zero_attained": 0,
+  "families_non_constant_mod2": 2,
+  "mod2_open": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "layer1_solved": false,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "cTct",
+    "T",
+    ""
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "",
+    "TTctc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 3.04,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "ct",
+    "TTctt",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 3.08,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "layer1_solved": false,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "ctc",
+    "Tct",
+    ""
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "layer1_solved": false,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "cTctcTct",
+    "TcTct",
+    ""
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTTctc",
+    "cTctctc",
+    "Tctc",
+    ""
+   ],
+   "directions": 1,
+   "direction_secs": 3.49,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "cTTctctc",
+    "TcTctc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 3.19,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "cTctc",
+    "Tc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.79,
+   "direction_terms": [
+    [
+     2,
+     0,
+     10,
+     7,
+     12
+    ],
+    [
+     1,
+     1,
+     3,
+     2,
+     5
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.92
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "Tctctc",
+    "TTcttcTctc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 5.53,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "tc",
+    "TTctctc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 2.04,
+   "direction_terms": [
+    [
+     2,
+     0,
+     4,
+     10,
+     10
+    ],
+    [
+     2,
+     0,
+     2,
+     10,
+     9
+    ]
+   ],
+   "holdout_checks": 8,
+   "holdout_agree": 8,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 8,
+   "mod2_periodicity_ok": 8,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.21
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "cTctcTTctctc",
+    "TcTTctctc",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 4.1,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTctc",
+    "cTcTcttt",
+    "cTcttc",
+    "c",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 3.81,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  }
+ ]
+}

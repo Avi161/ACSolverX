@@ -1,0 +1,408 @@
+{
+ "schema": "acsolverx.w2j.theta.v1",
+ "summary": {
+  "chains": 12,
+  "theta_evaluated": 8,
+  "layer1_unsolved": 4,
+  "xi_zero": 0,
+  "xi_nonzero": 8,
+  "with_free_part_nonzero": 8,
+  "with_torsion_part_nonzero": 4,
+  "corruption_controls_run": 3,
+  "corruption_controls_fired": 3,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 12,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    1,
+    4,
+    9,
+    13,
+    4
+   ],
+   "residual_length": 540,
+   "schreier_length": 144,
+   "wedge_terms": 105,
+   "wedge_l1": 160,
+   "xi_free_terms": 19,
+   "xi_tors_terms": 3,
+   "xi_free_l1": 35,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 0.54
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 23,
+   "layer1_solved": false,
+   "rho": null,
+   "x_terms": null,
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 17,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    3,
+    3,
+    5,
+    4
+   ],
+   "residual_length": 74,
+   "schreier_length": 26,
+   "wedge_terms": 4,
+   "wedge_l1": 7,
+   "xi_free_terms": 1,
+   "xi_tors_terms": 0,
+   "xi_free_l1": 1,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 0.92
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 15,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    5,
+    5,
+    9,
+    5
+   ],
+   "residual_length": 648,
+   "schreier_length": 168,
+   "wedge_terms": 116,
+   "wedge_l1": 460,
+   "xi_free_terms": 37,
+   "xi_tors_terms": 0,
+   "xi_free_l1": 192,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 0.9
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 18,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    5,
+    8,
+    7,
+    4
+   ],
+   "residual_length": 430,
+   "schreier_length": 130,
+   "wedge_terms": 47,
+   "wedge_l1": 113,
+   "xi_free_terms": 9,
+   "xi_tors_terms": 1,
+   "xi_free_l1": 30,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 1.11
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 19,
+   "layer1_solved": false,
+   "rho": null,
+   "x_terms": null,
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 22,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    5,
+    8,
+    8,
+    4
+   ],
+   "residual_length": 278,
+   "schreier_length": 80,
+   "wedge_terms": 32,
+   "wedge_l1": 65,
+   "xi_free_terms": 9,
+   "xi_tors_terms": 0,
+   "xi_free_l1": 23,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 1.1
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 23,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    5,
+    5,
+    9,
+    7
+   ],
+   "residual_length": 204,
+   "schreier_length": 60,
+   "wedge_terms": 51,
+   "wedge_l1": 80,
+   "xi_free_terms": 27,
+   "xi_tors_terms": 4,
+   "xi_free_l1": 48,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 0.72
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 18,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    5,
+    5,
+    10,
+    7
+   ],
+   "residual_length": 384,
+   "schreier_length": 100,
+   "wedge_terms": 62,
+   "wedge_l1": 98,
+   "xi_free_terms": 27,
+   "xi_tors_terms": 4,
+   "xi_free_l1": 48,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 0.96
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 32,
+   "layer1_solved": false,
+   "rho": null,
+   "x_terms": null,
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 30,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    0,
+    8,
+    10,
+    12,
+    6
+   ],
+   "residual_length": 534,
+   "schreier_length": 142,
+   "wedge_terms": 115,
+   "wedge_l1": 145,
+   "xi_free_terms": 26,
+   "xi_tors_terms": 0,
+   "xi_free_l1": 31,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 1.91
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 25,
+   "layer1_solved": false,
+   "rho": null,
+   "x_terms": null,
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  }
+ ]
+}

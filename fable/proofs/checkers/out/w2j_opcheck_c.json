@@ -1,0 +1,302 @@
+{
+ "schema": "acsolverx.w2j.opcheck.v1",
+ "summary": {
+  "chains": 19,
+  "probe_checks_each": 570,
+  "exact_ops_mismatches": 0,
+  "shipped_ops_mismatches": 114,
+  "chains_with_h1_trivial": 0,
+  "chains_where_shipped_L0_wrong": 19,
+  "shipped_columns_wrong": [
+   0
+  ],
+  "all_exact_ops_verified": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "h1": "cTcTctttt",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTTTcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "shipped_wrong": [
+    0
+   ],
+   "exact_wrong": [],
+   "passed": true
+  }
+ ]
+}

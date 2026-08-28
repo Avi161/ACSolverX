@@ -1,0 +1,61 @@
+{
+ "schema": "acsolverx.w2j.family.v1",
+ "summary": {
+  "chains": 1,
+  "with_directions": 1,
+  "affine_quadratic_verified": 1,
+  "zero_unattainable_on_sublattice": 1,
+  "zero_attained": 0,
+  "families_non_constant_mod2": 1,
+  "mod2_open": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "layer1_solved": true,
+   "h": [
+    "cTTcttt",
+    "",
+    "cTcttt",
+    "t",
+    ""
+   ],
+   "directions": 2,
+   "direction_secs": 0.53,
+   "direction_terms": [
+    [
+     2,
+     0,
+     3,
+     7,
+     6
+    ],
+    [
+     3,
+     0,
+     5,
+     8,
+     7
+    ]
+   ],
+   "holdout_checks": 11,
+   "holdout_agree": 11,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 11,
+   "mod2_periodicity_ok": 11,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 0.61
+  }
+ ]
+}

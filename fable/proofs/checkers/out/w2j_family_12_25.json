@@ -1,0 +1,291 @@
+{
+ "schema": "acsolverx.w2j.family.v1",
+ "summary": {
+  "chains": 13,
+  "with_directions": 7,
+  "affine_quadratic_verified": 2,
+  "zero_unattainable_on_sublattice": 2,
+  "zero_attained": 0,
+  "families_non_constant_mod2": 2,
+  "mod2_open": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTctt",
+    "c",
+    "TTcTctt",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 1.66,
+   "direction_terms": [
+    [
+     1,
+     1,
+     5,
+     5,
+     1
+    ],
+    [
+     1,
+     6,
+     8,
+     11,
+     6
+    ]
+   ],
+   "holdout_checks": 7,
+   "holdout_agree": 7,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 7,
+   "mod2_periodicity_ok": 7,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 1.8
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "layer1_solved": false,
+   "h": [
+    "",
+    "cTctt",
+    "TTTctcTcttctt",
+    "cTTTcTcttt",
+    "cTTTc"
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTTcttt",
+    "TTTct",
+    "TTcT",
+    "TTc"
+   ],
+   "directions": 1,
+   "direction_secs": 4.12,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTTcttt",
+    "Tc",
+    "TTcTct",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 3.81,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTTcttt",
+    "TTTctctc",
+    "TTcTctc",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 4.24,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "layer1_solved": false,
+   "h": [
+    "",
+    "cTTcttt",
+    "TTTctcTcttct",
+    "TcTTcTctt",
+    "TcTTc"
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTcTctttctt",
+    "TTTTctctc",
+    "TTcTcTctc",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 3.82,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTcTctttctt",
+    "TTctc",
+    "TTcTTctctc",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 2.17,
+   "direction_terms": [
+    [
+     2,
+     0,
+     4,
+     8,
+     14
+    ],
+    [
+     2,
+     0,
+     6,
+     10,
+     17
+    ]
+   ],
+   "holdout_checks": 7,
+   "holdout_agree": 7,
+   "affine_quadratic_verified": true,
+   "mod2_classes": 4,
+   "mod2_classes_that_vanish": [],
+   "distinct_mod2_values": 4,
+   "mod2_periodicity_checks": 7,
+   "mod2_periodicity_ok": 7,
+   "xi_at_base_zero": false,
+   "status": "ZERO_UNATTAINABLE_ON_SUBLATTICE",
+   "passed": true,
+   "secs": 2.43
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "layer1_solved": true,
+   "h": [
+    "",
+    "cTcTctttctt",
+    "TTTcttc",
+    "TT",
+    "TTc"
+   ],
+   "directions": 2,
+   "direction_secs": 3.52,
+   "status": "SKIPPED_TIME_BUDGET_AFTER_DIRECTIONS",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "layer1_solved": false,
+   "h": [
+    "",
+    "cTcTctttctt",
+    "TTTctcTctctctc",
+    "TcTTcTcttcTctc",
+    "TcTTc"
+   ],
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "status": "NOT_ATTEMPTED_RUN_BUDGET",
+   "passed": true
+  }
+ ]
+}

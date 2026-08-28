@@ -1,0 +1,269 @@
+{
+ "schema": "acsolverx.w2j.theta.v1",
+ "summary": {
+  "chains": 7,
+  "theta_evaluated": 6,
+  "layer1_unsolved": 1,
+  "xi_zero": 0,
+  "xi_nonzero": 6,
+  "with_free_part_nonzero": 6,
+  "with_torsion_part_nonzero": 5,
+  "corruption_controls_run": 3,
+  "corruption_controls_fired": 3,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 27,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    4,
+    3,
+    3,
+    3,
+    8
+   ],
+   "residual_length": 350,
+   "schreier_length": 96,
+   "wedge_terms": 44,
+   "wedge_l1": 55,
+   "xi_free_terms": 5,
+   "xi_tors_terms": 1,
+   "xi_free_l1": 8,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 1.2
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 38,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    4,
+    6,
+    6,
+    20,
+    16
+   ],
+   "residual_length": 994,
+   "schreier_length": 260,
+   "wedge_terms": 225,
+   "wedge_l1": 849,
+   "xi_free_terms": 47,
+   "xi_tors_terms": 4,
+   "xi_free_l1": 177,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 2.75
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 38,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    4,
+    6,
+    14,
+    11,
+    5
+   ],
+   "residual_length": 770,
+   "schreier_length": 196,
+   "wedge_terms": 214,
+   "wedge_l1": 602,
+   "xi_free_terms": 60,
+   "xi_tors_terms": 1,
+   "xi_free_l1": 197,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "corruption_detected": true,
+   "passed": true,
+   "secs": 1.87
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 33,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    4,
+    6,
+    9,
+    7,
+    2
+   ],
+   "residual_length": 484,
+   "schreier_length": 124,
+   "wedge_terms": 67,
+   "wedge_l1": 173,
+   "xi_free_terms": 20,
+   "xi_tors_terms": 0,
+   "xi_free_l1": 75,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 1.59
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 36,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    4,
+    6,
+    5,
+    8,
+    13
+   ],
+   "residual_length": 600,
+   "schreier_length": 158,
+   "wedge_terms": 135,
+   "wedge_l1": 292,
+   "xi_free_terms": 31,
+   "xi_tors_terms": 4,
+   "xi_free_l1": 62,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 2.5
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 35,
+   "layer1_solved": false,
+   "rho": null,
+   "x_terms": null,
+   "status": "LAYER1_UNSOLVED_AT_RHO",
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "h1_trivial": false,
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 32,
+   "layer1_solved": true,
+   "rho": 2,
+   "x_terms": [
+    5,
+    5,
+    4,
+    6,
+    17
+   ],
+   "residual_length": 670,
+   "schreier_length": 154,
+   "wedge_terms": 221,
+   "wedge_l1": 335,
+   "xi_free_terms": 77,
+   "xi_tors_terms": 3,
+   "xi_free_l1": 128,
+   "xi_zero": false,
+   "xi_free": null,
+   "xi_tors": null,
+   "status": "THETA_EVALUATED",
+   "passed": true,
+   "secs": 1.66
+  }
+ ]
+}
