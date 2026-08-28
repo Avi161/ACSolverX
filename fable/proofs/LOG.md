@@ -85,3 +85,21 @@ live baselines is the witness's own class at a different S representative; the R
 is exponential, not linear. Note: `W2D_UNIFORM_STRUCTURE_DRAFT.md` (DRAFT; only the
 normal form is checker-backed). Limits: nothing claimed past cap 18, GPAD ceiling 5
 under-counts, pinning lemma unproved. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 10 · `4fa1440`
+
+W2e liveness class-invariance: REFUTED at the window level, with the obstruction
+proved. The 17 cap-12 chains form 12 `(R, cyc S, U)` classes (five of size 2, all the
+same conjugation `gamma = Tctt` across the witness U-fiber). On exactly balanced,
+centralizer-indexed gauge-aligned windows, 161/405 strict window pairs mismatch —
+one member's GF(p) system solvable, the other's not — hard counterexamples, robust at
+K=2 and under a second gamma. Theory: closed forms for L0..L4 show the alignment
+right-multiplies only part of L0/L1 while fixing L2, so no right-unit intertwiner of
+the relation module exists; obstruction terms E0, E1 exhibited and nonzero on all five
+pairs. Chain-level (∃-window) invariance stays open (NOT-LIVE inconclusive by W2b
+doctrine). Consequence: W2D's hoped 106→31 class reduction is unavailable at layer 1;
+a uniform argument must be uniform in the pinned `(k2, p2)` representative parameters
+under the §4.1 transformation law. Checker `period_two_liveness_invariance.py`
+(controls mutation-verified, exit 2 on control failure) independently reproduces
+W2b's six live chains. Note: W2E_LIVENESS_CLASS_INVARIANCE.md. No AK(3), stable AC,
+or AC claim.
