@@ -395,3 +395,64 @@ window-independent. Concretely, in order:
 | the detector can produce a death certificate when one exists | **verified** on a synthetic `d = 2` system, cross-confirmed by the one-hop solver, 15/15 |
 | a base-coset defect in this checker's Stallings graph, found by control C5 | **fixed**; effect on results recorded in §2.2 |
 | anything about lifting, the bridge, AK(3), stable AC, or AC | **no claim** |
+
+---
+
+## Post-hoc correction (same day, cycle 16): `d = 1` holds, and it never depended on `L0`
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor, so it is the wrong `x_0` column on the 59 of 67 census
+chains with `q(h1) ≠ 1`. The correct column is
+
+```text
+L0 = -( U^-1 + bridge * S * q(h1) ) * (A - R) ,     bridge = h2 + U^-1 h3
+```
+
+(`checkers/corrected_operators.py`). `W2K_CORRECTED_REVERIFY.md` §4 re-runs
+this note's `--mode omega` on the corrected operators, through this checker's
+own code path with all its controls.
+
+**Every conclusion of this note is unchanged.**
+
+| | this note | corrected |
+|---|---:|---:|
+| `[Q:Γ] = 4` chains | 44 | **44** |
+| `d = 1` at every window | **44** | **44** |
+| chains with a death certificate (`p \| d`, `p ∤ m`) | 0 | **0** |
+| `d` values seen | `[1]` | `[1]` |
+| C3 / C4 / C5 / C8 | pass | **pass** |
+| verdict | `NO_DEATH_CERTIFICATE_AND_PROVABLY_LIVE` | same |
+
+**And the reason it was never at risk.** `--mode dsource` of the W2k driver
+splits `d` by the column that supplies it:
+
+| | value |
+|---|---:|
+| `d = 1` from the **`L1` rows alone** | **44 / 44** |
+| chains where the `L0` column's own gcd changed under the correction | 24 / 44 |
+| `d` from the `L0` rows alone, at `k1 = 0` over the `(k2,k3)` box | `{0, 1, 2}` |
+| `d` from the `L0` rows alone, scanning the `k1` axis too | 1 on 44 / 44 |
+| combined `d` changed by the correction | **0 / 44** |
+
+`L1 = bridge·(B − S)` contains no `h1`, so its `Ω`-rows are literally the same
+group-ring rows before and after. Since the `L1` rows already have gcd 1 on all
+44 chains, `Σ_i L_i M = ker ε` follows without ever reading `L0`. The `L0`
+rows, by contrast, move on 24 chains and at the base `k1` vanish identically
+(gcd 0) on three — a version of the Theorem that had leaned on `L0` at a fixed
+window would have been in trouble. §2.1's window-independence argument is
+otherwise untouched: `h0, h1` still do not occur in `L1`–`L4`, so `d` is still
+independent of `k0, k1` *through the `L1` rows that decide it*. The corrected
+`L0` does now depend on `k1` — a new axis this note's argument did not have to
+close — and over `k1 ∈ {−1,0,1}` its own gcd is 1 on all 44 chains.
+
+**One thing this note could not have checked.** §3.3's 27 explicit lifts were
+verified by re-applying the same operators that produced them. `W2K` §2
+re-tests such solutions in `F(c,t)` itself (`n_r = σ(x_r)`, replay the
+recurrence, assert the residual is in `[N,N]`): with the shipped operators 24
+of 46 base-window solutions across the census are **not** layer-1 solutions;
+with the corrected ones, 55 of 55 are, plus 21 of 21 of W2h's `Ω`-seeded
+lifts. The *existence* statement this note proves is unaffected — the lifts
+now come with a free-group certificate as well as a module one.
+
+Run records: `checkers/out/w2k_omega_a.json`, `w2k_omega_b.json`,
+`w2k_dsource.json`, `w2k_literal.json`.

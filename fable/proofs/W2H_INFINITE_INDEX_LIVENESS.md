@@ -557,3 +557,76 @@ full Q-coinvariants — the honest analogue of d = 1 is "operator image =
 ker Ξ_Z", which W2i then proves (Ξ_Z is an isomorphism). The predicted
 layer-2 2-torsion is identically absent: Γ is torsion-free on all 67 chains,
 a reason independent of the operators.
+
+---
+
+## Post-hoc correction (same day, cycle 16): Lemma 5's `L0` row gains `h1`; every conclusion holds
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor, so on the 59 of 67 census chains with `q(h1) ≠ 1` this
+note's `π(L0 e_v)` — and the `sigma_terms` shortcut derived from it — were
+computed from the wrong operator. `W2K_CORRECTED_REVERIFY.md` §6 re-derives the
+row formula and re-runs this note's own modes on the corrected operators.
+
+**Lemma 5, corrected.** With `X = h2 S h2⁻¹ ∈ Γ` and `U⁻¹h3 S h3⁻¹ = w ∈ Γ`,
+the extra right factor `h1` survives the same two cancellations —
+`Γ h2 S h1 = Γ h2 h1` and `Γ U⁻¹h3 S h1 = Γ h3 h1` — so the corrected row is
+this note's row with **`h2 → h2·h1` and `h3 → h3·h1`** in the four bridge terms:
+
+```text
+π(L0 e_v) = [ω(σ(R)·v)] + [ω(σ(h2h1 R)·v)] + [ω(σ(h3h1 R)·v)]
+          − [ω(σ(A)·v)] − [ω(σ(h2h1 A)·v)] − [ω(σ(h3h1 A)·v)]
+
+π(L1 e_v)  unchanged            π(L2 e_v) = π(L3 e_v) = π(L4 e_v) = 0
+```
+
+Every coefficient is still `±1` and the state tuple is still fixed and finite,
+so §2.2's three consequences and the whole decidability argument go through
+verbatim.
+
+| control | result |
+|---|---:|
+| identity checks `row_sigma` vs `row_direct`, corrected form, all 67 chains | **25,460**, mismatches **0** |
+| `L2, L3, L4` row checks / nonvanishing | 38,190 / **0** |
+| base-coset pinning `σ(R) = σ(U) = σ(w) = base` | 67 / 67 |
+| corruption breaks identity / vanishing | fires 67 / 67 |
+| **the OLD Lemma 5 row against the corrected `L0`** | **fails 316 / 440** — the corrected form is not vacuous |
+
+**The results.**
+
+| | this note | corrected |
+|---|---:|---:|
+| infinite-index chains | 23 | 23 |
+| `π(D)` an integer combination of the rows | **23** | **23** |
+| witnesses re-multiplied out | 23 | **23** |
+| `d_eff = 1` | 23 | **23** |
+| chains with a death certificate | 0 | **0** |
+| explicit `x` at the published settings (`--rho 2 --resid-rho 4 --radii 12 --align 10`) | 21 of 23 | **21 of 23** |
+| margins seen (radii 10,12, align 10) | `{1..8}` and `{1,2,3,5,9,11}` | **`{1,…,5}` and `{1,2,3,5}`** |
+| `coverage_depth_min` | 4 / 1 | **7 / 7** |
+
+The margins **shrink** and the coverage front runs **deeper**: the corrected
+`L0` covers more of `Z[Γ\Q]`, so §3.4/§3.5's margin law is on better evidence
+than this note had. Its status is unchanged — **EVIDENCED**, not proved:
+`A = Z[Ω]₀` still rests on the front advancing with the radius.
+
+One chain (`TTTctttcTTTcttc, cTTctttcTTctc, TTcTcttc`, `g = c`) misses at
+radii 8–12 with `align 0` — **on both operator sets**, so it is the enumeration
+radius and not the correction; at `--radii 14,16 --align 6` it lands with a
+re-verified 10-term witness. That is exactly the behaviour §3.5 documents.
+
+**The verification upgrade.** This note's "explicit `x` … verified with the
+unmodified `apply_operator`" is a check *through the operators that produced
+it*. The W2k driver re-tests the same `seeded_lift` output in `F(c,t)`
+(`n_r = σ(x_r)`, replay the recurrence, assert the residual is in `[N,N]`):
+
+* corrected operators — **21 solved, 21/21 literally verified**;
+* shipped operators — 21 solved, **6 verified, 15 literally rejected**.
+
+So the *conclusion* "layer 1 obstructs nothing on the whole census" is
+unchanged and now carries a free-group certificate; the *individual witnesses*
+this note shipped were, on 15 of 23 chains, not layer-1 solutions.
+
+Run records: `checkers/out/w2k_inf_identity_a.json` / `_b`,
+`w2k_inf_image_a.json` / `_b`, `w2k_inf_lift_a.json` / `_b` / `_c`,
+`w2k_inf_liftlit.json`.

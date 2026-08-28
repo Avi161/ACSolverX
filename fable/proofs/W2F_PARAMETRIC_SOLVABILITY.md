@@ -441,3 +441,83 @@ and test whether the defect leaves the operator image there.
 | any stratum is dead at **all** windows (not just tested ones) | **not established** |
 | layer-1 liveness is generic | **false** at the tested windows (46 of 67 chains have none) |
 | anything about lifting, the bridge, AK(3), stable AC, or AC | **no claim** |
+
+---
+
+## 6.6 Post-hoc correction (same day, cycle 16): the headline numbers are wrong
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor (the exact variation of `S` conjugates `[δ_R]` by
+`S·q(h1)`, not by `S`), so it is the wrong operator on the 59 of 67 census
+chains with `q(h1) ≠ 1`. Every window verdict in this note was decided with
+that column. `W2K_CORRECTED_REVERIFY.md` §3 re-runs the whole `K = 1` sweep —
+67 chains × 81 windows = 5,427 windows, all decided — on the corrected
+operator (`checkers/corrected_operators.py`), with the shipped arm recomputed
+on 13 chains as a control and reproducing this note's per-prime and
+live-window counts **exactly, 13/13**.
+
+**§3.1, the live fraction — RETRACTED.**
+
+| cap | chains | this note | frac | corrected | frac |
+|---:|---:|---:|---:|---:|---:|
+| 12 | 17 | 6 | 0.353 | **13** | **0.765** |
+| 13 | 36 | 16 | 0.444 | **24** | **0.667** |
+| 14 | 55 | 19 | 0.345 | **28** | **0.509** |
+| 15 | 67 | 21 | 0.313 | **31** | **0.463** |
+
+The reading *"stable-to-falling, a roughly constant one-third"* is retracted:
+the corrected profile falls monotonically from 0.77 to 0.46, and the cap-13
+bump disappears. Total live windows 253 → **453**; per prime 539/259/253 →
+**820/472/461**. **Ten chains flip dead → live; none flips live → dead.**
+"46 of 67 chains have zero solvable windows" becomes **36 of 67**.
+
+**§3.2, mod 5 is binding — RETRACTED at window level.** "Every window solvable
+mod 5 is solvable mod 2 and mod 3" now has **8 counterexamples on 4 chains**
+(461 mod-5 windows vs 453 live). The chain-level nesting
+`live_5 = live_all ⊆ live_3 ⊆ live_2` **holds**, now 31 / 31 / 39 — mod 3 and
+mod 5 coincide chain by chain.
+
+**§4, the five dead strata — three of five RETRACTED.**
+
+| stratum | predicate | chains | windows | live chains | mod 3 | mod 5 | status |
+|---|---|---:|---:|---:|---:|---:|---|
+| **S1** | `k1 ≥ 6` | 18 | 1,458 | **1** | **3** | **3** | RETRACTED |
+| **S2** | `g ∉ {"", "TTc"}` | 22 | 1,782 | **1** | **3** | **3** | RETRACTED |
+| **S3** | `p3 ≥ 4` | 19 | 1,539 | 0 | 0 | 0 | **HELD** |
+| **S4** | `k3 ≥ 7` | 11 | 891 | 0 | 0 | 0 | **HELD** |
+| **S5** | `k2 ≥ 7` | 6 | 486 | **1** | **2** | **2** | RETRACTED |
+
+```text
+(tcTcTTTcttc, ctcTcTctc, tcTcTTct)           g = Tc   kills S1 and S2
+(TTctcTctc, cTcttcTcTTctctc, TTctcTcTTcttct) g = ""   kills S5
+```
+
+The union of the five is still 32 chains but now contains **2 live** ones; the
+surviving dead union is `S3 ∪ S4` = **26 chains**, 0 live, 0 windows solvable
+mod 3 or mod 5. §8's "single most decisive next question" — a non-abelian
+quotient killing `S2` — was aimed at a stratum that is **not dead**. (§6.5
+already retired that question from the other side: W2g proves `d = 1`, so the
+one-hop truncation is what empties those windows, and that verdict is
+unchanged for `S3`, `S4` too.)
+
+**§3.3, no `≤ 4`-coordinate determining set — STALE, not re-decided.** The
+exhaustive subset search was run against a live set that has changed. It was
+not re-run; treat the claim as open.
+
+**§5, the abelianization is inert — HELD and STRENGTHENED.** The closed form
+gains the same factor,
+
+```text
+phi(L0) = -( x^(-e(U)) + bridge_x * x^(e(S)+e(h1)) )( x^e(A) - x^e(R) )
+```
+
+and the measurement widens from 26 chains / 2,106 windows to **all 67 chains /
+5,427 windows**: the collapsed system is solvable mod 2, mod 3 and mod 5 at
+**every** window, with **0** violations of `solvable(full) ⇒ solvable(collapsed)`.
+The candidate mechanism stays ruled out, on 2.6× the evidence.
+
+**What is unaffected.** §1 (the census, the nesting, the unique parametrisation,
+the closed-form conjugator fix of §1.1) — none of it touches `L0`. §2's control
+C2 and the window family itself are unchanged.
+
+Run records: `checkers/out/w2k_sweep.json`, `w2k_abelian.json`.

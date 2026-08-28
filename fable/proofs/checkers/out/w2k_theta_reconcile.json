@@ -1,0 +1,1083 @@
+{
+ "schema": "acsolverx.w2k.theta.v1",
+ "exact_operators": true,
+ "summary": {
+  "chains": 67,
+  "identical_to_w2j_exact_operators": 67,
+  "all_identical": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "columns_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "identical": true
+  }
+ ]
+}

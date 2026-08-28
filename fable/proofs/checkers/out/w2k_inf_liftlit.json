@@ -1,0 +1,780 @@
+{
+ "schema": "acsolverx.w2k.inflit.v1",
+ "exact_operators": true,
+ "summary": {
+  "chains": 23,
+  "exact_solved": 21,
+  "exact_literally_verified": 21,
+  "shipped_solved": 21,
+  "shipped_literally_verified": 6,
+  "shipped_literally_rejected": 15,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     7,
+     6,
+     13,
+     37,
+     33
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     7,
+     6,
+     13,
+     37,
+     33
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     7,
+     6,
+     28,
+     41,
+     33
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     7,
+     6,
+     28,
+     41,
+     33
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     7,
+     8,
+     15,
+     42,
+     38
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     6,
+     12,
+     21,
+     46,
+     35
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 45
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     7,
+     8,
+     34,
+     49,
+     38
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     6,
+     12,
+     42,
+     47,
+     35
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 48
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     4,
+     4,
+     6,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     4,
+     4,
+     22,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 31
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     4,
+     4,
+     9,
+     7,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     4,
+     4,
+     25,
+     23,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 32
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     4,
+     6,
+     6,
+     7,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     4,
+     13,
+     14,
+     15,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 31
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     0,
+     4,
+     5,
+     10,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     0,
+     4,
+     5,
+     10,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     0,
+     4,
+     10,
+     17,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     0,
+     4,
+     10,
+     17,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     0,
+     7,
+     9,
+     12,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     0,
+     7,
+     9,
+     12,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     7,
+     12,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     9,
+     13,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     13,
+     8,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     15,
+     10,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     10,
+     14,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     5,
+     11,
+     16,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     3,
+     6,
+     10,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     6,
+     15,
+     25,
+     15
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     3,
+     8,
+     11,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     6,
+     23,
+     31,
+     15
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     7,
+     11,
+     15,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     9,
+     15,
+     18,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     7,
+     8,
+     9,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     9,
+     11,
+     12,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     1,
+     7,
+     11,
+     17,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     1,
+     9,
+     14,
+     21,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     2,
+     8,
+     30,
+     44,
+     30
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     0,
+     14,
+     37,
+     65,
+     43
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     11,
+     17,
+     46,
+     120,
+     128
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     9,
+     18,
+     51,
+     124,
+     134
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 72
+   },
+   "h1_trivial": false
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "exact": {
+    "solved": true,
+    "x_terms": [
+     11,
+     17,
+     17,
+     39,
+     137
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "x_terms": [
+     9,
+     18,
+     24,
+     39,
+     137
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 72
+   },
+   "h1_trivial": false
+  }
+ ]
+}

@@ -1,0 +1,847 @@
+{
+ "schema": "acsolverx.w2g.omega.v1",
+ "summary": {
+  "chains_reported": 33,
+  "finite_index": 25,
+  "infinite_index": 8,
+  "image_is_ker_eps": 25,
+  "with_death_certificate": 0,
+  "d_values_seen": [
+   [
+    1
+   ]
+  ],
+  "controls_passed": true,
+  "verdict": "NO_DEATH_CERTIFICATE_AND_PROVABLY_LIVE"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 2,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 1,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 2,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 4,
+    "3": 1,
+    "5": 1
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 9,
+    "3": 3,
+    "5": 3
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 3,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 22,
+    "3": 7,
+    "5": 6
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 27,
+    "3": 11,
+    "5": 11
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 15,
+    "3": 2,
+    "5": 2
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 26,
+    "3": 12,
+    "5": 11
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 9,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "live": true,
+   "stratum": false,
+   "per_prime": {
+    "2": 7,
+    "3": 2,
+    "5": 2
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "live": false,
+   "stratum": false,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -3
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 8,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -2
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 14,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -4
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 16,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -2
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 3,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 5,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 12,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 5,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -5
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 3,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    0
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 11,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 14,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    -1
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 7,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": 4,
+   "n_omega": 2,
+   "l234_omega_rows_vanish": true,
+   "|P|": 12,
+   "d": [
+    1
+   ],
+   "m": [
+    0
+   ],
+   "identities_ok": true,
+   "dead_primes": [],
+   "image_is_ker_eps": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "live": false,
+   "stratum": true,
+   "per_prime": {
+    "2": 0,
+    "3": 0,
+    "5": 0
+   },
+   "gamma_index": null
+  }
+ ]
+}

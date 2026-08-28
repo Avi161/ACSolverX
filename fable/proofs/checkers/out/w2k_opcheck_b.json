@@ -1,0 +1,616 @@
+{
+ "schema": "acsolverx.w2k.opcheck.v1",
+ "exact_operators": true,
+ "summary": {
+  "chains": 33,
+  "probe_vertices": 20,
+  "checks_per_operator_set": 3300,
+  "exact_mismatches": 0,
+  "shipped_mismatches": 660,
+  "rebroken_L0_mismatches": 660,
+  "columns_wrong_exact": [],
+  "columns_wrong_shipped": [
+   0
+  ],
+  "chains_h1_trivial": 0,
+  "chains_shipped_L0_wrong": 33,
+  "rebroken_control_fires_iff_h1_nontrivial": true,
+  "all_exact_columns_verified": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "h1": "cT",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "h1": "cT",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "h1": "cTcTctttt",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTTTcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "checks": 100,
+   "exact_mismatches": 0,
+   "exact_wrong": [],
+   "shipped_mismatches": 20,
+   "shipped_wrong": [
+    0
+   ],
+   "passed": true
+  }
+ ]
+}

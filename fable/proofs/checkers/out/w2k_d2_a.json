@@ -1,0 +1,526 @@
+{
+ "schema": "acsolverx.w2i.d2.v1",
+ "summary": {
+  "chains": 22,
+  "z_classes": 44,
+  "chains_fully_blind": 22,
+  "blocks_total": 968,
+  "blocks_with_extra_obstruction": 0,
+  "torsion_gens_total": 0,
+  "swap_witnesses": 0,
+  "swap_witnesses_missing": 0,
+  "d2_values_seen": [
+   "1"
+  ],
+  "controls_passed": true,
+  "verdict": "BLIND_THROUGH_LAYER_2_BEYOND_XI"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "blocks": 44,
+   "blocks_image_is_ker_xi": 44,
+   "blocks_with_extra_obstruction": 0,
+   "self_inverse_blocks": 4,
+   "torsion_gens_total": 0,
+   "swap_witnesses": 0,
+   "swap_witnesses_missing": 0,
+   "C2_shapes": [
+    "{\"free\": 0, \"torsion\": [2]}",
+    "{\"free\": 1, \"torsion\": []}"
+   ],
+   "d2_values": [
+    "1"
+   ],
+   "detail": null
+  }
+ ]
+}

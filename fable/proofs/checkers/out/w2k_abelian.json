@@ -1,0 +1,1158 @@
+{
+ "schema": "acsolverx.w2k.abelian.v1",
+ "exact_operators": true,
+ "summary": {
+  "chains": 67,
+  "windows": 5427,
+  "collapsed_solvable": {
+   "2": 5427,
+   "3": 5427,
+   "5": 5427
+  },
+  "full_solvable": 453,
+  "chains_collapsed_inert": 67,
+  "implication_violations": 0,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 11,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 5,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 4,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 3,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 8,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 2,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 5,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 17,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 3,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 6,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 1,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 36,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 41,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 39,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 38,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 13,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 10,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 4,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 1,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 5,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 8,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 12,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 6,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 32,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 45,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 28,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 47,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 12,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 7,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 2,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 0,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "windows": 81,
+   "collapsed_solvable": {
+    "2": 81,
+    "3": 81,
+    "5": 81
+   },
+   "full_solvable": 2,
+   "implication_violations": 0,
+   "collapsed_inert": true
+  }
+ ]
+}

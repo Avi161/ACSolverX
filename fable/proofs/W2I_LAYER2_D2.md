@@ -517,3 +517,57 @@ whose nulls nobody has read.
 | the detector can fire | **verified**, synthetic doubled system, 1,056/1,056 blocks, echelon and SNF paths agree |
 | the layer-2 defect `Θ(F)` for the 66 non-witness baselines | **UNCOMPUTED — stated open** |
 | anything about lifting, the bridge, AK(3), stable AC, or AC | **no claim** |
+
+---
+
+## Post-hoc correction (same day, cycle 16): `d₂ = 1` and the `Ξ_Z` isomorphism hold
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor, so on the 59 of 67 census chains with `q(h1) ≠ 1` the
+`L0^{(2)}` block rows this note computed came from the wrong operator. Since
+`d₂` is *defined* as the gap between `image(L0^{(2)}, L1^{(2)})` and
+`ker(Ξ_Z)`, that is exactly the input the headline depends on.
+`W2K_CORRECTED_REVERIFY.md` §6.3 re-runs every mode of this checker on the
+corrected operators (`checkers/corrected_operators.py`).
+
+**Nothing moves.**
+
+| | this note | corrected |
+|---|---:|---:|
+| finite-index chains | 44 | **44** |
+| generic block `C₂ = Z[Γ\Q]/⟨L0,L1⟩ ≅ Z` | 44 | **44** |
+| self-inverse blocks `≅ Z/2`, over every fpf involution of `P` | 44 | **44** |
+| sampled blocks with `d₂ = 1` | 1,936 / 1,936 | **1,936 / 1,936** |
+| blocks with an extra obstruction | 0 | **0** |
+| torsion generators | 0 | **0** |
+| uniform-vs-concrete mismatches | 0 / 1,936 | **0 / 1,936** |
+| `L_r^{(2)}` rows vanishing in `Z[Γ\Q]` (C2) | pass | **73,968 rows, 0 nonvanishing** |
+| `Ξ_Z` kills every `L_r^{(2)}` image — (3.16) made effective (C3) | pass | **49,312 checks, 0 nonzero** |
+| `Γ`-invariance checks | pass | **16,080, 0 failures** |
+| detector fires on the synthetic doubled system | 44/44 | **22/22 chains, 528 blocks** |
+| verdict | `D2_IS_1_FOR_EVERY_DISPLACEMENT_CLASS` | same |
+
+> **§3.3's Theorem stands on the exact operators.** `Σ_r im L_r^{(2)} =
+> ker(Ξ_Z)` on `Λ²M` for all 44 finite-index chains, so `Ξ_Z : C₂ → W_Q` is an
+> **isomorphism**, and "layer 2 is solvable for this `F`" is exactly
+> `Ξ_Z(Θ(F)) = 0` — still conditional on (3.1) and (3.5), unchanged.
+
+§3.1 (`A₂` free, no 2-torsion) never touched `L0` — it is a statement about
+`Γ = ⟨R,U,w⟩` being torsion-free — and is unaffected. §3.4's infinite-index
+coverage front reproduces at radii 6–10 (12 chains, `L2,L3,L4` rows vanishing
+0, no torsion).
+
+**Why the correction could not have reached this.** The layer-2 quotient is
+`Z[Γ\Q]` modulo the `L0` and `L1` rows, and — as `W2K` §4 shows at layer 1 —
+the `L1` rows alone already generate everything on all 44 chains, and `L1`
+contains no `h1`. The `L0` column moves, but it was never load-bearing.
+
+**And the note this makes possible.** W2j built its `Ξ_Z(Θ)` evaluations on
+this note's isomorphism while flagging the dependency as open; the W2k driver
+also verifies that its corrected builder is **identical, column for column, on
+67/67 chains** to the `exact_operators` W2j used. So W2j's results and this
+note's headline are now consistent by construction rather than by assumption.
+
+Run records: `checkers/out/w2k_d2_uniform.json`, `w2k_d2_a.json` / `_b`,
+`w2k_d2_identity_a.json` / `_b`, `w2k_d2_probe_a.json`, `w2k_d2_inf_a.json`,
+`w2k_theta_reconcile.json`.

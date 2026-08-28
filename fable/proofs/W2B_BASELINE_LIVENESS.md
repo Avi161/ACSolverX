@@ -65,3 +65,47 @@ defects and operators this checker now computes mechanically.
   about the free-group class, AK(3), stable AC, or AC.
 - The census caps (12,12,12,g5) bound the solution set from below only;
   more baselines may exist at larger caps.
+
+---
+
+## Post-hoc correction (same day, cycle 16): six is thirteen
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor — the exact variation of `S` conjugates `[δ_R]` by
+`S·q(h1)`, not by `S` — so on the 59 of 67 census chains with `q(h1) ≠ 1` the
+operator this note used in its `x_0` column is the wrong one. The codex
+witness has `H1 = ()`, which is exactly why the fixed-h control passed and why
+the generalisation silently did not. `W2K_CORRECTED_REVERIFY.md` re-runs the
+sweep on the corrected operator (`checkers/corrected_operators.py`,
+`build_operators_exact`), with the shipped arm recomputed as a control and
+reproducing this note's numbers exactly.
+
+**What changes.**
+
+| | this note | corrected |
+|---|---:|---:|
+| `LIVE_AT_ONE_HOP_MOD_235` (17 cap-12 chains) | **6** | **13** |
+| `NOT_LIVE_AT_TESTED_WINDOWS` | 11 | **4** |
+| `DEAD (augmentation)` | 0 | 0 |
+
+The witness and the five listed non-witness live chains are **all still live**
+(5/5); seven of the eleven "not live" chains were live all along, including
+three of the five `S = TcTcttc` members. No chain went the other way. So this
+note's headline — "at least six essentially distinct baselines live at the
+relation-module layer" — is **true but understated by more than a factor of
+two**, and its consequence (a completed noncancellation theorem over (1.10)
+closes one of *many* live lift families) is strengthened, not weakened.
+
+**What does not change.** The method, the controls, the augmentation result
+(0 dead by augmentation, now over 5,427 windows), the doctrine that
+`NOT_LIVE_AT_TESTED_WINDOWS` is inconclusive, and every nonclaim. W2g/W2h
+later prove `d = 1` for all 67 chains, so *no* window is genuinely dead — the
+one-hop support truncation this note flags in its own nonclaim is the whole
+story.
+
+**One further caution this note could not have made.** "Live" here means the
+one-hop system is solvable, verified by re-applying the same operators that
+built it. `W2K` §2 re-tests solutions in `F(c,t)` itself (`n_r = σ(x_r)`,
+replay the recurrence, assert the residual is in `[N,N]`): 24 of 46 solutions
+built from the shipped operators are **not** layer-1 solutions at all. All 55
+built from the corrected operators are.

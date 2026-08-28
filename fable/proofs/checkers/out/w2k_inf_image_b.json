@@ -1,0 +1,2455 @@
+{
+ "schema": "acsolverx.w2h.image.v1",
+ "summary": {
+  "chains": 11,
+  "radii": [
+   10,
+   12
+  ],
+  "piD_in_lattice_over_Z": 11,
+  "witnesses_reverified": 11,
+  "margin_constant": 2,
+  "margins": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "coverage_depth_min": 7,
+  "d_eff_is_1": 11,
+  "with_death_certificate": 0,
+  "controls_passed": true,
+  "verdict": "NO_DEATH_CERTIFICATE_AND_PROVABLY_LIVE"
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 6,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 10660,
+     "pivots": 8791,
+     "unit_differences_up_to_depth": 9,
+     "margin": 1,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       768,
+       1364
+      ],
+      "11": [
+       257,
+       1110
+      ],
+      "12": [
+       426,
+       853
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       171,
+       3072
+      ],
+      "15": [
+       341,
+       1707
+      ],
+      "16": [
+       0,
+       3413
+      ]
+     },
+     "secs": 0.54
+    },
+    {
+     "L": 12,
+     "rows": 21249,
+     "pivots": 16641,
+     "unit_differences_up_to_depth": 9,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1194,
+       1364
+      ],
+      "11": [
+       1536,
+       2732
+      ],
+      "12": [
+       1452,
+       2730
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       939,
+       3072
+      ],
+      "15": [
+       341,
+       3755
+      ],
+      "16": [
+       683,
+       7509
+      ],
+      "17": [
+       0,
+       2732
+      ],
+      "18": [
+       0,
+       5460
+      ]
+     },
+     "secs": 1.26
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    1,
+    3
+   ],
+   "coverage_growth": [
+    [
+     10,
+     9
+    ],
+    [
+     12,
+     9
+    ]
+   ],
+   "coverage_depth": 9,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 6,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 6,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 10660,
+     "pivots": 8791,
+     "unit_differences_up_to_depth": 9,
+     "margin": 1,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       768,
+       1364
+      ],
+      "11": [
+       257,
+       1110
+      ],
+      "12": [
+       426,
+       853
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       171,
+       3072
+      ],
+      "15": [
+       341,
+       1707
+      ],
+      "16": [
+       0,
+       3413
+      ]
+     },
+     "secs": 0.6
+    },
+    {
+     "L": 12,
+     "rows": 21249,
+     "pivots": 16641,
+     "unit_differences_up_to_depth": 9,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1194,
+       1364
+      ],
+      "11": [
+       1536,
+       2732
+      ],
+      "12": [
+       1452,
+       2730
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       939,
+       3072
+      ],
+      "15": [
+       341,
+       3755
+      ],
+      "16": [
+       683,
+       7509
+      ],
+      "17": [
+       0,
+       2732
+      ],
+      "18": [
+       0,
+       5460
+      ]
+     },
+     "secs": 1.27
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    1,
+    3
+   ],
+   "coverage_growth": [
+    [
+     10,
+     9
+    ],
+    [
+     12,
+     9
+    ]
+   ],
+   "coverage_depth": 9,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 6,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 6,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 10660,
+     "pivots": 8791,
+     "unit_differences_up_to_depth": 9,
+     "margin": 1,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       768,
+       1364
+      ],
+      "11": [
+       257,
+       1110
+      ],
+      "12": [
+       426,
+       853
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       171,
+       3072
+      ],
+      "15": [
+       341,
+       1707
+      ],
+      "16": [
+       0,
+       3413
+      ]
+     },
+     "secs": 0.61
+    },
+    {
+     "L": 12,
+     "rows": 21249,
+     "pivots": 16641,
+     "unit_differences_up_to_depth": 9,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 6,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1194,
+       1364
+      ],
+      "11": [
+       1536,
+       2732
+      ],
+      "12": [
+       1452,
+       2730
+      ],
+      "13": [
+       512,
+       1536
+      ],
+      "14": [
+       939,
+       3072
+      ],
+      "15": [
+       341,
+       3755
+      ],
+      "16": [
+       683,
+       7509
+      ],
+      "17": [
+       0,
+       2732
+      ],
+      "18": [
+       0,
+       5460
+      ]
+     },
+     "secs": 1.23
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    1,
+    3
+   ],
+   "coverage_growth": [
+    [
+     10,
+     9
+    ],
+    [
+     12,
+     9
+    ]
+   ],
+   "coverage_depth": 9,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 6,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 7,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 8844,
+     "pivots": 7171,
+     "unit_differences_up_to_depth": 8,
+     "margin": 2,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 4,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       599,
+       684
+      ],
+      "10": [
+       427,
+       1364
+      ],
+      "11": [
+       683,
+       1708
+      ],
+      "12": [
+       683,
+       1536
+      ],
+      "13": [
+       0,
+       1537
+      ],
+      "14": [
+       0,
+       1707
+      ],
+      "15": [
+       0,
+       1024
+      ],
+      "16": [
+       0,
+       682
+      ]
+     },
+     "secs": 0.43
+    },
+    {
+     "L": 12,
+     "rows": 20421,
+     "pivots": 15704,
+     "unit_differences_up_to_depth": 10,
+     "margin": 2,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 4,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1364,
+       1364
+      ],
+      "11": [
+       2391,
+       2732
+      ],
+      "12": [
+       1707,
+       3754
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       2049
+      ],
+      "15": [
+       0,
+       2048
+      ],
+      "16": [
+       0,
+       2731
+      ],
+      "17": [
+       0,
+       4096
+      ],
+      "18": [
+       0,
+       2730
+      ]
+     },
+     "secs": 1.02
+    }
+   ],
+   "margin_constant": true,
+   "margin": [
+    2
+   ],
+   "coverage_growth": [
+    [
+     10,
+     8
+    ],
+    [
+     12,
+     10
+    ]
+   ],
+   "coverage_depth": 10,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 4,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 7,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 8844,
+     "pivots": 7171,
+     "unit_differences_up_to_depth": 8,
+     "margin": 2,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 4,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       599,
+       684
+      ],
+      "10": [
+       427,
+       1364
+      ],
+      "11": [
+       683,
+       1708
+      ],
+      "12": [
+       683,
+       1536
+      ],
+      "13": [
+       0,
+       1537
+      ],
+      "14": [
+       0,
+       1707
+      ],
+      "15": [
+       0,
+       1024
+      ],
+      "16": [
+       0,
+       682
+      ]
+     },
+     "secs": 0.44
+    },
+    {
+     "L": 12,
+     "rows": 20421,
+     "pivots": 15704,
+     "unit_differences_up_to_depth": 10,
+     "margin": 2,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 4,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1364,
+       1364
+      ],
+      "11": [
+       2391,
+       2732
+      ],
+      "12": [
+       1707,
+       3754
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       2049
+      ],
+      "15": [
+       0,
+       2048
+      ],
+      "16": [
+       0,
+       2731
+      ],
+      "17": [
+       0,
+       4096
+      ],
+      "18": [
+       0,
+       2730
+      ]
+     },
+     "secs": 0.95
+    }
+   ],
+   "margin_constant": true,
+   "margin": [
+    2
+   ],
+   "coverage_growth": [
+    [
+     10,
+     8
+    ],
+    [
+     12,
+     10
+    ]
+   ],
+   "coverage_depth": 10,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 4,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 7,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 14253,
+     "pivots": 13505,
+     "unit_differences_up_to_depth": 7,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       1708
+      ],
+      "12": [
+       234,
+       2047
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       3754
+      ],
+      "15": [
+       512,
+       4182
+      ],
+      "16": [
+       853,
+       5632
+      ],
+      "17": [
+       342,
+       855
+      ],
+      "18": [
+       341,
+       1705
+      ],
+      "19": [
+       0,
+       1023
+      ],
+      "20": [
+       0,
+       2049
+      ]
+     },
+     "secs": 0.74
+    },
+    {
+     "L": 12,
+     "rows": 25005,
+     "pivots": 24257,
+     "unit_differences_up_to_depth": 7,
+     "margin": 5,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       2647
+      ],
+      "12": [
+       234,
+       4607
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       4096
+      ],
+      "15": [
+       554,
+       5974
+      ],
+      "16": [
+       918,
+       9216
+      ],
+      "17": [
+       342,
+       3928
+      ],
+      "18": [
+       341,
+       7848
+      ],
+      "19": [
+       641,
+       2389
+      ],
+      "20": [
+       1236,
+       4779
+      ]
+     },
+     "secs": 1.23
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    3,
+    5
+   ],
+   "coverage_growth": [
+    [
+     10,
+     7
+    ],
+    [
+     12,
+     7
+    ]
+   ],
+   "coverage_depth": 7,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 8,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 7,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 14253,
+     "pivots": 13505,
+     "unit_differences_up_to_depth": 7,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       1708
+      ],
+      "12": [
+       234,
+       2047
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       3754
+      ],
+      "15": [
+       512,
+       4182
+      ],
+      "16": [
+       853,
+       5632
+      ],
+      "17": [
+       342,
+       855
+      ],
+      "18": [
+       341,
+       1705
+      ],
+      "19": [
+       0,
+       1023
+      ],
+      "20": [
+       0,
+       2049
+      ]
+     },
+     "secs": 0.74
+    },
+    {
+     "L": 12,
+     "rows": 25005,
+     "pivots": 24257,
+     "unit_differences_up_to_depth": 7,
+     "margin": 5,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       2647
+      ],
+      "12": [
+       234,
+       4607
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       4096
+      ],
+      "15": [
+       554,
+       5974
+      ],
+      "16": [
+       918,
+       9216
+      ],
+      "17": [
+       342,
+       3928
+      ],
+      "18": [
+       341,
+       7848
+      ],
+      "19": [
+       641,
+       2389
+      ],
+      "20": [
+       1236,
+       4779
+      ]
+     },
+     "secs": 1.21
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    3,
+    5
+   ],
+   "coverage_growth": [
+    [
+     10,
+     7
+    ],
+    [
+     12,
+     7
+    ]
+   ],
+   "coverage_depth": 7,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 8,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "live_one_hop": false,
+   "stratum": false,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 7,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 14253,
+     "pivots": 13505,
+     "unit_differences_up_to_depth": 7,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       1708
+      ],
+      "12": [
+       234,
+       2047
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       3754
+      ],
+      "15": [
+       512,
+       4182
+      ],
+      "16": [
+       853,
+       5632
+      ],
+      "17": [
+       342,
+       855
+      ],
+      "18": [
+       341,
+       1705
+      ],
+      "19": [
+       0,
+       1023
+      ],
+      "20": [
+       0,
+       2049
+      ]
+     },
+     "secs": 0.74
+    },
+    {
+     "L": 12,
+     "rows": 25005,
+     "pivots": 24257,
+     "unit_differences_up_to_depth": 7,
+     "margin": 5,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 8,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       298,
+       340
+      ],
+      "9": [
+       384,
+       684
+      ],
+      "10": [
+       364,
+       1364
+      ],
+      "11": [
+       129,
+       2647
+      ],
+      "12": [
+       234,
+       4607
+      ],
+      "13": [
+       256,
+       2048
+      ],
+      "14": [
+       470,
+       4096
+      ],
+      "15": [
+       554,
+       5974
+      ],
+      "16": [
+       918,
+       9216
+      ],
+      "17": [
+       342,
+       3928
+      ],
+      "18": [
+       341,
+       7848
+      ],
+      "19": [
+       641,
+       2389
+      ],
+      "20": [
+       1236,
+       4779
+      ]
+     },
+     "secs": 1.2
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    3,
+    5
+   ],
+   "coverage_growth": [
+    [
+     10,
+     7
+    ],
+    [
+     12,
+     7
+    ]
+   ],
+   "coverage_depth": 7,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 8,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "live_one_hop": false,
+   "stratum": true,
+   "n_core": 8,
+   "piD_augmentation": 0,
+   "piD_classes": 14,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 14280,
+     "pivots": 10927,
+     "unit_differences_up_to_depth": 9,
+     "margin": 1,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 10,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       341,
+       1364
+      ],
+      "11": [
+       683,
+       1367
+      ],
+      "12": [
+       683,
+       2047
+      ],
+      "13": [
+       683,
+       4097
+      ],
+      "14": [
+       342,
+       3076
+      ],
+      "15": [
+       0,
+       2729
+      ],
+      "16": [
+       0,
+       2390
+      ],
+      "17": [
+       0,
+       1367
+      ],
+      "18": [
+       0,
+       1023
+      ],
+      "19": [
+       0,
+       683
+      ],
+      "20": [
+       0,
+       342
+      ],
+      "21": [
+       0,
+       682
+      ]
+     },
+     "secs": 0.8
+    },
+    {
+     "L": 12,
+     "rows": 24519,
+     "pivots": 19118,
+     "unit_differences_up_to_depth": 10,
+     "margin": 2,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 10,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       4,
+       4
+      ],
+      "1": [
+       4,
+       4
+      ],
+      "2": [
+       4,
+       4
+      ],
+      "3": [
+       12,
+       12
+      ],
+      "4": [
+       20,
+       20
+      ],
+      "5": [
+       44,
+       44
+      ],
+      "6": [
+       84,
+       84
+      ],
+      "7": [
+       172,
+       172
+      ],
+      "8": [
+       340,
+       340
+      ],
+      "9": [
+       684,
+       684
+      ],
+      "10": [
+       1364,
+       1364
+      ],
+      "11": [
+       2049,
+       2391
+      ],
+      "12": [
+       1365,
+       3753
+      ],
+      "13": [
+       1365,
+       4097
+      ],
+      "14": [
+       683,
+       5804
+      ],
+      "15": [
+       0,
+       4095
+      ],
+      "16": [
+       0,
+       5122
+      ],
+      "17": [
+       0,
+       7168
+      ],
+      "18": [
+       0,
+       1706
+      ],
+      "19": [
+       0,
+       2049
+      ],
+      "20": [
+       0,
+       3413
+      ],
+      "21": [
+       0,
+       1365
+      ],
+      "22": [
+       0,
+       1366
+      ],
+      "23": [
+       0,
+       2730
+      ]
+     },
+     "secs": 1.35
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    1,
+    2
+   ],
+   "coverage_growth": [
+    [
+     10,
+     9
+    ],
+    [
+     12,
+     10
+    ]
+   ],
+   "coverage_depth": 10,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 10,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "live_one_hop": false,
+   "stratum": true,
+   "n_core": 4,
+   "piD_augmentation": 0,
+   "piD_classes": 12,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 15106,
+     "pivots": 13485,
+     "unit_differences_up_to_depth": 7,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 28,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       2,
+       2
+      ],
+      "1": [
+       2,
+       2
+      ],
+      "2": [
+       2,
+       2
+      ],
+      "3": [
+       6,
+       6
+      ],
+      "4": [
+       10,
+       10
+      ],
+      "5": [
+       22,
+       22
+      ],
+      "6": [
+       42,
+       42
+      ],
+      "7": [
+       86,
+       86
+      ],
+      "8": [
+       85,
+       170
+      ],
+      "9": [
+       171,
+       342
+      ],
+      "10": [
+       0,
+       682
+      ],
+      "11": [
+       0,
+       1366
+      ],
+      "12": [
+       0,
+       1707
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       1707
+      ],
+      "15": [
+       0,
+       1793
+      ],
+      "16": [
+       0,
+       2474
+      ],
+      "17": [
+       0,
+       2390
+      ],
+      "18": [
+       0,
+       1878
+      ],
+      "19": [
+       0,
+       1706
+      ],
+      "20": [
+       0,
+       1707
+      ],
+      "21": [
+       0,
+       1366
+      ]
+     },
+     "secs": 0.64
+    },
+    {
+     "L": 12,
+     "rows": 26200,
+     "pivots": 24579,
+     "unit_differences_up_to_depth": 7,
+     "margin": 5,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 28,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       2,
+       2
+      ],
+      "1": [
+       2,
+       2
+      ],
+      "2": [
+       2,
+       2
+      ],
+      "3": [
+       6,
+       6
+      ],
+      "4": [
+       10,
+       10
+      ],
+      "5": [
+       22,
+       22
+      ],
+      "6": [
+       42,
+       42
+      ],
+      "7": [
+       86,
+       86
+      ],
+      "8": [
+       85,
+       170
+      ],
+      "9": [
+       171,
+       342
+      ],
+      "10": [
+       0,
+       682
+      ],
+      "11": [
+       0,
+       1366
+      ],
+      "12": [
+       0,
+       2389
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       2390
+      ],
+      "15": [
+       0,
+       3073
+      ],
+      "16": [
+       0,
+       4096
+      ],
+      "17": [
+       0,
+       6315
+      ],
+      "18": [
+       0,
+       5632
+      ],
+      "19": [
+       0,
+       3755
+      ],
+      "20": [
+       0,
+       5803
+      ],
+      "21": [
+       0,
+       4096
+      ]
+     },
+     "secs": 1.11
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    3,
+    5
+   ],
+   "coverage_growth": [
+    [
+     10,
+     7
+    ],
+    [
+     12,
+     7
+    ]
+   ],
+   "coverage_depth": 7,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 28,
+   "d_eff_is_1": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "live_one_hop": false,
+   "stratum": true,
+   "n_core": 4,
+   "piD_augmentation": 0,
+   "piD_classes": 12,
+   "levels": [
+    {
+     "L": 10,
+     "rows": 15106,
+     "pivots": 13485,
+     "unit_differences_up_to_depth": 7,
+     "margin": 3,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 28,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       2,
+       2
+      ],
+      "1": [
+       2,
+       2
+      ],
+      "2": [
+       2,
+       2
+      ],
+      "3": [
+       6,
+       6
+      ],
+      "4": [
+       10,
+       10
+      ],
+      "5": [
+       22,
+       22
+      ],
+      "6": [
+       42,
+       42
+      ],
+      "7": [
+       86,
+       86
+      ],
+      "8": [
+       85,
+       170
+      ],
+      "9": [
+       171,
+       342
+      ],
+      "10": [
+       0,
+       682
+      ],
+      "11": [
+       0,
+       1366
+      ],
+      "12": [
+       0,
+       1707
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       1707
+      ],
+      "15": [
+       0,
+       1793
+      ],
+      "16": [
+       0,
+       2474
+      ],
+      "17": [
+       0,
+       2390
+      ],
+      "18": [
+       0,
+       1878
+      ],
+      "19": [
+       0,
+       1706
+      ],
+      "20": [
+       0,
+       1707
+      ],
+      "21": [
+       0,
+       1366
+      ]
+     },
+     "secs": 0.65
+    },
+    {
+     "L": 12,
+     "rows": 26200,
+     "pivots": 24579,
+     "unit_differences_up_to_depth": 7,
+     "margin": 5,
+     "piD_in_lattice_over_Z": true,
+     "witness_terms": 28,
+     "witness_reverified": true,
+     "depth_profile": {
+      "0": [
+       2,
+       2
+      ],
+      "1": [
+       2,
+       2
+      ],
+      "2": [
+       2,
+       2
+      ],
+      "3": [
+       6,
+       6
+      ],
+      "4": [
+       10,
+       10
+      ],
+      "5": [
+       22,
+       22
+      ],
+      "6": [
+       42,
+       42
+      ],
+      "7": [
+       86,
+       86
+      ],
+      "8": [
+       85,
+       170
+      ],
+      "9": [
+       171,
+       342
+      ],
+      "10": [
+       0,
+       682
+      ],
+      "11": [
+       0,
+       1366
+      ],
+      "12": [
+       0,
+       2389
+      ],
+      "13": [
+       0,
+       1707
+      ],
+      "14": [
+       0,
+       2390
+      ],
+      "15": [
+       0,
+       3073
+      ],
+      "16": [
+       0,
+       4096
+      ],
+      "17": [
+       0,
+       6315
+      ],
+      "18": [
+       0,
+       5632
+      ],
+      "19": [
+       0,
+       3755
+      ],
+      "20": [
+       0,
+       5803
+      ],
+      "21": [
+       0,
+       4096
+      ]
+     },
+     "secs": 1.03
+    }
+   ],
+   "margin_constant": false,
+   "margin": [
+    3,
+    5
+   ],
+   "coverage_growth": [
+    [
+     10,
+     7
+    ],
+    [
+     12,
+     7
+    ]
+   ],
+   "coverage_depth": 7,
+   "piD_in_lattice_over_Z": true,
+   "witness_reverified": true,
+   "witness_terms": 28,
+   "d_eff_is_1": true
+  }
+ ]
+}

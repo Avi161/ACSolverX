@@ -144,3 +144,28 @@ probes, all in column 0, and the corrected operator matches 2,010/2,010. When
 a derived calculus generalises a worked example, probe every column against
 the ground truth on a case where the example's special value (`h1 = 1`,
 `g = 1`, `k = 0`) is NOT taken.
+
+### A wrong operator is not uniformly wrong — find the column the theorem leans on
+
+[TRAP] The `L0` defect looked fatal to five notes at once. It was fatal to
+exactly one of them. W2f's liveness sweep is a computation *about* `L0`, so
+every number moved (live chains 21 → 31, three of five "dead strata"
+refuted); W2g's `d = 1`, W2h's coverage and W2i's `d₂ = 1` all reduce to the
+`L1` column — `bridge·(B − S)`, which contains no `h1` — and to identities
+(`L2 = 1 − U⁻¹R`, `L3 + L4 = U⁻¹ − 1`, `X, U, w ∈ Γ`) that no perturbation of
+`L0` can reach. Suspending all five was right; assuming all five were wrong
+would have been as sloppy as the original bug.
+
+[WORKS] When a shared input is found defective, do not re-run everything and
+compare totals. Ask, per claim, *which column carries it*, and compute that
+directly: `--mode dsource` split `d` into its `L0` and `L1` contributions and
+showed `L1` alone gives gcd 1 on 44/44 chains — turning "the number came out
+the same" into "the theorem could not have been affected". The `L0` rows moved
+on 24 of those 44 and vanish identically on some, so the immunity is a real
+fact about the proof, not a coincidence about the data.
+
+[WORKS] Corollary for the repair itself: re-derive **every** column, not the
+one you already suspect, and widen the probe set before declaring the others
+clean. W2j proved `L0` wrong and columns 1–4 clean on six probe vertices; the
+repair re-derived all five from the variation and re-probed on the whole
+radius-4 ball (20 vertices, 6,700 checks, 67 chains) before saying so.

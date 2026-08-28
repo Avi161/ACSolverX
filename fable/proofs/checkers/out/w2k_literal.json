@@ -1,0 +1,2333 @@
+{
+ "schema": "acsolverx.w2k.literal.v1",
+ "exact_operators": true,
+ "summary": {
+  "chains": 67,
+  "exact_solved": 55,
+  "exact_literally_verified": 55,
+  "shipped_solved": 46,
+  "shipped_literally_verified": 22,
+  "shipped_literally_rejected": 24,
+  "h1_trivial_chains": 8,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     3,
+     10,
+     11,
+     12
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     3,
+     10,
+     11,
+     12
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "TTTctcTcTctcttt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     2,
+     11,
+     17,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     2,
+     11,
+     17,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTTcTcttct"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     5,
+     6,
+     9,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     8,
+     10,
+     12,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 16
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTTcTctcttc",
+    "cTTcTcttctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     5,
+     12,
+     16,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     7,
+     12,
+     12,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 16
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TTTctttcTctcTc"
+   ],
+   "g": "c",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     4,
+     6,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     27,
+     13,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 31
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTTctttcTctc",
+    "TcTTcttc"
+   ],
+   "g": "c",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     12,
+     11,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     27,
+     26,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 32
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTTctttcTTTcttc",
+    "cTTctttcTTctc",
+    "TTcTcttc"
+   ],
+   "g": "c",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     12,
+     18,
+     18,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     18,
+     26,
+     26,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 31
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "h1": "ctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     3,
+     2,
+     7,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     9,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "h1": "ctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     2,
+     5,
+     5,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     2,
+     5,
+     5,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "h1": "ctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     2,
+     4,
+     12,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     2,
+     4,
+     12,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTcttcTctt",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "h1": "ctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTTctttcTct",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "h1": "Tcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     6,
+     9,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     6,
+     9,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "TTcTTctttc"
+   ],
+   "g": "TTc",
+   "h1": "cTctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     9,
+     13,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     3,
+     4,
+     10,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TTcTctttc",
+    "cTTTcTctcTcttt"
+   ],
+   "g": "cTTTc",
+   "h1": "cTctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "h1": "cTTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     3,
+     3,
+     5,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     3,
+     3,
+     5,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "h1": "cTTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     9,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     9,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "h1": "cTTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     8,
+     7,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     8,
+     7,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "TcTcttc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "h1": "cTTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcTctttt"
+   ],
+   "g": "TTc",
+   "h1": "cTcTctttctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     8,
+     8,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     8,
+     8,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTTcttct"
+   ],
+   "g": "TTc",
+   "h1": "cTcTctttctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     9,
+     7
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     9,
+     7
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TTcTctcTcTcttt"
+   ],
+   "g": "TTc",
+   "h1": "cTcTctttctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     5,
+     10,
+     7
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     4,
+     9,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTctcTcTctctc",
+    "TcTTcTctcTcttt"
+   ],
+   "g": "TcTTc",
+   "h1": "cTcTctttctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "cTcttcTcTTctctc",
+    "TTcTTcTTcttttt"
+   ],
+   "g": "TTc",
+   "h1": "cTcTcttcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     8,
+     10,
+     12,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     8,
+     10,
+     12,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTcTTctcTcttt",
+    "tcTctcTcTTctctc",
+    "TcTctcTcTTcttt"
+   ],
+   "g": "TTc",
+   "h1": "cTcTcttttctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctctttcTctcT",
+    "ttcTctcTTTTctc"
+   ],
+   "g": "",
+   "h1": "ctt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     1,
+     3,
+     5,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     1,
+     3,
+     5,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     1,
+     4,
+     4,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     1,
+     4,
+     4,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     0,
+     2,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     0,
+     2,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     0,
+     2,
+     2,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     0,
+     2,
+     2,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     1,
+     3,
+     4,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     1,
+     3,
+     4,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "h1": "",
+   "h1_trivial": true,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     0,
+     3,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     0,
+     3,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "h1": "Tctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     5,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     5,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "h1": "Tctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     6,
+     8,
+     7,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     7,
+     6,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTTctttcTct",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "h1": "Tctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     6,
+     6,
+     4,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     5,
+     5,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TTctttcTTc"
+   ],
+   "g": "",
+   "h1": "cT",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     3,
+     6,
+     8,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     12,
+     10,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "h1": "cT",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     3,
+     6,
+     9,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     3,
+     3,
+     4,
+     6
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     5,
+     7,
+     6,
+     10
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     4,
+     3,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     4,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "h1": "cTTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     4,
+     2,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcTcttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     6,
+     6,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     8,
+     7,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcTctct"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     3,
+     3,
+     4,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     4,
+     5,
+     5,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTctcTcttcTTct"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     3,
+     5,
+     5,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     7,
+     7,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TTcttcTc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     3,
+     2,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     4,
+     6,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 7
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TcTTcttcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 1,
+    "x_terms": [
+     1,
+     3,
+     5,
+     8,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     0,
+     4,
+     10,
+     13,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTctcTcTctctc",
+    "TctcTcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     3,
+     2,
+     4,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     5,
+     4,
+     6,
+     1
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 7
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     6,
+     8,
+     8,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     8,
+     10,
+     12,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     6,
+     6,
+     7,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     8,
+     10,
+     11,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "h1": "cTcTcttctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     2,
+     11,
+     14,
+     14,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     1,
+     8,
+     11,
+     12,
+     3
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 8
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "tcTctcTcTTctctc",
+    "ctcTctcTcTTctc"
+   ],
+   "g": "",
+   "h1": "cTcTctttt",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     5,
+     6,
+     11,
+     9
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     5,
+     10,
+     7,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     8,
+     18,
+     27,
+     26,
+     16
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 62
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     4,
+     3,
+     3,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTTcttcTctt",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "TTcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTTTcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     7,
+     5,
+     4
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     2,
+     4,
+     6,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     4,
+     6,
+     8,
+     7
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     13,
+     19,
+     11
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 32
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     2,
+     3,
+     1,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TcTcttc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     3,
+     3,
+     3,
+     8
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     10,
+     14,
+     19,
+     24,
+     23
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 75
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     6,
+     20,
+     16
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTTTcttcTTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     14,
+     11,
+     5
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     8,
+     20,
+     23,
+     13
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 32
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTcTctcTcttc"
+   ],
+   "g": "cTTc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     9,
+     7,
+     2
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     15,
+     32,
+     30,
+     7
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 32
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "cTctcTcTctctc",
+    "cTcTctcTct"
+   ],
+   "g": "Tc",
+   "h1": "cTcTctcttc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     4,
+     6,
+     5,
+     8,
+     13
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     11,
+     14,
+     18,
+     23,
+     21
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": false,
+    "literal_residual_module_terms": 85
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": false
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": false,
+   "shipped_solution_literally_rejected": false
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "h1": "cTctc",
+   "h1_trivial": false,
+   "exact": {
+    "solved": true,
+    "rho": 2,
+    "x_terms": [
+     5,
+     5,
+     4,
+     6,
+     17
+    ],
+    "operator_residual": 0,
+    "literal_in_NN": true,
+    "literal_residual_module_terms": 0
+   },
+   "shipped": {
+    "solved": false
+   },
+   "exact_solution_literally_verified": true,
+   "shipped_solution_literally_rejected": false
+  }
+ ]
+}

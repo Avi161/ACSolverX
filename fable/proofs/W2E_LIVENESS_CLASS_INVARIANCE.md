@@ -438,3 +438,62 @@ system, and is the object such an argument now has to be uniform against.
 | W2b's six live chains, reproduced on the centralizer window family | **verified**, chain for chain |
 | a uniform layer-1 argument may quantify over `(cyc R, cyc S, cyc U)` triples | **false** (this note) |
 | anything about lifting, AK(3), stable AC, or AC | **no claim** |
+
+---
+
+## Post-hoc correction (same day, cycle 16): the law gains an `h1` factor; the refutation survives
+
+`W2J_THETA_RESIDUAL.md` §1 found that `build_operators_general`'s `L0` column
+omits a `q(h1)` factor, so §4.1's closed form for `L0` — and hence the primed
+form `L0'` — was incomplete. `W2K_CORRECTED_REVERIFY.md` §5 re-derives both and
+re-runs the comparison on the corrected operators.
+
+**The corrected closed forms.** With `bridge = h2 + U^-1 h3`, `d_r = A - R`:
+
+```text
+L0  = -( U^-1 + bridge*S*q(h1) ) * d_r          (this note omitted q(h1))
+L1  =  bridge * ( B - S )                        unchanged
+L2  =  1 - U^-1 R    L3 = U^-1 - w    L4 = w - 1 unchanged
+```
+
+**The corrected transformation law.** Under `S -> gamma S gamma^-1` with
+`h2 -> h2 gamma^-1`, `h3 -> h3 gamma^-1`, member 1 keeps its own `h1'`, and
+`bridge' * S' * h1' = bridge * S * (gamma^-1 h1')`, so
+
+```text
+L0' = -( U^-1 + bridge*S*q(gamma^-1 h1') ) * d_r      L2' = L2
+L1' =  bridge * ( gi*B - S*gi )                       L3' = L3,  L4' = L4
+```
+
+— i.e. `L0'` is `L0` with the right factor `q(h1)` replaced by
+`q(gamma^-1 h1')`. Machine-verified on **5/5** class pairs. Measured: on every
+pair `q(h1) = 1` for member 0 while `q(gamma^-1 h1') = TTctcTTctc != 1` for
+member 1, so the alignment moves a factor this note's law did not know
+existed, and `L0` carries a **second** obstruction term beyond §4.2's `E0`.
+
+**What survives, and why it was never at risk.** `E1 = L1' - L1*gi =
+bridge(gi*B - B*gi)` is built from `L1`, which the correction does not touch.
+So §4.3's argument — `L2' = L2`, `L3' = L3`, `L4' = L4` force the common unit
+`u = 1`, but `L1' != L1` — closes on `L1` alone:
+`no_uniform_right_unit_intertwiner` is **true on 5/5** pairs after the
+correction, probing `u in {1, gamma, gamma^-1}` exactly as before. The theory
+verdict **OBSTRUCTED** stands.
+
+**What the numbers do.**
+
+| | this note | corrected |
+|---|---:|---:|
+| aligned window pairs | 405 | 405 |
+| **mismatches** | **161** | **142** |
+| agreeing | 244 | 263 |
+| class pairs with a mismatch | 5 / 5 | **5 / 5** |
+| class pairs agreeing at **chain** level | 1 / 5 | **4 / 5** |
+
+The **window-level refutation survives**: the solvable-window set is still not
+carried across a `(R, cyc S, U)` class by the canonical alignment, on every
+pair. §0's open question — whether *chain-level* liveness is a class invariant
+— stays open, but the evidence against it thins from four disagreeing pairs to
+one (`U = TcTTcttcTctc`), and by W2b doctrine that pair's `NOT_LIVE` side is
+inconclusive.
+
+Run record: `checkers/out/w2k_invariance.json`.

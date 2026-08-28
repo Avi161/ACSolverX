@@ -1,0 +1,208 @@
+{
+ "schema": "acsolverx.w2h.lift.v1",
+ "summary": {
+  "windows": 7,
+  "verified_layer1_solutions": 7,
+  "unsolved_at_rho": 0,
+  "mutation_control_run": true,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "chain": [
+    "TTctcTctc",
+    "TTcTctttc",
+    "TcttcTTcTctc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 16,
+   "rho": 2,
+   "variables": 13694,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    3,
+    8,
+    11,
+    4
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTcTTctttc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 22,
+   "rho": 2,
+   "variables": 19766,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    7,
+    11,
+    15,
+    10
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TTctcTcTTcttct"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 24,
+   "rho": 2,
+   "variables": 17541,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    7,
+    8,
+    9,
+    10
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "TTctcTctc",
+    "cTcttcTcTTctctc",
+    "TcTTTctttcTctc"
+   ],
+   "g": "",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 24,
+   "rho": 2,
+   "variables": 22066,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    1,
+    7,
+    11,
+    17,
+    10
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "cTcTctcTTcttc",
+    "TTcTctttc",
+    "ctcTTcTTcttc"
+   ],
+   "g": "cTTc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 34,
+   "rho": 2,
+   "variables": 51154,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    2,
+    8,
+    30,
+    44,
+    30
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "TcTTcttc"
+   ],
+   "g": "Tc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 35,
+   "rho": 2,
+   "variables": 107346,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    11,
+    17,
+    46,
+    120,
+    128
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  },
+  {
+   "chain": [
+    "tcTcTTTcttc",
+    "ctcTcTctc",
+    "tcTcTTct"
+   ],
+   "g": "Tc",
+   "window": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "defect_terms": 32,
+   "rho": 2,
+   "variables": 84319,
+   "route": "omega_seeded",
+   "solvable_over_Z": true,
+   "x_terms": [
+    11,
+    17,
+    17,
+    39,
+    137
+   ],
+   "residual_after_lift": 0,
+   "VERIFIED_layer1_solution": true
+  }
+ ]
+}

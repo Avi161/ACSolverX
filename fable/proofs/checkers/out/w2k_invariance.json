@@ -1,0 +1,205 @@
+{
+ "schema": "acsolverx.w2k.invariance.v1",
+ "exact_operators": true,
+ "summary": {
+  "class_pairs": 5,
+  "aligned_windows": 405,
+  "agree": 263,
+  "mismatch": 142,
+  "member0_live_windows": 138,
+  "member1_live_windows": 22,
+  "pairs_with_mismatch": 5,
+  "transformation_law_verified": true,
+  "no_uniform_right_unit_intertwiner": true,
+  "h1_factor_moves": 5,
+  "window_level_refutation_survives": true,
+  "controls_passed": true
+ },
+ "rows": [
+  {
+   "member0": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcTcttc"
+   ],
+   "member1": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcTcttc"
+   ],
+   "gamma": "Tctt",
+   "aligned_windows": 81,
+   "agree": 44,
+   "mismatch": 37,
+   "member0_live_windows": 36,
+   "member1_live_windows": 1,
+   "L0_prime_matches_law": true,
+   "L1_prime_matches_law": true,
+   "L2_L3_L4_unchanged": [
+    true,
+    true,
+    true
+   ],
+   "L0_moves": true,
+   "L1_moves": true,
+   "no_uniform_right_unit_intertwiner": true,
+   "intertwiner_probe": {
+    "1": false,
+    "gamma^-1": false,
+    "gamma": false
+   },
+   "h1_effective_factor_member0": "",
+   "h1_effective_factor_member1": "TTctcTTctc",
+   "h1_factor_moves": true,
+   "passed": true
+  },
+  {
+   "member0": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTctcTcTctct"
+   ],
+   "member1": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTctcTcTctct"
+   ],
+   "gamma": "Tctt",
+   "aligned_windows": 81,
+   "agree": 41,
+   "mismatch": 40,
+   "member0_live_windows": 41,
+   "member1_live_windows": 3,
+   "L0_prime_matches_law": true,
+   "L1_prime_matches_law": true,
+   "L2_L3_L4_unchanged": [
+    true,
+    true,
+    true
+   ],
+   "L0_moves": true,
+   "L1_moves": true,
+   "no_uniform_right_unit_intertwiner": true,
+   "intertwiner_probe": {
+    "1": false,
+    "gamma^-1": false,
+    "gamma": false
+   },
+   "h1_effective_factor_member0": "",
+   "h1_effective_factor_member1": "TTctcTTctc",
+   "h1_factor_moves": true,
+   "passed": true
+  },
+  {
+   "member0": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TTcttcTc"
+   ],
+   "member1": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TTcttcTc"
+   ],
+   "gamma": "Tctt",
+   "aligned_windows": 81,
+   "agree": 44,
+   "mismatch": 37,
+   "member0_live_windows": 38,
+   "member1_live_windows": 13,
+   "L0_prime_matches_law": true,
+   "L1_prime_matches_law": true,
+   "L2_L3_L4_unchanged": [
+    true,
+    true,
+    true
+   ],
+   "L0_moves": true,
+   "L1_moves": true,
+   "no_uniform_right_unit_intertwiner": true,
+   "intertwiner_probe": {
+    "1": false,
+    "gamma^-1": false,
+    "gamma": false
+   },
+   "h1_effective_factor_member0": "",
+   "h1_effective_factor_member1": "TTctcTTctc",
+   "h1_factor_moves": true,
+   "passed": true
+  },
+  {
+   "member0": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TcTTcttcTctc"
+   ],
+   "member1": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TcTTcttcTctc"
+   ],
+   "gamma": "Tctt",
+   "aligned_windows": 81,
+   "agree": 68,
+   "mismatch": 13,
+   "member0_live_windows": 13,
+   "member1_live_windows": 0,
+   "L0_prime_matches_law": true,
+   "L1_prime_matches_law": true,
+   "L2_L3_L4_unchanged": [
+    true,
+    true,
+    true
+   ],
+   "L0_moves": true,
+   "L1_moves": true,
+   "no_uniform_right_unit_intertwiner": true,
+   "intertwiner_probe": {
+    "1": false,
+    "gamma^-1": false,
+    "gamma": false
+   },
+   "h1_effective_factor_member0": "",
+   "h1_effective_factor_member1": "TTctcTTctc",
+   "h1_factor_moves": true,
+   "passed": true
+  },
+  {
+   "member0": [
+    "TTctcTctc",
+    "TTTcttcTctt",
+    "TctcTcTctc"
+   ],
+   "member1": [
+    "TTctcTctc",
+    "TcTcttc",
+    "TctcTcTctc"
+   ],
+   "gamma": "Tctt",
+   "aligned_windows": 81,
+   "agree": 66,
+   "mismatch": 15,
+   "member0_live_windows": 10,
+   "member1_live_windows": 5,
+   "L0_prime_matches_law": true,
+   "L1_prime_matches_law": true,
+   "L2_L3_L4_unchanged": [
+    true,
+    true,
+    true
+   ],
+   "L0_moves": true,
+   "L1_moves": true,
+   "no_uniform_right_unit_intertwiner": true,
+   "intertwiner_probe": {
+    "1": false,
+    "gamma^-1": false,
+    "gamma": false
+   },
+   "h1_effective_factor_member0": "",
+   "h1_effective_factor_member1": "TTctcTTctc",
+   "h1_factor_moves": true,
+   "passed": true
+  }
+ ]
+}
