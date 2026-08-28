@@ -73,7 +73,10 @@ coset.
 Section 3.52 proves that the strict external polygon has identically zero
 inversion-fixed two-torsion.  Its integral vanishing is therefore exactly
 the nonfixed weighted norm equation; the core, seam, affine, and higher
-free-group defects remain open.
+free-group defects remain open.  Section 3.53 also removes the strict
+external polygon, terminal seam, and fixed-base affine terms from the
+inversion-fixed mixed Hessian: that Hessian is carried entirely by the
+canonical-section/inverse core.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6294,6 +6297,68 @@ This is a global cancellation among all 120 strict external pairs; it does
 not say that an individual paired tensor has zero fixed coordinate.  The
 remaining fixed torsion is concentrated in the canonical-section/inverse
 core, the bounded terminal seam, and the fixed-literal affine term.
+
+### 3.53 The fixed mixed Hessian is entirely core-supported
+
+The cancellation in Section 3.52 persists after polarization.  For
+$D\in\mathscr D_1$, put
+
+\[
+ E_D(F):=[\pi_K(\mathscr P_2(\mathbf F))]_D.
+ \tag{3.409}
+\]
+
+Equation (3.407) says that $E_D$ is the zero function on the additive
+space $\mathcal H_{\mathrm{fin}}$.  Hence its four-corner polarization is
+also identically zero:
+
+\[
+ \boxed{
+ E_D(F+G)+E_D(F)+E_D(G)=0
+ }
+ \tag{3.410}
+\]
+
+for all $F,G\in\mathcal H_{\mathrm{fin}}$.  This is exactly the
+inversion-fixed coordinate of the mixed strict external occurrence
+tensor.  Thus the global cancellation is not merely diagonal in the
+correction variable; it removes the full external fixed Hessian.
+
+Define the core coordinate and its polarization by
+
+\[
+ \begin{aligned}
+ Q_D^{\mathrm{core}}(F)
+ &:= [\Xi_{\mathbb Z}(\mathscr D_{\mathrm{core}}(F))]_D,\\
+ B_D^{\mathrm{core}}(F,G)
+ &:=Q_D^{\mathrm{core}}(F+G)
+   +Q_D^{\mathrm{core}}(F)
+   +Q_D^{\mathrm{core}}(G).
+ \end{aligned}
+ \tag{3.411}
+\]
+
+The seam term $\vartheta_D$ in (3.408) is linear in the correction
+current by (3.386), so it has zero polarization.  Fixed literals and
+base--direction products are affine-linear and also disappear from the
+mixed Hessian by (3.31).  Combining these facts with (3.408)--(3.410)
+gives the exact complete identity
+
+\[
+ \boxed{
+ \begin{aligned}
+ [B_\Xi(F,G)]_D&=B_D^{\mathrm{core}}(F,G),\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.412}
+\]
+
+Consequently no inversion-fixed quadratic obstruction can be obtained by
+isolating one of the 120 strict external pairs: all such quadratic terms
+cancel in the complete polygon.  The remaining fixed-sector task is now
+sharply split into the core Hessian (3.411), the affine-linear seam and
+fixed-literal terms, and the base constant.  No vanishing or survival of
+that complete sum is asserted.
 
 ## 4. Exact diagonal sieve
 
