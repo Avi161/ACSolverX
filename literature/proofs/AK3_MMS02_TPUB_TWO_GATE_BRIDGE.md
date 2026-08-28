@@ -59,6 +59,11 @@ that the middle first-row cleanup and the final second-row cleanup are
 impossible at their respective checkpoints.  This closes one interchange
 mechanism, not unrestricted interleaving.
 
+Section 6.14 evaluates the first nonnilpotent layer.  The Gate-A metabelian
+module is $\mathbb Z[1/2]$, where the discrepancy survives but conjugates
+$q$ exactly to $B$.  The complete tagged pair is therefore AC-equivalent in
+the universal quotient obtained by metabelianizing the Gate-A factor.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1749,6 +1754,115 @@ closure remain open.  Freeze the bounded tagged ledger here: a subsequent
 checkpoint must either construct a genuine continuation or control the full
 relative Peiffer class, not introduce another finite alternation category.
 
+### 6.14. The full factorwise metabelian shadow closes
+
+The nilpotent collapse in Theorem 6.6 does not kill the first metabelian
+boundary discrepancy.  Nevertheless, that discrepancy becomes an exact
+conjugator, so the complete relative pair is AC-equivalent after the Gate-A
+factor is metabelianized.
+
+Put
+
+\[
+ \begin{aligned}
+ M&=Q_A'/Q_A'',&
+ \Lambda&=\mathbb Z[T,T^{-1}],
+ \end{aligned}
+\]
+
+where $T$ acts on $M$ by conjugation by $x$.  The infinite cyclic cover of
+the one-relator presentation has generators $y_i=x^iyx^{-i}$.  Abelianizing
+the height row (10) gives
+
+\[
+ (-T-T^2+2T-1+T+1)[y]=(2T-T^2)[y]=0.
+\]
+
+There is one translate orbit of generators and one translate orbit of this
+relation.  Since $T$ is a unit,
+
+\[
+ \boxed{
+ M\cong\Lambda/(2-T)\cong\mathbb Z[1/2],
+ }
+ \tag{101}
+\]
+
+with $T$ acting as multiplication by $2$.  Thus
+$Q_A/Q_A''=M\rtimes\langle x\rangle$.  Write its elements as $(m,k)=mx^k$;
+then
+
+\[
+ (m,k)(n,l)=(m+2^kn,k+l).
+ \tag{102}
+\]
+
+Taking $[y]=1$ in $\mathbb Z[1/2]$, the exact reduced words give
+
+\[
+ \begin{aligned}
+ q&=(1/2,-1),&
+ r&=(3,0),\\
+ D&=(-3/4,0),&
+ B&=(7/8,-1).
+ \end{aligned}
+ \tag{103}
+\]
+
+Indeed, $\overline r=xy^2x^{-1}y^{-1}$ gives $2T-1=3$.  Also
+$[X,r]=(T^{-1}-1)r$, while conjugation by $h=YX$ contributes another
+$T^{-1}$, giving $D=T^{-1}(T^{-1}-1)r=-3/4$.  Finally
+$B=qD^{-1}$ gives the last coordinate in (103).
+
+The surviving discrepancy is exactly a conjugation:
+
+\[
+ D^{-1}qD
+ =(3/4,0)(1/2,-1)(-3/4,0)
+ =(7/8,-1)=B.
+\]
+
+Hence
+
+\[
+ \boxed{{}^{D^{-1}}q=B\text{ in }Q_A/Q_A''.}
+ \tag{104}
+\]
+
+Let
+
+\[
+ \widehat G_t=(Q_A/Q_A'')*\langle t\rangle.
+\]
+
+Conjugate the first row by $D^{-1}$ and use (104).  The word $B$ normally
+generates $Q_A$: this is exactly the triviality of the presentation
+$(A,B,v)$ already certified in Section 6.  Hence its image normally generates
+$Q_A/Q_A''$, and a finite product of conjugates of $B^{\pm1}$ removes $r$
+from the second row.  Therefore
+
+\[
+ \boxed{
+ (q,rt)\sim_{\mathrm{AC}}(B,rt)
+ \sim_{\mathrm{AC}}(B,t)
+ \text{ in }\widehat G_t.
+ }
+ \tag{105}
+\]
+
+**Theorem 6.8 (factorwise metabelian closure).**  The entire normalized
+relative pair (86), not merely its boundary words, is AC-equivalent after
+killing $Q_A''$.  Consequently every quotient of $G_t$ whose restriction to
+$Q_A$ is metabelian, including every metabelian quotient of $G_t$, sees the
+same AC class.
+
+This is a positive shadow only.  It does not lift the conjugacy (104) to
+$Q_A$, evaluate the relative free crossed module, or close (83).  No
+obstruction factoring through $\widehat G_t$ can distinguish the pair.  To
+promote the specific path (105), one would have to lift it
+through $Q_A''$ with legal Peiffer moves; another full relative path remains
+possible.  The MMS02 bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -1778,9 +1892,11 @@ The logical gates remain separate:
    cleanup and final second-row cleanup at their respective checkpoints, but
    the first row after the third arrow and unrestricted interleaving remain
    open;
-10. no MMS02 statement evaluates the period-two class-two ledger or its
+10. the full factorwise metabelian image of the tagged pair is AC-equivalent,
+   but lifting its conjugacy through $Q_A''$ is an unevaluated Peiffer problem;
+11. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-11. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+12. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is the interleaved relative class (83), together with

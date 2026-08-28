@@ -137,14 +137,26 @@ finite quotient do not close a route.
   remain open.  Do not add another finite
   alternation category: the next tagged checkpoint must construct a genuine
   continuation or control the full relative Peiffer class.
+- **Full factorwise metabelian shadow closed positively:** the exact Gate-A
+  Alexander module is `Z[1/2]`, with `x` acting by doubling.  In its
+  semidirect coordinates, `q=(1/2,-1)`, `r=(3,0)`, `D=(-3/4,0)`, and
+  `B=(7/8,-1)`, so conjugation of `q` by `D^-1` is literally `B`.  Since
+  `B` normally generates the Gate-A quotient, the whole pair
+  `(q,rt) -> (B,t)` is AC-equivalent after killing `Q_A''`, even with the tag
+  factor left free.  Thus every metabelian quotient of the tagged ambient
+  group is blind.  This does not lift the conjugacy to `Q_A` or close the
+  relative Peiffer class.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
   one-tag endpoint.  Do not escalate through more ambient lower-central
-  quotients: they are all blind.  The lifts are complete, but no closure to
-  `(A,B,Xyz)` is proved. Do not add another sequential cleanup or pinned-donor
-  category. No fixed-base or failed-search result is evidence against the
-  bridge.
+  quotients or metabelian quotients: they are all blind.  For the tagged route,
+  lifting the exact metabelian conjugacy through `Q_A''` in the full relative
+  crossed module is one available route; another full relative path may bypass
+  it.  Do not add another finite alternation category.  The lifts are complete,
+  but no closure to `(A,B,Xyz)` is proved. Do not add another sequential cleanup
+  or pinned-donor category. No fixed-base or failed-search result is evidence
+  against the bridge.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See

@@ -1,3 +1,6 @@
+from fractions import Fraction
+
+
 INVERSES = str.maketrans("xXyYzZtT", "XxYyZzTt")
 
 
@@ -176,3 +179,28 @@ def test_mms02_tagged_buffer_exact_word_replay():
     assert substitute(A_bar, {"y": ""}) == ""
     assert substitute(q, {"y": ""}) == "X"
     assert substitute(B_bar, {"y": ""}) == "X"
+
+    def evaluate(word: str) -> tuple[Fraction, int]:
+        element = (Fraction(0), 0)
+        generators = {
+            "x": (Fraction(0), 1),
+            "X": (Fraction(0), -1),
+            "y": (Fraction(1), 0),
+            "Y": (Fraction(-1), 0),
+        }
+        for letter in substitute(word, {"z": "Yx"}):
+            module, power = element
+            next_module, next_power = generators[letter]
+            element = (
+                module + Fraction(2) ** power * next_module,
+                power + next_power,
+            )
+        return element
+
+    assert evaluate(A_bar) == (Fraction(0), 0)
+    assert evaluate("y") == (Fraction(1), 0)
+    assert evaluate(r_bar) == (Fraction(3), 0)
+    assert evaluate(D) == (Fraction(-3, 4), 0)
+    assert evaluate(q) == (Fraction(1, 2), -1)
+    assert evaluate(B_bar) == (Fraction(7, 8), -1)
+    assert evaluate(conjugate(inverse(D), q)) == evaluate(B_bar)
