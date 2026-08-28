@@ -56,3 +56,15 @@ voided by the misprint found in Shehper et al. arXiv:2408.15332 v2 App. F.
 [WORKS] AK(3) stable AC status is OPEN. Cite Shehper et al. for the
 misprint; trust the repo's own `ac-advisor.md` record over search-engine
 summaries; verify any "settled" claim against the primary chain.
+
+### A descending greedy profile can be a disguised self-loop
+
+[TRAP] The Tpub preflight's 29 -> 14 descent was pitched as making a
+production run "genuinely promising"; Tietze-collapsing the floor state and
+aut_canon-ing the result showed the floor IS AK(3) itself (plus one z
+letter) — the search had looped back to the original problem.
+
+[WORKS] Before selling any descent profile on a stabilized/transformed
+start, eliminate the auxiliary generator at the floor state and aut_canon
+the residue; if it lands in the source orbit, the descent is a self-loop
+and the route's difficulty equals the source's.
