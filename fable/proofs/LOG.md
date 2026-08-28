@@ -39,3 +39,10 @@ caps (12,12,12,g5) — the witness plus 16 others, all hyperbolic-S, independent
 verified. Quantifies the uniqueness gap: the codex anchored family (1.10) covers one
 of 17. Next: layer-1 liveness per extra baseline (W2b). Note:
 W2_PERIOD_TWO_BASELINE_CENSUS.md. No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 5 · `1b982fe`
+
+W2b liveness sweep: six of the 17 baselines are live at the relation-module layer
+(witness + 5; four share the witness R,S). Eleven inconclusive, zero dead. The
+gauge-representative dependence of one-hop windows was caught by the witness control
+and absorbed into the method. Note: W2B_BASELINE_LIVENESS.md.
