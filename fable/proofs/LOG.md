@@ -291,3 +291,23 @@ normal form, Γ structure, torsion-freeness, W3/W5/W6 lanes). Lesson filed: a
 solution verified through the operators that produced it is not verified.
 Note: W2J_THETA_RESIDUAL.md; checker theta_residual_evaluator.py. No AK(3),
 stable AC, or AC claim.
+
+## 2026-08-28 · cycle 20 · `65a6468`
+
+W2k: the L0 defect repaired and the suspended chain re-verified claim by
+claim. Only L0 changes (gains q(h1)); L1–L4 provably h1-free; 6,700 literal
+probes per operator set × 67 chains, 0 exact mismatches, re-broken control
+fires exactly on the 59. Reconciliation: W2b STRENGTHENED (6 → 13/17 live);
+W2f live fractions RETRACTED and replaced (0.77/0.67/0.51/0.46, 10 dead→live,
+3 of 5 strata retracted incl. the g-stratum S2, per-window mod-5 nesting
+retracted); W2e's refutation HELD (142/405); W2g d = 1 HELD 44/44 (L1 alone
+generates — never at risk); W2h Lemma 5 corrected then HELD (margins ≤ 5);
+W2i d₂ = 1 and Ξ_Z ≅ HELD; W2j unchanged; 24/46 shipped "verified" layer-1
+solutions RETRACTED, corrected ones verify literally 55/55 + 21/21. Verdict
+after repair: layer 1 obstruction-free (PROVED finite-index / EVIDENCED
+infinite-index); Ξ_Z isomorphism same split; layer 2 remains exactly
+Ξ_Z(Θ) = 0 conditional on (3.1)+(3.5). The one open W2 question that can
+change the answer: is 0 attainable for Ξ_Z∘Θ over the complete correction
+lattice for even one baseline. Post-hoc sections in six notes; lesson filed.
+Note: W2K_CORRECTED_REVERIFY.md; checkers corrected_operators.py,
+w2k_reverify.py. No AK(3), stable AC, or AC claim.
