@@ -16,3 +16,11 @@ bridge (all 6 nontrivial hom classes connect; surjective orbits are all of A5^3 
 the frozen identity tuple; controls green). Note: `W1_BRIDGE_FINITE_TEST.md`. Next:
 generator-reduced move set, larger quotients (W1b), and rank-3 greedy preflight on
 Tpub within the 1,000-node cap.
+
+## 2026-08-28 · cycle 2 · `6a9a257`
+
+ac-advisor BLOCK on W1 sustained and repaired: the finite test was theorem-forced
+(vacuity lemma; BLM 2005). W1 closed as a method-closure result with full retraction
+of the earlier inferences; five lessons recorded; W3 repointed at the Lackenby
+thickenability lever (thickenable => unstable AC-trivializable), pending its own
+advisor gate. No AK(3), stable AC, or AC claim.
