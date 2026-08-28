@@ -87,67 +87,70 @@ not that search, and the report says so loudly.
 
 ## Which search runs
 
-Nothing about the search is re-implemented. The greedy arm calls
-`greedy_baseline.greedy_search(..., high_speedup=True)` — the shipped memory-lean
-solver that exists for exactly this budget.
+Both arms run **`hcompact`** — the packed-arena engine (nibble arena, int32 binary
+heap, open-addressing table, all in numba) that the 100k wave itself used, ported
+onto this branch with its chain (`greedy_compact`, `hlab`, `hfast`, `hsolve`). The
+heap ordering is the only thing that differs:
 
-The heuristic arm **cannot** call `heuristics.greedy_search_h`. That solver keeps
-`visited` (state → parent), `move_in` and `new_seen`, all keyed by tuples of
-Python strings, so it can rebuild certificates; measured on `ac19_1007` from this
-screen at cap 48 it holds **1.64 GB by 12,288 popped nodes**, which extrapolates
-past 100 GB at 1M. That is not a slow run, it is an OOM. So
-`run_leftovers_1m.LeanHeuristicSolver` subclasses the same lean solver the greedy
-arm uses and swaps only the heap's priority expression — the numba expansion, the
-reduction, the canonicalisation, the cap, the visited set and the
-`(priority, depth, key)` push shape are all inherited, exactly as
-`heuristics.HeuristicSolver` inherits from `GreedyBaselineSolver`. The tests pin
-it against `greedy_search_h` **pop for pop** on synthetic and real rows, and pin
-that its baseline config reproduces the greedy arm exactly.
+| arm | config | priority |
+|---|---|---|
+| `greedy` | `LENGTH_ONLY` | `L` |
+| `s20_mk2` | `S20_MK2` | `L + 20·S + 2·MK` |
 
 `S20_MK2` is `{"L": 1.0, "S": 20.0, "MK": 2.0}`. The former `RECOMMENDED` vector
 (`L + 2.53·K + 6.418·MK + 8.458·S + 3.292·xyimb`) was withdrawn as overfit and is
 refused by name by `run_leftovers_1m.resolve_arm`.
 
-**Engine note.** The 100k pass ran on the research branches' `hcompact` engine,
-which is not on this branch. These are the `experiments/search/` solvers that ship
-with main and that `tests/test_greedy_heuristic.py` pins. They search the same
-space, so `solved` is comparable across the two runs — but node counts are not
-interchangeable between engines, so read `nodes_explored` only within this run.
+**Why not the Python solvers.** `heuristics.greedy_search_h` keeps `visited`
+(state → parent), `move_in` and `new_seen` keyed by tuples of Python strings so it
+can rebuild certificates; measured on `ac19_1007` at cap 48 it holds **1.64 GB by
+12,288 popped nodes**, past 100 GB at 1M. A memory-lean rewrite
+(`LeanHeuristicSolver`) got that to 46 GB and 290 nodes/s — still only one worker
+on a 51 GB runtime. `hcompact` holds ~76–84 B/state against those solvers' ~390.
+
+They both remain in the tree, and they are still exercised: they are the fallback
+where the engine is absent, and they are the **oracle** the tests check the engine
+against, field for field, on real rows from these lists. Swapping an engine under
+an experiment that already has published numbers is only legitimate if it is the
+same search.
+
+**Node counts are comparable with the 100k run**, because this is the engine that
+run used. An earlier revision of these notebooks used the Python solvers and
+warned that `nodes_explored` was not interchangeable across engines; that caveat
+no longer applies.
 
 ## Cost, and why the runtime must be High-RAM
 
-Measured single-core at cap 48 on rows from these lists, extrapolated linearly to
-1,000,000 nodes:
+Measured on `ac19_7284` from this row list, budget 60,000, cap 48:
 
-| arm | row | measured | rate | → 1M nodes |
-|---|---|---|---:|---|
-| `greedy` | `ac19_420` | 2.71 GB at 200,000 pops | ~1050 n/s | **~16 GB**, ~16 min/row |
-| `s20_mk2` | `ac19_7284` | 1.17 GB at 25,600 pops | ~330 n/s | **~46 GB**, ~50 min/row |
+| engine | rate | RAM at 1M | workers on 51 GB |
+|---|---:|---:|---:|
+| `LeanHeuristicSolver` (Python) | 290 n/s | 46 GB | 1 |
+| **`hcompact`** | **802 n/s** | **7.6 GB** | **6** |
 
 Memory grows with what the search **discovers**, not what it pops — a best-first
-search queues far more than it expands. The arms differ because the orderings go
-different places: `s20_mk2` prefers thicker blocks, so it queues longer relators
-and a wider frontier.
+search queues far more than it expands.
 
-`N_WORKERS = "auto"` therefore sizes the pool by **free RAM, not core count**: on
-a 51 GB high-RAM runtime that is **3 workers for `greedy`, 1 for `s20_mk2`**. A
-standard (non-high-RAM) runtime has ~13 GB and cannot run the `s20_mk2` arm at 1M
-at all — SETUP prints the worker count it resolved, so check that line before
-walking away. Oversubscribing does not make a slow run, it makes an OOM that loses
-the session. Workers also run with `maxtasksperchild=1`, so one row's peak cannot
-become the next row's floor.
+`N_WORKERS = "auto"` sizes the pool by **free RAM, not core count**, using the
+engine's *own* arena reservation formula — so the number the pool is sized by and
+the number the search allocates are one quantity rather than two that can drift.
+It also scales with the budget, so a 2,000-node smoke does not reserve the 1M
+footprint. Workers run `maxtasksperchild=1`, so one row's peak cannot become the
+next row's floor.
 
-`s20_mk2` reaching 1M at all depends on one detail: a single-segment config scores
-to a **bare float** rather than `make_priority`'s `(segment_index, score)` tuple.
-That tuple is allocated once per discovered state and lives in the heap until the
-state is popped; dropping it took this arm from ~63 GB projected to ~46 GB and
-from ~200 to ~330 nodes/s. It is order-identical — every state is in segment 0, so
-comparing `(0, a)` with `(0, b)` is comparing `a` with `b` — and the tests pin that
-against `greedy_search_h`.
+SETUP prints what it resolved. You want to see:
 
-**Expect to resume.** 39 rows is a small job; 222 at 2 workers is on the order of
-a day, and Colab will disconnect first. That is planned for — reopen, Run All,
-and nothing is recomputed.
+```
+  engine  : hcompact (packed arena, numba)
+  workers : 6 (~7.6 GB/search reserved)
+```
+
+`python fallback` there means the clone did not pick up the engine files — re-run
+SETUP rather than letting it run ~10× slower.
+
+**Expect to resume.** Colab will disconnect before 222 rows finish. That is
+planned for: reopen, Run All, and nothing already recorded is recomputed; a wiped
+`/content` reseeds from the Drive mirror.
 
 ## Tests
 

@@ -39,19 +39,26 @@ search being run is not the search that built the list.
 
 WHICH SEARCH RUNS
 -----------------
-The heap ordering is the only thing that differs between the arms:
+Both arms run ``hcompact`` -- the packed-arena engine (nibble arena, int32 binary
+heap, open-addressing table, all in numba) that the 100k wave itself used, ported
+onto this branch with its chain. The heap ordering is the only thing that differs:
 
-    greedy    greedy_baseline.greedy_search(..., high_speedup=True)
-    s20_mk2   LeanHeuristicSolver below -- that same memory-lean solver with the
-              ordering swapped, because ``heuristics.greedy_search_h`` cannot
-              reach this budget (see the note above the class).
+    greedy    config=LENGTH_ONLY    priority = L
+    s20_mk2   config=S20_MK2        priority = L + 20*S + 2*MK
 
-    ENGINE NOTE. The 100k pass ran on the research branches' ``hcompact`` engine,
-    which is not on this branch; these are the ``experiments/search/`` solvers
-    that ship with main and that ``tests/test_greedy_heuristic.py`` pins. They
-    search the same space, so ``solved`` is comparable across the two runs --
-    but node counts are not interchangeable between engines, so read
-    ``nodes_explored`` only within this run.
+Measured on ``ac19_7284`` from this row list, budget 60,000, cap 48: 802 nodes/s
+in 7.6 GB at 1M, against the pure-Python ``LeanHeuristicSolver``'s 290 nodes/s in
+46 GB -- 6 workers on a 51 GB runtime instead of 1.
+
+    ``LeanHeuristicSolver`` and ``greedy_search(high_speedup=True)`` are still
+    here, and are still exercised: they are the fallback where the engine is
+    absent, and they are the ORACLE the tests check the engine against field for
+    field on real rows from these lists. Swapping an engine under an experiment
+    with published numbers is only legitimate if it is the same search.
+
+    Since this is the engine the 100k wave ran, ``nodes_explored`` IS comparable
+    across the two runs -- an earlier revision of this file, running the Python
+    solvers, warned that it was not. That caveat no longer applies.
 
 The withdrawn ``RECOMMENDED`` weight vector is refused by name; see ``resolve_arm``.
 """

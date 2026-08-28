@@ -718,3 +718,36 @@ def test_the_engine_is_what_the_arms_actually_call():
     assert len(calls) == 2
     assert calls[1] == S20_MK2
     assert calls[0]["segments"][0]["w"] == {"L": 1.0}
+
+
+def test_the_shipped_docs_describe_the_engine_that_actually_runs():
+    """Docs drifting behind a swapped engine is how someone plans capacity for 1
+    worker and 50 min/row when the run does 6 and 20. The engine port shipped
+    once with this file and the README still saying hcompact was absent."""
+    readme = open(os.path.join(mk.NB_DIR, "README.md")).read()
+    runner = open(os.path.join(ROOT, "experiments", "search",
+                               "run_leftovers_1m.py")).read()
+    docstring = runner[:runner.index('"""', 3)]
+    for text, what in ((readme, "README"), (docstring, "runner docstring")):
+        if HAVE_HCOMPACT:
+            assert "hcompact" in text, what
+            assert "not on this branch" not in text, (
+                f"{what} still says the engine is absent while the code uses it")
+        # the withdrawn vector may be named as prose, never recommended
+        assert "config=RECOMMENDED" not in text, what
+
+
+def test_the_readme_quotes_the_engines_real_measured_cost():
+    """The numbers a reader sizes a runtime from must be the engine's, not the
+    superseded Python solver's."""
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    readme = open(os.path.join(mk.NB_DIR, "README.md")).read()
+    assert "802 n/s" in readme and "7.6 GB" in readme
+    # est_gb is the source of truth; the README must not contradict it
+    assert f"{est_gb(NODE_BUDGET, 48):.1f} GB" in readme
+    # the worker count in the cost table must be the one resolve_workers gives
+    # for the runtime the table names, not a number left over from a prior engine
+    workers = resolve_workers("s20_mk2", "auto", available_gb=51.0, cpu_count=8)[0]
+    assert f"**{workers}** |" in readme, (
+        f"README cost table does not show {workers} workers on 51 GB")
