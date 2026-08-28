@@ -36,6 +36,14 @@ for a class-two lift.  The full equation lives in an infinite exterior
 module, and a literal lift must subsequently kill every higher nonabelian
 defect.
 
+Sections 3.41--3.43 now prove that each of the eight paired occurrence
+tensors is individually anisotropic on every nonzero finitely supported
+current.  The proof uses the separated Magnus filtration and disjoint
+alpha-parity word supports, so it includes arbitrary cross-axis support and
+the two height-zero forest generators.  This does not yet obstruct the
+complete occurrence polygon: a surviving paired coordinate can still be
+occupied by a different paired, parent--child, root, or affine-unary term.
+
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
 ## 1. Literal lift equation
@@ -5063,6 +5071,136 @@ not separate the bucket supports of different paired, parent--child, or
 root terms in the fifteen-term laminar polygon, and it does not evaluate
 the affine unary value.  Those global cancellations remain the exact
 class-two boundary.
+
+### 3.44 One group-ring ledger for the external occurrence polygon
+
+The external cross-laminar problem can be written in the same exact
+free-subgroup ledger as one paired tensor.  This section treats the strict
+occurrence pairs $o<p$.  Same-occurrence canonical-section terms are not
+included.  Write every occurrence prefix uniquely as
+
+\[
+ q_o=m_oc^{\eta_o},
+ m_o\in K,
+ \eta_o\in\{0,1\},
+ \tag{3.336}
+\]
+
+and define its transported group-ring current by
+
+\[
+ \mathbf G_o:=m_o\alpha^{\eta_o}(\mathbf F_{s_o}).
+ \tag{3.337}
+\]
+
+The complete occurrence data are
+
+\[
+\boxed{
+\begin{array}{c|rrrrrrrrrrrrrrrr}
+o&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16\\ \hline
+s_o&2&1&0&0&1&2&0&0&3&1&0&0&1&3&4&4\\
+\epsilon_o&1&1&1&-1&-1&-1&1&-1&1&1&1&-1&-1&-1&1&-1\\
+\eta_o&0&1&1&0&1&1&1&0&1&0&0&1&0&0&0&0.
+\end{array}}
+\tag{3.338}
+\]
+
+Thus the signed transported occurrence current in (3.157) is represented
+on $K$ by $\epsilon_o\mathbf G_o$.  Define the finite group-ring area
+
+\[
+ \boxed{
+ \mathscr P_2(\mathbf F)
+ :=\sum_{1\leq o<p\leq16}
+ \epsilon_o\epsilon_p\mathbf G_o^*\mathbf G_p
+ \in\mathbb ZK.}
+ \tag{3.339}
+\]
+
+Define the external homogeneous exterior tensor directly by
+
+\[
+ \Theta_2^{\mathrm{ext}}(F)
+ :=\sum_{1\leq o<p\leq16}
+ \epsilon_o\epsilon_p
+ (q_oF_{s_o})\wedge(q_pF_{s_p}).
+ \tag{3.339a}
+\]
+
+Applying the coinvariant map (3.209) term by term to (3.339a) gives
+
+\[
+ \boxed{
+ [\Xi_{\mathbb Z}(\Theta_2^{\mathrm{ext}}(F))]
+ =\pi_K\left(\mathscr P_2(\mathbf F)\right).}
+ \tag{3.340}
+\]
+
+Here $\pi_K$ discards the identity coefficient and imposes exactly the
+$\alpha$ and signed-inversion relations in (3.208).  No source order or
+virtual provenance remains in (3.339); all literal chronology is the
+strict inequality $o<p$.
+
+Write
+
+\[
+ \mathscr P_2=\sum_uA_u u,
+ C_{[u]_\alpha}:=A_u+A_{\alpha(u)}.
+ \tag{3.341}
+\]
+
+Equations (3.211) and (3.216) now give the exact external homogeneous zero
+test
+
+\[
+ \boxed{
+ \Xi_{\mathbb Z}(\Theta_2^{\mathrm{ext}}(F))=0
+ \Longleftrightarrow
+ \begin{cases}
+ C_d=C_{\iota d},&d\ne\iota d,\\
+ C_d\equiv0\pmod2,&d=\iota d.
+ \end{cases}}
+ \tag{3.342}
+\]
+
+Equivalently,
+
+\[
+ \boxed{
+ \mathscr P_2(\mathbf F)
+ \in\mathbb Z1+(1+*)\mathbb ZK+(1-\alpha)\mathbb ZK.}
+ \tag{3.343}
+\]
+
+The nonfixed part of (3.342) is the single self-adjointness equation
+
+\[
+ \boxed{
+ \mathscr P_2+\alpha(\mathscr P_2)
+ =\mathscr P_2^*+\alpha(\mathscr P_2^*).}
+ \tag{3.344}
+\]
+
+The fixed part is the family of Hilbert--90 parities from Section 3.38,
+now applied to the sum of all 120 occurrence pairs rather than to one
+paired interval.
+
+For the eight paired pairs $(o,p)$ in (3.338), diagonal normalization by
+$q_o^{-1}$ turns the corresponding wedge into
+$F_s\wedge g_IF_s$ with generator $g_I=q_o^{-1}q_p$.  It is anisotropic
+by (3.327) or (3.335) whenever
+$\mathbf F_s\ne0$.  The exact remaining question is whether the other
+paired summands and the seven
+parent--child/root contributions can supply every opposite free coefficient
+and fixed-orbit parity in (3.342).  The same-occurrence inverse-jet and
+canonical-section homogeneous terms must then be evaluated directly in
+$\Lambda^2M$: their mixed polarization vanishes under each torsion-free ray
+reader, but that does not exclude an inversion-fixed $\mathbb Z/2$
+coinvariant after passage to $W_Q$.  The affine constant-plus-unary part of
+$\Theta(F)$ is also separate.  Thus (3.339)--(3.344) unify the exact
+external collision ledger but do not assert that the complete homogeneous
+or affine-quadratic class survives.
 
 ## 4. Exact diagonal sieve
 
