@@ -1,0 +1,436 @@
+{
+  "_fails": [],
+  "quarantined_positives": [],
+  "targets": [
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 5,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-4",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 5,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 2
+        },
+        {
+          "bundle": "1-4",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-5",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-5",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 20858412072960000,
+      "counters": {
+        "closed_component_assignments": 124,
+        "component_seed_attempts": 15600,
+        "component_seed_budget": 15600,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 3120,
+        "phase_tuples_considered": 3120,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xyz",
+      "link_connected": true,
+      "macro_rotations": 4,
+      "name": "Txy_certified_AC_trivial",
+      "reason": null,
+      "route": "W6b_DELEGATED",
+      "scheme_stats": {},
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "zYX"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 6,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-4",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 2
+        },
+        {
+          "bundle": "1-4",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-5",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-4",
+          "class": "SINGLE_EDGE (no bundle freedom)",
+          "multiplicity": 1,
+          "pieces": 1
+        },
+        {
+          "bundle": "3-5",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 20858412072960000,
+      "counters": {
+        "closed_component_assignments": 96,
+        "component_seed_attempts": 18720,
+        "component_seed_budget": 18720,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 3120,
+        "phase_tuples_considered": 3120,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xyz",
+      "link_connected": true,
+      "macro_rotations": 4,
+      "name": "Tpub",
+      "reason": null,
+      "route": "W6b_DELEGATED",
+      "scheme_stats": {},
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xzYXyxZXYxyZ",
+        "XyxZXYXyxzXYxy",
+        "Xyz"
+      ]
+    },
+    {
+      "agrees_with_brute_force": true,
+      "brute_force_decided": true,
+      "brute_force_gamma_N": 2,
+      "bundles": [],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 86400,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 84,
+        "phase_tuples_considered": 84,
+        "scheme_budget": 2,
+        "schemes_considered": 2,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BARE_ROW",
+      "gens": "xyz",
+      "link_connected": false,
+      "macro_rotations": 2,
+      "name": "ak3_stabilized",
+      "reason": null,
+      "reduced_family": "BOOK",
+      "reduced_gens": "xy",
+      "reduced_verdict": "NOT_SPHERICAL",
+      "reduced_words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ],
+      "route": "LEMMA_F_W6b_DELEGATED",
+      "scheme_stats": {},
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY",
+        "z"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 22596613079040000,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 6776,
+        "component_seed_budget": 6776,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 616,
+        "phase_tuples_considered": 616,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BARE_ROW",
+      "gens": "xyz",
+      "link_connected": false,
+      "macro_rotations": 2,
+      "name": "Q_stabilized",
+      "reason": null,
+      "reduced_family": "CUT",
+      "reduced_gens": "xy",
+      "reduced_verdict": "NOT_SPHERICAL",
+      "reduced_words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ],
+      "route": "LEMMA_F_CUT",
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy",
+        "z"
+      ]
+    },
+    {
+      "agrees_with_brute_force": true,
+      "brute_force_decided": true,
+      "brute_force_gamma_N": 2,
+      "bundles": [
+        {
+          "bundle": "0-1",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "BOOK",
+          "multiplicity": 2,
+          "pieces": 1
+        },
+        {
+          "bundle": "2-3",
+          "class": "BOOK",
+          "multiplicity": 3,
+          "pieces": 1
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 86400,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 336,
+        "component_seed_budget": 336,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 84,
+        "phase_tuples_considered": 84,
+        "scheme_budget": 2,
+        "schemes_considered": 2,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "BOOK",
+      "gens": "xy",
+      "link_connected": true,
+      "macro_rotations": 2,
+      "name": "ak3_rank2",
+      "reason": null,
+      "route": "W6b_DELEGATED",
+      "scheme_stats": {},
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    },
+    {
+      "brute_force_decided": false,
+      "brute_force_gamma_N": null,
+      "bundles": [
+        {
+          "bundle": "0-2",
+          "class": "BOOK",
+          "multiplicity": 7,
+          "pieces": 1
+        },
+        {
+          "bundle": "0-3",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-2",
+          "class": "BOOK",
+          "multiplicity": 4,
+          "pieces": 1
+        },
+        {
+          "bundle": "1-3",
+          "class": "BOOK",
+          "multiplicity": 7,
+          "pieces": 1
+        },
+        {
+          "bundle": "2-3",
+          "class": "CUT",
+          "multiplicity": 3,
+          "pieces": 2
+        }
+      ],
+      "claim": "NOT THICKENABLE for this exact spelling (gamma_N > 0).",
+      "compatible_orderings": 22596613079040000,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_seed_attempts": 6776,
+        "component_seed_budget": 6776,
+        "dfs_nodes": 0,
+        "dfs_prunes": 0,
+        "exhaustive": true,
+        "full_assignments_considered": 0,
+        "phase_tuple_budget": 616,
+        "phase_tuples_considered": 616,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "family": "CUT",
+      "gens": "xy",
+      "link_connected": true,
+      "macro_rotations": 2,
+      "name": "Q_rank2",
+      "reason": null,
+      "route": "CUT",
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical": false,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xYxYXyyXYxyXy",
+        "XyyXYXyxYYxy"
+      ]
+    }
+  ]
+}

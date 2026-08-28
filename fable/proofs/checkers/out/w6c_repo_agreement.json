@@ -1,0 +1,563 @@
+{
+  "Q_rank2": {
+    "agrees": true,
+    "my_verdict": "NOT_SPHERICAL",
+    "repo_spherical": false
+  },
+  "_fails": [],
+  "pinned_p4": [
+    {
+      "agrees": true,
+      "my_verdict": "SPHERICAL_REQUIRES_REGINA",
+      "repo_spherical": true,
+      "repo_support": "P4",
+      "route": "W6b_DELEGATED",
+      "words": [
+        "X",
+        "XY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_verdict": "NOT_SPHERICAL",
+      "repo_spherical": false,
+      "repo_support": "P4",
+      "route": "W6b_DELEGATED",
+      "words": [
+        "X",
+        "XXXYXY"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": false,
+      "repo_schemes": 4,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xx",
+        "xxYXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "YY",
+        "xYXyXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "YY",
+        "yxYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "Y",
+        "xYYxy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xYXY",
+        "yy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xxYx",
+        "xy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xY",
+        "YXXX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": true,
+      "repo_schemes": 4,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yyyX",
+        "YYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yy",
+        "xyXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XyXX",
+        "YX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yxYXyy",
+        "XY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XXYxY",
+        "XXYXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": false,
+      "repo_schemes": 4,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "X",
+        "xxYXXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XYY",
+        "Xyy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xYYY",
+        "yxYxyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "Yx",
+        "yxxxYX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xYxy",
+        "xYYY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 5,
+      "my_spherical": false,
+      "repo_schemes": 5,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yyyy",
+        "XyXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yx",
+        "xxxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xyyxYY",
+        "yX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": true,
+      "repo_schemes": 4,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xxxY",
+        "XXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yyx",
+        "YYxyx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XY",
+        "Yxxx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xyxY",
+        "XYYY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XYxY",
+        "xx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": true,
+      "repo_schemes": 4,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yxyyy",
+        "xyxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 5,
+      "my_spherical": false,
+      "repo_schemes": 5,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "YY",
+        "XyyyXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XYxY",
+        "yy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "YXYx",
+        "XX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xy",
+        "YYXYxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 4,
+      "my_spherical": false,
+      "repo_schemes": 4,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "Y",
+        "yyyxyX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 5,
+      "my_spherical": false,
+      "repo_schemes": 5,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XX",
+        "xyxYxx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "YXX",
+        "xxyXy"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "X",
+        "XyxxY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "y",
+        "yyxYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 5,
+      "my_spherical": true,
+      "repo_schemes": 5,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "yy",
+        "yyxyyX"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XX",
+        "yXYx"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "XYxYX",
+        "XXY"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": false,
+      "repo_schemes": 3,
+      "repo_spherical": false,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "Xyyxy",
+        "Y"
+      ]
+    },
+    {
+      "agrees": true,
+      "my_schemes": 3,
+      "my_spherical": true,
+      "repo_schemes": 3,
+      "repo_spherical": true,
+      "repo_support": "K4-e",
+      "scheme_shape_sets_identical": true,
+      "words": [
+        "xxxy",
+        "Yx"
+      ]
+    }
+  ],
+  "sweep": {
+    "disagreements": [],
+    "repo_supports": {
+      "K4-e": 120
+    },
+    "scheme_shape_mismatches": [],
+    "single_vertex_pieces": 120,
+    "tested": 120
+  }
+}

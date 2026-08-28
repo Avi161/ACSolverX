@@ -1,0 +1,246 @@
+{
+  "_fails": [],
+  "pinned": [
+    {
+      "built_by_schemes": 6,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xy",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 6,
+      "words": [
+        "YxYY",
+        "yx"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 3,
+      "exact": true,
+      "gens": "xy",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "Xyy",
+        "yyyx"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xy",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "yXYX",
+        "YYYX"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xy",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "XXyX",
+        "xyxy"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 3,
+      "exact": true,
+      "gens": "xy",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "YY",
+        "xyyXY"
+      ]
+    },
+    {
+      "built_by_schemes": 36,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 36,
+      "words": [
+        "YXZ",
+        "xYZxY",
+        "yX"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 4,
+      "scheme_stats": {
+        "duplicate": 28,
+        "generated": 48,
+        "kept": 6,
+        "non_spherical": 14
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "zxzy",
+        "zyXzz",
+        "Y"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "Yzx",
+        "YZXX",
+        "XZX"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 3,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "zXz",
+        "Xy",
+        "ZZYZ"
+      ]
+    },
+    {
+      "built_by_schemes": 24,
+      "complete": true,
+      "cut_multiplicity": 3,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 16,
+        "generated": 32,
+        "kept": 4,
+        "non_spherical": 12
+      },
+      "spherical_rotation_systems": 24,
+      "words": [
+        "Y",
+        "ZZZxY",
+        "ZXZ"
+      ]
+    },
+    {
+      "built_by_schemes": 6,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 6,
+      "words": [
+        "Z",
+        "ZyZ",
+        "ZXyX"
+      ]
+    },
+    {
+      "built_by_schemes": 6,
+      "complete": true,
+      "cut_multiplicity": 2,
+      "exact": true,
+      "gens": "xyz",
+      "macro_rotations": 2,
+      "scheme_stats": {
+        "duplicate": 14,
+        "generated": 24,
+        "kept": 3,
+        "non_spherical": 7
+      },
+      "spherical_rotation_systems": 6,
+      "words": [
+        "Z",
+        "yXzx",
+        "zzY"
+      ]
+    }
+  ],
+  "sweep": {
+    "incomplete": [],
+    "inexact": [],
+    "seed": 6161,
+    "tested": 120
+  }
+}
