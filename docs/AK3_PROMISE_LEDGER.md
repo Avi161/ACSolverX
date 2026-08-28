@@ -120,14 +120,22 @@ finite quotient do not close a route.
   open object at this endpoint is the interleaved relative Peiffer class
   `(A,B_t,v,rt) -> (A,B,v,t)`; it is not necessary, is not closed, and gives
   no stable-AK(3) claim.
+- **All nilpotent boundary shadows evaluated:** after undoing the final donor
+  macro, the relative endpoint is `(q,rt) -> (B,t)` over fixed `(A,v)`.  In
+  the Gate-A quotient, `gamma_2=gamma_n` for every `n>=2`, and both `r` and
+  the discrepancy `D` lie in that stable subgroup.  Hence every nilpotent
+  quotient identifies both ordered pairs literally with `(x^-1,t)`.  This
+  closes lower-central invariants of the boundary words only.  It is not a
+  class-two crossed-module calculation or a Peiffer lift; those require
+  explicit 2-cell lifts and the relative move action.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
-  symbolic residual pair, or the named relative class at the one-tag endpoint.
-  The lifts are complete, but no closure to `(A,B,Xyz)` is proved. Do not add
-  another sequential cleanup or pinned-donor category. No fixed-base or
-  failed-search result is evidence against the bridge. Before extending the
-  JSON schema, harden ordinal fields to reject booleans/floats that compare
-  equal to integers.
+  symbolic residual pair, or the literal relative Peiffer structure at the
+  one-tag endpoint.  Do not escalate through more ambient lower-central
+  quotients: they are all blind.  The lifts are complete, but no closure to
+  `(A,B,Xyz)` is proved. Do not add another sequential cleanup or pinned-donor
+  category. No fixed-base or failed-search result is evidence against the
+  bridge.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See

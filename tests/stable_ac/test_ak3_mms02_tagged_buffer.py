@@ -40,6 +40,16 @@ def substitute(word: str, images: dict[str, str]) -> str:
     return product(*expanded)
 
 
+def exponent_vector(word: str, generators: str) -> tuple[int, ...]:
+    return tuple(
+        sum(
+            1 if letter == generator else -1 if letter == generator.upper() else 0
+            for letter in word
+        )
+        for generator in generators
+    )
+
+
 def test_mms02_tagged_buffer_exact_word_replay():
     A = "xzYXyxZXYxyZ"
     B = "XyxZXYXyxzXYxy"
@@ -105,3 +115,14 @@ def test_mms02_tagged_buffer_exact_word_replay():
         {"z": "Yx"},
     )
     assert w == expected_w == "yxYYxyXyyXY"
+
+    A_bar = substitute(A, {"z": "Yx"})
+    B_bar = substitute(B, {"z": "Yx"})
+    r_bar = substitute(r, {"z": "Yx"})
+    assert exponent_vector(A_bar, "xy") == (0, 1)
+    assert exponent_vector(r_bar, "xy") == (0, 1)
+    assert exponent_vector(q, "xy") == (-1, 1)
+    assert exponent_vector(B_bar, "xy") == (-1, 1)
+    assert substitute(A_bar, {"y": ""}) == ""
+    assert substitute(q, {"y": ""}) == "X"
+    assert substitute(B_bar, {"y": ""}) == "X"
