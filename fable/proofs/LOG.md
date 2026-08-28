@@ -229,3 +229,23 @@ quarantine events on real targets. Residual: shared-vertex multi-cut (58 at
 c22, 4 at c20) is the next family; remaining buckets are closure-size
 limited. Note: W6C_CUT_FAMILY.md; checker rank3_cut_family_solver.py. No
 AK(3), stable AC, AC, or thickenability-positive claim.
+
+## 2026-08-28 · cycle 17 · `848a054`
+
+W2h: layer 1 of the period-two quotient is obstruction-free for the ENTIRE
+census — d = 1 on all 23 infinite-index chains (Stallings core + exact Cayley-
+tree cones, Lemma 5 column collapse, integer Hermite membership), so with W2g
+all 67 baselines are layer-1 live; explicit verified corrections on 22/23.
+Honest asymmetry: the infinite-index all-window claim is EVIDENCED by an exact
+margin law (depth = L − μ, exact 19/23 over four L values), not proved — the
+(k2,k3) closure has no infinite-index analogue. Controls: 25,460 identity
+checks / 0 mismatches, 38,190 vanishing rows / 0 failures, corruptions fire
+67/67, finite specialization reproduces W2g 44/44, synthetic positive fires
+23/23. Consequence: the dead-baseline escape hatch is closed for every
+baseline; a per-baseline layer-2 tower cannot terminate; the codex route's
+survival question moves to d2 — the same double-coset invariant on Λ²M (same
+five operators diagonally, same Γ), where signed 2-torsion could carry the
+first genuine obstruction, at exactly the prime (p = 2) layer 1 found
+permissive. The WIP checkpoint d39f105 is superseded by this reviewed state.
+Note: W2H_INFINITE_INDEX_LIVENESS.md; checker infinite_index_liveness.py.
+No AK(3), stable AC, or AC claim.
