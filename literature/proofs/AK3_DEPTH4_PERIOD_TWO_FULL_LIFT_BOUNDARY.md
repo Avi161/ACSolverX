@@ -94,6 +94,8 @@ Section 3.59 identifies the natural slope-two candidates exactly: every
 paired same-coordinate bucket has length equal to a fixed translation
 length plus twice the correction vertex's distance from one affine axis in
 the Cayley tree of $K$.
+Section 3.60 records that repeated occurrence pairs in slots zero and one
+have identical paired words, so they supply no transverse same-slot axes.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6846,6 +6848,60 @@ cross-support collider from the same tensor, another occurrence pair, or
 another quadratic term.  The new reduction isolates the two remaining
 tasks: control those annular collider parities, and separately analyze the
 axis-tube configurations in (3.444).
+
+### 3.60 Repeated occurrence pairs give one axis per slot
+
+The intersections in (3.444) do not produce extra same-slot rigidity.
+Direct free reduction of the pinned prefixes gives
+
+\[
+ \begin{aligned}
+ q_3^{-1}q_4=q_7^{-1}q_8=q_{11}^{-1}q_{12}
+ &=\texttt{cTctcTTTcttc},\\
+ q_2^{-1}q_5=q_{10}^{-1}q_{13}
+ &=\texttt{cTctcTctt}.
+ \end{aligned}
+ \tag{3.445}
+\]
+
+Together with the three singleton interval families, the exact paired word
+for each slot is therefore
+
+\[
+ \begin{array}{c|c|c}
+ s&\mathscr I_s&g_s\\ \hline
+ 0&[3,4],[7,8],[11,12]&\texttt{cTctcTTTcttc}\\
+ 1&[2,5],[10,13]&\texttt{cTctcTctt}\\
+ 2&[1,6]&\texttt{ctcTcTctc}\\
+ 3&[9,14]&\texttt{TTcttcTct}\\
+ 4&[15,16]&\texttt{T}
+ \end{array}
+ \tag{3.446}
+\]
+
+These are the same freely reduced words used in the paired-axis audit of
+Section 3.26.  Write $\mathcal A_s^K$ and $\tau_s^K$ for the affine axis
+and translation length of $g_s$.  The tube alternative (3.444) simplifies
+to
+
+\[
+ \boxed{
+ \operatorname{supp}_2(F_s)
+ \subseteq
+ \left\{
+ v:d_{\mathcal T_K}(v,\mathcal A_s^K)
+ \le\frac{T(F)-\tau_s^K}{2}
+ \right\}
+ }
+ \tag{3.447}
+\]
+
+whenever slot $s$ has no paired same-coordinate bucket beyond the
+slope-one cutoff.  Thus the three slot-zero copies and two slot-one copies
+do not force a support vertex away from one of several axes; their axes
+coincide exactly.  Any universal annular-survival proof must instead use
+cross-slot forest closure, a non-paired occurrence multiplier, or a direct
+parity analysis of the collider fibers.
 
 ## 4. Exact diagonal sieve
 
