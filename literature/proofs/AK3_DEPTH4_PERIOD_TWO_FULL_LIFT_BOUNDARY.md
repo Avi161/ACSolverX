@@ -253,6 +253,10 @@ Section 3.103 applies the exact four-state right-coset action of the forest
 group.  Before any bounded word equality is checked, an endpoint pair must
 pass one explicit occurrence-state transition under the paired generator or
 its inverse.
+Section 3.104 isolates the literal prefix shadows.  Every natural source
+pair in slots zero and one has a second fixed occurrence pair with the same
+paired multiplier; actual cancellation between the pair and its shadow is
+controlled only by source and Green-path activity.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10563,6 +10567,63 @@ must still be present.
 Equations (3.670)--(3.673) are a support-independent prefilter for the
 paired-word schema (3.658).  They replace no word equality and assert no
 endpoint parity.
+
+### 3.104 Natural paired words have exact prefix shadows
+
+The literal table (3.667) contains exactly the following displayed prefix
+coincidences:
+
+\[
+ \boxed{
+ \begin{aligned}
+ q_1&=q_{16}=1,\\
+ q_2&=q_3=\texttt{tc},\\
+ q_6&=q_7=\texttt{ctcTcTctc},\\
+ q_{10}&=q_{11}=\texttt{ctcTctc},\\
+ q_{14}&=q_{15}=\texttt{t}.
+ \end{aligned}
+ }
+ \tag{3.674}
+\]
+
+Consequently the three natural slot-zero paired differences have the
+shadow equalities
+
+\[
+ \boxed{
+ \begin{aligned}
+ q_2^{-1}q_4=q_3^{-1}q_4&=g_0,\\
+ q_6^{-1}q_8=q_7^{-1}q_8&=g_0,\\
+ q_{10}^{-1}q_{12}=q_{11}^{-1}q_{12}&=g_0,
+ \end{aligned}
+ }
+ \tag{3.675}
+\]
+
+and the two natural slot-one differences have
+
+\[
+ \boxed{
+ \begin{aligned}
+ q_3^{-1}q_5=q_2^{-1}q_5&=g_1,\\
+ q_{11}^{-1}q_{13}=q_{10}^{-1}q_{13}&=g_1.
+ \end{aligned}
+ }
+ \tag{3.676}
+\]
+
+The duplicate left prefixes in (3.675) belong respectively to slots
+one/zero, two/zero, and one/zero.  Those in (3.676) belong to slots
+zero/one.  Thus each fixed-word shadow is carried by a different anchored
+cell coordinate from the corresponding natural source token.
+
+Equations (3.675)--(3.676) are multiplier identities only.  A shadow token
+is present exactly when the relevant source or unique Green-flow
+coefficient is active at the same coordinate.  In particular, the equal
+prefixes do not justify canceling a natural baseline atom without evaluating
+that activity.  They identify the first exact incidence rows in the
+terminal-boundary graph (3.661); all nonduplicate candidates still pass
+through the four-state and bounded-word filters of Sections 3.99--3.103.
 
 ## 4. Exact diagonal sieve
 
