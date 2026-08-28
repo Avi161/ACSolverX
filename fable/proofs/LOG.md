@@ -46,3 +46,9 @@ W2b liveness sweep: six of the 17 baselines are live at the relation-module laye
 (witness + 5; four share the witness R,S). Eleven inconclusive, zero dead. The
 gauge-representative dependence of one-hop windows was caught by the witness control
 and absorbed into the method. Note: W2B_BASELINE_LIVENESS.md.
+
+## 2026-08-28 · cycle 6 · `6f72ee0`
+
+W2c cap curve: 17 -> 36 -> 55 -> 67 essential baselines at caps 12-15, strictly
+growing. With W2b (6 live at cap 12), the period-two route needs a uniform argument;
+per-baseline towers cannot terminate. Addendum in W2_PERIOD_TWO_BASELINE_CENSUS.md.
