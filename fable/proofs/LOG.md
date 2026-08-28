@@ -122,3 +122,29 @@ control fails). Zero states popped anywhere. Notes: W5_BRIDGE_INVARIANTS.md;
 checkers bridge_reduction.py, bridge_invariant_probe.py, nilpotent_bridge_chain.py,
 w5_words.py, w5_linalg.py. Two lessons appended. No AK(3), stable AC, AC, or
 bridge claim.
+
+## 2026-08-28 · cycle 12 · `270c1de`
+
+W2f: layer-1 one-hop solvability computed as an explicit function of the
+six-parameter normal form, for all 67 census chains at caps 12–15 over the
+centralizer-indexed window family (5,427 fully-decided windows at K=1, per
+prime). Live fractions (mod 2,3,5): 6/17, 16/36, 19/55, 21/67 — stable-to-
+falling, so layer-1 liveness is NOT generic; W2b's six cap-12 live chains
+reproduced chain for chain on the rebuilt window family. Uniform facts: mod-5
+solvability implies mod-2 and mod-3 at every one of the 5,427 windows, and the
+chain verdict equals the mod-5 verdict at every cap. No subset of the seven
+parameter coordinates of size ≤ 4 determines liveness. Five exact dead strata
+(union 32 of 67 chains, no live member) have ZERO windows solvable mod 3 or
+mod 5 — largest is g ∉ {"", "TTc"} (22 chains), which survives K=2 on a
+7-chain sample (2,625 windows, 0 at every prime) and alternative terminal
+conjugators deduped by w = g t g⁻¹. Mechanism attempt NEGATIVE: the t-exponent
+abelianization M → Z[x,x⁻¹] is inert (solvable at all 2,106 windows tested),
+ruling out W2D (d.3)'s candidate. Latent W2e defect found and fixed: ball(10)
+conjugator search silently returns None on 15/67 chains at cap 15 (would have
+read never-tested as dead); replaced by a closed-form free-product conjugator,
+controlled byte-identical against the ball wherever both exist — W2e's
+committed cap-12 results unaffected. Note: W2F_PARAMETRIC_SOLVABILITY.md;
+checker period_two_parametric_solvability.py. Next decisive question recorded
+in §8: does a non-abelian quotient of Q kill the g-stratum (its parameter
+enters only through L3/L4, the operators W2e proves representative-stable).
+No AK(3), stable AC, or AC claim.
