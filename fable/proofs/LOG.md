@@ -148,3 +148,22 @@ checker period_two_parametric_solvability.py. Next decisive question recorded
 in §8: does a non-abelian quotient of Q kill the g-stratum (its parameter
 enters only through L3/L4, the operators W2e proves representative-stable).
 No AK(3), stable AC, or AC claim.
+
+## 2026-08-28 · cycle 13 · `11e57cd`
+
+W6 rank-3 feasibility: the Neuwirth/Lackenby route is rank-general on the repo's
+records (theory gate open, with the arxiv-egress caveat recorded and Theorem 2's
+connected-link hypothesis tracked). Lemma W6.1 (z-row splitting, proved +
+numerically confirmed): a bare z row is thickenability-inert — gamma_N(r1,r2,z) =
+gamma_N(r1,r2) exactly — so W5.1's (3)-(4) as spelled ARE the rank-2 question and
+the genuinely new object is Tpub alone. Targets: (AK3,z) NOT thickenable (exact
+gamma_N = 2, 86,400 orderings enumerated); (Q1,Q2,z) NOT thickenable (splitting +
+certified K4-e negative); Tpub UNDECIDED (connected, planar, kappa = 2, 4 spherical
+rotations, outside every certified family). Rank-3 AC ball from (AK3,z) closes at
+ceilings 16/18/20 with 17/125/503 canonical states (exceeds the pop law at 22);
+zero states in certified families at 20, zero non-planar link graphs anywhere, 24
+K6-E(P5) states at 22 all NOT_SPHERICAL. Zero positives; quarantine doctrine
+holds. Checker rank3_link_graph.py, 29 controls green. Next: build the missing
+certified family (2-connected planar 6-germ, four macro rotations, P4-style
+shifts) with certified-AC-trivial Txy as its free positive control. Note:
+W6_RANK3_FEASIBILITY.md. No AK(3), stable AC, AC, or thickenability-positive claim.
