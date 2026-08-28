@@ -76,7 +76,11 @@ the nonfixed weighted norm equation; the core, seam, affine, and higher
 free-group defects remain open.  Section 3.53 also removes the strict
 external polygon, terminal seam, and fixed-base affine terms from the
 inversion-fixed mixed Hessian: that Hessian is carried entirely by the
-canonical-section/inverse core.
+canonical-section/inverse core.  Section 3.54 identifies that abstract
+core with one explicit reverse-block tensor, so its remaining fixed
+coordinates can be evaluated without subtracting two wedge classes.
+Section 3.55 expands that tensor into a finite reverse-block inversion
+count on the actual correction tokens.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6359,6 +6363,183 @@ cancel in the complete polygon.  The remaining fixed-sector task is now
 sharply split into the core Hessian (3.411), the affine-linear seam and
 fixed-literal terms, and the base constant.  No vanishing or survival of
 that complete sum is asserted.
+
+### 3.54 The core is an exact reverse-block tensor
+
+The difference defining $\mathscr D_{\mathrm{core}}$ in (3.390) can be
+formed before applying the wedge reader.  Retain the occurrence currents
+$a_o=q_oF_{s_o}$ from (3.350), and split (3.387) as
+
+\[
+ \begin{aligned}
+ \mathscr U_{\mathrm{core}}(F)
+ &:=\sum_{o=1}^{16}\epsilon_oq_o\Sigma(F_{s_o})
+    +\sum_{\epsilon_o=-1}a_o\otimes a_o,\\
+ \mathscr X_{\mathrm{ext}}(F)
+ &:=\sum_{1\le o<p\le16}
+    \epsilon_o\epsilon_p a_o\otimes a_p.
+ \end{aligned}
+ \tag{3.413}
+\]
+
+Thus
+
+\[
+ \mathscr A_{\mathrm{core}}
+ =\mathscr U_{\mathrm{core}}+\mathscr X_{\mathrm{ext}}.
+ \tag{3.414}
+\]
+
+Let $\tau$ exchange the two tensor factors, as in (3.44).  The external
+wedge has the exact antisymmetric tensor representative
+
+\[
+ \boxed{
+ \Theta_2^{\mathrm{ext}}(F)
+ =\operatorname{Wdg}
+  \left(\mathscr X_{\mathrm{ext}}(F)
+        -\tau\mathscr X_{\mathrm{ext}}(F)\right).
+ }
+ \tag{3.415}
+\]
+
+Indeed, the summand belonging to $o<p$ is
+$a_o\otimes a_p-a_p\otimes a_o$, whose upper-triangular coefficient is
+exactly that of $a_o\wedge a_p$.  Define
+
+\[
+ \boxed{
+ \mathscr A_{\mathrm{rev}}(F)
+ :=\mathscr U_{\mathrm{core}}(F)
+   +\tau\mathscr X_{\mathrm{ext}}(F).
+ }
+ \tag{3.416}
+\]
+
+The tensor $\mathscr A_{\mathrm{core}}$ is diagonal-free and
+antisymmetric by Section 3.49, and so is
+$\mathscr X_{\mathrm{ext}}-\tau\mathscr X_{\mathrm{ext}}$.
+Their difference is $\mathscr A_{\mathrm{rev}}$.  Therefore it is also
+diagonal-free and antisymmetric, and linearity of $\operatorname{Wdg}$ on
+this tensor space gives
+
+\[
+ \boxed{
+ \mathscr D_{\mathrm{core}}(F)
+ =\operatorname{Wdg}(\mathscr A_{\mathrm{rev}}(F)).
+ }
+ \tag{3.417}
+\]
+
+Formula (3.416) keeps the local canonical-section tensor and every
+negative inverse square in its original occurrence, but reverses the
+strict order of every pair of distinct occurrence blocks.  Equivalently,
+it is the degree-two tensor obtained by multiplying the same sixteen
+terminal-free local occurrence coordinates in reverse block order.  No
+termwise open occurrence tensor has been projected to a wedge;
+antisymmetry is proved only for the complete reverse-block aggregate.
+
+For every inversion-fixed coordinate, (3.408) now becomes the direct
+sweep
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))]_D
+ &=[\Xi_{\mathbb Z}(\operatorname{Wdg}
+   (\mathscr A_{\mathrm{rev}}(F)))]_D+\vartheta_D(F),\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.418}
+\]
+
+Thus the remaining fixed core is no longer an abstract difference between
+the complete correction tensor and the external polygon.  Its exact
+chronology is the reverse-block order in (3.416); source shortlex within
+each occurrence and collisions between different occurrences remain live.
+
+### 3.55 Fixed core parity is a reverse-block inversion count
+
+Formula (3.417) has a pointwise mod-two expansion with no tensor-valued
+section left to evaluate.  For every occurrence coordinate $(o,v)$, use
+the transported label
+
+\[
+ x(o,v):=\operatorname{cvert}(q_ov)
+ \tag{3.419}
+\]
+
+from (3.347), and retain the coordinate exactly when
+$\overline{F_{s_o}(v)}=1$.  Order the retained coordinates by
+$\prec_{\mathrm{rev}}$ as follows:
+
+1. an occurrence with larger index comes first;
+2. inside a positive occurrence, use increasing module shortlex; and
+3. inside a negative occurrence, use decreasing module shortlex.
+
+For $D\in\mathscr D_1$, define the finite reverse inversion count
+
+\[
+ \boxed{
+ \begin{aligned}
+ \kappa_D^{\mathrm{rev}}(F)
+ :=\sum_{(o,v)\prec_{\mathrm{rev}}(p,w)}
+ &\overline{F_{s_o}(v)}\overline{F_{s_p}(w)}\\
+ &\mathbin{\cdot}[x(o,v)<_{\mathrm{sl}}x(p,w)]\\
+ &\mathbin{\cdot}
+ [Hx(o,v)^{-1}x(p,w)H=D]
+ \pmod2.
+ \end{aligned}}
+ \tag{3.420}
+\]
+
+Then
+
+\[
+ \boxed{
+ [\Xi_{\mathbb Z}(\mathscr D_{\mathrm{core}}(F))]_D
+ =\kappa_D^{\mathrm{rev}}(F).
+ }
+ \tag{3.421}
+\]
+
+To prove (3.421), expand (3.416) modulo two.  At a positive occurrence,
+the off-diagonal part of $q_o\Sigma(F_{s_o})$ lists the active module
+coordinates in increasing source shortlex.  At a negative occurrence,
+
+\[
+ -q_o\Sigma(F_{s_o})+a_o\otimes a_o
+ \tag{3.422}
+\]
+
+has the opposite off-diagonal order: the increasing-order coefficient
+cancels modulo two and the transposed coefficient remains.  Finally,
+$\tau\mathscr X_{\mathrm{ext}}$ places every later occurrence block before
+every earlier one.  These are exactly the three clauses defining
+$\prec_{\mathrm{rev}}$.  Tensor diagonals and equal transported labels lie
+in the discarded identity double coset.  Since
+$\mathscr A_{\mathrm{rev}}$ is already diagonal-free and antisymmetric,
+$\operatorname{Wdg}$ contributes precisely the transported-label
+shortlex predicate in (3.420).  This proves the formula after collision
+aggregation.
+
+Combining (3.408) and (3.421) gives the complete correction-only fixed
+coordinate
+
+\[
+ \boxed{
+ \begin{aligned}
+ [\Xi_{\mathbb Z}(\Theta^{\mathrm{corr}}(F))]_D
+ &=\kappa_D^{\mathrm{rev}}(F)+\vartheta_D(F),\\
+ D&\in\mathscr D_1.
+ \end{aligned}}
+ \tag{3.423}
+\]
+
+Thus every remaining correction-only fixed value is the sum of one
+quadratic reverse-block inversion count and the bounded linear seam count.
+The fixed-literal affine term and base constant remain separate, and no
+nonvanishing claim is made.
 
 ## 4. Exact diagonal sieve
 
