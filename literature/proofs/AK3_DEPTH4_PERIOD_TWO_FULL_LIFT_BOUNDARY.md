@@ -87,6 +87,9 @@ finite-star affine-linear value plus the base constant.
 Section 3.57 gives the metric form of that statement: if the correction
 support has free radius $R$, the affine-linear side occupies only fixed
 buckets of length at most $R$ plus one uniform constant.
+Section 3.58 applies the same bound to every mod-two bucket and confines
+the only possible leading quadratic obstruction to an explicit
+slope-one/slope-two annulus.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -6684,6 +6687,75 @@ conjugate pairs can stay short along an axis, and different reverse pairs
 can collide.  The next exact fixed-sector obligation is to prove survival
 beyond (3.432), or to classify the finite-support configurations for which
 the entire reverse tail cancels.
+
+### 3.58 The complete quadratic tail lies in one explicit annulus
+
+The length bound does not depend on inversion-fixedness.  Put
+
+\[
+ T(F):=\max\{C_0,R(F)+C_*\}.
+ \tag{3.433}
+\]
+
+For every nontrivial unoriented double-coset bucket
+$D\in\mathscr D$, equations (3.400), (3.429), and (3.431) give
+
+\[
+ \boxed{
+ \ell_K(D)>T(F)
+ \Longrightarrow
+ [q_\Xi(F)]_D=[\mathscr Q_\Xi(F)]_D.
+ }
+ \tag{3.434}
+\]
+
+Hence a solution of the complete mod-two class-two gate must satisfy
+
+\[
+ \boxed{
+ q_\Xi(F)=0
+ \Longrightarrow
+ \operatorname{supp}\mathscr Q_\Xi(F)
+ \subseteq\{D\in\mathscr D:\ell_K(D)\le T(F)\}.
+ }
+ \tag{3.435}
+\]
+
+There is also a uniform upper bound.  Every endpoint in the quadratic
+kernel belongs to
+
+\[
+ \bigcup_{o=1}^{16}q_o\operatorname{supp}(F_{s_o}),
+ \tag{3.436}
+\]
+
+and therefore has a $K$-representative of length at most $R(F)+M_*$.  The
+relative word of two endpoints has length at most twice that value, so
+
+\[
+ \boxed{
+ \operatorname{supp}\mathscr Q_\Xi(F)
+ \subseteq
+ \{D\in\mathscr D:\ell_K(D)\le2R(F)+2M_*\}.
+ }
+ \tag{3.437}
+\]
+
+Consequently the entire leading-tail question is confined to the finite
+annulus
+
+\[
+ \boxed{
+ T(F)<\ell_K(D)\le2R(F)+2M_*.
+ }
+ \tag{3.438}
+\]
+
+Any nonzero quadratic coordinate in this annulus proves
+$q_\Xi(F)\ne0$ immediately, without evaluating the base, seam, or other
+affine-linear terms.  The annulus can be empty for small support, and no
+present argument forces a surviving coordinate when it is nonempty.
+Thus (3.438) is the exact leading-bucket target, not an AK(3) obstruction.
 
 ## 4. Exact diagonal sieve
 
