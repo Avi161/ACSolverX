@@ -19,6 +19,12 @@ not prove ordinary AK(3), because the verified MMS02 corridor uses the
 rank-changing Tietze/AC4--AC5 passage between the rank-three triple and
 AK(3).
 
+Section 6 proves that quotient reachability for the unrestricted path is
+automatic: after killing $A,B$, any two normal generators become
+AC-equivalent once the two identity rows are retained.  Thus further
+quotient obstructions cannot decide the bridge.  The remaining gate is the
+literal relation-identity lift back through the normal closure of $A,B$.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -372,7 +378,114 @@ This closes only the S2 sequential completion.  Together with (17), it
 shows that neither verified first-leg donor branch can be completed while
 holding its new row and $v$ as the two donor families.
 
-## 6. Stable-AK(3) implication and strict nonclaims
+## 6. Quotient reachability is automatic with two redundant rows
+
+The unrestricted bridge cannot be disproved by extending the fixed-base
+$A_5$ or Alexander tests to another quotient of the same deficiency-one
+group.  The reason is a general redundant-row transfer lemma.
+
+Write $\operatorname{Ncl}_G(S)$ for the normal closure of a subset $S$ in
+$G$.
+
+**Lemma 6.1 (two-row normal-generator transfer).**  Let $G$ be any group,
+and let $g,h\in G$ satisfy
+
+\[
+ \operatorname{Ncl}_G(g)
+ =G
+ =\operatorname{Ncl}_G(h).
+ \tag{30}
+\]
+
+Then the redundant triples are Andrews--Curtis equivalent in $G$:
+
+\[
+ \boxed{(1,1,g)\sim_{\rm AC}(1,1,h).}
+ \tag{31}
+\]
+
+Here an elementary macro may multiply one entry by a conjugate of another
+entry or its inverse.  Such a macro is a finite AC1--AC3 sequence: conjugate
+the source, multiply it into the target, and restore the source, with two
+source inversions when the negative sign is used.
+
+**Proof.**  Choose finite normal-closure factorizations of $h$, $g^{-1}$,
+and $g$ by conjugates of $g^{\pm1}$, $h^{\pm1}$, and $h^{\pm1}$,
+respectively.  Build the required products in the two identity entries and
+then use ordinary target multiplications:
+
+\[
+ \begin{aligned}
+ (1,1,g)
+ &\sim(h,1,g)
+ \sim(h,g^{-1},g)
+ \sim(h,g^{-1},1)\\
+ &\sim(h,g^{-1},h)
+ \sim(1,g^{-1},h)
+ \sim(1,1,h).
+ \end{aligned}
+ \tag{32}
+\]
+
+The third arrow multiplies the third entry by the second, the fourth
+multiplies it by the first, and the fifth multiplies the first by the
+inverse of the third.  The last arrow appends the chosen factorization of
+$g$ using the third entry.  Every other arrow appends one of the chosen
+finite products while preserving its source.  Thus every arrow expands
+into AC1--AC3 moves.  $\square$
+
+Apply the lemma to
+
+\[
+ \begin{aligned}
+ F&=F(x,y,z),\\
+ N&=\operatorname{Ncl}_F(A,B),\\
+ G_-&=F/N.
+ \end{aligned}
+ \tag{33}
+\]
+
+Let $\overline u$ and $\overline v$ be the images of $u=zYX$ and
+$v=Xyz$.  The verified trivialization of $(A,B,u)$ gives
+$\operatorname{Ncl}_{G_-}(\overline u)=G_-$.  The published
+reduction of $(A,B,v)$ to the AK(3) presentation, together with the
+elementary fact that AK(3) presents the trivial group, gives the same
+statement for $\overline v$.  Lemma 6.1 therefore proves
+
+\[
+ \boxed{
+ (1,1,\overline u)
+ \sim_{\rm AC}
+ (1,1,\overline v)
+ \text{ in }G_-.
+ }
+ \tag{34}
+\]
+
+The same conclusion holds after every homomorphism out of $G_-$.  Hence no
+AC invariant which factors only through the image triples in an $A_5$,
+Alexander, metabelian, or other quotient of $G_-$ can obstruct the
+unrestricted all-row bridge.  Those tests remain valid for fixed-base
+ansatzes, where the first two entries are required to stay equal to one.
+
+Equation (34) does not prove the free-group bridge.  Lifting a chosen path
+from (34) to $F$ ends with rows $E_1,E_2,E_3$ satisfying
+
+\[
+ \begin{aligned}
+ E_1,E_2&\in N,\\
+ E_3v^{-1}&\in N.
+ \end{aligned}
+ \tag{35}
+\]
+
+but it need not end at the literal tuple $(A,B,v)$.  The exact remaining
+gate is to choose and lift the normal-closure factorizations in (32) so that
+the three $N$-valued identity residuals close by AC moves.  This is a
+relation-identity lift problem.  Quotient reachability itself is complete,
+and further quotient hunting cannot evaluate that lift.
+
+## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
 $T_{\rm pub}$ and AK(3), while the triple $(A,B,zYX)$ is independently
@@ -385,9 +498,11 @@ The logical gates remain separate:
    not the unrestricted all-row bridge;
 3. the fixed-base $A_5$ and Alexander obstructions do not apply to a path
    which moves $A$ and $B$;
-4. no MMS02 statement evaluates the period-two class-two ledger or its
+4. Lemma 6.1 closes only quotient reachability and does not close the
+   relation-identity lift in (35);
+5. no MMS02 statement evaluates the period-two class-two ledger or its
    literal higher lift; and
-5. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+6. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
    Andrews--Curtis are not claimed.
 
 The active priority is now the unrestricted stable bridge

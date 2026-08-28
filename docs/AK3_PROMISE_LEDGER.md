@@ -36,10 +36,17 @@ finite quotient do not close a route.
   base. The shifted defect freely reduces to the nonempty 13-letter word in
   Equation (28) of the two-gate note, so `delta_K != 1` in `Q_B`. This refutes
   only the S2 sequential completion.
+- **Quotient ceiling proved:** in `G_-=<x,y,z | A,B>`, the two kill words
+  `zYX` and `Xyz` are normal generators. A general two-row transfer lemma
+  proves `(1,1,zYX) ~AC (1,1,Xyz)` inside `G_-`. Therefore no finite,
+  Alexander, metabelian, or other quotient invariant of the image triple can
+  obstruct the unrestricted all-row path. The remaining gate is the literal
+  relation-identity lift through `normal_closure(A,B)`.
 - **Resume point:** both sequential donor completions are closed. Work on the
-  unrestricted all-row bridge `Tpub ~AC Txy`; no fixed-base or failed-search
-  result is evidence against it. Before extending the JSON schema, harden
-  ordinal fields to reject booleans/floats that compare equal to integers.
+  unrestricted lift of a quotient transfer path from `Txy` to `Tpub`; no
+  fixed-base or failed-search result is evidence against it. Before extending
+  the JSON schema, harden ordinal fields to reject booleans/floats that compare
+  equal to integers.
 - **Two-gate theorem:** either positive gate would have constructively
   AC-trivialized `Tpub`; both are now disproved, so the theorem closes the
   sequential ansatz without closing the bridge. See
