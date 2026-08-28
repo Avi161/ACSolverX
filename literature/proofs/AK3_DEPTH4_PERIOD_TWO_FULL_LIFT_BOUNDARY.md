@@ -245,6 +245,14 @@ Section 3.101 gives the complementary chronology picture.  Pairing each
 even terminal-label fiber into chords on the literal token order turns the
 same isolated coefficient into a pairing-independent mod-two chord-crossing
 number.
+Section 3.102 records all sixteen pinned quotient prefixes as literal
+reduced words.  Together with Section 3.99, this makes every member of the
+canonical endpoint and difference-multiplier schemas an explicit bounded
+word in $A,B,G,c,t$.
+Section 3.103 applies the exact four-state right-coset action of the forest
+group.  Before any bounded word equality is checked, an endpoint pair must
+pass one explicit occurrence-state transition under the paired generator or
+its inverse.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10432,6 +10440,129 @@ diagonal and do not enter the exterior target.  Combining (3.666) with
 number plus the fixed baseline $n_s$.  This is an exact topological form of
 the local parity obligation, not a proof that the crossing number has the
 slot-zero value one.
+
+### 3.102 The pinned occurrence-prefix alphabet is literal
+
+The slot, polarity, and semidirect parity shadows were recorded in (3.338).
+For the endpoint schema, retain the full quotient-reduced prefix words:
+
+\[
+ \boxed{
+ \begin{array}{c|r|r|l}
+ o&s_o&\epsilon_o&q_o\\ \hline
+ 1&2&1&1\\
+ 2&1&1&\texttt{tc}\\
+ 3&0&1&\texttt{tc}\\
+ 4&0&-1&\texttt{ctcTTTcttc}\\
+ 5&1&-1&\texttt{ctcTctt}\\
+ 6&2&-1&\texttt{ctcTcTctc}\\
+ 7&0&1&\texttt{ctcTcTctc}\\
+ 8&0&-1&\texttt{ctcTTTTcttc}\\
+ 9&3&1&\texttt{ctcTTctt}\\
+ 10&1&1&\texttt{ctcTctc}\\
+ 11&0&1&\texttt{ctcTctc}\\
+ 12&0&-1&\texttt{cTTcttc}\\
+ 13&1&-1&\texttt{tt}\\
+ 14&3&-1&\texttt{t}\\
+ 15&4&1&\texttt{t}\\
+ 16&4&-1&1.
+ \end{array}
+ }
+ \tag{3.667}
+\]
+
+Each word in (3.667) is the literal pinned quotient prefix before the one
+final application of $\operatorname{cvert}$ to a transported source.  In
+particular, it is not obtained by separately canonicalizing intermediate
+factors.  The slot-zero and slot-one paired differences reduce to the
+already proved common words in (3.445), so the table is consistent with
+the paired generators $g_0$ and $g_1$ used throughout Sections
+3.76--3.101.
+
+Substitution of (3.667) in (3.654) and (3.656) makes the two canonical
+finite schemas completely literal:
+
+\[
+ \begin{aligned}
+ r&=\operatorname{red}(wq_o),\\
+ h&=\operatorname{red}(q_o^{-1}w^{-1}w'q_p),\\
+ w,w'&\in\mathcal B_{\rm for}(E).
+ \end{aligned}
+ \tag{3.668}
+\]
+
+No source-radius enumeration enters (3.667)--(3.668).  The remaining local
+question is which of these fixed candidate words are actual terminal tokens
+and how their occurrence tags interlace in (3.666).
+
+### 3.103 Four-state filter for endpoint paired words
+
+Let
+
+\[
+ \rho(q):=0q
+ \tag{3.669}
+\]
+
+in the four-state right-coset action (3.478), whose base-state stabilizer is
+$K_{\rm for}$.  Reading the literal prefixes in (3.667) gives
+
+\[
+ \boxed{
+ \begin{array}{c|rrrrrrrrrrrrrrrr}
+ o&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16\\ \hline
+ \rho(q_o)&0&1&1&0&2&0&0&3&0&0&0&3&0&0&0&0.
+ \end{array}
+ }
+ \tag{3.670}
+\]
+
+The common paired words in (3.445) act by
+
+\[
+ \boxed{
+ \begin{aligned}
+ g_0&=(0\ 3\ 1),\\
+ g_1&=(1\ 2\ 3),
+ \end{aligned}
+ }
+ \tag{3.671}
+\]
+
+with the unlisted state fixed in each row.  The cycles are written in the
+right-action direction.
+
+Now take two canonical endpoint multipliers $r=wq_o$ and $r'=w'q_p$ from
+(3.654).  If $r^{-1}r'=g_s^\epsilon$, then
+
+\[
+ w^{-1}w'=q_og_s^\epsilon q_p^{-1}.
+ \tag{3.672}
+\]
+
+The left side belongs to $K_{\rm for}$.  Since that subgroup is the
+base-state stabilizer, (3.672) implies the exact occurrence-state filter
+
+\[
+ \boxed{
+ \begin{gathered}
+ \rho(q_og_s^\epsilon)=\rho(q_p),\\
+ \epsilon\in\{1,-1\}.
+ \end{gathered}
+ }
+ \tag{3.673}
+\]
+
+Conversely, (3.673) says that the fixed word on the right of (3.672) lies
+in $K_{\rm for}$.  It is not by itself sufficient for membership in the
+bounded difference ball
+$\mathcal B_{\rm for}(E)^{-1}\mathcal B_{\rm for}(E)$; its reduced
+$A,B,G$ length must still be at most $2L_E$, and actual terminal activity
+must still be present.
+
+Equations (3.670)--(3.673) are a support-independent prefilter for the
+paired-word schema (3.658).  They replace no word equality and assert no
+endpoint parity.
 
 ## 4. Exact diagonal sieve
 
