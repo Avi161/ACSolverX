@@ -4963,6 +4963,107 @@ from the other fourteen laminar terms or the affine unary value.  The
 three even paired axes and the complete polygon cancellation therefore
 remain open.
 
+### 3.43 The three even paired axes are also anisotropic
+
+For an even paired generator $g=k\in K$, put
+
+\[
+ D:=k-k^{-1}.
+ \tag{3.328}
+\]
+
+The free-coordinate condition $S=S^*$ is now equivalent to
+
+\[
+ \boxed{
+ \mathbf F^*D\mathbf F
+ +\alpha(\mathbf F^*)\alpha(D)\alpha(\mathbf F)=0.}
+ \tag{3.329}
+\]
+
+Let $(a,b)\in\mathbb Z^2$ be the abelianization vector of $k$ in the
+basis $(t,ctc)$.  The first Magnus form of $D$ is
+
+\[
+ H_1=2aX+2bY.
+ \tag{3.330}
+\]
+
+In the variables from (3.325), write
+
+\[
+ H_1=\mu\mathsf A+\lambda\mathsf B,
+ \mu:=a+b,
+ \lambda:=a-b.
+ \tag{3.331}
+\]
+
+Here $\mu=\nu_t(k)$.  The three even paired intervals and their heights are
+
+\[
+\begin{array}{c|ccc}
+ I&[2,5]&[10,13]&[15,16]\\ \hline
+ \mu&1&1&-1.
+\end{array}
+\tag{3.332}
+\]
+
+In particular, $\mu\ne0$ for every even paired word.
+
+Let $f_r=f_++f_-$ be the first Magnus form of a nonzero $\mathbf F$, split
+as in (3.322)--(3.323).  Taking the degree $2r+1$ part of (3.329), using
+
+\[
+ \alpha(H_1)=\mu\mathsf A-\lambda\mathsf B,
+ \tag{3.333}
+\]
+
+and dividing by two gives
+
+\[
+\boxed{
+\begin{aligned}
+ 0={}&\mu\left(
+ f_+^\dagger\mathsf A f_+
+ +f_-^\dagger\mathsf A f_-
+ \right)\\
+ &+\lambda\left(
+ f_+^\dagger\mathsf B f_-
+ +f_-^\dagger\mathsf B f_+
+ \right).
+\end{aligned}}
+\tag{3.334}
+\]
+
+The four displayed products have pairwise disjoint monomial supports.  In
+the first and third products, the initial length-$r$ block comes from
+$f_+^\dagger$ and has even $\mathsf B$-parity; in the second and fourth it
+comes from $f_-^\dagger$ and has odd parity.  Within either prefix class,
+the middle letter is respectively $\mathsf A$ or $\mathsf B$.  Thus the
+prefix parity and the letter in position $r+1$ distinguish all four
+supports.
+
+At least one of $f_+$ and $f_-$ is nonzero.  Since $\mu\ne0$, the
+corresponding $\mathsf A$-norm in the first line of (3.334) is nonzero by
+the free associative domain property and cannot cancel any other term.
+This contradicts (3.334), proving
+
+\[
+ \boxed{
+ \substack{\mathbf F\ne0\\g_I\text{ even paired}}
+ \Longrightarrow
+ [f\wedge g_If]_Q\ne0.}
+ \tag{3.335}
+\]
+
+Combining (3.327) and (3.335), every one of the eight paired occurrence
+tensors is anisotropic on arbitrary nonzero finite currents.  This removes
+cross-support cancellation inside an individual paired tensor.  It does
+not separate the bucket supports of different paired, parent--child, or
+root terms in the fifteen-term laminar polygon, and it does not evaluate
+the affine unary value.  Those global cancellations remain the exact
+class-two boundary.
+
 ## 4. Exact diagonal sieve
 
 Let \(D_{ij}=H(y_{ij})\) be the anchored directions from the unary ray, and
