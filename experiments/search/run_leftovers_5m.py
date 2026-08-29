@@ -218,6 +218,32 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MAX_RELATOR_LENGTH,
     return int(limit_gb * 2 ** 30), reserve
 
 
+def _rss_gb(pid="self"):
+    """Resident GB for a pid, or None. The arena is ``np.empty``: address space
+    is reserved up front but physical pages commit only on first touch, so RSS
+    -- not the reservation -- is what actually competes for the machine."""
+    try:
+        with open(f"/proc/{pid}/status") as f:
+            for line in f:
+                if line.startswith("VmRSS:"):
+                    return int(line.split()[1]) / (1024.0 * 1024.0)
+    except (OSError, ValueError, IndexError):
+        pass
+    return None
+
+
+def _peak_rss_gb():
+    """This process's high-water RSS (VmHWM) in GB, or None."""
+    try:
+        with open("/proc/self/status") as f:
+            for line in f:
+                if line.startswith("VmHWM:"):
+                    return round(int(line.split()[1]) / (1024.0 * 1024.0), 3)
+    except (OSError, ValueError, IndexError):
+        pass
+    return None
+
+
 def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
                    reserve_states):
     """Runs in a spawned process. Everything that can go wrong is a message."""
@@ -244,6 +270,7 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "min_relator_length": st["min_relator_length"],
             "max_relator_length_expanded": st["max_relator_length_expanded"],
             "seconds": round(time.time() - t, 3),
+            "peak_rss_gb": _peak_rss_gb(),
         }))
     except MemoryError:
         q.put(("err", "MemoryError: the memory guard stopped this row before "
@@ -252,47 +279,175 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
         q.put(("err", repr(e)))
 
 
+class RamGovernor:
+    """Admission control: may one MORE row start right now?
+
+    ``resolve_workers`` answers once, at startup, from the worst-case reserve
+    for a full-budget row. On a big box that is far too conservative twice
+    over: most rows solve long before the budget and never approach the
+    reserve, and the arena is ``np.empty`` -- address space up front, physical
+    pages only on first touch. A fixed N sized off the worst case therefore
+    leaves most of a 512 GB machine idle.
+
+    This re-decides before every launch from free RAM as it is NOW, and from
+    what finished rows actually peaked at. The trap it must avoid is the
+    overcommit one: a row that just started has touched almost nothing, so free
+    RAM looks enormous and a naive controller admits a crowd that then grows
+    into each other. So the memory a live row has NOT yet claimed
+    (``predict - its RSS``) is subtracted before deciding. Admission is
+    therefore honest about the future, not just the present.
+    """
+
+    def __init__(self, budget, mrl, cpu_cap=None, max_workers=None,
+                 headroom_gb=None, safety=1.25, min_samples=3):
+        self.worst = est_gb(budget, mrl)     # ceiling; a prediction never exceeds it
+        self.cpus = cpu_cap or os.cpu_count() or 1
+        self.max_workers = max_workers
+        # never hand out the last of the machine: the parent, the numba runtime
+        # and page cache all need room, and MemAvailable is an estimate
+        self.headroom = headroom_gb if headroom_gb is not None else 4.0
+        self.safety = safety
+        self.min_samples = min_samples
+        self.peaks = []
+
+    def note(self, peak_gb):
+        """Record what a finished row actually cost."""
+        if peak_gb and peak_gb > 0:
+            self.peaks.append(float(peak_gb))
+
+    def predict_gb(self):
+        """GB to assume for the NEXT row. The worst case until rows have
+        spoken; after that their measured peak, never above the worst case --
+        a row that has not solved yet can still grow into the full reserve."""
+        if len(self.peaks) < self.min_samples:
+            return self.worst
+        return max(0.25, min(max(self.peaks) * self.safety, self.worst))
+
+    def capacity(self, live_rss_gb=(), free_gb=None):
+        """How many more rows may start now, given the live rows' RSS."""
+        free = _available_gb() if free_gb is None else float(free_gb)
+        live = tuple(live_rss_gb)
+        # Never predict below what a row in flight has ALREADY demonstrated.
+        # Every row on these lists failed at 1M, so plenty will run the full
+        # budget and peak near the reserve; without this, three cheap early
+        # rows widen the gate just before the expensive ones arrive.
+        per = max(self.predict_gb(), max(live) if live else 0.0)
+        # what live rows have reserved but not yet touched -- they WILL claim it
+        unclaimed = sum(max(0.0, per - r) for r in live)
+        room = int((free - self.headroom - unclaimed) // per)
+        ceiling = min(self.cpus, self.max_workers or self.cpus)
+        allowed = max(0, min(ceiling - len(live), room))
+        # one row always runs, even when the estimate says there is no space:
+        # the estimate is linear and a real row is usually far cheaper. Stalling
+        # forever on an estimate is worse than trying and recording an error.
+        if not live:
+            allowed = max(allowed, 1)
+        return allowed
+
+
+class _RowProc:
+    """One row's isolated process, polled instead of waited on -- so the parent
+    can hold several at once and still record an error for any that dies."""
+
+    def __init__(self, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
+                 reserve_states, timeout_secs, log):
+        self.arm, self.row, self.budget, self.mrl = arm, row, budget, mrl
+        self.timeout_secs, self.log = timeout_secs, log
+        ctx = mp.get_context("spawn")
+        self.q = ctx.Queue()
+        self.proc = ctx.Process(
+            target=_child_run_row,
+            args=(self.q, arm, row, budget, mrl, heartbeat_secs,
+                  mem_limit_bytes, reserve_states))
+        self.t0 = time.time()
+        self.proc.start()
+        self.rec = self.err = None
+
+    def rss_gb(self):
+        return _rss_gb(self.proc.pid) or 0.0
+
+    def poll(self, timeout=0.1):
+        """Drain messages; return the record once this row is settled."""
+        while self.rec is None and self.err is None:
+            try:
+                kind, payload = self.q.get(timeout=timeout)
+            except _queue.Empty:
+                if not self.proc.is_alive():
+                    self.err = (f"worker died (exit={self.proc.exitcode}) -- an "
+                                f"external kill (OOM/CPU limit); the row is "
+                                f"retried next run")
+                elif self.timeout_secs and time.time() > self.t0 + self.timeout_secs:
+                    self.proc.terminate()
+                    self.err = (f"row timeout after {self.timeout_secs:,.0f}s -- "
+                                f"terminated; the row is retried next run")
+                break
+            if kind == "log":
+                self.log(payload)
+            elif kind == "done":
+                self.rec = payload
+            else:
+                self.err = payload
+        if self.rec is None and self.err is None:
+            return None
+        return self._settle()
+
+    def _settle(self):
+        self.proc.join(timeout=10)
+        if self.proc.is_alive():
+            self.proc.kill()
+            self.proc.join(timeout=5)
+        self.q.close()
+        if self.rec is None:
+            self.rec = {"name": self.row["name"], "arm": self.arm,
+                        "r1": self.row["r1"], "r2": self.row["r2"],
+                        "budget": self.budget, "max_relator_length": self.mrl,
+                        "solved": False, "error": self.err,
+                        "seconds": round(time.time() - self.t0, 3)}
+            self.log(f"    !! {self.row['name']}: {self.err}")
+        return self.rec
+
+
+def run_rows_dynamic(arm, todo, budget, mrl, heartbeat_secs, mem_limit_bytes,
+                     reserve_states, timeout_secs, governor, log=print):
+    """Yield records as rows finish, holding as many in flight as RAM allows.
+
+    This replaces both of the old paths. The fixed-size pool had no per-row
+    isolation -- on a 14-worker box a single OOM took every row with it -- and
+    the isolated path ran strictly one at a time. Here every row is isolated
+    AND the width floats with the machine.
+    """
+    pending, live = list(todo), []
+    while pending or live:
+        n = governor.capacity([p.rss_gb() for p in live])
+        while n > 0 and pending:
+            r = pending.pop(0)
+            live.append(_RowProc(arm, r, budget, mrl, heartbeat_secs,
+                                 mem_limit_bytes, reserve_states,
+                                 timeout_secs, log))
+            n -= 1
+        settled = []
+        for p in live:
+            rec = p.poll(timeout=0.1 if len(live) > 1 else 0.5)
+            if rec is not None:
+                settled.append((p, rec))
+        for p, rec in settled:
+            live.remove(p)
+            governor.note(rec.get("peak_rss_gb"))
+            yield rec
+        if not settled and not (pending and governor.capacity(
+                [p.rss_gb() for p in live])):
+            time.sleep(0.05)      # nothing settled and no room: do not spin
+
+
 def _run_row_isolated(arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
                       reserve_states, timeout_secs, log):
     """One row, one process. Whatever kills the child, the run continues."""
-    ctx = mp.get_context("spawn")
-    q = ctx.Queue()
-    proc = ctx.Process(target=_child_run_row,
-                       args=(q, arm, row, budget, mrl, heartbeat_secs,
-                             mem_limit_bytes, reserve_states))
-    t0 = time.time()
-    proc.start()
-    deadline = (t0 + timeout_secs) if timeout_secs else None
-    rec = err = None
-    while rec is None and err is None:
-        try:
-            kind, payload = q.get(timeout=0.5)
-            if kind == "log":
-                log(payload)
-            elif kind == "done":
-                rec = payload
-            else:
-                err = payload
-        except _queue.Empty:
-            if not proc.is_alive():
-                err = (f"worker died (exit={proc.exitcode}) -- an external "
-                       f"kill (OOM/CPU limit); the row is retried next run")
-            elif deadline and time.time() > deadline:
-                proc.terminate()
-                err = (f"row timeout after {timeout_secs:,.0f}s -- "
-                       f"terminated; the row is retried next run")
-    proc.join(timeout=10)
-    if proc.is_alive():
-        proc.kill()
-        proc.join(timeout=5)
-    q.close()
-    if rec is None:
-        rec = {"name": row["name"], "arm": arm, "r1": row["r1"],
-               "r2": row["r2"], "budget": budget, "max_relator_length": mrl,
-               "solved": False, "error": err,
-               "seconds": round(time.time() - t0, 3)}
-        log(f"    !! {row['name']}: {err}")
-    return rec
+    p = _RowProc(arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
+                 reserve_states, timeout_secs, log)
+    while True:
+        rec = p.poll(timeout=0.5)
+        if rec is not None:
+            return rec
 
 
 def absorb_shard_rows(out, shard_paths, valid_names, log=print):
@@ -353,14 +508,21 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     seen = _done_ok(out) if resume else set()
     todo = [r for r in rows if r["name"] not in seen]
 
+    auto = n_workers in (None, "auto")
     n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl)
+    # "auto" lets the governor float up to the core count; an explicit number
+    # is a ceiling, never a target -- RAM still has the last word.
+    governor = RamGovernor(budget, mrl,
+                           max_workers=None if auto else n_workers)
     if mem_limit_bytes is None and reserve_states is None:
         mem_limit_bytes, reserve_states = plan_memory(budget, mrl, log=log)
     log(f"  arm     : {key} -- {spec1m['label']}")
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "
         f"stride split of {SPEC_5M[key]['n_rows']}) from {used}")
     log(f"  budget  : {budget:,} nodes, cap {mrl}")
-    log(f"  workers : {n_workers} (~{per_gb:.1f} GB/search reserved)")
+    log(f"  workers : {n_workers} to start, then dynamic "
+        f"({'auto' if auto else f'cap {n_workers}'}, "
+        f"{governor.cpus} cores, ~{per_gb:.1f} GB/search worst case)")
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
     log(f"  -> {out}")
 
@@ -369,27 +531,17 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     done = 0
     if todo:
         with open(out, "a") as fh:
-            if n_workers <= 1:
-                # crash-isolated: one row, one process; a killed row is a
-                # recorded error, never a dead session
-                for r in todo:
-                    rec = _run_row_isolated(key, r, budget, mrl,
-                                            heartbeat_secs, mem_limit_bytes,
-                                            reserve_states, row_timeout_secs,
-                                            log)
-                    fh.write(json.dumps(rec) + "\n")
-                    fh.flush()
-                    done += 1
-                    last = _beat(rec, done, len(todo), t0, last,
-                                 heartbeat_secs, out, mirror_dir, log)
-            else:
-                jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
-                for rec in _iter_results(jobs, n_workers, log):
-                    fh.write(json.dumps(rec) + "\n")
-                    fh.flush()
-                    done += 1
-                    last = _beat(rec, done, len(jobs), t0, last,
-                                 heartbeat_secs, out, mirror_dir, log)
+            # Every row is crash-isolated AND the width floats with the
+            # machine: the old fixed pool had no per-row isolation, so on a
+            # wide box one OOM took every row in flight with it.
+            for rec in run_rows_dynamic(key, todo, budget, mrl, heartbeat_secs,
+                                        mem_limit_bytes, reserve_states,
+                                        row_timeout_secs, governor, log):
+                fh.write(json.dumps(rec) + "\n")
+                fh.flush()
+                done += 1
+                last = _beat(rec, done, len(todo), t0, last,
+                             heartbeat_secs, out, mirror_dir, log)
     _mirror(out, mirror_dir)
     log(f"  {done} row(s) run in {time.time() - t0:,.0f}s; jsonl at {out}")
     return out

@@ -5,6 +5,7 @@ expensive is checked on a laptop first, and no test runs a large search — the
 budgets here never exceed 2,000 nodes.
 """
 import json
+import time
 import os
 import subprocess
 import sys
@@ -538,3 +539,144 @@ def test_run_and_the_service_execute_the_very_same_job_script():
     # the long-run command line exists once, inside write_job. (`smoke` has its
     # own short foreground invocation -- that one is meant to differ.)
     assert src.count("--budget $BUDGET") == 1
+
+
+# ---------------------------------------------------------------------------
+# Dynamic worker allocation: cores + RAM, re-decided before every launch.
+# ---------------------------------------------------------------------------
+from experiments.search.run_leftovers_5m import (          # noqa: E402
+    RamGovernor, run_rows_dynamic, _peak_rss_gb, _rss_gb)
+
+
+def _gov(**kw):
+    kw.setdefault("budget", 5_000_000)
+    kw.setdefault("mrl", 48)
+    return RamGovernor(**kw)
+
+
+def test_a_bigger_box_gets_more_workers_with_no_config_change():
+    small = _gov(cpu_cap=8).capacity([], free_gb=64)
+    big = _gov(cpu_cap=64).capacity([], free_gb=512)
+    assert big > small * 5, (small, big)
+
+
+def test_workers_never_exceed_the_core_count():
+    """Each search is single-threaded -- there is no prange in the engine --
+    so more workers than cores buys nothing and costs context switches."""
+    assert _gov(cpu_cap=4).capacity([], free_gb=4096) == 4
+
+
+def test_an_explicit_worker_count_is_a_ceiling_not_a_target():
+    assert _gov(cpu_cap=64, max_workers=3).capacity([], free_gb=512) == 3
+
+
+def test_one_row_always_runs_even_when_the_estimate_says_no_room():
+    """The estimate is linear and worst-case; a real row is usually far
+    cheaper. Stalling forever on an estimate is worse than trying."""
+    assert _gov(cpu_cap=8).capacity([], free_gb=1.0) == 1
+
+
+def test_memory_a_live_row_has_not_claimed_yet_is_still_reserved():
+    """The overcommit trap: a row that just started has touched almost nothing,
+    so free RAM looks enormous. Admitting on that number invites a crowd that
+    then grows into each other."""
+    g = _gov(cpu_cap=64)
+    fresh = g.capacity([0.1, 0.1, 0.1], free_gb=200)     # 3 rows barely started
+    grown = g.capacity([g.worst] * 3, free_gb=200)       # 3 rows fully grown
+    assert fresh < grown, (fresh, grown)
+
+
+def test_it_learns_from_what_rows_actually_cost_and_widens():
+    """Most rows solve long before the budget and never approach the reserve."""
+    g = _gov(cpu_cap=64)
+    before = g.capacity([], free_gb=512)
+    for _ in range(5):
+        g.note(3.0)                       # measured peaks, far under worst case
+    after = g.capacity([], free_gb=512)
+    assert g.predict_gb() < g.worst
+    assert after > before * 2, (before, after)
+
+
+def test_a_prediction_never_exceeds_the_worst_case():
+    """A row that has not solved yet can still grow into the full reserve."""
+    g = _gov(cpu_cap=8)
+    for _ in range(5):
+        g.note(10_000.0)
+    assert g.predict_gb() == g.worst
+
+
+def test_one_cheap_sample_does_not_widen_the_gate():
+    g = _gov(cpu_cap=64)
+    g.note(0.5)
+    assert g.predict_gb() == g.worst, "widened on a single observation"
+
+
+def test_rows_report_what_they_actually_peaked_at(tmp_path):
+    """Without a measurement the governor can only ever use the worst case."""
+    out = run_arm_5m("s20_mk2", str(tmp_path), chunks=1, chunk_index=1,
+                     budget=2_000, mrl=48, limit=2, n_workers=1,
+                     log=lambda *a: None)
+    rows = read_rows(out)
+    assert rows and all(r.get("peak_rss_gb", 0) > 0 for r in rows), rows
+
+
+def test_the_dynamic_path_really_runs_rows_at_the_same_time(monkeypatch):
+    """Concurrency observed directly -- wall clock alone cannot tell overlap
+    from fast rows, so this records each row's live interval and asserts they
+    genuinely coincide."""
+    import experiments.search.run_leftovers_5m as m
+
+    spans, real = [], m._RowProc
+
+    class Spy(real):
+        def __init__(self, *a, **k):
+            super().__init__(*a, **k)
+            self.span = [time.time(), None]
+            spans.append(self.span)
+
+        def _settle(self):
+            self.span[1] = time.time()
+            return super()._settle()
+
+    monkeypatch.setattr(m, "_RowProc", Spy)
+    rows = [{"name": f"r{i}", "r1": "XYXYXY", "r2": "YXYXYX"} for i in range(4)]
+    g = _gov(budget=200_000, cpu_cap=4)
+    recs = list(m.run_rows_dynamic("greedy", rows, 200_000, 48, 3600, None,
+                                   None, None, g, log=lambda *a: None))
+    assert len(recs) == 4
+    assert g.capacity([], free_gb=64) > 1, "governor never allowed a second row"
+    peak = max(sum(a <= t < (b or a) for a, b in spans)
+               for t, _ in spans)
+    assert peak > 1, f"rows never overlapped: {spans}"
+
+
+def test_a_crashing_row_cannot_take_down_the_rows_beside_it():
+    """The old fixed pool had no per-row isolation -- on a wide box one OOM
+    took every row in flight with it."""
+    rows = [{"name": "bad", "r1": "zzZZ", "r2": "qq"},
+            {"name": "ok1", "r1": "XYXYXY", "r2": "YXYXYX"},
+            {"name": "ok2", "r1": "XYXYXY", "r2": "YXYXYX"}]
+    g = _gov(budget=20_000, cpu_cap=4)
+    recs = {r["name"]: r for r in
+            run_rows_dynamic("greedy", rows, 20_000, 48, 3600, None, None,
+                             None, g, log=lambda *a: None)}
+    assert set(recs) == {"bad", "ok1", "ok2"}
+    assert recs["bad"].get("error")
+    assert not recs["ok1"].get("error") and not recs["ok2"].get("error")
+
+
+def test_rss_probes_return_real_numbers_on_this_machine():
+    assert _peak_rss_gb() > 0
+    assert _rss_gb() > 0
+    assert _rss_gb(pid=999999999) is None
+
+
+def test_a_row_already_big_tightens_the_gate_for_the_next_one():
+    """Three cheap early rows must not widen admission right before the
+    expensive ones arrive -- every row on these lists failed at 1M."""
+    g = _gov(cpu_cap=64)
+    for _ in range(5):
+        g.note(3.0)                       # early rows solved cheap
+    wide = g.capacity([3.0], free_gb=512)
+    tight = g.capacity([30.0], free_gb=512)   # one in flight is already huge
+    assert tight < wide, (wide, tight)
