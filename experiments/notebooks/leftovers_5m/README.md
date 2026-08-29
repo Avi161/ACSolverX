@@ -115,6 +115,27 @@ for a full `reserve_states`. It refuses a box where `hcompact` is missing,
 because the Python fallback at 5M is a hundreds-of-GB *wrong code path*, not a
 slow one. It also fails loudly on a stale clone.
 
+`job` writes the job script without starting anything, so you can read or
+syntax-check exactly what will run. Verify a smoke run captured paths by
+reading the file the smoke actually wrote (it uses the configured cap, so at
+`MRL=64` that is a `_mrl64` name -- an older `_mrl48` file in the same
+directory is stale and will read as 0):
+
+```bash
+./experiments/search/run_remote.sh smoke
+python3 - <<'EOF'
+import glob, json
+for f in sorted(glob.glob("$HOME/leftovers_5m_smoke/*.jsonl")):
+    rows = [json.loads(l) for l in open(f)]
+    has = sum("path_moves" in r for r in rows)
+    print(f"{f.split('/')[-1]}: {has}/{len(rows)} rows carry path fields")
+EOF
+```
+
+Smoke rows are short and usually unsolved, so `path`/`path_moves` are
+legitimately `[]` there -- the field being *present* is what smoke shows. That
+they are *populated* is what the engine-vs-oracle gate tests prove.
+
 `run` uses `setsid nohup` — the connection to a rented box will drop and the
 job must not care. **The instance is ephemeral: `rsync` the jsonl off the box
 before you destroy it** (the `run` output prints the command). Resume then

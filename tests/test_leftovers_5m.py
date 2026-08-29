@@ -7,6 +7,7 @@ budgets here never exceed 2,000 nodes.
 import json
 import time
 import os
+import re
 import subprocess
 import sys
 
@@ -477,7 +478,8 @@ def test_plan_prices_an_offer_before_you_rent_it():
     """The point of a spot market is choosing the box BEFORE paying for it."""
     out = _remote("plan", PLAN_GB="512", PLAN_CORES="64").stdout
     assert "offer" in out and "64 cores, 512 GB RAM" in out
-    want, _ = resolve_workers("greedy", "auto", 512, 64, 5_000_000, MRL_5M)
+    want, _ = resolve_workers("greedy", "auto", 512, 64, 5_000_000, MRL_5M,
+                              track_path=TRACK_PATH)
     assert f"{want} workers" in out, out
 
 
@@ -540,7 +542,7 @@ def test_run_and_the_service_execute_the_very_same_job_script():
     """Two copies of the command line would drift; a Spot restart would then
     run something other than what `run` ran."""
     src = open(REMOTE_SH).read()
-    assert src.count("write_job") == 3              # definition + run + service
+    assert src.count("write_job") == 4       # def + run + service + job_only
     # the long-run command line exists once, inside write_job. (`smoke` has its
     # own short foreground invocation -- that one is meant to differ.)
     assert src.count("--budget $BUDGET") == 1
@@ -839,3 +841,53 @@ def test_single_box_chunking_really_is_every_row():
     for arm, n in (("greedy", 88), ("s20_mk2", 14)):
         rows = load_rows_5m(arm)[0]
         assert len(stride_chunk(rows, 1, 1)) == n
+
+
+# ---------------------------------------------------------------------------
+# The generated job script. Checking the WRAPPER's syntax is not enough: the
+# job is written by an unquoted heredoc, so anything executable in the template
+# runs at generation time and its output lands in the job as bare shell. That
+# shipped once -- a backtick around a word ran the `report` function and spliced
+# its multi-line output in, killing the job on line 8 under set -e, which
+# systemd then crash-looped.
+# ---------------------------------------------------------------------------
+def test_the_generated_job_is_valid_shell(tmp_path):
+    out = tmp_path / "j"
+    r = _remote("job", OUT=str(out))
+    assert r.returncode == 0, r.stderr
+    job = out / "_job.sh"
+    assert job.exists(), r.stdout
+    chk = subprocess.run(["bash", "-n", str(job)], capture_output=True, text=True)
+    assert chk.returncode == 0, f"{chk.stderr}\n--- job ---\n{job.read_text()}"
+
+
+def test_the_generated_job_has_no_spliced_command_output(tmp_path):
+    """Every line of the template's commentary must still be commentary."""
+    out = tmp_path / "j"
+    _remote("job", OUT=str(out))
+    body = (out / "_job.sh").read_text().splitlines()
+    for i, line in enumerate(body[1:], start=2):     # line 1 is the shebang
+        t = line.strip()
+        if not t or t.startswith("#"):
+            continue
+        assert not t.startswith("no rows yet"), f"line {i} is spliced output: {t}"
+    assert "run_leftovers_5m --arm" in "\n".join(body)
+    assert "--chunks 1 --chunk-index 1" in "\n".join(body)
+
+
+def test_the_job_heredoc_executes_nothing_at_generation_time():
+    src = open(REMOTE_SH).read()
+    body = src.split('cat > "$OUT/_job.sh" <<JOB', 1)[1].split("\nJOB\n", 1)[0]
+    assert "`" not in body, "a backtick in the job heredoc runs at generation time"
+    # $( ) is only allowed escaped, so it lands in the job rather than running
+    for hit in re.finditer(r"(?<!\\)\$\(", body):
+        raise AssertionError(f"unescaped $( in the job heredoc at {hit.start()}")
+
+
+def test_plan_sizes_the_way_the_run_actually_sizes():
+    """plan told the operator 41.6 GB while the run header said 45.1 -- same
+    worker count by luck, but a plan that disagrees with the run is a lie."""
+    out = _remote("plan", PLAN_GB="250", PLAN_CORES="32").stdout
+    want = est_gb(5_000_000, MRL_5M, track_path=TRACK_PATH)
+    assert f"{want:.1f} GB per row" in out, out
+    assert "paths captured" in out

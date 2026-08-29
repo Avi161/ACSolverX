@@ -53,7 +53,8 @@ plan() {
   $PY - <<'PYEOF'
 import os, multiprocessing as mp
 from experiments.search.run_leftovers_1m import est_gb, resolve_workers, _available_gb
-from experiments.search.run_leftovers_5m import SPEC_5M, plan_memory, load_rows_5m
+from experiments.search.run_leftovers_5m import (
+    SPEC_5M, plan_memory, load_rows_5m, TRACK_PATH)
 from experiments.search.run_leftovers_1m import HAVE_HCOMPACT
 
 B, MRL = int(os.environ["BUDGET"]), int(os.environ["MRL"])
@@ -67,12 +68,14 @@ print(f"engine         : hcompact={HAVE_HCOMPACT}")
 if not HAVE_HCOMPACT:
     raise SystemExit("STOP: hcompact missing -- the Python fallback at this "
                      "budget is a hundreds-of-GB code path, not a slow one.")
-per = est_gb(B, MRL)
-print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row")
+per = est_gb(B, MRL, track_path=TRACK_PATH)
+print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row"
+      f"{' (paths captured)' if TRACK_PATH else ''}")
 tot = 0.0
 for arm in ("greedy", "s20_mk2"):
     n = len(load_rows_5m(arm)[0])   # also fails loudly on a stale clone
-    w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL)
+    w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
+                           track_path=TRACK_PATH)
     rate = 708 if arm == "greedy" else 846          # measured at 1M, this engine
     h = n * (B / rate) / 3600 / max(w, 1)
     tot += h
@@ -98,9 +101,11 @@ cd "$SRC"; export PYTHONPATH="$SRC"
 for a in $ARMS; do
   # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
   # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
-  # what `report` already reads. Without it run_leftovers_5m falls back to the
-  # arm's default chunk count (4 for greedy) and silently runs 22 of 88 rows,
-  # then prints CAMPAIGN COMPLETE. The 4-way split exists for four Colabs.
+  # what the report subcommand already reads. Without it the runner falls back
+  # to the arm's default chunk count (4 for greedy) and silently runs 22 of 88
+  # rows, then prints CAMPAIGN COMPLETE. The 4-way split is for four Colabs.
+  # NOTE: this heredoc is unquoted so \$BUDGET interpolates -- never put a
+  # backtick or \$( ) in it, they execute HERE and splice output into the job.
   $PY -m experiments.search.run_leftovers_5m --arm "\$a" --budget $BUDGET \\
       --mrl $MRL --workers $WORKERS --chunks 1 --chunk-index 1 \\
       --out-dir "$OUT"
@@ -149,6 +154,11 @@ UNIT
   echo "  status: systemctl status ac19  |  log: $LOG"
 }
 
+# Write the job script and print its path, starting nothing. Exists so the
+# generated file can be syntax-checked -- a heredoc that silently executes
+# something at generation time produces a job that dies on its first line.
+job_only() { setup; write_job; echo "$OUT/_job.sh"; }
+
 tail_log() { tail -f "$LOG"; }
 
 report() { setup; for a in $ARMS; do
@@ -160,6 +170,7 @@ export BUDGET MRL WORKERS ARMS PLAN_GB PLAN_CORES
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
   install-service) install_service ;;
+  job) job_only ;;
   tail) tail_log ;; report) report ;;
-  *) echo "usage: $0 {plan|smoke|run|install-service|tail|report}" >&2; exit 2 ;;
+  *) echo "usage: $0 {plan|smoke|run|install-service|job|tail|report}" >&2; exit 2 ;;
 esac
