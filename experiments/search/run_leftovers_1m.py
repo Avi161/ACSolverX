@@ -318,24 +318,28 @@ def greedy_search_h_lean(r1_str, r2_str, node_budget, max_relator_length=24,
     }
 
 
-def _run_greedy(r1, r2, budget, mrl, progress=None, reserve_states=None):
+def _run_greedy(r1, r2, budget, mrl, progress=None, reserve_states=None,
+                track_path=False):
     if HAVE_HCOMPACT:
         return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
                                       config=LENGTH_ONLY, progress=progress,
-                                      reserve_states=reserve_states)
+                                      reserve_states=reserve_states,
+                                      track_path=track_path)
     return greedy_search(r1, r2, budget, mrl, high_speedup=True, progress=progress)
 
 
-def _run_s20_mk2(r1, r2, budget, mrl, progress=None, reserve_states=None):
+def _run_s20_mk2(r1, r2, budget, mrl, progress=None, reserve_states=None,
+                 track_path=False):
     if HAVE_HCOMPACT:
         return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
                                       config=S20_MK2, progress=progress,
-                                      reserve_states=reserve_states)
+                                      reserve_states=reserve_states,
+                                      track_path=track_path)
     return greedy_search_h_lean(r1, r2, budget, mrl, config=S20_MK2,
                                 progress=progress)
 
 
-def est_gb(budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
+def est_gb(budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH, track_path=False):
     """Peak GB one search costs, for sizing the pool. Not a limit, an estimate.
 
     With the arena engine this is its own reservation formula, so the number the
@@ -348,7 +352,9 @@ def est_gb(budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
     if not HAVE_HCOMPACT:
         return max(1.0, 46.0 * budget / 1_000_000)
     n = max(1024, int(est_states(budget) * _RESERVE_SLACK)) + 4 * (mrl + 1) ** 2
-    return n * (row_width(mrl) + 31) / 2 ** 30 + 0.6
+    # +8 when capturing paths: an int32 parent and the move's four int8s
+    per = row_width(mrl) + 31 + (8 if track_path else 0)
+    return n * per / 2 ** 30 + 0.6
 
 
 # name -> the search, its 100k-unsolved CSV, the 100k jsonl that CSV was read off,
@@ -479,7 +485,8 @@ def _available_gb():
 
 
 def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None,
-                    budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
+                    budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
+                    track_path=False):
     """``(n_workers, gb_per_worker)`` -- RAM-bound, not CPU-bound.
 
     A 1M-node search is a memory event before it is a compute one, and it grows
@@ -499,7 +506,7 @@ def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None,
     the estimate is linear and a real row may well be cheaper.
     """
     resolve_arm(arm)
-    per = est_gb(budget, mrl)
+    per = est_gb(budget, mrl, track_path=track_path)
     cpus = cpu_count or os.cpu_count() or 1
     if n_workers not in (None, "auto"):
         return max(1, int(n_workers)), per

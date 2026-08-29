@@ -59,6 +59,22 @@ from experiments.search.run_leftovers_1m import (
     resolve_arm, resolve_workers,
 )
 
+# The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
+# coexist and must never be conflated:
+#   MAX_RELATOR_LENGTH (48) -- what the 1M baseline ran at. The "no row may
+#       solve below 1M" floor is a statement about THAT search, so the check
+#       below keys off this, not off whatever this stage is running.
+#   MRL_5M (64)             -- what this stage runs at.
+# At a wider cap an early solve is legitimate and is the interesting result:
+# it is a row the wider corridor cracked cheaply.
+MRL_5M = 64
+
+# Every row records its solution path. `path_length` alone is not the result:
+# the move sequence IS the certificate, and it is unrecoverable after the fact
+# -- the arena is overwritten, so a finished run without it cannot be mined for
+# paths later, only re-run. 8 B/state buys it.
+TRACK_PATH = True
+
 NODE_BUDGET_5M = 5_000_000
 CHECKPOINTS_5M = (1_000_000, 2_000_000, 5_000_000)
 FLOOR_5M = 1_000_000          # every input row failed at 1M; none may solve below
@@ -116,7 +132,7 @@ def unsolved_at_1m(arm):
 
 
 def out_path_5m(arm, out_dir, chunks, chunk_index,
-                budget=NODE_BUDGET_5M, mrl=MAX_RELATOR_LENGTH):
+                budget=NODE_BUDGET_5M, mrl=MRL_5M):
     key, _ = resolve_arm(arm)
     tag = f"_c{int(chunk_index)}of{int(chunks)}" if int(chunks) > 1 else ""
     return os.path.join(
@@ -191,7 +207,7 @@ def _done_ok(path):
             if "name" in r and not r.get("error")}
 
 
-def plan_memory(budget=NODE_BUDGET_5M, mrl=MAX_RELATOR_LENGTH,
+def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
                 available_gb=None, log=print):
     """``(mem_limit_bytes, reserve_states)`` sized to THIS machine.
 
@@ -206,7 +222,7 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MAX_RELATOR_LENGTH,
         _RESERVE_SLACK, est_states, row_width)
     avail = available_gb if available_gb is not None else _available_gb()
     limit_gb = max(avail - 2.0, 3.0)
-    per_state = row_width(mrl) + 31
+    per_state = row_width(mrl) + 31 + (8 if TRACK_PATH else 0)
     default_n = int(est_states(budget) * _RESERVE_SLACK) + 4 * (mrl + 1) ** 2
     cap_n = int(max(limit_gb - 2.5, 1.0) * 0.95 * 2 ** 30 / per_state)
     reserve = max(1024, min(default_n, cap_n))
@@ -260,7 +276,7 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
                                   log=lambda m: q.put(("log", m)))
         t = time.time()
         st = spec["run"](row["r1"], row["r2"], budget, mrl, progress=hb,
-                         reserve_states=reserve_states)
+                         reserve_states=reserve_states, track_path=TRACK_PATH)
         q.put(("done", {
             "name": row["name"], "arm": arm, "r1": row["r1"], "r2": row["r2"],
             "budget": budget, "max_relator_length": mrl,
@@ -269,6 +285,8 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "path_length": st["path_length"],
             "min_relator_length": st["min_relator_length"],
             "max_relator_length_expanded": st["max_relator_length_expanded"],
+            "path": st.get("path", []),
+            "path_moves": st.get("path_moves", []),
             "seconds": round(time.time() - t, 3),
             "peak_rss_gb": _peak_rss_gb(),
         }))
@@ -300,7 +318,9 @@ class RamGovernor:
 
     def __init__(self, budget, mrl, cpu_cap=None, max_workers=None,
                  headroom_gb=None, safety=1.25, min_samples=3):
-        self.worst = est_gb(budget, mrl)     # ceiling; a prediction never exceeds it
+        # sized for what this stage actually runs -- path capture included,
+        # or the governor admits rows the machine cannot hold
+        self.worst = est_gb(budget, mrl, track_path=TRACK_PATH)
         self.cpus = cpu_cap or os.cpu_count() or 1
         self.max_workers = max_workers
         # never hand out the last of the machine: the parent, the numba runtime
@@ -481,7 +501,7 @@ def absorb_shard_rows(out, shard_paths, valid_names, log=print):
 
 
 def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
-               mrl=MAX_RELATOR_LENGTH, n_workers="auto", resume=True,
+               mrl=MRL_5M, n_workers="auto", resume=True,
                csv_path=None, mirror_dir=None, limit=None, heartbeat_secs=60,
                row_timeout_secs=ROW_TIMEOUT_DEFAULT, mem_limit_bytes=None,
                reserve_states=None, log=print):
@@ -509,7 +529,8 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     todo = [r for r in rows if r["name"] not in seen]
 
     auto = n_workers in (None, "auto")
-    n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl)
+    n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl,
+                                        track_path=TRACK_PATH)
     # "auto" lets the governor float up to the core count; an explicit number
     # is a ceiling, never a target -- RAM still has the last word.
     governor = RamGovernor(budget, mrl,
@@ -548,7 +569,7 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
 
 
 def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M,
-              mrl=MAX_RELATOR_LENGTH, write_ids=True, log=print):
+              mrl=MRL_5M, write_ids=True, log=print):
     """Report one chunk, or — with ``chunk_index=None`` — every chunk merged.
 
     The merged view is what the experiment answers; a single chunk's numbers are
@@ -631,7 +652,7 @@ def main(argv=None):
     # filename, so a run at one cap and a report at another silently read a
     # file that does not exist ("no rows yet" on a finished run) -- that bug
     # has bitten this campaign twice. Passing one value to both closes it.
-    ap.add_argument("--mrl", type=int, default=MAX_RELATOR_LENGTH,
+    ap.add_argument("--mrl", type=int, default=MRL_5M,
                     help="max relator length (per relator); tags the jsonl name")
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--limit", type=int, default=None)

@@ -92,7 +92,7 @@ CHUNKS      = %(chunks)d
 CHUNK_INDEX = %(chunk_index)d
 
 NODE_BUDGET = 5_000_000      # the lift this notebook exists to run
-MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
+MAX_RELATOR_LENGTH = 64      # the 5M stage runs a wider corridor than the 1M wave (48)
 
 N_WORKERS = "auto"           # sizes by free RAM; resolves 1 at this budget
 RESUME    = True             # rows already in the jsonl are skipped

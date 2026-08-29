@@ -19,6 +19,9 @@ from experiments.search.run_leftovers_5m import (
     report_5m, run_arm_5m, stride_chunk, unsolved_at_1m,
 )
 from experiments.search.run_leftovers_1m import read_rows, resolve_workers
+from experiments.search.run_leftovers_1m import MAX_RELATOR_LENGTH as FLOOR_CAP
+from experiments.search.run_leftovers_5m import MRL_5M
+from experiments.search.greedy_compact import est_states
 
 ROOT = mk5.ROOT
 ARM_NAMES = ("greedy", "s20_mk2")
@@ -150,13 +153,13 @@ def test_the_pipeline_runs_chunked_resumes_and_merges(tmp_path, capsys):
 def test_the_report_shouts_on_a_sub_1m_solve(tmp_path, capsys):
     out_dir = str(tmp_path)
     rows = stride_chunk(load_rows_5m("s20_mk2")[0], 1, 1)
-    with open(out_path_5m("s20_mk2", out_dir, 1, 1), "w") as fh:
+    with open(out_path_5m("s20_mk2", out_dir, 1, 1, mrl=FLOOR_CAP), "w") as fh:
         for i, r in enumerate(rows):
             fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
                                  "solved": True,
                                  "nodes_explored": 500_000 if i == 0
                                  else 3_000_000}) + "\n")
-    report_5m("s20_mk2", out_dir, chunks=1, log=print)
+    report_5m("s20_mk2", out_dir, chunks=1, mrl=FLOOR_CAP, log=print)
     text = capsys.readouterr().out
     assert "which the 1M run says is impossible" in text
 
@@ -268,7 +271,8 @@ def test_plan_memory_clips_the_reservation_to_the_machine():
     if not HAVE_HCOMPACT:
         pytest.skip("engine not on this branch")
     from experiments.search.greedy_compact import _RESERVE_SLACK, est_states
-    default_n = int(est_states(NODE_BUDGET_5M) * _RESERVE_SLACK) + 4 * 49 ** 2
+    default_n = (int(est_states(NODE_BUDGET_5M) * _RESERVE_SLACK)
+                 + 4 * (MRL_5M + 1) ** 2)
     # a big machine keeps the engine default
     _, big = plan_memory(available_gb=200.0, log=lambda *a: None)
     assert big == default_n
@@ -335,7 +339,7 @@ def test_config_pins_arm_chunk_budget_and_knobs(cells, stem, arm, chunks, idx):
     assert f"CHUNKS      = {chunks}" in cfg
     assert f"CHUNK_INDEX = {idx}" in cfg
     assert "NODE_BUDGET = 5_000_000" in cfg
-    assert "MAX_RELATOR_LENGTH = 48" in cfg
+    assert f"MAX_RELATOR_LENGTH = {MRL_5M}" in cfg
     assert "ROW_TIMEOUT_SECS = None" in cfg
     assert SPEC_5M[arm]["csv"] in cfg
     # machine-neutral: no SKU baked in
@@ -473,7 +477,8 @@ def test_plan_prices_an_offer_before_you_rent_it():
     """The point of a spot market is choosing the box BEFORE paying for it."""
     out = _remote("plan", PLAN_GB="512", PLAN_CORES="64").stdout
     assert "offer" in out and "64 cores, 512 GB RAM" in out
-    assert "14 workers" in out, out
+    want, _ = resolve_workers("greedy", "auto", 512, 64, 5_000_000, MRL_5M)
+    assert f"{want} workers" in out, out
 
 
 def test_more_ram_buys_more_workers_and_less_wall_clock():
@@ -680,3 +685,157 @@ def test_a_row_already_big_tightens_the_gate_for_the_next_one():
     wide = g.capacity([3.0], free_gb=512)
     tight = g.capacity([30.0], free_gb=512)   # one in flight is already huge
     assert tight < wide, (wide, tight)
+
+
+def test_the_1m_floor_keys_off_the_cap_that_built_the_list_not_the_default():
+    """The floor says 'no row on these lists solves under 1M'. That is a claim
+    about the cap-48 search that BUILT them. When the 5M default moved to 64,
+    a check written as `mrl == MAX_RELATOR_LENGTH` would have inverted: silent
+    at 48 where it must shout, shouting at 64 where an early solve is the
+    interesting result."""
+    assert FLOOR_CAP == 48, "the 1M baseline cap moved; the floor claim moves too"
+    assert MRL_5M == 64
+    src = open(os.path.join(ROOT, "experiments", "search",
+                            "run_leftovers_5m.py")).read()
+    assert "if mrl == MAX_RELATOR_LENGTH:" in src, "floor check re-keyed to the default"
+
+
+def test_the_wider_cap_is_what_the_5m_stage_actually_runs():
+    """One constant, everywhere the stage takes a default."""
+    import inspect
+    # classify_5m works on already-loaded rows, so it has no cap to default
+    from experiments.search.run_leftovers_5m import (
+        run_arm_5m, report_5m as r5, plan_memory as pm)
+    for fn in (run_arm_5m, r5, pm):
+        assert inspect.signature(fn).parameters["mrl"].default == MRL_5M, fn
+
+
+# ---------------------------------------------------------------------------
+# Solution paths. `path_length` alone is not the result -- the move sequence is
+# the certificate, and it cannot be recovered after the fact: the arena is
+# overwritten, so a finished run without it can only be re-run.
+# ---------------------------------------------------------------------------
+from experiments.search.run_leftovers_5m import TRACK_PATH          # noqa: E402
+
+# Two cases. The oracle is pure Python with a full parent dict, so the
+# field-for-field gate uses a pair that solves in a handful of nodes; the
+# engine-only checks use a real 1M-list row, where hcompact is fast enough.
+_EASY = ("XYXYy", "YXYXX", 4_000, 3)
+_REAL = ("YYXYYXXXyX", "YYXYXXXYYXXXX", 200_000, 58)
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_engine_path_matches_the_python_oracle_field_for_field():
+    """The reused fast path must produce the SAME certificate as the reference
+    solver, not merely a plausible one."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.heuristic_search.core.hsolve import greedy_search_h
+    from experiments.search.run_leftovers_1m import S20_MK2
+
+    r1, r2, b, plen = _EASY
+    fast = greedy_search_hcompact(r1, r2, b, max_relator_length=48,
+                                  config=S20_MK2, track_path=True)
+    ref = greedy_search_h(r1, r2, b, 48, config=S20_MK2, keep_path=True)
+    assert fast["solved"] and ref["solved"]
+    for k in ("nodes_explored", "path_length", "min_relator_length",
+              "max_relator_length", "max_relator_length_expanded",
+              "path", "path_moves"):
+        assert fast[k] == ref[k], k
+    assert fast["path_length"] == plen
+    assert len(fast["path"]) == plen + 1
+
+
+@pytest.fixture(scope="module")
+def solved_real():
+    """The one expensive search in this file, run once and shared. Every row on
+    these lists needs >100k nodes by construction -- they are the hard ones."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.search.run_leftovers_1m import S20_MK2
+    r1, r2, b, _ = _REAL
+    return r1, r2, greedy_search_hcompact(r1, r2, b, max_relator_length=48,
+                                          config=S20_MK2, track_path=True)
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_recorded_moves_actually_replay_into_the_recorded_path(solved_real):
+    """A path nobody can replay is not a certificate."""
+    from experiments.search.greedy_baseline import moves_to_states, str_to_move
+
+    r1, r2, got = solved_real
+    replay = moves_to_states(r1, r2, [str_to_move(m) for m in got["path_moves"]])
+    assert [list(x) for x in replay] == [list(x) for x in got["path"]]
+    assert sorted(len(w) for w in got["path"][-1]) == [1, 1], "not the trivial pair"
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_tracking_does_not_perturb_the_search():
+    """Same nodes, same answer -- the certificate is a side channel, not a
+    different search. Otherwise every earlier wave's numbers stop splicing."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.search.run_leftovers_1m import S20_MK2
+
+    r1, r2, _, _ = _REAL
+    kw = dict(max_relator_length=48, config=S20_MK2)
+    # 30k nodes: does not solve, but min/max/expanded are order-sensitive, so
+    # any divergence in the frontier shows up here -- cheaply.
+    on = greedy_search_hcompact(r1, r2, 30_000, track_path=True, **kw)
+    off = greedy_search_hcompact(r1, r2, 30_000, track_path=False, **kw)
+    for k in ("nodes_explored", "min_relator_length", "max_relator_length",
+              "max_relator_length_expanded", "solved"):
+        assert on[k] == off[k], k
+    assert off["path"] == [] and off["path_moves"] == []
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_not_tracking_allocates_nothing_for_paths():
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    lean = HCompactSolver("XYX", "YX", max_nodes=2_000, max_relator_length=32)
+    full = HCompactSolver("XYX", "YX", max_nodes=2_000, max_relator_length=32,
+                          track_path=True)
+    assert lean.parent.size == 1 and lean.pmove.size == 4
+    assert full.parent.size == full.states_cap
+    assert full.bytes_reserved() > lean.bytes_reserved()
+
+
+def test_the_sizing_counts_the_path_arrays():
+    """If est_gb ignored them the governor would admit rows that do not fit."""
+    plain = est_gb(5_000_000, 64)
+    with_path = est_gb(5_000_000, 64, track_path=True)
+    assert with_path > plain
+    n = int(est_states(5_000_000) * 1.5) + 4 * 65 ** 2
+    assert abs((with_path - plain) - n * 8 / 2 ** 30) < 0.01
+
+
+def test_the_campaign_captures_paths_by_default():
+    assert TRACK_PATH is True
+
+
+def test_a_finished_row_carries_its_path_into_the_jsonl(tmp_path):
+    """The record is the deliverable; a path that never reaches disk is lost."""
+    out = run_arm_5m("s20_mk2", str(tmp_path), chunks=1, chunk_index=1,
+                     budget=2_000, mrl=48, limit=2, n_workers=1,
+                     log=lambda *a: None)
+    rows = read_rows(out)
+    assert rows
+    for r in rows:
+        assert "path" in r and "path_moves" in r
+        if r["solved"]:
+            assert len(r["path"]) == r["path_length"] + 1
+            assert len(r["path_moves"]) == r["path_length"]
+
+
+def test_the_job_runs_every_row_not_just_the_first_chunk():
+    """Without explicit chunk flags run_leftovers_5m falls back to the arm's
+    default chunk count (4 for greedy) and runs 22 of 88 rows, then prints
+    CAMPAIGN COMPLETE. The 4-way split is for four Colabs, not one box."""
+    src = open(REMOTE_SH).read()
+    assert "--chunks 1 --chunk-index 1" in src
+    # and the report must read the same file the run writes
+    assert "chunks=1, chunk_index=1" in src
+
+
+def test_single_box_chunking_really_is_every_row():
+    from experiments.search.run_leftovers_5m import load_rows_5m
+    for arm, n in (("greedy", 88), ("s20_mk2", 14)):
+        rows = load_rows_5m(arm)[0]
+        assert len(stride_chunk(rows, 1, 1)) == n

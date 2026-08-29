@@ -60,6 +60,7 @@ while _d != os.path.dirname(_d) and not all(
 sys.path.insert(0, _d)
 
 from experiments.search.greedy_baseline import (                    # noqa: E402
+    move_to_str,
     canonical_pair_nj, reduce_relator_nj, str_to_arr,
 )
 from experiments.search.greedy_compact import (                     # noqa: E402
@@ -122,7 +123,7 @@ def _sift_down_h(heap, n, arena, seg, score, depth, rw):
 @njit(cache=True)
 def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
                  cap, w, rw, cyclic, seg_upto, seg_w, seg_depth, use_depth,
-                 max_pops, states_cap):
+                 max_pops, states_cap, parent, pmove, track):
     """Advance by at most ``max_pops`` pops; all state lives in the arrays and ``st``.
 
     The skeleton is ``greedy_compact._run_chunk``; the two deliberate differences are the
@@ -168,6 +169,7 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
             exp_id = top
         if l1 == 1 and l2 == 1:
             st[10] = np.int64(depth[top])
+            st[11] = np.int64(top)          # the solved node, for path recovery
             status = _SOLVED
             break
 
@@ -210,6 +212,12 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
                 s_val = s_val + seg_depth[si] * d1
             seg[sid] = np.uint8(si)
             score[sid] = s_val
+            if track:
+                parent[sid] = top
+                # a move is (target, jsign, k1, k2); all four fit in int8
+                # (target 0/1, jsign +-1, k1/k2 bounded by cap <= 127)
+                for t in range(4):
+                    pmove[sid, t] = np.int8(moves[i, t])
             _insert(table, tmask, h, sid)
             n_disc += 1
 
@@ -240,7 +248,7 @@ class HCompactSolver:
     """Pops in exactly the order ``greedy_search_h`` does. Tracks no paths."""
 
     def __init__(self, r1, r2, max_nodes=10000, max_relator_length=24,
-                 cyclic_reduce=True, config=None, reserve_states=None):
+                 cyclic_reduce=True, config=None, reserve_states=None, track_path=False):
         if not 1 <= max_relator_length <= 255:
             raise ValueError(
                 f"max_relator_length must be in 1..255, got {max_relator_length}")
@@ -252,6 +260,7 @@ class HCompactSolver:
         self.grew = 0
 
         cfg = config or LENGTH_ONLY
+        self.track_path = bool(track_path)
         self.seg_upto, self.seg_w, self.seg_depth = compile_config(cfg)
         self.use_depth = bool(np.any(self.seg_depth != 0.0))
         self.n_seg = len(self.seg_upto)
@@ -266,6 +275,7 @@ class HCompactSolver:
         want = reserve_states or est_states(max_nodes)
         n = max(1024, int(want * _RESERVE_SLACK)) + 4 * (self.cap + 1) ** 2
         self._alloc(n)
+        self.solved_id = None
 
     def _alloc(self, n, old=None):
         self.states_cap = n
@@ -276,6 +286,13 @@ class HCompactSolver:
         self.seg = np.empty(n, dtype=np.uint8)
         self.score = np.empty(n, dtype=np.float64)
         self.heap = np.empty(n, dtype=np.int32)
+        # parent + the move that produced each state: what turns "path_length"
+        # into an actual move sequence. 5 B/state, and only when tracking --
+        # a run that does not want paths allocates nothing and is byte-for-byte
+        # the search it always was.
+        m = n if self.track_path else 1
+        self.parent = np.full(m, -1, dtype=np.int32)
+        self.pmove = np.zeros((m, 4), dtype=np.int8)
         self.tcap = _next_pow2(2 * n)
         self.table = np.zeros(self.tcap, dtype=np.int32)
         if old is not None:
@@ -287,13 +304,17 @@ class HCompactSolver:
             self.seg[:k] = old["seg"][:k]
             self.score[:k] = old["score"][:k]
             self.heap[:old["heap_len"]] = old["heap"][:old["heap_len"]]
+            if self.track_path:
+                self.parent[:k] = old["parent"][:k]
+                self.pmove[:k, :] = old["pmove"][:k, :]
             _rehash(self.table, self.tcap - 1, self.arena, k, self.rw)
 
     def _grow(self, st):
         self.grew += 1
         old = {"n": int(st[2]), "heap_len": int(st[1]), "arena": self.arena,
                "len1": self.len1, "len2": self.len2, "depth": self.depth,
-               "seg": self.seg, "score": self.score, "heap": self.heap}
+               "seg": self.seg, "score": self.score, "heap": self.heap,
+               "parent": self.parent, "pmove": self.pmove}
         print(f"    [hcompact] reservation exceeded at {old['n']:,} states; "
               f"growing to {2 * self.states_cap:,} (this copies)", flush=True)
         self._alloc(2 * self.states_cap, old)
@@ -301,7 +322,7 @@ class HCompactSolver:
 
     def bytes_reserved(self):
         return (self.arena.nbytes + self.len1.nbytes + self.len2.nbytes
-                + self.depth.nbytes + self.seg.nbytes + self.score.nbytes
+                + self.parent.nbytes + self.pmove.nbytes + self.depth.nbytes + self.seg.nbytes + self.score.nbytes
                 + self.heap.nbytes + self.table.nbytes)
 
     def bytes_per_state(self):
@@ -334,8 +355,9 @@ class HCompactSolver:
         self.seg[0] = p0[0]
         self.score[0] = p0[1]
 
-        st = np.zeros(11, dtype=np.int64)
+        st = np.zeros(12, dtype=np.int64)
         st[10] = -1
+        st[11] = -1
         st[1] = 1
         st[2] = 1
         st[3] = self.tcap - 1
@@ -355,7 +377,8 @@ class HCompactSolver:
                 self.score, self.heap, self.table, st, self.cap, self.w,
                 self.rw, self.cyclic_reduce, self.seg_upto, self.seg_w,
                 self.seg_depth, self.use_depth,
-                min(_HB_CHECK_EVERY, remaining), self.states_cap)
+                min(_HB_CHECK_EVERY, remaining), self.states_cap,
+                self.parent, self.pmove, self.track_path)
 
             if progress is not None and int(st[0]) >= next_tick:
                 # Optional 2nd arg = current min pair-total (st[5]). One-arg
@@ -379,7 +402,30 @@ class HCompactSolver:
         self.max_id, self.max_total = int(st[6]), int(st[7])
         self.max_expanded_id, self.max_expanded_total = int(st[8]), int(st[9])
         self.solved_depth = int(st[10]) if solved else None
+        self.solved_id = int(st[11]) if solved and st[11] >= 0 else None
         return solved, int(st[0])
+
+    def path(self):
+        """``(states, moves)`` root -> solution, or ``([], [])``.
+
+        Walks the parent chain from the solved node. The chain is acyclic by
+        construction -- a state is written once, when it is first discovered,
+        and its parent is always an already-popped node -- but the walk is
+        bounded anyway so a corrupt array can never hang a 39-hour run.
+        """
+        if not self.track_path or self.solved_id is None:
+            return [], []
+        sid, states, moves = self.solved_id, [], []
+        for _ in range(int(self.states_cap) + 1):
+            states.append(self.relators(sid))
+            p = int(self.parent[sid])
+            if p < 0:
+                states.reverse()
+                moves.reverse()
+                return states, moves
+            moves.append(tuple(int(v) for v in self.pmove[sid]))
+            sid = p
+        raise RuntimeError("parent chain did not reach the root -- corrupt arena")
 
     def relators(self, sid):
         off = sid * self.rw
@@ -394,8 +440,16 @@ class HCompactSolver:
 
 def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
                            cyclic_reduce=True, config=None, progress=None,
-                           reserve_states=None):
-    """``greedy_search_h(keep_path=False)``'s exact dict, from the compact layout."""
+                           reserve_states=None, track_path=False):
+    """``greedy_search_h``'s exact dict, from the compact layout.
+
+    ``track_path=False`` reproduces ``keep_path=False``: no certificate comes
+    back and the search is byte-for-byte what it always was. ``track_path=True``
+    reproduces ``keep_path=True`` -- the move sequence and the presentation at
+    every step -- for 8 B/state (an int32 parent and the move's four int8s),
+    which is about 8% on top of the arena. The Python solver keeps a whole parent dict
+    for the same thing, at 36.5 kB/node against 24 kB.
+    """
     solver = HCompactSolver(
         r1_str, r2_str,
         max_nodes=node_budget,
@@ -403,8 +457,10 @@ def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
         cyclic_reduce=cyclic_reduce,
         config=config,
         reserve_states=reserve_states,
+        track_path=track_path,
     )
     solved, nodes_visited = solver.solve(progress)
+    states, moves = solver.path()
     min_r = solver.relators(solver.min_id)
     max_r = solver.relators(solver.max_id)
     exp_r = solver.relators(solver.max_expanded_id)
@@ -418,6 +474,6 @@ def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
         "max_relator": [max_r[0], max_r[1]],
         "max_relator_length_expanded": solver.max_expanded_total,
         "max_relator_expanded": [exp_r[0], exp_r[1]],
-        "path": [],
-        "path_moves": [],
+        "path": [[a, b] for a, b in states],
+        "path_moves": [move_to_str(m) for m in moves],
     }

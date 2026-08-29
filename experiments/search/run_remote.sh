@@ -20,7 +20,7 @@ PLAN_GB=${PLAN_GB:-}; PLAN_CORES=${PLAN_CORES:-}
 BRANCH=${BRANCH:-claude/ac19-leftover-solver-notebook-6yan6d}
 REPO=${REPO:-https://github.com/Avi161/ACSolverX.git}
 BUDGET=${BUDGET:-5000000}
-MRL=${MRL:-48}
+MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
 ARMS=${ARMS:-greedy s20_mk2}
 OUT=${OUT:-$HOME/leftovers_5m}
@@ -96,8 +96,14 @@ write_job() {
 set -euo pipefail
 cd "$SRC"; export PYTHONPATH="$SRC"
 for a in $ARMS; do
+  # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
+  # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
+  # what `report` already reads. Without it run_leftovers_5m falls back to the
+  # arm's default chunk count (4 for greedy) and silently runs 22 of 88 rows,
+  # then prints CAMPAIGN COMPLETE. The 4-way split exists for four Colabs.
   $PY -m experiments.search.run_leftovers_5m --arm "\$a" --budget $BUDGET \\
-      --mrl $MRL --workers $WORKERS --out-dir "$OUT"
+      --mrl $MRL --workers $WORKERS --chunks 1 --chunk-index 1 \\
+      --out-dir "$OUT"
 done
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
 JOB
