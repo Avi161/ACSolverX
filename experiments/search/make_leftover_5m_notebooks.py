@@ -1,11 +1,13 @@
-"""Write the two AC19-leftover 5M notebooks (combined greedy + s20_mk2).
+"""Write the five AC19-leftover 5M notebooks (four greedy shards + s20_mk2).
 
     PYTHONPATH=. python3 -m experiments.search.make_leftover_5m_notebooks
 
-One notebook per machine: the greedy arm's 88 rows combined into a single
-file (this replaced the four stride-shard notebooks; ``absorb_shard_rows``
-folds any rows the shards already finished into the combined jsonl so nothing
-is re-run), and the s20_mk2 arm's 14 as the other.
+One notebook per machine, five machines: the greedy arm's 88 rows stride-split
+across four shard notebooks (CHUNKS=4, CHUNK_INDEX=k -> rows[k-1::4],
+interleaved so difficulty spreads evenly; disjoint, union = 88) and the
+s20_mk2 arm's 14 as the fifth. Every row runs crash-isolated -- see the Edge
+Compact guards in ``run_leftovers_5m`` -- so a CPU-limit kill or a RAM
+overload becomes a recorded, retried row instead of a dead session.
 
 Cell contract, per the run plan: CONFIG, SETUP (clone/pull — Colab or a plain
 GCE VM — Drive mount where available, ``ENGINE="hcompact"`` + ``HIGH_SPEEDUP``
@@ -31,17 +33,10 @@ ROOT = _ROOT
 NB_DIR = os.path.join(ROOT, "experiments", "notebooks", "leftovers_5m")
 DEFAULT_BRANCH = "claude/ac19-leftover-solver-notebook-6yan6d"
 
-# (filename stem, ARM)
-VARIANTS = (
-    ("ac19_leftovers_5m_greedy", "greedy"),
-    ("ac19_leftovers_5m_s20_mk2", "s20_mk2"),
-)
-
-# The retired stride-shard notebooks' Drive dirs — MAIN absorbs any rows they
-# already finished so a shard's paid-for work survives the consolidation.
-LEGACY_SHARD_DRIVE_DIRS = tuple(
-    f"/content/drive/MyDrive/acsolverx/leftovers_5m_greedy_c{k}of4"
-    for k in (1, 2, 3, 4))
+# (filename stem, ARM, CHUNKS, CHUNK_INDEX)
+VARIANTS = tuple(
+    [(f"ac19_leftovers_5m_greedy_c{k}of4", "greedy", 4, k) for k in (1, 2, 3, 4)]
+    + [("ac19_leftovers_5m_s20_mk2", "s20_mk2", 1, 1)])
 
 
 def current_branch(default=DEFAULT_BRANCH):
@@ -57,10 +52,10 @@ def current_branch(default=DEFAULT_BRANCH):
 _ARM_BLURB = {
     "greedy": '''# THE QUESTION
 #   88 orbits survived the greedy (total-length) arm's 1,000,000-node pass.
-#   This ONE notebook runs all 88 at 5,000,000 nodes on one machine -- it
-#   replaces the four c{1..4}of4 shard notebooks, and MAIN absorbs any rows
-#   those shards already finished (from their Drive dirs) so nothing paid for
-#   is re-run.''',
+#   This notebook runs shard %(chunk_index)d of 4 -- rows [%(k0)d::4] of the
+#   list, 22 rows -- at 5,000,000 nodes on its own machine. The four shard
+#   notebooks are disjoint and together cover all 88; run them as four
+#   parallel machines, with s20_mk2 as the fifth.''',
     "s20_mk2": '''# THE QUESTION
 #   14 orbits survived the s20_mk2 (L + 20*S + 2*MK) arm's 1,000,000-node pass
 #   -- the tail both orderings fail. This notebook runs all 14 at 5,000,000
@@ -93,8 +88,8 @@ UPDATE_REPO = True           # git reset --hard, so a re-run pulls the latest pu
 MOUNT_DRIVE = True           # Colab only; a plain VM runs without a mirror
 
 ARM         = "%(arm)s"
-CHUNKS      = 1              # the combined list -- no shards
-CHUNK_INDEX = 1
+CHUNKS      = %(chunks)d
+CHUNK_INDEX = %(chunk_index)d
 
 NODE_BUDGET = 5_000_000      # the lift this notebook exists to run
 MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
@@ -102,7 +97,8 @@ MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
 N_WORKERS = "auto"           # sizes by free RAM; resolves 1 at this budget
 RESUME    = True             # rows already in the jsonl are skipped
 RUN_MAIN  = True             # False = smoke only; MAIN also never starts if SMOKE failed
-MAIN_LIMIT = None            # first-N rows only (testing); None = the whole list
+MAIN_LIMIT = None            # first-N rows only (testing); None = the whole shard
+ROW_TIMEOUT_SECS = None      # per-row kill switch (crash-guarded); None = off
 
 LOCAL_OUT_DIR = "results/heuristic_search/leftovers_5m"
 DRIVE_OUT_DIR = "/content/drive/MyDrive/acsolverx/leftovers_5m_%(drive_tag)s"
@@ -176,15 +172,25 @@ importlib.invalidate_caches()
 
 from experiments.search.run_leftovers_1m import ARMS, HAVE_HCOMPACT
 from experiments.search.run_leftovers_5m import (
-    absorb_shard_rows, load_rows_5m, out_path_5m, report_5m, resolve_workers,
-    run_arm_5m, stride_chunk, unsolved_at_1m)
+    load_rows_5m, out_path_5m, report_5m, resolve_workers, run_arm_5m,
+    stride_chunk, unsolved_at_1m)
 
 assert HAVE_HCOMPACT, ("packed-arena engine missing -- wrong branch or a stale "
                        "clone; ENGINE=hcompact is required for HIGH_SPEEDUP and "
                        "a 5M run on the Python fallback would OOM")
 
-# warm the numba kernels in the parent, not in a worker's first row
-_ = ARMS[ARM]["run"]("xyx", "yx", 20, 32)
+# warm the numba kernels in the parent, not in a worker's first row -- and
+# confirm the arm actually CALLS the engine (no silent Python fallback): the
+# fast path must be the one that runs, not merely the one that imports
+import experiments.search.run_leftovers_1m as _r1m
+_calls = []
+_real = _r1m.greedy_search_hcompact
+_r1m.greedy_search_hcompact = lambda *a, **k: (_calls.append(1), _real(*a, **k))[1]
+try:
+    _ = ARMS[ARM]["run"]("xyx", "yx", 20, 32)
+finally:
+    _r1m.greedy_search_hcompact = _real
+assert _calls, "arm did not call greedy_search_hcompact -- silent fallback; stop"
 
 _rows, _csv = load_rows_5m(ARM)
 _derived = unsolved_at_1m(ARM)
@@ -242,7 +248,6 @@ print("SMOKE PASSED -- pipeline verified; MAIN may start")
 
 MAIN = '''# ==================== MAIN (the 5M run; gated by SMOKE) ====================
 assert _SMOKE_OK, "smoke did not pass; refusing to start the long job"
-import glob as _glob
 import os
 
 OUT_DIR = os.path.join(REPO_ROOT, LOCAL_OUT_DIR)
@@ -254,39 +259,35 @@ if MIRROR is None:
 if not RUN_MAIN:
     print("RUN_MAIN = False -- smoke only, the long job was not started")
 else:
-    out = out_path_5m(ARM, OUT_DIR, CHUNKS, CHUNK_INDEX,
-                      budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH)
-    if ARM == "greedy":
-        # fold in anything the retired c{1..4}of4 shard notebooks already
-        # finished at this exact budget and cap, so no paid-for row re-runs
-        _dirs = [OUT_DIR] + [
-            f"/content/drive/MyDrive/acsolverx/leftovers_5m_greedy_c{k}of4"
-            for k in (1, 2, 3, 4)]
-        _pat = f"leftovers_5m_greedy_c*of*_b{NODE_BUDGET}_mrl{MAX_RELATOR_LENGTH}.jsonl"
-        _shards = [p for d in _dirs
-                   for p in sorted(_glob.glob(os.path.join(d, _pat)))]
-        absorb_shard_rows(out, _shards, {r["name"] for r in _rows})
-
+    # Every row runs crash-isolated in its own process (the Edge Compact
+    # guards): an OOM, a CPU-limit kill or a timeout becomes a recorded error
+    # row that resume retries later -- the session itself never dies with a row.
     out = run_arm_5m(ARM, OUT_DIR, chunks=CHUNKS, chunk_index=CHUNK_INDEX,
                      budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
                      n_workers=N_WORKERS, resume=RESUME, limit=MAIN_LIMIT,
-                     mirror_dir=MIRROR)
+                     row_timeout_secs=ROW_TIMEOUT_SECS, mirror_dir=MIRROR)
     print("jsonl:", out)
     c = report_5m(ARM, OUT_DIR, chunks=CHUNKS, budget=NODE_BUDGET,
                   mrl=MAX_RELATOR_LENGTH)
 '''
 
 
-def build(stem, arm, branch=None):
+def build(stem, arm, chunks, chunk_index, branch=None):
     branch = branch or current_branch()
     from experiments.search.run_leftovers_5m import SPEC_5M
     cfg = CONFIG % {
-        "title": "GREEDY (combined, all 88)" if arm == "greedy" else "S20_MK2",
-        "blurb": _ARM_BLURB[arm],
+        "title": (f"GREEDY c{chunk_index}of{chunks}" if arm == "greedy"
+                  else "S20_MK2"),
+        "blurb": _ARM_BLURB[arm] % ({"chunk_index": chunk_index,
+                                     "k0": chunk_index - 1}
+                                    if arm == "greedy" else {}),
         "csv": SPEC_5M[arm]["csv"],
         "branch": branch,
         "arm": arm,
-        "drive_tag": arm,
+        "chunks": chunks,
+        "chunk_index": chunk_index,
+        "drive_tag": (f"greedy_c{chunk_index}of{chunks}" if arm == "greedy"
+                      else "s20_mk2"),
     }
     cells = [cfg, SETUP, SMOKE, MAIN]
     return {
@@ -312,15 +313,19 @@ def path_for(stem):
     return os.path.join(NB_DIR, f"{stem}.ipynb")
 
 
-def render(stem, arm, branch=None):
-    return json.dumps(build(stem, arm, branch), indent=1) + "\n"
+def render(stem, arm, chunks, chunk_index, branch=None):
+    return json.dumps(build(stem, arm, chunks, chunk_index, branch), indent=1) + "\n"
 
 
 def main():
     os.makedirs(NB_DIR, exist_ok=True)
-    for stem, arm in VARIANTS:
+    stale = os.path.join(NB_DIR, "ac19_leftovers_5m_greedy.ipynb")
+    if os.path.exists(stale):
+        os.remove(stale)                 # the combined notebook is not the job
+        print("removed", os.path.relpath(stale, ROOT))
+    for stem, arm, chunks, idx in VARIANTS:
         with open(path_for(stem), "w") as f:
-            f.write(render(stem, arm))
+            f.write(render(stem, arm, chunks, idx))
         print("wrote", os.path.relpath(path_for(stem), ROOT))
 
 

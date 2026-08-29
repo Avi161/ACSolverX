@@ -194,80 +194,130 @@ def test_a_complete_merged_run_writes_the_id_lists(tmp_path):
             assert sorted(ln.strip() for ln in fh if ln.strip()) == sorted(ids)
 
 
-# ------------------------------------------------------------- shard absorption
-from experiments.search.run_leftovers_5m import absorb_shard_rows
+# ------------------------------------------------------ Edge Compact crash guards
+from experiments.search.run_leftovers_5m import (
+    _done_ok, absorb_shard_rows, plan_memory)
 
 
-def test_absorb_folds_shard_rows_in_once_and_skips_foreign_names(tmp_path):
-    """The combined notebook replaces the four shards; rows a shard already paid
-    for must survive, appear once, and nothing outside the row list sneaks in."""
+def test_a_crashing_row_becomes_an_error_row_and_the_run_continues(tmp_path):
+    """The fix for the crashed 5M sessions: a row that dies takes itself out,
+    never the session. An invalid relator makes the child raise; the parent
+    records it and moves on to the healthy row."""
+    csv = tmp_path / "rows.csv"
+    csv.write_text("name,r1,r2,min_relator_length\n"
+                   "bad_row,zzZZ,qq,4\n"
+                   "ac19_12445,YXXYxxyxx,YXyxYXXXyxx,17\n")
+    out_dir = str(tmp_path)
+    run_arm_5m("s20_mk2", out_dir, chunks=1, chunk_index=1, budget=300, mrl=24,
+               n_workers=1, csv_path=str(csv), log=lambda *a: None)
+    rows = {r["name"]: r for r in read_rows(out_path_5m("s20_mk2", out_dir, 1, 1,
+                                                        300, 24))}
+    assert set(rows) == {"bad_row", "ac19_12445"}
+    assert rows["bad_row"].get("error"), "the crash must be recorded, not fatal"
+    assert not rows["ac19_12445"].get("error"), "the healthy row must still run"
+
+
+def test_error_rows_do_not_satisfy_resume(tmp_path):
+    p = str(tmp_path / "x.jsonl")
+    with open(p, "w") as fh:
+        fh.write(json.dumps({"name": "a", "solved": False,
+                             "error": "worker died"}) + "\n")
+        fh.write(json.dumps({"name": "b", "solved": False,
+                             "nodes_explored": 300}) + "\n")
+    assert _done_ok(p) == {"b"}, "a crashed row must be retried, a finished one not"
+
+
+def test_the_memory_guard_stops_a_row_before_the_oom_killer(tmp_path):
+    """reserve_states far beyond the address-space cap: the child must fail with
+    a clean MemoryError row while the parent (this test) stays alive."""
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    out_dir = str(tmp_path)
+    run_arm_5m("s20_mk2", out_dir, chunks=1, chunk_index=1, budget=300, mrl=24,
+               n_workers=1, limit=1, mem_limit_bytes=6 * 2 ** 30,
+               reserve_states=2_000_000_000, log=lambda *a: None)
+    rows = read_rows(out_path_5m("s20_mk2", out_dir, 1, 1, 300, 24))
+    assert len(rows) == 1
+    assert rows[0].get("error") and "Memory" in rows[0]["error"]
+
+
+def test_the_row_timeout_kills_the_row_not_the_session(tmp_path):
+    out_dir = str(tmp_path)
+    run_arm_5m("s20_mk2", out_dir, chunks=1, chunk_index=1, budget=500_000,
+               mrl=48, n_workers=1, limit=1, row_timeout_secs=1.0,
+               log=lambda *a: None)
+    rows = read_rows(out_path_5m("s20_mk2", out_dir, 1, 1, 500_000, 48))
+    assert len(rows) == 1
+    assert rows[0].get("error") and "timeout" in rows[0]["error"]
+
+
+def test_classify_dedupes_retried_error_rows_and_reports_them():
+    c = classify_5m([
+        {"name": "a", "solved": False, "error": "died"},
+        {"name": "a", "solved": True, "nodes_explored": 3_000_000},  # the retry
+        {"name": "b", "solved": False, "error": "died"},
+        {"name": "b", "solved": False, "error": "died again"},
+    ])
+    assert c["n"] == 2
+    assert c["solved_at_5m"] == ["a"]
+    assert c["errored"] == ["b"]
+
+
+def test_plan_memory_clips_the_reservation_to_the_machine():
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    from experiments.search.greedy_compact import _RESERVE_SLACK, est_states
+    default_n = int(est_states(NODE_BUDGET_5M) * _RESERVE_SLACK) + 4 * 49 ** 2
+    # a big machine keeps the engine default
+    _, big = plan_memory(available_gb=200.0, log=lambda *a: None)
+    assert big == default_n
+    # a small one gets a clipped reservation, never zero
+    _, small = plan_memory(available_gb=20.0, log=lambda *a: None)
+    assert 1024 <= small < default_n
+
+
+def test_absorb_skips_error_rows(tmp_path):
     out = str(tmp_path / "combined.jsonl")
-    s1, s2 = str(tmp_path / "c1.jsonl"), str(tmp_path / "c2.jsonl")
-    with open(s1, "w") as fh:
+    shard = str(tmp_path / "c1.jsonl")
+    with open(shard, "w") as fh:
         fh.write(json.dumps({"name": "ac19_1007", "solved": False,
-                             "nodes_explored": 5_000_000}) + "\n")
-        fh.write(json.dumps({"name": "smoke_junk", "solved": False,
-                             "nodes_explored": 2_000}) + "\n")
-    with open(s2, "w") as fh:                     # duplicate of s1's row
-        fh.write(json.dumps({"name": "ac19_1007", "solved": False,
-                             "nodes_explored": 5_000_000}) + "\n")
+                             "error": "worker died"}) + "\n")
         fh.write(json.dumps({"name": "ac19_13290", "solved": True,
                              "nodes_explored": 3_000_000}) + "\n")
     valid = {r["name"] for r in load_rows_5m("greedy")[0]}
-    added = absorb_shard_rows(out, [s1, s2], valid, log=lambda *a: None)
-    assert added == 2
-    names = [r["name"] for r in read_rows(out)]
-    assert names == ["ac19_1007", "ac19_13290"]
-    # idempotent: a second absorb adds nothing
-    assert absorb_shard_rows(out, [s1, s2], valid, log=lambda *a: None) == 0
-    assert len(read_rows(out)) == 2
-
-
-def test_absorbed_rows_are_skipped_by_the_run(tmp_path):
-    out_dir = str(tmp_path)
-    out = out_path_5m("greedy", out_dir, 1, 1, 300, 24)
-    shard = str(tmp_path / "old_c1of4.jsonl")
-    rows = load_rows_5m("greedy")[0]
-    with open(shard, "w") as fh:
-        fh.write(json.dumps({"name": rows[0]["name"], "arm": "greedy",
-                             "solved": False, "nodes_explored": 300}) + "\n")
-    absorb_shard_rows(out, [shard], {r["name"] for r in rows},
-                      log=lambda *a: None)
-    run_arm_5m("greedy", out_dir, chunks=1, chunk_index=1, budget=300, mrl=24,
-               n_workers=1, limit=2, log=lambda *a: None)
-    got = read_rows(out)
-    assert len(got) == 2                          # 1 absorbed + 1 newly run
-    assert [r["name"] for r in got][0] == rows[0]["name"]
+    assert absorb_shard_rows(out, [shard], valid, log=lambda *a: None) == 1
+    assert [r["name"] for r in read_rows(out)] == ["ac19_13290"]
 
 
 # ------------------------------------------------------------------ notebooks
 @pytest.fixture(scope="module")
 def cells():
     out = {}
-    for stem, arm in mk5.VARIANTS:
+    for stem, arm, chunks, idx in mk5.VARIANTS:
         with open(mk5.path_for(stem)) as fh:
             nb = json.load(fh)
         out[stem] = ["".join(c["source"]) for c in nb["cells"]]
     return out
 
 
-def test_there_are_exactly_two_notebooks_one_per_cheap_cpu():
-    assert mk5.VARIANTS == (("ac19_leftovers_5m_greedy", "greedy"),
-                            ("ac19_leftovers_5m_s20_mk2", "s20_mk2"))
+def test_the_five_shard_notebooks_are_the_job_and_no_combined_one_exists():
+    assert len(mk5.VARIANTS) == 5
+    assert [(c, i) for _, a, c, i in mk5.VARIANTS if a == "greedy"] == \
+        [(4, 1), (4, 2), (4, 3), (4, 4)]
     listed = sorted(f for f in os.listdir(mk5.NB_DIR) if f.endswith(".ipynb"))
-    assert listed == ["ac19_leftovers_5m_greedy.ipynb",
-                      "ac19_leftovers_5m_s20_mk2.ipynb"], \
-        "shard notebooks must be gone; the combined pair replaces them"
+    assert listed == [f"ac19_leftovers_5m_greedy_c{k}of4.ipynb" for k in
+                      (1, 2, 3, 4)] + ["ac19_leftovers_5m_s20_mk2.ipynb"], \
+        "four greedy shards + s20_mk2; a combined greedy notebook is not the job"
 
 
-@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
-def test_the_committed_notebook_is_what_the_generator_writes(stem, arm):
+@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS)
+def test_the_committed_notebook_is_what_the_generator_writes(stem, arm, chunks, idx):
     with open(mk5.path_for(stem)) as fh:
-        assert fh.read() == mk5.render(stem, arm)
+        assert fh.read() == mk5.render(stem, arm, chunks, idx)
 
 
-@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
-def test_it_is_the_config_setup_smoke_main_pattern(cells, stem, arm):
+@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS)
+def test_it_is_the_config_setup_smoke_main_pattern(cells, stem, arm, chunks, idx):
     src = cells[stem]
     assert len(src) == 4
     assert "CONFIG" in src[0].splitlines()[0]
@@ -277,41 +327,43 @@ def test_it_is_the_config_setup_smoke_main_pattern(cells, stem, arm):
         compile(cell, f"{stem}-cell{i}", "exec")
 
 
-@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
-def test_config_pins_the_combined_run(cells, stem, arm):
+@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS)
+def test_config_pins_arm_chunk_budget_and_knobs(cells, stem, arm, chunks, idx):
     cfg = cells[stem][0]
     assert f'ARM         = "{arm}"' in cfg
-    assert "CHUNKS      = 1" in cfg
+    assert f"CHUNKS      = {chunks}" in cfg
+    assert f"CHUNK_INDEX = {idx}" in cfg
     assert "NODE_BUDGET = 5_000_000" in cfg
     assert "MAX_RELATOR_LENGTH = 48" in cfg
-    assert "RUN_MAIN  = True" in cfg
+    assert "ROW_TIMEOUT_SECS = None" in cfg
     assert SPEC_5M[arm]["csv"] in cfg
+    # machine-neutral: no SKU baked in
+    assert "e2-" not in cfg and "c4d-" not in cfg
 
 
-def test_setup_carries_the_engine_and_high_speedup_knobs(cells):
-    """The knobs name the fast path; a reader (or an agent) greps for them."""
+def test_setup_carries_the_engine_knobs_and_bans_the_silent_fallback(cells):
     setup = cells[mk5.VARIANTS[0][0]][1]
     assert 'ENGINE       = "hcompact"' in setup
     assert "HIGH_SPEEDUP = True" in setup
     assert 'assert ENGINE == "hcompact", "ENGINE=hcompact required for HIGH_SPEEDUP"' in setup
     assert "assert HAVE_HCOMPACT" in setup
-    assert "resolve_workers" in setup and "N_WORKERS" in setup
-    # runs on a plain GCE VM too: the clone is not gated on Colab
+    # the arm must actually CALL the engine -- importable is not enough
+    assert "greedy_search_hcompact" in setup and "silent fallback" in setup
     assert "_find_root" in setup and "git clone" in setup
-    assert "del sys.modules[_m]" in setup
+    assert "drive.mount" in setup
 
 
-def test_the_two_notebooks_share_everything_but_config(cells):
+def test_the_five_notebooks_share_everything_but_config(cells):
     stems = [v[0] for v in mk5.VARIANTS]
     assert len({tuple(cells[s][1:]) for s in stems}) == 1
-    assert len({cells[s][0] for s in stems}) == 2
+    assert len({cells[s][0] for s in stems}) == 5
 
 
 def test_each_notebook_gets_its_own_drive_dir(cells):
-    dirs = {ln for stem, _ in mk5.VARIANTS
+    dirs = {ln for stem, *_ in mk5.VARIANTS
             for ln in cells[stem][0].splitlines()
             if ln.startswith("DRIVE_OUT_DIR")}
-    assert len(dirs) == 2
+    assert len(dirs) == 5
 
 
 def test_the_branch_matches_the_branch_this_code_is_on(cells):
@@ -322,7 +374,7 @@ def test_the_branch_matches_the_branch_this_code_is_on(cells):
         pytest.skip("git unavailable")
     if head.returncode != 0 or head.stdout.strip() == "HEAD":
         pytest.skip("no branch name to match")
-    for stem, _ in mk5.VARIANTS:
+    for stem, *_ in mk5.VARIANTS:
         assert f'BRANCH   = "{head.stdout.strip()}"' in cells[stem][0]
 
 
@@ -350,9 +402,7 @@ def _isolated(fn):
 
 
 def test_the_notebook_runs_end_to_end_smoke_then_main(cells, tmp_path):
-    """CONFIG -> SETUP -> SMOKE -> MAIN in one namespace, the way a runtime
-    does -- MAIN shrunk to 2 rows at a tiny budget via the CONFIG knobs."""
-    stem = "ac19_leftovers_5m_greedy"
+    stem = "ac19_leftovers_5m_greedy_c3of4"
     ns = _isolated(lambda: _exec_cells(
         cells[stem],
         {"MOUNT_DRIVE": False, "LOCAL_OUT_DIR": str(tmp_path / "real"),
@@ -361,15 +411,13 @@ def test_the_notebook_runs_end_to_end_smoke_then_main(cells, tmp_path):
     assert ns["_SMOKE_OK"] is True
     rows = read_rows(ns["out"])
     assert len(rows) == 2
-    assert all(r["budget"] == 2_500 and r["max_relator_length"] == 24
-               for r in rows)
+    assert "_c3of4_" in ns["out"] and "_mrl24" in ns["out"]
+    assert all(not r.get("error") for r in rows)
     assert ns["c"] is not None and ns["c"]["n"] == 2
 
 
 def test_main_refuses_to_start_without_the_smoke(cells, tmp_path):
-    """The gate itself: skipping SMOKE (as a crashed or cleared cell would)
-    must stop MAIN before any long work."""
-    stem = "ac19_leftovers_5m_greedy"
+    stem = "ac19_leftovers_5m_greedy_c1of4"
 
     def run():
         ns = _exec_cells(cells[stem],

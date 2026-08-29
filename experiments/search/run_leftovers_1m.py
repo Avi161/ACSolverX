@@ -318,17 +318,19 @@ def greedy_search_h_lean(r1_str, r2_str, node_budget, max_relator_length=24,
     }
 
 
-def _run_greedy(r1, r2, budget, mrl, progress=None):
+def _run_greedy(r1, r2, budget, mrl, progress=None, reserve_states=None):
     if HAVE_HCOMPACT:
         return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
-                                      config=LENGTH_ONLY, progress=progress)
+                                      config=LENGTH_ONLY, progress=progress,
+                                      reserve_states=reserve_states)
     return greedy_search(r1, r2, budget, mrl, high_speedup=True, progress=progress)
 
 
-def _run_s20_mk2(r1, r2, budget, mrl, progress=None):
+def _run_s20_mk2(r1, r2, budget, mrl, progress=None, reserve_states=None):
     if HAVE_HCOMPACT:
         return greedy_search_hcompact(r1, r2, budget, max_relator_length=mrl,
-                                      config=S20_MK2, progress=progress)
+                                      config=S20_MK2, progress=progress,
+                                      reserve_states=reserve_states)
     return greedy_search_h_lean(r1, r2, budget, mrl, config=S20_MK2,
                                 progress=progress)
 
@@ -744,8 +746,14 @@ def _beat(rec, done, total, t0, last, every, out, mirror_dir, log):
     now = time.time()
     rate = done / max(now - t0, 1e-9)
     eta = (total - done) / rate if rate else float("inf")
-    log(f"    [{done}/{total}] {rec['name']} solved={rec['solved']} "
-        f"nodes={rec['nodes_explored']:,} ({rec['seconds']:.0f}s) -- "
+    if rec.get("error"):
+        # a crash-guarded row has no node count; the progress line must not be
+        # a second casualty of the row that just failed
+        body = f"ERROR ({rec['error'][:80]})"
+    else:
+        body = (f"solved={rec['solved']} nodes={rec['nodes_explored']:,} "
+                f"({rec['seconds']:.0f}s)")
+    log(f"    [{done}/{total}] {rec['name']} {body} -- "
         f"{rate * 3600:.1f} rows/h, eta {eta / 3600:.1f} h")
     _mirror(out, mirror_dir)
     return now

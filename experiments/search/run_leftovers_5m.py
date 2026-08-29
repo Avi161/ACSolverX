@@ -47,12 +47,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import multiprocessing as mp
 import os
+import queue as _queue
 import time
 
 from experiments.search.run_leftovers_1m import (
-    ARMS, MAX_RELATOR_LENGTH, SCREEN_DIR, _beat, _done, _iter_results, _job,
-    _mirror, _seed_from_mirror, est_gb, load_rows as _load_1m_rows, read_rows,
+    ARMS, HAVE_HCOMPACT, MAX_RELATOR_LENGTH, SCREEN_DIR, _available_gb, _beat,
+    _done, _in_search_heartbeat, _iter_results, _job, _mirror,
+    _seed_from_mirror, est_gb, load_rows as _load_1m_rows, read_rows,
     resolve_arm, resolve_workers,
 )
 
@@ -62,7 +65,7 @@ FLOOR_5M = 1_000_000          # every input row failed at 1M; none may solve bel
 
 # arm -> (the 1M-unsolved CSV, its row count, default chunk count)
 SPEC_5M = {
-    "greedy": {"csv": "unsolved_1m_baseline.csv", "n_rows": 88, "chunks": 1},
+    "greedy": {"csv": "unsolved_1m_baseline.csv", "n_rows": 88, "chunks": 4},
     "s20_mk2": {"csv": "unsolved_1m_s20_mk2.csv", "n_rows": 14, "chunks": 1},
 }
 
@@ -122,8 +125,22 @@ def out_path_5m(arm, out_dir, chunks, chunk_index,
 
 def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
                 floor=FLOOR_5M):
-    """Split result rows; flag any solve at or below the 1M floor as impossible."""
+    """Split result rows; flag any solve at or below the 1M floor as impossible.
+
+    A name can appear more than once when a crashed row was retried: keep one
+    record per name, preferring any finished record over an error record.
+    """
+    best = {}
+    for r in rows:
+        n = r.get("name")
+        if n is None:
+            continue
+        prev = best.get(n)
+        if prev is None or (prev.get("error") and not r.get("error")):
+            best[n] = r
+    rows = list(best.values())
     solved, unsolved, suspicious = [], [], []
+    errored = [r["name"] for r in rows if r.get("error")]
     for r in rows:
         if r.get("solved") and int(r["nodes_explored"]) <= budget:
             solved.append(r["name"])
@@ -135,11 +152,147 @@ def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
         "n": len(rows),
         "solved_at_5m": solved,
         "unsolved_at_5m": unsolved,
+        "errored": errored,
         "solved_at_or_below_1m": suspicious,
         "anytime": {c: sum(1 for r in rows
                            if r.get("solved") and int(r["nodes_explored"]) <= c)
                     for c in checkpoints},
     }
+
+
+# ------------------------------------------------------ Edge Compact crash guards
+#
+# The first 5M sessions crashed outright: a CPU-limit kill or a RAM overload
+# took the whole kernel with it, because the search ran IN the driver process
+# and hcompact's ``_grow`` doubles its arrays with a copy -- old and new coexist,
+# and at 5M that transient is what the OOM killer shoots. The repo already has
+# the two guards for this, and they are what is used here -- no new engine:
+#
+#   * ``run_ab``'s ``__error__``-row pattern: a failed row becomes a recorded
+#     row the parent reports and skips, "resume retries it later". Here every
+#     row runs in its OWN spawned process; if that child is OOM-killed, hits a
+#     CPU/timeout kill, or raises, the parent writes an ``error`` row and moves
+#     to the next presentation. The session never dies with a row.
+#   * ``hcompact``'s own ``reserve_states`` knob: the reservation is clipped to
+#     what this machine's free RAM actually holds, and the child's address
+#     space is capped (RLIMIT_AS) just under free RAM -- so a ``_grow`` that
+#     would have invoked the OOM killer instead raises MemoryError inside the
+#     child, which is caught and recorded. A kill becomes a diagnosis.
+#
+# Error rows never satisfy resume (``_done_ok``), so a crashed row is retried
+# on the next invocation -- on this machine or a bigger one.
+
+ROW_TIMEOUT_DEFAULT = None       # seconds per row; None = no CPU-time kill
+
+
+def _done_ok(path):
+    """Names of rows that FINISHED -- error rows do not count as done."""
+    return {r["name"] for r in read_rows(path)
+            if "name" in r and not r.get("error")}
+
+
+def plan_memory(budget=NODE_BUDGET_5M, mrl=MAX_RELATOR_LENGTH,
+                available_gb=None, log=print):
+    """``(mem_limit_bytes, reserve_states)`` sized to THIS machine.
+
+    Uses the engine's own sizing pieces (``est_states``/``row_width``/slack) --
+    the reservation is the engine default when it fits, and clipped to free RAM
+    when it does not, with a note that clipped rows fail cleanly on MemoryError
+    rather than by OOM kill. Returns ``(None, None)`` without the engine.
+    """
+    if not HAVE_HCOMPACT:
+        return None, None
+    from experiments.search.greedy_compact import (
+        _RESERVE_SLACK, est_states, row_width)
+    avail = available_gb if available_gb is not None else _available_gb()
+    limit_gb = max(avail - 2.0, 3.0)
+    per_state = row_width(mrl) + 31
+    default_n = int(est_states(budget) * _RESERVE_SLACK) + 4 * (mrl + 1) ** 2
+    cap_n = int(max(limit_gb - 2.5, 1.0) * 0.95 * 2 ** 30 / per_state)
+    reserve = max(1024, min(default_n, cap_n))
+    if reserve < default_n:
+        log(f"  memory  : reservation clipped to {reserve:,} states "
+            f"(engine default {default_n:,} does not fit {avail:.0f} GB free); "
+            f"a row that outgrows it fails with a clean MemoryError row, "
+            f"never an OOM kill")
+    return int(limit_gb * 2 ** 30), reserve
+
+
+def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
+                   reserve_states):
+    """Runs in a spawned process. Everything that can go wrong is a message."""
+    try:
+        if mem_limit_bytes:
+            import resource
+            resource.setrlimit(resource.RLIMIT_AS,
+                               (int(mem_limit_bytes), int(mem_limit_bytes)))
+    except (ImportError, ValueError, OSError):
+        pass                                   # no rlimit support: guard degrades
+    try:
+        _, spec = resolve_arm(arm)
+        hb = _in_search_heartbeat(row["name"], budget, heartbeat_secs,
+                                  log=lambda m: q.put(("log", m)))
+        t = time.time()
+        st = spec["run"](row["r1"], row["r2"], budget, mrl, progress=hb,
+                         reserve_states=reserve_states)
+        q.put(("done", {
+            "name": row["name"], "arm": arm, "r1": row["r1"], "r2": row["r2"],
+            "budget": budget, "max_relator_length": mrl,
+            "solved": bool(st["solved"]),
+            "nodes_explored": int(st["nodes_explored"]),
+            "path_length": st["path_length"],
+            "min_relator_length": st["min_relator_length"],
+            "max_relator_length_expanded": st["max_relator_length_expanded"],
+            "seconds": round(time.time() - t, 3),
+        }))
+    except MemoryError:
+        q.put(("err", "MemoryError: the memory guard stopped this row before "
+                      "the OOM killer could -- it needs a bigger machine"))
+    except BaseException as e:  # noqa: BLE001 -- repr crosses the queue safely
+        q.put(("err", repr(e)))
+
+
+def _run_row_isolated(arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
+                      reserve_states, timeout_secs, log):
+    """One row, one process. Whatever kills the child, the run continues."""
+    ctx = mp.get_context("spawn")
+    q = ctx.Queue()
+    proc = ctx.Process(target=_child_run_row,
+                       args=(q, arm, row, budget, mrl, heartbeat_secs,
+                             mem_limit_bytes, reserve_states))
+    t0 = time.time()
+    proc.start()
+    deadline = (t0 + timeout_secs) if timeout_secs else None
+    rec = err = None
+    while rec is None and err is None:
+        try:
+            kind, payload = q.get(timeout=0.5)
+            if kind == "log":
+                log(payload)
+            elif kind == "done":
+                rec = payload
+            else:
+                err = payload
+        except _queue.Empty:
+            if not proc.is_alive():
+                err = (f"worker died (exit={proc.exitcode}) -- an external "
+                       f"kill (OOM/CPU limit); the row is retried next run")
+            elif deadline and time.time() > deadline:
+                proc.terminate()
+                err = (f"row timeout after {timeout_secs:,.0f}s -- "
+                       f"terminated; the row is retried next run")
+    proc.join(timeout=10)
+    if proc.is_alive():
+        proc.kill()
+        proc.join(timeout=5)
+    q.close()
+    if rec is None:
+        rec = {"name": row["name"], "arm": arm, "r1": row["r1"],
+               "r2": row["r2"], "budget": budget, "max_relator_length": mrl,
+               "solved": False, "error": err,
+               "seconds": round(time.time() - t0, 3)}
+        log(f"    !! {row['name']}: {err}")
+    return rec
 
 
 def absorb_shard_rows(out, shard_paths, valid_names, log=print):
@@ -160,6 +313,8 @@ def absorb_shard_rows(out, shard_paths, valid_names, log=print):
         for p in shard_paths:
             for r in read_rows(p):
                 n = r.get("name")
+                if r.get("error"):
+                    continue                     # a failed row is not paid-for work
                 if n in valid_names and n not in have:
                     fh.write(json.dumps(r) + "\n")
                     have.add(n)
@@ -173,8 +328,16 @@ def absorb_shard_rows(out, shard_paths, valid_names, log=print):
 def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
                mrl=MAX_RELATOR_LENGTH, n_workers="auto", resume=True,
                csv_path=None, mirror_dir=None, limit=None, heartbeat_secs=60,
-               log=print):
-    """Run one arm's chunk to a chunk-tagged jsonl; append + whole-file mirror."""
+               row_timeout_secs=ROW_TIMEOUT_DEFAULT, mem_limit_bytes=None,
+               reserve_states=None, log=print):
+    """Run one arm's chunk to a chunk-tagged jsonl; append + whole-file mirror.
+
+    With one worker (which is what this budget resolves on any ordinary
+    machine) every row runs crash-isolated in its own process -- see the Edge
+    Compact guards above. ``mem_limit_bytes``/``reserve_states`` default to
+    ``plan_memory()`` for this machine; pass them only to test the guards.
+    With more than one worker the pool path is used (no per-row isolation).
+    """
     key, spec1m = resolve_arm(arm)
     if chunks is None:
         chunks = SPEC_5M[key]["chunks"]
@@ -187,10 +350,12 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     out = out_path_5m(key, out_dir, chunks, chunk_index, budget, mrl)
     if resume:
         _seed_from_mirror(out, mirror_dir, log)
-    seen = _done(out) if resume else set()
+    seen = _done_ok(out) if resume else set()
     todo = [r for r in rows if r["name"] not in seen]
 
     n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl)
+    if mem_limit_bytes is None and reserve_states is None:
+        mem_limit_bytes, reserve_states = plan_memory(budget, mrl, log=log)
     log(f"  arm     : {key} -- {spec1m['label']}")
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "
         f"stride split of {SPEC_5M[key]['n_rows']}) from {used}")
@@ -201,16 +366,30 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
 
     t0 = time.time()
     last = t0
-    jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
     done = 0
-    if jobs:
+    if todo:
         with open(out, "a") as fh:
-            for rec in _iter_results(jobs, n_workers, log):
-                fh.write(json.dumps(rec) + "\n")
-                fh.flush()
-                done += 1
-                last = _beat(rec, done, len(jobs), t0, last, heartbeat_secs,
-                             out, mirror_dir, log)
+            if n_workers <= 1:
+                # crash-isolated: one row, one process; a killed row is a
+                # recorded error, never a dead session
+                for r in todo:
+                    rec = _run_row_isolated(key, r, budget, mrl,
+                                            heartbeat_secs, mem_limit_bytes,
+                                            reserve_states, row_timeout_secs,
+                                            log)
+                    fh.write(json.dumps(rec) + "\n")
+                    fh.flush()
+                    done += 1
+                    last = _beat(rec, done, len(todo), t0, last,
+                                 heartbeat_secs, out, mirror_dir, log)
+            else:
+                jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
+                for rec in _iter_results(jobs, n_workers, log):
+                    fh.write(json.dumps(rec) + "\n")
+                    fh.flush()
+                    done += 1
+                    last = _beat(rec, done, len(jobs), t0, last,
+                                 heartbeat_secs, out, mirror_dir, log)
     _mirror(out, mirror_dir)
     log(f"  {done} row(s) run in {time.time() - t0:,.0f}s; jsonl at {out}")
     return out
@@ -254,6 +433,9 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     pct = f"   ({100.0 * n_solved / len(rows):.1f}%)" if rows else ""
     log(f"    solved at {budget:>9,}  : {n_solved}{pct}")
     log(f"    still unsolved       : {len(c['unsolved_at_5m'])}")
+    if c["errored"]:
+        log(f"    errored (crash-guarded, retried on the next run): "
+            f"{len(c['errored'])}  {sorted(c['errored'])[:5]}")
     log("    anytime (free -- one search answers every budget below it):")
     for cp in sorted(c["anytime"]):
         log(f"      <= {cp:>9,} : {c['anytime'][cp]}")

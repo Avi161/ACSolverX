@@ -1,36 +1,56 @@
-# AC19 1M leftovers at a 5,000,000-node budget — two notebooks, two machines
+# AC19 1M leftovers at a 5,000,000-node budget — five notebooks, five machines
 
-One notebook per machine. The greedy arm's 88 rows run combined in a single
-notebook (this **replaced the four `c{1..4}of4` stride-shard notebooks**; MAIN
-absorbs any rows those shards already finished, from their Drive dirs, so
-nothing paid for is re-run), and the s20_mk2 arm's 14 run as the other.
+Four greedy stride shards plus s20_mk2, one notebook per machine. The greedy
+arm's 88 rows split `CHUNKS=4, CHUNK_INDEX=k → rows[k-1::4]` — interleaved so
+difficulty spreads evenly; disjoint, union = 88 — and the s20_mk2 arm's 14 run
+as the fifth. (A combined single-machine greedy notebook is **not** the job.)
 
 | notebook | arm | rows |
 |---|---|---:|
-| [`ac19_leftovers_5m_greedy.ipynb`](ac19_leftovers_5m_greedy.ipynb) | `greedy` — total length | 88 |
-| [`ac19_leftovers_5m_s20_mk2.ipynb`](ac19_leftovers_5m_s20_mk2.ipynb) | `s20_mk2` — `L + 20·S + 2·MK` | 14 |
+| [`ac19_leftovers_5m_greedy_c1of4.ipynb`](ac19_leftovers_5m_greedy_c1of4.ipynb) | `greedy` | 22 |
+| [`ac19_leftovers_5m_greedy_c2of4.ipynb`](ac19_leftovers_5m_greedy_c2of4.ipynb) | `greedy` | 22 |
+| [`ac19_leftovers_5m_greedy_c3of4.ipynb`](ac19_leftovers_5m_greedy_c3of4.ipynb) | `greedy` | 22 |
+| [`ac19_leftovers_5m_greedy_c4of4.ipynb`](ac19_leftovers_5m_greedy_c4of4.ipynb) | `greedy` | 22 |
+| [`ac19_leftovers_5m_s20_mk2.ipynb`](ac19_leftovers_5m_s20_mk2.ipynb) | `s20_mk2` | 14 |
 
 Cell contract: **CONFIG → SETUP → SMOKE → MAIN.** SMOKE always runs (2 rows,
-2,000 nodes, ~a minute, into a separate `_smoke` dir) and **gates** the long
-job: if anything in it raises, Run All stops and MAIN never starts. `ENGINE`
-and `HIGH_SPEEDUP` live in SETUP, which refuses to proceed without the
-packed-arena engine — `ENGINE=hcompact` is required for `HIGH_SPEEDUP`, and the
-Python solvers in `experiments/search/` are the test oracle and fallback, not
-the fast path.
+2,000 nodes, fresh each time) and **gates** the long job — any failure stops Run
+All before MAIN. Runs on Colab or a plain VM's Jupyter; Drive mounts where
+Drive exists, and each notebook has its own Drive dir.
 
-Runs on **Colab or a plain GCE VM's Jupyter**: SETUP clones the branch wherever
-no checkout is found, mounts Drive only where Drive exists, and MAIN says so
-when there is no mirror (copy the jsonl off the VM yourself in that case).
+## ENGINE=hcompact / HIGH_SPEEDUP, with no silent fallback
 
-## The machine
+`ENGINE="hcompact"` and `HIGH_SPEEDUP=True` live in SETUP, asserted
+(`ENGINE=hcompact required for HIGH_SPEEDUP`). SETUP refuses to proceed if the
+packed-arena engine is missing **and** verifies the arm actually *calls*
+`greedy_search_hcompact` — importable is not enough; a silent Python fallback at
+5M is a ~hundreds-of-GB wrong code path, not an optimization problem. The
+Python solvers stay as the test oracle only.
 
-Any CPU machine type. One search runs at a time — it is a memory event
-(~25–30 GB touched for a full-budget row at cap 48), not a compute one, so core
-count buys nothing here; **the requirement is ≥ 32 GB of RAM**, whatever shape
-provides it. Under that, a full-budget row will OOM hours in — SETUP prints a
-loud warning when free RAM is below ~28 GB. `N_WORKERS="auto"` sizes by free
-RAM via the engine's own arena formula and resolves 1 at this budget on any
-box; a machine with much more RAM simply fits more workers automatically.
+## The Edge Compact crash guards
+
+The first 5M sessions died outright: the search ran in the driver process, and
+`hcompact`'s `_grow` doubles its arrays with a copy — old and new coexist, and
+that transient is what the OOM killer shoots, kernel and all. The fix reuses
+the repo's own guards, no new engine:
+
+- **One row, one process** (`run_ab`'s `__error__`-row pattern): if a row's
+  child is OOM-killed, CPU-limit-killed, times out (`ROW_TIMEOUT_SECS`), or
+  raises, the parent records an `error` row and moves to the next
+  presentation. The session never dies with a row.
+- **The engine's own `reserve_states` knob**: `plan_memory()` clips the
+  reservation to this machine's free RAM, and the child's address space is
+  capped (RLIMIT_AS) just under it — a `_grow` that would have summoned the
+  OOM killer instead raises MemoryError *inside the child*, caught and
+  recorded. A kill becomes a diagnosis.
+- **Error rows never satisfy resume** (`_done_ok`), so a failed row is retried
+  on the next invocation — same machine or a bigger one. The report dedupes
+  retries and lists what errored.
+
+`N_WORKERS="auto"` stays: it sizes by free RAM via the engine's arena formula,
+whatever the machine type — nothing here assumes one. A full-budget 5M row
+touches roughly 40 GB and up; SETUP prints free RAM and warns when a machine is
+too small for the long job (the smoke still passes there).
 
 ## The row lists
 
@@ -39,24 +59,18 @@ results/heuristic_search/ac19_autmin_screen/unsolved_1m_baseline.csv   88 rows
 results/heuristic_search/ac19_autmin_screen/unsolved_1m_s20_mk2.csv    14 rows
 ```
 
-`solved == false` read off the 1M jsonl; the 14 are a strict subset of the 88.
-`tests/test_leftovers_5m.py` re-derives both, and SETUP re-derives its own list
-again before anything searches.
+`solved == false` off the 1M jsonl; the 14 are a strict subset of the 88.
+Tests re-derive both, and SETUP re-derives its own list again before anything
+searches. The 1M floor self-check carries over at cap 48 and stands down, with
+a note, at any other cap.
 
-## Expect days, and expect to resume
+## Resume
 
-At ~500–800 nodes/s single-worker, a full-budget row takes ~2–3 h: the greedy
-list is on the order of a week on one machine, s20_mk2 about a day and a half.
 The jsonl appends locally and mirrors whole-file to Drive when mounted;
 `RESUME` skips every finished row, a wiped machine reseeds from the mirror, and
-re-running the notebook never repeats finished work.
+re-running a notebook never repeats finished work.
 
-The 1M floor self-check carries over: at cap 48 a row solving at or below
-1,000,000 nodes is impossible for these lists and the report says so loudly; at
-any other cap it is labelled legitimate instead — a different corridor is a
-different search.
-
-Regenerate the notebooks after editing the template:
+Regenerate after editing the template:
 
 ```bash
 PYTHONPATH=. python3 -m experiments.search.make_leftover_5m_notebooks
