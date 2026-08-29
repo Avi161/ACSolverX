@@ -2,7 +2,7 @@
 
     PYTHONPATH=. python3 -m experiments.search.make_leftover_5m_notebooks
 
-One notebook per cheap CPU: the greedy arm's 88 rows combined into a single
+One notebook per machine: the greedy arm's 88 rows combined into a single
 file (this replaced the four stride-shard notebooks; ``absorb_shard_rows``
 folds any rows the shards already finished into the combined jsonl so nothing
 is re-run), and the s20_mk2 arm's 14 as the other.
@@ -57,19 +57,20 @@ def current_branch(default=DEFAULT_BRANCH):
 _ARM_BLURB = {
     "greedy": '''# THE QUESTION
 #   88 orbits survived the greedy (total-length) arm's 1,000,000-node pass.
-#   This ONE notebook runs all 88 at 5,000,000 nodes on one cheap CPU -- it
+#   This ONE notebook runs all 88 at 5,000,000 nodes on one machine -- it
 #   replaces the four c{1..4}of4 shard notebooks, and MAIN absorbs any rows
 #   those shards already finished (from their Drive dirs) so nothing paid for
 #   is re-run.''',
     "s20_mk2": '''# THE QUESTION
 #   14 orbits survived the s20_mk2 (L + 20*S + 2*MK) arm's 1,000,000-node pass
 #   -- the tail both orderings fail. This notebook runs all 14 at 5,000,000
-#   nodes on the other cheap CPU.''',
+#   nodes on its own machine.''',
 }
 
 CONFIG = '''# ===== AC19 LEFTOVERS @ 5M -- %(title)s -- CONFIG (edit ONLY this cell) =====
-# Runtime: CPU. One search runs at a time (it is a ~25-30 GB memory event, so
-# more vCPUs buy nothing -- 4 vCPU is plenty; RAM is what matters, see SETUP).
+# Runtime: CPU, any machine type. One search runs at a time -- it is a
+# ~25-30 GB memory event, not a compute one, so core count buys nothing here;
+# what the machine needs is RAM headroom (see SETUP's check).
 #
 %(blurb)s
 #
@@ -196,16 +197,17 @@ print(f"     verified against the 1M jsonl ({len(_derived)} unsolved there)")
 print(f"ENGINE={ENGINE}  HIGH_SPEEDUP={HIGH_SPEEDUP}  workers={_nw} "
       f"(~{_gb:.1f} GB/search reserved)  budget={NODE_BUDGET:,}  cap={MAX_RELATOR_LENGTH}")
 
-# RAM reality check for a cheap box: a full-budget 5M row touches ~25-30 GB.
+# RAM reality check, whatever the machine: a full-budget 5M row touches ~25-30 GB.
 try:
     with open("/proc/meminfo") as _f:
         _avail = next(int(l.split()[1]) / 1048576 for l in _f
                       if l.startswith("MemAvailable:"))
     print(f"free RAM: {_avail:.1f} GB")
     if _avail < 28:
-        print("!! WARNING: under ~28 GB free. A full-budget 5M row can OOM on "
-              "this machine hours in -- use a 32 GB box (e.g. e2-highmem-4). "
-              "The smoke below will still pass; this is about the LONG job.")
+        print("!! WARNING: under ~28 GB free. A full-budget 5M row touches "
+              "~25-30 GB and can OOM on this machine hours in; whatever the "
+              "machine type, give it >= 32 GB of RAM. The smoke below will "
+              "still pass; this is about the LONG job.")
 except (OSError, StopIteration):
     pass
 print("kernels warm -- setup done")

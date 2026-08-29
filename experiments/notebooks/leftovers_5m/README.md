@@ -1,4 +1,4 @@
-# AC19 1M leftovers at a 5,000,000-node budget — two notebooks, two cheap CPUs
+# AC19 1M leftovers at a 5,000,000-node budget — two notebooks, two machines
 
 One notebook per machine. The greedy arm's 88 rows run combined in a single
 notebook (this **replaced the four `c{1..4}of4` stride-shard notebooks**; MAIN
@@ -24,12 +24,13 @@ when there is no mirror (copy the jsonl off the VM yourself in that case).
 
 ## The machine
 
-One search runs at a time — it is a memory event (~25–30 GB touched for a
-full-budget row at cap 48), not a compute one, so **more vCPUs buy nothing; RAM
-is the spec that matters**. 4 vCPU / **32 GB** (e.g. `e2-highmem-4`) is the
-right cheap shape. On a 16 GB box a full-budget row will OOM hours in — SETUP
-prints a loud warning when free RAM is under ~28 GB. `N_WORKERS="auto"` sizes
-by free RAM via the engine's own arena formula and resolves 1 at this budget.
+Any CPU machine type. One search runs at a time — it is a memory event
+(~25–30 GB touched for a full-budget row at cap 48), not a compute one, so core
+count buys nothing here; **the requirement is ≥ 32 GB of RAM**, whatever shape
+provides it. Under that, a full-budget row will OOM hours in — SETUP prints a
+loud warning when free RAM is below ~28 GB. `N_WORKERS="auto"` sizes by free
+RAM via the engine's own arena formula and resolves 1 at this budget on any
+box; a machine with much more RAM simply fits more workers automatically.
 
 ## The row lists
 
