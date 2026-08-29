@@ -149,3 +149,36 @@ Use **Spot** (60–91% off) with `--instance-termination-action=STOP`, so a
 preemption stops the VM with its disk intact instead of deleting it, and
 `install-service` restarts the campaign on the next boot. Resume then skips
 every finished row, so a preemption costs only the rows in flight.
+
+### Dynamic worker allocation
+
+`N_WORKERS="auto"` no longer means "decide once at startup". `RamGovernor`
+re-decides before every launch, from the cores and free RAM of whatever
+machine it lands on, and from what finished rows actually peaked at
+(children report `VmHWM` in their record).
+
+Why the old static number was so conservative: it assumed every row would run
+the full budget and reserved `est_gb(budget)` for each. Most rows solve long
+before that, and the arena is `np.empty` — address space up front, physical
+pages only on first touch — so a fixed N sized off the worst case leaves most
+of a big machine idle.
+
+Two things keep it honest rather than merely optimistic:
+
+- Memory a live row has **reserved but not yet touched** is subtracted before
+  admitting the next one. A row that just started has touched almost nothing,
+  so free RAM looks enormous; admitting on that number invites a crowd that
+  then grows into each other.
+- A prediction never drops below what a row **in flight has already
+  demonstrated**, and never exceeds the worst case. Every row on these lists
+  failed at 1M, so plenty will run the full budget and peak near the reserve —
+  three cheap early rows must not widen the gate just before those arrive.
+
+If it does overreach, the existing guards still apply: the row is
+crash-isolated, `RLIMIT_AS` turns a `_grow` into a MemoryError inside the
+child, and the row is recorded as an error and retried next run. The old
+fixed Pool had no per-row isolation at all — on a wide box one OOM took every
+row in flight with it — so `run_rows_dynamic` replaces both paths.
+
+An explicit `N_WORKERS` is a **ceiling**, never a target; RAM still has the
+last word.
