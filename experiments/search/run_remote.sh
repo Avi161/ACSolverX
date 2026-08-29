@@ -9,6 +9,7 @@
 #   PLAN_GB=512 PLAN_CORES=64 ./run_remote.sh plan   # price an offer first
 #   ./run_remote.sh smoke    # 2 rows x 2,000 nodes; proves the pipeline
 #   ./run_remote.sh run      # the campaign, detached (survives an SSH drop)
+#   ./run_remote.sh install-service   # ... and survives a Spot preemption
 #   ./run_remote.sh tail     # follow the log
 #   ./run_remote.sh report   # totals so far; safe to run mid-flight
 #
@@ -84,10 +85,7 @@ PYEOF
 smoke() { setup; for a in $ARMS; do
     $PY -m experiments.search.run_leftovers_5m --arm "$a" --smoke --out-dir "$OUT"; done; }
 
-run() {
-  setup
-  # setsid + nohup: the run outlives the SSH session that started it. On a
-  # rented box the connection WILL drop; the job must not care.
+write_job() {
   cat > "$OUT/_job.sh" <<JOB
 #!/usr/bin/env bash
 set -euo pipefail
@@ -99,10 +97,45 @@ done
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
 JOB
   chmod +x "$OUT/_job.sh"
+}
+
+run() {
+  setup; write_job
+  # setsid + nohup: the run outlives the SSH session that started it. On a
+  # rented box the connection WILL drop; the job must not care.
   setsid nohup "$OUT/_job.sh" >>"$LOG" 2>&1 < /dev/null &
   echo "started pid $! -- log: $LOG"
   echo "results (rsync these off the box BEFORE you destroy it):"
   echo "  rsync -avz <user>@<host>:$OUT/*.jsonl ./"
+}
+
+# A Spot VM WILL be preempted during a 14 h run. With
+# --instance-termination-action=STOP the disk survives, so the whole recovery
+# is "boot again": this unit restarts the campaign and RESUME skips every row
+# already on disk. Nothing to babysit.
+install_service() {
+  setup; write_job
+  sudo tee /etc/systemd/system/ac19.service >/dev/null <<UNIT
+[Unit]
+Description=AC19 leftover campaign
+After=network-online.target
+
+[Service]
+Type=simple
+User=$(id -un)
+ExecStart=$OUT/_job.sh
+StandardOutput=append:$LOG
+StandardError=append:$LOG
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now ac19.service
+  echo "ac19.service enabled -- survives reboot AND Spot preemption."
+  echo "  status: systemctl status ac19  |  log: $LOG"
 }
 
 tail_log() { tail -f "$LOG"; }
@@ -115,6 +148,7 @@ report_5m('$a', '$OUT', chunks=1, chunk_index=1, budget=$BUDGET, mrl=$MRL)"; don
 export BUDGET MRL WORKERS ARMS PLAN_GB PLAN_CORES
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
+  install-service) install_service ;;
   tail) tail_log ;; report) report ;;
-  *) echo "usage: $0 {plan|smoke|run|tail|report}" >&2; exit 2 ;;
+  *) echo "usage: $0 {plan|smoke|run|install-service|tail|report}" >&2; exit 2 ;;
 esac

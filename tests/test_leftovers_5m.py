@@ -517,3 +517,24 @@ def test_one_mrl_flag_feeds_both_the_run_and_the_report(tmp_path, capsys):
     assert "mrl40" in txt, txt
     assert "rows complete        : 2/" in txt, txt
     assert len(list(out.glob("*_mrl40.jsonl"))) == 1, list(out.iterdir())
+
+
+def test_a_spot_preemption_resumes_without_a_human():
+    """A Spot VM WILL be preempted inside a 14 h run. With termination-action
+    STOP the disk survives, so booting again must restart the campaign, and
+    RESUME then skips every row already on disk."""
+    src = open(REMOTE_SH).read()
+    assert "install-service" in src
+    assert "WantedBy=multi-user.target" in src      # starts on boot
+    assert "Restart=on-failure" in src
+    assert "systemctl enable --now ac19.service" in src
+
+
+def test_run_and_the_service_execute_the_very_same_job_script():
+    """Two copies of the command line would drift; a Spot restart would then
+    run something other than what `run` ran."""
+    src = open(REMOTE_SH).read()
+    assert src.count("write_job") == 3              # definition + run + service
+    # the long-run command line exists once, inside write_job. (`smoke` has its
+    # own short foreground invocation -- that one is meant to differ.)
+    assert src.count("--budget $BUDGET") == 1

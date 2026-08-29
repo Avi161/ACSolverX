@@ -124,3 +124,28 @@ Overrides: `BUDGET MRL WORKERS ARMS OUT BRANCH REPO`. Note `--mrl` is now a
 real CLI flag feeding *both* the run and the report — the cap is in the jsonl
 filename, so a run at one cap and a report at another silently read a file
 that does not exist. That bug hit this campaign twice; one flag closes it.
+
+### On Google Cloud specifically
+
+The job is RAM-bound, so cost is nearly flat across high-memory SKUs — the
+machine only changes how long you wait. Workers come from
+`resolve_workers`; hours assume every row runs the full 5M budget.
+
+| machine | vCPU / GB | GB per vCPU | workers | hours | ~Spot cost |
+|---|---|---:|---:|---:|---:|
+| `n2-highmem-32` | 32 / 256 | 8 | 7 | 28 | ~$18 |
+| `n2-highmem-64` | 64 / 512 | 8 | 14 | 14 | ~$18 |
+| `m1-ultramem-40` | 40 / 961 | 24 | 27 | 7 | ~$14 |
+| `m1-megamem-96` | 96 / 1433 | 15 | 41 | 5 | ~$15 |
+
+`m1-ultramem` wins on $/row-hour because 24 GB/vCPU is closest to the 34.7 GB
+one row actually needs — the `highmem` families sell 8 GB/vCPU, so three
+quarters of the cores you pay for sit idle. But **quota, not price, is the
+real constraint**: a personal project has neither 64-vCPU N2 nor any M1 quota
+by default, and M1 requests are granted less readily. Take whichever you can
+get; they all cost about the same.
+
+Use **Spot** (60–91% off) with `--instance-termination-action=STOP`, so a
+preemption stops the VM with its disk intact instead of deleting it, and
+`install-service` restarts the campaign on the next boot. Resume then skips
+every finished row, so a preemption costs only the rows in flight.
