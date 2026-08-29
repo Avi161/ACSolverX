@@ -39,7 +39,12 @@ setup() {
   cd "$SRC"
   # numba + numpy are the only runtime deps of the search. requirements.txt
   # pulls the JAX/PPO stack, which this campaign never imports -- skip it.
-  $PY -c 'import numba, numpy' 2>/dev/null || $PY -m pip -q install numba numpy
+  # Debian 12 / Ubuntu 24 mark the system Python "externally managed" (PEP 668)
+  # and refuse a plain pip install, which is exactly what a fresh GCE image is.
+  if ! $PY -c 'import numba, numpy' 2>/dev/null; then
+    $PY -m pip -q install numba numpy 2>/dev/null       || $PY -m pip -q install --break-system-packages numba numpy       || { sudo apt-get update -qq && sudo apt-get install -y -qq python3-pip            && $PY -m pip -q install --break-system-packages numba numpy; }
+    $PY -c 'import numba, numpy' || { echo "STOP: numba unavailable"; exit 1; }
+  fi
   export PYTHONPATH="$SRC"
 }
 
