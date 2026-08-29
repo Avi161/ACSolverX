@@ -475,6 +475,12 @@ def main(argv=None):
     ap.add_argument("--chunks", type=int, default=None)
     ap.add_argument("--chunk-index", type=int, default=1)
     ap.add_argument("--budget", type=int, default=NODE_BUDGET_5M)
+    # One flag feeds BOTH the run and the report. The cap is in the jsonl
+    # filename, so a run at one cap and a report at another silently read a
+    # file that does not exist ("no rows yet" on a finished run) -- that bug
+    # has bitten this campaign twice. Passing one value to both closes it.
+    ap.add_argument("--mrl", type=int, default=MAX_RELATOR_LENGTH,
+                    help="max relator length (per relator); tags the jsonl name")
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--smoke", action="store_true",
@@ -486,9 +492,9 @@ def main(argv=None):
         budget, limit = 2_000, 2
         out_dir = out_dir + "_smoke"
     run_arm_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
-               budget=budget, n_workers=a.workers, limit=limit)
+               budget=budget, mrl=a.mrl, n_workers=a.workers, limit=limit)
     report_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
-              budget=budget)
+              budget=budget, mrl=a.mrl)
 
 
 if __name__ == "__main__":

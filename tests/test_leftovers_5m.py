@@ -440,3 +440,80 @@ def test_run_main_false_is_smoke_only(cells, tmp_path, capsys):
     assert ns["_SMOKE_OK"] is True
     assert "the long job was not started" in capsys.readouterr().out
     assert not os.path.exists(str(tmp_path / "real"))
+
+
+# ---------------------------------------------------------------------------
+# The remote path: one rented high-RAM box instead of five crashy Colab shards.
+# At 5M a row reserves ~34.7 GB on ONE core, so a 51 GB runtime runs one row at
+# a time no matter how many cores it has. Buying RAM buys workers.
+# ---------------------------------------------------------------------------
+REMOTE_SH = os.path.join(ROOT, "experiments", "search", "run_remote.sh")
+
+
+def _remote(*args, **env):
+    e = dict(os.environ, SRC=ROOT, **env)
+    return subprocess.run(["bash", REMOTE_SH, *args], capture_output=True,
+                          text=True, env=e, timeout=300)
+
+
+def test_the_remote_script_is_valid_shell():
+    p = subprocess.run(["bash", "-n", REMOTE_SH], capture_output=True, text=True)
+    assert p.returncode == 0, p.stderr
+
+
+def test_the_run_detaches_so_an_ssh_drop_cannot_kill_the_campaign():
+    """A rented box WILL drop the connection; the job must outlive the shell."""
+    src = open(REMOTE_SH).read()
+    assert "setsid nohup" in src
+    assert "< /dev/null" in src
+
+
+def test_plan_prices_an_offer_before_you_rent_it():
+    """The point of a spot market is choosing the box BEFORE paying for it."""
+    out = _remote("plan", PLAN_GB="512", PLAN_CORES="64").stdout
+    assert "offer" in out and "64 cores, 512 GB RAM" in out
+    assert "14 workers" in out, out
+
+
+def test_more_ram_buys_more_workers_and_less_wall_clock():
+    def hours(gb, cores):
+        out = _remote("plan", PLAN_GB=str(gb), PLAN_CORES=str(cores)).stdout
+        line = [l for l in out.splitlines() if "total wall clock" in l][0]
+        return float(line.split(":")[1].strip().split()[0])
+
+    small, big = hours(64, 8), hours(512, 64)
+    assert big < small / 5, f"512 GB bought no speedup: {small} -> {big}"
+
+
+def test_plan_refuses_a_box_with_no_engine(monkeypatch):
+    """A silent Python fallback at 5M is a hundreds-of-GB code path."""
+    assert 'raise SystemExit("STOP: hcompact missing' in open(REMOTE_SH).read()
+
+
+def test_plan_says_when_the_box_is_too_small_for_a_full_reserve():
+    tiny = _remote("plan", PLAN_GB="16", PLAN_CORES="4").stdout
+    big = _remote("plan", PLAN_GB="512", PLAN_CORES="64").stdout
+    assert "CLIPPED" in tiny, tiny
+    assert "(full)" in big, big
+
+
+@pytest.mark.parametrize("sub", ["plan", "smoke", "run", "tail", "report"])
+def test_every_documented_subcommand_exists(sub):
+    src = open(REMOTE_SH).read()
+    assert f"{sub})" in src.split("case ")[-1]
+
+
+# --- the cap-in-the-filename bug, closed at the CLI ------------------------
+def test_one_mrl_flag_feeds_both_the_run_and_the_report(tmp_path, capsys):
+    """RUN at cap 64 + REPORT at the default 48 read different files, so a
+    finished run reported 'no rows yet'. This campaign hit that twice."""
+    from experiments.search.run_leftovers_5m import main
+
+    out = tmp_path / "o"
+    main(["--arm", "s20_mk2", "--budget", "2000", "--mrl", "40",
+          "--limit", "2", "--workers", "1", "--out-dir", str(out)])
+    txt = capsys.readouterr().out
+    # the report must find what the run wrote -- not "0/14"
+    assert "mrl40" in txt, txt
+    assert "rows complete        : 2/" in txt, txt
+    assert len(list(out.glob("*_mrl40.jsonl"))) == 1, list(out.iterdir())

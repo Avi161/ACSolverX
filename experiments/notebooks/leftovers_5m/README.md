@@ -75,3 +75,52 @@ Regenerate after editing the template:
 ```bash
 PYTHONPATH=. python3 -m experiments.search.make_leftover_5m_notebooks
 ```
+
+## Running this on a rented high-RAM box instead
+
+The five notebooks above stay as they are — they are the Colab/five-machine
+path. This section is an **additional** path for one big rented CPU box
+(vast.ai, Hetzner, bare metal), which is the better shape once the campaign
+runs many more presentations at 5M and beyond.
+
+The constraint Colab ran into is RAM *per row*, not CPU. `hcompact` discovers
+~62 states per node popped, so at 5M nodes one row reserves **~34.7 GB on one
+core**. Cloud sells 4–8 GB/core, so on a 51 GB runtime you rent 8 cores and
+use 1. Buying RAM is what buys workers:
+
+| box | workers at 5M | all 102 rows, worst case |
+|---|---:|---:|
+| 64 GB / 8 core | 1 | ~196 h |
+| 128 GB / 16 core | 3 | ~65 h |
+| 256 GB / 32 core | 7 | ~28 h |
+| 512 GB / 64 core | **14** | **~14 h** |
+
+(Worst case = every row runs the full budget. Rows that solve stop early.)
+The five-shard Colab plan is ~204 machine-hours for the same work.
+
+`experiments/search/run_remote.sh` is the whole path:
+
+```bash
+PLAN_GB=512 PLAN_CORES=64 ./experiments/search/run_remote.sh plan   # price an offer FIRST
+./experiments/search/run_remote.sh plan     # what the box you rented will do
+./experiments/search/run_remote.sh smoke    # 2 rows x 2,000 nodes; gates the long job
+./experiments/search/run_remote.sh run      # detached -- survives an SSH drop
+./experiments/search/run_remote.sh tail     # follow it
+./experiments/search/run_remote.sh report   # safe mid-flight
+```
+
+`plan` runs before you pay: it prints the engine status, GB/row, the workers
+`auto` will resolve, the wall-clock estimate, and whether the box is too small
+for a full `reserve_states`. It refuses a box where `hcompact` is missing,
+because the Python fallback at 5M is a hundreds-of-GB *wrong code path*, not a
+slow one. It also fails loudly on a stale clone.
+
+`run` uses `setsid nohup` — the connection to a rented box will drop and the
+job must not care. **The instance is ephemeral: `rsync` the jsonl off the box
+before you destroy it** (the `run` output prints the command). Resume then
+works normally against whatever you pulled back.
+
+Overrides: `BUDGET MRL WORKERS ARMS OUT BRANCH REPO`. Note `--mrl` is now a
+real CLI flag feeding *both* the run and the report — the cap is in the jsonl
+filename, so a run at one cap and a report at another silently read a file
+that does not exist. That bug hit this campaign twice; one flag closes it.
