@@ -1,70 +1,59 @@
-# AC19 1M leftovers at a 5,000,000-node budget
+# AC19 1M leftovers at a 5,000,000-node budget — two notebooks, two cheap CPUs
 
-Five Colab notebooks that take what survived the 1,000,000-node pass
-([`../../../results/heuristic_search/leftovers_1m/RESULTS.md`](../../../results/heuristic_search/leftovers_1m/RESULTS.md))
-and give it 5,000,000. The greedy arm's 88 rows are **stride-chunked** across
-four notebooks — `CHUNKS=4, CHUNK_INDEX=k` takes rows `[k-1::4]`, the u124
-campaign's split, interleaved so difficulty spreads evenly — and the s20_mk2
-arm's 14 run as one.
+One notebook per machine. The greedy arm's 88 rows run combined in a single
+notebook (this **replaced the four `c{1..4}of4` stride-shard notebooks**; MAIN
+absorbs any rows those shards already finished, from their Drive dirs, so
+nothing paid for is re-run), and the s20_mk2 arm's 14 run as the other.
 
 | notebook | arm | rows |
 |---|---|---:|
-| [`ac19_leftovers_5m_greedy_c1of4.ipynb`](ac19_leftovers_5m_greedy_c1of4.ipynb) | `greedy` | 22 |
-| [`ac19_leftovers_5m_greedy_c2of4.ipynb`](ac19_leftovers_5m_greedy_c2of4.ipynb) | `greedy` | 22 |
-| [`ac19_leftovers_5m_greedy_c3of4.ipynb`](ac19_leftovers_5m_greedy_c3of4.ipynb) | `greedy` | 22 |
-| [`ac19_leftovers_5m_greedy_c4of4.ipynb`](ac19_leftovers_5m_greedy_c4of4.ipynb) | `greedy` | 22 |
-| [`ac19_leftovers_5m_s20_mk2.ipynb`](ac19_leftovers_5m_s20_mk2.ipynb) | `s20_mk2` | 14 |
+| [`ac19_leftovers_5m_greedy.ipynb`](ac19_leftovers_5m_greedy.ipynb) | `greedy` — total length | 88 |
+| [`ac19_leftovers_5m_s20_mk2.ipynb`](ac19_leftovers_5m_s20_mk2.ipynb) | `s20_mk2` — `L + 20·S + 2·MK` | 14 |
 
-Runtime: **CPU, High-RAM**, one session per notebook, separate Drive dirs (each
-CONFIG carries its own). All ship `SMOKE_RUN = True`; read the smoke table, set
-it `False`, Run All.
+Cell contract: **CONFIG → SETUP → SMOKE → MAIN.** SMOKE always runs (2 rows,
+2,000 nodes, ~a minute, into a separate `_smoke` dir) and **gates** the long
+job: if anything in it raises, Run All stops and MAIN never starts. `ENGINE`
+and `HIGH_SPEEDUP` live in SETUP, which refuses to proceed without the
+packed-arena engine — `ENGINE=hcompact` is required for `HIGH_SPEEDUP`, and the
+Python solvers in `experiments/search/` are the test oracle and fallback, not
+the fast path.
+
+Runs on **Colab or a plain GCE VM's Jupyter**: SETUP clones the branch wherever
+no checkout is found, mounts Drive only where Drive exists, and MAIN says so
+when there is no mirror (copy the jsonl off the VM yourself in that case).
+
+## The machine
+
+One search runs at a time — it is a memory event (~25–30 GB touched for a
+full-budget row at cap 48), not a compute one, so **more vCPUs buy nothing; RAM
+is the spec that matters**. 4 vCPU / **32 GB** (e.g. `e2-highmem-4`) is the
+right cheap shape. On a 16 GB box a full-budget row will OOM hours in — SETUP
+prints a loud warning when free RAM is under ~28 GB. `N_WORKERS="auto"` sizes
+by free RAM via the engine's own arena formula and resolves 1 at this budget.
 
 ## The row lists
 
 ```
 results/heuristic_search/ac19_autmin_screen/unsolved_1m_baseline.csv   88 rows
 results/heuristic_search/ac19_autmin_screen/unsolved_1m_s20_mk2.csv    14 rows
-                                            + matching .txt name lists
 ```
 
-`solved == false` read off the 1M jsonl, orbit membership joined back from the
-100k lists so the schema stays the one every wave has used. The 14 are a strict
-subset of the 88. `tests/test_leftovers_5m.py` re-derives both from the jsonl,
-and each notebook's SETUP re-derives its own list again before searching
-anything.
-
-## Memory at 5M, and why one worker per session
-
-The engine's arena formula reserves **~35 GB per search** at this budget, and the
-hard tail discovers ~100 states per pop (measured: a 6,053,728-state grow by
-60,000 pops on `ac19_7284`), so a full-budget row can genuinely touch ~40 GB.
-`N_WORKERS="auto"` resolves **1** on a 51 GB runtime — correct, not a bug. The
-parallelism is the four sessions, which is the whole reason the greedy arm is
-chunked.
-
-The dedup **is already the memory trick**: FNV-hashed nibble-packed rows in an
-open-addressing int32 table at ~79 B/state (`experiments/search/greedy_compact.py`)
-— the same machinery the u124 CoV-mining campaign ran on. The remaining lever
-would be fingerprint-only visited sets, which make the search probabilistic (a
-hash collision silently skips a state, possibly a solution); nothing in this
-screen's chain of results is probabilistic, so it is not done here.
+`solved == false` read off the 1M jsonl; the 14 are a strict subset of the 88.
+`tests/test_leftovers_5m.py` re-derives both, and SETUP re-derives its own list
+again before anything searches.
 
 ## Expect days, and expect to resume
 
-At ~500–800 nodes/s single-worker, a row that exhausts the budget takes ~2–3 h:
-roughly two Colab-days per greedy chunk and one and a half for the s20_mk2 list,
-less whatever solves early. Colab will disconnect first — reopen, Run All, and
-`RESUME` continues from the Drive-mirrored jsonl; a wiped `/content` reseeds from
-Drive. Nothing already recorded is recomputed.
+At ~500–800 nodes/s single-worker, a full-budget row takes ~2–3 h: the greedy
+list is on the order of a week on one machine, s20_mk2 about a day and a half.
+The jsonl appends locally and mirrors whole-file to Drive when mounted;
+`RESUME` skips every finished row, a wiped machine reseeds from the mirror, and
+re-running the notebook never repeats finished work.
 
-## The self-check moves to 1,000,000
-
-Same engine, same cap, same config, so a search at budget *B* is the first *B*
-pops of any longer one: a row that failed at 1,000,000 cannot come back solved at
-or below 1,000,000 now. The REPORT cell flags any such row loudly — it means the
-wrong search ran. The REPORT cell also prints the merged view across whatever
-chunks have rows so far; the merged table is the experiment's answer, a single
-chunk's is progress.
+The 1M floor self-check carries over: at cap 48 a row solving at or below
+1,000,000 nodes is impossible for these lists and the report says so loudly; at
+any other cap it is labelled legitimate instead — a different corridor is a
+different search.
 
 Regenerate the notebooks after editing the template:
 

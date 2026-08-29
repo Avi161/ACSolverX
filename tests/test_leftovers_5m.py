@@ -194,62 +194,127 @@ def test_a_complete_merged_run_writes_the_id_lists(tmp_path):
             assert sorted(ln.strip() for ln in fh if ln.strip()) == sorted(ids)
 
 
+# ------------------------------------------------------------- shard absorption
+from experiments.search.run_leftovers_5m import absorb_shard_rows
+
+
+def test_absorb_folds_shard_rows_in_once_and_skips_foreign_names(tmp_path):
+    """The combined notebook replaces the four shards; rows a shard already paid
+    for must survive, appear once, and nothing outside the row list sneaks in."""
+    out = str(tmp_path / "combined.jsonl")
+    s1, s2 = str(tmp_path / "c1.jsonl"), str(tmp_path / "c2.jsonl")
+    with open(s1, "w") as fh:
+        fh.write(json.dumps({"name": "ac19_1007", "solved": False,
+                             "nodes_explored": 5_000_000}) + "\n")
+        fh.write(json.dumps({"name": "smoke_junk", "solved": False,
+                             "nodes_explored": 2_000}) + "\n")
+    with open(s2, "w") as fh:                     # duplicate of s1's row
+        fh.write(json.dumps({"name": "ac19_1007", "solved": False,
+                             "nodes_explored": 5_000_000}) + "\n")
+        fh.write(json.dumps({"name": "ac19_13290", "solved": True,
+                             "nodes_explored": 3_000_000}) + "\n")
+    valid = {r["name"] for r in load_rows_5m("greedy")[0]}
+    added = absorb_shard_rows(out, [s1, s2], valid, log=lambda *a: None)
+    assert added == 2
+    names = [r["name"] for r in read_rows(out)]
+    assert names == ["ac19_1007", "ac19_13290"]
+    # idempotent: a second absorb adds nothing
+    assert absorb_shard_rows(out, [s1, s2], valid, log=lambda *a: None) == 0
+    assert len(read_rows(out)) == 2
+
+
+def test_absorbed_rows_are_skipped_by_the_run(tmp_path):
+    out_dir = str(tmp_path)
+    out = out_path_5m("greedy", out_dir, 1, 1, 300, 24)
+    shard = str(tmp_path / "old_c1of4.jsonl")
+    rows = load_rows_5m("greedy")[0]
+    with open(shard, "w") as fh:
+        fh.write(json.dumps({"name": rows[0]["name"], "arm": "greedy",
+                             "solved": False, "nodes_explored": 300}) + "\n")
+    absorb_shard_rows(out, [shard], {r["name"] for r in rows},
+                      log=lambda *a: None)
+    run_arm_5m("greedy", out_dir, chunks=1, chunk_index=1, budget=300, mrl=24,
+               n_workers=1, limit=2, log=lambda *a: None)
+    got = read_rows(out)
+    assert len(got) == 2                          # 1 absorbed + 1 newly run
+    assert [r["name"] for r in got][0] == rows[0]["name"]
+
+
 # ------------------------------------------------------------------ notebooks
 @pytest.fixture(scope="module")
 def cells():
     out = {}
-    for stem, arm, chunks, idx in mk5.VARIANTS:
+    for stem, arm in mk5.VARIANTS:
         with open(mk5.path_for(stem)) as fh:
             nb = json.load(fh)
         out[stem] = ["".join(c["source"]) for c in nb["cells"]]
     return out
 
 
-def test_there_are_exactly_five_variants():
-    assert len(mk5.VARIANTS) == 5
-    assert sum(1 for _, a, _, _ in mk5.VARIANTS if a == "greedy") == 4
-    assert [(c, i) for _, a, c, i in mk5.VARIANTS if a == "greedy"] == \
-        [(4, 1), (4, 2), (4, 3), (4, 4)]
+def test_there_are_exactly_two_notebooks_one_per_cheap_cpu():
+    assert mk5.VARIANTS == (("ac19_leftovers_5m_greedy", "greedy"),
+                            ("ac19_leftovers_5m_s20_mk2", "s20_mk2"))
+    listed = sorted(f for f in os.listdir(mk5.NB_DIR) if f.endswith(".ipynb"))
+    assert listed == ["ac19_leftovers_5m_greedy.ipynb",
+                      "ac19_leftovers_5m_s20_mk2.ipynb"], \
+        "shard notebooks must be gone; the combined pair replaces them"
 
 
-@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS)
-def test_the_committed_notebook_is_what_the_generator_writes(stem, arm, chunks, idx):
+@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
+def test_the_committed_notebook_is_what_the_generator_writes(stem, arm):
     with open(mk5.path_for(stem)) as fh:
-        assert fh.read() == mk5.render(stem, arm, chunks, idx)
+        assert fh.read() == mk5.render(stem, arm)
 
 
-@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS)
-def test_config_pins_arm_chunk_budget_and_smoke(cells, stem, arm, chunks, idx):
+@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
+def test_it_is_the_config_setup_smoke_main_pattern(cells, stem, arm):
+    src = cells[stem]
+    assert len(src) == 4
+    assert "CONFIG" in src[0].splitlines()[0]
+    for cell, head in zip(src[1:], ("SETUP", "SMOKE", "MAIN")):
+        assert head in cell.splitlines()[0], head
+    for i, cell in enumerate(src):
+        compile(cell, f"{stem}-cell{i}", "exec")
+
+
+@pytest.mark.parametrize("stem,arm", mk5.VARIANTS)
+def test_config_pins_the_combined_run(cells, stem, arm):
     cfg = cells[stem][0]
     assert f'ARM         = "{arm}"' in cfg
-    assert f"CHUNKS      = {chunks}" in cfg
-    assert f"CHUNK_INDEX = {idx}" in cfg
+    assert "CHUNKS      = 1" in cfg
     assert "NODE_BUDGET = 5_000_000" in cfg
     assert "MAX_RELATOR_LENGTH = 48" in cfg
-    assert "SMOKE_RUN = True" in cfg
+    assert "RUN_MAIN  = True" in cfg
     assert SPEC_5M[arm]["csv"] in cfg
-    for i, src in enumerate(cells[stem]):
-        compile(src, f"{stem}-cell{i}", "exec")
 
 
-def test_the_five_notebooks_share_everything_but_config(cells):
+def test_setup_carries_the_engine_and_high_speedup_knobs(cells):
+    """The knobs name the fast path; a reader (or an agent) greps for them."""
+    setup = cells[mk5.VARIANTS[0][0]][1]
+    assert 'ENGINE       = "hcompact"' in setup
+    assert "HIGH_SPEEDUP = True" in setup
+    assert 'assert ENGINE == "hcompact", "ENGINE=hcompact required for HIGH_SPEEDUP"' in setup
+    assert "assert HAVE_HCOMPACT" in setup
+    assert "resolve_workers" in setup and "N_WORKERS" in setup
+    # runs on a plain GCE VM too: the clone is not gated on Colab
+    assert "_find_root" in setup and "git clone" in setup
+    assert "del sys.modules[_m]" in setup
+
+
+def test_the_two_notebooks_share_everything_but_config(cells):
     stems = [v[0] for v in mk5.VARIANTS]
-    tails = {tuple(cells[s][1:]) for s in stems}
-    assert len(tails) == 1, "SETUP/RUN/REPORT drifted between the variants"
-    assert len({cells[s][0] for s in stems}) == 5
+    assert len({tuple(cells[s][1:]) for s in stems}) == 1
+    assert len({cells[s][0] for s in stems}) == 2
 
 
 def test_each_notebook_gets_its_own_drive_dir(cells):
-    dirs = set()
-    for stem, *_ in mk5.VARIANTS:
-        for ln in cells[stem][0].splitlines():
-            if ln.startswith("DRIVE_OUT_DIR"):
-                dirs.add(ln)
-    assert len(dirs) == 5, "two sessions sharing a Drive dir would clobber mirrors"
+    dirs = {ln for stem, _ in mk5.VARIANTS
+            for ln in cells[stem][0].splitlines()
+            if ln.startswith("DRIVE_OUT_DIR")}
+    assert len(dirs) == 2
 
 
-@pytest.mark.parametrize("stem,arm,chunks,idx", mk5.VARIANTS[:1])
-def test_the_branch_matches_the_branch_this_code_is_on(cells, stem, arm, chunks, idx):
+def test_the_branch_matches_the_branch_this_code_is_on(cells):
     try:
         head = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"],
                               cwd=ROOT, capture_output=True, text=True, timeout=30)
@@ -257,46 +322,73 @@ def test_the_branch_matches_the_branch_this_code_is_on(cells, stem, arm, chunks,
         pytest.skip("git unavailable")
     if head.returncode != 0 or head.stdout.strip() == "HEAD":
         pytest.skip("no branch name to match")
-    assert f'BRANCH   = "{head.stdout.strip()}"' in cells[stem][0]
+    for stem, _ in mk5.VARIANTS:
+        assert f'BRANCH   = "{head.stdout.strip()}"' in cells[stem][0]
 
 
-def test_setup_refuses_to_run_without_the_engine(cells):
-    setup = cells[mk5.VARIANTS[0][0]][1]
-    assert "assert HAVE_HCOMPACT" in setup
-    assert "del sys.modules[_m]" in setup
-    assert "reset --hard FETCH_HEAD" in setup
+def _exec_cells(cells_list, ns_extra, upto):
+    ns = {"__name__": "__main__"}
+    for i, src in enumerate(cells_list[:upto]):
+        exec(src, ns)
+        if i == 0:
+            ns.update(ns_extra)
+    return ns
 
 
-def test_the_notebook_runs_end_to_end_on_its_smoke_path(cells, tmp_path):
-    stem = "ac19_leftovers_5m_greedy_c3of4"
+def _isolated(fn):
     cwd = os.getcwd()
     saved = {k: v for k, v in sys.modules.items()
              if k == "experiments" or k.startswith("experiments.")}
     try:
-        ns = {"__name__": "__main__"}
-        exec(cells[stem][0], ns)
-        ns["MOUNT_DRIVE"] = False
-        ns["LOCAL_OUT_DIR"] = str(tmp_path)
-        # a NON-default cap, exactly what the user does for a cap-64 run: the
-        # REPORT cell must read back the cap the RUN wrote, not the module
-        # default -- with both at 48 this bug is invisible
-        ns["MAX_RELATOR_LENGTH"] = 24
-        exec(cells[stem][1], ns)
-        exec(cells[stem][2], ns)
-        exec(cells[stem][3], ns)
+        return fn()
     finally:
         os.chdir(cwd)
         for k in [k for k in sys.modules
                   if k == "experiments" or k.startswith("experiments.")]:
             del sys.modules[k]
         sys.modules.update(saved)
-    assert ns["budget"] == 2_000 and ns["limit"] == 2
-    assert ns["OUT_DIR"].endswith("_smoke")
+
+
+def test_the_notebook_runs_end_to_end_smoke_then_main(cells, tmp_path):
+    """CONFIG -> SETUP -> SMOKE -> MAIN in one namespace, the way a runtime
+    does -- MAIN shrunk to 2 rows at a tiny budget via the CONFIG knobs."""
+    stem = "ac19_leftovers_5m_greedy"
+    ns = _isolated(lambda: _exec_cells(
+        cells[stem],
+        {"MOUNT_DRIVE": False, "LOCAL_OUT_DIR": str(tmp_path / "real"),
+         "NODE_BUDGET": 2_500, "MAIN_LIMIT": 2, "MAX_RELATOR_LENGTH": 24},
+        upto=4))
+    assert ns["_SMOKE_OK"] is True
     rows = read_rows(ns["out"])
     assert len(rows) == 2
-    assert "_c3of4_" in ns["out"] and "_mrl24" in ns["out"]
-    # REPORT found the rows the RUN just wrote -- at the run's cap, not the default
-    assert ns["c_chunk"] is not None and ns["c_chunk"]["n"] == 2
-    assert ns["c_all"] is not None
-    assert ns["c_chunk"]["solved_at_5m"] == []          # unsolvable in 2,000 nodes
-    assert ns["c_chunk"]["solved_at_or_below_1m"] == []
+    assert all(r["budget"] == 2_500 and r["max_relator_length"] == 24
+               for r in rows)
+    assert ns["c"] is not None and ns["c"]["n"] == 2
+
+
+def test_main_refuses_to_start_without_the_smoke(cells, tmp_path):
+    """The gate itself: skipping SMOKE (as a crashed or cleared cell would)
+    must stop MAIN before any long work."""
+    stem = "ac19_leftovers_5m_greedy"
+
+    def run():
+        ns = _exec_cells(cells[stem],
+                         {"MOUNT_DRIVE": False,
+                          "LOCAL_OUT_DIR": str(tmp_path / "x")}, upto=2)
+        exec(cells[stem][3], ns)              # MAIN without SMOKE
+        return ns
+
+    with pytest.raises((NameError, AssertionError)):
+        _isolated(run)
+
+
+def test_run_main_false_is_smoke_only(cells, tmp_path, capsys):
+    stem = "ac19_leftovers_5m_s20_mk2"
+    ns = _isolated(lambda: _exec_cells(
+        cells[stem],
+        {"MOUNT_DRIVE": False, "LOCAL_OUT_DIR": str(tmp_path / "real"),
+         "RUN_MAIN": False, "MAX_RELATOR_LENGTH": 24},
+        upto=4))
+    assert ns["_SMOKE_OK"] is True
+    assert "the long job was not started" in capsys.readouterr().out
+    assert not os.path.exists(str(tmp_path / "real"))

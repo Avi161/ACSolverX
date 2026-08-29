@@ -62,7 +62,7 @@ FLOOR_5M = 1_000_000          # every input row failed at 1M; none may solve bel
 
 # arm -> (the 1M-unsolved CSV, its row count, default chunk count)
 SPEC_5M = {
-    "greedy": {"csv": "unsolved_1m_baseline.csv", "n_rows": 88, "chunks": 4},
+    "greedy": {"csv": "unsolved_1m_baseline.csv", "n_rows": 88, "chunks": 1},
     "s20_mk2": {"csv": "unsolved_1m_s20_mk2.csv", "n_rows": 14, "chunks": 1},
 }
 
@@ -140,6 +140,34 @@ def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
                            if r.get("solved") and int(r["nodes_explored"]) <= c)
                     for c in checkpoints},
     }
+
+
+def absorb_shard_rows(out, shard_paths, valid_names, log=print):
+    """Fold finished rows from earlier per-chunk jsonl into the combined jsonl.
+
+    The 5M stage first shipped as four greedy stride-shard notebooks; the
+    combined single-CPU notebook replaces them, and any rows those shards
+    already paid for must not be re-run. A shard jsonl only ever contains
+    finished rows, so every one whose name is in ``valid_names`` and not yet in
+    ``out`` is appended verbatim. Names outside ``valid_names`` (another arm, a
+    smoke row) are skipped, and duplicates across shards collapse to the first
+    seen. Returns how many rows were absorbed.
+    """
+    have = _done(out)
+    added = 0
+    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+    with open(out, "a") as fh:
+        for p in shard_paths:
+            for r in read_rows(p):
+                n = r.get("name")
+                if n in valid_names and n not in have:
+                    fh.write(json.dumps(r) + "\n")
+                    have.add(n)
+                    added += 1
+    if added:
+        log(f"  absorbed {added} finished row(s) from "
+            f"{len(shard_paths)} earlier shard file(s)")
+    return added
 
 
 def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,

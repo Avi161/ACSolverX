@@ -1,16 +1,20 @@
-"""Write the five AC19-leftover 5M Colab notebooks from one template.
+"""Write the two AC19-leftover 5M notebooks (combined greedy + s20_mk2).
 
     PYTHONPATH=. python3 -m experiments.search.make_leftover_5m_notebooks
 
-Four stride chunks of the greedy arm's 88 rows (CHUNKS=4, CHUNK_INDEX=1..4 --
-the u124 campaign's split, interleaved so difficulty spreads evenly) plus one
-notebook for the s20_mk2 arm's 14. Five files because at a 5,000,000-node budget
-the engine's arena reserves ~35 GB per search, so each runtime fits ONE worker
-and the parallelism has to come from Colab sessions, not the pool.
+One notebook per cheap CPU: the greedy arm's 88 rows combined into a single
+file (this replaced the four stride-shard notebooks; ``absorb_shard_rows``
+folds any rows the shards already finished into the combined jsonl so nothing
+is re-run), and the s20_mk2 arm's 14 as the other.
 
-Same contract as ``make_leftover_notebooks``: one template, per-notebook CONFIG,
-and ``tests/test_leftovers_5m.py`` asserts the committed files are byte-identical
-to this generator's output.
+Cell contract, per the run plan: CONFIG, SETUP (clone/pull — Colab or a plain
+GCE VM — Drive mount where available, ``ENGINE="hcompact"`` + ``HIGH_SPEEDUP``
+asserted, row list re-derived from the 1M jsonl), SMOKE (always runs, tiny,
+and GATES the long job — any failure stops Run All before MAIN), MAIN (the 5M
+run + merged report).
+
+``tests/test_leftovers_5m.py`` asserts the committed files are byte-identical
+to this generator's output, and that MAIN cannot run without SMOKE.
 """
 from __future__ import annotations
 
@@ -27,11 +31,17 @@ ROOT = _ROOT
 NB_DIR = os.path.join(ROOT, "experiments", "notebooks", "leftovers_5m")
 DEFAULT_BRANCH = "claude/ac19-leftover-solver-notebook-6yan6d"
 
-# (filename stem, ARM, CHUNKS, CHUNK_INDEX)
-VARIANTS = tuple(
-    [(f"ac19_leftovers_5m_greedy_c{k}of4", "greedy", 4, k) for k in (1, 2, 3, 4)]
-    + [("ac19_leftovers_5m_s20_mk2", "s20_mk2", 1, 1)]
+# (filename stem, ARM)
+VARIANTS = (
+    ("ac19_leftovers_5m_greedy", "greedy"),
+    ("ac19_leftovers_5m_s20_mk2", "s20_mk2"),
 )
+
+# The retired stride-shard notebooks' Drive dirs — MAIN absorbs any rows they
+# already finished so a shard's paid-for work survives the consolidation.
+LEGACY_SHARD_DRIVE_DIRS = tuple(
+    f"/content/drive/MyDrive/acsolverx/leftovers_5m_greedy_c{k}of4"
+    for k in (1, 2, 3, 4))
 
 
 def current_branch(default=DEFAULT_BRANCH):
@@ -47,70 +57,68 @@ def current_branch(default=DEFAULT_BRANCH):
 _ARM_BLURB = {
     "greedy": '''# THE QUESTION
 #   88 orbits survived the greedy (total-length) arm's 1,000,000-node pass.
-#   This notebook runs chunk %(chunk_index)d of 4 -- rows [%(k0)d::4] of the
-#   name-ordered list, 22 rows -- at 5,000,000 nodes. The four chunk notebooks
-#   are disjoint and together cover all 88; run them as four parallel Colab
-#   sessions with separate Drive dirs, exactly like the u124 campaign.''',
+#   This ONE notebook runs all 88 at 5,000,000 nodes on one cheap CPU -- it
+#   replaces the four c{1..4}of4 shard notebooks, and MAIN absorbs any rows
+#   those shards already finished (from their Drive dirs) so nothing paid for
+#   is re-run.''',
     "s20_mk2": '''# THE QUESTION
 #   14 orbits survived the s20_mk2 (L + 20*S + 2*MK) arm's 1,000,000-node pass
 #   -- the tail both orderings fail. This notebook runs all 14 at 5,000,000
-#   nodes as a single session; at one worker per runtime there is nothing to
-#   gain from splitting a list this small.''',
+#   nodes on the other cheap CPU.''',
 }
 
 CONFIG = '''# ===== AC19 LEFTOVERS @ 5M -- %(title)s -- CONFIG (edit ONLY this cell) =====
-# Runtime: **CPU, High-RAM**. Nothing here touches a GPU.
+# Runtime: CPU. One search runs at a time (it is a ~25-30 GB memory event, so
+# more vCPUs buy nothing -- 4 vCPU is plenty; RAM is what matters, see SETUP).
 #
 %(blurb)s
 #
 # THE ROW LIST IS THE REAL ONE
-#   results/heuristic_search/ac19_autmin_screen/%(csv)s -- read off the 1M jsonl
-#   (solved == false), orbit membership joined from the 100k lists. SETUP
-#   re-derives it from that jsonl before searching anything.
-#
-# MEMORY, AND WHY ONE WORKER
-#   The engine's arena formula reserves ~35 GB per search at 5M, and the hard
-#   tail discovers ~100 states per pop, so a full-budget row can touch ~40 GB.
-#   N_WORKERS="auto" will resolve 1 on a 51 GB runtime -- that is correct, not
-#   a bug. The dedup is already the memory trick (FNV-hashed nibble rows in an
-#   open-addressing table, ~79 B/state); anything leaner would be
-#   fingerprint-only and probabilistic, which this screen does not do.
+#   results/heuristic_search/ac19_autmin_screen/%(csv)s -- read off the 1M
+#   jsonl (solved == false). SETUP re-derives it from that jsonl before
+#   anything searches.
 #
 # EXPECT DAYS, AND EXPECT TO RESUME
-#   ~500-800 nodes/s single-worker means a row that uses its whole budget takes
-#   ~2-3 h. Colab will disconnect first -- reopen, Run All, and RESUME picks up
-#   from the Drive-mirrored jsonl; a wiped /content reseeds from Drive. Nothing
-#   already recorded is recomputed.
+#   ~500-800 nodes/s single-worker means a full-budget row takes ~2-3 h. The
+#   jsonl is appended locally and mirrored whole-file to Drive (when mounted);
+#   RESUME skips every finished row, and a wiped machine reseeds from the
+#   mirror. Re-running this notebook never repeats finished work.
 
 REPO_URL = "https://github.com/Avi161/ACSolverX.git"
 BRANCH   = "%(branch)s"
 REPO_DIR = "ACSolverX"
 CLONE       = True
-UPDATE_REPO = True           # git reset --hard, so Restart -> Run All pulls latest
-MOUNT_DRIVE = True           # jsonl mirrored to Drive; the run resumes from it
+UPDATE_REPO = True           # git reset --hard, so a re-run pulls the latest push
+MOUNT_DRIVE = True           # Colab only; a plain VM runs without a mirror
 
 ARM         = "%(arm)s"
-CHUNKS      = %(chunks)d
-CHUNK_INDEX = %(chunk_index)d
+CHUNKS      = 1              # the combined list -- no shards
+CHUNK_INDEX = 1
 
 NODE_BUDGET = 5_000_000      # the lift this notebook exists to run
 MAX_RELATOR_LENGTH = 48      # the cap every wave of this screen has used
 
-N_WORKERS = "auto"           # resolves 1 at this budget; see MEMORY above
+N_WORKERS = "auto"           # sizes by free RAM; resolves 1 at this budget
 RESUME    = True             # rows already in the jsonl are skipped
+RUN_MAIN  = True             # False = smoke only; MAIN also never starts if SMOKE failed
+MAIN_LIMIT = None            # first-N rows only (testing); None = the whole list
 
 LOCAL_OUT_DIR = "results/heuristic_search/leftovers_5m"
 DRIVE_OUT_DIR = "/content/drive/MyDrive/acsolverx/leftovers_5m_%(drive_tag)s"
 
-# Proves the whole pipeline in about a minute -- clone, import, search, jsonl,
-# resume, report -- at a budget that measures nothing, into a separate _smoke
-# directory. Run it once, read the table, then set False.
-SMOKE_RUN = True
-
-print("config loaded:", ARM, "chunk", CHUNK_INDEX, "of", CHUNKS)
+print("config loaded:", ARM, "-- combined list, budget", f"{NODE_BUDGET:,}")
 '''
 
-SETUP = '''# ==================== SETUP (clone / pull / install / mount) ==============
+SETUP = '''# ==================== SETUP (clone / pull / mount / engine) ================
+# ENGINE=hcompact is required for HIGH_SPEEDUP: the packed arena (FNV-hashed
+# nibble rows, open-addressing int32 table, all numba, ~79 B/state) is the
+# production engine every wave of this screen ran. The Python solvers in
+# experiments/search/ are its test oracle and fallback, NOT the fast path --
+# at 5M they would OOM, so SETUP refuses to proceed without the engine.
+ENGINE       = "hcompact"
+HIGH_SPEEDUP = True
+assert ENGINE == "hcompact", "ENGINE=hcompact required for HIGH_SPEEDUP"
+
 import os, sys, subprocess, importlib
 
 def sh(cmd):
@@ -126,8 +134,20 @@ except Exception:
     IN_COLAB = False
 print("Colab:", IN_COLAB)
 
-if IN_COLAB:
-    BASE = "/content"
+def _find_root(start):
+    d = start
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    return None
+
+# Works on Colab AND on a plain GCE VM's Jupyter: an existing checkout above
+# the cwd is used as-is; otherwise the repo is cloned under BASE.
+BASE = "/content" if IN_COLAB else os.path.expanduser("~")
+REPO_ROOT = None if IN_COLAB else _find_root(os.getcwd())
+if REPO_ROOT is None:
     os.chdir(BASE)                       # anchor so re-runs never nest the clone
     if not os.path.isdir(REPO_DIR):
         if CLONE:
@@ -135,19 +155,13 @@ if IN_COLAB:
     elif UPDATE_REPO:
         sh(f"cd {REPO_DIR} && git fetch --depth 1 origin {BRANCH} && git reset --hard FETCH_HEAD")
     sh(f"cd {REPO_DIR} && git log -1 --oneline")
-    sh("pip -q install numba")
-    if MOUNT_DRIVE:
-        from google.colab import drive
-        drive.mount("/content/drive")
-        os.makedirs(DRIVE_OUT_DIR, exist_ok=True)
     REPO_ROOT = os.path.join(BASE, REPO_DIR)
-else:
-    REPO_ROOT = os.getcwd()
-    while REPO_ROOT != "/" and not (
-        os.path.isdir(os.path.join(REPO_ROOT, "experiments"))
-        and os.path.isdir(os.path.join(REPO_ROOT, "data"))
-    ):
-        REPO_ROOT = os.path.dirname(REPO_ROOT)
+sh(f"{sys.executable} -m pip -q install numba")
+
+if IN_COLAB and MOUNT_DRIVE:
+    from google.colab import drive
+    drive.mount("/content/drive")
+    os.makedirs(DRIVE_OUT_DIR, exist_ok=True)
 
 os.chdir(REPO_ROOT)
 if REPO_ROOT not in sys.path:
@@ -161,97 +175,118 @@ importlib.invalidate_caches()
 
 from experiments.search.run_leftovers_1m import ARMS, HAVE_HCOMPACT
 from experiments.search.run_leftovers_5m import (
-    load_rows_5m, report_5m, resolve_workers, run_arm_5m, stride_chunk,
-    unsolved_at_1m)
+    absorb_shard_rows, load_rows_5m, out_path_5m, report_5m, resolve_workers,
+    run_arm_5m, stride_chunk, unsolved_at_1m)
 
 assert HAVE_HCOMPACT, ("packed-arena engine missing -- wrong branch or a stale "
-                       "clone; a 5M run on the Python fallback would OOM")
+                       "clone; ENGINE=hcompact is required for HIGH_SPEEDUP and "
+                       "a 5M run on the Python fallback would OOM")
 
 # warm the numba kernels in the parent, not in a worker's first row
 _ = ARMS[ARM]["run"]("xyx", "yx", 20, 32)
 
 _rows, _csv = load_rows_5m(ARM)
-_chunk = stride_chunk(_rows, CHUNKS, CHUNK_INDEX)
-
-# the row list must be exactly what the 1M run left unsolved -- checked here,
-# against the 1M jsonl on this branch, before a single node is searched
 _derived = unsolved_at_1m(ARM)
 assert sorted(r["name"] for r in _rows) == _derived, "row list drifted from the 1M jsonl"
 
-_nw, _gb = resolve_workers(ARM, N_WORKERS, budget=NODE_BUDGET)
-print(f"arm={ARM}  chunk={CHUNK_INDEX}/{CHUNKS}  rows={len(_chunk)} of {len(_rows)}  from {_csv}")
+_nw, _gb = resolve_workers(ARM, N_WORKERS, budget=NODE_BUDGET,
+                           mrl=MAX_RELATOR_LENGTH)
+print(f"arm={ARM}  rows={len(_rows)}  from {_csv}")
 print(f"     verified against the 1M jsonl ({len(_derived)} unsolved there)")
-print(f"engine=hcompact  workers={_nw} (~{_gb:.1f} GB/search reserved)  "
-      f"budget={NODE_BUDGET:,}  cap={MAX_RELATOR_LENGTH}")
+print(f"ENGINE={ENGINE}  HIGH_SPEEDUP={HIGH_SPEEDUP}  workers={_nw} "
+      f"(~{_gb:.1f} GB/search reserved)  budget={NODE_BUDGET:,}  cap={MAX_RELATOR_LENGTH}")
+
+# RAM reality check for a cheap box: a full-budget 5M row touches ~25-30 GB.
+try:
+    with open("/proc/meminfo") as _f:
+        _avail = next(int(l.split()[1]) / 1048576 for l in _f
+                      if l.startswith("MemAvailable:"))
+    print(f"free RAM: {_avail:.1f} GB")
+    if _avail < 28:
+        print("!! WARNING: under ~28 GB free. A full-budget 5M row can OOM on "
+              "this machine hours in -- use a 32 GB box (e.g. e2-highmem-4). "
+              "The smoke below will still pass; this is about the LONG job.")
+except (OSError, StopIteration):
+    pass
 print("kernels warm -- setup done")
 '''
 
-RUN = '''# ==================== RUN =================================================
-# Appends to a local jsonl and mirrors the WHOLE file to Drive as it goes; RESUME
-# reads it back (and reseeds a wiped /content from Drive), so Restart -> Run All
-# continues instead of restarting. Expect to use this several times at 5M.
+SMOKE = '''# ==================== SMOKE (always runs; GATES the long job) =============
+# 2 rows at 2,000 nodes, fresh every run, into a separate _smoke dir. This cell
+# exercises the whole pipeline -- engine, row list, jsonl write, report -- and
+# if ANYTHING here raises, Run All stops and MAIN below never starts. That is
+# the point: a broken setup costs one minute here instead of a day there.
+import os
+
+_SMOKE_DIR = os.path.join(REPO_ROOT, LOCAL_OUT_DIR) + "_smoke"
+_smoke_file = out_path_5m(ARM, _SMOKE_DIR, CHUNKS, CHUNK_INDEX,
+                          budget=2_000, mrl=MAX_RELATOR_LENGTH)
+if os.path.exists(_smoke_file):
+    os.remove(_smoke_file)               # fresh: the smoke must actually search
+
+run_arm_5m(ARM, _SMOKE_DIR, chunks=CHUNKS, chunk_index=CHUNK_INDEX,
+           budget=2_000, mrl=MAX_RELATOR_LENGTH, n_workers=1, resume=False,
+           limit=2, mirror_dir=None)
+
+from experiments.search.run_leftovers_1m import read_rows
+_srows = read_rows(_smoke_file)
+assert len(_srows) == 2, f"smoke wrote {len(_srows)} rows, expected 2"
+assert all(r["arm"] == ARM and r["budget"] == 2_000 for r in _srows), _srows
+assert all(0 < r["nodes_explored"] <= 2_000 for r in _srows), _srows
+
+_SMOKE_OK = True
+print("SMOKE PASSED -- pipeline verified; MAIN may start")
+'''
+
+MAIN = '''# ==================== MAIN (the 5M run; gated by SMOKE) ====================
+assert _SMOKE_OK, "smoke did not pass; refusing to start the long job"
+import glob as _glob
 import os
 
 OUT_DIR = os.path.join(REPO_ROOT, LOCAL_OUT_DIR)
 MIRROR  = DRIVE_OUT_DIR if (IN_COLAB and MOUNT_DRIVE) else None
+if MIRROR is None:
+    print("note: no Drive on this runtime -- the jsonl lives only on this "
+          "machine; copy it off yourself when done (or rsync it periodically).")
 
-budget, limit = NODE_BUDGET, None
-if SMOKE_RUN:
-    budget, limit = 2_000, 2
-    OUT_DIR = OUT_DIR + "_smoke"
-    MIRROR = None
-    print(f"SMOKE_RUN: {limit} rows at budget {budget:,} -> {OUT_DIR}")
+if not RUN_MAIN:
+    print("RUN_MAIN = False -- smoke only, the long job was not started")
 else:
-    print(f"FULL RUN: budget {budget:,} over the {len(_chunk)} rows of "
-          f"chunk {CHUNK_INDEX}/{CHUNKS}; rows already in the jsonl are skipped")
+    out = out_path_5m(ARM, OUT_DIR, CHUNKS, CHUNK_INDEX,
+                      budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH)
+    if ARM == "greedy":
+        # fold in anything the retired c{1..4}of4 shard notebooks already
+        # finished at this exact budget and cap, so no paid-for row re-runs
+        _dirs = [OUT_DIR] + [
+            f"/content/drive/MyDrive/acsolverx/leftovers_5m_greedy_c{k}of4"
+            for k in (1, 2, 3, 4)]
+        _pat = f"leftovers_5m_greedy_c*of*_b{NODE_BUDGET}_mrl{MAX_RELATOR_LENGTH}.jsonl"
+        _shards = [p for d in _dirs
+                   for p in sorted(_glob.glob(os.path.join(d, _pat)))]
+        absorb_shard_rows(out, _shards, {r["name"] for r in _rows})
 
-out = run_arm_5m(
-    ARM, OUT_DIR,
-    chunks=CHUNKS,
-    chunk_index=CHUNK_INDEX,
-    budget=budget,
-    mrl=MAX_RELATOR_LENGTH,
-    n_workers=N_WORKERS,
-    resume=RESUME,
-    limit=limit,
-    mirror_dir=MIRROR,
-)
-print("jsonl:", out)
-'''
-
-REPORT = '''# ==================== REPORT =============================================
-# Free to re-run; reads the jsonl off disk and never searches. Prints THIS
-# chunk's progress, then the merged view across whatever chunks have rows in
-# OUT_DIR so far -- the merged table is the experiment's answer, and it also
-# flags (loudly) any row solved at or below 1,000,000 nodes, which the 1M run
-# says is impossible for these lists.
-# mrl is part of the jsonl filename, so REPORT must be told the SAME cap the
-# run used -- defaulting it here is the bug that once made a finished run
-# report as "no rows yet" (a cap-64 run read back at the cap-48 default).
-c_chunk = report_5m(ARM, OUT_DIR, chunks=CHUNKS, chunk_index=CHUNK_INDEX,
-                    budget=budget, mrl=MAX_RELATOR_LENGTH)
-c_all = report_5m(ARM, OUT_DIR, chunks=CHUNKS, budget=budget,
+    out = run_arm_5m(ARM, OUT_DIR, chunks=CHUNKS, chunk_index=CHUNK_INDEX,
+                     budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
+                     n_workers=N_WORKERS, resume=RESUME, limit=MAIN_LIMIT,
+                     mirror_dir=MIRROR)
+    print("jsonl:", out)
+    c = report_5m(ARM, OUT_DIR, chunks=CHUNKS, budget=NODE_BUDGET,
                   mrl=MAX_RELATOR_LENGTH)
 '''
 
 
-def build(stem, arm, chunks, chunk_index, branch=None):
+def build(stem, arm, branch=None):
     branch = branch or current_branch()
     from experiments.search.run_leftovers_5m import SPEC_5M
     cfg = CONFIG % {
-        "title": (f"GREEDY c{chunk_index}of{chunks}" if arm == "greedy"
-                  else "S20_MK2"),
-        "blurb": _ARM_BLURB[arm] % {"chunk_index": chunk_index,
-                                    "k0": chunk_index - 1},
+        "title": "GREEDY (combined, all 88)" if arm == "greedy" else "S20_MK2",
+        "blurb": _ARM_BLURB[arm],
         "csv": SPEC_5M[arm]["csv"],
         "branch": branch,
         "arm": arm,
-        "chunks": chunks,
-        "chunk_index": chunk_index,
-        "drive_tag": (f"greedy_c{chunk_index}of{chunks}" if arm == "greedy"
-                      else "s20_mk2"),
+        "drive_tag": arm,
     }
-    cells = [cfg, SETUP, RUN, REPORT]
+    cells = [cfg, SETUP, SMOKE, MAIN]
     return {
         "cells": [{"cell_type": "code", "execution_count": None, "metadata": {},
                    "outputs": [], "source": src.splitlines(keepends=True)}
@@ -275,15 +310,15 @@ def path_for(stem):
     return os.path.join(NB_DIR, f"{stem}.ipynb")
 
 
-def render(stem, arm, chunks, chunk_index, branch=None):
-    return json.dumps(build(stem, arm, chunks, chunk_index, branch), indent=1) + "\n"
+def render(stem, arm, branch=None):
+    return json.dumps(build(stem, arm, branch), indent=1) + "\n"
 
 
 def main():
     os.makedirs(NB_DIR, exist_ok=True)
-    for stem, arm, chunks, idx in VARIANTS:
+    for stem, arm in VARIANTS:
         with open(path_for(stem), "w") as f:
-            f.write(render(stem, arm, chunks, idx))
+            f.write(render(stem, arm))
         print("wrote", os.path.relpath(path_for(stem), ROOT))
 
 
