@@ -330,6 +330,15 @@ affine realization of that quotient tag, and the later Peiffer/free-group
 lift are therefore three separate gates.  This source audit adds no new
 residual category and makes no stable-AK(3) claim.
 
+Section 6.51 checks the tempting asphericity shortcut at the crossed-module
+level.  Asphericity kills the module of identities and identifies the free
+crossed module with $N$, but relation-module equality is still only equality
+after abelianizing that crossed module.  Its discarded subgroup is exactly
+$[N,N]$, which is nontrivial for the actual base.  Thus Peiffer triviality of
+identity sequences cannot remove a nonidentity endpoint discrepancy in
+$[N,N]$.  This freezes one inference from asphericity; it neither proves that
+the current discrepancy survives nor obstructs an interleaved lift.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6002,6 +6011,85 @@ live endpoint remains the pair orbit (271) or, on the canonical lift, the
 existing affine/Peiffer gate.  The unrestricted bridge, stable AK(3),
 ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.51. Asphericity kills identities, not the commutator discrepancy
+
+There is one possible overreading of Theorems 6.26 and 6.43 which must be
+excluded.  Let
+
+\[
+ \partial:\mathcal C(A,B)\longrightarrow F
+ \tag{320}
+\]
+
+be the free crossed $F$-module on the two base relators, and put
+$\Pi=\ker\partial$.  Its boundary image is $N$.  The standard crossed-module
+sequences are
+
+\[
+ 1\longrightarrow\Pi\longrightarrow\mathcal C(A,B)
+ \overset{\partial}{\longrightarrow}N\longrightarrow1
+ \tag{321}
+\]
+
+and
+
+\[
+ 0\longrightarrow\Pi\longrightarrow\mathcal C(A,B)^{\rm ab}
+ \longrightarrow N/[N,N]\longrightarrow0.
+ \tag{322}
+\]
+
+The second sequence and the group splitting behind it are the corollary to
+Proposition 7 of Brown--Huebschmann, restated as
+[Proposition 3 here](https://link.springer.com/article/10.1007/s13366-020-00531-6):
+$\mathcal C\cong\Pi\times N$ and
+$[\mathcal C,\mathcal C]\cong[N,N]$.  The module $\Pi$ is the module of
+identities among the base relators.
+
+Asphericity of $\langle x,y,z\mid A,B\rangle$ says $\Pi=0$.  Consequently
+
+\[
+ \boxed{
+ \mathcal C(A,B)\cong N,\qquad
+ \mathcal C(A,B)^{\rm ab}\cong N/[N,N],\qquad
+ [\mathcal C(A,B),\mathcal C(A,B)]\cong[N,N].}
+ \tag{323}
+\]
+
+This is the exact direction of the implication.  If two crossed words
+$c,d\in\mathcal C(A,B)$ have the same relation-module image, then
+$d^{-1}c\in[\mathcal C,\mathcal C]$.  Under (323), its boundary is the
+corresponding endpoint discrepancy in $[N,N]$.  Peiffer triviality of
+identity sequences applies only when that boundary is one.  Since
+$\partial$ is injective here, it then says merely that $d^{-1}c=1$ already;
+it does not turn an arbitrary commutator discrepancy into an identity.
+
+The discarded subgroup is genuine for the actual base.  The subgroup $N$ is
+a nontrivial normal subgroup of the nonabelian free group $F(x,y,z)$.  If it
+were abelian, fix $1\ne n\in N$.  Every conjugate of $n$ would lie in the
+cyclic centralizer of $n$; normality would force the maximal cyclic subgroup
+containing $n$ to be normalized by all of $F$.  Maximal cyclic subgroups of a
+free group are self-normalizing, contradicting that $F$ is noncyclic.  Hence
+
+\[
+ [N,N]\ne1.
+ \tag{324}
+\]
+
+**Theorem 6.44 (asphericity-lift boundary).**  Actual-base asphericity removes
+the identity module $\Pi$ but does not remove the commutator kernel
+$[N,N]$ of the relation-module projection.  Therefore a module-tame endpoint
+cannot be promoted to its prescribed free-group representative merely by
+citing asphericity or Peiffer triviality of identity sequences.
+
+This theorem closes only that shortcut.  It does not prove that the
+$[N,N]$ discrepancy of every possible lifted matrix path is nontrivial, and
+it does not obstruct a path whose interleaved row operations make the exact
+boundary vanish.  Such an exact vanishing is precisely the existing
+Peiffer/free-group gate, not a new residual category.  The unrestricted
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6145,8 +6233,12 @@ The logical gates remain separate:
     module, equivalently on kernel tuples in $F/[N,N]$; it supplies neither
     legal square completion for the tagged endpoint, affine realization of
     its nontrivial quotient coordinate, nor removal of the residual
-    $[N,N]$ discrepancy in the free group; and
-41. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    $[N,N]$ discrepancy in the free group;
+41. actual-base asphericity kills the module of identities but leaves the
+    nontrivial commutator kernel $[N,N]$ intact, so Peiffer triviality of
+    identity sequences does not promote a module endpoint to a prescribed
+    free-group representative; and
+42. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6236,4 +6328,9 @@ literal tagged row $H_B$ before a target lift is chosen nor promotes a
 module endpoint to its prescribed representative in $F$.  Hence legal
 square stabilization, affine tag realization, and the Peiffer/free-group
 lift remain exactly the three already isolated gates; no fourth ledger is
-opened.
+opened.  Theorem 6.44 then closes the only immediate asphericity shortcut:
+the free crossed module is indeed $N$, but its abelianization is only
+$N/[N,N]$, and $[N,N]$ is nontrivial.  Thus identity-sequence Peiffer
+triviality has no force on a nonidentity commutator endpoint discrepancy.
+This does not prove that every lifted path has such a discrepancy; the exact
+interleaved Peiffer/free-group gate remains open.

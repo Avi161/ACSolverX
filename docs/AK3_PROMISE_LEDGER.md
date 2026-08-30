@@ -219,6 +219,16 @@ finite quotient do not close a route.
   and the later Peiffer/free-group lift as three separate gates.  Freeze the
   source-scope audit here; it adds no new correction category and proves no
   bridge or stable AK(3).
+- **Asphericity does not erase the lift discrepancy:** for the actual base,
+  the free crossed module `C(A,B)` has identity module `Pi=0`, hence
+  `C(A,B) ~= N`.  Abelianization nevertheless has kernel
+  `[C,C] ~= [N,N]`, and `[N,N]` is nontrivial because `N` is a nontrivial
+  normal subgroup of the nonabelian free group `F(x,y,z)`.  Therefore two
+  crossed words with the same relation-module class may still have distinct
+  free boundaries.  Peiffer triviality applies to identity sequences, not
+  to a nonidentity endpoint discrepancy in `[N,N]`.  Freeze this shortcut;
+  it neither proves the current discrepancy nontrivial nor obstructs an
+  interleaved path which makes the exact boundary vanish.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
