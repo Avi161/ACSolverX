@@ -467,13 +467,14 @@ This supplies the exact Britton interface for (413), but does not decide it.
 Section 6.65 removes the remaining mapping-torus notation from that
 interface.  Writing \(U=(A_U,1)\), \(V=(A_V,1)\), the two equations (413)
 are equivalent to two displayed equations in the free group \(H=F_4\), with
-five free-group variables and three integer shifts.  This is now a literal
+five free-group variables and two integer shifts; the apparent shift in the
+final height-one conjugator is removed by its centralizer.  This is a literal
 free-group exponential system; its solution set has not been evaluated.
 
 Section 6.66 evaluates the first possible shadow of that system and proves it
 is vacuous.  On \(H^{\rm ab}=\mathbb Z^4\), the monodromy matrix satisfies
 \(\det(M-I)=1\).  Consequently both abelianized equations have integral
-solutions for every choice of the three integer shifts.  Any obstruction to
+solutions for every choice of the two integer shifts.  Any obstruction to
 (426) must therefore be genuinely nonabelian in the free base.
 
 Section 6.67 checks the next nilpotent layer without opening a new ledger.
@@ -510,6 +511,14 @@ therefore combine independently.  This rules out only the specific combined
 \(A_5\)-universal-metabelian test.  A refinement must add information absent
 from those two factors; a standalone nonmetabelian quotient may also
 obstruct.
+
+Section 6.72 exhausts the target \(A_5\) itself.  Independent censuses in the
+original three-generator presentation and the collapsed two-generator
+presentation find the same \(120\) epimorphisms, forming one free
+\(\operatorname{Aut}(A_5)\)-orbit.  The exact commutator-product predicate
+for (413) is nonempty on that orbit.  Thus no alternate \(A_5\) quotient can
+obstruct this signed skeleton; other nonmetabelian groups and literal lifting
+remain open.
 
 ## 1. Pinned words and verified first legs
 
@@ -7951,17 +7960,27 @@ and the height-one product \(U\,{}^hC_p\) has base coordinate
 \tag{424}
 \]
 
-Finally, conjugating \((D_0,1)\) by \((t,n)\) gives
+Finally, conjugating \((D_0,1)\) by \((t,n)\) initially gives
 
 \[
  (t,n)(D_0,1)(t,n)^{-1}
  =\bigl(t\phi^n(D_0)\phi(t)^{-1},1\bigr).
 \]
 
+The integer shift in this last conjugator is redundant.  Put
+\(w=(D_0,1)\) and suppose that \(c=(t,n)\) conjugates \(w\) to \(V\).
+Then
+
+\[
+ c_0:=cw^{-n}
+\]
+
+has height zero and still conjugates \(w\) to \(V\), because \(w^{-n}\)
+commutes with \(w\).  Write \(c_0=(t_0,0)\) and rename \(t_0\) as \(t\).
 Thus \(U\,{}^hC_p\sim V\) is exactly
 
 \[
- A_V=t\phi^n(D_0)\phi(t)^{-1}.
+ A_V=tD_0\phi(t)^{-1}.
 \tag{425}
 \]
 
@@ -7970,7 +7989,7 @@ skeleton (410) lifts in \(G_-\) if and only if there exist
 
 \[
  p,q,a,s,t\in F(d_{-2},d_{-1},d_0,d_1),
- \qquad m,r,n\in\mathbb Z,
+ \qquad m,r\in\mathbb Z,
 \]
 
 such that (422)--(425) hold.  Equivalently, after substituting (422) and
@@ -7982,7 +8001,7 @@ such that (422)--(425) hold.  Equivalently, after substituting (422) and
  A_U\phi(p)A_U^{-1}p^{-1}
  &=a\phi^m\!\left(A_V\phi(q)A_V^{-1}q^{-1}\right)a^{-1},\\
  A_V
- &=t\phi^n\!\left(
+ &=t\left(
  A_U\phi(s)\phi^{r+1}\!\left(A_U\phi(p)A_U^{-1}p^{-1}\right)
  \phi(s)^{-1}
  \right)\phi(t)^{-1}.
@@ -7995,7 +8014,7 @@ literal mapping-torus law (421); no Alexander or relation-module solution is
 being promoted.  Conversely, a solution of (426) reconstructs (413), then
 the legal row path (411), so the reduction is an iff.
 
-Equation (426) is a free-group exponential system because \(m,r,n\) remain
+Equation (426) is a free-group exponential system because \(m,r\) remain
 unbounded.  It has not been solved.  In particular, no bounded word search,
 fixed shortest-conjugator failure, or finite quotient can replace evaluation
 of all its integer shifts and free variables.  Other depth-five sign
@@ -8062,26 +8081,26 @@ complete abelianization is
 
 \[
  \beta=(I-M)\bar t
- +M^n\!\left(\alpha+M^{r+1}(M-I)\bar p\right).
+ +\alpha+M^{r+1}(M-I)\bar p.
 \tag{431}
 \]
 
-For arbitrary \(m,r,n\in\mathbb Z\) and arbitrary \(\bar q\in\mathbb Z^4\),
+For arbitrary \(m,r\in\mathbb Z\) and arbitrary \(\bar q\in\mathbb Z^4\),
 choose \(\bar p=M^m\bar q\) using (430), then set
 
 \[
  \bar t=(I-M)^{-1}
  \left[
- \beta-M^n\!\left(\alpha+M^{r+1}(M-I)\bar p\right)
+ \beta-\alpha-M^{r+1}(M-I)\bar p
  \right].
 \tag{432}
 \]
 
-Equation (428) makes (432) integral.  Thus every choice of all three integer
+Equation (428) makes (432) integral.  Thus every choice of both integer
 shifts survives the full base-abelianization test.
 
 **Theorem 6.60 (base-abelianization vacuity).**  Abelianization of the free
-base neither obstructs (426) nor restricts \(m,r,n\).  More precisely, the
+base neither obstructs (426) nor restricts \(m,r\).  More precisely, the
 abelianized system has the solutions (430), (432) for arbitrary shifts and
 arbitrary \(\bar q\).
 
@@ -8327,7 +8346,7 @@ Thus the universal metabelian quotient is exactly
 
 Abelianizing the free base in (426) is therefore precisely passage to (443).
 The formulas (430), (432) construct a solution there for arbitrary
-\(m,r,n\), not merely after a further scalar specialization.
+\(m,r\), not merely after a further scalar specialization.
 
 **Theorem 6.64 (complete metabelian can-fail control).**  The signed
 five-multiplication lift gate (410) is solvable in the universal metabelian
@@ -8396,6 +8415,86 @@ two, and supplies no solution in \(G_-\).  Other sign patterns, the terminal
 pair orbit, MMS02 bridge,
 stable AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis
 remain open.
+
+### 6.72. The \(A_5\) quotient is unique and always passes the lift gate
+
+The certified assignment in Section 6.60 is not merely one convenient
+\(A_5\) quotient.  Enumerate all epimorphisms in two independent
+presentations.  In the original presentation this means all triples
+
+\[
+ (X_0,Y_0,Z_0)\in A_5^3
+\]
+
+which kill both literal words \(A,B\) and generate \(A_5\).  In the collapsed
+presentation (215), enumerate all pairs \((Y_0,Z_0)\in A_5^2\) which kill
+\(R_*\) and generate \(A_5\), then recover the original generators through
+the complete Tietze map
+
+\[
+ x\mapsto\mathtt{zyZ},\qquad
+ y\mapsto\mathtt y,\qquad
+ z\mapsto\mathtt{zYZYzYzYZyzyZ}.
+\tag{446}
+\]
+
+The two enumerations give exactly the same set of \(120\) epimorphisms.
+Simultaneous conjugation by \(S_5\) realizes
+\(\operatorname{Aut}(A_5)\cong S_5\).  Its action on an epimorphism is free,
+because an automorphism fixing its generating image is the identity.  The
+complete set is one orbit of size \(120\).  Hence
+
+\[
+ \boxed{\left|\operatorname{Epi}(G_-,A_5)/
+ \operatorname{Aut}(A_5)\right|=1.}
+\tag{447}
+\]
+
+It remains to check that the unique orbit passes the actual equations, not
+only the row transcript.  For the images \((\bar U,\bar V)\), put
+
+\[
+ K_U=\{[\bar U,g]:g\in A_5\},\qquad
+ K_V=\{[\bar V,j]:j\in A_5\}.
+\tag{448}
+\]
+
+Equation (413) is soluble in \(A_5\) exactly when some
+\(c\in K_U\) is conjugate to an element of \(K_V\) and
+
+\[
+ \bar V\sim \bar U\,{}^h c
+ \quad\text{for some }h\in A_5.
+\tag{449}
+\]
+
+The complete orbit calculation gives
+
+\[
+ |K_U|=|K_V|=12,\qquad
+ |K_U\cap K_V^{A_5}|=12,\qquad
+ \#\left\{(c,h)\in
+ (K_U\cap K_V^{A_5})\times A_5:
+ \bar U\,{}^h c\sim\bar V\right\}=105.
+\tag{450}
+\]
+
+In particular, (449) is nonempty.  The certificate records and literally
+replays one five-element witness for the two commutator identities and the
+endpoint conjugacy.  It independently replays the two presentations,
+including (446), before comparing their epimorphism sets.
+
+**Theorem 6.66 (complete \(A_5\)-quotient boundary).**  Every epimorphism
+\(G_-\twoheadrightarrow A_5\) differs from the certified epimorphism by an
+automorphism of \(A_5\), and the signed five-multiplication equations (413)
+are soluble in that unique quotient orbit.
+
+Thus there is no second standalone \(A_5\) quotient which can obstruct this
+signed skeleton.  This is a complete finite-quotient statement only for the
+target \(A_5\); it says nothing about another nonmetabelian finite group, a
+nontrivial extension of \(A_5\), the literal free-group system (426), other
+sign patterns, the terminal pair orbit, the MMS02 bridge, stable AK(3),
+ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -8591,10 +8690,10 @@ The logical gates remain separate:
     mapping torus (418) and puts both live rows in the length-one forms
     (419)--(420), but does not solve the simultaneous equations (413); and
 55. the signed lift gate is equivalently the two explicit free-group
-    exponential equations (426), with five free variables and three
+    exponential equations (426), with five free variables and two
     unbounded integer shifts; their solution set remains open; and
 56. the monodromy satisfies \(\det(M-I)=1\), so base abelianization solves
-    (426) for every triple of integer shifts and supplies no obstruction;
+    (426) for every pair of integer shifts and supplies no obstruction;
     this vacuity does not solve the free-group system; and
 57. the class-two image of the signed lift system is solvable by taking both
     commutator variables trivial and using (433); the \(A_5\) quotient proves
@@ -8613,7 +8712,11 @@ The logical gates remain separate:
     surjective, and the signed system is solvable in both coordinates; this
     excludes only that combined test, not standalone nonmetabelian or
     higher-solvable refinements; and
-62. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+62. the two independent presentation censuses find one
+    \(\operatorname{Aut}(A_5)\)-orbit of epimorphisms onto \(A_5\), and the
+    exact lift predicate is soluble on it; this excludes only alternative
+    quotients with target \(A_5\); and
+63. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8796,11 +8899,13 @@ does not decide the simultaneous commutator equations (413).
 Theorem 6.59 applies the mapping-torus multiplication law literally and
 removes the remaining ambient-group notation.  The fixed signed skeleton
 lifts if and only if the two free-group exponential equations (426) have a
-solution in five \(F_4\) variables and three integer shifts.  This is an exact
-iff interface, not a bounded search or a solution of the equations.
+solution in five \(F_4\) variables and two integer shifts.  The apparent
+third shift is removed exactly by multiplying its height-one conjugator by a
+power of the element it conjugates.  This is an exact iff interface, not a
+bounded search or a solution of the equations.
 Theorem 6.60 evaluates the complete base-abelianization shadow of that
 interface.  Its monodromy has \(\det(M-I)=1\), and the integral formulas
-(430), (432) solve the linearized system for every triple of integer shifts.
+(430), (432) solve the linearized system for every pair of integer shifts.
 Thus abelianization is provably vacuous; any obstruction must retain
 noncommutative free-base data.
 Theorem 6.61 then checks class two without another search.  The previously
@@ -8833,3 +8938,10 @@ insufficient.  Goursat's lemma makes
 coordinate solutions combine in that direct product.  This excludes that
 specific independent product only.  A standalone nonmetabelian quotient, a
 nonmetabelian refinement, or a higher-solvable product remains admissible.
+Theorem 6.66 exhausts the target \(A_5\) itself.  Direct enumeration from
+both the original and collapsed presentations gives the same \(120\)
+epimorphisms and one free \(\operatorname{Aut}(A_5)\)-orbit.  The exact
+commutator-product predicate (448)--(450) is soluble on that orbit.  Hence no
+alternate quotient onto \(A_5\) obstructs the signed skeleton; this does not
+address another nonmetabelian finite group, an extension of \(A_5\), or the
+literal equations in \(G_-\).
