@@ -146,6 +146,17 @@ finite quotient do not close a route.
   torsion-free aspherical one-relator group. This does not decide the pair
   orbit. Freeze this lane without a pair search or another invariant/module
   ledger.
+- **The terminal base-tail automorphism shortcut fails:** the same three
+  automorphisms put `F/Ncl(A)` in the HNN form
+  `<a,b,t | tat^-1=YxyxY>`.  Four literal pinches reduce the fixed second
+  row to `t^-1 XyXYXyxYxy`; the source and target normalize to tail pairs
+  `(x,XyXYXyxYxy)` and `(yXYxy,XyXYXyxYxy)`.  Complete rank-two
+  Whitehead floors are respectively 10 and 14, independently cross-checked
+  by the separate automorphism engine.  Hence no simultaneous base
+  automorphism matches their unordered unoriented cyclic tail classes.
+  Freeze only this shortcut: full HNN operations, row multiplication, pair
+  orbit (271), the unrestricted bridge, stable AK(3), and ordinary AK(3)
+  remain open.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one

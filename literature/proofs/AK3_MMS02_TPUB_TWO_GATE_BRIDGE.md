@@ -274,6 +274,20 @@ show that $F/\operatorname{Ncl}(A)$ is not free of rank two.  Thus (271) is a
 genuine nonfree one-relator pair problem, not a disguised free-group AC
 claim.  The pair orbit itself remains unevaluated and the lane stays frozen.
 
+Sections 6.43--6.44 independently close the direct thickenability route for
+the exact length-25 Appendix F representative and every one of the fifty-four
+raw exact complexes on the named published path to AK(3).  Thickenability is
+not transported across that path, so these finite negatives neither prove nor
+obstruct AK(3).
+
+Section 6.45 returns to the terminal pair gate and gives it an exact HNN
+normal form.  The two endpoint tail pairs have complete rank-two Whitehead
+floors ten and fourteen.  Therefore no simultaneous automorphism of the free
+HNN base, even after forgetting order and orientation of the two cyclic tail
+classes, connects them.  This closes only that base-tail automorphism
+shortcut.  Operations involving the stable letter, full HNN conjugacy, row
+multiplication, and the pair orbit (271) remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5274,6 +5288,124 @@ thickenability an AC invariant, and neither proves nor obstructs AK(3).  The
 unrestricted $T_{\rm pub}$ bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.45. The simultaneous base-tail automorphism shortcut fails
+
+The automorphisms in (272) give more than the nonprimitivity test.  Let
+$\Phi=\phi_3\phi_2\phi_1$, put $a=x,b=y,t=z$, and retain uppercase
+letters for inverses.  Literal substitution and free reduction give
+
+\[
+\begin{array}{c|c}
+g&\Phi(g)\\ \hline
+A&\mathtt{xyxYzXZY}\\
+B&\mathtt{ZyxYzXZYzXZyzxZyXYzxZyX}\\
+u&\mathtt{zX}\\
+v&\mathtt{ZyXzxZyX}.
+\end{array}
+\tag{284}
+\]
+
+The unoriented cyclic class of $\Phi(A)$ is the HNN relator
+$tat^{-1}w^{-1}$, where
+
+\[
+ w=b^{-1}abab^{-1}=\mathtt{YxyxY}.
+\]
+
+Consequently
+
+\[
+ G_A\cong
+ \langle a,b,t\mid tat^{-1}=w\rangle .
+\tag{285}
+\]
+
+Keep the raw stable-letter skeleton of $\Phi(B)$.  It has two pinches
+$ta^{-1}t^{-1}=w^{-1}$ and two pinches $tat^{-1}=w$.  Performing exactly
+those four pinches and then freely reducing the base word gives
+
+\[
+ \Phi(B)=t^{-1}d_0\quad\text{in }G_A,\qquad
+ d_0=a^{-1}ba^{-1}b^{-1}a^{-1}bab^{-1}ab
+     =\mathtt{XyXYXyxYxy}.
+\tag{286}
+\]
+
+The one pinch in $\Phi(v)$ similarly gives
+
+\[
+ \Phi(v)=t^{-1}c\quad\text{in }G_A,\qquad
+ c=ba^{-1}b^{-1}ab=\mathtt{yXYxy}.
+\tag{287}
+\]
+
+Finally, $\Phi(u)=ta^{-1}$.  Invert that row and conjugate it by $a^{-1}$:
+
+\[
+ ta^{-1}\longmapsto at^{-1}\longmapsto t^{-1}a.
+\]
+
+Thus reversible operations normalize the two endpoint pairs from (271) to
+
+\[
+ (t^{-1}a,t^{-1}d_0)
+ \quad\text{and}\quad
+ (t^{-1}c,t^{-1}d_0).
+\tag{288}
+\]
+
+Consider the tailwise ansatz which keeps the common $t^{-1}$ pattern and
+tries to match the two base tails by one
+$\alpha\in\operatorname{Aut}(F(a,b))$, allowing the two tails to be
+swapped, inverted, or cyclically conjugated.  Its necessary base condition
+is that the unordered unoriented cyclic pairs
+
+\[
+ ([a],[d_0])\quad\text{and}\quad([c],[d_0])
+\tag{289}
+\]
+
+belong to the same $\operatorname{Aut}(F(a,b))$-orbit.
+
+Complete rank-two Whitehead minimization gives
+
+\[
+\begin{array}{c|c|c}
+\text{tail pair}&\text{one minimum representative}&
+\text{total cyclic floor}\\ \hline
+(a,d_0)&(\mathtt{X},\mathtt{XYXyxYxyy})&10\\
+(c,d_0)&(\mathtt{XXYYXyxxy},\mathtt{XYxyy})&14.
+\end{array}
+\tag{290}
+\]
+
+The respective descents use
+$(a,b)\mapsto(a,ab)$ and $(a,b)\mapsto(ab,b)$.  At the displayed
+endpoints all twelve rank-two Whitehead automorphisms of the second kind are
+nondecreasing; automorphisms of the first kind preserve total cyclic length.
+Whitehead peak reduction therefore makes the two displayed floors complete.
+Literal substitution, the four HNN pinches, both descents, and the floors are
+pinned by the terminal HNN certificate.  A separate word implementation
+replays the substitution and pinches, while a separate automorphism engine
+independently returns the same floors and checks its witnesses.
+
+**Theorem 6.38 (base-tail automorphism boundary).**  No automorphism of
+$F(a,b)$ carries the unordered unoriented cyclic tail pair
+$([a],[d_0])$ to $([c],[d_0])$.  Hence the terminal gate (271) cannot be
+closed by the simultaneous base-tail automorphism ansatz attached to the
+normalization (288).
+
+**Proof.**  Minimum total cyclic length is invariant under a simultaneous
+base automorphism, component permutation, cyclic conjugacy, and component
+inversion.  The complete minima in (290) have unequal total lengths.
+$\square$
+
+This theorem is not an obstruction to conjugacy of the full HNN rows,
+automorphisms or conjugators involving $t$, row multiplication, or an
+arbitrary Andrews--Curtis path between the pairs in (271).  In particular it
+does not decide (271), the unrestricted $T_{\rm pub}$ bridge, stable AK(3),
+ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5399,9 +5531,12 @@ The logical gates remain separate:
 35. all fifty-four exact complexes on the published Appendix F path are
     nonthickenable, but this closes only that named path and neither proves
     nor obstructs another route to a thickenable AK(3) representative;
-36. no MMS02 statement evaluates the period-two class-two ledger or its
+36. the terminal HNN tails have different complete base-automorphism floors,
+    but this excludes only the simultaneous base-tail ansatz and does not
+    decide the full pair orbit (271);
+37. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-37. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+38. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5459,4 +5594,8 @@ representative's direct thickenability route.  That negative is confined to
 its word-realized complex and does not transport to AK(3).  Theorem 6.37
 extends the finite negative to all fifty-four exact complexes on the named
 Appendix F path, including its two unreduced one-loop states.  This freezes
-that corridor only; other AC paths and representatives remain open.
+that corridor only; other AC paths and representatives remain open.  Theorem
+6.38 gives the terminal relative gate its exact HNN normal form and closes
+the simultaneous base-tail automorphism shortcut by the unequal complete
+floors ten and fourteen.  Full HNN operations and the pair orbit (271)
+remain open.
