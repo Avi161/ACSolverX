@@ -482,6 +482,12 @@ The literal class-two computation from Section 6.58 already conjugates
 the identity therefore solves the full signed-skeleton system in the
 class-two quotient.  Class two is another can-fail control, not a lift.
 
+Section 6.68 strengthens this from one solution to the complete quotient:
+\(G_-/\gamma_3(G_-)\cong\mathbb Z\).  The two relator exponent vectors form
+a primitive rank-two sublattice, while their conjugates kill all three
+exterior central directions.  Thus the actual class-two quotient contains no
+information beyond the abelianization already evaluated in Section 6.66.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8122,6 +8128,70 @@ Other choices of \(g,h,j\), other sign patterns, the full
 terminal pair orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.68. The actual class-two quotient is infinite cyclic
+
+The solvability in Section 6.67 reflects a complete collapse, not a special
+choice of conjugator.  Work first in the free class-two group
+
+\[
+ N_3=F(x,y,z)/\gamma_3F(x,y,z).
+\]
+
+Use exponent coordinates followed by the ordered central coordinates
+\(([x,y],[x,z],[y,z])\).  Literal collection of both defining rows gives
+
+\[
+ A=(1,0,-1;0,0,0),
+ \qquad
+ B=(-1,1,0;0,-1,0).
+\tag{434}
+\]
+
+Put \(r_A=e_x-e_z\) and \(r_B=-e_x+e_y\).  The exponent lattice generated
+by \(r_A,r_B\) is primitive: the three columns
+\((r_A,r_B,e_z)\) have determinant one.  Hence its abelian quotient is
+infinite cyclic and identifies \(x,y,z\).
+
+Normal closure supplies the missing central information.  In a class-two
+group, conjugating a relation with exponent vector \(r\) changes its central
+coordinate by a wedge \(v\wedge r\).  The wedges forced by the two rows
+already contain the full integral exterior basis:
+
+\[
+ e_x\wedge r_B=e_x\wedge e_y,
+ \qquad
+ e_x\wedge r_A=-e_x\wedge e_z,
+\]
+
+and
+
+\[
+ -\bigl(e_y\wedge r_A+e_x\wedge r_B\bigr)
+ =e_y\wedge e_z.
+\tag{435}
+\]
+
+Thus the normal closures of \(A,B\) kill all of
+\(\Lambda^2\mathbb Z^3=[N_3,N_3]\).  The central coordinate \(-1\) already
+present in \(B\) causes no residual torsion because the entire center is
+killed integrally.  Therefore
+
+\[
+ \boxed{G_-/\gamma_3(G_-)\cong\mathbb Z.}
+\tag{436}
+\]
+
+**Theorem 6.62 (complete class-two collapse).**  Every homomorphism from
+\(G_-\) to a nilpotent group of class at most two factors through the
+abelianization \(G_-^{\rm ab}\cong\mathbb Z\).  Consequently class-two data
+cannot refine the base-abelianization test of the signed lift system.
+
+This theorem closes only nilpotency class two.  It gives neither a class-three
+solution nor an obstruction, and it does not lift (433) to \(G_-\).  The
+free-group equations (426), other sign patterns, the terminal pair orbit,
+MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8325,7 +8395,10 @@ The logical gates remain separate:
     commutator variables trivial and using (433); the \(A_5\) quotient proves
     that direct conjugacy does not lift to \(G_-\), while nontrivial solutions
     of (413) remain open; and
-58. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+58. in fact \(G_-/\gamma_3(G_-)\cong\mathbb Z\), so every class-two shadow
+    factors through abelianization; class three and the literal lift remain
+    separate open gates; and
+59. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8521,3 +8594,9 @@ equations (413) in \(G_-/\gamma_3(G_-)\).  The \(A_5\) quotient simultaneously
 proves that this direct conjugacy cannot lift to \(G_-\).  Thus class-two
 solvability is a can-fail control, not progress from a quotient path to a
 literal one.
+Theorem 6.62 identifies the reason completely.  The exponent vectors of
+\(A,B\) form a primitive rank-two lattice, and their conjugate wedges span
+all three central directions of the free rank-three class-two group.
+Therefore \(G_-/\gamma_3(G_-)\cong\mathbb Z\): every class-two shadow already
+factors through the vacuous abelian test.  Class three remains a separate
+gate.

@@ -15,6 +15,7 @@ from experiments.stable_ac.mms02_depth_five_lift_equations_certificate import (
 )
 from experiments.stable_ac.mms02_path_gauge_conjugacy_certificate import (
     decide_path_gauge_conjugacy,
+    rank_three_class_two_coordinate,
 )
 
 
@@ -81,3 +82,41 @@ def test_class_two_lift_system_has_the_trivial_commutator_solution():
     assert decision.class_two_target == (0, 1, -1)
     assert decision.class_two_forced_conjugate == decision.class_two_target
     assert decision.forced_base_conjugator == "BB"
+
+
+def test_actual_class_two_quotient_is_infinite_cyclic():
+    relation_a = rank_three_class_two_coordinate("xzYXyxZXYxyZ")
+    relation_b = rank_three_class_two_coordinate("XyxZXYXyxzXYxy")
+    assert relation_a == (1, 0, -1, 0, 0, 0)
+    assert relation_b == (-1, 1, 0, 0, -1, 0)
+
+    exponent_a = relation_a[:3]
+    exponent_b = relation_b[:3]
+    e_x = (1, 0, 0)
+    e_y = (0, 1, 0)
+    e_z = (0, 0, 1)
+    determinant = (
+        exponent_a[0]
+        * (exponent_b[1] * e_z[2] - exponent_b[2] * e_z[1])
+        - exponent_b[0]
+        * (exponent_a[1] * e_z[2] - exponent_a[2] * e_z[1])
+        + e_z[0]
+        * (exponent_a[1] * exponent_b[2] - exponent_a[2] * exponent_b[1])
+    )
+    assert determinant == 1
+
+    def wedge(left, right):
+        return (
+            left[0] * right[1] - left[1] * right[0],
+            left[0] * right[2] - left[2] * right[0],
+            left[1] * right[2] - left[2] * right[1],
+        )
+
+    xy = wedge(e_x, exponent_b)
+    minus_xz = wedge(e_x, exponent_a)
+    minus_xy_minus_yz = wedge(e_y, exponent_a)
+    assert xy == (1, 0, 0)
+    assert minus_xz == (0, -1, 0)
+    assert tuple(
+        -(minus_xy_minus_yz[index] + xy[index]) for index in range(3)
+    ) == (0, 0, 1)
