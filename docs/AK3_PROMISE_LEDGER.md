@@ -113,6 +113,14 @@ finite quotient do not close a route.
   theorem would remain at relation-module level until the quotient tag `v`
   is realized affinely and those module moves are lifted through the
   Peiffer/crossed module to a donor-legal free-group path.
+- **Generic rank-one cancellation is a false shortcut:** the trefoil group is
+  torsion-free one-relator and aspherical with trivial Whitehead group, yet
+  Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one
+  relation modules over its integral group ring. Thus Theorem 6.26's
+  structural properties do not imply `Q` is free. This does not prove the
+  specific `Q` is nonfree or that `ZG_-` fails cancellation; a positive proof
+  must use the actual group or coefficient matrix, without reopening the
+  frozen full-coordinate expansion.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one

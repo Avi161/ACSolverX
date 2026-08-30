@@ -228,6 +228,14 @@ trivial Whitehead group makes a further legal block stabilization matrix-tame.
 Thus rank-one cancellation, affine tag realization, and the subsequent
 Peiffer/free-group lift are distinct remaining gates; none is proved here.
 
+Section 6.38 gives the required can-fail control for rank-one cancellation.
+The trefoil group is also torsion-free one-relator and aspherical with trivial
+Whitehead group, but its integral group ring has infinitely many nonfree
+stably free rank-one relation modules.  Therefore the structural package in
+Theorem 6.26 does not make $Q$ free.  This counterexample does not decide the
+specific module $Q$ in (239); it proves that any positive argument must use
+additional ring-specific or coefficient-specific structure.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4508,6 +4516,68 @@ metabelian tuple, and the subsequent Peiffer/crossed-module/free-group lift.
 None is identified with stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis.
 
+### 6.38. One-relator asphericity does not imply rank-one cancellation
+
+The hypotheses already proved for $G_-$ are not a general cancellation
+theorem.  Let
+
+\[
+ T=\langle x,y\mid x^2=y^3\rangle
+ \tag{247}
+\]
+
+be the trefoil group.  The relator $x^2y^{-3}$ is not a proper power, so its
+standard presentation is aspherical and $T$ is torsion-free.  The same
+torsion-free one-relator Whitehead theorem used in Theorem 6.26 gives
+$\operatorname{Wh}(T)=0$.
+
+Berridge and Dunwoody constructed infinitely many pairwise nonisomorphic
+relation modules $P_i$ over $\mathbb ZT$ satisfying
+
+\[
+ \boxed{
+ P_i\oplus\mathbb ZT\cong(\mathbb ZT)^2,
+ \hspace{1em}P_i\not\cong\mathbb ZT.
+ }
+ \tag{248}
+\]
+
+Thus every $P_i$ is stably free of rank one but not free.  Harlander and
+Jensen restate this family and use it to construct distinct 2-complexes with
+trefoil fundamental group.  See P. H. Berridge--M. J. Dunwoody,
+``Non-free projective modules for torsion-free groups,'' *J. London Math.
+Soc.* (2) 19 (1979), 433--436, and J. Harlander--J. A. Jensen, ``Exotic
+relation modules and homotopy types for certain 1-relator groups,''
+*Algebr. Geom. Topol.* 6 (2006), 2163--2173.
+
+Consequently the implication
+
+\[
+ \boxed{
+ \begin{gathered}
+ \text{torsion-free one-relator, aspherical, and }\operatorname{Wh}=0\\
+ \centernot\Longrightarrow\\
+ \text{every stably free rank-one integral group-ring module is free}
+ \end{gathered}
+ }
+ \tag{249}
+\]
+
+is false.
+
+**Theorem 6.31 (generic cancellation shortcut fails).**  Freeness of the
+specific kernel $Q$ in (239) does not follow from any combination of the
+torsion-free one-relator, asphericity, and trivial-Whitehead-group conclusions
+of Theorem 6.26.  A proof of $Q\cong S$ must use additional structure of the
+actual group $G_-$ or the actual coefficient matrix $C$.
+
+Equation (249) does not show that $Q$ is nonfree, nor that $\mathbb ZG_-$
+fails stably free cancellation.  It only blocks a generic inference from the
+properties already established.  No new coordinate expansion of $C$ is
+opened here.  The curvature, specific rank-one cancellation, affine tagged
+realization, Peiffer/free-group lift, unrestricted bridge, stable AK(3), and
+ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -4609,9 +4679,12 @@ The logical gates remain separate:
     separate unproved cancellation statement $Q\cong S$; even that is only a
     relation-module result without an affine tagged or Peiffer/free-group
     lift;
-29. no MMS02 statement evaluates the period-two class-two ledger or its
+29. torsion-free one-relator asphericity and trivial Whitehead group do not
+    imply rank-one cancellation, as the Berridge--Dunwoody trefoil modules
+    show; this can-fail control does not decide the specific $Q$;
+30. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-30. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+31. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -4644,4 +4717,8 @@ AC4 identity blocks preserve the rank-one kernel $Q$, so legal matrix
 completion is equivalent to the unproved cancellation $Q\cong S$; once that
 holds, $\operatorname{Wh}(G_-)=0$ handles stable matrix tameness.  Affine tag
 realization remains a further gate, as does the subsequent
-Peiffer/crossed-module/free-group lift.
+Peiffer/crossed-module/free-group lift.  Theorem 6.31 blocks a generic
+cancellation shortcut: the trefoil group has the same one-relator,
+asphericity, torsion-free, and Whitehead properties but admits nonfree stably
+free rank-one modules.  The specific $Q$ still requires a group- or
+coefficient-specific argument.
