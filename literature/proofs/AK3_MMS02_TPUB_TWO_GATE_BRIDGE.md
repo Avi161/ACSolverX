@@ -393,6 +393,14 @@ lifts of the Euclidean row algorithm restore a basis only in abelianization;
 their complete pair floors are at least eighty-one.  This closes that named
 lift, not other conjugator tails or uphill paths.
 
+Section 6.58 returns to the primary MMS02 path-gauge gate.  Magnus HNN
+conjugacy reduces every possible conjugator from \(u^{-1}\) to \(v\) to one
+base element.  Base abelianization and the exact class-two quotient both
+select \(x^{-2}\), but its remaining condition is a nonempty word in the
+Freiheitssatz free factor \(\langle b,d\rangle\).  Thus the two live path-gauge
+rows are not conjugate up to inversion.  This closes the complete one-row
+conjugacy shortcut, not their two-row AC orbit.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6880,6 +6888,162 @@ unrestricted rank-three bridge.  Stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, and Andrews--Curtis remain open.  No Euclidean correction
 ledger is opened.
 
+### 6.58. The path-gauge rows are not conjugate up to inversion
+
+Return to the sufficient primary bridge gate (271).  The abelianizations in
+\(G_A=F(x,y,z)/\operatorname{Ncl}(A)\) satisfy
+
+\[
+ [A]=(1,0,-1),\qquad [u]=(0,-1),\qquad [v]=(0,1),
+ \tag{370}
+\]
+
+where the last two coordinates use the basis obtained from \([z]=[x]\).
+Thus a one-row inversion--conjugation route from \(u\) to \(v\) must invert
+the source and compare
+
+\[
+ U:=u^{-1}=xyZ
+ \quad\text{with}\quad
+ V:=v=Xyz.
+ \tag{371}
+\]
+
+Their full conjugacy problem has a short Magnus decomposition.  Adjoin
+
+\[
+ a=y^{-1}xy,\qquad b=x,\qquad d=z.
+\]
+
+The relator \(A\) becomes literally
+
+\[
+ R=bd a^{-1}b d^{-1}b^{-1}a d^{-1},
+ \tag{372}
+\]
+
+because substituting \(a=y^{-1}xy\), \(b=x\), and \(d=z\) in (372) gives
+`xzYXyxZXYxyZ`.  Hence Tietze transformation gives the HNN presentation
+
+\[
+ G_A\cong
+ \left\langle H,y\mid yay^{-1}=b\right\rangle,
+ \qquad
+ H=\langle a,b,d\mid R\rangle.
+ \tag{373}
+\]
+
+The cyclically reduced word \(R\) contains \(d\), so Freiheitssatz embeds
+\(\langle a,b\rangle\) freely in \(H\).  In particular, the associated
+cyclic subgroups in (373) embed and the HNN normal-form and conjugacy theorems
+apply.
+
+Using \(by=ya\) and \(b^{-1}y=ya^{-1}\), the two rows (371) have the reduced
+length-one HNN forms
+
+\[
+ U=y(ad^{-1})=:ys,
+ \qquad
+ V=y(a^{-1}d)=:yr.
+ \tag{374}
+\]
+
+Both are cyclically reduced.  Collins' conjugacy lemma says that, if they
+are conjugate, a cyclic permutation of \(U\) is conjugate to \(V\) by an
+element of \(H\).  The only cyclic permutation is already \(H\)-conjugate to
+\(U\), so absorb it and write the hypothetical equality as
+
+\[
+ cUc^{-1}=V,\qquad c\in H.
+ \tag{375}
+\]
+
+Britton reduction of
+\(cysc^{-1}r^{-1}y^{-1}\) forces one integer \(n\) with
+
+\[
+ sb^nr^{-1}=a^n,
+ \qquad
+ c=b^{-n}.
+ \tag{376}
+\]
+
+In \(H^{\rm ab}\), relation (372) gives \([b]=[d]\), with \([a]\)
+independent.  The two sides of the first equation in (376) are
+
+\[
+ 2[a]+(n-2)[b]
+ \quad\text{and}\quad
+ n[a].
+\]
+
+Consequently
+
+\[
+ n=2,\qquad c=b^{-2}=x^{-2}.
+ \tag{377}
+\]
+
+The exact class-two quotient selects the same tempting conjugator but does
+not certify it.  Put \(\kappa:=x^{-1}y^{-1}xy=[x^{-1},y^{-1}]\).  Collection modulo
+\(\gamma_3\) gives
+
+\[
+ A=xz^{-1}.
+ \tag{378}
+\]
+
+Thus \(z=x\), and the class-two quotient of \(G_A\) is the free class-two
+group on \(x,y\).  Equations (371) become
+
+\[
+ U=y\kappa,
+ \qquad
+ V=y\kappa^{-1}.
+ \tag{379}
+\]
+
+Since \(x^m yx^{-m}=y\kappa^m\), the HNN-forced element passes this complete
+class-two test:
+
+\[
+ x^{-2}Ux^2=y\kappa^{-1}=V.
+ \tag{380}
+\]
+
+The exact base condition nevertheless fails.  Substituting \(n=2\) in
+(376), moving the right side to the left, and freely reducing gives
+
+\[
+ sb^2r^{-1}a^{-2}
+ =a d^{-1}b^2d^{-1}a^{-1}.
+\]
+
+Conjugating by \(a^{-1}\) would force
+
+\[
+ d^{-1}b^2d^{-1}=1.
+ \tag{381}
+\]
+
+But the cyclically reduced relator \(R\) contains \(a\), so Freiheitssatz
+embeds \(\langle b,d\rangle\) as a free rank-two subgroup of \(H\).  The word
+in (381) is freely reduced and nonempty there.  This contradiction excludes
+(375).
+
+**Theorem 6.52 (path-gauge nonconjugacy).**  The elements \(u\) and \(v\)
+are conjugate in neither orientation in \(G_A\).  Abelianization excludes
+\(u\sim v\), while (373)--(381) exclude \(u^{-1}\sim v\).  Therefore the
+sufficient pair gate (271) cannot close by holding the \(B\)-row fixed and
+using only inversion and one arbitrary conjugation of the other row.
+
+This is a complete conjugacy decision, not a two-row Andrews--Curtis
+obstruction.  It does not cover multiplying either live row by the other,
+changing the common \(B\)-row, another stable expansion, the tagged gate
+(130), or the unrestricted rank-three bridge.  Stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, and Andrews--Curtis remain open.  No conjugator or
+finite-quotient ledger is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7046,8 +7210,12 @@ The logical gates remain separate:
     one-step cyclic-product neighborhood;
 47. the four direct orientation-preserving lifts of the abelian Euclidean row
     algorithm have nonprimitive difference rows and endpoint floors at least
-    eighty-one, closing only those pinned lifts; and
-48. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    eighty-one, closing only those pinned lifts;
+48. Magnus HNN conjugacy and Freiheitssatz prove that the path-gauge rows
+    \(u,v\) are not conjugate up to inversion; the class-two quotient is a
+    can-fail control selecting the same candidate conjugator, and the theorem
+    closes only the one-row conjugacy shortcut for (271); and
+49. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7175,3 +7343,10 @@ terminal abelian basis: all four signed difference rows have singleton floor
 least 81.  This closes only those orientation-preserving lifts.  Different
 intermediate conjugator tails, longer uphill paths, and the unrestricted
 bridge remain open.
+Theorem 6.52 returns to the primary path-gauge gate (271): Collins' HNN
+conjugacy lemma and base abelianization force the only possible conjugator
+from \(u^{-1}\) to \(v\) to be \(x^{-2}\).  The exact free class-two quotient
+selects the same element, but its remaining base condition is a nonempty word
+in the Freiheitssatz free factor \(\langle b,d\rangle\).  Hence the live rows
+are not conjugate up to inversion.  This closes the full one-row conjugacy
+shortcut, not the two-row pair orbit or the unrestricted bridge.
