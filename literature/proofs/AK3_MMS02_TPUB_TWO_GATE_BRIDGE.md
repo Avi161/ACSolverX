@@ -612,8 +612,15 @@ unoriented component-conjugacy classes.  Free-product factor type and the
 abelianization of \(Q_A\) rule out every possible source--target matching.
 Moreover, the source and target have the same abelianized basis, so one row
 multiplication cannot suffice.  Every tagged-gate path therefore has at
-least two row multiplications; only one proper two-multiplication family has
-been excluded.
+least two row multiplications.
+
+Section 6.84 closes depth two itself.  The signed \(2\)-by-\(2\) Nielsen
+matrices show that two homology-compatible transvections must be transported
+inverses.  At the group level this forces the source and target
+pair-product spectra to intersect.  Retraction
+\(Q_A*\langle t\rangle\to Q_A\) would then conjugate an orientation of
+\(q\) to an orientation of \(B\), contradicting Theorem 6.11 and (507).
+Thus every tagged-gate path has at least three row multiplications.
 
 ## 1. Pinned words and verified first legs
 
@@ -9510,9 +9517,108 @@ This is a global depth lower bound with arbitrary conjugations, inversions,
 and row permutations, not a two-multiplication classification.  Theorem
 6.75 excludes the proper two-multiplication family
 \(P C_1(k)P^{-1}\), but other homology-compatible two-multiplication
-skeletons and all longer paths remain open.  The exact Peiffer gate, MMS02
-bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
-Andrews--Curtis remain open.  No multiplication-depth census is opened.
+skeletons require the separate argument below.  The exact Peiffer gate,
+MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
+### 6.84. The complete depth-two tagged gate is empty
+
+Let \(\Sigma\) be the eight signed permutation matrices.  After absorbing
+all inversions and row permutations before, between, and after two row
+multiplications, their action on abelianized row coordinates has the form
+
+\[
+ S_2T_2QT_1S_0,
+ \qquad S_0,S_2,Q\in\Sigma,
+\tag{509}
+\]
+
+where each \(T_i\) is a unit upper or lower transvection.  Since the source
+and target matrices in (508) agree and are invertible, (509) must be the
+identity.  In particular, \(T_2QT_1\in\Sigma\).
+
+Conjugating \(T_1\) through \(Q\) reduces this to a product of two unit
+transvections.  If their recipient--donor indices agree, their coefficients
+add, and the product is a signed permutation only when they are inverse.  If
+the indices are opposite, the product has the form
+
+\[
+ \begin{pmatrix}1&a\\ b&1+ab\end{pmatrix}
+ \quad\text{or its transpose},
+ \qquad a,b\in\{1,-1\},
+\tag{510}
+\]
+
+which has a row and a column with two nonzero entries and is not in
+\(\Sigma\).  Therefore the complete matrix condition is
+
+\[
+ \boxed{T_2=QT_1^{-1}Q^{-1}.}
+\tag{511}
+\]
+
+Raw row labels give aligned and crossed versions of (511), but the middle
+signed frame \(Q\) transports both to the same logical operation: one row is
+multiplied by the other, zero-multiplication moves are made, and the same
+logical transvection is undone.
+
+The literal group consequence can be stated without choosing that frame.
+For a pair \((a,b)\), define its unoriented pair-product spectrum
+
+\[
+ \mathfrak P(a,b)=
+ \left\{
+ [uv]:u\sim a^{\epsilon},\ v\sim b^{\delta},\
+ \epsilon,\delta\in\{1,-1\}
+ \right\}.
+\tag{512}
+\]
+
+The order of the two factors is immaterial because \(uv\) and \(vu\) are
+conjugate.  Equation (511) implies that a depth-two path from \((a,b)\) to
+\((c,d)\) can exist only if
+
+\[
+ \mathfrak P(a,b)\cap\mathfrak P(c,d)\ne\varnothing.
+\tag{513}
+\]
+
+Indeed, immediately after the first multiplication one logical row is a
+product of independently conjugated, independently oriented source rows.
+The middle zero-multiplication moves may conjugate, invert, or exchange the
+two logical rows.  The transported inverse multiplication in (511) writes
+that same middle product as a product of independently conjugated,
+independently oriented endpoint rows.  Its conjugacy class therefore belongs
+to both spectra in (513).  This argument allows arbitrary ambient
+conjugators and both left and right row products; reversing a product only
+changes the two orientations, while a left product is conjugate to the
+corresponding right product.
+
+Apply (513) to the tagged source and target.  Let
+
+\[
+ \pi:G_t=Q_A*\langle t\rangle\longrightarrow Q_A,
+ \qquad \pi(t)=1,
+\tag{514}
+\]
+
+be the canonical retraction.  Every class in \(\mathfrak P(q,t)\) maps to
+the conjugacy class of \(q\) or \(q^{-1}\); every class in
+\(\mathfrak P(B,t)\) maps to that of \(B\) or \(B^{-1}\).  An intersection
+in (513) would therefore make one orientation of \(q\) conjugate in \(Q_A\)
+to one orientation of \(B\).  Equal orientations contradict Theorem 6.11,
+and opposite orientations contradict (507).
+
+**Theorem 6.78 (complete tagged depth-two boundary).**  No AC path from
+\((q,t)\), equivalently from \((EB,t)\), to \((B,t)\) contains at most two
+row multiplications.  Every such path contains at least three.
+
+This theorem classifies the complete depth-two Nielsen skeleton with
+arbitrary conjugations, inversions, row permutations, signs, and recipient
+orders.  It does not classify three-multiplication matrices or paths, close
+the Peiffer gate, prove the MMS02 bridge, or prove stable AK(3), ordinary
+AK(3), stable Andrews--Curtis, or Andrews--Curtis.  The depth-two lane is
+closed; no depth-three census is opened.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -9774,9 +9880,13 @@ The logical gates remain separate:
 73. after adding inversion and row permutation, the entire
     multiplication-free action preserves the unordered pair of unoriented
     component-conjugacy classes, and abelianization further rules out every
-    path with exactly one row multiplication; this is only a two-move lower
-    bound, not a classification at that depth; and
-74. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    path with exactly one row multiplication;
+74. the complete signed-matrix classification makes every compatible
+    depth-two skeleton a transported inverse pair, whose pair-product
+    spectrum would force \(q^{\pm1}\) to be conjugate to \(B^{\pm1}\) after
+    killing the tag; hence every tagged-gate path has at least three row
+    multiplications, but no depth-three classification is claimed; and
+75. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -10082,5 +10192,10 @@ classes; free-product factor type, literal nonconjugacy, and the nonzero
 abelianized sign separate the source from the target.  Since the endpoint
 abelianized row matrices agree and one elementary transvection cannot be
 cancelled by signed permutations, every tagged-gate path uses at least two
-row multiplications.  Other homology-compatible two-multiplication
-skeletons remain open.
+row multiplications.
+Theorem 6.78 closes the entire next depth.  Two compatible transvections are
+transported inverses, so a depth-two path would put one conjugacy class in
+both endpoint pair-product spectra.  Killing the tag would conjugate
+\(q^{\pm1}\) to \(B^{\pm1}\), contrary to Theorem 6.11 and the abelianized
+sign.  Thus every tagged path uses at least three row multiplications; no
+depth-three census or closure is claimed.
