@@ -65,14 +65,111 @@ from experiments.search.greedy_baseline import (                    # noqa: E402
 )
 from experiments.search.greedy_compact import (                     # noqa: E402
     _CODE_TO_CHAR, _HB_CHECK_EVERY, _EMPTY, _NEED_CAPACITY, _OK, _SOLVED,
-    _decode, _fnv, _get_nib, _init_state, _insert, _lookup, _next_pow2,
-    _rehash, _row_less, _set_nib_at, est_states, _RESERVE_SLACK,
+    _code_of, _decode, _fnv, _get_nib, _init_state, _insert, _lookup,
+    _next_pow2, _rehash, _row_less, _set_nib_at, _slot0, est_states,
+    _RESERVE_SLACK,
 )
 from experiments.heuristic_search.core.hfast import (                    # noqa: E402
     _SEP, _feats_nj, _pack, compile_config, expand_and_score_nj,
 )
 from experiments.heuristic_search.core.hlab import N_FEAT                # noqa: E402
 from experiments.heuristic_search.core.hsolve import LENGTH_ONLY         # noqa: E402
+
+
+# ---------------------------------------------------------------------------
+# dedup without packing.
+#
+# ~94% of a pop's candidates are duplicates, and the original loop paid full
+# price to find that out: zero a 64-byte arena row, pack ~30 nibbles, FNV the
+# 64 bytes, then memcmp them. A zero-padded row is uniquely determined by
+# (len1, len2, codes), so the same identity can be hashed straight off the
+# candidate's code array (~30 iterations, not 64), false collisions rejected
+# by two integer length compares before any content is read, and the row
+# packed ONLY once the candidate is known to be new. Same equality predicate,
+# same dedup decisions, same insertion order -- the search is unchanged
+# bit-for-bit (the equivalence gates against the Python oracle pin this);
+# only the wasted work on the 94% is gone.
+# ---------------------------------------------------------------------------
+@njit(inline='always')
+def _hash_codes(blob, o, la, lb):
+    h = np.uint64(1469598103934665603)
+    p = np.uint64(1099511628211)
+    h = (h ^ np.uint64(la)) * p
+    h = (h ^ np.uint64(lb)) * p
+    for t in range(la):
+        h = (h ^ np.uint64(blob[o + t])) * p
+    for t in range(lb):
+        h = (h ^ np.uint64(blob[o + la + 1 + t])) * p
+    return h
+
+
+@njit(inline='always')
+def _hash_row(arena, sid, len1, len2, nb2, rw):
+    """The same hash, computed from a packed arena row (rehash after a grow)."""
+    h = np.uint64(1469598103934665603)
+    p = np.uint64(1099511628211)
+    la = np.int64(len1[sid])
+    lb = np.int64(len2[sid])
+    h = (h ^ np.uint64(la)) * p
+    h = (h ^ np.uint64(lb)) * p
+    row = arena[sid * rw:(sid + 1) * rw]
+    for t in range(la):
+        h = (h ^ np.uint64(_get_nib(row, t))) * p
+    for t in range(lb):
+        h = (h ^ np.uint64(_get_nib(row, nb2 + t))) * p
+    return h
+
+
+@njit(inline='always')
+def _codes_equal_row(arena, sid, len1, len2, blob, o, la, lb, nb2, rw):
+    if np.int64(len1[sid]) != la or np.int64(len2[sid]) != lb:
+        return False
+    row = arena[sid * rw:(sid + 1) * rw]
+    for t in range(la):
+        if _get_nib(row, t) != np.int64(blob[o + t]):
+            return False
+    for t in range(lb):
+        if _get_nib(row, nb2 + t) != np.int64(blob[o + la + 1 + t]):
+            return False
+    return True
+
+
+@njit(inline='always')
+def _lookup_codes(table, tmask, arena, len1, len2, blob, o, la, lb, nb2, rw, h):
+    """Id of the state equal to the UNPACKED candidate, or -1. Linear probing."""
+    i = _slot0(h, tmask)
+    while True:
+        slot = table[i]
+        if slot == 0:
+            return -1
+        if _codes_equal_row(arena, slot - 1, len1, len2, blob, o, la, lb,
+                            nb2, rw):
+            return slot - 1
+        i += 1
+        if i > tmask:
+            i = 0
+
+
+@njit(cache=True)
+def _rehash_h(table, tmask, arena, len1, len2, n, nb2, rw):
+    for sid in range(n):
+        _insert(table, tmask, _hash_row(arena, sid, len1, len2, nb2, rw), sid)
+
+
+@njit(cache=True)
+def _init_state_h(arena, len1, len2, depth, table, tmask, a1, a2, w, rw):
+    """greedy_compact._init_state, inserting with the codes hash instead."""
+    nb2 = 2 * w
+    for t in range(rw):
+        arena[t] = 0
+    for t in range(len(a1)):
+        _set_nib_at(arena, 0, t, _code_of(a1[t, 0], a1[t, 1]))
+    for t in range(len(a2)):
+        _set_nib_at(arena, 0, nb2 + t, _code_of(a2[t, 0], a2[t, 1]))
+    len1[0] = len(a1)
+    len2[0] = len(a2)
+    depth[0] = 0
+    _insert(table, tmask, _hash_row(arena, 0, len1, len2, nb2, rw), 0)
 
 
 # ---------------------------------------------------------------------------
@@ -189,19 +286,19 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
                     break
             lb = kl - la - 1
 
-            off = n_disc * rw
+            h = _hash_codes(blob, o, la, lb)
+            if _lookup_codes(table, tmask, arena, len1, len2, blob, o,
+                             la, lb, nb2, rw, h) != -1:
+                continue
+
+            sid = n_disc
+            off = sid * rw
             for t in range(rw):
                 arena[off + t] = 0
             for t in range(la):
                 _set_nib_at(arena, off, t, np.int64(blob[o + t]))
             for t in range(lb):
                 _set_nib_at(arena, off, nb2 + t, np.int64(blob[o + la + 1 + t]))
-
-            h = _fnv(arena, off, rw)
-            if _lookup(table, tmask, arena, n_disc, rw, h) != -1:
-                continue
-
-            sid = n_disc
             len1[sid] = la
             len2[sid] = lb
             depth[sid] = d1
@@ -307,7 +404,8 @@ class HCompactSolver:
             if self.track_path:
                 self.parent[:k] = old["parent"][:k]
                 self.pmove[:k, :] = old["pmove"][:k, :]
-            _rehash(self.table, self.tcap - 1, self.arena, k, self.rw)
+            _rehash_h(self.table, self.tcap - 1, self.arena,
+                      self.len1, self.len2, k, 2 * self.w, self.rw)
 
     def _grow(self, st):
         self.grew += 1
@@ -330,8 +428,8 @@ class HCompactSolver:
 
     def solve(self, progress=None):
         a1, a2 = self.initial_state
-        _init_state(self.arena, self.len1, self.len2, self.depth, self.table,
-                    self.tcap - 1, a1, a2, self.w, self.rw)
+        _init_state_h(self.arena, self.len1, self.len2, self.depth, self.table,
+                      self.tcap - 1, a1, a2, self.w, self.rw)
         init_total = int(self.len1[0]) + int(self.len2[0])
 
         # Root score: hsolve's exact Python expression (its p0 block), so the root's stored

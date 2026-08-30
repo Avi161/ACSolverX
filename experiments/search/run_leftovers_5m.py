@@ -86,16 +86,69 @@ SPEC_5M = {
 }
 
 
-def load_rows_5m(arm, csv_path=None):
-    """``([{name, r1, r2, ...}], path)`` — the arm's 1M-unsolved list, in file order."""
+U124_CSV = os.path.join(os.path.dirname(os.path.dirname(SCREEN_DIR)),
+                        "stable_ac", "fable", "aca_124.csv")
+
+# A campaign is a row list plus the budget/cap it is run at and whether a prior
+# run established a floor on it. Keeping these together is what stops the AC19
+# floor claim -- "nothing on this list solves under 1M" -- from being applied to
+# a set it says nothing about.
+CAMPAIGNS = {
+    "ac19": {
+        "label": "AC19 1M residuals at 5M",
+        "spec": None,                     # per-arm, from SPEC_5M
+        "budget": NODE_BUDGET_5M,
+        "mrl": MRL_5M,
+        "floor": FLOOR_5M,                # every row here failed at 1M
+        "floor_mrl": MAX_RELATOR_LENGTH,  # ... at cap 48
+        "prefix": "leftovers_5m",
+        "checkpoints": CHECKPOINTS_5M,
+    },
+    "u124": {
+        "label": "124 unsolved Miller-Schupp AC classes at 10M",
+        "spec": {"csv": U124_CSV, "n_rows": 124, "chunks": 1},
+        "budget": 10_000_000,
+        "mrl": 64,
+        # No prior run of THIS search established a floor on this set, so there
+        # is no "impossible early solve" to alarm on -- an early solve here is
+        # simply a result. The u124 sweep on the stable-ac branch was a
+        # thickenability study, a different question entirely.
+        "floor": None,
+        "floor_mrl": None,
+        "prefix": "u124_10m",
+        "checkpoints": (1_000_000, 5_000_000, 10_000_000),
+    },
+}
+
+
+def resolve_campaign(name):
+    key = str(name or "ac19").strip().lower()
+    if key not in CAMPAIGNS:
+        raise KeyError(f"unknown campaign {name!r}; known={sorted(CAMPAIGNS)}")
+    return key, CAMPAIGNS[key]
+
+
+def campaign_spec(campaign, arm):
+    """``{csv, n_rows, chunks}`` for this arm under this campaign."""
+    ckey, c = resolve_campaign(campaign)
+    if c["spec"] is not None:
+        return c["spec"]
     key, _ = resolve_arm(arm)
-    spec = SPEC_5M[key]
-    path = csv_path or os.path.join(SCREEN_DIR, spec["csv"])
+    spec = dict(SPEC_5M[key])
+    spec["csv"] = os.path.join(SCREEN_DIR, spec["csv"])
+    return spec
+
+
+def load_rows_5m(arm, csv_path=None, campaign="ac19"):
+    """``([{name, r1, r2, ...}], path)`` — this campaign's row list, in file order."""
+    key, _ = resolve_arm(arm)
+    spec = campaign_spec(campaign, key)
+    path = csv_path or spec["csv"]
     rows, used = _load_1m_rows(key, csv_path=path)
     if csv_path is None and len(rows) != spec["n_rows"]:
         raise RuntimeError(
-            f"{spec['csv']} has {len(rows)} rows, expected {spec['n_rows']} -- "
-            f"stale clone; pull the branch before running.")
+            f"{os.path.basename(path)} has {len(rows)} rows, expected "
+            f"{spec['n_rows']} -- stale clone; pull the branch before running.")
     return rows, used
 
 
@@ -132,11 +185,12 @@ def unsolved_at_1m(arm):
 
 
 def out_path_5m(arm, out_dir, chunks, chunk_index,
-                budget=NODE_BUDGET_5M, mrl=MRL_5M):
+                budget=NODE_BUDGET_5M, mrl=MRL_5M, campaign="ac19"):
     key, _ = resolve_arm(arm)
+    _, c = resolve_campaign(campaign)
     tag = f"_c{int(chunk_index)}of{int(chunks)}" if int(chunks) > 1 else ""
     return os.path.join(
-        out_dir, f"leftovers_5m_{key}{tag}_b{budget}_mrl{mrl}.jsonl")
+        out_dir, f"{c['prefix']}_{key}{tag}_b{budget}_mrl{mrl}.jsonl")
 
 
 def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
@@ -501,7 +555,7 @@ def absorb_shard_rows(out, shard_paths, valid_names, log=print):
 
 
 def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
-               mrl=MRL_5M, n_workers="auto", resume=True,
+               mrl=MRL_5M, n_workers="auto", resume=True, campaign="ac19",
                csv_path=None, mirror_dir=None, limit=None, heartbeat_secs=60,
                row_timeout_secs=ROW_TIMEOUT_DEFAULT, mem_limit_bytes=None,
                reserve_states=None, log=print):
@@ -514,15 +568,18 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     With more than one worker the pool path is used (no per-row isolation).
     """
     key, spec1m = resolve_arm(arm)
+    ckey, camp = resolve_campaign(campaign)
+    cspec = campaign_spec(ckey, key)
     if chunks is None:
-        chunks = SPEC_5M[key]["chunks"]
-    rows, used = load_rows_5m(key, csv_path=csv_path)
+        chunks = cspec["chunks"]
+    rows, used = load_rows_5m(key, csv_path=csv_path, campaign=ckey)
     rows = stride_chunk(rows, chunks, chunk_index)
     if limit:
         rows = rows[:int(limit)]
 
     os.makedirs(out_dir, exist_ok=True)
-    out = out_path_5m(key, out_dir, chunks, chunk_index, budget, mrl)
+    out = out_path_5m(key, out_dir, chunks, chunk_index, budget, mrl,
+                      campaign=ckey)
     if resume:
         _seed_from_mirror(out, mirror_dir, log)
     seen = _done_ok(out) if resume else set()
@@ -537,9 +594,10 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
                            max_workers=None if auto else n_workers)
     if mem_limit_bytes is None and reserve_states is None:
         mem_limit_bytes, reserve_states = plan_memory(budget, mrl, log=log)
+    log(f"  campaign: {camp['label']}")
     log(f"  arm     : {key} -- {spec1m['label']}")
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "
-        f"stride split of {SPEC_5M[key]['n_rows']}) from {used}")
+        f"stride split of {cspec['n_rows']}) from {used}")
     log(f"  budget  : {budget:,} nodes, cap {mrl}")
     log(f"  workers : {n_workers} to start, then dynamic "
         f"({'auto' if auto else f'cap {n_workers}'}, "
@@ -569,19 +627,21 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
 
 
 def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M,
-              mrl=MRL_5M, write_ids=True, log=print):
+              mrl=MRL_5M, write_ids=True, campaign="ac19", log=print):
     """Report one chunk, or — with ``chunk_index=None`` — every chunk merged.
 
     The merged view is what the experiment answers; a single chunk's numbers are
     progress, not a result, and are labelled as such.
     """
     key, spec1m = resolve_arm(arm)
+    ckey, camp = resolve_campaign(campaign)
+    cspec = campaign_spec(ckey, key)
     if chunks is None:
-        chunks = SPEC_5M[key]["chunks"]
+        chunks = cspec["chunks"]
     idxs = [chunk_index] if chunk_index is not None else range(1, int(chunks) + 1)
     rows, missing = [], []
     for i in idxs:
-        p = out_path_5m(key, out_dir, chunks, i, budget, mrl)
+        p = out_path_5m(key, out_dir, chunks, i, budget, mrl, campaign=ckey)
         got = read_rows(p)
         rows.extend(got)
         if not got:
@@ -589,14 +649,16 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     if not rows:
         log(f"no rows yet for {key} in {out_dir}")
         return None
-    c = classify_5m(rows, budget=budget)
-    expected = (SPEC_5M[key]["n_rows"] if chunk_index is None
-                else len(stride_chunk(load_rows_5m(key)[0], chunks, chunk_index)))
+    c = classify_5m(rows, budget=budget, checkpoints=camp["checkpoints"],
+                    floor=camp["floor"] or 0)
+    expected = (cspec["n_rows"] if chunk_index is None
+                else len(stride_chunk(load_rows_5m(key, campaign=ckey)[0],
+                                      chunks, chunk_index)))
     scope = ("all chunks merged" if chunk_index is None
              else f"chunk {chunk_index} of {chunks} ONLY -- progress, not a result")
 
     log("")
-    log(f"=== {key} @ 5M -- {spec1m['label']}  [{scope}]")
+    log(f"=== {key} @ {budget/1e6:g}M -- {spec1m['label']}  [{scope}]")
     log(f"    rows complete        : {len(rows)}/{expected}"
         + ("" if len(rows) == expected else
            "   (PARTIAL -- these numbers are not final)")
@@ -612,8 +674,8 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     log("    anytime (free -- one search answers every budget below it):")
     for cp in sorted(c["anytime"]):
         log(f"      <= {cp:>9,} : {c['anytime'][cp]}")
-    if c["solved_at_or_below_1m"]:
-        if mrl == MAX_RELATOR_LENGTH:
+    if c["solved_at_or_below_1m"] and camp["floor"]:
+        if mrl == camp["floor_mrl"]:
             # same cap as the 1M run, so the prefix property applies exactly
             log(f"    !! {len(c['solved_at_or_below_1m'])} row(s) solved at or "
                 f"below 1,000,000 nodes, which the 1M run says is impossible: "
@@ -643,16 +705,18 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--arm", required=True, choices=sorted(SPEC_5M))
+    ap.add_argument("--campaign", default="ac19", choices=sorted(CAMPAIGNS),
+                    help="row list + its budget/cap defaults")
     ap.add_argument("--out-dir", default=os.path.join(
         os.path.dirname(SCREEN_DIR), "leftovers_5m"))
     ap.add_argument("--chunks", type=int, default=None)
     ap.add_argument("--chunk-index", type=int, default=1)
-    ap.add_argument("--budget", type=int, default=NODE_BUDGET_5M)
+    ap.add_argument("--budget", type=int, default=None)
     # One flag feeds BOTH the run and the report. The cap is in the jsonl
     # filename, so a run at one cap and a report at another silently read a
     # file that does not exist ("no rows yet" on a finished run) -- that bug
     # has bitten this campaign twice. Passing one value to both closes it.
-    ap.add_argument("--mrl", type=int, default=MRL_5M,
+    ap.add_argument("--mrl", type=int, default=None,
                     help="max relator length (per relator); tags the jsonl name")
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--limit", type=int, default=None)
@@ -660,14 +724,19 @@ def main(argv=None):
                     help="2 rows at a 2,000-node budget -- proves the pipeline, "
                          "measures nothing")
     a = ap.parse_args(argv)
-    budget, limit, out_dir = a.budget, a.limit, a.out_dir
+    ckey, camp = resolve_campaign(a.campaign)
+    # a campaign carries its own budget/cap; an explicit flag still wins
+    budget = a.budget if a.budget is not None else camp["budget"]
+    mrl = a.mrl if a.mrl is not None else camp["mrl"]
+    limit, out_dir = a.limit, a.out_dir
     if a.smoke:
         budget, limit = 2_000, 2
         out_dir = out_dir + "_smoke"
     run_arm_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
-               budget=budget, mrl=a.mrl, n_workers=a.workers, limit=limit)
+               budget=budget, mrl=mrl, n_workers=a.workers, limit=limit,
+               campaign=ckey)
     report_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
-              budget=budget, mrl=a.mrl)
+              budget=budget, mrl=mrl, campaign=ckey)
 
 
 if __name__ == "__main__":

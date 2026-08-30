@@ -697,9 +697,14 @@ def test_the_1m_floor_keys_off_the_cap_that_built_the_list_not_the_default():
     interesting result."""
     assert FLOOR_CAP == 48, "the 1M baseline cap moved; the floor claim moves too"
     assert MRL_5M == 64
+    # The claim now lives in the campaign registry: the floor and the cap that
+    # established it travel together, so the check can never silently re-key to
+    # whatever cap the CURRENT stage happens to run at.
+    _, a = resolve_campaign("ac19")
+    assert a["floor_mrl"] == FLOOR_CAP
     src = open(os.path.join(ROOT, "experiments", "search",
                             "run_leftovers_5m.py")).read()
-    assert "if mrl == MAX_RELATOR_LENGTH:" in src, "floor check re-keyed to the default"
+    assert 'if mrl == camp["floor_mrl"]:' in src, "floor check re-keyed to the default"
 
 
 def test_the_wider_cap_is_what_the_5m_stage_actually_runs():
@@ -891,3 +896,94 @@ def test_plan_sizes_the_way_the_run_actually_sizes():
     want = est_gb(5_000_000, MRL_5M, track_path=TRACK_PATH)
     assert f"{want:.1f} GB per row" in out, out
     assert "paths captured" in out
+
+
+# ---------------------------------------------------------------------------
+# The u124 campaign: 124 unsolved Miller-Schupp AC classes at a 10M budget.
+# A campaign bundles a row list with the budget/cap it runs at AND whether a
+# prior run established a floor on it -- which is what stops the AC19 claim
+# ("nothing on this list solves under 1M") being applied to a set it says
+# nothing about.
+# ---------------------------------------------------------------------------
+from experiments.search.run_leftovers_5m import (               # noqa: E402
+    CAMPAIGNS, resolve_campaign, campaign_spec)
+
+
+def test_the_124_row_list_ships_on_this_branch():
+    rows, path = load_rows_5m("s20_mk2", campaign="u124")
+    assert len(rows) == 124
+    assert path.endswith("aca_124.csv")
+    assert all(r["name"] and r["r1"] and r["r2"] for r in rows)
+    assert len({r["name"] for r in rows}) == 124
+
+
+def test_the_u124_campaign_runs_at_ten_million_and_cap_64():
+    _, c = resolve_campaign("u124")
+    assert c["budget"] == 10_000_000
+    assert c["mrl"] == 64
+
+
+def test_the_ac19_floor_is_not_applied_to_the_124():
+    """Every AC19 leftover failed at 1M, so an early solve there is impossible.
+    Nothing of the kind is known about the 124 -- an early solve there is just
+    a result, and alarming on it would be a false claim."""
+    _, u = resolve_campaign("u124")
+    _, a = resolve_campaign("ac19")
+    assert u["floor"] is None
+    assert a["floor"] == 1_000_000
+
+
+def test_an_early_solve_on_the_124_is_reported_without_an_alarm(tmp_path, capsys):
+    out = str(tmp_path)
+    rows = load_rows_5m("s20_mk2", campaign="u124")[0][:3]
+    with open(out_path_5m("s20_mk2", out, 1, 1, 10_000_000, 64,
+                          campaign="u124"), "w") as fh:
+        for r in rows:
+            fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
+                                 "solved": True, "nodes_explored": 400_000,
+                                 "path_length": 12}) + "\n")
+    report_5m("s20_mk2", out, chunks=1, budget=10_000_000, mrl=64,
+              campaign="u124", log=print)
+    text = capsys.readouterr().out
+    assert "impossible" not in text
+    assert "3/124" in text
+
+
+def test_the_two_campaigns_cannot_share_an_output_file():
+    a = out_path_5m("s20_mk2", "/o", 1, 1, 5_000_000, 64, campaign="ac19")
+    u = out_path_5m("s20_mk2", "/o", 1, 1, 10_000_000, 64, campaign="u124")
+    assert a != u
+    assert "leftovers_5m" in a and "u124_10m" in u
+
+
+def test_the_ac19_campaign_is_unchanged_by_the_new_one():
+    """The live run must keep resuming from the files it already wrote."""
+    rows, path = load_rows_5m("greedy")
+    assert len(rows) == 88 and path.endswith("unsolved_1m_baseline.csv")
+    assert out_path_5m("greedy", "/o", 1, 1, 5_000_000, 64).endswith(
+        "leftovers_5m_greedy_b5000000_mrl64.jsonl")
+
+
+def test_an_unknown_campaign_is_refused():
+    with pytest.raises(KeyError):
+        resolve_campaign("u125")
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_growing_the_arena_mid_search_does_not_change_the_search():
+    """The dedup table is rebuilt on every grow (_rehash_h). A tiny reservation
+    forces several grows inside one search; the result must be identical to a
+    search that never grew at all -- and to the Python oracle."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.search.run_leftovers_1m import S20_MK2
+
+    r1, r2, b, _ = _REAL
+    grown = greedy_search_hcompact(r1, r2, 60_000, max_relator_length=48,
+                                   config=S20_MK2, reserve_states=2_000,
+                                   track_path=True)
+    flat = greedy_search_hcompact(r1, r2, 60_000, max_relator_length=48,
+                                  config=S20_MK2, track_path=True)
+    for k in ("solved", "nodes_explored", "min_relator_length",
+              "max_relator_length", "max_relator_length_expanded",
+              "path", "path_moves"):
+        assert grown[k] == flat[k], k
