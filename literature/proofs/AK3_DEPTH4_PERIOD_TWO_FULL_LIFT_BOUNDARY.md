@@ -280,6 +280,10 @@ Section 3.106 contracts the complete same-coordinate occurrence chain
 along all five duplicate prefixes.  The eight natural paired edges become
 three explicit coefficient paths.  Every remaining unmatched degree must
 use a nonduplicate label collision, at the same or another coordinate.
+Section 3.106a evaluates the balanced color cut from ten complete finite
+coefficient tables.  A literal $H$-double-coset normal form in
+$C_2*\mathbb Z$ turns the integral correlation ledger into one terminating
+parity algorithm, reducing the frozen unresolved count from five to four.
 
 No AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion is made.
 
@@ -10487,12 +10491,18 @@ publishable bounded-depth result:
 > **Remote paired-target decomposition theorem for the fixed period-two
 > witness.** Above the affine cutoff, every paired-target class-two
 > coefficient is exactly the frozen six-term ledger (3.646), with the
-> radius, corridor, cycle, endpoint, state, Green-cut, and duplicate-prefix
-> constraints proved in Sections 3.58--3.106.
+> radius, corridor, cycle, endpoint, state, Green-cut, duplicate-prefix,
+> and finite color-cut constraints proved in Sections 3.58--3.106a.
 
 After that freeze, only soundness corrections and packaging edits belong in
 this ledger.  Active theory effort moves to the independent MMS02 bridge;
 no unevaluated residual in (3.646) is promoted to a class-two obstruction.
+
+Checkpoint accounting begins with Section 3.106a: it evaluates the existing
+color-cut term $\mathcal C$ on the complete stated support domain, creates
+no new category, and leaves four unresolved terms.  Thus one of the three
+permitted checkpoints has been used and no category-growth strike has been
+incurred.
 
 ### 3.99 Canonical finite schema for the endpoint alphabet
 
@@ -11122,6 +11132,177 @@ in (3.686) through an additional nonduplicate equality at the same source
 coordinate or through the same transported label at another coordinate.
 Both are retained in the terminal-boundary graph (3.661); neither is
 silently counted as a duplicate-prefix shadow.
+
+### 3.106a The balanced color cut has a finite parity evaluator
+
+Fix the complete remote paired-target hypotheses of Section 3.97 and choose
+one oriented representative $\Delta_{s,u}^+$ of the free target coordinate
+$\mathscr D_s(u)$.  There is a literal normal form for every $H$-double
+coset in $Q=C_2*\mathbb Z$.  Freely reduce a word $z$, allow multiplication
+by $c$ independently at its two ends, and choose the unique result from
+(3.15):
+
+\[
+ \operatorname{dcNF}(z)
+ :=(n_0,\ldots,n_k)
+ \hspace{1em}\Longleftrightarrow\hspace{1em}
+ HzH=H(t^{n_0}c t^{n_1}c\cdots c t^{n_k})H,
+ \hspace{1em} n_i\ne0.
+ \tag{3.687}
+\]
+
+For the identity double coset put $\operatorname{dcNF}(z)=\varnothing$.
+Concretely, reducing the four words $c^\epsilon zc^{\epsilon'}$ with
+$(\epsilon,\epsilon')\in\{0,1\}^2$ finds the unique word which is either
+empty or begins and ends in nonzero $t$-blocks; its exponent tuple is
+(3.687).  Hence
+
+\[
+ HzH=Hz'H
+ \hspace{1em}\Longleftrightarrow\hspace{1em}
+ \operatorname{dcNF}(z)=\operatorname{dcNF}(z').
+ \tag{3.688}
+\]
+
+Identify $X$ with $K=F(t,ctc)$ by (3.206)--(3.207).  Fix the spanning
+forest and coloring used in (3.640), and define the ten complete integral
+coefficient tables
+
+\[
+ f_r^{(j)}(a)
+ :=[e_{aH}]\bigl(F_{u,r}^{(j)}\bigr)
+ =\sum_{\substack{\alpha\in V(G_u)\\\chi_u(\alpha)=j}}
+ [e_{aH}](H_{\alpha,r}),
+ \hspace{1em}
+ \begin{matrix}a\in K,\ 0\le r\le4,\ j\in\{0,1\}.
+ \end{matrix}
+ \tag{3.689}
+\]
+
+Each $H_\alpha$ and $V(G_u)$ is finite, so these are finite maps
+$K\to\mathbb Z$.  Repeated vertices are aggregated in (3.689).  Thus the
+chosen forest and coloring are encoded in the tables themselves, and no
+support radius or omitted case list remains.
+
+For finite tables $f,g:K\to\mathbb Z$, $m\in Q$, and a fixed word
+$d_{s,u}$ representing $\Delta_{s,u}^+$, put
+
+\[
+ \operatorname{Corr}_{s,u}(f,g;m)
+ :=\sum_{\substack{a\in\operatorname{supp}f\\
+                    b\in\operatorname{supp}g}}
+ \overline{f(a)}\overline{g(b)}
+ [\operatorname{dcNF}(a^{-1}mb)=\operatorname{dcNF}(d_{s,u})]
+ \in\mathbb F_2.
+ \tag{3.690}
+\]
+
+The loops in (3.690) run over the complete supports of the two tables.
+They terminate, and every predicate is decided by the free-product
+reduction (3.687).  In particular, (3.690) is exactly the mod-two reduction
+of $\mathcal C_{\Delta_{s,u}^+}(f,g;m)$ from (3.34), not a bounded
+approximation.
+
+The remaining pinned input is also literal.  In occurrence order, the
+sixteen pairs $(s_o,q_o)$ are
+
+\[
+ \begin{aligned}
+ &(2,1),(1,\texttt{tc}),(0,\texttt{tc}),
+ (0,\texttt{ctcTTTcttc}),(1,\texttt{ctcTctt}),\\
+ &(2,\texttt{ctcTcTctc}),(0,\texttt{ctcTcTctc}),
+ (0,\texttt{ctcTTTTcttc}),(3,\texttt{ctcTTctt}),\\
+ &(1,\texttt{ctcTctc}),(0,\texttt{ctcTctc}),
+ (0,\texttt{cTTcttc}),(1,\texttt{tt}),(3,\texttt{t}),
+ (4,\texttt{t}),(4,1).
+ \end{aligned}
+ \tag{3.691}
+\]
+
+The signs are the ordered signs in (3.667); they all reduce to one in
+$\mathbb F_2$.  Put $m_{op}=q_o^{-1}q_p$ and retain the exact slot
+multiplicities
+
+\[
+ (n_0,n_1,n_2,n_3,n_4)=(3,2,1,1,1),
+ \hspace{1em}
+ (\overline n_0,\ldots,\overline n_4)=(1,0,1,1,1).
+ \tag{3.692}
+\]
+
+The finite evaluator is
+
+\[
+\boxed{
+\begin{aligned}
+ \mathfrak c_{s,u}(F)
+ :={}&\sum_{r=0}^4\overline n_r
+ \bigl(
+  \operatorname{Corr}_{s,u}(f_r^{(1)},f_r^{(0)};1)
+  +\operatorname{Corr}_{s,u}(f_r^{(0)},f_r^{(1)};1)
+ \bigr)\\
+ &+\sum_{o<p}
+ \bigl(
+  \operatorname{Corr}_{s,u}
+   (f_{s_o}^{(1)},f_{s_p}^{(0)};m_{op})
+  +\operatorname{Corr}_{s,u}
+   (f_{s_o}^{(0)},f_{s_p}^{(1)};m_{op})
+ \bigr).
+\end{aligned}}
+ \tag{3.693}
+\]
+
+Equations (3.687)--(3.693) are a terminating algorithm: initialize one bit
+to zero, loop over the five same-slot summands and the $120$ chronology
+occurrence pairs, loop over the complete two table supports in each
+correlation, toggle exactly when the two normal forms in (3.690) agree,
+and return the bit.  Its inputs are exactly the ten tables (3.689), the
+ordered occurrence table (3.691), the multiplicities (3.692), and one
+target word $d_{s,u}$.
+
+Applying (3.36) to $F_u^{(1)},F_u^{(0)}$ and reducing the chosen free
+integral coordinate modulo two gives the exact identification chain
+
+\[
+\boxed{
+ \mathfrak c_{s,u}(F)
+ =\overline{B_{\Xi_{\mathbb Z},\Delta_{s,u}^+}
+   (F_u^{(1)},F_u^{(0)})}
+ =[B_\Xi(F_u^{(1)},F_u^{(0)})]_{\mathscr D_s(u)}
+ =\mathcal C_{s,u}(F).
+ }
+ \tag{3.694}
+\]
+
+Reversing $\Delta_{s,u}^+$ negates the middle integral coordinate in
+(3.694), which has the same reduction modulo two.  Thus the evaluator is
+independent of target orientation.
+
+This is an evaluation in the sense of convergence rule 3.98a(4), not a new
+residual name.  Substituting (3.694) in (3.646) gives
+
+\[
+\boxed{
+ [q_\Xi(F)]_{\mathscr D_s(u)}
+ =n_s+\overline{\kappa^{\mathbb Z}_{s,u}}
+ +\mathcal S_{s,u}(F)
+ +\mathcal T_{s,u}(F)
+ +\mathfrak c_{s,u}(F)
+ +\mathcal O_{s,u}(F).
+ }
+ \tag{3.695}
+\]
+
+Accordingly, checkpoint one after Section 3.98a reduces the unresolved
+remote-ledger count from five to four: $\overline\kappa$, $\mathcal S$,
+$\mathcal T$, and $\mathcal O$.  It introduces no seventh category and
+does not consume a category-growth strike.
+
+The theorem does not assert that $\mathfrak c_{s,u}(F)$ vanishes, because
+its input directions vary with the active non-target graph.  It computes
+that bit for every finite support on the complete stated remote domain.
+The four remaining residual terms, literal higher lifting, AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## 4. Exact diagonal sieve
 
