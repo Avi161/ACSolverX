@@ -470,6 +470,12 @@ are equivalent to two displayed equations in the free group \(H=F_4\), with
 five free-group variables and three integer shifts.  This is now a literal
 free-group exponential system; its solution set has not been evaluated.
 
+Section 6.66 evaluates the first possible shadow of that system and proves it
+is vacuous.  On \(H^{\rm ab}=\mathbb Z^4\), the monodromy matrix satisfies
+\(\det(M-I)=1\).  Consequently both abelianized equations have integral
+solutions for every choice of the three integer shifts.  Any obstruction to
+(426) must therefore be genuinely nonabelian in the free base.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7962,6 +7968,96 @@ patterns, longer terminal paths, the full pair orbit, MMS02 bridge, stable
 AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
 open.
 
+### 6.66. Base abelianization does not constrain the lift system
+
+Abelianize the free base \(H=F(d_{-2},d_{-1},d_0,d_1)\), using that ordered
+basis and column vectors.  The literal monodromy (417) has matrix
+
+\[
+ M=
+ \begin{pmatrix}
+ 0&0&0&-1\\
+ 1&0&0&3\\
+ 0&1&0&-5\\
+ 0&0&1&3
+ \end{pmatrix}.
+\tag{427}
+\]
+
+This is read from the full word \(W\), not only from the one-relator exponent
+vector.  Direct integer multiplication gives
+
+\[
+ (M-I)^{-1}=
+ \begin{pmatrix}
+ 0&1&1&1\\
+ -3&-3&-2&-2\\
+ 2&2&2&3\\
+ -1&-1&-1&-1
+ \end{pmatrix},
+ \qquad \det(M-I)=1.
+\tag{428}
+\]
+
+The endpoint base words (420) have vectors
+
+\[
+ \alpha=[A_U]=(-1,2,-2,-1)^T,
+ \qquad
+ \beta=[A_V]=(1,-2,2,1)^T=-\alpha.
+\tag{429}
+\]
+
+Let bars denote the vectors of the free variables in (426).  The first
+equation abelianizes to
+
+\[
+ (M-I)\bar p=M^m(M-I)\bar q.
+\]
+
+Since \(M\) commutes with \(M-I\) and (428) is integral, this is exactly
+
+\[
+ \bar p=M^m\bar q.
+\tag{430}
+\]
+
+Conjugation removes \(\bar a\) and \(\bar s\) from the second equation.  Its
+complete abelianization is
+
+\[
+ \beta=(I-M)\bar t
+ +M^n\!\left(\alpha+M^{r+1}(M-I)\bar p\right).
+\tag{431}
+\]
+
+For arbitrary \(m,r,n\in\mathbb Z\) and arbitrary \(\bar q\in\mathbb Z^4\),
+choose \(\bar p=M^m\bar q\) using (430), then set
+
+\[
+ \bar t=(I-M)^{-1}
+ \left[
+ \beta-M^n\!\left(\alpha+M^{r+1}(M-I)\bar p\right)
+ \right].
+\tag{432}
+\]
+
+Equation (428) makes (432) integral.  Thus every choice of all three integer
+shifts survives the full base-abelianization test.
+
+**Theorem 6.60 (base-abelianization vacuity).**  Abelianization of the free
+base neither obstructs (426) nor restricts \(m,r,n\).  More precisely, the
+abelianized system has the solutions (430), (432) for arbitrary shifts and
+arbitrary \(\bar q\).
+
+This is a can-fail control, not evidence that (426) has a free-group
+solution.  Equation (428) shows exactly why linear exponent sums cannot see
+the lift gate.  The next admissible layer must retain noncommutative free-base
+data; a class-two solution would remain a separate quotient gate and could
+not be promoted to a literal lift.  Other sign patterns, the terminal pair
+orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis,
+and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8158,7 +8254,10 @@ The logical gates remain separate:
 55. the signed lift gate is equivalently the two explicit free-group
     exponential equations (426), with five free variables and three
     unbounded integer shifts; their solution set remains open; and
-56. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+56. the monodromy satisfies \(\det(M-I)=1\), so base abelianization solves
+    (426) for every triple of integer shifts and supplies no obstruction;
+    this vacuity does not solve the free-group system; and
+57. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8343,3 +8442,8 @@ removes the remaining ambient-group notation.  The fixed signed skeleton
 lifts if and only if the two free-group exponential equations (426) have a
 solution in five \(F_4\) variables and three integer shifts.  This is an exact
 iff interface, not a bounded search or a solution of the equations.
+Theorem 6.60 evaluates the complete base-abelianization shadow of that
+interface.  Its monodromy has \(\det(M-I)=1\), and the integral formulas
+(430), (432) solve the linearized system for every triple of integer shifts.
+Thus abelianization is provably vacuous; any obstruction must retain
+noncommutative free-base data.

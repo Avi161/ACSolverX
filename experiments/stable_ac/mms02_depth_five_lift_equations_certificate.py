@@ -86,6 +86,26 @@ EXPECTED_ENDPOINT_BASE_WORDS: tuple[IndexedWord, IndexedWord] = (
     ),
 )
 
+Matrix4 = tuple[
+    tuple[int, int, int, int],
+    tuple[int, int, int, int],
+    tuple[int, int, int, int],
+    tuple[int, int, int, int],
+]
+EXPECTED_MONODROMY_MATRIX: Matrix4 = (
+    (0, 0, 0, -1),
+    (1, 0, 0, 3),
+    (0, 1, 0, -5),
+    (0, 0, 1, 3),
+)
+EXPECTED_M_MINUS_I_INVERSE: Matrix4 = (
+    (0, 1, 1, 1),
+    (-3, -3, -2, -2),
+    (2, 2, 2, 3),
+    (-1, -1, -1, -1),
+)
+EXPECTED_ENDPOINT_BASE_VECTORS = ((-1, 2, -2, -1), (1, -2, 2, 1))
+
 
 def inverse_word(word: str) -> str:
     return word[::-1].swapcase()
@@ -182,6 +202,21 @@ def apply_indexed_images(
     return reduce_indexed_word(tuple(expanded))
 
 
+def indexed_exponent_vector(word: IndexedWord) -> tuple[int, int, int, int]:
+    basis = (-2, -1, 0, 1)
+    return tuple(sum(sign for index, sign in word if index == value) for value in basis)
+
+
+def matrix_multiply(left: Matrix4, right: Matrix4) -> Matrix4:
+    return tuple(
+        tuple(
+            sum(left[row][index] * right[index][column] for index in range(4))
+            for column in range(4)
+        )
+        for row in range(4)
+    )
+
+
 @dataclass(frozen=True)
 class LiftEquationCoordinateDecision:
     collapsed_generators: tuple[str, str, str]
@@ -190,6 +225,9 @@ class LiftEquationCoordinateDecision:
     magnus_relator: IndexedWord
     d2_word: IndexedWord
     endpoint_base_words: tuple[IndexedWord, IndexedWord]
+    monodromy_matrix: Matrix4
+    m_minus_i_inverse: Matrix4
+    endpoint_base_vectors: tuple[tuple[int, int, int, int], ...]
     verdict: str
 
 
@@ -278,6 +316,34 @@ def decide_lift_equation_coordinates() -> LiftEquationCoordinateDecision:
         ) != generator:
             raise AssertionError("the Magnus monodromy lost its right inverse")
 
+    basis = (-2, -1, 0, 1)
+    monodromy_matrix = tuple(
+        tuple(indexed_exponent_vector(phi_images[column])[row] for column in basis)
+        for row in range(4)
+    )
+    if monodromy_matrix != EXPECTED_MONODROMY_MATRIX:
+        raise AssertionError("the monodromy abelianization drifted")
+    m_minus_i = tuple(
+        tuple(
+            monodromy_matrix[row][column] - (row == column)
+            for column in range(4)
+        )
+        for row in range(4)
+    )
+    identity_matrix: Matrix4 = (
+        (1, 0, 0, 0),
+        (0, 1, 0, 0),
+        (0, 0, 1, 0),
+        (0, 0, 0, 1),
+    )
+    if matrix_multiply(m_minus_i, EXPECTED_M_MINUS_I_INVERSE) != identity_matrix:
+        raise AssertionError("the displayed (M-I) inverse stopped being a right inverse")
+    if matrix_multiply(EXPECTED_M_MINUS_I_INVERSE, m_minus_i) != identity_matrix:
+        raise AssertionError("the displayed (M-I) inverse stopped being a left inverse")
+    endpoint_base_vectors = tuple(map(indexed_exponent_vector, endpoint_base_words))
+    if endpoint_base_vectors != EXPECTED_ENDPOINT_BASE_VECTORS:
+        raise AssertionError("the terminal base abelianizations drifted")
+
     return LiftEquationCoordinateDecision(
         collapsed_generators=collapsed_generators,
         collapsed_endpoints=collapsed_endpoints,
@@ -285,6 +351,9 @@ def decide_lift_equation_coordinates() -> LiftEquationCoordinateDecision:
         magnus_relator=magnus_relator,
         d2_word=d2_word,
         endpoint_base_words=tuple(endpoint_base_words),
+        monodromy_matrix=monodromy_matrix,
+        m_minus_i_inverse=EXPECTED_M_MINUS_I_INVERSE,
+        endpoint_base_vectors=endpoint_base_vectors,
         verdict="EXACT_DEPTH_FIVE_LIFT_EQUATION_COORDINATES_PINNED",
     )
 

@@ -4,6 +4,9 @@ from experiments.stable_ac.mms02_depth_five_lift_equations_certificate import (
     EXPECTED_COLLAPSED_GENERATORS,
     EXPECTED_ENDPOINT_BASE_WORDS,
     EXPECTED_MAGNUS_RELATOR,
+    EXPECTED_ENDPOINT_BASE_VECTORS,
+    EXPECTED_M_MINUS_I_INVERSE,
+    EXPECTED_MONODROMY_MATRIX,
     FORWARD,
     R_STAR,
     apply_images,
@@ -56,4 +59,14 @@ def test_terminal_words_have_pinned_length_one_hnn_normalizations():
     assert all(
         all(-2 <= index <= 1 for index, _ in word)
         for word in decision.endpoint_base_words
+    )
+
+
+def test_base_abelianization_is_a_vacuous_lift_shadow():
+    decision = decide_lift_equation_coordinates()
+    assert decision.monodromy_matrix == EXPECTED_MONODROMY_MATRIX
+    assert decision.m_minus_i_inverse == EXPECTED_M_MINUS_I_INVERSE
+    assert decision.endpoint_base_vectors == EXPECTED_ENDPOINT_BASE_VECTORS
+    assert decision.endpoint_base_vectors[1] == tuple(
+        -value for value in decision.endpoint_base_vectors[0]
     )
