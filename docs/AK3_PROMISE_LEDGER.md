@@ -57,6 +57,20 @@ finite quotient do not close a route.
   residuals certified in `normal_closure(A,B)`. Four focused checks pass.
   The endpoint substitutions and donor-restoring macros are not flattened by
   the checker; finiteness follows by structural induction on the SLP.
+- **Actual-base relation module evaluated for both canonical endpoints:** an
+  explicit automorphism sends `B` to `x`; deleting that generator--relator
+  pair leaves the cyclically reduced 26-letter one-relator word
+  `YZYzYzYZyzyZYzYzYZYzyZyZyz`, which is not a proper power. Thus
+  `<x,y,z | A,B>` is aspherical and its relation module is free on `[A],[B]`;
+  the group is torsion-free one-relator and has trivial Whitehead group.
+  Linearizing the complete proof evidence, including the compact substitution
+  node, gives specialized base-pair determinants with respectively 46 and 42
+  nonzero Laurent terms. Neither is a unit, so neither `(E_A,B)` nor
+  `(A,E_B)` supplies a relation-module generating pair. Freeze these two
+  base-first module normalizations and do not open an alternative-transfer
+  matrix census. This does not obstruct simultaneous use of the tag residual,
+  a full Peiffer/crossed-module closure, or a structurally different exact
+  quotient transfer.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one

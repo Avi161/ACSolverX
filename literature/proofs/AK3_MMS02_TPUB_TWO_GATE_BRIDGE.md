@@ -183,6 +183,15 @@ displayed row is primitive.  Together with Sections 6.30--6.31 this freezes
 direct ambient straightening and destabilization of the endpoint, not paths
 which first change its rows.
 
+Section 6.33 settles the missing asphericity prerequisite over the actual
+misprinted base group.  An explicit automorphism makes $B$ a basis letter and
+reduces $\langle x,y,z\mid A,B\rangle$ to a torsion-free two-generator
+one-relator presentation.  The resulting relation module is therefore free
+on $[A],[B]$.  Exact cyclic specialization of the full proof evidence then
+shows that neither canonical lift endpoint has its two base rows generating
+that module.  This freezes those two module-normalization attempts, not a
+tag-coupled Peiffer closure or another quotient transfer.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3828,6 +3837,177 @@ Theorems 6.23--6.24 it terminates only the direct ambient endpoint lane.  No
 further endpoint, pivot, prefix, or shear ledger is opened.  The unrestricted
 $T_{\rm pub}$ bridge, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.33. The actual-base relation module and the canonical lift matrices
+
+The relation-module route must use the actual deficiency-one group, not the
+cyclic group asserted for the corrected Wirtinger diagram.  Retain
+
+\[
+ N=\operatorname{Ncl}_F(A,B),\hspace{1em}G_-=F/N.
+ \tag{212}
+\]
+
+First remove the asphericity ambiguity.  Define the endomorphism $\psi$ by
+
+\[
+ \begin{aligned}
+ \psi(x)&=\texttt{zXyZ},&
+ \psi(y)&=\texttt{y},&
+ \psi(z)&=\texttt{zYxZYzYzYxZyzXyZ}.
+ \end{aligned}
+ \tag{213}
+\]
+
+Its exact inverse is
+
+\[
+ \begin{aligned}
+ \psi^{-1}(x)&=\texttt{XyxZXYXyxzXYxy}=B,&
+ \psi^{-1}(y)&=\texttt{y},&
+ \psi^{-1}(z)&=\texttt{yxzXYxy}.
+ \end{aligned}
+ \tag{214}
+\]
+
+Both generator round trips freely reduce to $(x,y,z)$, and direct
+substitution gives $\psi(B)=x$.  After deleting this generator--relator pair,
+the cyclically reduced image of $\psi(A)$ is
+
+```text
+R* = YZYzYzYZyzyZYzYzYZYzyZyZyz.
+```
+
+It has length $26$ and is not a proper power.  The only possible root lengths
+are $1,2,13$; periodicity fails respectively at the letter comparisons
+$(2,1)$, $(4,2)$, and $(14,1)$.  Hence
+
+\[
+ \boxed{G_-\cong\langle y,z\mid R_*\rangle,\hspace{1em}R_*
+ \text{ is not a proper power}.}
+ \tag{215}
+\]
+
+The Lyndon identity theorem makes the one-relator presentation complex
+aspherical.  The automorphism and generator--relator collapse above are
+simple-homotopy equivalences, so the original complex
+$\langle x,y,z\mid A,B\rangle$ is aspherical as well.  Consequently
+
+\[
+ \boxed{N/[N,N]\cong \mathbb ZG_-[A]\oplus\mathbb ZG_-[B].}
+ \tag{216}
+\]
+
+The same non-power check makes $G_-$ torsion-free.  Waldhausen's theorem also
+gives $\operatorname{Wh}(G_-)=0$ for this torsion-free one-relator group.
+This removes the two general prerequisites behind the stable-tameness
+criterion in MMS02 Proposition 5.1.  It does not say that a displayed pair of
+elements is a generating system of the relation module.
+
+That remaining question can be decided for both finite symbolic endpoints in
+(43).  Abelianization sends $x,y,z$ to one generator $t$ and induces
+
+\[
+ \chi_*:\mathbb ZG_-\longrightarrow\mathbb Z[t^{\pm1}].
+ \tag{217}
+\]
+
+Use the left action $g[r]=[g^{-1}rg]$.  For conjugate-product proof evidence,
+the specialized coordinate $c$ obeys
+
+\[
+ \begin{aligned}
+ c(A)&=(1,0),&c(B)&=(0,1),\\
+ c(ef)&=c(e)+c(f),&c(e^{-1})&=-c(e),\\
+ c(qeq^{-1})&=t^{-\chi(q)}c(e).
+ \end{aligned}
+ \tag{218}
+\]
+
+The compact substitution node must also be differentiated.  Here every $q$
+is a frozen literal conjugator, exactly as in the definition of $K[W]$; it is
+not another substituted $v$-leaf.  If
+$D_s(E)=c(E[H_s]E[v]^{-1})$, then
+
+\[
+ \begin{aligned}
+ D_s(v)&=c(H_sv^{-1}),\\
+ D_s(EF)&=D_s(E)+t^{-\chi(E)}D_s(F),\\
+ D_s(E^{-1})&=-t^{\chi(E)}D_s(E),\\
+ D_s(qEq^{-1})&=t^{-\chi(q)}D_s(E).
+ \end{aligned}
+ \tag{219}
+\]
+
+These are the literal prefix, inverse, and conjugator recurrences of the
+proof DAG; they do not differentiate the raw endpoint while hiding its
+$B$-relation evidence.  Combining (219) with the evidence $Ku=1$ and the
+outer $u$-conjugation in the product proof gives the two specialized base-row
+matrices
+
+\[
+ \overline J_A=
+ \begin{pmatrix}p_A&q_A\\0&1\end{pmatrix},
+ \hspace{1em}
+ \overline J_B=
+ \begin{pmatrix}1&0\\q_B&p_B\end{pmatrix}.
+ \tag{220}
+\]
+
+The complete diagonal coefficient vectors are
+
+\[
+ \begin{aligned}
+ \bigl([t^k]p_A\bigr)_{k=-21}^{25}
+ ={}&(4,8,-30,-8,100,-96,-70,176,-54,-212,198,100,\\
+ &-370,212,186,-404,146,300,-460,118,277,-241,23,109,\\
+ &-87,16,48,56,-62,-48,168,-108,-92,184,-4,-134,22,\\
+ &98,-68,-8,20,0,-6,-12,6,4,-4),\\
+ \bigl([t^k]p_B\bigr)_{k=-19}^{23}
+ ={}&(2,0,-12,4,10,-30,2,22,-30,-24,38,-26,-48,56,\\
+ &-22,-48,60,-2,-58,58,-3,-6,26,6,2,10,12,20,-14,\\
+ &14,22,-30,4,18,-8,-16,4,2,-12,4,-6,4,-4).
+ \end{aligned}
+ \tag{221}
+\]
+
+Their augmentations are both one, agreeing with the endpoint exponent rows.
+However, $p_A$ has $46$ nonzero terms and support endpoints $-21,25$, while
+$p_B$ has $42$ nonzero terms and support endpoints $-19,23$.  Neither is a
+unit of $\mathbb Z[t^{\pm1}]$, whose units are precisely $\pm t^j$.
+
+If either canonical base pair generated the free module (216), its coordinate
+matrix over $\mathbb ZG_-$ would have a left inverse.  Applying $\chi_*$
+would give a left inverse to the corresponding matrix in (220), forcing its
+determinant $p_A$ or $p_B$ to be a Laurent unit.  Equation (221) contradicts
+this in both cases.
+
+**Theorem 6.26 (actual-base asphericity and canonical module obstruction).**
+The presentation $\langle x,y,z\mid A,B\rangle$ is aspherical, its relation
+module is free on $[A],[B]$, and $\operatorname{Wh}(G_-)=0$.  Nevertheless,
+neither canonical base pair
+
+\[
+ ([E_A],[B]),\hspace{1em}([A],[E_B])
+ \tag{222}
+\]
+
+generates $N/[N,N]$.  Therefore MMS02 Proposition 5.1 cannot normalize either
+displayed endpoint by first treating its two base rows as a complete relation-
+module generating system and cleaning the tag residual afterwards.
+
+The focused checker verifies $\psi$ and $\psi^{-1}$ literally, performs the
+complete proper-power divisor audit, evaluates (218)--(219) on the tracked
+proof evidence, pins both diagonal coefficient vectors, hashes both off-
+diagonal vectors, and checks the two augmentation rows.
+
+This is not an obstruction to the full three-row endpoint: the residual
+$H_sv^{-1}$ may participate simultaneously with the two base rows in a
+Peiffer or crossed-module closure.  It also does not cover a different
+quotient transfer or factorization.  The two canonical relation-module
+base-normalization attempts are frozen here; no transfer-matrix census is
+opened.  The unrestricted bridge, stable AK(3), and ordinary AK(3) remain
+open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3906,9 +4086,14 @@ The logical gates remain separate:
     common-suffix difference pivot are nonprimitive, and none of its three
     rows is primitive; this closes direct simultaneous straightening and
     one-row destabilization, not paths which first change the endpoint;
-24. no MMS02 statement evaluates the period-two class-two ledger or its
+24. the actual base presentation is aspherical with free rank-two relation
+    module, but cyclic specialization proves that neither canonical lift
+    endpoint's two base rows generate it; this closes only base-first module
+    normalization, not simultaneous use of the tag residual or another
+    quotient transfer;
+25. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-25. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+26. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -3924,4 +4109,8 @@ the full defect set $\mathcal D$ is not evaluated.  Theorem 6.22 also freezes
 the fixed-donor Hall--Witt route at a proved nonmembership; no higher
 commutator lane is opened.  Theorems 6.23--6.25 freeze direct ambient
 straightening and rank reduction of the published-kill SLP endpoint without
-classifying paths which first change its rows.
+classifying paths which first change its rows.  Theorem 6.26 proves actual-
+base asphericity but closes both canonical base-pair module normalizations at
+nonunit specialized determinants.  No alternative transfer-matrix ledger is
+opened; a live MMS02 continuation must couple the tag residual at the Peiffer
+or crossed-module level, or supply a structurally different exact transfer.

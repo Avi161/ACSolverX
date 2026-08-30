@@ -348,6 +348,178 @@ def leaf_coefficients(item):
     return visit(item)
 
 
+def _laurent_add(left, right):
+    result = dict(left)
+    for degree, coefficient in right.items():
+        result[degree] = result.get(degree, 0) + coefficient
+    return {
+        degree: coefficient
+        for degree, coefficient in result.items()
+        if coefficient
+    }
+
+
+def _laurent_shift(poly, degree, scalar=1):
+    return {
+        source_degree + degree: scalar * coefficient
+        for source_degree, coefficient in poly.items()
+        if scalar * coefficient
+    }
+
+
+def _cyclic_quotient_exponent(word):
+    return sum(1 if letter.islower() else -1 for letter in word)
+
+
+def _coordinate_add(left, right):
+    return (
+        _laurent_add(left[0], right[0]),
+        _laurent_add(left[1], right[1]),
+    )
+
+
+def _coordinate_shift(coordinate, degree, scalar=1):
+    return (
+        _laurent_shift(coordinate[0], degree, scalar),
+        _laurent_shift(coordinate[1], degree, scalar),
+    )
+
+
+def _cyclic_expression_degree_visit(node, memo, replacements=()):
+    key = id(node), tuple((name, id(image)) for name, image in replacements)
+    if key in memo:
+        return memo[key]
+
+    replacement_map = dict(replacements)
+    if node.kind == "leaf":
+        name = node.args[0]
+        if name in replacement_map:
+            reduced_replacements = tuple(
+                pair for pair in replacements if pair[0] != name
+            )
+            result = _cyclic_expression_degree_visit(
+                replacement_map[name],
+                memo,
+                reduced_replacements,
+            )
+        else:
+            result = {"A": 0, "B": 0, "u": -1, "v": 1}[name]
+    elif node.kind == "lit":
+        result = _cyclic_quotient_exponent(node.value)
+    elif node.kind == "prod":
+        result = sum(
+            _cyclic_expression_degree_visit(child, memo, replacements)
+            for child in node.args
+        )
+    elif node.kind == "inv":
+        result = -_cyclic_expression_degree_visit(node.args[0], memo, replacements)
+    elif node.kind == "conj":
+        result = _cyclic_expression_degree_visit(node.args[1], memo, replacements)
+    elif node.kind == "subst":
+        source, image = node.args[1:]
+        next_replacements = tuple(
+            pair for pair in replacements if pair[0] != source
+        ) + ((source, image),)
+        result = _cyclic_expression_degree_visit(
+            node.args[0],
+            memo,
+            tuple(sorted(next_replacements)),
+        )
+    else:
+        raise AssertionError(node.kind)
+
+    memo[key] = result
+    return result
+
+
+def cyclic_expression_degree(item):
+    return _cyclic_expression_degree_visit(item, {})
+
+
+def cyclic_evidence_coordinates(item):
+    memo = {}
+    degree_memo = {}
+
+    def visit(node):
+        key = id(node)
+        if key in memo:
+            return memo[key]
+
+        if node.kind == "leaf":
+            name = node.args[0]
+            assert name in ("A", "B")
+            result = ({0: 1}, {}) if name == "A" else ({}, {0: 1})
+        elif node.kind == "lit":
+            assert red(node.value) == ""
+            result = ({}, {})
+        elif node.kind == "prod":
+            result = ({}, {})
+            for child in node.args:
+                result = _coordinate_add(result, visit(child))
+        elif node.kind == "inv":
+            result = _coordinate_shift(visit(node.args[0]), 0, -1)
+        elif node.kind == "conj":
+            conjugator = node.args[0]
+            degree = (
+                _cyclic_expression_degree_visit(conjugator, degree_memo)
+                if isinstance(conjugator, Expr)
+                else _cyclic_quotient_exponent(conjugator)
+            )
+            result = _coordinate_shift(visit(node.args[1]), -degree)
+        else:
+            raise AssertionError(node.kind)
+
+        memo[key] = result
+        return result
+
+    return visit(item)
+
+
+def cyclic_substitution_coordinates(item, source, difference_coordinates):
+    memo = {}
+    degree_memo = {}
+
+    def visit(node):
+        key = id(node)
+        if key in memo:
+            return memo[key]
+
+        if node.kind == "leaf":
+            result = difference_coordinates if node.args[0] == source else ({}, {})
+        elif node.kind == "lit":
+            result = ({}, {})
+        elif node.kind == "prod":
+            result = ({}, {})
+            prefix_degree = 0
+            for child in node.args:
+                result = _coordinate_add(
+                    result,
+                    _coordinate_shift(visit(child), -prefix_degree),
+                )
+                prefix_degree += _cyclic_expression_degree_visit(child, degree_memo)
+        elif node.kind == "inv":
+            result = _coordinate_shift(
+                visit(node.args[0]),
+                _cyclic_expression_degree_visit(node.args[0], degree_memo),
+                -1,
+            )
+        elif node.kind == "conj":
+            conjugator = node.args[0]
+            degree = (
+                _cyclic_expression_degree_visit(conjugator, degree_memo)
+                if isinstance(conjugator, Expr)
+                else _cyclic_quotient_exponent(conjugator)
+            )
+            result = _coordinate_shift(visit(node.args[1]), -degree)
+        else:
+            raise AssertionError(node.kind)
+
+        memo[key] = result
+        return result
+
+    return visit(item)
+
+
 @dataclass(frozen=True)
 class Proof:
     left: Expr
@@ -803,6 +975,7 @@ def relation_lift_data():
     return {
         "h": h,
         "k": k,
+        "k_eq_u_inverse": k_eq_u_inverse,
         "h_a": h_a,
         "h_b": h_b,
         "e_a": e_a,
@@ -877,6 +1050,198 @@ def test_mms02_relation_lift_certificate_dag():
         assert min(neighbor_totals) == endpoint_total
         assert neighbor_totals.count(endpoint_total) == 8
         assert sum(total > endpoint_total for total in neighbor_totals) == 82
+
+
+def test_mms02_actual_base_is_a_torsion_free_one_relator_group():
+    forward = {
+        "x": "zXyZ",
+        "y": "y",
+        "z": "zYxZYzYzYxZyzXyZ",
+    }
+    backward = {
+        "x": B,
+        "y": "y",
+        "z": "yxzXYxy",
+    }
+    for generator in "xyz":
+        assert apply_images(apply_images(generator, forward), backward) == generator
+        assert apply_images(apply_images(generator, backward), forward) == generator
+
+    assert apply_images(B, forward) == "x"
+    transformed_a = apply_images(A, forward)
+    assert transformed_a == "YzYzYxZyzXyZXyZyzYxZYzXyZyZyzXyZ"
+    one_relator = apply_images(
+        transformed_a,
+        {"x": "", "y": "y", "z": "z"},
+    )
+    cyclic_relator = canonical_cyclic_word(one_relator)
+    assert cyclic_relator == "YZYzYzYZyzyZYzYzYZYzyZyZyz"
+    assert len(cyclic_relator) == 26
+    assert red(cyclic_relator) == cyclic_relator
+    assert cyclic_relator[0] != cyclic_relator[-1].swapcase()
+    for root_length in (1, 2, 13):
+        assert any(
+            cyclic_relator[index] != cyclic_relator[index % root_length]
+            for index in range(root_length, len(cyclic_relator))
+        )
+
+
+def test_mms02_canonical_lift_base_pairs_fail_the_cyclic_module_unit_test():
+    data = relation_lift_data()
+    branch_a_diagonal_coefficients = (
+        4,
+        8,
+        -30,
+        -8,
+        100,
+        -96,
+        -70,
+        176,
+        -54,
+        -212,
+        198,
+        100,
+        -370,
+        212,
+        186,
+        -404,
+        146,
+        300,
+        -460,
+        118,
+        277,
+        -241,
+        23,
+        109,
+        -87,
+        16,
+        48,
+        56,
+        -62,
+        -48,
+        168,
+        -108,
+        -92,
+        184,
+        -4,
+        -134,
+        22,
+        98,
+        -68,
+        -8,
+        20,
+        0,
+        -6,
+        -12,
+        6,
+        4,
+        -4,
+    )
+    branch_b_diagonal_coefficients = (
+        2,
+        0,
+        -12,
+        4,
+        10,
+        -30,
+        2,
+        22,
+        -30,
+        -24,
+        38,
+        -26,
+        -48,
+        56,
+        -22,
+        -48,
+        60,
+        -2,
+        -58,
+        58,
+        -3,
+        -6,
+        26,
+        6,
+        2,
+        10,
+        12,
+        20,
+        -14,
+        14,
+        22,
+        -30,
+        4,
+        18,
+        -8,
+        -16,
+        4,
+        2,
+        -12,
+        4,
+        -6,
+        4,
+        -4,
+    )
+
+    def coefficient_dict(first_degree, coefficients):
+        return {
+            degree: coefficient
+            for degree, coefficient in zip(
+                range(first_degree, first_degree + len(coefficients)),
+                coefficients,
+                strict=True,
+            )
+            if coefficient
+        }
+
+    def coordinate_digest(coordinate):
+        payload = ";".join(
+            f"{degree}:{coordinate[degree]}" for degree in sorted(coordinate)
+        )
+        return sha256(payload.encode()).hexdigest()
+
+    base_coordinates = cyclic_evidence_coordinates(
+        data["k_eq_u_inverse"].evidence
+    )
+
+    def endpoint_coordinates(branch):
+        substitution_difference = cyclic_evidence_coordinates(
+            data[f"h_{branch}_eq_v"].evidence
+        )
+        substitution_coordinates = cyclic_substitution_coordinates(
+            data["k"],
+            "v",
+            substitution_difference,
+        )
+        return _coordinate_shift(
+            _coordinate_add(substitution_coordinates, base_coordinates),
+            1,
+        )
+
+    branch_a = endpoint_coordinates("a")
+    branch_b = endpoint_coordinates("b")
+    branch_a_diagonal = coefficient_dict(-21, branch_a_diagonal_coefficients)
+    branch_b_diagonal = coefficient_dict(-19, branch_b_diagonal_coefficients)
+    assert branch_a[0] == branch_a_diagonal
+    assert branch_b[1] == branch_b_diagonal
+    assert coordinate_digest(branch_a[1]) == (
+        "90f3651152ed8a50bd411ba39545d6dcbe55c7ffd0fbb3d9494a41a581ed03dc"
+    )
+    assert coordinate_digest(branch_b[0]) == (
+        "ba63e496db45e8a993c1862597ed99e8b9769e8dd00081daa7cdf143f5ab30be"
+    )
+    assert tuple(sum(coordinate.values()) for coordinate in branch_a) == (1, 0)
+    assert tuple(sum(coordinate.values()) for coordinate in branch_b) == (0, 1)
+    assert (len(branch_a_diagonal), min(branch_a_diagonal), max(branch_a_diagonal)) == (
+        46,
+        -21,
+        25,
+    )
+    assert (len(branch_b_diagonal), min(branch_b_diagonal), max(branch_b_diagonal)) == (
+        42,
+        -19,
+        23,
+    )
 
 
 def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
