@@ -116,6 +116,21 @@ row probes have cycle types $(3)$ and $(5)$.  This freezes one fixed-core typo
 repair only; arbitrary changes to the common rows and the unrestricted bridge
 remain open.
 
+Section 6.23 adds two preventive soundness controls.  The $A_5$ assignment is
+extended across the eliminated generator and is checked on both transformed
+common rows; a deliberately wrong extension retains the probe cycle types but
+fails one common row, showing that the control can fail.  Independently, the
+finite Gate-A defect words and every affine update used in Sections
+6.14--6.21 are replayed as literal free-group identities before passage to
+the derived modules.
+
+Section 6.24 normalizes the complete two-live omission exchange, including
+interleaved changes to the common rows, to one balanced rank-two gate.  The
+published omission is stably equivalent to the explicit pair $(R_0,h)$,
+while the alternate omission is stably equivalent to $(R_0,X)$ and hence to
+the standard presentation.  This is a complete reduction of the raw omission
+route, not a solution of the remaining rank-two gate or of stable AK(3).
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -1395,6 +1410,11 @@ The exact finite certificate and focused replay are
 experiments/stable_ac/thickenable/mms02_tpub_boundary_donor_certificate.py
 tests/stable_ac/test_mms02_tpub_boundary_donor_certificate.py
 ```
+
+The certificate imports the existing `neuwirth_rank_solver` and
+`neuwirth_rank3_rigid_solver` engines.  It supplies only the MMS02 boundary
+products and the one separating-class expansion, rather than re-deriving the
+two rank-three solvers move by move.
 
 The class $\mathcal P_\partial$ is now frozen.  Its negative verdict does
 not cover a donor conjugate with a surviving tail, an unshortened cyclic
@@ -2849,6 +2869,239 @@ stable equivalence $\mathcal P_{12}\sim\mathcal P_{14}$ nor the unrestricted
 rank-three bridge.  No new omission ledger is opened.  Stable AK(3), ordinary
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.23. Preventive nonvacuity and literal-tail audits
+
+The finite quotient in Section 6.22 is nonvacuous only if the assignment
+kills every common row.  Before eliminating $z$, the transformed common rows
+and probes in (156) are
+
+```text
+S1' = TxttXTxZXtx
+S2' = TTXtXTTxttx
+p12 = Xt
+p14 = Tz
+```
+
+Put
+
+\[
+ z_0=XtxTxttXTx.
+ \tag{160}
+\]
+
+Extend (158) by sending $z$ to the permutation obtained by evaluating $z_0$.
+Direct permutation multiplication gives
+
+\[
+ \rho(S'_1)=\rho(S'_2)=1,
+ \hspace{1em}
+ \operatorname{ctype}(\rho(p_{12}))=(3),
+ \hspace{1em}
+ \operatorname{ctype}(\rho(p_{14}))=(5).
+ \tag{161}
+\]
+
+Thus the map kills both transformed base rows before any substitution and
+really factors through the common-core quotient.  There is also an explicit
+can-fail control.  Keep the same images of $x,t$ but send $z$ to the identity.
+The two probe cycle types remain $(3)$ and $(5)$ and $S'_2$ still dies, but
+$S'_1$ does not.  Probe separation without the base-row check would therefore
+accept this invalid assignment.  The witness used in Theorem 6.16 passes the
+check which the control fails.
+
+The derived calculations in Sections 6.14--6.21 have a separate literal
+audit.  If current lifted rows are written $mu,nv$ and a lifted conjugator is
+$kg$, then the following are exact free-group identities before any
+abelianization:
+
+\[
+ \begin{aligned}
+ (mu)^{-1}&={}^{u^{-1}}m^{-1}u^{-1},\\
+ (mu)(nv)&=m({}^{u}n)(uv),\\
+ {}^{kg}(mu)&=
+ \bigl(k({}^{g}m)({}^{{}^{g}u}k^{-1})\bigr)({}^{g}u).
+ \end{aligned}
+ \tag{162}
+\]
+
+These identities give the three linear updates in (136), including their
+orientations.  At the target pair $(mB,nt)$ put
+$a={}^{B^{-1}}m$ and $c={}^{t^{-1}}n$.  The two tag-interchange loops have
+the exact ancestors
+
+\[
+ \begin{aligned}
+ {}^{B^{-1}}\bigl({}^{mB}(nt)\bigr)
+ &=a n t a^{-1}
+ =\bigl(an({}^{t}a^{-1})\bigr)t,\\
+ {}^{t^{-1}}\bigl({}^{nt}(mB)\bigr)
+ &=c m B c^{-1}
+ =\bigl(cm({}^{B}c^{-1})\bigr)B.
+ \end{aligned}
+ \tag{163}
+\]
+
+Abelianizing their left defects gives exactly (138).  Vertical conjugation
+is checked from the literal identity
+${}^{k}B=(k({}^{B}k^{-1}))B$, and similarly for $t$.
+
+Finally, after $z=Yx$ the canonical Gate-A defect is the literal word
+`YXyyXYxyxY`.  Conjugation by $x^2$ and the exact height scan give
+
+\[
+ d^{-1}b^2a^{-1}bd^{-1}.
+\]
+
+Substitution of the defining equality (12), followed by free reduction,
+gives the displayed $\delta$ in (107).  Starting from the free word
+$E=D^{-1}qDB^{-1}$, the literal equality $B=qD^{-1}$ gives the second word in
+(106); conjugating that word by $x^2$ and using
+$x^2qx^{-2}=bx^{-1}$ gives (108).  One and two further literal applications
+of $\varphi$ give $\epsilon$ and $\zeta$ in (113) before Fox differentiation.
+The focused replay derives the Magnus base word from the height scan and
+checks the displayed free-word, HNN-syllable, $\varphi$, and Fox stages as
+separate exact assertions.  It is a staged audit of every finite input, not a
+single executable proof object which mechanically rewrites one alphabet
+through every intervening HNN equality.
+
+This audit certifies the finite words and operator orientations feeding the
+module arguments.  It does not turn the quotient conjugacy into a literal
+conjugacy, prove the affine containment (140) or (141), close the tagged gate,
+or prove the MMS02 bridge, stable AK(3), or ordinary AK(3).
+
+### 6.24. The complete two-live omission route is one rank-two gate
+
+The fixed-core obstruction in Theorem 6.16 held $R_{13}$ fixed.  To retain
+all interleaved changes to that row, use only the smaller common core
+
+\[
+ \mathcal D_0=(R_1,\ldots,R_{11},w).
+ \tag{164}
+\]
+
+Then $\mathcal P_{12}=(\mathcal D_0,R_{13},R_{14})$ and
+$\mathcal P_{14}=(\mathcal D_0,R_{12},R_{13})$.  Apply the same ten
+unique-occurrence substitutions to both full presentations:
+
+```text
+e=gl, f=lg, a=jnJ, b=n, h=kiK,
+i=Njn, j=nkN, d=Lgll, c=lgLgllGL,
+g=nkNKNknknKN.
+```
+
+The common rows left on $F(k,l,m,n)$ are
+
+```text
+lnkNKNknknKNLnkNKNknknKNllnkNKNKnknKNLnkNKNknKN
+nkNKNknknKNLLnkNKNKnknKNlnkNKNKnknKNLLnkNKNknknKNll
+```
+
+and the three probes $R_{12},R_{13},R_{14}$ become
+
+```text
+lnkNKNKnknKN
+mnkNKNknknKNLnkNKNKnknKN
+nknKNMnkNK.
+```
+
+Rename $(k,l,m,n)=(x,t,z,q)$.  The ten simultaneous basis maps
+
+\[
+ \begin{gathered}
+ (Qx,t,Qz,q),\ (x,t,Xz,Xqx),\ (qxQ,t,qz,q),\
+ (x,Xtx,Xz,q),\ (qx,t,qz,q),\ (Txt,t,Tz,q),\\
+ (x,Xtx,Xz,q),\ (txT,t,tz,q),\ (x,Xtx,Xz,qx),\
+ (tx,t,tz,tq)
+ \end{gathered}
+ \tag{165}
+\]
+
+send the two common rows to the cyclic classes of $Q$ and
+
+```text
+R0 = xTTXXTTxttt
+```
+
+and, after deleting the literal $q$-row, send the probes to
+
+```text
+R12 = X
+P = ttXTTXtxTTXTTXXTTXzXXTTXtxTTXXTxTXtxxttXTxttxx
+J = xZxttxxttxttXTxttxTTXXTTXtxxttXTxttx
+```
+
+Write $P=UzV$, where
+
+```text
+U = ttXTTXtxTTXTTXXTTX
+V = XXTTXtxTTXXTxTXtxxttXTxttxx
+```
+
+The ambient automorphism $\alpha$ which fixes $x,t$ and sends
+
+\[
+ z\longmapsto U^{-1}zV^{-1}
+ \tag{166}
+\]
+
+fixes $R_0$ and $X$ and sends $P$ literally to $z$.  Erasing $z$ from
+$\alpha(J)$ by the current $z$-row leaves
+
+```text
+h = XTTXtxTTXXTxTXtxxttxttXTxttx
+```
+
+Every normalization above is stable Andrews--Curtis.  The
+unique-occurrence steps are substitution-and-removal moves.  After the ten
+removals, each endpoint is a balanced four-generator, four-relator trivial
+presentation.  Proposition 3.3 of `AK3_DUAL_SOURCE_COMPRESSION.md`, the
+stable ambient automorphism theorem in every rank, therefore realizes all ten
+maps in (165) simultaneously on the complete relator tuple.  Removing the
+literal $q$-row leaves a balanced rank-three trivial presentation, so the same
+proposition realizes (166).
+
+The trivial-group hypothesis is satisfied separately at both endpoints:
+(151) identifies $\mathcal P_{12}$ with the verified trivial presentation
+$T_{\rm pub}$, while (154) stably trivializes $\mathcal P_{14}$.  Thus neither
+ambient-automorphism use assumes the conclusion of the open bridge.
+
+On the published side, use the $z$-row as donor to remove every $z$-letter
+from $\alpha(J)$ and then destabilize it.  On the alternate side, destabilize
+the $z$-row directly.  This gives
+
+\[
+ \begin{aligned}
+ \mathcal P_{12}&\sim_{\rm stAC}(R_0,h),\\
+ \mathcal P_{14}&\sim_{\rm stAC}(R_0,X).
+ \end{aligned}
+ \tag{167}
+\]
+
+The second pair is classically AC-trivial.  With the $X$-row as donor,
+successive conjugate multiplications replace $R_0$ by its specialization at
+$x=1$, namely $T$; inversion and row exchange then give the standard pair.
+
+**Theorem 6.17 (complete two-live omission normalization).**  The raw
+interleaved omission exchange is equivalent to the single balanced rank-two
+gate
+
+\[
+ (R_0,h)\sim_{\rm stAC}(R_0,X).
+ \tag{168}
+\]
+
+More precisely, the two endpoints satisfy (167), and $(R_0,X)$ is
+classically AC-trivial.  Hence
+$\mathcal P_{12}\sim_{\rm stAC}\mathcal P_{14}$ if and only if $(R_0,h)$ is
+stably AC-trivial.  By (151) and the verified MMS02 corridor, a positive
+solution of (168) would prove stable AK(3).
+
+The theorem evaluates all common-row interleaving in the raw omission route;
+it is not another fixed-core or bounded-move obstruction.  It does not solve
+(168), prove $T_{\rm pub}$ stably trivial, prove stable AK(3), or prove
+ordinary AK(3).  The omission route is frozen at this one rank-two gate: no
+new omission, fixed-row, or finite-move categories are opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -2899,13 +3152,22 @@ The logical gates remain separate:
 16. the alternate raw omission is stably trivial, but the $A_5$ witness closes
     only the fixed-common-row exchange of $R_{14}$ for $R_{12}$; interleaved
     changes to the common rows remain open;
-17. no MMS02 statement evaluates the period-two class-two ledger or its
+17. the $A_5$ witness kills both transformed common rows, while an explicit
+    wrong extension keeps the probe cycle types and fails a base row; thus the
+    finite quotient is nonvacuous, but still has only the scope in item 16;
+18. the finite Gate-A defect chain and affine operator formulas have literal
+    free-group ancestors, but that replay proves neither the full affine
+    containment nor a Peiffer lift;
+19. the complete two-live raw omission route is equivalent to stable
+    triviality of $(R_0,h)$ in (168); the normalization does not solve that
+    rank-two gate;
+20. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-18. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+21. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
-The active priority is the interleaved relative class (83), together with
+The active priority is the constructive rank-two gate (168), together with
 the unrestricted rank-three bridge
-$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$.  The fixed-core omission exchange is
-frozen at Theorem 6.16.  No further sequential, pinned-donor, or omission
-ledger is opened.
+$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$ and the interleaved relative class (83).
+The raw omission route is completely normalized by Theorem 6.17.  No further
+sequential, pinned-donor, fixed-core, or omission ledger is opened.

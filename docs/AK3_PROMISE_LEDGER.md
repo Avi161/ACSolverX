@@ -219,10 +219,17 @@ finite quotient do not close a route.
   `p=Xt` and `q=TXtxTxttXTx` in
   `<x,t | TTXtXTTxttx>`.  An exact `A5` image sends `p` to cycle type `(3)`
   and both `q` and `q^-1` to `(5)`, so inversion, conjugation, and common-row
-  donor multiplication cannot exchange the omitted rows.  This closes only
-  the fixed-core typo repair.  Interleaved changes to the common rows, the
-  unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.  Do not
-  open an omission ledger.
+  donor multiplication cannot exchange the omitted rows.  The witness is
+  nonvacuous: its extension kills both transformed common rows, while the
+  explicit control `z -> 1` keeps the two probe cycle types but fails the
+  first common row.  Allowing the formerly fixed `r13` row, ten common-core
+  eliminations and ten basis maps reduce the complete two-live exchange to
+  the single rank-two gate `(R0,h) ~stAC (R0,X)`, with
+  `R0=xTTXXTTxttt` and
+  `h=XTTXtxTTXXTxTXtxxttxttXTxttx`.  The right pair is classically trivial;
+  the left pair is not yet stably trivialized.  This completely normalizes
+  the raw omission route without proving the gate, the unrestricted bridge,
+  stable AK(3), or ordinary AK(3).  Do not open another omission ledger.
 - **Resume point:** both sequential donor completions are closed. Work on the
   unrestricted common-kill target, the genuinely interleaved closure of one
   symbolic residual pair, or the literal relative Peiffer structure at the
@@ -240,9 +247,11 @@ finite quotient do not close a route.
   produces only more proper loop families, freeze Sections 6.12--6.20 as the
   bounded first-derived tagged theorem.  The Hall--Witt construction is also
   frozen at the single membership/triviality obligation `T`; do not expand it
-  cyclically.  The fixed-core raw omission exchange is frozen at its `A5`
-  obstruction.  Resume the unrestricted common-kill bridge unless a genuinely
-  complete stabilizer theorem or a direct evaluation of `T` appears.
+  cyclically.  The raw omission route is frozen at the complete rank-two gate
+  `(R0,h)`; do not add fixed-row or omitted-row categories.  Prioritize a
+  constructive evaluation of that gate or resume the unrestricted common-kill
+  bridge unless a genuinely complete stabilizer theorem or a direct
+  evaluation of `T` appears.
   If the linear orbit contains zero, escalate once to the tame relative
   crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or
   another full relative path may bypass the closed single-row gate.  Do not

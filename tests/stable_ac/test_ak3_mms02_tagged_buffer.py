@@ -1,7 +1,10 @@
 from fractions import Fraction
 
 
-INVERSES = str.maketrans("xXyYzZtT", "XxYyZzTt")
+INVERSES = str.maketrans(
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+)
 
 
 def inverse(word: str) -> str:
@@ -240,3 +243,68 @@ def test_mms02_tagged_buffer_exact_word_replay():
     assert evaluate(q) == (Fraction(1, 2), -1)
     assert evaluate(B_bar) == (Fraction(7, 8), -1)
     assert evaluate(conjugate(inverse(D), q)) == evaluate(B_bar)
+
+
+def test_tagged_affine_updates_have_exact_free_group_ancestors():
+    m, n, k = "m", "n", "k"
+    u, v, g = "u", "v", "g"
+    b, t = "b", "t"
+
+    lifted_first = product(m, u)
+    lifted_second = product(n, v)
+    assert inverse(lifted_first) == product(
+        conjugate(inverse(u), inverse(m)),
+        inverse(u),
+    )
+    assert product(lifted_first, lifted_second) == product(
+        m,
+        conjugate(u, n),
+        u,
+        v,
+    )
+
+    quotient_conjugate = conjugate(g, u)
+    conjugation_defect = product(
+        k,
+        conjugate(g, m),
+        conjugate(quotient_conjugate, inverse(k)),
+    )
+    assert conjugate(product(k, g), lifted_first) == product(
+        conjugation_defect,
+        quotient_conjugate,
+    )
+
+    assert conjugate(k, b) == product(
+        k,
+        conjugate(b, inverse(k)),
+        b,
+    )
+    assert conjugate(k, t) == product(
+        k,
+        conjugate(t, inverse(k)),
+        t,
+    )
+
+    b_row = product(m, b)
+    tag_row = product(n, t)
+    b_transport = conjugate(inverse(b), m)
+    first_loop_defect = product(
+        b_transport,
+        n,
+        conjugate(t, inverse(b_transport)),
+    )
+    assert conjugate(inverse(b), conjugate(b_row, tag_row)) == product(
+        first_loop_defect,
+        t,
+    )
+
+    t_transport = conjugate(inverse(t), n)
+    second_loop_defect = product(
+        t_transport,
+        m,
+        conjugate(b, inverse(t_transport)),
+    )
+    assert conjugate(inverse(t), conjugate(tag_row, b_row)) == product(
+        second_loop_defect,
+        b,
+    )

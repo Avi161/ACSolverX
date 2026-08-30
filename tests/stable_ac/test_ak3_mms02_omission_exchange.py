@@ -126,8 +126,9 @@ def misprinted_relators() -> list[str]:
     return [equation(index, rhs) for index, rhs in enumerate(right_sides, start=1)]
 
 
-def whitehead_maps() -> set[tuple[str, str, str]]:
-    generators = ("x", "t", "z")
+def whitehead_maps(
+    generators: tuple[str, ...] = ("x", "t", "z"),
+) -> set[tuple[str, ...]]:
     signed = tuple(letter for generator in generators for letter in (generator, generator.upper()))
     maps: set[tuple[str, str, str]] = set()
     for multiplier in signed:
@@ -333,6 +334,20 @@ def test_common_core_reduces_to_one_relator_a5_separation() -> None:
     assert evaluate(relator, images) == identity
     assert cycle_type(evaluate(probe_12, images)) == (3,)
     assert cycle_type(evaluate(probe_14, images)) == (5,)
+
+    z_permutation = evaluate(z_image, images)
+    full_images = {**images, "z": z_permutation}
+    assert evaluate(transformed[0], full_images) == identity
+    assert evaluate(transformed[1], full_images) == identity
+    assert cycle_type(evaluate(transformed[2], full_images)) == (3,)
+    assert cycle_type(evaluate(transformed[3], full_images)) == (5,)
+
+    vacuous_control = {**images, "z": identity}
+    assert evaluate(transformed[0], vacuous_control) != identity
+    assert evaluate(transformed[1], vacuous_control) == identity
+    assert cycle_type(evaluate(transformed[2], vacuous_control)) == (3,)
+    assert cycle_type(evaluate(transformed[3], vacuous_control)) == (5,)
+
     subgroup = generated_subgroup((x_image, t_image))
     alternating = {
         value
@@ -346,3 +361,87 @@ def test_common_core_reduces_to_one_relator_a5_separation() -> None:
         == 0
     }
     assert subgroup == alternating
+
+
+def test_mms02_omission_exchange_exact_certificate() -> None:
+    rows = misprinted_relators()
+    common = [*rows[:11], "Egl"]
+    probes = list(rows[11:14])
+    history = (
+        ("e", "gl"),
+        ("f", "lg"),
+        ("a", "jnJ"),
+        ("b", "n"),
+        ("h", "kiK"),
+        ("i", "Njn"),
+        ("j", "nkN"),
+        ("d", "Lgll"),
+        ("c", "lgLgllGL"),
+        ("g", "nkNKNknknKN"),
+    )
+    for generator, expected in history:
+        common, image = eliminate(common, generator)
+        assert image == expected
+        probes = [cyclic_reduce(substitute(probe, generator, image)) for probe in probes]
+    assert common == [
+        "lnkNKNknknKNLnkNKNknknKNllnkNKNKnknKNLnkNKNknKN",
+        "nkNKNknknKNLLnkNKNKnknKNlnkNKNKnknKNLLnkNKNknknKNll",
+    ]
+    assert probes == [
+        "lnkNKNKnknKN",
+        "mnkNKNknknKNLnkNKNKnknKN",
+        "nknKNMnkNK",
+    ]
+
+    rename = str.maketrans("klmnKLMN", "xtzqXTZQ")
+    words = [word.translate(rename) for word in [*common, *probes]]
+
+    def apply_rank_four_map(word: str, images: tuple[str, str, str, str]) -> str:
+        positive = dict(zip(("x", "t", "z", "q"), images))
+        return free_reduce(
+            "".join(
+                positive[letter]
+                if letter.islower()
+                else inverse(positive[letter.lower()])
+                for letter in word
+            )
+        )
+
+    maps = (
+        ("Qx", "t", "Qz", "q"),
+        ("x", "t", "Xz", "Xqx"),
+        ("qxQ", "t", "qz", "q"),
+        ("x", "Xtx", "Xz", "q"),
+        ("qx", "t", "qz", "q"),
+        ("Txt", "t", "Tz", "q"),
+        ("x", "Xtx", "Xz", "q"),
+        ("txT", "t", "tz", "q"),
+        ("x", "Xtx", "Xz", "qx"),
+        ("tx", "t", "tz", "tq"),
+    )
+    complete_rank_four_set = whitehead_maps(("x", "t", "z", "q"))
+    assert len(complete_rank_four_set) == 504
+    for images in maps:
+        assert images in complete_rank_four_set
+        words = [apply_rank_four_map(word, images) for word in words]
+    words = [cyclic_reduce(word) for word in words]
+    assert words[0] == "Q"
+    assert cyclic_class(words[1]) == cyclic_class("xTTXXTTxttt")
+
+    relator = cyclic_reduce(substitute(words[1], "q", ""))
+    target_probe = substitute(words[2], "q", "")
+    bad_probe = substitute(words[3], "q", "")
+    probe_14 = substitute(words[4], "q", "")
+    assert relator == "xTTXXTTxttt"
+    assert target_probe == "X"
+    assert bad_probe == "ttXTTXtxTTXTTXXTTXzXXTTXtxTTXXTxTXtxxttXTxttxx"
+    assert probe_14 == "xZxttxxttxttXTxttxTTXXTTXtxxttXTxttx"
+
+    prefix = "ttXTTXtxTTXTTXXTTX"
+    suffix = "XXTTXtxTTXXTxTXtxxttXTxttxx"
+    alpha_image = inverse(prefix) + "z" + inverse(suffix)
+    assert substitute(relator, "z", alpha_image) == relator
+    assert substitute(bad_probe, "z", alpha_image) == "z"
+    assert substitute(substitute(probe_14, "z", alpha_image), "z", "") == (
+        "XTTXtxTTXXTxTXtxxttxttXTxttx"
+    )

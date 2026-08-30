@@ -49,6 +49,42 @@ def product(*words):
     return red("".join(words))
 
 
+def free_red(word):
+    stack = []
+    for letter in word:
+        if stack and stack[-1] == letter.swapcase():
+            stack.pop()
+        else:
+            stack.append(letter)
+    return "".join(stack)
+
+
+def free_product(*words):
+    return free_red("".join(words))
+
+
+def free_conjugate(conjugator, word):
+    return free_product(conjugator, word, inv(conjugator))
+
+
+def magnus_scan(word):
+    height = 0
+    result = []
+    for letter in free_red(word):
+        if letter == "x":
+            height += 1
+        elif letter == "X":
+            height -= 1
+        elif letter == "y":
+            result.append((height, 1))
+        elif letter == "Y":
+            result.append((height, -1))
+        else:
+            raise AssertionError(f"unexpected Magnus letter: {letter}")
+    assert height == 0
+    return tuple(result)
+
+
 def exponent(word):
     return word.count("a") - word.count("A"), word.count("b") - word.count("B")
 
@@ -153,7 +189,27 @@ def semidirect_conjugate(conjugator, element):
 
 def test_second_derived_fox_correction_and_direct_limit():
     d = "bbAbaB"
-    delta = "bAbABaBB"
+    d_inverse = inv(d)
+    gate_a_defect = "YXyyXYxyxY"
+    shifted_gate_a_defect = free_conjugate("xx", gate_a_defect)
+    shifted_scan = magnus_scan(shifted_gate_a_defect)
+    assert shifted_scan == (
+        (2, -1),
+        (1, 1),
+        (1, 1),
+        (0, -1),
+        (1, 1),
+        (2, -1),
+    )
+    base_letters = {0: "a", 1: "b", 2: "d"}
+    shifted_base_word = "".join(
+        base_letters[index] if sign > 0 else base_letters[index].upper()
+        for index, sign in shifted_scan
+    )
+    assert shifted_base_word == "DbbAbD"
+    delta = product(
+        *(d_inverse if letter == "D" else letter for letter in shifted_base_word)
+    )
     images = {"a": "b", "A": "B", "b": d, "B": inv(d)}
 
     def phi(word):
@@ -162,6 +218,32 @@ def test_second_derived_fox_correction_and_direct_limit():
     assert phi("a") == "b"
     assert phi("b") == d
     assert delta == "bAbABaBB"
+
+    q_word = "Xy"
+    b_word = free_product(q_word, inv(gate_a_defect))
+    e_word = free_product(
+        inv(gate_a_defect),
+        q_word,
+        gate_a_defect,
+        inv(b_word),
+    )
+    assert e_word == free_product(
+        inv(gate_a_defect),
+        q_word,
+        gate_a_defect,
+        gate_a_defect,
+        inv(q_word),
+    )
+    shifted_q = free_conjugate("xx", q_word)
+    shifted_e = free_conjugate("xx", e_word)
+    assert shifted_q == free_product("xyX", "X")
+    assert shifted_e == free_product(
+        inv(shifted_gate_a_defect),
+        shifted_q,
+        shifted_gate_a_defect,
+        shifted_gate_a_defect,
+        inv(shifted_q),
+    )
 
     epsilon = product(inv(phi(delta)), d, delta, delta, inv(d))
     zeta = phi(epsilon)
