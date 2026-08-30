@@ -50,6 +50,7 @@ import json
 import multiprocessing as mp
 import os
 import queue as _queue
+import re
 import time
 
 from experiments.search.run_leftovers_1m import (
@@ -278,6 +279,27 @@ def _done_ok(path):
     """Names of rows that FINISHED -- error rows do not count as done."""
     return {r["name"] for r in read_rows(path)
             if "name" in r and not r.get("error")}
+
+
+def _sibling_results(out, prefix, key):
+    """Populated result files for the SAME campaign+arm under a DIFFERENT
+    name -- the signature of the worst silent failure this pipeline has: a
+    drifted name component (budget, mrl, chunk tag) makes resume see an
+    empty history and re-run every finished row while looking perfectly
+    healthy. Smoke-scale files (budget < 100k) are expected siblings and
+    ignored."""
+    import glob
+    got = []
+    for p in glob.glob(os.path.join(os.path.dirname(out) or ".",
+                                    f"{prefix}_{key}*_b*_mrl*.jsonl")):
+        if os.path.abspath(p) == os.path.abspath(out):
+            continue
+        m = re.search(r"_b(\d+)_mrl", os.path.basename(p))
+        if m and int(m.group(1)) < 100_000:
+            continue
+        if _done_ok(p):
+            got.append(p)
+    return sorted(got)
 
 
 def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
@@ -674,6 +696,18 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     if resume:
         _seed_from_mirror(out, mirror_dir, log)
     seen = _done_ok(out) if resume else set()
+    if resume and not seen and not os.environ.get("RESUME_FRESH_OK"):
+        sib = _sibling_results(out, camp["prefix"], key)
+        if sib:
+            raise SystemExit(
+                "CRITICAL: the expected output file has no finished rows, but "
+                "this campaign+arm already has results under a DIFFERENT "
+                "name:\n" + "".join(f"    {p}\n" for p in sib)
+                + f"    expected: {out}\n"
+                "A drifted name component (budget/mrl/chunk tag) would "
+                "silently re-run every finished row of a multi-day campaign. "
+                "If a fresh pass at these settings is REALLY wanted, set "
+                "RESUME_FRESH_OK=1 (or pass resume=False).")
     todo = [r for r in rows if r["name"] not in seen]
 
     auto = n_workers in (None, "auto")

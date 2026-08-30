@@ -1582,3 +1582,71 @@ def test_verify_is_read_only(tmp_path):
     p = _verify(tmp_path, break_job=lambda s: broken)
     assert p.returncode != 0
     assert open(job).read() == broken      # asserted, never repaired
+
+
+# -------------------------------------------------- the filename-drift guard
+def _no_rows(*a, **kw):
+    return iter(())
+
+
+def test_a_drifted_filename_is_refused_not_silently_rerun(tmp_path, monkeypatch):
+    """The worst silent failure this pipeline has: a name component drifts,
+    resume sees an empty history, and a multi-day campaign redoes every
+    finished row while looking healthy. The guard turns it CRITICAL."""
+    import experiments.search.run_leftovers_5m as r5
+    monkeypatch.setattr(r5, "run_rows_dynamic", _no_rows)
+    monkeypatch.delenv("RESUME_FRESH_OK", raising=False)
+    sib = tmp_path / "u124_10m_s20_mk2_b9999999_mrl64.jsonl"
+    sib.write_text(json.dumps({"name": "aca_0", "solved": True}) + "\n")
+    with pytest.raises(SystemExit, match="DIFFERENT"):
+        r5.run_arm_5m("s20_mk2", str(tmp_path), campaign="u124",
+                      log=lambda m: None)
+
+
+def test_the_guard_ignores_smoke_files_and_respects_the_escape_hatch(
+        tmp_path, monkeypatch):
+    import experiments.search.run_leftovers_5m as r5
+    monkeypatch.setattr(r5, "run_rows_dynamic", _no_rows)
+    smoke = tmp_path / "u124_10m_s20_mk2_b2000_mrl64.jsonl"
+    smoke.write_text(json.dumps({"name": "aca_0", "solved": True}) + "\n")
+    r5.run_arm_5m("s20_mk2", str(tmp_path), campaign="u124",
+                  log=lambda m: None)          # smoke sibling: no refusal
+
+    sib = tmp_path / "u124_10m_s20_mk2_b9999999_mrl64.jsonl"
+    sib.write_text(json.dumps({"name": "aca_0", "solved": True}) + "\n")
+    monkeypatch.setenv("RESUME_FRESH_OK", "1")
+    r5.run_arm_5m("s20_mk2", str(tmp_path), campaign="u124",
+                  log=lambda m: None)          # explicit escape: no refusal
+
+
+def test_the_guard_stands_down_once_the_expected_file_has_rows(
+        tmp_path, monkeypatch):
+    """Only an EMPTY expected history is suspicious -- an established run
+    with a stray sibling (an old smoke at real budget, say) must not be
+    blocked from resuming."""
+    import experiments.search.run_leftovers_5m as r5
+    monkeypatch.setattr(r5, "run_rows_dynamic", _no_rows)
+    monkeypatch.delenv("RESUME_FRESH_OK", raising=False)
+    sib = tmp_path / "u124_10m_s20_mk2_b9999999_mrl64.jsonl"
+    sib.write_text(json.dumps({"name": "aca_0", "solved": True}) + "\n")
+    real = tmp_path / "u124_10m_s20_mk2_b10000000_mrl64.jsonl"
+    real.write_text(json.dumps({"name": "aca_1", "solved": True}) + "\n")
+    r5.run_arm_5m("s20_mk2", str(tmp_path), campaign="u124",
+                  budget=10_000_000, log=lambda m: None)
+
+
+def test_the_completion_beacon_is_heredoc_safe(tmp_path):
+    """The beacon line must not reintroduce the splice class: no backticks,
+    no unescaped substitution, and always || true so a box without gcloud
+    still completes cleanly."""
+    out = str(tmp_path)
+    p = _remote("job", OUT=out, CAMPAIGN="u124")
+    assert p.returncode == 0, p.stderr
+    job = open(os.path.join(out, "_job.sh")).read()
+    assert "gcloud logging write" in job
+    assert "CAMPAIGN COMPLETE u124" in job
+    assert "|| true" in job.split("gcloud logging write")[1]
+    v = _remote("verify", OUT=out, CAMPAIGN="u124",
+                UNIT_FILE=os.path.join(out, "absent.service"))
+    assert "FAIL -- no spliced command output" not in v.stdout
+    assert "FAIL -- no backticks" not in v.stdout

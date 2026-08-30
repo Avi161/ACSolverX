@@ -127,6 +127,12 @@ for a in $ARMS; do
       --chunks 1 --chunk-index 1 --out-dir "$OUT"
 done
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
+# Best-effort beacon into Cloud Logging so an alert policy can email the
+# owner at completion even if no session is watching. Harmless where
+# gcloud or the logWriter role is absent. (Heredoc rule: no backticks, no
+# unescaped command substitution.)
+command -v gcloud >/dev/null 2>&1 && gcloud logging write ac19-campaign \\
+    "CAMPAIGN COMPLETE $CAMPAIGN" --severity=NOTICE 2>/dev/null || true
 JOB
   chmod +x "$OUT/_job.sh"
 }
