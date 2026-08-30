@@ -495,6 +495,13 @@ lower central recurrence then gives \(\gamma_k=\gamma_2\) for every
 \(\mathbb Z\); the certified nonabelian \(A_5\) quotient shows that the
 nilpotent residual is genuinely nontrivial.
 
+Section 6.70 identifies the universal metabelian boundary.  In the mapping
+torus (418), unimodularity of \(M-I\) forces \(G_-'=F_4\) and
+\(G_-''=F_4'\).  Hence the base-abelianized system of Section 6.66 is exactly
+the universal metabelian quotient, not a smaller linear specialization.  Its
+explicit solutions show that no metabelian quotient can obstruct this signed
+skeleton.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8266,6 +8273,67 @@ the \(A_5\) certificate demonstrates, and it gives no free-group solution of
 sign patterns, the terminal pair orbit, MMS02 bridge, stable AK(3), ordinary
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.70. The universal metabelian lift shadow is solvable
+
+Return to the mapping-torus decomposition
+
+\[
+ G_-=H\rtimes_\phi\langle y\rangle,
+ \qquad H=F(d_{-2},d_{-1},d_0,d_1).
+\]
+
+The quotient by \(H\) is infinite cyclic, so \(G_-^{\prime}\le H\).
+Conversely, \(H^{\prime}\le G_-^{\prime}\), and the commutators
+
+\[
+ [y,h]=\phi(h)h^{-1}
+\]
+
+have images \((M-I)[h]\) in \(H^{\rm ab}\).  Equation (428) says that
+\(M-I\in\operatorname{GL}_4(\mathbb Z)\).  These commutator images therefore
+generate all of \(H^{\rm ab}\).  Since \(H^{\prime}\le G_-^{\prime}\), it
+follows that
+
+\[
+ \boxed{G_-^{\prime}=H.}
+\tag{441}
+\]
+
+Taking one more derived subgroup gives
+
+\[
+ \boxed{G_-^{\prime\prime}=H^{\prime}.}
+\tag{442}
+\]
+
+Thus the universal metabelian quotient is exactly
+
+\[
+ \boxed{
+ G_-/G_-^{\prime\prime}\cong
+ \mathbb Z^4\rtimes_M\mathbb Z.
+ }
+\tag{443}
+\]
+
+Abelianizing the free base in (426) is therefore precisely passage to (443).
+The formulas (430), (432) construct a solution there for arbitrary
+\(m,r,n\), not merely after a further scalar specialization.
+
+**Theorem 6.64 (complete metabelian can-fail control).**  The signed
+five-multiplication lift gate (410) is solvable in the universal metabelian
+quotient \(G_-/G_-^{\prime\prime}\).  Consequently no homomorphism from
+\(G_-\) to a metabelian group can obstruct this signed skeleton: every such
+homomorphism factors through (443), and the displayed solution maps forward.
+
+This is not a solution in \(G_-\).  The finite quotient \(A_5\) does not
+factor through the metabelian quotient and already rejects the direct-
+conjugacy class-two solution.  A useful quotient obstruction to (426) must
+therefore retain genuinely nonmetabelian information and its correlation
+with the \(A_5\) data.  Other sign patterns, the terminal pair orbit, MMS02
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8475,7 +8543,10 @@ The logical gates remain separate:
 59. the lower central series stabilizes at the nontrivial subgroup
     \(\gamma_2(G_-)\), so every nilpotent quotient factors through
     \(\mathbb Z\); nonnilpotent and literal gates remain open; and
-60. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+60. the universal metabelian quotient is \(\mathbb Z^4\rtimes_M\mathbb Z\),
+    and the signed lift system is solvable there; any useful quotient
+    obstruction must retain nonmetabelian information; and
+61. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8683,3 +8754,9 @@ Theorem 6.63 then removes that apparent class-three gate.  Equality
 \(G_-\) is cyclic.  The nonabelian \(A_5\) quotient proves that this stable
 nilpotent residual is nontrivial.  Hence further nilpotent depth cannot decide
 the lift system; the next useful detector must be nonnilpotent.
+Theorem 6.64 sharpens that boundary.  Unimodularity of \(M-I\) gives
+\(G_-^{\prime}=F_4\) and \(G_-^{\prime\prime}=F_4^{\prime}\), so the quotient
+evaluated in Section 6.66 is the universal metabelian quotient
+\(\mathbb Z^4\rtimes_M\mathbb Z\).  The signed lift system is solvable there.
+Thus neither nilpotent nor metabelian quotients can obstruct this skeleton;
+the next useful quotient must be genuinely nonmetabelian.
