@@ -132,11 +132,18 @@ CAMPAIGNS = {
         "ids_stem": "u124_10m",       # never clobbers the AC19 ids files
         "checkpoints": (1_000_000, 5_000_000, 10_000_000),
         # Reservation floor, in discovered states per popped node. AC19's
-        # four fattest rows measured ~99 (463.8M states before 5M pops --
-        # est_states under-predicted them by ~1.6x and each paid a ~73 GB
-        # grow transient for it). 110 = measured worst + 10%. At 10M the
-        # grow transient would be ~145 GB, so preventing it IS the sizing.
-        "states_per_node": 110,
+        # four fattest rows measured ~99, and 110 (that worst + 10%) shipped
+        # as the floor -- then u124's own first two rows beat it: both
+        # exhausted the 1.10B reservation before budget (aca_0 ~111/node at
+        # 99% of 10M, aca_1 ~123/node at 90%) and died in the grow doubling,
+        # whose allocation cannot fit under the child's RLIMIT_AS however
+        # much physical RAM is free. 150 = the worst measured u124 rate
+        # + 22%; the 24B->32B width-repack transient (~226 GB of address
+        # space at this reserve) bounds the floor at ~160 on a 246 GB box,
+        # so this is the margin the hardware has. A row beyond 150/node
+        # still dies a clean MemoryError row that resume retries -- on a
+        # bigger machine if need be.
+        "states_per_node": 150,
     },
 }
 

@@ -1463,7 +1463,12 @@ def test_a_measured_rate_floor_beats_the_est_curve():
 def test_the_campaigns_carry_their_reservation_rates():
     from experiments.search.run_leftovers_5m import CAMPAIGNS
     assert CAMPAIGNS["ac19"]["states_per_node"] is None   # live run unchanged
-    assert CAMPAIGNS["u124"]["states_per_node"] == 110    # measured 99 + 10%
+    # u124's own first two rows measured ~111 and ~123 states/node -- both
+    # exhausted the 110-rate reservation before budget and died in the grow
+    # doubling under RLIMIT_AS. The floor must clear every rate a u124 row
+    # has actually demonstrated; lowering it below one re-runs those deaths.
+    assert CAMPAIGNS["u124"]["states_per_node"] == 150
+    assert CAMPAIGNS["u124"]["states_per_node"] > 123
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1756,9 +1761,9 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
                 PLAN_GB="251", PLAN_CORES="32")
     assert p.returncode == 0, p.stderr
-    assert "reserve_states  : 1,100,016,900 (full)" in p.stdout
+    assert "reserve_states  : 1,500,016,900 (full)" in p.stdout
     assert "allocation-backed worst" in p.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr
-    assert "1,100,016,900" not in q.stdout      # ac19 sizing unchanged
+    assert "1,500,016,900" not in q.stdout      # ac19 sizing unchanged
