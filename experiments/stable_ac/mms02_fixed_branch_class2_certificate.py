@@ -29,6 +29,13 @@ EXPECTED_D_VECTOR: Vector4 = (-5, 12, -16, 2)
 EXPECTED_D_WEDGE: Wedge6 = (-6, -10, -8, 30, 22, -44)
 EXPECTED_T_VECTOR: Vector4 = (-3, 10, -17, 9)
 EXPECTED_RESIDUAL: Wedge6 = (-11, 25, -24, -31, 55, -62)
+EXPECTED_RAW_FIXED_S_VECTOR: Vector4 = (2, -5, 8, -1)
+EXPECTED_RAW_FIXED_S_WEDGE: Wedge6 = (-10, 16, -2, -40, 5, -8)
+EXPECTED_RAW_FIXED_C_VECTOR: Vector4 = (-6, 16, -23, 7)
+EXPECTED_RAW_FIXED_C_WEDGE: Wedge6 = (-4, -14, 4, 30, -6, -1)
+EXPECTED_RAW_FIXED_D_WEDGE: Wedge6 = (10, -42, 56, 54, -130, 164)
+EXPECTED_RAW_FIXED_T_WEDGE: Wedge6 = (-26, 57, 1, -86, 0, 89)
+EXPECTED_RAW_FIXED_LITERAL_DEFECT_LENGTH = 5806
 
 
 def add_vector(left: Vector4, right: Vector4) -> Vector4:
@@ -129,6 +136,57 @@ def phi_coordinate(coordinate: ClassTwoCoordinate) -> ClassTwoCoordinate:
     )
 
 
+def multiply_coordinates(
+    left: ClassTwoCoordinate,
+    right: ClassTwoCoordinate,
+) -> ClassTwoCoordinate:
+    return (
+        add_vector(left[0], right[0]),
+        add_wedge(add_wedge(left[1], right[1]), wedge(left[0], right[0])),
+    )
+
+
+def invert_coordinate(value: ClassTwoCoordinate) -> ClassTwoCoordinate:
+    return scale_vector(-1, value[0]), scale_wedge(-1, value[1])
+
+
+def basis_power_word(index: int, exponent: int) -> IndexedWord:
+    sign = 1 if exponent >= 0 else -1
+    return tuple((index, sign) for _ in range(abs(exponent)))
+
+
+def word_power(word: IndexedWord, exponent: int) -> IndexedWord:
+    if exponent < 0:
+        return word_power(inverse_indexed_word(word), -exponent)
+    return multiply_words(*(word for _ in range(exponent))) if exponent else ()
+
+
+def realize_class_two_coordinate(coordinate: ClassTwoCoordinate) -> IndexedWord:
+    vector, omega = coordinate
+    result = multiply_words(
+        *(
+            basis_power_word(index, exponent)
+            for index, exponent in zip(BASIS, vector, strict=True)
+        )
+    )
+    ordered_omega = class_two_coordinate(result)[1]
+    correction = tuple(omega[index] - ordered_omega[index] for index in range(6))
+    if any(value % 2 for value in correction):
+        raise AssertionError("the doubled central coordinate has no integral word lift")
+    wedge_pairs = ((-2, -1), (-2, 0), (-2, 1), (-1, 0), (-1, 1), (0, 1))
+    for (left, right), doubled_power in zip(wedge_pairs, correction, strict=True):
+        commutator = multiply_words(
+            ((left, 1),),
+            ((right, 1),),
+            ((left, -1),),
+            ((right, -1),),
+        )
+        result = multiply_words(result, word_power(commutator, doubled_power // 2))
+    if class_two_coordinate(result) != coordinate:
+        raise AssertionError("the explicit class-two representative drifted")
+    return result
+
+
 def invariant(value: Wedge6) -> int:
     return value[1] + 3 * value[2] + value[4]
 
@@ -152,6 +210,21 @@ class FixedBranchClassTwoDecision:
     central_residual: Wedge6
     image_invariant_values: tuple[int, ...]
     residual_invariant: int
+    verdict: str
+
+
+@dataclass(frozen=True)
+class RawFixedBranchClassTwoWitness:
+    h_height: int
+    s_coordinate: ClassTwoCoordinate
+    commutator_coordinate: ClassTwoCoordinate
+    twisted_source_coordinate: ClassTwoCoordinate
+    conjugator_coordinate: ClassTwoCoordinate
+    target_coordinate: ClassTwoCoordinate
+    transported_endpoint_coordinate: ClassTwoCoordinate
+    dropped_conjugation_invariant: int
+    conjugator_word_length: int
+    literal_endpoint_defect_length: int
     verdict: str
 
 
@@ -262,6 +335,81 @@ def decide_fixed_branch_class_two() -> FixedBranchClassTwoDecision:
         image_invariant_values=image_invariants,
         residual_invariant=residual_invariant,
         verdict="CANONICAL_G_V_H_X_J_U_INVERSE_BRANCH_OBSTRUCTED_IN_BASE_CLASS_TWO",
+    )
+
+
+def construct_raw_fixed_branch_class_two_witness() -> RawFixedBranchClassTwoWitness:
+    a_word, b_word = EXPECTED_ENDPOINT_BASE_WORDS
+    a_sharp_word = phi_word(a_word)
+    commutator_word = multiply_words(
+        a_sharp_word,
+        phi_word(b_word),
+        phi_word(inverse_indexed_word(a_sharp_word)),
+        inverse_indexed_word(b_word),
+    )
+    commutator_coordinate = class_two_coordinate(commutator_word)
+    if commutator_coordinate != (EXPECTED_RAW_FIXED_C_VECTOR, EXPECTED_RAW_FIXED_C_WEDGE):
+        raise AssertionError("the simultaneous-gauge commutator coordinate drifted")
+
+    s_word = multiply_words(
+        *(basis_power_word(index, exponent) for index, exponent in zip(
+            BASIS, EXPECTED_RAW_FIXED_S_VECTOR, strict=True
+        ))
+    )
+    s_coordinate = class_two_coordinate(s_word)
+    if s_coordinate != (EXPECTED_RAW_FIXED_S_VECTOR, EXPECTED_RAW_FIXED_S_WEDGE):
+        raise AssertionError("the arbitrary-h base witness drifted")
+
+    phi_s_word = phi_word(s_word)
+    source_word = multiply_words(
+        a_sharp_word,
+        phi_s_word,
+        commutator_word,
+        inverse_indexed_word(phi_s_word),
+    )
+    source_coordinate = class_two_coordinate(source_word)
+    expected_source = (EXPECTED_D_VECTOR, EXPECTED_RAW_FIXED_D_WEDGE)
+    if source_coordinate != expected_source:
+        raise AssertionError("the arbitrary-h twisted source coordinate drifted")
+
+    conjugator_coordinate = (EXPECTED_T_VECTOR, EXPECTED_RAW_FIXED_T_WEDGE)
+    conjugator_word = realize_class_two_coordinate(conjugator_coordinate)
+    transported = multiply_coordinates(
+        multiply_coordinates(conjugator_coordinate, source_coordinate),
+        invert_coordinate(phi_coordinate(conjugator_coordinate)),
+    )
+    target_coordinate = class_two_coordinate(b_word)
+    if transported != target_coordinate:
+        raise AssertionError("the arbitrary-h class-two endpoint stopped solving")
+
+    literal_endpoint = multiply_words(
+        conjugator_word,
+        source_word,
+        inverse_indexed_word(phi_word(conjugator_word)),
+    )
+    literal_defect = multiply_words(inverse_indexed_word(b_word), literal_endpoint)
+    if len(literal_defect) != EXPECTED_RAW_FIXED_LITERAL_DEFECT_LENGTH:
+        raise AssertionError("the arbitrary-h literal can-fail control drifted")
+
+    transported_s_vector = matrix_vector(EXPECTED_RAW_FIXED_S_VECTOR)
+    dropped_invariant = invariant(
+        scale_wedge(2, wedge(transported_s_vector, EXPECTED_RAW_FIXED_C_VECTOR))
+    )
+    if dropped_invariant != 2:
+        raise AssertionError("the all-h can-fail control stopped detecting the conjugation term")
+
+    return RawFixedBranchClassTwoWitness(
+        h_height=-1,
+        s_coordinate=s_coordinate,
+        commutator_coordinate=commutator_coordinate,
+        twisted_source_coordinate=source_coordinate,
+        conjugator_coordinate=conjugator_coordinate,
+        target_coordinate=target_coordinate,
+        transported_endpoint_coordinate=transported,
+        dropped_conjugation_invariant=dropped_invariant,
+        conjugator_word_length=len(conjugator_word),
+        literal_endpoint_defect_length=len(literal_defect),
+        verdict="RAW_FIXED_G_V_J_U_INVERSE_FAMILY_HAS_A_BASE_CLASS_TWO_SOLUTION",
     )
 
 

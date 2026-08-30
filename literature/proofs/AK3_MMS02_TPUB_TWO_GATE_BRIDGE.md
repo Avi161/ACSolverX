@@ -564,6 +564,14 @@ states that this presentation is not necessarily stably AC-trivial.  Thus
 the published composition retains exactly the missing stable
 trivialization of \(P_{25}\); it neither proves nor disproves stable AK(3).
 
+Section 6.78 returns to the raw fixed commutator branch of Section 6.73 and
+allows its remaining conjugator to vary.  The canonical choice \(h=X\)
+remains obstructed, but one explicit \(h=(s,-1)\) and one integral
+twisted-conjugator coordinate solve the endpoint equation in
+\(H/\gamma_3H\).  Thus the canonical covector cannot be extended to an
+all-\(h\) class-two obstruction.  The witness is not a word solution in
+\(H\) and supplies no lift of the signed skeleton.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -9067,6 +9075,109 @@ or decide another stable representative.  The direct MMS02 bridge, tagged
 Peiffer gate, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.78. Arbitrary \(h\) defeats the canonical class-two obstruction
+
+Keep the raw substitutions \(g=V\) and \(j=U^{-1}\) from (451).  The
+simultaneous \(y^{-2}\) gauge used in Section 6.73 transports them faithfully
+to
+
+\[
+ U^\sharp=(\phi(A_U),1),\qquad
+ V^\sharp=(A_V,1),\qquad
+ C^\sharp=[U^\sharp,V^\sharp]=(\widehat C,0).
+\tag{487}
+\]
+
+This is not the independently normalized pair
+\((A_Uy,A_Vy)\) with the substitutions reset to
+\(g=V,j=U^{-1}\); resetting them would define a different branch.
+
+Write the remaining conjugator as \(h=(s,r)\).  The mapping-torus law (421)
+gives
+
+\[
+ D_{s,r}
+ =\phi(A_U)\phi(s)\phi^{r+1}(\widehat C)\phi(s)^{-1},
+ \qquad
+ A_V=tD_{s,r}\phi(t)^{-1}.
+\tag{488}
+\]
+
+The second equation is again equivalent to endpoint conjugacy, because its
+conjugator height can be removed by the normalization before (425).
+
+Now take
+
+\[
+ r=-1,\qquad
+ s=d_{-2}^{2}d_{-1}^{-5}d_0^{8}d_1^{-1}.
+\tag{489}
+\]
+
+In the doubled coordinates (460), literal word collection and the nonlinear
+monodromy (462) give
+
+\[
+\begin{array}{c|c|c}
+ &v&\Omega\\ \hline
+ s&(2,-5,8,-1)&(-10,16,-2,-40,5,-8)\\
+ \widehat C&(-6,16,-23,7)&(-4,-14,4,30,-6,-1)\\
+ D_{s,-1}&(-5,12,-16,2)&(10,-42,56,54,-130,164).
+\end{array}
+\tag{490}
+\]
+
+Choose the integral class-two element \(t\) with
+
+\[
+ [t]=(-3,10,-17,9),\qquad
+ \Omega_t=(-26,57,1,-86,0,89).
+\tag{491}
+\]
+
+The parity conditions for doubled coordinates hold; the focused certificate
+also constructs a literal 947-letter representative of this coordinate.
+Direct BCH multiplication then yields
+
+\[
+ \bigl([t],\Omega_t\bigr)
+ \bigl([D_{s,-1}],\Omega_{D_{s,-1}}\bigr)
+ \phi\bigl([t],\Omega_t\bigr)^{-1}
+ =\bigl((1,-2,2,1),(0,4,-3,-6,6,-6)\bigr)
+ =(A_V,\Omega_{A_V}).
+\tag{492}
+\]
+
+This does not contradict Theorem 6.67.  The canonical choice \(h=X\) has
+the same exponent vector for its twisted source but the different central
+coordinate
+\((-6,-10,-8,30,22,-44)\), whose residual has covector value eight.
+For (489), the conjugation term discarded by a putative uniform argument is
+
+\[
+ 2M[s]\wedge[\widehat C],\qquad
+ \lambda\bigl(2M[s]\wedge[\widehat C]\bigr)=2,
+\tag{493}
+\]
+
+and it changes the central residual into an element of
+\(\operatorname{im}(I-L)\).
+
+**Theorem 6.72 (raw fixed-family class-two can-fail control).**  The raw
+fixed substitutions \(g=V,j=U^{-1}\) admit a solution of their endpoint
+equation in \((H/\gamma_3H)\rtimes_\phi\mathbb Z\) when \(h\) is allowed to
+vary.  Consequently the covector obstruction of Theorem 6.67 is specific to
+the canonical \(h=X\) source and cannot obstruct the complete all-\(h\)
+family.
+
+The 947-letter word realizes only the class-two coordinate of \(t\); direct
+free reduction of the corresponding endpoint defect is nonempty.  The
+theorem therefore gives no solution in \(H\), \(G_-\), the five-variable
+system (426), another signed skeleton, the MMS02 bridge, stable AK(3),
+ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.  No further
+nilpotent ladder is opened: a continuation of this branch must attack the
+literal or nonnilpotent residual.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -9305,7 +9416,11 @@ The logical gates remain separate:
     \(P_{25}\sim_{\rm AC}\operatorname{AK}(3)\), but the cited MMS02 stable
     first leg uses the misprinted non-Wirtinger corridor and is explicitly
     not supplied by the corrected Appendix F; and
-68. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+68. the raw fixed \(g=V,j=U^{-1}\) family has a class-two endpoint solution
+    for one explicit noncanonical \(h\), so the canonical \(h=X\) covector
+    does not extend uniformly; this quotient witness is not a literal lift;
+    and
+69. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -9575,3 +9690,9 @@ the corrected Shehper Appendix F says that the resulting presentations are
 not necessarily stably AC-trivial.  Thus stable triviality of \(P_{25}\)
 remains the missing premise; the published composition does not close stable
 AK(3), and the verified ordinary path remains valid.
+Theorem 6.72 gives the required can-fail control for the canonical
+class-two branch.  The raw fixed substitutions \(g=V,j=U^{-1}\), with
+arbitrary \(h\), do have one explicit solution in
+\((H/\gamma_3H)\rtimes\mathbb Z\).  The canonical \(h=X\) obstruction remains
+valid, but it cannot be promoted to the whole fixed family; the exhibited
+coordinate is not a free-group solution.
