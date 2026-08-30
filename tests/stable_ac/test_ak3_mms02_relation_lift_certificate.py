@@ -1086,6 +1086,26 @@ def test_mms02_actual_base_is_a_torsion_free_one_relator_group():
         )
 
 
+def test_mms02_actual_base_relator_is_not_primitive():
+    renamed_relator = canonical_cyclic_word(
+        "YZYzYzYZyzyZYzYzYZYzyZyZyz".translate(
+            str.maketrans({"y": "x", "Y": "X", "z": "y", "Z": "Y"})
+        )
+    )
+    reducing_automorphism = {"x": "xy", "y": "y"}
+    minimum = canonical_cyclic_word(
+        apply_images(renamed_relator, reducing_automorphism)
+    )
+
+    assert len(renamed_relator) == 26
+    assert minimum == "XXXYYXyxxxyXYYXXXYxyyxY"
+    assert len(minimum) == 23
+    assert min(
+        len(canonical_cyclic_word(apply_images(minimum, images)))
+        for images in rank_two_whitehead_automorphisms()
+    ) == len(minimum)
+
+
 def test_mms02_canonical_lift_base_pairs_fail_the_cyclic_module_unit_test():
     data = relation_lift_data()
     branch_a_diagonal_coefficients = (

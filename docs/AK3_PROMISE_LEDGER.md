@@ -121,6 +121,16 @@ finite quotient do not close a route.
   specific `Q` is nonfree or that `ZG_-` fails cancellation; a positive proof
   must use the actual group or coefficient matrix, without reopening the
   frozen full-coordinate expansion.
+- **The specific kernel is one named syzygy:** writing the second coordinates
+  of `[E_B]` and `[H_B v^-1]` as `beta,delta`, module generation is exactly
+  `S beta + S delta = S` and `Q` is exactly the kernel of
+  `(r,s) -> r beta + s delta`. The cyclic image of `beta` is the nonunit
+  `p_B(t)`, so `beta` is not a unit. If `delta` is a unit, its displayed
+  syzygy vector freely generates `Q` and closes both relation-module gates;
+  only its cyclic image `t` is currently known. A complete rank-two
+  Whitehead check also proves the actual base relator is nonprimitive, hence
+  `G_-` is not its cyclic shadow. Do not claim `delta` is a unit, `Q` is free,
+  or either affine/Peiffer lift is supplied.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
