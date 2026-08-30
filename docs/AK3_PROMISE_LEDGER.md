@@ -77,8 +77,12 @@ finite quotient do not close a route.
   replacing the first two rows by
   `W1*W3^-1,W2*W3^-1`, has lengths `(154,56)`, minor triple `(-1,1,-1)`, and
   complete Whitehead floor 192.  It too is nonprimitive.  Freeze these two
-  displayed pivots; do not scan prefixes, arbitrary pairs, or nearby shears.
-  Alternative quotient paths and the unrestricted bridge remain open.
+  displayed pivots.  The three individual endpoint rows have complete
+  Whitehead floors 328, 232, and 181, so no row permits direct ambient
+  straightening followed by destabilization.  Freeze the complete direct
+  endpoint lane; do not scan prefixes, arbitrary pairs, or nearby shears.
+  Paths which first change the rows, alternative quotient paths, and the
+  unrestricted bridge remain open.
 - **Closure reduced to two named word problems:** restoring the active base
   residual first makes the kill-word residual automatic. Both branches have
   the same defect `d=(zYX)H`: test `d=1` in `<x,y,z | B,AH>` or in

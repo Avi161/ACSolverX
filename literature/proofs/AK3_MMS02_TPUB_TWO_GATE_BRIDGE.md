@@ -177,6 +177,12 @@ the first two rows.  The resulting pair is still unimodular, but its complete
 Whitehead floor is 192.  Thus both displayed endpoint pivots fail; arbitrary
 pivots and other paths are not classified.
 
+Section 6.32 completes the direct rank-reduction audit of that endpoint.  Its
+three individual rows have complete Whitehead floors 328, 232, and 181, so no
+displayed row is primitive.  Together with Sections 6.30--6.31 this freezes
+direct ambient straightening and destabilization of the endpoint, not paths
+which first change its rows.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3783,6 +3789,45 @@ or the unrestricted bridge.  This endpoint lane is frozen here: no further
 pivot, prefix, or shear ledger is opened.  Neither theorem proves or
 disproves $T_{\rm pub}$, stable AK(3), or ordinary AK(3).
 
+### 6.32. No row of the published-kill endpoint is primitive
+
+There is one exhaustive direct rank-reduction question left at (201): whether
+one displayed row can be sent to a basis letter and then destabilized.  Apply
+the two Whitehead automorphisms (205) to each single cyclic word.  The length
+descents are
+
+\[
+ \begin{aligned}
+ |W_1|:& 349\longrightarrow329\longrightarrow328,\\
+ |W_2|:& 251\longrightarrow236\longrightarrow232,\\
+ |W_3|:& 195\longrightarrow183\longrightarrow181.
+ \end{aligned}
+ \tag{211}
+\]
+
+At each of the three endpoints, all ninety nonidentity second-kind
+rank-three Whitehead maps are nondecreasing: six preserve length and
+eighty-four increase it.  First-kind signed permutations preserve length.
+Whitehead's theorem therefore makes the three terminal values in (211) the
+global orbit minima.  Each is greater than one.
+
+The dependency-free checker replays (205) on all three rows from the fixed
+134-move endpoint, pins their endpoint hashes, and exhausts all ninety maps
+at each minimum.
+
+**Theorem 6.25 (direct SLP endpoint rank reduction is closed).**  None of
+$W_1,W_2,W_3$ is primitive in $F(x,y,z)$.  Hence the exact endpoint (201)
+cannot be rank-reduced by first applying one simultaneous ambient
+automorphism to make a displayed row a basis generator and then
+destabilizing that row.
+
+The theorem does not cover an AC path which changes the rows before seeking a
+primitive entry.  It does not classify other pairs or Nielsen combinations
+of the endpoint and does not obstruct another quotient path.  Together with
+Theorems 6.23--6.24 it terminates only the direct ambient endpoint lane.  No
+further endpoint, pivot, prefix, or shear ledger is opened.  The unrestricted
+$T_{\rm pub}$ bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3858,8 +3903,9 @@ The logical gates remain separate:
     unevaluated;
 23. the unique 134-move SLP replay on the published kill row has a unimodular
     endpoint, but both its canonical triangular pivot and its displayed
-    common-suffix difference pivot are nonprimitive; this closes only those
-    two simultaneous-straightening completions, not arbitrary pivots or paths;
+    common-suffix difference pivot are nonprimitive, and none of its three
+    rows is primitive; this closes direct simultaneous straightening and
+    one-row destabilization, not paths which first change the endpoint;
 24. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
 25. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
@@ -3876,6 +3922,6 @@ replacement for (135), and Theorem 6.21 refutes the remaining
 non-equivariant universal gate (141).  The affine-covector route is frozen;
 the full defect set $\mathcal D$ is not evaluated.  Theorem 6.22 also freezes
 the fixed-donor Hall--Witt route at a proved nonmembership; no higher
-commutator lane is opened.  Theorems 6.23--6.24 freeze the canonical and
-common-suffix pivots of the published-kill SLP endpoint without
-classifying arbitrary endpoint pivots.
+commutator lane is opened.  Theorems 6.23--6.25 freeze direct ambient
+straightening and rank reduction of the published-kill SLP endpoint without
+classifying paths which first change its rows.

@@ -962,3 +962,42 @@ def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
     assert min(difference_neighbor_totals) == 192
     assert difference_neighbor_totals.count(192) == 6
     assert sum(total > 192 for total in difference_neighbor_totals) == 84
+
+
+def test_published_kill_slp_replay_has_no_primitive_row():
+    rows = replay_rank_three_words(V)
+    maps = (
+        {"x": "x", "y": "xy", "z": "z"},
+        {"x": "x", "y": "y", "z": "zy"},
+    )
+    certificates = (
+        (
+            (349, 329, 328),
+            "c84243962616f210689d10c4f1e0a965548c8b7d97ad1c189edab0147096eb60",
+        ),
+        (
+            (251, 236, 232),
+            "814aeb93cba36991a5d57544b855b1fd04bdc3d2c62f52f377852cbcbd3cde5d",
+        ),
+        (
+            (195, 183, 181),
+            "0ecb301a5ee0f61ac6d1a3a3c5a09b9db32b795774669e3d47f0daa513091e71",
+        ),
+    )
+    automorphisms = rank_three_whitehead_automorphisms()
+    for word, (expected_totals, expected_hash) in zip(rows, certificates):
+        current = canonical_cyclic_word(word)
+        totals = [len(current)]
+        for images in maps:
+            current = canonical_cyclic_word(apply_images(current, images))
+            assert len(current) < totals[-1]
+            totals.append(len(current))
+        assert tuple(totals) == expected_totals
+        assert sha256(current.encode()).hexdigest() == expected_hash
+        neighbor_lengths = tuple(
+            len(canonical_cyclic_word(apply_images(current, images)))
+            for images in automorphisms
+        )
+        assert min(neighbor_lengths) == len(current)
+        assert neighbor_lengths.count(len(current)) == 6
+        assert sum(length > len(current) for length in neighbor_lengths) == 84
