@@ -1113,3 +1113,54 @@ def test_the_job_logs_unbuffered_so_tail_actually_shows_heartbeats(tmp_path):
     _remote("job", OUT=str(out))
     assert "export PYTHONUNBUFFERED=1" in (out / "_job.sh").read_text()
     assert "Environment=PYTHONUNBUFFERED=1" in open(REMOTE_SH).read()
+
+
+# ---------------------------------------------------------------------------
+# Where resident memory actually goes -- operator-measured on the live run.
+# The width change only shrinks the arena, which is ~25% of RSS; the two
+# structures below dominated and neither was load-bearing.
+# ---------------------------------------------------------------------------
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_an_explicit_reservation_is_honored_as_is_not_reslacked():
+    """plan_memory passes est*1.5; the solver multiplied by 1.5 AGAIN, and
+    states_cap 2.25x est pushed the hash table across a power-of-two boundary
+    to 8 GiB resident per worker (operator-measured ~19.6 GiB/worker where the
+    width math predicted far less)."""
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    reserve = 463_821_928                       # the real 5M plan_memory value
+    s = HCompactSolver("YYXXyxx", "YYxYxxyXYX", max_nodes=1000,
+                       max_relator_length=64, reserve_states=reserve)
+    assert s.states_cap == reserve + 4 * 65 ** 2
+    assert s.tcap * 4 == 2 ** 32, "table should be 2^30 slots (4 GiB), not 2^31"
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_parent_array_is_not_written_at_init():
+    """np.full writes its fill value into every page -- 2.6 GiB resident at
+    init for a 5M reservation. Only the root's -1 is ever read as the walk
+    terminator; every other entry is written at discovery first."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    s = HCompactSolver("YYXXyxx", "YYxYxxyXYX", max_nodes=1000,
+                       max_relator_length=64, track_path=True)
+    assert s.parent[0] == -1
+    src = open(os.path.join(ROOT, "experiments", "heuristic_search", "core",
+                            "hcompact.py")).read()
+    assert "np.full(m, -1" not in src
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_reservation_size_never_changes_the_search():
+    """The table's slot mapping and the grow schedule both move with the
+    reservation; no returned field may observe either."""
+    import json as _json
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.search.run_leftovers_1m import S20_MK2
+    base = greedy_search_hcompact("YYXYYXXXyX", "YYXYXXXYYXXXX", 25_000,
+                                  max_relator_length=64, config=S20_MK2,
+                                  track_path=True)
+    for rs in (1_500, 2_000_000):
+        got = greedy_search_hcompact("YYXYYXXXyX", "YYXYXXXYYXXXX", 25_000,
+                                     max_relator_length=64, config=S20_MK2,
+                                     track_path=True, reserve_states=rs)
+        assert _json.dumps(got, sort_keys=True) == _json.dumps(base, sort_keys=True), rs

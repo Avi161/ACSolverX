@@ -421,8 +421,15 @@ class HCompactSolver:
         self.w = max(1, w0)
         self.rw = 2 * self.w
 
-        want = reserve_states or est_states(max_nodes)
-        n = max(1024, int(want * _RESERVE_SLACK)) + 4 * (self.cap + 1) ** 2
+        # An EXPLICIT reservation is honored as-is: the caller (plan_memory)
+        # already applied slack, and re-applying it here made states_cap
+        # 2.25x the estimate -- which pushed the hash table across a
+        # power-of-two boundary to 8 GiB resident per worker at 5M.
+        if reserve_states:
+            n = max(1024, int(reserve_states)) + 4 * (self.cap + 1) ** 2
+        else:
+            n = (max(1024, int(est_states(max_nodes) * _RESERVE_SLACK))
+                 + 4 * (self.cap + 1) ** 2)
         self._alloc(n)
         self.solved_id = None
 
@@ -440,11 +447,17 @@ class HCompactSolver:
         # a run that does not want paths allocates nothing and is byte-for-byte
         # the search it always was.
         m = n if self.track_path else 1
-        self.parent = np.full(m, -1, dtype=np.int32)
+        # np.empty, NOT np.full: full() writes the fill value into every page
+        # (2.6 GiB resident at init for a 5M reservation). Only the root's -1
+        # is ever read as a walk terminator; every other entry is written at
+        # discovery before the path walk can reach it.
+        self.parent = np.empty(m, dtype=np.int32)
         self.pmove = np.zeros((m, 4), dtype=np.int8)
         self.tcap = _next_pow2(2 * n)
         self.table = np.zeros(self.tcap, dtype=np.int32)
-        if old is not None:
+        if old is None:
+            self.parent[0] = -1
+        else:
             k = old["n"]
             self.arena[:k * self.rw] = old["arena"][:k * self.rw]
             self.len1[:k] = old["len1"][:k]

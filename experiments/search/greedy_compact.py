@@ -455,10 +455,15 @@ class GreedyCompactSolver:
             reduce_relator_nj(str_to_arr(r2), cyclic_reduce),
         )
 
-        want = reserve_states or est_states(max_nodes)
-        # One expansion's worth of headroom, so _run_chunk's pre-pop check can
-        # never be unsatisfiable at the reservation size.
-        n = max(1024, int(want * _RESERVE_SLACK)) + 4 * (self.cap + 1) ** 2
+        # An EXPLICIT reservation is honored as-is -- the caller already chose
+        # its slack, and re-applying _RESERVE_SLACK here made states_cap 2.25x
+        # the estimate. The +4*(cap+1)^2 tail is one expansion's worth of
+        # headroom, so the pre-pop check can never be unsatisfiable.
+        if reserve_states:
+            n = max(1024, int(reserve_states)) + 4 * (self.cap + 1) ** 2
+        else:
+            n = (max(1024, int(est_states(max_nodes) * _RESERVE_SLACK))
+                 + 4 * (self.cap + 1) ** 2)
         self._alloc(n)
 
     def _alloc(self, n, old=None):
