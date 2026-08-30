@@ -520,6 +520,14 @@ for (413) is nonempty on that orbit.  Thus no alternate \(A_5\) quotient can
 obstruct this signed skeleton; other nonmetabelian groups and literal lifting
 remain open.
 
+Section 6.73 closes one canonical literal branch rather than another
+quotient family.  The substitutions \(g=V,h=X,j=U^{-1}\) make the second
+equation of (413) automatic and reduce the first to one twisted-conjugacy
+equation in \(F_4\).  Literal class-two collection forces the conjugator
+exponents and leaves a central residual on which an integral covector has
+value \(8\).  Thus that fixed branch fails already in
+\(H/\gamma_3(H)\); arbitrary substitutions remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8496,6 +8504,192 @@ nontrivial extension of \(A_5\), the literal free-group system (426), other
 sign patterns, the terminal pair orbit, the MMS02 bridge, stable AK(3),
 ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
 
+### 6.73. The canonical commutator branch fails in base class two
+
+There is a natural fixed substitution in (413).  Take
+
+\[
+ g=V,\qquad j=U^{-1}.
+\tag{451}
+\]
+
+The universal free identity
+
+\[
+ [V,U^{-1}]=U^{-1}[U,V]U
+\tag{452}
+\]
+
+makes the second equation of (413) automatic.  Choosing the remaining
+conjugator to be the original generator inverse \(h=X=x^{-1}\) leaves the
+single necessary equation
+
+\[
+ V\sim W_{\rm can}:=U\,{}^X[U,V].
+\tag{453}
+\]
+
+This branch has a short exact mapping-torus form.  Before the independent
+normalizations in (419), write
+
+\[
+ U_0=(A_0,1),\quad A_0=\phi^3(A_U),\qquad
+ V_0=(B_0,1),\quad B_0=\phi^2(A_V).
+\tag{454}
+\]
+
+The collapsed original generator \(x=\mathtt{zyZ}\) has
+
+\[
+ x=(P,1),\quad P=d_3d_4^{-1},\qquad
+ X=(K,-1),\quad K=d_3d_2^{-1},\qquad
+ \phi(K)=P^{-1}.
+\tag{455}
+\]
+
+Put
+
+\[
+ C_0=A_0\phi(B_0)\phi(A_0^{-1})B_0^{-1}.
+\tag{456}
+\]
+
+Direct use of (421) gives
+
+\[
+ W_{\rm can}=(D_0,1),\qquad
+ D_0=A_0P^{-1}C_0P.
+\tag{457}
+\]
+
+Conjugate both height-one elements by \(y^{-2}\).  With
+
+\[
+\begin{aligned}
+ Q&=d_2d_1^{-1},\\
+ \widehat C
+ &=\phi(A_U)\phi(A_V)\phi^2(A_U^{-1})A_V^{-1},\\
+ \widehat D
+ &=\phi(A_U)Q\widehat C Q^{-1},
+\end{aligned}
+\tag{458}
+\]
+
+equation (453) is equivalent, by the height-zero normalization proved before
+(425), to the single twisted-conjugacy equation
+
+\[
+ \boxed{A_V=t\widehat D\phi(t)^{-1}\qquad(t\in H).}
+\tag{459}
+\]
+
+This equation already fails in the free class-two quotient of \(H\).  Use
+the ordered basis
+
+\[
+ (e_1,e_2,e_3,e_4)=(d_{-2},d_{-1},d_0,d_1)
+\]
+
+and doubled BCH coordinates \((v,\Omega)\), with wedge order
+\((12,13,14,23,24,34)\), so that
+
+\[
+ (v,\Omega)(w,\Psi)
+ =(v+w,\Omega+\Psi+v\wedge w).
+\tag{460}
+\]
+
+Literal collection of the two endpoint words and of \(\phi(e_4)=d_2\)
+gives
+
+\[
+\begin{aligned}
+ \Omega_{A_U}&=(0,-2,1,2,-2,0),\\
+ \Omega_{A_V}&=(0,4,-3,-6,6,-6),\\
+ \Omega_{d_2}&=(-1,-1,-1,3,3,-5).
+\end{aligned}
+\tag{461}
+\]
+
+If \(L=\Lambda^2M\), then
+
+\[
+ L(a,b,c,d,e,f)
+ =(c,e,f,a-5c-3e,b+3c-3f,d+3e+5f),
+\]
+
+and the literal nonlinear monodromy is
+
+\[
+ \phi(v,\Omega)=(Mv,L\Omega+v_4\Omega_{d_2}).
+\tag{462}
+\]
+
+Collecting (458) with this formula gives
+
+\[
+ [\widehat D]=(-5,12,-16,2),\qquad
+ \Omega_{\widehat D}=(-6,-10,-8,30,22,-44).
+\tag{463}
+\]
+
+The exponent part of (459) uniquely forces
+
+\[
+ [t]=(-3,10,-17,9).
+\tag{464}
+\]
+
+Its central part is
+
+\[
+ (I-L)\Omega_t=R,\qquad
+ R=(-11,25,-24,-31,55,-62).
+\tag{465}
+\]
+
+The integral covector
+
+\[
+ \lambda(Y)=Y_{13}+3Y_{14}+Y_{24}
+\tag{466}
+\]
+
+kills \(\operatorname{im}(I-L)\).  Indeed, if
+\(Y=(I-L)(a,b,c,d,e,f)\), the three displayed coordinates are
+
+\[
+ Y_{13}=b-e,\qquad
+ Y_{14}=c-f,\qquad
+ Y_{24}=e-b-3c+3f.
+\]
+
+But
+
+\[
+ \lambda(R)=25+3(-24)+55=8\ne0.
+\tag{467}
+\]
+
+Thus (459) has no solution even after tensoring the central coordinates with
+\(\mathbb Q\), and therefore has no solution in \(H\).
+
+**Theorem 6.67 (canonical commutator-branch boundary).**  The explicit
+substitutions
+
+\[
+ g=V,\qquad h=X,\qquad j=U^{-1}
+\]
+
+do not solve (413).  Their remaining endpoint equation is obstructed in
+\(H/\gamma_3(H)\) by the covector (466).
+
+This closes one fully specified branch of the already isolated signed
+skeleton.  It does not obstruct another choice of \(g,h,j\), solve the full
+system (426), classify another sign pattern or longer path, close the
+terminal pair orbit or MMS02 bridge, or prove stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8716,7 +8910,10 @@ The logical gates remain separate:
     \(\operatorname{Aut}(A_5)\)-orbit of epimorphisms onto \(A_5\), and the
     exact lift predicate is soluble on it; this excludes only alternative
     quotients with target \(A_5\); and
-63. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+63. the canonical substitutions \(g=V,h=X,j=U^{-1}\) reduce to one
+    twisted-conjugacy equation whose base class-two residual has covector
+    value \(8\); this closes only that fixed branch of (413); and
+64. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8945,3 +9142,11 @@ commutator-product predicate (448)--(450) is soluble on that orbit.  Hence no
 alternate quotient onto \(A_5\) obstructs the signed skeleton; this does not
 address another nonmetabelian finite group, an extension of \(A_5\), or the
 literal equations in \(G_-\).
+Theorem 6.67 then evaluates one tempting literal substitution completely.
+The identity \([V,U^{-1}]=U^{-1}[U,V]U\) makes the second equation of
+(413) automatic for \(g=V,j=U^{-1}\).  Taking \(h=X\) leaves the single
+twisted-conjugacy equation (459).  Literal free-base class-two collection
+forces \([t]=(-3,10,-17,9)\), while the covector (466) kills every central
+correction and takes value \(8\) on the residual.  Hence that fixed branch
+fails, but arbitrary \(g,h,j\), the full signed system, and the MMS02 bridge
+remain open.
