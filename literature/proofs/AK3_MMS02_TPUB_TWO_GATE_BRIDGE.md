@@ -367,6 +367,16 @@ ascending kernel upgrade the base calculation to every conjugator in the HNN
 group.  Thus $Px$ is not conjugate to $x^{\pm1}$.  Ambient automorphisms,
 both-row AC paths, AC-triviality of $P_T$, the bridge, and AK(3) remain open.
 
+Section 6.55 replays the defining-row substitutions needed to use the HNN
+presentation stably.  Two literal substitutions produce the second HNN row,
+and five pinned pinches plus one shift produce $Px$.  A proved stable ambient
+automorphism then deletes the live stable letter and compresses the target to
+one exact rank-two base pair $(U,V)$.  Its complete ambient Whitehead floor is
+104, so direct basis transport and the classical length-at-most-twelve
+shortcut fail.  The consequence $P^{-1}Q$ is nonprimitive but is not a donor
+row.  AC row multiplication, the target orbit, the bridge, and AK(3) remain
+open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6497,6 +6507,159 @@ bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.  No new killer family or correction ledger is
 opened.
 
+### 6.55. Stable compression to one exact base pair
+
+The HNN form can be used for a stable compression, but the defining-row
+substitutions must be replayed rather than inferred from a presentation
+isomorphism.  Rename \(a=q\), use the proved substitution-and-removal
+expansion to adjoin \(p=x^{-1}qx\), and put
+
+\[
+ \begin{aligned}
+ R_1&=xpx^{-1}q^{-1},\\
+ R_2&=xqx^{-1}(pqp^{-1}q)^{-1},\\
+ R_3&=Px.
+ \end{aligned}
+ \tag{351}
+\]
+
+The defining row \(R_1\) rewrites the transformed target relator literally
+as
+
+\[
+ \begin{aligned}
+ \mathtt{qXQxqxQXXqx}
+ &\longrightarrow \mathtt{qPqxQXXqx}\\
+ &\longrightarrow \mathtt{qPqxQXp}
+ =p^{-1}R_2^{-1}p.
+ \end{aligned}
+ \tag{352}
+\]
+
+Thus two \(R_1\)-donor substitutions, one inversion, and one conjugation
+replace that row by \(R_2\).
+
+For the live row, conjugate \(e_t'\) by \(x^3\).  Put
+\(\rho(W)=xWx^{-1}\phi(W)^{-1}\).  The identities
+
+\[
+ \begin{aligned}
+ \rho(AB)
+ &=\rho(A)\,\phi(A)\rho(B)\phi(A)^{-1},\\
+ \rho(a^{-1})
+ &=\phi(a)^{-1}\rho(a)^{-1}\phi(a)
+ \end{aligned}
+ \tag{353}
+\]
+
+show inductively that every replacement \(xWx^{-1}\mapsto\phi(W)\) is a
+finite multiplication by conjugates of \(R_1^{\pm1},R_2^{\pm1}\).  The
+literal successive words, with pinch bases
+
+\[
+ q,\ q,\ \mathtt{QpqqPq},\ Q,\ \mathtt{QpQPq},
+\]
+
+are
+
+\[
+ \begin{array}{c|l}
+0&\mathtt{xxQXqXQxqxQxqXQxqXX}\\
+1&\mathtt{xxQXqXQxqxQxqXQpqPqX}\\
+2&\mathtt{xxQXqXQxqxQpqqPqX}\\
+3&\mathtt{xxQXqXQxpQPqpqPqpqqPq}\\
+4&\mathtt{xQpQPqXQxpQPqpqPqpqqPq}\\
+5&\mathtt{QpQQPQpqPxpQPqpqPqpqqPq}.
+ \end{array}
+ \tag{354}
+\]
+
+The last word is \(A_0xB_0\).  One final use of
+\(xB_0=\phi(B_0)x\) gives the pinned word \(Px\) in (341).  Equations
+(352)--(354) therefore give a literal stable-AC route from the cleaned
+target to the three rows (351).
+
+Now apply the stable ambient automorphism theorem, fixing \(p,q\) and
+sending
+
+\[
+ x\longmapsto P^{-1}x.
+ \]
+
+It sends \(R_3\) to \(x\).  The substitution-and-removal lemma deletes that
+generator--row pair and leaves
+
+\[
+ \boxed{
+ \begin{aligned}
+ U&=P^{-1}pPq^{-1},\\
+ V&=P^{-1}qP(pqp^{-1}q)^{-1}.
+ \end{aligned}
+ }
+ \tag{355}
+\]
+
+The reduced words have lengths \(54\) and \(51\).  Complete rank-two
+Whitehead descent has one shortening step, \(p\mapsto pq,\ q\mapsto q\),
+and then stops at
+
+\[
+ \boxed{\operatorname{AutFloor}(U,V)=104.}
+ \tag{356}
+\]
+
+A separately implemented peak-reduction engine gives the same floor.
+Hence no simultaneous ambient automorphism carries (355) to a basis pair
+or to total cyclic length at most twelve.  This says nothing about a path
+which first uses AC row multiplications.
+
+**Theorem 6.48 (terminal stable base-pair gate).**  The cleaned target
+presentation \(P_T\) is stably AC-equivalent to the explicit pair
+\((U,V)\) in (355).  Its direct ambient-automorphism and classical
+length-at-most-twelve shortcuts fail by (356).
+
+There is one exact consequence worth separating from the row statement.
+Define
+
+\[
+ \theta(W):=P^{-1}WP\phi(W)^{-1}.
+ \tag{357}
+\]
+
+Then \(\theta(p)=U,\ \theta(q)=V\), and \(\theta\) obeys the two cocycle
+identities in (353).  The literal preimage (348) gives
+
+\[
+ \theta(Q)=P^{-1}Q=:D
+ =\mathtt{QpQQPQpQPQQpQQPQQpQPqqpqPPqpqPqpqqPq}.
+ \tag{358}
+\]
+
+Thus \(D\in\operatorname{Ncl}(U,V)\), with a finite conjugate-product
+expansion obtained by reading the fifteen letters of \(Q\).  Complete
+singleton Whitehead reduction gives
+
+\[
+ \boxed{\operatorname{AutFloor}(D)=16,}
+ \tag{359}
+\]
+
+so \(D\) is nonprimitive.
+
+**Corollary 6.49 (consequence-versus-donor boundary).**  A route which first
+legally realizes \(D\) as one row cannot finish by primitive deletion of
+that row.  Equation (358) is only normal-closure membership: it does not
+license replacing \(U\) or \(V\) by \(D\), and it supplies no AC donor
+chain.
+
+The new exact terminal object is the pair (355).  A positive AC reduction
+of that pair would prove stable AK(3) through the already verified
+sufficient corridor, but floor \(104\) is not an obstruction after row
+multiplication.  The unrestricted MMS02 bridge remains the primary route.
+AC-triviality of \(P_T\), the bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.  No correction census for
+\((U,V)\) is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6654,8 +6817,11 @@ The logical gates remain separate:
     extension (337), and its second row is the weight-one killer $Px$;
 44. the exact Fox--Mahler contradiction and finite ascending-kernel descent
     prove that $Px$ is not conjugate to the stable letter or its inverse, but
-    do not exclude an ambient automorphism or a both-row AC path; and
-45. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    do not exclude an ambient automorphism or a both-row AC path;
+45. a literal stable compression gives the base pair $(U,V)$ of (355), whose
+    ambient floor is 104; the nonprimitive consequence $D=P^{-1}Q$ is not a
+    legally realized donor row, and row-changing AC paths remain open; and
+46. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6765,6 +6931,11 @@ the twisted-coboundary equation has an exact Laurent-polynomial Fox
 contradiction, and finite descent through the ascending kernel excludes every
 HNN conjugator.  This nonconjugacy is not an automorphism obstruction and
 does not decide the two-row AC orbit.  Normal generation alone still does not
-trivialize the presentation.  No second killer family or residual ledger is
-opened; the exact next obligation is an AC reduction of (333), or an exact
-obstruction confined to that target on this rank-two route.
+trivialize the presentation.  Theorem 6.48 then supplies a literal stable
+compression of that target to the base pair $(U,V)$ in (355).  Its complete
+ambient floor 104 blocks only direct simultaneous basis transport and the
+classical short-presentation theorem.  Corollary 6.49 separates the exact
+nonprimitive consequence $D=P^{-1}Q$ from a legally realized donor row.
+No correction census is opened; the exact target-confined obligation is an
+AC row reduction of (355), or a different exact obstruction which survives
+such row changes.
