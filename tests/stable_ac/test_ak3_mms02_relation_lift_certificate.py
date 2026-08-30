@@ -1106,6 +1106,29 @@ def test_mms02_actual_base_relator_is_not_primitive():
     ) == len(minimum)
 
 
+def test_mms02_fixed_pair_base_relator_is_not_primitive():
+    steps = (
+        {"x": "x", "y": "y", "z": "zy"},
+        {"x": "x", "y": "xyX", "z": "z"},
+        {"x": "x", "y": "Zy", "z": "z"},
+    )
+    minimum, totals = replay_whitehead_pair_floor((A, A), steps)
+
+    assert totals == (24, 22, 18, 16)
+    assert minimum == ("XYXyzxZy", "XYXyzxZy")
+    assert min(
+        sum(
+            map(
+                len,
+                canonical_cyclic_pair(
+                    tuple(apply_images(word, images) for word in minimum)
+                ),
+            )
+        )
+        for images in rank_three_whitehead_automorphisms()
+    ) == 16
+
+
 def test_mms02_canonical_lift_base_pairs_fail_the_cyclic_module_unit_test():
     data = relation_lift_data()
     branch_a_diagonal_coefficients = (

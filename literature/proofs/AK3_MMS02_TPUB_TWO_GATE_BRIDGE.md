@@ -267,6 +267,13 @@ $(u,B)\to(v,B)$ in $F/\operatorname{Ncl}(A)$.  This relative gate is not
 proved necessary and is not identified with the earlier tagged gate (130).
 No new invariant or correction ledger is opened.
 
+Section 6.42 closes the only immediate collapse of that terminal gate.  A
+complete Whitehead reduction takes $A$ to a length-eight minimum, so $A$ is
+not primitive.  Nielsen reduction and Magnus normal-closure rigidity then
+show that $F/\operatorname{Ncl}(A)$ is not free of rank two.  Thus (271) is a
+genuine nonfree one-relator pair problem, not a disguised free-group AC
+claim.  The pair orbit itself remains unevaluated and the lane stays frozen.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5038,6 +5045,77 @@ no correction census, quotient invariant, or new derived-module ledger is
 opened.  The relative pair orbit, unrestricted bridge, stable AK(3), and
 ordinary AK(3) remain open.
 
+### 6.42. The terminal pair group is not free
+
+The gate (271) does not collapse to a rank-two free-group AC problem.  Apply
+the following three Whitehead automorphisms successively to the cyclic class
+of $A$:
+
+\[
+ \begin{aligned}
+ \phi_1(x,y,z)&=(x,y,zy),\\
+ \phi_2(x,y,z)&=(x,xyX,z),\\
+ \phi_3(x,y,z)&=(x,Zy,z).
+ \end{aligned}
+ \tag{272}
+\]
+
+The cyclic lengths descend strictly
+
+\[
+ 12\longrightarrow11\longrightarrow9\longrightarrow8,
+ \tag{273}
+\]
+
+and the terminal canonical word is
+
+```text
+XYXyzxZy
+```
+
+Every one of the ninety rank-three Whitehead automorphisms of the second kind
+is nondecreasing on this cyclic word.  Automorphisms of the first kind
+preserve cyclic length.  Whitehead's primitive-word theorem therefore gives
+
+\[
+ \boxed{A\text{ is not primitive in }F(x,y,z).}
+ \tag{274}
+\]
+
+This also identifies the ambient group in (271).  The exponent vector of
+$A$ is $(1,0,-1)$, so $A$ is not a proper power and
+$G_A^{\rm ab}\cong\mathbb Z^2$.  Suppose that $G_A$ were free.  Its
+abelianization would force $G_A\cong F_2$.  The images of $x,y,z$ would then
+be a generating triple of $F_2$.  Nielsen reduction of a generating triple
+in a free group gives a basis followed by the identity.  Lifting those
+Nielsen moves to $F(x,y,z)$ produces a primitive word $p$ with
+
+\[
+ \operatorname{Ncl}_F(p)=\ker(F\to G_A)
+ =\operatorname{Ncl}_F(A).
+ \tag{275}
+\]
+
+Magnus's normal-closure theorem would make $A$ conjugate to $p^{\pm1}$,
+contradicting (274).  Hence
+
+\[
+ \boxed{G_A\not\cong F_2.}
+ \tag{276}
+\]
+
+**Theorem 6.35 (nonfree terminal base).**  The sufficient fixed-row gate
+(271) is a normally generating pair-orbit problem in a torsion-free
+aspherical one-relator group, but not in a free group.  It cannot be replaced
+by a rank-two free-group Andrews--Curtis claim through primitive deletion of
+$A$.
+
+This theorem does not decide the pair orbit.  It closes only the primitive-
+relator collapse of the terminal path-gauge lane.  Together with Theorem
+6.34, it freezes that lane at the explicit nonfree one-relator pair (271);
+no pair search, representation census, or further module tower is opened.
+The unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5154,9 +5232,12 @@ The logical gates remain separate:
     at $(u,B)\to(v,B)$ in $F/\operatorname{Ncl}(A)$; its closure is
     sufficient, but neither its closure nor necessity is proved, and it is
     not identified with the tagged gate (130);
-33. no MMS02 statement evaluates the period-two class-two ledger or its
+33. the relator $A$ is nonprimitive and $F/\operatorname{Ncl}(A)$ is not
+    free of rank two, so the terminal pair gate has no primitive-deletion
+    collapse; the pair orbit itself remains open;
+34. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-34. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+35. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5206,4 +5287,7 @@ displacement back to the canonical lift.  Theorem 6.34 supplies its legal
 endpoint interface: stable relation splitting reduces the fixed-common-row
 version to the pair orbit $(u,B)\to(v,B)$ in
 $F/\operatorname{Ncl}(A)$.  This is a sufficient terminal gate only and is
-frozen without a new invariant or correction ledger.
+frozen without a new invariant or correction ledger.  Theorem 6.35 closes
+its primitive-deletion shortcut: $A$ has complete Whitehead minimum eight,
+so the ambient one-relator group is not free of rank two.  The pair orbit is
+still not decided.

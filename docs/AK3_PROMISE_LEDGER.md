@@ -137,6 +137,15 @@ finite quotient do not close a route.
   sufficient relative gate only: arbitrary stable paths may alter the common
   rows. It is not identified with the older tagged gate `(q,t)->(B,t)`, and
   no new correction or quotient ledger is authorized.
+- **The terminal fixed-pair group is not free:** three exact Whitehead
+  descents take `A` through cyclic lengths `12,11,9,8` to the complete
+  minimum `XYXyzxZy`. Hence `A` is nonprimitive. If `F/Ncl(A)` were free,
+  its abelianization would force rank two; Nielsen reduction of its generating
+  triple and Magnus normal-closure rigidity would then make `A` primitive, a
+  contradiction. Thus the gate `(u,B)->(v,B)` is genuinely in a nonfree
+  torsion-free aspherical one-relator group. This does not decide the pair
+  orbit. Freeze this lane without a pair search or another invariant/module
+  ledger.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one
