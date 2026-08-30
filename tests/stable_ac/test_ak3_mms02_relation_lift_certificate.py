@@ -1244,6 +1244,15 @@ def test_mms02_canonical_lift_base_pairs_fail_the_cyclic_module_unit_test():
     )
 
 
+def test_mms02_tag_residual_has_a_cyclic_unit_minor():
+    data = relation_lift_data()
+    tag_coordinates = cyclic_evidence_coordinates(
+        data["h_b_eq_v"].evidence
+    )
+
+    assert tag_coordinates[1] == {1: 1}
+
+
 def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
     rows = replay_rank_three_words(V)
     assert tuple(map(len, rows)) == (349, 251, 195)

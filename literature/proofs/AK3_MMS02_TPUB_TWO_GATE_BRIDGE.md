@@ -200,6 +200,15 @@ the module exactly when that one curvature vector vanishes in their
 cokernel.  This is the terminal module obligation for the fixed canonical
 lift, not a bridge or stable-AK(3) theorem.
 
+Section 6.35 evaluates every one-dimensional shadow of that terminal
+obligation.  In the cyclic specialization of the actual-base relation
+module, the tag residual has second coordinate exactly $t$.  Together with
+$[A]$ this gives a unit $2\times2$ minor, so the complete three-row endpoint
+already generates after cyclic base change.  Hence no abelian character or
+cyclic-minor specialization can obstruct the tag-coupled gate.  The
+noncommutative curvature class, Peiffer lift, and unrestricted bridge remain
+open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4130,6 +4139,74 @@ obstruct only this fixed quotient-path lift.  No alternative-path curvature
 ledger is opened.  The unrestricted bridge, stable AK(3), and ordinary AK(3)
 remain open.
 
+### 6.35. Every cyclic scalar shadow of the tag gate vanishes
+
+The cyclic specialization (217) can test the three endpoint residuals
+simultaneously without expanding another noncommutative coordinate ledger.
+Apply the exact evidence recurrence (218) to the finite certificate for
+$H_Bv^{-1}$.  Relative to the basis $([A],[B])$, it gives
+
+\[
+ \boxed{
+ \begin{aligned}
+ \chi_*[A]&=(1,0),\\
+ \chi_*[H_Bv^{-1}]&=(a_B(t),t)
+ \end{aligned}
+ }
+ \tag{231}
+\]
+
+for one finite Laurent polynomial $a_B(t)$.  The first coordinate is not
+needed below.  The second coordinate is the single monomial $t$, not merely a
+polynomial with augmentation one.  It is obtained from the same complete
+conjugate-product evidence used in Theorem 6.26; no derivative of the raw
+endpoint word is substituted for that evidence.
+
+The determinant of the two displayed columns is therefore
+
+\[
+ \boxed{
+ \det
+ \begin{pmatrix}
+ 1&a_B(t)\\
+ 0&t
+ \end{pmatrix}=t\in\mathbb Z[t^{\pm1}]^\times.
+ }
+ \tag{232}
+\]
+
+Thus the first and third endpoint residuals already generate the specialized
+relation module.  In particular,
+
+\[
+ \boxed{
+ \mathbb Z[t^{\pm1}]\otimes_{\mathbb ZG_-}C_e=0.
+ }
+ \tag{233}
+\]
+
+The exponent rows of $A,B$ are $(1,0,-1)$ and $(-1,1,0)$.  Their quotient
+identifies $x,y,z$ and is torsion-free, so the abelianization in (217) is the
+full abelianization $G_-^{\rm ab}\cong\mathbb Z$.  Every one-dimensional
+representation of $G_-$ over a commutative coefficient ring therefore
+factors through it and sends $t$ to a unit.  Base-changing (232) once more
+shows that every such scalarization kills the cokernel and hence the
+curvature class from (230).
+
+**Theorem 6.28 (cyclic tag shadows are vacuous).**  No one-dimensional
+character, cyclic Alexander minor, or scalar base change through the
+abelianization can obstruct generation by
+$([A],[E_B],[H_Bv^{-1}])$.  The tag residual supplies a unit minor with
+$[A]$ in every such specialization.
+
+Equation (233) does not imply $C_e=0$: a nonzero module may vanish after this
+nonfaithful base change.  It neither fills $\kappa_P$ over $\mathbb ZG_-$ nor
+constructs a Peiffer or crossed-module lift.  The noncommutative condition
+(230) remains the single frozen obligation for the canonical branch-B lift;
+no further scalar, coordinate-representation, or alternative-curvature
+ledger is opened.  The unrestricted bridge, stable AK(3), and ordinary AK(3)
+remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -4217,9 +4294,13 @@ The logical gates remain separate:
     invertible, but the tag-coupled module gate is exactly the affine-curvature
     condition (230); neither its positive filling nor a surviving cokernel
     class is proved;
-26. no MMS02 statement evaluates the period-two class-two ledger or its
+26. the cyclic specialization of the tag residual supplies a unit minor with
+    $[A]$, so every one-dimensional scalar shadow kills the endpoint cokernel;
+    this vacuity does not kill the noncommutative cokernel itself or fill the
+    curvature in (230);
+27. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-27. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+28. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -4242,4 +4323,7 @@ opened; a live MMS02 continuation must couple the tag residual at the Peiffer
 or crossed-module level, or supply a structurally different exact transfer.
 Theorem 6.27 prevents homogeneous Jacobian invertibility from being mistaken
 for that coupling: the fixed lift terminates at the single affine-curvature
-condition (230), and no alternative-curvature ledger is opened.
+condition (230), and no alternative-curvature ledger is opened.  Theorem
+6.28 further proves that every cyclic or one-dimensional scalar shadow of
+that condition is vacuous; the surviving gate is genuinely
+noncommutative.

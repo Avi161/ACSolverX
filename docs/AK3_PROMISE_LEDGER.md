@@ -81,6 +81,15 @@ finite quotient do not close a route.
   expand a third coordinate representation or open alternative-path
   curvatures. Even a positive module filling remains below a free
   crossed-module lift and a donor-legal AC path.
+- **Every cyclic scalar shadow of the tag gate is vacuous:** exact
+  linearization of the existing proof evidence gives
+  `chi_*[H_B*v^-1]=(a_B(t),t)` in the cyclically specialized relation module.
+  Together with `chi_*[A]=(1,0)`, this has determinant `t`, a Laurent unit.
+  Hence the full three-row endpoint generates after cyclic base change, and
+  every one-dimensional character kills the endpoint cokernel and curvature
+  shadow. This does not prove that the noncommutative cokernel vanishes or
+  fill `kappa_P`; freeze scalar/minor tests and retain (230) as the single
+  canonical-lift module gate.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
