@@ -358,6 +358,15 @@ meridionality or AC-triviality.  This replaces the chosen two-ended rank-two
 route (293) by one exact target HNN gate without opening another residual
 ledger.
 
+Section 6.54 closes the canonical stable-letter conjugacy cleanup at that
+gate.  Abelianized Fox differentiation reduces
+$P=k^{-1}\phi(k)$ to one Laurent-polynomial Mahler equation; its extremal
+degrees force eleven coefficients, while degree six contradicts the pinned
+right side.  A literal preimage $P=\phi(Q)$ and finite descent through the
+ascending kernel upgrade the base calculation to every conjugator in the HNN
+group.  Thus $Px$ is not conjugate to $x^{\pm1}$.  Ambient automorphisms,
+both-row AC paths, AC-triviality of $P_T$, the bridge, and AK(3) remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6325,6 +6334,169 @@ killer gate; no alternate killer or correction census is opened.  The unrestrict
 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.54. The terminal killer is not conjugate to the stable letter
+
+The most direct HNN cleanup would conjugate the live row \(Px\) in (341) to
+the stable letter.  For a base word \(k\in F(p,q)\), the defining relations
+give
+
+\[
+ k^{-1}xk=k^{-1}\phi(k)x.
+ \tag{342}
+\]
+
+Thus a base conjugator would solve the exact twisted-coboundary equation
+
+\[
+ P=k^{-1}\phi(k).
+ \tag{343}
+\]
+
+This equation already has an integral Fox obstruction.  Abelianize
+\(F(p,q)\) with \(p\mapsto u\), \(q\mapsto v\).  The abelianization matrix
+of \(\phi\) has columns \((0,1)^t,(0,2)^t\).  Since
+\([P]=(0,7)\), equation (343) forces \([k]=(0,7)\).
+Put
+
+\[
+ K_p=\overline{\frac{\partial k}{\partial p}},\qquad
+ K_q=\overline{\frac{\partial k}{\partial q}}
+ \quad\hbox{in }\mathbb Z[u^{\pm1},v^{\pm1}],
+\]
+
+and let \(\sigma(u)=v,\ \sigma(v)=v^2\).  The abelianized Fox Jacobian of
+\(\phi\) is
+
+\[
+ \begin{pmatrix}
+  0&1-v\\
+  1&u+v
+ \end{pmatrix},
+\]
+
+where rows correspond to differentiation with respect to \(p,q\) and columns
+to \(\phi(p),\phi(q)\).
+Differentiating \(\phi(k)=kP\) therefore gives
+
+\[
+ \begin{aligned}
+ K_p&=(1-v)\sigma(K_q)-v^7C_p,\\
+ K_q&=\sigma(K_p)+(u+v)\sigma(K_q)-v^7C_q,
+ \end{aligned}
+ \tag{344}
+\]
+
+with \(C_p=\overline{\partial P/\partial p}\) and
+\(C_q=\overline{\partial P/\partial q}\).
+
+Set \(A(t)=K_p(t,t^2)\), \(B(t)=K_q(t,t^2)\), and specialize \(C_p,C_q\)
+in the same way.  The two equations in (344) eliminate \(A\) to give
+
+\[
+ \begin{aligned}
+ L(B):={}&B(t)-(t+t^2)B(t^2)-(1-t^4)B(t^4)\\
+ ={}&-t^{28}C_p(t^2)-t^{14}C_q(t)=:R(t).
+ \end{aligned}
+ \tag{345}
+\]
+
+Literal Fox differentiation of the pinned word (340) gives
+
+\[
+ \begin{aligned}
+ C_p(t)={}&t^{-10}-t^{-8}-t^{-6}+t^{-4}+t^{-2}-1
+             +t^4-t^6+t^8-t^{12},\\
+ C_q(t)={}&-t^{-10}+t^{-9}+t^{-6}-t^{-5}-t^{-2}+t^{-1}
+             +1+t^2+t^5+t^6+t^9+t^{11}+t^{12},
+ \end{aligned}
+\]
+
+and hence
+
+\[
+ \begin{aligned}
+ R(t)={}&t^4-t^5-2t^8+t^9+2t^{12}-t^{13}-t^{14}
+          -t^{19}-2t^{20}-t^{23}-t^{24}\\
+        &{}-t^{25}-t^{26}+t^{28}-t^{36}+t^{40}-t^{44}+t^{52}.
+ \end{aligned}
+ \tag{346}
+\]
+
+Suppose that a Laurent polynomial \(B\) solves (345), and let \(m,d\) be
+its least and greatest exponents.  If \(m<0\), the term
+\(-B(t^4)\) has the unique least exponent \(4m<0\), whereas (346) has least
+exponent four.  Thus \(m\ge0\).  The right side is nonzero and has degree
+fifty-two.  If \(d=0\), then \(L(B)\) has degree at most four; if \(d\ge1\),
+the term \(t^4B(t^4)\) has the unique greatest exponent \(4d+4\).
+Consequently \(d=12\).
+
+Write \(B(t)=\sum_{j=0}^{12}b_jt^j\).  Comparing successively the
+coefficients in degrees
+
+\[
+ 52,48,44,40,36,32,28,24,20,16,12
+\]
+
+forces
+
+\[
+ (b_{12},b_{11},b_{10},b_9,b_8,b_7,b_6,b_5,b_4,b_3,b_2)
+ =(1,1,0,1,0,0,1,1,0,0,2).
+ \tag{347}
+\]
+
+But the degree-six coefficient of \(L(B)\) is then
+\(b_6-b_2=-1\), while \(R\) has degree-six coefficient zero.  This
+contradiction proves that (343) has no solution.
+
+The obstruction also excludes conjugators outside the displayed base.
+There is a literal one-step descent
+
+\[
+ Q=\mathtt{QpQPPqpqPqpqqPq},\qquad
+ \phi(Q)=P.
+ \tag{348}
+\]
+
+Let \(\operatorname{ht}:G_T\to\mathbb Z\) send \(x\) to one and the base to
+zero.  Britton normal form for this ascending orientation gives
+
+\[
+ \ker(\operatorname{ht})
+ =\bigcup_{r\ge0}x^{-r}F(p,q)x^r.
+ \tag{349}
+\]
+
+If \(h^{-1}xh=Px\), left multiplication of \(h\) by a power of \(x\)
+preserves the equation and makes its height zero.  Hence
+\(h=x^{-r}kx^r\) for some \(r\ge0\) and \(k\in F(p,q)\), and direct
+reduction gives
+
+\[
+ k^{-1}\phi(k)=\phi^r(P)=\phi^{r+1}(Q).
+ \tag{350}
+\]
+
+Whenever \(k_j^{-1}\phi(k_j)=\phi^n(Q)\) with \(n\ge1\), the equality
+\(\phi(k_j)=k_j\phi^n(Q)\) forces \(k_j\in\operatorname{im}\phi\).
+Write \(k_j=\phi(k_{j+1})\); injectivity of \(\phi\) then reduces the
+exponent \(n\) by one.  After \(r+1\) finite descents, (350) would give
+\(s^{-1}\phi(s)=Q\).  Applying \(\phi\) would solve (343), contrary to the
+Fox obstruction.
+
+**Theorem 6.47 (terminal HNN nonconjugacy).**  In the strict ascending HNN
+group \(G_T\), the weight-one killer \(Px\) is not conjugate to \(x\).
+It is not conjugate to \(x^{-1}\) either, since height is invariant under
+conjugacy.
+
+This closes the canonical stable-letter conjugacy cleanup for the chosen
+rank-two target.  It does not rule out an ambient automorphism carrying
+\(Px\) to a primitive or meridional element, and it does not obstruct an AC
+path which changes both rows.  AC-triviality of \(P_T\), the unrestricted
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.  No new killer family or correction ledger is
+opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6479,9 +6651,11 @@ The logical gates remain separate:
     (333), which is not decided and is not necessary for closure of the
     stabilized pair orbit (271);
 43. the group under the first row of $P_T$ is the strict ascending HNN
-    extension (337), and its second row is the weight-one killer $Px$, but
-    killer status supplies neither a meridian nor an AC path; and
-44. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    extension (337), and its second row is the weight-one killer $Px$;
+44. the exact Fox--Mahler contradiction and finite ascending-kernel descent
+    prove that $Px$ is not conjugate to the stable letter or its inverse, but
+    do not exclude an ambient automorphism or a both-row AC path; and
+45. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6586,7 +6760,11 @@ presentation $P_T$ in (333).  This remains only a sufficient route to the
 stabilized orbit (271).  Theorem 6.46 gives that target its terminal
 structural form: a strictly ascending HNN extension of $F_2$ with live
 weight-one killer $Px$.
-Normal generation alone does not trivialize the presentation.  No second
-killer family or residual ledger is opened; the exact next obligation is an
-AC reduction of (333), or an exact obstruction confined to that target on
-this rank-two route.
+Theorem 6.47 then closes its canonical stable-letter conjugacy shortcut:
+the twisted-coboundary equation has an exact Laurent-polynomial Fox
+contradiction, and finite descent through the ascending kernel excludes every
+HNN conjugator.  This nonconjugacy is not an automorphism obstruction and
+does not decide the two-row AC orbit.  Normal generation alone still does not
+trivialize the presentation.  No second killer family or residual ledger is
+opened; the exact next obligation is an AC reduction of (333), or an exact
+obstruction confined to that target on this rank-two route.
