@@ -103,8 +103,9 @@ finite quotient do not close a route.
   retains the quotient tag `v`; remaining obligations include both legal
   padding, an affine tagged realization, and a later Peiffer/free-group lift
   before any bridge claim.
-- **Legal matrix completion is exactly rank-one cancellation:** under module
-  generation, the `3x2` matrix has a stably free rank-one left kernel `Q`.
+- **Canonical-gauge legal matrix completion is rank-one cancellation:** under
+  module generation, the canonical-lift `3x2` matrix has a stably free
+  rank-one left kernel `Q`.
   An `m`-fold AC4 stabilization replaces it by `diag(C,I_m)` and preserves
   that kernel. The stabilized rectangular matrix extends to
   `GL_(3+m)(S)` for some (equivalently every) `m` exactly when `Q` is free.
@@ -113,6 +114,16 @@ finite quotient do not close a route.
   theorem would remain at relation-module level until the quotient tag `v`
   is realized affinely and those module moves are lifted through the
   Peiffer/crossed module to a donor-legal free-group path.
+- **The path gauge has no projective gate:** if the endpoint of the fixed
+  quotient path itself is used as target lift, the curvature is zero and the
+  residual coefficient matrix is `J_P B_0`. Its kernel is freely generated
+  by the last row of `J_P^-1`, while `J_P` is already a tame square
+  completion. Thus the canonical `Q` is not a gauge-independent obstruction
+  furnished by the quotient path, and no necessity for an arbitrary
+  stable-AK3 proof follows outside the canonical matrix ansatz. The lift
+  change from the path endpoint back to canonical `(1,1,v)` is not an AC
+  move; it is exactly the unresolved affine-curvature/Peiffer realization.
+  Do not use path-gauge completion as a bridge claim.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one

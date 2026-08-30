@@ -246,6 +246,16 @@ that the actual base group is not its cyclic shadow.  The unit status of
 $\delta$, affine tagged realization, and the Peiffer/free-group lift remain
 open.
 
+Section 6.40 separates canonical target gauge from quotient-path data.  If
+the path endpoint $\tau_P$ itself is used as target lift, the curvature is
+zero, the residual matrix is the first two columns of the tame Jacobian
+$J_P$, and its kernel is explicitly free.  Hence the module $Q$ is a gate
+only for the canonical-residual square-completion ansatz, not a
+gauge-independent obstruction supplied by the quotient path.  No necessity
+for stable AK(3) follows outside that ansatz.
+Returning from $\tau_P$ to the canonical lift $(1,1,v)$ is exactly the still
+open donor-legal affine/Peiffer realization problem.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4519,11 +4529,14 @@ identity block preserves the same kernel $Q$.
 This is still a relation-module statement.  It does not prove that the matrix
 factors act on the actual tuple $(A,E_B,H_B)$, whose third row retains quotient
 tag $v$.  Even such an affine realization in $F/[N,N]$ would still require a
-Peiffer/crossed-module lift to the free group and a donor-legal AC path.  The
-independent remaining gates are therefore the noncommutative curvature
-filling, rank-one cancellation for $Q$, affine realization on the tagged
-metabelian tuple, and the subsequent Peiffer/crossed-module/free-group lift.
-None is identified with stable AK(3), ordinary AK(3), stable
+Peiffer/crossed-module lift to the free group and a donor-legal AC path.  For
+this canonical-residual matrix-completion ansatz, the separate remaining
+gates are therefore the noncommutative curvature filling, rank-one
+cancellation for $Q$, affine realization on the tagged metabelian tuple, and
+the subsequent Peiffer/crossed-module/free-group lift.  Theorem 6.33 below
+shows that the quotient path supplies a different, explicitly free kernel;
+no necessity for $Q$ follows outside the canonical matrix ansatz.  None is
+identified with stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis.
 
 ### 6.38. One-relator asphericity does not imply rank-one cancellation
@@ -4714,6 +4727,104 @@ coefficient-specific target is the one named element $\delta$, while the
 curvature, affine realization, Peiffer/free-group lift, unrestricted bridge,
 stable AK(3), and ordinary AK(3) remain separate open gates.
 
+### 6.40. The path gauge has no projective gate
+
+The kernel $Q$ belongs to the canonical target lift in (224); it is not
+intrinsic to the quotient path.  This can be seen without choosing any new
+coordinates.  Let
+
+\[
+ B_0=
+ \begin{pmatrix}
+ 1&0\\
+ 0&1\\
+ 0&0
+ \end{pmatrix},
+ \hspace{1em}
+ b=B_0
+ \begin{pmatrix}[A]\\[B]\end{pmatrix}.
+ \tag{259}
+\]
+
+Instead of the canonical target lift $\widetilde\sigma_v=(1,1,v)$, use the
+path-induced target lift
+
+\[
+ \widetilde\sigma_v^{,P}:=\tau_P=P(1,1,u).
+ \tag{260}
+\]
+
+It has the same quotient $\sigma_v=(1,1,\overline v)$.  By definition its
+curvature relative to itself is zero.  Each fixed-quotient fiber is an
+affine $\mathcal R^3$-torsor, and $P$ acts on these fibers with linear part
+$J_P$.  Re-origining the target fiber at the image of the source origin
+therefore removes exactly the translation term in (227).  Equivalently,
+running the same residual recurrences relative to (260) leaves only the
+homogeneous part:
+
+\[
+ \boxed{
+ e^{P}=J_Pb,
+ \hspace{1em}C^{P}=J_PB_0.}
+ \tag{261}
+\]
+
+Here $e^P$ is the residual column of the actual endpoint
+$(A,E_B,H_B)$ relative to the path-induced reference (260), and $C^P$ is its
+coefficient matrix in the basis $([A],[B])$.  Because $J_P$ is invertible,
+the three path-gauge residuals generate $\mathcal R$.
+
+The kernel is explicit.  Put $\varepsilon_3=(0,0,1)$.  For a left row
+$x\in{}_SS^3$,
+
+\[
+ \begin{aligned}
+ xC^P=0
+ &\Longleftrightarrow (xJ_P)B_0=0\\
+ &\Longleftrightarrow xJ_P=s\varepsilon_3
+     \text{ for a unique }s\in S.
+ \end{aligned}
+ \tag{262}
+\]
+
+Therefore
+
+\[
+ \boxed{
+ \ker\rho_{C^P}
+ =S(\varepsilon_3J_P^{-1})\cong{}_SS.}
+ \tag{263}
+\]
+
+Indeed, $J_P$ itself is a square completion whose first two columns are
+$C^P$.  It is already AC-tame by (226), so neither AC4 padding,
+$\operatorname{Wh}(G_-)=0$, nor a rank-one cancellation theorem is needed
+for this formal path-gauge matrix problem.
+
+The difference between (261) and the canonical matrix (251) is exactly the
+affine displacement $\kappa_P$: equation (227) reads
+$e=J_Pb+\kappa_P$ only because the canonical target lift is used there.
+Changing the target lift translates the residual system; it is not a linear
+change of its rows and need not preserve the kernel of the resulting
+coefficient matrix.  Thus the canonical module $Q$ is a gate only for the
+canonical-residual square-completion ansatz of Theorem 6.30.  It is not an
+invariant obstruction furnished by the quotient path, and Theorem 6.30 does
+not make its freeness necessary for an arbitrary stable-AK(3) proof.
+
+**Theorem 6.33 (path-gauge completion).**  For the fixed branch-B quotient
+path, the path-induced target lift has a generating residual triple with
+explicit free rank-one kernel (263) and an already tame square completion.
+The projective gate in Theorem 6.30 is created by returning to the canonical
+target lift $(1,1,v)$.
+
+This does not realize that return by AC moves.  Replacing the reference lift
+$\tau_P$ by $(1,1,v)$ is precisely the affine-curvature problem measured by
+$\kappa_P$; an arbitrary lift change is not a donor-legal operation on the
+actual tuple.  Even a module-level realization would still require the
+Peiffer/crossed-module/free-group lift.  Theorem 6.33 therefore narrows the
+bridge route to legal realization of the gauge displacement; it proves
+neither the unrestricted bridge, stable AK(3), nor ordinary AK(3).
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -4821,9 +4932,14 @@ The logical gates remain separate:
 30. the specific kernel is the two-coordinate syzygy
     $P_{\beta,\delta}$; $\beta$ is not a unit and $G_-$ is not cyclic, while
     the sufficient unit statement $\delta\in S^\times$ remains unproved;
-31. no MMS02 statement evaluates the period-two class-two ledger or its
+31. in the path-induced target gauge the residual kernel is explicitly free,
+    so canonical $Q$ is not a gauge-independent quotient-path obstruction
+    and no stable-AK(3) necessity follows outside the canonical matrix ansatz;
+    returning to the canonical lift is the unproved affine/Peiffer
+    realization;
+32. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-32. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+33. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -4864,4 +4980,9 @@ coefficient-specific argument.  Theorem 6.32 makes that coefficient target
 exact: $Q\cong P_{\beta,\delta}$, the $\beta$-unit shortcut is impossible,
 and a proof that $\delta$ is a unit would close both module generation and
 rank-one cancellation.  The actual base is noncyclic, so its cyclic shadow
-cannot supply that proof.
+cannot supply that proof.  Theorem 6.33 then fixes the scope of this gate:
+using the path endpoint itself as target lift gives coefficient matrix
+$J_PB_0$, explicit free kernel, and tame completion.  Thus canonical $Q$ is
+not established as a necessary stable-AK(3) obstruction; the genuine
+unresolved step is the donor-legal affine/Peiffer realization of the
+displacement back to the canonical lift.
