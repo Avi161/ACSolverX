@@ -445,3 +445,94 @@ def test_mms02_omission_exchange_exact_certificate() -> None:
     assert substitute(substitute(probe_14, "z", alpha_image), "z", "") == (
         "XTTXtxTTXXTxTXtxxttxttXTxttx"
     )
+
+
+def test_mms02_omission_exchange_trefoil_return() -> None:
+    relator = "xTTXXTTxttt"
+    h_long = "XTTXtxTTXXTxTXtxxttxttXTxttx"
+    h0 = cyclic_reduce(h_long)
+    assert h0 == "XTxTXtxxtt"
+    conjugator = "XTTXtxTTX"
+    assert h_long == conjugator + h0 + inverse(conjugator)
+
+    donor = "TTXXTTxtttx"
+    assert donor in tuple(relator[index:] + relator[:index] for index in range(len(relator)))
+    assert free_reduce(h0 + donor) == "XTxTXTxtttx"
+    companion = cyclic_reduce(h0 + donor)
+    assert companion == "xTXTxtt"
+
+    def apply_rank_two_map(word: str, images: tuple[str, str]) -> str:
+        positive = dict(zip(("x", "t"), images))
+        return free_reduce(
+            "".join(
+                positive[letter]
+                if letter.islower()
+                else inverse(positive[letter.lower()])
+                for letter in word
+            )
+        )
+
+    rows = [relator, companion]
+    for _ in range(2):
+        rows = [apply_rank_two_map(word, ("Tx", "t")) for word in rows]
+    rows = [cyclic_reduce(word) for word in rows]
+    assert rows == ["xTTXttXTTxt", "xTXTx"]
+    assert cyclic_class(rows[1]) == cyclic_class("txtXX")
+    rows[1] = "txtXX"
+
+    rows = [apply_rank_two_map(word, ("x", "tX")) for word in rows]
+    rows = [cyclic_reduce(word) for word in rows]
+    assert rows == ["xTxTXtXtXTxTxt", "ttXXX"]
+    relator_w, torus = rows
+
+    def apply_ak3_map(word: str) -> str:
+        positive = {"u": "Xt", "v": "Txx"}
+        return free_reduce(
+            "".join(
+                positive[letter]
+                if letter.islower()
+                else inverse(positive[letter.lower()])
+                for letter in word
+            )
+        )
+
+    ak3_relator = apply_ak3_map("uuuVVVV")
+    ak3_probe = apply_ak3_map("uvuVUV")
+    assert ak3_relator == "XtXtXtXXtXXtXXtXXt"
+    assert cyclic_class(ak3_probe) == cyclic_class(torus)
+
+    def normal_form(word: str) -> tuple[int, tuple[tuple[str, int], ...]]:
+        central = 0
+        blocks: list[tuple[str, int]] = []
+        moduli = {"x": 3, "t": 2}
+
+        for letter in word:
+            generator = letter.lower()
+            exponent = 1 if letter.islower() else -1
+            if blocks and blocks[-1][0] == generator:
+                exponent += blocks.pop()[1]
+            quotient, residue = divmod(exponent, moduli[generator])
+            central += quotient
+            if residue:
+                blocks.append((generator, residue))
+        return central, tuple(blocks)
+
+    w_form = normal_form(relator_w)
+    a_form = normal_form(ak3_relator)
+    assert w_form[0] == a_form[0] == -7
+    w_x_blocks = [residue for generator, residue in w_form[1] if generator == "x"]
+    a_x_blocks = [residue for generator, residue in a_form[1] if generator == "x"]
+    assert w_x_blocks == [1, 1, 2, 2, 2, 1, 1]
+    assert a_x_blocks == [2, 2, 2, 1, 1, 1, 1]
+    assert w_x_blocks == a_x_blocks[5:] + a_x_blocks[:5]
+
+    torus_conjugator = "xxtxxtxxtxtxt"
+    assert normal_form(
+        inverse(torus_conjugator)
+        + ak3_relator
+        + torus_conjugator
+        + inverse(relator_w)
+    ) == (
+        0,
+        (),
+    )

@@ -131,6 +131,13 @@ while the alternate omission is stably equivalent to $(R_0,X)$ and hence to
 the standard presentation.  This is a complete reduction of the raw omission
 route, not a solution of the remaining rank-two gate or of stable AK(3).
 
+Section 6.25 evaluates that rank-two gate structurally.  One common-row donor
+multiplication and three explicit basis changes put it over the trefoil
+relator.  Amalgam normal form then identifies its live row with a conjugate of
+the transported AK(3) power row.  The middle exchange is classical, while the
+simultaneous basis changes are justified only stably.  Thus the omission route
+returns to AK(3) itself and supplies no stable-triviality shortcut.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3099,8 +3106,163 @@ solution of (168) would prove stable AK(3).
 The theorem evaluates all common-row interleaving in the raw omission route;
 it is not another fixed-core or bounded-move obstruction.  It does not solve
 (168), prove $T_{\rm pub}$ stably trivial, prove stable AK(3), or prove
-ordinary AK(3).  The omission route is frozen at this one rank-two gate: no
-new omission, fixed-row, or finite-move categories are opened.
+ordinary AK(3).  It stops at one rank-two gate rather than opening new
+omission, fixed-row, or finite-move categories; Section 6.25 identifies the
+stable class of that gate exactly.
+
+### 6.25. The rank-two omission gate returns stably to AK(3)
+
+The long second row in (167) has a large cyclic shell.  Put
+
+```text
+c0 = XTTXtxTTX
+h0 = XTxTXtxxtt
+```
+
+Then the literal word in (167) is $c_0h_0c_0^{-1}$.  Thus one conjugation
+replaces it by $h_0$.  The word
+
+```text
+d0 = TTXXTTxtttx
+```
+
+is the conjugate $XR_0x$.  Multiplication by this common-row donor gives
+
+\[
+ h_0d_0
+ =\texttt{XTxTXTxtttx}
+ \longrightarrow
+ g=\texttt{xTXTxtt}
+ \tag{169}
+\]
+
+after cyclic reduction.
+
+Let $\nu$ be the Nielsen automorphism
+
+\[
+ \nu(x)=Tx,
+ \hspace{1em}
+ \nu(t)=t.
+ \tag{170}
+\]
+
+Two simultaneous applications, with cyclic reduction, give
+
+\[
+ (R_0,g)\sim_{\rm stAC}\nu^2(R_0,g)
+ \sim_{\rm AC}
+ \bigl(\texttt{xTTXttXTTxt},\texttt{xTXTx}\bigr).
+ \tag{171}
+\]
+
+Invert the second row and conjugate it by $x$ to obtain `txtXX`.  Now apply
+the basis automorphism
+
+\[
+ \mu(x)=x,
+ \hspace{1em}
+ \mu(t)=tX.
+ \tag{172}
+\]
+
+The resulting pair is
+
+\[
+ (W,T_0)=
+ \bigl(
+ \texttt{xTxTXtXtXTxTxt},
+ \texttt{ttXXX}
+ \bigr).
+ \tag{173}
+\]
+
+This is the trefoil one-relator group.  Indeed,
+
+\[
+ G=\langle x,t\mid T_0\rangle
+ =\langle x\rangle
+ *_{\langle x^3\rangle=\langle t^2\rangle}
+ \langle t\rangle,
+ \hspace{1em}
+ c=x^3=t^2
+ \tag{174}
+\]
+
+and $c$ is central.
+
+Transport the AK(3) generators $(u,v)$ to this basis by
+
+\[
+ u\longmapsto Xt,
+ \hspace{1em}
+ v\longmapsto Txx.
+ \tag{175}
+\]
+
+This is a free basis change: its inverse is $x=uv,t=uvu$.  It sends the AK(3)
+rows $R=u^3v^{-4}$ and $S=uvuVUV$ to
+
+```text
+A = XtXtXtXXtXXtXXtXXt
+theta(S) = tXXXt
+```
+
+and the second word is a cyclic conjugate of $T_0$.
+
+The amalgam normal form in (174) uses the representatives
+$1,x,x^2$ and $1,t$ over the central subgroup.  Direct reduction gives
+
+\[
+ \begin{aligned}
+ W&=c^{-7}(xt)^2(x^2t)^3(xt)^2,\\
+ A&=c^{-7}(x^2t)^3(xt)^4.
+ \end{aligned}
+ \tag{176}
+\]
+
+Put $p=(x^2t)^3(xt)^2$ and $q=(xt)^2$.  Then
+$A=c^{-7}pq$ and
+
+\[
+ p^{-1}Ap=c^{-7}qp=W
+ \hspace{1em}\text{in }G.
+ \tag{177}
+\]
+
+Consequently $W$ differs from a conjugate of $A$ by an element of
+$\operatorname{Ncl}(T_0)$.  The fixed-relator donor lemma therefore gives
+
+\[
+ (W,T_0)\sim_{\rm AC}(A,T_0).
+ \tag{178}
+\]
+
+The scope of the surrounding basis changes is essential.  The conjugation,
+donor multiplication (169), row inversion, row conjugation, and fixed-torus
+exchange (178) are classical AC moves.  The simultaneous automorphisms
+$\nu,\mu$, and (175) are realized by the stable every-rank ambient
+automorphism theorem, Proposition 3.3 of
+`AK3_DUAL_SOURCE_COMPRESSION.md`.  No theorem used here promotes arbitrary
+simultaneous ambient automorphisms to classical AC moves.
+
+**Theorem 6.18 (trefoil return of the omission gate).**  The complete
+rank-two gate of Theorem 6.17 satisfies
+
+\[
+ \boxed{(R_0,h)\sim_{\rm stAC}\operatorname{AK}(3).}
+ \tag{179}
+\]
+
+The common-trefoil middle exchange (178) is classical, but the complete
+equivalence (179) is only asserted stably.  Hence stable triviality of the
+omission gate is exactly stable triviality of AK(3); (179) does not trivialize
+either presentation and does not prove stable AK(3) or ordinary AK(3).
+
+This closes the raw omission route at a stable self-return rather than a new
+residual.  No further omitted-row, fixed-core, or rank-two correction ledger
+is opened.  The active theory route returns to the unrestricted
+$T_{\rm pub}$ bridge and the already isolated relative Peiffer gate.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -3158,16 +3320,17 @@ The logical gates remain separate:
 18. the finite Gate-A defect chain and affine operator formulas have literal
     free-group ancestors, but that replay proves neither the full affine
     containment nor a Peiffer lift;
-19. the complete two-live raw omission route is equivalent to stable
-    triviality of $(R_0,h)$ in (168); the normalization does not solve that
-    rank-two gate;
+19. the complete two-live raw omission route returns stably to AK(3) through
+    the trefoil normal form (176); its middle exchange is classical, but the
+    simultaneous basis transports are only proved stable and no
+    trivialization results;
 20. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
 21. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
-The active priority is the constructive rank-two gate (168), together with
-the unrestricted rank-three bridge
-$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$ and the interleaved relative class (83).
-The raw omission route is completely normalized by Theorem 6.17.  No further
-sequential, pinned-donor, fixed-core, or omission ledger is opened.
+The active priority is the unrestricted rank-three bridge
+$T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$ together with the interleaved relative
+class (83).  The raw omission route is frozen by Theorems 6.17--6.18 at a
+stable return to AK(3).  No further sequential, pinned-donor, fixed-core,
+rank-two correction, or omission ledger is opened.
