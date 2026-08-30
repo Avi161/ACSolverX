@@ -165,6 +165,12 @@ twenty-letter Magnus-base normal form.  Hence the mixed term is not in that
 donor normal closure.  This closes the named fixed-donor Hall--Witt shortcut,
 not later interleavings or the unrestricted bridge.
 
+Section 6.30 applies the unique certified 134-move SLP to the published kill
+row.  The resulting endpoint has a unimodular exponent matrix, but its
+canonical two-row pivot has complete Whitehead floor 413 rather than two.
+Thus that forced SLP-substitution endpoint cannot be completed by one stable
+ambient straightening.  Other paths and pivots are not classified.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3629,6 +3635,90 @@ unrestricted $T_{\rm pub}$ bridge.  The Hall--Witt lane is frozen here; no
 higher commutator or donor-family ladder is opened.  Stable AK(3) and ordinary
 AK(3) remain open.
 
+### 6.30. The forced published-kill SLP pivot is not primitive
+
+There is one canonical way to alter the kill row throughout the certified
+constructive path: apply the same fixed 134-move operator used in (38) to
+the published triple itself.  Write
+
+\[
+ \begin{aligned}
+ \Psi(A,B,u)&=(Z,Y,X),\\
+ (W_1,W_2,W_3)&:=\Psi(A,B,v).
+ \end{aligned}
+ \tag{201}
+\]
+
+Because $\Psi$ is the literal stored AC1--AC3 transcript,
+
+\[
+ (A,B,v)\sim_{\rm AC}(W_1,W_2,W_3).
+ \tag{202}
+\]
+
+The replayed word lengths are
+
+\[
+ (|W_1|,|W_2|,|W_3|)=(349,251,195).
+ \tag{203}
+\]
+
+The leaf-coefficient audit (180), now evaluated on $(A,B,v)$, gives the
+exponent matrix
+
+\[
+ \begin{pmatrix}
+ 0&2&-1\\
+ 0&1&0\\
+ -1&2&0
+ \end{pmatrix},
+ \tag{204}
+\]
+
+whose determinant is $-1$.  In particular, the canonical triangular pivot
+$(W_2,W_3)$ has minor triple $(1,0,0)$ and passes the necessary primitive-pair
+homology test.
+
+The literal pair is nevertheless not primitive.  Apply the two Whitehead
+automorphisms
+
+\[
+ \begin{aligned}
+ \rho_1(x)&=x,&\rho_1(y)&=xy,&\rho_1(z)&=z,\\
+ \rho_2(x)&=x,&\rho_2(y)&=y,&\rho_2(z)&=zy.
+ \end{aligned}
+ \tag{205}
+\]
+
+to its unordered cyclic class.  They give the strict total-length descent
+
+\[
+ 446\longrightarrow419\longrightarrow413.
+ \tag{206}
+\]
+
+The endpoint word lengths are $(232,181)$.  Among all ninety nonidentity
+second-kind rank-three Whitehead maps, six preserve that total and eighty-four
+increase it; first-kind signed permutations preserve length.  Whitehead's
+theorem therefore makes 413 the global orbit minimum.  Since it is greater
+than two, $(W_2,W_3)$ cannot be carried to two distinct basis letters.
+
+The dependency-free checker replays the fixed 134 primitive moves on
+$(A,B,v)$, pins (203)--(204), replays (205)--(206), hashes the endpoint, and
+exhausts the ninety endpoint maps.
+
+**Theorem 6.23 (canonical SLP primitive pivot is closed).**  The ordered
+pair $(W_2,W_3)$ does not extend to a free basis of $F(x,y,z)$.  Consequently
+the unique full published-kill replay (202) cannot be completed by
+simultaneously straightening its canonical unimodular pivot.
+
+This theorem closes only the forced endpoint obtained by substituting $v$ for
+$u$ in the certified SLP.  It does not obstruct another pair of endpoint
+rows, another quotient path, a corrected SLP, or the unrestricted bridge.
+No prefix, shear, or alternative-pivot ledger is opened.  In particular,
+Theorem 6.23 does not prove or disprove $T_{\rm pub}$, stable AK(3), or
+ordinary AK(3).
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3702,9 +3792,12 @@ The logical gates remain separate:
     kills the canonical defect's covector value, but its resulting
     first-derived residual is nonzero and the complete defect set remains
     unevaluated;
-23. no MMS02 statement evaluates the period-two class-two ledger or its
+23. the unique 134-move SLP replay on the published kill row has a unimodular
+    endpoint but a nonprimitive canonical pivot; this closes only that forced
+    simultaneous-straightening completion, not other pivots or paths;
+24. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-24. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+25. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -3718,4 +3811,5 @@ replacement for (135), and Theorem 6.21 refutes the remaining
 non-equivariant universal gate (141).  The affine-covector route is frozen;
 the full defect set $\mathcal D$ is not evaluated.  Theorem 6.22 also freezes
 the fixed-donor Hall--Witt route at a proved nonmembership; no higher
-commutator lane is opened.
+commutator lane is opened.  Theorem 6.23 freezes the canonical
+published-kill SLP pivot without classifying alternative endpoint pivots.

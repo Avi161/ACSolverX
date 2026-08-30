@@ -527,6 +527,24 @@ def rank_three_rows():
     return tuple(rows)
 
 
+def replay_rank_three_words(kill_word):
+    code = run_path(".scratch/mms02_u_xy_bridge_checker.py")
+    _, steps = code["expand_path"](
+        code["MISPRINTED_RANK_THREE"], code["RANK_THREE_MOVES"]
+    )
+    rows = [A, B, kill_word]
+    for step in steps:
+        if step.kind == "AC1":
+            rows[step.target] = red(rows[step.target] + rows[step.operand])
+        elif step.kind == "AC2":
+            rows[step.target] = inv(rows[step.target])
+        else:
+            rows[step.target] = red(
+                step.operand + rows[step.target] + inv(step.operand)
+            )
+    return tuple(rows)
+
+
 def test_signed_involution_common_kill_target() -> None:
     code = run_path(".scratch/mms02_u_xy_bridge_checker.py")
     _, steps = code["expand_path"](
@@ -859,3 +877,52 @@ def test_mms02_relation_lift_certificate_dag():
         assert min(neighbor_totals) == endpoint_total
         assert neighbor_totals.count(endpoint_total) == 8
         assert sum(total > endpoint_total for total in neighbor_totals) == 82
+
+
+def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
+    rows = replay_rank_three_words(V)
+    assert tuple(map(len, rows)) == (349, 251, 195)
+    matrix = tuple(map(rank_three_exponent_vector, rows))
+    assert matrix == (
+        (0, 2, -1),
+        (0, 1, 0),
+        (-1, 2, 0),
+    )
+    determinant = (
+        matrix[0][0]
+        * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+        - matrix[0][1]
+        * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+        + matrix[0][2]
+        * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0])
+    )
+    assert determinant == -1
+
+    pivot = (rows[1], rows[2])
+    assert rank_three_pair_minors(pivot) == (1, 0, 0)
+    maps = (
+        {"x": "x", "y": "xy", "z": "z"},
+        {"x": "x", "y": "y", "z": "zy"},
+    )
+    minimum, totals = replay_whitehead_pair_floor(pivot, maps)
+    assert totals == (446, 419, 413)
+    assert tuple(map(len, minimum)) == (232, 181)
+    assert sha256("|".join(minimum).encode()).hexdigest() == (
+        "ecd216a89a91ffc5b3a84720412bed41c82ae1cb03ae9895a3c8f932c5f02a50"
+    )
+
+    automorphisms = rank_three_whitehead_automorphisms()
+    neighbor_totals = tuple(
+        sum(
+            map(
+                len,
+                canonical_cyclic_pair(
+                    tuple(apply_images(word, images) for word in minimum)
+                ),
+            )
+        )
+        for images in automorphisms
+    )
+    assert min(neighbor_totals) == 413
+    assert neighbor_totals.count(413) == 6
+    assert sum(total > 413 for total in neighbor_totals) == 84

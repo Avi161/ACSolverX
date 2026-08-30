@@ -66,6 +66,16 @@ finite quotient do not close a route.
   only simultaneous basis straightening of the canonical relation-lift rows;
   it does not close a proved corrected row or the interleaved Peiffer bridge.
   Freeze this shortcut and do not open a correction census.
+- **Forced published-kill SLP pivot closed:** replaying the same certified
+  134 primitive moves with `v=Xyz` in place of `u=zYX` gives exact endpoint
+  lengths `(349,251,195)` and exponent rows
+  `(0,2,-1),(0,1,0),(-1,2,0)`, of determinant `-1`.  The canonical pivot
+  formed by the last two rows passes the minor test but has complete
+  rank-three Whitehead floor 413.  Hence it is not primitive and cannot be
+  completed by one simultaneous basis straightening.  Freeze this unique
+  SLP-substitution endpoint; do not scan its prefixes, other pairs, or nearby
+  shears.  Alternative quotient paths and the unrestricted bridge remain
+  open.
 - **Closure reduced to two named word problems:** restoring the active base
   residual first makes the kill-word residual automatic. Both branches have
   the same defect `d=(zYX)H`: test `d=1` in `<x,y,z | B,AH>` or in
