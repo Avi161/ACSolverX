@@ -1102,3 +1102,14 @@ def test_u124_ids_files_can_never_clobber_the_ac19_ones(tmp_path):
               campaign="u124", log=lambda *a: None)
     assert (tmp_path / "still_unsolved_u124_10m_s20_mk2.txt").exists()
     assert not (tmp_path / "still_unsolved_5m_s20_mk2.txt").exists()
+
+
+def test_the_job_logs_unbuffered_so_tail_actually_shows_heartbeats(tmp_path):
+    """stdout is a log FILE under both systemd and nohup, so Python
+    block-buffers it: the log froze for ~27 min at a time while heartbeats
+    fired every 60s (operator-found). The job itself exports PYTHONUNBUFFERED
+    so BOTH launch paths are covered, and the unit carries it too."""
+    out = tmp_path / "j"
+    _remote("job", OUT=str(out))
+    assert "export PYTHONUNBUFFERED=1" in (out / "_job.sh").read_text()
+    assert "Environment=PYTHONUNBUFFERED=1" in open(REMOTE_SH).read()

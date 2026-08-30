@@ -98,6 +98,11 @@ write_job() {
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$SRC"; export PYTHONPATH="$SRC"
+# stdout goes to a log FILE under both systemd and nohup, so Python
+# block-buffers it: heartbeats fire every 60s but the log freezes for ~27 min
+# at a time, and tail -f shows nothing -- "a quiet hour is indistinguishable
+# from a hung session". Unbuffered fixes the log, not the run.
+export PYTHONUNBUFFERED=1
 for a in $ARMS; do
   # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
   # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
@@ -139,6 +144,7 @@ After=network-online.target
 [Service]
 Type=simple
 User=$(id -un)
+Environment=PYTHONUNBUFFERED=1
 ExecStart=$OUT/_job.sh
 StandardOutput=append:$LOG
 StandardError=append:$LOG
