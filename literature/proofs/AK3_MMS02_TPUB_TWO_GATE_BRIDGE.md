@@ -464,6 +464,12 @@ basis: \(G_-\) is an explicit free-by-cyclic mapping torus.  Conjugate
 height-one normal forms for \(U,V\) have pinned base words of length ten.
 This supplies the exact Britton interface for (413), but does not decide it.
 
+Section 6.65 removes the remaining mapping-torus notation from that
+interface.  Writing \(U=(A_U,1)\), \(V=(A_V,1)\), the two equations (413)
+are equivalent to two displayed equations in the free group \(H=F_4\), with
+five free-group variables and three integer shifts.  This is now a literal
+free-group exponential system; its solution set has not been evaluated.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7842,6 +7848,120 @@ base-group residual literally.  No other depth-five sign pattern, terminal
 pair orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis is claimed.
 
+### 6.65. Exact free-base equations for the signed lift gate
+
+Use right normal forms \((a,n)=ay^n\) in the mapping torus (418).  Their
+product and inverse are
+
+\[
+ (a,n)(b,m)=(a\phi^n(b),n+m),
+ \qquad
+ (a,n)^{-1}=(\phi^{-n}(a^{-1}),-n).
+\tag{421}
+\]
+
+Replace \(U,V\) in (413) by the independently conjugate representatives
+\(U=(A_U,1)\), \(V=(A_V,1)\) from (419)--(420).  The commutator
+conjugators may be taken in the base.  Indeed,
+
+\[
+ [U,gU^k]=[U,g],\qquad [V,jV^k]=[V,j]
+\]
+
+for every integer \(k\).  Right-multiplying \(g\) by
+\(U^{-\operatorname{ht}(g)}\), and similarly for \(j\), therefore replaces
+them by height-zero elements without changing either commutator.  Write
+these normalized elements as \(p,q\in H\).  Formula (421) gives
+
+\[
+ C_p:=[U,p]=A_U\phi(p)A_U^{-1}p^{-1},
+ \qquad
+ C_q':=[V,q]=A_V\phi(q)A_V^{-1}q^{-1}.
+\tag{422}
+\]
+
+Two base elements \(c,d\in H\) are conjugate in the mapping torus exactly
+when
+
+\[
+ c=a\phi^m(d)a^{-1}
+\]
+
+for some \(a\in H\) and \(m\in\mathbb Z\).  This follows immediately by
+conjugating \((d,0)\) with \((a,m)\) using (421).  Hence the second equation
+of (413) is exactly
+
+\[
+ C_p=a\phi^m(C_q')a^{-1}.
+\tag{423}
+\]
+
+For the first equation of (413), write its conjugator as \(h=(s,r)\), with
+\(s\in H\) and \(r\in\mathbb Z\).  Then
+
+\[
+ {}^hC_p=s\phi^r(C_p)s^{-1}
+\]
+
+and the height-one product \(U\,{}^hC_p\) has base coordinate
+
+\[
+ D_0=A_U\phi(s)\phi^{r+1}(C_p)\phi(s)^{-1}.
+\tag{424}
+\]
+
+Finally, conjugating \((D_0,1)\) by \((t,n)\) gives
+
+\[
+ (t,n)(D_0,1)(t,n)^{-1}
+ =\bigl(t\phi^n(D_0)\phi(t)^{-1},1\bigr).
+\]
+
+Thus \(U\,{}^hC_p\sim V\) is exactly
+
+\[
+ A_V=t\phi^n(D_0)\phi(t)^{-1}.
+\tag{425}
+\]
+
+**Theorem 6.59 (free-base lift system).**  The signed five-multiplication
+skeleton (410) lifts in \(G_-\) if and only if there exist
+
+\[
+ p,q,a,s,t\in F(d_{-2},d_{-1},d_0,d_1),
+ \qquad m,r,n\in\mathbb Z,
+\]
+
+such that (422)--(425) hold.  Equivalently, after substituting (422) and
+(424), the two obligations are the free-group equations
+
+\[
+\boxed{
+\begin{aligned}
+ A_U\phi(p)A_U^{-1}p^{-1}
+ &=a\phi^m\!\left(A_V\phi(q)A_V^{-1}q^{-1}\right)a^{-1},\\
+ A_V
+ &=t\phi^n\!\left(
+ A_U\phi(s)\phi^{r+1}\!\left(A_U\phi(p)A_U^{-1}p^{-1}\right)
+ \phi(s)^{-1}
+ \right)\phi(t)^{-1}.
+\end{aligned}}
+\tag{426}
+\]
+
+Every multiplication, inverse, and conjugation used in the reduction is the
+literal mapping-torus law (421); no Alexander or relation-module solution is
+being promoted.  Conversely, a solution of (426) reconstructs (413), then
+the legal row path (411), so the reduction is an iff.
+
+Equation (426) is a free-group exponential system because \(m,r,n\) remain
+unbounded.  It has not been solved.  In particular, no bounded word search,
+fixed shortest-conjugator failure, or finite quotient can replace evaluation
+of all its integer shifts and free variables.  Other depth-five sign
+patterns, longer terminal paths, the full pair orbit, MMS02 bridge, stable
+AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
+open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8035,7 +8155,10 @@ The logical gates remain separate:
 54. the literal Magnus rewrite identifies \(G_-\) as the free-by-cyclic
     mapping torus (418) and puts both live rows in the length-one forms
     (419)--(420), but does not solve the simultaneous equations (413); and
-55. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+55. the signed lift gate is equivalently the two explicit free-group
+    exponential equations (426), with five free variables and three
+    unbounded integer shifts; their solution set remains open; and
+56. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8215,3 +8338,8 @@ group.  The two endpoint conjugacy classes have the pinned length-one forms
 \(A_Uy\) and \(A_Vy\), with freely reduced base words of length ten in
 (420).  The mapping-torus structure supplies an exact decision interface but
 does not decide the simultaneous commutator equations (413).
+Theorem 6.59 applies the mapping-torus multiplication law literally and
+removes the remaining ambient-group notation.  The fixed signed skeleton
+lifts if and only if the two free-group exponential equations (426) have a
+solution in five \(F_4\) variables and three integer shifts.  This is an exact
+iff interface, not a bounded search or a solution of the equations.
