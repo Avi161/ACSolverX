@@ -590,6 +590,14 @@ normal closure.  The actual \(Q_A\) gate passes this preliminary control
 because its specific \(B\) normally generates; its Peiffer lift remains
 open.
 
+Section 6.81 evaluates the complete vertical-multiplication loop family
+introduced in Section 6.28 at the literal, rather than first-derived, level.
+Closing the defect with any vertical conjugator would conjugate the
+cyclically reduced free-product word \(EBt\) to \(Bt\).  The free-product
+conjugacy theorem reduces this to \(E=1\), contradicting the certified
+Britton defect.  Thus the loop family which destroys the module covector
+never closes the exact defect; other lifted loops remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -9312,6 +9320,56 @@ the specific tagged pair nor evaluates its full lifted-loop/Peiffer class.
 The MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.  No broader universal-macro ledger is opened.
 
+### 6.81. The full vertical-multiplication loop family cannot close exactly
+
+Return to the quotient loop (191), but evaluate it on the literal canonical
+lift \((EB,t)\), where \(E\ne1\) by Theorem 6.9.  For an arbitrary
+vertical conjugator \(k\in N_t\), its three full-group arrows are
+
+\[
+ (EB,t)\xrightarrow{P}(EBt,t)
+ \xrightarrow{C_1(k)}(kEBtk^{-1},t)
+ \xrightarrow{P^{-1}}(kEBtk^{-1}t^{-1},t).
+\tag{500}
+\]
+
+Consequently this loop closes the exact defect if and only if
+
+\[
+ k(EBt)k^{-1}=Bt.
+\tag{501}
+\]
+
+In fact (501) has no solution even when \(k\) is allowed to range over all
+of \(G_t=Q_A*\langle t\rangle\).  The identities
+\(EB=D^{-1}qD\) and Theorem 6.12 show that \(EB\) and \(B\) are
+nontrivial elements of \(Q_A\).  Hence \(EBt\) and \(Bt\) are
+cyclically reduced free-product words of syllable length two.  The conjugacy
+theorem for a free product says that two such words are conjugate only when
+one is a cyclic permutation of the other.  Comparison with the unique
+reduced normal form of \(Bt\) leaves only
+
+\[
+ Bt=EBt\Longrightarrow E=1;
+\tag{502}
+\]
+
+the other cyclic permutation \(tEB\) starts in the tag factor and cannot
+equal \(Bt\).  Equation (502) contradicts Theorem 6.9.
+
+**Theorem 6.75 (exact vertical-loop boundary).**  No loop of the form
+\(P\,C_1(k)\,P^{-1}\), for any vertical conjugator \(k\in N_t\), sends
+the canonical lifted endpoint \((EB,t)\) to \((B,t)\).  The same loop
+family can erase the identity-coset covector in the first-derived module, as
+Theorem 6.21 proves, but it never erases the literal defect.
+
+This theorem evaluates the entire existing family (191), not a bounded list
+of conjugators.  It does not obstruct a lifted quotient loop with a
+different Nielsen skeleton, a sequence coupling both residual coordinates,
+or another path for (130).  The exact Peiffer gate, MMS02 bridge, stable
+AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
+open.  No further vertical-loop family is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -9562,7 +9620,10 @@ The logical gates remain separate:
     \(X,r\in\operatorname{Ncl}(q)\) do not supply a universal
     commutator-buffer macro; the \(A_5\) can-fail control loses normal
     generation at its target, whereas the actual \(B\) does not; and
-71. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+71. the full vertical-multiplication loop family (191) can kill the
+    first-derived covector but cannot close the literal defect for any
+    vertical conjugator, by cyclically reduced free-product conjugacy; and
+72. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -9850,3 +9911,9 @@ commutator-buffer argument.  In \(A_5\), one may have
 target \(q[X,r]^{-1}\) is the identity and loses normal generation.  The
 actual Gate-A target \(B\) normally generates \(Q_A\), so this excludes only
 the generic macro, not the specific Peiffer orbit.
+Theorem 6.75 returns to the specific orbit and evaluates every vertical
+conjugator in the loop family (191).  Exact closure would conjugate the
+cyclically reduced word \(EBt\) to \(Bt\) in \(Q_A*\langle t\rangle\).
+Free-product conjugacy forces \(E=1\), contrary to the Britton certificate.
+Thus the loop which kills the first-derived covector never kills the
+literal defect; other loop skeletons remain open.
