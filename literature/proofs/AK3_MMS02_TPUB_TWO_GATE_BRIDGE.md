@@ -581,6 +581,15 @@ generating tuple at that rank.  In particular, the positive theorem for
 groups whose normally generating tuples are generating tuples does not
 apply; this is a scope boundary, not a Peiffer obstruction.
 
+Section 6.80 supplies a can-fail control for the most tempting universal
+Peiffer macro.  Normal generation of \(Q\) by \(q\), together with
+\(X,r\in\operatorname{Ncl}_Q(q)\), does not imply that a tag can absorb
+the commutator \([X,r]\).  An explicit \(A_5\) example makes the proposed
+target row trivial, so the source and target pairs do not even have the same
+normal closure.  The actual \(Q_A\) gate passes this preliminary control
+because its specific \(B\) normally generates; its Peiffer lift remains
+open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -9245,6 +9254,64 @@ ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis conclusion
 follows.  The exact remaining obligation is still a direct AC/Peiffer lift
 of (130), not another quotient or generating-tuple theorem.
 
+### 6.80. Normal generation alone gives no commutator-buffer macro
+
+A generic construction might try to use only
+
+\[
+ \operatorname{Ncl}_Q(q)=Q,qquad
+ X,r\in\operatorname{Ncl}_Q(q),
+\tag{497}
+\]
+
+and conclude that the fresh tag realizes
+\((q,t)\sim_{\rm AC}(q[X,r]^{\pm1},t)\).  This cannot be a universal
+identity.  AC moves preserve the normal closure of the complete tuple, so
+such a conclusion requires its proposed first target row to normally
+generate \(Q\).
+
+For an exact can-fail control take \(Q=A_5\) and, in one-based cycle
+notation, put
+
+\[
+ X=(1\ 2\ 3),\qquad r=(1\ 2\ 4),\qquad
+ q=(1\ 2)(3\ 4).
+\tag{498}
+\]
+
+With the commutator convention of Section 6.11, direct multiplication gives
+\([X,r]=q\).  The element \(q\) is nontrivial, so simplicity of \(A_5\)
+gives \(\operatorname{Ncl}_{A_5}(q)=A_5\); in particular (497) holds.
+But \(q^2=1\).  Taking \(h=1\) and \(D=[X,r]=q\) in the canonical
+spelling \(B=qD^{-1}\) gives
+
+\[
+ B=1,qquad
+ \operatorname{Ncl}_{A_5*\langle t\rangle}(q,t)
+ =A_5*\langle t\rangle,qquad
+ \frac{A_5*\langle t\rangle}
+ {\operatorname{Ncl}(B,t)}\cong A_5.
+\tag{499}
+\]
+
+Thus \((q,t)\) and \((B,t)=(1,t)\) cannot be AC-equivalent.  The focused
+control independently evaluates the commutator and enumerates the normal
+closure of \(q\) as all sixty elements of \(A_5\).
+
+**Theorem 6.74 (generic commutator-buffer can-fail control).**  There is no
+universal AC or M-transformation macro which turns
+\((q,t)\) into \((q({}^h[X,r])^{-1},t)\) using only the hypotheses that
+\(q\) normally generates \(Q\) and that \(X,r\) lie in its normal
+closure.
+
+The actual Gate-A tuple is not the counterexample: Theorem 6.12 separately
+proves that its specific \(B=qD^{-1}\) normally generates \(Q_A\).  Hence
+it passes the necessary normal-closure test which (499) fails.  The theorem
+rules out only a generic commutator-transfer argument; it neither obstructs
+the specific tagged pair nor evaluates its full lifted-loop/Peiffer class.
+The MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.  No broader universal-macro ledger is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -9491,7 +9558,11 @@ The logical gates remain separate:
     shorter than the rank of its ambient free product, so the positive
     generating-tuple/class-\(\mathfrak C\) theorem cannot apply; this rank
     boundary does not distinguish normally generating AC orbits; and
-70. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+70. normal generation of a source \(q\) and membership
+    \(X,r\in\operatorname{Ncl}(q)\) do not supply a universal
+    commutator-buffer macro; the \(A_5\) can-fail control loses normal
+    generation at its target, whereas the actual \(B\) does not; and
+71. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -9773,3 +9844,9 @@ rank.  The tagged tuple in
 rank \(k+3\), so neither the class-\(\mathfrak C\) theorem nor a preliminary
 conversion to a generating tuple closes its AC orbit.  The literal Peiffer
 gate remains unchanged.
+Theorem 6.74 gives the corresponding can-fail control for a universal
+commutator-buffer argument.  In \(A_5\), one may have
+\(q=[X,r]=(1\ 2)(3\ 4)\) with \(q\) a normal generator, while the proposed
+target \(q[X,r]^{-1}\) is the identity and loses normal generation.  The
+actual Gate-A target \(B\) normally generates \(Q_A\), so this excludes only
+the generic macro, not the specific Peiffer orbit.

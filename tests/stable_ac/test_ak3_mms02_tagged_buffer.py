@@ -1,4 +1,5 @@
 from fractions import Fraction
+from itertools import permutations
 
 
 INVERSES = str.maketrans(
@@ -75,6 +76,59 @@ def module_act(word, vector):
         (product(word, coset), basis): coefficient
         for (coset, basis), coefficient in vector.items()
     }
+
+
+def test_generic_commutator_tag_macro_has_can_fail_control():
+    def compose(left, right):
+        return tuple(left[right[index]] for index in range(5))
+
+    def perm_inverse(value):
+        result = [0] * 5
+        for index, image in enumerate(value):
+            result[image] = index
+        return tuple(result)
+
+    def perm_commutator(left, right):
+        return compose(
+            compose(compose(left, right), perm_inverse(left)),
+            perm_inverse(right),
+        )
+
+    identity = tuple(range(5))
+    x = (1, 2, 0, 3, 4)
+    r = (1, 3, 2, 0, 4)
+    q = (1, 0, 3, 2, 4)
+    assert perm_commutator(x, r) == q
+    assert compose(q, q) == identity
+
+    a5 = tuple(
+        value
+        for value in permutations(range(5))
+        if sum(
+            value[left] > value[right]
+            for left in range(5)
+            for right in range(left + 1, 5)
+        )
+        % 2
+        == 0
+    )
+    conjugates = {
+        compose(compose(g, q), perm_inverse(g))
+        for g in a5
+    }
+    closure = {identity}
+    while True:
+        expanded = {
+            compose(left, right)
+            for left in closure
+            for right in conjugates
+        }
+        next_closure = closure | expanded
+        if next_closure == closure:
+            break
+        closure = next_closure
+    assert len(a5) == len(closure) == 60
+    assert compose(q, perm_inverse(perm_commutator(x, r))) == identity
 
 
 def test_mms02_tagged_buffer_exact_word_replay():
