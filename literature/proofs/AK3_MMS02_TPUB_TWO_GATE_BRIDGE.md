@@ -5196,6 +5196,84 @@ not transport the negative decision.  The unrestricted $T_{\rm pub}$
 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.44. The complete published corridor is nonthickenable
+
+There is a stronger finite statement about the particular path, still with
+no AC-invariance content.  Replay the fifty-three Appendix F moves literally,
+freely reducing after each move but performing no cyclic reduction or
+occurrence identification before applying the Neuwirth dictionary.  This
+gives fifty-four distinct exact states
+
+\[
+ P_{25}=C_0\xrightarrow{h_9}C_1\xrightarrow{h_7}\cdots
+ \xrightarrow{h_8}C_{53}=\operatorname{AK}(3).
+\tag{281}
+\]
+
+An independent move implementation checks every arrow in (281), not only
+the endpoints.  The support inventory of the exact states is
+
+\[
+\begin{array}{c|ccc}
+\text{support}&K_4&K_4-e&K_4+\text{one loop}\\ \hline
+\text{states}&37&15&2.
+\end{array}
+\tag{282}
+\]
+
+The two loop states are the raw states $C_{23},C_{24}$,
+
+```text
+YYYXyyyyx | YXXyxyy
+YYYXyyyyx | YYXXyxyyy
+```
+
+and each has exactly one loop edge over a positive parallel $K_4$ core.
+They are not silently replaced by their cyclic reductions.  Theorem 4.1 of
+`AK3_ONE_LOOP_SYNCHRONIZED_PLANARITY.md` supplies the complete loop insertion
+schemes and signed-rank criterion for precisely these two states.  The other
+fifty-two states lie in the loopless scope of
+`AK3_SYNCHRONIZED_PLANARITY.md`.
+
+Across the complete corridor, the exact finite budgets are
+
+\[
+\begin{array}{c|r}
+\text{spherical schemes}&158\\
+\text{scheme--phase pairs}&10{,}701\\
+\text{component seeds}&66{,}823\\
+\text{closed single-component assignments}&60\\
+\text{complete component combinations}&0.
+\end{array}
+\tag{283}
+\]
+
+Every scheme, phase, seed, and combination budget is met.  Thus none of the
+fifty-four exact states admits a Neuwirth-compatible spherical rotation.
+The replay, independent corner support inventory, exact one-loop dispatch,
+and all aggregate budgets are pinned by
+`mms02_p25_corridor_neuwirth_certificate.py` and its focused test.
+
+**Theorem 6.37 (published-corridor thickenability boundary).**  Every exact
+word-realized presentation complex $K_{C_i}$ on the published Appendix F
+corridor (281) is nonthickenable.
+
+**Proof.**  Every support in (282) is connected.  The loopless and one-loop
+classification theorems make the enumerated schemes complete, and the
+exhaustive signed-rank decisions exclude a compatible spherical rotation at
+every $C_i$.  The Euler-only Neuwirth criterion therefore rules out an
+orientable PL thickening.  Every $C_i$ is connected to AK(3) by a subpath of
+(281), so it presents the trivial group.  A regular neighbourhood retracting
+to $K_{C_i}$ has trivial fundamental group and cannot be nonorientable,
+because its orientation character would be a nontrivial map to
+$\mathbb Z/2$.  Hence no PL thickening exists. $\square$
+
+This theorem freezes the named fifty-three-move thickenability corridor.  It
+does not apply to another AC path or representative, does not make
+thickenability an AC invariant, and neither proves nor obstructs AK(3).  The
+unrestricted $T_{\rm pub}$ bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5318,9 +5396,12 @@ The logical gates remain separate:
 34. the exact length-25 representative (277) is nonthickenable, but this
     exact-complex negative does not transport along its AC path to AK(3) and
     is not an AK(3) obstruction;
-35. no MMS02 statement evaluates the period-two class-two ledger or its
+35. all fifty-four exact complexes on the published Appendix F path are
+    nonthickenable, but this closes only that named path and neither proves
+    nor obstructs another route to a thickenable AK(3) representative;
+36. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-36. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+37. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5375,4 +5456,7 @@ its primitive-deletion shortcut: $A$ has complete Whitehead minimum eight,
 so the ambient one-relator group is not free of rank two.  The pair orbit is
 still not decided.  Theorem 6.36 independently closes the exact length-25
 representative's direct thickenability route.  That negative is confined to
-its word-realized complex and does not transport to AK(3).
+its word-realized complex and does not transport to AK(3).  Theorem 6.37
+extends the finite negative to all fifty-four exact complexes on the named
+Appendix F path, including its two unreduced one-loop states.  This freezes
+that corridor only; other AC paths and representatives remain open.

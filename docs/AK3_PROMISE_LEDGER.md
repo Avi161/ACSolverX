@@ -245,6 +245,15 @@ finite quotient do not close a route.
   Although Appendix F connects the pair to AK(3) by AC moves, thickenability
   is not transported along that path.  This closes only this representative;
   it does not obstruct AK(3), prove the bridge, or change stable-AK(3) status.
+- **Published P25--AK(3) corridor closed locally:** an independent literal
+  replay checks all 53 Appendix F moves and the 54 distinct exact states.
+  Their supports are 37 `K4`, 15 `K4-e`, and two one-loop parallel-`K4`
+  links; the loop states are decided without cyclic reduction by the proved
+  one-loop solver.  Exhausting 158 schemes, 10,701 scheme--phase pairs, and
+  66,823 component seeds leaves no complete component combination, so every
+  exact complex on this named corridor is nonthickenable.  This freezes only
+  the published path.  Another AC path or representative may be thickenable;
+  AK(3), the unrestricted bridge, and stable AK(3) remain open.
 - **Pinned-seam donor class frozen:** among the twelve products obtained by
   multiplying displayed $A$ or $B$ by a cyclic shift of $v^{\pm1}$, exactly
   four shorten at a cyclic seam. Complete spherical-scheme and signed-rank
