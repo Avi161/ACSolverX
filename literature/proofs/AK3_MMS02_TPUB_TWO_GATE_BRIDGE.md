@@ -411,6 +411,15 @@ respective target lengths seven and seventeen.  This closes only that fixed
 recipient/sign/assignment skeleton; the common-kill depth ledger is not
 reopened.
 
+Section 6.60 strengthens the terminal path-gauge boundary without a move
+bound.  Modulo the normal closure of the common \(B\)-row, every path which
+keeps that row confined can change the other row only by conjugation and
+inversion.  This condition is also sufficient by the donor macro.  The
+certified \(A_5\) quotient places \(u^{\pm1}\) and \(v^{\pm1}\) in the two
+different inversion-stable classes of 5-cycles.  Hence every successful
+terminal path must make the \(B\)-row quotient-visible; the unrestricted
+two-row orbit remains open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7202,6 +7211,116 @@ altering the \(v\)-row by a base donor, an ambient map not preserving
 depth-two ledger is opened.  The unrestricted bridge, stable AK(3), ordinary
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
+### 6.60. Split 5-cycle classes obstruct every \(B\)-confined path
+
+The terminal gate (271) allows the second row to change.  First isolate the
+complete unbounded class in which it does not change modulo its original
+normal closure.  Put
+
+\[
+ \pi:G_A\longrightarrow
+ G_-:=G_A/\operatorname{Ncl}_{G_A}(B)
+ =F/\operatorname{Ncl}_F(A,B).
+ \tag{391}
+\]
+
+Call a path from \((u,B)\) to \((v,B)\) \(B\)-confined if one distinguished
+row starts and ends at \(B\), every intermediate value of that row belongs
+to \(\operatorname{Ncl}_{G_A}(B)\), and row labels are followed through any
+permutation.  There is no bound on the path, its conjugators, or the number
+of times the other row uses the confined row as donor.
+
+Under \(\pi\), the distinguished row is always one.  Multiplication by it
+therefore disappears, while inversion and conjugation of the other row
+remain inversion and conjugation.  Necessarily,
+
+\[
+ (u,B)\sim_{B\text{-confined}}(v,B)
+ \quad\Longrightarrow\quad
+ \pi(v)\sim\pi(u)^\epsilon
+ \text{ in }G_-
+ \text{ for some }\epsilon\in\{1,-1\}.
+ \tag{392}
+\]
+
+The converse is exact.  If
+\(\pi(v)={}^c\pi(u)^\epsilon\), then
+
+\[
+ w=({}^cu^\epsilon)^{-1}v
+ \in\operatorname{Ncl}_{G_A}(B).
+\]
+
+Choose a finite factorization
+
+\[
+ w=\prod_{i=1}^m{}^{d_i}B^{\delta_i},
+ \qquad \delta_i\in\{1,-1\}.
+\]
+
+Invert and conjugate the first row to \({}^cu^\epsilon\), then append the
+displayed factors one at a time by conjugating and, when needed, inverting
+the literal \(B\)-row, multiplying it into the first row, and restoring
+\(B\).  This reaches \(v\).  Thus (392) is an if and only if criterion.
+
+The \(A_5\) quotient (310) kills both \(A\) and \(B\), so it factors through
+\(G_-\).  Direct evaluation gives, in one-line and cycle notation,
+
+\[
+ \begin{aligned}
+ a:=\rho(u)&=(2,3,4,0,1)=(0\ 2\ 4\ 1\ 3),\\
+ b:=\rho(v)&=(2,0,4,1,3)=(0\ 2\ 4\ 3\ 1).
+ \end{aligned}
+ \tag{393}
+\]
+
+The transposition \((1\ 3)\) conjugates \(a\) to \(b\) in \(S_5\), and it
+is odd.  Every \(S_5\)-conjugator from \(a\) to \(b\) differs from it by an
+element of
+
+\[
+ C_{S_5}(a)=\langle a\rangle,
+\]
+
+whose five elements are even.  Hence every such conjugator is odd and
+\(a,b\) lie in the two different split \(A_5\)-classes of 5-cycles.
+
+Both split classes are closed under inversion.  Explicit even reversers are
+
+\[
+ (1\ 4)(2\ 3)\,a\,(1\ 4)(2\ 3)=a^{-1},
+ \qquad
+ (1\ 2)(3\ 4)\,b\,(1\ 2)(3\ 4)=b^{-1}.
+ \tag{394}
+\]
+
+Consequently
+
+\[
+ \rho(u)^\epsilon
+ \not\sim_{A_5}
+ \rho(v)^\delta
+ \qquad(\epsilon,\delta\in\{1,-1\}).
+ \tag{395}
+\]
+
+The focused certificate checks that the assignment kills \(A,B\), generates
+all sixty elements of \(A_5\), and enumerates all 120 elements of \(S_5\).
+For each of the four orientation pairs it finds exactly five conjugators,
+all odd and none in \(A_5\).
+
+**Theorem 6.54 (actual-base fixed-row boundary).**  There is no
+\(B\)-confined path from \((u,B)\) to \((v,B)\) in \(G_A\).  Equivalently,
+the exact quotient criterion (392) fails in every orientation.
+
+This is an unbounded-depth result with arbitrary conjugator tails and
+arbitrarily many donor multiplications from the confined row.  It forces any
+successful path for (271) to make the \(B\)-row leave
+\(\operatorname{Ncl}_{G_A}(B)\), even temporarily.  It does not obstruct
+such a both-row path, a path changing the fixed \(A\)-row, another
+stabilization, the unrestricted MMS02 bridge, stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7377,7 +7496,11 @@ The logical gates remain separate:
     positive two-multiplication common-kill skeleton, with arbitrary relative
     and final row conjugators, but no other sign, recipient order, target
     assignment, depth-two pattern, or unrestricted bridge mechanism; and
-50. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+50. the split \(A_5\) classes of the actual-base killer images close every
+    unbounded \(B\)-confined terminal path, forcing any successful path for
+    (271) to change the \(B\)-row quotient-visibly, but do not obstruct that
+    both-row orbit; and
+51. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7518,3 +7641,10 @@ the lift (384), and the two correct arbitrary-conjugator pair-of-pants minima
 are thirteen and twenty-one, above the target lengths seven and seventeen.
 Thus that one skeleton fails even with independent final row conjugations.
 No other depth-two pattern or bridge route is claimed.
+Theorem 6.54 then evaluates the full fixed-\(B\) terminal lane without a
+depth bound.  Modulo \(\operatorname{Ncl}(B)\), a confined-row path is
+equivalent exactly to conjugacy up to inversion of the two killer images.
+The certified \(A_5\) quotient places those images in the two different
+inversion-stable split classes of 5-cycles.  Therefore every successful
+terminal path must change both rows quotient-visibly; that both-row orbit
+remains open.
