@@ -441,6 +441,21 @@ realizes the \(n=-1\), determinant-one target.  Thus five total row
 multiplications are necessary and sharp in the combined \(A_5\)-homology
 shadow; lifting that transcript through the kernel remains open.
 
+Section 6.63 removes the redundant conjugator coordinates from the explicit
+five-multiplication sign skeleton.  With \(U=u^{-1}\), \(V=v\), and
+\([r,s]=r\,{}^s r^{-1}\), that skeleton lifts in \(G_-\) exactly when
+
+\[
+ V\sim U\,{}^h[U,g],
+ \qquad
+ [U,g]\sim[V,j]
+\]
+
+for three elements \(g,h,j\in G_-\).  This is an iff reduction of one signed
+skeleton, not a solution of the equations or of the full pair orbit.  Their
+literal one-relator coordinates and the next Magnus-HNN obligation are
+pinned.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7592,6 +7607,126 @@ form is the next literal obligation.  No path in \(G_-\), no terminal pair
 closure, no MMS02 bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis is claimed.
 
+### 6.63. Exact lift equations for the depth-five sign skeleton
+
+The quotient transcript (407) fixes the signed recipient sequence
+
+\[
+ R_2^+,\quad R_1^-,\quad R_2^+,\quad R_1^+,\quad R_2^-.
+\tag{410}
+\]
+
+Its literal lift must allow arbitrary conjugations in \(G_-\), not only the
+shortest words realizing the six displayed \(A_5\) conjugators.  Write
+\({}^g w=gwg^{-1}\), put \(U=u^{-1}\) and \(V=v\), and use the commutator
+convention
+
+\[
+ [r,s]:=r\,{}^s r^{-1}=rsr^{-1}s^{-1}.
+\]
+
+After the initial free inversion, independent row conjugations reduce every
+lift of (410) to the following relative-conjugator form:
+
+\[
+\begin{aligned}
+ (U,1)&\xrightarrow{R_2^+}(U,U)
+ \sim(U,{}^gU)
+ \xrightarrow{R_1^-}(C,{}^gU)\\
+ &\sim({}^hC,U)
+ \xrightarrow{R_2^+}({}^hC,D)
+ \sim(C,{}^kD)\\
+ &\xrightarrow{R_1^+}(E,{}^kD)
+ \sim(E,{}^\ell D)
+ \xrightarrow{R_2^-}(E,F),
+\end{aligned}
+\tag{411}
+\]
+
+where
+
+\[
+ C=U\,{}^gU^{-1}=[U,g],\qquad
+ D=U\,{}^hC,\qquad
+ E=C\,{}^kD,\qquad
+ F={}^\ell D E^{-1}.
+\tag{412}
+\]
+
+These normalizations lose no choices.  After the first negative move the
+second row is conjugate to \(U\), so normalize it to \(U\) and retain the
+relative conjugator \(h\) on the first row.  After the next positive move,
+normalize the first row back to \(C\) and retain the independent relative
+conjugator \(k\) on the second.  The last normalization similarly replaces
+the second row by an arbitrary conjugate \({}^\ell D\).
+
+The endpoint in (411) is independently conjugate to \((V,1)\) exactly when
+\(E\sim V\) and \(F=1\).  The latter equality is equivalent to \(D\sim E\),
+so the endpoint condition is \(D\sim V\) and \(E\sim V\).  The first is the
+first equation below.  For the second, use the elementary equivalence
+
+\[
+ \exists k:\ C\,{}^kV\sim V
+ \quad\Longleftrightarrow\quad
+ \exists j:\ C\sim[V,j].
+\]
+
+Indeed, conjugating \(C\,{}^kV\) to \(V\) makes a conjugate of \(C\) equal
+to \(V\) times the inverse of a conjugate of \(V\), hence to \([V,j]\).
+Conversely, after conjugating \(C\) to \([V,j]\), choose the same conjugate
+of \(V\); their product is \(V\).
+
+**Theorem 6.57 (depth-five lift-equation reduction).**  The signed
+five-multiplication skeleton (410), with arbitrary independent row
+conjugations, reaches \((V,1)\) from \((U,1)\) in \(G_-\) if and only if
+
+\[
+ \boxed{
+ V\sim U\,{}^h[U,g],
+ \qquad
+ [U,g]\sim[V,j]
+ }
+ \qquad(g,h,j\in G_-).
+\tag{413}
+\]
+
+The equivalence is constructive in both directions: a lift of (410) gives
+the relative conjugators above, while a solution of (413) chooses \(k\) by
+the displayed elementary equivalence and \(\ell\) from \(D\sim E\), then
+reverses the normalizations in (411).
+
+The one-relator coordinates are already explicit.  Under the automorphism
+and collapse in (213)--(215), the original generators map to
+
+\[
+ x\longmapsto\mathtt{zyZ},\qquad
+ y\longmapsto\mathtt y,\qquad
+ z\longmapsto\mathtt{zYZYzYzYZyzyZ},
+\]
+
+and therefore
+
+\[
+ U_* =\mathtt{zyZyzYZYzyZyZyzyZ},\qquad
+ V_* =\mathtt{zYZyzYZYzYzYZyzyZ}
+ \quad\text{in }\langle y,z\mid R_*\rangle.
+\tag{414}
+\]
+
+The exponent vector of \(R_*\) in \((y,z)\) is \((-3,1)\).  Thus setting
+\(d=y^{-3}z\), equivalently \(z=y^3d\), makes the relator have zero
+\(y\)-exponent.  The next exact obligation is to Magnus-rewrite \(R_*\),
+\(U_*\), and \(V_*\) using \(d_i=y^idy^{-i}\), pin the extremal-index
+occurrences, and decide (413) by Britton reduction and the resulting base
+equations.
+
+The theorem decides neither equation in (413).  Failure of the six shortest
+\(A_5\)-conjugator lifts would be only a can-fail control, because arbitrary
+lifts differ by kernel elements.  The other compatible depth-five matrices
+and sign patterns, longer terminal paths, the full pair orbit, MMS02 bridge,
+stable AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis all
+remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7778,7 +7913,11 @@ The logical gates remain separate:
     row multiplications; the depth-five target fiber contains fourteen
     compatible matrices including the identity, but lifting through the
     kernel of \(G_-\to A_5\times\mathbb Z\) remains open; and
-53. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+53. the explicit five-move sign skeleton lifts exactly when the two
+    conjugacy equations (413) have a solution in \(G_-\); those equations,
+    the other compatible sign patterns, and the full pair orbit remain open;
+    and
+54. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7943,3 +8082,10 @@ determinant-one shear \(n=-1\).  Hence every actual terminal path needs at
 least five total row multiplications.  The combined quotient is sharp, but the
 kernel defect of that transcript has not been lifted through the actual
 one-relator group.
+Theorem 6.57 then removes all redundant independent conjugators from the
+explicit signed skeleton.  It lifts in \(G_-\) if and only if there are
+\(g,h,j\) satisfying \(V\sim U\,{}^h[U,g]\) and
+\([U,g]\sim[V,j]\).  This is a complete equivalence for that one sign and
+recipient sequence, not a solution of the equations or of any other
+depth-five pattern.  Their exact one-relator words are pinned in (414), and
+the next obligation is the literal Magnus--Britton decision of this system.
