@@ -1292,3 +1292,56 @@ def test_resume_is_what_seeds_the_governor():
     src = inspect.getsource(run_arm_5m)
     guarded = "if resume:\n        _seed_governor(governor, out, log)"
     assert guarded in src
+
+
+# ------------------------------------------------------ hugepages by request
+_THP_SYSFS = "/sys/kernel/mm/transparent_hugepage/enabled"
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+@pytest.mark.skipif(not os.path.exists(_THP_SYSFS),
+                    reason="kernel built without THP")
+def test_the_big_arrays_take_hugepage_advice_and_small_ones_are_skipped():
+    """Measured on the live box: un-advised memory got 2 MiB pages only
+    40-45% of the time, and workers hugepage-backed from birth ran 2-9%
+    faster. The advice makes that deterministic instead of depending on a
+    sysfs crank that resets every boot."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import _advise_hugepages
+    a = np.empty(64 << 20, dtype=np.uint8)
+    assert _advise_hugepages(a) == 1
+    assert _advise_hugepages(np.empty(1024, dtype=np.uint8)) == 0
+    assert _advise_hugepages() == 0
+
+    # the advice must land on the buffer's BODY: numpy data starts mid-page,
+    # so the madvise splits the VMA and a naive check reads the tiny
+    # un-advised head. Probe inside the first full 2 MiB window instead.
+    page = os.sysconf("SC_PAGESIZE")
+    probe = -(-a.ctypes.data // page) * page + (1 << 21)
+    hg = None
+    with open("/proc/self/smaps") as f:
+        capture = False
+        for line in f:
+            c = line[0]
+            if c.isdigit() or c in "abcdef":
+                lo, hi = (int(x, 16) for x in line.split()[0].split("-"))
+                capture = lo <= probe < hi
+            elif capture and line.startswith("VmFlags:"):
+                hg = "hg" in line.split()
+                break
+    assert hg is True
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_hugepage_advice_lands_before_any_page_is_touched():
+    """Advice after the first touch is too late -- the pages are already
+    faulted at 4 KiB. Pin the order in the source: _alloc advises before the
+    grow-copy, _grow_width before the repack."""
+    src = open(os.path.join(ROOT, "experiments", "heuristic_search", "core",
+                            "hcompact.py")).read()
+    alloc_advise = src.index("_advise_hugepages(self.arena")
+    grow_copy = src.index("if old is None:")
+    assert alloc_advise < grow_copy
+    width_advise = src.index("_advise_hugepages(new_arena)")
+    repack = src.index("_repack(self.arena, new_arena")
+    assert width_advise < repack

@@ -372,6 +372,38 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
     return status
 
 
+def _advise_hugepages(*arrays):
+    """Best-effort ``madvise(MADV_HUGEPAGE)`` on the big per-search arrays.
+
+    Under the kernel's ``defrag=madvise`` default, un-advised memory only
+    gets a 2 MiB page when one happens to be free at fault time -- measured
+    at 40-45% coverage on a fresh box, against 99%+ with advice, and workers
+    hugepage-backed from birth ran 2-9% faster than the same rows reaching
+    coverage mid-life. Advice changes page BACKING, never bytes: the search
+    is bit-identical with or without it (the identity gates re-check this).
+    Returns how many regions took the advice; 0 on non-Linux or any failure.
+    """
+    if not sys.platform.startswith("linux"):
+        return 0
+    try:
+        import ctypes
+        libc = ctypes.CDLL(None, use_errno=True)
+        page = os.sysconf("SC_PAGESIZE")
+        advised = 0
+        for a in arrays:
+            addr = a.ctypes.data
+            start = -(-addr // page) * page           # first page boundary in
+            end = (addr + a.nbytes) // page * page    # last page boundary in
+            if end - start >= (1 << 21):              # holds a 2 MiB window
+                if libc.madvise(ctypes.c_void_p(start),
+                                ctypes.c_size_t(end - start),
+                                14) == 0:             # 14 = MADV_HUGEPAGE
+                    advised += 1
+        return advised
+    except Exception:
+        return 0
+
+
 class HCompactSolver:
     """Pops in exactly the order ``greedy_search_h`` does. Tracks no paths."""
 
@@ -455,6 +487,11 @@ class HCompactSolver:
         self.pmove = np.zeros((m, 4), dtype=np.int8)
         self.tcap = _next_pow2(2 * n)
         self.table = np.zeros(self.tcap, dtype=np.int32)
+        # advised BEFORE the old-data copy below, so even a grow's copy
+        # faults its pages in as 2 MiB from the first touch
+        _advise_hugepages(self.arena, self.table, self.score, self.heap,
+                          self.depth, self.parent, self.pmove,
+                          self.len1, self.len2, self.seg)
         if old is None:
             self.parent[0] = -1
         else:
@@ -479,6 +516,7 @@ class HCompactSolver:
         print(f"    [hcompact] rows widen {self.w}B -> {w_new}B per relator "
               f"at {n:,} states (this repacks)", flush=True)
         new_arena = np.empty(self.states_cap * 2 * w_new, dtype=np.uint8)
+        _advise_hugepages(new_arena)      # before _repack touches its pages
         _repack(self.arena, new_arena, n, self.w, w_new)
         self.arena = new_arena
         self.w = w_new
