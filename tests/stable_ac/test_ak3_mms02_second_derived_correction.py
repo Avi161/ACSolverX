@@ -116,6 +116,10 @@ def alpha(polynomial):
     return clean(result)
 
 
+def augmentation(polynomial):
+    return sum(polynomial.values())
+
+
 def poly_mul(left, right):
     result = defaultdict(int)
     for left_exponent, left_coefficient in left.items():
@@ -259,6 +263,7 @@ def test_second_derived_fox_correction_and_direct_limit():
     phi_b = fox(phi("b"))
     determinant = add(mul(phi_a[0], phi_b[1]), neg(mul(phi_a[1], phi_b[0])))
     assert determinant == {(-1, 2): 1, (-1, 3): -1}
+    assert augmentation(determinant) == 0
     phi_commutator_fox = fox(phi("abAB"))
     assert phi_commutator_fox == (
         mul(determinant, {(0, 0): 1, (0, 1): -1}),

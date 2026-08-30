@@ -138,6 +138,20 @@ the transported AK(3) power row.  The middle exchange is classical, while the
 simultaneous basis changes are justified only stably.  Thus the omission route
 returns to AK(3) itself and supplies no stable-triviality shortcut.
 
+Section 6.26 tests the two canonical relation-lift pairs as primitive mates.
+Both pass the necessary abelian-minor test, but complete rank-three Whitehead
+reduction stops at total cyclic lengths 351 and 349.  Thus neither canonical
+pair can be straightened by one simultaneous basis transport.  Corrected rows
+and the unrestricted Peiffer bridge remain open.
+
+Section 6.27 evaluates the equivariant scalar alternative to the
+identity-coset covector.  The second-derived transition contains
+$\mathsf a^{-1}\mathsf b^2(1-\mathsf b)$, while every one-dimensional
+character kills $a,b$.  Consequently every scalar-character base change of
+the induced defect module is zero.  This freezes all global augmentation and
+character detectors as vacuous without deciding the non-equivariant gate
+(141).
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3358,6 +3372,81 @@ Peiffer path which changes all three rows.  No correction or Whitehead search
 ledger is opened here.  The unrestricted bridge and the relative class (83)
 remain the active gates.
 
+### 6.27. Every one-dimensional scalarization of the tagged defect vanishes
+
+There is a natural equivariant replacement for the non-equivariant
+identity-coset projection in (135): base-change the full induced module along
+a one-dimensional character of the ambient group.  The direct-limit
+transition (112) makes every such replacement identically zero.
+
+Let $R$ be a commutative ring and let
+$\chi:\overline G\to R^\times$ be a character.  Regard $R$ as a right
+$\mathbb Z[\overline G]$-module through $\chi$.  The elements $a,b$ used in
+(110)--(112) lie in $H'$.  Since the image of $\chi$ is abelian,
+
+\[
+ \chi(a)=\chi(b)=1.
+ \tag{186}
+\]
+
+Recall that the semilinear transition for
+$L=Q_A''/Q_A'''$ is multiplication by
+
+\[
+ s=\mathsf a^{-1}\mathsf b^2(1-\mathsf b)
+ \tag{187}
+\]
+
+followed by $\alpha$.  A class represented by $f$ at one finite stage is
+represented by $s\alpha(f)$ at the next.  After scalar base change,
+
+\[
+ 1\otimes[f]
+ =1\otimes[s\alpha(f)]
+ =\chi(s)\otimes[\alpha(f)]
+ =0
+ \tag{188}
+\]
+
+by (186)--(187).  Every element of the filtered colimit has a finite-stage
+representative, so
+
+\[
+ R_\chi\otimes_{\mathbb Z[H]}L=0.
+ \tag{189}
+\]
+
+Using the induced-module identity (132) and associativity of base change now
+gives
+
+\[
+ \begin{aligned}
+ R_\chi\otimes_{\mathbb Z[\overline G]}\mathcal M
+ &\cong
+ R_\chi\otimes_{\mathbb Z[H]}L
+ =0.
+ \end{aligned}
+ \tag{190}
+\]
+
+The ordinary global augmentation is the trivial-character case.  In
+particular, it kills the canonical class $[E]$; the factor in (187) has
+coefficient augmentation $1-1=0$, which is also pinned in the focused
+second-derived checker.
+
+**Theorem 6.20 (scalar-character vacuity).**  Every one-dimensional
+character base change of the complete tagged defect module $\mathcal M$
+is zero.  Hence neither global coset augmentation nor any abelian character
+specialization can detect the residual $([E],0)$ or obstruct the tagged gate
+(130).
+
+This is a can-fail control on the first-derived program, not a vanishing of
+$[E]$ in $L$ or $\mathcal M$.  The identity-coset map $p$ in (135) avoids
+the theorem precisely because it is not $\overline G$-equivariant.  Universal
+(141), the full defect set $\mathcal D$, the tagged Peiffer gate, the
+unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.  No
+character or scalar-specialization ledger is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3422,9 +3511,12 @@ The logical gates remain separate:
     nonprimitive by complete Whitehead reduction; this closes only direct
     ambient straightening of those displayed pairs, not a corrected row or
     the interleaved Peiffer gate;
-21. no MMS02 statement evaluates the period-two class-two ledger or its
+21. every one-dimensional scalarization of the induced tagged defect module
+    is zero; this makes global augmentation and abelian-character detectors
+    vacuous but does not decide the non-equivariant identity-coset gate;
+22. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-22. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+23. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -3433,4 +3525,6 @@ class (83).  The raw omission route is frozen by Theorems 6.17--6.18 at a
 stable return to AK(3), and Theorem 6.19 freezes direct primitive-mate
 straightening of the canonical relation-lift rows.  No further sequential,
 pinned-donor, fixed-core, rank-two correction, primitive-mate, or omission
-ledger is opened.
+ledger is opened.  Theorem 6.20 also freezes every global scalar-character
+replacement for (135); only the non-equivariant universal gate (141) remains
+live at the first-derived level.

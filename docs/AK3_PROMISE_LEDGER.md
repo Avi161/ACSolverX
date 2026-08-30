@@ -211,6 +211,16 @@ finite quotient do not close a route.
   condition is that every lifted loop preserve `[E]` under the first affine
   coordinate modulo `(B-1)L`.  A failure of the stronger three containments
   need not violate this weaker condition.  Do not list more loop families.
+- **All equivariant scalarizations are vacuous:** the direct-limit transition
+  on `L=Q_A''/Q_A'''` contains the factor
+  `a^-1*b^2*(1-b)`.  Every one-dimensional character kills `a,b in H'`, so
+  every transition becomes zero and the scalarized direct limit vanishes.
+  By induced-module base change, the same holds for the complete tagged
+  module.  Thus global
+  augmentation and all abelian-character replacements for the identity-coset
+  projection detect nothing.  Freeze scalar/character variants; the only live
+  first-derived obligation is universal (141), whose projection is deliberately
+  non-equivariant.
 - **Hall--Witt shortcut reduced and frozen:** for `s=rt`, the exact
   interchange has a donor-legal cyclic factor `[X,[r,t]]` because
   `[r,t]=[s,r^-1]`.  The Hall--Witt exchange leaves the mixed term
