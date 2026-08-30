@@ -987,3 +987,47 @@ def test_growing_the_arena_mid_search_does_not_change_the_search():
               "max_relator_length", "max_relator_length_expanded",
               "path", "path_moves"):
         assert grown[k] == flat[k], k
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_expansion_kernel_matches_the_unhoisted_formula_child_by_child():
+    """expand_node_topk_nj now hoists the untouched relator's canonical form
+    out of the child loop. This pins every child against the ORIGINAL per-child
+    formula -- canonical_pair_nj(reduce(piece), reduce(untouched)) -- computed
+    independently here, so a hoist mistake cannot hide behind the oracle
+    (the oracle shares the kernel and would diverge with it)."""
+    import numpy as np
+    from experiments.heuristic_search.core.hfast import expand_node_topk_nj
+    from experiments.search.greedy_baseline import (
+        str_to_arr, reduce_relator_nj, canonical_pair_nj, inverse_relator_nj)
+
+    code_of = {(1, 0): 2, (1, 1): 4, (2, 0): 1, (2, 1): 3}
+
+    def code(x):
+        return {0: 2, 1: 4, 2: 1, 3: 3}[2 * int(x[0]) + int(x[1])]
+
+    for s1, s2 in [("YYXXyxx", "YYxYxxyXYX"), ("YXXYxxyxx", "YXyxxYXXyx"),
+                   ("YYXYYXXXyX", "YYXYXXXYYXXXX"), ("YXYxx", "YXyxxyx")]:
+        r1 = reduce_relator_nj(str_to_arr(s1), True)
+        r2 = reduce_relator_nj(str_to_arr(s2), True)
+        r1, r2 = canonical_pair_nj(r1, r2)
+        codes, lens, moves, count = expand_node_topk_nj(r1, r2, 48, True, 1, 0)
+        assert count > 0
+        for i in range(count):
+            t, js, k1, k2 = (int(v) for v in moves[i])
+            ri, rj = (r1, r2) if t == 1 else (r2, r1)
+            oj = rj if js == 1 else inverse_relator_nj(rj)
+            # np.roll with axis=None flattens: 2*k = k letter-pairs, exactly
+            # the kernel's rotation
+            piece = np.concatenate((np.roll(ri, 2 * k1), np.roll(oj, 2 * k2)))
+            if t == 1:
+                a = reduce_relator_nj(piece, True)
+                b = reduce_relator_nj(r2, True)
+            else:
+                a = reduce_relator_nj(r1, True)
+                b = reduce_relator_nj(piece, True)
+            ca, cb = canonical_pair_nj(a, b)
+            la, lb = int(lens[i, 0]), int(lens[i, 1])
+            assert (la, lb) == (len(ca), len(cb)), (s1, s2, i)
+            want = [code(x) for x in ca] + [code(x) for x in cb]
+            assert list(codes[i, :la + lb]) == want, (s1, s2, i)

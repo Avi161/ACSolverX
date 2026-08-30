@@ -714,6 +714,16 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
     lens = np.empty((count if count > 0 else 1, 2), dtype=np.int32)
     moves = np.empty((count if count > 0 else 1, 4), dtype=np.int32)
 
+    # The untouched relator is IDENTICAL for every child of a target, yet the
+    # loop below used to reduce + canonicalise it per child -- at ~300 children
+    # a pop, ~300 recomputations of the same canonical form, and min-rotation
+    # is the expensive half of a child's cost. Hoist both once. ``reduce`` is
+    # idempotent and ``canonical_relator_nj`` is a pure function of the reduced
+    # word, so the per-child results are bit-identical (pinned by the golden
+    # kernel-output test).
+    cro_t1 = canonical_relator_nj(reduce_relator_nj(r2, cyclic))  # target==1
+    cro_t2 = canonical_relator_nj(reduce_relator_nj(r1, cyclic))  # target==2
+
     for out in range(count):
         s = order[out]
         target = c_mv[s, 0]
@@ -727,13 +737,18 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
             rj = r1
         oj = rj if c_mv[s, 1] == 1 else inverse_relator_nj(rj)
         piece = np.concatenate((np.roll(ri, 2 * k1), np.roll(oj, 2 * k2)))
+        crp = canonical_relator_nj(reduce_relator_nj(piece, cyclic))
+        # canonical_pair_nj = canonical of each side, then order-normalise;
+        # the canonicals are hoisted/computed above, so only the normalise
+        # remains -- same comparison, same tie-break, same argument order.
         if target == 1:
-            a = reduce_relator_nj(piece, cyclic)
-            b = reduce_relator_nj(r2, cyclic)
+            c1, c2 = crp, cro_t1
         else:
-            a = reduce_relator_nj(r1, cyclic)
-            b = reduce_relator_nj(piece, cyclic)
-        ca, cb = canonical_pair_nj(a, b)
+            c1, c2 = cro_t2, crp
+        if len(c1) > len(c2) or (len(c1) == len(c2) and lex_cmp_array(c1, c2)):
+            ca, cb = c2, c1
+        else:
+            ca, cb = c1, c2
         la = len(ca)
         lb = len(cb)
         for t in range(la):
