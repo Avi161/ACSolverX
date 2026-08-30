@@ -208,6 +208,17 @@ finite quotient do not close a route.
   the images of `beta,delta` generate all of `Z[A5]`.  Freeze this finite-
   quotient coefficient route; quotient generation does not lift to the
   source ring.
+- **MMS02 Proposition 5.1 has a strict metabelian scope:** the primary
+  statement and proof concern square generating systems of `N/[N,N]`, with
+  AC1 represented by elementary matrices and AC2--AC3 by diagonal trivial
+  units.  Equivalently, the theorem controls kernel tuples in
+  `F/[N,N]`; it does not lift prescribed representatives through `[N,N]`.
+  The actual third endpoint row has quotient tag `v`, so only its residual
+  `H_B v^-1` belongs to the relation module after a target lift is chosen.
+  Keep legal square stabilization, affine tagged realization in `F/[N,N]`,
+  and the later Peiffer/free-group lift as three separate gates.  Freeze the
+  source-scope audit here; it adds no new correction category and proves no
+  bridge or stable AK(3).
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one

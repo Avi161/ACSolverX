@@ -320,6 +320,16 @@ whole integral $A_5$ group ring despite both source coefficients being
 nonunits.  Thus this finite quotient cannot obstruct the two-coordinate
 source ideal; it does not prove that ideal is the whole source ring.
 
+Section 6.50 audits MMS02 Proposition 5.1 against its original statement and
+proof.  The proposition identifies AC moves on square generating systems of
+the relation module, equivalently on kernel tuples in the relative
+metabelian group $F/[N,N]$.  It does not lift prescribed representatives
+through $[N,N]$, and it cannot be applied directly to the tagged row $H_B$,
+whose quotient is $v$ rather than one.  Legal square stabilization,
+affine realization of that quotient tag, and the later Peiffer/free-group
+lift are therefore three separate gates.  This source audit adds no new
+residual category and makes no stable-AK(3) claim.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5919,6 +5929,79 @@ Peiffer/free-group path.  The $A_5$ coefficient route is frozen here.  The
 unrestricted bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis,
 and Andrews--Curtis remain open.
 
+### 6.50. MMS02 Proposition 5.1 stops at the relative metabelian layer
+
+The exact scope of the matrix theorem can be read directly from its original
+statement and proof.  In the notation of this note, put
+
+\[
+ M_-=F/[N,N],\qquad \mathcal R=N/[N,N].
+ \tag{317}
+\]
+
+Thus $\mathcal R$ is the abelian normal kernel in
+
+\[
+ 1\longrightarrow\mathcal R\longrightarrow M_-
+ \longrightarrow G_-\longrightarrow1.
+ \tag{318}
+\]
+
+Section 5 of Myasnikov--Myasnikov--Shpilrain, *On the
+Andrews--Curtis equivalence*, explicitly works in groups $F/[R,R]$.
+[Proposition 5.1 and its proof](https://shpilrain.ccny.cuny.edu/ac.pdf)
+fix two $k$-element generating systems of the free relation module $R/R'$.
+Writing one system in the other gives a matrix $U$ over $\mathbb ZG$; writing
+back gives $V$, and freeness gives $VU=I$.  The proof then identifies AC1
+with elementary left multiplication of the coefficient column and AC2--AC3
+with diagonal multiplication by trivial units $\pm g$.  Conversely, those
+matrix moves give AC moves on the module tuple.  Every equality in this
+argument is an equality modulo $R'=[R,R]$.
+
+Specialized to (317), this gives the exact shadow
+
+\[
+ (r_1,\ldots,r_k)\subset N
+ \longmapsto([r_1],\ldots,[r_k])\subset\mathcal R.
+ \tag{319}
+\]
+
+A free-group AC path maps to this shadow whenever all displayed rows lie in
+$N$.  Conversely, a tame matrix factorization realizes its requested module
+endpoint in $M_-$, but arbitrary lifts of that path to $F$ determine the
+endpoint only modulo $[N,N]$.  Proposition 5.1 contains no assertion that
+those residual $[N,N]$ discrepancies can be removed while preserving the
+chosen endpoint representatives.
+
+The canonical branch-B endpoint is outside the domain of (319) as a literal
+triple.  Its quotient tuple is $(1,1,\overline v)$: the first two rows
+$A,E_B$ lie in $N$, while $H_B$ does not.  Only after choosing the canonical
+reference lift $v$ does the residual $H_Bv^{-1}$ define the third component
+of $e$ in (225).  Changing that reference changes the affine curvature, as
+Section 6.40 proves explicitly.  A linear module normalization therefore
+cannot simply be read as an AC normalization of $(A,E_B,H_B)$.
+
+**Theorem 6.43 (MMS02 metabelian-scope boundary).**  MMS02 Proposition 5.1
+closes precisely the square relation-module problem, or equivalently its
+kernel-tuple realization in $M_-=F/[N,N]$.  Applied to the canonical AK(3)
+bridge data, even a positive proof of module generation leaves three
+logically distinct obligations:
+
+1. realize the required square completion by legal AC4 identity blocks,
+   including the rank-one cancellation gate from Section 6.37;
+2. realize the module transformations affinely on the tagged tuple in
+   $M_-$, retaining the quotient coordinate $\overline v$; and
+3. lift the resulting metabelian path to a donor-legal path in $F$, removing
+   its $[N,N]$ discrepancies by actual Peiffer/crossed-module identities.
+
+The first obligation is algebraic stabilization, the second is the
+affine-curvature gate, and the third is the literal higher lift.  None is a
+consequence of Proposition 5.1.  Conversely, this scope audit is not an
+obstruction to any of them.  It introduces no new correction ledger: the
+live endpoint remains the pair orbit (271) or, on the canonical lift, the
+existing affine/Peiffer gate.  The unrestricted bridge, stable AK(3),
+ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6057,8 +6140,13 @@ The logical gates remain separate:
     and pairs in distinct ambient-automorphism orbits; this closes only
     clean-then-transport, not other both-row continuations;
 39. no MMS02 statement evaluates the period-two class-two ledger or its
-    literal higher lift; and
-40. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    literal higher lift;
+40. MMS02 Proposition 5.1 acts on square generating systems in the relation
+    module, equivalently on kernel tuples in $F/[N,N]$; it supplies neither
+    legal square completion for the tagged endpoint, affine realization of
+    its nontrivial quotient coordinate, nor removal of the residual
+    $[N,N]$ discrepancy in the free group; and
+41. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6141,4 +6229,11 @@ then gives the exact can-fail control: five maximal minors with gcd one prove
 that the images of $\beta,\delta$ generate $\mathbb ZA_5$.  Thus this finite
 quotient cannot obstruct the source two-coordinate ideal; no lifting back to
 $\mathbb ZG_-$, module cancellation, Peiffer bridge, stable AK(3), or
-ordinary AK(3) is claimed.
+ordinary AK(3) is claimed.  Theorem 6.43 finally audits the primary MMS02
+statement and proof: its matrix/AC dictionary ends in the relation module,
+or equivalently in the abelian kernel of $F/[N,N]$.  It neither handles the
+literal tagged row $H_B$ before a target lift is chosen nor promotes a
+module endpoint to its prescribed representative in $F$.  Hence legal
+square stabilization, affine tag realization, and the Peiffer/free-group
+lift remain exactly the three already isolated gates; no fourth ledger is
+opened.
