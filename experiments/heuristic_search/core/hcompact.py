@@ -372,6 +372,19 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
     return status
 
 
+def _proc_name():
+    """This process's kernel comm -- the runners set it to the row name
+    (prctl PR_SET_NAME), so engine prints can attribute themselves. Widen
+    and grow lines from five interleaved workers were otherwise anonymous:
+    'nearest preceding row token' is not sound, and the operator had to
+    treat every such line as unattributable."""
+    try:
+        with open("/proc/self/comm") as f:
+            return f.read().strip()
+    except OSError:
+        return "?"
+
+
 def _advise_hugepages(*arrays):
     """Best-effort ``madvise(MADV_HUGEPAGE)`` on the big per-search arrays.
 
@@ -513,8 +526,8 @@ class HCompactSolver:
         self.widened += 1
         n = int(st[2])
         w_new = min(max(2 * self.w, 1), self.w_cap)
-        print(f"    [hcompact] rows widen {self.w}B -> {w_new}B per relator "
-              f"at {n:,} states (this repacks)", flush=True)
+        print(f"    [hcompact:{_proc_name()}] rows widen {self.w}B -> {w_new}B "
+              f"per relator at {n:,} states (this repacks)", flush=True)
         new_arena = np.empty(self.states_cap * 2 * w_new, dtype=np.uint8)
         _advise_hugepages(new_arena)      # before _repack touches its pages
         _repack(self.arena, new_arena, n, self.w, w_new)
@@ -528,8 +541,9 @@ class HCompactSolver:
                "len1": self.len1, "len2": self.len2, "depth": self.depth,
                "seg": self.seg, "score": self.score, "heap": self.heap,
                "parent": self.parent, "pmove": self.pmove}
-        print(f"    [hcompact] reservation exceeded at {old['n']:,} states; "
-              f"growing to {2 * self.states_cap:,} (this copies)", flush=True)
+        print(f"    [hcompact:{_proc_name()}] reservation exceeded at "
+              f"{old['n']:,} states; growing to {2 * self.states_cap:,} "
+              f"(this copies)", flush=True)
         self._alloc(2 * self.states_cap, old)
         st[3] = self.tcap - 1
 

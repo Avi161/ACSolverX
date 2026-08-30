@@ -1378,3 +1378,54 @@ def test_the_worker_is_named_before_anything_that_can_fail():
     rlimit = src.index("setrlimit")
     run = src.index('spec["run"]')
     assert named < rlimit < run
+
+
+# ------------------------------------------------------- the rerun observer
+def test_rerun_finds_a_real_row_and_refuses_a_fake_one():
+    from experiments.search.rerun_row import find_row
+    r = find_row("ac19_23156")
+    assert r["name"] == "ac19_23156" and r["r1"] and r["r2"]
+    with pytest.raises(SystemExit):
+        find_row("ac19_no_such_row")
+
+
+@pytest.mark.skipif(not sys.platform.startswith("linux"),
+                    reason="/proc sampling is Linux-only")
+def test_the_proc_sampler_reads_rss_and_survives_a_dead_pid():
+    from experiments.search.rerun_row import _proc_gb
+    rss, hwm = _proc_gb(os.getpid(), "status", ("VmRSS", "VmHWM"))
+    assert rss and rss > 0 and hwm and hwm >= rss - 1e-3
+    assert _proc_gb(2 ** 22 + 12345, "status", ("VmRSS",)) == [None]
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_engine_transient_prints_name_the_worker_that_emitted_them():
+    """Widen and grow lines from five interleaved workers were anonymous --
+    'nearest preceding row token' is not sound, so the operator had to
+    treat every transient as unattributable. The comm (set to the row name
+    by _set_worker_name) goes into the bracket."""
+    from experiments.heuristic_search.core.hcompact import _proc_name
+    assert _proc_name()                       # nonempty on any Linux
+    src = open(os.path.join(ROOT, "experiments", "heuristic_search", "core",
+                            "hcompact.py")).read()
+    assert src.count("[hcompact:{_proc_name()}]") == 2   # widen AND grow
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_rerun_observes_a_tiny_row_end_to_end(tmp_path):
+    """The full production path -- loader, plan_memory, spawned _RowProc --
+    at a toy budget, with the observer writing a real CSV. Never touches
+    any campaign jsonl: outputs carry the rerun_ prefix."""
+    from experiments.search.rerun_row import rerun
+    rec, csv_out = rerun("ac19_23156", str(tmp_path), budget=2_000,
+                         sample_secs=0.2, log=lambda m: None)
+    assert rec["name"] == "ac19_23156"
+    assert rec["nodes_explored"] <= 2_000
+    assert rec["peak_rss_gb"] and rec["peak_rss_gb"] > 0
+    assert rec["engine_mem_gen"] >= 2
+    lines = open(csv_out).read().strip().splitlines()
+    assert lines[0] == "elapsed_s,vmrss_gb,vmhwm_gb,thp_gb"
+    assert len(lines) >= 2                    # at least one live sample
+    assert os.path.exists(tmp_path / "rerun_ac19_23156.jsonl")
+    files = os.listdir(tmp_path)
+    assert all(f.startswith("rerun_") for f in files), files
