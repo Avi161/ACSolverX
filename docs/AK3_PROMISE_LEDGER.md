@@ -115,10 +115,13 @@ finite quotient do not close a route.
   is realized affinely and those module moves are lifted through the
   Peiffer/crossed module to a donor-legal free-group path.
 - **The path gauge has no projective gate:** if the endpoint of the fixed
-  quotient path itself is used as target lift, the curvature is zero and the
-  residual coefficient matrix is `J_P B_0`. Its kernel is freely generated
-  by the last row of `J_P^-1`, while `J_P` is already a tame square
-  completion. Thus the canonical `Q` is not a gauge-independent obstruction
+  quotient path itself is used as target lift, it is literally
+  `(1,E_0,H)` with `E_0=uK[H]`. The canonical displacement is only
+  `(0,[E_0],[H v^-1])`, while the actual endpoint residuals in this gauge are
+  `([A],[E_B E_0^-1],[B])`. Thus the first and third rows are already the
+  module basis. The kernel has an explicit cyclic generator and an explicit
+  tame `3x3` completion, equivalently the coefficient matrix is `J_P B_0`.
+  Thus the canonical `Q` is not a gauge-independent obstruction
   furnished by the quotient path, and no necessity for an arbitrary
   stable-AK3 proof follows outside the canonical matrix ansatz. The lift
   change from the path endpoint back to canonical `(1,1,v)` is not an AC

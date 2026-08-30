@@ -247,9 +247,11 @@ $\delta$, affine tagged realization, and the Peiffer/free-group lift remain
 open.
 
 Section 6.40 separates canonical target gauge from quotient-path data.  If
-the path endpoint $\tau_P$ itself is used as target lift, the curvature is
-zero, the residual matrix is the first two columns of the tame Jacobian
-$J_P$, and its kernel is explicitly free.  Hence the module $Q$ is a gate
+the path endpoint $\tau_P=(1,uK[H],H)$ itself is used as target lift, the
+curvature is zero and the actual residual triple has $[A]$ and $[B]$ as its
+first and third rows.  Its kernel and a tame square completion are explicit.
+The canonical-gauge displacement has only the two live words $uK[H]$ and
+$Hv^{-1}$.  Hence the module $Q$ is a gate
 only for the canonical-residual square-completion ansatz, not a
 gauge-independent obstruction supplied by the quotient path.  No necessity
 for stable AK(3) follows outside that ansatz.
@@ -4750,11 +4752,29 @@ Instead of the canonical target lift $\widetilde\sigma_v=(1,1,v)$, use the
 path-induced target lift
 
 \[
- \widetilde\sigma_v^{,P}:=\tau_P=P(1,1,u).
+ E_0:=uK[H],\hspace{1em}
+ \widetilde\sigma_v^{P}:=\tau_P=P(1,1,u)=(1,E_0,H).
  \tag{260}
 \]
 
-It has the same quotient $\sigma_v=(1,1,\overline v)$.  By definition its
+The last equality is literal: the branch-B macros first replace the second
+row $1$ by $H$, then replace the third row $u$ by $uK[H]=E_0$, and finally
+swap those two rows.  Thus $\tau_P$ has the same quotient
+$\sigma_v=(1,1,\overline v)$.  Because the images of $H$ and $v$ agree and
+the images of $K[H]$ and $u^{-1}$ agree modulo $N$, one also has
+$E_0\in N$.  Its
+canonical-gauge curvature is the explicit two-word column
+
+\[
+ \boxed{
+ \kappa_P=
+ \begin{pmatrix}
+ 0\\[E_0]\\[Hv^{-1}]
+ \end{pmatrix}.}
+ \tag{260a}
+\]
+
+By definition its
 curvature relative to itself is zero.  Each fixed-quotient fiber is an
 affine $\mathcal R^3$-torsor, and $P$ acts on these fibers with linear part
 $J_P$.  Re-origining the target fiber at the image of the source origin
@@ -4773,6 +4793,41 @@ Here $e^P$ is the residual column of the actual endpoint
 $(A,E_B,H_B)$ relative to the path-induced reference (260), and $C^P$ is its
 coefficient matrix in the basis $([A],[B])$.  Because $J_P$ is invertible,
 the three path-gauge residuals generate $\mathcal R$.
+
+The literal endpoint formulas in (43) make (261) still more concrete:
+
+\[
+ \boxed{
+ e^P=
+ \begin{pmatrix}
+ [A]\\[E_BE_0^{-1}]\\[H_BH^{-1}]
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+ [A]\\[E_BE_0^{-1}]\\[B]
+ \end{pmatrix}.}
+ \tag{261a}
+\]
+
+Write the unique middle-row coordinates as
+
+\[
+ [E_BE_0^{-1}]=\eta[A]+\theta[B].
+ \tag{261b}
+\]
+
+Then
+
+\[
+ \boxed{
+ C^P=
+ \begin{pmatrix}
+ 1&0\\
+ \eta&\theta\\
+ 0&1
+ \end{pmatrix}.}
+ \tag{261c}
+\]
 
 The kernel is explicit.  Put $\varepsilon_3=(0,0,1)$.  For a left row
 $x\in{}_SS^3$,
@@ -4796,8 +4851,44 @@ Therefore
  \tag{263}
 \]
 
-Indeed, $J_P$ itself is a square completion whose first two columns are
-$C^P$.  It is already AC-tame by (226), so neither AC4 padding,
+Equivalently, (261c) gives the explicit generator
+
+\[
+ \ker\rho_{C^P}=S(-\eta,1,-\theta).
+ \tag{263a}
+\]
+
+There is also a coefficient-independent tame completion:
+
+\[
+ U_P=
+ \begin{pmatrix}
+ 1&0&0\\
+ \eta&\theta&1\\
+ 0&1&0
+ \end{pmatrix},\hspace{1em}
+ U_P^{-1}=
+ \begin{pmatrix}
+ 1&0&0\\
+ 0&0&1\\
+ -\eta&1&-\theta
+ \end{pmatrix}.
+ \tag{263b}
+\]
+
+Its first two columns are $C^P$.  Starting with the transposition of the
+last two rows, add $\eta$ times the first row and $\theta$ times the third row
+to the second.  With left elementary-row conventions this is the exact
+factorization
+
+\[
+ U_P=E_{23}(\theta)E_{21}(\eta)P_{23},
+ \tag{263c}
+\]
+
+where $P_{23}$ swaps the final two rows and is tame.  Alternatively, $J_P$
+itself is a square completion whose first two columns are $C^P$ and is
+AC-tame by (226).  Thus neither AC4 padding,
 $\operatorname{Wh}(G_-)=0$, nor a rank-one cancellation theorem is needed
 for this formal path-gauge matrix problem.
 
@@ -4812,18 +4903,21 @@ invariant obstruction furnished by the quotient path, and Theorem 6.30 does
 not make its freeness necessary for an arbitrary stable-AK(3) proof.
 
 **Theorem 6.33 (path-gauge completion).**  For the fixed branch-B quotient
-path, the path-induced target lift has a generating residual triple with
-explicit free rank-one kernel (263) and an already tame square completion.
-The projective gate in Theorem 6.30 is created by returning to the canonical
-target lift $(1,1,v)$.
+path, the path-induced target lift is exactly $(1,E_0,H)$, its canonical
+curvature has only the two live words in (260a), and its actual endpoint
+residuals have the basis rows $[A]$ and $[B]$ in positions one and three.
+They have the explicit free rank-one kernel (263a) and tame square completion
+(263b).  The projective gate in Theorem 6.30 is created by returning to the
+canonical target lift $(1,1,v)$.
 
 This does not realize that return by AC moves.  Replacing the reference lift
 $\tau_P$ by $(1,1,v)$ is precisely the affine-curvature problem measured by
 $\kappa_P$; an arbitrary lift change is not a donor-legal operation on the
 actual tuple.  Even a module-level realization would still require the
 Peiffer/crossed-module/free-group lift.  Theorem 6.33 therefore narrows the
-bridge route to legal realization of the gauge displacement; it proves
-neither the unrestricted bridge, stable AK(3), nor ordinary AK(3).
+bridge route to legal realization of the two-word gauge displacement
+$([E_0],[Hv^{-1}])$, coupled to the actual basis residuals in (261a); it
+proves neither the unrestricted bridge, stable AK(3), nor ordinary AK(3).
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
