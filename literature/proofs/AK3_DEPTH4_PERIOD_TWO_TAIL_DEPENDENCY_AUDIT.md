@@ -3,19 +3,24 @@
 ## Scope and result
 
 This is an independent dependency and finite-ledger audit of Sections
-3.61--3.105 of
+3.61--3.106a of
 `AK3_DEPTH4_PERIOD_TWO_FULL_LIFT_BOUNDARY.md`.  It checks theorem
 dependencies, scope gates, finite literal tables, and word reductions.  It
-does not replace the proofs, evaluate the six-term remote ledger, or assert a
-class-two obstruction.
+does not replace the proofs, evaluate the four remaining terms in the
+six-term remote ledger, or assert a class-two obstruction.
 
-Two separate read-only reviews split the range at Section 3.84.  Neither
-review found a circular dependency, a bounded-evidence upgrade, or a formal
-algebra defect.  The second review identified executable inputs in Sections
-3.89, 3.92, and 3.102--3.104 and required formal remote quantifiers in
-Sections 3.100--3.101.  Equation (3.658a) now states
-$|u|_K>U_E$ and $u\notin\mathcal E_{s,E}$, and the finite inputs have a
-focused independent replay.
+The original two read-only reviews split the range at Section 3.84 and
+required formal remote quantifiers in Sections 3.100--3.101.  A fresh hostile
+review on 30 August split the range again.  It approved Sections 3.61--3.84
+but found one major scope promotion in the upper tail: the cell-relative
+endpoint localization of Section 3.77 had been used as a support-independent
+multiplier alphabet for every edge of the complete graph $G_u$.  Sections
+3.84--3.85 and 3.92--3.95 now retain actual edge-dependent multiplier
+families.  Equation (3.633) is cycle-specific on the complete graph, while
+the uniform $B_*|C|$ refinement is explicitly conditional on endpoint
+localization.  Independent re-review approved the correction and confirmed
+that (3.624), (3.627), (3.630), (3.632), (3.639), and the six-term identity
+remain valid.
 
 ## Dependency ledger
 
@@ -24,9 +29,9 @@ focused independent replay.
 | 3.61--3.67 | paired-axis words and primitivity; free-tree geometry; balanced occurrence relation; malnormality; marked source map | Cross-slot geometry, collision-cycle closure, finite marked grammar, semilinear gates, and the torsion-template pullback are correctly conditional. |
 | 3.68--3.75 | even finite source graph; two-tree forest theorem; finite boundary injectivity; quasi-isometry and tree Morse bounds; tied-bundle charge | Matching removal, unique Green filling, radius transfer, cell decomposition, leading-support separation, and anchored cells have no circular dependence. |
 | 3.76--3.83 | literal chronology; terminal localization; remote multiplier rigidity; integral anchored lift; free-coordinate correlation; centralizer theorem | The finite endpoint germ, order-free baseline, target-incident branches, and other-cell corridors retain their stated finite/remote hypotheses and make no survival claim. |
-| 3.84--3.92 | three-source double-coset equation; branch injectivity; height and anti-height quotients; free-group unique roots; cyclic centralizers | Branch telescopes and the loop sieve are formal once the finite paired-word height/dihedral rows are verified. |
-| 3.93--3.98 | branch normal form; graph boundary identity; target-word conjugacy; balanced polarization; affine cutoff | The graph-boundary plus odd-cycle split and the frozen six-term ledger are exhaustive at the named target coordinate, but no term parity is inferred. |
-| 3.99--3.105 | terminal localization and remote rigidity; literal occurrence prefixes; four-state action; anchored source pair; Green half-tree formula | The endpoint alphabet, bipartite boundary, chord form, state filter, prefix shadows, and direct-shadow Green cut are valid under the remote/extremal hypotheses now repeated in Section 3.101. |
+| 3.84--3.92 | three-source double-coset equation; fixed-multiplier branch injectivity; height and anti-height quotients; free-group unique roots; cyclic centralizers | Each fixed actual branch telescopes as stated.  The number of multiplier families and the local degree of their union are source-dependent; every loop sieve is applied to a fixed actual list. |
+| 3.93--3.98 | branch normal form with edge-dependent multipliers; graph boundary identity; target-word conjugacy; balanced polarization; affine cutoff | The graph-boundary plus odd-cycle split and frozen six-term ledger are exhaustive.  Odd height, conjugacy closure, and the power corridor are global; the uniform translation constant is only endpoint-localized.  No term parity is inferred. |
+| 3.99--3.106a | terminal localization and remote rigidity; literal occurrence prefixes; four-state action; anchored source pair; Green half-tree formula; integral free-coordinate correlation | The endpoint bipartite/chord forms, state filter, prefix shadows, and direct-shadow Green cut retain their remote/extremal hypotheses.  The balanced color cut is exactly evaluated by ten complete finite tables and the literal double-coset normal form, with no seventh residual category. |
 
 One terminology nuance is harmless but retained: the simple-cycle
 decomposition in Section 3.68 uses the multigraph convention, so a parallel
@@ -56,11 +61,13 @@ checks:
 Fresh focused output:
 
 ```text
-$ UV_CACHE_DIR=.scratch/uv-cache PYTHONPYCACHEPREFIX=.scratch/pycache \
+$ /Users/avigyapaudel/.local/bin/python3.11 \
+  scripts/run_proof_guarded.py --timeout-seconds 60 -- \
+  env UV_CACHE_DIR=.scratch/uv-cache PYTHONPYCACHEPREFIX=.scratch/pycache \
   uv run --with pytest python3 -m pytest -q \
   tests/stable_ac/test_ak_depth_four_period_two_full_lift_tail.py
 ...                                                                      [100%]
-3 passed in 1.13s
+3 passed in 1.08s
 ```
 
 The pre-existing witness, AST/operator, and source-action fixtures were also
@@ -77,9 +84,11 @@ and the six source-action classes.
 
 ## Exact audit boundary
 
-The audit certifies dependency consistency and the finite inputs listed
-above.  It does not compute
-$\overline\kappa,\mathcal S,\mathcal T,\mathcal C,\mathcal O$, prove
+The audit certifies the corrected dependency graph and the finite inputs
+listed above.  Section 3.106a computes the existing color-cut term
+$\mathcal C$ as one finite parity output; it does not prove that output
+vanishes.  The audit does not compute
+$\overline\kappa,\mathcal S,\mathcal T,\mathcal O$, prove
 $[\Theta(F)]\ne0$ for arbitrary balanced $F$, solve the literal higher
 lifting equation, classify all quotient solutions, prove the MMS02 bridge,
 or prove stable or ordinary AK(3).

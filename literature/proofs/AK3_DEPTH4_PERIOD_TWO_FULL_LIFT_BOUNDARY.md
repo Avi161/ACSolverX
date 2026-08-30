@@ -188,8 +188,10 @@ tokens come from non-target cells, one source remains free and the other
 lies on four explicit three-source branches; no uniform bound on the total
 number of contributions follows.
 Section 3.85 sharpens that statement for one fixed target bucket: each
-branch is injective, so its non-target incidence is a finite union of
-matchings with bounded local degree but unbounded total size.
+fixed-multiplier branch is injective.  For a fixed finite source the
+non-target incidence is a finite union of such matchings, but the number of
+multiplier families and the local degree of their union are not bounded
+independently of the source.
 Section 3.86 applies the integral anchored expansion to the complete paired
 target.  All isolated, self-corridor, target-incident, and three-source
 terms are evaluated by the order-free free-coordinate correlation ledger;
@@ -225,9 +227,10 @@ fundamental cycles.  Every odd cycle has nonzero odd-height right word, so
 its closure is a genuine conjugacy equation; no freely moving identity-word
 odd cycle remains.
 Section 3.94 pulls the target conjugator out of every odd-cycle right word.
-Conjugacy with the bounded endpoint-multiplier word forces the resulting
-marked word in $r_u=ucu^{-1}$ and $g_s$ to have translation length at most
-linear in the cycle length.
+Conjugacy gives a cycle-specific translation bound for the resulting marked
+word in $r_u=ucu^{-1}$ and $g_s$.  A uniform linear constant follows only
+when every selected edge realization belongs to one fixed endpoint-localized
+multiplier alphabet; this is not asserted for the complete odd-cycle graph.
 Section 3.95 separates the target-independent power cycles exactly.  When
 the marked target word is a power of $g_s$, its exponent is odd and the
 relative source $vu^{-1}$ lies on one fixed coset of the cyclic centralizer
@@ -9393,11 +9396,13 @@ and the last factor disappears modulo the right $H$-coset.  This proves the
 four branches in (3.579), with $v$ still free.
 
 Thus the number of non-target mixed contributions to one target bucket is
-not uniformly bounded merely from Section 3.80: for each target $u$ and
-each first source $v$, there are at most four possible second sources $w$,
-but the clustered support may contain arbitrarily many choices of $v$.
-Endpoint localization makes the multiplier list finite and the branch
-formulas exact; it does not remove this free source parameter.
+not uniformly bounded merely from Section 3.80: for each target $u$, fixed
+multiplier $h$, and first source $v$, there are at most four possible second
+sources $w$, but the clustered support may contain arbitrarily many choices
+of $v$ and multiplier families.  For a fixed finite $F$, the actual token
+support supplies a finite multiplier list and the branch formulas are exact.
+Section 3.77 does not make that list support-independent for two non-target
+cells, so it does not remove either source dependence.
 
 The remaining clustered problem is therefore a genuine three-source
 incidence parity.  A valid completion must either pair the contributions in
@@ -9436,14 +9441,14 @@ and torsion-free.  Their intersection is trivial, and hence $v=v'$.  Thus,
 for a fixed target $u$, each of the four branches in (3.579) is a matching
 from first sources to second sources.
 
-After the finite endpoint multiplier list is restored, the non-target
-mixed incidence graph for one target bucket has uniformly bounded local
-degree.  Its total number of edges is still unbounded because it may contain
-arbitrarily many first sources.  Therefore the exact remaining object is a
-finite union of weighted matchings, not a finite list of isolated colliders.
-Different matchings can overlap to create branching and cycles.  The
-transported shortlex formulation records their total parity; the next
-section replaces those weights by the order-free integral reader.
+For a fixed finite source, the actual multiplier list is finite, so the
+non-target mixed incidence graph for one target bucket is a finite union of
+weighted injective branches.  There is no support-independent bound on the
+number of multiplier families, on local degree after their union, or on the
+total number of edges.  Different branches can overlap to create arbitrary
+finite branching and cycles.  The transported shortlex formulation records
+their total parity; the next section replaces those weights by the order-free
+integral reader.
 
 ### 3.86 The complete paired-target expansion is order-free
 
@@ -10003,11 +10008,11 @@ Using the third and fourth entries of that row gives
  \tag{3.621}
 \]
 
-Thus the corridor-loop audit of the finite endpoint-multiplier list can
+Thus, for any fixed actual multiplier list, the corridor-loop audit can
 discard every multiplier outside (3.619), and in the slot-one translation
 case every multiplier outside the two signed abelianized types (3.621).
-This is a necessary sieve, not an enumeration of the remaining finite
-list.  The boundary-color sum and the token weights on surviving
+This is a necessary sieve, not a support-independent enumeration of the
+remaining list.  The boundary-color sum and the token weights on surviving
 cross-source-slot corridors remain unevaluated.
 
 ### 3.93 General mixed parity is boundary plus pinned odd cycles
@@ -10057,11 +10062,11 @@ fundamental cycle formed by $e$ and its forest path has odd length.  Thus
 the second line of (3.624) is an exact odd-cycle residual, independent of
 the earlier branchwise color choices.
 
-Every graph edge has at least one surviving terminal-token realization by
-a branch from (3.579).  Choose one such realization for each edge of an
-odd cycle $C$, orient the cycle, and invert the branch data when the chosen
-edge direction opposes the traversal.  Write the resulting signed branch
-maps as
+Every graph edge has at least one surviving token-pair realization.  Apply
+(3.579) with the actual, possibly edge-dependent multipliers of one chosen
+realization for each edge of an odd cycle $C$, orient the cycle, and invert
+the branch data when the chosen edge direction opposes the traversal.  Write
+the resulting signed branch maps as
 
 \[
  \begin{aligned}
@@ -10160,23 +10165,33 @@ parenthesized word.  Hence an oriented cycle of length $m$ has
  \tag{3.632}
 \]
 
-Restore the fixed finite endpoint-multiplier alphabet from Sections
-3.77--3.85.  In the Bass--Serre tree of $Q=C_2*\mathbb Z$, fix a base
-vertex $x_*$ and let $B_*$ be the largest displacement
-$d_{\rm BS}(x_*,hx_*)$ among the signed branch multipliers in that finite
-alphabet.  Let $\tau_{\rm BS}$ denote translation length in the same tree.
-The cycle closure (3.627), conjugacy invariance, and the triangle inequality
-give
+In the Bass--Serre tree of $Q=C_2*\mathbb Z$, fix a base vertex $x_*$ and
+let $\tau_{\rm BS}$ denote translation length.  For the chosen actual edge
+realizations of $C$, put
 
 \[
  \boxed{
+ \begin{aligned}
+ L_{\rm BS}(C)&:=
+ \sum_{i=1}^m d_{\rm BS}(x_*,h_i x_*),\\
  \tau_{\rm BS}(W_C(u))
- =\tau_{\rm BS}(K_C)
+ &=\tau_{\rm BS}(K_C)
  =\tau_{\rm BS}(H_C)
- \le B_*m.
+ \le L_{\rm BS}(C).
+ \end{aligned}
  }
  \tag{3.633}
 \]
+
+The cycle closure (3.627), conjugacy invariance, and the triangle inequality
+give the exact cycle-specific bound in (3.633).
+
+If every chosen edge realization belongs to one fixed endpoint-localized
+multiplier alphabet, let $B_*$ be the largest displacement in that alphabet;
+then the conditional stronger bound $L_{\rm BS}(C)\le B_*m$ follows.  Section
+3.77 proves such alphabets for its endpoint-localized cells, but it does not
+place every edge of the complete graph $G_u$ in one of them.  Therefore
+$B_*$ is not a uniform constant for the complete odd-cycle residual.
 
 For an odd cycle, (3.630) also gives
 
@@ -10187,10 +10202,10 @@ For an odd cycle, (3.630) also gives
 
 so the marked word in (3.632) is nontrivial.  Thus an odd-cycle residual
 cannot be a freely moving relator cell: it is a nontrivial word in the
-target involution and paired generator whose cyclic translation is bounded
-by the length of the endpoint-multiplier cycle.  Equation (3.633) does not
-give a uniform bound on $m$ and does not exclude long axis-tracking cycles;
-those remain part of the pinned odd-cycle parity.
+target involution and paired generator whose cyclic translation has the
+cycle-specific bound (3.633).  Only the endpoint-localized subcase has a
+uniform constant times $m$.  General long multiplier and axis-tracking
+cycles remain part of the pinned odd-cycle parity.
 
 ### 3.95 Power cycles are relative paired-axis corridors
 
@@ -10247,10 +10262,13 @@ paired-axis corridor at one fixed relative position from the target.
 
 If $W_C(u)\notin\langle g_s\rangle$, at least one target-involution letter
 survives in the reduced marked word.  That cycle remains governed by the
-noncyclic conjugacy equation (3.636) and the translation bound (3.633).
-The two cases are exhaustive, but neither corridor parity is asserted to
-vanish.  In particular, long power cycles and long target-involution cycles
-can still contribute to the odd-cycle sum in (3.624).
+noncyclic conjugacy equation (3.636) and the cycle-specific translation
+bound (3.633); the uniform linear refinement applies only in the
+endpoint-localized subcase stated after (3.633).  The two cases are
+exhaustive, but neither corridor parity is asserted to vanish.  In
+particular, long power cycles, long multiplier cycles, and long
+target-involution cycles can still contribute to the odd-cycle sum in
+(3.624).
 
 ### 3.96 The graph boundary is one balanced color-cut polarization
 
@@ -10471,7 +10489,7 @@ $\mathcal O$.  A refinement may split one of those terms internally for
 calculation, but it may not become a seventh top-level residual category.
 
 Starting after the checkpoint which introduces this rule, at most three
-additional proof checkpoints may change Sections 3.77--3.106 before a
+additional proof checkpoints may change Sections 3.77--3.106a before a
 freeze decision.  A checkpoint counts as an evaluation only if it does at
 least one of the following on the complete stated support domain:
 
@@ -10485,14 +10503,15 @@ least one of the following on the complete stated support domain:
 Introducing a new residual type does not count as an evaluation.  Two
 consecutive category-growth checkpoints, or exhaustion of all three
 checkpoints without decreasing the five-term unresolved count, triggers
-the freeze.  On a trigger, Sections 3.57--3.106 are preserved as the
+the freeze.  On a trigger, Sections 3.57--3.106a are preserved as the
 publishable bounded-depth result:
 
 > **Remote paired-target decomposition theorem for the fixed period-two
 > witness.** Above the affine cutoff, every paired-target class-two
 > coefficient is exactly the frozen six-term ledger (3.646), with the
-> radius, corridor, cycle, endpoint, state, Green-cut, duplicate-prefix,
-> and finite color-cut constraints proved in Sections 3.58--3.106a.
+> radius, corridor, cycle-specific, conditionally endpoint-localized, state,
+> Green-cut, duplicate-prefix, and finite color-cut constraints proved in
+> Sections 3.58--3.106a.
 
 After that freeze, only soundness corrections and packaging edits belong in
 this ledger.  Active theory effort moves to the independent MMS02 bridge;
@@ -10502,7 +10521,10 @@ Checkpoint accounting begins with Section 3.106a: it evaluates the existing
 color-cut term $\mathcal C$ on the complete stated support domain, creates
 no new category, and leaves four unresolved terms.  Thus one of the three
 permitted checkpoints has been used and no category-growth strike has been
-incurred.
+incurred.  The dependency repair in Sections 3.84--3.95 is checkpoint two:
+it is a mandatory soundness correction, not an evaluation, leaves the same
+four unresolved terms, and creates no new category.  One permitted
+checkpoint remains before the freeze decision.
 
 ### 3.99 Canonical finite schema for the endpoint alphabet
 

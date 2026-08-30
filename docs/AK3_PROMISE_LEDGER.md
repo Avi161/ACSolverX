@@ -688,7 +688,7 @@ finite quotient do not close a route.
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
   companion cross kernels and other primitive families remain open; no
   full-Hessian rank claim follows.
-- **Remote six-term ledger checkpoint 1:** the balanced color-cut term is
+- **Remote six-term ledger checkpoints 1--2:** the balanced color-cut term is
   now an explicit finite parity evaluator.  Its input is the ten complete
   `K`-keyed coefficient tables of the two spanning-forest color-class
   directions, the literal sixteen-occurrence prefix table, the five slot
@@ -697,7 +697,15 @@ finite quotient do not close a route.
   bit exactly.  This evaluates the existing term \(\mathcal C\) without
   introducing a category, so checkpoint one reduces the frozen unresolved
   count from five to four: \(\overline\kappa,\mathcal S,\mathcal T,\mathcal O\).
-  It does not assert that the computed bit vanishes.
+  It does not assert that the computed bit vanishes.  A hostile dependency
+  audit then found that cell-relative endpoint localization had been promoted
+  to a uniform alphabet for every odd-cycle edge.  Checkpoint two corrects
+  this: branch injectivity is fixed-multiplier, the complete graph may have
+  source-dependent multiplier families and local degree, and its
+  Bass--Serre bound is cycle-specific.  A uniform linear constant survives
+  only for endpoint-localized cycles.  The six categories and four
+  unresolved terms are unchanged, no category-growth strike is incurred,
+  and one budgeted checkpoint remains before the freeze decision.
 - **Nonclaim:** no period-two free-group witness, AK(3), stable AC, or AC
   conclusion is proved.  Even a successful lift still needs a separately
   proved implication to the relevant AK(3) move/factorization target.
