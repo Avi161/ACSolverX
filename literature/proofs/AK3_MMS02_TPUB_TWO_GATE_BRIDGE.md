@@ -169,7 +169,13 @@ Section 6.30 applies the unique certified 134-move SLP to the published kill
 row.  The resulting endpoint has a unimodular exponent matrix, but its
 canonical two-row pivot has complete Whitehead floor 413 rather than two.
 Thus that forced SLP-substitution endpoint cannot be completed by one stable
-ambient straightening.  Other paths and pivots are not classified.
+ambient straightening.
+
+Section 6.31 evaluates a second canonical pivot distinguished by exact common
+suffix cancellation in the same endpoint: subtract its third row from each of
+the first two rows.  The resulting pair is still unimodular, but its complete
+Whitehead floor is 192.  Thus both displayed endpoint pivots fail; arbitrary
+pivots and other paths are not classified.
 
 ## 1. Pinned words and verified first legs
 
@@ -3719,6 +3725,64 @@ No prefix, shear, or alternative-pivot ledger is opened.  In particular,
 Theorem 6.23 does not prove or disprove $T_{\rm pub}$, stable AK(3), or
 ordinary AK(3).
 
+### 6.31. The common-suffix difference pivot is not primitive
+
+The exact replay endpoint has a second distinguished pivot.  Both products
+$W_iW_3^{-1}$ for $i=1,2$ cancel the full displayed copy of $W_3$.  Define
+
+\[
+ (R_1,R_2,W_3):=(W_1W_3^{-1},W_2W_3^{-1},W_3).
+ \tag{207}
+\]
+
+The equality is realized by an AC2 inversion of row three, two AC1
+multiplications into rows one and two, and an AC2 restoration of row three.
+Direct free reduction gives
+
+\[
+ (|R_1|,|R_2|)=(154,56)
+ \tag{208}
+\]
+
+and exponent rows
+
+\[
+ (1,0,-1), (1,-1,0).
+ \tag{209}
+\]
+
+Their minor triple is $(-1,1,-1)$, so the pair passes the necessary
+primitive-pair homology test.
+
+Apply the two Whitehead automorphisms (205) to the unordered cyclic class of
+$(R_1,R_2)$.  The total cyclic length descends as
+
+\[
+ 208\longrightarrow197\longrightarrow192.
+ \tag{210}
+\]
+
+The endpoint word lengths are $(49,143)$.  Of all ninety nonidentity
+second-kind rank-three Whitehead maps, six preserve total length 192 and
+eighty-four increase it.  First-kind signed permutations preserve length.
+Whitehead's theorem therefore makes 192 the global orbit minimum, which is
+greater than two.
+
+The dependency-free checker constructs (207) from the fixed 134-move replay,
+pins (208)--(210), hashes the endpoint, and exhausts the ninety endpoint maps.
+
+**Theorem 6.24 (common-suffix difference pivot is closed).**  The pair
+$(R_1,R_2)$ does not extend to a free basis of $F(x,y,z)$.  Consequently the full
+published-kill replay cannot be completed by first eliminating its common
+third row and then simultaneously straightening the resulting pair.
+
+Together, Theorems 6.23--6.24 close the two structurally distinguished pivots
+displayed here.  They do not classify arbitrary Nielsen changes of the three
+rows, the two other pairs after (207), prefixes of the SLP, corrected paths,
+or the unrestricted bridge.  This endpoint lane is frozen here: no further
+pivot, prefix, or shear ledger is opened.  Neither theorem proves or
+disproves $T_{\rm pub}$, stable AK(3), or ordinary AK(3).
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3793,8 +3857,9 @@ The logical gates remain separate:
     first-derived residual is nonzero and the complete defect set remains
     unevaluated;
 23. the unique 134-move SLP replay on the published kill row has a unimodular
-    endpoint but a nonprimitive canonical pivot; this closes only that forced
-    simultaneous-straightening completion, not other pivots or paths;
+    endpoint, but both its canonical triangular pivot and its displayed
+    common-suffix difference pivot are nonprimitive; this closes only those
+    two simultaneous-straightening completions, not arbitrary pivots or paths;
 24. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
 25. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
@@ -3811,5 +3876,6 @@ replacement for (135), and Theorem 6.21 refutes the remaining
 non-equivariant universal gate (141).  The affine-covector route is frozen;
 the full defect set $\mathcal D$ is not evaluated.  Theorem 6.22 also freezes
 the fixed-donor Hall--Witt route at a proved nonmembership; no higher
-commutator lane is opened.  Theorem 6.23 freezes the canonical
-published-kill SLP pivot without classifying alternative endpoint pivots.
+commutator lane is opened.  Theorems 6.23--6.24 freeze the canonical and
+common-suffix pivots of the published-kill SLP endpoint without
+classifying arbitrary endpoint pivots.

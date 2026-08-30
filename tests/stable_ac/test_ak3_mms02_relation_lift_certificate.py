@@ -926,3 +926,39 @@ def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
     assert min(neighbor_totals) == 413
     assert neighbor_totals.count(413) == 6
     assert sum(total > 413 for total in neighbor_totals) == 84
+
+    difference_pivot = (red(rows[0] + inv(rows[2])), red(rows[1] + inv(rows[2])))
+    assert tuple(map(len, difference_pivot)) == (154, 56)
+    assert red(difference_pivot[0] + rows[2]) == rows[0]
+    assert red(difference_pivot[1] + rows[2]) == rows[1]
+    assert tuple(map(rank_three_exponent_vector, difference_pivot)) == (
+        (1, 0, -1),
+        (1, -1, 0),
+    )
+    assert rank_three_pair_minors(difference_pivot) == (-1, 1, -1)
+
+    difference_minimum, difference_totals = replay_whitehead_pair_floor(
+        difference_pivot, maps
+    )
+    assert difference_totals == (208, 197, 192)
+    assert tuple(map(len, difference_minimum)) == (49, 143)
+    assert sha256("|".join(difference_minimum).encode()).hexdigest() == (
+        "eba9943c1feaf47894deacef4db33ee9e9ab773437e55f010461c3c67e8a2ba2"
+    )
+
+    difference_neighbor_totals = tuple(
+        sum(
+            map(
+                len,
+                canonical_cyclic_pair(
+                    tuple(
+                        apply_images(word, images) for word in difference_minimum
+                    )
+                ),
+            )
+        )
+        for images in automorphisms
+    )
+    assert min(difference_neighbor_totals) == 192
+    assert difference_neighbor_totals.count(192) == 6
+    assert sum(total > 192 for total in difference_neighbor_totals) == 84

@@ -72,10 +72,13 @@ finite quotient do not close a route.
   `(0,2,-1),(0,1,0),(-1,2,0)`, of determinant `-1`.  The canonical pivot
   formed by the last two rows passes the minor test but has complete
   rank-three Whitehead floor 413.  Hence it is not primitive and cannot be
-  completed by one simultaneous basis straightening.  Freeze this unique
-  SLP-substitution endpoint; do not scan its prefixes, other pairs, or nearby
-  shears.  Alternative quotient paths and the unrestricted bridge remain
-  open.
+  completed by one simultaneous basis straightening.  A second canonical
+  pivot, distinguished by complete common-suffix cancellation and obtained by
+  replacing the first two rows by
+  `W1*W3^-1,W2*W3^-1`, has lengths `(154,56)`, minor triple `(-1,1,-1)`, and
+  complete Whitehead floor 192.  It too is nonprimitive.  Freeze these two
+  displayed pivots; do not scan prefixes, arbitrary pairs, or nearby shears.
+  Alternative quotient paths and the unrestricted bridge remain open.
 - **Closure reduced to two named word problems:** restoring the active base
   residual first makes the kill-word residual automatic. Both branches have
   the same defect `d=(zYX)H`: test `d=1` in `<x,y,z | B,AH>` or in
