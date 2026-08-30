@@ -8,6 +8,24 @@ def _free_reduce(word: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(reduced)
 
 
+def _word_inverse(word: str) -> str:
+    return word[::-1].swapcase()
+
+
+def _word_product(*words: str) -> str:
+    reduced: list[str] = []
+    for letter in "".join(words):
+        if reduced and reduced[-1] == letter.swapcase():
+            reduced.pop()
+        else:
+            reduced.append(letter)
+    return "".join(reduced)
+
+
+def _word_commutator(left: str, right: str) -> str:
+    return _word_product(left, right, _word_inverse(left), _word_inverse(right))
+
+
 def _magnus_rewrite(word: str) -> tuple[tuple[int, int], ...]:
     height = 0
     output: list[tuple[int, int]] = []
@@ -167,6 +185,58 @@ def test_gate_a_magnus_base_and_defect_normal_form() -> None:
         "x",
         (-2,),
     )
+
+
+def test_gate_a_hall_witt_remainder_has_nonempty_magnus_base_form() -> None:
+    r = "xyyXY"
+    x_r = _word_commutator("X", r)
+    remainder = _word_commutator(_word_inverse(r), x_r)
+    conjugated_remainder = _word_product("YX", remainder, "xy")
+    assert x_r == "yyXYxyxYYX"
+    assert remainder == "yxYYXyyXYxxyyXYXyxYY"
+    assert conjugated_remainder == "YXyxYYXyyXYxxyyXYXyxYYxy"
+
+    scan = _magnus_rewrite(remainder)
+    assert scan == (
+        (0, 1),
+        (1, -1),
+        (1, -1),
+        (0, 1),
+        (0, 1),
+        (-1, -1),
+        (1, 1),
+        (1, 1),
+        (0, -1),
+        (-1, 1),
+        (0, -1),
+        (0, -1),
+    )
+    shifted_base = tuple(sign * (index + 2) for index, sign in scan)
+    assert shifted_base == (2, -3, -3, 2, 2, -1, 3, 3, -2, 1, -2, -2)
+    reduced_base = _substitute_d_inverse(shifted_base)
+    assert reduced_base == (
+        2,
+        2,
+        -1,
+        -2,
+        1,
+        -2,
+        -1,
+        2,
+        -1,
+        2,
+        1,
+        2,
+        -1,
+        2,
+        1,
+        -2,
+        -2,
+        1,
+        -2,
+        -2,
+    )
+    assert _free_reduce(reduced_base) == reduced_base
 
 
 def test_gate_b_nielsen_magnus_base_and_defect_normal_form() -> None:

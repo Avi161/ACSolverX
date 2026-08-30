@@ -159,6 +159,12 @@ defect to a nonzero two-coset residual whose identity-coset covector is zero.
 Thus universal (141) is false, while the complete first-derived defect set
 and the tagged Peiffer gate remain open.
 
+Section 6.29 evaluates the single Hall--Witt remainder from Section 6.21.
+After killing the fixed/current rows $A,v,rt$, its image has a nonempty
+twenty-letter Magnus-base normal form.  Hence the mixed term is not in that
+donor normal closure.  This closes the named fixed-donor Hall--Witt shortcut,
+not later interleavings or the unrestricted bridge.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3542,6 +3548,87 @@ first-derived theorem comprising Sections 6.19--6.20 and 6.27--6.28.  No
 further proper loop family or replacement covector is opened.  The tagged
 gate, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.29. The Hall--Witt remainder is not tag-donatable
+
+The one named obligation left by Theorem 6.15 also has an exact Magnus-base
+normal form.  Put $s=rt$.  Killing the fixed/current donor rows $A,v,s$
+eliminates $z,t$ and gives
+
+\[
+ \begin{aligned}
+ F(x,y,z,t)/\operatorname{Ncl}(A,v,s)&\cong Q_A,\\
+ t&=r^{-1}.
+ \end{aligned}
+ \tag{196}
+\]
+
+After $v=1$, the word $r$ becomes
+
+\[
+ \overline r=xy^2x^{-1}y^{-1}=\texttt{xyyXY}.
+ \tag{197}
+\]
+
+Write $w=[X,\overline r]$.  Direct free reduction gives
+
+```text
+w  = yyXYxyxYYX
+c0 = [rbar^-1,w] = yxYYXyyXYxxyyXYXyxYY.
+```
+
+The Hall--Witt term (146) maps to
+$\mathcal T_0={}^h c_0$.  It is enough to prove $c_0\ne1$ in $Q_A$.
+Its Magnus height scan is
+
+\[
+ c_0\longmapsto
+ y_0y_1^{-2}y_0^2y_{-1}^{-1}y_1^2y_0^{-1}y_{-1}y_0^{-2}.
+ \tag{198}
+\]
+
+Conjugate by $x$ to shift every index upward by one.  In the Magnus base
+$(a,b,d)=(y_0,y_1,y_2)$, the resulting word is
+
+\[
+ bd^{-2}b^2a^{-1}d^2b^{-1}ab^{-2}.
+ \tag{199}
+\]
+
+Substitute the one-occurrence solution (12) for $d^{\pm1}$ and freely
+reduce.  The exact output is the twenty-letter base word
+
+```text
+bbABaBAbAbabAbaBBaBB
+```
+
+which is freely reduced and nonempty in $F(a,b)$.  The Magnus base embeds in
+$Q_A$, so $c_0\ne1$.  Conjugation by $h$ preserves nontriviality and proves
+
+\[
+ \boxed{
+ \mathcal T_0={}^h[r^{-1},[X,r]]\ne1
+ \text{ in }Q_A.
+ }
+ \tag{200}
+\]
+
+The focused Gate-A checker derives all three literal words, replays the
+height scan, shifts to (199), substitutes (12), and pins the freely reduced
+twenty-letter endpoint.
+
+**Theorem 6.22 (Hall--Witt fixed-donor gate is false).**  The remainder
+$\mathcal T={}^h[t,[X,r]]$ is not in
+$\operatorname{Ncl}(A,v,s)$ for $s=rt$.  Therefore the Hall--Witt exchange
+cannot delete its last mixed term using the fixed/current donor family
+$(A,v,s)$.
+
+This theorem decides the single obligation left in Section 6.21.  It does
+not decide membership after another row changes the donor normal closure,
+obstruct a different interleaving, close the tagged gate, or decide the
+unrestricted $T_{\rm pub}$ bridge.  The Hall--Witt lane is frozen here; no
+higher commutator or donor-family ladder is opened.  Stable AK(3) and ordinary
+AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3587,8 +3674,10 @@ The logical gates remain separate:
 14. the candidate identity-coset covector survives vertical conjugations and
     two universal tag loops, but the exact loop in Theorem 6.21 refutes both
     the three-part containment law (140) and the weaker universal law (141);
-15. Hall--Witt makes $H_X$ donor-legal but leaves the mixed term $\mathcal T$,
-    whose triviality and donor membership are both unproved;
+15. Hall--Witt makes $H_X$ donor-legal but leaves the mixed term $\mathcal T$;
+    its exact Magnus-base image proves that it is not in the fixed/current
+    donor normal closure $\operatorname{Ncl}(A,v,rt)$, while later
+    interleavings remain open;
 16. the alternate raw omission is stably trivial, but the $A_5$ witness closes
     only the fixed-common-row exchange of $R_{14}$ for $R_{12}$; interleaved
     changes to the common rows remain open;
@@ -3627,4 +3716,6 @@ pinned-donor, fixed-core, rank-two correction, primitive-mate, or omission
 ledger is opened.  Theorem 6.20 also freezes every global scalar-character
 replacement for (135), and Theorem 6.21 refutes the remaining
 non-equivariant universal gate (141).  The affine-covector route is frozen;
-the full defect set $\mathcal D$ is not evaluated.
+the full defect set $\mathcal D$ is not evaluated.  Theorem 6.22 also freezes
+the fixed-donor Hall--Witt route at a proved nonmembership; no higher
+commutator lane is opened.

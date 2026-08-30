@@ -233,12 +233,14 @@ finite quotient do not close a route.
 - **Hall--Witt shortcut reduced and frozen:** for `s=rt`, the exact
   interchange has a donor-legal cyclic factor `[X,[r,t]]` because
   `[r,t]=[s,r^-1]`.  The Hall--Witt exchange leaves the mixed term
-  `T=^h[t,[X,r]]`; killing `s` sends it to `^h[r^-1,[X,r]]`.  Neither its
-  triviality nor its membership in a relevant donor normal closure is proved.
-  The earlier gates block direct use of `r`, `D=^h[X,r]`, and `[X,t]`, but do
-  not imply nonmembership for the cyclic terms.  This is a reduction to one
-  obligation, not a positive closure or negative obstruction.  Do not open a
-  higher cyclic-commutator ladder.
+  `T=^h[t,[X,r]]`; killing `A,v,s` sends it into `Q_A` as
+  `^h[r^-1,[X,r]]`.  One index shift and substitution of the Magnus
+  one-occurrence row reduce its inner commutator to the nonempty base word
+  `bbABaBAbAbabAbaBBaBB`.  Hence `T` is outside
+  `Ncl(A,v,s)`.  This closes exactly the fixed/current donor cleanup, not
+  membership after another row changes or another interleaving.  Keep this
+  lane frozen and do not open a higher cyclic-commutator or donor-family
+  ladder.
 - **Raw omission exchange evaluated and frozen:** in the misprinted
   fourteen-row corridor, omitting `r14` instead of the published `r12` gives
   an exact fourteen-step stable trivialization, while omission of `r12`
@@ -273,19 +275,19 @@ finite quotient do not close a route.
   `(q,t) -> (B,t)` by evaluating the complete lifted defect set of `([E],0)`
   in the induced kernel module, including the vertical tame-operator kernel,
   or by constructing a full path.
-  The next tagged checkpoint must prove the weaker canonical-defect condition
-  universally, with the three affine containments as a stronger sufficient
-  theorem, or give one symbolic loop violating the weaker condition.  A loop
-  violating only the stronger condition is inconclusive.  If the checkpoint
-  produces only more proper loop families, freeze Sections 6.12--6.20 as the
-  bounded first-derived tagged theorem.  The Hall--Witt construction is also
-  frozen at the single membership/triviality obligation `T`; do not expand it
-  cyclically.  The raw omission route is frozen at its stable return to AK(3);
-  do not add fixed-row, omitted-row, or rank-two correction categories.
-  Resume the unrestricted common-kill bridge unless a genuinely complete
-  stabilizer theorem or a direct evaluation of `T` appears.
-  If the linear orbit contains zero, escalate once to the tame relative
-  crossed-module basis; do not infer an AC path.  A multi-row Peiffer lift or
+  Universal (141) is refuted by one exact vertical multiplication loop: it
+  kills the identity-coset covector but leaves a nonzero two-coset residual.
+  Freeze the complete affine-covector lane; do not add replacement covectors
+  or proper loop families.  The Hall--Witt remainder `T` is proved outside
+  the fixed/current donor closure `Ncl(A,v,rt)`, so that lane is also frozen;
+  do not expand it cyclically or through new donor families.  The raw omission
+  route is frozen at its stable return to AK(3); do not add fixed-row,
+  omitted-row, or rank-two correction categories.  Resume the unrestricted
+  common-kill bridge unless a genuinely complete evaluation of the full
+  defect set or a constructive full path appears.
+  If the complete first-derived defect set contains zero, escalate once to
+  the tame relative crossed-module basis; do not infer an AC path.  A
+  multi-row Peiffer lift or
   another full relative path may bypass the closed single-row gate.  Do not
   add another finite
   alternation or conjugator category.  The lifts are complete, but no closure
