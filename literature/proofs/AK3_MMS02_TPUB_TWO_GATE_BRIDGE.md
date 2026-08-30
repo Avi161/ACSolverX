@@ -219,6 +219,15 @@ inside the formal matrix problem after (230).  The zero residuals are not AC4
 rows, and the matrix moves are not realized in the affine tagged fiber, so
 this still does not prove the bridge.
 
+Section 6.37 identifies exactly what legal stabilization changes.  Adding an
+AC4 generator--relator pair adds an identity block to both the residual system
+and its relation-module basis, so it preserves the stably free rank-one kernel
+$Q$ of the rectangular coefficient matrix.  A square matrix completion after
+legal AC4 stabilization exists exactly when $Q$ itself is free.  If it is,
+trivial Whitehead group makes a further legal block stabilization matrix-tame.
+Thus rank-one cancellation, affine tag realization, and the subsequent
+Peiffer/free-group lift are distinct remaining gates; none is proved here.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4337,6 +4346,168 @@ lifting the matrix transformations in the affine fiber while retaining the
 tag.  The curvature filling itself, both realization problems, the
 unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.37. Legal stabilization preserves one rank-one cancellation gate
+
+Continue under the generation condition (235), and retain
+$Q=\ker\rho_C$ from (236a).  It is a stably free left $S$-module of rank one:
+
+\[
+ \boxed{Q\oplus{}_SS^2\cong{}_SS^3.}
+ \tag{239}
+\]
+
+An $m$-fold legal AC4 stabilization adjoins fresh generators
+$z_1,\ldots,z_m$ and the corresponding killing rows.  The presented group is
+still $G_-$.  At the presentation-complex level, each new generator loop and
+its 2-cell with attaching word $z_j$ form a collapsible 1--2 cell pair.
+Therefore the stabilized base complex collapses to the aspherical complex of
+Theorem 6.26 and is itself aspherical.  In the lifted cellular chain complex,
+each pair contributes one split contractible $S\overset{1}{\to}S$ summand.
+Equivalently, the old relation module embeds as its old summand and $[z_j]$
+is a new free basis element.  Thus the stabilized relation module is
+
+\[
+ \mathcal R_m
+ =\mathcal R\oplus
+ \bigoplus_{j=1}^m S[z_j].
+ \tag{240}
+\]
+
+Relative to the ordered basis $([A],[B],[z_1],\ldots,[z_m])$, the stabilized
+endpoint coefficients are
+
+\[
+ C_m=
+ \begin{pmatrix}
+ C&0\\
+ 0&I_m
+ \end{pmatrix}
+ \in M_{(3+m)\times(2+m)}(S).
+ \tag{241}
+\]
+
+Here the first three rows are the residuals $e$ and the final $m$ rows are
+the new killing relators.  Right multiplication on free left row modules
+gives a split surjection
+
+\[
+ \rho_{C_m}:{}_SS^{3+m}\longrightarrow{}_SS^{2+m},
+ \hspace{1em}x\longmapsto xC_m,
+ \tag{242}
+\]
+
+and the identity block contributes no new kernel:
+
+\[
+ \boxed{\ker\rho_{C_m}\cong Q\hspace{1em}(m\ge0).}
+ \tag{243}
+\]
+
+Call a square completion after legal AC4 stabilization a matrix
+$W_m\in\operatorname{GL}_{3+m}(S)$ whose first $2+m$ columns are $C_m$.
+If such a matrix exists, $\rho_{C_m}$ is the composition of right
+multiplication by $W_m$ with projection onto the first $2+m$ coordinates.
+Its kernel is therefore the inverse image of the last coordinate line and is
+free of rank one.  Equation (243) then makes $Q$ free.
+
+Conversely, if $Q\cong{}_SS$, put
+$D_m=\operatorname{diag}(D,I_m)$, so $D_mC_m=I_{2+m}$, and let
+$s_m(y)=yD_m$ be the resulting section of $\rho_{C_m}$.  Choose an
+isomorphism $\phi_m:\ker\rho_{C_m}\to{}_SS$.  Then
+
+\[
+ x\longmapsto
+ \left(
+ xC_m,
+ \phi_m\left(x-s_m(xC_m)\right)
+ \right)
+ \tag{243a}
+\]
+
+is an isomorphism ${}_SS^{3+m}\to{}_SS^{2+m}\oplus{}_SS$.  Its first
+$2+m$ coordinate functions are exactly right multiplication by $C_m$, so it
+is represented by a square completion $W_m$.  Thus
+
+\[
+ \boxed{
+ Q\cong{}_SS
+ \Longleftrightarrow
+ C_m\text{ has a square completion after legal AC4 stabilization for some }m
+ \Longleftrightarrow
+ C_m\text{ has one for every }m.
+ }
+ \tag{244}
+\]
+
+When these conditions hold, order the stabilized reference residuals as
+
+\[
+ b_m=([A],[B],[z_1],\ldots,[z_m],0)^t.
+ \tag{245}
+\]
+
+This differs from placing the tag-zero coordinate third only by a tame row
+permutation.  By construction,
+
+\[
+ W_mb_m=([A],[E_B],[H_Bv^{-1}],[z_1],\ldots,[z_m])^t.
+ \tag{246}
+\]
+
+Finally, $\operatorname{Wh}(G_-)=0$ gives an $r\ge0$ for which
+$W_m\oplus I_r$ is elementary/trivial-diagonal.  The direct-sum order places
+the old zero coordinate before the $r$ new basis entries, whereas the
+convention (245) places every basis entry before the zero.  Let $P_r$ be the
+tame permutation matrix satisfying
+
+\[
+ P_rb_{m+r}
+ =([A],[B],[z_1],\ldots,[z_m],0,
+ [z_{m+1}],\ldots,[z_{m+r}])^t.
+ \tag{246a}
+\]
+
+Then
+
+\[
+ \widetilde W_{m+r}:=(W_m\oplus I_r)P_r
+ \tag{246b}
+\]
+
+is tame and sends $b_{m+r}$ to the endpoint residual tuple with all $m+r$
+new rows.  Since the first $2+m+r$ entries of $b_{m+r}$ are the free basis of
+$\mathcal R_{m+r}$ and its last entry is zero, uniqueness of coordinates
+shows that the first $2+m+r$ columns of $\widetilde W_{m+r}$ are exactly
+$C_{m+r}$.  Thus the identity block is genuinely supplied by $r$ further
+legal AC4 generator--relator pairs, not by formal zero padding.
+
+For the converse at the tame level, suppose a tame
+$T\in\operatorname{GL}_{3+M}(S)$ sends $b_M$ to the stabilized endpoint
+residual tuple.  The same basis-coordinate uniqueness forces the first
+$2+M$ columns of $T$ to equal $C_M$.  Hence $T$ is a square completion after
+legal AC4 stabilization, and (244) makes $Q$ free.  If the reduction is
+written in the reverse direction, apply this argument to $T^{-1}$.  Therefore
+(244), together with the curvature condition (230), removes every remaining
+projective and $K_1$ issue at the legally stabilized relation-module level
+exactly when $Q$ is free.
+
+**Theorem 6.30 (AC4 matrix completion equals rank-one cancellation).**
+Conditional on $\overline\kappa_P=0$, the fixed branch-B residual system
+admits a matrix-tame reduction to its reference residual system after legal
+AC4 stabilization if and only if the stably free rank-one module $Q$ in (239)
+is free.  Legal stabilization does not weaken this freeness condition: every
+identity block preserves the same kernel $Q$.
+
+This is still a relation-module statement.  It does not prove that the matrix
+factors act on the actual tuple $(A,E_B,H_B)$, whose third row retains quotient
+tag $v$.  Even such an affine realization in $F/[N,N]$ would still require a
+Peiffer/crossed-module lift to the free group and a donor-legal AC path.  The
+independent remaining gates are therefore the noncommutative curvature
+filling, rank-one cancellation for $Q$, affine realization on the tagged
+metabelian tuple, and the subsequent Peiffer/crossed-module/free-group lift.
+None is identified with stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -4431,10 +4602,16 @@ The logical gates remain separate:
 27. conditional on a positive curvature filling, two formal zero residuals
     give a square invertible matrix completion and $\operatorname{Wh}(G_-)=0$
     makes that matrix stably tame; those zero residuals are not AC4 rows, and
-    neither legal padding nor an affine tagged realization is supplied;
-28. no MMS02 statement evaluates the period-two class-two ledger or its
+    neither legal padding, an affine tagged realization, nor a
+    Peiffer/free-group lift is supplied;
+28. legal AC4 identity blocks preserve the same stably free rank-one kernel
+    $Q$, so square completion after legal stabilization is equivalent to the
+    separate unproved cancellation statement $Q\cong S$; even that is only a
+    relation-module result without an affine tagged or Peiffer/free-group
+    lift;
+29. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-29. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+30. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -4461,6 +4638,10 @@ condition (230), and no alternative-curvature ledger is opened.  Theorem
 6.28 further proves that every cyclic or one-dimensional scalar shadow of
 that condition is vacuous; the surviving gate is genuinely
 noncommutative.  Theorem 6.29 proves that a positive answer would already
-have a formally stabilized tame matrix completion.  Remaining obligations
-include legal realization of its zero padding and an affine tagged lift, not
-another projective or $K_1$ calculation.
+have a formally zero-padded tame matrix completion, with no projective issue
+inside that formal problem.  Theorem 6.30 separates the legal substitute:
+AC4 identity blocks preserve the rank-one kernel $Q$, so legal matrix
+completion is equivalent to the unproved cancellation $Q\cong S$; once that
+holds, $\operatorname{Wh}(G_-)=0$ handles stable matrix tameness.  Affine tag
+realization remains a further gate, as does the subsequent
+Peiffer/crossed-module/free-group lift.

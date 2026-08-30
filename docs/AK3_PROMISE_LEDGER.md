@@ -101,7 +101,18 @@ finite quotient do not close a route.
   projective or `K_1` gate remains inside the formal matrix problem after
   (230). The zero residuals are not legal AC4 rows, and the actual third row
   retains the quotient tag `v`; remaining obligations include both legal
-  padding and an affine tagged realization before any bridge claim.
+  padding, an affine tagged realization, and a later Peiffer/free-group lift
+  before any bridge claim.
+- **Legal matrix completion is exactly rank-one cancellation:** under module
+  generation, the `3x2` matrix has a stably free rank-one left kernel `Q`.
+  An `m`-fold AC4 stabilization replaces it by `diag(C,I_m)` and preserves
+  that kernel. The stabilized rectangular matrix extends to
+  `GL_(3+m)(S)` for some (equivalently every) `m` exactly when `Q` is free.
+  If it is, `Wh(G_-)=0` makes a further legal identity stabilization
+  matrix-tame. Freeness of `Q` is unproved, and even a positive cancellation
+  theorem would remain at relation-module level until the quotient tag `v`
+  is realized affinely and those module moves are lifted through the
+  Peiffer/crossed module to a donor-legal free-group path.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
