@@ -420,6 +420,15 @@ different inversion-stable classes of 5-cycles.  Hence every successful
 terminal path must make the \(B\)-row quotient-visible; the unrestricted
 two-row orbit remains open.
 
+Section 6.61 uses the same split classes on the full pair orbit.  Conjugation,
+inversion, and row order are free normalizations; the first visible
+multiplication creates two source-class rows, and after two multiplications
+one source-class row still survives.  A third multiplication cannot both
+change that class and clear the other row.  Hence every terminal path needs
+at least four \(A_5\)-visible row multiplications.  A four-move quotient
+transcript exists, but its Nielsen matrix violates the actual infinite-cyclic
+homology, so it is not a lift.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7321,6 +7330,106 @@ such a both-row path, a path changing the fixed \(A\)-row, another
 stabilization, the unrestricted MMS02 bridge, stable AK(3), ordinary AK(3),
 stable Andrews--Curtis, or Andrews--Curtis.
 
+### 6.61. Four quotient-visible multiplications are necessary
+
+The split-class obstruction also gives a depth bound for the full two-row
+orbit, including paths which change the \(B\)-row.  In the \(A_5\) quotient,
+call a row multiplication visible when its donor has nonidentity image.
+Conjugation, inversion, and row permutation have cost zero.
+
+Let \(\mathcal A\) be the split 5-cycle class containing
+\(a=\rho(u)\), and let \(\mathcal B\) be the other split class containing
+\(b=\rho(v)\).  Both are inversion-stable.  Up to zero-cost normalization,
+the source and target are
+
+\[
+ (a,1)\in(\mathcal A,1),
+ \qquad
+ (b,1)\in(\mathcal B,1).
+ \tag{396}
+\]
+
+The first visible multiplication must use the nonidentity row as donor and
+therefore leaves two rows of class \(\mathcal A\).  A second multiplication
+changes at most one row, so at least one row of class \(\mathcal A\) remains.
+One further multiplication cannot reach \((\mathcal B,1)\).  If it changes
+the surviving \(\mathcal A\)-row, the other row must already be one, making
+the multiplication invisible and ineffective.  If it changes the other row,
+the retained row is still in \(\mathcal A\).  Thus
+
+\[
+ \boxed{
+ \text{every path from }(a,1)\text{ to }(b,1)
+ \text{ uses at least four visible row multiplications}.}
+ \tag{397}
+\]
+
+The bound is sharp in \(A_5\).  Put
+
+\[
+ g=(0\ 1\ 2),
+ \qquad
+ x=g^{-1}ag=(3,4,1,2,0)
+ \tag{398}
+\]
+
+in one-line notation on the right.  Direct multiplication gives
+
+\[
+ x^2=b,\qquad x^3=b^{-1},\qquad x^5=1.
+\]
+
+After conjugating both rows independently, the four visible multiplications
+are
+
+\[
+ (x,1)\longrightarrow(x,x)\longrightarrow(x^2,x)
+ \longrightarrow(x^2,x^3)\longrightarrow(x^2,1).
+ \tag{399}
+\]
+
+This quotient transcript is a can-fail control, not a lift target.  With
+column coordinates for the two row exponent sums, its multiplication word
+has Nielsen matrix
+
+\[
+ \begin{pmatrix}1&0\\1&1\end{pmatrix}
+ \begin{pmatrix}1&0\\1&1\end{pmatrix}
+ \begin{pmatrix}1&1\\0&1\end{pmatrix}
+ \begin{pmatrix}1&0\\1&1\end{pmatrix}
+ =
+ \begin{pmatrix}2&1\\5&3\end{pmatrix}.
+ \tag{400}
+\]
+
+In \(G_-^{\mathrm{ab}}\cong\mathbb Z\), the actual source and target vectors
+are
+
+\[
+ ([u],[1])=(-1,0),
+ \qquad
+ ([v],[1])=(1,0).
+\]
+
+Matrix (400) sends the source to \((-2,-5)\), not to \((1,0)\).
+The shortest \(A_5\) transcript therefore uses the order-five relation which
+cannot lift even through the actual abelianization.
+
+**Theorem 6.55 (terminal multiplication-depth boundary).**  Every path for
+the terminal pair gate (271) has at least four row multiplications whose
+donor has nonidentity image in the certified \(A_5\) quotient.  The bound is
+sharp only in that quotient; the displayed sharpness transcript is excluded
+from \(G_-\) by homology.
+
+The focused certificate performs a complete zero--one breadth-first
+calculation on the 3600 ordered \(A_5\) pairs, treating conjugation,
+inversion, and row order as zero-cost moves.  It independently replays the
+four-multiplication witness and its Nielsen matrix.  This theorem is a global
+lower bound, not a four-move census.  It does not obstruct a
+homology-compatible path of depth four or more, solve the both-row pair orbit,
+close the unrestricted bridge, or prove stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7500,7 +7609,10 @@ The logical gates remain separate:
     unbounded \(B\)-confined terminal path, forcing any successful path for
     (271) to change the \(B\)-row quotient-visibly, but do not obstruct that
     both-row orbit; and
-51. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+51. the same split classes force every full terminal path to use at least
+    four \(A_5\)-visible row multiplications; a four-move quotient transcript
+    is sharp but violates the actual homology and supplies no lift; and
+52. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7647,4 +7759,13 @@ equivalent exactly to conjugacy up to inversion of the two killer images.
 The certified \(A_5\) quotient places those images in the two different
 inversion-stable split classes of 5-cycles.  Therefore every successful
 terminal path must change both rows quotient-visibly; that both-row orbit
+remains open.
+Theorem 6.55 extracts the resulting global multiplication-depth bound.
+After the first visible multiplication both rows lie in the source split
+class, and after the second at least one such row remains; a third move cannot
+both change that class and clear the buffer.  Thus every terminal path needs
+at least four \(A_5\)-visible multiplications.  The quotient bound is sharp,
+but its shortest transcript has Nielsen matrix
+\(\left(\begin{smallmatrix}2&1\\5&3\end{smallmatrix}\right)\) and fails the
+actual infinite-cyclic homology test.  A homology-compatible both-row path
 remains open.
