@@ -1,6 +1,9 @@
 from experiments.stable_ac.mms02_depth_five_lift_equations_certificate import (
+    EXPECTED_D2_WORD,
     EXPECTED_COLLAPSED_ENDPOINTS,
     EXPECTED_COLLAPSED_GENERATORS,
+    EXPECTED_ENDPOINT_BASE_WORDS,
+    EXPECTED_MAGNUS_RELATOR,
     FORWARD,
     R_STAR,
     apply_images,
@@ -35,3 +38,22 @@ def test_magnus_exponent_vector_is_pinned_without_module_calculus():
     assert exponent_vector(R_STAR) == (-3, 1)
     assert decision.relator_exponent_vector == (-3, 1)
     assert decision.verdict == "EXACT_DEPTH_FIVE_LIFT_EQUATION_COORDINATES_PINNED"
+
+
+def test_magnus_relator_has_two_unique_extremes_and_free_base_elimination():
+    decision = decide_lift_equation_coordinates()
+    assert decision.magnus_relator == EXPECTED_MAGNUS_RELATOR
+    assert decision.magnus_relator.count((-2, 1)) == 1
+    assert decision.magnus_relator.count((2, 1)) == 1
+    assert decision.d2_word == EXPECTED_D2_WORD
+    assert decision.d2_word.count((-2, -1)) == 1
+
+
+def test_terminal_words_have_pinned_length_one_hnn_normalizations():
+    decision = decide_lift_equation_coordinates()
+    assert decision.endpoint_base_words == EXPECTED_ENDPOINT_BASE_WORDS
+    assert tuple(map(len, decision.endpoint_base_words)) == (10, 10)
+    assert all(
+        all(-2 <= index <= 1 for index, _ in word)
+        for word in decision.endpoint_base_words
+    )

@@ -456,6 +456,14 @@ skeleton, not a solution of the equations or of the full pair orbit.  Their
 literal one-relator coordinates and the next Magnus-HNN obligation are
 pinned.
 
+Section 6.64 completes that Magnus rewrite.  The relator uses precisely
+\(d_{-2},\ldots,d_2\), with each extremal generator occurring once.  Solving
+for \(d_2\) leaves a free rank-four base, and its expression contains
+\(d_{-2}^{-1}\) once.  Hence the opposite associated subgroup is also a free
+basis: \(G_-\) is an explicit free-by-cyclic mapping torus.  Conjugate
+height-one normal forms for \(U,V\) have pinned base words of length ten.
+This supplies the exact Britton interface for (413), but does not decide it.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7727,6 +7735,113 @@ and sign patterns, longer terminal paths, the full pair orbit, MMS02 bridge,
 stable AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis all
 remain open.
 
+### 6.64. The lift gate is an explicit free-by-cyclic mapping torus
+
+Carry out the Magnus rewrite promised after (414).  Put
+\(d=y^{-3}z\), so \(z=y^3d\), and set \(d_i=y^idy^{-i}\).  Reading the
+zero-height relator from left to right gives
+
+\[
+\begin{aligned}
+ R_0={}&d_{-1}^{-1}d_{-2}d_0d_{-1}^{-1}d_0d_1^{-1}d_0d_2\\
+      &\mathrel{}d_1^{-1}d_0d_1^{-1}d_{-1}^{-1}d_0.
+\end{aligned}
+\tag{415}
+\]
+
+The indices range from \(-2\) to \(2\), and each extremal generator occurs
+exactly once.  Solving (415) for \(d_2\) gives
+
+\[
+\begin{aligned}
+ d_2=W:={}&d_0^{-1}d_1d_0^{-1}d_{-1}d_0^{-1}d_{-2}^{-1}d_{-1}\\
+           &\mathrel{}d_0^{-1}d_{-1}d_1d_0^{-1}d_1.
+\end{aligned}
+\tag{416}
+\]
+
+The standard Magnus HNN base is
+
+\[
+ H=\langle d_{-2},d_{-1},d_0,d_1,d_2\mid R_0\rangle,
+\]
+
+with associated subgroups generated respectively by
+\((d_{-2},d_{-1},d_0,d_1)\) and
+\((d_{-1},d_0,d_1,d_2)\).  Equation (416) first identifies
+
+\[
+ H=F(d_{-2},d_{-1},d_0,d_1).
+\]
+
+Moreover, \(W\) contains \(d_{-2}^{-1}\) exactly once and all its other
+letters lie in \(\langle d_{-1},d_0,d_1\rangle\).  Thus
+\((d_{-1},d_0,d_1,W)\) is also a free basis of \(H\): solve (416) back for
+\(d_{-2}\).  Both associated subgroups are the whole base.
+
+Consequently the Magnus monomorphism is the automorphism \(\phi\in
+\operatorname{Aut}(F_4)\) defined by
+
+\[
+ \phi(d_{-2})=d_{-1},\qquad
+ \phi(d_{-1})=d_0,\qquad
+ \phi(d_0)=d_1,\qquad
+ \phi(d_1)=W.
+\tag{417}
+\]
+
+The focused checker does not infer invertibility from abelianization.  It
+solves for \(d_{-2}\) using the unique occurrence in \(W\), constructs the
+inverse images of all four basis generators, and freely replays both
+compositions.  Hence
+
+\[
+ \boxed{
+ G_-\cong F(d_{-2},d_{-1},d_0,d_1)\rtimes_\phi\langle y\rangle,
+ \qquad yhy^{-1}=\phi(h).
+ }
+\tag{418}
+\]
+
+The endpoints also acquire short height-one forms.  The raw Magnus indices
+for \(U_*\) lie from \(2\) to \(5\), and those for \(V_*\) from \(1\) to
+\(4\).  Conjugate the former by \(y^{-3}\), the latter by \(y^{-2}\), and
+substitute (416).  This gives independently conjugate representatives
+
+\[
+ \widehat U=A_Uy,\qquad \widehat V=A_Vy,
+\tag{419}
+\]
+
+where the freely reduced base words are
+
+\[
+\begin{aligned}
+ A_U={}&d_0d_1^{-1}d_0^{-1}d_1d_0^{-1}d_{-1}d_0^{-1}
+        d_{-2}^{-1}d_{-1}d_1^{-1},\\
+ A_V={}&d_1d_0^{-1}d_1d_{-1}^{-1}d_{-2}d_0d_{-1}^{-1}
+        d_0d_1^{-1}d_0.
+\end{aligned}
+\tag{420}
+\]
+
+Each has length ten.  Since (413) is invariant under independently replacing
+\(U\) and \(V\) by conjugates, (419)--(420) are the exact normal forms to use
+there.
+
+**Theorem 6.58 (terminal free-by-cyclic interface).**  The actual quotient
+group \(G_-=F/\operatorname{Ncl}(A,B)\) is the explicit free-by-cyclic group
+(418), with monodromy (417).  The two height-one elements in the depth-five
+lift equations have the base representatives (419)--(420).
+
+This is a structural identification, not a solution of (413).  In
+particular, being free-by-cyclic does not make either commutator variety or
+pair-of-pants equation automatic.  The next obligation is to apply the
+mapping-torus conjugacy equations simultaneously to (413), retaining any
+base-group residual literally.  No other depth-five sign pattern, terminal
+pair orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis is claimed.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7917,7 +8032,10 @@ The logical gates remain separate:
     conjugacy equations (413) have a solution in \(G_-\); those equations,
     the other compatible sign patterns, and the full pair orbit remain open;
     and
-54. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+54. the literal Magnus rewrite identifies \(G_-\) as the free-by-cyclic
+    mapping torus (418) and puts both live rows in the length-one forms
+    (419)--(420), but does not solve the simultaneous equations (413); and
+55. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8089,3 +8207,11 @@ explicit signed skeleton.  It lifts in \(G_-\) if and only if there are
 recipient sequence, not a solution of the equations or of any other
 depth-five pattern.  Their exact one-relator words are pinned in (414), and
 the next obligation is the literal Magnus--Britton decision of this system.
+Theorem 6.58 performs the complete Magnus rewrite behind that obligation.
+Both extremal indexed generators occur once, so the HNN base is free of rank
+four and the opposite associated subgroup is another basis.  Thus \(G_-\)
+is the explicit mapping torus (418), not merely a generic one-relator HNN
+group.  The two endpoint conjugacy classes have the pinned length-one forms
+\(A_Uy\) and \(A_Vy\), with freely reduced base words of length ten in
+(420).  The mapping-torus structure supplies an exact decision interface but
+does not decide the simultaneous commutator equations (413).
