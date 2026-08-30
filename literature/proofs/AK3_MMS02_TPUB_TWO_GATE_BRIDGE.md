@@ -258,6 +258,15 @@ for stable AK(3) follows outside that ansatz.
 Returning from $\tau_P$ to the canonical lift $(1,1,v)$ is exactly the still
 open donor-legal affine/Peiffer realization problem.
 
+Section 6.41 supplies the legal stabilization interface and terminates this
+lane.  A stable ambient basis change splits $H_B=BH$ into the two legal rows
+$Bt^{-1},tH$; those rows then clean $E_B$ back to $u$.  Against the similarly
+normalized target, retaining the common rows reduces the remaining
+sufficient problem to the normally generating pair orbit
+$(u,B)\to(v,B)$ in $F/\operatorname{Ncl}(A)$.  This relative gate is not
+proved necessary and is not identified with the earlier tagged gate (130).
+No new invariant or correction ledger is opened.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4919,6 +4928,116 @@ bridge route to legal realization of the two-word gauge displacement
 $([E_0],[Hv^{-1}])$, coupled to the actual basis residuals in (261a); it
 proves neither the unrestricted bridge, stable AK(3), nor ordinary AK(3).
 
+### 6.41. Stable relation splitting gives one fixed-row pair gate
+
+The path gauge can be connected to legal stabilization without replacing an
+AC4 row by a formal zero.  Adjoin a fresh generator with killing row $t$ to
+the branch-B endpoint.  This stabilized presentation is balanced and trivial
+because (44) connects its first three rows to the verified trivial tuple
+$(A,B,u)$.  Proposition 3.3 of
+`AK3_DUAL_SOURCE_COMPRESSION.md` realizes, in the stable AC class of the full
+balanced trivial presentation, the ambient Nielsen automorphism which fixes
+$x,y,z$ and sends
+
+\[
+ t\longmapsto tH.
+ \tag{264}
+\]
+
+The other three rows contain no $t$ and remain literal.  The final two rows
+are now $H_B=BH$ and $tH$.  Multiply the first of them on the right by the
+inverse of the second:
+
+\[
+ H_B(tH)^{-1}=BH H^{-1}t^{-1}=Bt^{-1}.
+ \tag{265}
+\]
+
+Thus the product of the two split rows is still the original carrier:
+
+\[
+ (Bt^{-1})(tH)=BH=H_B.
+ \tag{266}
+\]
+
+Every occurrence of $H_B^{\pm1}$ in the conjugate-product expression
+$K[H_B]$ can therefore be expanded as a product of conjugates of the two
+current split rows.  The standard donor macro removes $K[H_B]$ from
+$E_B=uK[H_B]$ while restoring both donors.  Consequently
+
+\[
+ \boxed{
+ (A,E_B,H_B,t)
+ \sim_{\mathrm{stAC}}
+ (A,u,Bt^{-1},tH).}
+ \tag{267}
+\]
+
+Normalize the stabilized canonical target separately.  Multiply its $B$-row
+by $t^{-1}$ and then reorder rows, obtaining
+
+\[
+ \boxed{
+ (A,B,v,t)
+ \sim_{\mathrm{AC}}
+ (A,v,Bt^{-1},t).}
+ \tag{268}
+\]
+
+Equations (267)--(268) are reversible endpoint normalizations.  They show
+that the branch-B bridge after stabilization is the full four-row orbit
+problem
+
+\[
+ (A,u,Bt^{-1},tH)\longrightarrow(A,v,Bt^{-1},t).
+ \tag{269}
+\]
+
+There is a sharper sufficient relative gate: retain the common first and
+third rows $A,Bt^{-1}$ and change only the remaining pair.  In the quotient
+by those common rows, eliminate $t$ using $t=B$.  The relative pair becomes
+
+\[
+ (u,BH)\longrightarrow(v,B)
+ \hspace{1em}\text{in}\hspace{1em}
+ G_A:=F(x,y,z)/\operatorname{Ncl}_F(A).
+ \tag{270}
+\]
+
+The word $H$ is a finite product of conjugates of $u^{\pm1}$.  Hence the
+first pair in (270) is AC-equivalent to $(u,B)$ by using the $u$-row as donor
+and restoring it.  The terminal relative gate is therefore
+
+\[
+ \boxed{
+ (u,B)\longrightarrow(v,B)
+ \text{ in }G_A.}
+ \tag{271}
+\]
+
+Concatenate the $u$-donor cleanup $(u,BH)\to(u,B)$ with any hypothetical
+path (271).
+Any AC path for (271) lifts to a path relative to the fixed rows in (269):
+choose representatives in $F(x,y,z,t)$ for its conjugators, and remove every
+lift discrepancy in $\operatorname{Ncl}(A,Bt^{-1})$ by the two fixed donors.
+Combining with (267)--(268) proves the sufficient implication.
+
+Both endpoint pairs in (271) normally generate $G_A$: this is exactly the
+triviality of $(A,B,u)$ and $(A,B,v)$, respectively.
+
+**Theorem 6.34 (terminal path-gauge gate).**  Closure of the normally
+generating pair orbit (271) is sufficient for the stable MMS02 bridge and
+hence for stable AK(3).  It is the exact fixed-common-row endpoint of the
+legal path-gauge normalization (267)--(269).
+
+No necessity is claimed.  A stable path may alter the two common rows and
+bypass the relative gate (271).  This theorem neither decides that pair orbit
+nor identifies it with the earlier tagged gate $(q,t)\to(B,t)$ in (130).
+Those two routes are not conflated.  The path-gauge lane is frozen at (271):
+no correction census, quotient invariant, or new derived-module ledger is
+opened.  The relative pair orbit, unrestricted bridge, stable AK(3), and
+ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5031,9 +5150,13 @@ The logical gates remain separate:
     and no stable-AK(3) necessity follows outside the canonical matrix ansatz;
     returning to the canonical lift is the unproved affine/Peiffer
     realization;
-32. no MMS02 statement evaluates the period-two class-two ledger or its
+32. stable relation splitting terminates the fixed-common-row path-gauge lane
+    at $(u,B)\to(v,B)$ in $F/\operatorname{Ncl}(A)$; its closure is
+    sufficient, but neither its closure nor necessity is proved, and it is
+    not identified with the tagged gate (130);
+33. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-33. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+34. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5079,4 +5202,8 @@ using the path endpoint itself as target lift gives coefficient matrix
 $J_PB_0$, explicit free kernel, and tame completion.  Thus canonical $Q$ is
 not established as a necessary stable-AK(3) obstruction; the genuine
 unresolved step is the donor-legal affine/Peiffer realization of the
-displacement back to the canonical lift.
+displacement back to the canonical lift.  Theorem 6.34 supplies its legal
+endpoint interface: stable relation splitting reduces the fixed-common-row
+version to the pair orbit $(u,B)\to(v,B)$ in
+$F/\operatorname{Ncl}(A)$.  This is a sufficient terminal gate only and is
+frozen without a new invariant or correction ledger.

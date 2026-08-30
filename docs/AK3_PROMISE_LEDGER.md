@@ -127,6 +127,16 @@ finite quotient do not close a route.
   change from the path endpoint back to canonical `(1,1,v)` is not an AC
   move; it is exactly the unresolved affine-curvature/Peiffer realization.
   Do not use path-gauge completion as a bridge claim.
+- **Terminal legal path-gauge gate:** after adjoining a legal row `t`, the
+  stable ambient automorphism `t -> tH` splits `H_B=BH` into
+  `B t^-1,tH`. Their product is still `H_B`, so they clean
+  `E_B=uK[H_B]` back to `u`. The source and target normalize to
+  `(A,u,B t^-1,tH)` and `(A,v,B t^-1,t)`. A path retaining the two common
+  rows is therefore reduced exactly to `(u,B) -> (v,B)` in
+  `F/Ncl(A)`, and its closure would prove the stable bridge. This is a
+  sufficient relative gate only: arbitrary stable paths may alter the common
+  rows. It is not identified with the older tagged gate `(q,t)->(B,t)`, and
+  no new correction or quotient ledger is authorized.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one
