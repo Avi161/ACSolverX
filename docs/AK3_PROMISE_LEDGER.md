@@ -790,8 +790,9 @@ finite quotient do not close a route.
   equation in \(\Lambda^2M\), not merely the fifteen-bit quotient.  The
   companion cross kernels and other primitive families remain open; no
   full-Hessian rank claim follows.
-- **Remote six-term ledger checkpoints 1--2:** the balanced color-cut term is
-  now an explicit finite parity evaluator.  Its input is the ten complete
+- **Remote six-term ledger frozen after checkpoints 1--3:** the balanced
+  color-cut term is now an explicit finite parity evaluator.  Its input is
+  the ten complete
   `K`-keyed coefficient tables of the two spanning-forest color-class
   directions, the literal sixteen-occurrence prefix table, the five slot
   multiplicities, and the oriented target word.  Complete support loops and
@@ -806,8 +807,16 @@ finite quotient do not close a route.
   source-dependent multiplier families and local degree, and its
   Bass--Serre bound is cycle-specific.  A uniform linear constant survives
   only for endpoint-localized cycles.  The six categories and four
-  unresolved terms are unchanged, no category-growth strike is incurred,
-  and one budgeted checkpoint remains before the freeze decision.
+  unresolved terms are unchanged and no category-growth strike is incurred.
+  A fresh forward-reference audit then found that Section 3.99 re-promoted
+  its endpoint schema when describing clustered fixed loops.  Checkpoint
+  three confines that schema to one endpoint-localized alphabet and leaves
+  general non-target loops on their actual edge-dependent multiplier lists.
+  It is a soundness correction, not an evaluation.  The three-checkpoint
+  budget is therefore exhausted with the same four unresolved terms, and
+  Sections 3.57--3.106a are frozen as the publishable bounded-depth theorem.
+  Only soundness corrections and packaging remain in this ledger; active
+  theory work moves to the independent MMS02 bridge.
 - **Nonclaim:** no period-two free-group witness, AK(3), stable AC, or AC
   conclusion is proved.  Even a successful lift still needs a separately
   proved implication to the relevant AK(3) move/factorization target.

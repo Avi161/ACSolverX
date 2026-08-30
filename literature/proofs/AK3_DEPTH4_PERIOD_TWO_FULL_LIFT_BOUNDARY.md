@@ -245,16 +245,17 @@ odd-cycle parity.
 Section 3.98 adds two support filters.  A nonzero color cut requires the two
 color-class radii to reach the paired target jointly, while a nonzero odd
 cycle requires at least three distinct non-target anchored atoms.
-Section 3.98a freezes the six-term remote ledger and gives it a three-
-checkpoint convergence budget.  Category growth cannot be counted as
-evaluation; failure to reduce the five unevaluated terms triggers a
-publishable bounded-depth freeze and moves active effort to the MMS02
-bridge.
-Section 3.99 replaces the abstract endpoint-multiplier list by a canonical
-finite word schema: reduced products $wq_o$ with $w$ in one fixed ball of
-the $A,B,G$ forest group.  Both the isolated paired-word audit and the
-clustered loop sieve reduce to explicit finite word equalities in this
-schema.
+Section 3.98a freezes the six-term remote ledger and exhausts its three-
+checkpoint convergence budget.  The final checkpoint is the mandatory
+cell-relative scope repair in Section 3.99; four terms remain unevaluated,
+so the ledger is now preserved as the publishable bounded-depth theorem and
+active effort moves to the MMS02 bridge.
+Section 3.99 replaces the abstract multiplier list for the endpoint-localized
+cell class by a canonical finite word schema: reduced products $wq_o$ with
+$w$ in one fixed ball of the $A,B,G$ forest group.  The isolated paired-word
+audit and every clustered loop whose selected edges share that endpoint
+localization reduce to explicit finite word equalities in this schema.
+General non-target loops retain their actual edge-dependent multiplier lists.
 Section 3.100 shows that the isolated endpoint-pair graph is bipartite.
 Right multiplication by the infinite-order paired word gives a canonical
 alternating color on every multiplier orbit, so the complete endpoint
@@ -10517,18 +10518,23 @@ After that freeze, only soundness corrections and packaging edits belong in
 this ledger.  Active theory effort moves to the independent MMS02 bridge;
 no unevaluated residual in (3.646) is promoted to a class-two obstruction.
 
-Checkpoint accounting begins with Section 3.106a: it evaluates the existing
-color-cut term $\mathcal C$ on the complete stated support domain, creates
-no new category, and leaves four unresolved terms.  Thus one of the three
-permitted checkpoints has been used and no category-growth strike has been
-incurred.  The dependency repair in Sections 3.84--3.95 is checkpoint two:
-it is a mandatory soundness correction, not an evaluation, leaves the same
-four unresolved terms, and creates no new category.  One permitted
-checkpoint remains before the freeze decision.
+Checkpoint accounting is now closed.  Section 3.106a is checkpoint one: it
+evaluates the existing color-cut term $\mathcal C$ on the complete stated
+support domain, creates no new category, and leaves four unresolved terms.
+The dependency repair in Sections 3.84--3.95 is checkpoint two: it is a
+mandatory soundness correction, not an evaluation, leaves the same four
+unresolved terms, and creates no new category.  The cell-relative scope
+repair in Section 3.99 is checkpoint three, again a soundness correction
+rather than an evaluation.  At the required freeze decision the unresolved
+count is still four.  Therefore Sections 3.57--3.106a are frozen as the
+publishable bounded-depth theorem displayed above.  Further changes are
+limited to soundness corrections and packaging; active theory effort belongs
+to the independent MMS02 bridge.
 
-### 3.99 Canonical finite schema for the endpoint alphabet
+### 3.99 Canonical finite schema for the endpoint-localized alphabet
 
-Fix the slope-two slack $E$ from Section 3.77 and put
+Work only in the endpoint-localized cell class covered by Section 3.77.
+Fix its slope-two slack $E$ and put
 
 \[
  \begin{aligned}
@@ -10539,9 +10545,10 @@ Fix the slope-two slack $E$ from Section 3.77 and put
  \tag{3.652}
 \]
 
-Every moving boundary label has the form $\operatorname{cvert}(q_ou)$.
-A label in its forest $L_E$-neighborhood is obtained by left multiplication
-by one word $w\in\mathcal B_{\rm for}(E)$, and hence has source coset
+Every moving boundary label in this class has the form
+$\operatorname{cvert}(q_ou)$.  A label in its forest
+$L_E$-neighborhood is obtained by left multiplication by one word
+$w\in\mathcal B_{\rm for}(E)$, and hence has source coset
 
 \[
  wq_ouH.
@@ -10595,8 +10602,9 @@ All endpoint-difference multipliers now lie in the explicit finite set
 \]
 
 Indeed, for $r=wq_o$ and $r'=w'q_p$, the candidate multiplier is
-$h=r^{-1}r'=q_o^{-1}w^{-1}w'q_p$.  Consequently the clustered fixed-loop
-audit needs only the elements of (3.656) satisfying
+$h=r^{-1}r'=q_o^{-1}w^{-1}w'q_p$.  Consequently, when every selected edge
+of a clustered fixed loop belongs to this one endpoint-localized alphabet,
+its audit needs only the elements of (3.656) satisfying
 
 \[
  \begin{aligned}
@@ -10625,10 +10633,12 @@ candidate pairs further to
 
 Thus $\overline{\kappa^{\mathbb Z}_{s,u}}$ is determined by actual
 terminal activity and chronology only on the finite paired-word schema
-(3.658), while the corridor terms use the filtered multiplier schema
-(3.656)--(3.657).  This makes the finite obligation explicit without
-claiming its parity or replacing the all-support proof by a bounded source
-enumeration.
+(3.658), while endpoint-localized corridor terms use the filtered multiplier
+schema (3.656)--(3.657).  General non-target/non-target corridor and odd-cycle
+terms retain the fixed actual, possibly edge-dependent multiplier lists of
+Sections 3.84--3.95.  This makes the local finite obligation explicit
+without claiming its parity or replacing the all-support proof by a bounded
+source enumeration.
 
 ### 3.100 The isolated endpoint remainder is a terminal boundary
 
@@ -10833,9 +10843,10 @@ finite schemas completely literal:
  \tag{3.668}
 \]
 
-No source-radius enumeration enters (3.667)--(3.668).  The remaining local
-question is which of these fixed candidate words are actual terminal tokens
-and how their occurrence tags interlace in (3.666).
+No enumeration of global source support enters (3.667)--(3.668); the schema
+is finite because its endpoint-localized cell has the fixed radius $L_E$.
+The remaining local question is which of these fixed candidate words are
+actual terminal tokens and how their occurrence tags interlace in (3.666).
 
 ### 3.103 Four-state filter for endpoint paired words
 
