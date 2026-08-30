@@ -1164,3 +1164,131 @@ def test_reservation_size_never_changes_the_search():
                                      max_relator_length=64, config=S20_MK2,
                                      track_path=True, reserve_states=rs)
         assert _json.dumps(got, sort_keys=True) == _json.dumps(base, sort_keys=True), rs
+
+
+# ---------------------------------------------------- crash-safe jsonl resume
+def test_a_torn_last_line_is_skipped_and_never_masks_the_next_append(tmp_path):
+    """A hard stop mid-write leaves a truncated line. Resume must (a) never
+    count it as finished -- no strict prefix of a JSON object parses -- and
+    (b) terminate it before appending, or the next GOOD record is welded onto
+    the torn tail and both become unparseable."""
+    from experiments.search.run_leftovers_1m import _ensure_trailing_newline
+    from experiments.search.run_leftovers_5m import _done_ok
+    p = tmp_path / "torn.jsonl"
+    good = {"name": "ac19_1", "solved": True, "peak_rss_gb": 20.0}
+    torn = json.dumps({"name": "ac19_2", "solved": True})[:-7]
+    p.write_text(json.dumps(good) + "\n" + torn)
+
+    assert _done_ok(str(p)) == {"ac19_1"}          # (a) torn row not finished
+
+    _ensure_trailing_newline(str(p))
+    assert p.read_bytes().endswith(b"\n")
+    with open(p, "a") as fh:                       # (b) the append that follows
+        fh.write(json.dumps({"name": "ac19_3", "solved": False}) + "\n")
+    assert _done_ok(str(p)) == {"ac19_1", "ac19_3"}
+
+
+def test_the_newline_guard_is_a_noop_on_healthy_empty_and_missing_files(tmp_path):
+    from experiments.search.run_leftovers_1m import _ensure_trailing_newline
+    healthy = tmp_path / "ok.jsonl"
+    healthy.write_text('{"name": "a"}\n')
+    before = healthy.read_bytes()
+    _ensure_trailing_newline(str(healthy))
+    assert healthy.read_bytes() == before
+
+    empty = tmp_path / "empty.jsonl"
+    empty.write_text("")
+    _ensure_trailing_newline(str(empty))
+    assert empty.read_bytes() == b""
+
+    missing = tmp_path / "not_there.jsonl"
+    _ensure_trailing_newline(str(missing))         # must not raise
+    assert not missing.exists()                    # and must not create it
+
+
+def test_every_append_site_terminates_a_torn_line_first():
+    """The guard is only worth anything if EVERY append to the results jsonl
+    calls it first -- the runners' write loops and the shard absorber alike.
+    Pin it per site: each ``open(out, "a")`` must have the guard call closer
+    above it than the previous append site."""
+    for mod in ("run_leftovers_1m.py", "run_leftovers_5m.py"):
+        src = open(os.path.join(ROOT, "experiments", "search", mod)).read()
+        prev_end = 0
+        n_appends = 0
+        while True:
+            append = src.find('with open(out, "a")', prev_end)
+            if append < 0:
+                break
+            n_appends += 1
+            guard = src.rfind('_ensure_trailing_newline(out)', prev_end, append)
+            assert guard >= 0, f"{mod}: append site #{n_appends} is unguarded"
+            prev_end = append + 1
+        assert n_appends >= 1, mod
+
+
+# ------------------------------------------- governor peaks survive a restart
+def test_finished_rows_record_the_engine_memory_generation(monkeypatch):
+    """Every ``done`` record must carry the memory-profile generation it ran
+    under, or a future ``_seed_governor`` has nothing safe to seed from."""
+    import experiments.search.run_leftovers_5m as r5
+
+    def stub_run(r1, r2, budget, mrl, progress=None, reserve_states=None,
+                 track_path=False):
+        return {"solved": True, "nodes_explored": 7, "path_length": 1,
+                "min_relator_length": 2, "max_relator_length_expanded": 4,
+                "path": [], "path_moves": []}
+
+    monkeypatch.setattr(r5, "resolve_arm",
+                        lambda a: (a, {"run": stub_run, "label": "stub"}))
+
+    class Q:
+        msgs = []
+        def put(self, m):
+            self.msgs.append(m)
+
+    q = Q()
+    r5._child_run_row(q, "greedy", {"name": "x", "r1": "XY", "r2": "YX"},
+                      1000, 64, 60, None, None)
+    kind, rec = q.msgs[-1]
+    assert kind == "done"
+    assert rec["engine_mem_gen"] == r5.ENGINE_MEM_GEN
+    assert rec["peak_rss_gb"] and rec["peak_rss_gb"] > 0
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_governor_reseeds_its_peaks_from_disk(tmp_path):
+    """A restart -- upgrade or Spot preemption -- wipes the in-memory peaks
+    and sends admission back to worst case for another min_samples rows. The
+    finished rows on disk already paid for those samples: same-generation,
+    non-error rows with a peak reseed; everything else is skipped."""
+    from experiments.search.run_leftovers_5m import (
+        ENGINE_MEM_GEN, RamGovernor, _seed_governor)
+    p = tmp_path / "out.jsonl"
+    rows = [
+        {"name": "old", "peak_rss_gb": 40.0},                     # pre-tag row
+        {"name": "g1", "peak_rss_gb": 10.0, "engine_mem_gen": ENGINE_MEM_GEN},
+        {"name": "g2", "peak_rss_gb": 11.0, "engine_mem_gen": ENGINE_MEM_GEN},
+        {"name": "g3", "peak_rss_gb": 12.0, "engine_mem_gen": ENGINE_MEM_GEN},
+        {"name": "bad", "peak_rss_gb": 50.0, "engine_mem_gen": ENGINE_MEM_GEN,
+         "error": "worker died"},                                 # not finished
+        {"name": "nop", "engine_mem_gen": ENGINE_MEM_GEN},        # no peak
+        {"name": "gen9", "peak_rss_gb": 60.0, "engine_mem_gen": 9},
+    ]
+    p.write_text("".join(json.dumps(r) + "\n" for r in rows))
+
+    gov = RamGovernor(NODE_BUDGET_5M, MRL_5M)
+    assert _seed_governor(gov, str(p), log=lambda m: None) == 3
+    assert gov.peaks == [10.0, 11.0, 12.0]
+    # min_samples met straight from disk: the widening survived the restart,
+    # and only the current generation's ceiling is trusted
+    assert gov.predict_gb() == pytest.approx(min(12.0 * gov.safety, gov.worst))
+
+
+def test_resume_is_what_seeds_the_governor():
+    """The seeding must ride the resume flag: a fresh run (resume=False) has
+    no disk history and must start from worst case as before."""
+    import inspect
+    from experiments.search.run_leftovers_5m import run_arm_5m
+    src = inspect.getsource(run_arm_5m)
+    guarded = "if resume:\n        _seed_governor(governor, out, log)"
+    assert guarded in src

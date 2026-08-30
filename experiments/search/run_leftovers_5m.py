@@ -54,10 +54,18 @@ import time
 
 from experiments.search.run_leftovers_1m import (
     ARMS, HAVE_HCOMPACT, MAX_RELATOR_LENGTH, SCREEN_DIR, _available_gb, _beat,
-    _done, _in_search_heartbeat, _iter_results, _job, _mirror,
-    _seed_from_mirror, est_gb, load_rows as _load_1m_rows, read_rows,
+    _done, _ensure_trailing_newline, _in_search_heartbeat, _iter_results, _job,
+    _mirror, _seed_from_mirror, est_gb, load_rows as _load_1m_rows, read_rows,
     resolve_arm, resolve_workers,
 )
+
+# Bumped whenever a change shifts the ENGINE'S MEMORY PROFILE (arena layout,
+# reservation sizing, per-state arrays). Each finished row records the
+# generation it ran under, and the governor seeds its learned peaks only from
+# same-generation rows -- a peak measured under an old memory profile must
+# never widen (or narrow) the gate for the profile running now.
+#   gen 2: adaptive row width + reservations honored as-is + np.empty parent.
+ENGINE_MEM_GEN = 2
 
 # The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
 # coexist and must never be conflated:
@@ -345,6 +353,7 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "path_moves": st.get("path_moves", []),
             "seconds": round(time.time() - t, 3),
             "peak_rss_gb": _peak_rss_gb(),
+            "engine_mem_gen": ENGINE_MEM_GEN,
         }))
     except MemoryError:
         q.put(("err", "MemoryError: the memory guard stopped this row before "
@@ -419,6 +428,29 @@ class RamGovernor:
         if not live:
             allowed = max(allowed, 1)
         return allowed
+
+
+def _seed_governor(governor, path, log=print):
+    """Re-teach the governor the peaks already paid for and sitting on disk.
+
+    The learned peaks live in process memory, so every restart -- a planned
+    upgrade or a Spot preemption -- re-zeroed the sample counter and sent the
+    campaign back to worst-case admission for another ``min_samples`` rows.
+    Finished rows already carry ``peak_rss_gb``; feeding the CURRENT
+    generation's back in makes the widening survive restarts. Rows from an
+    older memory profile (or before tagging existed) are skipped: their peaks
+    describe an engine that is no longer running.
+    """
+    seeded = 0
+    for r in read_rows(path):
+        if (not r.get("error") and r.get("engine_mem_gen") == ENGINE_MEM_GEN
+                and r.get("peak_rss_gb")):
+            governor.note(r["peak_rss_gb"])
+            seeded += 1
+    if seeded:
+        log(f"  governor: seeded {seeded} peak(s) from finished rows; "
+            f"next-row prediction {governor.predict_gb():.1f} GB")
+    return seeded
 
 
 class _RowProc:
@@ -540,6 +572,7 @@ def absorb_shard_rows(out, shard_paths, valid_names, log=print):
     have = _done(out)
     added = 0
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+    _ensure_trailing_newline(out)
     with open(out, "a") as fh:
         for p in shard_paths:
             for r in read_rows(p):
@@ -605,12 +638,15 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
         f"({'auto' if auto else f'cap {n_workers}'}, "
         f"{governor.cpus} cores, ~{per_gb:.1f} GB/search worst case)")
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
+    if resume:
+        _seed_governor(governor, out, log)
     log(f"  -> {out}")
 
     t0 = time.time()
     last = t0
     done = 0
     if todo:
+        _ensure_trailing_newline(out)
         with open(out, "a") as fh:
             # Every row is crash-isolated AND the width floats with the
             # machine: the old fixed pool had no per-row isolation, so on a

@@ -623,6 +623,27 @@ def _done(path):
     return {r["name"] for r in read_rows(path) if "name" in r}
 
 
+def _ensure_trailing_newline(path):
+    """Terminate a torn last line so the next append starts a FRESH line.
+
+    A hard stop mid-write can leave the jsonl ending without a newline.
+    ``read_rows`` already refuses such a line (a strict prefix of a JSON
+    object never parses), so resume can never count it as finished -- but an
+    append reopened onto it would weld the next record to the torn tail,
+    making that one GOOD record unparseable too. One byte closes the hole.
+    """
+    try:
+        with open(path, "rb+") as f:
+            f.seek(0, os.SEEK_END)
+            if f.tell() == 0:
+                return
+            f.seek(-1, os.SEEK_END)
+            if f.read(1) != b"\n":
+                f.write(b"\n")
+    except OSError:
+        pass                       # no file yet: "a" below will create it
+
+
 def out_path(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
     """The jsonl for one (arm, budget, cap). RUN and REPORT must agree on it."""
     key, _ = resolve_arm(arm)
@@ -694,6 +715,7 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
     done = 0
     if jobs:
+        _ensure_trailing_newline(out)
         with open(out, "a") as fh:
             for rec in _iter_results(jobs, n_workers, log):
                 fh.write(json.dumps(rec) + "\n")
