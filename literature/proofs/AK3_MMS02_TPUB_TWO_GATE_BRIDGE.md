@@ -528,6 +528,12 @@ exponents and leaves a central residual on which an integral covector has
 value \(8\).  Thus that fixed branch fails already in
 \(H/\gamma_3(H)\); arbitrary substitutions remain open.
 
+Section 6.74 exhausts the target \(S_4\).  The collapsed \(24^2\) census and
+the original \(24^3\) census give the same \(24\) homomorphisms, all cyclic:
+every original generator has one common image.  Thus every map
+\(G_-\to S_4\) factors through abelianization, and \(S_4\) supplies no
+nonabelian quotient obstruction.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8690,6 +8696,64 @@ system (426), classify another sign pattern or longer path, close the
 terminal pair orbit or MMS02 bridge, or prove stable AK(3), ordinary AK(3),
 stable Andrews--Curtis, or Andrews--Curtis.
 
+### 6.74. Every \(S_4\) representation is cyclic
+
+The next small nonmetabelian target does not receive a nonabelian image of
+\(G_-\).  In the collapsed presentation (215), evaluate all
+
+\[
+ 24^2=576
+\]
+
+ordered assignments \((Y_0,Z_0)\in S_4^2\).  Exactly \(24\) assignments kill
+\(R_*\), and every one has
+
+\[
+ Z_0=Y_0^3.
+\tag{468}
+\]
+
+Recovering the original generators through (446) sends each of those pairs
+to
+
+\[
+ (X_0,Y_0,Z_0^{\rm orig})=(Y_0,Y_0,Y_0).
+\tag{469}
+\]
+
+A separate enumeration of all \(24^3=13{,}824\) original-generator
+assignments which kill both \(A,B\) gives exactly the same \(24\) triples.
+Their image-order histogram is
+
+\[
+\begin{array}{c|rrrr}
+ |\operatorname{im}\rho|&1&2&3&4\\ \hline
+ \#\rho&1&9&8&6.
+\end{array}
+\tag{470}
+\]
+
+Thus every homomorphism to \(S_4\) has cyclic image and is obtained from the
+abelianization \(G_-^{\rm ab}\cong\mathbb Z\) by choosing the image of its
+generator.  In particular,
+
+\[
+ \boxed{\operatorname{Epi}(G_-,S_4)=\varnothing.}
+\tag{471}
+\]
+
+**Theorem 6.68 (complete \(S_4\)-representation boundary).**  Every
+homomorphism \(G_-\to S_4\) factors through the abelianization.  Hence every
+\(S_4\)-valued image of the signed lift equations is already covered by the
+abelian solution in Theorem 6.60; no \(S_4\) representation obstructs the
+signed skeleton.
+
+This is a complete statement for target \(S_4\), not for all groups of
+derived length three or all finite nonmetabelian groups.  It supplies no
+literal solution of (413), no other sign-pattern or terminal-orbit
+classification, no MMS02 bridge, and no stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis claim.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8913,7 +8977,10 @@ The logical gates remain separate:
 63. the canonical substitutions \(g=V,h=X,j=U^{-1}\) reduce to one
     twisted-conjugacy equation whose base class-two residual has covector
     value \(8\); this closes only that fixed branch of (413); and
-64. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+64. both presentation censuses show that every homomorphism
+    \(G_-\to S_4\) factors through abelianization; this closes only the
+    target \(S_4\), not other nonmetabelian finite groups; and
+65. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -9150,3 +9217,10 @@ forces \([t]=(-3,10,-17,9)\), while the covector (466) kills every central
 correction and takes value \(8\) on the residual.  Hence that fixed branch
 fails, but arbitrary \(g,h,j\), the full signed system, and the MMS02 bridge
 remain open.
+Theorem 6.68 closes the target \(S_4\) without another equation search.
+The collapsed and original presentation censuses agree on exactly \(24\)
+homomorphisms, namely the cyclic assignments sending all three original
+generators to one common element of \(S_4\).  Hence every
+\(G_-\to S_4\) map factors through abelianization and inherits the soluble
+abelian shadow.  This excludes only \(S_4\), not another nonmetabelian target
+or a literal solution.
