@@ -401,6 +401,16 @@ Freiheitssatz free factor \(\langle b,d\rangle\).  Thus the two live path-gauge
 rows are not conjugate up to inversion.  This closes the complete one-row
 conjugacy shortcut, not their two-row AC orbit.
 
+Section 6.59 returns once to the projected common-kill bridge and evaluates
+the first structurally alternating positive two-multiplication mechanism.
+Abelianization forces one ambient matrix and an explicit Nielsen lift.
+The correct arbitrary-conjugator conditions are two pair-of-pants equations,
+not the stronger gauge-fixed direct conjugacy equations.  Complete
+Cayley-tree rotation tables have minima thirteen and twenty-one, above the
+respective target lengths seven and seventeen.  This closes only that fixed
+recipient/sign/assignment skeleton; the common-kill depth ledger is not
+reopened.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7044,6 +7054,154 @@ changing the common \(B\)-row, another stable expansion, the tagged gate
 stable Andrews--Curtis, and Andrews--Curtis remain open.  No conjugator or
 finite-quotient ledger is opened.
 
+### 6.59. The alternating positive two-multiplication skeleton fails
+
+Return to the projected common-kill pairs \(P=(p_0,p_1)\) and
+\(P_\phi=(q_0,q_1)\) in Section 6.7.  Consider the first genuinely
+alternating positive two-multiplication skeleton
+
+\[
+ r=p_0(gp_1g^{-1}),
+ \qquad
+ s=p_1(hrh^{-1}).
+ \tag{382}
+\]
+
+Here \(g,h\in F(x,y)\) are arbitrary.  Projected ambient automorphisms
+interspersed with the two multiplications can be commuted to the end after
+replacing \(g,h\) by their images.  Thus one final ambient automorphism and
+independent final row conjugations cover this fixed recipient and sign
+pattern.
+
+With the source and target exponent matrices \(S,T\) from (65), the two
+multiplications and the forced final matrix are
+
+\[
+ C=
+ \begin{pmatrix}1&1\\1&2\end{pmatrix},
+ \qquad
+ CS=
+ \begin{pmatrix}-1&2\\-2&3\end{pmatrix},
+ \qquad
+ M=(CS)^{-1}T=
+ \begin{pmatrix}-2&7\\-1&4\end{pmatrix}.
+ \tag{383}
+\]
+
+The determinant of \(M\) is \(-1\).  One explicit lift is
+
+\[
+ \theta_0(x)=Xy^3Xy^4,
+ \qquad
+ \theta_0(y)=Xy^4.
+ \tag{384}
+\]
+
+Indeed, \(u=Xy^3\) and \(w=Xy^4\) form a basis: \(u^{-1}w=y\) and
+\(y^4w^{-1}=x\).  The pair \((uw,w)\) is therefore a basis and gives
+(384).  Since the kernel of
+\(\operatorname{Aut}(F_2)\to\operatorname{GL}_2(\mathbb Z)\) is inner,
+every lift of \(M\) differs from \(\theta_0\) by a simultaneous conjugation,
+which is absorbed by the allowed row conjugations.
+
+Put \(A_0=\theta_0(p_0)\) and \(B_0=\theta_0(p_1)\).  Their cyclically
+reduced representatives are
+
+\[
+ A_0=\mathtt{XyyyXYxYYxYXyyyyy},
+ \qquad
+ B_0=\mathtt{xYYYYxYYYYxyXyyXyy},
+ \tag{385}
+\]
+
+of lengths seventeen and eighteen.  Independent final row conjugations
+matter here.  The correct necessary conditions for (382) are the
+pair-of-pants equations
+
+\[
+ q_0\sim A_0GB_0G^{-1},
+ \qquad
+ q_1\sim B_0Hq_0H^{-1}
+ \quad(G,H\in F_2).
+ \tag{386}
+\]
+
+They do not reduce to
+\(B_0\sim A_0^{-1}q_0\) or \(q_0\sim B_0^{-1}q_1\); those would impose an
+unjustified gauge on the two final conjugators.
+
+Use the Cayley-tree axis product lemma proved in
+AK3_ARBITRARY_CONJUGATOR_PRIMITIVE_BARRIER.md, Lemma 2.1.  For nontrivial
+cyclically reduced \(U,V\),
+
+\[
+ \min_{c\in F_2}\|UcVc^{-1}\|
+ =
+ \min_{U_i,V_j}\|
+ \operatorname{cyc-red}(U_iV_j)\|,
+ \tag{387}
+\]
+
+where \(U_i,V_j\) range over all cyclic rotations.  Disjoint axes give
+length at least \(\|U\|+\|V\|\); intersecting axes give exactly the finite
+rotation table on the right.
+
+For the first equation in (386), the complete \(17\cdot18=306\)-entry table
+has length histogram
+
+\[
+\begin{array}{c|rrrrrrrr}
+\text{length}&13&19&25&27&29&31&33&35\\ \hline
+\text{count}&12&9&18&15&20&24&40&168.
+\end{array}
+\tag{388}
+\]
+
+In particular,
+
+\[
+ \min_{G\in F_2}\|A_0GB_0G^{-1}\|
+ =13>7=\|q_0\|.
+ \tag{389}
+\]
+
+The disjoint-axis floor is thirty-five, so (389) covers every relative
+conjugator, not only the displayed rotation witnesses.  The first necessary
+condition already fails.
+
+Independently, the complete \(18\cdot7=126\)-entry table for the second
+equation has histogram
+
+\[
+\begin{array}{c|rrr}
+\text{length}&21&23&25\\ \hline
+\text{count}&24&30&72,
+\end{array}
+\qquad
+ \min_{H\in F_2}\|B_0Hq_0H^{-1}\|
+ =21>17=\|q_1\|.
+\tag{390}
+\]
+
+Its disjoint-axis floor is twenty-five.  Thus both actual pair-of-pants
+conditions fail, including arbitrary \(g,h\) and independent final row
+conjugations.
+
+**Theorem 6.53 (alternating positive two-multiplication boundary).**  The
+common-kill bridge (61) cannot close by the fixed projected skeleton (382),
+arbitrary relative conjugators, projected ambient automorphisms, independent
+row conjugations, and cleanup using \(v\) only as a donor.
+
+The focused certificate hashes all 306 and 126 rotation products, pins both
+histograms and both attaining minima, and replays the tables through an
+independent word implementation.  The theorem does not cover a negative
+multiplication, the opposite recipient order, a different target assignment,
+two changes of the same row, three or more quotient-visible multiplications,
+altering the \(v\)-row by a base donor, an ambient map not preserving
+\(\operatorname{Ncl}(v)\), or a retained stabilization row.  No general
+depth-two ledger is opened.  The unrestricted bridge, stable AK(3), ordinary
+AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7215,7 +7373,11 @@ The logical gates remain separate:
     \(u,v\) are not conjugate up to inversion; the class-two quotient is a
     can-fail control selecting the same candidate conjugator, and the theorem
     closes only the one-row conjugacy shortcut for (271); and
-49. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+49. the complete pair-of-pants rotation tables close the fixed alternating
+    positive two-multiplication common-kill skeleton, with arbitrary relative
+    and final row conjugators, but no other sign, recipient order, target
+    assignment, depth-two pattern, or unrestricted bridge mechanism; and
+50. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7350,3 +7512,9 @@ selects the same element, but its remaining base condition is a nonempty word
 in the Freiheitssatz free factor \(\langle b,d\rangle\).  Hence the live rows
 are not conjugate up to inversion.  This closes the full one-row conjugacy
 shortcut, not the two-row pair orbit or the unrestricted bridge.
+Theorem 6.53 then returns once to the projected common-kill route.  For the
+fixed alternating positive two-multiplication skeleton, abelianization forces
+the lift (384), and the two correct arbitrary-conjugator pair-of-pants minima
+are thirteen and twenty-one, above the target lengths seven and seventeen.
+Thus that one skeleton fails even with independent final row conjugations.
+No other depth-two pattern or bridge route is claimed.
