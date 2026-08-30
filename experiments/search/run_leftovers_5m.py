@@ -112,6 +112,9 @@ CAMPAIGNS = {
         "prefix": "leftovers_5m",
         "ids_stem": "5m",             # legacy names the live run already writes
         "checkpoints": CHECKPOINTS_5M,
+        # None = the est_states-based reservation this campaign already runs
+        # under; changed mid-flight it would alter the live boxes' sizing.
+        "states_per_node": None,
     },
     "u124": {
         "label": "124 unsolved Miller-Schupp AC classes at 10M",
@@ -127,6 +130,12 @@ CAMPAIGNS = {
         "prefix": "u124_10m",
         "ids_stem": "u124_10m",       # never clobbers the AC19 ids files
         "checkpoints": (1_000_000, 5_000_000, 10_000_000),
+        # Reservation floor, in discovered states per popped node. AC19's
+        # four fattest rows measured ~99 (463.8M states before 5M pops --
+        # est_states under-predicted them by ~1.6x and each paid a ~73 GB
+        # grow transient for it). 110 = measured worst + 10%. At 10M the
+        # grow transient would be ~145 GB, so preventing it IS the sizing.
+        "states_per_node": 110,
     },
 }
 
@@ -272,7 +281,7 @@ def _done_ok(path):
 
 
 def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
-                available_gb=None, log=print):
+                available_gb=None, states_per_node=None, log=print):
     """``(mem_limit_bytes, reserve_states)`` sized to THIS machine.
 
     Uses the engine's own sizing pieces (``est_states``/``row_width``/slack) --
@@ -288,6 +297,14 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
     limit_gb = max(avail - 2.0, 3.0)
     per_state = row_width(mrl) + 31 + (8 if TRACK_PATH else 0)
     default_n = int(est_states(budget) * _RESERVE_SLACK) + 4 * (mrl + 1) ** 2
+    if states_per_node:
+        # A measured discovery-rate floor beats the est_states curve: AC19's
+        # fattest rows hit the est-based reservation before their budget and
+        # each paid a grow transient that DOUBLED their peak. Reserving for
+        # the measured worst rate means grow never fires and a row's peak is
+        # its honest steady state.
+        default_n = max(default_n,
+                        int(states_per_node * budget) + 4 * (mrl + 1) ** 2)
     cap_n = int(max(limit_gb - 2.5, 1.0) * 0.95 * 2 ** 30 / per_state)
     reserve = max(1024, min(default_n, cap_n))
     if reserve < default_n:
@@ -296,6 +313,17 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
             f"a row that outgrows it fails with a clean MemoryError row, "
             f"never an OOM kill")
     return int(limit_gb * 2 ** 30), reserve
+
+
+def _reserved_worst_gb(reserve_states, mrl):
+    """What the reservation itself costs if every reserved state materializes
+    at worst-case width -- the allocation-backed worst case. A governor whose
+    worst case sits below its own allocation admits rows the box cannot hold."""
+    if not reserve_states or not HAVE_HCOMPACT:
+        return None
+    from experiments.search.greedy_compact import row_width
+    per = row_width(mrl) + 31 + (8 if TRACK_PATH else 0)
+    return reserve_states * per / 2 ** 30
 
 
 def _rss_gb(pid="self"):
@@ -400,10 +428,15 @@ class RamGovernor:
     """
 
     def __init__(self, budget, mrl, cpu_cap=None, max_workers=None,
-                 headroom_gb=None, safety=1.25, min_samples=3):
+                 headroom_gb=None, safety=1.25, min_samples=3, worst_gb=None):
         # sized for what this stage actually runs -- path capture included,
-        # or the governor admits rows the machine cannot hold
-        self.worst = est_gb(budget, mrl, track_path=TRACK_PATH)
+        # or the governor admits rows the machine cannot hold. worst_gb lets
+        # the caller floor this with the ALLOCATION-backed worst (what the
+        # actual reservation costs if every reserved state materializes) --
+        # a rate-based reservation is bigger than the est curve, and a worst
+        # case below one's own allocation admits rows the box cannot hold.
+        self.worst = max(est_gb(budget, mrl, track_path=TRACK_PATH),
+                         worst_gb or 0.0)
         self.cpus = cpu_cap or os.cpu_count() or 1
         self.max_workers = max_workers
         # never hand out the last of the machine: the parent, the numba runtime
@@ -420,11 +453,16 @@ class RamGovernor:
 
     def predict_gb(self):
         """GB to assume for the NEXT row. The worst case until rows have
-        spoken; after that their measured peak, never above the worst case --
-        a row that has not solved yet can still grow into the full reserve."""
+        spoken; after that their measured peak with safety margin, capped at
+        the worst case -- UNLESS a row has already demonstrated more than the
+        model's worst case, in which case the demonstration wins. The old
+        unconditional cap silently discarded AC19's measured 72.9 GB grow
+        transients in favour of the model's 45.1: a clamp that prefers the
+        model over the measurement is a clamp installed backwards."""
         if len(self.peaks) < self.min_samples:
             return self.worst
-        return max(0.25, min(max(self.peaks) * self.safety, self.worst))
+        cap = max(self.worst, max(self.peaks))
+        return max(0.25, min(max(self.peaks) * self.safety, cap))
 
     def capacity(self, live_rss_gb=(), free_gb=None):
         """How many more rows may start now, given the live rows' RSS."""
@@ -641,12 +679,14 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     auto = n_workers in (None, "auto")
     n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl,
                                         track_path=TRACK_PATH)
+    if mem_limit_bytes is None and reserve_states is None:
+        mem_limit_bytes, reserve_states = plan_memory(
+            budget, mrl, states_per_node=camp.get("states_per_node"), log=log)
     # "auto" lets the governor float up to the core count; an explicit number
     # is a ceiling, never a target -- RAM still has the last word.
     governor = RamGovernor(budget, mrl,
-                           max_workers=None if auto else n_workers)
-    if mem_limit_bytes is None and reserve_states is None:
-        mem_limit_bytes, reserve_states = plan_memory(budget, mrl, log=log)
+                           max_workers=None if auto else n_workers,
+                           worst_gb=_reserved_worst_gb(reserve_states, mrl))
     log(f"  campaign: {camp['label']}")
     log(f"  arm     : {key} -- {spec1m['label']}")
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "

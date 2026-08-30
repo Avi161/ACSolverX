@@ -13,16 +13,24 @@
 #   ./run_remote.sh tail     # follow the log
 #   ./run_remote.sh report   # totals so far; safe to run mid-flight
 #
-# Env overrides: BUDGET MRL WORKERS ARMS OUT BRANCH REPO
+# Env overrides: CAMPAIGN BUDGET MRL WORKERS ARMS OUT BRANCH REPO
 set -euo pipefail
 PLAN_GB=${PLAN_GB:-}; PLAN_CORES=${PLAN_CORES:-}
 
 BRANCH=${BRANCH:-claude/ac19-leftover-solver-notebook-6yan6d}
 REPO=${REPO:-https://github.com/Avi161/ACSolverX.git}
-BUDGET=${BUDGET:-5000000}
+# One env var selects the whole campaign: budget, arm list, row lists and
+# output filenames all follow from it (explicit BUDGET/ARMS still win).
+# Without this, pre-staging u124 meant hand-assembling four flags that had
+# to agree -- and a missed one ran the WRONG CAMPAIGN's rows at 10M.
+CAMPAIGN=${CAMPAIGN:-ac19}
+case "$CAMPAIGN" in
+  ac19) BUDGET=${BUDGET:-5000000};  ARMS=${ARMS:-greedy s20_mk2} ;;
+  u124) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-s20_mk2} ;;
+  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124)" >&2; exit 2 ;;
+esac
 MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
-ARMS=${ARMS:-greedy s20_mk2}
 OUT=${OUT:-$HOME/leftovers_5m}
 SRC=${SRC:-$HOME/ACSolverX}
 LOG="$OUT/run.log"
@@ -58,6 +66,8 @@ from experiments.search.run_leftovers_5m import (
 from experiments.search.run_leftovers_1m import HAVE_HCOMPACT
 
 B, MRL = int(os.environ["BUDGET"]), int(os.environ["MRL"])
+CAMPAIGN = os.environ.get("CAMPAIGN", "ac19")
+ARMS = os.environ.get("ARMS", "greedy s20_mk2").split()
 # PLAN_GB/PLAN_CORES price an offer you have NOT rented yet -- the whole
 # point on a spot market is choosing the box before paying for it.
 gb = float(os.environ.get("PLAN_GB") or _available_gb())
@@ -72,8 +82,8 @@ per = est_gb(B, MRL, track_path=TRACK_PATH)
 print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row"
       f"{' (paths captured)' if TRACK_PATH else ''}")
 tot = 0.0
-for arm in ("greedy", "s20_mk2"):
-    n = len(load_rows_5m(arm)[0])   # also fails loudly on a stale clone
+for arm in ARMS:
+    n = len(load_rows_5m(arm, campaign=CAMPAIGN)[0])   # fails loudly on a stale clone
     w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
                            track_path=TRACK_PATH)
     rate = 708 if arm == "greedy" else 846          # measured at 1M, this engine
@@ -91,7 +101,8 @@ PYEOF
 }
 
 smoke() { setup; for a in $ARMS; do
-    $PY -m experiments.search.run_leftovers_5m --arm "$a" --smoke --out-dir "$OUT"; done; }
+    $PY -m experiments.search.run_leftovers_5m --arm "$a" --campaign "$CAMPAIGN" \
+        --smoke --out-dir "$OUT"; done; }
 
 write_job() {
   cat > "$OUT/_job.sh" <<JOB
@@ -111,9 +122,9 @@ for a in $ARMS; do
   # rows, then prints CAMPAIGN COMPLETE. The 4-way split is for four Colabs.
   # NOTE: this heredoc is unquoted so \$BUDGET interpolates -- never put a
   # backtick or \$( ) in it, they execute HERE and splice output into the job.
-  $PY -m experiments.search.run_leftovers_5m --arm "\$a" --budget $BUDGET \\
-      --mrl $MRL --workers $WORKERS --chunks 1 --chunk-index 1 \\
-      --out-dir "$OUT"
+  $PY -m experiments.search.run_leftovers_5m --arm "\$a" --campaign $CAMPAIGN \\
+      --budget $BUDGET --mrl $MRL --workers $WORKERS \\
+      --chunks 1 --chunk-index 1 --out-dir "$OUT"
 done
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
 JOB
@@ -170,13 +181,57 @@ tail_log() { tail -f "$LOG"; }
 report() { setup; for a in $ARMS; do
     $PY -c "
 from experiments.search.run_leftovers_5m import report_5m
-report_5m('$a', '$OUT', chunks=1, chunk_index=1, budget=$BUDGET, mrl=$MRL)"; done; }
+report_5m('$a', '$OUT', chunks=1, chunk_index=1, budget=$BUDGET, mrl=$MRL,
+          campaign='$CAMPAIGN')"; done; }
 
-export BUDGET MRL WORKERS ARMS PLAN_GB PLAN_CORES
+# Assert the generated job and the installed unit agree with THIS config.
+# Read-only: never patches, never starts or stops anything -- a boot-time
+# self-heal script calls this and decides what to do with a failure (the
+# convention: an unparseable job means do NOT start the unit). Campaign
+# flags are derived from the same variables that wrote the job, so the
+# checks can never rot against a new campaign the way a hardcoded
+# "--mrl 64" list would. UNIT_FILE is overridable for tests.
+UNIT_FILE=${UNIT_FILE:-/etc/systemd/system/ac19.service}
+verify() {
+  local job="$OUT/_job.sh" fail=0
+  chk() { if [ "$1" = 0 ]; then echo "verify: PASS -- $2";
+          else echo "verify: FAIL -- $2"; fail=1; fi; }
+  if [ ! -f "$job" ]; then
+    chk 1 "job exists: $job"
+  else
+    if bash -n "$job" 2>/dev/null; then chk 0 "job parses"; else chk 1 "job parses"; fi
+    if grep -q 'PYTHONUNBUFFERED=1' "$job"; then chk 0 "job exports PYTHONUNBUFFERED"; else chk 1 "job exports PYTHONUNBUFFERED"; fi
+    for flag in "--campaign $CAMPAIGN" "--budget $BUDGET" "--mrl $MRL" \
+                "--chunks 1 --chunk-index 1"; do
+      if grep -q -- "$flag" "$job"; then chk 0 "job carries $flag"; else chk 1 "job carries $flag"; fi
+    done
+    if grep -q '`' "$job"; then chk 1 "no backticks in job"; else chk 0 "no backticks in job"; fi
+    # $( ) may appear in comments (the heredoc warning mentions it) and in
+    # the one CAMPAIGN COMPLETE date line; anywhere else is a splice.
+    splices=$(grep '\$(' "$job" | grep -v '^[[:space:]]*#' \
+              | grep -vc 'CAMPAIGN COMPLETE' || true)
+    if [ "${splices:-0}" = 0 ]; then chk 0 "no spliced command output"; else chk 1 "no spliced command output"; fi
+  fi
+  if [ -f "$UNIT_FILE" ]; then
+    if grep -q 'Environment=PYTHONUNBUFFERED=1' "$UNIT_FILE"; then chk 0 "unit sets PYTHONUNBUFFERED"; else chk 1 "unit sets PYTHONUNBUFFERED"; fi
+    if grep -q "ExecStart=$job" "$UNIT_FILE"; then chk 0 "unit runs this job"; else chk 1 "unit runs this job"; fi
+  else
+    echo "verify: WARN -- unit not installed at $UNIT_FILE"
+  fi
+  if PYTHONPATH="$SRC" $PY -c 'from experiments.heuristic_search.core import hcompact' 2>/dev/null; then
+    chk 0 "hcompact engine imports"
+  else
+    chk 1 "hcompact engine imports (python fallback would be silent and wrong)"
+  fi
+  return $fail
+}
+
+export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
   install-service) install_service ;;
   job) job_only ;;
+  verify) verify ;;
   tail) tail_log ;; report) report ;;
-  *) echo "usage: $0 {plan|smoke|run|install-service|job|tail|report}" >&2; exit 2 ;;
+  *) echo "usage: $0 {plan|smoke|run|install-service|job|verify|tail|report}" >&2; exit 2 ;;
 esac

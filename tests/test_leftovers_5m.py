@@ -544,8 +544,9 @@ def test_run_and_the_service_execute_the_very_same_job_script():
     src = open(REMOTE_SH).read()
     assert src.count("write_job") == 4       # def + run + service + job_only
     # the long-run command line exists once, inside write_job. (`smoke` has its
-    # own short foreground invocation -- that one is meant to differ.)
-    assert src.count("--budget $BUDGET") == 1
+    # own short foreground invocation, and `verify` GREPS for the flags --
+    # neither is a second command line that could drift.)
+    assert src.count('run_leftovers_5m --arm "\\$a"') == 1
 
 
 # ---------------------------------------------------------------------------
@@ -605,11 +606,19 @@ def test_it_learns_from_what_rows_actually_cost_and_widens():
 
 
 def test_a_prediction_never_exceeds_the_worst_case():
-    """A row that has not solved yet can still grow into the full reserve."""
+    """... where "worst" is the larger of the model and what a row actually
+    DEMONSTRATED. Below the model's worst, safety-margined peaks stay capped
+    by it; above it, the measurement wins -- the old unconditional model cap
+    silently replaced AC19's measured 72.9 GB peaks with the model's 45.1,
+    and admission overcommitted by the difference."""
     g = _gov(cpu_cap=8)
     for _ in range(5):
-        g.note(10_000.0)
-    assert g.predict_gb() == g.worst
+        g.note(g.worst * 0.9)                       # under the model's worst
+    assert g.predict_gb() == g.worst                # 0.9 * 1.25 caps at worst
+    d = _gov(cpu_cap=8)
+    for _ in range(5):
+        d.note(10_000.0)                            # demonstrated far above
+    assert d.predict_gb() == 10_000.0               # measurement, not model
 
 
 def test_one_cheap_sample_does_not_widen_the_gate():
@@ -1429,3 +1438,147 @@ def test_rerun_observes_a_tiny_row_end_to_end(tmp_path):
     assert os.path.exists(tmp_path / "rerun_ac19_23156.jsonl")
     files = os.listdir(tmp_path)
     assert all(f.startswith("rerun_") for f in files), files
+
+
+# --------------------------------------------- u124 launch package: sizing
+def test_a_measured_rate_floor_beats_the_est_curve():
+    """AC19's fattest rows hit the est-based reservation before their budget
+    and each paid a ~73 GB grow transient. A campaign that carries a measured
+    states-per-node floor reserves past it so grow never fires."""
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    from experiments.search.run_leftovers_5m import plan_memory
+    _, base = plan_memory(10_000_000, 64, available_gb=251,
+                          log=lambda *a: None)
+    _, rated = plan_memory(10_000_000, 64, available_gb=251,
+                           states_per_node=110, log=lambda *a: None)
+    assert rated >= 110 * 10_000_000
+    assert rated > base
+    # the RAM clip still has the last word on a small box
+    _, clipped = plan_memory(10_000_000, 64, available_gb=64,
+                             states_per_node=110, log=lambda *a: None)
+    assert clipped < rated
+
+
+def test_the_campaigns_carry_their_reservation_rates():
+    from experiments.search.run_leftovers_5m import CAMPAIGNS
+    assert CAMPAIGNS["ac19"]["states_per_node"] is None   # live run unchanged
+    assert CAMPAIGNS["u124"]["states_per_node"] == 110    # measured 99 + 10%
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_a_demonstrated_peak_is_never_clamped_down_to_the_model():
+    """The old cap silently replaced AC19's measured 72.9 GB grow transients
+    with the model's 45.1 -- a clamp installed backwards. Measurement wins;
+    the ordinary case (peaks under worst) is unchanged."""
+    from experiments.search.run_leftovers_5m import RamGovernor
+    gov = RamGovernor(NODE_BUDGET_5M, MRL_5M)
+    for p in (29.4, 43.5, 72.9):
+        gov.note(p)
+    assert gov.predict_gb() == pytest.approx(72.9)        # not min(91.1, 45.1)
+    lean = RamGovernor(NODE_BUDGET_5M, MRL_5M)
+    for p in (10.0, 11.0, 12.0):
+        lean.note(p)
+    assert lean.predict_gb() == pytest.approx(min(15.0, lean.worst))
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_governor_worst_is_floored_by_its_own_allocation():
+    from experiments.search.run_leftovers_5m import (
+        RamGovernor, _reserved_worst_gb)
+    floor = _reserved_worst_gb(1_100_000_000, 64)
+    assert floor and floor > 90        # ~103 B/state at cap 64 with paths
+    gov = RamGovernor(10_000_000, 64, worst_gb=floor)
+    assert gov.worst >= floor
+    assert RamGovernor(NODE_BUDGET_5M, MRL_5M, worst_gb=None).worst > 0
+    assert _reserved_worst_gb(None, 64) is None
+
+
+# ------------------------------------------- u124 launch package: the job
+def test_one_env_var_selects_the_whole_u124_job(tmp_path):
+    """CAMPAIGN=u124 must produce a job that runs the RIGHT campaign: its
+    flag, its budget, its single arm. Before this, pre-staging u124 meant
+    hand-assembling flags that had to agree -- and the job had no
+    --campaign at all, so it would have run AC19's rows at 10M."""
+    out = str(tmp_path)
+    p = _remote("job", OUT=out, CAMPAIGN="u124")
+    assert p.returncode == 0, p.stderr
+    job = open(os.path.join(out, "_job.sh")).read()
+    assert "--campaign u124" in job
+    assert "--budget 10000000" in job
+    assert "--chunks 1 --chunk-index 1" in job
+    assert "for a in s20_mk2" in job          # single arm, not the ac19 pair
+    assert "for a in greedy" not in job
+
+
+def test_the_default_job_still_runs_ac19_exactly_as_the_live_box_does(tmp_path):
+    out = str(tmp_path)
+    p = _remote("job", OUT=out)
+    assert p.returncode == 0, p.stderr
+    job = open(os.path.join(out, "_job.sh")).read()
+    assert "--campaign ac19" in job
+    assert "--budget 5000000" in job
+    assert "for a in greedy s20_mk2" in job
+
+
+def test_an_unknown_campaign_is_refused_by_the_shell_too(tmp_path):
+    p = _remote("job", OUT=str(tmp_path), CAMPAIGN="ac20")
+    assert p.returncode != 0
+    assert "unknown CAMPAIGN" in (p.stdout + p.stderr)
+
+
+# ---------------------------------------------- u124 launch package: verify
+def _verify(tmp_path, campaign="u124", break_job=None, unit=None, **env):
+    out = str(tmp_path)
+    gen = _remote("job", OUT=out, CAMPAIGN=campaign)
+    assert gen.returncode == 0, gen.stderr
+    job = os.path.join(out, "_job.sh")
+    if break_job:
+        src = open(job).read()
+        open(job, "w").write(break_job(src))
+    unit_file = os.path.join(out, "fake.service")
+    if unit is None:
+        unit = (f"[Service]\nEnvironment=PYTHONUNBUFFERED=1\n"
+                f"ExecStart={job}\n")
+    open(unit_file, "w").write(unit)
+    return _remote("verify", OUT=out, CAMPAIGN=campaign,
+                   UNIT_FILE=unit_file, **env)
+
+
+def test_verify_passes_a_freshly_generated_job(tmp_path):
+    p = _verify(tmp_path)
+    assert p.returncode == 0, p.stdout + p.stderr
+    assert "FAIL" not in p.stdout
+
+
+def test_verify_catches_every_class_of_drift(tmp_path):
+    """One FAIL per historical incident: wrong campaign config, the heredoc
+    splice, a job that does not parse, a unit without PYTHONUNBUFFERED."""
+    cases = {
+        "flag drift": lambda s: s.replace("--mrl 64", "--mrl 48"),
+        "backtick splice": lambda s: s.replace(
+            "CAMPAIGN COMPLETE", "CAMPAIGN `report` COMPLETE"),
+        "spliced output": lambda s: s + '\nno: command not found\n$(bad)\n',
+        "does not parse": lambda s: s + "\nif then fi\n",
+    }
+    for label, breaker in cases.items():
+        p = _verify(tmp_path, break_job=breaker)
+        assert p.returncode != 0, f"{label}: verify passed a broken job"
+        assert "FAIL" in p.stdout, label
+    p = _verify(tmp_path, unit="[Service]\nExecStart=/bin/true\n")
+    assert p.returncode != 0
+    assert "FAIL" in p.stdout
+
+
+def test_verify_is_read_only(tmp_path):
+    """A boot script must be able to call verify with no side effects: no
+    patching, no service mutation, no job regeneration."""
+    out = str(tmp_path)
+    _remote("job", OUT=out, CAMPAIGN="u124")
+    job = os.path.join(out, "_job.sh")
+    before = open(job).read()
+    open(job, "w").write(before.replace("--mrl 64", "--mrl 48"))
+    broken = open(job).read()
+    p = _verify(tmp_path, break_job=lambda s: broken)
+    assert p.returncode != 0
+    assert open(job).read() == broken      # asserted, never repaired
