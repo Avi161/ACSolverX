@@ -502,6 +502,15 @@ the universal metabelian quotient, not a smaller linear specialization.  Its
 explicit solutions show that no metabelian quotient can obstruct this signed
 skeleton.
 
+Section 6.71 shows that adjoining the certified \(A_5\) quotient does not
+repair that failure.  Goursat's lemma makes
+\(G_-\to A_5\times(G_-/G_-^{\prime\prime})\) surjective, because the
+metabelian factor has no \(A_5\) quotient.  The two coordinate solutions
+therefore combine independently.  This rules out only the specific combined
+\(A_5\)-universal-metabelian test.  A refinement must add information absent
+from those two factors; a standalone nonmetabelian quotient may also
+obstruct.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8329,10 +8338,64 @@ homomorphism factors through (443), and the displayed solution maps forward.
 This is not a solution in \(G_-\).  The finite quotient \(A_5\) does not
 factor through the metabelian quotient and already rejects the direct-
 conjugacy class-two solution.  A useful quotient obstruction to (426) must
-therefore retain genuinely nonmetabelian information and its correlation
-with the \(A_5\) data.  Other sign patterns, the terminal pair orbit, MMS02
+therefore be nonmetabelian, but it need not be correlated with this \(A_5\)
+map.  Other sign patterns, the terminal pair orbit, MMS02
 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
+
+### 6.71. The \(A_5\) and metabelian shadows are independent
+
+Put
+
+\[
+ Q_{\rm met}=G_-/G_-^{\prime\prime}
+ \cong\mathbb Z^4\rtimes_M\mathbb Z.
+\]
+
+Consider the product homomorphism
+
+\[
+ \Theta:G_-\longrightarrow A_5\times Q_{\rm met}
+\tag{444}
+\]
+
+given by the quotient \(\rho\) from (310) and the universal metabelian
+projection.  Both coordinate projections of \(\Theta(G_-)\) are surjective,
+so its image is a subdirect product.
+
+Goursat's lemma associates to any proper subdirect product a nontrivial
+common quotient of the two factors.  The only nontrivial quotient of the
+simple group \(A_5\) is \(A_5\) itself.  Every quotient of the metabelian
+group \(Q_{\rm met}\) is metabelian, whereas \(A_5\) is not.  Thus the two
+factors have no nontrivial common quotient, and Goursat gives
+
+\[
+ \boxed{\Theta(G_-)=A_5\times Q_{\rm met}.}
+\tag{445}
+\]
+
+The signed skeleton (410) is solvable in each factor.  Its \(A_5\) solution
+is the explicit transcript (407), while Theorem 6.64 supplies a solution in
+\(Q_{\rm met}\).  Group equations are evaluated coordinatewise in a direct
+product, so pairing those two solutions gives a solution in
+\(A_5\times Q_{\rm met}\).  Surjectivity (445) confirms that this whole
+direct product is an actual quotient image of \(G_-\), not an artificially
+enlarged test group.
+
+**Theorem 6.65 (independent-shadow boundary).**  The signed
+five-multiplication lift gate is solvable in the combined quotient
+\(A_5\times(G_-/G_-^{\prime\prime})\), and the natural map from \(G_-\) onto
+that product is surjective.
+
+Therefore neither the certified \(A_5\) data, the universal metabelian data,
+nor their direct product can obstruct this skeleton.  Any refinement of this
+combined test must add nonmetabelian information absent from the independent
+product; a standalone nonmetabelian quotient may also obstruct.  This theorem
+does not address \(A_5\) times a solvable group of derived length greater than
+two, and supplies no solution in \(G_-\).  Other sign patterns, the terminal
+pair orbit, MMS02 bridge,
+stable AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis
+remain open.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -8546,7 +8609,11 @@ The logical gates remain separate:
 60. the universal metabelian quotient is \(\mathbb Z^4\rtimes_M\mathbb Z\),
     and the signed lift system is solvable there; any useful quotient
     obstruction must retain nonmetabelian information; and
-61. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+61. Goursat's lemma makes the natural \(A_5\)-metabelian product quotient
+    surjective, and the signed system is solvable in both coordinates; this
+    excludes only that combined test, not standalone nonmetabelian or
+    higher-solvable refinements; and
+62. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8760,3 +8827,9 @@ evaluated in Section 6.66 is the universal metabelian quotient
 \(\mathbb Z^4\rtimes_M\mathbb Z\).  The signed lift system is solvable there.
 Thus neither nilpotent nor metabelian quotients can obstruct this skeleton;
 the next useful quotient must be genuinely nonmetabelian.
+Theorem 6.65 shows that merely adjoining the known \(A_5\) quotient is still
+insufficient.  Goursat's lemma makes
+\(G_-\to A_5\times(G_-/G_-^{\prime\prime})\) surjective, and the two
+coordinate solutions combine in that direct product.  This excludes that
+specific independent product only.  A standalone nonmetabelian quotient, a
+nonmetabelian refinement, or a higher-solvable product remains admissible.
