@@ -62,7 +62,8 @@ plan() {
 import os, multiprocessing as mp
 from experiments.search.run_leftovers_1m import est_gb, resolve_workers, _available_gb
 from experiments.search.run_leftovers_5m import (
-    SPEC_5M, plan_memory, load_rows_5m, TRACK_PATH)
+    SPEC_5M, _reserved_worst_gb, plan_memory, load_rows_5m, resolve_campaign,
+    TRACK_PATH)
 from experiments.search.run_leftovers_1m import HAVE_HCOMPACT
 
 B, MRL = int(os.environ["BUDGET"]), int(os.environ["MRL"])
@@ -78,23 +79,37 @@ print(f"engine         : hcompact={HAVE_HCOMPACT}")
 if not HAVE_HCOMPACT:
     raise SystemExit("STOP: hcompact missing -- the Python fallback at this "
                      "budget is a hundreds-of-GB code path, not a slow one.")
+# the plan must size the way the RUN sizes: a campaign with a measured
+# states-per-node floor reserves past the est curve, and the plan quoting
+# the est number while the run reserves the bigger one is the "plan lied"
+# bug in a new costume.
+_, camp = resolve_campaign(CAMPAIGN)
+rate_floor = camp.get("states_per_node")
+lim, res = plan_memory(B, MRL, available_gb=gb, states_per_node=rate_floor,
+                       log=lambda *a: None)
 per = est_gb(B, MRL, track_path=TRACK_PATH)
-print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row"
+worst = per
+if res is not None:
+    worst = max(per, _reserved_worst_gb(res, MRL) or 0.0)
+print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row (est), "
+      f"{worst:.1f} GB allocation-backed worst"
       f"{' (paths captured)' if TRACK_PATH else ''}")
 tot = 0.0
 for arm in ARMS:
     n = len(load_rows_5m(arm, campaign=CAMPAIGN)[0])   # fails loudly on a stale clone
     w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
                            track_path=TRACK_PATH)
+    w = min(w, max(1, int((gb - 4.0) // worst)))   # the governor floors worst too
     rate = 708 if arm == "greedy" else 846          # measured at 1M, this engine
     h = n * (B / rate) / 3600 / max(w, 1)
     tot += h
     print(f"  {arm:<8} {n:>3} rows, {w:>2} workers -> {h:5.1f} h  (worst case)")
 print(f"total wall clock: {tot:.1f} h if every row runs the full budget")
-lim, res = plan_memory(B, MRL, available_gb=gb, log=lambda *a: None)
 if res is not None:
     from experiments.search.greedy_compact import est_states, _RESERVE_SLACK
     default = int(est_states(B) * _RESERVE_SLACK) + 4 * (MRL + 1) ** 2
+    if rate_floor:
+        default = max(default, int(rate_floor * B) + 4 * (MRL + 1) ** 2)
     tag = "full" if res >= default else f"CLIPPED from {default:,} -- box is small"
     print(f"reserve_states  : {res:,} ({tag})")
 PYEOF
@@ -127,6 +142,13 @@ for a in $ARMS; do
       --chunks 1 --chunk-index 1 --out-dir "$OUT"
 done
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
+# Completion, as an ARTIFACT rather than only a cloud API call: a marker
+# file in the results dir. Anything that already ships the results (an S3
+# sync timer, a Drive mirror, an rsync) ships the finished-flag with them,
+# and each cloud attaches its own notifier to the artifact -- S3 event ->
+# SNS on AWS, the gcloud beacon below on GCP. A later session resuming
+# from a synced copy also learns finished-vs-partial from the marker.
+date -u +%FT%TZ > "$OUT/COMPLETE_$CAMPAIGN"
 # Best-effort beacon into Cloud Logging so an alert policy can email the
 # owner at completion even if no session is watching. Harmless where
 # gcloud or the logWriter role is absent. (Heredoc rule: no backticks, no

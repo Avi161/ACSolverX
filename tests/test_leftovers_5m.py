@@ -1729,3 +1729,36 @@ def test_finished_rows_carry_the_best_pair_itself(monkeypatch):
     assert kind == "done"
     assert rec["min_relator"] == ["XYXy", "YXXCUT"]
     assert rec["max_relator_expanded"] == ["LONG1", "LONG2"]
+
+
+# --------------------------------------------- portable completion + plan truth
+def test_the_job_writes_a_completion_marker_artifact(tmp_path):
+    """Completion as a FILE in the results dir: whatever ships the results
+    (S3 sync, Drive mirror) ships the finished-flag, and each cloud attaches
+    its own notifier to the artifact. The gcloud beacon stays for GCP and
+    no-ops elsewhere."""
+    out = str(tmp_path)
+    p = _remote("job", OUT=out, CAMPAIGN="u124")
+    assert p.returncode == 0, p.stderr
+    job = open(os.path.join(out, "_job.sh")).read()
+    assert f'date -u +%FT%TZ > "{out}/COMPLETE_u124"' in job
+    assert "gcloud logging write" in job
+    v = _remote("verify", OUT=out, CAMPAIGN="u124",
+                UNIT_FILE=os.path.join(out, "absent.service"))
+    assert "FAIL -- no spliced command output" not in v.stdout
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
+    """The plan must quote the reservation the RUN will actually make: for
+    u124 that is the rate-based 1.1e9 states, not est_states' 915M -- the
+    'plan lied' class, fixed again in its new costume."""
+    p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
+                PLAN_GB="251", PLAN_CORES="32")
+    assert p.returncode == 0, p.stderr
+    assert "reserve_states  : 1,100,016,900 (full)" in p.stdout
+    assert "allocation-backed worst" in p.stdout
+    q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
+                PLAN_GB="251", PLAN_CORES="32")
+    assert q.returncode == 0, q.stderr
+    assert "1,100,016,900" not in q.stdout      # ac19 sizing unchanged
