@@ -476,6 +476,12 @@ is vacuous.  On \(H^{\rm ab}=\mathbb Z^4\), the monodromy matrix satisfies
 solutions for every choice of the three integer shifts.  Any obstruction to
 (426) must therefore be genuinely nonabelian in the free base.
 
+Section 6.67 checks the next nilpotent layer without opening a new ledger.
+The literal class-two computation from Section 6.58 already conjugates
+\(U=u^{-1}\) to \(V=v\).  Taking both commutator variables in (413) to be
+the identity therefore solves the full signed-skeleton system in the
+class-two quotient.  Class two is another can-fail control, not a lift.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8058,6 +8064,64 @@ not be promoted to a literal lift.  Other sign patterns, the terminal pair
 orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis,
 and Andrews--Curtis remain open.
 
+### 6.67. The class-two lift shadow is also solvable
+
+The first nonabelian quotient does not require a new search.  Section 6.58
+computed the literal rank-three class-two coordinate of the relator \(A\):
+modulo \(\gamma_3\), it is \(xz^{-1}\).  Hence \(z=x\), and with
+
+\[
+ \kappa=x^{-1}y^{-1}xy
+\]
+
+the two path-gauge rows become
+
+\[
+ U=u^{-1}=y\kappa,
+ \qquad
+ V=v=y\kappa^{-1}.
+\]
+
+The same literal collection proved (380):
+
+\[
+ x^{-2}Ux^2=V
+ \qquad\text{in }G_A/\gamma_3(G_A).
+\tag{433}
+\]
+
+Since \(G_-=G_A/\operatorname{Ncl}(B)\), identity (433) descends to
+\(G_-/\gamma_3(G_-)\).
+
+Now evaluate the exact lift system (413) in that quotient.  Set
+
+\[
+ g=j=1.
+\]
+
+Then
+
+\[
+ [U,g]=[V,j]=1,
+\]
+
+so the second equation of (413) is automatic.  The first becomes
+\(V\sim U\,{}^h1=U\), and (433) supplies the required conjugator.  Thus the
+entire signed-skeleton system has a class-two solution.
+
+**Theorem 6.61 (class-two can-fail control).**  The image of the signed
+five-multiplication lift gate (410) in \(G_-/\gamma_3(G_-)\) is solvable.
+One solution takes the two commutator conjugators trivial and uses
+\(x^{-2}\) for the remaining endpoint conjugacy.
+
+This does not give a solution in \(G_-\).  The exact free-base defect behind
+the same tempting conjugator is not being discarded heuristically: the
+certified \(A_5\) quotient in Theorem 6.54 separates the conjugacy classes of
+\(U\) and \(V\), so (433) cannot lift to \(G_-\) by any direct conjugator.
+Other choices of \(g,h,j\), other sign patterns, the full
+terminal pair orbit, MMS02 bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8257,7 +8321,11 @@ The logical gates remain separate:
 56. the monodromy satisfies \(\det(M-I)=1\), so base abelianization solves
     (426) for every triple of integer shifts and supplies no obstruction;
     this vacuity does not solve the free-group system; and
-57. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+57. the class-two image of the signed lift system is solvable by taking both
+    commutator variables trivial and using (433); the \(A_5\) quotient proves
+    that direct conjugacy does not lift to \(G_-\), while nontrivial solutions
+    of (413) remain open; and
+58. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8447,3 +8515,9 @@ interface.  Its monodromy has \(\det(M-I)=1\), and the integral formulas
 (430), (432) solve the linearized system for every triple of integer shifts.
 Thus abelianization is provably vacuous; any obstruction must retain
 noncommutative free-base data.
+Theorem 6.61 then checks class two without another search.  The previously
+certified identity \(x^{-2}Ux^2=V\) and the choices \(g=j=1\) solve both
+equations (413) in \(G_-/\gamma_3(G_-)\).  The \(A_5\) quotient simultaneously
+proves that this direct conjugacy cannot lift to \(G_-\).  Thus class-two
+solvability is a can-fail control, not progress from a quotient path to a
+literal one.

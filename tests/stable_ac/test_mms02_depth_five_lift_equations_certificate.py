@@ -13,6 +13,9 @@ from experiments.stable_ac.mms02_depth_five_lift_equations_certificate import (
     decide_lift_equation_coordinates,
     exponent_vector,
 )
+from experiments.stable_ac.mms02_path_gauge_conjugacy_certificate import (
+    decide_path_gauge_conjugacy,
+)
 
 
 def test_tietze_map_pins_every_collapsed_original_generator():
@@ -70,3 +73,11 @@ def test_base_abelianization_is_a_vacuous_lift_shadow():
     assert decision.endpoint_base_vectors[1] == tuple(
         -value for value in decision.endpoint_base_vectors[0]
     )
+
+
+def test_class_two_lift_system_has_the_trivial_commutator_solution():
+    decision = decide_path_gauge_conjugacy()
+    assert decision.class_two_source == (0, 1, 1)
+    assert decision.class_two_target == (0, 1, -1)
+    assert decision.class_two_forced_conjugate == decision.class_two_target
+    assert decision.forced_base_conjugator == "BB"
