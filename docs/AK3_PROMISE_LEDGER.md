@@ -172,6 +172,17 @@ finite quotient do not close a route.
   the exact surviving rank-two obligation must change both rows.  The full
   rank-two gate, pair orbit (271), bridge, stable AK(3), and ordinary AK(3)
   remain open.
+- **Direct endpoint cleanup does not finish by ambient transport:** the
+  exact donor identities clean the two terminal pairs to `(S,d^-1 a)` and
+  `(T,d^-1 c)`, where `S=xyXYXy` is cyclically the trefoil braid relator and
+  `T=yXYxyxYXXy`.  Complete Whitehead minimization gives singleton floors
+  5 and 10 and unordered-pair floors 17 and 19, independently checked by
+  the separate automorphism canonicalizer.  Thus these cleaned endpoints
+  cannot be joined by one simultaneous ambient basis automorphism.  This
+  freezes only the chosen clean-then-transport continuation: no theorem
+  forces an arbitrary path through `S,T`, and other row multiplications,
+  intermediate relators, the full rank-two gate, bridge, stable AK(3), and
+  ordinary AK(3) remain open.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one

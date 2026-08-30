@@ -296,6 +296,14 @@ functionals obstruct the exact class-two twisted-conjugacy equation.  Hence
 no path which keeps that common row literal can work.  A path which changes
 the common row, the full terminal pair orbit, and the bridge remain open.
 
+Section 6.47 evaluates the most direct continuation which does change that
+row: use each endpoint's live row to substitute its endpoint value for $d$.
+The source lands over the trefoil braid relator, while complete Whitehead
+floors separate both the two cleaned relators and the two cleaned pairs.
+Thus this one cleanup cannot finish by a simultaneous ambient basis
+transport.  It is not forced on an arbitrary path, and other both-row
+continuations remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5653,6 +5661,84 @@ $T_{\rm pub}$ bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis.  The exact surviving obligation in this
 rank-two reduction is to change both rows.
 
+### 6.47. Direct endpoint cleanup does not finish by ambient transport
+
+There is a canonical way to make the row change required by Theorem 6.39,
+although it is not forced on an arbitrary path.  Retain the notation
+$R,e_s,e_t$ from (293) and put
+
+\[
+ S=aw^{-1}=\mathtt{xyXYXy},\qquad
+ T=cac^{-1}w^{-1}=\mathtt{yXYxyxYXXy}.
+\tag{306}
+\]
+
+The defining identities $e_s=d^{-1}a$ and $e_t=d^{-1}c$ give
+$d=ae_s^{-1}=ce_t^{-1}$.  Direct free reduction then proves
+
+\[
+ \begin{aligned}
+ RS^{-1}&=ae_s^{-1}ae_sa^{-2}
+          \in\operatorname{Ncl}(e_s),\\
+ RT^{-1}&=ce_t^{-1}ae_ta^{-1}c^{-1}
+          \in\operatorname{Ncl}(e_t).
+ \end{aligned}
+\tag{307}
+\]
+
+The donor-restoring macro therefore gives the reversible endpoint cleanups
+
+\[
+ (R,e_s)\sim_{\rm AC}(S,e_s),\qquad
+ (R,e_t)\sim_{\rm AC}(T,e_t).
+\tag{308}
+\]
+
+A cyclic rotation of $S$ is
+$\mathtt{yxyXYX}$, the relator $bab(aba)^{-1}$.  Thus the cleaned source
+lies over the trefoil braid group.  This structural simplification is
+genuine, but the two cleaned endpoints are not related by a single
+simultaneous basis transport.  Complete rank-two Whitehead minimization
+gives
+
+\[
+\begin{array}{c|c|c}
+\text{object}&\text{one minimum representative}&
+\text{total cyclic floor}\\ \hline
+S&(\mathtt{XXyxy})&5\\
+T&(\mathtt{XXyyXYxyxY})&10\\
+(S,e_s)&(\mathtt{XXyXYXyxYxy},\mathtt{XYXyxy})&17\\
+(T,e_t)&(\mathtt{XXYxyxYxy},\mathtt{XXyyXYxyxY})&19.
+\end{array}
+\tag{309}
+\]
+
+At each displayed endpoint every second-kind Whitehead map is
+nondecreasing; first-kind maps preserve total length.  Peak reduction makes
+the floors complete.  The donor identities, braid-relator identification,
+and four floors are pinned by the terminal both-row cleanup certificate.
+The focused test independently checks every free reduction and uses the
+separate complete Aut$(F_2)$ canonicalizer, including its witnessing
+automorphisms.
+
+**Theorem 6.40 (clean-then-transport boundary).**  The direct endpoint
+cleanups (308) are exact AC equivalences and change the common row as required
+by Theorem 6.39.  No automorphism of $F(a,b)$ carries $S$ to $T$ up to
+cyclic conjugacy and inversion, and no automorphism carries the unordered
+unoriented cyclic pair $(S,e_s)$ to $(T,e_t)$.
+
+**Proof.**  Equation (307) proves the donor cleanups.  Minimum total cyclic
+length is an Aut$(F_2)$-orbit invariant.  The corresponding floors in (309)
+are unequal. $\square$
+
+This rules out only the route which performs the specific endpoint cleanups
+(308) and then attempts to finish by one simultaneous ambient basis
+automorphism.  Theorem 6.39 does not force a path to pass through $S$ and
+$T$.  Other row multiplications, other intermediate relators, the full
+rank-two gate (293), pair orbit (271), the unrestricted bridge, stable
+AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
+open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5785,9 +5871,12 @@ The logical gates remain separate:
     and the class-two twisted-conjugacy obstruction excludes every path
     which keeps their common row $R$ literal; paths changing $R$ remain
     open;
-38. no MMS02 statement evaluates the period-two class-two ledger or its
+38. the direct endpoint cleanups (308) change $R$ but leave cleaned relators
+    and pairs in distinct ambient-automorphism orbits; this closes only
+    clean-then-transport, not other both-row continuations;
+39. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-39. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+40. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5853,4 +5942,11 @@ remain open.  Theorem 6.39 then uses the shared HNN row itself to reduce the
 terminal triples to the rank-two pairs (293).  The corrected rank-four
 Magnus mapping torus and its class-two exterior functionals exclude every
 path which keeps their common row $R$ literal.  The remaining rank-two route
-must change both rows; it is not decided.
+must change both rows; it is not decided.  Theorem 6.40 evaluates one direct
+row-changing continuation: donor cleanup gives $(S,e_s)$ and $(T,e_t)$,
+with the source relator a trefoil braid relator, but complete singleton and
+pair floors $5\ne10$ and $17\ne19$ exclude finishing those cleaned endpoints
+by one simultaneous ambient basis automorphism.  This freezes only that
+clean-then-transport route.  Other row multiplications and intermediate
+relators, the full rank-two gate, the bridge, stable AK(3), and ordinary
+AK(3) remain open.
