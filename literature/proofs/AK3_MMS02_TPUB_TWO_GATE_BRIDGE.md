@@ -429,6 +429,18 @@ at least four \(A_5\)-visible row multiplications.  A four-move quotient
 transcript exists, but its Nielsen matrix violates the actual infinite-cyclic
 homology, so it is not a lift.
 
+Section 6.62 incorporates that homology into the complete finite state.
+After first inverting \(u\), an admissible cumulative Nielsen matrix must fix
+\((1,0)\).  Exact conjugacy-class product layers have sizes
+\(8,32,272,1896,7056,18416\) through multiplication depth five.  No target
+with compatible first matrix column occurs through depth four.  At depth
+five the exact target fiber consists of fourteen matrices
+\(\left(\begin{smallmatrix}1&n\\0&\pm1\end{smallmatrix}\right)\),
+\(-3\le n\le3\), including the identity.  A literal five-move transcript
+realizes the \(n=-1\), determinant-one target.  Thus five total row
+multiplications are necessary and sharp in the combined \(A_5\)-homology
+shadow; lifting that transcript through the kernel remains open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -7430,6 +7442,156 @@ homology-compatible path of depth four or more, solve the both-row pair orbit,
 close the unrestricted bridge, or prove stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, or Andrews--Curtis.
 
+### 6.62. Homology raises the terminal depth to five
+
+The four-move lower bound can be sharpened without opening a word search.
+Invert \(u\) first and regard
+
+\[
+ ([u^{-1}],[1])=(1,0)
+ \quad\text{and}\quad
+ ([v],[1])=(1,0)
+ \tag{401}
+\]
+
+as column vectors in \(G_-^{\rm ab}\cong\mathbb Z\).  Track a quotient state
+by
+
+\[
+ (\mathcal C_1,\mathcal C_2,M),
+ \tag{402}
+\]
+
+where \(\mathcal C_i\) is the independent \(A_5\)-conjugacy class of row
+\(i\), and \(M\in\operatorname{GL}_2(\mathbb Z)\) is the cumulative Nielsen
+matrix.  All five \(A_5\)-classes are inversion-stable.
+
+Conjugation leaves \(M\) unchanged.  Inversion and row permutation multiply
+it on the left by one of the eight signed permutation matrices and cost no
+visible multiplication.  A signed right multiplication of row one or row
+two multiplies it on the left by
+
+\[
+ E_{12}(\epsilon)=
+ \begin{pmatrix}1&\epsilon\\0&1\end{pmatrix},
+ \qquad
+ E_{21}(\epsilon)=
+ \begin{pmatrix}1&0\\\epsilon&1\end{pmatrix},
+ \qquad \epsilon\in\{1,-1\}.
+ \tag{403}
+\]
+
+These transitions are complete.  Independent conjugation allows every pair
+of representatives of the two current classes, and the certificate records
+the conjugacy class of every such signed product.  Left multiplication of
+rows adds no case because a left product is conjugate to the corresponding
+right product.
+
+Compatibility with (401) is exactly
+
+\[
+ M\binom10=\binom10.
+\]
+
+Since \(M\) is unimodular, every compatible matrix has the form
+
+\[
+ M=
+ \begin{pmatrix}1&n\\0&\epsilon\end{pmatrix},
+ \qquad n\in\mathbb Z,\quad\epsilon\in\{1,-1\}.
+ \tag{404}
+\]
+
+Starting with the source split class and the identity class, take signed-
+permutation closure after every multiplication layer.  The complete state
+counts at depths zero through five are
+
+\[
+ \begin{array}{c|rrrrrr}
+ d&0&1&2&3&4&5\\ \hline
+ \#\text{ states}&8&32&272&1896&7056&18416.
+ \end{array}
+ \tag{405}
+\]
+
+No target state satisfying (404) occurs for \(d\le4\).  At depth five the
+complete compatible target fiber is
+
+\[
+ \boxed{
+ \left\{
+ \begin{pmatrix}1&n\\0&\epsilon\end{pmatrix}
+ :-3\le n\le3,\ \epsilon\in\{1,-1\}
+ \right\}.}
+ \tag{406}
+\]
+
+It contains fourteen matrices, including \(I_2\).  Thus the combined
+\(A_5\)-homology shadow has a compatible target at depth five and none
+earlier.
+
+One target in that fiber is completely explicit.  In one-line permutation
+notation put
+
+\[
+ \alpha=\rho(u^{-1})=(3,4,0,1,2),\quad
+ a=\alpha^{-1}=(2,3,4,0,1),\quad
+ c=\alpha^2=(1,2,3,4,0),
+\]
+\[
+ b=\rho(v)=(2,0,4,1,3),\qquad
+ p=(3,2,0,4,1).
+\]
+
+The certificate replays the following five signed multiplications:
+
+\[
+\begin{aligned}
+ (\alpha,1)
+ &\xrightarrow{R_2^+}(\alpha,\alpha)
+ \sim(\alpha,a)
+ \xrightarrow{R_1^-}(c,a)
+ \sim(b,b^3)\\
+ &\xrightarrow{R_2^+}(b,b^{-1})
+ \sim(p,c)
+ \xrightarrow{R_1^+}(b,c)
+ \sim(b,b)
+ \xrightarrow{R_2^-}(b,1).
+\end{aligned}
+\tag{407}
+\]
+
+Here every \(\sim\) is an independently certified conjugation in \(A_5\),
+and the multiplication identities include \(pc=b\).  In temporal order the
+five moves have matrix
+
+\[
+ E_{21}(-1)E_{12}(1)E_{21}(1)E_{12}(-1)E_{21}(1)
+ =\begin{pmatrix}1&-1\\0&1\end{pmatrix},
+\tag{408}
+\]
+
+whose first column is \((1,0)^T\).  Thus (407) is a concrete combined-
+quotient lift target, rather than only a state-count existence result.
+
+**Theorem 6.56 (homology-compatible terminal depth).**  Every path for the
+terminal gate (271) has at least five total row multiplications.
+The bound is sharp after applying
+
+\[
+ G_-\longrightarrow A_5\times G_-^{\rm ab},
+ \qquad g\longmapsto(\rho(g),[g]).
+ \tag{409}
+\]
+
+This is an exact combined-quotient theorem, not a lift.  Membership of
+\(I_2\) in (406) removes the abelian matrix obstruction but supplies no
+representatives in \(G_-\).  The remaining discrepancy lies in the kernel of
+(409); evaluating the explicit transcript (407) through the one-relator normal
+form is the next literal obligation.  No path in \(G_-\), no terminal pair
+closure, no MMS02 bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis is claimed.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -7612,7 +7774,11 @@ The logical gates remain separate:
 51. the same split classes force every full terminal path to use at least
     four \(A_5\)-visible row multiplications; a four-move quotient transcript
     is sharp but violates the actual homology and supplies no lift; and
-52. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+52. adjoining actual homology raises the complete lower bound to five total
+    row multiplications; the depth-five target fiber contains fourteen
+    compatible matrices including the identity, but lifting through the
+    kernel of \(G_-\to A_5\times\mathbb Z\) remains open; and
+53. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7769,3 +7935,11 @@ but its shortest transcript has Nielsen matrix
 \(\left(\begin{smallmatrix}2&1\\5&3\end{smallmatrix}\right)\) and fails the
 actual infinite-cyclic homology test.  A homology-compatible both-row path
 remains open.
+Theorem 6.56 performs that compatibility test on the complete product of the
+\(A_5\) pair state with its Nielsen matrix.  No compatible target occurs
+through depth four; depth five has exactly the fourteen matrices in (406),
+including the identity.  The explicit transcript (407) realizes the
+determinant-one shear \(n=-1\).  Hence every actual terminal path needs at
+least five total row multiplications.  The combined quotient is sharp, but the
+kernel defect of that transcript has not been lifted through the actual
+one-relator group.
