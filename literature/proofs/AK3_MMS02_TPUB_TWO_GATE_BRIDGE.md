@@ -632,6 +632,16 @@ identity forces the other row to be conjugate to \(q^{\pm1}\).  That other
 row would have to be \(B^{\pm1}\), contradicting Theorem 6.11 and (507).
 Every tagged-gate path therefore has at least four row multiplications.
 
+Section 6.86 closes depth four by projected class flow.  A path from
+\((q,1)\) to \((B,1)\) needs four visible multiplications.  If those were
+the only four moves, its unordered unoriented class multisets would have to
+pass through
+\(\{q,q\}\), then \(\{q,B\}\), then \(\{B,B\}\).  The middle transition
+would express \(B^{\pm1}\) as a product of two conjugates of
+\(q^{\pm1}\), impossible in \(Q_A^{\rm ab}\cong\mathbb Z\): the two-factor
+sum is even while \(B^{\pm1}\) has odd coefficient.  Every tagged-gate path
+therefore has at least five row multiplications.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -9728,6 +9738,97 @@ obstruction.  The Peiffer gate, MMS02 bridge, stable AK(3), ordinary AK(3),
 stable Andrews--Curtis, and Andrews--Curtis remain open.  The depth-three
 lane is closed; no depth-four census is opened.
 
+### 6.86. Projected class flow excludes depth four
+
+Continue with the retraction \(\pi:G_t\to Q_A\) from (514).  In the
+projected pair, call a row multiplication visible when its donor has
+nonidentity image.  Record only the unordered multiset of unoriented
+conjugacy classes.  Component conjugation, inversion, and row permutation
+preserve this multiset.  A multiplication with identity donor also preserves
+it, so invisible multiplications can be omitted from the class flow.
+
+Put
+
+\[
+ \mathcal Q=\{[q],[q^{-1}]\},\qquad
+ \mathcal B=\{[B],[B^{-1}]\},\qquad
+ \mathcal I=\{[1]\}.
+\tag{519}
+\]
+
+Theorem 6.11 and (507) say \(\mathcal Q\ne\mathcal B\), and both differ
+from \(\mathcal I\).  The first visible multiplication from the projected
+source must use the \(q\)-row as donor and the identity row as recipient.
+Consequently
+
+\[
+ \{\mathcal Q,\mathcal I\}
+ \longrightarrow
+ \{\mathcal Q,\mathcal Q\}.
+\tag{520}
+\]
+
+After a second visible multiplication, one \(\mathcal Q\)-row remains
+unchanged.  A third visible multiplication cannot already reach
+\(\{\mathcal B,\mathcal I\}\).  If the surviving \(\mathcal Q\)-row is the
+donor, it remains.  If it is the recipient, the other row remains.  For the
+endpoint multiset, that other row would have to be \(\mathcal B\), while the
+changed product becomes one; the latter equality would force the recipient
+\(\mathcal Q\)-row to be conjugate in one orientation to the donor
+\(\mathcal B\)-row.  This contradicts
+\(\mathcal Q\ne\mathcal B\).  If the other row were \(\mathcal I\), the
+move would be invisible.  Thus every projected path uses at least four
+visible multiplications.
+
+Suppose now that the original tagged path had only four row
+multiplications.  All four would have to be visible after applying \(\pi\).
+Immediately before the final multiplication, the class multiset must be
+\(\{\mathcal B,\mathcal B\}\): the donor survives as the nonidentity target
+row, and making the recipient equal to one forces it to lie in the same
+unoriented conjugacy class as that donor.  The third multiplication changes
+only one row, while after the second one \(\mathcal Q\)-row still survives.
+Therefore the forced class flow is
+
+\[
+ \{\mathcal Q,\mathcal I\}
+ \longrightarrow
+ \{\mathcal Q,\mathcal Q\}
+ \longrightarrow
+ \{\mathcal Q,\mathcal B\}
+ \longrightarrow
+ \{\mathcal B,\mathcal B\}
+ \longrightarrow
+ \{\mathcal B,\mathcal I\}.
+\tag{521}
+\]
+
+The second arrow in (521) changes one \(\mathcal Q\)-row into a
+\(\mathcal B\)-row by multiplying it on the left or right by a conjugate of
+the other \(\mathcal Q\)-row.  Hence some orientation of \(B\) is a product
+of two independently conjugated orientations of \(q\).  Applying the
+abelianization \(\chi:Q_A\to\mathbb Z\) from (507) gives
+
+\[
+ \chi(B^{\pm1})\in\{1,-1\},
+ \qquad
+ \chi(q^{\epsilon_1})+\chi(q^{\epsilon_2})
+ \in\{-2,0,2\},
+\tag{522}
+\]
+
+which is impossible.
+
+**Theorem 6.80 (complete tagged depth-four boundary).**  No AC path from
+\((q,t)\), equivalently from \((EB,t)\), to \((B,t)\) contains at most
+four row multiplications.  Every such path contains at least five.
+
+The proof allows arbitrary ambient conjugations, inversions, row
+permutations, orientations, and left or right products.  It is a class-flow
+and abelianization theorem for this tagged gate, not a depth-five
+classification.  It supplies no path, Peiffer closure, MMS02 bridge, stable
+AK(3), ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis result.
+The depth-four lane is closed; no depth-five census is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -9999,9 +10100,13 @@ The logical gates remain separate:
     has a surviving \(q^{\pm1}\)-class row, while in the complementary order
     either possible identity endpoint forces the other row into that same
     class.  It would have to become \(B^{\pm1}\), which is impossible, so
-    every tagged-gate path has at least four multiplications, but no
-    depth-four classification is claimed; and
-76. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    every tagged-gate path has at least four multiplications;
+76. projected visible-class flow forces any hypothetical four-multiplication
+    path through \(\{\mathcal Q,\mathcal B\}\), which would express an odd
+    abelianization class \(B^{\pm1}\) as a product of two even-parity
+    \(q^{\pm1}\) contributions; hence every tagged-gate path has at least
+    five multiplications, but no depth-five classification is claimed; and
+77. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -10318,5 +10423,10 @@ irreducible alternating braid.  Under the tag retraction, one source order
 has a surviving \(q^{\pm1}\)-class row.  In the other, the endpoint identity
 condition forces whichever row remains nontrivial into that class.  It would
 have to become \(B^{\pm1}\), which is impossible.  Every tagged path
-therefore uses at least four row multiplications; depth four and the full
-Peiffer orbit remain open.
+therefore uses at least four row multiplications.
+Theorem 6.80 closes depth four by visible projected class flow.  A four-move
+path would have to create a \(B\)-class row from two \(q\)-class rows on its
+second move.  Their abelianized contributions sum to an even integer, while
+\(B^{\pm1}\) has coefficient \(\pm1\).  Every tagged path therefore uses at
+least five row multiplications; depth five and the full Peiffer orbit remain
+open.
