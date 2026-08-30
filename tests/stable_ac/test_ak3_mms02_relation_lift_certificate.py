@@ -520,6 +520,152 @@ def cyclic_substitution_coordinates(item, source, difference_coordinates):
     return visit(item)
 
 
+A5_IMAGES = {
+    "x": (0, 1, 3, 4, 2),
+    "y": (0, 2, 3, 1, 4),
+    "z": (2, 0, 1, 3, 4),
+}
+A5_IDENTITY = tuple(range(5))
+
+
+def compose_permutations(left, right):
+    return tuple(left[right[index]] for index in range(5))
+
+
+def invert_permutation(value):
+    result = [0] * 5
+    for index, image in enumerate(value):
+        result[image] = index
+    return tuple(result)
+
+
+def evaluate_permutation_word(word):
+    result = A5_IDENTITY
+    for letter in word:
+        image = A5_IMAGES[letter.lower()]
+        if letter.isupper():
+            image = invert_permutation(image)
+        result = compose_permutations(result, image)
+    return result
+
+
+def expression_permutation(item, memo=None):
+    if memo is None:
+        memo = {}
+    key = id(item)
+    if key in memo:
+        return memo[key]
+
+    if item.kind == "leaf":
+        name = item.args[0]
+        result = (
+            A5_IDENTITY
+            if name in ("A", "B")
+            else evaluate_permutation_word(WORDS[name])
+        )
+    elif item.kind == "lit":
+        result = evaluate_permutation_word(item.value)
+    elif item.kind == "prod":
+        result = A5_IDENTITY
+        for child in item.args:
+            result = compose_permutations(
+                result,
+                expression_permutation(child, memo),
+            )
+    elif item.kind == "inv":
+        result = invert_permutation(expression_permutation(item.args[0], memo))
+    elif item.kind == "conj":
+        conjugator = item.args[0]
+        conjugator_value = (
+            expression_permutation(conjugator, memo)
+            if isinstance(conjugator, Expr)
+            else evaluate_permutation_word(conjugator)
+        )
+        result = compose_permutations(
+            compose_permutations(
+                conjugator_value,
+                expression_permutation(item.args[1], memo),
+            ),
+            invert_permutation(conjugator_value),
+        )
+    else:
+        raise AssertionError(item.kind)
+
+    memo[key] = result
+    return result
+
+
+def _group_ring_add(left, right):
+    result = dict(left)
+    for group_element, coefficient in right.items():
+        result[group_element] = result.get(group_element, 0) + coefficient
+        if result[group_element] == 0:
+            del result[group_element]
+    return result
+
+
+def finite_quotient_evidence_coordinates(item):
+    memo = {}
+    value_memo = {}
+
+    def visit(node):
+        key = id(node)
+        if key in memo:
+            return memo[key]
+
+        if node.kind == "leaf":
+            name = node.args[0]
+            assert name in ("A", "B")
+            result = (
+                ({A5_IDENTITY: 1}, {})
+                if name == "A"
+                else ({}, {A5_IDENTITY: 1})
+            )
+        elif node.kind == "lit":
+            assert expression_permutation(node, value_memo) == A5_IDENTITY
+            result = ({}, {})
+        elif node.kind == "prod":
+            result = ({}, {})
+            for child in node.args:
+                child_coordinates = visit(child)
+                result = (
+                    _group_ring_add(result[0], child_coordinates[0]),
+                    _group_ring_add(result[1], child_coordinates[1]),
+                )
+        elif node.kind == "inv":
+            child_coordinates = visit(node.args[0])
+            result = tuple(
+                {
+                    group_element: -coefficient
+                    for group_element, coefficient in coordinate.items()
+                }
+                for coordinate in child_coordinates
+            )
+        elif node.kind == "conj":
+            conjugator = node.args[0]
+            conjugator_value = (
+                expression_permutation(conjugator, value_memo)
+                if isinstance(conjugator, Expr)
+                else evaluate_permutation_word(conjugator)
+            )
+            inverse_conjugator = invert_permutation(conjugator_value)
+            child_coordinates = visit(node.args[1])
+            result = tuple(
+                {
+                    compose_permutations(group_element, inverse_conjugator): coefficient
+                    for group_element, coefficient in coordinate.items()
+                }
+                for coordinate in child_coordinates
+            )
+        else:
+            raise AssertionError(node.kind)
+
+        memo[key] = result
+        return result
+
+    return visit(item)
+
+
 @dataclass(frozen=True)
 class Proof:
     left: Expr
@@ -1294,6 +1440,70 @@ def test_mms02_tag_residual_has_a_cyclic_unit_minor():
     )
 
     assert tag_coordinates[1] == {1: 1}
+
+
+def test_mms02_tag_coefficient_delta_is_nonmonomial_in_a5():
+    assert evaluate_permutation_word(A) == A5_IDENTITY
+    assert evaluate_permutation_word(B) == A5_IDENTITY
+
+    generated = {A5_IDENTITY}
+    frontier = [A5_IDENTITY]
+    while frontier:
+        current = frontier.pop()
+        for generator in A5_IMAGES.values():
+            image = compose_permutations(current, generator)
+            if image not in generated:
+                generated.add(image)
+                frontier.append(image)
+    assert len(generated) == 60
+    assert all(
+        sum(
+            value[left] > value[right]
+            for left in range(5)
+            for right in range(left + 1, 5)
+        )
+        % 2
+        == 0
+        for value in generated
+    )
+
+    nested = finite_quotient_evidence_coordinates(
+        conj("x", conj("y", leaf("B")))
+    )[1]
+    expected_nested_label = compose_permutations(
+        invert_permutation(A5_IMAGES["y"]),
+        invert_permutation(A5_IMAGES["x"]),
+    )
+    wrong_nested_label = compose_permutations(
+        invert_permutation(A5_IMAGES["x"]),
+        invert_permutation(A5_IMAGES["y"]),
+    )
+    assert expected_nested_label != wrong_nested_label
+    assert nested == {expected_nested_label: 1}
+
+    data = relation_lift_data()
+    tag_coordinates = finite_quotient_evidence_coordinates(
+        data["h_b_eq_v"].evidence
+    )
+    cyclic_coordinates = cyclic_evidence_coordinates(
+        data["h_b_eq_v"].evidence
+    )
+    delta = tag_coordinates[1]
+    payload = ";".join(
+        f"{''.join(map(str, group_element))}:{delta[group_element]}"
+        for group_element in sorted(delta)
+    )
+
+    assert tuple(sum(coordinate.values()) for coordinate in tag_coordinates) == tuple(
+        sum(coordinate.values()) for coordinate in cyclic_coordinates
+    ) == (2, 1)
+    assert len(delta) == 7
+    assert sum(abs(coefficient) for coefficient in delta.values()) == 7
+    assert delta[A5_IDENTITY] == 1
+    assert delta[(1, 3, 4, 2, 0)] == -1
+    assert sha256(payload.encode()).hexdigest() == (
+        "d02e2d270444a6943c1a3fb90232841b7baced497fd434bcea83c839cd904fc8"
+    )
 
 
 def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():

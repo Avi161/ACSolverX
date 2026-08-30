@@ -304,6 +304,14 @@ Thus this one cleanup cannot finish by a simultaneous ambient basis
 transport.  It is not forced on an arbitrary path, and other both-row
 continuations remain open.
 
+Section 6.48 decides the remaining single-coordinate unit shortcut from
+Section 6.39.  The actual base group is locally indicable, so its integral
+group ring has only trivial units.  In one exact $A_5$ quotient, the image of
+the coefficient $\delta$ has seven nonzero coefficients.  Hence
+$\delta$ is not a unit.  This closes only that sufficient shortcut: the
+two-coordinate left ideal, its rank-one syzygy, affine realization, and the
+Peiffer/free-group bridge remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4770,10 +4778,11 @@ single-coordinate unit shortcut and the cyclic-base collapse are impossible.
 
 This theorem does not prove that $\delta$ is a unit, that the general
 unimodular syzygy $P_{\beta,\delta}$ is free, or that the affine matrix moves
-lift to the tagged tuple.  It introduces no coordinate census: the next
-coefficient-specific target is the one named element $\delta$, while the
-curvature, affine realization, Peiffer/free-group lift, unrestricted bridge,
-stable AK(3), and ordinary AK(3) remain separate open gates.
+lift to the tagged tuple.  It introduces no coordinate census.  Section 6.48
+below decides the named $\delta$-unit shortcut negatively; that later result
+does not decide the two-coordinate left ideal or syzygy.  The curvature,
+affine realization, Peiffer/free-group lift, unrestricted bridge, stable
+AK(3), and ordinary AK(3) remain separate open gates.
 
 ### 6.40. The path gauge has no projective gate
 
@@ -5739,6 +5748,81 @@ rank-two gate (293), pair orbit (271), the unrestricted bridge, stable
 AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
 open.
 
+### 6.48. The tag coefficient is not a unit
+
+Return to the coefficient $\delta\in S=\mathbb ZG_-$ defined in (250).
+The non-power conclusion in (215) makes $G_-$ a torsion-free one-relator
+group.  Brodskii's local-indicability theorem therefore applies; see
+J. Howie, ``A short proof of a theorem of Brodskii,'' *Publ. Mat.* 44
+(2000), 613--647.  Higman's theorem then says that every unit of
+$\mathbb ZG_-$ is trivial, hence has the form $\pm g$ for $g\in G_-$; see
+G. Higman, ``The units of group-rings,'' *Proc. London Math. Soc.* (2) 46
+(1940), 231--248.
+
+There is a small exact quotient which tests whether $\delta$ is a monomial.
+In one-line notation on $\{0,1,2,3,4\}$, put
+
+\[
+ \begin{aligned}
+ \rho(x)&=(0,1,3,4,2),&
+ \rho(y)&=(0,2,3,1,4),&
+ \rho(z)&=(2,0,1,3,4).
+ \end{aligned}
+\tag{310}
+\]
+
+Direct permutation multiplication gives
+
+\[
+ \rho(A)=\rho(B)=1,
+ \qquad
+ \left|\langle\rho(x),\rho(y),\rho(z)\rangle\right|=60.
+\tag{311}
+\]
+
+Thus $\rho$ induces an epimorphism $G_-\twoheadrightarrow A_5$ and a group-
+ring map $\rho_*:\mathbb ZG_-\to\mathbb ZA_5$.  Evaluate the exact relation-
+lift evidence for $[H_Bv^{-1}]$ using the left action
+$g[r]=[g^{-1}rg]$.  After aggregating equal permutations, its second
+coordinate satisfies
+
+\[
+ \begin{aligned}
+ \left|\operatorname{supp}\rho_*(\delta)\right|&=7,&
+ \sum_{h\in A_5}\left|[h]\rho_*(\delta)\right|&=7,&
+ \varepsilon\rho_*(\delta)&=1,\\
+ [1]\rho_*(\delta)&=1,&
+ [(1,3,4,2,0)]\rho_*(\delta)&=-1.
+ \end{aligned}
+\tag{312}
+\]
+
+The focused relation-lift checker verifies (310)--(311), evaluates the
+complete proof DAG before coefficient aggregation, pins all seven
+coefficients by SHA-256, and checks both displayed coefficients and the
+three aggregate statistics in (312).
+
+**Theorem 6.41 (single-coordinate unit boundary).**  The coefficient
+$\delta$ in (250) is not a unit of $S=\mathbb ZG_-$.  Consequently neither
+of the two single-coordinate unit shortcuts in (256)--(257) applies.
+
+**Proof.**  Local indicability and Higman's theorem show that a unit
+$\delta$ would equal $\pm g$ for some $g\in G_-$.  Its image under $\rho_*$
+would then be the single monomial $\pm\rho(g)$.  Equation (312) has at least
+the two distinct nonzero coefficients at $1$ and $(1,3,4,2,0)$, a
+contradiction.
+$\square$
+
+The support computation alone is not being used as a unit test inside
+$\mathbb ZA_5$, whose finite-group ring can have nontrivial units.  It is
+used only after the trivial-unit theorem in the source ring.  Nonunit
+$\beta,\delta$ do not imply $S\beta+S\delta\ne S$, do not decide whether
+$P_{\beta,\delta}$ or $Q$ is free, and do not evaluate the curvature class.
+The two-coordinate module gate, affine tagged realization,
+Peiffer/crossed-module/free-group lift, pair orbit (271), unrestricted
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5844,8 +5928,9 @@ The logical gates remain separate:
     imply rank-one cancellation, as the Berridge--Dunwoody trefoil modules
     show; this can-fail control does not decide the specific $Q$;
 30. the specific kernel is the two-coordinate syzygy
-    $P_{\beta,\delta}$; $\beta$ is not a unit and $G_-$ is not cyclic, while
-    the sufficient unit statement $\delta\in S^\times$ remains unproved;
+    $P_{\beta,\delta}$; $\beta$ is not a unit, and local indicability plus
+    the seven-term $A_5$ image proves that $\delta$ is not a unit either;
+    the two-coordinate left ideal and syzygy freeness remain open;
 31. in the path-induced target gauge the residual kernel is explicitly free,
     so canonical $Q$ is not a gauge-independent quotient-path obstruction
     and no stable-AK(3) necessity follows outside the canonical matrix ansatz;
@@ -5915,9 +6000,10 @@ asphericity, torsion-free, and Whitehead properties but admits nonfree stably
 free rank-one modules.  The specific $Q$ still requires a group- or
 coefficient-specific argument.  Theorem 6.32 makes that coefficient target
 exact: $Q\cong P_{\beta,\delta}$, the $\beta$-unit shortcut is impossible,
-and a proof that $\delta$ is a unit would close both module generation and
-rank-one cancellation.  The actual base is noncyclic, so its cyclic shadow
-cannot supply that proof.  Theorem 6.33 then fixes the scope of this gate:
+and $\delta$ being a unit would close both module generation and rank-one
+cancellation.  The actual base is noncyclic, so its cyclic shadow cannot
+decide that condition; Theorem 6.41 below decides it negatively by a
+nonmonomial $A_5$ image.  Theorem 6.33 fixes the scope of this gate:
 using the path endpoint itself as target lift gives coefficient matrix
 $J_PB_0$, explicit free kernel, and tame completion.  Thus canonical $Q$ is
 not established as a necessary stable-AK(3) obstruction; the genuine
@@ -5949,4 +6035,8 @@ pair floors $5\ne10$ and $17\ne19$ exclude finishing those cleaned endpoints
 by one simultaneous ambient basis automorphism.  This freezes only that
 clean-then-transport route.  Other row multiplications and intermediate
 relators, the full rank-two gate, the bridge, stable AK(3), and ordinary
-AK(3) remain open.
+AK(3) remain open.  Finally, Theorem 6.41 uses local indicability and
+Higman's trivial-unit theorem together with a seven-term $A_5$ image to
+prove $\delta\notin S^\times$.  This closes the second single-coordinate
+unit shortcut, not the two-coordinate left ideal, the syzygy, the affine or
+Peiffer lift, the bridge, stable AK(3), or ordinary AK(3).
