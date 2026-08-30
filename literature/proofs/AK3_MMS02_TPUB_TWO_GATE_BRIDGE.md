@@ -5116,6 +5116,86 @@ relator collapse of the terminal path-gauge lane.  Together with Theorem
 no pair search, representation census, or further module tower is opened.
 The unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.
 
+### 6.43. The exact length-25 representative is nonthickenable
+
+Appendix F of Shehper et al., arXiv:2408.15332v2, records the following
+two-relator presentation, using capitals for inverse letters:
+
+\[
+ P_{25}=\langle x,y\mid
+ \mathtt{XYxYXyxYYxyXy},
+ \mathtt{YXyyXYxyxYYx}\rangle.
+ \tag{277}
+\]
+
+The word lengths are $13$ and $12$.  The same appendix gives an explicit
+AC path from (277) to AK(3).  That path identifies the context of (277), but
+it is not used to transport the Neuwirth decision below.
+
+Apply the exact occurrence dictionary of `AK3_NEUWIRTH.md` without free or
+cyclic reduction.  An independent corner count gives the five nonempty
+parallel classes
+
+\[
+\begin{array}{c|ccccc}
+\{u,v\}&\{x^+,y^+\}&\{x^+,y^-\}&\{x^-,y^+\}
+&\{x^-,y^-\}&\{y^+,y^-\}\\ \hline
+m_{uv}&7&4&4&7&3.
+\end{array}
+\tag{278}
+\]
+
+Thus the simple support is connected, loopless, and isomorphic to $K_4-e$,
+with the $x^+x^-$ edge missing.  The two poles are $y^+,y^-$ and their
+central class has multiplicity three.  The complete classification in
+Theorem 5.2 of `AK3_SYNCHRONIZED_PLANARITY.md` therefore gives exactly the
+four central cuts $i=0,1,2,3$.  The germ degrees are
+
+\[
+ (n_{x^+},n_{x^-},n_{y^+},n_{y^-})=(11,11,14,14).
+\tag{279}
+\]
+
+For each cut, the signed-rank solver exhausts all $11\cdot14$ phase pairs.
+The two relator cycles contribute fourteen seed ranks per phase pair.  The
+complete finite budget is consequently
+
+\[
+ 4\text{ schemes},\qquad
+ 616\text{ scheme--phase pairs},\qquad
+ 8624\text{ component seeds}.
+\tag{280}
+\]
+
+Every budget is met exactly.  No seed gives even one closed component
+assignment, so there is no component combination to test and no compatible
+spherical rotation.  The support, multiplicities, four cuts, slot
+partitions, budgets, and negative result are pinned by
+`mms02_len25_neuwirth_certificate.py` and its focused independent-corner
+test.
+
+**Theorem 6.36 (length-25 Neuwirth closure).**  The exact word-realized
+presentation complex of $P_{25}$ has positive Neuwirth genus and is not
+thickenable.
+
+**Proof.**  The connected-link equivalence in Theorem 2 of
+`AK3_NEUWIRTH.md` identifies orientable thickenability with a compatible
+spherical rotation, which the exhaustive decision above excludes.  The
+Appendix F AC path preserves the presented group, and AK(3) presents the
+trivial group.  Thus $\pi_1(K_{P_{25}})=1$.  If a PL thickening existed, its
+regular neighbourhood would retract to $K_{P_{25}}$ and would also have
+trivial fundamental group.  Such a neighbourhood cannot be nonorientable:
+the orientation character of a connected nonorientable 3-manifold is a
+nontrivial homomorphism to $\mathbb Z/2$.  Hence no PL thickening exists.
+$\square$
+
+This result closes only the direct thickenability route through the exact
+representative (277).  Neuwirth genus and thickenability are not AC
+invariants in this argument, so the Appendix F path from (277) to AK(3) does
+not transport the negative decision.  The unrestricted $T_{\rm pub}$
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5235,9 +5315,12 @@ The logical gates remain separate:
 33. the relator $A$ is nonprimitive and $F/\operatorname{Ncl}(A)$ is not
     free of rank two, so the terminal pair gate has no primitive-deletion
     collapse; the pair orbit itself remains open;
-34. no MMS02 statement evaluates the period-two class-two ledger or its
+34. the exact length-25 representative (277) is nonthickenable, but this
+    exact-complex negative does not transport along its AC path to AK(3) and
+    is not an AK(3) obstruction;
+35. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-35. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+36. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5290,4 +5373,6 @@ $F/\operatorname{Ncl}(A)$.  This is a sufficient terminal gate only and is
 frozen without a new invariant or correction ledger.  Theorem 6.35 closes
 its primitive-deletion shortcut: $A$ has complete Whitehead minimum eight,
 so the ambient one-relator group is not free of rank two.  The pair orbit is
-still not decided.
+still not decided.  Theorem 6.36 independently closes the exact length-25
+representative's direct thickenability route.  That negative is confined to
+its word-realized complex and does not transport to AK(3).

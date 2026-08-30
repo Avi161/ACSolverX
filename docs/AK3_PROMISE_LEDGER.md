@@ -237,6 +237,14 @@ finite quotient do not close a route.
   compatible spherical rotation. Hence this one word-realized presentation
   complex is not thickenable. This is not AC-invariant and does not obstruct
   an AC-equivalent thickenable representative, the bridge, or stable AK(3).
+- **Direct length-25 thickenability route closed:** the exact Appendix F pair
+  `XYxYXyxYYxyXy|YXyyXYxyxYYx` has connected loopless `K4-e` support with
+  central multiplicity three.  The complete four-cut signed-rank decision
+  exhausts 616 scheme--phase pairs and 8,624 component seeds, with no closed
+  component assignment.  Hence this exact word complex is nonthickenable.
+  Although Appendix F connects the pair to AK(3) by AC moves, thickenability
+  is not transported along that path.  This closes only this representative;
+  it does not obstruct AK(3), prove the bridge, or change stable-AK(3) status.
 - **Pinned-seam donor class frozen:** among the twelve products obtained by
   multiplying displayed $A$ or $B$ by a cyclic shift of $v^{\pm1}$, exactly
   four shorten at a cyclic seam. Complete spherical-scheme and signed-rank
