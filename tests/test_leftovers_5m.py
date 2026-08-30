@@ -1650,3 +1650,82 @@ def test_the_completion_beacon_is_heredoc_safe(tmp_path):
                 UNIT_FILE=os.path.join(out, "absent.service"))
     assert "FAIL -- no spliced command output" not in v.stdout
     assert "FAIL -- no backticks" not in v.stdout
+
+
+# ------------------------------------------- live relator-length reduction
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_engine_reports_live_reduction_to_any_callback_shape():
+    """progress gets (nodes, best_total, widest_total); older one- and
+    two-arg callbacks keep working via the TypeError cascade. The values are
+    the kernel's own running stats, so the hot loop pays nothing."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    seen3, seen1 = [], []
+
+    def cb3(n, m, e):
+        seen3.append((n, m, e))
+
+    def cb1(n):
+        seen1.append(n)
+
+    st = greedy_search_hcompact("YYXYYXXXyX", "YYXYXXXYYXXXX", 4_000,
+                                max_relator_length=64, progress=cb3)
+    assert seen3, "3-arg callback never invoked"
+    n, m, e = seen3[-1]
+    assert m == st["min_relator_length"] or m >= st["min_relator_length"]
+    assert e <= st["max_relator_length_expanded"]
+    assert all(isinstance(v, int) for v in (n, m, e))
+
+    st1 = greedy_search_hcompact("YYXYYXXXyX", "YYXYXXXYYXXXX", 4_000,
+                                 max_relator_length=64, progress=cb1)
+    assert seen1, "legacy 1-arg callback broken by the cascade"
+    assert st1["min_relator_length"] == st["min_relator_length"]
+
+
+def test_the_heartbeat_line_shows_the_reduction_and_stays_parseable():
+    """New fields append AFTER the old shape so existing parsers keep
+    working; totals convention (len(r1)+len(r2)) matches the jsonl."""
+    from experiments.search.run_leftovers_1m import _in_search_heartbeat
+    lines = []
+    hb = _in_search_heartbeat("aca_7", 10_000_000, every=0.0,
+                              log=lines.append, init_total=25)
+    hb(1_000_000, 8, 31)
+    assert "aca_7: 1,000,000/10,000,000 nodes (10.0%)" in lines[-1]
+    assert "| L 25->8 best, 31 widest" in lines[-1]
+
+    hb(2_000_000)                       # engines that send nodes only
+    assert "| L" not in lines[-1]
+
+    bare = _in_search_heartbeat("aca_8", 10_000_000, every=0.0,
+                                log=lines.append)
+    bare(500_000, 6, 20)                # no init known: absolute best only
+    assert "| L 6 best" in lines[-1]
+
+
+def test_finished_rows_carry_the_best_pair_itself(monkeypatch):
+    """min_relator_length says how short; min_relator says WHAT -- for an
+    unsolved row the pair at its best point is the result."""
+    import experiments.search.run_leftovers_5m as r5
+
+    def stub_run(r1, r2, budget, mrl, progress=None, reserve_states=None,
+                 track_path=False):
+        return {"solved": False, "nodes_explored": 9, "path_length": None,
+                "min_relator_length": 11, "min_relator": ["XYXy", "YXXCUT"],
+                "max_relator_length_expanded": 30,
+                "max_relator_expanded": ["LONG1", "LONG2"],
+                "path": [], "path_moves": []}
+
+    monkeypatch.setattr(r5, "resolve_arm",
+                        lambda a: (a, {"run": stub_run, "label": "stub"}))
+
+    class Q:
+        msgs = []
+        def put(self, m):
+            self.msgs.append(m)
+
+    q = Q()
+    r5._child_run_row(q, "s20_mk2", {"name": "aca_9", "r1": "XY", "r2": "YX"},
+                      1000, 64, 60, None, None)
+    kind, rec = q.msgs[-1]
+    assert kind == "done"
+    assert rec["min_relator"] == ["XYXy", "YXXCUT"]
+    assert rec["max_relator_expanded"] == ["LONG1", "LONG2"]

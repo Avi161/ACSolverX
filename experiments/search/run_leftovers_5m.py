@@ -405,7 +405,8 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
     try:
         _, spec = resolve_arm(arm)
         hb = _in_search_heartbeat(row["name"], budget, heartbeat_secs,
-                                  log=lambda m: q.put(("log", m)))
+                                  log=lambda m: q.put(("log", m)),
+                                  init_total=len(row["r1"]) + len(row["r2"]))
         t = time.time()
         st = spec["run"](row["r1"], row["r2"], budget, mrl, progress=hb,
                          reserve_states=reserve_states, track_path=TRACK_PATH)
@@ -416,7 +417,11 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "nodes_explored": int(st["nodes_explored"]),
             "path_length": st["path_length"],
             "min_relator_length": st["min_relator_length"],
+            # the actual presentation at the best point, not just its length:
+            # for an unsolved row, HOW FAR the pair got is the result
+            "min_relator": st.get("min_relator"),
             "max_relator_length_expanded": st["max_relator_length_expanded"],
+            "max_relator_expanded": st.get("max_relator_expanded"),
             "path": st.get("path", []),
             "path_moves": st.get("path_moves", []),
             "seconds": round(time.time() - t, 3),

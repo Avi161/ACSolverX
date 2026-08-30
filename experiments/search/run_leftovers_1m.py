@@ -516,7 +516,7 @@ def resolve_workers(arm, n_workers="auto", available_gb=None, cpu_count=None,
 
 
 # ------------------------------------------------------------------------- run
-def _in_search_heartbeat(name, budget, every=60.0, log=print):
+def _in_search_heartbeat(name, budget, every=60.0, log=print, init_total=None):
     """A ``progress`` callback that reports from INSIDE one row's search.
 
     Without this the run is silent for the length of a whole row -- 25 to 80
@@ -531,7 +531,7 @@ def _in_search_heartbeat(name, budget, every=60.0, log=print):
     """
     state = {"t0": time.time(), "last": time.time()}
 
-    def progress(n):
+    def progress(n, min_total=None, exp_total=None):
         now = time.time()
         if now - state["last"] < every:
             return
@@ -539,8 +539,20 @@ def _in_search_heartbeat(name, budget, every=60.0, log=print):
         elapsed = now - state["t0"]
         rate = n / elapsed if elapsed > 0 else 0.0
         eta = (budget - n) / rate if rate > 0 else float("inf")
+        # Relator-length reduction is the science signal a three-hour row
+        # emits while still running: "L 25->8" says the search is getting
+        # somewhere; a flat best on a deep row says it is not. Appended
+        # AFTER the existing fields so every parser of the old line shape
+        # keeps working. Lengths are TOTALS (len(r1)+len(r2)), matching
+        # min_relator_length / max_relator_length_expanded in the jsonl.
+        tail = ""
+        if min_total is not None:
+            frm = f"{init_total}->" if init_total is not None else ""
+            tail = f" | L {frm}{min_total} best"
+            if exp_total is not None:
+                tail += f", {exp_total} widest"
         log(f"      {name}: {n:,}/{budget:,} nodes ({100.0 * n / budget:.1f}%) "
-            f"{rate:,.0f} n/s, ~{eta / 60:.0f} min left on this row")
+            f"{rate:,.0f} n/s, ~{eta / 60:.0f} min left on this row{tail}")
     return progress
 
 

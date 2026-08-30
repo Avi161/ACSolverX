@@ -611,9 +611,16 @@ class HCompactSolver:
                 # Optional 2nd arg = current min pair-total (st[5]). One-arg
                 # callbacks stay valid via TypeError fallback.
                 try:
-                    progress(int(st[0]), int(st[5]))
+                    # nodes, best (minimum) total relator length so far, max
+                    # total expanded so far -- st[5]/st[9] are maintained by
+                    # the kernel for the final record anyway, so live
+                    # reduction reporting costs the hot loop nothing.
+                    progress(int(st[0]), int(st[5]), int(st[9]))
                 except TypeError:
-                    progress(int(st[0]))
+                    try:
+                        progress(int(st[0]), int(st[5]))
+                    except TypeError:
+                        progress(int(st[0]))
                 next_tick = (int(st[0]) // _HB_CHECK_EVERY + 1) * _HB_CHECK_EVERY
 
             if status == _SOLVED:
