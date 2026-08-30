@@ -467,15 +467,18 @@ This supplies the exact Britton interface for (413), but does not decide it.
 Section 6.65 removes the remaining mapping-torus notation from that
 interface.  Writing \(U=(A_U,1)\), \(V=(A_V,1)\), the two equations (413)
 are equivalent to two displayed equations in the free group \(H=F_4\), with
-five free-group variables and two integer shifts; the apparent shift in the
-final height-one conjugator is removed by its centralizer.  This is a literal
-free-group exponential system; its solution set has not been evaluated.
+five free-group variables and no integer shifts.  The three apparent
+conjugator heights are removed by changing the associated commutator
+variables simultaneously and, for the final conjugator, multiplying by a
+power of the height-one word it centralizes.  This is a finite
+automorphism-twisted free-group system; its solution set has not been
+evaluated.
 
 Section 6.66 evaluates the first possible shadow of that system and proves it
 is vacuous.  On \(H^{\rm ab}=\mathbb Z^4\), the monodromy matrix satisfies
 \(\det(M-I)=1\).  Consequently both abelianized equations have integral
-solutions for every choice of the two integer shifts.  Any obstruction to
-(426) must therefore be genuinely nonabelian in the free base.
+solutions for every free choice of \(\bar q\).  Any obstruction to (426)
+must therefore be genuinely nonabelian in the free base.
 
 Section 6.67 checks the next nilpotent layer without opening a new ledger.
 The literal class-two computation from Section 6.58 already conjugates
@@ -7944,33 +7947,69 @@ these normalized elements as \(p,q\in H\).  Formula (421) gives
 \tag{422}
 \]
 
-Two base elements \(c,d\in H\) are conjugate in the mapping torus exactly
-when
+The remaining conjugator heights can be removed simultaneously with changes
+of \(p,q\).  Choose \(c,h\in G_-\) so that
 
 \[
- c=a\phi^m(d)a^{-1}
+ C_p={}^cC_q',
+ \qquad
+ V\sim U\,{}^hC_p,
 \]
 
-for some \(a\in H\) and \(m\in\mathbb Z\).  This follows immediately by
-conjugating \((d,0)\) with \((a,m)\) using (421).  Hence the second equation
-of (413) is exactly
+and put
 
 \[
- C_p=a\phi^m(C_q')a^{-1}.
+ m=\operatorname{ht}(c),\qquad
+ r=\operatorname{ht}(h).
+\]
+
+For every integer \(k\), the universal identities
+
+\[
+ C_{{}^{U^k}p}={}^{U^k}C_p,\qquad
+ C'_{{}^{V^k}q}={}^{V^k}C_q'
+\]
+
+hold.  Set
+
+\[
+ p_0={}^{U^r}p,\qquad h_0=hU^{-r}.
+\]
+
+Then \(p_0\in H\), \(\operatorname{ht}(h_0)=0\), and
+
+\[
+ {}^{h_0}C_{p_0}={}^hC_p.
+\]
+
+Thus the endpoint product is unchanged.  Next put
+
+\[
+ c_1=U^rc,\qquad k=r+m,\qquad
+ q_0={}^{V^k}q,\qquad c_0=c_1V^{-k}.
+\]
+
+Now \(q_0\in H\), \(\operatorname{ht}(c_0)=0\), and
+
+\[
+ {}^{c_0}C'_{q_0}
+ ={}^{c_1}C_q'
+ ={}^{U^r}C_p
+ =C_{p_0}.
+\]
+
+After renaming \(p_0,q_0,c_0,h_0\) as \(p,q,a,s\), all four lie in \(H\).
+The commutator-conjugacy equation is exactly
+
+\[
+ C_p=aC_q'a^{-1},
 \tag{423}
 \]
 
-For the first equation of (413), write its conjugator as \(h=(s,r)\), with
-\(s\in H\) and \(r\in\mathbb Z\).  Then
+and the height-one product \(U\,{}^sC_p\) has base coordinate
 
 \[
- {}^hC_p=s\phi^r(C_p)s^{-1}
-\]
-
-and the height-one product \(U\,{}^hC_p\) has base coordinate
-
-\[
- D_0=A_U\phi(s)\phi^{r+1}(C_p)\phi(s)^{-1}.
+ D_0=A_U\phi(s)\phi(C_p)\phi(s)^{-1}.
 \tag{424}
 \]
 
@@ -7982,16 +8021,16 @@ Finally, conjugating \((D_0,1)\) by \((t,n)\) initially gives
 \]
 
 The integer shift in this last conjugator is redundant.  Put
-\(w=(D_0,1)\) and suppose that \(c=(t,n)\) conjugates \(w\) to \(V\).
+\(w=(D_0,1)\) and suppose that \(\eta=(t,n)\) conjugates \(w\) to \(V\).
 Then
 
 \[
- c_0:=cw^{-n}
+ \eta_0:=\eta w^{-n}
 \]
 
 has height zero and still conjugates \(w\) to \(V\), because \(w^{-n}\)
-commutes with \(w\).  Write \(c_0=(t_0,0)\) and rename \(t_0\) as \(t\).
-Thus \(U\,{}^hC_p\sim V\) is exactly
+commutes with \(w\).  Write \(\eta_0=(t_0,0)\) and rename \(t_0\) as \(t\).
+Thus \(U\,{}^sC_p\sim V\) is exactly
 
 \[
  A_V=tD_0\phi(t)^{-1}.
@@ -8002,8 +8041,7 @@ Thus \(U\,{}^hC_p\sim V\) is exactly
 skeleton (410) lifts in \(G_-\) if and only if there exist
 
 \[
- p,q,a,s,t\in F(d_{-2},d_{-1},d_0,d_1),
- \qquad m,r\in\mathbb Z,
+ p,q,a,s,t\in F(d_{-2},d_{-1},d_0,d_1)
 \]
 
 such that (422)--(425) hold.  Equivalently, after substituting (422) and
@@ -8013,10 +8051,10 @@ such that (422)--(425) hold.  Equivalently, after substituting (422) and
 \boxed{
 \begin{aligned}
  A_U\phi(p)A_U^{-1}p^{-1}
- &=a\phi^m\!\left(A_V\phi(q)A_V^{-1}q^{-1}\right)a^{-1},\\
+ &=a\left(A_V\phi(q)A_V^{-1}q^{-1}\right)a^{-1},\\
  A_V
  &=t\left(
- A_U\phi(s)\phi^{r+1}\!\left(A_U\phi(p)A_U^{-1}p^{-1}\right)
+ A_U\phi(s)\phi\!\left(A_U\phi(p)A_U^{-1}p^{-1}\right)
  \phi(s)^{-1}
  \right)\phi(t)^{-1}.
 \end{aligned}}
@@ -8028,13 +8066,15 @@ literal mapping-torus law (421); no Alexander or relation-module solution is
 being promoted.  Conversely, a solution of (426) reconstructs (413), then
 the legal row path (411), so the reduction is an iff.
 
-Equation (426) is a free-group exponential system because \(m,r\) remain
-unbounded.  It has not been solved.  In particular, no bounded word search,
+Equation (426) is now a finite automorphism-twisted system in five free-group
+variables, with no integer shifts.  It has not been solved.  In particular,
+the simultaneous conjugations used above are essential: multiplying \(c\)
+by \(V^{-m}\), or \(h\) by \(U^{-r}\), without changing \(q\), respectively
+\(p\), need not preserve either commutator.  No bounded word search,
 fixed shortest-conjugator failure, or finite quotient can replace evaluation
-of all its integer shifts and free variables.  Other depth-five sign
-patterns, longer terminal paths, the full pair orbit, MMS02 bridge, stable
-AK(3), ordinary AK(3), stable Andrews--Curtis, and Andrews--Curtis remain
-open.
+of all five free variables.  Other depth-five sign patterns, longer terminal
+paths, the full pair orbit, MMS02 bridge, stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ### 6.66. Base abelianization does not constrain the lift system
 
@@ -8080,13 +8120,13 @@ Let bars denote the vectors of the free variables in (426).  The first
 equation abelianizes to
 
 \[
- (M-I)\bar p=M^m(M-I)\bar q.
+ (M-I)\bar p=(M-I)\bar q.
 \]
 
-Since \(M\) commutes with \(M-I\) and (428) is integral, this is exactly
+Since \(M-I\) is invertible over \(\mathbb Z\), this is exactly
 
 \[
- \bar p=M^m\bar q.
+ \bar p=\bar q.
 \tag{430}
 \]
 
@@ -8095,28 +8135,26 @@ complete abelianization is
 
 \[
  \beta=(I-M)\bar t
- +\alpha+M^{r+1}(M-I)\bar p.
+ +\alpha+M(M-I)\bar p.
 \tag{431}
 \]
 
-For arbitrary \(m,r\in\mathbb Z\) and arbitrary \(\bar q\in\mathbb Z^4\),
-choose \(\bar p=M^m\bar q\) using (430), then set
+For arbitrary \(\bar q\in\mathbb Z^4\), choose \(\bar p=\bar q\) using
+(430), then set
 
 \[
  \bar t=(I-M)^{-1}
- \left[
- \beta-\alpha-M^{r+1}(M-I)\bar p
- \right].
+ \left[\beta-\alpha-M(M-I)\bar p\right]
+ =M\bar p+(-2,6,-10,4)^T.
 \tag{432}
 \]
 
-Equation (428) makes (432) integral.  Thus every choice of both integer
-shifts survives the full base-abelianization test.
+Equation (428) makes (432) integral for every \(\bar q\).
 
 **Theorem 6.60 (base-abelianization vacuity).**  Abelianization of the free
-base neither obstructs (426) nor restricts \(m,r\).  More precisely, the
-abelianized system has the solutions (430), (432) for arbitrary shifts and
-arbitrary \(\bar q\).
+base does not obstruct (426).  More precisely, the abelianized system has
+the solutions (430), (432) for arbitrary \(\bar q\), while \(\bar a,\bar s\)
+are unrestricted.
 
 This is a can-fail control, not evidence that (426) has a free-group
 solution.  Equation (428) shows exactly why linear exponent sums cannot see
@@ -8360,7 +8398,7 @@ Thus the universal metabelian quotient is exactly
 
 Abelianizing the free base in (426) is therefore precisely passage to (443).
 The formulas (430), (432) construct a solution there for arbitrary
-\(m,r\), not merely after a further scalar specialization.
+\(\bar q\), not merely after a further scalar specialization.
 
 **Theorem 6.64 (complete metabelian can-fail control).**  The signed
 five-multiplication lift gate (410) is solvable in the universal metabelian
@@ -8948,11 +8986,11 @@ The logical gates remain separate:
     mapping torus (418) and puts both live rows in the length-one forms
     (419)--(420), but does not solve the simultaneous equations (413); and
 55. the signed lift gate is equivalently the two explicit free-group
-    exponential equations (426), with five free variables and two
-    unbounded integer shifts; their solution set remains open; and
+    automorphism-twisted equations (426), with five free variables and no
+    integer shifts; their solution set remains open; and
 56. the monodromy satisfies \(\det(M-I)=1\), so base abelianization solves
-    (426) for every pair of integer shifts and supplies no obstruction;
-    this vacuity does not solve the free-group system; and
+    (426) for every free choice of \(\bar q\) and supplies no obstruction;
+    this vacuity does not solve the twisted free-group system; and
 57. the class-two image of the signed lift system is solvable by taking both
     commutator variables trivial and using (433); the \(A_5\) quotient proves
     that direct conjugacy does not lift to \(G_-\), while nontrivial solutions
@@ -9162,14 +9200,15 @@ group.  The two endpoint conjugacy classes have the pinned length-one forms
 does not decide the simultaneous commutator equations (413).
 Theorem 6.59 applies the mapping-torus multiplication law literally and
 removes the remaining ambient-group notation.  The fixed signed skeleton
-lifts if and only if the two free-group exponential equations (426) have a
-solution in five \(F_4\) variables and two integer shifts.  The apparent
-third shift is removed exactly by multiplying its height-one conjugator by a
-power of the element it conjugates.  This is an exact iff interface, not a
-bounded search or a solution of the equations.
+lifts if and only if the two automorphism-twisted free-group equations (426)
+have a solution in five \(F_4\) variables and no integer shifts.  Two
+conjugator heights are removed by simultaneous power conjugations of
+\(p,q\), while the final height is removed by multiplying its conjugator by
+a power of the element it conjugates.  This is an exact iff interface, not
+a bounded search or a solution of the equations.
 Theorem 6.60 evaluates the complete base-abelianization shadow of that
 interface.  Its monodromy has \(\det(M-I)=1\), and the integral formulas
-(430), (432) solve the linearized system for every pair of integer shifts.
+(430), (432) solve the linearized system for every \(\bar q\in\mathbb Z^4\).
 Thus abelianization is provably vacuous; any obstruction must retain
 noncommutative free-base data.
 Theorem 6.61 then checks class two without another search.  The previously
