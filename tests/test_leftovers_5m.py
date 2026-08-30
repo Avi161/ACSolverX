@@ -1345,3 +1345,36 @@ def test_hugepage_advice_lands_before_any_page_is_touched():
     width_advise = src.index("_advise_hugepages(new_arena)")
     repack = src.index("_repack(self.arena, new_arena")
     assert width_advise < repack
+
+
+# ----------------------------------------------------------- named workers
+@pytest.mark.skipif(not sys.platform.startswith("linux"),
+                    reason="prctl is Linux-only")
+def test_the_worker_process_is_named_after_its_row():
+    """Spawned children carry the parent's argv, so before this the only
+    pid-to-row mapping was rank-pairing RSS readings -- an assumption. The
+    comm field makes it a measurement: ps -o pid,comm,rss binds exactly."""
+    from experiments.search.run_leftovers_5m import _set_worker_name
+    with open("/proc/self/comm") as f:
+        original = f.read().strip()
+    try:
+        _set_worker_name("ac19_28510")
+        with open("/proc/self/comm") as f:
+            assert f.read().strip() == "ac19_28510"
+        _set_worker_name("x" * 40)               # truncates, never fails
+        with open("/proc/self/comm") as f:
+            assert f.read().strip() == "x" * 15
+    finally:
+        _set_worker_name(original)
+
+
+def test_the_worker_is_named_before_anything_that_can_fail():
+    """The name must land before the rlimit guard and the search itself, so
+    a row that dies in either shows up in ps under its own name."""
+    import inspect
+    from experiments.search.run_leftovers_5m import _child_run_row
+    src = inspect.getsource(_child_run_row)
+    named = src.index('_set_worker_name(row["name"])')
+    rlimit = src.index("setrlimit")
+    run = src.index('spec["run"]')
+    assert named < rlimit < run

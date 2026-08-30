@@ -324,9 +324,27 @@ def _peak_rss_gb():
     return None
 
 
+def _set_worker_name(name):
+    """Row name into the kernel's comm field (prctl PR_SET_NAME, 15 bytes).
+
+    A spawned child carries the parent's argv, so ps shows five identical
+    pythons and a per-worker RSS reading can only be paired to its row by
+    rank -- an assumption, not a measurement. With the comm set,
+    ``ps -o pid,comm,rss`` (or ``/proc/<pid>/comm``) binds pid to row
+    exactly. Best-effort and Linux-only; a worker that cannot be named
+    still runs."""
+    try:
+        import ctypes
+        libc = ctypes.CDLL(None, use_errno=True)
+        libc.prctl(15, name.encode()[:15], 0, 0, 0)     # 15 = PR_SET_NAME
+    except Exception:
+        pass
+
+
 def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
                    reserve_states):
     """Runs in a spawned process. Everything that can go wrong is a message."""
+    _set_worker_name(row["name"])     # named first, so even a crash is named
     try:
         if mem_limit_bytes:
             import resource
