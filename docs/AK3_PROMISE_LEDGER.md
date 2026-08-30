@@ -202,7 +202,12 @@ finite quotient do not close a route.
   `1` at the identity and `-1` at `(1,3,4,2,0)`; therefore `delta` is
   not a unit either.  This closes both single-coordinate unit shortcuts, not
   the two-coordinate condition `S beta + S delta = S`, freeness of `Q`, or
-  either affine/Peiffer lift.
+  either affine/Peiffer lift.  The same quotient is provably blind to that
+  two-coordinate condition: the exact substitution chain rule computes the
+  image of `beta`, and five `60 x 60` left-translate minors have gcd one, so
+  the images of `beta,delta` generate all of `Z[A5]`.  Freeze this finite-
+  quotient coefficient route; quotient generation does not lift to the
+  source ring.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one

@@ -312,6 +312,14 @@ $\delta$ is not a unit.  This closes only that sufficient shortcut: the
 two-coordinate left ideal, its rank-one syzygy, affine realization, and the
 Peiffer/free-group bridge remain open.
 
+Section 6.49 supplies the corresponding can-fail control.  The exact
+noncommutative substitution chain rule gives the other coefficient $\beta$
+in the same $A_5$ quotient.  Five explicit maximal minors of the left-
+translate matrix have gcd one, so the images of $\beta,\delta$ generate the
+whole integral $A_5$ group ring despite both source coefficients being
+nonunits.  Thus this finite quotient cannot obstruct the two-coordinate
+source ideal; it does not prove that ideal is the whole source ring.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5823,6 +5831,94 @@ Peiffer/crossed-module/free-group lift, pair orbit (271), unrestricted
 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.49. The same finite quotient does not obstruct the two-coordinate ideal
+
+The $A_5$ quotient in (310) separates $\delta$ from the trivial units of the
+source ring, but it does not obstruct the full left ideal in (253).  Put
+
+\[
+ \overline\beta=\rho_*(\beta),
+ \qquad
+ \overline\delta=\rho_*(\delta)
+ \quad\text{in }\mathbb ZA_5.
+\]
+
+The coefficient $\overline\beta$ cannot be obtained by applying the ordinary
+evidence recursion directly to the substituted endpoint row.  Replaying the
+exact chain rule used in the cyclic calculation gives
+
+\[
+ \left|\operatorname{supp}\overline\beta\right|=60,
+ \qquad
+ \sum_{h\in A_5}|[h]\overline\beta|=36639,
+ \qquad
+ \varepsilon\overline\beta=1.
+\tag{313}
+\]
+
+For the left action convention, a product-child derivative is transported by
+right multiplication of its coefficient labels by the inverse preceding
+prefix.  An inverse contributes the negative derivative transported on the
+right by the child value, and fixed conjugation transports labels on the
+right by the inverse conjugator.  The focused checker pins these three rules
+with separate noncommuting controls and compares their total augmentations
+with the independent cyclic evaluator.
+
+Order the sixty elements of $A_5$ lexicographically in one-line notation and
+form the integral map
+
+\[
+ \begin{aligned}
+ \mu_\rho:(\mathbb ZA_5)^2&\longrightarrow\mathbb ZA_5,\\
+ (r,s)&\longmapsto r\overline\beta+s\overline\delta.
+ \end{aligned}
+\tag{314}
+\]
+
+Its $60$ by $120$ integer matrix $M_\rho$ has as columns all left translates
+of $\overline\beta$ followed by all left translates of
+$\overline\delta$.  Deterministic row elimination modulo
+$p=2,3,5,7,13$ chooses five full-rank sets of sixty columns.  Exact Bareiss
+evaluation of the corresponding maximal minors $D_p$ gives
+
+\[
+ \begin{aligned}
+ (\operatorname{bitlen}D_2,\operatorname{bitlen}D_3,
+  \operatorname{bitlen}D_5,\operatorname{bitlen}D_7,
+  \operatorname{bitlen}D_{13})&=(442,454,432,441,439),\\
+ (D_2\bmod2,D_3\bmod3,D_5\bmod5,D_7\bmod7,D_{13}\bmod13)
+  &=(1,2,4,5,5),\\
+ \gcd(D_2,D_3,D_5,D_7,D_{13})&=1.
+ \end{aligned}
+\tag{315}
+\]
+
+The checker hashes the complete coefficient table, $M_\rho$, all five column
+sets, and the five exact determinants before checking (313)--(315).
+
+**Theorem 6.42 ($A_5$ two-coordinate can-fail control).**  The images of the
+two canonical coefficients generate the complete finite-quotient group ring:
+
+\[
+ \boxed{
+ \mathbb ZA_5\,\overline\beta+
+ \mathbb ZA_5\,\overline\delta=\mathbb ZA_5.}
+\tag{316}
+\]
+
+**Proof.**  The gcd of all maximal minors of an integer matrix is the product
+of its Smith invariant factors.  The gcd of the five displayed maximal
+minors is already one, so the cokernel of $M_\rho$ is zero.  This is exactly
+surjectivity of (314), hence (316). $\square$
+
+Equation (316) is a quotient can-fail result, not a lifting theorem.  It does
+not imply $S\beta+S\delta=S$: a proper source left ideal may become the whole
+ring after quotienting.  It also does not decide $P_{\beta,\delta}$ or $Q$,
+fill the curvature, realize an affine tagged move, or supply a
+Peiffer/free-group path.  The $A_5$ coefficient route is frozen here.  The
+unrestricted bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis,
+and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5930,7 +6026,8 @@ The logical gates remain separate:
 30. the specific kernel is the two-coordinate syzygy
     $P_{\beta,\delta}$; $\beta$ is not a unit, and local indicability plus
     the seven-term $A_5$ image proves that $\delta$ is not a unit either;
-    the two-coordinate left ideal and syzygy freeness remain open;
+    nevertheless their $A_5$ images generate $\mathbb ZA_5$, so this quotient
+    cannot obstruct the still-open source left ideal or syzygy freeness;
 31. in the path-induced target gauge the residual kernel is explicitly free,
     so canonical $Q$ is not a gauge-independent quotient-path obstruction
     and no stable-AK(3) necessity follows outside the canonical matrix ansatz;
@@ -6039,4 +6136,9 @@ AK(3) remain open.  Finally, Theorem 6.41 uses local indicability and
 Higman's trivial-unit theorem together with a seven-term $A_5$ image to
 prove $\delta\notin S^\times$.  This closes the second single-coordinate
 unit shortcut, not the two-coordinate left ideal, the syzygy, the affine or
-Peiffer lift, the bridge, stable AK(3), or ordinary AK(3).
+Peiffer lift, the bridge, stable AK(3), or ordinary AK(3).  Theorem 6.42
+then gives the exact can-fail control: five maximal minors with gcd one prove
+that the images of $\beta,\delta$ generate $\mathbb ZA_5$.  Thus this finite
+quotient cannot obstruct the source two-coordinate ideal; no lifting back to
+$\mathbb ZG_-$, module cancellation, Peiffer bridge, stable AK(3), or
+ordinary AK(3) is claimed.

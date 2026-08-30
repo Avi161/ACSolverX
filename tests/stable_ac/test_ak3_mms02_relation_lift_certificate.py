@@ -604,6 +604,24 @@ def _group_ring_add(left, right):
     return result
 
 
+def _finite_coordinate_add(left, right):
+    return (
+        _group_ring_add(left[0], right[0]),
+        _group_ring_add(left[1], right[1]),
+    )
+
+
+def _finite_coordinate_right_multiply(coordinate, group_element, scalar=1):
+    return tuple(
+        {
+            compose_permutations(label, group_element): scalar * coefficient
+            for label, coefficient in component.items()
+            if scalar * coefficient
+        }
+        for component in coordinate
+    )
+
+
 def finite_quotient_evidence_coordinates(item):
     memo = {}
     value_memo = {}
@@ -664,6 +682,79 @@ def finite_quotient_evidence_coordinates(item):
         return result
 
     return visit(item)
+
+
+def finite_quotient_substitution_coordinates(item, source, difference_coordinates):
+    memo = {}
+    value_memo = {}
+
+    def visit(node):
+        key = id(node)
+        if key in memo:
+            return memo[key]
+
+        if node.kind == "leaf":
+            result = difference_coordinates if node.args[0] == source else ({}, {})
+        elif node.kind == "lit":
+            result = ({}, {})
+        elif node.kind == "prod":
+            result = ({}, {})
+            prefix = A5_IDENTITY
+            for child in node.args:
+                result = _finite_coordinate_add(
+                    result,
+                    _finite_coordinate_right_multiply(
+                        visit(child),
+                        invert_permutation(prefix),
+                    ),
+                )
+                prefix = compose_permutations(
+                    prefix,
+                    expression_permutation(child, value_memo),
+                )
+        elif node.kind == "inv":
+            child = node.args[0]
+            result = _finite_coordinate_right_multiply(
+                visit(child),
+                expression_permutation(child, value_memo),
+                -1,
+            )
+        elif node.kind == "conj":
+            conjugator = node.args[0]
+            conjugator_value = (
+                expression_permutation(conjugator, value_memo)
+                if isinstance(conjugator, Expr)
+                else evaluate_permutation_word(conjugator)
+            )
+            result = _finite_coordinate_right_multiply(
+                visit(node.args[1]),
+                invert_permutation(conjugator_value),
+            )
+        else:
+            raise AssertionError(node.kind)
+
+        memo[key] = result
+        return result
+
+    return visit(item)
+
+
+def finite_quotient_endpoint_coordinates(data, branch):
+    base_coordinates = finite_quotient_evidence_coordinates(
+        data["k_eq_u_inverse"].evidence
+    )
+    substitution_difference = finite_quotient_evidence_coordinates(
+        data[f"h_{branch}_eq_v"].evidence
+    )
+    substitution_coordinates = finite_quotient_substitution_coordinates(
+        data["k"],
+        "v",
+        substitution_difference,
+    )
+    return _finite_coordinate_right_multiply(
+        _finite_coordinate_add(substitution_coordinates, base_coordinates),
+        invert_permutation(expression_permutation(leaf("u"))),
+    )
 
 
 @dataclass(frozen=True)
@@ -1504,6 +1595,203 @@ def test_mms02_tag_coefficient_delta_is_nonmonomial_in_a5():
     assert sha256(payload.encode()).hexdigest() == (
         "d02e2d270444a6943c1a3fb90232841b7baced497fd434bcea83c839cd904fc8"
     )
+
+
+def test_mms02_a5_image_of_two_coordinate_ideal_is_the_whole_ring():
+    label = A5_IMAGES["y"]
+    difference = ({}, {label: 1})
+    x_inverse = invert_permutation(A5_IMAGES["x"])
+    v_image = expression_permutation(leaf("v"))
+    product_label = compose_permutations(label, x_inverse)
+    inverse_label = compose_permutations(label, v_image)
+    assert product_label != compose_permutations(x_inverse, label)
+    assert inverse_label != compose_permutations(v_image, label)
+    assert finite_quotient_substitution_coordinates(
+        prod(lit("x"), leaf("v")),
+        "v",
+        difference,
+    )[1] == {product_label: 1}
+    assert finite_quotient_substitution_coordinates(
+        inverse(leaf("v")),
+        "v",
+        difference,
+    )[1] == {inverse_label: -1}
+    assert finite_quotient_substitution_coordinates(
+        conj("x", leaf("v")),
+        "v",
+        difference,
+    )[1] == {product_label: 1}
+
+    data = relation_lift_data()
+    endpoint_coordinates = finite_quotient_endpoint_coordinates(data, "b")
+    beta = endpoint_coordinates[1]
+    delta = finite_quotient_evidence_coordinates(
+        data["h_b_eq_v"].evidence
+    )[1]
+
+    cyclic_base = cyclic_evidence_coordinates(
+        data["k_eq_u_inverse"].evidence
+    )
+    cyclic_difference = cyclic_evidence_coordinates(
+        data["h_b_eq_v"].evidence
+    )
+    cyclic_endpoint = _coordinate_shift(
+        _coordinate_add(
+            cyclic_substitution_coordinates(
+                data["k"],
+                "v",
+                cyclic_difference,
+            ),
+            cyclic_base,
+        ),
+        1,
+    )
+    assert tuple(sum(part.values()) for part in endpoint_coordinates) == tuple(
+        sum(part.values()) for part in cyclic_endpoint
+    ) == (0, 1)
+
+    beta_payload = ";".join(
+        f"{''.join(map(str, group_element))}:{beta[group_element]}"
+        for group_element in sorted(beta)
+    )
+    assert len(beta) == 60
+    assert sum(abs(coefficient) for coefficient in beta.values()) == 36639
+    assert sha256(beta_payload.encode()).hexdigest() == (
+        "dfb48d002f9e4c518dbdbc9e51e431470a2a7e07b0d0cca0b6dea87796dee590"
+    )
+
+    group = {A5_IDENTITY}
+    frontier = [A5_IDENTITY]
+    while frontier:
+        current = frontier.pop()
+        for generator in A5_IMAGES.values():
+            image = compose_permutations(current, generator)
+            if image not in group:
+                group.add(image)
+                frontier.append(image)
+    group = tuple(sorted(group))
+    group_index = {value: index for index, value in enumerate(group)}
+
+    columns = []
+    for coefficient in (beta, delta):
+        for left_multiplier in group:
+            column = [0] * len(group)
+            for label, value in coefficient.items():
+                product_label = compose_permutations(left_multiplier, label)
+                column[group_index[product_label]] = value
+            columns.append(column)
+    matrix = [
+        [columns[column][row] for column in range(len(columns))]
+        for row in range(len(group))
+    ]
+    matrix_payload = ";".join(
+        ",".join(map(str, row))
+        for row in matrix
+    )
+    assert sha256(matrix_payload.encode()).hexdigest() == (
+        "bdb9296aac195576f1f54f46d69b64825ef8185f1e529949c39da098c9cbb254"
+    )
+
+    def pivot_columns(prime):
+        reduced = [[value % prime for value in row] for row in matrix]
+        rank = 0
+        pivots = []
+        for column in range(len(columns)):
+            pivot = next(
+                (
+                    row
+                    for row in range(rank, len(group))
+                    if reduced[row][column]
+                ),
+                None,
+            )
+            if pivot is None:
+                continue
+            reduced[rank], reduced[pivot] = reduced[pivot], reduced[rank]
+            pivot_inverse = pow(reduced[rank][column], -1, prime)
+            reduced[rank] = [
+                value * pivot_inverse % prime
+                for value in reduced[rank]
+            ]
+            for row in range(rank + 1, len(group)):
+                if reduced[row][column]:
+                    multiple = reduced[row][column]
+                    reduced[row] = [
+                        (left - multiple * right) % prime
+                        for left, right in zip(
+                            reduced[row],
+                            reduced[rank],
+                            strict=True,
+                        )
+                    ]
+            pivots.append(column)
+            rank += 1
+            if rank == len(group):
+                break
+        return tuple(pivots)
+
+    def bareiss_determinant(selected_columns):
+        square = [
+            [matrix[row][column] for column in selected_columns]
+            for row in range(len(group))
+        ]
+        sign = 1
+        previous_pivot = 1
+        for index in range(len(group) - 1):
+            pivot_row = next(
+                row
+                for row in range(index, len(group))
+                if square[row][index]
+            )
+            if pivot_row != index:
+                square[index], square[pivot_row] = square[pivot_row], square[index]
+                sign = -sign
+            pivot = square[index][index]
+            for row in range(index + 1, len(group)):
+                left_factor = square[row][index]
+                for column in range(index + 1, len(group)):
+                    square[row][column] = (
+                        square[row][column] * pivot
+                        - left_factor * square[index][column]
+                    ) // previous_pivot
+                square[row][index] = 0
+            previous_pivot = pivot
+        return sign * square[-1][-1]
+
+    primes = (2, 3, 5, 7, 13)
+    selected_columns = tuple(pivot_columns(prime) for prime in primes)
+    assert all(len(selected) == 60 for selected in selected_columns)
+    pivots_payload = ";".join(
+        ",".join(map(str, selected))
+        for selected in selected_columns
+    )
+    assert sha256(pivots_payload.encode()).hexdigest() == (
+        "2bf18036d2faebef642b42116d27b356bd2403a0383adadfc8ea0a72377047c6"
+    )
+
+    determinants = tuple(map(bareiss_determinant, selected_columns))
+    determinant_payload = ";".join(map(str, determinants))
+    assert tuple(
+        determinant % prime
+        for determinant, prime in zip(determinants, primes, strict=True)
+    ) == (1, 2, 4, 5, 5)
+    assert tuple(determinant.bit_length() for determinant in determinants) == (
+        442,
+        454,
+        432,
+        441,
+        439,
+    )
+    assert sha256(determinant_payload.encode()).hexdigest() == (
+        "694f1723cad8883de084f18d72e05a4d36dbdb6c5236bf15e357163599bb748d"
+    )
+
+    determinant_gcd = 0
+    gcd_chain = []
+    for determinant in determinants:
+        determinant_gcd = gcd(determinant_gcd, abs(determinant))
+        gcd_chain.append(determinant_gcd)
+    assert tuple(gcd_chain[-3:]) == (91, 13, 1)
 
 
 def test_published_kill_slp_replay_has_nonprimitive_canonical_pivot():
