@@ -488,6 +488,13 @@ a primitive rank-two sublattice, while their conjugates kill all three
 exterior central directions.  Thus the actual class-two quotient contains no
 information beyond the abelianization already evaluated in Section 6.66.
 
+Section 6.69 propagates that collapse through the entire lower central
+tower.  Since \(G_-/\gamma_3\) is abelian, \(\gamma_2=\gamma_3\), and the
+lower central recurrence then gives \(\gamma_k=\gamma_2\) for every
+\(k\ge2\).  Thus every nilpotent quotient of \(G_-\) factors through
+\(\mathbb Z\); the certified nonabelian \(A_5\) quotient shows that the
+nilpotent residual is genuinely nontrivial.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -8192,6 +8199,73 @@ free-group equations (426), other sign patterns, the terminal pair orbit,
 MMS02 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.69. Every nilpotent shadow factors through the cyclic quotient
+
+The class-two collapse (436) determines the whole lower central tower.  Write
+\(\gamma_k=\gamma_k(G_-)\).  Since
+\(G_-/\gamma_3\cong\mathbb Z\) is abelian, its commutator subgroup is
+trivial, and therefore
+
+\[
+ \gamma_2\le\gamma_3.
+\]
+
+The reverse inclusion always holds.  Hence
+
+\[
+ \boxed{\gamma_2=\gamma_3.}
+\tag{437}
+\]
+
+Now use the lower central recurrence.  If \(\gamma_k=\gamma_2\) for some
+\(k\ge2\), then
+
+\[
+ \gamma_{k+1}=[G_-,\gamma_k]
+ =[G_-,\gamma_2]=\gamma_3=\gamma_2.
+\]
+
+Induction gives
+
+\[
+ \boxed{\gamma_k(G_-)=\gamma_2(G_-)\quad(k\ge2).}
+\tag{438}
+\]
+
+Consequently, for every \(c\ge1\),
+
+\[
+ G_-/\gamma_{c+1}(G_-)
+ \cong G_-/\gamma_2(G_-)
+ \cong\mathbb Z.
+\tag{439}
+\]
+
+Equivalently, every homomorphism from \(G_-\) to a nilpotent group factors
+through the abelianization: a class-\(c\) target kills \(\gamma_{c+1}\),
+which equals \(\gamma_2\) by (438).
+
+This collapse is not caused by \(G_-\) being abelian.  The epimorphism
+\(G_-\twoheadrightarrow A_5\) in (310)--(311) has nonabelian image, so
+\(\gamma_2(G_-)\ne1\).  In fact
+
+\[
+ \bigcap_{k\ge1}\gamma_k(G_-)=\gamma_2(G_-)\ne1.
+\tag{440}
+\]
+
+**Theorem 6.63 (complete nilpotent-shadow collapse).**  Every nilpotent
+quotient of \(G_-\) factors through \(G_-^{\rm ab}\cong\mathbb Z\).  The
+lower central series stabilizes at the nontrivial subgroup \(\gamma_2(G_-)\).
+
+Thus no class-three, higher-nilpotent, or pronilpotent calculation can
+obstruct or solve the lift system beyond the vacuous equations of Section
+6.66.  This does not make the kernel invisible to nonnilpotent quotients, as
+the \(A_5\) certificate demonstrates, and it gives no free-group solution of
+(426).  The next useful layer must retain nonnilpotent information.  Other
+sign patterns, the terminal pair orbit, MMS02 bridge, stable AK(3), ordinary
+AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -8396,9 +8470,12 @@ The logical gates remain separate:
     that direct conjugacy does not lift to \(G_-\), while nontrivial solutions
     of (413) remain open; and
 58. in fact \(G_-/\gamma_3(G_-)\cong\mathbb Z\), so every class-two shadow
-    factors through abelianization; class three and the literal lift remain
-    separate open gates; and
-59. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    factors through abelianization; this does not itself supply a literal
+    lift; and
+59. the lower central series stabilizes at the nontrivial subgroup
+    \(\gamma_2(G_-)\), so every nilpotent quotient factors through
+    \(\mathbb Z\); nonnilpotent and literal gates remain open; and
+60. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -8600,3 +8677,9 @@ all three central directions of the free rank-three class-two group.
 Therefore \(G_-/\gamma_3(G_-)\cong\mathbb Z\): every class-two shadow already
 factors through the vacuous abelian test.  Class three remains a separate
 gate.
+Theorem 6.63 then removes that apparent class-three gate.  Equality
+\(\gamma_2=\gamma_3\) propagates inductively to
+\(\gamma_k=\gamma_2\) for every \(k\ge2\), so every nilpotent quotient of
+\(G_-\) is cyclic.  The nonabelian \(A_5\) quotient proves that this stable
+nilpotent residual is nontrivial.  Hence further nilpotent depth cannot decide
+the lift system; the next useful detector must be nonnilpotent.
