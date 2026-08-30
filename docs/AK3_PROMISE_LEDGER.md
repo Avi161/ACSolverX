@@ -57,6 +57,15 @@ finite quotient do not close a route.
   residuals certified in `normal_closure(A,B)`. Four focused checks pass.
   The endpoint substitutions and donor-restoring macros are not flattened by
   the checker; finiteness follows by structural induction on the SLP.
+- **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
+  abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
+  minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
+  test.  Complete rank-three Whitehead reduction nevertheless stops at total
+  cyclic lengths 351 and 349.  At each endpoint all 90 second-kind maps are
+  nondecreasing.  Hence neither displayed pair is primitive.  This closes
+  only simultaneous basis straightening of the canonical relation-lift rows;
+  it does not close a proved corrected row or the interleaved Peiffer bridge.
+  Freeze this shortcut and do not open a correction census.
 - **Closure reduced to two named word problems:** restoring the active base
   residual first makes the kill-word residual automatic. Both branches have
   the same defect `d=(zYX)H`: test `d=1` in `<x,y,z | B,AH>` or in

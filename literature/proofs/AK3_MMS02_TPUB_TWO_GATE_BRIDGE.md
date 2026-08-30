@@ -3264,6 +3264,100 @@ residual.  No further omitted-row, fixed-core, or rank-two correction ledger
 is opened.  The active theory route returns to the unrestricted
 $T_{\rm pub}$ bridge and the already isolated relative Peiffer gate.
 
+### 6.26. The canonical relation-lift rows are not primitive mates
+
+Equation (45) suggests a direct stable completion which does not use the
+residual restoration gates: if either $(B,H_A)$ or $(A,H_B)$ were a primitive
+pair in $F(x,y,z)$, a simultaneous basis transport could straighten those two
+rows.  The necessary homology test passes, but the literal primitive-pair
+test fails.
+
+First retain only exponent coefficients of the three source leaves
+$(A,B,u)$ through the 134 primitive moves used in (39).  The three terminal
+rows have coefficient vectors
+
+\[
+ \bigl((2,1,1),(1,0,1),(1,1,1)\bigr).
+ \tag{180}
+\]
+
+Hence the expression $\mathcal E_3\mathcal E_2^{-1}\mathcal E_1^{-1}$ has
+coefficient vector $(-2,0,-1)$, and projection to the $u$ leaf gives
+
+\[
+ [H]_{\rm ab}=-[u]_{\rm ab}=(1,1,-1).
+ \tag{181}
+\]
+
+Therefore the two candidate pairs have exponent matrices
+
+\[
+ \begin{aligned}
+ [B,H_A]_{\rm ab}&=
+ \begin{pmatrix}-1&1&0\\2&1&-2\end{pmatrix},&
+ [A,H_B]_{\rm ab}&=
+ \begin{pmatrix}1&0&-1\\0&2&-1\end{pmatrix}.
+ \end{aligned}
+ \tag{182}
+\]
+
+Their ordered $2$ by $2$ minors are respectively
+$(-3,2,-2)$ and $(2,-1,2)$.  Both gcds are one, so abelianization does not
+obstruct either pair.
+
+Now use the complete rank-three Whitehead set.  Put
+
+\[
+ \begin{aligned}
+ \phi_1(x)&=x,&\phi_1(y)&=xyx^{-1},&\phi_1(z)&=zx^{-1},\\
+ \phi_2(x)&=x,&\phi_2(y)&=y,&\phi_2(z)&=zy.
+ \end{aligned}
+ \tag{183}
+\]
+
+For the unordered cyclic pair determined by $(B,H_A)$, successive application
+of $\phi_1,\phi_2$ gives the strict total-length descent
+
+\[
+ 363\longrightarrow357\longrightarrow351.
+ \tag{184}
+\]
+
+The endpoint word lengths are $(337,14)$.  None of the ninety nonidentity
+second-kind Whitehead automorphisms decreases their sum: eight preserve it
+and eighty-two increase it; first-kind signed permutations preserve length.
+For $(A,H_B)$, applying $\phi_2,\phi_1$ gives
+
+\[
+ 363\longrightarrow355\longrightarrow349,
+ \tag{185}
+\]
+
+with endpoint lengths $(339,10)$ and the same exhaustive split of eight
+equal and eighty-two increasing maps.  Whitehead's theorem makes these
+endpoints global minima in their automorphism orbits.  Since their total
+lengths are greater than two, neither cyclic pair can be carried to two
+distinct basis letters.
+
+The dependency-free focused checker reconstructs $H_A,H_B$ from the tracked
+relation-lift DAG, verifies (180)--(182), replays the two strict descents,
+pins both endpoints by SHA-256, and enumerates all ninety endpoint maps.  It
+does not infer primitivity or nonprimitivity from homology alone.
+
+**Theorem 6.19 (canonical primitive-mate gate is closed).**  Neither
+$(B,H_A)$ nor $(A,H_B)$ is a primitive pair of conjugacy classes in
+$F(x,y,z)$.  In particular, neither ordered pair extends to a free basis.
+Thus the displayed relation-lift endpoints in (44) cannot be completed merely
+by straightening their two unchanged rows with one simultaneous ambient basis
+transport.
+
+This theorem closes only the two canonical rows produced by (39) and (43).
+It does not rule out a deliberately proved correction $H_AW$ or $H_BW$ with
+$W\in\operatorname{Ncl}(A,B)$, and it does not obstruct an interleaved
+Peiffer path which changes all three rows.  No correction or Whitehead search
+ledger is opened here.  The unrestricted bridge and the relative class (83)
+remain the active gates.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3324,13 +3418,19 @@ The logical gates remain separate:
     the trefoil normal form (176); its middle exchange is classical, but the
     simultaneous basis transports are only proved stable and no
     trivialization results;
-20. no MMS02 statement evaluates the period-two class-two ledger or its
+20. the two canonical relation-lift pairs pass the abelian minor test but are
+    nonprimitive by complete Whitehead reduction; this closes only direct
+    ambient straightening of those displayed pairs, not a corrected row or
+    the interleaved Peiffer gate;
+21. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-21. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+22. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
 $T_{\rm pub}\sim_{\rm AC}(A,B,zYX)$ together with the interleaved relative
 class (83).  The raw omission route is frozen by Theorems 6.17--6.18 at a
-stable return to AK(3).  No further sequential, pinned-donor, fixed-core,
-rank-two correction, or omission ledger is opened.
+stable return to AK(3), and Theorem 6.19 freezes direct primitive-mate
+straightening of the canonical relation-lift rows.  No further sequential,
+pinned-donor, fixed-core, rank-two correction, primitive-mate, or omission
+ledger is opened.

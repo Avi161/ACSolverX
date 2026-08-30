@@ -1,6 +1,8 @@
 from collections import defaultdict, deque
 from dataclasses import dataclass
+from hashlib import sha256
 from itertools import permutations, product
+from math import gcd
 from runpy import run_path
 import sys
 
@@ -102,6 +104,78 @@ def rank_two_whitehead_automorphisms():
             if key != ("x", "y"):
                 unique[key] = images
     return tuple(unique[key] for key in sorted(unique))
+
+
+def rank_three_whitehead_automorphisms():
+    generators = ("x", "y", "z")
+    signed = tuple(
+        letter
+        for generator in generators
+        for letter in (generator, generator.upper())
+    )
+    identity = {generator: generator for generator in generators}
+    unique = {}
+    for multiplier in signed:
+        others = tuple(
+            letter
+            for letter in signed
+            if letter not in (multiplier, multiplier.swapcase())
+        )
+        for mask in range(1 << len(others)):
+            subset = {multiplier}
+            subset.update(
+                letter
+                for index, letter in enumerate(others)
+                if mask & (1 << index)
+            )
+            images = {}
+            for generator in generators:
+                if generator in (multiplier, multiplier.swapcase()):
+                    images[generator] = generator
+                    continue
+                positive = generator in subset
+                negative = generator.upper() in subset
+                if positive and not negative:
+                    images[generator] = generator + multiplier
+                elif negative and not positive:
+                    images[generator] = multiplier.swapcase() + generator
+                elif positive and negative:
+                    images[generator] = multiplier.swapcase() + generator + multiplier
+                else:
+                    images[generator] = generator
+            key = tuple(images[generator] for generator in generators)
+            if images != identity:
+                unique[key] = images
+    return tuple(unique[key] for key in sorted(unique))
+
+
+def rank_three_exponent_vector(word):
+    return tuple(
+        word.count(generator) - word.count(generator.upper())
+        for generator in "xyz"
+    )
+
+
+def rank_three_pair_minors(pair):
+    left, right = map(rank_three_exponent_vector, pair)
+    return (
+        left[0] * right[1] - left[1] * right[0],
+        left[0] * right[2] - left[2] * right[0],
+        left[1] * right[2] - left[2] * right[1],
+    )
+
+
+def replay_whitehead_pair_floor(pair, steps):
+    current = canonical_cyclic_pair(pair)
+    totals = [sum(map(len, current))]
+    for images in steps:
+        image = canonical_cyclic_pair(
+            tuple(apply_images(word, images) for word in current)
+        )
+        assert sum(map(len, image)) < totals[-1]
+        current = image
+        totals.append(sum(map(len, current)))
+    return current, tuple(totals)
 
 
 def whitehead_minimum(pair, automorphisms):
@@ -244,6 +318,34 @@ def nodes(item):
         assert len(seen) < NODE_BUDGET
         stack.extend(arg for arg in node.args if isinstance(arg, Expr))
     return len(seen)
+
+
+def leaf_coefficients(item):
+    basis = {"A": (1, 0, 0), "B": (0, 1, 0), "u": (0, 0, 1)}
+    memo = {}
+
+    def visit(node):
+        key = id(node)
+        if key in memo:
+            return memo[key]
+        assert len(memo) < NODE_BUDGET
+        if node.kind == "leaf":
+            result = basis[node.args[0]]
+        elif node.kind == "lit":
+            result = (0, 0, 0)
+        elif node.kind == "prod":
+            children = tuple(visit(child) for child in node.args)
+            result = tuple(sum(child[index] for child in children) for index in range(3))
+        elif node.kind == "inv":
+            result = tuple(-coefficient for coefficient in visit(node.args[0]))
+        elif node.kind == "conj":
+            result = visit(node.args[1])
+        else:
+            raise AssertionError(node.kind)
+        memo[key] = result
+        return result
+
+    return visit(item)
 
 
 @dataclass(frozen=True)
@@ -622,6 +724,11 @@ def free_proof(left, right):
 
 def relation_lift_data():
     rows = rank_three_rows()
+    assert tuple(map(leaf_coefficients, rows)) == (
+        (2, 1, 1),
+        (1, 0, 1),
+        (1, 1, 1),
+    )
     v_expr = prod(rows[2], inverse(rows[1]), inverse(rows[0]))
     assert v_expr.value == V
     h = project(v_expr, {"u"})
@@ -696,3 +803,59 @@ def test_mms02_relation_lift_certificate_dag():
     assert data["e_b_eq_one"].support <= {"A", "B"}
     assert data["h_b_eq_v"].support <= {"A", "B"}
     assert nodes(data["e_a"]) < 25_000 and nodes(data["e_b"]) < 25_000
+
+    branch_a = (B, data["h_a"].value)
+    branch_b = (A, data["h_b"].value)
+    assert tuple(map(rank_three_exponent_vector, branch_a)) == (
+        (-1, 1, 0),
+        (2, 1, -2),
+    )
+    assert tuple(map(rank_three_exponent_vector, branch_b)) == (
+        (1, 0, -1),
+        (0, 2, -1),
+    )
+    assert rank_three_pair_minors(branch_a) == (-3, 2, -2)
+    assert rank_three_pair_minors(branch_b) == (2, -1, 2)
+    assert gcd(*rank_three_pair_minors(branch_a)) == 1
+    assert gcd(*rank_three_pair_minors(branch_b)) == 1
+
+    first = {"x": "x", "y": "xyX", "z": "zX"}
+    second = {"x": "x", "y": "y", "z": "zy"}
+    certificates = (
+        (
+            branch_a,
+            (first, second),
+            (363, 357, 351),
+            (337, 14),
+            "15e51dc47cabaadf7a02082959e9d6068648ee6db91dc1133b15632845c2db36",
+        ),
+        (
+            branch_b,
+            (second, first),
+            (363, 355, 349),
+            (339, 10),
+            "4284e78d86ce52707c695c1e2c69c1eb4be1b2f1421fd55b74a49acaadf05842",
+        ),
+    )
+    automorphisms = rank_three_whitehead_automorphisms()
+    assert len(automorphisms) == 90
+    for pair, steps, expected_totals, expected_lengths, expected_hash in certificates:
+        minimum, totals = replay_whitehead_pair_floor(pair, steps)
+        assert totals == expected_totals
+        assert tuple(map(len, minimum)) == expected_lengths
+        assert sha256("|".join(minimum).encode()).hexdigest() == expected_hash
+        endpoint_total = sum(map(len, minimum))
+        neighbor_totals = tuple(
+            sum(
+                map(
+                    len,
+                    canonical_cyclic_pair(
+                        tuple(apply_images(word, images) for word in minimum)
+                    ),
+                )
+            )
+            for images in automorphisms
+        )
+        assert min(neighbor_totals) == endpoint_total
+        assert neighbor_totals.count(endpoint_total) == 8
+        assert sum(total > endpoint_total for total in neighbor_totals) == 82
