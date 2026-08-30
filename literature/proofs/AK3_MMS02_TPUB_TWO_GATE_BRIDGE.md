@@ -377,6 +377,15 @@ shortcut fail.  The consequence $P^{-1}Q$ is nonprimitive but is not a donor
 row.  AC row multiplication, the target orbit, the bridge, and AK(3) remain
 open.
 
+Section 6.56 applies exact row multiplication rather than another invariant.
+Signed cyclic rotations and stable ambient normalization give the strict
+floor descent
+$104,93,89,77,69,64,53,45,41,34,31$ and one pinned terminal pair of
+lengths fifteen and sixteen.  Its complete tail-free one-step cyclic-product
+neighborhood has 238 products and minimum neighboring floor thirty-two.
+This is a local minimum only for that defined class; arbitrary conjugator
+tails and multi-step uphill paths remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6660,6 +6669,105 @@ AC-triviality of \(P_T\), the bridge, stable AK(3), ordinary AK(3), stable
 Andrews--Curtis, and Andrews--Curtis remain open.  No correction census for
 \((U,V)\) is opened.
 
+### 6.56. Exact cyclic row descent to floor thirty-one
+
+The base pair (355) is not stationary under row multiplication.  Invert
+\(U\), multiply it on the right by \(V\), and retain \(V\).  The new row
+\(U^{-1}V\) has reduced length forty-seven.  Complete ambient Whitehead
+reduction, realized by the stable ambient automorphism theorem, gives floor
+ninety-three.
+
+Repeat only the following literal operation.  Independently invert either
+row, conjugate it to a pinned cyclic rotation, multiply the two rows in the
+displayed order, retain the unused donor row, and then realize the complete
+ambient Whitehead minimum.  Rotation indices below are zero-based in the
+signed cyclic words; \(r\) is the retained source-row index.
+
+\[
+ \begin{array}{c|c|c|c|c|c|c}
+ \text{source floor}&\text{target floor}&\text{order}&
+ (\epsilon_0,\epsilon_1)&(i_0,i_1)&r&\text{product length}\\ \hline
+ 93&89 &(0,1)&(+,-)&(0,40)&1&39\\
+ 89&77 &(0,1)&(+,-)&(0,40)&0&39\\
+ 77&69 &(0,1)&(+,+)&(0,11)&0&31\\
+ 69&64 &(0,1)&(+,+)&(19,27)&1&33\\
+ 64&53 &(0,1)&(+,+)&(0,9)&1&24\\
+ 53&45 &(0,1)&(+,+)&(1,9)&0&23\\
+ 45&41 &(0,1)&(+,-)&(1,21)&0&19\\
+ 41&34 &(0,1)&(+,-)&(3,13)&1&15\\
+ 34&31 &(0,1)&(+,-)&(0,14)&0&16.
+ \end{array}
+ \tag{360}
+\]
+
+Each row multiplication changes the pair and lowers the subsequent ambient
+floor; the stable ambient automorphism following it only realizes that new
+floor.  Literal replay gives the strict sequence
+
+\[
+ \boxed{
+ 104>93>89>77>69>64>53>45>41>34>31.
+ }
+ \tag{361}
+\]
+
+The terminal Whitehead-minimal pair is
+
+\[
+ \boxed{
+ \begin{aligned}
+ A_{31}&=\mathtt{PPQpqPqqpQPQQpQ},\\
+ B_{31}&=\mathtt{PQQpQPqPQpqPqpQQ}.
+ \end{aligned}
+ }
+ \tag{362}
+\]
+
+This endpoint has a complete finite one-step control.  For both factor
+orders, both signs of both rows, and all cyclic rotations, cyclically reduce
+the row product.  There are exactly \(238\) distinct products.  Pair each
+one in turn with either retained source row and apply complete ambient
+Whitehead reduction.  The minimum neighboring floor is
+
+\[
+ \boxed{32>31.}
+ \tag{363}
+\]
+
+Two independently implemented Whitehead engines agree on every pinned floor
+in (361) and on (363).
+
+**Theorem 6.50 (terminal cyclic-descent gate).**  The cleaned target
+\(P_T\), and hence the chosen sufficient stable-AK(3) route, has an explicit
+stable-AC representative (362) of total cyclic length thirty-one.  That
+representative is a strict local minimum for the complete one-step class
+consisting of row inversion, cyclic conjugation, one row multiplication in
+either order, either recipient, and arbitrary stable ambient normalization.
+
+The word \(D\) from (358) is not hidden among these first moves.  In
+abelianization,
+
+\[
+ [U]=(1,-1),\qquad [V]=(0,-1),\qquad
+ [D]=(-1,-3)=-[U]+4[V].
+ \tag{364}
+\]
+
+One elementary row operation produces only a signed source vector or a sum
+or difference of the two signed source vectors.  None equals \((-1,-3)\).
+Thus \(D\) cannot become a row in one elementary AC move, even with a
+conjugated donor.  This is consistent with Corollary 6.49 and does not
+settle either reverse normal-closure containment needed for a later
+replacement.
+
+Theorem 6.50 is positive compression, not an obstruction to the full orbit.
+It does not cover a conjugator tail which is not absorbed by cyclic rotation,
+two or more row moves with a temporary floor increase, another stable
+expansion, or the unrestricted rank-three bridge.  Since floor thirty-one
+is still above the classical length threshold, stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, and Andrews--Curtis remain open.  No neighborhood
+census beyond the complete one-step class in (363) is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6820,8 +6928,11 @@ The logical gates remain separate:
     do not exclude an ambient automorphism or a both-row AC path;
 45. a literal stable compression gives the base pair $(U,V)$ of (355), whose
     ambient floor is 104; the nonprimitive consequence $D=P^{-1}Q$ is not a
-    legally realized donor row, and row-changing AC paths remain open; and
-46. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    legally realized donor row, and row-changing AC paths remain open;
+46. exact cyclic row changes descend that pair to the length-\((15,16)\)
+    endpoint (362), which is locally minimal only in its complete tail-free
+    one-step cyclic-product neighborhood; and
+47. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6936,6 +7047,10 @@ compression of that target to the base pair $(U,V)$ in (355).  Its complete
 ambient floor 104 blocks only direct simultaneous basis transport and the
 classical short-presentation theorem.  Corollary 6.49 separates the exact
 nonprimitive consequence $D=P^{-1}Q$ from a legally realized donor row.
-No correction census is opened; the exact target-confined obligation is an
-AC row reduction of (355), or a different exact obstruction which survives
-such row changes.
+Theorem 6.50 then performs genuine row changes and stable ambient
+normalizations, descending the floor from 104 to the exact length-\((15,16)\)
+pair (362).  Its 238-product one-step cyclic neighborhood has minimum floor
+32, so the endpoint is locally minimal only for that precisely defined
+tail-free class.  No larger correction census is opened; the target-confined
+obligation is a noncyclic conjugator-tail move, a multi-step route which may
+rise temporarily, or a different exact obstruction surviving those moves.
