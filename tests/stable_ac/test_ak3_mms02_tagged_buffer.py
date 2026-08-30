@@ -56,6 +56,27 @@ def exponent_vector(word: str, generators: str) -> tuple[int, ...]:
     )
 
 
+def module_add(*vectors):
+    result = {}
+    for vector in vectors:
+        for key, coefficient in vector.items():
+            result[key] = result.get(key, 0) + coefficient
+            if result[key] == 0:
+                del result[key]
+    return result
+
+
+def module_negate(vector):
+    return {key: -coefficient for key, coefficient in vector.items()}
+
+
+def module_act(word, vector):
+    return {
+        (product(word, coset), basis): coefficient
+        for (coset, basis), coefficient in vector.items()
+    }
+
+
 def test_mms02_tagged_buffer_exact_word_replay():
     A = "xzYXyxZXYxyZ"
     B = "XyxZXYXyxzXYxy"
@@ -308,3 +329,48 @@ def test_tagged_affine_updates_have_exact_free_group_ancestors():
         second_loop_defect,
         b,
     )
+
+
+def test_identity_coset_covector_has_exact_vertical_loop_counterexample():
+    lifted_first = "mb"
+    lifted_second = "nt"
+    product_word = product(lifted_first, lifted_second)
+    vertical_word = conjugate("k", product_word)
+    inverse_product_word = product(vertical_word, inverse(lifted_second))
+    quotient = {"m": "", "n": "", "k": ""}
+    assert substitute(lifted_first, quotient) == "b"
+    assert substitute(lifted_second, quotient) == "t"
+    assert substitute(product_word, quotient) == "bt"
+    assert substitute(vertical_word, quotient) == "bt"
+    assert substitute(inverse_product_word, quotient) == "b"
+
+    e = {("", "E"): 1}
+    n = {("", "N"): 1}
+    k = module_act("T", e)
+
+    after_product = module_add(e, module_act("b", n))
+    vertical_defect = module_add(k, module_negate(module_act("bt", k)))
+    after_vertical = module_add(after_product, vertical_defect)
+    after_inverse_product = module_add(after_vertical, module_negate(module_act("b", n)))
+
+    assert product("bt", "T") == "b"
+    assert vertical_defect == {("T", "E"): 1, ("b", "E"): -1}
+    assert after_inverse_product == {
+        ("", "E"): 1,
+        ("T", "E"): 1,
+        ("b", "E"): -1,
+    }
+
+    root_vertical = {
+        key: coefficient
+        for key, coefficient in vertical_defect.items()
+        if "t" not in key[0].lower()
+    }
+    root_final = {
+        key: coefficient
+        for key, coefficient in after_inverse_product.items()
+        if "t" not in key[0].lower()
+    }
+    assert root_vertical == {("b", "E"): -1}
+    assert root_final == {("", "E"): 1, ("b", "E"): -1}
+    assert ("T", "E") in after_inverse_product

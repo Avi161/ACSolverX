@@ -152,6 +152,13 @@ the induced defect module is zero.  This freezes all global augmentation and
 character detectors as vacuous without deciding the non-equivariant gate
 (141).
 
+Section 6.28 decides that remaining covector gate negatively.  One exact
+quotient loop multiplies the first row by the tag, vertically conjugates it
+by $t^{-1}Et$, and reverses the multiplication.  The loop sends the canonical
+defect to a nonzero two-coset residual whose identity-coset covector is zero.
+Thus universal (141) is false, while the complete first-derived defect set
+and the tagged Peiffer gate remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -3447,6 +3454,94 @@ the theorem precisely because it is not $\overline G$-equivariant.  Universal
 unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.  No
 character or scalar-specialization ledger is opened.
 
+### 6.28. One vertical multiplication loop kills the identity-coset covector
+
+The universal condition (141) can be decided without a stabilizer census.
+Let $P$ be multiplication of the first row by the second.  At the quotient
+target, use the loop
+
+\[
+ (B,t)\xrightarrow{P}(Bt,t)
+ \xrightarrow{C_1(k)}(Bt,t)
+ \xrightarrow{P^{-1}}(B,t),
+ \tag{191}
+\]
+
+where $C_1(k)$ conjugates the first row by an element $k\in N_t$.  Its image
+in $\overline G$ is the identity, so the middle arrow fixes the quotient
+pair.  The inverse multiplication is a legal AC word: invert the second row,
+multiply the first row by it, and invert the second row again.
+
+In left-kernel coordinates the three arrows act exactly by
+
+\[
+ \begin{aligned}
+ P:&(m,n)\longmapsto(m+Bn,n),\\
+ C_1(k):&(m+Bn,n)\longmapsto
+ (m+Bn+(1-Bt)k,n),\\
+ P^{-1}:&(m+Bn+(1-Bt)k,n)\longmapsto
+ (m+(1-Bt)k,n).
+ \end{aligned}
+ \tag{192}
+\]
+
+The first line is (136).  The middle line is the vertical conjugator formula
+(137) at the current first row $Bt$.  In the last line, multiplication by
+the inverse tag row subtracts $(Bt)t^{-1}n=Bn$.  Thus the loop has linear
+part $J=I$ and affine first coordinate
+
+\[
+ c_1=(1-Bt)k.
+ \tag{193}
+\]
+
+Take the actual kernel element $k=t^{-1}Et$.  Its class in the induced module
+is $t^{-1}[E]$.  Since $t^{-1}H\ne H$, the identity-coset projection gives
+
+\[
+ \begin{aligned}
+ p(c_1)
+ &=p\bigl(t^{-1}[E]-B[E]\bigr)\\
+ &=-B[E]
+ \equiv-[E]\pmod{(B-1)L}.
+ \end{aligned}
+ \tag{194}
+\]
+
+The canonical defect therefore loses its covector value under (191):
+
+\[
+ \begin{aligned}
+ ([E],0)&\longmapsto
+ \bigl(t^{-1}[E]+(1-B)[E],0\bigr),\\
+ \lambda\bigl(t^{-1}[E]+(1-B)[E],0\bigr)&=0.
+ \end{aligned}
+ \tag{195}
+\]
+
+The new residual is not zero in $\mathcal M^2$.  Decomposition (133) is a
+direct sum over the cosets $\overline G/H$; the $t^{-1}H$ component in (195)
+is $[E]$, which is nonzero by Section 6.16.  Thus (191) cancels only the
+candidate covector, not the complete first-derived defect.
+
+The focused tagged checker replays the quotient loop and its affine action as
+a sparse module calculation.  It pins the two distinct coset components and
+the exact root terms $-B[E]$ in (194) and $(1-B)[E]$ in (195).
+
+**Theorem 6.21 (universal identity-coset gate fails).**  The loop (191) is
+in the full tame preimage of the quotient stabilizer of $(B,t)$ and violates
+(141).  Consequently the covector $\lambda$ cannot obstruct the complete
+defect set $\mathcal D$.
+
+The theorem does not put $0$ in $\mathcal D$: its displayed output is
+nonzero.  It supplies neither a zero first-derived defect nor a Peiffer path
+and has
+no implication for another stabilized endpoint or for the unrestricted
+$T_{\rm pub}$ bridge.  The affine-covector lane is frozen here as the bounded
+first-derived theorem comprising Sections 6.19--6.20 and 6.27--6.28.  No
+further proper loop family or replacement covector is opened.  The tagged
+gate, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -3490,8 +3585,8 @@ The logical gates remain separate:
     but the complete defect set over all tame lifts of quotient AC loops has
     not been evaluated;
 14. the candidate identity-coset covector survives vertical conjugations and
-    two universal tag loops, but its full invariance is exactly the unproved
-    three-part containment law (140);
+    two universal tag loops, but the exact loop in Theorem 6.21 refutes both
+    the three-part containment law (140) and the weaker universal law (141);
 15. Hall--Witt makes $H_X$ donor-legal but leaves the mixed term $\mathcal T$,
     whose triviality and donor membership are both unproved;
 16. the alternate raw omission is stably trivial, but the $A_5$ witness closes
@@ -3514,9 +3609,13 @@ The logical gates remain separate:
 21. every one-dimensional scalarization of the induced tagged defect module
     is zero; this makes global augmentation and abelian-character detectors
     vacuous but does not decide the non-equivariant identity-coset gate;
-22. no MMS02 statement evaluates the period-two class-two ledger or its
+22. one exact vertical multiplication loop violates universal (141) and
+    kills the canonical defect's covector value, but its resulting
+    first-derived residual is nonzero and the complete defect set remains
+    unevaluated;
+23. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-23. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+24. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -3526,5 +3625,6 @@ stable return to AK(3), and Theorem 6.19 freezes direct primitive-mate
 straightening of the canonical relation-lift rows.  No further sequential,
 pinned-donor, fixed-core, rank-two correction, primitive-mate, or omission
 ledger is opened.  Theorem 6.20 also freezes every global scalar-character
-replacement for (135); only the non-equivariant universal gate (141) remains
-live at the first-derived level.
+replacement for (135), and Theorem 6.21 refutes the remaining
+non-equivariant universal gate (141).  The affine-covector route is frozen;
+the full defect set $\mathcal D$ is not evaluated.

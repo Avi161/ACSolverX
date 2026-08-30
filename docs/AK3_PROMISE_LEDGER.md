@@ -209,8 +209,9 @@ finite quotient do not close a route.
   one coset is not `Gbar`-equivariant; relation loops in `H` and the vertical
   tame kernel remain.  For the canonical defect alone, the weaker universal
   condition is that every lifted loop preserve `[E]` under the first affine
-  coordinate modulo `(B-1)L`.  A failure of the stronger three containments
-  need not violate this weaker condition.  Do not list more loop families.
+  coordinate modulo `(B-1)L`; the exact loop below refutes this weaker
+  condition.  A failure of the stronger three containments alone would not
+  have decided it.
 - **All equivariant scalarizations are vacuous:** the direct-limit transition
   on `L=Q_A''/Q_A'''` contains the factor
   `a^-1*b^2*(1-b)`.  Every one-dimensional character kills `a,b in H'`, so
@@ -218,9 +219,17 @@ finite quotient do not close a route.
   By induced-module base change, the same holds for the complete tagged
   module.  Thus global
   augmentation and all abelian-character replacements for the identity-coset
-  projection detect nothing.  Freeze scalar/character variants; the only live
-  first-derived obligation is universal (141), whose projection is deliberately
-  non-equivariant.
+  projection detect nothing.  Freeze scalar/character variants; the
+  non-equivariant candidate is evaluated separately.
+- **Identity-coset covector refuted and frozen:** the exact quotient loop
+  `(B,t) -> (Bt,t) -> (Bt,t) -> (B,t)` uses first-row multiplication,
+  vertical conjugation by `k=t^-1*E*t`, and inverse multiplication.  Its
+  affine translation is `(1-B*t)k`, so it sends the canonical defect to
+  `(t^-1[E]+(1-B)[E],0)`.  The identity-coset covector is zero there, while
+  the `t^-1 H` component is the nonzero class `[E]`.  Thus universal (141)
+  is false but the resulting residual is not zero.  Freeze the complete
+  affine-covector lane; do not add replacement covectors or loop families.
+  The full defect set, tagged gate, bridge, and AK(3) remain open.
 - **Hall--Witt shortcut reduced and frozen:** for `s=rt`, the exact
   interchange has a donor-legal cyclic factor `[X,[r,t]]` because
   `[r,t]=[s,r^-1]`.  The Hall--Witt exchange leaves the mixed term
