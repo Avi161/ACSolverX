@@ -209,6 +209,16 @@ cyclic-minor specialization can obstruct the tag-coupled gate.  The
 noncommutative curvature class, Peiffer lift, and unrestricted bridge remain
 open.
 
+Section 6.36 closes the formal matrix completion which would follow from a
+positive noncommutative filling.  A generating residual triple over the free
+rank-two relation module gives a split left-module surjection.  After two
+formal zero residuals its kernel is free, so the coefficient matrix extends
+to an invertible square matrix; trivial Whitehead group makes that matrix
+stably tame.  Thus no additional projective-module or $K_1$ obstruction lies
+inside the formal matrix problem after (230).  The zero residuals are not AC4
+rows, and the matrix moves are not realized in the affine tagged fiber, so
+this still does not prove the bridge.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -4207,6 +4217,126 @@ no further scalar, coordinate-representation, or alternative-curvature
 ledger is opened.  The unrestricted bridge, stable AK(3), and ordinary AK(3)
 remain open.
 
+### 6.36. A positive filling has an automatic formal matrix completion
+
+MMS02 Proposition 5.1 applies directly to square generating systems.  The
+endpoint in (225) instead gives three residual elements in the free rank-two
+module $\mathcal R$.  The proposition therefore does not apply to this
+rectangular system or to the zero-padded tuples below.  Only the
+elementary/diagonal-to-module-transformation dictionary from its proof will
+be used.  The rectangular-to-square matrix completion can be proved
+abstractly, without computing another coordinate of $\kappa_P$.
+
+Put $S=\mathbb ZG_-$ and write
+
+\[
+ \begin{pmatrix}
+ [A]\\[E_B]\\[H_Bv^{-1}]
+ \end{pmatrix}
+ =C
+ \begin{pmatrix}[A]\\[B]\end{pmatrix},
+ \hspace{1em}C\in M_{3\times2}(S).
+ \tag{234}
+\]
+
+Because $([A],[B])$ is a free basis, the three endpoint residuals generate
+$\mathcal R$ exactly when there is $D\in M_{2\times3}(S)$ with
+
+\[
+ \boxed{DC=I_2.}
+ \tag{235}
+\]
+
+Keep the module handedness explicit.  Regard row vectors $S^n$ as free left
+$S$-modules and define
+
+\[
+ \rho_C:{}_SS^3\longrightarrow{}_SS^2,
+ \hspace{1em}x\longmapsto xC.
+ \tag{236}
+\]
+
+Equation (235) makes $y\mapsto yD$ a section of $\rho_C$.  Thus, for
+$Q:=\ker\rho_C$,
+
+\[
+ {}_SS^3\cong Q\oplus{}_SS^2,
+ \hspace{1em}Q\oplus{}_SS^2\cong{}_SS^3.
+ \tag{236a}
+\]
+
+Append two zero rows to $C$ and call the resulting $5\times2$ matrix $C^+$.
+The split surjection $\rho_{C^+}:{}_SS^5\to{}_SS^2$ has kernel
+
+\[
+ \ker\rho_{C^+}\cong Q\oplus{}_SS^2\cong{}_SS^3.
+ \tag{236b}
+\]
+
+Choose an isomorphism from this kernel to ${}_SS^3$ and combine it with
+$\rho_{C^+}$.  The resulting isomorphism ${}_SS^5\to{}_SS^2\oplus{}_SS^3$
+is represented on row vectors by one $U\in\operatorname{GL}_5(S)$ whose
+first two columns are $C^+$.  Consequently
+
+\[
+ \boxed{
+ \begin{pmatrix}
+ [A]\\[E_B]\\[H_Bv^{-1}]\\0\\0
+ \end{pmatrix}
+ =U
+ \begin{pmatrix}
+ [A]\\[B]\\0\\0\\0
+ \end{pmatrix}.
+ }
+ \tag{237}
+\]
+
+Theorem 6.26 gives $\operatorname{Wh}(G_-)=0$.  By the definition of the
+Whitehead group, there is some $m\ge0$ such that $U\oplus I_m$ is a product
+of elementary matrices and diagonal matrices with entries $\pm g$, $g\in
+G_-$.  On a formal residual tuple these are the module transformations
+induced by AC1 and by AC2--AC3 in the proof of MMS02 Proposition 5.1.
+Conversely, any invertible module transformation preserves the generated
+submodule.  Combining this with (230) proves the exact matrix equivalence
+
+\[
+ \boxed{
+ \overline\kappa_P=0
+ \Longleftrightarrow
+ L_e=\mathcal R
+ \Longleftrightarrow
+ \begin{pmatrix}e\\0\\0\\0_m\end{pmatrix}
+ \sim_{\rm tame}
+ \begin{pmatrix}[A]\\[B]\\0\\0\\0\\0_m\end{pmatrix}.
+ }
+ \tag{238}
+\]
+
+Here the left tuple in (238) has the three entries of $e$, followed by two
+zeros and then $m$ further zeros; the right tuple has the two basis entries
+followed by three zeros and the same $m$ further zeros.
+
+**Theorem 6.29 (conditional formally stabilized matrix completion).**  If the
+fixed branch-B curvature vanishes in (230), the abstract endpoint residual
+triple has a finite formally stabilized matrix-tame reduction to the base
+residual pair.  Two formal zero residuals suffice for a square invertible
+completion; only the additional matrix-stabilization size needed to tame $U$
+is left unspecified.  There is no separate projective-module or
+Whitehead-$K_1$ gate inside this formal matrix problem after module
+generation.
+
+The word ``formal'' is essential.  Appending a zero element of the old
+relation module is not the AC4 operation: AC4 adjoins a new ambient generator
+and its killing relator, whose class is a new free relation-module basis
+element.  Moreover, the actual third endpoint row is $H_B$, not the residual
+$H_Bv^{-1}$; the quotient tag $v$ is part of the affine fiber.  Equation
+(238) therefore supplies neither legal stabilizations nor a lift of the tame
+module moves to the tagged tuple $(A,E_B,H_B)$.  Remaining obligations include
+realizing the formal zero padding by legal stabilization/destabilization and
+lifting the matrix transformations in the affine fiber while retaining the
+tag.  The curvature filling itself, both realization problems, the
+unrestricted bridge, stable AK(3), and ordinary AK(3) remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -4298,9 +4428,13 @@ The logical gates remain separate:
     $[A]$, so every one-dimensional scalar shadow kills the endpoint cokernel;
     this vacuity does not kill the noncommutative cokernel itself or fill the
     curvature in (230);
-27. no MMS02 statement evaluates the period-two class-two ledger or its
+27. conditional on a positive curvature filling, two formal zero residuals
+    give a square invertible matrix completion and $\operatorname{Wh}(G_-)=0$
+    makes that matrix stably tame; those zero residuals are not AC4 rows, and
+    neither legal padding nor an affine tagged realization is supplied;
+28. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-28. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+29. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -4326,4 +4460,7 @@ for that coupling: the fixed lift terminates at the single affine-curvature
 condition (230), and no alternative-curvature ledger is opened.  Theorem
 6.28 further proves that every cyclic or one-dimensional scalar shadow of
 that condition is vacuous; the surviving gate is genuinely
-noncommutative.
+noncommutative.  Theorem 6.29 proves that a positive answer would already
+have a formally stabilized tame matrix completion.  Remaining obligations
+include legal realization of its zero padding and an affine tagged lift, not
+another projective or $K_1$ calculation.

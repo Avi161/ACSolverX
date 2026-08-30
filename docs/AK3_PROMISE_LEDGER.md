@@ -90,6 +90,18 @@ finite quotient do not close a route.
   shadow. This does not prove that the noncommutative cokernel vanishes or
   fill `kappa_P`; freeze scalar/minor tests and retain (230) as the single
   canonical-lift module gate.
+- **Positive module generation has an automatic formal matrix completion:**
+  if the three endpoint residuals generate the free rank-two left relation
+  module, right multiplication by their `3x2` coefficient matrix is a split
+  surjection `S^3 -> S^2`. Its kernel `Q` satisfies
+  `Q direct-sum S^2 = S^3`; appending two formal zero residuals therefore
+  makes the new kernel free and extends the coefficient matrix to
+  `U in GL_5(S)`. Since `Wh(G_-)=0`, a further identity stabilization makes
+  `U` a product of elementary and trivial-diagonal matrices. Thus no separate
+  projective or `K_1` gate remains inside the formal matrix problem after
+  (230). The zero residuals are not legal AC4 rows, and the actual third row
+  retains the quotient tag `v`; remaining obligations include both legal
+  padding and an affine tagged realization before any bridge claim.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one
