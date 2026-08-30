@@ -288,6 +288,14 @@ classes, connects them.  This closes only that base-tail automorphism
 shortcut.  Operations involving the stable letter, full HNN conjugacy, row
 multiplication, and the pair orbit (271) remain open.
 
+Section 6.46 converts the shared HNN row into a basis letter, cleans it from
+the other rows, and destabilizes.  This reduces the terminal route to one
+explicit rank-two pair with a common first row.  A corrected rank-four Magnus
+decomposition then gives a free-by-cyclic group, and two exterior
+functionals obstruct the exact class-two twisted-conjugacy equation.  Hence
+no path which keeps that common row literal can work.  A path which changes
+the common row, the full terminal pair orbit, and the bridge remain open.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -5406,6 +5414,245 @@ arbitrary Andrews--Curtis path between the pairs in (271).  In particular it
 does not decide (271), the unrestricted $T_{\rm pub}$ bridge, stable AK(3),
 ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
 
+### 6.46. The common-row reduction has a class-two fixed-row obstruction
+
+The shared HNN row in (288) can be used rather than merely compared.  Write
+$d=d_0$ and
+
+\[
+ \rho=tat^{-1}w^{-1}.
+\]
+
+The two balanced endpoint triples underlying (288) are
+
+\[
+ (\rho,t^{-1}a,t^{-1}d)
+ \quad\text{and}\quad
+ (\rho,t^{-1}c,t^{-1}d).
+\tag{291}
+\]
+
+Make the free-basis change $s=t^{-1}d$, so $t=ds^{-1}$.  The source becomes
+
+\[
+ (ds^{-1}as d^{-1}w^{-1},\;sd^{-1}a,\;s),
+\tag{292}
+\]
+
+and the target has $sd^{-1}c$ in its second coordinate.  The first coordinate
+in (292) differs from
+
+\[
+ R=dad^{-1}w^{-1}
+\]
+
+by
+
+\[
+ (ds^{-1}as d^{-1}w^{-1})R^{-1}
+   =d(s^{-1}asa^{-1})d^{-1}\in\operatorname{Ncl}(s).
+\]
+
+The $s$-row therefore cleans both occurrences of $s$ from the other rows by
+the usual donor-restoring macro.  It then destabilizes.  Thus the endpoint
+triples in (291) are respectively stably equivalent to the rank-two pairs
+
+\[
+ \begin{aligned}
+ (R,e_s)&=(\mathtt{XyXYXyxYxyxYXyXYxyxYxyXYXy},
+             \mathtt{YXyXYxyxYxx}),\\
+ (R,e_t)&=(\mathtt{XyXYXyxYxyxYXyXYxyxYxyXYXy},
+             \mathtt{YXyXYxyxYxyXYxy}).
+ \end{aligned}
+\tag{293}
+\]
+
+Here $e_s=d^{-1}a$ and $e_t=d^{-1}c$.  In particular, an AC path between
+the two pairs in (293) would close the terminal sufficient gate and prove
+stable AK(3).  The following argument rules out only the relative path which
+keeps $R$ literal.
+
+Apply the rank-two basis substitution $a=x,b=xy$.  The three words in (293)
+become
+
+\[
+\begin{aligned}
+ r&=\mathtt{yXYXyxYxyxYXyXYxyxYxyXYXy},\\
+ e_s'&=\mathtt{YXyXYxyxYx},\\
+ e_t'&=\mathtt{YXyXYxyxYxyXYxy}.
+\end{aligned}
+\tag{294}
+\]
+
+The $x$-exponent of $r$ is zero.  With
+$y_i=x^iyx^{-i}$, its literal Magnus rewrite is
+
+\[
+ r_0=
+ y_0y_{-1}^{-1}y_{-2}y_{-1}^{-1}y_0y_1^{-1}
+ y_0y_{-1}^{-1}y_0y_1^{-1}y_2y_1^{-1}y_0.
+\tag{295}
+\]
+
+The extremal generator $y_2$ occurs exactly once.  Solving (295) for it gives
+
+\[
+ \eta=
+ y_1y_0^{-1}y_{-1}y_0^{-1}y_1y_0^{-1}y_{-1}
+ y_{-2}^{-1}y_{-1}y_0^{-2}y_1.
+\tag{296}
+\]
+
+After eliminating $y_2$, put
+$B_0=F(y_{-2},y_{-1},y_0,y_1)$.  The remaining shift is
+
+\[
+ \begin{aligned}
+ \phi(y_{-2})&=y_{-1},&
+ \phi(y_{-1})&=y_0,&
+ \phi(y_0)&=y_1,&
+ \phi(y_1)&=\eta.
+ \end{aligned}
+\tag{297}
+\]
+
+The word $\eta$ contains $y_{-2}^{-1}$ exactly once and otherwise uses only
+$y_{-1},y_0,y_1$.  Hence $y_{-2}$ can be solved from
+$y_{-1},y_0,y_1,\eta$; the four images in (297) form a free basis and
+$\phi\in\operatorname{Aut}(B_0)$.  Consequently
+
+\[
+ H:=F(a,b)/\operatorname{Ncl}(R)
+ \cong B_0\rtimes_\phi\langle x\rangle .
+\]
+
+The two live rows in this mapping torus are
+
+\[
+ e_s'=P_sx,\qquad e_t'=P_tx,
+\tag{298}
+\]
+
+where
+
+\[
+ P_s=y_0^{-1}y_{-1}y_{-2}^{-1}y_{-1}y_0^{-1},
+ \qquad
+ P_t=P_s y_1y_0^{-1}y_1.
+\]
+
+Suppose they were conjugate.  If
+$h^{-1}(P_sx)h=P_tx$ and the stable exponent of $h$ is $m$, then
+$h(P_tx)^{-m}$ is another conjugator and has stable exponent zero.  It is
+therefore an element $k\in B_0$.  Normal form in the semidirect product now
+forces the twisted equation
+
+\[
+ P_t=k^{-1}P_s\phi(k).
+\tag{299}
+\]
+
+Use the ordered abelian basis
+$(y_{-2},y_{-1},y_0,y_1)$.  The columns of the map induced by $\phi$ and
+the required tail difference are
+
+\[
+ M=
+ \begin{pmatrix}
+ 0&0&0&-1\\
+ 1&0&0&3\\
+ 0&1&0&-5\\
+ 0&0&1&3
+ \end{pmatrix},
+ \qquad
+ [P_t]-[P_s]=(0,0,-1,2)^T.
+\tag{300}
+\]
+
+Since $\det(M-I)=1$, the abelianization of (299) has the unique solution
+
+\[
+ v_0=(1,-2,4,-1)^T.
+\tag{301}
+\]
+
+Lift it by
+$k_0=y_{-2}y_{-1}^{-2}y_0^4y_1^{-1}$.  In
+$B_0/\gamma_3B_0$, every other lift is $k_0z$ for a unique
+$z\in\Lambda^2\mathbb Z^4$.  In the exterior coordinate order
+
+\[
+ (y_{-2}\wedge y_{-1},y_{-2}\wedge y_0,y_{-2}\wedge y_1,
+ y_{-1}\wedge y_0,y_{-1}\wedge y_1,y_0\wedge y_1),
+\]
+
+the class-two defect
+$k_0^{-1}P_s\phi(k_0)P_t^{-1}$ and the correction map are
+
+\[
+ e=(0,-2,-2,6,6,-11)^T
+\tag{302}
+\]
+
+and
+
+\[
+ A=\Lambda^2M-I=
+\begin{pmatrix}
+-1&0&1&0&0&0\\
+0&-1&0&0&1&0\\
+0&0&-1&0&0&1\\
+1&0&-5&-1&-3&0\\
+0&1&3&0&-1&-3\\
+0&0&0&1&3&4
+\end{pmatrix}.
+\tag{303}
+\]
+
+Indeed, replacing $k_0$ by $k_0z$ changes the defect by exactly $Az$ because
+$\gamma_2B_0/\gamma_3B_0$ is central.  The two integral row functionals
+
+\[
+ \lambda_1=(0,1,3,0,1,0),\qquad
+ \lambda_2=(1,0,-4,1,0,1)
+\tag{304}
+\]
+
+satisfy
+
+\[
+ \lambda_1A=\lambda_2A=0,
+ \qquad
+ \lambda_1e=-2,\quad\lambda_2e=3.
+\tag{305}
+\]
+
+Thus (299) has no solution even modulo $\gamma_3B_0$.  The stable-exponent
+homomorphism sends both rows in (298) to one and sends the inverse of either
+row to minus one, so they are not conjugate to one another's inverses either.
+All free reductions, the rank-four Magnus presentation, the solved extremal
+word, the abelian matrix, the class-two defect, and both annihilating
+functionals are pinned by the terminal fixed-row class-two certificate and
+an independent degree-two replay.
+
+**Theorem 6.39 (terminal rank-two fixed-row boundary).**  The terminal
+endpoint triples (291) have the exact stable rank-two reductions (293).
+There is no Andrews--Curtis path from $(R,e_s)$ to $(R,e_t)$ which keeps the
+first row literally equal to $R$ throughout.
+
+**Proof.**  The stable reduction was proved in (292)--(293).  Along a path
+which keeps $R$ literal, multiplication of the live row by $R^{\pm1}$ or
+its conjugates vanishes in $H$.  The image of the live row can therefore
+change only by conjugacy or inversion.  Equations (299)--(305) exclude both
+possibilities. $\square$
+
+This theorem does not obstruct a path which changes $R$, even if that path
+returns to $R$ at the endpoint.  It does not decide the unrestricted
+rank-two gate (293), the pair orbit (271), the unrestricted
+$T_{\rm pub}$ bridge, stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, or Andrews--Curtis.  The exact surviving obligation in this
+rank-two reduction is to change both rows.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -5534,9 +5781,13 @@ The logical gates remain separate:
 36. the terminal HNN tails have different complete base-automorphism floors,
     but this excludes only the simultaneous base-tail ansatz and does not
     decide the full pair orbit (271);
-37. no MMS02 statement evaluates the period-two class-two ledger or its
+37. the terminal triples stably reduce to the explicit rank-two pairs (293),
+    and the class-two twisted-conjugacy obstruction excludes every path
+    which keeps their common row $R$ literal; paths changing $R$ remain
+    open;
+38. no MMS02 statement evaluates the period-two class-two ledger or its
     literal higher lift; and
-38. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+39. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -5598,4 +5849,8 @@ that corridor only; other AC paths and representatives remain open.  Theorem
 6.38 gives the terminal relative gate its exact HNN normal form and closes
 the simultaneous base-tail automorphism shortcut by the unequal complete
 floors ten and fourteen.  Full HNN operations and the pair orbit (271)
-remain open.
+remain open.  Theorem 6.39 then uses the shared HNN row itself to reduce the
+terminal triples to the rank-two pairs (293).  The corrected rank-four
+Magnus mapping torus and its class-two exterior functionals exclude every
+path which keeps their common row $R$ literal.  The remaining rank-two route
+must change both rows; it is not decided.

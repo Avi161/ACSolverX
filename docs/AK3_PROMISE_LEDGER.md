@@ -157,6 +157,21 @@ finite quotient do not close a route.
   Freeze only this shortcut: full HNN operations, row multiplication, pair
   orbit (271), the unrestricted bridge, stable AK(3), and ordinary AK(3)
   remain open.
+- **Terminal gate reduced to one rank-two both-row obligation:** use the
+  shared row `s=t^-1 d` as a free basis letter, clean it from the other
+  rows by its donor macro, and destabilize.  The endpoint triples become the
+  exact rank-two pairs `(R,d^-1 a)` and `(R,d^-1 c)`, with
+  `R=d a d^-1 w^-1`.  A corrected Magnus rewrite makes
+  `F(a,b)/Ncl(R)` the mapping torus of an automorphism of a free rank-four
+  base.  The two live rows have one common stable letter, and their
+  conjugacy equation has a unique abelian solution.  In the class-two
+  quotient, however, its exterior defect is
+  `(0,-2,-2,6,6,-11)`; two integral functionals annihilate every
+  allowable correction and evaluate the defect as `-2` and `3`.
+  Hence no path keeping `R` literal can work.  Freeze that relative lane:
+  the exact surviving rank-two obligation must change both rows.  The full
+  rank-two gate, pair orbit (271), bridge, stable AK(3), and ordinary AK(3)
+  remain open.
 - **Generic rank-one cancellation is a false shortcut:** the trefoil group is
   torsion-free one-relator and aspherical with trivial Whitehead group, yet
   Berridge--Dunwoody constructed infinitely many nonfree stably free rank-one
