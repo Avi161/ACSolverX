@@ -229,6 +229,26 @@ finite quotient do not close a route.
   to a nonidentity endpoint discrepancy in `[N,N]`.  Freeze this shortcut;
   it neither proves the current discrepancy nontrivial nor obstructs an
   interleaved path which makes the exact boundary vanish.
+- **Terminal source pair closes positively at rank two:** after the cleanup
+  `(R,e_s) ~ (S,e_s)`, the source row `e_s` is a conjugate of
+  `mu2=x(yx^-1)^2` in the trefoil group.  A five-factor literal
+  normal-closure certificate, followed by the basis change `a=yx^-1`, turns
+  the pair into `(a x^2 a x^-1 a^-1 x^-1, x a^2)`.  A four-factor donor
+  identity reduces this to `(a,x)`.  Hence `(R,e_s)` is AC-trivial without
+  stabilization.  Together with the target cleanup, the rank-two sufficient
+  gate `(R,e_s) ~ (R,e_t)` is now exactly AC-triviality of the single target
+  pair `P_T=(yXYxyxYXXy, YXyXYxyxYxyXYxy)`.  The target is not proved
+  AC-trivial.  This rank-two route remains sufficient, not necessary, for
+  the stabilized pair orbit (271) and hence for stable AK(3).
+- **The single terminal target has a strict ascending HNN form:** under
+  `a=yx^-1`, the target relator has Magnus rewrite
+  `a_0 a_-1^-1 a_0 a_1^-1 a_-1`, so its group is
+  `F(p,q) *_phi` with `phi(p)=q` and `phi(q)=p q p^-1 q`.  The map is
+  injective and not surjective.  Conjugating the live row by `x^3` gives the
+  exact weight-one killer `P x`, with the pinned length-27 base word in
+  (340).  Killer status is not meridionality or AC-triviality.  Keep this as
+  the sole terminal target for the chosen rank-two route (293); do not open
+  another killer or quotient census without a new mechanism.
 - **Canonical primitive-mate shortcut closed:** the $u$-leaf projection has
   abelian vector $(1,1,-1)$.  Thus the pairs $(B,H_A)$ and $(A,H_B)$ have
   minor triples $(-3,2,-2)$ and $(2,-1,2)$, so both pass the necessary gcd-one

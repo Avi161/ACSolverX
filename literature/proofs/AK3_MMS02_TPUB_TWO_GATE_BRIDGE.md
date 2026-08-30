@@ -339,6 +339,25 @@ identity sequences cannot remove a nonidentity endpoint discrepancy in
 $[N,N]$.  This freezes one inference from asphericity; it neither proves that
 the current discrepancy survives nor obstructs an interleaved lift.
 
+Section 6.52 returns to the terminal rank-two pair and closes its source side
+positively.  The cleaned source row is exactly the $n=2$ trefoil killer,
+with a five-factor literal normal-closure certificate.  After one Nielsen
+change, the standard killer calculation is
+a four-factor donor substitution followed by two elementary cleanups.  Hence
+the source pair is AC-trivial already at rank two.  The chosen rank-two
+sufficient gate is therefore equivalent to AC-triviality of the single
+cleaned target pair $(T,e_t)$.  That condition is sufficient, not necessary,
+for the stabilized pair orbit (271), and it is not proved here.
+
+Section 6.53 gives that target a noncyclic structural normal form.  A Nielsen
+change and Magnus rewrite identify $F(x,y)/\operatorname{Ncl}(T)$ as a
+strictly ascending HNN extension of a rank-two free group.  After one fixed
+conjugation, the live target row is the weight-one killer $Px$, for one pinned
+base word $P$ of length twenty-seven.  Killer status does not imply
+meridionality or AC-triviality.  This replaces the chosen two-ended rank-two
+route (293) by one exact target HNN gate without opening another residual
+ledger.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6090,6 +6109,222 @@ Peiffer/free-group gate, not a new residual category.  The unrestricted
 bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
 
+### 6.52. The terminal source is the second trefoil killer
+
+The source cleanup in (308) has a complete positive continuation.  Conjugate
+its first row to the braid relator
+
+\[
+ S_{\rm br}=ySy^{-1}=\mathtt{yxyXYX}.
+ \tag{325}
+\]
+
+Put
+
+\[
+ \mu_2=x(yx^{-1})^2=\mathtt{xyXyX},\qquad g=xy.
+ \tag{326}
+\]
+
+The terminal source row is the $g$-conjugate of $\mu_2$ in the trefoil
+group.  This is certified without a quotient-only inference: direct free
+expansion gives
+
+\[
+ e_s(g\mu_2g^{-1})^{-1}
+ =\prod_{j=1}^{5}q_jS_{\rm br}^{\epsilon_j}q_j^{-1},
+ \tag{327}
+\]
+
+where, in the displayed order,
+
+\[
+ (q_j,\epsilon_j)=
+ (\mathtt{YXyXY},-1),(\mathtt{YX},1),(\mathtt{xY},-1),
+ (\mathtt{xxyyYXY},-1),(\mathtt{xyY},-1).
+ \tag{328}
+\]
+
+The standard braid representation supplies an independent orientation
+control:
+
+\[
+ x\longmapsto
+ \begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+ y\longmapsto
+ \begin{pmatrix}1&0\\-1&1\end{pmatrix}
+ \tag{329}
+\]
+
+sends $\mu_2$ to
+$\left(\begin{smallmatrix}-1&2\\-3&5\end{smallmatrix}\right)$ and both
+$e_s$ and $g\mu_2g^{-1}$ to
+$\left(\begin{smallmatrix}2&3\\1&2\end{smallmatrix}\right)$.  In particular,
+the trace-four source row is not conjugate to the trace-two standard
+meridian under this representation; no assertion about its full automorphism
+orbit is needed below.
+Equation (327), rather than this matrix shadow, is the evidence used for the
+AC substitution.
+
+Now make the free-basis change $a=yx^{-1}$, so $y=ax$.  It sends the two
+rows to
+
+\[
+ r=ax^2ax^{-1}a^{-1}x^{-1},\qquad m=xa^2.
+ \tag{330}
+\]
+
+There is a four-factor literal donor identity
+
+\[
+ r^{-1}a
+ =m\,(a^{-1}ma)\,(a^{-2}m^{-1}a^2)\,m^{-1}.
+ \tag{331}
+\]
+
+Thus the $m$-donor replaces $r$ by $a$.  Two right multiplications of $m$
+by $a^{-1}$ then give $x$.  Combining (327)--(331) with the source cleanup
+in (308) proves the pure rank-two chain
+
+\[
+ (R,e_s)\sim_{\rm AC}(S,e_s)
+ \sim_{\rm AC}(S_{\rm br},\mu_2)
+ \sim_{\rm AC}(r,m)
+ \sim_{\rm AC}(a,x)
+ \sim_{\rm AC}(x,y).
+ \tag{332}
+\]
+
+**Theorem 6.45 (terminal source collapse).**  The source pair in (293) is
+AC-trivial without stabilization.  Consequently the rank-two sufficient
+gate
+
+\[
+ (R,e_s)\sim_{\rm AC}(R,e_t)
+\]
+
+closes if and only if the single cleaned target presentation
+
+\[
+ \boxed{
+ P_T=\langle x,y\mid
+ T=\mathtt{yXYxyxYXXy},\quad
+ e_t=\mathtt{YXyXYxyxYxyXYxy}\rangle
+ }
+ \tag{333}
+\]
+
+is AC-trivial.
+
+**Proof.**  Equation (332) proves the source claim.  Equation (308) gives
+$(R,e_t)\sim_{\rm AC}(T,e_t)$.  Since AC equivalence is transitive and
+symmetric, $(R,e_s)\sim_{\rm AC}(R,e_t)$ exactly when $P_T$ lies in the
+standard AC orbit. $\square$
+
+The source collapse is a genuine strengthening of its earlier stable
+triviality, but it does not decide (333).  Closure of (333) would close the
+rank-two gate in (293), which Section 6.46 proved sufficient for (271), and
+hence prove stable AK(3).  A path closing (271) may use the stabilizing row
+and need not descend to (293), so neither necessity nor a converse from
+stable AK(3) is claimed.  The unrestricted bridge, stable AK(3), ordinary
+AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+
+### 6.53. The cleaned target is a strict ascending HNN killer gate
+
+Apply the same basis change $y=ax$ to the target pair (333), retaining $x$
+as the stable letter.  The transformed words are
+
+\[
+ T'=\mathtt{aXAxaxAXXax},\qquad
+ e_t'=\mathtt{XAXaXAxaxAxaXAxax}.
+ \tag{334}
+\]
+
+With $a_i=x^iax^{-i}$, their Magnus rewrites are
+
+\[
+ \begin{aligned}
+ T'&=a_0a_{-1}^{-1}a_0a_1^{-1}a_{-1},\\
+ e_t'&=a_{-1}^{-1}a_{-2}a_{-3}^{-1}a_{-2}
+       a_{-1}^{-1}a_0a_{-1}^{-1}a_0x.
+ \end{aligned}
+ \tag{335}
+\]
+
+The extremal letter $a_1$ occurs once, and $T'=1$ solves it as
+
+\[
+ a_1=a_{-1}a_0a_{-1}^{-1}a_0.
+ \tag{336}
+\]
+
+Put $p=a_{-1}$ and $q=a_0$.  Equations (335)--(336) give
+
+\[
+ G_T:=F(x,y)/\operatorname{Ncl}(T)
+ \cong
+ \langle p,q,x\mid
+ xpx^{-1}=q,\quad xqx^{-1}=pqp^{-1}q\rangle.
+ \tag{337}
+\]
+
+Thus $G_T$ is the ascending HNN extension of $F(p,q)$ induced by
+
+\[
+ \phi(p)=q,\qquad \phi(q)=pqp^{-1}q.
+ \tag{338}
+\]
+
+The two images do not commute, so they freely generate a rank-two subgroup
+and $\phi$ is injective.  On abelianization its columns are $(0,1)^t$ and
+$(0,2)^t$, so it is not surjective.  Hence (337) is strictly ascending, not
+a mapping torus automorphism.
+
+Conjugate the second word in (335) by $x^3$.  Put
+$w_i=\phi^i(q)$ for $0\le i\le3$ and
+
+\[
+ P=w_2^{-1}w_1q^{-1}w_1w_2^{-1}w_3w_2^{-1}w_3.
+ \tag{339}
+\]
+
+The exact iterates and reduced base word are
+
+\[
+\begin{array}{c|l}
+i&w_i\\ \hline
+0&q\\
+1&pqp^{-1}q\\
+2&qpqqp^{-1}q\\
+3&pqp^{-1}qqpqp^{-1}qpqqp^{-1}q
+\end{array},
+\qquad
+P=\mathtt{QpQQPQQpqPqqpqqPqqpqPqpqqPq},
+ \tag{340}
+\]
+
+where uppercase $P,Q$ denote $p^{-1},q^{-1}$.  In $G_T$ one has the exact
+HNN normal form
+
+\[
+ \boxed{x^3e_t'x^{-3}=Px.}
+ \tag{341}
+\]
+
+**Theorem 6.46 (terminal target HNN gate).**  The one-relator group under the
+remaining target presentation (333) is the strict ascending free-group HNN
+extension (337), and its live relator is conjugate to the weight-one element
+$Px$ in (341).  Since $P_T$ presents the trivial group, $Px$ normally
+generates $G_T$.
+
+Normal generation is not an AC trivialization: strictly ascending HNN groups,
+like knot groups, can have nonmeridional killers.  The theorem supplies no
+automorphism taking $Px$ to $x$, no donor identity reducing (333), and no
+AC path.  It replaces the chosen rank-two route (293) by one exact HNN
+killer gate; no alternate killer or correction census is opened.  The unrestricted
+bridge, stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6237,8 +6472,16 @@ The logical gates remain separate:
 41. actual-base asphericity kills the module of identities but leaves the
     nontrivial commutator kernel $[N,N]$ intact, so Peiffer triviality of
     identity sequences does not promote a module endpoint to a prescribed
-    free-group representative; and
-42. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    free-group representative;
+42. the cleaned terminal source is the second trefoil killer and is
+    AC-trivial at rank two, reducing the rank-two sufficient gate (293)
+    exactly to AC-triviality of the single target presentation $P_T$ in
+    (333), which is not decided and is not necessary for closure of the
+    stabilized pair orbit (271);
+43. the group under the first row of $P_T$ is the strict ascending HNN
+    extension (337), and its second row is the weight-one killer $Px$, but
+    killer status supplies neither a meridian nor an AC path; and
+44. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -6334,3 +6577,16 @@ $N/[N,N]$, and $[N,N]$ is nontrivial.  Thus identity-sequence Peiffer
 triviality has no force on a nonidentity commutator endpoint discrepancy.
 This does not prove that every lifted path has such a discrepancy; the exact
 interleaved Peiffer/free-group gate remains open.
+Theorem 6.45 then closes the source half of the terminal rank-two route
+positively: a five-factor braid certificate identifies $e_s$ with the second
+trefoil killer, whose donor substitution gives a pure rank-two AC
+trivialization.  Therefore the chosen rank-two gate (293) is no longer a
+two-ended orbit problem; it is exactly AC-triviality of the target
+presentation $P_T$ in (333).  This remains only a sufficient route to the
+stabilized orbit (271).  Theorem 6.46 gives that target its terminal
+structural form: a strictly ascending HNN extension of $F_2$ with live
+weight-one killer $Px$.
+Normal generation alone does not trivialize the presentation.  No second
+killer family or residual ledger is opened; the exact next obligation is an
+AC reduction of (333), or an exact obstruction confined to that target on
+this rank-two route.
