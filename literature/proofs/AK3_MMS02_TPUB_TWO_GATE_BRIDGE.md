@@ -622,6 +622,16 @@ pair-product spectra to intersect.  Retraction
 \(q\) to an orientation of \(B\), contradicting Theorem 6.11 and (507).
 Thus every tagged-gate path has at least three row multiplications.
 
+Section 6.85 closes depth three without a word search.  After transporting
+the signed row frames, the only homology-compatible three-transvection word
+is the irreducible \(ULU\), or transposed \(LUL\), braid.  There are two
+source-order cases.  If the \(q\)-lineage is the first recipient, the row
+created by the middle move remains conjugate to \(q^{\pm1}\).  If it is the
+first donor, either choice of which projected endpoint row becomes the
+identity forces the other row to be conjugate to \(q^{\pm1}\).  That other
+row would have to be \(B^{\pm1}\), contradicting Theorem 6.11 and (507).
+Every tagged-gate path therefore has at least four row multiplications.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -9618,7 +9628,105 @@ arbitrary conjugations, inversions, row permutations, signs, and recipient
 orders.  It does not classify three-multiplication matrices or paths, close
 the Peiffer gate, prove the MMS02 bridge, or prove stable AK(3), ordinary
 AK(3), stable Andrews--Curtis, or Andrews--Curtis.  The depth-two lane is
-closed; no depth-three census is opened.
+closed.
+
+### 6.85. The complete depth-three tagged gate is empty
+
+Write
+
+\[
+ U(a)=\begin{pmatrix}1&a\\0&1\end{pmatrix},\qquad
+ L(a)=\begin{pmatrix}1&0\\a&1\end{pmatrix},
+ \qquad a\in\{1,-1\}.
+\tag{515}
+\]
+
+For three row multiplications, absorb the two intermediate signed frames
+into transported transvections:
+
+\[
+ T_3Q_2T_2Q_1T_1
+ =Q_2Q_1\,\widehat T_3\widehat T_2T_1,
+\tag{516}
+\]
+
+where
+
+\[
+ \widehat T_2=Q_1^{-1}T_2Q_1,\qquad
+ \widehat T_3=(Q_2Q_1)^{-1}T_3(Q_2Q_1),
+ \qquad Q_1,Q_2\in\Sigma.
+\]
+
+The common-frame classification is exact.  Direct multiplication gives
+
+\[
+ U(a)L(b)U(c)=
+ \begin{pmatrix}
+ 1+ab&a+c+abc\\ b&1+bc
+ \end{pmatrix}.
+\tag{517}
+\]
+
+For this matrix to be signed monomial, its two diagonal entries must vanish.
+Thus \(a=c=-b\), and
+
+\[
+ U(a)L(-a)U(a)=
+ \begin{pmatrix}0&a\\-a&0\end{pmatrix}\in\Sigma.
+\tag{518}
+\]
+
+The transposed calculation gives the \(LUL\) representative.  Every other
+direction word contains adjacent equal directions or is \(UUU\) or \(LLL\).
+Combining adjacent equal directions leaves a nonmonomial row or column, and
+three signs in \(\{1,-1\}\) cannot sum to zero.  Hence (518) and its
+transpose are the only common-frame solutions.  They form one orbit under
+local signed-frame changes.  No solution contains a transported adjacent
+inverse pair, since cancelling such a pair would leave one transvection,
+which is not signed monomial.  Raw fixed labels may display any of the eight
+direction words because \(Q_1,Q_2\) may exchange the rows; equation (516),
+not the raw labels, is the invariant classification.
+
+Now apply the retraction \(\pi\) from (514).  Arbitrary
+zero-multiplication moves may conjugate, invert, or exchange the projected
+rows, but the local braid has two source-order cases.
+
+First suppose the \(q\)-lineage is the recipient of the first transvection.
+Order the projected source as \((q^{\pm1},1)\) and use the \(ULU\) frame.
+The first \(U\)-move multiplies the \(q\)-row by the row whose projection is
+one, so its projection remains conjugate to \(q^{\pm1}\).  The middle
+\(L\)-move multiplies the identity row by a conjugate of that row, making
+its projection conjugate to \(q^{\pm1}\).  The final \(U\)-move changes
+only the other row.  Thus one projected endpoint row is conjugate to
+\(q^{\pm1}\).
+
+In the complementary source order, use the transposed \(LUL\) frame.  Just
+before its final \(L\)-move, the recipient row is conjugate to
+\(q^{\pm1}\); call the other row \(h\).  The last move leaves \(h\)
+unchanged and replaces the recipient by a left or right product of a
+conjugate of \(q^{\pm1}\) with a conjugate of \(h^{\pm1}\).  The projected
+target contains an identity row.  If \(h=1\), the changed row is conjugate
+to \(q^{\pm1}\).  If the changed product is one, then a conjugate of
+\(h^{\pm1}\) is the inverse of a conjugate of \(q^{\pm1}\), so the
+unchanged row \(h\) is conjugate to \(q^{\pm1}\).  In either case the
+nonidentity projected endpoint row is conjugate to \(q^{\pm1}\).
+
+The projected target is \((B,1)\), up to the final signed frame.  Since
+\(q\ne1\), the nonidentity row must match \(B^{\pm1}\).  This forces an
+orientation of \(q\) to be conjugate to an orientation of \(B\).  As in
+Section 6.84, Theorem 6.11 excludes equal orientations and (507) excludes
+opposite orientations.
+
+**Theorem 6.79 (complete tagged depth-three boundary).**  No AC path from
+\((q,t)\), equivalently from \((EB,t)\), to \((B,t)\) contains at most
+three row multiplications.  Every such path contains at least four.
+
+This is the complete three-transvection theorem with arbitrary ambient
+conjugations and all signed row frames.  It supplies no depth-four path or
+obstruction.  The Peiffer gate, MMS02 bridge, stable AK(3), ordinary AK(3),
+stable Andrews--Curtis, and Andrews--Curtis remain open.  The depth-three
+lane is closed; no depth-four census is opened.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
@@ -9885,8 +9993,15 @@ The logical gates remain separate:
     depth-two skeleton a transported inverse pair, whose pair-product
     spectrum would force \(q^{\pm1}\) to be conjugate to \(B^{\pm1}\) after
     killing the tag; hence every tagged-gate path has at least three row
-    multiplications, but no depth-three classification is claimed; and
-75. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    multiplications;
+75. the complete depth-three signed classification has one irreducible
+    local-frame braid orbit; after killing the tag, the first source order
+    has a surviving \(q^{\pm1}\)-class row, while in the complementary order
+    either possible identity endpoint forces the other row into that same
+    class.  It would have to become \(B^{\pm1}\), which is impossible, so
+    every tagged-gate path has at least four multiplications, but no
+    depth-four classification is claimed; and
+76. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -10197,5 +10312,11 @@ Theorem 6.78 closes the entire next depth.  Two compatible transvections are
 transported inverses, so a depth-two path would put one conjugacy class in
 both endpoint pair-product spectra.  Killing the tag would conjugate
 \(q^{\pm1}\) to \(B^{\pm1}\), contrary to Theorem 6.11 and the abelianized
-sign.  Thus every tagged path uses at least three row multiplications; no
-depth-three census or closure is claimed.
+sign.  Thus every tagged path uses at least three row multiplications.
+Theorem 6.79 closes depth three.  Its only local-frame matrix word is the
+irreducible alternating braid.  Under the tag retraction, one source order
+has a surviving \(q^{\pm1}\)-class row.  In the other, the endpoint identity
+condition forces whichever row remains nontrivial into that class.  It would
+have to become \(B^{\pm1}\), which is impossible.  Every tagged path
+therefore uses at least four row multiplications; depth four and the full
+Peiffer orbit remain open.
