@@ -102,6 +102,7 @@ CAMPAIGNS = {
         "floor": FLOOR_5M,                # every row here failed at 1M
         "floor_mrl": MAX_RELATOR_LENGTH,  # ... at cap 48
         "prefix": "leftovers_5m",
+        "ids_stem": "5m",             # legacy names the live run already writes
         "checkpoints": CHECKPOINTS_5M,
     },
     "u124": {
@@ -116,6 +117,7 @@ CAMPAIGNS = {
         "floor": None,
         "floor_mrl": None,
         "prefix": "u124_10m",
+        "ids_stem": "u124_10m",       # never clobbers the AC19 ids files
         "checkpoints": (1_000_000, 5_000_000, 10_000_000),
     },
 }
@@ -693,8 +695,9 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
                 f"rows the wider corridor cracked cheaply.")
 
     if write_ids and chunk_index is None and len(rows) == expected:
-        for stem, ids in (("solved_at_5m", c["solved_at_5m"]),
-                          ("still_unsolved_5m", c["unsolved_at_5m"])):
+        tag = camp["ids_stem"]
+        for stem, ids in ((f"solved_at_{tag}", c["solved_at_5m"]),
+                          (f"still_unsolved_{tag}", c["unsolved_at_5m"])):
             p = os.path.join(out_dir, f"{stem}_{key}.txt")
             with open(p, "w") as f:
                 f.write("".join(n + "\n" for n in sorted(ids)))

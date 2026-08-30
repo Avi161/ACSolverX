@@ -972,8 +972,9 @@ def test_an_unknown_campaign_is_refused():
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
 def test_growing_the_arena_mid_search_does_not_change_the_search():
     """The dedup table is rebuilt on every grow (_rehash_h). A tiny reservation
-    forces several grows inside one search; the result must be identical to a
-    search that never grew at all -- and to the Python oracle."""
+    forces several grows inside one search; the result must be identical, on
+    EVERY field, to a search that never grew at all. (Oracle equivalence is
+    pinned separately by the engine-vs-oracle gates.)"""
     from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
     from experiments.search.run_leftovers_1m import S20_MK2
 
@@ -983,9 +984,8 @@ def test_growing_the_arena_mid_search_does_not_change_the_search():
                                    track_path=True)
     flat = greedy_search_hcompact(r1, r2, 60_000, max_relator_length=48,
                                   config=S20_MK2, track_path=True)
-    for k in ("solved", "nodes_explored", "min_relator_length",
-              "max_relator_length", "max_relator_length_expanded",
-              "path", "path_moves"):
+    assert set(grown) == set(flat)
+    for k in grown:
         assert grown[k] == flat[k], k
 
 
@@ -1031,3 +1031,74 @@ def test_the_expansion_kernel_matches_the_unhoisted_formula_child_by_child():
             assert (la, lb) == (len(ca), len(cb)), (s1, s2, i)
             want = [code(x) for x in ca] + [code(x) for x in cb]
             assert list(codes[i, :la + lb]) == want, (s1, s2, i)
+
+
+# ---------------------------------------------------------------------------
+# Adaptive storage width: rows are sized by what the search actually stores,
+# not by the semantic cap -- at cap 64 full-width rows are ~80% padding. The
+# cap still prunes children (the search); width only sizes arena rows (the
+# storage), growing with a repack when a pop could produce a child that would
+# not fit. Bit-identical by padding-invariance of the tie-break memcmp.
+# ---------------------------------------------------------------------------
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_storage_width_never_changes_the_search():
+    """full-width vs adaptive vs deliberately-tiny (forcing several widenings
+    mid-search): every returned field identical, paths included."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+    from experiments.search.run_leftovers_1m import S20_MK2
+
+    for r1, r2, b, cfg in [("YYXYYXXXyX", "YYXYXXXYYXXXX", 40_000, S20_MK2),
+                           ("YYXXyxx", "YYxYxxyXYX", 25_000, None)]:
+        runs = {n: greedy_search_hcompact(r1, r2, b, max_relator_length=64,
+                                          config=cfg, track_path=True, **kw)
+                for n, kw in (("full", {"storage_width": 32}),
+                              ("narrow", {}),
+                              ("tiny", {"storage_width": 4}))}
+        for name in ("narrow", "tiny"):
+            assert set(runs[name]) == set(runs["full"])
+            for k in runs["full"]:
+                assert runs[name][k] == runs["full"][k], (r1, name, k)
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_initial_state_always_fits_the_storage_rows():
+    """A width override below the initial relators once overflowed
+    _init_state_h into the neighbouring region, corrupting the earliest rows'
+    min/max stats. The clamp makes that impossible."""
+    from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+
+    r1, r2 = "YXXYxxyxx", "YXXyXXXyxxYXXyxx"      # 16 symbols needs 8 bytes
+    tiny = greedy_search_hcompact(r1, r2, 200, max_relator_length=64,
+                                  storage_width=1)
+    full = greedy_search_hcompact(r1, r2, 200, max_relator_length=64,
+                                  storage_width=32)
+    for k in ("min_relator_length", "min_relator", "max_relator_length",
+              "max_relator", "max_relator_length_expanded",
+              "max_relator_expanded"):
+        assert tiny[k] == full[k], k
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_adaptive_width_actually_saves_memory():
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    kw = dict(max_nodes=50_000, max_relator_length=64, track_path=True)
+    lean = HCompactSolver("YYXXyxx", "YYxYxxyXYX", **kw)
+    full = HCompactSolver("YYXXyxx", "YYxYxxyXYX", storage_width=32, **kw)
+    assert lean.bytes_per_state() < full.bytes_per_state() * 0.75
+
+
+def test_u124_ids_files_can_never_clobber_the_ac19_ones(tmp_path):
+    """report_5m writes solved/unsolved ids on a complete run; both campaigns
+    default to the same out_dir, so the stems must differ (verifier finding)."""
+    out = str(tmp_path)
+    rows = load_rows_5m("s20_mk2", campaign="u124")[0]
+    with open(out_path_5m("s20_mk2", out, 1, 1, 10_000_000, 64,
+                          campaign="u124"), "w") as fh:
+        for r in rows:
+            fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
+                                 "solved": False,
+                                 "nodes_explored": 10_000_000}) + "\n")
+    report_5m("s20_mk2", out, chunks=1, budget=10_000_000, mrl=64,
+              campaign="u124", log=lambda *a: None)
+    assert (tmp_path / "still_unsolved_u124_10m_s20_mk2.txt").exists()
+    assert not (tmp_path / "still_unsolved_5m_s20_mk2.txt").exists()

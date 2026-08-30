@@ -65,9 +65,8 @@ from experiments.search.greedy_baseline import (                    # noqa: E402
 )
 from experiments.search.greedy_compact import (                     # noqa: E402
     _CODE_TO_CHAR, _HB_CHECK_EVERY, _EMPTY, _NEED_CAPACITY, _OK, _SOLVED,
-    _code_of, _decode, _fnv, _get_nib, _init_state, _insert, _lookup,
-    _next_pow2, _rehash, _row_less, _set_nib_at, _slot0, est_states,
-    _RESERVE_SLACK,
+    _code_of, _decode, _get_nib, _insert, _next_pow2, _row_less,
+    _set_nib_at, _slot0, est_states, _RESERVE_SLACK,
 )
 from experiments.heuristic_search.core.hfast import (                    # noqa: E402
     _SEP, _feats_nj, _pack, compile_config, expand_and_score_nj,
@@ -217,10 +216,33 @@ def _sift_down_h(heap, n, arena, seg, score, depth, rw):
     heap[i] = v
 
 
+_NEED_WIDTH = 4          # storage rows too narrow for this pop's children
+
+
+@njit(cache=True)
+def _repack(old_arena, new_arena, n, w_old, w_new):
+    """Copy every row into wider rows. Regions keep their bytes verbatim --
+    packed codes then zero padding -- so no comparison outcome can change and
+    the codes-based hash needs no rehash."""
+    rw_old = 2 * w_old
+    rw_new = 2 * w_new
+    for sid in range(n):
+        so = sid * rw_old
+        sn = sid * rw_new
+        for i in range(w_old):
+            new_arena[sn + i] = old_arena[so + i]
+        for i in range(w_old, w_new):
+            new_arena[sn + i] = 0
+        for i in range(w_old):
+            new_arena[sn + w_new + i] = old_arena[so + w_old + i]
+        for i in range(w_old, w_new):
+            new_arena[sn + w_new + i] = 0
+
+
 @njit(cache=True)
 def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
                  cap, w, rw, cyclic, seg_upto, seg_w, seg_depth, use_depth,
-                 max_pops, states_cap, parent, pmove, track):
+                 max_pops, states_cap, parent, pmove, track, w_cap):
     """Advance by at most ``max_pops`` pops; all state lives in the arrays and ``st``.
 
     The skeleton is ``greedy_compact._run_chunk``; the two deliberate differences are the
@@ -249,6 +271,15 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
                 or heap_len + maxc > heap.size):
             status = _NEED_CAPACITY
             break
+        # A child's single relator never exceeds the popped total, so this,
+        # checked BEFORE the pop, guarantees every child of this pop fits the
+        # current storage width. At w == w_cap every child fits by the cap
+        # itself and the guard never fires.
+        if w < w_cap:
+            nxt = heap[0]
+            if np.int64(len1[nxt]) + np.int64(len2[nxt]) > 2 * w:
+                status = _NEED_WIDTH
+                break
 
         top = heap[0]
         heap_len -= 1
@@ -345,16 +376,25 @@ class HCompactSolver:
     """Pops in exactly the order ``greedy_search_h`` does. Tracks no paths."""
 
     def __init__(self, r1, r2, max_nodes=10000, max_relator_length=24,
-                 cyclic_reduce=True, config=None, reserve_states=None, track_path=False):
+                 cyclic_reduce=True, config=None, reserve_states=None,
+                 track_path=False, storage_width=None):
         if not 1 <= max_relator_length <= 255:
             raise ValueError(
                 f"max_relator_length must be in 1..255, got {max_relator_length}")
         self.max_nodes = max_nodes
         self.cap = max_relator_length
         self.cyclic_reduce = cyclic_reduce
-        self.w = (self.cap + 1) // 2
-        self.rw = 2 * self.w
+        # Storage width vs semantic cap. ``cap`` prunes children (the search);
+        # ``w`` only sizes arena rows (the storage). Rows start narrow -- most
+        # searches never store a relator near the cap, and at cap 64 full-width
+        # rows are ~80% padding -- and grow with a repack the first time a pop
+        # could produce a child that would not fit. Bit-identical by the
+        # padding-invariance of the tie-break memcmp: zero padding compares
+        # equal beyond both relators, so no comparison outcome depends on
+        # width (pinned by tests against full-width runs).
+        self.w_cap = (self.cap + 1) // 2
         self.grew = 0
+        self.widened = 0
 
         cfg = config or LENGTH_ONLY
         self.track_path = bool(track_path)
@@ -368,6 +408,18 @@ class HCompactSolver:
             reduce_relator_nj(str_to_arr(r1), cyclic_reduce),
             reduce_relator_nj(str_to_arr(r2), cyclic_reduce),
         )
+
+        # The initial state must fit whatever width is chosen -- an override
+        # below it would overflow _init_state_h into the neighbouring region
+        # and corrupt the earliest rows (caught by the width-identity gate).
+        a1, a2 = self.initial_state
+        need = (max(len(a1), len(a2), 1) + 1) // 2
+        if storage_width is not None:
+            w0 = min(max(int(storage_width), need), self.w_cap)
+        else:
+            w0 = min(max(12, need), self.w_cap)   # 24-symbol regions to start
+        self.w = max(1, w0)
+        self.rw = 2 * self.w
 
         want = reserve_states or est_states(max_nodes)
         n = max(1024, int(want * _RESERVE_SLACK)) + 4 * (self.cap + 1) ** 2
@@ -406,6 +458,18 @@ class HCompactSolver:
                 self.pmove[:k, :] = old["pmove"][:k, :]
             _rehash_h(self.table, self.tcap - 1, self.arena,
                       self.len1, self.len2, k, 2 * self.w, self.rw)
+
+    def _grow_width(self, st):
+        self.widened += 1
+        n = int(st[2])
+        w_new = min(max(2 * self.w, 1), self.w_cap)
+        print(f"    [hcompact] rows widen {self.w}B -> {w_new}B per relator "
+              f"at {n:,} states (this repacks)", flush=True)
+        new_arena = np.empty(self.states_cap * 2 * w_new, dtype=np.uint8)
+        _repack(self.arena, new_arena, n, self.w, w_new)
+        self.arena = new_arena
+        self.w = w_new
+        self.rw = 2 * w_new
 
     def _grow(self, st):
         self.grew += 1
@@ -476,7 +540,7 @@ class HCompactSolver:
                 self.rw, self.cyclic_reduce, self.seg_upto, self.seg_w,
                 self.seg_depth, self.use_depth,
                 min(_HB_CHECK_EVERY, remaining), self.states_cap,
-                self.parent, self.pmove, self.track_path)
+                self.parent, self.pmove, self.track_path, self.w_cap)
 
             if progress is not None and int(st[0]) >= next_tick:
                 # Optional 2nd arg = current min pair-total (st[5]). One-arg
@@ -494,6 +558,8 @@ class HCompactSolver:
                 break
             if status == _NEED_CAPACITY:
                 self._grow(st)
+            if status == _NEED_WIDTH:
+                self._grow_width(st)
 
         self.n_discovered = int(st[2])
         self.min_id, self.min_total = int(st[4]), int(st[5])
@@ -538,7 +604,8 @@ class HCompactSolver:
 
 def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
                            cyclic_reduce=True, config=None, progress=None,
-                           reserve_states=None, track_path=False):
+                           reserve_states=None, track_path=False,
+                           storage_width=None):
     """``greedy_search_h``'s exact dict, from the compact layout.
 
     ``track_path=False`` reproduces ``keep_path=False``: no certificate comes
@@ -556,6 +623,7 @@ def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
         config=config,
         reserve_states=reserve_states,
         track_path=track_path,
+        storage_width=storage_width,
     )
     solved, nodes_visited = solver.solve(progress)
     states, moves = solver.path()
