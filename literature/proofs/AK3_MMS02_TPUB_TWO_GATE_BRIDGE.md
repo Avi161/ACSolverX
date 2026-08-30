@@ -386,6 +386,13 @@ neighborhood has 238 products and minimum neighboring floor thirty-two.
 This is a local minimum only for that defined class; arbitrary conjugator
 tails and multi-step uphill paths remain open.
 
+Section 6.57 evaluates the most direct multi-step route suggested by the
+terminal pair's abelianization.  All four signed difference rows have
+singleton Whitehead floor twenty-five.  The four orientation-preserving
+lifts of the Euclidean row algorithm restore a basis only in abelianization;
+their complete pair floors are at least eighty-one.  This closes that named
+lift, not other conjugator tails or uphill paths.
+
 ## 1. Pinned words and verified first legs
 
 Use uppercase letters for inverses and put
@@ -6768,6 +6775,111 @@ is still above the classical length threshold, stable AK(3), ordinary AK(3),
 stable Andrews--Curtis, and Andrews--Curtis remain open.  No neighborhood
 census beyond the complete one-step class in (363) is opened.
 
+### 6.57. The canonical Euclidean lift does not escape floor thirty-one
+
+The abelianizations of the terminal rows are
+
+\[
+ [A_{31}]=(-1,-2),\qquad [B_{31}]=(-1,-3).
+ \tag{365}
+\]
+
+Thus the ordinary Euclidean algorithm first forms a signed difference with
+abelianization \((0,\pm1)\).  To lift that step without identifying a word
+with its inverse, let \(\operatorname{cyc}_+(W)\) mean orientation-preserving
+free and cyclic reduction: cancel inverse endpoint pairs, but do not invert
+the result or choose between the two orientations.  The four literal first
+rows are
+
+\[
+ \begin{array}{c|l|c}
+ \text{source product}&\operatorname{cyc}_+(\text{product})&
+ \text{abelianization}\\ \hline
+ B_{31}A_{31}^{-1}&
+ \mathtt{QQpQPqPQpqPqpQPqqpqPQQpQPqp}&(0,-1)\\
+ A_{31}^{-1}B_{31}&
+ \mathtt{PqqpqPQQpQPqpQQpQPqPQpqPqpQ}&(0,-1)\\
+ A_{31}B_{31}^{-1}&
+ \mathtt{PQpqPqqpQPQQpqPQpQPqpQpqPqq}&(0,1)\\
+ B_{31}^{-1}A_{31}&
+ \mathtt{qPQpQPqpQpqPqqPQpqPqqpQPQQp}&(0,1).
+ \end{array}
+ \tag{366}
+\]
+
+Every displayed difference has length twenty-seven.  Complete singleton
+Whitehead reduction, checked independently by padding the second engine with
+the empty word, gives
+
+\[
+ \boxed{\operatorname{AutFloor}(C_i)=25\quad(1\le i\le4).}
+ \tag{367}
+\]
+
+In particular, the abelian basis cue does not make a difference row
+primitive.
+
+Each (C_i) can be formed while retaining either source row.  Use the other
+row as recipient, temporarily invert the signed factor when needed, and note
+that conjugating (XY) by (Y) gives (YX); the donor is then restored.
+Thus both continuations below are literal elementary AC sequences.
+
+There are two direct ways to finish the Euclidean vector calculation.  For
+the first two rows of (366), repeatedly right-multiply by \(C_i^{-1}\); for
+the last two, repeatedly right-multiply by \(C_i\).  Apply two donor copies
+to \(A_{31}\), or three donor copies to \(B_{31}\), using
+\(\operatorname{cyc}_+\) after every multiplication.  Both resulting first
+rows have abelianization \((-1,0)\), while the retained difference row has
+abelianization \((0,\pm1)\).  Literal reduction and complete ambient
+Whitehead minimization give
+
+\[
+ \begin{array}{c|c|c|c|c|c}
+ \text{difference}&\operatorname{AutFloor}(C_i)&
+ |E_{A,i}|&\operatorname{AutFloor}(E_{A,i},C_i)&
+ |E_{B,i}|&\operatorname{AutFloor}(E_{B,i},C_i)\\ \hline
+ B_{31}A_{31}^{-1}&25&69&91&97&115\\
+ A_{31}^{-1}B_{31}&25&59&81&91&109\\
+ A_{31}B_{31}^{-1}&25&69&91&97&115\\
+ B_{31}^{-1}A_{31}&25&59&81&91&109.
+ \end{array}
+ \tag{368}
+\]
+
+Including the initial difference pair and every donor multiplication, the
+complete floor sequences are
+
+\[
+ \begin{array}{c|c|c}
+ \text{difference}&A_{31}\text{-route}&B_{31}\text{-route}\\ \hline
+ B_{31}A_{31}^{-1}&41,66,91&40,65,90,115\\
+ A_{31}^{-1}B_{31}&41,60,81&40,61,84,109\\
+ A_{31}B_{31}^{-1}&41,66,91&40,65,90,115\\
+ B_{31}^{-1}A_{31}&41,60,81&40,61,84,109.
+ \end{array}
+ \tag{369}
+\]
+
+The same two independent Whitehead engines agree on all pair floors in
+(368)--(369).  Complete ambient normalization may be postponed to the
+endpoint of each pinned row sequence, since an ambient automorphism transports
+every inversion, conjugation, and multiplication in that same sequence.
+
+**Theorem 6.51 (canonical Euclidean-lift gate).**  None of the four direct,
+orientation-preserving lifts (366)--(369) of the Euclidean abelian row
+algorithm primitive-deletes its signed difference row, and no step in (369)
+lowers the terminal ambient floor thirty-one.  The best endpoint floor in the
+two-donor family is eighty-one, and in the three-donor family it is one
+hundred nine.
+
+This theorem evaluates one named multi-step uphill route; it is not an
+obstruction to the full AC orbit.  It does not cover inserting a different
+conjugator tail between donor multiplications, changing the donor word after
+the first step, a longer Nielsen sequence, another stable expansion, or the
+unrestricted rank-three bridge.  Stable AK(3), ordinary AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.  No Euclidean correction
+ledger is opened.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
@@ -6931,8 +7043,11 @@ The logical gates remain separate:
     legally realized donor row, and row-changing AC paths remain open;
 46. exact cyclic row changes descend that pair to the length-\((15,16)\)
     endpoint (362), which is locally minimal only in its complete tail-free
-    one-step cyclic-product neighborhood; and
-47. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
+    one-step cyclic-product neighborhood;
+47. the four direct orientation-preserving lifts of the abelian Euclidean row
+    algorithm have nonprimitive difference rows and endpoint floors at least
+    eighty-one, closing only those pinned lifts; and
+48. stable AK(3), ordinary AK(3), stable Andrews--Curtis, and
     Andrews--Curtis are not claimed.
 
 The active priority is the unrestricted rank-three bridge
@@ -7054,3 +7169,9 @@ pair (362).  Its 238-product one-step cyclic neighborhood has minimum floor
 tail-free class.  No larger correction census is opened; the target-confined
 obligation is a noncyclic conjugator-tail move, a multi-step route which may
 rise temporarily, or a different exact obstruction surviving those moves.
+Theorem 6.51 evaluates the canonical multi-step route suggested by the
+terminal abelian basis: all four signed difference rows have singleton floor
+25, and their pinned two- or three-donor Euclidean lifts have pair floor at
+least 81.  This closes only those orientation-preserving lifts.  Different
+intermediate conjugator tails, longer uphill paths, and the unrestricted
+bridge remain open.

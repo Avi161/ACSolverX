@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from experiments.equivalence_classes.lib.autcanon import aut_min_len
+from experiments.equivalence_classes.lib.words import cyc_reduce
 from experiments.stable_ac.mms02_terminal_base_pair_certificate import (
     decide_terminal_base_pair,
     from_xy,
@@ -17,6 +18,9 @@ from experiments.stable_ac.mms02_terminal_hnn_certificate import (
 from experiments.stable_ac.mms02_terminal_target_hnn_certificate import (
     free_reduce,
     inverse,
+)
+from experiments.stable_ac.mms02_terminal_twisted_coboundary_certificate import (
+    abelianization,
 )
 
 FLOOR_PAIRS = (
@@ -223,6 +227,93 @@ class CyclicDescentDecision:
     verdict: str
 
 
+@dataclass(frozen=True)
+class CanonicalEuclideanLift:
+    label: str
+    difference: str
+    difference_abelianization: tuple[int, int]
+    donor_sign: int
+    singleton_floor: int
+    a_floor_path: tuple[int, ...]
+    a_endpoint_length: int
+    a_endpoint_abelianization: tuple[int, int]
+    a_endpoint_floor: int
+    b_floor_path: tuple[int, ...]
+    b_endpoint_length: int
+    b_endpoint_abelianization: tuple[int, int]
+    b_endpoint_floor: int
+
+
+@dataclass(frozen=True)
+class CanonicalEuclideanDecision:
+    lifts: tuple[CanonicalEuclideanLift, ...]
+    verdict: str
+
+
+EXPECTED_CANONICAL_EUCLIDEAN_LIFTS = (
+    CanonicalEuclideanLift(
+        label="BA^-1",
+        difference="QQpQPqPQpqPqpQPqqpqPQQpQPqp",
+        difference_abelianization=(0, -1),
+        donor_sign=-1,
+        singleton_floor=25,
+        a_floor_path=(41, 66, 91),
+        a_endpoint_length=69,
+        a_endpoint_abelianization=(-1, 0),
+        a_endpoint_floor=91,
+        b_floor_path=(40, 65, 90, 115),
+        b_endpoint_length=97,
+        b_endpoint_abelianization=(-1, 0),
+        b_endpoint_floor=115,
+    ),
+    CanonicalEuclideanLift(
+        label="A^-1B",
+        difference="PqqpqPQQpQPqpQQpQPqPQpqPqpQ",
+        difference_abelianization=(0, -1),
+        donor_sign=-1,
+        singleton_floor=25,
+        a_floor_path=(41, 60, 81),
+        a_endpoint_length=59,
+        a_endpoint_abelianization=(-1, 0),
+        a_endpoint_floor=81,
+        b_floor_path=(40, 61, 84, 109),
+        b_endpoint_length=91,
+        b_endpoint_abelianization=(-1, 0),
+        b_endpoint_floor=109,
+    ),
+    CanonicalEuclideanLift(
+        label="AB^-1",
+        difference="PQpqPqqpQPQQpqPQpQPqpQpqPqq",
+        difference_abelianization=(0, 1),
+        donor_sign=1,
+        singleton_floor=25,
+        a_floor_path=(41, 66, 91),
+        a_endpoint_length=69,
+        a_endpoint_abelianization=(-1, 0),
+        a_endpoint_floor=91,
+        b_floor_path=(40, 65, 90, 115),
+        b_endpoint_length=97,
+        b_endpoint_abelianization=(-1, 0),
+        b_endpoint_floor=115,
+    ),
+    CanonicalEuclideanLift(
+        label="B^-1A",
+        difference="qPQpQPqpQpqPqqPQpqPqqpQPQQp",
+        difference_abelianization=(0, 1),
+        donor_sign=1,
+        singleton_floor=25,
+        a_floor_path=(41, 60, 81),
+        a_endpoint_length=59,
+        a_endpoint_abelianization=(-1, 0),
+        a_endpoint_floor=81,
+        b_floor_path=(40, 61, 84, 109),
+        b_endpoint_length=91,
+        b_endpoint_abelianization=(-1, 0),
+        b_endpoint_floor=109,
+    ),
+)
+
+
 def rotations(word: str, sign: int) -> tuple[str, ...]:
     oriented = word if sign == 1 else inverse(word)
     return tuple(oriented[index:] + oriented[:index] for index in range(len(oriented)))
@@ -278,6 +369,25 @@ def terminal_neighborhood(pair: tuple[str, str]) -> tuple[int, int]:
                 if replay_floor != best:
                     raise AssertionError("the terminal local-floor replay disagrees")
     return len(products), best
+
+
+def oriented_cyclic_reduce(word: str) -> str:
+    return from_xy(cyc_reduce(to_xy(word)))
+
+
+def repeat_donor(row: str, donor: str, sign: int, count: int) -> str:
+    factor = donor if sign == 1 else inverse(donor)
+    for _ in range(count):
+        row = oriented_cyclic_reduce(row + factor)
+    return row
+
+
+def singleton_floor(word: str) -> int:
+    minimum, _ = whitehead_minimum((to_xy(word),))
+    floor = len(minimum[0])
+    if aut_min_len((to_xy(word), "")) != floor:
+        raise AssertionError("the padded independent singleton floor disagrees")
+    return floor
 
 
 def decide_cyclic_descent() -> CyclicDescentDecision:
@@ -337,6 +447,56 @@ def decide_cyclic_descent() -> CyclicDescentDecision:
         terminal_neighbor_floor=neighbor_floor,
         terminal_pair=terminal_pair,
         verdict="TARGET_CYCLIC_DESCENT_FLOOR_31",
+    )
+
+
+def decide_canonical_euclidean_lift() -> CanonicalEuclideanDecision:
+    _, (a_row, b_row) = FLOOR_PAIRS[-1]
+    constructions = (
+        ("BA^-1", b_row + inverse(a_row), -1),
+        ("A^-1B", inverse(a_row) + b_row, -1),
+        ("AB^-1", a_row + inverse(b_row), 1),
+        ("B^-1A", inverse(b_row) + a_row, 1),
+    )
+    lifts = []
+    for label, raw_difference, donor_sign in constructions:
+        difference = oriented_cyclic_reduce(raw_difference)
+        a_floor_path = tuple(
+            minimize_pair(
+                (repeat_donor(a_row, difference, donor_sign, count), difference)
+            )[1]
+            for count in range(3)
+        )
+        b_floor_path = tuple(
+            minimize_pair(
+                (repeat_donor(b_row, difference, donor_sign, count), difference)
+            )[1]
+            for count in range(4)
+        )
+        a_endpoint = repeat_donor(a_row, difference, donor_sign, 2)
+        b_endpoint = repeat_donor(b_row, difference, donor_sign, 3)
+        lifts.append(
+            CanonicalEuclideanLift(
+                label=label,
+                difference=difference,
+                difference_abelianization=abelianization(difference),
+                donor_sign=donor_sign,
+                singleton_floor=singleton_floor(difference),
+                a_floor_path=a_floor_path,
+                a_endpoint_length=len(a_endpoint),
+                a_endpoint_abelianization=abelianization(a_endpoint),
+                a_endpoint_floor=a_floor_path[-1],
+                b_floor_path=b_floor_path,
+                b_endpoint_length=len(b_endpoint),
+                b_endpoint_abelianization=abelianization(b_endpoint),
+                b_endpoint_floor=b_floor_path[-1],
+            )
+        )
+    if tuple(lifts) != EXPECTED_CANONICAL_EUCLIDEAN_LIFTS:
+        raise AssertionError("the pinned canonical Euclidean lifts drifted")
+    return CanonicalEuclideanDecision(
+        lifts=tuple(lifts),
+        verdict="CANONICAL_EUCLIDEAN_LIFTS_DO_NOT_LOWER_FLOOR_31",
     )
 
 
