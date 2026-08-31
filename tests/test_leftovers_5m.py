@@ -1469,8 +1469,11 @@ def test_the_campaigns_carry_their_reservation_rates():
     # The floor must clear every rate a u124 row has actually demonstrated;
     # lowering it below one re-runs those deaths. plan_memory's transient
     # clip, tested below, keeps this constant safe on any box size.
-    assert CAMPAIGNS["u124"]["states_per_node"] == 170
-    assert CAMPAIGNS["u124"]["states_per_node"] > 123
+    # 168 exactly: the largest floor whose worst (161.2 GB) seats three
+    # lanes on the measured 493 GiB 16xlarge -- 170's 163.1 lost the third
+    # lane by two thousandths against the real 489 GB admissible.
+    assert CAMPAIGNS["u124"]["states_per_node"] == 168
+    assert CAMPAIGNS["u124"]["states_per_node"] > 146   # worst measured ~144
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1481,21 +1484,21 @@ def test_the_repack_transient_clips_the_reservation_to_the_box():
     budget, so plan_memory must clip the rate floor to what THIS box can
     complete -- and must leave a big box's full floor alone."""
     from experiments.search.run_leftovers_5m import plan_memory
-    # 512 GB class: 170/node fits outright, repack transient included
-    _, big = plan_memory(10_000_000, 64, available_gb=506,
-                         states_per_node=170, log=lambda *a: None)
-    assert big == 170 * 10_000_000 + 4 * 65 ** 2
-    # 246 GB class: the transient bound (not the steady fit) is the binder;
-    # the clip must land BELOW the full 1.70B ask yet ABOVE the old 150
-    # floor -- the box completes more than it used to, never less.
-    _, clipped = plan_memory(10_000_000, 64, available_gb=246,
-                             states_per_node=170, log=lambda *a: None)
+    # 493 GiB class (the measured 16xlarge): 168/node fits outright,
+    # repack transient included
+    _, big = plan_memory(10_000_000, 64, available_gb=493,
+                         states_per_node=168, log=lambda *a: None)
+    assert big == 168 * 10_000_000 + 4 * 65 ** 2
+    # a small box: the transient bound (not the steady fit) is the binder;
+    # the clip must land BELOW the full 1.68B ask yet ABOVE what the steady
+    # cap alone would allow completing through a repack
+    _, clipped = plan_memory(10_000_000, 64, available_gb=200,
+                             states_per_node=168, log=lambda *a: None)
     assert clipped < big
-    assert clipped > 150 * 10_000_000
     # and the clipped repack really fits: old rung + full width + fixed
     # arrays + the pow2 table, under (avail - 2) with margin
     tr_gb = clipped * (48 + 64 + 27) / 2 ** 30 + 16.0
-    assert tr_gb <= (246 - 2.0) - 8.0
+    assert tr_gb <= (200 - 2.0) - 8.0
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1506,15 +1509,41 @@ def test_three_lanes_hold_on_a_512_gb_box_with_the_measured_peaks():
     three lanes on 512 GB -- no policy change, just enough RAM."""
     from experiments.search.run_leftovers_5m import (
         RamGovernor, _reserved_worst_gb)
-    worst = _reserved_worst_gb(170 * 10_000_000 + 4 * 65 ** 2, 64)
+    worst = _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64)
     gov = RamGovernor(10_000_000, 64, cpu_cap=64, worst_gb=worst)
     for p in (93.552, 158.021, 93.517):
         gov.note(p)
-    assert gov.capacity([], free_gb=506) == 3
-    # and one grow-doubled ~260 GB peak would collapse it -- the reason the
-    # 170 floor must be on the box BEFORE any over-150 row runs there
+    # 489 GB is what the real 493 GiB box has admissible at launch --
+    # the 170 floor's 163.1 worst lost this exact assertion (2.998 lanes)
+    assert gov.capacity([], free_gb=489) == 3
+    # and one grow-doubled ~260 GB peak would collapse it -- the reason
+    # the rate-floor RLIMIT cap below must forbid the doubling outright
     gov.note(260.0)
-    assert gov.capacity([], free_gb=506) == 1
+    assert gov.capacity([], free_gb=489) == 1
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_rate_floor_rlimit_forbids_grow_doubling_on_big_boxes():
+    """On a 246 GB box a row past the floor died cleanly because the grow
+    doubling could not fit under RLIMIT_AS. On 493 GB the doubling FITS,
+    completes at ~260 GB, and its recorded peak pins the box to one lane
+    forever via governor seeding. Under a rate floor the child's limit is
+    therefore capped just above the width-repack transient: past-the-floor
+    rows die the same clean MemoryError on every box size. The est-based
+    path keeps the box-owning limit -- AC19's grows were load-bearing."""
+    from experiments.search.run_leftovers_5m import plan_memory
+    lim, res = plan_memory(10_000_000, 64, available_gb=493,
+                           states_per_node=168, log=lambda *a: None)
+    assert res == 168 * 10_000_000 + 4 * 65 ** 2
+    lim_gb = lim / 2 ** 30
+    repack_gb = res * (48 + 64 + 27) / 2 ** 30 + 16.0
+    assert repack_gb < lim_gb <= repack_gb + 10.0 + 1e-6   # repack fits...
+    # ...but the doubling (old arenas held + 2x realloc, ~400 GB) cannot
+    assert lim_gb < 380.0
+    # est-based sizing (no rate floor) keeps the whole box, unchanged
+    lim2, _ = plan_memory(5_000_000, 48, available_gb=251,
+                          log=lambda *a: None)
+    assert lim2 == int((251 - 2.0) * 2 ** 30)
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1807,9 +1836,9 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
                 PLAN_GB="251", PLAN_CORES="32")
     assert p.returncode == 0, p.stderr
-    assert "reserve_states  : 1,700,016,900 (full)" in p.stdout
+    assert "reserve_states  : 1,680,016,900 (full)" in p.stdout
     assert "allocation-backed worst" in p.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr
-    assert "1,700,016,900" not in q.stdout      # ac19 sizing unchanged
+    assert "1,680,016,900" not in q.stdout      # ac19 sizing unchanged

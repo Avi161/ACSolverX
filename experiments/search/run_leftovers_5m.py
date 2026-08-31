@@ -138,14 +138,17 @@ CAMPAIGNS = {
         # doubling, which cannot fit under the child's RLIMIT_AS however
         # much physical RAM is free); 150 covered those with 22% margin;
         # aca_4's live trajectory then sat AT that floor (~150-165 est).
-        # 170 is what the request covers outright on a big-RAM box; on any
-        # given machine plan_memory's width-repack transient clip has the
-        # last word (a 246 GB box lands ~166/node), so this constant is
-        # safe everywhere -- bigger boxes get the full floor, smaller ones
-        # get the most their RLIMIT_AS can complete. A row beyond the
-        # clipped rate still dies a clean MemoryError row that resume
-        # retries -- on a bigger machine if need be.
-        "states_per_node": 170,
+        # 168 is the largest floor that seats THREE lanes on the campaign's
+        # measured 493 GiB r6a.16xlarge (three of the 161.2 GB worst must
+        # fit 489 admissible; 170's 163.1 missed the third lane by two
+        # thousandths). On any given machine plan_memory's width-repack
+        # transient clip has the last word, so this constant is safe
+        # everywhere -- bigger boxes get the full floor, smaller ones get
+        # the most their RLIMIT_AS can complete. A row beyond the clipped
+        # rate still dies a clean MemoryError row that resume retries --
+        # on a bigger machine if need be (the rate-floor RLIMIT cap in
+        # plan_memory guarantees the death stays clean on big boxes too).
+        "states_per_node": 168,
     },
 }
 
@@ -365,6 +368,23 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
             f"(engine default {default_n:,} does not fit {avail:.0f} GB free, "
             f"width-repack transient included); a row that outgrows it fails "
             f"with a clean MemoryError row, never an OOM kill")
+    if states_per_node and w_cap > 12:
+        # Under a rate floor the reservation IS the sizing model, so the
+        # per-child RLIMIT doubles as the poisoning vaccine: on a box big
+        # enough that a grow-doubling FITS in address space, a row past the
+        # floor balloons to ~2x its reservation and completes -- and its
+        # recorded peak then throttles admission for the whole campaign (a
+        # ~260 GB peak would pin a 512 GB box to one lane, permanently,
+        # via governor seeding). Cap the child just above its widest
+        # legitimate allocation -- the width-repack transient -- and a row
+        # that outgrows a rate-floored reservation dies the same clean,
+        # recorded, retried MemoryError on every box size. The est-based
+        # path (states_per_node=None) is deliberately ungated: THERE the
+        # reservation is a guess and the grow is load-bearing (AC19's
+        # 72.9 GB rows completed through it).
+        table_gb = (1 << max(1, 2 * reserve - 1).bit_length()) * 4 / 2 ** 30
+        repack_gb = reserve * per_tr / 2 ** 30 + table_gb
+        limit_gb = min(limit_gb, repack_gb + _TRANSIENT_MARGIN_GB)
     return int(limit_gb * 2 ** 30), reserve
 
 
