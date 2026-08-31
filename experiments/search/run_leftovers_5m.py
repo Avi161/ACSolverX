@@ -131,19 +131,21 @@ CAMPAIGNS = {
         "prefix": "u124_10m",
         "ids_stem": "u124_10m",       # never clobbers the AC19 ids files
         "checkpoints": (1_000_000, 5_000_000, 10_000_000),
-        # Reservation floor, in discovered states per popped node. AC19's
-        # four fattest rows measured ~99, and 110 (that worst + 10%) shipped
-        # as the floor -- then u124's own first two rows beat it: both
-        # exhausted the 1.10B reservation before budget (aca_0 ~111/node at
-        # 99% of 10M, aca_1 ~123/node at 90%) and died in the grow doubling,
-        # whose allocation cannot fit under the child's RLIMIT_AS however
-        # much physical RAM is free. 150 = the worst measured u124 rate
-        # + 22%; the 24B->32B width-repack transient (~226 GB of address
-        # space at this reserve) bounds the floor at ~160 on a 246 GB box,
-        # so this is the margin the hardware has. A row beyond 150/node
-        # still dies a clean MemoryError row that resume retries -- on a
-        # bigger machine if need be.
-        "states_per_node": 150,
+        # Reservation floor, in discovered states per popped node. The
+        # ladder of this number is the campaign's memory history: 110
+        # (AC19's worst + 10%) was beaten by u124's own first two rows
+        # (aca_0 ~111/node, aca_1 ~123/node -- both died in the grow
+        # doubling, which cannot fit under the child's RLIMIT_AS however
+        # much physical RAM is free); 150 covered those with 22% margin;
+        # aca_4's live trajectory then sat AT that floor (~150-165 est).
+        # 170 is what the request covers outright on a big-RAM box; on any
+        # given machine plan_memory's width-repack transient clip has the
+        # last word (a 246 GB box lands ~166/node), so this constant is
+        # safe everywhere -- bigger boxes get the full floor, smaller ones
+        # get the most their RLIMIT_AS can complete. A row beyond the
+        # clipped rate still dies a clean MemoryError row that resume
+        # retries -- on a bigger machine if need be.
+        "states_per_node": 170,
     },
 }
 
@@ -281,6 +283,10 @@ def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
 
 ROW_TIMEOUT_DEFAULT = None       # seconds per row; None = no CPU-time kill
 
+# Address-space headroom held back from the width-repack transient bound in
+# plan_memory: interpreter + numba runtime + MemAvailable estimation noise.
+_TRANSIENT_MARGIN_GB = 10.0
+
 
 def _done_ok(path):
     """Names of rows that FINISHED -- error rows do not count as done."""
@@ -335,12 +341,30 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
         default_n = max(default_n,
                         int(states_per_node * budget) + 4 * (mrl + 1) ** 2)
     cap_n = int(max(limit_gb - 2.5, 1.0) * 0.95 * 2 ** 30 / per_state)
+    # The width ladder's LAST repack (previous rung -> full width) holds BOTH
+    # arenas at once, so a widening row's address-space peak is the repack,
+    # not the steady worst -- aca_1 measured it at 158.0 GB VmHWM on a 1.50B
+    # reserve. A reservation whose repack cannot fit under this box's
+    # RLIMIT_AS turns every widening row into a death at ~90% of budget;
+    # clipping the reservation instead keeps width-legal rows completable
+    # and only shortens the runway of over-rate rows, which fail cleanly at
+    # reservation exhaustion either way.
+    w_cap = (mrl + 1) // 2
+    if w_cap > 12:
+        w_prev = w = 12
+        while w < w_cap:
+            w_prev, w = w, min(2 * w, w_cap)
+        per_tr = 2 * w_prev + 2 * w_cap + 19 + (8 if TRACK_PATH else 0)
+        cand = max(1024, min(default_n, cap_n))
+        table_gb = (1 << max(1, 2 * cand - 1).bit_length()) * 4 / 2 ** 30
+        tr_gb = max(limit_gb - _TRANSIENT_MARGIN_GB - table_gb, 1.0)
+        cap_n = min(cap_n, int(tr_gb * 2 ** 30 / per_tr))
     reserve = max(1024, min(default_n, cap_n))
     if reserve < default_n:
         log(f"  memory  : reservation clipped to {reserve:,} states "
-            f"(engine default {default_n:,} does not fit {avail:.0f} GB free); "
-            f"a row that outgrows it fails with a clean MemoryError row, "
-            f"never an OOM kill")
+            f"(engine default {default_n:,} does not fit {avail:.0f} GB free, "
+            f"width-repack transient included); a row that outgrows it fails "
+            f"with a clean MemoryError row, never an OOM kill")
     return int(limit_gb * 2 ** 30), reserve
 
 

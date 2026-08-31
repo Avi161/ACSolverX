@@ -1465,10 +1465,56 @@ def test_the_campaigns_carry_their_reservation_rates():
     assert CAMPAIGNS["ac19"]["states_per_node"] is None   # live run unchanged
     # u124's own first two rows measured ~111 and ~123 states/node -- both
     # exhausted the 110-rate reservation before budget and died in the grow
-    # doubling under RLIMIT_AS. The floor must clear every rate a u124 row
-    # has actually demonstrated; lowering it below one re-runs those deaths.
-    assert CAMPAIGNS["u124"]["states_per_node"] == 150
+    # doubling under RLIMIT_AS; aca_4's live trajectory then sat at ~150-165.
+    # The floor must clear every rate a u124 row has actually demonstrated;
+    # lowering it below one re-runs those deaths. plan_memory's transient
+    # clip, tested below, keeps this constant safe on any box size.
+    assert CAMPAIGNS["u124"]["states_per_node"] == 170
     assert CAMPAIGNS["u124"]["states_per_node"] > 123
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_repack_transient_clips_the_reservation_to_the_box():
+    """The width ladder's last repack holds both arenas at once (aca_1
+    measured it: 158.0 GB VmHWM on a 1.50B reserve). A reservation whose
+    repack cannot fit under RLIMIT_AS kills every widening row at ~90% of
+    budget, so plan_memory must clip the rate floor to what THIS box can
+    complete -- and must leave a big box's full floor alone."""
+    from experiments.search.run_leftovers_5m import plan_memory
+    # 512 GB class: 170/node fits outright, repack transient included
+    _, big = plan_memory(10_000_000, 64, available_gb=506,
+                         states_per_node=170, log=lambda *a: None)
+    assert big == 170 * 10_000_000 + 4 * 65 ** 2
+    # 246 GB class: the transient bound (not the steady fit) is the binder;
+    # the clip must land BELOW the full 1.70B ask yet ABOVE the old 150
+    # floor -- the box completes more than it used to, never less.
+    _, clipped = plan_memory(10_000_000, 64, available_gb=246,
+                             states_per_node=170, log=lambda *a: None)
+    assert clipped < big
+    assert clipped > 150 * 10_000_000
+    # and the clipped repack really fits: old rung + full width + fixed
+    # arrays + the pow2 table, under (avail - 2) with margin
+    tr_gb = clipped * (48 + 64 + 27) / 2 ** 30 + 16.0
+    assert tr_gb <= (246 - 2.0) - 8.0
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_three_lanes_hold_on_a_512_gb_box_with_the_measured_peaks():
+    """The 16xlarge card's load-bearing claim, pinned: with the campaign's
+    real peaks (two ~93.5 GB rows and aca_1's 158.0 widener) and the 170
+    floor's allocation-backed worst, the unchanged max-peak governor grants
+    three lanes on 512 GB -- no policy change, just enough RAM."""
+    from experiments.search.run_leftovers_5m import (
+        RamGovernor, _reserved_worst_gb)
+    worst = _reserved_worst_gb(170 * 10_000_000 + 4 * 65 ** 2, 64)
+    gov = RamGovernor(10_000_000, 64, cpu_cap=64, worst_gb=worst)
+    for p in (93.552, 158.021, 93.517):
+        gov.note(p)
+    assert gov.capacity([], free_gb=506) == 3
+    # and one grow-doubled ~260 GB peak would collapse it -- the reason the
+    # 170 floor must be on the box BEFORE any over-150 row runs there
+    gov.note(260.0)
+    assert gov.capacity([], free_gb=506) == 1
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1761,9 +1807,9 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
                 PLAN_GB="251", PLAN_CORES="32")
     assert p.returncode == 0, p.stderr
-    assert "reserve_states  : 1,500,016,900 (full)" in p.stdout
+    assert "reserve_states  : 1,700,016,900 (full)" in p.stdout
     assert "allocation-backed worst" in p.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr
-    assert "1,500,016,900" not in q.stdout      # ac19 sizing unchanged
+    assert "1,700,016,900" not in q.stdout      # ac19 sizing unchanged
