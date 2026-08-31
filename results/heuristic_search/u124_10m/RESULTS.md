@@ -1,0 +1,31 @@
+# u124: 124 unsolved Miller-Schupp AC classes at 10M nodes (cap 64)
+
+The u124 campaign (`results/stable_ac/fable/aca_124.csv`, 124 rows) under
+s20_mk2 at a 10,000,000-node budget, max relator length 64, engine
+hcompact, engine_mem_gen 2. Runs on AWS r6a-class Spot boxes; the campaign
+is LIVE — files here are snapshots and will be superseded.
+
+## Files
+
+- `u124_10m_s20_mk2_b10000000_mrl64.jsonl` — snapshot of 2026-08-31,
+  rows aca_0..aca_8: **9 full-budget completions, 0 solved** (every row
+  exhausted 10M without reaching a shorter total). The two `aca_0`/`aca_1`
+  error records at the top are the reservation-exhaustion deaths under the
+  original 110 states/node floor (both rows exceeded it at ~111 and
+  ~123/node; the grow doubling cannot fit under the child's RLIMIT_AS);
+  both were retried and completed under the 1.5B reserve. Readers dedupe
+  by name preferring finished records.
+- `run_log_u124.log` — the campaign run.log for the same period: the two
+  `reservation exceeded` lines (trip at ~1,100,016,9xx states, doubling
+  target 2,200,067,600) and the width-ladder `rows widen` lines, including
+  aca_1's 24B->32B repack at 1,095,951,220 states that produced its
+  158.021 GB peak.
+
+## Notable
+
+All nine completions are rigid at this budget: `min_relator_length`
+equals the starting total and `min_relator` is the starting pair,
+unchanged, for every row. Peaks span 87.7-158.0 GB; the only row above
+~140 is aca_1, whose peak is the width-repack transient, not steady
+state. Widest expansions reach totals of 41-54 against the per-relator
+cap of 64.
