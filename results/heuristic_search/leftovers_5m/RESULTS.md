@@ -11,13 +11,29 @@ ran at cap 48). Produced on the GCP campaign box (n2-highmem class,
   88/88 rows, **57 solved / 31 unsolved** at 5M. This is the final file;
   earlier partial uploads (5-, 41-row snapshots) are strict prefixes of it.
 - `leftovers_5m_s20_mk2_b5000000_mrl64.jsonl` — the s20_mk2 arm
-  (priority = L + 20·S + 2·MK), PARTIAL snapshot of 2026-08-31: 5 of 14
-  rows solved (`ac19_27683`, `ac19_12445`, `ac19_28930`, `ac19_31298`,
-  `ac19_54835`), each with the full AC-trivialization path and moves.
-  The 4 duplicate `ac19_50841` error records are the OOM crash-loop
-  incident (9 lanes admitted off thin early peaks; fixed operationally
-  with `--workers 3`); the row is retried by resume and the readers
-  (`classify_5m`) dedupe by name preferring finished records.
+  (priority = L + 20·S + 2·MK), COMPLETE: all 14 rows settled, **5 solved
+  / 9 exhausted**, no outstanding errors. The solved rows (`ac19_27683`,
+  `ac19_12445`, `ac19_28930`, `ac19_31298`, `ac19_54835`) each carry the
+  full AC-trivialization path and moves. The 6 interleaved error records
+  (5× `ac19_50841`, 1× `ac19_28131`) are the OOM crash-loop incident
+  (9 lanes admitted off thin early peaks; fixed operationally with
+  `--workers 3`); both rows were retried by resume and completed —
+  readers (`classify_5m`) dedupe by name preferring finished records.
+- `run_log_ac19.log` — the campaign run.log: the crash-loop restarts,
+  the `--workers 3` cap taking effect, and every per-row landing line.
+
+## Final tally (campaign complete, 102/102 rows, 2026-09-01)
+
+Of the 88 rows that survived greedy's 1M screen: 57 solved by greedy at
+5M; of the 31 greedy-exhausted, 19 were already solved by s20_mk2 at
+≤1M (they are absent from its 1M-failure list by construction) and 3
+more fell to s20_mk2 at 5M. **The residue unsolved by any arm at any
+budget is 9 rows**: `ac19_16286`, `ac19_27254`, `ac19_28131`,
+`ac19_44381`, `ac19_50841`, `ac19_51034`, `ac19_59576`, `ac19_65753`,
+`ac19_7284`. Four of the nine reduced their presentation totals without
+solving (16286: 19→17, 59576: 19→17, 65753: 20→17, 7284: 19→17); the
+other five are rigid at this budget. Exhausted-row peaks sit at
+~86.7-86.8 GB.
 
 ## Verification (2026-09-01)
 
