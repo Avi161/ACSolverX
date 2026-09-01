@@ -21,6 +21,21 @@ is LIVE — files here are snapshots and will be superseded.
   aca_1's 24B->32B repack at 1,095,951,220 states that produced its
   158.021 GB peak.
 
+## Verification (2026-09-01)
+
+The campaign was independently verified to be running s20_mk2 correctly:
+the production CLI (`--campaign u124 --arm s20_mk2`, budget 1,000, cap 64)
+was re-run twice on rows aca_0..aca_59 on a different machine (4-core
+x86 container vs the campaign's 64-vCPU EPYC). The two runs are
+bit-identical; all ten 12B->24B widen points in `run_log_u124.log`
+(aca_0..aca_9: 523 / 2,415 / 423 / 348 / 837 / 816 / 378 / 2,127 /
+13,999 / 10,641 states) reproduce to the digit -- widen points are
+content-determined, so they fingerprint the search; and the pure-Python
+reference `greedy_search_h` with the S20_MK2 config
+(`{"L": 1.0, "S": 20.0, "MK": 2.0}`) agrees with the engine records on
+every shared field for the rows spot-checked. The 24B->32B widens
+(113M-1.1B states) are correctly absent at a 1k budget.
+
 ## Notable
 
 All nine completions are rigid at this budget: `min_relator_length`
