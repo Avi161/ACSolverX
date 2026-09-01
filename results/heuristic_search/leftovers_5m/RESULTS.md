@@ -19,6 +19,16 @@ ran at cap 48). Produced on the GCP campaign box (n2-highmem class,
   with `--workers 3`); the row is retried by resume and the readers
   (`classify_5m`) dedupe by name preferring finished records.
 
+## Verification (2026-09-01)
+
+All five solved s20_mk2 rows are replay-certified: their `path_moves`
+were replayed from the starting presentation through
+`greedy_baseline.moves_to_states` (which applies only legal Definition
+2.1 moves via `replay_move_nj`), the replayed state sequence equals the
+recorded `path` step for step, and every path terminates at the trivial
+pair `['Y', 'X']`. The solves are certificates, independent of the
+search that produced them.
+
 ## Notable
 
 `ac19_12445` and `ac19_31298` were in the mutual hard core (unsolved by
