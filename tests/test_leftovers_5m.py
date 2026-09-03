@@ -1121,6 +1121,13 @@ def test_the_job_logs_unbuffered_so_tail_actually_shows_heartbeats(tmp_path):
     out = tmp_path / "j"
     _remote("job", OUT=str(out))
     assert "export PYTHONUNBUFFERED=1" in (out / "_job.sh").read_text()
+    # thread pools pinned: a 128-vCPU box would otherwise hand every child
+    # ~8 GB of malloc-arena address space, eating the RLIMIT margin a
+    # widening row needs for its repack
+    job = (out / "_job.sh").read_text()
+    for var in ("OPENBLAS_NUM_THREADS=1", "OMP_NUM_THREADS=1",
+                "NUMBA_NUM_THREADS=1"):
+        assert var in job, var
     assert "Environment=PYTHONUNBUFFERED=1" in open(REMOTE_SH).read()
 
 
@@ -1316,6 +1323,110 @@ def test_a_pre_cap_doubling_peak_does_not_seed_the_capped_engine(tmp_path):
     assert gov.capacity([], free_gb=489) == 3
 
 
+def test_states_per_node_env_overrides_a_campaign_floor_only(monkeypatch):
+    """The second pass raises the floor without a commit: STATES_PER_NODE in
+    the environment. AC19 has no floor and must never pick the knob up."""
+    from experiments.search.run_leftovers_5m import CAMPAIGNS, _floor_for
+    monkeypatch.delenv("STATES_PER_NODE", raising=False)
+    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 168
+    monkeypatch.setenv("STATES_PER_NODE", "209")
+    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 209
+    assert _floor_for(CAMPAIGNS["ac19"], log=lambda m: None) is None
+    monkeypatch.setenv("STATES_PER_NODE", "lots")
+    with pytest.raises(SystemExit):
+        _floor_for(CAMPAIGNS["u124"], log=lambda m: None)
+
+
+def test_an_exhaustion_death_names_its_rate():
+    """aca_38's two deaths -- 1,500,017,018 states at 8,046,472 pops and
+    1,672,844,867 at 8,976,264 -- gave 186.42 and 186.36 states/node. That
+    measurement must travel from the engine's grow into the error record."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    from experiments.search.run_leftovers_5m import (
+        _EXHAUSTION_TEXT, _error_record, _exhaustion_info)
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    eng = HCompactSolver("YXXyXyxx", "YYYxxxYYx", max_nodes=100,
+                         max_relator_length=64, reserve_states=2048)
+    eng._alloc = lambda n, old=None: (_ for _ in ()).throw(MemoryError())
+    st = np.zeros(16, dtype=np.int64)
+    st[0], st[1], st[2] = 8_976_264, 5, 1_672_844_867
+    with pytest.raises(MemoryError) as ei:
+        eng._grow(st)
+    msg = _EXHAUSTION_TEXT + f" [{ei.value}]"
+    assert _exhaustion_info(msg) == (1_672_844_867, 8_976_264)
+    rec = _error_record({"name": "aca_38", "r1": "a", "r2": "b"}, "s20_mk2",
+                        10_000_000, 64, msg, 10326.4, 1_672_700_000)
+    assert rec["reserve_states"] == 1_672_700_000
+    assert rec["exhausted_states"] == 1_672_844_867
+    assert rec["exhausted_nodes"] == 8_976_264
+    assert rec["states_per_node_measured"] == pytest.approx(186.36, abs=0.01)
+    # a plain crash carries the sizing but no measurement
+    plain = _error_record({"name": "x", "r1": "a", "r2": "b"}, "s20_mk2",
+                          10_000_000, 64, "worker died (exit=-9)", 1.0, 5)
+    assert "exhausted_states" not in plain and plain["reserve_states"] == 5
+
+
+def test_an_exhaustion_death_is_not_retried_at_the_same_sizing(tmp_path,
+                                                                monkeypatch):
+    """The search is deterministic: a row that exhausted its reservation
+    dies at the same pop on a retry at the same sizing (aca_38: ~2.5 h,
+    three times, first in the queue on every restart). Such rows wait for
+    a larger reservation, retry by themselves once the recorded sizing is
+    below the current one, and RETRY_EXHAUSTED=1 forces the second pass."""
+    from experiments.search.run_leftovers_5m import (
+        _EXHAUSTION_TEXT, _deferred_exhausted)
+    monkeypatch.delenv("RETRY_EXHAUSTED", raising=False)
+    p = tmp_path / "out.jsonl"
+    rows = [
+        {"name": "legacy", "error": _EXHAUSTION_TEXT},           # no sizing
+        {"name": "legacy", "error": _EXHAUSTION_TEXT},
+        {"name": "same", "error": _EXHAUSTION_TEXT + " [reservation exhausted "
+         "at 1,672,844,867 states after 8,976,264 pops]", "budget": 10_000_000,
+         "reserve_states": 1_672_700_000, "exhausted_states": 1_672_844_867,
+         "exhausted_nodes": 8_976_264, "states_per_node_measured": 186.36},
+        {"name": "grew", "error": _EXHAUSTION_TEXT,
+         "reserve_states": 1_500_016_900},                     # smaller then
+        {"name": "healed", "error": _EXHAUSTION_TEXT, "reserve_states": 9},
+        {"name": "healed", "solved": False, "nodes_explored": 10},  # latest wins
+        {"name": "oom", "error": "worker died (exit=-9) -- an external kill"},
+    ]
+    p.write_text("".join(json.dumps(r) + "\n" for r in rows))
+    # a 512 GB box reserves 1.68B: "bigger than the 1.67B it died at" is
+    # not enough for a row that measured 186.4/node -- it needs 1.86B
+    d = _deferred_exhausted(str(p), 1_680_016_900, 10_000_000)
+    assert set(d) == {"legacy", "same"}
+    assert "186.4" in d["same"] and "1,882" in d["same"]
+    assert "legacy" in d["legacy"]
+    # the second pass at 209/node covers the measured need; the legacy
+    # record has no measurement and waits for RETRY_EXHAUSTED
+    assert set(_deferred_exhausted(str(p), 2_090_016_900, 10_000_000)) == {"legacy"}
+    monkeypatch.setenv("RETRY_EXHAUSTED", "1")
+    assert _deferred_exhausted(str(p), 1_680_016_900, 10_000_000) == {}
+
+
+def test_the_job_bakes_the_second_pass_floor_and_plan_honors_it(tmp_path):
+    from experiments.search.run_leftovers_5m import CAMPAIGNS
+    out = tmp_path / "o"
+    out.mkdir()
+    r = _remote("job", OUT=str(out), CAMPAIGN="u124", STATES_PER_NODE="209",
+                RETRY_EXHAUSTED="1")
+    assert r.returncode == 0, r.stderr
+    job = (out / "_job.sh").read_text()
+    assert "export STATES_PER_NODE=209" in job
+    assert "export RETRY_EXHAUSTED=1" in job
+    plain = _remote("job", OUT=str(out), CAMPAIGN="u124")
+    assert plain.returncode == 0, plain.stderr
+    assert "STATES_PER_NODE" not in (out / "_job.sh").read_text()
+    p = _remote("plan", OUT=str(out), CAMPAIGN="u124", STATES_PER_NODE="209",
+                PLAN_GB="493", PLAN_CORES="64")
+    assert p.returncode == 0, p.stderr
+    assert "STATES_PER_NODE=209 overrides the campaign's 168" in p.stdout
+    assert "reserve_states  : 2,090,016,900 (full)" in p.stdout
+    assert CAMPAIGNS["u124"]["states_per_node"] == 168      # the constant did not move
+
+
 def test_resume_is_what_seeds_the_governor():
     """The seeding must ride the resume flag: a fresh run (resume=False) has
     no disk history and must start from worst case as before."""
@@ -1492,11 +1603,13 @@ def test_the_campaigns_carry_their_reservation_rates():
     # The floor must clear every rate a u124 row has actually demonstrated;
     # lowering it below one re-runs those deaths. plan_memory's transient
     # clip, tested below, keeps this constant safe on any box size.
-    # 168 exactly: the largest floor whose worst (161.2 GB) seats three
-    # lanes on the measured 493 GiB 16xlarge -- 170's 163.1 lost the third
-    # lane by two thousandths against the real 489 GB admissible.
+    # 168 stays: aca_38 measured 186.4 states/node on two independent
+    # deaths, but covering one row in twenty by raising the floor costs a
+    # lane on every row. Over-floor rows are deferred and run in a second
+    # pass with STATES_PER_NODE raised (209 for that class, under the
+    # 214/node hash-table doubling).
     assert CAMPAIGNS["u124"]["states_per_node"] == 168
-    assert CAMPAIGNS["u124"]["states_per_node"] > 146   # worst measured ~144
+    assert CAMPAIGNS["u124"]["states_per_node"] > 146   # measured ~144 completes
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1507,16 +1620,16 @@ def test_the_repack_transient_clips_the_reservation_to_the_box():
     budget, so plan_memory must clip the rate floor to what THIS box can
     complete -- and must leave a big box's full floor alone."""
     from experiments.search.run_leftovers_5m import plan_memory
-    # 493 GiB class (the measured 16xlarge): 168/node fits outright,
-    # repack transient included
+    # 493 GiB class (the measured 16xlarge): the second pass's 209/node
+    # fits outright, repack transient included
     _, big = plan_memory(10_000_000, 64, available_gb=493,
-                         states_per_node=168, log=lambda *a: None)
-    assert big == 168 * 10_000_000 + 4 * 65 ** 2
+                         states_per_node=209, log=lambda *a: None)
+    assert big == 209 * 10_000_000 + 4 * 65 ** 2
     # a small box: the transient bound (not the steady fit) is the binder;
     # the clip must land BELOW the full 1.68B ask yet ABOVE what the steady
     # cap alone would allow completing through a repack
     _, clipped = plan_memory(10_000_000, 64, available_gb=200,
-                             states_per_node=168, log=lambda *a: None)
+                             states_per_node=209, log=lambda *a: None)
     assert clipped < big
     # and the clipped repack really fits: old rung + full width + fixed
     # arrays + the pow2 table, under (avail - 2) with margin
@@ -1525,23 +1638,36 @@ def test_the_repack_transient_clips_the_reservation_to_the_box():
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
-def test_three_lanes_hold_on_a_512_gb_box_with_the_measured_peaks():
-    """The 16xlarge card's load-bearing claim, pinned: with the campaign's
-    real peaks (two ~93.5 GB rows and aca_1's 158.0 widener) and the 170
-    floor's allocation-backed worst, the unchanged max-peak governor grants
-    three lanes on 512 GB -- no policy change, just enough RAM."""
+def test_lanes_are_the_allocation_backed_worst_not_the_est_curve():
+    """The cost model for buying a box, pinned. The run header prints the
+    est-curve figure (~88.4 GB/search) for information; what the governor
+    admits against is the ALLOCATION-backed worst of the rate floor's
+    reservation (~200 GB/row at 209/node). With the campaign's real peaks
+    the unchanged max-peak governor seats 2 lanes on the 493 GiB 16xlarge
+    and 4 on a ~986 GiB usable 1 TiB box; a governor built without the
+    floor would seat 5 on 493 GiB and OOM the AC19 crash-loop way."""
     from experiments.search.run_leftovers_5m import (
         RamGovernor, _reserved_worst_gb)
+    def lanes(floor, free):
+        worst = _reserved_worst_gb(floor * 10_000_000 + 4 * 65 ** 2, 64)
+        gov = RamGovernor(10_000_000, 64, cpu_cap=192, worst_gb=worst)
+        for p in (93.552, 158.021, 93.517):
+            gov.note(p)
+        return gov.capacity([], free_gb=free)
+    assert 160.0 < _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64) < 162.0
+    assert 199.0 < _reserved_worst_gb(209 * 10_000_000 + 4 * 65 ** 2, 64) < 201.0
+    # first pass at 168 / second pass at 209, on the 512 GiB (489 admissible)
+    # and 1536 GiB (1532 admissible) boxes the campaign can buy
+    assert lanes(168, 489) == 3 and lanes(209, 489) == 2
+    assert lanes(168, 1532) == 9 and lanes(209, 1532) == 7
+    naive = RamGovernor(10_000_000, 64, cpu_cap=192)      # est curve only
+    assert naive.capacity([], free_gb=489) >= 5
+    # one grow-doubled ~260 GB peak would still collapse admission -- the
+    # rate-floor RLIMIT cap forbids that doubling outright
     worst = _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64)
-    gov = RamGovernor(10_000_000, 64, cpu_cap=64, worst_gb=worst)
-    for p in (93.552, 158.021, 93.517):
+    gov = RamGovernor(10_000_000, 64, cpu_cap=192, worst_gb=worst)
+    for p in (93.552, 158.021, 93.517, 260.0):
         gov.note(p)
-    # 489 GB is what the real 493 GiB box has admissible at launch --
-    # the 170 floor's 163.1 worst lost this exact assertion (2.998 lanes)
-    assert gov.capacity([], free_gb=489) == 3
-    # and one grow-doubled ~260 GB peak would collapse it -- the reason
-    # the rate-floor RLIMIT cap below must forbid the doubling outright
-    gov.note(260.0)
     assert gov.capacity([], free_gb=489) == 1
 
 
@@ -1562,7 +1688,7 @@ def test_the_rate_floor_rlimit_forbids_grow_doubling_on_big_boxes():
     repack_gb = res * (48 + 64 + 27) / 2 ** 30 + 16.0
     assert repack_gb < lim_gb <= repack_gb + 10.0 + 1e-6   # repack fits...
     # ...but the doubling (old arenas held + 2x realloc, ~400 GB) cannot
-    assert lim_gb < 380.0
+    assert lim_gb < 400.0
     # est-based sizing (no rate floor) keeps the whole box, unchanged
     lim2, _ = plan_memory(5_000_000, 48, available_gb=251,
                           log=lambda *a: None)

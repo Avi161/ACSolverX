@@ -544,7 +544,17 @@ class HCompactSolver:
         print(f"    [hcompact:{_proc_name()}] reservation exceeded at "
               f"{old['n']:,} states; growing to {2 * self.states_cap:,} "
               f"(this copies)", flush=True)
-        self._alloc(2 * self.states_cap, old)
+        try:
+            self._alloc(2 * self.states_cap, old)
+        except MemoryError as e:
+            # The doubling did not fit (a rate-floored reservation under the
+            # RLIMIT cap, by design). Name the measurement on the way out:
+            # states discovered / pops made IS this row's discovery rate,
+            # and a retry sized below it would die at this exact pop again.
+            raise MemoryError(
+                f"reservation exhausted at {old['n']:,} states after "
+                f"{int(st[0]):,} pops (growing to {2 * self.states_cap:,} "
+                f"did not fit)") from e
         st[3] = self.tcap - 1
 
     def bytes_reserved(self):

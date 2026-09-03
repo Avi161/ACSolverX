@@ -144,16 +144,20 @@ CAMPAIGNS = {
         # doubling, which cannot fit under the child's RLIMIT_AS however
         # much physical RAM is free); 150 covered those with 22% margin;
         # aca_4's live trajectory then sat AT that floor (~150-165 est).
-        # 168 is the largest floor that seats THREE lanes on the campaign's
-        # measured 493 GiB r6a.16xlarge (three of the 161.2 GB worst must
-        # fit 489 admissible; 170's 163.1 missed the third lane by two
-        # thousandths). On any given machine plan_memory's width-repack
+        # 168 seated three lanes on the 493 GiB r6a.16xlarge and was then
+        # beaten by aca_38: 186.42 and 186.36 states/node on two independent
+        # deaths (identical to four figures -- the search is deterministic,
+        # so an over-floor row dies at the same pop on every attempt). The
+        # floor stays at 168 on purpose: raising it to cover one row in
+        # twenty costs a lane on EVERY row (worst ~200 GB at 209 vs 161 at
+        # 168), so over-floor rows die cleanly once, are deferred rather
+        # than retried at the same sizing (see _deferred_exhausted), and
+        # run in a second pass with STATES_PER_NODE raised -- 209 for the
+        # aca_38 class -- which keeps the hash table at 16 GiB (it doubles
+        # past 214/node). On any machine plan_memory's width-repack
         # transient clip has the last word, so this constant is safe
-        # everywhere -- bigger boxes get the full floor, smaller ones get
-        # the most their RLIMIT_AS can complete. A row beyond the clipped
-        # rate still dies a clean MemoryError row that resume retries --
-        # on a bigger machine if need be (the rate-floor RLIMIT cap in
-        # plan_memory guarantees the death stays clean on big boxes too).
+        # everywhere; the rate-floor RLIMIT cap keeps every over-floor
+        # death clean on big boxes too.
         "states_per_node": 168,
     },
 }
@@ -295,6 +299,100 @@ ROW_TIMEOUT_DEFAULT = None       # seconds per row; None = no CPU-time kill
 # Address-space headroom held back from the width-repack transient bound in
 # plan_memory: interpreter + numba runtime + MemAvailable estimation noise.
 _TRANSIENT_MARGIN_GB = 10.0
+
+# What the child reports when the memory guard stops a row. The prefix is
+# stable (status tools grep it); the engine appends the measurement.
+_EXHAUSTION_TEXT = ("MemoryError: the memory guard stopped this row before "
+                    "the OOM killer could -- it needs a bigger machine")
+_EXHAUSTION_RE = re.compile(
+    r"reservation exhausted at ([\d,]+) states after ([\d,]+) pops")
+
+
+def _floor_for(camp, log=print):
+    """The campaign's states-per-node floor, with ``STATES_PER_NODE`` in the
+    environment overriding it. Honored only for a campaign that HAS a floor:
+    AC19's est-based sizing must never pick up a u124 knob by accident."""
+    base = camp.get("states_per_node")
+    env = os.environ.get("STATES_PER_NODE")
+    if base and env:
+        try:
+            v = int(env)
+        except ValueError:
+            raise SystemExit(f"STATES_PER_NODE={env!r} is not an integer")
+        if v != base:
+            log(f"  floor   : STATES_PER_NODE={v} overrides the campaign's "
+                f"{base} states/node")
+        return v
+    return base
+
+
+def _exhaustion_info(err):
+    """``(states, pops)`` from a reservation-exhaustion message, or None."""
+    m = _EXHAUSTION_RE.search(err or "")
+    if not m:
+        return None
+    return (int(m.group(1).replace(",", "")),
+            int(m.group(2).replace(",", "")))
+
+
+def _error_record(row, arm, budget, mrl, err, seconds, reserve_states):
+    """The row a crashed child leaves behind. An exhaustion death also
+    records the sizing it died under and the rate it measured, so the next
+    invocation can tell a retry that will succeed from one that will not."""
+    rec = {"name": row["name"], "arm": arm, "r1": row["r1"], "r2": row["r2"],
+           "budget": budget, "max_relator_length": mrl,
+           "solved": False, "error": err, "seconds": round(seconds, 3)}
+    if reserve_states:
+        rec["reserve_states"] = int(reserve_states)
+    info = _exhaustion_info(err)
+    if info:
+        states, pops = info
+        rec["exhausted_states"] = states
+        rec["exhausted_nodes"] = pops
+        rec["states_per_node_measured"] = round(states / max(pops, 1), 2)
+    return rec
+
+
+def _deferred_exhausted(path, reserve_states, budget):
+    """Rows whose LATEST record is a reservation-exhaustion death that this
+    run's reservation would repeat.
+
+    The search is deterministic, so such a retry dies at the same pop
+    (aca_38: 186.42 then 186.36 states/node, ~2.5 h each time, first in the
+    queue on every restart). A death that carries its measurement is
+    retried only when the current reservation covers ``rate x budget`` --
+    "bigger than last time" is not enough: aca_38 died at 1.67B, a 512 GB
+    box reserves 1.68B, and it needs 1.86B. A death without the measurement
+    (a record from before the field existed) is retried only when the
+    recorded reservation is below the current one, and assumed same-sized
+    when it records none. ``RETRY_EXHAUSTED=1`` forces every deferred row
+    back into the queue (the second pass). Returns ``{name: reason}``."""
+    if os.environ.get("RETRY_EXHAUSTED"):
+        return {}
+    latest = {}
+    for r in read_rows(path):
+        if "name" in r:
+            latest[r["name"]] = r              # file order: later wins
+    have = int(reserve_states or 0)
+    out = {}
+    for n, r in latest.items():
+        err = r.get("error") or ""
+        if not err.startswith(_EXHAUSTION_TEXT):
+            continue
+        states, pops = r.get("exhausted_states"), r.get("exhausted_nodes")
+        if states and pops:
+            rate = states / pops
+            need = int(rate * (r.get("budget") or budget) * 1.01)
+            if have >= need:
+                continue                        # this sizing covers it
+            out[n] = (f"measured {rate:.1f} states/node, needs "
+                      f">= {need:,} states; this run reserves {have:,}")
+            continue
+        prior = r.get("reserve_states")
+        if prior is not None and have and prior < have:
+            continue                            # sizing grew: worth the retry
+        out[n] = "rate unmeasured (legacy record); same sizing as its death"
+    return out
 
 
 def _done_ok(path):
@@ -485,9 +583,9 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "peak_rss_gb": _peak_rss_gb(),
             "engine_mem_gen": ENGINE_MEM_GEN,
         }))
-    except MemoryError:
-        q.put(("err", "MemoryError: the memory guard stopped this row before "
-                      "the OOM killer could -- it needs a bigger machine"))
+    except MemoryError as e:
+        detail = f" [{e}]" if str(e) else ""
+        q.put(("err", _EXHAUSTION_TEXT + detail))
     except BaseException as e:  # noqa: BLE001 -- repr crosses the queue safely
         q.put(("err", repr(e)))
 
@@ -607,6 +705,7 @@ class _RowProc:
             target=_child_run_row,
             args=(self.q, arm, row, budget, mrl, heartbeat_secs,
                   mem_limit_bytes, reserve_states))
+        self.reserve_states = reserve_states
         self.t0 = time.time()
         self.proc.start()
         self.rec = self.err = None
@@ -646,11 +745,9 @@ class _RowProc:
             self.proc.join(timeout=5)
         self.q.close()
         if self.rec is None:
-            self.rec = {"name": self.row["name"], "arm": self.arm,
-                        "r1": self.row["r1"], "r2": self.row["r2"],
-                        "budget": self.budget, "max_relator_length": self.mrl,
-                        "solved": False, "error": self.err,
-                        "seconds": round(time.time() - self.t0, 3)}
+            self.rec = _error_record(self.row, self.arm, self.budget, self.mrl,
+                                     self.err, time.time() - self.t0,
+                                     self.reserve_states)
             self.log(f"    !! {self.row['name']}: {self.err}")
         return self.rec
 
@@ -770,14 +867,16 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
                 "silently re-run every finished row of a multi-day campaign. "
                 "If a fresh pass at these settings is REALLY wanted, set "
                 "RESUME_FRESH_OK=1 (or pass resume=False).")
-    todo = [r for r in rows if r["name"] not in seen]
-
     auto = n_workers in (None, "auto")
     n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl,
                                         track_path=TRACK_PATH)
     if mem_limit_bytes is None and reserve_states is None:
         mem_limit_bytes, reserve_states = plan_memory(
-            budget, mrl, states_per_node=camp.get("states_per_node"), log=log)
+            budget, mrl, states_per_node=_floor_for(camp, log), log=log)
+    # a row that died at reservation exhaustion under this sizing would die
+    # again at the same pop; it waits for a bigger reservation or box
+    deferred = _deferred_exhausted(out, reserve_states, budget) if resume else {}
+    todo = [r for r in rows if r["name"] not in seen and r["name"] not in deferred]
     # "auto" lets the governor float up to the core count; an explicit number
     # is a ceiling, never a target -- RAM still has the last word.
     governor = RamGovernor(budget, mrl,
@@ -788,10 +887,20 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "
         f"stride split of {cspec['n_rows']}) from {used}")
     log(f"  budget  : {budget:,} nodes, cap {mrl}")
-    log(f"  workers : {n_workers} to start, then dynamic "
-        f"({'auto' if auto else f'cap {n_workers}'}, "
-        f"{governor.cpus} cores, ~{per_gb:.1f} GB/search worst case)")
+    # the number the governor ADMITS against is the allocation-backed worst;
+    # the est curve is printed for scale only -- quoting it as the worst case
+    # misread a 246 GB box as a 2-lane box twice in one day
+    log(f"  workers : dynamic ({'auto' if auto else f'cap {n_workers}'}, "
+        f"{governor.cpus} cores); the governor admits against "
+        f"{governor.worst:.1f} GB/row (allocation-backed worst) -- the est "
+        f"curve's {per_gb:.1f} GB is NOT the admission figure")
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
+    if deferred:
+        names = ", ".join(f"{n} ({why})" for n, why in sorted(deferred.items())[:8])
+        log(f"  deferred: {len(deferred)} row(s) died at reservation exhaustion "
+            f"under this sizing and would die again (deterministic): {names}"
+            f"{' ...' if len(deferred) > 8 else ''} -- raise STATES_PER_NODE or "
+            f"use a bigger box; RETRY_EXHAUSTED=1 forces the retry")
     if resume:
         _seed_governor(governor, out, log)
     log(f"  -> {out}")

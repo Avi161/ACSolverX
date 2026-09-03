@@ -85,6 +85,10 @@ if not HAVE_HCOMPACT:
 # bug in a new costume.
 _, camp = resolve_campaign(CAMPAIGN)
 rate_floor = camp.get("states_per_node")
+if rate_floor and os.environ.get("STATES_PER_NODE"):
+    rate_floor = int(os.environ["STATES_PER_NODE"])
+    print(f"floor          : STATES_PER_NODE={rate_floor} overrides the campaign's "
+          f"{camp.get('states_per_node')} states/node")
 lim, res = plan_memory(B, MRL, available_gb=gb, states_per_node=rate_floor,
                        log=lambda *a: None)
 per = est_gb(B, MRL, track_path=TRACK_PATH)
@@ -129,6 +133,18 @@ cd "$SRC"; export PYTHONPATH="$SRC"
 # at a time, and tail -f shows nothing -- "a quiet hour is indistinguishable
 # from a hung session". Unbuffered fixes the log, not the run.
 export PYTHONUNBUFFERED=1
+# The search kernel is single-threaded numba; BLAS/OpenMP pools are never
+# used. Left at their defaults they still spin up one thread per vCPU at
+# import, and each thread reserves a 64 MiB malloc arena -- on a 128-vCPU
+# box that is ~8 GB of ADDRESS SPACE per child, charged against the
+# rate-floor RLIMIT cap whose margin above the width-repack transient is
+# exactly what a widening row needs to survive. Pinned to 1 in the job so
+# every child inherits it.
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
+# A raised states-per-node floor for a second pass over rows that died at
+# reservation exhaustion is baked into the job at write time (empty if unset).
+${STATES_PER_NODE:+export STATES_PER_NODE=$STATES_PER_NODE}
+${RETRY_EXHAUSTED:+export RETRY_EXHAUSTED=$RETRY_EXHAUSTED}
 for a in $ARMS; do
   # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
   # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
@@ -229,6 +245,7 @@ verify() {
   else
     if bash -n "$job" 2>/dev/null; then chk 0 "job parses"; else chk 1 "job parses"; fi
     if grep -q 'PYTHONUNBUFFERED=1' "$job"; then chk 0 "job exports PYTHONUNBUFFERED"; else chk 1 "job exports PYTHONUNBUFFERED"; fi
+    if grep -q 'OPENBLAS_NUM_THREADS=1' "$job"; then chk 0 "job pins BLAS/OMP/numba threads to 1"; else chk 1 "job pins BLAS/OMP/numba threads to 1"; fi
     for flag in "--campaign $CAMPAIGN" "--budget $BUDGET" "--mrl $MRL" \
                 "--chunks 1 --chunk-index 1"; do
       if grep -q -- "$flag" "$job"; then chk 0 "job carries $flag"; else chk 1 "job carries $flag"; fi
