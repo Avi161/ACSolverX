@@ -66,7 +66,13 @@ from experiments.search.run_leftovers_1m import (
 # same-generation rows -- a peak measured under an old memory profile must
 # never widen (or narrow) the gate for the profile running now.
 #   gen 2: adaptive row width + reservations honored as-is + np.empty parent.
-ENGINE_MEM_GEN = 2
+#   gen 3: the rate-floor RLIMIT cap in plan_memory. Under a rate floor a
+#          row can no longer complete THROUGH a grow doubling, so its peak is
+#          bounded by the width-repack transient. Gen-2 rows measured on a
+#          big box before the cap carry doubling peaks (u124 aca_37: 286.4 GB
+#          on 493 GiB) that no gen-3 row can produce; seeding them pinned
+#          every box to one lane. Not evidence about this profile: skipped.
+ENGINE_MEM_GEN = 3
 
 # The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
 # coexist and must never be conflated:

@@ -1293,6 +1293,29 @@ def test_the_governor_reseeds_its_peaks_from_disk(tmp_path):
     assert gov.predict_gb() == pytest.approx(min(12.0 * gov.safety, gov.worst))
 
 
+def test_a_pre_cap_doubling_peak_does_not_seed_the_capped_engine(tmp_path):
+    """u124 aca_37 completed through a grow doubling on a 493 GiB box before
+    the rate-floor RLIMIT cap existed and recorded 286.4 GB -- a peak no
+    capped row can produce (its address space stops at the repack
+    transient). Seeded, it pinned admission to one lane on every box.
+    That row is generation 2; the capped engine is generation 3, and the
+    governor must not learn from a memory profile that no longer runs."""
+    from experiments.search.run_leftovers_5m import (
+        ENGINE_MEM_GEN, RamGovernor, _reserved_worst_gb, _seed_governor)
+    assert ENGINE_MEM_GEN >= 3
+    p = tmp_path / "out.jsonl"
+    rows = [{"name": f"aca_{i}", "peak_rss_gb": g, "engine_mem_gen": 2}
+            for i, g in enumerate((93.552, 158.021, 286.4))]
+    p.write_text("".join(json.dumps(r) + "\n" for r in rows))
+    worst = _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64)
+    gov = RamGovernor(10_000_000, 64, cpu_cap=64, worst_gb=worst)
+    assert _seed_governor(gov, str(p), log=lambda m: None) == 0
+    assert gov.peaks == []
+    # worst-case admission under the 168 floor already seats three lanes
+    # on the measured 493 GiB box; the poisoned seed had cut it to one
+    assert gov.capacity([], free_gb=489) == 3
+
+
 def test_resume_is_what_seeds_the_governor():
     """The seeding must ride the resume flag: a fresh run (resume=False) has
     no disk history and must start from worst case as before."""
