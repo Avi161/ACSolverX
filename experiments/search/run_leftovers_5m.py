@@ -145,20 +145,19 @@ CAMPAIGNS = {
         # much physical RAM is free); 150 covered those with 22% margin;
         # aca_4's live trajectory then sat AT that floor (~150-165 est).
         # 168 seated three lanes on the 493 GiB r6a.16xlarge and was then
-        # beaten by aca_38: 186.42 and 186.36 states/node on two independent
-        # deaths (identical to four figures -- the search is deterministic,
-        # so an over-floor row dies at the same pop on every attempt). The
-        # floor stays at 168 on purpose: raising it to cover one row in
-        # twenty costs a lane on EVERY row (worst ~200 GB at 209 vs 161 at
-        # 168), so over-floor rows die cleanly once, are deferred rather
-        # than retried at the same sizing (see _deferred_exhausted), and
-        # run in a second pass with STATES_PER_NODE raised -- 209 for the
-        # aca_38 class -- which keeps the hash table at 16 GiB (it doubles
-        # past 214/node). On any machine plan_memory's width-repack
-        # transient clip has the last word, so this constant is safe
-        # everywhere; the rate-floor RLIMIT cap keeps every over-floor
-        # death clean on big boxes too.
-        "states_per_node": 168,
+        # beaten by three of the next four rows: aca_38 at 186.4 states/node
+        # (186.42 and 186.36 on two independent deaths -- identical to four
+        # figures, the search is deterministic), aca_39 at 175.8, aca_41 at
+        # 178.6. That is a population above the floor, not a tail, so
+        # covering it is cheaper than dying at 95% of budget on most rows.
+        # 214 = the measured maximum + 15%, and the last floor at which the
+        # hash table stays 16 GiB (it doubles past 214/node, +16 GB on every
+        # row's peak). Worst is ~205 GB/row: two lanes on a 512 GiB box,
+        # seven on 1.5 TiB. STATES_PER_NODE in the environment overrides
+        # this for a second pass over rows that still die; plan_memory's
+        # width-repack transient clip has the last word on any box (a 246 GB
+        # box clips to ~167/node and cannot run this campaign at all).
+        "states_per_node": 214,
     },
 }
 
@@ -366,9 +365,13 @@ def _deferred_exhausted(path, reserve_states, budget):
     (a record from before the field existed) is retried only when the
     recorded reservation is below the current one, and assumed same-sized
     when it records none. ``RETRY_EXHAUSTED=1`` forces every deferred row
-    back into the queue (the second pass). Returns ``{name: reason}``."""
-    if os.environ.get("RETRY_EXHAUSTED"):
+    back into the queue (the second pass); ``RETRY_EXHAUSTED=aca_38,aca_40``
+    forces only those -- safe to leave in an unattended unit, since it can
+    never re-admit a row it does not name. Returns ``{name: reason}``."""
+    force = os.environ.get("RETRY_EXHAUSTED", "").strip()
+    if force == "1":
         return {}
+    forced = {x.strip() for x in force.split(",") if x.strip()}
     latest = {}
     for r in read_rows(path):
         if "name" in r:
@@ -377,7 +380,7 @@ def _deferred_exhausted(path, reserve_states, budget):
     out = {}
     for n, r in latest.items():
         err = r.get("error") or ""
-        if not err.startswith(_EXHAUSTION_TEXT):
+        if not err.startswith(_EXHAUSTION_TEXT) or n in forced:
             continue
         states, pops = r.get("exhausted_states"), r.get("exhausted_nodes")
         if states and pops:

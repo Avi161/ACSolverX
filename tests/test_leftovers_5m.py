@@ -1328,9 +1328,9 @@ def test_states_per_node_env_overrides_a_campaign_floor_only(monkeypatch):
     the environment. AC19 has no floor and must never pick the knob up."""
     from experiments.search.run_leftovers_5m import CAMPAIGNS, _floor_for
     monkeypatch.delenv("STATES_PER_NODE", raising=False)
-    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 168
-    monkeypatch.setenv("STATES_PER_NODE", "209")
-    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 209
+    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 214
+    monkeypatch.setenv("STATES_PER_NODE", "230")
+    assert _floor_for(CAMPAIGNS["u124"], log=lambda m: None) == 230
     assert _floor_for(CAMPAIGNS["ac19"], log=lambda m: None) is None
     monkeypatch.setenv("STATES_PER_NODE", "lots")
     with pytest.raises(SystemExit):
@@ -1404,17 +1404,23 @@ def test_an_exhaustion_death_is_not_retried_at_the_same_sizing(tmp_path,
     assert set(_deferred_exhausted(str(p), 2_090_016_900, 10_000_000)) == {"legacy"}
     monkeypatch.setenv("RETRY_EXHAUSTED", "1")
     assert _deferred_exhausted(str(p), 1_680_016_900, 10_000_000) == {}
+    # the named form re-admits only what it names -- safe in an unattended
+    # unit, where a bare 1 would loop any row that outgrows the new floor
+    monkeypatch.setenv("RETRY_EXHAUSTED", "legacy")
+    assert set(_deferred_exhausted(str(p), 1_680_016_900, 10_000_000)) == {"same"}
+    monkeypatch.setenv("RETRY_EXHAUSTED", "legacy, same")
+    assert _deferred_exhausted(str(p), 1_680_016_900, 10_000_000) == {}
 
 
 def test_the_job_bakes_the_second_pass_floor_and_plan_honors_it(tmp_path):
     from experiments.search.run_leftovers_5m import CAMPAIGNS
     out = tmp_path / "o"
     out.mkdir()
-    r = _remote("job", OUT=str(out), CAMPAIGN="u124", STATES_PER_NODE="209",
+    r = _remote("job", OUT=str(out), CAMPAIGN="u124", STATES_PER_NODE="230",
                 RETRY_EXHAUSTED="1")
     assert r.returncode == 0, r.stderr
     job = (out / "_job.sh").read_text()
-    assert "export STATES_PER_NODE=209" in job
+    assert "export STATES_PER_NODE=230" in job
     assert "export RETRY_EXHAUSTED=1" in job
     plain = _remote("job", OUT=str(out), CAMPAIGN="u124")
     assert plain.returncode == 0, plain.stderr
@@ -1422,9 +1428,9 @@ def test_the_job_bakes_the_second_pass_floor_and_plan_honors_it(tmp_path):
     p = _remote("plan", OUT=str(out), CAMPAIGN="u124", STATES_PER_NODE="209",
                 PLAN_GB="493", PLAN_CORES="64")
     assert p.returncode == 0, p.stderr
-    assert "STATES_PER_NODE=209 overrides the campaign's 168" in p.stdout
+    assert "STATES_PER_NODE=209 overrides the campaign's 214" in p.stdout
     assert "reserve_states  : 2,090,016,900 (full)" in p.stdout
-    assert CAMPAIGNS["u124"]["states_per_node"] == 168      # the constant did not move
+    assert CAMPAIGNS["u124"]["states_per_node"] == 214      # the constant did not move
 
 
 def test_resume_is_what_seeds_the_governor():
@@ -1603,13 +1609,13 @@ def test_the_campaigns_carry_their_reservation_rates():
     # The floor must clear every rate a u124 row has actually demonstrated;
     # lowering it below one re-runs those deaths. plan_memory's transient
     # clip, tested below, keeps this constant safe on any box size.
-    # 168 stays: aca_38 measured 186.4 states/node on two independent
-    # deaths, but covering one row in twenty by raising the floor costs a
-    # lane on every row. Over-floor rows are deferred and run in a second
-    # pass with STATES_PER_NODE raised (209 for that class, under the
-    # 214/node hash-table doubling).
-    assert CAMPAIGNS["u124"]["states_per_node"] == 168
-    assert CAMPAIGNS["u124"]["states_per_node"] > 146   # measured ~144 completes
+    # 214: three of four rows after aca_37 measured 175.8 / 178.6 / 186.4
+    # states/node -- a population above 168, not a tail. The measured
+    # maximum + 15%, and the last floor at which the hash table stays
+    # 16 GiB (it doubles past 214/node).
+    assert CAMPAIGNS["u124"]["states_per_node"] == 214
+    assert CAMPAIGNS["u124"]["states_per_node"] > 186.4    # measured maximum
+    assert 2 * (214 * 10_000_000 + 4 * 65 ** 2) < 2 ** 32   # table stays 2^32
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1985,9 +1991,11 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
                 PLAN_GB="251", PLAN_CORES="32")
     assert p.returncode == 0, p.stderr
-    assert "reserve_states  : 1,680,016,900 (full)" in p.stdout
+    # a 251 GB box cannot hold this floor's repack transient: plan says so
+    # rather than printing a reservation the box would die inside
+    assert "CLIPPED from 2,140,016,900 -- box is small" in p.stdout
     assert "allocation-backed worst" in p.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr
-    assert "1,680,016,900" not in q.stdout      # ac19 sizing unchanged
+    assert "2,140,016,900" not in q.stdout      # ac19 sizing unchanged
