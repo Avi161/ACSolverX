@@ -1114,14 +1114,20 @@ def test_widening_in_place_lays_out_exactly_what_the_repack_did():
 def test_a_widen_allocates_no_second_arena():
     """The arena is reserved at the cap width once; a widen re-lays rows in
     the SAME buffer. No second arena means no 2x address-space transient
-    under RLIMIT_AS and no +48 B/state of freshly touched pages."""
+    under RLIMIT_AS and no +48 B/state of freshly touched pages. The rows
+    must widen at least twice within the budget: 2-bit rows hold 4 symbols
+    a byte, so the 13-symbol relator of the pair this used (with a 4 B
+    override, 8 nibble-symbols) now clamps the start to 16-symbol regions
+    and that search widened only once (max total 29-30 at 20k-60k pops).
+    aca_1's 7/8-symbol pair with ``storage_width=2`` starts at 8 symbols
+    and widens at 8 and 16 (measured: twice, to 8 B regions)."""
     from experiments.heuristic_search.core.hcompact import HCompactSolver
-    s = HCompactSolver("YYXYYXXXyX", "YYXYXXXYYXXXX", max_nodes=20_000,
-                       max_relator_length=64, storage_width=4)
+    s = HCompactSolver("YYXXyxx", "YYYxyXyX", max_nodes=20_000,
+                       max_relator_length=64, storage_width=2)
     arena0 = s.arena
     assert arena0.nbytes == s.states_cap * 2 * s.w_cap
     s.solve()
-    assert s.widened >= 2 and s.w > 4
+    assert s.widened >= 2 and s.w > 2
     assert s.arena is arena0                     # same buffer, widened in place
 
 
