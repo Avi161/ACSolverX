@@ -214,7 +214,6 @@ from here is held to the operator's bar: gates green, and at least 1.1x
 at 300k pops on a real row measured on the campaign box, or more lanes
 per GB.
 
-<<<<<<< HEAD
 ## 8. Campaign-length expansion work (2026-09-05, after section 7)
 
 Measured on the lab box at the operator's regime: row aca_47 at 300,000
@@ -260,31 +259,8 @@ Expected from this section, subject to the operator's confirmation with
 one 300k phase split on aca_47 on the campaign box: per-lane pops per
 second about 2.3x on the same lanes, so per-row wall time about 12,500 s
 to about 5,400 s at the same six lanes, with no change in memory.
-=======
-## 8. Inside the expansion kernel: the cut-shift skip and packed canonicalisation (lab branch `lab/expand`, 2026-09-05)
 
-Reference for everything in this section: `perf_lab/frozen2/`, the engine
-and kernels verbatim at `a1d1be23` (the build the campaign runs), bench key
-`current`, gate flag `--frozen2`. Measurement first (`EXPAND_SPLIT.md`):
-`phase_split.py --sub` cut `expand_and_score_nj` into its stages by replay
-on `aca_47` at 300,000 pops (lab box, core 2, 24m07s): expand 481.2 us of a
-677.9 us pop; inside it canonicalisation (two Booth passes, the inverse,
-the pick) 302.9 us = 63.0% of the kernel = 44.7% of the pop, raw word +
-reduce 13.9%, features + scoring 10.3% (7.3% of the pop), normalise +
-encode 5.6%, blob 4.9%, the pass-1 filter 3.0% (2.1% of the pop). 1,085
-`(k1, k2)` pairs a pop, 331.7 seam matches, the cap filter removes none,
-49.5 symbols a candidate, 44.3% new, and 48.9% of ALL candidates are the
-child of the move `(k1 - 1, k2 + 1 mod n_o)` of the same block, made
-earlier in the same pop (0 exceptions in 48.6M checked).
-
-Two changes, both in a new hcompact-only kernel (`hexpand.py`; the shared
-kernels in `greedy_baseline.py` / `hfast.py` are untouched and stay the
-oracle's and the pin tests' reference):
-
-| step | change | identity argument | gates vs frozen2 | aca_47 300k ratio | commit |
-|---|---|---|---|---|---|
-| 1 | cut-shift skip: pass 1 leaves out `(k1, k2)` when the predecessor `(k1 - 1, k2 + 1 mod n_o)` is already in the pop's stream (per-block emitted bitmap) | the two raw words are conjugate (`A[:-1]B[1:]` and its conjugate by `A[-1]`); cyclic reduction then canonical form is a conjugacy-class invariant; the predecessor precedes in the `target -> sign -> k1 -> k2` order, so its lookup/insert has happened and the engine would discard the repeat; only the first discovery's (parent, move, score) are ever stored | oracle 60 @ 1,000 PASS, twin 6 @ 30,000 PASS (482 s) | 1,439.9 -> 2,237.8 pops/s, **1.5541** | `a8a6b3a4` |
-| 2 | canonical form on 2-bit-packed words: least rotation as a min over shift-or-compare on one `uint64` (<= 32 symbols) or a `(hi, lo)` pair (33..64), inverse packed in the same loop, pick = the smaller value | the least rotation is a unique string under the order `Y < y < X < x`, whose numeric image is `v = 2*a0 + a1` packed most-significant first; `lex_cmp_array`'s pick is the minimum; pinned exhaustively on all 87,380 words of <= 8 symbols and on 104,000 random words to 64 against `canonical_relator_nj` | oracle PASS, twin PASS (457 s) | 1,452.9 -> 3,401.5 pops/s, **2.3412** | `f6f38a7d` |
+### Final bench and what was not built (lab branch `lab/expand`, docs commit `34c3297b`)
 
 Not done, with the number that decided it: deferred scoring (features +
 scoring are 7.3% of the pop, of which only the duplicate fraction is
@@ -307,12 +283,9 @@ is at most n1 x n2 bytes), nothing per state. Raw output:
 `perf_lab/results/final_bench_6rows_100k_x3.json`, the two decision
 benches beside them, and the split in `expand_split_aca47_300k.json`.
 
-Full suite on the final tree, numba caches purged (wall 435 s): 281
-passed, 11 failed -- the ten branch-name pins this lab branch fails by
-construction, plus `test_leftovers_5m.py::test_rerun_observes_a_tiny_row_end_to_end`,
-whose 2,000-pop toy rerun now finishes inside the RSS observer's first
-one-second poll so no live sample lands (attribution and the harness-side
-fix in `EXPAND_SPLIT.md`). Commits on `lab/expand` on top of `a1d1be23`:
-`5694133e` (frozen2 + engine keys), `f6c89732` (the sub-split), `a8a6b3a4`
-(step 1), `f6f38a7d` (step 2), then the docs addendum.
->>>>>>> 34c3297b (perf lab docs: final bench, per-step results, full suite, ideas not implemented)
+Full suite on the campaign branch at `edfa8c68`, numba caches purged:
+292 passed across the whole tests directory. (On the lab branch the same
+tree shows the ten branch-name pins failing by construction, plus the
+rerun observer's end-to-end test, whose 2,000-pop toy row now finishes
+inside the observer's first poll; the observer samples before it polls
+since `edfa8c68`.)
