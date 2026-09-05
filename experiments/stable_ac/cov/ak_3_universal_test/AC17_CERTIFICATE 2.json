@@ -1,0 +1,215 @@
+{
+ "claim": "AK(3) is classically AC-equivalent (Definition 2.1 moves + relator conjugations) to a length-13 presentation outside its Aut(F2)-orbit, through states of total length <= 17",
+ "ak3": [
+  "xxxYYYY",
+  "xyxYXY"
+ ],
+ "orbit2_root": [
+  "YYXXyx",
+  "YYYxyXX"
+ ],
+ "ceiling": 17,
+ "component_size": 1000,
+ "floor_states": {
+  "YXYxyx|YYYYxxx": "AK3-orbit",
+  "YXYxyx|YYYxxxx": "AK3-orbit",
+  "YYXXyx|YYYxyXX": "ORBIT2-orbit",
+  "YYXXyx|YYxyXXX": "ORBIT2-orbit",
+  "YYxyXX|YYXXXyx": "ORBIT2-orbit",
+  "YYxyXX|YYYXXyx": "ORBIT2-orbit"
+ },
+ "moves": [
+  [
+   2,
+   -1,
+   0,
+   2
+  ],
+  [
+   2,
+   -1,
+   0,
+   2
+  ],
+  [
+   2,
+   -1,
+   0,
+   2
+  ],
+  [
+   2,
+   -1,
+   0,
+   0
+  ],
+  [
+   2,
+   1,
+   3,
+   5
+  ],
+  [
+   2,
+   1,
+   4,
+   5
+  ],
+  [
+   1,
+   1,
+   1,
+   4
+  ],
+  [
+   1,
+   -1,
+   0,
+   5
+  ],
+  [
+   2,
+   1,
+   0,
+   3
+  ],
+  [
+   2,
+   -1,
+   0,
+   6
+  ],
+  [
+   2,
+   -1,
+   0,
+   6
+  ],
+  [
+   1,
+   1,
+   0,
+   2
+  ],
+  [
+   1,
+   1,
+   0,
+   2
+  ],
+  [
+   1,
+   -1,
+   0,
+   1
+  ],
+  [
+   1,
+   1,
+   0,
+   2
+  ],
+  [
+   1,
+   1,
+   0,
+   1
+  ],
+  [
+   2,
+   -1,
+   3,
+   5
+  ]
+ ],
+ "states": [
+  [
+   "YXYxyx",
+   "YYYYxxx"
+  ],
+  [
+   "YXYxyx",
+   "YYYxxxxyXYX"
+  ],
+  [
+   "YXYxyx",
+   "YYxxxxyXXYX"
+  ],
+  [
+   "YXYxyx",
+   "YXYxxxxyXXX"
+  ],
+  [
+   "YXYxyx",
+   "YXXXyxxxx"
+  ],
+  [
+   "YXYxyx",
+   "YXXyxYxxx"
+  ],
+  [
+   "YXYxyx",
+   "YYxxxYXyx"
+  ],
+  [
+   "YYYxxxx",
+   "YYxxxYXyx"
+  ],
+  [
+   "YYXyyXyx",
+   "YYxxxYXyx"
+  ],
+  [
+   "YYXyyXyx",
+   "YYxyXXyyX"
+  ],
+  [
+   "YYXyyXyx",
+   "YYYxyXyyX"
+  ],
+  [
+   "YYXyyXyx",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYXyxyX",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYYxyXyX",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYXyXyx",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYYXyxyX",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYYxyXX",
+   "YYYYxyyyX"
+  ],
+  [
+   "YYXXyx",
+   "YYYxyXX"
+  ]
+ ],
+ "target": [
+  "YYXXyx",
+  "YYYxyXX"
+ ],
+ "target_aut_rep": [
+  "YYXXyx",
+  "YYYxyXX"
+ ],
+ "target_aut_phi": {
+  "x": "x",
+  "y": "y"
+ },
+ "ak3_aut_rep": [
+  "YXYxyx",
+  "YYYYxxx"
+ ]
+}

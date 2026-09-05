@@ -1,0 +1,69 @@
+AK(3) = xxxYYYY|xyxYXY (13); example C pair = yXXyXXyXXXXXX|yXyXYX (19)
+resume: 2 rows already done, 0 prior hits
+[scan] 189 universal CoV starts from xxxYYYY|xyxYXY (words 2..7); shortest start total=13 via z=xyX iso=y -> xxYYYYx|yxYXYx
+[d1] base=AK3-raw: 189 cov starts, 38 searched, 151 dup-skipped, best min_total=13, 6.1s
+    [compact] reservation exceeded at 109,169 states; growing to 243,388 (this copies)
+    [compact] reservation exceeded at 109,297 states; growing to 247,100 (this copies)
+    [compact] reservation exceeded at 109,210 states; growing to 253,148 (this copies)
+    [compact] reservation exceeded at 109,266 states; growing to 257,500 (this copies)
+    [compact] reservation exceeded at 109,311 states; growing to 264,508 (this copies)
+    [compact] reservation exceeded at 241,430 states; growing to 529,016 (this copies)
+    [compact] reservation exceeded at 109,341 states; growing to 269,500 (this copies)
+    [compact] reservation exceeded at 244,143 states; growing to 539,000 (this copies)
+    [compact] reservation exceeded at 109,400 states; growing to 277,468 (this copies)
+    [compact] reservation exceeded at 247,987 states; growing to 554,936 (this copies)
+    [compact] reservation exceeded at 109,547 states; growing to 283,100 (this copies)
+    [compact] reservation exceeded at 250,892 states; growing to 566,200 (this copies)
+[c] base=exampleC-xyy: 189 cov starts, 23 searched, 166 dup-skipped, best min_total=13, 17.3s
+[beam] 10 bases picked
+[beam] base=beam:xYxyXy|YYYYXXX: 99 cov starts, 7 searched, 92 dup-skipped, best min_total=13, 1.0s
+[beam] base=beam:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[beam] base=beam:YXyXYx|YYYXXXX: 99 cov starts, 2 searched, 97 dup-skipped, best min_total=13, 0.3s
+[beam] base=beam:YYxyXX|YYXXXyx: 100 cov starts, 29 searched, 71 dup-skipped, best min_total=13, 4.9s
+[beam] base=beam:YYxxyX|YYXyxxx: 100 cov starts, 16 searched, 84 dup-skipped, best min_total=13, 3.0s
+[beam] base=beam:YYXXyx|YYxyXXX: 100 cov starts, 19 searched, 81 dup-skipped, best min_total=13, 2.7s
+[beam] base=beam:YYXyxx|YYxxxyX: 100 cov starts, 4 searched, 96 dup-skipped, best min_total=13, 0.6s
+    [compact] reservation exceeded at 109,258 states; growing to 228,668 (this copies)
+    [compact] reservation exceeded at 109,189 states; growing to 230,468 (this copies)
+    [compact] reservation exceeded at 109,248 states; growing to 227,548 (this copies)
+    [compact] reservation exceeded at 109,260 states; growing to 231,748 (this copies)
+    [compact] reservation exceeded at 109,236 states; growing to 235,228 (this copies)
+    [compact] reservation exceeded at 109,245 states; growing to 233,788 (this copies)
+[beam] base=beam:YxYxxxx|YYYYxyyyx: 86 cov starts, 27 searched, 59 dup-skipped, best min_total=13, 10.2s
+    [compact] reservation exceeded at 109,167 states; growing to 231,748 (this copies)
+    [compact] reservation exceeded at 109,250 states; growing to 233,092 (this copies)
+    [compact] reservation exceeded at 109,170 states; growing to 235,228 (this copies)
+    [compact] reservation exceeded at 109,292 states; growing to 235,228 (this copies)
+    [compact] reservation exceeded at 109,230 states; growing to 236,732 (this copies)
+    [compact] reservation exceeded at 109,259 states; growing to 239,108 (this copies)
+    [compact] reservation exceeded at 228,831 states; growing to 478,216 (this copies)
+    [compact] reservation exceeded at 109,157 states; growing to 239,108 (this copies)
+    [compact] reservation exceeded at 109,360 states; growing to 240,772 (this copies)
+    [compact] reservation exceeded at 229,715 states; growing to 481,544 (this copies)
+    [compact] reservation exceeded at 109,278 states; growing to 231,748 (this copies)
+[beam] base=beam:YYYXX|YXYXYXYXyxyxyx: 89 cov starts, 36 searched, 53 dup-skipped, best min_total=13, 14.7s
+    [compact] reservation exceeded at 109,257 states; growing to 231,748 (this copies)
+    [compact] reservation exceeded at 109,305 states; growing to 235,228 (this copies)
+    [compact] reservation exceeded at 109,162 states; growing to 231,748 (this copies)
+    [compact] reservation exceeded at 109,305 states; growing to 231,748 (this copies)
+    [compact] reservation exceeded at 109,257 states; growing to 239,108 (this copies)
+    [compact] reservation exceeded at 228,973 states; growing to 478,216 (this copies)
+[beam] base=beam:YYYxx|YXyXyXyXyxYxYx: 88 cov starts, 19 searched, 69 dup-skipped, best min_total=13, 8.4s
+
+=== SUMMARY ===
+222 searches at budget 1000; hits (solved or min_total < 13): 0
+  min_total= 13 start= 13 [control] z=None iso=None base=AK3-raw
+  min_total= 13 start= 13 [d1] z=yyyXXX iso=y base=AK3-raw
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=xYXyy iso=x base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=xxYXy iso=y base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:YYxxyX|YYXyxxx
+  min_total= 13 start= 13 [beam] z=XYxxy iso=y base=beam:YYXXyx|YYxyXXX
+  min_total= 13 start= 14 [d1] z=xy iso=x base=AK3-raw
+  min_total= 13 start= 14 [d1] z=yx iso=x base=AK3-raw
+  min_total= 13 start= 14 [beam] z=Xy iso=y base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 14 [beam] z=yX iso=y base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 14 [beam] z=xyy iso=x base=beam:YYYXX|YXYXYXYXyxyxyx
+  min_total= 13 start= 15 [d1] z=yXYX iso=x base=AK3-raw
+  min_total= 13 start= 15 [beam] z=Xy iso=y base=beam:YYxyXX|YYXXXyx

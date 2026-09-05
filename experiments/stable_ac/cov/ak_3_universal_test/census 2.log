@@ -1,0 +1,22 @@
+[census] round 1: 2 orbits, 12 floor states, 3 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] base=census:YYxxyX|YYYXyxx: 100 cov starts, 4 searched, 96 dup-skipped, best min_total=13, 1.5s
+[census] base=census:YYxyXX|YYYXXyx: 101 cov starts, 3 searched, 98 dup-skipped, best min_total=13, 0.8s
+[census] round 2: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 3: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 4: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 5: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 6: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 7: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+[census] round 8: 2 orbits, 12 floor states, 1 unswept
+[census] base=census:YXYxyx|YYYxxxx: 99 cov starts, 0 searched, 99 dup-skipped, best min_total=None, 0.0s
+
+[census] FINAL: 377 rows, 0 hits, 2 Aut-orbit(s) at the 13-floor:
+  rep YXYxyx|YYYYxxx: 4 canonical floor states
+  rep YYXXyx|YYYxyXX: 8 canonical floor states

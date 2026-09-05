@@ -1,0 +1,30 @@
+AK(3) = xxxYYYY|xyxYXY (13); example C pair = yXXyXXyXXXXXX|yXyXYX (19)
+resume: 377 rows already done, 0 prior hits
+[d1] base=AK3-raw: 245 cov starts, 4 searched, 241 dup-skipped, best min_total=13, 1.3s
+    [compact] reservation exceeded at 109,403 states; growing to 292,028 (this copies)
+    [compact] reservation exceeded at 255,451 states; growing to 584,056 (this copies)
+    [compact] reservation exceeded at 109,336 states; growing to 298,300 (this copies)
+    [compact] reservation exceeded at 258,527 states; growing to 596,600 (this copies)
+[c] base=exampleC-xyy: 248 cov starts, 4 searched, 244 dup-skipped, best min_total=13, 9.5s
+    [compact] reservation exceeded at 109,269 states; growing to 229,852 (this copies)
+    [compact] reservation exceeded at 109,274 states; growing to 229,852 (this copies)
+    [compact] reservation exceeded at 109,198 states; growing to 229,852 (this copies)
+[o2] base=orbit2-rep: 246 cov starts, 5 searched, 241 dup-skipped, best min_total=13, 2.5s
+
+=== SUMMARY ===
+390 searches at budget 1000; hits (solved or min_total < 13): 0
+  min_total= 13 start= 13 [control] z=None iso=None base=AK3-raw
+  min_total= 13 start= 13 [d1] z=yyyXXX iso=y base=AK3-raw
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=xYXyy iso=x base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=xxYXy iso=y base=beam:YYxyXX|YYXXXyx
+  min_total= 13 start= 13 [beam] z=Yxy iso=x base=beam:YYxxyX|YYXyxxx
+  min_total= 13 start= 13 [beam] z=XYxxy iso=y base=beam:YYXXyx|YYxyXXX
+  min_total= 13 start= 14 [d1] z=xy iso=x base=AK3-raw
+  min_total= 13 start= 14 [d1] z=yx iso=x base=AK3-raw
+  min_total= 13 start= 14 [beam] z=Xy iso=y base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 14 [beam] z=yX iso=y base=beam:xYxyXy|YYYYXXX
+  min_total= 13 start= 14 [beam] z=xyy iso=x base=beam:YYYXX|YXYXYXYXyxyxyx
+  min_total= 13 start= 15 [d1] z=yXYX iso=x base=AK3-raw
+  min_total= 13 start= 15 [beam] z=Xy iso=y base=beam:YYxyXX|YYXXXyx

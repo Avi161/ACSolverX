@@ -1,0 +1,8570 @@
+{
+  "accepted_source_identities": 31232,
+  "aut_orbits": [
+    {
+      "minimum_total": 43,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYXXYYYXXYYYXXYYYXXYYxYXXYYxYXXYYxYXX"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXXYx",
+            "YYYXXYYYXXYYYXXYYYXXYxYYXXYxYYXXYxYYXX"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYxxYYYxxYYYxxYYYxxYXYYxxYXYYxxYXYYxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYxxYYYxxYYYxxYYYxxYYXYxxYYXYxxYYXYxx"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXXyXYYXXyXYYXXyXYYXXXYYXXXYYXXXYYXXX"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXyXXYYXyXXYYXyXXYYXXXYYXXXYYXXXYYXXX"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYxxyxYYxxyxYYxxyxYYxxxYYxxxYYxxxYYxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYxyxxYYxyxxYYxyxxYYxxxYYxxxYYxxxYYxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "X"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYXXYYYXXYYYXXYYYXXYYxYXXYYxYXXYYxYXX"
+      ]
+    },
+    {
+      "minimum_total": 27,
+      "outputs": [
+        {
+          "output": [
+            "YXyXYxx",
+            "YXYxxYXYxxYXYxxYXXyXyx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xyy"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXYxyXyXXYxxYXYxxYXYxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "XYY"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXYXXyxxyXyxxyXyxxyXyx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "yyx"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXYxyXyxxyXyxxyXyxxyXX"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YYX"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYXYXyxYxyyxYxyyxYxyyx"
+          ],
+          "phi": {
+            "x": "YYX",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYXyyxyxYXyXYYXyXYYXyX"
+          ],
+          "phi": {
+            "x": "yyx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYXyyXYXyyXYXyyXYXyxYx"
+          ],
+          "phi": {
+            "x": "XYY",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYxYxyXYXyyXYXyyXYXyyX"
+          ],
+          "phi": {
+            "x": "xyy",
+            "y": "y"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYXXYYYXXYYYXXYYxyxyX"
+      ]
+    },
+    {
+      "minimum_total": 16,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYXXyyyxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXXYx",
+            "YYYYxxyyyXX"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYXXyyyxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYxxyyyXX"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXXXXyyxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXXXyyxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYXXXXyyxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYXXXyyxxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "x"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYYXXyyyxx"
+      ]
+    },
+    {
+      "minimum_total": 14,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXXYx",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YX"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "yx"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "YX",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "XY"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xy"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "XY",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "XYY"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xyy"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YYX"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "yyx"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "yyx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "YYX",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYYXyyyx"
+          ],
+          "phi": {
+            "x": "xyy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYYxyyyX"
+          ],
+          "phi": {
+            "x": "XYY",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YXXXXyxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YXXXyxxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "x"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYYXyyyx"
+      ]
+    },
+    {
+      "minimum_total": 28,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYYYXXYYYXXYYYXXYYYXX"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYYYxxYYYxxYYYxxYYYxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YXYxxYXYxxYXYxxYXYxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YX"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YYYYYxyxYYxyxYYxyxYYxyx"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YXXYxYXXYxYXXYxYXXXXXYx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xy"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YYYYYXyXYYXyXYYXyXYYXyX"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXYxxYXYxxYXYxxYXXXXYxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xyy"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXXYxYXXYxYXXYxYXXYxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YYX"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXXXYYXXXYYXXXYYXXXXXX"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYYxyyxYxyyxYxyyxYxyyx"
+          ],
+          "phi": {
+            "x": "yyx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYYXyyXYXyyXYXyyXYXyyX"
+          ],
+          "phi": {
+            "x": "xyy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYxxxYYxxxYYxxxYYxxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "X"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYYYYXXYYYXXYYYXXYYYXX"
+      ]
+    },
+    {
+      "minimum_total": 24,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYYYYXXYYYXXYYYXX"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYYYYxxYYYxxYYYxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YXYxxYXYxxYXYxxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YX"
+          }
+        },
+        {
+          "output": [
+            "YXYxyx",
+            "YYYYYYxyxYYxyxYYxyx"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YXXYxYXXYxYXXXXXXYx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xy"
+          }
+        },
+        {
+          "output": [
+            "YXyXYx",
+            "YYYYYYXyXYYXyXYYXyX"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXYxxYXYxxYXXXXXYxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xyy"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXXYxYXXYxYXXYxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YYX"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YYXXXYYXXXYYXXXXXXX"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYYYxyyxYxyyxYxyyx"
+          ],
+          "phi": {
+            "x": "yyx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYYYXyyXYXyyXYXyyX"
+          ],
+          "phi": {
+            "x": "xyy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YYxxxYYxxxYYxxxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "X"
+          }
+        }
+      ],
+      "representative": [
+        "YXXYx",
+        "YYYYYYYXXYYYXXYYYXX"
+      ]
+    },
+    {
+      "minimum_total": 25,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYYXyXYxYXyXYxYXyXYx"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXXYx",
+            "YYYYYxYXyXYxYXyXYxYXyX"
+          ],
+          "phi": {
+            "x": "XY",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYYXYxyxYXYxyxYXYxyx"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYYxyxYXYxyxYXYxyxYX"
+          ],
+          "phi": {
+            "x": "YX",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXyXYxYXyXYxYXXXXXyXYx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "XY"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXyXYxYXyXYxYXyXXXXXYx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xy"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YXYxyxYXYxyxYXYxxxxxyx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YX"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YXYxyxYXYxyxYXYxyxxxxx"
+          ],
+          "phi": {
+            "x": "Y",
+            "y": "yx"
+          }
+        }
+      ],
+      "representative": [
+        "YXYXYx",
+        "YYYYYXXYxYXXYxYXXYx"
+      ]
+    },
+    {
+      "minimum_total": 23,
+      "outputs": [
+        {
+          "output": [
+            "YXyXYxx",
+            "YXyXYxYXyXYxYXyxxxYx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Yx"
+          }
+        },
+        {
+          "output": [
+            "YXyXYxx",
+            "YXyXYxYXyXYxYxxxyXYx"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "yX"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXYXXXyxYXYxyxYXYxyx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "Xy"
+          }
+        },
+        {
+          "output": [
+            "YXyxxyX",
+            "YXYxyXXXYXYxyxYXYxyx"
+          ],
+          "phi": {
+            "x": "X",
+            "y": "xY"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYXYXyxyXYXyxyXYXyx"
+          ],
+          "phi": {
+            "x": "xY",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YYXyxyX",
+            "YYYxyXYXyxyXYXyxyXYX"
+          ],
+          "phi": {
+            "x": "Xy",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYXyxYxyXyxYxyXyxYx"
+          ],
+          "phi": {
+            "x": "Yx",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYxyXyx",
+            "YYYxYxyXyxYxyXyxYxyX"
+          ],
+          "phi": {
+            "x": "yX",
+            "y": "X"
+          }
+        }
+      ],
+      "representative": [
+        "YXYxyx",
+        "YYXXXyxYYxyxYYxyx"
+      ]
+    },
+    {
+      "minimum_total": 13,
+      "outputs": [
+        {
+          "output": [
+            "YXXYx",
+            "YYYYXYXYXYX"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "X"
+          }
+        },
+        {
+          "output": [
+            "YXXYx",
+            "YYYYYXYXYX"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "Y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYYxYxYx"
+          ],
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        {
+          "output": [
+            "YXYxx",
+            "YYYYxYxYxYx"
+          ],
+          "phi": {
+            "x": "yx",
+            "y": "x"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXYXYXXXXX"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "YX"
+          }
+        },
+        {
+          "output": [
+            "YYXyX",
+            "YXYXYXYXXXX"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "XY"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YxYxYxYxxxx"
+          ],
+          "phi": {
+            "x": "x",
+            "y": "yx"
+          }
+        },
+        {
+          "output": [
+            "YYxyx",
+            "YxYxYxxxxx"
+          ],
+          "phi": {
+            "x": "y",
+            "y": "xy"
+          }
+        }
+      ],
+      "representative": [
+        "YXYxyx",
+        "YYYYxxx"
+      ]
+    }
+  ],
+  "bounds": {
+    "max_template_length": 6,
+    "max_word_length": 2
+  },
+  "candidate_lemma": "REFUTED",
+  "canonical_output_count": 96,
+  "claim": "finite decision of the immediate two-stabilization lemma only",
+  "defining_word_count": 16,
+  "defining_word_pair_count": 256,
+  "distinct_rank3_count": 3224,
+  "distinct_raw_output_count": 352,
+  "floor_distribution": {
+    "13": 64,
+    "14": 128,
+    "16": 16,
+    "23": 16,
+    "24": 40,
+    "25": 16,
+    "27": 16,
+    "28": 40,
+    "43": 16
+  },
+  "minimum_output_floor": 13,
+  "minimum_outputs": [
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZZTz",
+      "expression_y": "XZZTX",
+      "output": [
+        "XXYXYXYXYYYYxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxtzzxxtzzxxtzzxxtzzx",
+        "Ztzzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtzz",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZTz",
+      "expression_y": "Ztz",
+      "output": [
+        "XXYXYXYYYYYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZTzX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZZTzz",
+      "expression_y": "Ztzz",
+      "output": [
+        "XXYYYYXYXYXYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZZTZTZTZTz",
+        "ZZtzzx",
+        "TZZTz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZZTz",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZTzz",
+      "expression_y": "ZZtz",
+      "output": [
+        "XXYYYxYxYxYxYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZTzTzTzTzz",
+        "ZZTzzX",
+        "TZTzz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTzz",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZZtz",
+      "expression_y": "XZZtX",
+      "output": [
+        "XXyXyXyXyyyyxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxTzzxxTzzxxTzzxxTzzx",
+        "ZTzzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTzz",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZtz",
+      "expression_y": "ZTz",
+      "output": [
+        "XXyXyXyyyyyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZtzX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZtzz",
+      "expression_y": "ZZTz",
+      "output": [
+        "XXyyyxyxyxyxyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZtztztztzz",
+        "ZZtzzX",
+        "TZZTz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtzz",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZZtzz",
+      "expression_y": "ZTzz",
+      "output": [
+        "XXyyyyXyXyXyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZZtZtZtZtz",
+        "ZZTzzx",
+        "TZTzz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZZtz",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTz",
+      "expression_y": "XTzX",
+      "output": [
+        "XYYYXYXYXYXYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxZtxxZtxxZtxxZtx",
+        "ZTzX",
+        "TxZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZt",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTz",
+      "expression_y": "XZTX",
+      "output": [
+        "XYYYYxYxYxYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxtzxxtzxxtzxxtzx",
+        "Ztzx",
+        "Txtzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtz",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTzz",
+      "expression_y": "XTzzX",
+      "output": [
+        "XYxYxYYYYYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxZZtxxZZtxxZZtxxZZtx",
+        "ZTzzX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZZt",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZTzz",
+      "expression_y": "Ztz",
+      "output": [
+        "XYxYxYxYYYYx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Ztzz",
+      "expression_y": "ZTz",
+      "output": [
+        "Xyxyxyxyyyyx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztzz",
+      "expression_y": "XtzzX",
+      "output": [
+        "Xyxyxyyyyyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxZZTxxZZTxxZZTxxZZTx",
+        "ZtzzX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZZT",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztz",
+      "expression_y": "XtzX",
+      "output": [
+        "XyyyXyXyXyXyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxZTxxZTxxZTxxZTx",
+        "ZtzX",
+        "TXtzX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZT",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztz",
+      "expression_y": "XZtX",
+      "output": [
+        "Xyyyyxyxyxyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxTzxxTzxxTzxxTzx",
+        "ZTzx",
+        "TXZtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTz",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZt",
+      "expression_y": "XTZX",
+      "output": [
+        "YXXXXyXyXyXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxztxxztxxztxxztx",
+        "Zxztx",
+        "Tztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzt",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZt",
+      "expression_y": "XZtX",
+      "output": [
+        "YXXXYXYXYXYXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxTzxxTzxxTzxxTzx",
+        "ZxTzx",
+        "TZtX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTz",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZtt",
+      "expression_y": "XZttX",
+      "output": [
+        "YXyXyXXXXXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxTTzxxTTzxxTTzxxTTzx",
+        "Zx",
+        "TZttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTTz",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TZtt",
+      "expression_y": "Tzt",
+      "output": [
+        "YXyXyXyXXXXy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZt",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TTZtt",
+      "expression_y": "Tztt",
+      "output": [
+        "YYXXXXYXYXYXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTTZTZTZTZt",
+        "ZTTZt",
+        "TTzttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTTZt",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTZtt",
+      "expression_y": "TTzt",
+      "output": [
+        "YYXXXyXyXyXyXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTZtZtZtZtt",
+        "ZTZtt",
+        "TTZttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZtt",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTZt",
+      "expression_y": "Tzt",
+      "output": [
+        "YYXYXYXXXXXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTZtX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZt",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TTZt",
+      "expression_y": "XTTZX",
+      "output": [
+        "YYXYXYXYXXXXyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxzttxxzttxxzttxxzttx",
+        "Zx",
+        "Tzttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxztt",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TTzt",
+      "expression_y": "XTTzX",
+      "output": [
+        "YYxYxYxYxxxxyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxZttxxZttxxZttxxZttx",
+        "ZX",
+        "TZttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZtt",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTzt",
+      "expression_y": "TZt",
+      "output": [
+        "YYxYxYxxxxxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTztX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTzt",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TTztt",
+      "expression_y": "TZtt",
+      "output": [
+        "YYxxxxYxYxYxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTTzTzTzTzt",
+        "ZTZtt",
+        "TTZttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTTzt",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTztt",
+      "expression_y": "TTZt",
+      "output": [
+        "YYxxxyxyxyxyxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTztztztztt",
+        "ZTTZt",
+        "TTzttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTztt",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tzt",
+      "expression_y": "XztX",
+      "output": [
+        "YxxxYxYxYxYxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxTZxxTZxxTZxxTZx",
+        "ZXztX",
+        "TztX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTZ",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tzt",
+      "expression_y": "XTzX",
+      "output": [
+        "Yxxxxyxyxyxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxZtxxZtxxZtxxZtx",
+        "ZXTzX",
+        "TZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZt",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tztt",
+      "expression_y": "XzttX",
+      "output": [
+        "Yxyxyxxxxxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxTTZxxTTZxxTTZxxTTZx",
+        "ZX",
+        "TzttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTTZ",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Tztt",
+      "expression_y": "TZt",
+      "output": [
+        "Yxyxyxyxxxxy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTzt",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zTZZ",
+      "expression_y": "ztZ",
+      "output": [
+        "xYXYXYXYYYYX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZXzTZ",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZZ",
+      "expression_y": "XTZZX",
+      "output": [
+        "xYXYXYYYYYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxzztxxzztxxzztxxzztx",
+        "Zxzzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzzt",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZ",
+      "expression_y": "XzTX",
+      "output": [
+        "xYYYYXYXYXYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxtZxxtZxxtZxxtZx",
+        "ZXzT",
+        "TxtZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtZ",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZ",
+      "expression_y": "XTZX",
+      "output": [
+        "xYYYxYxYxYxYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxztxxztxxztxxztx",
+        "Zxzt",
+        "Txztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzt",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zzTZZ",
+      "expression_y": "zztZ",
+      "output": [
+        "xxYYYXYXYXYXYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzTZTZTZTZZ",
+        "ZxzztZ",
+        "TzTZZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZZ",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zzTZZ",
+      "expression_y": "ztZZ",
+      "output": [
+        "xxYYYYxYxYxYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzzTzTzTzTZ",
+        "ZXzzTZ",
+        "TzzTZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzzTZ",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zzTZ",
+      "expression_y": "ztZ",
+      "output": [
+        "xxYxYxYYYYYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZxztZ",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zzTZ",
+      "expression_y": "XzzTX",
+      "output": [
+        "xxYxYxYxYYYYXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxtZZxxtZZxxtZZxxtZZx",
+        "ZXzzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtZZ",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zztZ",
+      "expression_y": "XzztX",
+      "output": [
+        "xxyxyxyxyyyyXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxTZZxxTZZxxTZZxxTZZx",
+        "ZXzzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTZZ",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zztZ",
+      "expression_y": "zTZ",
+      "output": [
+        "xxyxyxyyyyyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZxzTZ",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zztZZ",
+      "expression_y": "zzTZ",
+      "output": [
+        "xxyyyXyXyXyXyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxztZtZtZtZZ",
+        "ZxzzTZ",
+        "TzzTZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZZ",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zztZZ",
+      "expression_y": "zTZZ",
+      "output": [
+        "xxyyyyxyxyxyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzztztztztZ",
+        "ZXzztZ",
+        "TzTZZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzztZ",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ztZZ",
+      "expression_y": "zTZ",
+      "output": [
+        "xyXyXyXyyyyX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZXztZ",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZZ",
+      "expression_y": "XtZZX",
+      "output": [
+        "xyXyXyyyyyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxzzTxxzzTxxzzTxxzzTx",
+        "ZxzzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzzT",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZ",
+      "expression_y": "XtZX",
+      "output": [
+        "xyyyxyxyxyxyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxzTxxzTxxzTxxzTx",
+        "ZxzT",
+        "TXtZX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzT",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZ",
+      "expression_y": "XztX",
+      "output": [
+        "xyyyyXyXyXyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxTZxxTZxxTZxxTZx",
+        "ZXzt",
+        "TXztX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTZ",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZT",
+      "expression_y": "XtZX",
+      "output": [
+        "yXXXXYXYXYXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxzTxxzTxxzTxxzTx",
+        "ZxzTx",
+        "TXtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzT",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZT",
+      "expression_y": "XZTX",
+      "output": [
+        "yXXXyXyXyXyXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxtzxxtzxxtzxxtzx",
+        "Zxtzx",
+        "Txtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxtz",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZTT",
+      "expression_y": "XZTTX",
+      "output": [
+        "yXYXYXXXXXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxttzxxttzxxttzxxttzx",
+        "Zx",
+        "Txttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxttz",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tZTT",
+      "expression_y": "tzT",
+      "output": [
+        "yXYXYXYXXXXY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TXtZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZT",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tzTT",
+      "expression_y": "tZT",
+      "output": [
+        "yxYxYxYxxxxY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TXtzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzT",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzTT",
+      "expression_y": "XzTTX",
+      "output": [
+        "yxYxYxxxxxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxttZxxttZxxttZxxttZx",
+        "ZX",
+        "TxttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxttZ",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzT",
+      "expression_y": "XtzX",
+      "output": [
+        "yxxxxYxYxYxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxZTxxZTxxZTxxZTx",
+        "ZXtzX",
+        "TXtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZT",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzT",
+      "expression_y": "XzTX",
+      "output": [
+        "yxxxyxyxyxyxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxtZxxtZxxtZxxtZx",
+        "ZXzTX",
+        "TxtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxtZ",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ttZTT",
+      "expression_y": "tzTT",
+      "output": [
+        "yyXXXXyXyXyXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxttZtZtZtZT",
+        "ZttZT",
+        "TXttZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "yttZT",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttZTT",
+      "expression_y": "ttzT",
+      "output": [
+        "yyXXXYXYXYXYXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtZTZTZTZTT",
+        "ZtZTT",
+        "TxttzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZTT",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttZT",
+      "expression_y": "tzT",
+      "output": [
+        "yyXyXyXXXXXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TxtzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZT",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ttZT",
+      "expression_y": "XttZX",
+      "output": [
+        "yyXyXyXyXXXXYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxzTTxxzTTxxzTTxxzTTx",
+        "Zx",
+        "TXttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzTT",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttzTT",
+      "expression_y": "ttZT",
+      "output": [
+        "yyxxxYxYxYxYxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtzTzTzTzTT",
+        "ZttZT",
+        "TxttZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzTT",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ttzTT",
+      "expression_y": "tZTT",
+      "output": [
+        "yyxxxxyxyxyxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxttztztztzT",
+        "ZtZTT",
+        "TXttzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "yttzT",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttzT",
+      "expression_y": "tZT",
+      "output": [
+        "yyxyxyxxxxxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TxtZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzT",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ttzT",
+      "expression_y": "XttzX",
+      "output": [
+        "yyxyxyxyxxxxYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxZTTxxZTTxxZTTxxZTTx",
+        "ZX",
+        "TXttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZTT",
+      "word_t": "yx",
+      "word_z": "X"
+    }
+  ],
+  "output_witnesses": [
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "Z",
+      "expression_y": "zttXX",
+      "output": [
+        "XXXXXYYXXXYYXXXYYXXXYYX",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxxxTTZxxTTZxxTTZxxTTZ",
+        "ZX",
+        "TzttX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxTTZy",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "Z",
+      "expression_y": "zTTXX",
+      "output": [
+        "XXXXXyyXXXyyXXXyyXXXyyX",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxxxttZxxttZxxttZxxttZ",
+        "ZX",
+        "TxttZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxttZy",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XzttX",
+      "output": [
+        "XXXXYYXXXYYXXXYYXXXYYXX",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxxTTZxxTTZxxTTZxxTTZx",
+        "ZX",
+        "TzttX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTTZ",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XtZtX",
+      "output": [
+        "XXXXYxYXXYxYXXYxYXXYxYX",
+        "YxyXyx"
+      ],
+      "rank3": [
+        "xxxxTzTxxTzTxxTzTxxTzTx",
+        "ZX",
+        "TXtZtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTzT",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "txxtz",
+      "output": [
+        "XXXXYxxYXYxxYXYxxYXYxxY",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxZTXXTZTXXTZTXXTZTXXT",
+        "ZX",
+        "TXtxxtz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxtzYt",
+      "word_t": "Xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "xTxtz",
+      "output": [
+        "XXXXYxxxxyx",
+        "YXXYxyx"
+      ],
+      "rank3": [
+        "xxxZTXtXZTXtXZTXtXZTXtX",
+        "ZX",
+        "TxZTXtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xTxtzY",
+      "word_t": "xY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "Z",
+      "expression_y": "ZTxtX",
+      "output": [
+        "XXXXYxxxxyx",
+        "YXYxyx"
+      ],
+      "rank3": [
+        "xxxxTXtzxTXtzxTXtzxTXtz",
+        "ZX",
+        "TxTXtz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtXYZT",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "YXYxyx",
+      "expression_x": "Z",
+      "expression_y": "ZTxtX",
+      "output": [
+        "XXXXYxxxxyx",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxxTXtzxTXtzxTXtzxTXtz",
+        "ZX",
+        "TTXtz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtXYZT",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "xtxTz",
+      "output": [
+        "XXXXyxxxxYx",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxZtXTXZtXTXZtXTXZtXTX",
+        "ZX",
+        "TxtxTzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTzY",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "xtxTz",
+      "output": [
+        "XXXXyxxxxYx",
+        "YXyXYx"
+      ],
+      "rank3": [
+        "xxxZtXTXZtXTXZtXTXZtXTX",
+        "ZX",
+        "TxtxTz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTzY",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "xtxTz",
+      "output": [
+        "XXXXyxxxxYx",
+        "YXyXYxx"
+      ],
+      "rank3": [
+        "xxxZtXTXZtXTXZtXTXZtXTX",
+        "ZX",
+        "TxtxTzX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTzY",
+      "word_t": "yX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "TxxTz",
+      "output": [
+        "XXXXyxxyXyxxyXyxxyXyxxy",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxZtXXtZtXXtZtXXtZtXXt",
+        "ZX",
+        "TZtXXtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxTzYT",
+      "word_t": "Yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XTZTX",
+      "output": [
+        "XXXXyxyXXyxyXXyxyXXyxyX",
+        "YXyxyX"
+      ],
+      "rank3": [
+        "xxxxtztxxtztxxtztxxtztx",
+        "ZX",
+        "Txtztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtzt",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XzTTX",
+      "output": [
+        "XXXXyyXXXyyXXXyyXXXyyXX",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxxttZxxttZxxttZxxttZx",
+        "ZX",
+        "TxttZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxttZ",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "Z",
+      "expression_y": "TTZtt",
+      "output": [
+        "XXXYYxxxxyy",
+        "YXYYXyy"
+      ],
+      "rank3": [
+        "xxxTTzzzztt",
+        "ZX",
+        "TxTTZtt"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTTztt",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "TTZtt",
+      "output": [
+        "XXXYYxxxxyy",
+        "YxYYxyy"
+      ],
+      "rank3": [
+        "xxxTTzzzztt",
+        "ZX",
+        "TXTTztt"
+      ],
+      "second_isolator_index": 1,
+      "template": "YTTZtt",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XtZxt",
+      "output": [
+        "XXXYxxYXYxxYXYxxYXYxxYX",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxTXzTxTXzTxTXzTxTXzTx",
+        "ZX",
+        "TXtZxtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTXzT",
+      "word_t": "yX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Z",
+      "expression_y": "TZt",
+      "output": [
+        "XXXYxxxxy",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzt",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "Z",
+      "expression_y": "TZt",
+      "output": [
+        "XXXYxxxxy",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTztX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzt",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "Z",
+      "expression_y": "tZT",
+      "output": [
+        "XXXyxxxxY",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TxtZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzT",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Z",
+      "expression_y": "tZT",
+      "output": [
+        "XXXyxxxxY",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TXtzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzT",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "XTZxT",
+      "output": [
+        "XXXyxxyXyxxyXyxxyXyxxyX",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxtXztxtXztxtXztxtXztx",
+        "ZX",
+        "TxtXztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytXzt",
+      "word_t": "xY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Z",
+      "expression_y": "ttZTT",
+      "output": [
+        "XXXyyxxxxYY",
+        "yXYYX"
+      ],
+      "rank3": [
+        "xxxttzzzzTT",
+        "ZX",
+        "tZTTx"
+      ],
+      "second_isolator_index": 1,
+      "template": "YttZTT",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "Z",
+      "expression_y": "ttZTT",
+      "output": [
+        "XXXyyxxxxYY",
+        "yxYYx"
+      ],
+      "rank3": [
+        "xxxttzzzzTT",
+        "ZX",
+        "tzTTX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yttzTT",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZZTz",
+      "expression_y": "XZZTX",
+      "output": [
+        "XXYXYXYXYYYYxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxtzzxxtzzxxtzzxxtzzx",
+        "Ztzzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtzz",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZTz",
+      "expression_y": "Ztz",
+      "output": [
+        "XXYXYXYYYYYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZTzX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZZTTZ",
+      "expression_y": "XZZTT",
+      "output": [
+        "XXYYXXXYYXXXYYXXXXX",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxttzzxttzzxttzzxttzzx",
+        "ZXZZTT",
+        "TXttzzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyttzz",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZZTTZt",
+      "expression_y": "zttzz",
+      "output": [
+        "XXYYXyXXYYXyXXYYXyXXYYXXXYYXXXYYXXXYYX",
+        "XYxyyxx"
+      ],
+      "rank3": [
+        "xxxZZTTZZZTTZZZTTZZZTTZ",
+        "ZX",
+        "Tzttzzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZZTTZ",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZZTzz",
+      "expression_y": "Ztzz",
+      "output": [
+        "XXYYYYXYXYXYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZZTZTZTZTz",
+        "ZZtzzx",
+        "TZZTz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZZTz",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZTzz",
+      "expression_y": "ZZtz",
+      "output": [
+        "XXYYYxYxYxYxYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZTzTzTzTzz",
+        "ZZTzzX",
+        "TZTzz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTzz",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XTZtx",
+      "output": [
+        "XXYxxxxyX",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxTzzzztx",
+        "ZX",
+        "TTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTzt",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XTZtx",
+      "output": [
+        "XXYxxxxyX",
+        "YxYXyX"
+      ],
+      "rank3": [
+        "xxTzzzztx",
+        "ZX",
+        "TXTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTzt",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XTZtx",
+      "output": [
+        "XXYxxxxyX",
+        "YxxYXyX"
+      ],
+      "rank3": [
+        "xxTzzzztx",
+        "ZX",
+        "TXXTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTzt",
+      "word_t": "Xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZZtz",
+      "expression_y": "XZZtX",
+      "output": [
+        "XXyXyXyXyyyyxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxTzzxxTzzxxTzzxxTzzx",
+        "ZTzzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTzz",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZtz",
+      "expression_y": "ZTz",
+      "output": [
+        "XXyXyXyyyyyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZtzX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XtZTx",
+      "output": [
+        "XXyxxxxYX",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxtzzzzTx",
+        "ZX",
+        "TXtzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtzT",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XtZTx",
+      "output": [
+        "XXyxxxxYX",
+        "YxyxYX"
+      ],
+      "rank3": [
+        "xxtzzzzTx",
+        "ZX",
+        "TXtzTx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtzT",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Z",
+      "expression_y": "XtZTx",
+      "output": [
+        "XXyxxxxYX",
+        "YxyxYXX"
+      ],
+      "rank3": [
+        "xxtzzzzTx",
+        "ZX",
+        "TXtzTxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtzT",
+      "word_t": "Yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZZttZ",
+      "expression_y": "XZZtt",
+      "output": [
+        "XXyyXXXyyXXXyyXXXXX",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxTTzzxTTzzxTTzzxTTzzx",
+        "ZXZZtt",
+        "TXZZttx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTTzz",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZZttZT",
+      "expression_y": "zTTzz",
+      "output": [
+        "XXyyXYXXyyXYXXyyXYXXyyXXXyyXXXyyXXXyyX",
+        "XyxYYxx"
+      ],
+      "rank3": [
+        "xxxZZttZZZttZZZttZZZttZ",
+        "ZX",
+        "TXZZttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZZttZ",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZZtzz",
+      "expression_y": "ZZTz",
+      "output": [
+        "XXyyyxyxyxyxyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZtztztztzz",
+        "ZZtzzX",
+        "TZZTz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtzz",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZZtzz",
+      "expression_y": "ZTzz",
+      "output": [
+        "XXyyyyXyXyXyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZZtZtZtZtz",
+        "ZZTzzx",
+        "TZTzz"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZZtz",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTZtz",
+      "expression_y": "XZTZt",
+      "output": [
+        "XYXXXyxxxxx",
+        "YXXYxyx"
+      ],
+      "rank3": [
+        "xxxTztzxTztzxTztzxTztzx",
+        "ZTztzx",
+        "TXZTZtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTztz",
+      "word_t": "yX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTZtz",
+      "expression_y": "XZTZt",
+      "output": [
+        "XYXXXyxxxxx",
+        "YXYxyx"
+      ],
+      "rank3": [
+        "xxxTztzxTztzxTztzxTztzx",
+        "ZTztzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTztz",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTZtz",
+      "expression_y": "XZTZt",
+      "output": [
+        "XYXXXyxxxxx",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxTztzxTztzxTztzxTztzx",
+        "ZTztzx",
+        "TTztz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTztz",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZTTZZ",
+      "expression_y": "XZTTZ",
+      "output": [
+        "XYYXXXYYXXXYYXXXXXX",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxzttzxzttzxzttzxzttzx",
+        "ZXZTTZ",
+        "Tzttz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyzttz",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZTTZtz",
+      "expression_y": "ZTTZt",
+      "output": [
+        "XYYXYXYXyxYxyyxYxyyxYxyyxYxyyx",
+        "YXYxyyx"
+      ],
+      "rank3": [
+        "xxxTzttzTzttzTzttzTzttz",
+        "ZTzttzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzttz",
+      "word_t": "X",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZTTZt",
+      "expression_y": "XZTTZ",
+      "output": [
+        "XYYXyXYYXyXYYXyyyyy",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxzttzxzttzxzttzxzttzx",
+        "ZXXZTTZ",
+        "Tzttzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzttz",
+      "word_t": "Y",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTz",
+      "expression_y": "XTzX",
+      "output": [
+        "XYYYXYXYXYXYx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxZtxxZtxxZtxxZtx",
+        "ZTzX",
+        "TxZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZt",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTz",
+      "expression_y": "XZTX",
+      "output": [
+        "XYYYYxYxYxYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxtzxxtzxxtzxxtzx",
+        "Ztzx",
+        "Txtzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtz",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZTz",
+      "expression_y": "XZTzT",
+      "output": [
+        "XYYYxyyyy",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxtZtzxtZtzxtZtzxtZtzx",
+        "ZZTzT",
+        "Ztzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytZtz",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTz",
+      "expression_y": "XZTzT",
+      "output": [
+        "XYYYxyyyy",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxtZtzxtZtzxtZtzxtZtzx",
+        "ZXtZtzx",
+        "Ztzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytZtz",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZTzTZ",
+      "expression_y": "XZTzT",
+      "output": [
+        "XYxYXXYxYXXYxYXXXXX",
+        "YxyXyx"
+      ],
+      "rank3": [
+        "xxxtZtzxtZtzxtZtzxtZtzx",
+        "ZXZTzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytZtz",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZTzTZt",
+      "expression_y": "TztZt",
+      "output": [
+        "XYxYXyXYxYXyXYxYYYYYXy",
+        "YXYxYXy"
+      ],
+      "rank3": [
+        "xxxTzTTTTZt",
+        "ZTzTZtX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzTZt",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZTzTZt",
+      "expression_y": "TzTZt",
+      "output": [
+        "XYxYXyXYxYXyXYxyyyXy",
+        "YYxyXyx"
+      ],
+      "rank3": [
+        "xxxTzttttZt",
+        "ZTzTZtX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTztZt",
+      "word_t": "X",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZTzz",
+      "expression_y": "XTzzX",
+      "output": [
+        "XYxYxYYYYYxx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxZZtxxZZtxxZZtxxZZtx",
+        "ZTzzX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZZt",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZTzz",
+      "expression_y": "Ztz",
+      "output": [
+        "XYxYxYxYYYYx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZTzzT",
+      "expression_y": "Ztzxt",
+      "output": [
+        "XYxxYXYxxYXYxxYXXXX",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxTXZTzTXZTzTXZTzTXZTz",
+        "ZZtzxt",
+        "TZtzxtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtYZtz",
+      "word_t": "yX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZTzzTT",
+      "expression_y": "ttZZt",
+      "output": [
+        "XYxxYYXYxxYYXYxxYYYxxYYYxxYYYxxYYYxxYY",
+        "yXXyx"
+      ],
+      "rank3": [
+        "xxxTzzTTTzzTTTzzTTTzzTT",
+        "ZTzzTTX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzzTT",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZTztz",
+      "expression_y": "TZtzx",
+      "output": [
+        "XYxxxyXXX",
+        "YXXYxyx"
+      ],
+      "rank3": [
+        "xxZTztXZTztXZTztXZTzt",
+        "ZTZtzx",
+        "TXZTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTZtz",
+      "word_t": "Yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZTztz",
+      "expression_y": "TZtzx",
+      "output": [
+        "XYxxxyXXX",
+        "YXYxyx"
+      ],
+      "rank3": [
+        "xxZTztXZTztXZTztXZTzt",
+        "ZTZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTZtz",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZTztz",
+      "expression_y": "TZtzx",
+      "output": [
+        "XYxxxyXXX",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxZTztXZTztXZTztXZTzt",
+        "ZTZtzx",
+        "TTZtzxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTZtz",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZTztzT",
+      "expression_y": "ZTztz",
+      "output": [
+        "XYxyxYXYxyxYXYxyxYXYXXXXyx",
+        "XXYxyxY"
+      ],
+      "rank3": [
+        "xxxZTZZZZtz",
+        "Zx",
+        "TXZTztz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTZtz",
+      "word_t": "Xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZTztzT",
+      "expression_y": "ZTZtz",
+      "output": [
+        "XYxyxYXYxyxYXYxyxYXYxxxxyx",
+        "XyXYXyx"
+      ],
+      "rank3": [
+        "xxxZTzzzztz",
+        "ZX",
+        "TXZTztz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTztz",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZTzttz",
+      "expression_y": "Tzttz",
+      "output": [
+        "XYxyxyyXYYXyXYYXyXYYXy",
+        "YXYxyyx"
+      ],
+      "rank3": [
+        "xxxZTTZtZTTZtZTTZtZTTZt",
+        "ZTzttzX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZTTZt",
+      "word_t": "x",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZtZTz",
+      "expression_y": "XZtZT",
+      "output": [
+        "XyXXXYxxxxx",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxtzTzxtzTzxtzTzxtzTzx",
+        "ZtzTzx",
+        "TZtZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytzTz",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZtZTz",
+      "expression_y": "XZtZT",
+      "output": [
+        "XyXXXYxxxxx",
+        "YXyXYx"
+      ],
+      "rank3": [
+        "xxxtzTzxtzTzxtzTzxtzTzx",
+        "ZtzTzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytzTz",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ZtZTz",
+      "expression_y": "XZtZT",
+      "output": [
+        "XyXXXYxxxxx",
+        "YXyXYxx"
+      ],
+      "rank3": [
+        "xxxtzTzxtzTzxtzTzxtzTzx",
+        "ZtzTzx",
+        "TxtzTzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytzTz",
+      "word_t": "xY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZtzTTz",
+      "expression_y": "tzTTz",
+      "output": [
+        "XyxYxYYXyyXYXyyXYXyyXY",
+        "YXyyXYx"
+      ],
+      "rank3": [
+        "xxxZttZTZttZTZttZTZttZT",
+        "ZtzTTzX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZttZT",
+      "word_t": "X",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZtzTzt",
+      "expression_y": "ZtzTz",
+      "output": [
+        "XyxYxyXyxYxyXyxYxyXyXXXXYx",
+        "XXyxYxy"
+      ],
+      "rank3": [
+        "xxxZtZZZZTz",
+        "Zx",
+        "TZtZTzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtZTz",
+      "word_t": "Yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZtzTzt",
+      "expression_y": "ZtZTz",
+      "output": [
+        "XyxYxyXyxYxyXyxYxyXyxxxxYx",
+        "XYXyXYx"
+      ],
+      "rank3": [
+        "xxxZtzzzzTz",
+        "ZX",
+        "TZtZTzx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtzTz",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZtzTz",
+      "expression_y": "tZTzx",
+      "output": [
+        "XyxxxYXXX",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxZtzTXZtzTXZtzTXZtzT",
+        "ZtZTzx",
+        "TXXZtzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtZTz",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZtzTz",
+      "expression_y": "tZTzx",
+      "output": [
+        "XyxxxYXXX",
+        "YXyXYx"
+      ],
+      "rank3": [
+        "xxZtzTXZtzTXZtzTXZtzT",
+        "ZtZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtZTz",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ZtzTz",
+      "expression_y": "tZTzx",
+      "output": [
+        "XyxxxYXXX",
+        "YXyXYxx"
+      ],
+      "rank3": [
+        "xxZtzTXZtzTXZtzTXZtzT",
+        "ZtZTzx",
+        "TXtZTzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtZTz",
+      "word_t": "Xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Ztzzt",
+      "expression_y": "ZTzxT",
+      "output": [
+        "XyxxyXyxxyXyxxyXXXX",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxtXZtztXZtztXZtztXZtz",
+        "ZZTzxT",
+        "TxtXZtz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xTYZTz",
+      "word_t": "xY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "Ztzztt",
+      "expression_y": "TTZZT",
+      "output": [
+        "XyxxyyXyxxyyXyxxyyyxxyyyxxyyyxxyyyxxyy",
+        "YXyxxyy"
+      ],
+      "rank3": [
+        "xxxtzztttzztttzztttzztt",
+        "ZtzzttX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzztt",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZtztZ",
+      "expression_y": "XZtzt",
+      "output": [
+        "XyxyXXyxyXXyxyXXXXX",
+        "YXyxyX"
+      ],
+      "rank3": [
+        "xxxTZTzxTZTzxTZTzxTZTzx",
+        "ZXZtzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTZTz",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ZtztZT",
+      "expression_y": "tztZT",
+      "output": [
+        "XyxyXYXyxyXYXyxYYYXY",
+        "YXyxyXY"
+      ],
+      "rank3": [
+        "xxxtzTTTTZT",
+        "ZtztZTX",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzTZT",
+      "word_t": "x",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ZtztZT",
+      "expression_y": "tzTZT",
+      "output": [
+        "XyxyXYXyxyXYXyxyyyyyXY",
+        "xYXYx"
+      ],
+      "rank3": [
+        "xxxtzttttZT",
+        "ZtztZTX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytztZT",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Ztzz",
+      "expression_y": "ZTz",
+      "output": [
+        "Xyxyxyxyyyyx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztzz",
+      "expression_y": "XtzzX",
+      "output": [
+        "Xyxyxyyyyyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxZZTxxZZTxxZZTxxZZTx",
+        "ZtzzX",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZZT",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZttZZ",
+      "expression_y": "XZttZ",
+      "output": [
+        "XyyXXXyyXXXyyXXXXXX",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxzTTzxzTTzxzTTzxzTTzx",
+        "ZXZttZ",
+        "TZttZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyzTTz",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ZttZT",
+      "expression_y": "XZttZ",
+      "output": [
+        "XyyXYXyyXYXyyXYYYYY",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxzTTzxzTTzxzTTzxzTTzx",
+        "ZXXZttZ",
+        "TXZttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzTTz",
+      "word_t": "y",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ZttZTz",
+      "expression_y": "ZttZT",
+      "output": [
+        "XyyXyXyXYxyxYYxyxYYxyxYYxyxYYx",
+        "YXyyXYx"
+      ],
+      "rank3": [
+        "xxxtzTTztzTTztzTTztzTTz",
+        "ZtzTTzx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzTTz",
+      "word_t": "x",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztz",
+      "expression_y": "XtzX",
+      "output": [
+        "XyyyXyXyXyXyx",
+        "YXYxx"
+      ],
+      "rank3": [
+        "xxxxZTxxZTxxZTxxZTx",
+        "ZtzX",
+        "TXtzX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxZT",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztz",
+      "expression_y": "XZtzt",
+      "output": [
+        "XyyyxYYYY",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxTZTzxTZTzxTZTzxTZTzx",
+        "ZXTZTzx",
+        "TXZtzt"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTZTz",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "Ztz",
+      "expression_y": "XZtzt",
+      "output": [
+        "XyyyxYYYY",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxTZTzxTZTzxTZTzxTZTzx",
+        "ZZtzt",
+        "TXZtzt"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTZTz",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Ztz",
+      "expression_y": "XZtX",
+      "output": [
+        "Xyyyyxyxyxyxx",
+        "YXXYx"
+      ],
+      "rank3": [
+        "xxxxTzxxTzxxTzxxTzx",
+        "ZTzx",
+        "TXZtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTz",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZt",
+      "expression_y": "XTZX",
+      "output": [
+        "YXXXXyXyXyXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxztxxztxxztxxztx",
+        "Zxztx",
+        "Tztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzt",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZt",
+      "expression_y": "XZtX",
+      "output": [
+        "YXXXYXYXYXYXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxTzxxTzxxTzxxTzx",
+        "ZxTzx",
+        "TZtX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTz",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TZt",
+      "expression_y": "XTZtZ",
+      "output": [
+        "YXXXyxxxx",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxzTztxzTztxzTztxzTztx",
+        "Tztx",
+        "TTZtZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyzTzt",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZt",
+      "expression_y": "XTZtZ",
+      "output": [
+        "YXXXyxxxx",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxzTztxzTztxzTztxzTztx",
+        "Tztx",
+        "TXzTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyzTzt",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TZZTzt",
+      "expression_y": "TZZTz",
+      "output": [
+        "YXXYXYXYxyXyxxyXyxxyXyxxyXyxxy",
+        "XYXyxxy"
+      ],
+      "rank3": [
+        "xxxZtzztZtzztZtzztZtzzt",
+        "ZX",
+        "TZtzztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtzzt",
+      "word_t": "Yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TZZTT",
+      "expression_y": "XTZZT",
+      "output": [
+        "YXXYYYXXYYYXXYYYYYY",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxtzztxtzztxtzztxtzztx",
+        "Ztzzt",
+        "TXTZZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytzzt",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TZZTz",
+      "expression_y": "XTZZT",
+      "output": [
+        "YXXYxYXXYxYXXYxxxxx",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxtzztxtzztxtzztxtzztx",
+        "Ztzztx",
+        "TXXTZZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytzzt",
+      "word_t": "Xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZTzt",
+      "expression_y": "XTZTz",
+      "output": [
+        "YXYYYxyyyyy",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxZtztxZtztxZtztxZtztx",
+        "ZZtzt",
+        "TZtztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZtzt",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZTzt",
+      "expression_y": "XTZTz",
+      "output": [
+        "YXYYYxyyyyy",
+        "XYXyxy"
+      ],
+      "rank3": [
+        "xxxZtztxZtztxZtztxZtztx",
+        "ZX",
+        "TZtztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZtzt",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZTzt",
+      "expression_y": "XTZTz",
+      "output": [
+        "YXYYYxyyyyy",
+        "XYYXyxy"
+      ],
+      "rank3": [
+        "xxxZtztxZtztxZtztxZtztx",
+        "ZXTZTzX",
+        "TZtztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZtzt",
+      "word_t": "Y",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TZtZT",
+      "expression_y": "XTZtZ",
+      "output": [
+        "YXyXYYXyXYYXyXYYYYY",
+        "XyxYxy"
+      ],
+      "rank3": [
+        "xxxzTztxzTztxzTztxzTztx",
+        "ZX",
+        "TXTZtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzTzt",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TZtZTz",
+      "expression_y": "ZtzTz",
+      "output": [
+        "YXyXYxYXyXYxYXyXXXXXYx",
+        "XYXyXYx"
+      ],
+      "rank3": [
+        "xxxZtZZZZTz",
+        "Zx",
+        "TZtZTzX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtZTz",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TZtZTz",
+      "expression_y": "ZtZTz",
+      "output": [
+        "YXyXYxYXyXYxYXyxxxYx",
+        "XXyxYxy"
+      ],
+      "rank3": [
+        "xxxZtzzzzTz",
+        "ZX",
+        "TZtZTzX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtzTz",
+      "word_t": "yX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TZtt",
+      "expression_y": "XZttX",
+      "output": [
+        "YXyXyXXXXXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxTTzxxTTzxxTTzxxTTzx",
+        "Zx",
+        "TZttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTTz",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TZtt",
+      "expression_y": "Tzt",
+      "output": [
+        "YXyXyXyXXXXy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZt",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TZtztZ",
+      "expression_y": "TZtzt",
+      "output": [
+        "YXyxyXYXyxyXYXyxyXYXYYYYxy",
+        "YYXyxyX"
+      ],
+      "rank3": [
+        "xxxTZTTTTzt",
+        "ZXTZtzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZTzt",
+      "word_t": "x",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TZtztZ",
+      "expression_y": "TZTzt",
+      "output": [
+        "YXyxyXYXyxyXYXyxyXYXyyyyxy",
+        "YxYXYxy"
+      ],
+      "rank3": [
+        "xxxTZttttzt",
+        "ZXTZtzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZtzt",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TZtzzt",
+      "expression_y": "Ztzzt",
+      "output": [
+        "YXyxyxxYXXYxYXXYxYXXYx",
+        "XYXyxxy"
+      ],
+      "rank3": [
+        "xxxTZZTzTZZTzTZZTzTZZTz",
+        "Zx",
+        "TZtzztX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZZTz",
+      "word_t": "yX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TZttZZ",
+      "expression_y": "zzTTz",
+      "output": [
+        "YXyyXXYXyyXXYXyyXXXyyXXXyyXXXyyXXXyyXX",
+        "xYYxy"
+      ],
+      "rank3": [
+        "xxxZttZZZttZZZttZZZttZZ",
+        "ZX",
+        "TZttZZX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZttZZ",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TZttZ",
+      "expression_y": "Tztxz",
+      "output": [
+        "YXyyXYXyyXYXyyXYYYY",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxZXTZtZXTZtZXTZtZXTZt",
+        "ZTztxzX",
+        "TTztxz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzYTzt",
+      "word_t": "y",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TZtzt",
+      "expression_y": "ZTztx",
+      "output": [
+        "YXyyyxYYY",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxTZtzXTZtzXTZtzXTZtz",
+        "ZZTztxx",
+        "TZTztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZTzt",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TZtzt",
+      "expression_y": "ZTztx",
+      "output": [
+        "YXyyyxYYY",
+        "XYXyxy"
+      ],
+      "rank3": [
+        "xxTZtzXTZtzXTZtzXTZtz",
+        "Zx",
+        "TZTztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZTzt",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TZtzt",
+      "expression_y": "ZTztx",
+      "output": [
+        "YXyyyxYYY",
+        "XYYXyxy"
+      ],
+      "rank3": [
+        "xxTZtzXTZtzXTZtzXTZtz",
+        "ZXTZtzx",
+        "TZTztx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZTzt",
+      "word_t": "y",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TTZtt",
+      "expression_y": "Tztt",
+      "output": [
+        "YYXXXXYXYXYXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTTZTZTZTZt",
+        "ZTTZt",
+        "TTzttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTTZt",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTZtt",
+      "expression_y": "TTzt",
+      "output": [
+        "YYXXXyXyXyXyXyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTZtZtZtZtt",
+        "ZTZtt",
+        "TTZttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZtt",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TTZZT",
+      "expression_y": "XTTZZ",
+      "output": [
+        "YYXXYYYXXYYYXXYYYYY",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxzzttxzzttxzzttxzzttx",
+        "ZXzzttx",
+        "TXTTZZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzztt",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TTZZTz",
+      "expression_y": "tzztt",
+      "output": [
+        "YYXXYxYYXXYxYYXXYxYYXXYYYXXYYYXXYYYXXY",
+        "YXyxxyy"
+      ],
+      "rank3": [
+        "xxxTTZZTTTZZTTTZZTTTZZT",
+        "Ztzzttx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTTZZT",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTZt",
+      "expression_y": "Tzt",
+      "output": [
+        "YYXYXYXXXXXy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTZtX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTZt",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TTZt",
+      "expression_y": "XTTZX",
+      "output": [
+        "YYXYXYXYXXXXyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxzttxxzttxxzttxxzttx",
+        "Zx",
+        "Tzttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxztt",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XZTzx",
+      "output": [
+        "YYXyyyyxY",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxZttttzx",
+        "ZZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZtz",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XZTzx",
+      "output": [
+        "YYXyyyyxY",
+        "XyXYxY"
+      ],
+      "rank3": [
+        "xxZttttzx",
+        "ZXZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZtz",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XZTzx",
+      "output": [
+        "YYXyyyyxY",
+        "XyyXYxY"
+      ],
+      "rank3": [
+        "xxZttttzx",
+        "ZXXZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZtz",
+      "word_t": "X",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "T",
+      "expression_y": "ZZTzz",
+      "output": [
+        "YYYXXyyyyxx",
+        "XYXXYxx"
+      ],
+      "rank3": [
+        "xxxZZttttzz",
+        "ZxZZTzz",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZZtzz",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "ZZTzz",
+      "output": [
+        "YYYXXyyyyxx",
+        "XyXXyxx"
+      ],
+      "rank3": [
+        "xxxZZttttzz",
+        "ZXZZtzz",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "YZZTzz",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XzTxz",
+      "output": [
+        "YYYXyyXYXyyXYXyyXYXyyXY",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxZXtZxZXtZxZXtZxZXtZx",
+        "ZXzTxzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZXtZ",
+      "word_t": "X",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "T",
+      "expression_y": "ZTz",
+      "output": [
+        "YYYXyyyyx",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZTzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "T",
+      "expression_y": "ZTz",
+      "output": [
+        "YYYXyyyyx",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxZttttz",
+        "ZZtzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZtz",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XtzzX",
+      "output": [
+        "YYYYXXYYYXXYYYXXYYYXXYY",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxxZZTxxZZTxxZZTxxZZTx",
+        "ZtzzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZZT",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XzTzX",
+      "output": [
+        "YYYYXyXYYXyXYYXyXYYXyXY",
+        "XyxYxy"
+      ],
+      "rank3": [
+        "xxxxZtZxxZtZxxZtZxxZtZx",
+        "ZXzTzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZtZ",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "zxxzt",
+      "output": [
+        "YYYYXyyXYXyyXYXyyXYXyyX",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxTZXXZTZXXZTZXXZTZXXZ",
+        "ZXzxxzt",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxztYz",
+      "word_t": "X",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "YXYxyx",
+      "expression_x": "T",
+      "expression_y": "TZxzX",
+      "output": [
+        "YYYYXyyyyxy",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxxZXztxZXztxZXztxZXzt",
+        "ZZXzt",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzXYTZ",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "T",
+      "expression_y": "TZxzX",
+      "output": [
+        "YYYYXyyyyxy",
+        "XYXyxy"
+      ],
+      "rank3": [
+        "xxxxZXztxZXztxZXztxZXzt",
+        "ZxZXzt",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzXYTZ",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "xZxzt",
+      "output": [
+        "YYYYXyyyyxy",
+        "XYYXyxy"
+      ],
+      "rank3": [
+        "xxxTZXzXTZXzXTZXzXTZXzX",
+        "ZxTZXzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xZxztY",
+      "word_t": "X",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "T",
+      "expression_y": "tzzXX",
+      "output": [
+        "YYYYYXXYYYXXYYYXXYYYXXY",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxxxZZTxxZZTxxZZTxxZZT",
+        "ZtzzX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxZZTy",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "T",
+      "expression_y": "tZZXX",
+      "output": [
+        "YYYYYxxYYYxxYYYxxYYYxxY",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxxxzzTxxzzTxxzzTxxzzT",
+        "ZxzzT",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxzzTy",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XtZZX",
+      "output": [
+        "YYYYxxYYYxxYYYxxYYYxxYY",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxxzzTxxzzTxxzzTxxzzTx",
+        "ZxzzT",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzzT",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XZTZX",
+      "output": [
+        "YYYYxyxYYxyxYYxyxYYxyxY",
+        "XYxyxY"
+      ],
+      "rank3": [
+        "xxxxztzxxztzxxztzxxztzx",
+        "Zxztzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxztz",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "ZxxZt",
+      "output": [
+        "YYYYxyyxYxyyxYxyyxYxyyx",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxTzXXzTzXXzTzXXzTzXXz",
+        "ZTzXXzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxZtYZ",
+      "word_t": "X",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "xzxZt",
+      "output": [
+        "YYYYxyyyyXy",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxTzXZXTzXZXTzXZXTzXZX",
+        "ZxzxZtx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZtY",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "xzxZt",
+      "output": [
+        "YYYYxyyyyXy",
+        "XYxYXy"
+      ],
+      "rank3": [
+        "xxxTzXZXTzXZXTzXZXTzXZX",
+        "ZxzxZt",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZtY",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "xzxZt",
+      "output": [
+        "YYYYxyyyyXy",
+        "XYxYXyy"
+      ],
+      "rank3": [
+        "xxxTzXZXTzXZXTzXZXTzXZX",
+        "ZxzxZtX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZtY",
+      "word_t": "X",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "zzTZZ",
+      "output": [
+        "YYYxxyyyyXX",
+        "xYXXY"
+      ],
+      "rank3": [
+        "xxxzzttttZZ",
+        "zTZZx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "YzzTZZ",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "T",
+      "expression_y": "zzTZZ",
+      "output": [
+        "YYYxxyyyyXX",
+        "xyXXy"
+      ],
+      "rank3": [
+        "xxxzzttttZZ",
+        "ztZZX",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzztZZ",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "T",
+      "expression_y": "XZTxZ",
+      "output": [
+        "YYYxyyxYxyyxYxyyxYxyyxY",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxzXtzxzXtzxzXtzxzXtzx",
+        "ZxzXtzx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzXtz",
+      "word_t": "X",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "T",
+      "expression_y": "zTZ",
+      "output": [
+        "YYYxyyyyX",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZxzTZ",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "T",
+      "expression_y": "zTZ",
+      "output": [
+        "YYYxyyyyX",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZXztZ",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TTzt",
+      "expression_y": "XTTzX",
+      "output": [
+        "YYxYxYxYxxxxyy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxZttxxZttxxZttxxZttx",
+        "ZX",
+        "TZttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZtt",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTzt",
+      "expression_y": "TZt",
+      "output": [
+        "YYxYxYxxxxxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTztX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTzt",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TTzzTZ",
+      "expression_y": "tZZtt",
+      "output": [
+        "YYxxYXYYxxYXYYxxYXYYxxYYYxxYYYxxYYYxxY",
+        "YxyXXyy"
+      ],
+      "rank3": [
+        "xxxTTzzTTTzzTTTzzTTTzzT",
+        "ZXTTzzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTTzzT",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TTzzT",
+      "expression_y": "XTTzz",
+      "output": [
+        "YYxxYYYxxYYYxxYYYYY",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxZZttxZZttxZZttxZZttx",
+        "ZXTTzzx",
+        "TXTTzz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZZtt",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TTztt",
+      "expression_y": "TZtt",
+      "output": [
+        "YYxxxxYxYxYxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxTTzTzTzTzt",
+        "ZTZtt",
+        "TTZttx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTTzt",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TTztt",
+      "expression_y": "TTZt",
+      "output": [
+        "YYxxxyxyxyxyxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTztztztztt",
+        "ZTTZt",
+        "TTzttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTztt",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XzTZx",
+      "output": [
+        "YYxyyyyXY",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxzttttZx",
+        "ZXztZ",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXztZ",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XzTZx",
+      "output": [
+        "YYxyyyyXY",
+        "XyxyXY"
+      ],
+      "rank3": [
+        "xxzttttZx",
+        "ZXztZx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXztZ",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "T",
+      "expression_y": "XzTZx",
+      "output": [
+        "YYxyyyyXY",
+        "XyxyXYY"
+      ],
+      "rank3": [
+        "xxzttttZx",
+        "ZXztZxx",
+        "TX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXztZ",
+      "word_t": "X",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TzTZt",
+      "expression_y": "XTzTZ",
+      "output": [
+        "YxYYYXyyyyy",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxztZtxztZtxztZtxztZtx",
+        "ZTzTZ",
+        "TztZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyztZt",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TzTZt",
+      "expression_y": "XTzTZ",
+      "output": [
+        "YxYYYXyyyyy",
+        "XYxYXy"
+      ],
+      "rank3": [
+        "xxxztZtxztZtxztZtxztZtx",
+        "Zx",
+        "TztZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyztZt",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "TzTZt",
+      "expression_y": "XTzTZ",
+      "output": [
+        "YxYYYXyyyyy",
+        "XYxYXyy"
+      ],
+      "rank3": [
+        "xxxztZtxztZtxztZtxztZtx",
+        "ZxztZtx",
+        "TztZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyztZt",
+      "word_t": "Y",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TzzTZ",
+      "expression_y": "XTzzT",
+      "output": [
+        "YxxYXYxxYXYxxYXXXXX",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxtZZtxtZZtxtZZtxtZZtx",
+        "ZXTzzT",
+        "TXXTzzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytZZt",
+      "word_t": "Xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TzzTT",
+      "expression_y": "XTzzT",
+      "output": [
+        "YxxYYYxxYYYxxYYYYYY",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxtZZtxtZZtxtZZtxtZZtx",
+        "ZTzzT",
+        "TXTzzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytZZt",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TzzTZt",
+      "expression_y": "TzzTZ",
+      "output": [
+        "YxxYxYxYXyxyXXyxyXXyxyXXyxyXXy",
+        "XYxxYXy"
+      ],
+      "rank3": [
+        "xxxztZZtztZZtztZZtztZZt",
+        "Zx",
+        "TztZZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztZZt",
+      "word_t": "Yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tzt",
+      "expression_y": "XztX",
+      "output": [
+        "YxxxYxYxYxYxy",
+        "XYXyy"
+      ],
+      "rank3": [
+        "xxxxTZxxTZxxTZxxTZx",
+        "ZXztX",
+        "TztX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTZ",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tzt",
+      "expression_y": "XTzX",
+      "output": [
+        "Yxxxxyxyxyxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxZtxxZtxxZtxxZtx",
+        "ZXTzX",
+        "TZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZt",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tzt",
+      "expression_y": "XTztz",
+      "output": [
+        "YxxxyXXXX",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxZTZtxZTZtxZTZtxZTZtx",
+        "ZXTztz",
+        "TXZTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZTZt",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "Tzt",
+      "expression_y": "XTztz",
+      "output": [
+        "YxxxyXXXX",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxZTZtxZTZtxZTZtxZTZtx",
+        "ZXTztz",
+        "TTztz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZTZt",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "TztZZt",
+      "expression_y": "ztZZt",
+      "output": [
+        "YxyXyXXYxxYXYxxYXYxxYX",
+        "XYxxYXy"
+      ],
+      "rank3": [
+        "xxxTzzTZTzzTZTzzTZTzzTZ",
+        "ZX",
+        "TztZZtX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTzzTZ",
+      "word_t": "yX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TztZtz",
+      "expression_y": "TztZt",
+      "output": [
+        "YxyXyxYxyXyxYxyXyxYxYYYYXy",
+        "YYxyXyx"
+      ],
+      "rank3": [
+        "xxxTzTTTTZt",
+        "ZTzTZtx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTzTZt",
+      "word_t": "x",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TztZtz",
+      "expression_y": "TzTZt",
+      "output": [
+        "YxyXyxYxyXyxYxyXyxYxyyyyXy",
+        "YXYxYXy"
+      ],
+      "rank3": [
+        "xxxTzttttZt",
+        "ZTzTZtx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTztZt",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "TztzTZ",
+      "expression_y": "ztzTZ",
+      "output": [
+        "YxyxYXYxyxYXYxyXXXYX",
+        "XYxyxYX"
+      ],
+      "rank3": [
+        "xxxztZZZZTZ",
+        "Zx",
+        "TztzTZX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztZTZ",
+      "word_t": "yX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "TztzTZ",
+      "expression_y": "ztZTZ",
+      "output": [
+        "YxyxYXYxyxYXYxyxxxxxYX",
+        "yXYXy"
+      ],
+      "rank3": [
+        "xxxztzzzzTZ",
+        "ZX",
+        "TztzTZX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztzTZ",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "TztzT",
+      "expression_y": "XTztz",
+      "output": [
+        "YxyxYYxyxYYxyxYYYYY",
+        "XYxyxY"
+      ],
+      "rank3": [
+        "xxxZTZtxZTZtxZTZtxZTZtx",
+        "Zx",
+        "TXTztz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZTZt",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "Tztt",
+      "expression_y": "XzttX",
+      "output": [
+        "Yxyxyxxxxxyy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxxTTZxxTTZxxTTZxxTTZx",
+        "ZX",
+        "TzttX"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxTTZ",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "Tztt",
+      "expression_y": "TZt",
+      "output": [
+        "Yxyxyxyxxxxy",
+        "XYYXy"
+      ],
+      "rank3": [
+        "xxxTzzzzt",
+        "ZX",
+        "TTZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yTzt",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "Tzttz",
+      "expression_y": "TZtxZ",
+      "output": [
+        "YxyyxYxyyxYxyyxYYYY",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxzXTztzXTztzXTztzXTzt",
+        "ZxzXTzt",
+        "TTZtxZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xZYTZt",
+      "word_t": "y",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "Tzttzz",
+      "expression_y": "ZZTTZ",
+      "output": [
+        "YxyyxxYxyyxxYxyyxxxyyxxxyyxxxyyxxxyyxx",
+        "XYxyyxx"
+      ],
+      "rank3": [
+        "xxxzttzzzttzzzttzzzttzz",
+        "Zx",
+        "TzttzzX"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzttzz",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TztZt",
+      "expression_y": "zTZtx",
+      "output": [
+        "YxyyyXYYY",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxTztZXTztZXTztZXTztZ",
+        "ZXXTztZ",
+        "TzTZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYzTZt",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TztZt",
+      "expression_y": "zTZtx",
+      "output": [
+        "YxyyyXYYY",
+        "XYxYXy"
+      ],
+      "rank3": [
+        "xxTztZXTztZXTztZXTztZ",
+        "ZX",
+        "TzTZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYzTZt",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "TztZt",
+      "expression_y": "zTZtx",
+      "output": [
+        "YxyyyXYYY",
+        "XYxYXyy"
+      ],
+      "rank3": [
+        "xxTztZXTztZXTztZXTztZ",
+        "ZXzTZtx",
+        "TzTZtx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYzTZt",
+      "word_t": "y",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "zTZtZ",
+      "expression_y": "TztZx",
+      "output": [
+        "xYXXXyxxx",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxzTZtXzTZtXzTZtXzTZt",
+        "ZXzTZt",
+        "TTztZxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTztZ",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "zTZtZ",
+      "expression_y": "TztZx",
+      "output": [
+        "xYXXXyxxx",
+        "YxYXyX"
+      ],
+      "rank3": [
+        "xxzTZtXzTZtXzTZtXzTZt",
+        "ZXzTZt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTztZ",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "zTZtZ",
+      "expression_y": "TztZx",
+      "output": [
+        "xYXXXyxxx",
+        "YxxYXyX"
+      ],
+      "rank3": [
+        "xxzTZtXzTZtXzTZtXzTZt",
+        "ZXzTZt",
+        "TXzTZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYTztZ",
+      "word_t": "Yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zTZZTT",
+      "expression_y": "ttzzt",
+      "output": [
+        "xYXXYYxYXXYYxYXXYYYXXYYYXXYYYXXYYYXXYY",
+        "yxxyX"
+      ],
+      "rank3": [
+        "xxxTZZTTTZZTTTZZTTTZZTT",
+        "Zxttzzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZZTT",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zTZZT",
+      "expression_y": "ztZxt",
+      "output": [
+        "xYXXYxYXXYxYXXYxxxx",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxTXzTZTXzTZTXzTZTXzTZ",
+        "ZTXzTZ",
+        "TztZxtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtYztZ",
+      "word_t": "yX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zTZZ",
+      "expression_y": "ztZ",
+      "output": [
+        "xYXYXYXYYYYX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZXzTZ",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZZ",
+      "expression_y": "XTZZX",
+      "output": [
+        "xYXYXYYYYYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxzztxxzztxxzztxxzztx",
+        "Zxzzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzzt",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zTZTz",
+      "expression_y": "XzTZT",
+      "output": [
+        "xYXYxxYXYxxYXYxxxxx",
+        "YXyxyX"
+      ],
+      "rank3": [
+        "xxxtztZxtztZxtztZxtztZx",
+        "ZtztZx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytztZ",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zTZTzt",
+      "expression_y": "TZtzt",
+      "output": [
+        "xYXYxyxYXYxyxYXYYYYYxy",
+        "YxYXYxy"
+      ],
+      "rank3": [
+        "xxxTZTTTTzt",
+        "ZxTZtzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZTzt",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zTZTzt",
+      "expression_y": "TZTzt",
+      "output": [
+        "xYXYxyxYXYxyxYXyyyxy",
+        "YYXyxyX"
+      ],
+      "rank3": [
+        "xxxTZttttzt",
+        "ZxTZtzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZtzt",
+      "word_t": "X",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zTZtZT",
+      "expression_y": "zTztZ",
+      "output": [
+        "xYXyXYxYXyXYxYXyXYxYXXXXyX",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxzTZZZZtZ",
+        "Zx",
+        "TXzTZtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTZtZ",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zTZtZT",
+      "expression_y": "zTZtZ",
+      "output": [
+        "xYXyXYxYXyXYxYXyXYxYxxxxyX",
+        "XyxYxyX"
+      ],
+      "rank3": [
+        "xxxzTzzzztZ",
+        "ZX",
+        "TXzTZtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTztZ",
+      "word_t": "Xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zTZttZ",
+      "expression_y": "TZttZ",
+      "output": [
+        "xYXyXyyxYYxyxYYxyxYYxy",
+        "YxYXyyX"
+      ],
+      "rank3": [
+        "xxxzTTztzTTztzTTztzTTzt",
+        "ZxzTTzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTTzt",
+      "word_t": "x",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZ",
+      "expression_y": "XzTZT",
+      "output": [
+        "xYYYXyyyy",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxtztZxtztZxtztZxtztZx",
+        "ZXzTZTx",
+        "ztZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytztZ",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "zTZ",
+      "expression_y": "XzTZT",
+      "output": [
+        "xYYYXyyyy",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxtztZxtztZxtztZxtztZx",
+        "ZtztZ",
+        "ztZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xytztZ",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZ",
+      "expression_y": "XzTX",
+      "output": [
+        "xYYYYXYXYXYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxtZxxtZxxtZxxtZx",
+        "ZXzT",
+        "TxtZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtZ",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTZ",
+      "expression_y": "XTZX",
+      "output": [
+        "xYYYxYxYxYxYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxztxxztxxztxxztx",
+        "Zxzt",
+        "Txztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzt",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zTTztZ",
+      "expression_y": "zTTzt",
+      "output": [
+        "xYYxYxYxyXYXyyXYXyyXYXyyXYXyyX",
+        "YxYXyyX"
+      ],
+      "rank3": [
+        "xxxTZttZTZttZTZttZTZttZ",
+        "ZXzTTzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZttZ",
+      "word_t": "X",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zTTzz",
+      "expression_y": "XzTTz",
+      "output": [
+        "xYYxxxYYxxxYYxxxxxx",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxZttZxZttZxZttZxZttZx",
+        "ZZttZx",
+        "TZttZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZttZ",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zTTzt",
+      "expression_y": "XzTTz",
+      "output": [
+        "xYYxyxYYxyxYYxyyyyy",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxZttZxZttZxZttZxZttZx",
+        "ZZttZxx",
+        "TZttZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZttZ",
+      "word_t": "Y",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTztZ",
+      "expression_y": "XzTzt",
+      "output": [
+        "xYxxxyXXXXX",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxTZtZxTZtZxTZtZxTZtZx",
+        "ZXzTzt",
+        "TTZtZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTZtZ",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTztZ",
+      "expression_y": "XzTzt",
+      "output": [
+        "xYxxxyXXXXX",
+        "YxYXyX"
+      ],
+      "rank3": [
+        "xxxTZtZxTZtZxTZtZxTZtZx",
+        "ZXzTzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTZtZ",
+      "word_t": "X",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zTztZ",
+      "expression_y": "XzTzt",
+      "output": [
+        "xYxxxyXXXXX",
+        "YxxYXyX"
+      ],
+      "rank3": [
+        "xxxTZtZxTZtZxTZtZxTZtZx",
+        "ZXzTzt",
+        "TXzTztX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTZtZ",
+      "word_t": "yX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XTztx",
+      "output": [
+        "xxYXXXXyx",
+        "YXXYxyx"
+      ],
+      "rank3": [
+        "xxTZZZZtx",
+        "Zx",
+        "TXXTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTZt",
+      "word_t": "Xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XTztx",
+      "output": [
+        "xxYXXXXyx",
+        "YXYxyx"
+      ],
+      "rank3": [
+        "xxTZZZZtx",
+        "Zx",
+        "TXTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTZt",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XTztx",
+      "output": [
+        "xxYXXXXyx",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxTZZZZtx",
+        "Zx",
+        "TTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXTZt",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zzTZZ",
+      "expression_y": "zztZ",
+      "output": [
+        "xxYYYXYXYXYXYXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzTZTZTZTZZ",
+        "ZxzztZ",
+        "TzTZZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZZ",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zzTZZ",
+      "expression_y": "ztZZ",
+      "output": [
+        "xxYYYYxYxYxYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzzTzTzTzTZ",
+        "ZXzzTZ",
+        "TzzTZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzzTZ",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zzTTz",
+      "expression_y": "XzzTT",
+      "output": [
+        "xxYYxxxYYxxxYYxxxxx",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxttZZxttZZxttZZxttZZx",
+        "ZttZZx",
+        "TXttZZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyttZZ",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zzTTzt",
+      "expression_y": "ZttZZ",
+      "output": [
+        "xxYYxyxxYYxyxxYYxyxxYYxxxYYxxxYYxxxYYx",
+        "xYYxy"
+      ],
+      "rank3": [
+        "xxxzzTTzzzTTzzzTTzzzTTz",
+        "Zx",
+        "TZttZZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzzTTz",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zzTZ",
+      "expression_y": "ztZ",
+      "output": [
+        "xxYxYxYYYYYX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZxztZ",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zzTZ",
+      "expression_y": "XzzTX",
+      "output": [
+        "xxYxYxYxYYYYXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxtZZxxtZZxxtZZxxtZZx",
+        "ZXzzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtZZ",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "z",
+      "expression_y": "Tzt",
+      "output": [
+        "xxxYXXXXy",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTZtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZt",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "z",
+      "expression_y": "Tzt",
+      "output": [
+        "xxxYXXXXy",
+        "YYxyx"
+      ],
+      "rank3": [
+        "xxxTZZZZt",
+        "Zx",
+        "TTztx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTZt",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "Xtzxt",
+      "output": [
+        "xxxYXXYxYXXYxYXXYxYXXYx",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxTXZTxTXZTxTXZTxTXZTx",
+        "Zx",
+        "TXtzxtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTXZT",
+      "word_t": "yX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "TTztt",
+      "output": [
+        "xxxYYXXXXyy",
+        "YXYYXyy"
+      ],
+      "rank3": [
+        "xxxTTZZZZtt",
+        "Zx",
+        "TXTTZtt"
+      ],
+      "second_isolator_index": 1,
+      "template": "YTTztt",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "z",
+      "expression_y": "TTztt",
+      "output": [
+        "xxxYYXXXXyy",
+        "YxYYxyy"
+      ],
+      "rank3": [
+        "xxxTTZZZZtt",
+        "Zx",
+        "TxTTztt"
+      ],
+      "second_isolator_index": 1,
+      "template": "yTTZtt",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "YXYxyx",
+      "expression_x": "z",
+      "expression_y": "zTxtX",
+      "output": [
+        "xxxxYXXXXyX",
+        "YYXyX"
+      ],
+      "rank3": [
+        "xxxxTXtZxTXtZxTXtZxTXtZ",
+        "Zx",
+        "TTXtZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtXYzT",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "z",
+      "expression_y": "zTxtX",
+      "output": [
+        "xxxxYXXXXyX",
+        "YxYXyX"
+      ],
+      "rank3": [
+        "xxxxTXtZxTXtZxTXtZxTXtZ",
+        "Zx",
+        "TxTXtZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtXYzT",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "xTxtZ",
+      "output": [
+        "xxxxYXXXXyX",
+        "YxxYXyX"
+      ],
+      "rank3": [
+        "xxxzTXtXzTXtXzTXtXzTXtX",
+        "Zx",
+        "TxzTXtX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xTxtZY",
+      "word_t": "xY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "txxtZ",
+      "output": [
+        "xxxxYXXYxYXXYxYXXYxYXXY",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxzTXXTzTXXTzTXXTzTXXT",
+        "Zx",
+        "TXtxxtZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxtZYt",
+      "word_t": "Xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "XtztX",
+      "output": [
+        "xxxxYXYxxYXYxxYXYxxYXYx",
+        "YXyxyX"
+      ],
+      "rank3": [
+        "xxxxTZTxxTZTxxTZTxxTZTx",
+        "Zx",
+        "TXtztX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTZT",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "XZttX",
+      "output": [
+        "xxxxYYxxxYYxxxYYxxxYYxx",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxxTTzxxTTzxxTTzxxTTzx",
+        "Zx",
+        "TZttX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTTz",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "z",
+      "expression_y": "ZttXX",
+      "output": [
+        "xxxxxYYxxxYYxxxYYxxxYYx",
+        "YXyyX"
+      ],
+      "rank3": [
+        "xxxxxTTzxxTTzxxTTzxxTTz",
+        "Zx",
+        "TZttX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxTTzy",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "z",
+      "expression_y": "ZTTXX",
+      "output": [
+        "xxxxxyyxxxyyxxxyyxxxyyx",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxxxttzxxttzxxttzxxttz",
+        "Zx",
+        "Txttz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxttzy",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "xtxTZ",
+      "output": [
+        "xxxxyXXXXYX",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxztXTXztXTXztXTXztXTX",
+        "Zx",
+        "TxtxTZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTZY",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "xtxTZ",
+      "output": [
+        "xxxxyXXXXYX",
+        "YxyxYX"
+      ],
+      "rank3": [
+        "xxxztXTXztXTXztXTXztXTX",
+        "Zx",
+        "TxtxTZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTZY",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "xtxTZ",
+      "output": [
+        "xxxxyXXXXYX",
+        "YxyxYXX"
+      ],
+      "rank3": [
+        "xxxztXTXztXTXztXTXztXTX",
+        "Zx",
+        "TxtxTZX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xtxTZY",
+      "word_t": "yX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "TxxTZ",
+      "output": [
+        "xxxxyXXyxyXXyxyXXyxyXXy",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxztXXtztXXtztXXtztXXt",
+        "Zx",
+        "TztXXtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xxTZYT",
+      "word_t": "Yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "XTzTX",
+      "output": [
+        "xxxxyXyxxyXyxxyXyxxyXyx",
+        "YxyXyx"
+      ],
+      "rank3": [
+        "xxxxtZtxxtZtxxtZtxxtZtx",
+        "Zx",
+        "TxtZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxtZt",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "XZTTX",
+      "output": [
+        "xxxxyyxxxyyxxxyyxxxyyxx",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxxttzxxttzxxttzxxttzx",
+        "Zx",
+        "Txttz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxttz",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "z",
+      "expression_y": "tzT",
+      "output": [
+        "xxxyXXXXY",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TXtZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZT",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "z",
+      "expression_y": "tzT",
+      "output": [
+        "xxxyXXXXY",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TxtzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZT",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "XTzxT",
+      "output": [
+        "xxxyXXyxyXXyxyXXyxyXXyx",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxtXZtxtXZtxtXZtxtXZtx",
+        "Zx",
+        "TxtXZtx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytXZt",
+      "word_t": "xY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "z",
+      "expression_y": "ttzTT",
+      "output": [
+        "xxxyyXXXXYY",
+        "yXYYX"
+      ],
+      "rank3": [
+        "xxxttZZZZTT",
+        "Zx",
+        "tZTTX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yttZTT",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "z",
+      "expression_y": "ttzTT",
+      "output": [
+        "xxxyyXXXXYY",
+        "yxYYx"
+      ],
+      "rank3": [
+        "xxxttZZZZTT",
+        "Zx",
+        "tzTTx"
+      ],
+      "second_isolator_index": 1,
+      "template": "YttzTT",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XtzTx",
+      "output": [
+        "xxyXXXXYx",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxtZZZZTx",
+        "Zx",
+        "TXtZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtZT",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XtzTx",
+      "output": [
+        "xxyXXXXYx",
+        "YXyXYx"
+      ],
+      "rank3": [
+        "xxtZZZZTx",
+        "Zx",
+        "TXtZTx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtZT",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "z",
+      "expression_y": "XtzTx",
+      "output": [
+        "xxyXXXXYx",
+        "YXyXYxx"
+      ],
+      "rank3": [
+        "xxtZZZZTx",
+        "Zx",
+        "TXtZTxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyXtZT",
+      "word_t": "Yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "zztZ",
+      "expression_y": "XzztX",
+      "output": [
+        "xxyxyxyxyyyyXX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxTZZxxTZZxxTZZxxTZZx",
+        "ZXzzt",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTZZ",
+      "word_t": "X",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zztZ",
+      "expression_y": "zTZ",
+      "output": [
+        "xxyxyxyyyyyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZxzTZ",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zzttzT",
+      "expression_y": "ZTTZZ",
+      "output": [
+        "xxyyxYxxyyxYxxyyxYxxyyxxxyyxxxyyxxxyyx",
+        "xyyxY"
+      ],
+      "rank3": [
+        "xxxzzttzzzttzzzttzzzttz",
+        "Zx",
+        "TXzzttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzzttz",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zzttz",
+      "expression_y": "Xzztt",
+      "output": [
+        "xxyyxxxyyxxxyyxxxxx",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxTTZZxTTZZxTTZZxTTZZx",
+        "ZTTZZx",
+        "TXzzttx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTTZZ",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "zztZZ",
+      "expression_y": "zzTZ",
+      "output": [
+        "xxyyyXyXyXyXyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxztZtZtZtZZ",
+        "ZxzzTZ",
+        "TzzTZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZZ",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "zztZZ",
+      "expression_y": "zTZZ",
+      "output": [
+        "xxyyyyxyxyxyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxzztztztztZ",
+        "ZXzztZ",
+        "TzTZZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzztZ",
+      "word_t": "y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ztZTZ",
+      "expression_y": "tzTZx",
+      "output": [
+        "xyXXXYxxx",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxztZTXztZTXztZTXztZT",
+        "ZXztZT",
+        "TXXztZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtzTZ",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ztZTZ",
+      "expression_y": "tzTZx",
+      "output": [
+        "xyXXXYxxx",
+        "YxyxYX"
+      ],
+      "rank3": [
+        "xxztZTXztZTXztZTXztZT",
+        "ZXztZT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtzTZ",
+      "word_t": "X",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ztZTZ",
+      "expression_y": "tzTZx",
+      "output": [
+        "xyXXXYxxx",
+        "YxyxYXX"
+      ],
+      "rank3": [
+        "xxztZTXztZTXztZTXztZT",
+        "ZXztZT",
+        "TXtzTZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xYtzTZ",
+      "word_t": "Xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ztZZt",
+      "expression_y": "zTZxT",
+      "output": [
+        "xyXXyxyXXyxyXXyxxxx",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxtXztZtXztZtXztZtXztZ",
+        "ZtXztZ",
+        "TxtXztZ"
+      ],
+      "second_isolator_index": 1,
+      "template": "xTYzTZ",
+      "word_t": "xY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ztZZtt",
+      "expression_y": "TTzzT",
+      "output": [
+        "xyXXyyxyXXyyxyXXyyyXXyyyXXyyyXXyyyXXyy",
+        "YxyXXyy"
+      ],
+      "rank3": [
+        "xxxtZZtttZZtttZZtttZZtt",
+        "ZxTTzzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZZtt",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ztZTTZ",
+      "expression_y": "tZTTZ",
+      "output": [
+        "xyXYXYYxyyxYxyyxYxyyxY",
+        "YxyyxYX"
+      ],
+      "rank3": [
+        "xxxzttzTzttzTzttzTzttzT",
+        "ZxzttzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yzttzT",
+      "word_t": "X",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ztZTZt",
+      "expression_y": "ztzTZ",
+      "output": [
+        "xyXYXyxyXYXyxyXYXyxyXXXXYX",
+        "yXYXy"
+      ],
+      "rank3": [
+        "xxxztZZZZTZ",
+        "Zx",
+        "TztzTZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztZTZ",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ztZTZt",
+      "expression_y": "ztZTZ",
+      "output": [
+        "xyXYXyxyXYXyxyXYXyxyxxxxYX",
+        "XYxyxYX"
+      ],
+      "rank3": [
+        "xxxztzzzzTZ",
+        "ZX",
+        "TztzTZx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yztzTZ",
+      "word_t": "Yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ztZZ",
+      "expression_y": "zTZ",
+      "output": [
+        "xyXyXyXyyyyX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxzttttZ",
+        "ZXztZ",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "yztZ",
+      "word_t": "X",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZZ",
+      "expression_y": "XtZZX",
+      "output": [
+        "xyXyXyyyyyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxzzTxxzzTxxzzTxxzzTx",
+        "ZxzzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzzT",
+      "word_t": "X",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ztZtzT",
+      "expression_y": "tZtzT",
+      "output": [
+        "xyXyxYxyXyxYxyXYYYxY",
+        "YxyXyxY"
+      ],
+      "rank3": [
+        "xxxtZTTTTzT",
+        "ZxtZTzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZTzT",
+      "word_t": "x",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ztZtzT",
+      "expression_y": "tZTzT",
+      "output": [
+        "xyXyxYxyXyxYxyXyyyyyxY",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxtZttttzT",
+        "ZxtZTzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZtzT",
+      "word_t": "X",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ztZtz",
+      "expression_y": "XztZt",
+      "output": [
+        "xyXyxxyXyxxyXyxxxxx",
+        "YxyXyx"
+      ],
+      "rank3": [
+        "xxxTzTZxTzTZxTzTZxTzTZx",
+        "ZTzTZx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTzTZ",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztzTZ",
+      "expression_y": "XztzT",
+      "output": [
+        "xyxxxYXXXXX",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxtZTZxtZTZxtZTZxtZTZx",
+        "ZXztzT",
+        "TztzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytZTZ",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztzTZ",
+      "expression_y": "XztzT",
+      "output": [
+        "xyxxxYXXXXX",
+        "YxyxYX"
+      ],
+      "rank3": [
+        "xxxtZTZxtZTZxtZTZxtZTZx",
+        "ZXztzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytZTZ",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztzTZ",
+      "expression_y": "XztzT",
+      "output": [
+        "xyxxxYXXXXX",
+        "YxyxYXX"
+      ],
+      "rank3": [
+        "xxxtZTZxtZTZxtZTZxtZTZx",
+        "ZXztzT",
+        "TxtZTZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xytZTZ",
+      "word_t": "xY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zttzT",
+      "expression_y": "Xzttz",
+      "output": [
+        "xyyxYxyyxYxyyxYYYYY",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxZTTZxZTTZxZTTZxZTTZx",
+        "ZZTTZxx",
+        "TXzttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZTTZ",
+      "word_t": "y",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "zttzz",
+      "expression_y": "Xzttz",
+      "output": [
+        "xyyxxxyyxxxyyxxxxxx",
+        "Yxyyx"
+      ],
+      "rank3": [
+        "xxxZTTZxZTTZxZTTZxZTTZx",
+        "ZZTTZx",
+        "Tzttz"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZTTZ",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "zttzTZ",
+      "expression_y": "zttzT",
+      "output": [
+        "xyyxyxyxYXyXYYXyXYYXyXYYXyXYYX",
+        "YxyyxYX"
+      ],
+      "rank3": [
+        "xxxtZTTZtZTTZtZTTZtZTTZ",
+        "ZXzttzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZTTZ",
+      "word_t": "x",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "ztZ",
+      "expression_y": "XztZt",
+      "output": [
+        "xyyyXYYYY",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxTzTZxTzTZxTzTZxTzTZx",
+        "ZTzTZ",
+        "TXztZt"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTzTZ",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZ",
+      "expression_y": "XztZt",
+      "output": [
+        "xyyyXYYYY",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxTzTZxTzTZxTzTZxTzTZx",
+        "ZXztZtx",
+        "TXztZt"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTzTZ",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZ",
+      "expression_y": "XtZX",
+      "output": [
+        "xyyyxyxyxyxyX",
+        "YxYXX"
+      ],
+      "rank3": [
+        "xxxxzTxxzTxxzTxxzTx",
+        "ZxzT",
+        "TXtZX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxzT",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ztZ",
+      "expression_y": "XztX",
+      "output": [
+        "xyyyyXyXyXyXX",
+        "YxxYX"
+      ],
+      "rank3": [
+        "xxxxTZxxTZxxTZxxTZx",
+        "ZXzt",
+        "TXztX"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyxTZ",
+      "word_t": "y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZT",
+      "expression_y": "XtZX",
+      "output": [
+        "yXXXXYXYXYXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxzTxxzTxxzTxxzTx",
+        "ZxzTx",
+        "TXtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzT",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZT",
+      "expression_y": "XtZTZ",
+      "output": [
+        "yXXXYxxxx",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxztzTxztzTxztzTxztzTx",
+        "tzTx",
+        "TXtZTZx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyztzT",
+      "word_t": "yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tZT",
+      "expression_y": "XtZTZ",
+      "output": [
+        "yXXXYxxxx",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxztzTxztzTxztzTxztzTx",
+        "tzTx",
+        "TztzT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyztzT",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZT",
+      "expression_y": "XZTX",
+      "output": [
+        "yXXXyXyXyXyXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxtzxxtzxxtzxxtzx",
+        "Zxtzx",
+        "Txtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxtz",
+      "word_t": "YX",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tZZtzT",
+      "expression_y": "tZZtz",
+      "output": [
+        "yXXyXyXyxYXYxxYXYxxYXYxxYXYxxY",
+        "XyXYxxY"
+      ],
+      "rank3": [
+        "xxxZTzzTZTzzTZTzzTZTzzT",
+        "ZX",
+        "TXtZZtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTzzT",
+      "word_t": "Xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tZZtz",
+      "expression_y": "XtZZt",
+      "output": [
+        "yXXyxyXXyxyXXyxxxxx",
+        "YxyXXyx"
+      ],
+      "rank3": [
+        "xxxTzzTxTzzTxTzzTxTzzTx",
+        "ZTzzTx",
+        "TTzzTxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTzzT",
+      "word_t": "Yx",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tZZtt",
+      "expression_y": "XtZZt",
+      "output": [
+        "yXXyyyXXyyyXXyyyyyy",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxTzzTxTzzTxTzzTxTzzTx",
+        "ZTzzT",
+        "TTzzTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTzzT",
+      "word_t": "Y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZTT",
+      "expression_y": "XZTTX",
+      "output": [
+        "yXYXYXXXXXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxttzxxttzxxttzxxttzx",
+        "Zx",
+        "Txttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxttz",
+      "word_t": "YX",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tZTT",
+      "expression_y": "tzT",
+      "output": [
+        "yXYXYXYXXXXY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TXtZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZT",
+      "word_t": "XY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tZTZtz",
+      "expression_y": "ZTztz",
+      "output": [
+        "yXYXyxyXYXyxyXYXXXXXyx",
+        "XyXYXyx"
+      ],
+      "rank3": [
+        "xxxZTZZZZtz",
+        "Zx",
+        "TxZTztz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTZtz",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "tZTZtz",
+      "expression_y": "ZTZtz",
+      "output": [
+        "yXYXyxyXYXyxyXYxxxyx",
+        "XXYxyxY"
+      ],
+      "rank3": [
+        "xxxZTzzzztz",
+        "ZX",
+        "TxZTztz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTztz",
+      "word_t": "xY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tZTZt",
+      "expression_y": "XtZTZ",
+      "output": [
+        "yXYXyyXYXyyXYXyyyyy",
+        "XYxyxY"
+      ],
+      "rank3": [
+        "xxxztzTxztzTxztzTxztzTx",
+        "ZX",
+        "TztzTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyztzT",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tZTTZZ",
+      "expression_y": "zzttz",
+      "output": [
+        "yXYYXXyXYYXXyXYYXXXYYXXXYYXXXYYXXXYYXX",
+        "xyyxY"
+      ],
+      "rank3": [
+        "xxxZTTZZZTTZZZTTZZZTTZZ",
+        "ZX",
+        "Txzzttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTTZZ",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tZTTZ",
+      "expression_y": "tzTxz",
+      "output": [
+        "yXYYXyXYYXyXYYXyyyy",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxZXtZTZXtZTZXtZTZXtZT",
+        "ZtzTxzX",
+        "TZXtZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzYtzT",
+      "word_t": "Y",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tZTzT",
+      "expression_y": "ZtzTx",
+      "output": [
+        "yXYYYxyyy",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxtZTzXtZTzXtZTzXtZTz",
+        "ZZtzTxx",
+        "TXtZTz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZtzT",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tZTzT",
+      "expression_y": "ZtzTx",
+      "output": [
+        "yXYYYxyyy",
+        "XyXYxY"
+      ],
+      "rank3": [
+        "xxtZTzXtZTzXtZTzXtZTz",
+        "Zx",
+        "TXtZTz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZtzT",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tZTzT",
+      "expression_y": "ZtzTx",
+      "output": [
+        "yXYYYxyyy",
+        "XyyXYxY"
+      ],
+      "rank3": [
+        "xxtZTzXtZTzXtZTzXtZTz",
+        "ZXtZTzx",
+        "TXtZTz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYZtzT",
+      "word_t": "Y",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "tZTzTZ",
+      "expression_y": "tZtzT",
+      "output": [
+        "yXYxYXyXYxYXyXYxYXyXYYYYxY",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxtZTTTTzT",
+        "ZXtZTzT",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZTzT",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tZTzTZ",
+      "expression_y": "tZTzT",
+      "output": [
+        "yXYxYXyXYxYXyXYxYXyXyyyyxY",
+        "YxyXyxY"
+      ],
+      "rank3": [
+        "xxxtZttttzT",
+        "ZXtZTzT",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytZtzT",
+      "word_t": "X",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tZTzzT",
+      "expression_y": "ZTzzT",
+      "output": [
+        "yXYxYxxyXXyxyXXyxyXXyx",
+        "XyXYxxY"
+      ],
+      "rank3": [
+        "xxxtZZtztZZtztZZtztZZtz",
+        "Zx",
+        "TxtZZtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZZtz",
+      "word_t": "xY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZtzT",
+      "expression_y": "XtZtz",
+      "output": [
+        "yXyyyxYYYYY",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxZTzTxZTzTxZTzTxZTzTx",
+        "ZZTzT",
+        "TXtZtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZTzT",
+      "word_t": "y",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZtzT",
+      "expression_y": "XtZtz",
+      "output": [
+        "yXyyyxYYYYY",
+        "XyXYxY"
+      ],
+      "rank3": [
+        "xxxZTzTxZTzTxZTzTxZTzTx",
+        "ZX",
+        "TXtZtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZTzT",
+      "word_t": "y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tZtzT",
+      "expression_y": "XtZtz",
+      "output": [
+        "yXyyyxYYYYY",
+        "XyyXYxY"
+      ],
+      "rank3": [
+        "xxxZTzTxZTzTxZTzTxZTzTx",
+        "ZXtZtzX",
+        "TXtZtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZTzT",
+      "word_t": "y",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tzTZZT",
+      "expression_y": "zTZZT",
+      "output": [
+        "yxYXYXXyxxyXyxxyXyxxyX",
+        "XyxxyXY"
+      ],
+      "rank3": [
+        "xxxtzztZtzztZtzztZtzztZ",
+        "ZX",
+        "TxtzztZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzztZ",
+      "word_t": "xY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "tzTZTz",
+      "expression_y": "tztZT",
+      "output": [
+        "yxYXYxyxYXYxyxYXYxyxYYYYXY",
+        "xYXYx"
+      ],
+      "rank3": [
+        "xxxtzTTTTZT",
+        "ZtztZTx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytzTZT",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tzTZTz",
+      "expression_y": "tzTZT",
+      "output": [
+        "yxYXYxyxYXYxyxYXYxyxyyyyXY",
+        "YXyxyXY"
+      ],
+      "rank3": [
+        "xxxtzttttZT",
+        "ZtztZTx",
+        "TX"
+      ],
+      "second_isolator_index": 1,
+      "template": "ytztZT",
+      "word_t": "X",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tzTZT",
+      "expression_y": "ztZTx",
+      "output": [
+        "yxYYYXyyy",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxtzTZXtzTZXtzTZXtzTZ",
+        "ZXXtzTZ",
+        "TXtzTZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYztZT",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tzTZT",
+      "expression_y": "ztZTx",
+      "output": [
+        "yxYYYXyyy",
+        "XyxyXY"
+      ],
+      "rank3": [
+        "xxtzTZXtzTZXtzTZXtzTZ",
+        "ZX",
+        "TXtzTZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYztZT",
+      "word_t": "Y",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tzTZT",
+      "expression_y": "ztZTx",
+      "output": [
+        "yxYYYXyyy",
+        "XyxyXYY"
+      ],
+      "rank3": [
+        "xxtzTZXtzTZXtzTZXtzTZ",
+        "ZXztZTx",
+        "TXtzTZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xYztZT",
+      "word_t": "Y",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tzTTzz",
+      "expression_y": "ZZttZ",
+      "output": [
+        "yxYYxxyxYYxxyxYYxxxYYxxxYYxxxYYxxxYYxx",
+        "XyxYYxx"
+      ],
+      "rank3": [
+        "xxxzTTzzzTTzzzTTzzzTTzz",
+        "Zx",
+        "TxZZttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTTzz",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tzTTz",
+      "expression_y": "tZTxZ",
+      "output": [
+        "yxYYxyxYYxyxYYxyyyy",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxzXtzTzXtzTzXtzTzXtzT",
+        "ZxzXtzT",
+        "TzXtzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "xZYtZT",
+      "word_t": "Y",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tzTT",
+      "expression_y": "tZT",
+      "output": [
+        "yxYxYxYxxxxY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TXtzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzT",
+      "word_t": "XY",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzTT",
+      "expression_y": "XzTTX",
+      "output": [
+        "yxYxYxxxxxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxttZxxttZxxttZxxttZx",
+        "ZX",
+        "TxttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxttZ",
+      "word_t": "YX",
+      "word_z": "X"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "tzTztZ",
+      "expression_y": "zTztZ",
+      "output": [
+        "yxYxyXyxYxyXyxYXXXyX",
+        "XyxYxyX"
+      ],
+      "rank3": [
+        "xxxzTZZZZtZ",
+        "Zx",
+        "TxzTZtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTZtZ",
+      "word_t": "xY",
+      "word_z": "x"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "tzTztZ",
+      "expression_y": "zTZtZ",
+      "output": [
+        "yxYxyXyxYxyXyxYxxxxxyX",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxzTzzzztZ",
+        "ZX",
+        "TxzTZtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTztZ",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tzTzt",
+      "expression_y": "XtzTz",
+      "output": [
+        "yxYxyyxYxyyxYxyyyyy",
+        "XyxYxy"
+      ],
+      "rank3": [
+        "xxxZtZTxZtZTxZtZTxZtZTx",
+        "Zx",
+        "TZtZTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZtZT",
+      "word_t": "Y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "tzT",
+      "expression_y": "XtzTz",
+      "output": [
+        "yxxxYXXXX",
+        "YXyXY"
+      ],
+      "rank3": [
+        "xxxZtZTxZtZTxZtZTxZtZTx",
+        "ZXtzTz",
+        "TZtZT"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZtZT",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzT",
+      "expression_y": "XtzTz",
+      "output": [
+        "yxxxYXXXX",
+        "YxyxY"
+      ],
+      "rank3": [
+        "xxxZtZTxZtZTxZtZTxZtZTx",
+        "ZXtzTz",
+        "TXtzTzx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyZtZT",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzT",
+      "expression_y": "XtzX",
+      "output": [
+        "yxxxxYxYxYxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxZTxxZTxxZTxxZTx",
+        "ZXtzX",
+        "TXtz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZT",
+      "word_t": "yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tzT",
+      "expression_y": "XzTX",
+      "output": [
+        "yxxxyxyxyxyxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxtZxxtZxxtZxxtZx",
+        "ZXzTX",
+        "TxtZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxtZ",
+      "word_t": "YX",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tzztZ",
+      "expression_y": "Xtzzt",
+      "output": [
+        "yxxyXyxxyXyxxyXXXXX",
+        "YXyxxyX"
+      ],
+      "rank3": [
+        "xxxTZZTxTZZTxTZZTxTZZTx",
+        "ZXtzzt",
+        "TTZZTxx"
+      ],
+      "second_isolator_index": 1,
+      "template": "xyTZZT",
+      "word_t": "Yx",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "tzztZT",
+      "expression_y": "tzztZ",
+      "output": [
+        "yxxyxyxyXYxYXXYxYXXYxYXXYxYXXY",
+        "XyxxyXY"
+      ],
+      "rank3": [
+        "xxxzTZZTzTZZTzTZZTzTZZT",
+        "Zx",
+        "TXtzztZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTZZT",
+      "word_t": "Xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "tzztt",
+      "expression_y": "Xtzzt",
+      "output": [
+        "yxxyyyxxyyyxxyyyyyy",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxTZZTxTZZTxTZZTxTZZTx",
+        "Ztzzt",
+        "TTZZTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyTZZT",
+      "word_t": "Y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tztZT",
+      "expression_y": "XtztZ",
+      "output": [
+        "yxyyyXYYYYY",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxzTZTxzTZTxzTZTxzTZTx",
+        "ZtztZ",
+        "TXtztZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzTZT",
+      "word_t": "y",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tztZT",
+      "expression_y": "XtztZ",
+      "output": [
+        "yxyyyXYYYYY",
+        "XyxyXY"
+      ],
+      "rank3": [
+        "xxxzTZTxzTZTxzTZTxzTZTx",
+        "Zx",
+        "TXtztZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzTZT",
+      "word_t": "y",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "tztZT",
+      "expression_y": "XtztZ",
+      "output": [
+        "yxyyyXYYYYY",
+        "XyxyXYY"
+      ],
+      "rank3": [
+        "xxxzTZTxzTZTxzTZTxzTZTx",
+        "ZxzTZTx",
+        "TXtztZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzTZT",
+      "word_t": "y",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ttZTT",
+      "expression_y": "tzTT",
+      "output": [
+        "yyXXXXyXyXyXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxttZtZtZtZT",
+        "ZttZT",
+        "TXttZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "yttZT",
+      "word_t": "XY",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttZTT",
+      "expression_y": "ttzT",
+      "output": [
+        "yyXXXYXYXYXYXYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtZTZTZTZTT",
+        "ZtZTT",
+        "TxttzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZTT",
+      "word_t": "xy",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ttZZtz",
+      "expression_y": "TzzTT",
+      "output": [
+        "yyXXyxyyXXyxyyXXyxyyXXyyyXXyyyXXyyyXXy",
+        "yXXyx"
+      ],
+      "rank3": [
+        "xxxttZZtttZZtttZZtttZZt",
+        "ZTzzTTx",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yttZZt",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ttZZt",
+      "expression_y": "XttZZ",
+      "output": [
+        "yyXXyyyXXyyyXXyyyyy",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxzzTTxzzTTxzzTTxzzTTx",
+        "ZXzzTTx",
+        "TzzTTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzzTT",
+      "word_t": "Y",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XZtzx",
+      "output": [
+        "yyXYYYYxy",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxZTTTTzx",
+        "ZZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZTz",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XZtzx",
+      "output": [
+        "yyXYYYYxy",
+        "XYXyxy"
+      ],
+      "rank3": [
+        "xxZTTTTzx",
+        "ZXZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZTz",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XZtzx",
+      "output": [
+        "yyXYYYYxy",
+        "XYYXyxy"
+      ],
+      "rank3": [
+        "xxZTTTTzx",
+        "ZXXZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXZTz",
+      "word_t": "x",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttZT",
+      "expression_y": "tzT",
+      "output": [
+        "yyXyXyXXXXXY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtZZZZT",
+        "Zx",
+        "TxtzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytZT",
+      "word_t": "xy",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ttZT",
+      "expression_y": "XttZX",
+      "output": [
+        "yyXyXyXyXXXXYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxxzTTxxzTTxxzTTxxzTTx",
+        "Zx",
+        "TXttZ"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzTT",
+      "word_t": "yx",
+      "word_z": "x"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XztZx",
+      "output": [
+        "yyxYYYYXy",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxzTTTTZx",
+        "ZXzTZ",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXzTZ",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XztZx",
+      "output": [
+        "yyxYYYYXy",
+        "XYxYXy"
+      ],
+      "rank3": [
+        "xxzTTTTZx",
+        "ZXzTZx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXzTZ",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "XztZx",
+      "output": [
+        "yyxYYYYXy",
+        "XYxYXyy"
+      ],
+      "rank3": [
+        "xxzTTTTZx",
+        "ZXzTZxx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyXzTZ",
+      "word_t": "x",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttzTT",
+      "expression_y": "ttZT",
+      "output": [
+        "yyxxxYxYxYxYxYY",
+        "XyyXY"
+      ],
+      "rank3": [
+        "xxxtzTzTzTzTT",
+        "ZttZT",
+        "TxttZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzTT",
+      "word_t": "xy",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "ttzTT",
+      "expression_y": "tZTT",
+      "output": [
+        "yyxxxxyxyxyxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxttztztztzT",
+        "ZtZTT",
+        "TXttzT"
+      ],
+      "second_isolator_index": 2,
+      "template": "yttzT",
+      "word_t": "XY",
+      "word_z": "y"
+    },
+    {
+      "expanded": "yxYXYx",
+      "expression_x": "ttzztZ",
+      "expression_y": "TZZTT",
+      "output": [
+        "yyxxyXyyxxyXyyxxyXyyxxyyyxxyyyxxyyyxxy",
+        "yxxyX"
+      ],
+      "rank3": [
+        "xxxttzztttzztttzztttzzt",
+        "ZXttzzt",
+        "Tx"
+      ],
+      "second_isolator_index": 1,
+      "template": "yttzzt",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "ttzzt",
+      "expression_y": "Xttzz",
+      "output": [
+        "yyxxyyyxxyyyxxyyyyy",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxZZTTxZZTTxZZTTxZZTTx",
+        "ZXttzzx",
+        "TZZTTx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZZTT",
+      "word_t": "Y",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "ttzT",
+      "expression_y": "tZT",
+      "output": [
+        "yyxyxyxxxxxY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxtzzzzT",
+        "ZX",
+        "TxtZT"
+      ],
+      "second_isolator_index": 2,
+      "template": "ytzT",
+      "word_t": "xy",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "ttzT",
+      "expression_y": "XttzX",
+      "output": [
+        "yyxyxyxyxxxxYY",
+        "XyXYY"
+      ],
+      "rank3": [
+        "xxxxZTTxxZTTxxZTTxxZTTx",
+        "ZX",
+        "TXttz"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZTT",
+      "word_t": "yx",
+      "word_z": "X"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "ZZtzz",
+      "output": [
+        "yyyXXYYYYxx",
+        "XYXXYxx"
+      ],
+      "rank3": [
+        "xxxZZTTTTzz",
+        "ZXZZTzz",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "YZZtzz",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "t",
+      "expression_y": "ZZtzz",
+      "output": [
+        "yyyXXYYYYxx",
+        "XyXXyxx"
+      ],
+      "rank3": [
+        "xxxZZTTTTzz",
+        "ZxZZtzz",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZZTzz",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "Xztxz",
+      "output": [
+        "yyyXYYXyXYYXyXYYXyXYYXy",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxZXTZxZXTZxZXTZxZXTZx",
+        "ZXztxzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyZXTZ",
+      "word_t": "x",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "t",
+      "expression_y": "Ztz",
+      "output": [
+        "yyyXYYYYx",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZTzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "t",
+      "expression_y": "Ztz",
+      "output": [
+        "yyyXYYYYx",
+        "XXyxy"
+      ],
+      "rank3": [
+        "xxxZTTTTz",
+        "ZZtzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yZTz",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "yXYXyx",
+      "expression_x": "t",
+      "expression_y": "ztZ",
+      "output": [
+        "yyyxYYYYX",
+        "XYxYX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZXzTZ",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "yxyXYX",
+      "expression_x": "t",
+      "expression_y": "ztZ",
+      "output": [
+        "yyyxYYYYX",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxzTTTTZ",
+        "ZxztZ",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzTZ",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "XZtxZ",
+      "output": [
+        "yyyxYYxyxYYxyxYYxyxYYxy",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxzXTzxzXTzxzXTzxzXTzx",
+        "ZxzXTzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyzXTz",
+      "word_t": "x",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "XYXyxy",
+      "expression_x": "t",
+      "expression_y": "zztZZ",
+      "output": [
+        "yyyxxYYYYXX",
+        "xYXXY"
+      ],
+      "rank3": [
+        "xxxzzTTTTZZ",
+        "zTZZX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "yzzTZZ",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "zztZZ",
+      "output": [
+        "yyyxxYYYYXX",
+        "xyXXy"
+      ],
+      "rank3": [
+        "xxxzzTTTTZZ",
+        "ztZZx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "YzztZZ",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "XTzzX",
+      "output": [
+        "yyyyXXyyyXXyyyXXyyyXXyy",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxxZZtxxZZtxxZZtxxZZtx",
+        "ZTzzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZZt",
+      "word_t": "x",
+      "word_z": "xy"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "XztzX",
+      "output": [
+        "yyyyXYXyyXYXyyXYXyyXYXy",
+        "XYxyxY"
+      ],
+      "rank3": [
+        "xxxxZTZxxZTZxxZTZxxZTZx",
+        "ZXztzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxZTZ",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "zxxzT",
+      "output": [
+        "yyyyXYYXyXYYXyXYYXyXYYX",
+        "XYxyyxY"
+      ],
+      "rank3": [
+        "xxxtZXXZtZXXZtZXXZtZXXZ",
+        "ZXzxxzT",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxzTYz",
+      "word_t": "x",
+      "word_z": "Xy"
+    },
+    {
+      "expanded": "YXYxyx",
+      "expression_x": "t",
+      "expression_y": "tZxzX",
+      "output": [
+        "yyyyXYYYYxY",
+        "XXYxY"
+      ],
+      "rank3": [
+        "xxxxZXzTxZXzTxZXzTxZXzT",
+        "ZZXzT",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzXYtZ",
+      "word_t": "x",
+      "word_z": "XY"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "t",
+      "expression_y": "tZxzX",
+      "output": [
+        "yyyyXYYYYxY",
+        "XyXYxY"
+      ],
+      "rank3": [
+        "xxxxZXzTxZXzTxZXzTxZXzT",
+        "ZxZXzT",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzXYtZ",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "xZxzT",
+      "output": [
+        "yyyyXYYYYxY",
+        "XyyXYxY"
+      ],
+      "rank3": [
+        "xxxtZXzXtZXzXtZXzXtZXzX",
+        "ZxtZXzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xZxzTY",
+      "word_t": "x",
+      "word_z": "xY"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "xzxZT",
+      "output": [
+        "yyyyxYYYYXY",
+        "XyxyX"
+      ],
+      "rank3": [
+        "xxxtzXZXtzXZXtzXZXtzXZX",
+        "ZxzxZTx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZTY",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "xzxZT",
+      "output": [
+        "yyyyxYYYYXY",
+        "XyxyXY"
+      ],
+      "rank3": [
+        "xxxtzXZXtzXZXtzXZXtzXZX",
+        "ZxzxZT",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZTY",
+      "word_t": "x",
+      "word_z": "y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "xzxZT",
+      "output": [
+        "yyyyxYYYYXY",
+        "XyxyXYY"
+      ],
+      "rank3": [
+        "xxxtzXZXtzXZXtzXZXtzXZX",
+        "ZxzxZTX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xzxZTY",
+      "word_t": "x",
+      "word_z": "yX"
+    },
+    {
+      "expanded": "xyXYXy",
+      "expression_x": "t",
+      "expression_y": "ZxxZT",
+      "output": [
+        "yyyyxYYxyxYYxyxYYxyxYYx",
+        "XyxYYxy"
+      ],
+      "rank3": [
+        "xxxtzXXztzXXztzXXztzXXz",
+        "ZtzXXzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxZTYZ",
+      "word_t": "x",
+      "word_z": "Yx"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "XZtZX",
+      "output": [
+        "yyyyxYxyyxYxyyxYxyyxYxy",
+        "XyxYxy"
+      ],
+      "rank3": [
+        "xxxxzTzxxzTzxxzTzxxzTzx",
+        "ZxzTzx",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzTz",
+      "word_t": "x",
+      "word_z": "Y"
+    },
+    {
+      "expanded": "xyxYXY",
+      "expression_x": "t",
+      "expression_y": "XTZZX",
+      "output": [
+        "yyyyxxyyyxxyyyxxyyyxxyy",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxxzztxxzztxxzztxxzztx",
+        "Zxzzt",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xyxzzt",
+      "word_t": "x",
+      "word_z": "YX"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "t",
+      "expression_y": "TzzXX",
+      "output": [
+        "yyyyyXXyyyXXyyyXXyyyXXy",
+        "XYxxY"
+      ],
+      "rank3": [
+        "xxxxxZZtxxZZtxxZZtxxZZt",
+        "ZTzzX",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxZZty",
+      "word_t": "x",
+      "word_z": "yx"
+    },
+    {
+      "expanded": "xYXYxy",
+      "expression_x": "t",
+      "expression_y": "TZZXX",
+      "output": [
+        "yyyyyxxyyyxxyyyxxyyyxxy",
+        "Xyxxy"
+      ],
+      "rank3": [
+        "xxxxxzztxxzztxxzztxxzzt",
+        "Zxzzt",
+        "Tx"
+      ],
+      "second_isolator_index": 2,
+      "template": "xxzzty",
+      "word_t": "x",
+      "word_z": "XY"
+    }
+  ],
+  "pair": [
+    "xxxYYYY",
+    "xyxYXY"
+  ],
+  "schema": "ak3-two-stabilization-v1",
+  "structural_template_count": 43296,
+  "tested_cases": 11083776,
+  "trace_sha256": "898bac80772fcc19e0f321a9970e1da1701b91a768788ba1d85bcbffe1fdaa1b",
+  "triangular_certificate_count": 18528
+}

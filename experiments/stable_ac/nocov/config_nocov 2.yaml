@@ -1,0 +1,55 @@
+# Production config for the Branch A No-CoV sweep (experiments/stable_ac/nocov/run_nocov.py).
+# Intended runner: Colab via experiments/stable_ac/nocov/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
+# USE_WANDB are ON here). LOCAL runs must keep every budget <= 1000 nodes —
+# run_nocov refuses a bigger budget unless ACSOLVERX_ALLOW_BIG=1 is set (the
+# notebook RUN cell sets it on Colab).
+# Keys mirror run_nocov.DEFAULT_CONFIG; values match it EXCEPT the documented
+# production deltas: MOUNT_DRIVE, USE_WANDB, BUDGET, BENCHMARK, FAMILIES,
+# A2_MAX_WORDS, A2_DROP_LEN1, HIGH_SPEEDUP (all pinned by
+# test_config_yaml_round_trips_with_default_config).
+
+BENCHMARK: combined_66        # the full benchmark: 60 ladder + 6 reach rows (max reach, AK(3) included)
+FAMILIES: [A1, A3, A2]        # one jsonl per (budget, family); cheap families first —
+                              # A1 (1,056 jobs) and A3 (1,040) finish before A2 (4,183)
+MODE: nocov                   # Branch-A tag; part of the row schema + filename identity
+BUDGET: [10000]               # node budget per search, one sweep per entry; local <= 1000.
+                              # Ladder comparison stays exact at any budget B via nodes_1M:
+                              # baseline solves at B iff nodes_1M <= B (budget invariance).
+MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO total-length budget)
+CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
+HIGH_SPEEDUP: true            # search_n_fast: same search, fused numba bookkeeping, ~5x
+                              # faster; every row field bit-identical (whole-dict parity
+                              # pinned by test_solvern_fast.py). Result-neutral -> NOT in
+                              # the filename identity; files resume across modes.
+
+A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
+A2_MAX_WORDS: 64              # cap the A2 relator-prefix family (deterministic even spacing).
+                              # combined_66 (with A2_DROP_LEN1): cap 64 -> 4,175 A2 jobs, 6,271
+                              # total; cap 100 -> 8,307 total; uncapped -> 13,480. Result-neutral
+                              # for resume: raising it later re-runs only the newly admitted words.
+A2_DROP_LEN1: true            # A1 already runs the four singles on every row; dropping them
+                              # from A2 removes the systematic A1-overlap (350 -> 197 dup jobs
+                              # on combined_66) and, since the cap binds, admits ~150 more
+                              # distinctive prefix words instead
+A3_GRID: [0.25, 0.5, 0.75, 1.0]   # prefix fractions p,q for free_reduce(r1[:p|r1|] + r2[:q|r2|])
+
+RESUME: true                  # skip (name, z_word) jobs already in the jsonl
+PATH_IN_SEPARATE_FILE: true   # solved paths (moves only) -> *_paths.jsonl
+ROW_LIMIT: null               # first N benchmark rows only (smoke runs)
+WORD_LIMIT: null              # first N words per row only (smoke runs)
+NAMES: null                   # run only these row names, e.g. ["AK(3)", "ms499"]
+
+LOCAL_OUT_DIR: results/stable_ac/nocov                                # when MOUNT_DRIVE is false
+DRIVE_OUT_DIR: /content/drive/MyDrive/acsolverx_results/stable_ac/nocov   # when true (Colab)
+MOUNT_DRIVE: true             # Colab default; DEFAULT_CONFIG (local) is false
+PROGRESS_EVERY: 25            # print one status line every N jobs
+
+USE_WANDB: true               # Colab default; DEFAULT_CONFIG (local) is false
+WANDB_ENTITY: avigyapaudel045-aisc
+WANDB_PROJECT: acsolver
+WANDB_JOB_TYPE: stable_ac_nocov
+WANDB_GROUP: null             # null -> "combined_66-nocov-mrl64-cyc" (group = the sweep)
+WANDB_RUN_NAME: null          # null -> readable derived name, e.g. "A1 · 50000 · combined_66 · nocov"
+WANDB_TAGS: null
+WANDB_NOTES: null
+WANDB_MODE: online            # "offline" for a flaky network -> wandb sync later

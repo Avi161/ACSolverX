@@ -1,0 +1,1307 @@
+{
+"0": [
+13,
+"XYXyxy",
+"XXXXyyy"
+],
+"1": [
+15,
+"XXYxYxy",
+"XXyyyyxY"
+],
+"2": [
+16,
+"XXYxYxy",
+"XXyyyyyxY"
+],
+"3": [
+17,
+"XXYxYxy",
+"XYXYxyyyyy"
+],
+"4": [
+21,
+"XYXyxy",
+"XXXXXXXXyyyyyyy"
+],
+"5": [
+14,
+"XXXYxxY",
+"XYYYxyy"
+],
+"6": [
+14,
+"XXXYxxy",
+"XYYYxyy"
+],
+"7": [
+15,
+"XXXYxxy",
+"XXYYXyyy"
+],
+"8": [
+15,
+"XXXYxxy",
+"XYXYYXyy"
+],
+"9": [
+15,
+"XXXYxxy",
+"XYXyyyxY"
+],
+"10": [
+15,
+"XXXYxxy",
+"XYYXyyxY"
+],
+"11": [
+15,
+"XXXYxxy",
+"XYXYXyyy"
+],
+"12": [
+15,
+"XXXYxxy",
+"XYXyyyxY"
+],
+"13": [
+15,
+"XXXYxxy",
+"XYYXyyxY"
+],
+"14": [
+15,
+"XXXYxxy",
+"XXYYYxyy"
+],
+"15": [
+16,
+"XXXYxxY",
+"XYYYYxyyy"
+],
+"16": [
+16,
+"XXXYxxy",
+"XYYYYxyyy"
+],
+"17": [
+17,
+"XXXYYxxY",
+"XXYYYxYXY"
+],
+"18": [
+17,
+"XXYXYxxY",
+"XYYYYxyyy"
+],
+"19": [
+17,
+"XXYXYxxY",
+"XYYYxyyyy"
+],
+"20": [
+17,
+"XXXYYxxy",
+"XYYYxyyyy"
+],
+"21": [
+17,
+"XXYXyxxy",
+"XYYYYxyyy"
+],
+"22": [
+17,
+"XXYXyxxY",
+"XYYYYxyyy"
+],
+"23": [
+17,
+"XXYXYxxy",
+"XYYYxyyyy"
+],
+"24": [
+17,
+"XXYXyxxY",
+"XYYYxyyyy"
+],
+"25": [
+17,
+"XXYXYxxy",
+"XYYYYxyyy"
+],
+"26": [
+17,
+"XXXYYxxy",
+"XXYxyXyxY"
+],
+"27": [
+17,
+"XXXYxYxY",
+"XYYYYxyyy"
+],
+"28": [
+17,
+"XXXYxYxy",
+"XYYYxyyyy"
+],
+"29": [
+17,
+"XXXYxyxY",
+"XYYYYxyyy"
+],
+"30": [
+17,
+"XXXYxYxy",
+"XYYYYxyyy"
+],
+"31": [
+17,
+"XXYXyxxY",
+"XYYYxyyyy"
+],
+"32": [
+17,
+"XXYXyxxy",
+"XYYYxyyyy"
+],
+"33": [
+17,
+"XXYXYxxy",
+"XYYYYxyyy"
+],
+"34": [
+17,
+"XXYXyxxy",
+"XYYYYxyyy"
+],
+"35": [
+17,
+"XXXYYxxy",
+"XYYYYxyyy"
+],
+"36": [
+17,
+"XXXYYxxY",
+"XXYYYxYXY"
+],
+"37": [
+17,
+"XXXYxYxy",
+"XYYYYxyyy"
+],
+"38": [
+17,
+"XXXYxyxY",
+"XYYYYxyyy"
+],
+"39": [
+17,
+"XXXYxYxy",
+"XYYYxyyyy"
+],
+"40": [
+17,
+"XXXYxYxY",
+"XYYYYxyyy"
+],
+"41": [
+17,
+"XXYXyxxY",
+"XYYYYxyyy"
+],
+"42": [
+17,
+"XXYXYxxY",
+"XYYYYxyyy"
+],
+"43": [
+17,
+"XXYXYxxy",
+"XYYYxyyyy"
+],
+"44": [
+17,
+"XXYXYxxY",
+"XYYYxyyyy"
+],
+"45": [
+15,
+"XXYxyxY",
+"XYYxYxyy"
+],
+"46": [
+15,
+"XXXYYxy",
+"XXXyxxYY"
+],
+"47": [
+18,
+"XXXYxxY",
+"XYYYYYxyyyy"
+],
+"48": [
+18,
+"XXXYxxy",
+"XYYYYYxyyyy"
+],
+"49": [
+18,
+"XXXYxxY",
+"XYYYYYxyyyy"
+],
+"50": [
+19,
+"XXXYYxxY",
+"XYYYYYxyyyy"
+],
+"51": [
+19,
+"XXXYxxYxy",
+"XXXyyyyxxY"
+],
+"52": [
+19,
+"XXYXYxxY",
+"XYYYYxyyyyy"
+],
+"53": [
+19,
+"XXYXyxxy",
+"XYYYYxyyyyy"
+],
+"54": [
+19,
+"XXYXyxxy",
+"XYYYYYxyyyy"
+],
+"55": [
+19,
+"XXYXyxxY",
+"XYYYYYxyyyy"
+],
+"56": [
+19,
+"XXYXYxxy",
+"XYYYYxyyyyy"
+],
+"57": [
+19,
+"XXYXyxxY",
+"XYYYYxyyyyy"
+],
+"58": [
+19,
+"XXYXYxxy",
+"XYYYYYxyyyy"
+],
+"59": [
+19,
+"XXXYYxxy",
+"XYYYYYxyyyy"
+],
+"60": [
+19,
+"XXXYxYxY",
+"XYYYYYxyyyy"
+],
+"61": [
+19,
+"XXXYxYxy",
+"XYYYYxyyyyy"
+],
+"62": [
+19,
+"XXXYxyxY",
+"XYYYYYxyyyy"
+],
+"63": [
+19,
+"XXXYxYxy",
+"XYYYYYxyyyy"
+],
+"64": [
+19,
+"XXXYXYxxY",
+"XXYxxyyXYY"
+],
+"65": [
+19,
+"XXXYYxxy",
+"XXYYYYYxyXy"
+],
+"66": [
+19,
+"XXXYxxyxY",
+"XXXyyyyxxy"
+],
+"67": [
+19,
+"XXYXyxxy",
+"XYYYYYxyyyy"
+],
+"68": [
+19,
+"XXYXyxxY",
+"XYYYYxyyyyy"
+],
+"69": [
+19,
+"XXYXyxxy",
+"XYYYYxyyyyy"
+],
+"70": [
+19,
+"XXXYYxxy",
+"XYYYYYxyyyy"
+],
+"71": [
+19,
+"XXXYYxxY",
+"XYYYYYxyyyy"
+],
+"72": [
+19,
+"XXXYxYxy",
+"XYYYYYxyyyy"
+],
+"73": [
+19,
+"XXXYxyxY",
+"XYYYYYxyyyy"
+],
+"74": [
+19,
+"XXXYxYxy",
+"XYYYYxyyyyy"
+],
+"75": [
+19,
+"XXXYxYxY",
+"XYYYYYxyyyy"
+],
+"76": [
+19,
+"XXXYXYxxy",
+"XXXYxyyxYY"
+],
+"77": [
+19,
+"XXXYYxxY",
+"XXYYYYYxYXY"
+],
+"78": [
+19,
+"XXYXyxxY",
+"XYYYYYxyyyy"
+],
+"79": [
+19,
+"XXYXYxxY",
+"XYYYYYxyyyy"
+],
+"80": [
+19,
+"XXYXYxxy",
+"XYYYYxyyyyy"
+],
+"81": [
+19,
+"XXYXYxxY",
+"XYYYYxyyyyy"
+],
+"82": [
+17,
+"XXXYYxy",
+"XXYXYxYxyy"
+],
+"83": [
+17,
+"XXYYxy",
+"XXXXXyxYYxY"
+],
+"84": [
+17,
+"XXYYxy",
+"XXXYXyxyxYY"
+],
+"85": [
+17,
+"XXXYYxy",
+"XXYXyxyXYY"
+],
+"86": [
+20,
+"XXXYxxY",
+"XYYYYYYxyyyyy"
+],
+"87": [
+20,
+"XXXYxxy",
+"XYYYYYYxyyyyy"
+],
+"88": [
+16,
+"XXYXXyy",
+"XYXYYxyyy"
+],
+"89": [
+20,
+"XXXYxxY",
+"XYYYYYYxyyyyy"
+],
+"90": [
+16,
+"XXYXXyy",
+"XYYXYxyyy"
+],
+"91": [
+21,
+"XXXYYxxY",
+"XYYYYYYxyyyyy"
+],
+"92": [
+20,
+"XXXYxxYxy",
+"XXXyyyyyxxY"
+],
+"93": [
+21,
+"XXYXYxxY",
+"XYYYYYxyyyyyy"
+],
+"94": [
+21,
+"XXYXyxxy",
+"XYYYYYxyyyyyy"
+],
+"95": [
+21,
+"XXYXyxxy",
+"XYYYYYYxyyyyy"
+],
+"96": [
+21,
+"XXYXyxxY",
+"XYYYYYYxyyyyy"
+],
+"97": [
+21,
+"XXXYxxyxY",
+"XXXYYYYYYxxy"
+],
+"98": [
+21,
+"XXYXyxxY",
+"XYYYYYxyyyyyy"
+],
+"99": [
+20,
+"XXXYxxyxY",
+"XXXyyyyyxxy"
+],
+"100": [
+21,
+"XXXYYxxy",
+"XXYYYxyXyXyxY"
+],
+"101": [
+21,
+"XXXYxYxY",
+"XYYYYYYxyyyyy"
+],
+"102": [
+21,
+"XXXYxYxy",
+"XYYYYYxyyyyyy"
+],
+"103": [
+21,
+"XXXYxyxY",
+"XYYYYYYxyyyyy"
+],
+"104": [
+21,
+"XXXYxYxy",
+"XYYYYYYxyyyyy"
+],
+"105": [
+21,
+"XXXYYxxY",
+"XYYYYYxyyyyyy"
+],
+"106": [
+21,
+"XXXYYxxy",
+"XYYYYYxyyyyyy"
+],
+"107": [
+20,
+"XXXYxxyxY",
+"XXXyyyyyxxy"
+],
+"108": [
+21,
+"XXYXyxxy",
+"XYYYYYYxyyyyy"
+],
+"109": [
+21,
+"XXYXyxxY",
+"XYYYYYxyyyyyy"
+],
+"110": [
+21,
+"XXYXyxxy",
+"XYYYYYxyyyyyy"
+],
+"111": [
+20,
+"XXXYXYxxy",
+"XXXYxyyyxYY"
+],
+"112": [
+20,
+"XXXYXYxxY",
+"XXYxxyyXYYY"
+],
+"113": [
+21,
+"XXXYxYxy",
+"XYYYYYYxyyyyy"
+],
+"114": [
+21,
+"XXXYxyxY",
+"XYYYYYYxyyyyy"
+],
+"115": [
+21,
+"XXXYxYxy",
+"XYYYYYxyyyyyy"
+],
+"116": [
+21,
+"XXXYxYxY",
+"XYYYYYYxyyyyy"
+],
+"117": [
+21,
+"XXXYYxxy",
+"XYYYYYxyyyyyy"
+],
+"118": [
+21,
+"XXXYYxxY",
+"XYYYYYxyyyyyy"
+],
+"119": [
+21,
+"XXYXyxxY",
+"XYYYYYYxyyyyy"
+],
+"120": [
+20,
+"XXXYxxYxy",
+"XXXyyyyyxxY"
+],
+"121": [
+21,
+"XXYXYxxy",
+"XYYYYYxyyyyyy"
+],
+"122": [
+21,
+"XXXYxxYxy",
+"XXXYYYYYYxxY"
+],
+"123": [
+20,
+"XXYxY",
+"XYYYYYYYxyyyyyy"
+],
+"124": [
+20,
+"XXYxY",
+"XYYYYYYYxyyyyyy"
+],
+"125": [
+17,
+"XXYYxxy",
+"XYXyyyyyxY"
+],
+"126": [
+19,
+"XXYYxy",
+"XXXYXyxyxYYxY"
+],
+"127": [
+16,
+"XXYXyxy",
+"XYYYxyXyy"
+],
+"128": [
+15,
+"XXYXYxy",
+"XXyyxYYY"
+],
+"129": [
+17,
+"XXYxYxy",
+"XYYYYYXyxy"
+],
+"130": [
+18,
+"XXYxYxy",
+"XXyyxYYxYXY"
+],
+"131": [
+17,
+"XXYXYxxy",
+"XYXyyXYxY"
+],
+"132": [
+15,
+"XXYXYxy",
+"XXyyxYYY"
+],
+"133": [
+16,
+"XXYXYxY",
+"XXyyxYYYY"
+],
+"134": [
+22,
+"XXXYxxY",
+"XYYYYYYYxyyyyyy"
+],
+"135": [
+22,
+"XXXYxxy",
+"XYYYYYYYxyyyyyy"
+],
+"136": [
+17,
+"XXXXYYxy",
+"XYXyxyXYY"
+],
+"137": [
+17,
+"XXXYYxy",
+"XXYXyxyxYY"
+],
+"138": [
+19,
+"XXXXYYxxy",
+"XXXXXyxxYY"
+],
+"139": [
+22,
+"XXXYxxy",
+"XYYYYYYYxyyyyyy"
+],
+"140": [
+22,
+"XXXYxxY",
+"XYYYYYYYxyyyyyy"
+],
+"141": [
+17,
+"XXXYYxy",
+"XXYXyxyxYY"
+],
+"142": [
+17,
+"XXYXyxxy",
+"XXyyyxYxY"
+],
+"143": [
+19,
+"XXYXXyxxy",
+"XXXXXXXyyy"
+],
+"144": [
+23,
+"XXXYYxxY",
+"XYYYYYYYxyyyyyy"
+],
+"145": [
+21,
+"XXXYxxYxy",
+"XXXyyyyyyxxY"
+],
+"146": [
+22,
+"XXXYxxYxy",
+"XXXYYYYYYYxxY"
+],
+"147": [
+22,
+"XXXXXYYYxyy",
+"XXYYXyxyyxY"
+],
+"148": [
+23,
+"XXYXyxxy",
+"XYYYYYYYxyyyyyy"
+],
+"149": [
+23,
+"XXYXyxxY",
+"XYYYYYYYxyyyyyy"
+],
+"150": [
+22,
+"XXXYxxyxY",
+"XXXYYYYYYYxxy"
+],
+"151": [
+22,
+"XXXXXYYXyyy",
+"XXyxYYXYxyy"
+],
+"152": [
+21,
+"XXXYxxyxY",
+"XXXyyyyyyxxy"
+],
+"153": [
+23,
+"XXXYYxxy",
+"XYYYYYYYxyyyyyy"
+],
+"154": [
+23,
+"XXXYxYxY",
+"XYYYYYYYxyyyyyy"
+],
+"155": [
+23,
+"XXXYxYxy",
+"XYYYYYYxyyyyyyy"
+],
+"156": [
+23,
+"XXXYxyxY",
+"XYYYYYYYxyyyyyy"
+],
+"157": [
+23,
+"XXXYxYxy",
+"XYYYYYYYxyyyyyy"
+],
+"158": [
+21,
+"XXXYXYxxY",
+"XXYxxyyyXYYY"
+],
+"159": [
+23,
+"XXXYYxxy",
+"XXYYYYYxyXyXyxY"
+],
+"160": [
+18,
+"XXXYYXyxY",
+"XXyXYYXYY"
+],
+"161": [
+16,
+"XXYYxxy",
+"XYXYxYYYY"
+],
+"162": [
+21,
+"XXXYxxyxY",
+"XXXyyyyyyxxy"
+],
+"163": [
+23,
+"XXYXyxxy",
+"XYYYYYYYxyyyyyy"
+],
+"164": [
+22,
+"XXXXXYYXyyy",
+"XXyxYYXYxyy"
+],
+"165": [
+22,
+"XXXXXYYYxyy",
+"XXYYXyxyyxY"
+],
+"166": [
+23,
+"XXXYYxxy",
+"XYYYYYYYxyyyyyy"
+],
+"167": [
+23,
+"XXXYYxxY",
+"XYYYYYYYxyyyyyy"
+],
+"168": [
+23,
+"XXXYxYxy",
+"XYYYYYYYxyyyyyy"
+],
+"169": [
+23,
+"XXXYxyxY",
+"XYYYYYYYxyyyyyy"
+],
+"170": [
+23,
+"XXXYxYxy",
+"XYYYYYYxyyyyyyy"
+],
+"171": [
+23,
+"XXXYxYxY",
+"XYYYYYYYxyyyyyy"
+],
+"172": [
+23,
+"XXXYYxxy",
+"XYYYYYYxyyyyyyy"
+],
+"173": [
+23,
+"XXXYYxxY",
+"XXYYYYYxYXYXYxy"
+],
+"174": [
+23,
+"XXYXyxxY",
+"XYYYYYYYxyyyyyy"
+],
+"175": [
+21,
+"XXXYxxYxy",
+"XXXyyyyyyxxY"
+],
+"176": [
+22,
+"XXXYxxyxY",
+"XXXYYYYYYYxxy"
+],
+"177": [
+22,
+"XXXYxxYxy",
+"XXXYYYYYYYxxY"
+],
+"178": [
+18,
+"XXXYYXyxY",
+"XXyXYYXYY"
+],
+"179": [
+22,
+"XXYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"180": [
+22,
+"XXYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"181": [
+19,
+"XXYXyxy",
+"XXXXXyyyXYxy"
+],
+"182": [
+22,
+"XXYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"183": [
+16,
+"XXYXYxy",
+"XXyyyxYYY"
+],
+"184": [
+23,
+"XXYXyy",
+"XXXXXyyxxxYXYxYxy"
+],
+"185": [
+21,
+"XXYYxy",
+"XXXXXXXYxYxyxYY"
+],
+"186": [
+21,
+"XYXyxy",
+"XXXXXXXXyyyyyyy"
+],
+"187": [
+19,
+"XXYYxy",
+"XXXXXXYxYxYXY"
+],
+"188": [
+19,
+"XXYXyxy",
+"XXYXXyyyyxYY"
+],
+"189": [
+21,
+"XXYYxy",
+"XXXXXXXYxyxYYxY"
+],
+"190": [
+23,
+"XXXXXYYxy",
+"XXXXXXXXYxyxxY"
+],
+"191": [
+22,
+"XXYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"192": [
+24,
+"XXXYxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"193": [
+24,
+"XXXYxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"194": [
+19,
+"XXXYXyxy",
+"XXYYXyyxYxy"
+],
+"195": [
+15,
+"XXYYxxy",
+"XYXYxyyy"
+],
+"196": [
+18,
+"XXYxYxy",
+"XYYYYYYXyxy"
+],
+"197": [
+18,
+"XXYxYxy",
+"XXyyyyyyyxY"
+],
+"198": [
+16,
+"XXYXYxy",
+"XXyyyxYYY"
+],
+"199": [
+18,
+"XXXYYxy",
+"XXYXYxYxyyy"
+],
+"200": [
+20,
+"XXYXXyxxy",
+"XXXXXXXyyyy"
+],
+"201": [
+19,
+"XXXYXyy",
+"XYYYXyXyXyxy"
+],
+"202": [
+18,
+"XXXYYxy",
+"XYXYxYxyxyy"
+],
+"203": [
+16,
+"XXYXYxy",
+"XXyyyxYYY"
+],
+"204": [
+15,
+"XXYYxxy",
+"XYXYxyyy"
+],
+"205": [
+24,
+"XXXYxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"206": [
+24,
+"XXXYxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"207": [
+18,
+"XXXYYxy",
+"XXYXYxYxyyy"
+],
+"208": [
+19,
+"XXXYXyxy",
+"XYXyyXYYxyy"
+],
+"209": [
+20,
+"XXYXXyxxy",
+"XXXXXXXyyyy"
+],
+"210": [
+18,
+"XXXYYxy",
+"XYXYxYxyxyy"
+],
+"211": [
+19,
+"XXXYXyy",
+"XYYYXyXyXyxy"
+],
+"212": [
+20,
+"XXYxYxy",
+"XXXyyXYxyxxyy"
+],
+"213": [
+25,
+"XXXYYxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"214": [
+25,
+"XXYXYxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"215": [
+25,
+"XXYXYxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"216": [
+25,
+"XXYXyxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"217": [
+25,
+"XXYXyxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"218": [
+25,
+"XXYXyxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"219": [
+25,
+"XXYXYxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"220": [
+25,
+"XXYXyxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"221": [
+25,
+"XXYXYxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"222": [
+25,
+"XXXYYxxy",
+"XXYYYYYYYxyXyXyXy"
+],
+"223": [
+25,
+"XXXYxYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"224": [
+25,
+"XXXYxYxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"225": [
+15,
+"XXYYxxy",
+"XYXYxyyy"
+],
+"226": [
+25,
+"XXXYxyxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"227": [
+25,
+"XXXYxYxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"228": [
+25,
+"XXXYYxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"229": [
+25,
+"XXXYYxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"230": [
+21,
+"XXXYYxxyy",
+"XXXXXYxxYxxy"
+],
+"231": [
+19,
+"XXYXyyxxY",
+"XXXXXYxYxy"
+],
+"232": [
+19,
+"XXXYYxxy",
+"XXXyxxYYXYY"
+],
+"233": [
+21,
+"XXXXYYxxy",
+"XXYXXyxxyXYY"
+],
+"234": [
+19,
+"XXXYYxxy",
+"XXXXyxYYXYY"
+],
+"235": [
+19,
+"XXXXYXyy",
+"XXXYYXyXyxy"
+],
+"236": [
+19,
+"XXXXYYxy",
+"XXXYXyxyXYY"
+],
+"237": [
+15,
+"XXYYxxy",
+"XYXYxyyy"
+],
+"238": [
+19,
+"XXYXyyxxY",
+"XXXXXYxYxy"
+],
+"239": [
+25,
+"XXYXYxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"240": [
+25,
+"XXYXyxxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"241": [
+25,
+"XXYXyxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"242": [
+25,
+"XXYXyxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"243": [
+25,
+"XXXYXYxxy",
+"XXXYXYXYxyyyyxYY"
+],
+"244": [
+25,
+"XXXYXYxxY",
+"XXYXYXYxxyyXYYYY"
+],
+"245": [
+25,
+"XXXYxYxy",
+"XYYYYYYYYxyyyyyyy"
+],
+"246": [
+25,
+"XXXYxyxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"247": [
+25,
+"XXXYxYxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"248": [
+25,
+"XXXYxYxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"249": [
+25,
+"XXXYYxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"250": [
+25,
+"XXXYYxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"251": [
+25,
+"XXYXyxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"252": [
+25,
+"XXYXYxxY",
+"XYYYYYYYYxyyyyyyy"
+],
+"253": [
+25,
+"XXYXYxxy",
+"XYYYYYYYxyyyyyyyy"
+],
+"254": [
+25,
+"XXYXYxxY",
+"XYYYYYYYxyyyyyyyy"
+],
+"255": [
+19,
+"XXXYYxxy",
+"XXXyxxYYXYY"
+],
+"256": [
+21,
+"XXXYYxxyy",
+"XXXXXYxxYxxy"
+],
+"257": [
+19,
+"XXXYYxxy",
+"XXXXyxYYXYY"
+],
+"258": [
+21,
+"XXXXYYxxy",
+"XXXXyXYYXXYY"
+],
+"259": [
+19,
+"XXXXYYxy",
+"XYYXyXyxYxy"
+],
+"260": [
+19,
+"XXXXYXyy",
+"XYXyXYxYxyy"
+]
+}
