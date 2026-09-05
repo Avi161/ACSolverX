@@ -394,3 +394,48 @@ def decide_boundary_transport_return() -> BoundaryTransportReturnDecision:
         previous.final_tuple, u_word, eliminated[:2], renamed, renamed_u,
         conjugators, conjugated, final_pair, "TARGET_TRANSPORT_RETURNS_TO_EXISTING_LENGTH15",
     )
+
+
+@dataclass(frozen=True)
+class TaggedInversionDefectDecision:
+    source_pair: tuple[str, str]
+    stage_words: tuple[tuple[str, str], ...]
+    factor_stages: tuple[tuple[Factor, ...], ...]
+    defects: tuple[str, ...]
+    products: tuple[str, ...]
+    eliminated_d: str
+    substituted_rows: tuple[str, str, str]
+    final_pair: tuple[str, str]
+    verdict: str
+
+
+def decide_tagged_inversion_defect_corridor() -> TaggedInversionDefectDecision:
+    source_pair = decide_boundary_donor_switch().eliminated_pair
+    r_row, e_row = source_pair
+    h_row, s_row = "ucUc", "ducUc"
+    en, rn = "cuCuccdcUU", "uCuCDCDCU"
+    d_word = "CCUcUCuuC"
+    factor_stages = (
+        (Factor(1, 1, "ucuCucUU"), Factor(1, -1, "ucU"),
+         Factor(2, 1, "uC"), Factor(2, 1, "C")),
+        (Factor(3, -1, "cuCucc"),),
+        (Factor(3, 1, "uCuCucUD"), Factor(3, 1, "uCuCD")),
+    )
+    donors = (r_row, e_row, s_row)
+    defects = (h_row, free_reduce(e_row + inverse(en)), free_reduce(r_row + inverse(rn)))
+    products = tuple(free_reduce("".join(
+        conjugate(donors[factor.row - 1] if factor.sign == 1 else inverse(donors[factor.row - 1]),
+                  factor.conjugator)
+        for factor in factors
+    )) for factors in factor_stages)
+    if defects != products or s_row != free_reduce("d" + h_row):
+        raise AssertionError("the tagged inversion-defect donor identities drifted")
+    substituted = tuple(apply_images(row, {"d": d_word, "u": "u", "c": "c"})
+                        for row in (rn, s_row, en))
+    if substituted != ("uCUcuCuccUUcuCucU", "CCUcUCuuCucUc", ""):
+        raise AssertionError("the tagged inversion-defect defining-row elimination drifted")
+    return TaggedInversionDefectDecision(
+        source_pair, (("H", h_row), ("S", s_row), ("En", en), ("Rn", rn)),
+        factor_stages, defects, products, d_word, substituted, substituted[:2],
+        "TAGGED_INVERSION_DEFECT_CORRIDOR_ONLY",
+    )

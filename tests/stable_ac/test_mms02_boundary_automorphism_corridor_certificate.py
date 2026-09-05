@@ -6,6 +6,7 @@ from experiments.stable_ac.mms02_boundary_automorphism_corridor_certificate impo
     decide_second_switch_magnus_corridor,
     decide_second_switch_short_killer,
     decide_boundary_transport_return,
+    decide_tagged_inversion_defect_corridor,
     shifted_h_factors,
     verify_shifted_h_factors,
 )
@@ -267,6 +268,45 @@ def test_boundary_transport_returns_literally_to_existing_length15_pair():
     from experiments.stable_ac.mms02_terminal_preimage_killer_certificate import PINNED_TRANSITIONS
     assert decision.final_pair == PINNED_TRANSITIONS[-1].target_pair
     assert decision.verdict == "TARGET_TRANSPORT_RETURNS_TO_EXISTING_LENGTH15"
+
+
+def test_tagged_inversion_defect_corridor_has_independent_literal_replay():
+    decision = decide_tagged_inversion_defect_corridor()
+    retained, recipient, tagged = "uCuCuccUU", "cuCucuCUcUU", "ducUc"
+    donors = {1: retained, 2: recipient, 3: tagged}
+    pins = (
+        ((1, 1, "ucuCucUU"), (1, -1, "ucU"), (2, 1, "uC"), (2, 1, "C")),
+        ((3, -1, "cuCucc"),),
+        ((3, 1, "uCuCucUD"), (3, 1, "uCuCD")),
+    )
+    products = tuple(reduce_word("".join(
+        conjugate(donors[row] if sign == 1 else invert(donors[row]), prefix)
+        for row, sign, prefix in factors
+    )) for factors in pins)
+    defects = ("ucUc", reduce_word(recipient + invert("cuCuccdcUU")),
+               reduce_word(retained + invert("uCuCDCDCU")))
+    assert products == defects
+    assert tagged == reduce_word("d" + "ucUc")
+    assert decision.source_pair == (retained, recipient)
+    assert dict(decision.stage_words) == {
+        "H": "ucUc", "S": tagged, "En": "cuCuccdcUU", "Rn": "uCuCDCDCU",
+    }
+    assert tuple(tuple((factor.row, factor.sign, factor.conjugator) for factor in factors)
+                 for factors in decision.factor_stages) == pins
+    assert decision.defects == defects and decision.products == products
+    images = {"d": "CCUcUCuuC", "u": "u", "c": "c"}
+    substituted = tuple(substitute(row, images) for row in ("uCuCDCDCU", tagged, "cuCuccdcUU"))
+    assert substituted == ("uCUcuCuccUUcuCucU", "CCUcUCuuCucUc", "")
+    assert decision.eliminated_d == "CCUcUCuuC"
+    assert decision.substituted_rows == substituted
+    assert decision.final_pair == substituted[:2]
+    corrupted = ((1, 1, ""),) + pins[0][1:]
+    corrupted_product = reduce_word("".join(
+        conjugate(donors[row] if sign == 1 else invert(donors[row]), prefix)
+        for row, sign, prefix in corrupted
+    ))
+    assert corrupted_product != "ucUc"
+    assert decision.verdict == "TAGGED_INVERSION_DEFECT_CORRIDOR_ONLY"
 
 
 def _sl2_seven_evaluate(word, parameter=3):

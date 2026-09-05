@@ -159,6 +159,55 @@ No route from the AK3 target to this model is supplied. It is a positive
 control for a feasible move pattern, not a new residual ledger, bridge
 certificate, stable AK3 proof, or ordinary AK3 proof.
 
+### Literal test of a tag on the actual inversion defect
+
+The simple tagged model above does not arise merely by declaring its
+rows to be consequences. Here is one legal test using the actual raw pair
+$R=\mathtt{uCuCuccUU}$, $E=\mathtt{cuCucuCUcUU}$ from the retained-donor
+switch below. That switch implies the literal product identity
+
+\[
+ H=\mathtt{ucUc}
+ ={}^{\mathtt{ucuCucUU}}R\;
+  {}^{\mathtt{ucU}}R^{-1}\;
+  {}^{\mathtt{uC}}E\;{}^{\mathtt C}E.
+\]
+
+Stabilize by a new generator and row $d$, then right-multiply that row
+by the displayed product, restoring each donor. The new row is
+$S=dH=\mathtt{ducUc}$, not $H$. With $S$ retained, put
+
+\[
+ R_n=\mathtt{uCuCDCDCU},\qquad
+ E_n=\mathtt{cuCuccdcUU}.
+\]
+
+The exact old-times-new-inverse defects are
+
+\[
+ EE_n^{-1}={} ^{\mathtt{cuCucc}}S^{-1},\qquad
+ RR_n^{-1}={} ^{\mathtt{uCuCucUD}}S\;
+                  {}^{\mathtt{uCuCD}}S.
+\]
+
+Left-multiplying each old recipient by the inverse of its displayed
+product gives $(R_n,E_n,S)$ legally. The row $E_n$ contains $d$ exactly
+once and defines $d=\mathtt{CCUcUCuuC}$. Substitution into the other two
+rows and defining-row removal give the exact pair
+
+\[
+ (\mathtt{uCUcuCuccUUcuCucU},\quad
+  \mathtt{CCUcUCuuCucUc}).
+\]
+
+The boundary certificate and independent word replay check the product,
+both defects, and the disappearance of the defining row. This evaluates
+one actual legal use of the tag; it does not reach the binomial control.
+A short exploratory strict-descent calculation reached total cyclic
+length 19, not an improvement over the existing length-15 endpoint; no
+minimality assertion is made. Neither a tag family nor a residual ledger
+is opened. This corridor supplies no terminal cancellation or AK3 claim.
+
 ## Constructive probe and convergence boundary
 
 Introducing a commutator generator and legally eliminating `t,v` gives
