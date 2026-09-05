@@ -2953,6 +2953,12 @@ control. This only normalizes the source; the necessary interleaved path
 to $(A,B,v,t)$ is still absent. It neither reopens the frozen Hall--Witt
 lane nor resolves any AK(3) gate.
 
+The [integral fixed-donor theorem](AK3_MMS02_PRIMITIVE_COMPLETION_TRACE_CHECK.md#all-integer-primitive-completions-are-excluded)
+now excludes replacing $\overline B$ by any primitive word while retaining
+$\overline A$ as donor: $B$ is not conjugate to $Xy^m$ in $Q_A$ for any
+integer $m$. This does not prevent the interleaved tagged path (130), which
+may change both live rows, or a path changing the retained base rows.
+
 ### 6.19. The first tagged defect module is induced without a free summand
 
 The correct linear ambient object for (130) is not $L$ alone.  Put

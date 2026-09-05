@@ -175,3 +175,13 @@ possible integer power for each conjugator. This checks all integer powers
 without an exponent cutoff. Verify the actual base relation, signed-power
 controls, and the entire saved candidate prefix independently; retain the
 conjugator and stage bounds when reporting a negative result.
+
+### [2026-09-05] Descend conjugators before adding stages
+
+[WORKS] The equation in `AK3_MMS02_PRIMITIVE_COMPLETION_TRACE_CHECK.md`
+forces each high-stage conjugator coefficient into `im(phi)`, allowing
+descent to stage two and two explicit coset substitutions. This converted
+an unbounded primitive-completion problem into an integral Fox equation,
+whose least-exponent contradiction covers every integer. Before increasing
+stage or word caps, check whether the exact equation forces image membership;
+retain an integral-versus-mod-two control for coefficient contradictions.
