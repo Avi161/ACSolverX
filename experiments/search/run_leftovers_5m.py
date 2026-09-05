@@ -77,7 +77,12 @@ from experiments.search.run_leftovers_1m import (
 #          second arena in address space) no longer exists; and a campaign
 #          may run without path capture (u124 does: -8 B/state). Gen-3 peaks
 #          include repack transients no gen-4 row can produce: skipped.
-ENGINE_MEM_GEN = 4
+#   gen 5: 2-bit symbol rows (32 B per state at cap 64, was 64) and the
+#          allocation-free expansion kernel. Gen-4 peaks were measured on
+#          nibble rows and overstate this profile by up to 32 B/state:
+#          skipped. The search itself is identical across every generation;
+#          only the memory profile a recorded peak describes has changed.
+ENGINE_MEM_GEN = 5
 
 # The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
 # coexist and must never be conflated:
@@ -164,9 +169,10 @@ CAMPAIGNS = {
         # covering it is cheaper than dying at 95% of budget on most rows.
         # 214 = the measured maximum + 15%, and the last floor at which the
         # hash table stays 16 GiB (it doubles past 214/node, +16 GB on every
-        # row's peak). Without paths (below) the allocation-backed worst is
-        # ~181 GiB/row: two lanes on a 512 GiB box, one on 256 GiB, eight on
-        # 1.5 TiB. STATES_PER_NODE in the environment overrides this for a
+        # row's peak). Without paths (below), on 2-bit rows (51 B/state),
+        # the allocation-backed worst is ~118 GiB/row: four lanes on a
+        # 512 GiB box, two on the 256 GiB class, twelve on 1.5 TiB (it was
+        # ~181 GiB and 2/1/8 on nibble rows). STATES_PER_NODE overrides this for a
         # second pass over rows that still die; plan_memory clips it to the
         # box when the full-width allocation does not fit.
         "states_per_node": 214,

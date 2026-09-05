@@ -65,6 +65,28 @@ Rows recorded from gen 4 on differ from the snapshot above in two ways:
   two lanes on a 512 GiB box, one on the 256 GiB class (zero before),
   eight on 1.5 TiB.
 
+## Memory profile change (engine_mem_gen 5, 2026-09-05)
+
+The engine now packs symbols at 2 bits (32 B per state at cap 64 instead
+of 64) with a length-aware comparator proved and pinned to reproduce the
+old tie-break order exactly, and its expansion kernel allocates nothing
+per child. The search is bit-identical to every earlier generation
+(oracle and frozen-engine gates in `experiments/heuristic_search/core/
+perf_lab/`); the numbers that change are memory and speed:
+
+- allocation-backed worst per lane at the 214 floor, no paths: 117.6 GiB
+  (was 181.4): four lanes on a 512 GiB box, two on the 256 GiB class,
+  twelve on 1.5 TiB;
+- physical peak of a 186 states/node row: ~104 GiB (was ~160);
+- pops per second per lane: ~1.7x, measured at 50k-100k pops on the lab
+  box against a fully frozen copy of the previous engine (projection at
+  campaign scale until a campaign row reports its `seconds`).
+
+The widen lines now print 2-bit widths ("6B -> 12B" where the archived
+log says "12B -> 24B"); the "at N states" figures, which are the search's
+fingerprint, are unchanged. Full method, tables and verification commands:
+`experiments/heuristic_search/core/perf_lab/REPORT.md`.
+
 ## Notable
 
 All nine completions are rigid at this budget: `min_relator_length`
