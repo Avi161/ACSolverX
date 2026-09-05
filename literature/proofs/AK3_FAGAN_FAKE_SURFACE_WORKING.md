@@ -1,7 +1,8 @@
 # AK3: the seven-vertex fake-surface input
 
 Status: source combinatorics and one equivalent complexity-seven endpoint
-certified; no complexity reduction certified.
+certified. The three-checkpoint geometric continuation is frozen without
+a complexity reduction. The source-to-AK3 correspondence is replayed below.
 
 ## Source and terminal target
 
@@ -11,8 +12,8 @@ surface stably equivalent to AK3. [Fagan--Qiu--Wang, Theorem 1](https://arxiv.or
 proves stable AC for contractible fake surfaces of complexity below six
 with connected 1-skeleton. A certified 3-deformation between such an
 endpoint and this source would therefore suffice for stable AK3, not
-ordinary AK3. These are external theorem dependencies; the current
-checker does not independently replay the dissertation's equivalence.
+ordinary AK3. The below-six terminal theorem remains an external dependency;
+the source-to-AK3 correspondence now has the independent literal replay below.
 
 ## Checked finite input
 
@@ -88,7 +89,7 @@ without asserting that this is the published local rewrite.
 complexity-seven fake surface whose maximal-tree-collapsed presentation,
 under the explicit cotree marking below, is ordinary AC-equivalent to a
 maximal-tree-collapsed presentation of the source. Consequently, using
-Fagan's external source theorem, its presentation is stably AC-equivalent
+the source correspondence replayed below, its presentation is stably AC-equivalent
 to AK3. This does not trivialize either presentation.
 
 The generic endpoint checker identifies oriented edge endpoints using
@@ -130,14 +131,14 @@ This yields $w'$ exactly. Invert the first row last. All other rows are
 unchanged, proving the stated ordinary AC equivalence in the common
 marked free group.
 
-Tree collapse and Fagan's source theorem transfer stable equivalence and
+Tree collapse and the source correspondence transfer stable equivalence and
 trivial fundamental group to the target. For this finite connected
 two-complex, simple connectivity and Euler characteristic one imply
 $H_2=0$: its second homology is free abelian and has rank zero. Thus it is
 acyclic and simply connected, hence contractible by Hurewicz and Whitehead.
 This conclusion uses the transferred fundamental-group statement, not
-Euler characteristic alone. The certificate's finite checks do not
-independently verify Fagan's external theorem.
+Euler characteristic alone. The finite incidence checks do not by themselves
+establish the required fundamental-group statement.
 
 The independent tests reconstruct endpoint identifications with set
 merging, replay the tree collapses and donor identity, and reject an
@@ -145,12 +146,108 @@ incomplete tree and a corrupted conjugator. All 28 focused fake-surface,
 boundary-corridor and preimage tests pass. Neither an exact local
 geometric rewrite nor a complexity reduction is claimed.
 
-Convergence budget: at most three checkpoints, counting the source
-checkpoint, to obtain an independently certified complexity reduction.
-This is checkpoint two: endpoint equivalence is now certified algebraically,
-while complexity remains seven. One checkpoint remains for an actual
-reduction; another complexity-preserving endpoint does not reset the budget.
-Do not open a broad move census or a new residual
-family merely because the moves preserve valid link graphs. If the budget
-expires without a reduction, freeze this input and return to the existing
-proof gates. Stable AK3 and ordinary AK3 remain unproved here.
+## Independent source-to-AK3 replay
+
+For a second source maximal tree
+$T_0=\{2,3,5,7,10,13\}$, the eight collapsed rows are
+
+```text
+(1,9,-8)
+(11,-12)
+(8,-4,-9,-14)
+(4,12,-6,-11)
+(6,14,-8)
+(-11,-9)
+(1,-14,-12)
+(1,4,6)
+```
+
+Keep the original row numbers through the following deletions. A defining
+row containing its eliminated generator exactly once can be normalized
+to that generator times a word in the others, used to substitute in the
+remaining rows, and then removed by inverse stabilization. Apply:
+
+| Original donor row | Eliminated generator | Defining word |
+| --- | --- | --- |
+| 2 | 11 | $(12)$ |
+| 6 | 12 | $(-9)$ |
+| 3 | 4 | $(-9,-14,8)$ |
+
+Conjugate original row 4 by $x_9$, giving
+$w=x_{14}^{-1}x_8x_9^{-1}x_6^{-1}$. The retained original row 1 is
+$r=x_1x_9x_8^{-1}$. With $w'=x_{14}^{-1}x_1x_6^{-1}$, the sole
+non-defining correction is the literal identity
+\[
+ww'^{-1}=x_{14}^{-1}r^{-1}x_{14}.
+\]
+Thus the inverse of this conjugate corrects row 4 to $w'$ while restoring
+row 1. Continue the defining-row deletions:
+
+| Original donor row | Eliminated generator | Defining word |
+| --- | --- | --- |
+| 4 | 6 | $(-14,1)$ |
+| 5 | 8 | $(-14,1,14)$ |
+| 7 | 9 | $(14,-1)$ |
+
+The remaining original rows 1 and 8 are exactly
+\[
+(1,14,-1,-14,-1,14),\qquad (1,1,-14,-14,-14,1,1).
+\]
+Name $x=x_{14}$ and $y=x_1$, in this order. Conjugate the first row by
+$x$; invert the second and conjugate it by $y^2$. The result is the
+standard AK3 pair
+\[
+\bigl(xyx\,y^{-1}x^{-1}y^{-1},\ x^3y^{-4}\bigr).
+\]
+This explicitly fixes the final generator naming instead of relying on
+the dissertation's prose identification. These are six defining-generator
+deletions and one retained-donor correction, not a trivialization.
+
+For completeness, the group presented by this pair is trivial. The braid
+relation makes $\Delta=xyx$ interchange $x$ and $y$ by conjugation.
+Hence $x^3=y^4$ also implies $y^3=x^4$, and then
+$x=x^4x^{-3}=y^3y^{-4}=y^{-1}$. The power relation gives $y^7=1$,
+while the braid relation gives $y^2=1$, so $x=y=1$. These group
+consequences are not asserted to be available live AC rows.
+
+There is no circular use of the trivial-group hypothesis here: read the
+defining substitutions first as ordinary Tietze eliminations and the
+retained-row identity as a group-preserving relation replacement. These
+establish that every intermediate balanced presentation has the same
+trivial group as AK3. The stable defining-row and ambient-substitution
+principles may then be applied with that hypothesis established. The
+independent replay checks all six unique generator occurrences, each
+vanishing defining row, the corrected recipient, and both final relators;
+a wrong-sign correction is a can-fail control. All 29 focused certificate
+tests pass.
+
+Changing from $T_0$ to the earlier tree $T$ changes a free basis of the
+graph fundamental group and the chosen paths to the face basepoints.
+The latter give permitted row conjugations; the former gives an ambient
+free-group automorphism. Both collapsed presentations are balanced and
+present the trivial group, as just proved. The stable ambient principle
+in [Proposition 3.3](AK3_DUAL_SOURCE_COMPRESSION.md#proposition-33-stable-ambient-automorphisms-in-every-rank)
+therefore applies. This carries the replayed stable AK3 correspondence
+to the first endpoint without assuming the geometric transcription is
+correct. No ordinary-AC equivalence to AK3 follows from this argument.
+
+## Convergence decision: frozen at checkpoint three
+
+The source checkpoint and the certified first endpoint used two of the
+three allotted checkpoints. The final bounded trial inspected the other
+source four-gon (disk 4), with face-length vectors
+\[
+(5,4,7,4,5,5,5,7),\qquad (5,6,6,4,4,6,6,5)
+\]
+for its two orientations. Following the first orientation by the exposed
+disk-2 four-gon in orientation zero gives
+$(6,4,6,6,5,4,4,7)$. Every candidate still has seven vertices and no
+face of length at most three. These are unpromoted transcription trials,
+not certified geometric moves or an exhaustive enumeration.
+
+The required complexity reduction was not obtained, so the geometric
+continuation is frozen. Preserve the source, the one algebraically
+certified endpoint, and the independent source correspondence; do not
+extend the move ledger or count complexity-preserving endpoints as net
+progress. This supplies no obstruction to a different geometric or AC
+route. Stable AK3 and ordinary AK3 remain unproved here.

@@ -3,6 +3,7 @@ from collections import Counter
 from experiments.stable_ac.ak3_fagan_fake_surface_certificate import (
     SOURCE_FACES, decide_fagan_fake_surface, validate_source_complex,
     decide_first_fourgon_endpoint, validate_endpoint_tree,
+    decide_source_to_ak3,
 )
 
 
@@ -189,3 +190,71 @@ def test_first_fourgon_collapsed_words_and_donor_identity_are_independent():
     assert decision.geometric_local_rewrite_certified is False
     assert decision.complexity_reduction_claimed is False
     assert decision.verdict == "FIRST_FOURGON_ENDPOINT_PRESENTATION_EQUIVALENCE_ONLY"
+
+
+def test_source_to_ak3_has_independent_defining_row_and_donor_replay():
+    decision = decide_source_to_ak3()
+
+    def inverse(word):
+        return tuple(-letter for letter in word[::-1])
+
+    def reduce(word):
+        stack = []
+        for letter in word:
+            if stack and stack[-1] == -letter:
+                stack.pop()
+            else:
+                stack.append(letter)
+        return tuple(stack)
+
+    def substitute(word, generator, image):
+        replaced = []
+        for letter in word:
+            replaced.extend(image if letter == generator else inverse(image) if letter == -generator else (letter,))
+        return reduce(replaced)
+
+    tree = (2, 3, 5, 7, 10, 13)
+    rows = {index: reduce(tuple(edge for edge in face if abs(edge) not in tree))
+            for index, face in enumerate(LITERAL_FACES, 1)}
+    expected_collapsed = ((1, 9, -8), (11, -12), (8, -4, -9, -14), (4, 12, -6, -11),
+                          (6, 14, -8), (-11, -9), (1, -14, -12), (1, 4, 6))
+    assert decision.tree == tree
+    assert tuple(rows.values()) == decision.collapsed_rows == expected_collapsed
+    pins = ((2, 11, (12,)), (6, 12, (-9,)), (3, 4, (-9, -14, 8)),
+            (4, 6, (-14, 1)), (5, 8, (-14, 1, 14)), (7, 9, (14, -1)))
+    assert decision.defining_eliminations == pins
+    stages = [("tree_collapse", tuple(rows.items()))]
+    for index, (row_index, generator, image) in enumerate(pins):
+        if index == 3:
+            before = reduce((9,) + rows[4] + (-9,))
+            after = (-14, 1, -6)
+            donor = rows[1]
+            assert before == (-14, 8, -9, -6)
+            assert donor == (1, 9, -8)
+            defect = reduce(before + inverse(after))
+            product = reduce((-14,) + inverse(donor) + (14,))
+            assert defect == product == decision.correction_defect == decision.correction_product
+            assert reduce((14,) + inverse(donor) + (-14,)) != defect
+            assert decision.correction_before == before
+            assert decision.correction_after == after
+            assert decision.correction_donor == donor
+            rows[4] = before
+            stages.append(("conjugate_row_4_by_9", tuple(rows.items())))
+            rows[4] = after
+            stages.append(("correct_row_4_using_row_1", tuple(rows.items())))
+        assert sum(abs(letter) == generator for letter in rows[row_index]) == 1
+        assert substitute(rows[row_index], generator, image) == ()
+        rows = {row: substitute(word, generator, image) for row, word in rows.items() if row != row_index}
+        assert all(generator != abs(letter) for word in rows.values() for letter in word)
+        stages.append((f"delete_row_{row_index}_generator_{generator}", tuple(rows.items())))
+    assert tuple(stages) == decision.stages
+    assert tuple(rows) == (1, 8)
+    assert (rows[1], rows[8]) == decision.final_source_rows == (
+        (1, 14, -1, -14, -1, 14), (1, 1, -14, -14, -14, 1, 1),
+    )
+    rename = {14: 1, -14: -1, 1: 2, -1: -2}
+    first, second = (tuple(rename[letter] for letter in rows[index]) for index in (1, 8))
+    target = (reduce((1,) + first + (-1,)), reduce((2, 2) + inverse(second) + (-2, -2)))
+    assert target == decision.target_rows == ((1, 2, 1, -2, -1, -2), (1, 1, 1, -2, -2, -2, -2))
+    assert decision.trivialization_claimed is False
+    assert decision.verdict == "SOURCE_TO_AK3_STABLE_EQUIVALENCE_ONLY"

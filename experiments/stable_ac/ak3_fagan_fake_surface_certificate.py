@@ -274,3 +274,83 @@ def decide_first_fourgon_endpoint() -> FirstFourgonEndpointDecision:
     return FirstFourgonEndpointDecision(source, target, SOURCE_TREE, FIRST_TARGET_TREE,
                                         source_rows, target_rows, defect, product, False, False,
                                         "FIRST_FOURGON_ENDPOINT_PRESENTATION_EQUIVALENCE_ONLY")
+
+
+@dataclass(frozen=True)
+class SourceToAK3Decision:
+    tree: tuple[int, ...]
+    collapsed_rows: tuple[tuple[int, ...], ...]
+    defining_eliminations: tuple[tuple[int, int, tuple[int, ...]], ...]
+    stages: tuple[tuple[str, tuple[tuple[int, tuple[int, ...]], ...]], ...]
+    correction_donor: tuple[int, ...]
+    correction_before: tuple[int, ...]
+    correction_after: tuple[int, ...]
+    correction_defect: tuple[int, ...]
+    correction_product: tuple[int, ...]
+    final_source_rows: tuple[tuple[int, ...], ...]
+    target_rows: tuple[tuple[int, ...], ...]
+    trivialization_claimed: bool
+    verdict: str
+
+
+def decide_source_to_ak3() -> SourceToAK3Decision:
+    tree = (2, 3, 5, 7, 10, 13)
+    validate_endpoint_tree(reconstruct_endpoint_graph(SOURCE_FACES), tree)
+    collapsed = tuple(integer_reduce(tuple(letter for letter in face if abs(letter) not in tree))
+                      for face in SOURCE_FACES)
+    if collapsed != ((1, 9, -8), (11, -12), (8, -4, -9, -14), (4, 12, -6, -11),
+                     (6, 14, -8), (-11, -9), (1, -14, -12), (1, 4, 6)):
+        raise AssertionError("the source-to-AK3 tree collapse drifted")
+    rows = dict(enumerate(collapsed, 1))
+    stages = [("tree_collapse", tuple(rows.items()))]
+    eliminations = ((2, 11, (12,)), (6, 12, (-9,)), (3, 4, (-9, -14, 8)),
+                    (4, 6, (-14, 1)), (5, 8, (-14, 1, 14)), (7, 9, (14, -1)))
+
+    def eliminate(row_index, generator, image):
+        defining = rows[row_index]
+        if sum(abs(letter) == generator for letter in defining) != 1 or generator in map(abs, image):
+            raise AssertionError("the prescribed defining row is not uniquely solvable")
+        updated = {}
+        for index, word in rows.items():
+            letters = tuple(value for letter in word for value in (
+                image if letter == generator else integer_inverse(image) if letter == -generator else (letter,)
+            ))
+            updated[index] = integer_reduce(letters)
+        if updated[row_index]:
+            raise AssertionError("the source-to-AK3 defining row did not vanish")
+        del updated[row_index]
+        if any(abs(letter) == generator for word in updated.values() for letter in word):
+            raise AssertionError("an eliminated source generator remains")
+        rows.clear()
+        rows.update(updated)
+        stages.append((f"delete_row_{row_index}_generator_{generator}", tuple(rows.items())))
+
+    for elimination in eliminations[:3]:
+        eliminate(*elimination)
+    before = integer_reduce((9,) + rows[4] + (-9,))
+    donor = rows[1]
+    after = (-14, 1, -6)
+    if before != (-14, 8, -9, -6) or donor != (1, 9, -8):
+        raise AssertionError("the source-to-AK3 correction inputs drifted")
+    defect = integer_reduce(before + integer_inverse(after))
+    product = integer_reduce((-14,) + integer_inverse(donor) + (14,))
+    if defect != product:
+        raise AssertionError("the source-to-AK3 retained-row correction drifted")
+    rows[4] = before
+    stages.append(("conjugate_row_4_by_9", tuple(rows.items())))
+    rows[4] = after
+    stages.append(("correct_row_4_using_row_1", tuple(rows.items())))
+    for elimination in eliminations[3:]:
+        eliminate(*elimination)
+    final_rows = (rows[1], rows[8])
+    if final_rows != ((1, 14, -1, -14, -1, 14), (1, 1, -14, -14, -14, 1, 1)):
+        raise AssertionError("the final source-to-AK3 rows drifted")
+    rename = {14: 1, -14: -1, 1: 2, -1: -2}
+    first, second = tuple(tuple(rename[letter] for letter in word) for word in final_rows)
+    target = (integer_reduce((1,) + first + (-1,)),
+              integer_reduce((2, 2) + integer_inverse(second) + (-2, -2)))
+    if target != ((1, 2, 1, -2, -1, -2), (1, 1, 1, -2, -2, -2, -2)):
+        raise AssertionError("the canonical AK3 target rows drifted")
+    return SourceToAK3Decision(tree, collapsed, eliminations, tuple(stages), donor, before, after,
+                               defect, product, final_rows, target, False,
+                               "SOURCE_TO_AK3_STABLE_EQUIVALENCE_ONLY")
