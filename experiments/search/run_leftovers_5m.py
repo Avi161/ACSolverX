@@ -116,6 +116,18 @@ SPEC_5M = {
     "s20_mk2": {"csv": "unsolved_1m_s20_mk2.csv", "n_rows": 14, "chunks": 1},
 }
 
+# arm -> (the 5M-unsolved CSV, its row count, chunk count): the 10M stage.
+# Both lists are DERIVED from the two 5M jsonls by
+# ``experiments/search/make_ac19_10m_lists.py`` (never by hand) and
+# re-derived by ``tests/test_leftovers_5m.py``. The s20_mk2 list is the
+# residue unsolved by every arm at every budget; the greedy list is every
+# greedy 5M failure, 22 of which s20_mk2 had already solved at an earlier
+# rung (3 at 5M/cap 64, 9 at 1M/cap 48, 4 at 100k, 6 at the 10k screen).
+SPEC_10M = {
+    "greedy": {"csv": "unsolved_5m_baseline.csv", "n_rows": 31, "chunks": 1},
+    "s20_mk2": {"csv": "unsolved_5m_s20_mk2.csv", "n_rows": 9, "chunks": 1},
+}
+
 
 U124_CSV = os.path.join(os.path.dirname(os.path.dirname(SCREEN_DIR)),
                         "stable_ac", "fable", "aca_124.csv")
@@ -185,6 +197,40 @@ CAMPAIGNS = {
         # per SOLVED row, of which there have been zero.
         "track_path": False,
     },
+    "ac19_10m": {
+        "label": "AC19 5M residuals at 10M",
+        "spec": SPEC_10M,                 # per arm, like the 5M stage
+        "budget": 10_000_000,
+        "mrl": 64,
+        # Same engine, same arm, same cap: the 10M search's first 5M pops
+        # ARE the 5M search (bit-identical across engine generations, by
+        # the perf_lab gates), and every row here ran 5M at cap 64 without
+        # solving. A solve at or below 5M is therefore the "wrong search is
+        # running" alarm, exactly as 1M at cap 48 is for the 5M stage.
+        "floor": 5_000_000,
+        "floor_mrl": 64,
+        "prefix": "ac19_10m",         # never a leftovers_5m_* or u124_10m_* name
+        "ids_stem": "ac19_10m",
+        "checkpoints": (1_000_000, 5_000_000, 10_000_000),
+        # The est curve reserves 915M states at 10M (91.5 per popped node).
+        # At 5M the est curve reserved 463.8M, and the 5M records say most
+        # rows on both lists outgrew it: all nine s20_mk2 rows peak at the
+        # same 86.7 GB and 24 of the 31 greedy rows at the same 72.9 GB --
+        # the gen-2 grow transient (one "reservation exceeded at
+        # 463,821,9xx states" line each), identical because it is set by
+        # the reservation, not the row -- and none doubled twice, so their
+        # rate lies in (92.8, 185.5) states/node. Est-based sizing at 10M
+        # would send every such row through an ungated grow doubling (1.83B
+        # states: ~117 GiB steady, ~175 GiB transient) on lanes admitted at
+        # 88 GB -- the 5M stage's crash loop again. u124's floor covers the
+        # whole interval with 15% over its top, at the last value that keeps
+        # the hash table at 16 GiB. Applies to both arms.
+        "states_per_node": 214,
+        # AC19 convention: every solve carries its moves. At 214/node with
+        # paths a lane is 133.6 GiB: 5 lanes on the 743 GB box (6 without
+        # paths, at the price of a certification re-run per solved row).
+        "track_path": True,
+    },
 }
 
 
@@ -198,10 +244,11 @@ def resolve_campaign(name):
 def campaign_spec(campaign, arm):
     """``{csv, n_rows, chunks}`` for this arm under this campaign."""
     ckey, c = resolve_campaign(campaign)
-    if c["spec"] is not None:
-        return c["spec"]
+    spec = c["spec"]
+    if spec is not None and "csv" in spec:
+        return spec                         # one list for every arm (u124)
     key, _ = resolve_arm(arm)
-    spec = dict(SPEC_5M[key])
+    spec = dict((spec or SPEC_5M)[key])     # per-arm lists (the AC19 stages)
     spec["csv"] = os.path.join(SCREEN_DIR, spec["csv"])
     return spec
 
@@ -249,6 +296,25 @@ def unsolved_at_1m(arm):
     if not rows:
         raise FileNotFoundError(f"1M jsonl missing or empty: {path}")
     return sorted(r["name"] for r in rows if not r.get("solved"))
+
+
+def unsolved_at_5m(arm):
+    """The arm's 5M leftovers re-derived from the 5M jsonl, sorted by name:
+    one record per name, a finished record beating an error record (the
+    s20_mk2 file carries six crash-loop error records). Refuses a stage
+    with an outstanding error, since that row is neither solved nor
+    unsolved yet."""
+    key, _ = resolve_arm(arm)
+    path = os.path.join(
+        os.path.dirname(SCREEN_DIR), "leftovers_5m",
+        f"leftovers_5m_{key}_b{NODE_BUDGET_5M}_mrl{MRL_5M}.jsonl")
+    rows = read_rows(path)
+    if not rows:
+        raise FileNotFoundError(f"5M jsonl missing or empty: {path}")
+    c = classify_5m(rows, budget=NODE_BUDGET_5M)
+    if c["errored"]:
+        raise RuntimeError(f"{key} 5M stage not settled: {c['errored']}")
+    return sorted(c["unsolved_at_5m"])
 
 
 def out_path_5m(arm, out_dir, chunks, chunk_index,
@@ -1041,21 +1107,24 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     for cp in sorted(c["anytime"]):
         log(f"      <= {cp:>9,} : {c['anytime'][cp]}")
     if c["solved_at_or_below_1m"] and camp["floor"]:
+        fl = camp["floor"]
+        fl_m = f"{fl / 1e6:g}M"
         if mrl == camp["floor_mrl"]:
-            # same cap as the 1M run, so the prefix property applies exactly
+            # same cap as the floor's run, so the prefix property applies
+            # exactly (1M at cap 48 for the 5M stage, 5M at cap 64 for 10M)
             log(f"    !! {len(c['solved_at_or_below_1m'])} row(s) solved at or "
-                f"below 1,000,000 nodes, which the 1M run says is impossible: "
+                f"below {fl:,} nodes, which the {fl_m} run says is impossible: "
                 f"{c['solved_at_or_below_1m'][:5]}")
             log("       -> the search being run is not the one that built this "
                 "list; stop and check the arm, the cap and the row list before "
                 "reading anything above.")
         else:
-            # a different cap is a different search space: the 1M floor was
-            # established at cap 48, so an early solve here is legitimate --
-            # and it is the interesting outcome, not an error
+            # a different cap is a different search space: the floor was
+            # established at another cap, so an early solve here is
+            # legitimate -- and it is the interesting outcome, not an error
             log(f"    note: {len(c['solved_at_or_below_1m'])} row(s) solved at "
-                f"or below 1,000,000 nodes. Legitimate at cap {mrl} (the 1M "
-                f"floor holds only at cap {MAX_RELATOR_LENGTH}); these are "
+                f"or below {fl:,} nodes. Legitimate at cap {mrl} (the {fl_m} "
+                f"floor holds only at cap {camp['floor_mrl']}); these are "
                 f"rows the wider corridor cracked cheaply.")
 
     if write_ids and chunk_index is None and len(rows) == expected:

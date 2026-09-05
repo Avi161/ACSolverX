@@ -27,7 +27,10 @@ CAMPAIGN=${CAMPAIGN:-ac19}
 case "$CAMPAIGN" in
   ac19) BUDGET=${BUDGET:-5000000};  ARMS=${ARMS:-greedy s20_mk2} ;;
   u124) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-s20_mk2} ;;
-  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124)" >&2; exit 2 ;;
+  # the 10M stage of AC19, per arm like the 1M and 5M stages: greedy runs
+  # its own 31 unsolved-at-5M rows, s20_mk2 its own 9, each to its own jsonl
+  ac19_10m) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-greedy s20_mk2} ;;
+  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m)" >&2; exit 2 ;;
 esac
 MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
@@ -108,7 +111,10 @@ for arm in ARMS:
     w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
                            track_path=tp)
     w = min(w, max(1, int((gb - 4.0) // worst)))   # the governor floors worst too
-    rate = 708 if arm == "greedy" else 846          # measured at 1M, this engine
+    # per-lane pops/s: 708/846 were measured at 1M on the nibble engine;
+    # the campaign box measures 3,000-3,600 per lane at 10M on edfa8c68
+    # (u124 rows, longer than AC19's), so 3,000 is the conservative figure
+    rate = 3000
     h = n * (B / rate) / 3600 / max(w, 1)
     tot += h
     print(f"  {arm:<8} {n:>3} rows, {w:>2} workers -> {h:5.1f} h  (worst case)")

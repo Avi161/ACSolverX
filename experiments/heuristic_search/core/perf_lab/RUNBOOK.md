@@ -161,3 +161,84 @@ campaign untouched): both the u124 configuration (cap 64, 1M budget,
 1.97 s, 1.31 GB peak) and the archived configuration (cap 48, 200k
 budget) returned 17,369 / 96 / 2 / 35 exactly, and the replay ended at
 the trivial pair.
+
+## 8. ac19_10m: the AC19 residue at 10M, per arm
+
+The 10M stage of AC19 is shaped exactly like its 1M and 5M stages: each
+arm runs its own unsolved-at-5M rows against its own CSV, into its own
+jsonl. Nothing crosses arms. `CAMPAIGNS["ac19_10m"]` in
+`experiments/search/run_leftovers_5m.py`, `SPEC_10M` beside it.
+
+| arm | rows | list (in `results/heuristic_search/ac19_autmin_screen/`) | out file |
+|---|---:|---|---|
+| greedy | 31 | `unsolved_5m_baseline.csv` | `$OUT/ac19_10m_greedy_b10000000_mrl64.jsonl` |
+| s20_mk2 | 9 | `unsolved_5m_s20_mk2.csv` | `$OUT/ac19_10m_s20_mk2_b10000000_mrl64.jsonl` |
+
+Both lists are written by `experiments/search/make_ac19_10m_lists.py`
+from the two 5M jsonls (never by hand), with `UNSOLVED_AFTER_5M.md`
+beside them naming the rung at which s20_mk2 solved each of the 22
+greedy failures that are not on its own list (3 at 5M, 9 at 1M, 4 at
+100k, 6 at the 10k screen). `python3 -m experiments.search.make_ac19_10m_lists
+--check` reports drift; `tests/test_leftovers_5m.py` re-derives the lists.
+The 9 are a subset of the 31 as presentations, so the two arms meet
+head-to-head on those 9 at equal budget.
+
+Profile on the campaign box (743 GB, 96 threads), both arms identical:
+
+| quantity | value | where |
+|---|---|---|
+| budget, cap | 10,000,000 nodes, 64 | `CAMPAIGNS["ac19_10m"]` |
+| reservation floor | 214 states per popped node (u124's) | same |
+| paths | captured, 8 B/state (AC19 convention: every solve carries its moves) | same |
+| reserve_states | 2,140,016,900 | `plan` prints it |
+| allocation-backed worst per lane | 133.6 GiB (59 B/state + 16 GiB table) | `plan` prints it |
+| child RLIMIT_AS | 143.6 GiB (allocation + 10 GiB margin) | `plan_memory` |
+| lanes | 5 (743 - 4) // 133.6; 6 without paths | governor arithmetic |
+| wrong-search alarm | any solve at or below 5,000,000 nodes at cap 64 | `report` |
+
+Why a floor and not the est curve: est-based sizing at 10M reserves
+915,490,520 states (91.5 per popped node) and admits 8 lanes at 88.4 GB.
+At 5M the est curve reserved 463.8M, and the 5M records say most rows on
+both lists outgrew it -- all 9 s20_mk2 rows peak at the same 86.7 GB and
+24 of the 31 greedy rows at the same 72.9 GB, the gen-2 grow transient,
+one `reservation exceeded at 463,821,9xx states` line each in
+`results/heuristic_search/leftovers_5m/run_log_ac19.log` -- and none
+doubled twice, so those rows discover between 92.8 and 185.5 states per
+popped node. At 10M every one of them would blow through 915M and, with
+no rate floor, take an ungated grow doubling to 1.83B states (~117 GiB
+steady, ~175 GiB during the copy) on lanes admitted at 88 GB: the 5M
+stage's crash loop again. 214 covers the whole interval with 15% over
+its top at the last value that keeps the table at 16 GiB. A row above
+214 dies at reservation exhaustion with its rate recorded and waits for
+the second pass, as on u124 (section 5).
+
+Preview, from the checkout on the box (prints the table above):
+
+    cd ~/ACSolverX && CAMPAIGN=ac19_10m OUT=$HOME/ac19_10m ./experiments/search/run_remote.sh plan
+
+Boot env for the service (`install-service` reads these at write time):
+
+| variable | first pass | second pass (rows that died at exhaustion) |
+|---|---|---|
+| `CAMPAIGN` | `ac19_10m` | `ac19_10m` |
+| `OUT` | `$HOME/ac19_10m` (its own dir; the same dir as u124 is also safe, the prefixes differ) | same |
+| `ARMS` | unset = `greedy s20_mk2`, run in that order by one job; `ARMS=s20_mk2` runs one arm | same |
+| `STATES_PER_NODE` | unset (the campaign carries 214; `=214` is a no-op) | `236` |
+| `RETRY_EXHAUSTED` | unset (nothing to retry) | the names, comma-separated, never `1` in an unattended unit |
+| `BUDGET`, `MRL` | unset (10,000,000 and 64 follow from the campaign) | same |
+
+The job runs greedy's 31 to completion, then s20_mk2's 9, each with its
+own governor; resume skips finished rows per file, and a preemption
+restarts wherever it was. Cost, at one full-budget row per 2,800 to
+3,300 s per lane (3,000 to 3,600 pops/s on edfa8c68, measured on u124
+rows, which are longer than these): greedy 31 rows on 5 lanes is 5.7 h
+worst case, s20_mk2 9 rows is 1.7 h, 7.4 box-hours if no row solves
+early -- about $15 on the $1.98/h spot box, with each second-pass row
+adding one row-time. `plan` prints these hours.
+
+When it lands: copy both jsonls and `run.log` to
+`results/heuristic_search/ac19_10m/`, run the generator's `--check`
+(the lists must still derive), replay-certify every solve as in
+`results/heuristic_search/leftovers_5m/RESULTS.md`, and write the
+ladder line there: greedy 222 -> 134 solved at 1M -> 57 at 5M -> N at
+10M; s20_mk2 39 -> 25 -> 5 -> N.

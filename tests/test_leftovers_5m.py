@@ -2375,3 +2375,227 @@ def test_the_row_hash_equals_the_codes_hash_for_the_same_state():
                     == int(_hash_codes(blob, 3, la, lb))), (w, r1, r2)
             checked += 1
     assert checked > 600, checked
+
+
+# ---------------------------------------------------------------------------
+# ac19_10m: the AC19 residue at 10M, per arm exactly like the 1M and 5M
+# stages. greedy runs its own 31 unsolved-at-5M rows, s20_mk2 its own 9,
+# each against its own residual CSV -- derived from the two 5M jsonls by
+# make_ac19_10m_lists.py and re-derived here, never trusted.
+# ---------------------------------------------------------------------------
+from experiments.search.run_leftovers_5m import SPEC_10M, unsolved_at_5m   # noqa: E402
+from experiments.search import make_ac19_10m_lists as _m10               # noqa: E402
+
+
+@pytest.mark.parametrize("arm", ARM_NAMES)
+def test_the_shipped_5m_csv_is_what_the_5m_jsonl_actually_left_unsolved(arm):
+    rows, path = load_rows_5m(arm, campaign="ac19_10m")
+    assert os.path.basename(path) == SPEC_10M[arm]["csv"]
+    assert len(rows) == SPEC_10M[arm]["n_rows"]
+    assert sorted(r["name"] for r in rows) == unsolved_at_5m(arm)
+    assert all(r["name"] and r["r1"] and r["r2"] for r in rows)
+
+
+def test_the_10m_lists_are_byte_for_byte_the_generators_output():
+    """The CSVs, the .txt name lists and the accounting page are what the
+    script writes from the jsonls; a hand edit to any of them fails here."""
+    d = _m10.derive()
+    for arm in ARM_NAMES:
+        rows, path = load_rows_5m(arm, campaign="ac19_10m")
+        assert [r["name"] for r in rows] == [r["name"] for r in d["rows"][arm]]
+    for p, content in _m10.outputs(d).items():
+        assert os.path.exists(p), p
+        with open(p) as fh:
+            assert fh.read() == content, p
+
+
+def test_the_nine_are_the_residue_unsolved_by_every_arm_at_every_budget():
+    """Every greedy 5M failure that is not an s20_mk2 5M failure is a row
+    s20_mk2 solved at an earlier rung of the ladder -- so the 9 are the
+    residue, and the 22 others are not "unsearched", they are solved.
+    ac19_33435 (the one row s20_mk2 never searched) is not on either list:
+    greedy solved it at 5M, so the common-denominator exclusion is moot."""
+    d = _m10.derive()
+    g = [r["name"] for r in d["rows"]["greedy"]]
+    s = [r["name"] for r in d["rows"]["s20_mk2"]]
+    assert len(g) == 31 and len(s) == 9 and set(s) < set(g)
+    assert g == sorted(g) and s == sorted(s)
+    c = d["counts"]
+    assert (c["greedy_rows"], c["greedy_solved"], c["greedy_unsolved"]) == (88, 57, 31)
+    assert (c["s20_rows"], c["s20_solved"], c["s20_unsolved"]) == (14, 5, 9)
+    acc = {a["name"]: a for a in d["accounting"]}
+    assert set(acc) == set(g)
+    assert {n for n, a in acc.items() if a["status"] == "unsolved"} == set(s)
+    assert all(a["status"] == "solved" for n, a in acc.items() if n not in s)
+    assert c["by_rung"] == {"5M": 3, "1M": 9, "100k": 4, "10k": 6}
+    assert "ac19_33435" not in acc
+    # the three s20_mk2 solved at 5M carry their node counts from that jsonl
+    assert {n for n, a in acc.items() if a["rung"] == "5M"} == {
+        "ac19_12445", "ac19_31298", "ac19_54835"}
+    assert all(a["nodes"] and a["nodes"] <= 5_000_000 for a in acc.values()
+               if a["rung"] in ("5M", "1M", "100k"))
+
+
+def test_the_generator_refuses_an_unsettled_5m_stage(tmp_path):
+    """An outstanding error record is neither solved nor unsolved."""
+    import shutil
+    src = _m10.RESULTS_5M_DIR
+    d = tmp_path / "leftovers_5m"
+    d.mkdir()
+    for f in _m10.JSONL_5M.values():
+        shutil.copy(os.path.join(src, f), d / f)
+    with open(d / _m10.JSONL_5M["s20_mk2"], "a") as fh:
+        fh.write(json.dumps({"name": "ac19_7284", "arm": "s20_mk2",
+                             "solved": False, "error": "worker died",
+                             "budget": 5_000_000}) + "\n")
+    # a later error record after a finished one is still settled ...
+    _m10.derive(results_5m_dir=str(d))
+    with open(d / _m10.JSONL_5M["s20_mk2"], "a") as fh:
+        fh.write(json.dumps({"name": "ac19_99999", "arm": "s20_mk2",
+                             "solved": False, "error": "worker died",
+                             "budget": 5_000_000}) + "\n")
+    # ... a name with ONLY an error record is not
+    with pytest.raises(RuntimeError, match="not settled"):
+        _m10.derive(results_5m_dir=str(d))
+
+
+def test_the_ac19_10m_campaign_is_per_arm_at_ten_million_and_cap_64():
+    _, c = resolve_campaign("ac19_10m")
+    assert c["budget"] == 10_000_000 and c["mrl"] == 64
+    assert c["spec"] is SPEC_10M
+    assert campaign_spec("ac19_10m", "greedy")["n_rows"] == 31
+    assert campaign_spec("ac19_10m", "s20_mk2")["n_rows"] == 9
+    assert campaign_spec("ac19_10m", "greedy")["csv"].endswith(
+        "unsolved_5m_baseline.csv")
+    # the two earlier campaigns resolve exactly as before
+    assert campaign_spec("ac19", "greedy")["csv"].endswith("unsolved_1m_baseline.csv")
+    assert campaign_spec("u124", "s20_mk2")["csv"].endswith("aca_124.csv")
+
+
+def test_the_10m_stage_alarms_on_a_solve_at_or_below_5m_at_cap_64(tmp_path, capsys):
+    """Same engine, same arm, same cap: the 10M search's first 5M pops ARE
+    the 5M search, and every row here ran 5M at cap 64 unsolved."""
+    _, c = resolve_campaign("ac19_10m")
+    assert c["floor"] == 5_000_000 and c["floor_mrl"] == 64
+    out = str(tmp_path)
+    rows = load_rows_5m("s20_mk2", campaign="ac19_10m")[0]
+    with open(out_path_5m("s20_mk2", out, 1, 1, 10_000_000, 64,
+                          campaign="ac19_10m"), "w") as fh:
+        for i, r in enumerate(rows):
+            fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
+                                 "solved": i == 0,
+                                 "nodes_explored": 4_900_000 if i == 0
+                                 else 10_000_000, "path_length": 9}) + "\n")
+    report_5m("s20_mk2", out, chunks=1, budget=10_000_000, mrl=64,
+              campaign="ac19_10m", log=print)
+    text = capsys.readouterr().out
+    assert "which the 5M run says is impossible" in text
+    assert "1,000,000 nodes, which" not in text
+    # a solve past the floor is simply the result, and the ids files carry
+    # the campaign's own stem
+    with open(out_path_5m("s20_mk2", out, 1, 1, 10_000_000, 64,
+                          campaign="ac19_10m"), "w") as fh:
+        for i, r in enumerate(rows):
+            fh.write(json.dumps({"name": r["name"], "arm": "s20_mk2",
+                                 "solved": i == 0,
+                                 "nodes_explored": 6_000_000 if i == 0
+                                 else 10_000_000, "path_length": 9}) + "\n")
+    report_5m("s20_mk2", out, chunks=1, budget=10_000_000, mrl=64,
+              campaign="ac19_10m", log=print)
+    text = capsys.readouterr().out
+    assert "impossible" not in text
+    assert "rows complete        : 9/9" in text
+    assert "solved at 10,000,000  : 1" in text
+    assert "still unsolved       : 8" in text
+    assert (tmp_path / "still_unsolved_ac19_10m_s20_mk2.txt").exists()
+    assert not (tmp_path / "still_unsolved_5m_s20_mk2.txt").exists()
+    assert not (tmp_path / "still_unsolved_u124_10m_s20_mk2.txt").exists()
+
+
+def test_the_5m_stage_alarm_text_is_unchanged():
+    """The floor text now follows the campaign; the 5M stage's must read
+    exactly as it always has (its pin above) -- 1M at cap 48."""
+    _, a = resolve_campaign("ac19")
+    assert a["floor"] == 1_000_000 and a["floor_mrl"] == FLOOR_CAP
+
+
+def test_no_two_campaigns_share_an_output_file():
+    names = {k: out_path_5m("s20_mk2", "/o", 1, 1, CAMPAIGNS[k]["budget"],
+                            CAMPAIGNS[k]["mrl"], campaign=k)
+             for k in CAMPAIGNS}
+    assert len(set(names.values())) == len(CAMPAIGNS)
+    assert names["ac19_10m"].endswith("ac19_10m_s20_mk2_b10000000_mrl64.jsonl")
+    g = out_path_5m("greedy", "/o", 1, 1, 10_000_000, 64, campaign="ac19_10m")
+    assert g.endswith("ac19_10m_greedy_b10000000_mrl64.jsonl")
+    # the sibling check is keyed on the prefix, so a u124 or 5M-stage file
+    # in the same out dir is never mistaken for this campaign's history
+    assert not CAMPAIGNS["ac19_10m"]["prefix"].startswith("leftovers_5m")
+    assert CAMPAIGNS["ac19_10m"]["prefix"] != CAMPAIGNS["u124"]["prefix"]
+
+
+def test_a_u124_or_5m_file_beside_the_10m_out_is_not_a_sibling(tmp_path):
+    import experiments.search.run_leftovers_5m as r5
+    for p in ("u124_10m_s20_mk2_b10000000_mrl64.jsonl",
+              "leftovers_5m_s20_mk2_b5000000_mrl64.jsonl"):
+        with open(tmp_path / p, "w") as fh:
+            fh.write(json.dumps({"name": "x", "solved": False}) + "\n")
+    out = out_path_5m("s20_mk2", str(tmp_path), 1, 1, 10_000_000, 64,
+                      campaign="ac19_10m")
+    assert r5._sibling_results(out, CAMPAIGNS["ac19_10m"]["prefix"],
+                               "s20_mk2") == []
+
+
+def test_the_10m_stage_takes_the_u124_floor_with_paths_on_both_arms():
+    """Both lists outgrew the est curve at 5M (the one-grow transient on
+    24 of 31 greedy rows and all 9 s20_mk2 rows), so est-based sizing at
+    10M would repeat the 5M crash loop. 214/node with paths: 133.6 GiB a
+    lane, five lanes on the 743 GB box, reservation 2,140,016,900."""
+    from experiments.search.run_leftovers_5m import (
+        RamGovernor, _reserved_worst_gb, plan_memory)
+    _, c = resolve_campaign("ac19_10m")
+    assert c["states_per_node"] == 214 and c["track_path"] is True
+    assert CAMPAIGNS["ac19"]["states_per_node"] is None      # 5M stage untouched
+    if not HAVE_HCOMPACT:
+        return
+    _, res = plan_memory(10_000_000, 64, available_gb=743, states_per_node=214,
+                         log=lambda *a: None, track_path=True)
+    assert res == 214 * 10_000_000 + 4 * 65 ** 2 == 2_140_016_900
+    worst = _reserved_worst_gb(res, 64, True)
+    assert abs(worst - 133.6) < 0.05
+    gov = RamGovernor(10_000_000, 64, cpu_cap=96, track_path=True, worst_gb=worst)
+    assert gov.capacity([], free_gb=743) == 5
+    # the est-based alternative: 915M states, 88.4 GB, eight lanes admitted
+    # against a number every grown row would blow through
+    _, est = plan_memory(10_000_000, 64, available_gb=743, states_per_node=None,
+                         log=lambda *a: None, track_path=True)
+    assert est == 915_490_520 and est / 10_000_000 < 92
+
+
+def test_one_env_var_selects_the_whole_ac19_10m_job(tmp_path):
+    out = str(tmp_path)
+    p = _remote("job", OUT=out, CAMPAIGN="ac19_10m")
+    assert p.returncode == 0, p.stderr
+    job = open(os.path.join(out, "_job.sh")).read()
+    assert "--campaign ac19_10m" in job
+    assert "--budget 10000000" in job and "--mrl 64" in job
+    assert "--chunks 1 --chunk-index 1" in job
+    assert "for a in greedy s20_mk2" in job      # both arms, greedy first
+    assert 'COMPLETE_ac19_10m"' in job
+    # the arm list is still an override: s20_mk2 alone, or greedy alone
+    p = _remote("job", OUT=out, CAMPAIGN="ac19_10m", ARMS="s20_mk2")
+    assert "for a in s20_mk2" in open(os.path.join(out, "_job.sh")).read()
+
+
+def test_the_ac19_10m_plan_on_the_campaign_box():
+    """What `CAMPAIGN=ac19_10m ./run_remote.sh plan` prints on the 743 GB,
+    96-core box: the floored reservation, the paths-on worst, five lanes
+    for each arm, and the row counts read off the shipped lists."""
+    if not HAVE_HCOMPACT:
+        pytest.skip("engine not on this branch")
+    out = _remote("plan", PLAN_GB="743", PLAN_CORES="96",
+                  CAMPAIGN="ac19_10m").stdout
+    assert "budget 10,000,000 @ cap 64" in out
+    assert "133.6 GB allocation-backed worst (paths captured)" in out
+    assert "greedy    31 rows,  5 workers" in out
+    assert "s20_mk2    9 rows,  5 workers" in out
+    assert "reserve_states  : 2,140,016,900 (full)" in out

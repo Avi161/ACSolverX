@@ -54,3 +54,24 @@ cap 64. The remaining hard core — `ac19_16286`, `ac19_27254`,
 `ac19_27683` and `ac19_28930` (nearly identical presentations) solved at
 the identical node count 1,383,279 — the search is deterministic and the
 pair's corridors coincide.
+
+## Next: the 10M stage (`CAMPAIGN=ac19_10m`), per arm
+
+Both arms go to the same 10M budget on the same underlying orbit set,
+each against its own residual list, so the baseline comparison stays at
+equal budget. The lists are derived from the two jsonls above by
+`experiments/search/make_ac19_10m_lists.py` (accounting in
+`../ac19_autmin_screen/UNSOLVED_AFTER_5M.md`), runbook in
+`experiments/heuristic_search/core/perf_lab/RUNBOOK.md` section 8.
+
+| arm | 100k residue | solved at 1M (cap 48) | solved at 5M (cap 64) | to 10M | list |
+|---|---:|---:|---:|---:|---|
+| greedy | 222 | 134 | 57 | 31 | `unsolved_5m_baseline.csv` |
+| s20_mk2 | 39 | 25 | 5 | 9 | `unsolved_5m_s20_mk2.csv` |
+
+Of greedy's 31, the 22 not on the s20_mk2 list are rows s20_mk2 already
+solved: 3 at 5M (`ac19_12445`, `ac19_31298`, `ac19_54835`), 9 at 1M, 4 at
+100k and 6 at the 10k screen -- the "19 solved at <= 1M" above, split by
+rung. The 9 are a subset of the 31 as presentations, so the two arms meet
+head-to-head on them. 40 row-runs; the 10M column of this table is filled
+in when the campaign lands.
