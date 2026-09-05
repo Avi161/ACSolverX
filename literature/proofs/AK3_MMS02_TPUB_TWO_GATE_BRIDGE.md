@@ -9954,6 +9954,76 @@ through the existing sufficient corridor. The preimage shift does not
 contradict the nonconjugacy of $Px$ to $x$: its target is $Qx$. The bridge,
 stable AK(3), ordinary AK(3), and the general conjectures remain open.
 
+### 6.88. A literal squaring-map form of the same target
+
+The short target (527) admits a structured, nonmonotone continuation.
+This is a change of coordinates and rows for the same sufficient target,
+not an additional residual family. In this subsection $A,B$ initially
+denote the two rows of (527), not the MMS02 defining rows. Put
+$M=q p^3$, $L=q^{-1}pq$, and $C=p^{-2}M^2p^{-1}q^{-1}$.
+Then $L=MA$ freely, and
+
+\[
+ BC^{-1}={}^{p^{-2}M}A\;{}^{p^{-2}M^2}A,
+ \qquad {}^g h:=ghg^{-1}.
+ \tag{528}
+\]
+
+Consequently the restored $A$-donor replaces $B$ by $C$. Apply the basis
+substitution $q\mapsto rp^{-3}$, fixing $p$. The two rows become
+$A_0=\mathtt{RpppRprPPP}$ and $C_0=\mathtt{PPrrppR}$. Invert and
+conjugate $C_0$ to
+$H=p^2rp^{-2}r^{-2}$. Conjugate $A_0$ by the inverse of its prefix
+$\mathtt{RpppR}$ to $K=\mathtt{prPPPRpppR}$. Put
+$Y=p^2Kp^{-2}$ and $K_1=\mathtt{prrPRpRR}$. The second donor identity is
+
+\[
+ YK_1^{-1}={}^{p}H\;{}^{K_1}H^{-1}.
+ \tag{529}
+\]
+
+Thus the pair becomes $(K_1,H)$. Adjoin the defining row
+$D=prp^{-1}b^{-1}$ by the established stable substitution expansion.
+Put $H_2=pbp^{-1}r^{-2}$ and $K_2=b^2r^{-1}pr^{-2}$.
+The last two donor corrections are
+
+\[
+ HH_2^{-1}={}^{p}D,\qquad
+ K_1K_2^{-1}=D\;{}^{b}D.
+ \tag{530}
+\]
+
+Conjugating $K_2$ by $r^{-2}$ gives $J=r^{-2}b^2r^{-1}p$.
+Reorder the rows as $(D,H_2,J)$ and rename $r=a$, $p=t$.
+
+**Theorem 6.83 (squaring-map representative).** The target (527), and
+hence $P_T$, is stably AC-equivalent to the explicit rank-three tuple
+
+\[
+ \boxed{(ta t^{-1}b^{-1},\quad tb t^{-1}a^{-2},\quad
+                  a^{-2}b^2a^{-1}t).}
+ \tag{531}
+\]
+
+**Proof.** Identities (528)--(530) are literal free-group identities.
+For each equality $UV^{-1}=N$, left multiplication by $N^{-1}$ changes
+the recipient $U$ into $V$. Every factor of $N$ uses a distinct *row*
+from that recipient, restored after use. The intervening conjugations,
+basis substitution, defining-row expansion and final permutation are the
+displayed stable-AC operations. The function
+`decide_squaring_hnn_target()` in the certificate of Section 6.87 pins
+each intermediate word and all four donor products; two further independent
+tests replay the identities and the final orientation. $\square$
+
+The first two rows exhibit the injective endomorphism
+$\psi(a)=b$, $\psi(b)=a^2$. In particular $\psi^2(a)=a^2$ and
+$\psi^2(b)=b^2$: its second iterate doubles each signed letter of a
+reduced base word without cancellation. The live row is $P_0t$, with
+$P_0=a^{-2}b^2a^{-1}$, not $P_0^{-1}t$. Killing that row is the equation
+$t=ab^{-2}a^2$; this group equation alone is not an AC elimination of the
+other rows. No trivialization of (531), additional exclusion ledger,
+MMS02 bridge, stable AK(3), or ordinary AK(3) result is asserted.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between

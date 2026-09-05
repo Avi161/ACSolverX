@@ -199,3 +199,62 @@ def decide_preimage_killer() -> PreimageKillerDecision:
         product_floor, transitions, transitions[-1].target_pair, transitions[-1].floor,
         "TARGET_STABLE_PREIMAGE_KILLER_FLOOR_15",
     )
+
+
+@dataclass(frozen=True)
+class SquaringHNNDecision:
+    stage_words: tuple[tuple[str, str], ...]
+    donor_defects: tuple[str, ...]
+    donor_products: tuple[str, ...]
+    final_tuple: tuple[str, str, str]
+    phi_images: tuple[str, str]
+    killer_prefix: str
+    verdict: str
+
+
+def decide_squaring_hnn_target() -> SquaringHNNDecision:
+    a_row, b_row = PINNED_TRANSITIONS[-1].target_pair
+    m_word = "qppp"
+    c_row = free_reduce("PP" + m_word + m_word + "PQ")
+    a0 = apply_images(a_row, {"p": "p", "q": "rPPP"})
+    c0 = apply_images(c_row, {"p": "p", "q": "rPPP"})
+    h_row = free_reduce("pp" + inverse(c0) + "PP")
+    prefix = "RpppR"
+    k_row = free_reduce(inverse(prefix) + a0 + prefix)
+    y_row = free_reduce("pp" + k_row + "PP")
+    k1 = "prrPRpRR"
+    d_row, h2, k2 = "prPB", "pbPRR", "bbRpRR"
+    j_row = free_reduce("RR" + k2 + "rr")
+    stage_words = (
+        ("A", a_row), ("B", b_row), ("M", m_word), ("C", c_row),
+        ("A0", a0), ("C0", c0), ("H", h_row), ("prefix", prefix),
+        ("K", k_row), ("Y", y_row), ("K1", k1), ("D", d_row),
+        ("H2", h2), ("K2", k2), ("J", j_row),
+    )
+    expected = {
+        "C": "PPqpppqppQ", "A0": "RpppRprPPP", "C0": "PPrrppR",
+        "H": "pprPPRR", "K": "prPPPRpppR", "J": "RRbbRp",
+    }
+    if any(dict(stage_words)[name] != word for name, word in expected.items()):
+        raise AssertionError("the squaring-HNN stage words drifted")
+    donor_defects = tuple(free_reduce(left + inverse(right)) for left, right in (
+        (b_row, c_row), (y_row, k1), (h_row, h2), (k1, k2),
+    ))
+    first_conjugator, second_conjugator = "PP" + m_word, "PP" + m_word + m_word
+    donor_products = tuple(map(free_reduce, (
+        first_conjugator + a_row + inverse(first_conjugator)
+        + second_conjugator + a_row + inverse(second_conjugator),
+        "p" + h_row + "P" + k1 + inverse(h_row) + inverse(k1),
+        "p" + d_row + "P",
+        d_row + "b" + d_row + "B",
+    )))
+    if donor_defects != donor_products:
+        raise AssertionError("the squaring-HNN donor identities drifted")
+    final_tuple = tuple(apply_images(row, {"p": "t", "r": "a", "b": "b"})
+                        for row in (d_row, h2, j_row))
+    if final_tuple != ("taTB", "tbTAA", "AAbbAt"):
+        raise AssertionError("the squaring-HNN target orientation drifted")
+    return SquaringHNNDecision(
+        stage_words, donor_defects, donor_products, final_tuple,
+        ("b", "aa"), "AAbbA", "TARGET_STABLE_SQUARING_HNN_KILLER_GATE",
+    )

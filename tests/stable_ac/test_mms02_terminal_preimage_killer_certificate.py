@@ -2,7 +2,8 @@ from dataclasses import replace
 
 from experiments.stable_ac.mms02_terminal_preimage_killer_certificate import (
     EXPECTED_BASE_PAIR, EXPECTED_PRODUCT_MINIMUM, PINNED_FACTOR_PREFIXES,
-    PINNED_TRANSITIONS, decide_preimage_killer, replay_cyclic_continuation,
+    PINNED_TRANSITIONS, decide_preimage_killer, decide_squaring_hnn_target,
+    replay_cyclic_continuation,
     rho_factors, verify_rho_factors,
 )
 
@@ -110,3 +111,43 @@ def test_pinned_cyclic_continuation_has_independent_literal_products():
         assert sum(map(len, pair)) == transition.floor
     assert replay_cyclic_continuation() == PINNED_TRANSITIONS
     assert tuple(step.floor for step in PINNED_TRANSITIONS) == (34, 33, 24, 23, 21, 20, 15)
+
+
+def test_squaring_hnn_has_four_independent_literal_donor_identities():
+    a_row, b_row = "PPPQQpq", "PPQppqPQ"
+    m_word, c_row = "qppp", "PPqpppqppQ"
+    h_row, k1, d_row, h2, k2 = "pprPPRR", "prrPRpRR", "prPB", "pbPRR", "bbRpRR"
+    y_row = reduce_word("pp" + "prPPPRpppR" + "PP")
+    first, second = "PP" + m_word, "PP" + m_word + m_word
+    assert reduce_word("PP" + m_word + m_word + "PQ") == c_row
+    defects = tuple(reduce_word(left + invert(right)) for left, right in (
+        (b_row, c_row), (y_row, k1), (h_row, h2), (k1, k2),
+    ))
+    products = tuple(map(reduce_word, (
+        first + a_row + invert(first) + second + a_row + invert(second),
+        "p" + h_row + "P" + k1 + invert(h_row) + invert(k1),
+        "p" + d_row + "P", d_row + "b" + d_row + "B",
+    )))
+    assert defects == products
+    decision = decide_squaring_hnn_target()
+    assert decision.donor_defects == defects
+    assert decision.donor_products == products
+
+
+def test_squaring_hnn_basis_conjugations_and_killer_orientation_are_literal():
+    decision = decide_squaring_hnn_target()
+    words = dict(decision.stage_words)
+    images = {"p": "p", "P": "P", "q": "rPPP", "Q": "pppR"}
+    assert reduce_word("".join(images[letter] for letter in "PPPQQpq")) == "RpppRprPPP"
+    assert reduce_word("".join(images[letter] for letter in "PPqpppqppQ")) == "PPrrppR"
+    assert reduce_word("pp" + invert("PPrrppR") + "PP") == words["H"] == "pprPPRR"
+    assert reduce_word(invert("RpppR") + "RpppRprPPP" + "RpppR") == words["K"] == "prPPPRpppR"
+    assert reduce_word("pp" + words["K"] + "PP") == words["Y"]
+    assert reduce_word("RR" + "bbRpRR" + "rr") == words["J"] == "RRbbRp"
+    rename = str.maketrans("pPrRbB", "tTaAbB")
+    assert tuple(row.translate(rename) for row in ("prPB", "pbPRR", "RRbbRp")) == decision.final_tuple
+    assert decision.final_tuple == ("taTB", "tbTAA", "AAbbAt")
+    assert decision.phi_images == ("b", "aa")
+    assert decision.final_tuple[2] == decision.killer_prefix + "t"
+    assert decision.killer_prefix == "AAbbA"
+    assert decision.killer_prefix != invert("AAbbA")
