@@ -203,3 +203,12 @@ cannot decrease the unsigned b-letter count, while the exact required
 prefix adds one. This closes all slopes without a quotient tower. Prove
 the block cancellations universally and include a changed-prefix positive
 control; a count inequality for one pinned coefficient is not an AC invariant.
+
+### [2026-09-05] Resolve filenames and publication versions before auditing
+
+[TRAP] Guessed paths `literature/sources` and `AK3_FULL_LIFT_BOUNDARY.md`
+did not exist; `rg --files` locates the actual depth-four audit and boundary
+note. The audit was already complete. Also distinguish Lisitsa's original
+preprint claim from the corrected final journal abstract, which expressly
+does not claim stable AK3. Locate authoritative paths first and check version
+status before repeating an audit or attributing an obsolete conclusion.

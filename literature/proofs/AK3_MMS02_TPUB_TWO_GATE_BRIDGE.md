@@ -9139,6 +9139,17 @@ Andrews--Curtis, or Andrews--Curtis claim.
 
 ### 6.77. The published stable-AK(3) composition has a missing first leg
 
+**Version distinction (checked 5 September 2026).** The attribution of a
+stable-triviality claim below concerns the original preprint, not the revised
+journal conclusion. The indexed abstract of Lisitsa's final
+[Journal of Computational Algebra article, volume 16, 100041](https://doi.org/10.1016/j.jaca.2025.100041)
+explicitly says that the earlier supporting theorem was incorrect and that
+the article does not establish stable AC-triviality of AK(3). This is consistent
+with the missing-first-leg audit below; the final publication must not be cited as
+still claiming a resolution. The publisher's full-text endpoint returned
+HTTP 403 in this check, so no new claim about its internal move tables is
+inferred from the abstract.
+
 The length-\(25\) presentation \(P_{25}\) in (277) is exactly the
 presentation denoted \(P\) in Section 3 of Lisitsa,
 [“Stable Andrews--Curtis trivialization of AK(3) revisited”](https://arxiv.org/abs/2501.18601).
