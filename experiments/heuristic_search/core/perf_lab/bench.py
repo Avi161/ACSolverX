@@ -76,6 +76,11 @@ ENGINE_MODULES = {
     # is the same engine text importing frozen copies of those kernels
     # (perf_lab/frozen/, at 9b98e313): the yardstick for kernel work.
     "frozen": "experiments.heuristic_search.core.perf_lab.frozen.hcompact_frozen",
+    # "current" is the build the campaign runs today (a1d1be23: 2-bit rows,
+    # the allocation-free expansion kernel, the uint64-indexed hash), engine
+    # and kernels all frozen verbatim under perf_lab/frozen2/. Every ratio
+    # reported after that commit is candidate over this.
+    "current": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
 }
 
 
@@ -344,7 +349,8 @@ def main_bench(argv=None):
                 "fingerprint": fps[0] if len(fps) == 1 else fps,
             }
         ref = ("baseline" if "baseline" in row_agg
-               else "frozen" if "frozen" in row_agg else None)
+               else "frozen" if "frozen" in row_agg
+               else "current" if "current" in row_agg else None)
         if ref is not None and "candidate" in row_agg:
             row_agg["ratio_candidate_over_baseline_median_pops_per_second"] = (
                 row_agg["candidate"]["median_pops_per_second"]

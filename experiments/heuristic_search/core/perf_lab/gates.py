@@ -57,12 +57,16 @@ _BASELINE_MODULES = {
     # hfast.py, because then "baseline" moves with the candidate and proves
     # nothing about the kernel edit.
     "frozen": "experiments.heuristic_search.core.perf_lab.frozen.hcompact_frozen",
+    # the build the campaign runs today (a1d1be23), engine and kernels
+    # frozen verbatim under perf_lab/frozen2/: --frozen2
+    "frozen2": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
 }
 
 
 def _baseline_module(args):
     import importlib
-    key = "frozen" if args.frozen else "baseline"
+    key = ("frozen2" if args.frozen2 else "frozen" if args.frozen
+           else "baseline")
     return importlib.import_module(_BASELINE_MODULES[key]), key
 
 
@@ -340,6 +344,10 @@ def main(argv=None):
                     help="compare against the FULLY frozen engine (frozen kernels "
                          "too); required to certify a change to greedy_baseline.py "
                          "or hfast.py")
+    ap.add_argument("--frozen2", action="store_true",
+                    help="compare against the build the campaign runs today "
+                         "(a1d1be23, engine and kernels frozen under "
+                         "perf_lab/frozen2/)")
     args = ap.parse_args(argv)
 
     purged = purge_numba_cache()
