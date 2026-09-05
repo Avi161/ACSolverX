@@ -534,3 +534,80 @@ full corridor in a different construction. The balanced trivial-group
 hypothesis remains required for the separate stable ambient simulation.
 The transport route stays frozen, with no new residual ledger and no
 bridge, stable AK3, or ordinary AK3 conclusion.
+
+## A single defining tag preserves the AC-plus-automorphism orbit
+
+Let $F=F(X)$, where $X$ consists of $n$ generators, and let
+$r,s_2,\ldots,s_n,u,v\in F$. Introduce a fresh generator $t$ and put
+
+\[
+h=utv,\qquad p=rh=rutv.
+\]
+
+**Lemma.** At the exact checkpoint
+$(p,s_2,\ldots,s_n,h)$, suppose that $p$ eliminates an original generator
+occurring exactly once, with exponent $\pm1$, in the freely reduced word
+$p$. Alternatively, suppose a certified free-basis complement for $p$ in
+$F(X,t)$ is supplied. After deleting the defining row $p$ and its generator,
+the remaining presentation is a common basis transport of
+$(r^{-1},s_2,\ldots,s_n)$. Identifying the resulting free basis with $X$,
+the endpoint therefore lies in the AC-plus-automorphism orbit of
+$(r,s_2,\ldots,s_n)$, allowing row inversion and reordering.
+
+**Proof.** Set
+
+\[
+H=F(X,t)/\langle\!\langle p\rangle\!\rangle.
+\]
+
+The homomorphism $F(X,t)\to F(X)$ fixing every element of $X$ and sending
+$t$ to $u^{-1}r^{-1}v^{-1}$ kills $p$. It therefore induces $H\to F(X)$.
+The inclusion of $F(X)$ induces its inverse: the composite on $F(X)$
+fixes $X$, while the composite on $H$ also fixes $t$ because
+$t=u^{-1}r^{-1}v^{-1}$ in $H$. Thus $H\cong F(X)$, with $X$ a free basis,
+and the image of $h=utv$ is exactly $r^{-1}$.
+
+Solving the stipulated single occurrence of the eliminated original
+generator gives a free basis $Y$ for the same quotient $H$. Under the
+alternative hypothesis, the images of the supplied basis complement give
+such a basis $Y$. Consequently all surviving rows are expressed in $Y$
+by one common basis change from their expressions in $X$, which are
+$s_2,\ldots,s_n,r^{-1}$. Reorder these rows and invert the first row to
+compare with the original tuple. After identifying $Y$ with $X$, the
+common basis change is an automorphism of the rank-$n$ free group.
+$\square$
+
+This algebraic statement does not require the group presented by the full
+tuple to be trivial. It does not assert that $h=utv$ can be constructed by
+legal moves for arbitrary $u,v$: legality of reaching the checkpoint must
+be separately certified. A stable-AC interpretation likewise requires the
+relevant move certificates and hypotheses for the defining deletion and
+ambient basis transport.
+
+The worked regression
+[`test_rejected_half_twist_tag_returns_literally_to_ak3`](../../tests/stable_ac/test_mms02_terminal_preimage_killer_certificate.py)
+pins the half-twist-tag construction and its exact return. It is a finite
+control, not the proof of this all-word lemma.
+
+**Corollary (fixed-pivot compression).** After the displayed checkpoint,
+let a finite AC path leave $p$ fixed: it is never a recipient and is not
+permuted. Temporary conjugation or inversion of $p$ for use as a donor is
+allowed provided it is restored. This path projects to an ordinary AC path
+on the remaining $n$ rows in $H$. Final defining-$p$ elimination changes
+only the common free basis used to express those rows.
+
+**Proof.** Under the quotient map to $H$, any donation of a conjugate of
+$p^{\pm1}$ is the identity. Conjugation and inversion of a remaining row
+project to the corresponding ordinary AC moves, and its conjugating word
+projects to a word in $H$. Multiplication using another remaining row
+likewise projects to ordinary row multiplication; reordering remaining
+rows is unchanged. Omit the projected identity steps. The defining-row
+deletion then expresses this projected AC path in the deletion basis $Y$
+instead of $X$, as in the lemma. $\square$
+
+These statements do not preclude shorter or useful representatives within
+the same orbit, and the corollary does not obstruct solving the projected
+AC problem. Fixed-pivot interleavings after formation of $p$ are covered;
+modifications before that checkpoint or changes to the pivot are not.
+Tags with multiple occurrences of $t$ are also outside the lemma. The route
+remains frozen; no new ledger or AK3 conclusion is introduced.
