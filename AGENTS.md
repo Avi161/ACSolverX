@@ -68,3 +68,13 @@ compare its eliminated endpoint to prior certified representatives and
 pin an explicit equivalence if it returns. Preserve the valid identities,
 but freeze a demonstrated return cycle instead of counting coefficient
 shortening as another net presentation reduction.
+
+### [2026-09-05] Proof-only dependencies and literal data shape
+
+[TRAP] Importing `rank3_whitehead.py` loads `one_edge.py` and then
+`acmoves.py`, requiring NumPy and Numba even for pure word reductions.
+The standard proof runtime lacks NumPy; the bundled runtime has NumPy
+but lacks Numba. Check this chain before launching a probe; do not install
+packages or repeatedly switch runtimes for a pure combinatorial check.
+`LinkData.vertex_darts` is a dictionary keyed by germ, not a sequence of
+stars: access `vertex_darts[v]` explicitly when inspecting degrees.

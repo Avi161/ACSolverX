@@ -331,3 +331,44 @@ correctly reports this support as unsupported. The probe does **not**
 exhaust general embeddings for this nonrigid support and proves no
 nonthickenability theorem. It supplies no reason to reopen the frozen
 transport route or to claim stable AK3.
+
+### Complete exact-complex rotation audit
+
+The preceding success-only check can be completed for this one small tuple
+without a block assumption. Rename $(a,b,u)$ to $(x,z,t)$, giving the
+literal rows `txTZ`, `tzTZZxZ`, `zzXZt`. Their six germ degrees are
+$(3,3,8,8,5,5)$. After fixing the first dart in each cyclic order at
+the three positive germs, the generator-end reversal uniquely determines
+the three negative orders. Thus all compatible orientable rotations are
+enumerated by
+
+\[
+ (3-1)!(8-1)!(5-1)!=241920
+\]
+
+choices. The literal corner involution $A$, generator involution $B$,
+paired germ stars, dart partition and connectedness are checked before
+counting cycles of $\sigma A$. The complete face-count histogram is
+
+| faces | rotations |
+| --- | ---: |
+| 2 | 115836 |
+| 4 | 109814 |
+| 6 | 15840 |
+| 8 | 424 |
+| 10 | 6 |
+
+For six vertices and sixteen edges, a sphere would require twelve faces.
+The maximum Euler characteristic is instead $6-16+10=0$, attained by six
+rotations, so the minimum compatible orientable genus is exactly one.
+The independent replay reconstructs the dart data from the literal words
+and recounts all rotations using a separate cycle counter. As a positive
+control, the connected triangular-basis tuple `(xzt,zt,t)` has two choices,
+both spherical. The pinned certificate is
+`mms02_boundary_exact_rotation_certificate.py`.
+
+This completes the orientable rotation check for this exact complex only.
+It excludes the direct orientable-thickening certificate at this endpoint;
+it is not invariant under AC moves and does not restrict other stabilized
+representatives. No new transport variants or residual categories are
+opened, and no AK3 obstruction follows.
