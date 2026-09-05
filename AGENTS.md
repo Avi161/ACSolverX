@@ -1,5 +1,15 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Identify the terminal presentation after a strict reduction
+
+[WORKS] The length-fourteen target in
+`literature/proofs/AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md` Section 6.89
+has a trefoil marking that returns explicitly to standard AK3 in Section
+6.90. A strict decrease in one sufficient representative is genuine but
+need not simplify the unresolved mathematical problem. Check structural
+identifications and retain literal return certificates before extending
+another short-target family.
+
 ### [2026-09-05] Validate PDF downloads before rendering
 
 [TRAP] The eScholarship dissertation endpoint returned an empty file with

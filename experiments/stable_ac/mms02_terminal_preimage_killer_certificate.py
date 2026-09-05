@@ -323,3 +323,73 @@ def decide_constructive_length_fourteen() -> ConstructiveLengthFourteenDecision:
         base, rotated, product, conjugated_product, final,
         "CONSTRUCTIVE_LENGTH_FOURTEEN_TARGET_ONLY",
     )
+
+
+@dataclass(frozen=True)
+class LengthFourteenAK3ReturnDecision:
+    source_pair: tuple[str, str]
+    ambient_images: tuple[str, str]
+    ambient_inverse_images: tuple[str, str]
+    basis_images: tuple[str, str]
+    inverse_basis_images: tuple[str, str]
+    stages: tuple[tuple[str, str], ...]
+    donor_factors: tuple[tuple[tuple[str, str], ...], ...]
+    defects: tuple[str, ...]
+    products: tuple[str, ...]
+    final_pair: tuple[str, str]
+    verdict: str
+
+
+def decide_length_fourteen_ak3_return() -> LengthFourteenAK3ReturnDecision:
+    source = decide_constructive_length_fourteen().final_pair
+    ambient, ambient_inverse = {"p": "pqq", "q": "q"}, {"p": "pQQ", "q": "q"}
+    forward, backward = {"p": "BA", "q": "abaBA"}, {"a": "pqP", "b": "pQPP"}
+    for generator in "pq":
+        if apply_images(apply_images(generator, ambient), ambient_inverse) != generator:
+            raise AssertionError("the length-fourteen ambient inverse drifted")
+        if apply_images(apply_images(generator, forward), backward) != generator:
+            raise AssertionError("the length-fourteen inverse basis map drifted")
+    for generator in "ab":
+        if apply_images(apply_images(generator, backward), forward) != generator:
+            raise AssertionError("the length-fourteen forward basis map drifted")
+    raw_first, raw_second = tuple(apply_images(word, ambient) for word in source)
+    first = free_reduce("q" + raw_first + "Q")
+    second = free_reduce("qq" + raw_second + "QQ")
+    k_word, r_word = first[1:] + first[:1], second[4:] + second[:4]
+    mapped_r, mapped_k = apply_images(r_word, forward), apply_images(k_word, forward)
+    r_core = free_reduce("ABA" + mapped_r + "aba")
+    k_core = free_reduce("ABA" + mapped_k + "aba")
+    r_row = r_core[3:] + r_core[:3]
+    inverse_core = inverse(k_core)
+    k0 = inverse_core[2:] + inverse_core[:2]
+    d1 = r_row[5:] + r_row[:5]
+    inverse_r = inverse(r_row)
+    d2 = inverse_r[2:] + inverse_r[:2]
+    k1, k2 = "AAABaaBab", "AAABaaabA"
+    k3 = k2[8:] + k2[:8]
+    x_word, y_word, k4 = "Bab", "abA", "AAAbbbA"
+    stages = (("raw_first", raw_first), ("raw_second", raw_second), ("K", k_word), ("R", r_word),
+              ("mapped_R", mapped_r), ("mapped_K", mapped_k), ("Rcore", r_core), ("Kcore", k_core),
+              ("r", r_row), ("K0", k0), ("d1", d1), ("d2", d2), ("K1", k1), ("K2", k2),
+              ("K3", k3), ("X", x_word), ("Y", y_word), ("K4", k4))
+    if tuple(word for _, word in stages) != (
+        "QQPQQPqpqqqpq", "QQPQpQPqq", "PQQPqpqqqpQ", "PPQpQ",
+        "abababABAABA", "ababAbaBaaBAABA", "babABA", "bAbaBaaBA", "ABAbab", "AAbABaBab",
+        "bABAba", "BabaBA", "AAABaaBab", "AAABaaabA", "AAAABaaab", "Bab", "abA", "AAAbbbA",
+    ):
+        raise AssertionError("the length-fourteen AK3 return stages drifted")
+    if free_reduce(x_word + inverse(y_word)) != d2:
+        raise AssertionError("the length-fourteen repeated donor orientation drifted")
+    factors = (((d1, "AA"),), ((d2, "AAABaa"),),
+               tuple((d2, "AAAA" + y_word * index) for index in range(3)))
+    defects = tuple(free_reduce(left + inverse(right)) for left, right in ((k0, k1), (k1, k2), (k3, k4)))
+    products = tuple(free_reduce("".join(prefix + donor + inverse(prefix) for donor, prefix in group))
+                     for group in factors)
+    if defects != products:
+        raise AssertionError("the length-fourteen AK3 return donor identities drifted")
+    final = (r_row[3:] + r_row[:3], k4[3:] + k4[:3])
+    if final != ("babABA", "bbbAAAA"):
+        raise AssertionError("the length-fourteen canonical AK3 endpoint drifted")
+    return LengthFourteenAK3ReturnDecision(source, ("pqq", "q"), ("pQQ", "q"), ("BA", "abaBA"),
+                                           ("pqP", "pQPP"), stages, factors, defects, products, final,
+                                           "LENGTH_FOURTEEN_CORRIDOR_RETURNS_TO_AK3")

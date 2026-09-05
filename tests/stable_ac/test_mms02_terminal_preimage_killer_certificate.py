@@ -4,6 +4,7 @@ from experiments.stable_ac.mms02_terminal_preimage_killer_certificate import (
     EXPECTED_BASE_PAIR, EXPECTED_PRODUCT_MINIMUM, PINNED_FACTOR_PREFIXES,
     PINNED_TRANSITIONS, decide_preimage_killer, decide_squaring_hnn_target,
     decide_constructive_length_fourteen,
+    decide_length_fourteen_ak3_return,
     replay_cyclic_continuation,
     rho_factors, verify_rho_factors,
 )
@@ -214,6 +215,72 @@ def test_constructive_length_fourteen_stable_elimination_and_moves_are_literal()
     assert final == decision.final_pair == ("PPqpqpQ", "PQpQPqq")
     assert sum(map(len, final)) == 14
     assert decision.verdict == "CONSTRUCTIVE_LENGTH_FOURTEEN_TARGET_ONLY"
+
+
+def test_length_fourteen_return_basis_maps_and_stages_are_independent():
+    decision = decide_length_fourteen_ak3_return()
+
+    def substitute(word, images):
+        signed = images | {letter.upper(): invert(value) for letter, value in images.items()}
+        return reduce_word("".join(signed[letter] for letter in word))
+
+    f, g = {"p": "BA", "q": "abaBA"}, {"a": "pqP", "b": "pQPP"}
+    ambient, reverse = {"p": "pqq", "q": "q"}, {"p": "pQQ", "q": "q"}
+    for letter in "pq":
+        assert substitute(substitute(letter, f), g) == letter
+        assert substitute(substitute(letter, ambient), reverse) == letter
+        assert substitute(substitute(letter, reverse), ambient) == letter
+    for letter in "ab":
+        assert substitute(substitute(letter, g), f) == letter
+    source = ("PPqpqpQ", "PQpQPqq")
+    raw = tuple(substitute(word, ambient) for word in source)
+    assert raw == ("QQPQQPqpqqqpq", "QQPQpQPqq")
+    first = reduce_word("q" + raw[0] + "Q")
+    second = reduce_word("qq" + raw[1] + "QQ")
+    k_word, r_word = first[1:] + first[:1], second[4:] + second[:4]
+    assert (k_word, r_word) == ("PQQPqpqqqpQ", "PPQpQ")
+    mapped_r, mapped_k = substitute(r_word, f), substitute(k_word, f)
+    assert (mapped_r, mapped_k) == ("abababABAABA", "ababAbaBaaBAABA")
+    r_core, k_core = (reduce_word("ABA" + word + "aba") for word in (mapped_r, mapped_k))
+    assert (r_core, k_core) == ("babABA", "bAbaBaaBA")
+    assert r_core[3:] + r_core[:3] == "ABAbab"
+    negative = invert(k_core)
+    assert negative[2:] + negative[:2] == "AAbABaBab"
+    assert decision.source_pair == source
+    assert decision.basis_images == ("BA", "abaBA")
+    assert decision.inverse_basis_images == ("pqP", "pQPP")
+    assert dict(decision.stages) == {
+        "raw_first": raw[0], "raw_second": raw[1], "K": k_word, "R": r_word,
+        "mapped_R": mapped_r, "mapped_K": mapped_k, "Rcore": r_core, "Kcore": k_core,
+        "r": "ABAbab", "K0": "AAbABaBab", "d1": "bABAba", "d2": "BabaBA",
+        "K1": "AAABaaBab", "K2": "AAABaaabA", "K3": "AAAABaaab", "X": "Bab", "Y": "abA", "K4": "AAAbbbA",
+    }
+
+
+def test_length_fourteen_return_five_grouped_donor_factors_are_literal():
+    decision = decide_length_fourteen_ak3_return()
+    r_row = "ABAbab"
+    d1 = r_row[5:] + r_row[:5]
+    negative = invert(r_row)
+    d2 = negative[2:] + negative[:2]
+    assert (d1, d2) == ("bABAba", "BabaBA")
+    assert reduce_word("Bab" + invert("abA")) == d2
+    pins = (((d1, "AA"),), ((d2, "AAABaa"),),
+            ((d2, "AAAA"), (d2, "AAAAabA"), (d2, "AAAAabAabA")))
+    defects = tuple(reduce_word(left + invert(right)) for left, right in (
+        ("AAbABaBab", "AAABaaBab"), ("AAABaaBab", "AAABaaabA"), ("AAAABaaab", "AAAbbbA"),
+    ))
+    products = tuple(reduce_word("".join(prefix + donor + invert(prefix) for donor, prefix in factors))
+                     for factors in pins)
+    assert defects == products
+    assert decision.donor_factors == pins
+    assert decision.defects == defects and decision.products == products
+    assert reduce_word("AA" + invert(d1) + "aa") != defects[0]
+    k2, k4 = "AAABaaabA", "AAAbbbA"
+    assert k2[8:] + k2[:8] == "AAAABaaab"
+    final = (r_row[3:] + r_row[:3], k4[3:] + k4[:3])
+    assert final == decision.final_pair == ("babABA", "bbbAAAA")
+    assert decision.verdict == "LENGTH_FOURTEEN_CORRIDOR_RETURNS_TO_AK3"
 
 
 def test_squaring_norm_keeps_literal_cyclic_boundary_and_positive_control():

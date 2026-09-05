@@ -2,10 +2,12 @@
 
 ## Status
 
-Latest constructive checkpoint (Section 6.89): the sufficient target is
-stably AC-equivalent to the explicit length-fourteen pair
-$(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$. This improves the earlier
-length-fifteen representative; it does not trivialize the target or AK(3).
+Latest convergence checkpoint (Section 6.90): the length-fourteen pair
+$(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns by an explicit stable
+corridor to standard AK(3). The reduction from fifteen to fourteen was
+valid, but this route supplies no easier terminal problem or trivialization.
+Freeze this particular short-target continuation, not the unrestricted
+MMS02 bridge.
 
 The subsequent [boundary-automorphism transport](AK3_SQUARING_CONTINUATION_WORKING.md#convergence-audit-the-short-killer-form-returns-to-the-starting-pair)
 is now frozen: its short-killer form returns by literal defining-row
@@ -10166,6 +10168,90 @@ or transport family is introduced. A stable trivialization of (537)
 would close the sufficient stable-AK(3) route, but neither relator has
 been cleared. Stable AK(3), ordinary AK(3), and the general conjectures
 remain unresolved.
+
+### 6.90. The trefoil marking returns the short target to AK(3)
+
+The length-fourteen endpoint admits a concrete return to the original
+AK(3) problem. This is a convergence check, not a resolution.
+
+First apply the ambient basis change $p\mapsto pq^2$, $q\mapsto q$,
+whose inverse sends $p\mapsto pq^{-2}$. The images of (537) are
+`QQPQQPqpqqqpq` and `QQPQpQPqq`. Conjugate them by $q$ and $q^2$,
+respectively, then rotate left by one and four. This gives
+\[
+(K,R)=(\mathtt{PQQPqpqqqpQ},\mathtt{PPQpQ}).
+\tag{538}
+\]
+The second row has the trefoil relation: putting $x=P$, $y=q$ gives
+$yxy=x^2$, or $(yx)^2=x^3$. We use this observation to choose an explicit
+free basis, not as a substitute for checking the other row. Set
+\[
+p\mapsto BA,\qquad q\mapsto abaBA;
+\qquad a\mapsto pqP,\quad b\mapsto pQPP
+\tag{539}
+\]
+for the map and its inverse. Both compositions freely reduce to the
+corresponding basis letters. In the order $(R,K)$, the images are
+`abababABAABA` and `ababAbaBaaBAABA`. Conjugate both by `ABA`.
+Rotate the first left by three; invert the second and rotate left by two.
+The pair is now
+\[
+(r,K_0)=(\mathtt{ABAbab},\mathtt{AAbABaBab}).
+\tag{540}
+\]
+
+Retain $r$. Define
+\[
+d_1=\mathtt{bABAba}=\operatorname{rot}_5(r),\qquad
+d_2=\mathtt{BabaBA}=\operatorname{rot}_2(r^{-1}).
+\]
+The first two recipient corrections are literal:
+\[
+\begin{aligned}
+K_1&=\mathtt{AAABaaBab},&K_0K_1^{-1}&={}^{AA}d_1,\\
+K_2&=\mathtt{AAABaaabA},&K_1K_2^{-1}&={}^{AAABaa}d_2.
+\end{aligned}
+\tag{541}
+\]
+Rotate $K_2$ left by eight to get $K_3=\mathtt{AAAABaaab}$. Put
+$X=\mathtt{Bab}$, $Y=\mathtt{abA}$, so $XY^{-1}=d_2$. The
+three-factor telescoping identity
+\[
+X^3Y^{-3}=d_2\;{}^Yd_2\;{}^{Y^2}d_2
+\]
+gives, for $K_4=\mathtt{AAAbbbA}$,
+\[
+K_3K_4^{-1}
+=\prod_{j=0}^{2}{}^{A^4Y^j}d_2.
+\tag{542}
+\]
+Use the inverse of each displayed discrepancy to correct its recipient,
+restoring $r$ after each donor use. Finally rotate $K_4$ left by three
+and $r$ left by three. The exact endpoint is
+\[
+\boxed{(\mathtt{babABA},\mathtt{bbbAAAA})},
+\tag{543}
+\]
+namely AK(3) with $x=b$, $y=a$.
+
+**Theorem 6.85 (short-target return).** The length-fourteen target (537)
+is stably AC-equivalent to standard AK(3) by (538)--(543). The ambient
+maps use the established balanced trivial-group hypothesis; thereafter
+all operations are ordinary AC moves. Equations (541)--(542) use five
+signed conjugates of the same retained row, never a self-donor.
+
+The certificate independently checks both inverse basis maps, all raw
+words and the three discrepancy products, including a corrupted-factor
+control. The preceding success-only probes inspected 832 single-product
+candidates at selected representatives; they are not an exhaustive AC
+search and supply no obstruction. The return was obtained from the
+trefoil marking and literal donor identities, not a negative search result.
+
+The earlier strict length decrease remains valid. However, following it
+through this marking reaches the known unresolved AK(3) pair, rather than
+a standard free basis. Freeze this short-target continuation as a return
+corridor. The unrestricted MMS02 bridge remains open; neither stable nor
+ordinary AK(3) has been trivialized.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
