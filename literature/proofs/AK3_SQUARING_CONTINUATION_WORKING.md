@@ -372,3 +372,64 @@ It excludes the direct orientable-thickening certificate at this endpoint;
 it is not invariant under AC moves and does not restrict other stabilized
 representatives. No new transport variants or residual categories are
 opened, and no AK3 obstruction follows.
+
+### The closed loop does not give a rank-dropping substitution
+
+One possible reuse of the frozen loop is to iterate its formal generator
+substitution. Track the original generators $p,q$ through the chosen
+defining-row eliminations and ambient substitutions. These are literal
+word representatives, not canonical maps independent of the transcript.
+The simultaneous substitutions and the resulting images are:
+
+| substitution | image of original $p$ | image of original $q$ |
+| --- | --- | --- |
+| $p\mapsto t,\ q\mapsto aT^3$ | `t` | `aTTT` |
+| $t\mapsto caa,\ a\mapsto a$ | `caa` | `ACAACAAC` |
+| $c\mapsto x,\ a\mapsto Xu$ | `uXu` | `UUxUUxU` |
+| $x\mapsto uC,\ u\mapsto u$ | `uc` | `UCUCU` |
+| $c\mapsto Uau,\ u\mapsto u$ | `au` | `UUAUA` |
+| $a\mapsto Q,\ u\mapsto pQPP$ | `QpQPP` | `ppqpqPqppqPq` |
+
+The last line combines the defining equation $u=baBB$ with the signed
+rename $a=Q,b=p$. Intermediate $x$ is renamed $t$ before its elimination;
+the newly introduced commutator letter $c$ is not the earlier ambient $c$.
+Row multiplications, conjugations and the final swap do not themselves
+change this generator bookkeeping.
+
+**Proposition (formal iteration only).** The endomorphism
+$f:F(p,q)\to F(p,q)$ given by the last line is injective. Every positive
+iterate has noncyclic image and sends every nonidentity free-group word
+to a nonidentity word.
+
+**Proof.** With rows indexed by output letters $p,q$ and columns by input
+generators, exponent sums give
+
+\[
+ f_{\mathrm{ab}}=M=\begin{pmatrix}-1&3\\-2&5\end{pmatrix},
+ \qquad \det M=1.
+\]
+
+The subgroup $H=\langle f(p),f(q)\rangle$ is free by Nielsen--Schreier.
+It has rank at most two because two elements generate it, and at least
+two because their images in $\mathbb Z^2$ are independent. Thus $H$ is
+free of rank two. The surjection $F(p,q)\to H$, composed with an abstract
+isomorphism $H\cong F(p,q)$, is injective by Hopficity of finite-rank free
+groups. See [Baumslag, Chapter III, Theorems 7--9](https://www.macs.hw.ac.uk/~lc45/Teaching/kggt/Baumslag-book.pdf)
+for the residual-finiteness/Hopficity argument. Hence $f$ and its iterates
+are injective. Alternatively, noncyclicity alone follows immediately from
+$\det M^k=1$ for every $k\geq1$. $\square$
+
+The independent word replay pins all six stages and the exponent matrix.
+Its can-fail control $p\mapsto p,q\mapsto p^2$ kills $[p,q]$, whereas
+the displayed substitution does not. The all-word conclusion comes from
+the proof, not this finite control. Determinant one does not by itself
+assert that $f$ is an automorphism, and no surjectivity claim is made.
+
+This closes only the proposed rank-drop or free-annihilation mechanism
+from iterating the chosen substitution alone. It does not encode the
+live donor-row corrections, preclude word shortening, or constrain
+general AC moves. In particular it is not an obstruction to using the
+full corridor in a different construction. The balanced trivial-group
+hypothesis remains required for the separate stable ambient simulation.
+The transport route stays frozen, with no new residual ledger and no
+bridge, stable AK3, or ordinary AK3 conclusion.

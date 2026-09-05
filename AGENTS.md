@@ -1,5 +1,12 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Formal return maps are not AC invariants
+
+[WORKS] Tracking generators through the closed boundary corridor exposes
+an injective free-group substitution, but does not encode its live donor
+operations. Keep the chosen word map separate from the presentation move
+sequence; determinant one proves neither surjectivity nor an AC obstruction.
+
 Read `.agents/instructions/core.md` before any work. Then read every route that applies below; referenced Markdown is not discovered automatically.
 
 | Task | Also read |

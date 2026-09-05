@@ -281,6 +281,29 @@ def _sl2_seven_evaluate(word, parameter=3):
     return result
 
 
+def test_closed_corridor_generator_bookkeeping_has_full_abelian_rank():
+    stages = (
+        ({"p": "t", "q": "aTTT"}, ("t", "aTTT")),
+        ({"t": "caa", "a": "a"}, ("caa", "ACAACAAC")),
+        ({"c": "x", "a": "Xu"}, ("uXu", "UUxUUxU")),
+        ({"x": "uC", "u": "u"}, ("uc", "UCUCU")),
+        ({"c": "Uau", "u": "u"}, ("au", "UUAUA")),
+        ({"a": "Q", "u": "pQPP"}, ("QpQPP", "ppqpqPqppqPq")),
+    )
+    words = ("p", "q")
+    for images, expected in stages:
+        words = tuple(substitute(word, images) for word in words)
+        assert words == expected
+    matrix = tuple(tuple(word.count(g) - word.count(g.upper()) for word in words)
+                   for g in "pq")
+    assert matrix == ((-1, 3), (-2, 5))
+    assert matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0] == 1
+    assert matrix[0][0] + matrix[1][1] == 4
+    assert reduce_word(substitute("pqPQ", dict(zip("pq", words)))) != ""
+    cyclic_control = {"p": "p", "q": "pp"}
+    assert substitute("pqPQ", cyclic_control) == ""
+
+
 def test_short_killer_literature_map_and_retained_donors_are_literal():
     images = {"a": "Mn", "b": "NmnMMn", "u": "Nmn"}
     relator, killer = "mNmnMNmNMn", "NmnMnMNmm"
