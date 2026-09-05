@@ -2,6 +2,9 @@ from dataclasses import replace
 
 from experiments.stable_ac.mms02_boundary_automorphism_corridor_certificate import (
     PINNED_FACTORS, decide_boundary_automorphism_corridor, decide_boundary_donor_switch,
+    decide_boundary_second_switch, verify_second_switch_factors,
+    decide_second_switch_magnus_corridor,
+    decide_second_switch_short_killer,
     shifted_h_factors,
     verify_shifted_h_factors,
 )
@@ -122,3 +125,118 @@ def test_boundary_switch_uses_only_the_retained_r_donor():
     assert decision.switched_row == "ucuCucUCUcU"
     assert decision.switch_defect == decision.switch_product == defect
     assert decision.verdict == "TARGET_STABLE_BOUNDARY_LEGAL_DONOR_SWITCH"
+
+
+def test_second_boundary_switch_has_independent_retained_row_factorization():
+    decision = decide_boundary_second_switch()
+    retained, first = "uCuCuccUU", "ucuCucUCUcU"
+    t_word, v_word = "uC", "uCucU"
+    commutator = reduce_word("u" + v_word + "U" + invert(v_word))
+    g2 = conjugate("c", t_word + t_word)
+    recipient = conjugate(first, t_word)
+    switched = reduce_word(g2 + invert(commutator))
+    assert switched == "uCuccuCUcUU"
+    defect = reduce_word(switched + invert(recipient))
+    product = reduce_word(conjugate(retained, switched) + conjugate(invert(retained), "uCuccU"))
+    assert product == defect
+    assert decision.retained_row == retained
+    assert decision.conjugating_word == t_word
+    assert decision.conjugated_recipient == recipient
+    assert decision.switched_row == switched
+    assert decision.defect == decision.product == defect
+    assert tuple((factor.row, factor.sign, factor.conjugator) for factor in decision.factors) == (
+        (1, 1, switched), (1, -1, "uCuccU"),
+    )
+    corrupted = (replace(decision.factors[0], sign=-1), decision.factors[1])
+    try:
+        verify_second_switch_factors(retained, recipient, switched, corrupted)
+    except AssertionError as error:
+        assert "factorization drifted" in str(error)
+    else:
+        raise AssertionError("the corrupted second-switch factor was accepted")
+
+
+def test_second_switch_magnus_data_remain_descriptive():
+    decision = decide_boundary_second_switch()
+    scanned = []
+    for word in ("uCuccuCUcUU", "uCuCuccUU"):
+        height = 0
+        positions = []
+        for letter in word:
+            if letter.lower() == "u":
+                height += {"u": 1, "U": -1}[letter]
+            else:
+                positions.append((height, letter))
+        scanned.append((tuple(positions), height))
+    assert scanned == [
+        (((1, "C"), (2, "c"), (2, "c"), (3, "C"), (2, "c")), 0),
+        (((1, "C"), (2, "C"), (3, "c"), (3, "c")), 1),
+    ]
+    assert (decision.e_magnus, decision.e_final_height) == scanned[0]
+    assert (decision.r_magnus, decision.r_final_height) == scanned[1]
+    forward, reverse = {"a": "b", "b": "bAbb"}, {"a": "aaBa", "b": "a"}
+    for generator in "ab":
+        assert substitute(substitute(generator, forward), reverse) == generator
+        assert substitute(substitute(generator, reverse), forward) == generator
+    assert decision.descriptive_phi_images == ("b", "bAbb")
+    assert decision.descriptive_inverse_images == ("aaBa", "a")
+    assert decision.descriptive_remaining_coefficient == "AAbbbAbb"
+    assert decision.magnus_stable_ac_realization_claimed is False
+
+
+def test_second_switch_magnus_basis_and_inverse_conjugation_are_literal():
+    decision = decide_second_switch_magnus_corridor()
+    assert decision.source_pair == ("uCuCuccUU", "uCuccuCUcUU")
+    images = {"c": "Uau", "u": "u"}
+    assert substitute("uCuCuccUU", images) == "AuAuaaU"
+    assert substitute("uCuccuCUcUU", images) == "AuaauAUaU"
+    assert conjugate(invert("AbbuBUb"), "b") == "ubUBBaB"
+    assert dict(decision.stage_words) == {
+        "R0": "AuAuaaU", "E20": "AuaauAUaU", "D": "uaUB",
+        "Ebar": "AbbuBUb", "F": "ubUBBaB", "Rtemp": "ABubb", "target": "AAbbbAbbu",
+    }
+    assert sum(1 if letter == "u" else -1 if letter == "U" else 0 for letter in "ABubb") == 1
+    assert decision.final_tuple == ("uaUB", "ubUBBaB", "AAbbbAbbu")
+    assert decision.remaining_coefficient == "AAbbbAbb"
+    assert decision.phi_images == ("b", "bAbb")
+
+
+def test_second_switch_magnus_three_donor_stages_expand_independently():
+    decision = decide_second_switch_magnus_corridor()
+    donors = {1: "uaUB", 2: "ubUBBaB"}
+    pins = (
+        ((1, 1, "A"), (1, 1, "Ab"), (1, -1, "AbbuB"), (1, 1, "AbbuBU")),
+        ((1, -1, "AB"), (1, 1, "ABu"), (1, 1, "ABub")),
+        ((2, 1, "AB"), (2, 1, "AAbb")),
+    )
+    defects = tuple(reduce_word(left + invert(right)) for left, right in (
+        ("AuaauAUaU", "AbbuBUb"), ("AuAuaaU", "ABubb"), ("ABubb", "AAbbbAbbu"),
+    ))
+    products = tuple(reduce_word("".join(
+        conjugate(donors[row] if sign == 1 else invert(donors[row]), prefix)
+        for row, sign, prefix in factors
+    )) for factors in pins)
+    assert defects == products
+    assert decision.donor_defects == defects
+    assert decision.donor_products == products
+    assert tuple(tuple((factor.row, factor.sign, factor.conjugator) for factor in factors)
+                 for factors in decision.factor_stages) == pins
+    assert decision.verdict == "TARGET_STABLE_SECOND_SWITCH_MAGNUS_CORRIDOR"
+
+
+def test_second_switch_short_killer_has_independent_retained_f_identity():
+    decision = decide_second_switch_short_killer()
+    donor, old_killer, short = "ubUBBaB", "AAbbbAbbu", "bbABu"
+    conjugated = conjugate(old_killer, "bb")
+    defect = reduce_word(conjugated + invert(short))
+    product = reduce_word(conjugate(invert(donor), "bbAAbb")
+                          + conjugate(invert(donor), "bbAB"))
+    assert defect == product
+    assert decision.source_tuple == ("uaUB", donor, old_killer)
+    assert decision.conjugated_killer == conjugated
+    assert tuple((factor.row, factor.sign, factor.conjugator) for factor in decision.factors) == (
+        (2, -1, "bbAAbb"), (2, -1, "bbAB"),
+    )
+    assert decision.defect == decision.product == defect
+    assert decision.final_tuple == ("uaUB", "ubUBBaB", "bbABu")
+    assert decision.verdict == "TARGET_STABLE_SECOND_SWITCH_SHORT_KILLER"

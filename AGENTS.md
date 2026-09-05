@@ -39,3 +39,11 @@ and generator-removal step. Free-word replay alone does not check this gate.
 [TRAP] A proof-note patch failed because its final context omitted text on
 the same line. After a context-mismatch error, recheck the literal context
 and retry only the intended hunks; do not assume earlier hunks were applied.
+
+### [2026-09-05] Preserve final Magnus height
+
+[TRAP] In the second boundary transport, the draft intermediate word
+`ABubbU` accidentally retained an inverse stable letter after the final
+height-one factor had cancelled it. The correct word is `ABubb`.
+When reconstructing Magnus blocks, freely reduce the full product including
+the final stable-letter power before recording or testing donor factors.

@@ -205,3 +205,156 @@ def decide_boundary_donor_switch() -> BoundaryDonorSwitchDecision:
         raw_pair, commutator, g_word, recipient, switched, SWITCH_FACTORS,
         defect, product, "TARGET_STABLE_BOUNDARY_LEGAL_DONOR_SWITCH",
     )
+
+
+SECOND_SWITCH_ROW = "uCuccuCUcUU"
+SECOND_SWITCH_FACTORS = (Factor(1, 1, SECOND_SWITCH_ROW), Factor(1, -1, "uCuccU"))
+SECOND_E_MAGNUS = ((1, "C"), (2, "c"), (2, "c"), (3, "C"), (2, "c"))
+SECOND_R_MAGNUS = ((1, "C"), (2, "C"), (3, "c"), (3, "c"))
+
+
+def verify_second_switch_factors(retained: str, recipient: str, switched: str,
+                                 factors: tuple[Factor, ...]) -> str:
+    if any(factor.row != 1 or factor.sign not in (-1, 1) for factor in factors):
+        raise ValueError("the second switch requires signed retained-row donors")
+    product = free_reduce("".join(
+        conjugate(retained if factor.sign == 1 else inverse(retained), factor.conjugator)
+        for factor in factors
+    ))
+    if product != free_reduce(switched + inverse(recipient)):
+        raise AssertionError("the second boundary switch factorization drifted")
+    return product
+
+
+@dataclass(frozen=True)
+class BoundarySecondSwitchDecision:
+    retained_row: str
+    conjugating_word: str
+    conjugated_recipient: str
+    switched_row: str
+    factors: tuple[Factor, ...]
+    defect: str
+    product: str
+    e_magnus: tuple[tuple[int, str], ...]
+    e_final_height: int
+    r_magnus: tuple[tuple[int, str], ...]
+    r_final_height: int
+    descriptive_phi_images: tuple[str, str]
+    descriptive_inverse_images: tuple[str, str]
+    descriptive_remaining_coefficient: str
+    magnus_stable_ac_realization_claimed: bool
+    verdict: str
+
+
+def decide_boundary_second_switch() -> BoundarySecondSwitchDecision:
+    previous = decide_boundary_donor_switch()
+    retained = previous.eliminated_pair[0]
+    g2 = conjugate("c", previous.t_word + previous.t_word)
+    recipient = conjugate(previous.switched_row, previous.t_word)
+    switched = free_reduce(g2 + inverse(previous.commutator))
+    if switched != SECOND_SWITCH_ROW:
+        raise AssertionError("the second boundary switched row drifted")
+    product = verify_second_switch_factors(retained, recipient, switched, SECOND_SWITCH_FACTORS)
+    scans = []
+    for word in (switched, retained):
+        height, positions = 0, []
+        for letter in word:
+            if letter in "uU":
+                height += 1 if letter == "u" else -1
+            elif letter in "cC":
+                positions.append((height, letter))
+            else:
+                raise AssertionError("the descriptive Magnus scan has an unknown letter")
+        scans.append((tuple(positions), height))
+    if scans != [(SECOND_E_MAGNUS, 0), (SECOND_R_MAGNUS, 1)]:
+        raise AssertionError("the second-switch descriptive Magnus positions drifted")
+    return BoundarySecondSwitchDecision(
+        retained, previous.t_word, recipient, switched, SECOND_SWITCH_FACTORS,
+        free_reduce(switched + inverse(recipient)), product,
+        SECOND_E_MAGNUS, 0, SECOND_R_MAGNUS, 1,
+        ("b", "bAbb"), ("aaBa", "a"), "AAbbbAbb", False,
+        "TARGET_STABLE_BOUNDARY_SECOND_LEGAL_DONOR_SWITCH",
+    )
+
+
+SECOND_MAGNUS_FACTOR_STAGES = (
+    (Factor(1, 1, "A"), Factor(1, 1, "Ab"),
+     Factor(1, -1, "AbbuB"), Factor(1, 1, "AbbuBU")),
+    (Factor(1, -1, "AB"), Factor(1, 1, "ABu"), Factor(1, 1, "ABub")),
+    (Factor(2, 1, "AB"), Factor(2, 1, "AAbb")),
+)
+
+
+@dataclass(frozen=True)
+class SecondSwitchMagnusDecision:
+    source_pair: tuple[str, str]
+    ambient_images: tuple[str, str]
+    stage_words: tuple[tuple[str, str], ...]
+    factor_stages: tuple[tuple[Factor, ...], ...]
+    donor_defects: tuple[str, ...]
+    donor_products: tuple[str, ...]
+    final_tuple: tuple[str, str, str]
+    phi_images: tuple[str, str]
+    remaining_coefficient: str
+    verdict: str
+
+
+def decide_second_switch_magnus_corridor() -> SecondSwitchMagnusDecision:
+    previous = decide_boundary_second_switch()
+    source = (previous.retained_row, previous.switched_row)
+    r0, e20 = tuple(apply_images(word, {"c": "Uau", "u": "u"}) for word in source)
+    donor, ebar, rtemp = "uaUB", "AbbuBUb", "ABubb"
+    f_row = conjugate(inverse(ebar), "b")
+    target = "AAbbbAbbu"
+    stages = (("R0", r0), ("E20", e20), ("D", donor), ("Ebar", ebar),
+              ("F", f_row), ("Rtemp", rtemp), ("target", target))
+    if tuple(word for _, word in stages) != (
+        "AuAuaaU", "AuaauAUaU", "uaUB", "AbbuBUb", "ubUBBaB", "ABubb", "AAbbbAbbu",
+    ):
+        raise AssertionError("the second-switch Magnus stage words drifted")
+    defects = tuple(free_reduce(left + inverse(right)) for left, right in (
+        (e20, ebar), (r0, rtemp), (rtemp, target),
+    ))
+    products = tuple(free_reduce("".join(
+        conjugate((donor, f_row)[factor.row - 1] if factor.sign == 1
+                  else inverse((donor, f_row)[factor.row - 1]), factor.conjugator)
+        for factor in factors
+    )) for factors in SECOND_MAGNUS_FACTOR_STAGES)
+    if defects != products:
+        raise AssertionError("the second-switch Magnus donor transcript drifted")
+    return SecondSwitchMagnusDecision(
+        source, ("Uau", "u"), stages, SECOND_MAGNUS_FACTOR_STAGES,
+        defects, products, (donor, f_row, target), ("b", "bAbb"), "AAbbbAbb",
+        "TARGET_STABLE_SECOND_SWITCH_MAGNUS_CORRIDOR",
+    )
+
+
+@dataclass(frozen=True)
+class SecondSwitchShortKillerDecision:
+    source_tuple: tuple[str, str, str]
+    conjugated_killer: str
+    factors: tuple[Factor, ...]
+    defect: str
+    product: str
+    final_tuple: tuple[str, str, str]
+    verdict: str
+
+
+def decide_second_switch_short_killer() -> SecondSwitchShortKillerDecision:
+    previous = decide_second_switch_magnus_corridor()
+    defining, donor, old_killer = previous.final_tuple
+    conjugated = conjugate(old_killer, "bb")
+    short_killer = "bbABu"
+    factors = (Factor(2, -1, "bbAAbb"), Factor(2, -1, "bbAB"))
+    defect = free_reduce(conjugated + inverse(short_killer))
+    product = free_reduce("".join(conjugate(inverse(donor), factor.conjugator)
+                                  for factor in factors))
+    if defect != product:
+        raise AssertionError("the second-switch short-killer donor identity drifted")
+    final_tuple = (defining, donor, short_killer)
+    if final_tuple != ("uaUB", "ubUBBaB", "bbABu"):
+        raise AssertionError("the second-switch short-killer tuple drifted")
+    return SecondSwitchShortKillerDecision(
+        previous.final_tuple, conjugated, factors, defect, product, final_tuple,
+        "TARGET_STABLE_SECOND_SWITCH_SHORT_KILLER",
+    )

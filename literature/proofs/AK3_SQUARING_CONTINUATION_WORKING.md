@@ -155,3 +155,78 @@ defining substitutions and both donor factors. Independent free-word
 tests replay them. This theorem certifies a stable equivalence only;
 neither row has been made primitive, and the power-row cancellation and
 the sufficient target's trivialization remain open.
+
+## Second transport and a four-letter live coefficient
+
+The same retained donor permits one more useful transport. Set
+$g_2=t_0^2ct_0^{-2}$ and $E_2=g_2C_0^{-1}=\mathtt{uCuccuCUcUU}$.
+The literal second-switch identity is
+
+\[
+ E_2({}^{t_0}E_1)^{-1}
+ ={}^{\mathtt{uCuccuCUcUU}}R\;
+  {}^{\mathtt{uCuccU}}R^{-1}.
+\]
+
+For an algebraic derivation, put $M=C_0({}^{t_0}C_0)$.
+The first switch gives $M={}^{C_0w}R\,R^{-1}$, while
+${}^{t_0}E_1=g_2C_0^{-1}M$. Taking the difference gives the displayed
+two-factor product. Again this is a legal recipient correction, not an
+additional relation asserted from a quotient calculation.
+
+Here the Magnus coordinates of $E_2$ are
+$(1,C),(2,c),(2,c),(3,C),(2,c)$, with final height zero; those of $R$
+are $(1,C),(2,C),(3,c),(3,c)$, with final height one.
+They suggest a rank-two automorphism fiber, but the following transcript
+is needed to promote that suggestion to stable AC.
+
+Apply the invertible ambient substitution $c\mapsto u^{-1}au$ and
+stabilize by the defining row $D=\mathtt{uaUB}$. The balanced
+trivial-presentation hypothesis is retained from the source corridor.
+The two substituted rows are $R_0=\mathtt{AuAuaaU}$ and
+$E_{20}=\mathtt{AuaauAUaU}$. Each table entry lists, in order, the
+signed conjugators of the named restored donor for **old times new inverse**.
+Thus multiply the old recipient by the inverse of that product on the left.
+
+| old recipient | new recipient | donor | signed conjugators |
+| --- | --- | --- | --- |
+| `AuaauAUaU` | `AbbuBUb` | $D$ | $+$ `A`, $+$ `Ab`, $-$ `AbbuB`, $+$ `AbbuBU` |
+| `AuAuaaU` | `ABubb` | $D$ | $-$ `AB`, $+$ `ABu`, $+$ `ABub` |
+| `ABubb` | `AAbbbAbbu` | $F$ | $+$ `AB`, $+$ `AAbb` |
+
+After the first correction, invert that recipient and conjugate it by $b$.
+It becomes $F=\mathtt{ubUBBaB}$. This supplies the donor used in the last
+line without changing $D$. In particular `ABubb` includes final height
+one; an extra terminal `U` would be incorrect.
+
+The two defining rows now express the automorphism
+
+\[
+ \psi(a)=b,\qquad \psi(b)=ba^{-1}b^2,
+ \qquad \psi^{-1}(a)=a^2b^{-1}a,\quad\psi^{-1}(b)=a.
+\]
+
+Both inverse compositions are literal free-group identities. The remaining
+row has coefficient $P=\mathtt{AAbbbAbb}$. Conjugate $Pu$ by $b^2$;
+the exact defect from the shorter row is
+
+\[
+ {}^{b^2}(Pu)(\mathtt{bbABu})^{-1}
+ ={}^{\mathtt{bbAAbb}}F^{-1}\;{}^{\mathtt{bbAB}}F^{-1}.
+\]
+
+Correcting by these restored donors proves the terminal theorem of this
+section: **the sufficient target $P_T$ is stably AC-equivalent to**
+
+\[
+ (\mathtt{uaUB},\quad\mathtt{ubUBBaB},\quad\mathtt{bbABu}).
+\]
+
+The live coefficient has shortened from eight letters to four, and the
+fiber map is now the explicitly invertible map above. This is a constructive
+reformulation, not a trivialization. The boundary certificate's second-switch,
+Magnus-corridor and short-killer decisions pin all displayed defects;
+independent replay includes a corrupted-factor rejection control. No
+knot-group identification, meridional-conjugacy claim, or new exclusion
+census is needed for this theorem. The remaining obligation is to trivialize
+this complete tuple by legal moves, not merely show that its group is trivial.
