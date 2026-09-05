@@ -349,8 +349,81 @@ membership in $F_0''$ in those controls. The general conclusions above follow
 from the endomorphism and injectivity arguments, not from finite enumeration.
 
 The induced map on $M$ is not injective; $M$ is not an embedded HNN base to
-which the earlier Britton argument can be applied. The terminal results here
-are the perfect-kernel proposition and the all-integer failure of the
-canonical candidate. No further solvable-image census or derived residual
-tower follows. Literal (OB2), opposite-donor primitive completion, the MMS02
-bridge, stable AK(3), and ordinary AK(3) remain separate unresolved gates.
+which the earlier Britton argument can be applied. These quotient controls
+alone do not decide literal (OB2). No further solvable-image census or derived
+residual tower follows: the next section instead resolves the literal equation
+by a free-word count.
+
+## Opposite-donor primitive completion is excluded literally
+
+**Theorem.** Equation (OB2) has no solution $c\in F(a,b)$ for any integer
+$m$. Thus $\overline A^{-1}$ is not conjugate to $t^{-1}a^m$ in $Q_B$ for
+any integer $m$, and no primitive replacement of $\overline A$ is possible
+while retaining $\overline B$ as the fixed donor.
+
+For a freely reduced word $w\in F(a,b)$, let $n_b(w)$ count occurrences
+of $b$ and $b^{-1}$, without signs. Introduce the free basis $(a,q)$ with
+$q=ba$; this local $q$ is not the bridge's source word $Xy$. Its images are
+\[
+ \phi_0(a)=b,\qquad \phi_0(q)=a^{-1}ba.
+\tag{OB4}
+\]
+Write a nontrivial reduced word $c$ in alternating block form
+\[
+ c=a^{k_0}q^{\ell_1}a^{k_1}\cdots q^{\ell_s}a^{k_s},
+\tag{OB5}
+\]
+where all $\ell_i$ and interior $k_i$ are nonzero; either endpoint $k_i$
+may be zero. Pure $a$-powers are the case $s=0$.
+
+Expanding $q=ba$ does not cancel any of its contributed $b$-letters.
+At a positive-to-negative $q$-block boundary, the intervening $a$-power
+is $a\,a^{k_i}a^{-1}=a^{k_i}\ne1$; at a negative-to-positive boundary
+it is also $a^{k_i}\ne1$. Same-sign boundaries can remove an $a$-power
+but cannot cancel the adjacent, equally signed $b$-letters. End powers
+of $a$ remove no $b$-letters either. Therefore
+\[
+ n_b(c)=\sum_{i=1}^s|\ell_i|.
+\tag{OB6}
+\]
+Using (OB4), the image of (OB5) is
+\[
+ b^{k_0}a^{-1}b^{\ell_1}a b^{k_1}\cdots
+ a^{-1}b^{\ell_s}a b^{k_s}.
+\]
+This expression is already freely reduced after omitting zero endpoint
+powers: every interior $k_i$ and every $\ell_i$ is nonzero. Thus
+\[
+ n_b(\phi_0(c))=\sum_{i=0}^s|k_i|+\sum_{i=1}^s|\ell_i|
+ \ge n_b(c).
+\tag{OB7}
+\]
+Moreover every nonempty image starts with $b$, $b^{-1}$, or $a^{-1}$,
+never with $a$, and contains a $b$-letter.
+
+Now rearrange (OB2) as
+\[
+ c=a b^{-1}a^{-1}\phi_0(c)a^m.
+\tag{OB8}
+\]
+For $c\ne1$, its displayed prefix cannot cancel against $\phi_0(c)$,
+by the first-letter observation. The final $a^m$ can cancel only terminal
+$a$-letters and cannot cross a $b$-letter to reach the prefix. Hence
+\[
+ n_b(c)=1+n_b(\phi_0(c))\ge1+n_b(c),
+\]
+a contradiction. If $c=1$, the right side of (OB8) still contains exactly
+one $b^{-1}$, also a contradiction. This proves the theorem.
+
+The [focused controls](../../tests/stable_ac/test_mms02_opposite_donor_control.py)
+check both count identities and the prefix boundary on signed block examples.
+A can-fail control changes $u$ to $b a^{-1}$: then $c=a,m=0$ satisfies
+$c=u^{-1}\phi_0(c)$ because the prefix's $b^{-1}$ does cancel. Thus the
+argument depends on the exact pinned prefix, not on an arbitrary coefficient.
+
+**Terminal scope.** Together with the fixed-$\overline A$ theorem above,
+this excludes primitive completion in both fixed-donor directions for the
+specific pair $(\overline A,\overline B)$. The proof uses arbitrary
+conjugators and all integer slopes, with no word-length or HNN-stage bound.
+It does not exclude changing both rows before completion, supply an AC
+invariant, or resolve the MMS02 bridge, stable AK(3), or ordinary AK(3).

@@ -194,3 +194,12 @@ cyclic and cannot distinguish the proposed primitive endpoints. The
 metabelian-base fixed point has a nonempty literal free-group defect;
 never apply embedded-base arguments after the induced monodromy loses
 injectivity, or extend a solvable ledger already made vacuous by this kernel.
+
+### [2026-09-05] Count literal letters after adapting the free basis
+
+[WORKS] In the opposite-donor MMS02 equation, the basis `a,q=ba` sends
+monodromy to `a -> b, q -> Aba`. Alternating blocks prove that monodromy
+cannot decrease the unsigned b-letter count, while the exact required
+prefix adds one. This closes all slopes without a quotient tower. Prove
+the block cancellations universally and include a changed-prefix positive
+control; a count inequality for one pinned coefficient is not an AC invariant.

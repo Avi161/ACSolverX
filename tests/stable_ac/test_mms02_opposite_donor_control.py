@@ -114,3 +114,31 @@ def test_opposite_donor_fifth_iterate_has_nontrivial_fox_invisible_defect():
             derivative, abelianization = fox_abelian(defect, generator)
             assert abelianization == (0, 0)
             assert derivative == {}
+
+
+def test_opposite_donor_basis_letter_counts_and_ob2_residual_controls():
+    words = ("", "a", "A", "q", "Q", "qAq", "qaQ", "qAQ", "Qaq", "QAq", "QaQ",
+             "aqa", "AQA", "qq", "QQ", "aaqqAAQQ", "qAAqaaQ", "AQaqAQ", "qqaQQAqq")
+    for word in words:
+        assert reduced(word) == word
+        c_word = substitute(word, {"a": "a", "q": "ba"})
+        phi_c = substitute(word, {"a": "b", "q": "Aba"})
+        assert phi(c_word) == phi_c
+        b_count = sum(letter in "bB" for letter in c_word)
+        phi_b_count = sum(letter in "bB" for letter in phi_c)
+        assert b_count == sum(letter in "qQ" for letter in word)
+        assert phi_b_count == len(word)
+        for m in (-3, 0, 1, 4):
+            rhs = reduced("aBA" + phi_c + power("a", m))
+            assert sum(letter in "bB" for letter in rhs) == 1 + phi_b_count
+            assert sum(letter in "bB" for letter in rhs) > b_count
+            assert reduced(rhs + inverse(c_word)) != ""
+
+
+def test_extra_b_count_requires_the_fixed_donor_boundary():
+    u_control, c_word = "bA", "a"
+    unreduced_rhs = inverse(u_control) + phi(c_word)
+    assert unreduced_rhs == "aBb"
+    assert reduced(unreduced_rhs) == c_word
+    assert sum(letter in "bB" for letter in reduced(unreduced_rhs)) == 0
+    assert 1 + sum(letter in "bB" for letter in phi(c_word)) == 2
