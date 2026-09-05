@@ -3,8 +3,10 @@
 ## Status
 
 Latest convergence checkpoint (Section 6.90): the length-fourteen pair
-$(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns by an explicit stable
-corridor to standard AK(3). The reduction from fifteen to fourteen was
+$(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns to standard AK(3).
+The explicit corridor uses ordinary AC moves and ambient automorphisms;
+the Panteleev--Ushakov theorem upgrades this endpoint equivalence to
+ordinary AC. The reduction from fifteen to fourteen was
 valid, but this route supplies no easier terminal problem or trivialization.
 Freeze this particular short-target continuation, not the unrestricted
 MMS02 bridge.
@@ -10239,6 +10241,24 @@ is stably AC-equivalent to standard AK(3) by (538)--(543). The ambient
 maps use the established balanced trivial-group hypothesis; thereafter
 all operations are ordinary AC moves. Equations (541)--(542) use five
 signed conjugates of the same retained row, never a self-donor.
+
+**Corollary (ordinary AC class of the length-fourteen endpoint).** The
+pair (537) is ordinary AC-equivalent to AK(3).
+
+**Proof.** [Panteleev--Ushakov, Proposition 3.7 and Corollary 3.8](https://arxiv.org/html/1609.00325#S3.SS1)
+prove that the ordinary AC class of AK(3) is invariant under every
+automorphism of $F_2$. Read the certified sequence (538)--(543) backwards
+from AK(3). An inverse ordinary AC move stays in that class. An inverse
+ambient basis map also stays in it by their corollary. Induction over
+this finite sequence reaches (537) in the same ordinary AC class.
+There are no generator additions or deletions in this part of the route.
+$\square$
+
+This strengthening uses an external theorem: the local checker certifies
+the mixed ordinary-AC/automorphism sequence, not an expanded elementary
+ordinary-AC ledger for the two automorphisms. It does not upgrade the
+earlier rank-changing corridor from $P_T$ to (537), and it proves no
+ordinary or stable trivialization of AK(3).
 
 The certificate independently checks both inverse basis maps, all raw
 words and the three discrepancy products, including a corrupted-factor
