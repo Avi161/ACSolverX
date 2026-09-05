@@ -304,6 +304,20 @@ def test_closed_corridor_generator_bookkeeping_has_full_abelian_rank():
     assert substitute("pqPQ", cyclic_control) == ""
 
 
+def test_tagged_coprime_power_control_has_literal_ac_cancellation():
+    retained, recipient = "ccd", "cccccdd"
+    product = reduce_word(conjugate(retained, "ccc") + conjugate(retained, "c"))
+    assert product == reduce_word(recipient + "C")
+    recipient = reduce_word(invert(product) + recipient)
+    assert recipient == "c"
+    retained = reduce_word(invert(recipient) + invert(recipient) + retained)
+    assert (recipient, retained) == ("c", "d")
+    matrix = tuple(tuple(w.count(g) - w.count(g.upper()) for g in "cd")
+                   for w in ("ccd", "cccccdd"))
+    assert matrix == ((2, 1), (5, 2))
+    assert matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0] == -1
+
+
 def test_short_killer_literature_map_and_retained_donors_are_literal():
     images = {"a": "Mn", "b": "NmnMMn", "u": "Nmn"}
     relator, killer = "mNmnMNmNMn", "NmnMnMNmm"

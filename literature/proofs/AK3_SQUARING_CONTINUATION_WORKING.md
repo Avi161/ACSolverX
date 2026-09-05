@@ -103,9 +103,61 @@ inverts `C`, giving `C^2=1`. The two powers force `C=1`, then `u=v=t=1`.
 Sol checked these group-theoretic implications and their orientations.
 
 The critical unresolved step is **not** the integer gcd calculation.
-Neither `C^2` nor `C^5` has been realized as a legal donor row. Treating
-these consequences as available relators would silently enlarge the move
+Neither `C^2` nor `C^5` is a legal available donor row. In fact the pure
+power-row target is impossible, by the unimodularity proposition below.
+A constructive use of these consequences must keep live generator tags
+or other non-power terms until cancellation is legally justified. Treating
+the pure consequences as available relators silently enlarges the move
 class. No AC conclusion follows from this paragraph.
+
+### Unimodularity forbids pure power rows, not tagged power cancellation
+
+**Proposition.** No balanced presentation of the trivial group contains
+a relator freely equal to a conjugate of $w^k$ with $|k|>1$. This applies
+at every stage of any stable AC sequence from such a presentation.
+
+**Proof.** For $n$ generators and $n$ relators, let $M$ be the integer
+matrix whose rows are their exponent-sum vectors. Trivial abelianization
+means that these rows generate $\mathbb Z^n$, so $\det M=\pm1$.
+A row for a conjugate of $w^k$ is $k$ times the exponent-sum vector of
+$w$. Expansion of the determinant in that row makes $k$ divide
+$\det M$, a contradiction. Stabilization and destabilization preserve
+balancedness and the presented trivial group, so the argument applies
+at every rank. $\square$
+
+Thus even one pure `C^2` or `C^5` donor row is impossible; the issue is
+not merely arranging their simultaneous availability. If the live word
+$C$ is literally a commutator in the current free generators, even a
+row equal to $C$ would have zero exponent vector. Introducing a new
+generator $c$ for that commutator changes the literal word under discussion,
+but a pure $c^k$ row still fails the proposition for $|k|>1.
+
+There is a positive tagged model, not a transfer theorem for AK3. On
+free generators $c,d$, put
+
+\[
+ r=c^2d,\qquad s=c^5d^2.
+\]
+
+The exponent matrix has rows $(2,1),(5,2)$ and determinant $-1$.
+More importantly, literal free reduction verifies
+
+\[
+ s c^{-1}= {}^{c^3}r\;{}^c r.
+\]
+
+With $r$ retained and restored as donor, left-multiply $s$ by the inverse
+of the displayed product to obtain $c$. Then two left multiplications of
+$r=c^2d$ by the inverse of the donor $c$ give $d$; swap the rows to obtain
+$(c,d)$. These are ordinary AC moves, using the established restored-donor
+conjugation macros, and the word test replays them literally. The
+unimodular matrix alone was not used to infer AC triviality.
+
+This corrects the power-row interface: a power-based continuation needs
+actual tagged or interleaved rows and a legal route to cancel the tags.
+No route from the AK3 target to this model is supplied. It is a positive
+control for a feasible move pattern, not a new residual ledger, bridge
+certificate, stable AK3 proof, or ordinary AK3 proof.
 
 ## Constructive probe and convergence boundary
 
@@ -123,7 +175,7 @@ shortening relator substitutions did not reduce it. This is only a failed
 certificate attempt, not a normal-closure or conjugacy obstruction.
 
 Do not expand this note with new residual categories. A useful next advance
-must directly realize a simplifying row replacement or the power-row
+must directly realize a simplifying row replacement or a tagged power-row
 argument; group consequence manipulations alone do not close AK3.
 
 ## A legal retained-donor switch

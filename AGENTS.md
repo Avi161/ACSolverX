@@ -1,5 +1,13 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Pure power consequences cannot be live rows
+
+[TRAP] The boundary continuation proposed realizing `C^2` and `C^5`
+as literal donors. Any balanced trivial-group presentation has a unimodular
+exponent matrix, so even one proper-power row is impossible at every
+stabilized rank. Keep generator tags or non-power terms in a power-based
+AC construction; never promote group consequences to live relators.
+
 ### [2026-09-05] Formal return maps are not AC invariants
 
 [WORKS] Tracking generators through the closed boundary corridor exposes
