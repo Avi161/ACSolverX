@@ -125,3 +125,120 @@ Order: the cut-shift skip (hcompact-only kernel, `hexpand.py`), then packed
 canonicalisation on 2-bit words, each gated against `frozen2` and benched on
 this row at 300k. The shared kernels in `greedy_baseline.py` / `hfast.py` are
 not touched by either.
+
+## Results per step (each against `current` = frozen2 = a1d1be23)
+
+Every step: `gates.py --oracle --twin --twin-rows 6 --twin-budget 30000
+--widen-lines states --frozen2` (60 rows at 1,000 against the Python
+oracle and the frozen engine; 6 rows at 30,000 bit-for-bit against the
+frozen engine, every stored array, every decoded relator, the widen pops),
+then `bench.py --rows aca_47 --budget 300000 --reps 1 --cpu 2 --engines
+current,candidate`. The gates ran on core 0 while the decision bench ran on
+core 2; the final bench below ran alone.
+
+| step | what | gates (wall) | aca_47 300k pops/s current -> candidate | ratio | kept |
+|---|---|---|---|---|---|
+| 1 | cut-shift skip in pass 1 (`hexpand.expand_children_h`, emitted bitmap, Booth canon kept) | oracle PASS, twin PASS (482 s) | 1,439.9 -> 2,237.8 | **1.5541** | yes (a8a6b3a4) |
+| 2 | + canonical form on 2-bit-packed words (`packed=True`) | oracle PASS, twin PASS (457 s) | 1,452.9 -> 3,401.5 | **2.3412** (step's own factor 1.506) | yes (f6f38a7d) |
+| -- | deferred scoring (candidate change 1) | not run | -- | -- | skipped: 7.3% of the pop, 2% to 4% recoverable |
+| -- | pass-1 filter rewrite (candidate change 3) | not run | -- | -- | skipped: 2.1% of the pop |
+
+Record fingerprints agreed on every run; bytes/state 40.1 on both engines
+at this budget (the kernels allocate per pop, not per state; the per-block
+bitmap is at most n1 x n2 bytes a pop); peak RSS 3.15 GiB current, 3.17 to
+3.18 GiB candidate on the 300k runs (the bench's RSS is dominated by the
+reservation, which is identical). Bench wall: 393 s (step 1), 346 s
+(step 2). A first version of step 1 that skipped on the bare criterion
+without the emitted bitmap measured 1.5410 and also passed both gates
+(490 s); it was replaced before commit by the bitmap version, which is
+what is measured above.
+
+## Final bench (box idle, core 2, `--engines current,candidate`)
+
+`aca_47` at 300,000 pops, 1 rep (wall 346 s): current 1,462.6 -> candidate
+3,385.0 pops/s, **ratio 2.3144**; peak RSS 3.156 -> 3.184 GiB; bytes/state
+40.1 on both; record fingerprints agree.
+
+The default six rows at 100,000 pops, 3 reps, engines alternating (wall
+1,082 s for 36 measurements):
+
+| row | median pops/s current -> candidate | candidate min .. max | ratio | peak RSS GiB | B/state |
+|---|---|---|---|---|---|
+| aca_0 | 2,889.0 -> 5,509.6 | 5,366.8 .. 5,932.6 | 1.9071 | 1.218 -> 1.221 | 44.4 -> 44.4 |
+| aca_1 | 2,616.5 -> 5,470.0 | 5,348.6 .. 5,566.5 | 2.0906 | 1.218 -> 1.220 | 44.4 -> 44.4 |
+| aca_3 | 3,638.9 -> 7,993.7 | 7,987.2 .. 7,995.0 | 2.1968 | 0.653 -> 0.656 | 44.4 -> 44.4 |
+| aca_4 | 2,069.8 -> 4,402.9 | 4,304.6 .. 4,504.4 | 2.1272 | 1.218 -> 1.220 | 44.4 -> 44.4 |
+| aca_5 | 1,999.9 -> 4,280.2 | 4,226.3 .. 4,298.3 | 2.1402 | 1.218 -> 1.219 | 44.4 -> 44.4 |
+| aca_8 | 3,573.4 -> 8,182.8 | 8,137.3 .. 8,358.9 | 2.2899 | 0.637 -> 0.638 | 44.4 -> 44.4 |
+
+Median ratio 2.1337, geometric mean 2.1220; record fingerprints agree on
+every row and every rep (the two engines search identically). Against the
+operator's bar of 1.1x at 300k on a real row: 2.31x on `aca_47` at 300k on
+this box; the campaign box (Xeon 6975P) is where the per-lane number is to
+be read, the shares in this document are what carry over.
+
+## Full suite on the final tree (`f6f38a7d`)
+
+`python -m pytest tests/ -q` after purging numba caches (core 0, wall
+435 s): **281 passed, 11 failed**. Ten are the branch-name pins that fail
+on this lab branch by construction (`test_leftovers_5m.py`:
+`test_the_committed_notebook_is_what_the_generator_writes` x5 and
+`test_the_branch_matches_the_branch_this_code_is_on`; `test_leftovers_1m.py`:
+the same two names, parametrised `[greedy]` and `[s20_mk2]`, four
+failures). The eleventh is
+`tests/test_leftovers_5m.py::test_rerun_observes_a_tiny_row_end_to_end`,
+which is this work's to explain: it runs `rerun_row.rerun` on `ac19_23156`
+at a 2,000-pop budget with a 0.2 s RSS sampler and asserts at least one
+live sample line in the CSV. The observer's loop blocks in
+`proc.poll(timeout=1.0)` BEFORE its first sample; the 2,000-pop child now
+finishes in 0.35 to 0.39 s of search (0.67 to 0.74 s of rerun, measured
+three times from a script at `sample_secs` 0.2, 0.02 and 0.005: one CSV
+line each time, `nodes_explored` 2,000), so by the time the loop samples,
+the child has exited and `/proc/<pid>/status` returns nothing. On
+`a1d1be23` the same search outlived the first poll. Every other assertion
+of that test passes (record, node count, peak RSS, engine generation,
+output naming). Not a search or memory regression; the fix belongs to the
+harness (sample once right after the spawn, before the first poll, or give
+the toy rerun a budget that outlives one second) and was not applied here
+because no further code changes were to land on this branch.
+
+## Ideas not implemented (each with the measurement that would decide it)
+
+None of these is on the branch; they are written down so the next split
+can order them. All are for `hexpand.py` (hcompact only); none touches the
+shared kernels.
+
+1. **The remaining intra-pop repeats.** 55.7% of candidates were repeats
+   before step 1 and the cut-shift skip removes 48.9 points of that, so
+   about 6.8% of the original candidates (about 13% of the survivors) are
+   still repeats the engine's table has to find: chains that wrap through
+   `k1 = 0` (the wrap member is emitted because its predecessor has
+   `k1 = n_i - 1`, later in the order), and repeats across blocks or from
+   periodic relators. Deciding measurement: re-run `phase_split.py --sub`
+   with the recorder on the new engine and classify the survivors' repeats
+   by mechanism (same block and a wrapped chain; other block; same move
+   set). Only a class with an exact by-construction criterion is worth a
+   step, and the ceiling is 13% of the survivors' per-child work.
+2. **Deferred scoring** (candidate change 1): features + scoring were 7.3%
+   of the pop before the steps; on the survivors the duplicate fraction is
+   about 29%, so the recoverable part is 2% to 4% of the old pop and a
+   larger share of the new, faster pop. Deciding measurement: the same
+   `--sub` split on the new engine; take it only if (d) x duplicate
+   fraction is at least 5% of the new pop. The engine-side code exists as
+   a plan (score only survivors with `expand_and_score_nj`'s loop verbatim
+   on the flat code buffer; `_feats_nj` already reads that layout).
+3. **The probe on packed bytes.** With expansion at 2.3x, the probe
+   (12.8% of the old pop) is now the second phase. `_codes_equal_row`
+   decodes one 2-bit symbol per iteration; a candidate packed once into a
+   scratch row could compare `(la + 3) // 4` bytes per region under
+   `_region_cmp2`'s masks. Deciding measurement: the outer split's probe
+   line on the new engine, and the per-candidate cost of the extra pack
+   against the 1.23 slots a lookup visits.
+4. **Word generation + reduce on packed words** (13.9% of the old kernel):
+   the raw child word and the seam cascade could be built as packed
+   windows of the doubled relators instead of symbol copies. Deciding
+   measurement: stage (a) on the new engine; worth a step only if it is
+   still above 10% of the pop.
+5. **The pass-1 filter** (candidate change 3): 2.1% of the pop before the
+   steps; even on the faster pop it stays under 10%. Not worth its gates
+   unless a later split says otherwise.
