@@ -2,6 +2,11 @@
 
 ## Status
 
+Latest constructive checkpoint (Section 6.87): the sufficient target is
+stably AC-equivalent to the explicit length-fifteen pair
+$(\mathtt{PPPQQpq},\mathtt{PPQppqPQ})$. This improves the earlier
+length-thirty-one representative; it does not trivialize the target or AK(3).
+
 This note isolates the highest-value theory route to stable AK(3).  It
 proves that either of two explicit normal-closure memberships is sufficient
 to AC-trivialize the published MMS02 rank-three triple
@@ -9828,6 +9833,126 @@ and abelianization theorem for this tagged gate, not a depth-five
 classification.  It supplies no path, Peiffer closure, MMS02 bridge, stable
 AK(3), ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis result.
 The depth-four lane is closed; no depth-five census is opened.
+
+### 6.87. Constructive preimage shift to a length-fifteen representative
+
+The depth-four exclusion is not extended. Instead, return to the literal
+target (351) and use the already proved identity $P=\phi(Q)$ from (348)
+*before* deleting the stable letter. This order matters for the resulting
+rank-two representative.
+
+Here is the general elementary mechanism. For any endomorphism $\psi$ of
+$F(a_1,\ldots,a_n)$, set
+
+\[
+ C_W(a_i)=W^{-1}a_iW\psi(a_i)^{-1},\qquad
+ R_i=xa_ix^{-1}\psi(a_i)^{-1}.
+ \tag{523}
+\]
+
+**Lemma 6.81 (stable preimage shift).** Suppose $W=\psi(V)$ as free words
+and $(C_W(a_i))_{i=1}^n$ is a balanced presentation of the trivial group.
+Then this tuple and $(C_V(a_i))_{i=1}^n$ are stably AC-equivalent.
+Injectivity of $\psi$ is not required. The trivial-group hypothesis is
+required here for the cited stable ambient automorphism theorem; no
+arbitrary-group version is asserted.
+
+**Proof.** Reversing substitution-and-removal and the stable ambient
+automorphism gives $(R_1,\ldots,R_n,Wx)$ from the first tuple. Put
+$\rho(V)=xVx^{-1}\psi(V)^{-1}$. The cocycle identities (353) express
+$\rho(V)$ as a finite product of conjugates of the defining donors
+$R_i^{\pm1}$. Conjugate the last row by $x^{-1}$ and then left-multiply
+by $x^{-1}\rho(V)x$. Literal free reduction gives
+
+\[
+ (x^{-1}\rho(V)x)(x^{-1}Wx^2)=Vx.
+ \tag{524}
+\]
+
+Each factor uses a defining donor distinct from the recipient row,
+temporarily conjugated or inverted and then restored. The same defining
+donor may be used repeatedly. Thus no live-row self-donation is used. The
+ambient substitution $x\mapsto V^{-1}x$, fixing all $a_i$, sends the
+last row to $x$. Substitution-and-removal gives the second tuple. Every
+step is reversible in stable AC. $\square$
+
+Apply this construction to (351), with
+
+\[
+ \phi(p)=q,\quad \phi(q)=pqp^{-1}q,\quad
+ Q=\mathtt{QpQPPqpqPqpqqPq}.
+\]
+
+Uppercase letters inside the literal word denote inverses; the standalone
+$Q$ denotes the pinned word (348). The defining donors remain $R_1,R_2$
+until the correction (524) finishes. Expanding the fifteen letters of $Q$
+gives fifteen signed donor factors; direct free reduction verifies their
+product and (524). The corrected live row is $Qx$, not $x$ itself. Removing
+it after the indicated stable ambient substitution produces
+
+\[
+ \begin{aligned}
+ U_Q&=Q^{-1}pQq^{-1}
+   =\mathtt{QpQQPQpQPQppqPqpQpQPPqpqPqpqqP},\\
+ V_Q&=Q^{-1}qQ(pqp^{-1}q)^{-1}
+   =\mathtt{QpQQPQpQPQppqPqpQPPqpqPqpqP}.
+ \end{aligned}
+ \tag{525}
+\]
+
+Their lengths are $30,27$. The elementary row change
+$(U_Q,V_Q)\mapsto(U_Q^{-1}V_Q,V_Q)$, followed only by cyclic
+normalization, inversion and permutation, gives the length-$46$ pair
+
+\[
+ (\mathtt{PPPqpqPqpQPQpQPQppq},
+  \mathtt{PPqpqPqpqPQpQQPQpQPQppqPqpQ}).
+ \tag{526}
+\]
+
+Seven further pinned cyclic row products give the following positive
+continuation. Indices are zero-based in the signed rows; $r$ is the retained
+source-row index. Products have factor order $(0,1)$. The certificate
+specifies each product and endpoint literally, including any subsequent
+row inversion, cyclic conjugation or permutation. Only the first row below
+uses a nonidentity ambient basis map, namely $p\mapsto p$, $q\mapsto pq$.
+
+| source length | signs | rotations | $r$ | target length |
+| --- | --- | --- | --- | --- |
+| 46 | $(+,+)$ | $(0,26)$ | 0 | 34 |
+| 34 | $(+,+)$ | $(10,9)$ | 1 | 33 |
+| 33 | $(+,-)$ | $(0,0)$ | 0 | 24 |
+| 24 | $(+,-)$ | $(0,0)$ | 0 | 23 |
+| 23 | $(+,+)$ | $(0,5)$ | 1 | 21 |
+| 21 | $(+,-)$ | $(5,1)$ | 0 | 20 |
+| 20 | $(+,-)$ | $(0,0)$ | 1 | 15 |
+
+**Theorem 6.82 (constructive length-fifteen target).** The cleaned target
+$P_T$ is stably AC-equivalent to
+
+\[
+ \boxed{(A_{15},B_{15})=
+ (\mathtt{PPPQQpq},\mathtt{PPQppqPQ}).}
+ \tag{527}
+\]
+
+**Proof.** The literal route (351), the donor correction (524), the
+substitution (525), and the displayed row products compose to the asserted
+stable equivalence. Their certificate is
+`experiments/stable_ac/mms02_terminal_preimage_killer_certificate.py`;
+independent free-word replay and a corrupted-factor control are in
+`tests/stable_ac/test_mms02_terminal_preimage_killer_certificate.py`.
+The two existing ambient-minimum implementations check the initial
+lengths, while every later ambient map is explicitly pinned and replayed.
+$\square$
+
+This is a constructive improvement on the length-$31$ representative, not
+a longer exclusion ledger. It does not solve the length-$15$ pair, place
+it under the classical length-at-most-twelve theorem, or prove global
+minimality. A stable trivialization of (527) would prove stable AK(3)
+through the existing sufficient corridor. The preimage shift does not
+contradict the nonconjugacy of $Px$ to $x$: its target is $Qx$. The bridge,
+stable AK(3), ordinary AK(3), and the general conjectures remain open.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 

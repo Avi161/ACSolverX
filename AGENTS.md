@@ -25,3 +25,11 @@ certificate inspection, or implementation; do not ask them to originate the
 research direction. This latest user instruction supersedes earlier strategic
 delegation defaults. This lesson is recorded here under the user's replacement
 AGENTS.md protocol.
+
+### [2026-09-05] Stable ambient hypotheses
+
+[TRAP] The draft preimage-shift lemma generalized a stable ambient
+substitution beyond the trivial-group hypothesis of the cited theorem.
+Before promoting a word identity to stable AC, explicitly carry the
+balanced trivial-presentation hypothesis through every ambient substitution
+and generator-removal step. Free-word replay alone does not check this gate.
