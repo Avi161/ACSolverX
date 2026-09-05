@@ -105,15 +105,16 @@ wall 40m50s; raw output in `perf_lab/results/combined_bench_2026-09-05.json`.
 | lanes on the 256 GiB class (246) | 1 | 2 | governor arithmetic |
 | lanes on 1.5 TiB (1532) | 8 | 12 | governor arithmetic |
 | physical peak of a 186 states/node row at cap width | ~160 GiB | ~104 GiB | 1.86B x 51 B + 16 GiB table |
-| pops/s per lane | 1.0x | ~1.7x | measured at 50k to 100k pops on the lab box; projected to campaign scale |
-| throughput per 512 GiB box | 1.0x | ~3.4x | 2x lanes x 1.7x per lane |
-| cost per 186/node row, on-demand r6a.16xlarge at $3.63/h | ~$5.4 | ~$1.6 | 3 h -> ~1.75 h per row, 4 lanes |
+| pops/s per lane | 1.0x | ~1.0x (0.95x to 1.15x) | MEASURED on the campaign box at 34% depth, see section 7; the lab's 1.7x did not carry to campaign-length relators |
+| throughput per 512 GiB box | 1.0x | ~2.0x | lanes only: 2 -> 4 |
+| cost per 186/node row, on-demand r6a.16xlarge at $3.63/h | ~$5.4 | ~$2.7 | 3 h per row, 4 lanes |
 
-Caveats a verifier should keep: the per-lane speed factor was measured at
-50k to 100k pops on a Xeon lab box, where candidates are 38 to 43 symbols;
-at campaign scale relators are longer and the expansion kernel's share is
-inferred to be at least as large, but the factor there is a projection
-until a campaign row reports its `seconds`. The lane counts are exact
+Caveats a verifier should keep: the per-lane speed factor of 1.7x was
+measured at 50k to 100k pops on a Xeon lab box, where candidates are 38 to
+43 symbols. On the campaign box at campaign length it is ~1.0x (section 7):
+the kernel change removed per-child overhead, and at 50 symbols per
+candidate the per-symbol loops dominate. The memory figures carried over
+exactly. The lane counts are exact
 arithmetic on the new allocation and will show in `run_remote.sh plan`.
 Rows already recorded under earlier engine generations remain valid
 results (the search is identical); only their recorded peaks describe a
@@ -176,3 +177,39 @@ widen-lines states PASS; wall 11m33s. Full suite on the campaign branch
 (`test_leftovers_5m`, `test_hcompact_kernels`, `test_expand_kernel`,
 `test_greedy_heuristic`, `test_autcanon`, `test_leftovers_1m`) with fresh
 numba caches: 275 passed in 11m40s.
+
+## 7. Campaign-box measurement after roll-out (operator, 2026-09-05)
+
+Box: r8ib.24xlarge (Xeon 6975P-C, 48c/96t, 743 GB), rolled to `3093592d`,
+6 lanes seated by the governor (4 on the previous build), 254 GB used at
+33% depth, no swap. Per-lane rate at 34% of a 10M row: 792 to 870 pops/s
+against 891 at 30% on `5d047da5` for the same row family, so per lane is
+0.95x to 1.15x, not the lab's 1.74x. Per box: 6 x 865 against 4 x 891 is
+about 1.46x, which is the memory change realised as lanes.
+
+Why the lab number did not carry, measured on the same box with the
+campaign untouched:
+
+- `perf stat` on a live worker at 50% depth, 60 s: IPC 2.68, dTLB load
+  misses 23M in 60 s, THP on with ~373 GB in 2 MiB pages. The lane is
+  instruction-bound, not memory-latency-bound; NUMA pinning and probe
+  batching are not justified.
+- `phase_split.py --rows aca_47 --budget 300000 --reps 1` on an idle core:
+  expand 806.6 us (85.7%), la-scan 4.6, hash 8.4 (0.9%), probe 73.1
+  (7.8%), pack 7.8, sift 5.3 (0.6%), residual 36.0, total 941.6 us per pop
+  (1,062 pops/s, the campaign per-lane rate). 331.7 candidates per pop at
+  49.5 symbols each (the 50k-pop lab rows had 172 to 241 at 38 to 43),
+  146.9 inserts per pop, miss rate 0.443, intra-pop duplicate fraction
+  0.350, 1.23 slots per lookup, 24 B rows, 1 widen, 1 grow.
+
+Reading: the 1.74x lived in per-child overhead (allocations, the modulo,
+the per-child inverse) that is a large share of a 38-symbol child and a
+small share of a 50-symbol one, where the per-symbol loops inside
+`expand_and_score_nj` dominate. The next measurement is therefore a split
+INSIDE the expansion kernel at campaign length (generation and reduce,
+canonicalisation, the pass-1 filter, feature scoring), and the candidate
+changes are ones that cut per-symbol work or skip work on candidates that
+dedup discards, both bit-identical by construction. Anything promoted
+from here is held to the operator's bar: gates green, and at least 1.1x
+at 300k pops on a real row measured on the campaign box, or more lanes
+per GB.
