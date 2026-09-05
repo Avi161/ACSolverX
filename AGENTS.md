@@ -129,3 +129,13 @@ but lacks Numba. Check this chain before launching a probe; do not install
 packages or repeatedly switch runtimes for a pure combinatorial check.
 `LinkData.vertex_darts` is a dictionary keyed by germ, not a sequence of
 stars: access `vertex_darts[v]` explicitly when inspecting degrees.
+
+### [2026-09-05] Separate peripheral tests from AC obstructions
+
+[WORKS] In `AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md` Sections 6.91--6.92,
+an explicit knot marking permits a finite-field centralizer test for
+peripherality. First check the actual relator and the meridian marking;
+then use the image of its whole peripheral subgroup, not just one
+meridian conjugacy class. A finite representation can classify these
+fixed elements without distinguishing their AC orbits. Do not turn this
+geometric witness into another finite-quotient obstruction ledger.

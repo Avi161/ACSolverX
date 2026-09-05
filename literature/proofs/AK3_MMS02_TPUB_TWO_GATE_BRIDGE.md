@@ -2,10 +2,10 @@
 
 ## Status
 
-Section 6.91 identifies the common-row quotient $G_-$ literally with the
-$6_3$ knot group and transports both terminal words. This opens a geometric
-interpretation of the existing endpoint problem, not a new quotient ledger
-or a proof that either endpoint is peripheral. The bridge remains open.
+Sections 6.91--6.92 identify the common-row quotient $G_-$ literally with the
+$6_3$ knot group and prove that both transported terminal words are
+nonperipheral. This is a geometric classification of the existing endpoint
+problem, not a new quotient-obstruction ledger. The bridge remains open.
 
 Latest convergence checkpoint (Section 6.90): the length-fourteen pair
 $(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns to standard AK(3).
@@ -10352,6 +10352,67 @@ not solve (413), (426), or lift a quotient path to the MMS02 triple.
 The useful next geometric question concerns these exact transported words;
 no additional finite quotient or residual category is introduced. Stable
 and ordinary AK(3) remain unresolved.
+
+### 6.92. Both terminal elements are nonperipheral
+
+Keep the exact marking and endpoint words of (544)--(546). The standard
+two-bridge presentation $aw=wb$ uses meridians $a,b$; see also
+[Ballas, Section 5](https://web.math.ucsb.edu/~sballas/research/documents/proj_def.pdf).
+There is a small exact representation, with all entries in $\mathbb F_{23}$:
+
+\[
+\rho(a)=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+\rho(b)=\begin{pmatrix}1&0\\21&1\end{pmatrix}.
+\tag{547}
+\]
+
+Multiplying the literal word $w=\mathtt{baBABabABAba}$ gives
+$\rho(w)=\left(\begin{smallmatrix}6&9\\5&0\end{smallmatrix}\right)$
+and verifies $\rho(a)\rho(w)=\rho(w)\rho(b)$, so (547) defines a homomorphism of
+the actual knot group, not merely an assignment to its free generators.
+For the full endpoint words (546), exact multiplication gives
+
+\[
+\rho(\alpha(U_*))=\begin{pmatrix}21&6\\7&13\end{pmatrix},\qquad
+\rho(\alpha(V_*))=\begin{pmatrix}6&14\\7&5\end{pmatrix},
+\]
+\[
+\operatorname{tr}\rho(\alpha(U_*))
+=\operatorname{tr}\rho(\alpha(V_*))=11,\qquad
+11^2=6\ne4\quad\text{in }\mathbb F_{23}.
+\tag{548}
+\]
+
+**Theorem 6.87 (nonperipheral terminal elements).** Neither $U_*$ nor
+$V_*$ is conjugate into a peripheral subgroup of the $6_3$ knot group
+identified in Theorem 6.86.
+
+**Proof.** The peripheral subgroup based at the meridian $a$ is abelian,
+so its image centralizes the nonidentity unipotent matrix $\rho(a)$.
+Writing a commuting matrix as $\left(\begin{smallmatrix}r&s\\t&u\end{smallmatrix}\right)$,
+the commuting equation gives $t=0$ and $r=u$. Its determinant-one condition
+then gives $r^2=1$. Over $\mathbb F_{23}$ this forces $r=\pm1$, hence its
+trace is $\pm2$. The same squared-trace condition holds in every conjugate
+of that centralizer. Equation (548) excludes both endpoint elements.
+Faithfulness of $\rho$ is not required. $\square$
+
+The [finite certificate](../../experiments/stable_ac/mms02_six_three_parabolic_certificate.py)
+and [independent replay](../../tests/stable_ac/test_mms02_six_three_peripheral_certificate.py)
+check the base relator before either endpoint probe, all determinant-one
+conditions, and the endpoint traces. Replacing $21$ by $22$ in $\rho(b)$
+fails the base relation; a meridian power and its conjugate supply positive
+peripheral controls. This guards against a vacuous test whose assignment
+does not descend to the common-row quotient.
+
+The result does not obstruct changing either live row by AC moves. It
+prevents treating the two existing normal generators as peripheral filling
+slopes, but does not exclude a nonperipheral handle construction or evaluate
+their pair orbit. The knot identification and this classification consume
+two checkpoints of this geometric continuation: allow one further checkpoint
+only for a constructive consequence, then freeze this continuation if none
+is obtained. Do not replace it with a census of further representations.
+The literal lift equations, MMS02 bridge, stable AK(3), and ordinary AK(3)
+remain open.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
