@@ -1,7 +1,8 @@
 from dataclasses import replace
 
 from experiments.stable_ac.mms02_boundary_automorphism_corridor_certificate import (
-    PINNED_FACTORS, decide_boundary_automorphism_corridor, shifted_h_factors,
+    PINNED_FACTORS, decide_boundary_automorphism_corridor, decide_boundary_donor_switch,
+    shifted_h_factors,
     verify_shifted_h_factors,
 )
 
@@ -80,3 +81,44 @@ def test_boundary_automorphism_inverse_and_killer_orientation_are_pinned():
     assert decision.magnus_positions == ((2, "u"), (1, "u"), (1, "u"), (0, "U"),
                                          (1, "U"), (1, "U"), (2, "U"))
     assert decision.final_height == 1
+
+
+def test_boundary_donor_switch_defining_rows_and_elimination_are_literal():
+    decision = decide_boundary_donor_switch()
+    defining = reduce_word("c" + invert("uvUV"))
+    assert decision.source == ("tuTV", "tvTvU", "uvUVUt")
+    assert reduce_word("uvUVUt" + invert("cUt")) == invert(defining)
+    assert decision.defining_row == defining
+    assert decision.corrected_killer == "cUt"
+    assert decision.source_defect == invert(defining)
+    images = {"t": "uC", "v": "uCucU", "u": "u", "c": "c"}
+    assert substitute("cUt", images) == ""
+    assert substitute("tuTV", images) == ""
+    assert substitute("tvTvU", images) == "uCuCuccUU"
+    assert substitute(defining, images) == "cuCucuCUcUU"
+    assert decision.eliminated_pair == ("uCuCuccUU", "cuCucuCUcUU")
+    assert decision.t_word == "uC"
+    assert decision.v_word == "uCucU"
+
+
+def test_boundary_switch_uses_only_the_retained_r_donor():
+    decision = decide_boundary_donor_switch()
+    retained = "uCuCuccUU"
+    recipient = conjugate("cuCucuCUcUU", "uC")
+    v_word = "uCucU"
+    commutator = reduce_word("u" + v_word + "U" + invert(v_word))
+    g_word = conjugate("c", "uC")
+    assert g_word == "ucU"
+    assert reduce_word(g_word + commutator) == "ucuCucUCUcU"
+    assert reduce_word(g_word + commutator + v_word) == "ucuCucUU"
+    defect = reduce_word("ucuCucUCUcU" + invert(recipient))
+    product = reduce_word(conjugate(retained, "ucuCucUU") + conjugate(invert(retained), "ucU"))
+    assert defect == product
+    assert tuple((factor.row, factor.sign, factor.conjugator) for factor in decision.factors) == (
+        (1, 1, "ucuCucUU"), (1, -1, "ucU"),
+    )
+    assert decision.conjugated_recipient == recipient
+    assert decision.commutator == commutator
+    assert decision.switched_row == "ucuCucUCUcU"
+    assert decision.switch_defect == decision.switch_product == defect
+    assert decision.verdict == "TARGET_STABLE_BOUNDARY_LEGAL_DONOR_SWITCH"

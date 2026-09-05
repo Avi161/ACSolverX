@@ -105,8 +105,8 @@ class. No AC conclusion follows from this paragraph.
 
 ## Constructive probe and convergence boundary
 
-Introducing a commutator generator and formally eliminating `t,v` gives
-the candidate pair `uCuCuccUU`, `cuCucuCUcUU` over `u,c`. Literal ambient
+Introducing a commutator generator and legally eliminating `t,v` gives
+the certified pair `uCuCuccUU`, `cuCucuCUcUU` over `u,c`, by the transcript below. Literal ambient
 normalization and one cyclic product return to total length 15, with
 endpoint `PPQPqqppQ`, `PPqpQQ` (here `p,q` are normalized generators).
 This did not improve the certified length-15 target; no additional descent
@@ -121,3 +121,37 @@ certificate attempt, not a normal-closure or conjugacy obstruction.
 Do not expand this note with new residual categories. A useful next advance
 must directly realize a simplifying row replacement or the power-row
 argument; group consequence manipulations alone do not close AK3.
+
+## A legal retained-donor switch
+
+Uppercase letters denote inverses, and $^{h}r=hrh^{-1}$.
+Stabilize by the defining row $E=c[u,v]^{-1}$. The old killer
+$J=[u,v]u^{-1}t$ and $J'=cu^{-1}t$ satisfy $J(J')^{-1}=E^{-1}$
+literally, so multiplication by the restored donor corrects the killer.
+Eliminate $t$ using $t_0=uC$, then eliminate $v$ using
+$w=t_0ut_0^{-1}=\mathtt{uCucU}$. These are defining-row removals, not
+the addition of arbitrary normal-closure consequences. The surviving pair is
+
+\[
+ R=\mathtt{uCuCuccUU},\qquad E_0=\mathtt{cuCucuCUcUU}.
+\]
+
+Put $C_0=[u,w]$, $g=t_0ct_0^{-1}=\mathtt{ucU}$, and
+$E_1=gC_0=\mathtt{ucuCucUCUcU}$. Free reduction proves the exact identity
+
+\[
+ E_1\bigl({}^{t_0}E_0\bigr)^{-1}
+ ={}^{\mathtt{ucuCucUU}}R\;{}^{\mathtt{ucU}}R^{-1}.
+\]
+
+Thus conjugate the recipient $E_0$ by $t_0$, then left-multiply it by
+the displayed product, restoring $R$ after each factor. The resulting
+pair is $(R,E_1)$. In particular, the product is used with its displayed
+sign, not inverted. This realizes one boundary-transport consequence
+without treating a commutator-inversion consequence as an extra donor.
+
+`decide_boundary_donor_switch()` in the boundary certificate pins both
+defining substitutions and both donor factors. Independent free-word
+tests replay them. This theorem certifies a stable equivalence only;
+neither row has been made primitive, and the power-row cancellation and
+the sufficient target's trivialization remain open.

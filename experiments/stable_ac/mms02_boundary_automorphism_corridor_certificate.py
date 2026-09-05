@@ -146,3 +146,62 @@ def decide_boundary_automorphism_corridor() -> BoundaryCorridorDecision:
         (D_ROW, E_ROW, P5 + "x"), ("v", "uV"), ("vu", "u"),
         "TARGET_STABLE_BOUNDARY_AUTOMORPHISM_KILLER_GATE",
     )
+
+
+SOURCE_BOUNDARY = ("tuTV", "tvTvU", "uvUVUt")
+SWITCH_FACTORS = (Factor(1, 1, "ucuCucUU"), Factor(1, -1, "ucU"))
+
+
+@dataclass(frozen=True)
+class BoundaryDonorSwitchDecision:
+    source: tuple[str, str, str]
+    defining_row: str
+    corrected_killer: str
+    source_defect: str
+    t_word: str
+    v_word: str
+    eliminated_pair: tuple[str, str]
+    commutator: str
+    conjugating_word: str
+    conjugated_recipient: str
+    switched_row: str
+    factors: tuple[Factor, ...]
+    switch_defect: str
+    switch_product: str
+    verdict: str
+
+
+def decide_boundary_donor_switch() -> BoundaryDonorSwitchDecision:
+    r1, r2, killer = SOURCE_BOUNDARY
+    defining = free_reduce("c" + inverse("uvUV"))
+    corrected = "cUt"
+    source_defect = free_reduce(killer + inverse(corrected))
+    if source_defect != inverse(defining):
+        raise AssertionError("the boundary defining-row killer correction drifted")
+    t_word, v_word = "uC", "uCucU"
+    substitutions = {"t": t_word, "v": v_word, "u": "u", "c": "c"}
+    if apply_images(r1, substitutions) or apply_images(corrected, substitutions):
+        raise AssertionError("the boundary defining rows did not disappear")
+    raw_pair = (apply_images(r2, substitutions), apply_images(defining, substitutions))
+    if raw_pair != ("uCuCuccUU", "cuCucuCUcUU"):
+        raise AssertionError("the boundary eliminated pair drifted")
+    commutator = free_reduce("u" + v_word + "U" + inverse(v_word))
+    g_word = conjugate("c", t_word)
+    recipient = conjugate(raw_pair[1], t_word)
+    switched = free_reduce(g_word + commutator)
+    if g_word != "ucU" or switched != "ucuCucUCUcU":
+        raise AssertionError("the boundary switched row drifted")
+    if free_reduce(g_word + commutator + v_word) != SWITCH_FACTORS[0].conjugator:
+        raise AssertionError("the positive boundary donor conjugator drifted")
+    defect = free_reduce(switched + inverse(recipient))
+    product = free_reduce("".join(
+        conjugate(raw_pair[0] if factor.sign == 1 else inverse(raw_pair[0]), factor.conjugator)
+        for factor in SWITCH_FACTORS
+    ))
+    if any(factor.row != 1 for factor in SWITCH_FACTORS) or defect != product:
+        raise AssertionError("the retained-row boundary donor switch drifted")
+    return BoundaryDonorSwitchDecision(
+        SOURCE_BOUNDARY, defining, corrected, source_defect, t_word, v_word,
+        raw_pair, commutator, g_word, recipient, switched, SWITCH_FACTORS,
+        defect, product, "TARGET_STABLE_BOUNDARY_LEGAL_DONOR_SWITCH",
+    )
