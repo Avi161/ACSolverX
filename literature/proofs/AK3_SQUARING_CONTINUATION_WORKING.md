@@ -230,3 +230,54 @@ independent replay includes a corrupted-factor rejection control. No
 knot-group identification, meridional-conjugacy claim, or new exclusion
 census is needed for this theorem. The remaining obligation is to trivialize
 this complete tuple by legal moves, not merely show that its group is trivial.
+
+## The specific literature cleanup does not transfer
+
+A direct comparison with a known simple knot-group killer is worth testing
+before developing more transport formulas. Let
+
+\[
+ a\mapsto\mathtt{Mn},\quad b\mapsto\mathtt{NmnMMn},\quad
+ u\mapsto\mathtt{Nmn},\qquad
+ r=\mathtt{mNmnMNmNMn},\quad j=\mathtt{NmnMnMNmm}.
+\]
+
+Under this free substitution, the two retained rows $D,F$ map literally
+to $1$ and ${}^{\mathtt{NmnM}}r$, respectively; the live row maps to $j$.
+The words `aBu` and `aBua` map to $m$ and $n$.
+For $w=[n,m^{-1}]=\mathtt{nMNm}$, the word $r$ is the cyclic shift by
+two letters of $w^{-1}mw n^{-1}=\mathtt{MnmNmnMNmN}$.
+This is the $q=-1$ presentation in
+[Cha–Suzuki, Proposition 2.2, p. 1140](https://msp.org/agt/2016/16-2/agt-v16-n2-p15-s.pdf),
+whose negative-$q$ simple normal generator specializes to
+$g=wn=\mathtt{nMNmn}$. The comparison here requires only a homomorphism;
+it does not assert a new stable-AC corridor from a group isomorphism.
+
+Over $\mathbb F_7$, assign
+
+\[
+ m\mapsto\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+ n\mapsto\begin{pmatrix}1&0\\3&1\end{pmatrix}.
+\]
+
+Direct multiplication gives $r\mapsto I$, so **both retained donors
+are killed**. The live killer is not killed: its image is
+$\left(\begin{smallmatrix}3&1\\6&0\end{smallmatrix}\right)$.
+The candidate $g$ has image
+$\left(\begin{smallmatrix}6&3\\2&0\end{smallmatrix}\right)$.
+Thus the traces of $(j,m,n,g)$ are $(3,2,2,6)$.
+Trace is invariant under conjugation and inversion in $\mathrm{SL}_2$.
+Consequently no sequence of conjugations, inversions and multiplications
+of the live row by conjugates of these fixed restored donors can turn it
+into any of the three specific candidate pullbacks or their inverses.
+
+The scope is essential: this excludes only the specified donor macros.
+It does not cover arbitrary paths that use the live row to change the
+donors and later restore them, or arbitrary ambient changes. It is not
+an AC invariant of the complete tuple. As a can-fail control, conjugates
+of $m$ retain trace two and are not separated from $m$. Replacing the
+lower-left entry three by one fails $r\mapsto I$ and must be rejected
+before any trace argument. The independent boundary tests pin these
+controls and the source-row evaluations. This closes the proposed direct
+literature transfer; it does not start a new exclusion census or resolve
+the all-row cancellation problem.

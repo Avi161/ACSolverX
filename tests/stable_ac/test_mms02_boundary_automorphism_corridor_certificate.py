@@ -240,3 +240,46 @@ def test_second_switch_short_killer_has_independent_retained_f_identity():
     assert decision.defect == decision.product == defect
     assert decision.final_tuple == ("uaUB", "ubUBBaB", "bbABu")
     assert decision.verdict == "TARGET_STABLE_SECOND_SWITCH_SHORT_KILLER"
+
+
+def _sl2_seven_evaluate(word, parameter=3):
+    matrices = {"m": (1, 1, 0, 1), "M": (1, -1, 0, 1),
+                "n": (1, 0, parameter, 1), "N": (1, 0, -parameter, 1)}
+    result = (1, 0, 0, 1)
+    for letter in word:
+        a, b, c, d = result
+        e, f, g, h = matrices[letter]
+        result = ((a * e + b * g) % 7, (a * f + b * h) % 7,
+                  (c * e + d * g) % 7, (c * f + d * h) % 7)
+    return result
+
+
+def test_short_killer_literature_map_and_retained_donors_are_literal():
+    images = {"a": "Mn", "b": "NmnMMn", "u": "Nmn"}
+    relator, killer = "mNmnMNmNMn", "NmnMnMNmm"
+    w = "nMNm"
+    standard = reduce_word(invert(w) + "m" + w + "N")
+    assert standard == "MnmNmnMNmN"
+    assert relator == standard[2:] + standard[:2]
+    assert substitute("uaUB", images) == ""
+    assert substitute("ubUBBaB", images) == conjugate(relator, "NmnM")
+    assert substitute("bbABu", images) == killer
+    assert substitute("aBu", images) == "m"
+    assert substitute("aBua", images) == "n"
+    assert _sl2_seven_evaluate(relator) == (1, 0, 0, 1)
+    for donor in ("uaUB", "ubUBBaB"):
+        assert _sl2_seven_evaluate(substitute(donor, images)) == (1, 0, 0, 1)
+    assert _sl2_seven_evaluate(killer) == (3, 1, 6, 0)
+    assert _sl2_seven_evaluate(w + "n") == (6, 3, 2, 0)
+
+
+def test_short_killer_trace_controls_can_fail_and_reject_invalid_base():
+    trace = lambda word: sum(_sl2_seven_evaluate(word)[i] for i in (0, 3)) % 7
+    killer, simple = "NmnMnMNmm", "nMNmn"
+    assert trace(killer) == 3
+    assert tuple(trace(word) for word in ("m", "n", simple)) == (2, 2, 6)
+    for word in (killer, "m", "n", simple):
+        assert trace(invert(word)) == trace(word)
+        assert trace(conjugate(word, "mnM")) == trace(word)
+    assert trace(conjugate("m", "n")) == trace("m")
+    assert _sl2_seven_evaluate("mNmnMNmNMn", parameter=1) != (1, 0, 0, 1)

@@ -47,3 +47,14 @@ and retry only the intended hunks; do not assume earlier hunks were applied.
 height-one factor had cancelled it. The correct word is `ABubb`.
 When reconstructing Magnus blocks, freely reduce the full product including
 the final stable-letter power before recording or testing donor factors.
+
+### [2026-09-05] Literal peripheral coordinates and small checks
+
+[TRAP] An exploratory meridian calculation reversed `(XY)^-1`: it is
+`yx`, not `xy`. A failed finite representation exposed the mismatch;
+the corrected source substitution is pinned in the boundary tests.
+Verify each proposed peripheral coordinate literally before importing a
+knot-group theorem. The guarded Python runtime has no `sympy`; for a
+two-by-two finite-field check use exact integer arithmetic, not a new
+dependency. Locate optional filenames with `rg --files` before passing
+globs to zsh, which rejects an unmatched glob before the command runs.
