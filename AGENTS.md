@@ -157,3 +157,12 @@ error, and a patch against a guessed wrapped sentence did not match
 `AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`. Use `rg -F -e` for literal TeX
 searches and a read-back, unique heading as an insertion anchor; do not
 guess line wrapping in the long proof document.
+
+### [2026-09-05] Do not assume a bundled symbolic algebra package
+
+[TRAP] SymPy is absent from both the proof Python and the bundled Python.
+The attempted version-glob package path also failed under zsh's no-match
+rule. Use a guarded `importlib.util.find_spec` probe, not guessed package
+paths, before designing a dependency-based symbolic calculation. For the
+small MMS02 trace checkpoint, exact standard-library sparse Laurent
+arithmetic sufficed; no package installation or larger computation was needed.
