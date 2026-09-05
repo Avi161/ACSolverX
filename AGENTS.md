@@ -166,3 +166,12 @@ rule. Use a guarded `importlib.util.find_spec` probe, not guessed package
 paths, before designing a dependency-based symbolic calculation. For the
 small MMS02 trace checkpoint, exact standard-library sparse Laurent
 arithmetic sufficed; no package installation or larger computation was needed.
+
+### [2026-09-05] Determine the power exponent before searching it
+
+[WORKS] `mms02_primitive_completion_probe.py` uses the embedded stage-four
+free group and the target's exponent vector `(0,4)` to determine the only
+possible integer power for each conjugator. This checks all integer powers
+without an exponent cutoff. Verify the actual base relation, signed-power
+controls, and the entire saved candidate prefix independently; retain the
+conjugator and stage bounds when reporting a negative result.

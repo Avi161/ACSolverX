@@ -92,3 +92,46 @@ compare direct rational matrix evaluation with the Laurent coefficients and
 check the polynomial elimination. They check finite calculations, not the
 universal theorem in place of its proof above. No representation census was
 run; this checkpoint stops the nonconstant-trace method rather than extending it.
+
+## One bounded constructive free-word probe
+
+The primitive-completion criterion also permits an exact positive-certificate
+probe without representations. Use the bridge's embedded stages
+$j_n(w)=x^{-n}wx^n$ and $j_n(w)=j_{n+1}(\phi(w))$. Put
+
+\[
+ d_0=\phi(b)=\mathtt{bbAbaB},\quad
+ \delta=\mathtt{bAbABaBB},\quad
+ u_3=d_0\delta^{-1},\quad H=\phi^3(a).
+\]
+
+The literal height scan gives $\overline B=j_3(u_3)X$. For a conjugator
+$c=j_3(N)$, moving all coefficients to stage four gives
+
+\[
+ c^{-1}\overline Bc=j_4(\phi(N)^{-1}\phi(u_3)N)X,
+ \qquad Xy^m=j_4(H^m)X.
+\]
+
+The free base embeds, so equality is exactly the free-word test
+$\phi(N)^{-1}\phi(u_3)N=H^m$. Since $H$ has exponent vector $(0,4)$,
+the left word determines the only possible integer $m$; if its first
+exponent is nonzero or its second is not divisible by four, none exists.
+The remaining test uses freely reduced powers, including zero and negative
+powers. Thus each tested $N$ covers all integers, not a selected range of $m$.
+
+The single [probe](../../experiments/stable_ac/mms02_primitive_completion_probe.py)
+checked exactly the first 1,000 freely reduced words in breadth-first order
+with alphabet $a,b,A,B$, including the empty word, at stage three only.
+The [saved artifact](../../results/stable_ac/theory/mms02_primitive_completion_stage3_20260905.json)
+contains every candidate: **no completion was found**. Before the scan,
+the raw $\overline B$ word was independently transported to stage three.
+For $m=2,0,-2$, the control coefficient $b d_0^m a^{-1}$ with $N=b$
+gives $H^m$ exactly; all three controls passed. A truncated monodromy was
+rejected. The [independent replay](../../tests/stable_ac/test_mms02_primitive_completion_probe.py)
+also checks the full base relator and every saved candidate.
+
+This ends the registered finite probe. It proves no exclusion for other
+stage-three conjugators, other stages, or the all-integer primitive-completion
+criterion. No larger scan follows from this negative result; the literal
+bridge and both AK(3) gates remain unresolved.
