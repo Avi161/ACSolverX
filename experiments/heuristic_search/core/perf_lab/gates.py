@@ -46,7 +46,24 @@ ROOT = _d
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.core.perf_lab.bench import load_rows  # noqa: E402
+from experiments.heuristic_search.core.perf_lab.bench import (  # noqa: E402
+    load_rows, purge_numba_cache)
+
+_BASELINE_MODULES = {
+    # hcompact.py at 5d047da5 on the LIVE kernels (greedy_baseline / hfast)
+    "baseline": "experiments.heuristic_search.core.perf_lab.hcompact_baseline",
+    # the same engine on FROZEN kernels (perf_lab/frozen/, at 9b98e313): use
+    # --frozen when the candidate change touches greedy_baseline.py or
+    # hfast.py, because then "baseline" moves with the candidate and proves
+    # nothing about the kernel edit.
+    "frozen": "experiments.heuristic_search.core.perf_lab.frozen.hcompact_frozen",
+}
+
+
+def _baseline_module(args):
+    import importlib
+    key = "frozen" if args.frozen else "baseline"
+    return importlib.import_module(_BASELINE_MODULES[key]), key
 
 
 # ---------------------------------------------------------------------------
@@ -105,8 +122,8 @@ _ORACLE_FIELDS = (
 def gate_oracle(args):
     from experiments.heuristic_search.core.hcompact import (
         greedy_search_hcompact as cand_solve)
-    from experiments.heuristic_search.core.perf_lab.hcompact_baseline import (
-        greedy_search_hcompact as base_solve)
+    base_mod, base_key = _baseline_module(args)
+    base_solve = base_mod.greedy_search_hcompact
     from experiments.heuristic_search.core.hsolve import greedy_search_h
     from experiments.search.run_leftovers_1m import S20_MK2
 
@@ -146,7 +163,7 @@ def gate_oracle(args):
 
     ok = not failures
     print(f"[oracle] {len(rows)} rows, budget={args.oracle_budget}, mrl={args.mrl}, "
-         f"config=S20_MK2: {'PASS' if ok else 'FAIL'}")
+         f"config=S20_MK2, vs {base_key}: {'PASS' if ok else 'FAIL'}")
     if not ok:
         print(f"  {len(failures)} of {len(rows)} rows mismatched:")
         for name, fs in failures:
@@ -170,8 +187,8 @@ _TWIN_ARRAY_FIELDS = ("len1", "len2", "depth", "seg", "score", "parent", "pmove"
 def gate_twin(args):
     import numpy as np
     from experiments.heuristic_search.core.hcompact import HCompactSolver as CandSolver
-    from experiments.heuristic_search.core.perf_lab.hcompact_baseline import (
-        HCompactSolver as BaseSolver)
+    base_mod, base_key = _baseline_module(args)
+    BaseSolver = base_mod.HCompactSolver
     from experiments.search.run_leftovers_1m import S20_MK2
 
     row_names = [f"aca_{i}" for i in range(args.twin_rows)]
@@ -263,8 +280,9 @@ def gate_twin(args):
 
     ok = not failures
     print(f"[twin] {len(rows)} rows, budget={args.twin_budget}, mrl={args.mrl}, "
-         f"config=S20_MK2, decode-max={args.decode_max}, "
-         f"widen-lines={args.widen_lines}: {'PASS' if ok else 'FAIL'}")
+          f"config=S20_MK2, decode-max={args.decode_max}, "
+          f"widen-lines={args.widen_lines}, vs {base_key}: "
+          f"{'PASS' if ok else 'FAIL'}")
     if not ok:
         print(f"  {len(failures)} of {len(rows)} rows mismatched:")
         for name, fs in failures:
@@ -318,7 +336,15 @@ def main(argv=None):
     ap.add_argument("--suite", action="store_true", help="run the pytest suite gate")
     ap.add_argument("--all", action="store_true",
                     help="run oracle, then twin, then suite; stop at first failure")
+    ap.add_argument("--frozen", action="store_true",
+                    help="compare against the FULLY frozen engine (frozen kernels "
+                         "too); required to certify a change to greedy_baseline.py "
+                         "or hfast.py")
     args = ap.parse_args(argv)
+
+    purged = purge_numba_cache()
+    print(f"(purged {purged} numba cache files: a kernel edit in another file "
+          f"leaves stale code in every cached caller)")
 
     if args.all:
         order = ["oracle", "twin", "suite"]

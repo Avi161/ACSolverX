@@ -21,6 +21,33 @@ absolute path from somewhere else).
   peak RSS, and per-state memory.
 - `gates.py` -- proves the candidate's search is bit-identical to the oracle and to
   the baseline before any speed number from `bench.py` is meaningful.
+- `frozen/` -- `hcompact_frozen.py` (the text of `hcompact_baseline.py`) importing
+  verbatim copies of `experiments/search/greedy_baseline.py` and
+  `experiments/heuristic_search/core/hfast.py` as they stood at `9b98e313`.
+  **Never edit these either.** `hcompact_baseline.py` imports the *live*
+  kernels, so a change to `greedy_baseline.py` or `hfast.py` moves the baseline
+  and the candidate together: `bench.py` would report a ratio of ~1.0 for a real
+  speedup and `gates.py --twin` would pass on a changed search. For kernel work
+  the yardstick is `--engines frozen,candidate` and `gates.py --frozen`.
+- `phase_split.py` / `PHASE_SPLIT.md` -- the per-pop phase split by replay (see
+  the file header) and its measured result on this box.
+
+## numba's on-disk cache and why both scripts purge it
+
+Every hot function is `@njit(cache=True)`. numba keys a cached function on its
+*own* source file's stamp and bytecode (`numba/core/caching.py`,
+`get_source_stamp` / `_index_key`); callees compiled into it from *other* files
+are not tracked. After an edit to `greedy_baseline.py` or `hfast.py`, every
+cached caller in an unchanged file -- `_run_chunk_h` in `hcompact.py`, the
+frozen engines, the replay kernels in `phase_split.py`, any test that reaches
+the kernel through the engine -- reloads machine code with the **old** kernel
+linked in, and a gate or a bench then exercises code that is not in the working
+tree. (This lab hit exactly that: a kernel edit measured at 0.47x in isolation
+showed no change through the engine until the cache was cleared.) `bench.py`
+and `gates.py` therefore delete `*.nbi`/`*.nbc` under `experiments/` before
+doing anything (`purge_numba_cache`), at the cost of one recompilation per
+process, which the bench's warm-up call already keeps out of the timed run.
+Run the same purge by hand before `pytest` after a kernel edit.
 
 ## Running the bench
 
@@ -50,9 +77,10 @@ where the two engines' fingerprints disagree, because in that case the timing
 comparison is meaningless (the engines searched different things).
 
 Useful flags: `--engines baseline,candidate` (comma list; order sets the
-alternation), `--rows` (comma list of names from
-`results/stable_ac/fable/aca_124.csv`), `--reps`, `--budget`, `--mrl`, `--cpu`,
-`--out`.
+alternation; `frozen` is the fully-frozen engine for kernel work, and the
+reported ratio is candidate over whichever of `baseline`/`frozen` is present),
+`--rows` (comma list of names from `results/stable_ac/fable/aca_124.csv`),
+`--reps`, `--budget`, `--mrl`, `--cpu`, `--out`.
 
 A smoke-sized run (`--rows aca_0,aca_1 --budget 20000 --reps 2`) takes on the
 order of two minutes on this box; the default (6 rows x 3 reps x 2 engines at
@@ -63,6 +91,10 @@ order of two minutes on this box; the default (6 rows x 3 reps x 2 engines at
 ```
 PYTHONPATH=. python3 experiments/heuristic_search/core/perf_lab/gates.py --all
 ```
+
+`--frozen` switches the baseline in `--oracle` and `--twin` to `frozen/hcompact_frozen.py`
+(frozen kernels too); it is the only way either gate can see a change to
+`greedy_baseline.py` or `hfast.py`, and is required to certify one.
 
 `--all` runs the three gates below in order and **stops at the first failure**
 (no reason to spend the twin or suite gate's time once the oracle gate has

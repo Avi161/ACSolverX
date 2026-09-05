@@ -71,7 +71,41 @@ CSV_PATH = os.path.join(ROOT, "results", "stable_ac", "fable", "aca_124.csv")
 ENGINE_MODULES = {
     "baseline": "experiments.heuristic_search.core.perf_lab.hcompact_baseline",
     "candidate": "experiments.heuristic_search.core.hcompact",
+    # hcompact_baseline imports the LIVE greedy_baseline / hfast kernels, so
+    # a kernel change moves both engines and the A/B cannot see it. "frozen"
+    # is the same engine text importing frozen copies of those kernels
+    # (perf_lab/frozen/, at 9b98e313): the yardstick for kernel work.
+    "frozen": "experiments.heuristic_search.core.perf_lab.frozen.hcompact_frozen",
 }
+
+
+def purge_numba_cache(root=None):
+    """Delete numba's on-disk cache (*.nbi / *.nbc) under experiments/.
+
+    numba keys a cached function on ITS OWN source file's stamp and bytecode
+    (numba/core/caching.py: ``get_source_stamp`` and ``_index_key``); callees
+    compiled into it from OTHER files are not tracked. So after an edit to
+    greedy_baseline.py or hfast.py, every ``cache=True`` caller in an
+    unchanged file -- ``_run_chunk_h`` in hcompact.py, the replay kernels in
+    phase_split.py, the frozen engines -- silently reloads machine code with
+    the OLD kernel linked in, and a measurement or gate then exercises code
+    that is not in the working tree. Both bench.py and gates.py purge before
+    doing anything; the cost is one recompilation per process, which the
+    bench's warm-up call already excludes from the timed run.
+    """
+    root = root or ROOT
+    n = 0
+    for dirpath, dirnames, filenames in os.walk(os.path.join(root, "experiments")):
+        if os.path.basename(dirpath) != "__pycache__":
+            continue
+        for fn in filenames:
+            if fn.endswith((".nbi", ".nbc")):
+                try:
+                    os.unlink(os.path.join(dirpath, fn))
+                    n += 1
+                except OSError:
+                    pass
+    return n
 
 DEFAULT_ROWS = "aca_0,aca_1,aca_3,aca_4,aca_5,aca_8"
 
@@ -249,8 +283,10 @@ def main_bench(argv=None):
     os.makedirs(tmp_dir, exist_ok=True)
 
     runs = []   # flat list of every measurement, in execution order
+    purged = purge_numba_cache()
     print(f"bench: rows={row_names} budget={args.budget} reps={args.reps} "
-         f"mrl={args.mrl} cpu={args.cpu} engines={engine_keys}")
+         f"mrl={args.mrl} cpu={args.cpu} engines={engine_keys} "
+         f"(purged {purged} stale numba cache files first)")
     t_start = time.time()
     for row_name, r1, r2 in rows:
         for rep in range(args.reps):
@@ -307,10 +343,13 @@ def main_bench(argv=None):
                 "solved": recs[0]["solved"],
                 "fingerprint": fps[0] if len(fps) == 1 else fps,
             }
-        if "baseline" in row_agg and "candidate" in row_agg:
+        ref = ("baseline" if "baseline" in row_agg
+               else "frozen" if "frozen" in row_agg else None)
+        if ref is not None and "candidate" in row_agg:
             row_agg["ratio_candidate_over_baseline_median_pops_per_second"] = (
                 row_agg["candidate"]["median_pops_per_second"]
-                / row_agg["baseline"]["median_pops_per_second"])
+                / row_agg[ref]["median_pops_per_second"])
+            row_agg["ratio_reference_engine"] = ref
         if len(fingerprints) > 1:
             all_fp_sets = list(fingerprints.values())
             if any(s != all_fp_sets[0] for s in all_fp_sets[1:]):
@@ -341,7 +380,8 @@ def main_bench(argv=None):
                  f"{e['bytes_per_state']:>9.1f}")
         if "ratio_candidate_over_baseline_median_pops_per_second" in row_agg:
             ratio = row_agg["ratio_candidate_over_baseline_median_pops_per_second"]
-            print(f"{'':10s} {'ratio':10s} {ratio:>16.4f}  (candidate / baseline, median pops/s)")
+            print(f"{'':10s} {'ratio':10s} {ratio:>16.4f}  (candidate / "
+                  f"{row_agg['ratio_reference_engine']}, median pops/s)")
     print()
 
     if mismatches:
