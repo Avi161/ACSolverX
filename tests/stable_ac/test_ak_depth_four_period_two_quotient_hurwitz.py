@@ -118,3 +118,100 @@ def test_witness_hurwitz_orbit_leaves_the_row_centralizer_gauge_class() -> None:
     assert lift.literal(quotient_r) == "TTctcTctc"
     assert lift.literal(conjugated_r) == "cTTctttcTctcTTcTTcttc"
     assert conjugated_r != quotient_r
+
+
+RAW_A = "TccccTcccTccccTCtCCCCtC"
+RAW_B = "TccccTccccTCtCCCtC"
+RAW_WITNESS = ("cTTcttt", "", "cTcttt", "t", "")
+
+
+def literal_inverse(word):
+    return word[::-1].swapcase()
+
+
+def literal_multiply(*words):
+    stack = []
+    for word in words:
+        for letter in word:
+            if stack and stack[-1].swapcase() == letter:
+                stack.pop()
+            else:
+                stack.append(letter)
+    return "".join(stack)
+
+
+def literal_conjugate(word, prefix):
+    return literal_multiply(prefix, word, literal_inverse(prefix))
+
+
+def literal_recurrence(conjugators):
+    g0, g1, g2, g3, g4 = conjugators
+    r = literal_multiply(RAW_A, literal_conjugate(literal_inverse(RAW_B), g0))
+    s = literal_multiply(RAW_B, literal_conjugate(literal_inverse(r), g1))
+    u = literal_multiply(r, literal_conjugate(literal_inverse(s), g2))
+    z = literal_multiply(literal_inverse(u), literal_conjugate(s, g3))
+    target = literal_conjugate("t", g4)
+    return r, s, u, z, target, literal_multiply(z, literal_inverse(target))
+
+
+def independent_c2_z_reduce(word):
+    syllables = []
+    for letter in word:
+        factor = "c" if letter.lower() == "c" else "t"
+        value = 1 if factor == "c" or letter == "t" else -1
+        if syllables and syllables[-1][0] == factor:
+            value += syllables.pop()[1]
+        if factor == "c":
+            value %= 2
+        if value:
+            syllables.append((factor, value))
+    return "".join("c" if factor == "c" else ("t" if value > 0 else "T") * abs(value)
+                   for factor, value in syllables)
+
+
+def test_witness_row_quotients_and_s_cyclic_blocks_are_independent() -> None:
+    encoding = {"c": 1, "C": -1, "t": 2, "T": -2}
+    assert tuple(encoding[letter] for letter in RAW_A) == lift.SOURCE_A
+    assert tuple(encoding[letter] for letter in RAW_B) == lift.SOURCE_B
+    assert tuple(tuple(encoding[letter] for letter in word) for word in RAW_WITNESS) == (
+        lift.H0, lift.H1, lift.H2, lift.H3, (),
+    )
+    r, s, _, _, target, _ = literal_recurrence(RAW_WITNESS)
+    assert independent_c2_z_reduce(RAW_B) == "TTTctctc"
+    assert independent_c2_z_reduce(r) == "TTctcTctc"
+    assert independent_c2_z_reduce(s) == "TTTcttcTctt"
+    assert independent_c2_z_reduce(target) == "t"
+    assert RAW_B.count("t") - RAW_B.count("T") == -1
+    assert r.count("t") - r.count("T") == -1
+    assert target.count("t") - target.count("T") == 1
+    cyclic_s = independent_c2_z_reduce("ttt" + s + "TTT")
+    assert cyclic_s == "cttcTcT"
+    blocks = tuple(block.count("t") - block.count("T") for block in cyclic_s.split("c")[1:])
+    assert blocks == (2, -1, -1)
+    assert cyclic_s.count("c") == 3
+    assert tuple(exponent for exponent in range(2, 4) if 3 % exponent == 0) == (3,)
+    assert blocks != blocks[:1] * 3
+    cube_control = independent_c2_z_reduce("ctt" * 3)
+    cube_blocks = tuple(block.count("t") - block.count("T") for block in cube_control.split("c")[1:])
+    assert cube_blocks == (2, 2, 2)
+    assert cube_blocks == cube_blocks[:1] * 3
+
+
+def test_literal_right_row_power_gauges_preserve_arbitrary_lift_recurrences() -> None:
+    cases = (
+        RAW_WITNESS,
+        ("cc" + RAW_WITNESS[0], "cc", "CC" + RAW_WITNESS[2], "cct", "Tcc"),
+        ("tccT" + RAW_WITNESS[0], "CCT", "tccT" + RAW_WITNESS[2], "CCt", "ctCC"),
+    )
+    exponents = ((0, 0, 0, 0, 0), (1, -1, 1, -1, 1), (-1, 1, -1, 1, -1))
+    for conjugators in cases:
+        baseline = literal_recurrence(conjugators)
+        r, s = baseline[:2]
+        donors = (RAW_B, r, s, s, "t")
+        for powers in exponents:
+            gauged = tuple(literal_multiply(prefix, (donor if exponent >= 0 else literal_inverse(donor)) * abs(exponent))
+                           for prefix, donor, exponent in zip(conjugators, donors, powers, strict=True))
+            assert literal_recurrence(gauged) == baseline
+    witness_rows = literal_recurrence(RAW_WITNESS)
+    wrong = (literal_multiply(RAW_WITNESS[0], RAW_A),) + RAW_WITNESS[1:]
+    assert literal_recurrence(wrong)[0] != witness_rows[0]
