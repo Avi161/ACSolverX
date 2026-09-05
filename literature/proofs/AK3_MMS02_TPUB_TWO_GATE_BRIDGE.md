@@ -6,6 +6,9 @@ Sections 6.91--6.92 identify the common-row quotient $G_-$ literally with the
 $6_3$ knot group and prove that both transported terminal words are
 nonperipheral. This is a geometric classification of the existing endpoint
 problem, not a new quotient-obstruction ledger. The bridge remains open.
+The three-checkpoint geometric continuation is now frozen after the direct
+symmetry attempt at the end of Section 6.92 failed; no further symmetry
+variants or representation census are authorized by that continuation.
 
 Latest convergence checkpoint (Section 6.90): the length-fourteen pair
 $(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns to standard AK(3).
@@ -10407,12 +10410,50 @@ does not descend to the common-row quotient.
 The result does not obstruct changing either live row by AC moves. It
 prevents treating the two existing normal generators as peripheral filling
 slopes, but does not exclude a nonperipheral handle construction or evaluate
-their pair orbit. The knot identification and this classification consume
-two checkpoints of this geometric continuation: allow one further checkpoint
-only for a constructive consequence, then freeze this continuation if none
-is obtained. Do not replace it with a census of further representations.
-The literal lift equations, MMS02 bridge, stable AK(3), and ordinary AK(3)
-remain open.
+their pair orbit.
+
+**Final geometric checkpoint: the direct symmetry attempt does not close.**
+The proposed constructive test used only the four free-basis substitutions
+$1,\sigma,\iota,\sigma\iota$, where $\sigma(a)=b,\sigma(b)=a$ and
+$\iota(a)=a^{-1},\iota(b)=b^{-1}$. Before searching for relator-donor
+factorizations, one necessary condition fails exactly. Over $\mathbb F_{313}$
+the assignment
+
+\[
+\eta(a)=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+\eta(b)=\begin{pmatrix}1&0\\-3&1\end{pmatrix}
+\]
+
+kills the full relator (545). Its endpoint traces are
+$\operatorname{tr}\eta(\alpha(U_*))=229$ and
+$\operatorname{tr}\eta(\alpha(V_*))=272$.
+The invertible matrices
+
+\[
+D=\begin{pmatrix}-1&0\\0&1\end{pmatrix},\qquad
+J=\begin{pmatrix}0&1\\-3&0\end{pmatrix}
+\]
+
+realize $\iota$ and $\sigma$, respectively, by simultaneous conjugation of
+the two generator images. Hence all four proposed images of $\alpha(U_*)$
+have trace $229$, whereas both orientations of $\alpha(V_*)$ have trace
+$272$. They cannot be conjugate in the knot group. This checks just these
+four substitutions, not every automorphism or geometric symmetry of the
+knot group.
+
+The [finite witness](../../experiments/stable_ac/mms02_six_three_symmetry_certificate.py)
+and [independent replay](../../tests/stable_ac/test_mms02_six_three_symmetry_certificate.py)
+verify the base relation, both matrix conjugations, and each endpoint image.
+An incorrect base assignment is rejected before its traces are used.
+The planned donor search was not run: this necessary condition already
+excludes its proposed positive certificates.
+
+No constructive consequence was obtained at checkpoint three. Freeze this
+geometric continuation, preserving the knot identification and the
+nonperipheral classification; do not extend it by more symmetry variants or
+a representation census. None of these tests controls arbitrary row
+multiplications. The literal lift equations, MMS02 bridge, stable AK(3), and
+ordinary AK(3) remain open.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
