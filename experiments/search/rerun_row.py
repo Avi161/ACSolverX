@@ -89,7 +89,9 @@ def rerun(name, out_dir, arm="greedy", campaign="ac19", budget=NODE_BUDGET_5M,
     with open(csv_out, "w") as csv:
         csv.write("elapsed_s,vmrss_gb,vmhwm_gb,thp_gb\n")
         while rec is None:
-            rec = proc.poll(timeout=1.0)
+            # Sample BEFORE polling. A toy row on the current engine finishes
+            # inside the first 1 s poll, and a CSV with a header and no
+            # sample is an observer that observed nothing.
             now = time.time()
             if now - last >= sample_secs:
                 last = now
@@ -100,6 +102,7 @@ def rerun(name, out_dir, arm="greedy", campaign="ac19", budget=NODE_BUDGET_5M,
                 if rss is not None:
                     csv.write(f"{now - t0:.1f},{rss},{hwm},{thp}\n")
                     csv.flush()
+            rec = proc.poll(timeout=1.0)
     with open(rec_out, "w") as fh:
         fh.write(json.dumps(rec) + "\n")
     log(f"  done    : solved={rec.get('solved')} "

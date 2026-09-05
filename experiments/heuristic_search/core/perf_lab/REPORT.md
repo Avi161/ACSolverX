@@ -213,3 +213,49 @@ dedup discards, both bit-identical by construction. Anything promoted
 from here is held to the operator's bar: gates green, and at least 1.1x
 at 300k pops on a real row measured on the campaign box, or more lanes
 per GB.
+
+## 8. Campaign-length expansion work (2026-09-05, after section 7)
+
+Measured on the lab box at the operator's regime: row aca_47 at 300,000
+pops (49.5 symbols per candidate, 331.7 candidates per pop), one run each,
+every ratio against `perf_lab/frozen2/`, a verbatim copy of the build the
+campaign runs (`a1d1be23`, engine-identical to `3093592d`).
+
+The split inside `expand_and_score_nj` (`EXPAND_SPLIT.md`, replay method
+one level down; stages sum to the expand phase within 0.7%):
+
+| stage | us / pop | share of pop |
+|---|---|---|
+| pass-1 filter (seam test on 1,085 (k1, k2) pairs, seam-reduced length on 332) | 14.3 | 2.1% |
+| raw child word + free/cyclic reduce | 67.1 | 9.9% |
+| canonicalise: two Booth passes, the inverse, the lexicographic pick | 302.9 | 44.7% |
+| pair order-normalise + encode | 27.1 | 4.0% |
+| blob assembly and per-pop arrays | 23.6 | 3.5% |
+| features (`_feats_nj`) + segment pick + weighted sum | 49.4 | 7.3% |
+| expand total | 484.4 | 71.5% |
+
+So deferred scoring (7.3% ceiling) was not built. Two changes were, both
+in a new hcompact-only module `experiments/heuristic_search/core/hexpand.py`;
+the shared kernels in `greedy_baseline.py` and `hfast.py` that the Python
+oracle and the other engines use are untouched.
+
+| step | change | identity argument | gates (vs frozen2) | aca_47 300k, current -> candidate |
+|---|---|---|---|---|
+| 1 `a8a6b3a4` | skip the cut-shift repeats before generating them: in one (target, sign) block the child of (k1, k2) is the child of (k1-1, k2+1 mod n) whenever the seam cancels, because the two raw words are conjugate and the cyclically reduced canonical form is a conjugacy-class invariant; 48.9% of all children at this depth | the skipped child is exactly a child emitted earlier in the same pop, so its lookup would have found it and inserted nothing; the skip is taken only when the predecessor is actually in the stream (per-block bitmap), and enumeration order is unchanged; verified on 48,639,570 flagged children with 0 violations and pinned by `tests/test_hexpand.py` on 2,000 real popped states per row | oracle 60 at 1,000 PASS; twin 6 at 30,000 PASS; wall 482 s | 1,439.9 -> 2,237.8 pops/s, ratio 1.5541 |
+| 2 `f6f38a7d` | canonicalise on 2-bit-packed words: a word of up to 32 symbols is one uint64 in the numeric image of the symbol order, rotations are shifts, the least rotation is a min over m shifted values for the word and its inverse; 33 to 64 symbols on a (hi, lo) pair; beyond 64 the Booth path verbatim | the least rotation of a word is a unique string, so any correct algorithm returns Booth's answer; pinned against `canonical_relator_nj` on every word of up to 8 symbols (87,380), 104,000 random words of 9 to 64 symbols with the 32/33 and 64 boundaries covered, and every child of 2,000 real popped states per row | oracle PASS; twin PASS; wall 457 s | 1,452.9 -> 3,401.5 pops/s, ratio 2.3412 cumulative |
+
+Fingerprints agree on every run; bytes per state 40.1 on both engines at
+this depth (memory profile unchanged, ENGINE_MEM_GEN stays 5).
+
+Campaign-box facts from the operator for the `3093592d` build, first four
+completed rows on the r8ib.24xlarge at 6 lanes: aca_47 12,320 s at
+96.7 GB peak, aca_50 12,331 s at 96.8, aca_49 12,617 s at 97.0, aca_48
+13,428 s at 101.1; the previous build's rows at 4 lanes ran 11,202 to
+13,775 s at 155 to 156 GB. Per-row wall time unchanged within the
+row-to-row spread; peak RSS 1.55x to 1.60x lower, which is what seats 6
+lanes; box peak 548 GB with all six rows past 90%, no OOM.
+
+Expected from this section, subject to the operator's confirmation with
+one 300k phase split on aca_47 on the campaign box: per-lane pops per
+second about 2.3x on the same lanes, so per-row wall time about 12,500 s
+to about 5,400 s at the same six lanes, with no change in memory.

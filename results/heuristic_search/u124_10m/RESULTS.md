@@ -78,9 +78,13 @@ perf_lab/`); the numbers that change are memory and speed:
   (was 181.4): four lanes on a 512 GiB box, two on the 256 GiB class,
   twelve on 1.5 TiB;
 - physical peak of a 186 states/node row: ~104 GiB (was ~160);
-- pops per second per lane: ~1.7x, measured at 50k-100k pops on the lab
-  box against a fully frozen copy of the previous engine (projection at
-  campaign scale until a campaign row reports its `seconds`).
+- pops per second per lane: unchanged at campaign length for the
+  `3093592d` build (the lab's 1.7x was a short-relator artefact; first
+  four rows ran 12,320 to 13,428 s against 11,202 to 13,775 s before, at
+  96.7 to 101.1 GB peak against 155 to 156 GB). The campaign-length work
+  that followed (cut-shift skip and packed-word canonicalisation, REPORT.md
+  section 8) measures 2.34x at 300k pops on aca_47 on the lab box against
+  that build, pending the operator's confirmation on the campaign box.
 
 The widen lines now print 2-bit widths ("6B -> 12B" where the archived
 log says "12B -> 24B"); the "at N states" figures, which are the search's
