@@ -185,3 +185,12 @@ an unbounded primitive-completion problem into an integral Fox equation,
 whose least-exponent contradiction covers every integer. Before increasing
 stage or word caps, check whether the exact equation forces image membership;
 retain an integral-versus-mod-two control for coefficient contradictions.
+
+### [2026-09-05] Check the whole height kernel before lifting quotient tests
+
+[WORKS] For the opposite MMS02 donor, `phi0^2(F0)` lies in `F0'`, making
+the ascending union's height kernel perfect. Every solvable image is then
+cyclic and cannot distinguish the proposed primitive endpoints. The
+metabelian-base fixed point has a nonempty literal free-group defect;
+never apply embedded-base arguments after the induced monodromy loses
+injectivity, or extend a solvable ledger already made vacuous by this kernel.

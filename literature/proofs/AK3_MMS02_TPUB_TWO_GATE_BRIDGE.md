@@ -1023,6 +1023,12 @@ disprove both strategies which restore the active base row first.  The
 remaining MMS02 gate is an interleaved Peiffer/basic-substitution closure;
 it is not another quotient-reachability problem.
 
+The separate [opposite-donor control](AK3_MMS02_PRIMITIVE_COMPLETION_TRACE_CHECK.md#opposite-donor-a-stopping-control-not-a-second-obstruction)
+reduces primitive completion here to one literal free-base equation. Its
+canonical metabelian solutions fail literally, while the perfect height
+kernel makes every solvable-image comparison vacuous. This stops that
+quotient method without excluding other literal primitive completions.
+
 ## 6. Quotient reachability is automatic with one redundant row
 
 The unrestricted bridge cannot be disproved by extending the fixed-base

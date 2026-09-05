@@ -266,3 +266,91 @@ obstruction. It closes that entire criterion without new conjugator stages,
 trace components, or residual categories. It does not prove that
 $(\overline A,\overline B)$ is AC-nontrivial, prevent intermediate changes
 to $\overline A$, or resolve stable AK(3), ordinary AK(3), or the MMS02 bridge.
+
+## Opposite donor: a stopping control, not a second obstruction
+
+For the other donor, use the literal presentation and embedded free base
+from Section 5 of the [bridge note](AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md):
+\[
+ Q_B=F(x,y)/\langle\!\langle\overline B\rangle\!\rangle,
+ \quad a=xY,\quad t=y,\quad F_0=F(a,b),
+ \quad \phi_0(a)=b,\quad \phi_0(b)=d=a^{-1}bab^{-1}.
+\]
+Here $b=tat^{-1}$, $j_n(w)=t^{-n}wt^n$, and
+$j_n(w)=j_{n+1}(\phi_0(w))$. Unlike the fixed-$\overline A$ calculation,
+the induced endomorphism of $F_0^{\mathrm{ab}}$ has square zero.
+
+The raw substitution $x=at,y=t$ in
+$\overline A^{-1}=\mathtt{(xYxYXyyXYxyXy)^{-1}}$ gives height $-1$ and
+stage-three coefficient $d\phi_0(d)d^{-1}=\phi_0^2(abA)$. Therefore
+\[
+ \overline A^{-1}=j_1(u)t^{-1},\qquad u=aba^{-1}.
+\tag{OB1}
+\]
+Every primitive class of height $-1$ in $F(a,t)$ is represented by
+$t^{-1}a^m$, for an integer $m$. Thus opposite-donor primitive completion
+asks whether $\overline A^{-1}\sim t^{-1}a^m$ for some $m$.
+
+This condition is equivalent to the literal free-group equation
+\[
+ \phi_0(c)^{-1}u c=a^m,\qquad c\in F_0.
+\tag{OB2}
+\]
+Indeed, normalize a conjugator to height zero by right multiplication by
+a power of the target, then write it as $j_M(N)$ with $M\ge1$. Its equation
+in the embedded stage $M+1$ is
+$\phi_0(N)^{-1}\phi_0^M(u)N=\phi_0^M(a)^m$.
+Every other factor belongs to $\operatorname{im}\phi_0$, forcing $N$ into
+that image and lowering the conjugator's stage. Descending to stage zero
+gives (OB2); substitution proves the converse.
+
+### All solvable images are vacuous for this comparison
+
+**Proposition.** The height kernel $N=\ker(Q_B\to\mathbb Z)$ is perfect.
+Every homomorphism from $Q_B$ to a solvable group factors through height;
+in particular it gives identical images to $\overline A^{-1}$ and $t^{-1}a^m$
+for every integer $m$.
+
+**Proof.** We have $N=\bigcup_{n\ge0}j_n(F_0)$. Since
+$\phi_0^2(F_0)\subseteq F_0'$, every element satisfies
+\[
+ j_n(w)=j_{n+2}(\phi_0^2(w))\in[N,N].
+\]
+Thus $N=[N,N]$. The cyclic quotient and perfectness give $Q_B'=N$.
+A perfect subgroup of a solvable group is trivial, proving the factorization.
+Both endpoints have height $-1$. $\square$
+
+### A canonical metabelian-base solution fails literally
+
+Let $M=F_0/F_0''$, distinct from the defect $K$ in the bridge note.
+The induced map $\phi_0^2$ sends $M$ into $M'$ and kills $M'$, so
+$\phi_0^4$ is the trivial endomorphism of $M$. For any integer $m$, put
+\[
+ T_m(Q)=u^{-1}\phi_0(Q)a^m,\qquad
+ L=\prod_{i=0}^3\phi_0^i(u^{-1}),\qquad
+ R=\phi_0^3(a^m)\phi_0^2(a^m)\phi_0(a^m)a^m.
+\]
+Then $T_m^4$ is constant on $M$, and its value $Q_m=LR$ is a fixed point.
+Consequently (OB2) has a solution in this metabelian base for every integer.
+In the literal free group, however,
+\[
+ T_m(Q_m)=L\,\phi_0^4(u^{-1}a^m)\,R.
+\tag{OB3}
+\]
+The inserted word is nontrivial: $u^{-1}a^m$ has exponent vector $(m,-1)$,
+and $\phi_0$ is injective. Hence $T_m(Q_m)\ne Q_m$ for every integer $m$.
+This rejects these canonical candidates only, not other literal solutions.
+
+The [independent controls](../../tests/stable_ac/test_mms02_opposite_donor_control.py)
+replay the raw relator and target height scans, reject a corrupted monodromy,
+and verify (OB3) at negative, zero, and positive slopes. Direct integral Fox
+scans of its nonempty defect vanish for both generators, witnessing its
+membership in $F_0''$ in those controls. The general conclusions above follow
+from the endomorphism and injectivity arguments, not from finite enumeration.
+
+The induced map on $M$ is not injective; $M$ is not an embedded HNN base to
+which the earlier Britton argument can be applied. The terminal results here
+are the perfect-kernel proposition and the all-integer failure of the
+canonical candidate. No further solvable-image census or derived residual
+tower follows. Literal (OB2), opposite-donor primitive completion, the MMS02
+bridge, stable AK(3), and ordinary AK(3) remain separate unresolved gates.
