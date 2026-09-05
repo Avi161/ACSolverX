@@ -9258,6 +9258,20 @@ ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.  No further
 nilpotent ladder is opened: a continuation of this branch must attack the
 literal or nonnilpotent residual.
 
+A direct literal-seed check reinforces that boundary. The constructed
+947-letter representative gives a freely reduced endpoint of length 5,796.
+Successively conjugating in the twisted sense by the inverse of its first
+remaining letter strictly decreases endpoint length at every step and
+removes all 947 letters. The endpoint returns to the original source
+$D_{s,-1}$ of length 179, not $A_V$ of length ten; the remaining literal
+defect has length 189. No signed single-base-letter twisted conjugation
+shortens that endpoint. An independent string-reduction regression replays
+this exact stripping sequence. This is a failed constructive seed, not a
+conjugacy algorithm or an obstruction to longer conjugators. Keep (489)--(492)
+as a class-two can-fail control; do not expand the canonical realization
+into a literal-search or higher-nilpotent ladder on the strength of its
+quotient coordinates.
+
 ### 6.79. Generating-tuple theorems cannot close the tagged gate
 
 Theorem 1.3 of Myropolska,

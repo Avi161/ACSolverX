@@ -53,3 +53,39 @@ def test_raw_fixed_branch_arbitrary_h_has_a_class_two_solution() -> None:
         witness.verdict
         == "RAW_FIXED_G_V_J_U_INVERSE_FAMILY_HAS_A_BASE_CLASS_TWO_SOLUTION"
     )
+
+
+def test_literal_class_two_seed_strips_back_to_its_unsolved_source() -> None:
+    from experiments.stable_ac import mms02_fixed_branch_class2_certificate as source
+
+    def encode(word):
+        return "".join("abcd"[index + 2] if sign == 1 else "ABCD"[index + 2]
+                       for index, sign in word)
+
+    invert = lambda word: word[::-1].swapcase()
+    images = {"abcd"[index + 2]: encode(word) for index, word in source.PHI_IMAGES.items()}
+
+    def phi(word):
+        return reduce_word("".join(images[letter] if letter.islower()
+                                   else invert(images[letter.lower()]) for letter in word))
+
+    a, target = map(encode, source.EXPECTED_ENDPOINT_BASE_WORDS)
+    sharp = phi(a)
+    commutator = reduce_word(sharp + phi(target) + phi(invert(sharp)) + invert(target))
+    s_word = "aa" + "B" * 5 + "c" * 8 + "D"
+    original_source = reduce_word(sharp + phi(s_word) + commutator + invert(phi(s_word)))
+    conjugator = encode(source.realize_class_two_coordinate(
+        (source.EXPECTED_T_VECTOR, source.EXPECTED_RAW_FIXED_T_WEDGE)))
+    endpoint = reduce_word(conjugator + original_source + invert(phi(conjugator)))
+    assert (len(conjugator), len(endpoint), len(original_source), len(target)) == (947, 5796, 179, 10)
+    for _ in range(947):
+        letter = invert(conjugator[0])
+        shorter = reduce_word(letter + endpoint + invert(phi(letter)))
+        assert len(shorter) < len(endpoint)
+        conjugator = reduce_word(letter + conjugator)
+        endpoint = shorter
+    assert conjugator == ""
+    assert endpoint == original_source != target
+    assert len(reduce_word(invert(target) + endpoint)) == 189
+    assert all(len(reduce_word(letter + endpoint + invert(phi(letter)))) >= len(endpoint)
+               for letter in "aAbBcCdD")
