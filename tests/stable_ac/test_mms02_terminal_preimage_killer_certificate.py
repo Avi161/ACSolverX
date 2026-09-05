@@ -151,3 +151,26 @@ def test_squaring_hnn_basis_conjugations_and_killer_orientation_are_literal():
     assert decision.final_tuple[2] == decision.killer_prefix + "t"
     assert decision.killer_prefix == "AAbbA"
     assert decision.killer_prefix != invert("AAbbA")
+
+
+def test_squaring_norm_keeps_literal_cyclic_boundary_and_positive_control():
+    def psi(word):
+        images = {"a": "b", "A": "B", "b": "aa", "B": "AA"}
+        return reduce_word("".join(images[letter] for letter in word))
+
+    def norm(word):
+        return reduce_word(word + psi(word))
+
+    target = "AAbbA"
+    assert norm(target) == "AAbbABBaaaaB"
+    assert norm(target)[0] != norm(target)[-1].swapcase()
+    assert {letter.lower() for letter in norm(target)} == {"a", "b"}
+    for letter in "aAbB":
+        assert psi(psi(letter)) == letter * 2
+    conjugator = "ab"
+    positive = reduce_word(conjugator + invert(psi(conjugator)))
+    assert positive == "abAAB"
+    assert reduce_word(invert(conjugator) + positive + psi(conjugator)) == ""
+    assert norm(positive) == "aBAA"
+    assert norm(positive)[0] == norm(positive)[-1].swapcase()
+    assert norm(positive)[1:-1] == "BA"

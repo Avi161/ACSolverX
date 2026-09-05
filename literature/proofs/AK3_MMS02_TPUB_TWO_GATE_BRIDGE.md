@@ -10024,6 +10024,42 @@ $t=ab^{-2}a^2$; this group equation alone is not an AC elimination of the
 other rows. No trivialization of (531), additional exclusion ledger,
 MMS02 bridge, stable AK(3), or ordinary AK(3) result is asserted.
 
+**Direct-cleanup audit.** The simplest remaining operation on (531) would
+conjugate $P_0t$ to $t$, correcting only with the two defining donors.
+This particular operation is impossible, by the following literal norm
+argument; it does not justify an obstruction to changing those donors.
+Put $\Delta=\psi^2$ and
+
+\[
+ S=P_0\psi(P_0)=\mathtt{AAbbABBaaaaB}.
+ \tag{532}
+\]
+
+Every element of the ascending HNN group has the form $t^{-r}kt^s$,
+with $r,s\ge0$ and $k\in F(a,b)$. If its conjugation takes $P_0t$ to
+$t$, the defining relations and base embedding give
+$\psi^r(P_0)=k\psi(k)^{-1}$. Multiplication by its $\psi$-image yields
+$\psi^r(S)=k\Delta(k)^{-1}$.
+
+If a nonempty reduced $k$ has more than one signed-letter run, write
+$k=vc^m$ with $c^m$ its last maximal run. Since $\Delta$ doubles each
+letter, the right side freely reduces to $vc^{-m}\Delta(v)^{-1}$.
+Neither junction cancels, and its first and last letters are inverse.
+It is therefore not cyclically reduced. A single-run $k$ instead gives
+a pure power, and the empty $k$ gives the identity. In contrast, every
+$\psi^r(S)$ is already cyclically reduced and contains both generator
+types: the substitution permutes the generator types and never erases a
+run. These alternatives are incompatible, ruling out every such conjugator.
+
+The test must preserve the **literal** norm. For the positive control
+$k=ab$ and $P=k\psi(k)^{-1}=\mathtt{abAAB}$, the element $Pt$ really
+is conjugate to $t$, while $P\psi(P)=\mathtt{aBAA}$. Its cyclic
+reduction is the mixed word $\mathtt{BA}$, so applying the criterion
+after cyclic reduction would give a false rejection. An independent
+free-word test pins (532), the doubling images and this can-fail control.
+No broader conjugator family or depth census is opened: a constructive
+continuation must go beyond this fixed-defining-row conjugation cleanup.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between
