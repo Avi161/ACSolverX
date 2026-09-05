@@ -358,3 +358,39 @@ def decide_second_switch_short_killer() -> SecondSwitchShortKillerDecision:
         previous.final_tuple, conjugated, factors, defect, product, final_tuple,
         "TARGET_STABLE_SECOND_SWITCH_SHORT_KILLER",
     )
+
+
+@dataclass(frozen=True)
+class BoundaryTransportReturnDecision:
+    source_tuple: tuple[str, str, str]
+    eliminated_u: str
+    raw_pair: tuple[str, str]
+    renamed_pair: tuple[str, str]
+    renamed_u: str
+    conjugators: tuple[str, str]
+    conjugated_pair: tuple[str, str]
+    final_pair: tuple[str, str]
+    verdict: str
+
+
+def decide_boundary_transport_return() -> BoundaryTransportReturnDecision:
+    previous = decide_second_switch_short_killer()
+    u_word = "baBB"
+    eliminated = tuple(apply_images(row, {"u": u_word, "a": "a", "b": "b"})
+                       for row in previous.final_tuple)
+    if eliminated != ("baBBabbABB", "babABBBaB", ""):
+        raise AssertionError("the boundary return defining-row elimination drifted")
+    rename = {"a": "Q", "b": "p"}
+    renamed = tuple(apply_images(row, rename) for row in eliminated[:2])
+    renamed_u = apply_images(u_word, rename)
+    if renamed_u != "pQPP":
+        raise AssertionError("the boundary return signed u image drifted")
+    conjugators = ("qP", "QPqP")
+    conjugated = tuple(conjugate(row, prefix) for row, prefix in zip(renamed, conjugators, strict=True))
+    if conjugated != ("PPQppqPQ", "PPPQQpq"):
+        raise AssertionError("the boundary return conjugations drifted")
+    final_pair = (conjugated[1], conjugated[0])
+    return BoundaryTransportReturnDecision(
+        previous.final_tuple, u_word, eliminated[:2], renamed, renamed_u,
+        conjugators, conjugated, final_pair, "TARGET_TRANSPORT_RETURNS_TO_EXISTING_LENGTH15",
+    )

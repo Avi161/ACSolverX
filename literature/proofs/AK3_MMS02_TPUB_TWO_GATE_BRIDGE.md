@@ -7,6 +7,11 @@ stably AC-equivalent to the explicit length-fifteen pair
 $(\mathtt{PPPQQpq},\mathtt{PPQppqPQ})$. This improves the earlier
 length-thirty-one representative; it does not trivialize the target or AK(3).
 
+The subsequent [boundary-automorphism transport](AK3_SQUARING_CONTINUATION_WORKING.md#convergence-audit-the-short-killer-form-returns-to-the-starting-pair)
+is now frozen: its short-killer form returns by literal defining-row
+elimination to this same ordered pair. Its intermediate identities are
+valid, but they do not improve the rank-two endpoint.
+
 This note isolates the highest-value theory route to stable AK(3).  It
 proves that either of two explicit normal-closure memberships is sufficient
 to AC-trivialize the published MMS02 rank-three triple

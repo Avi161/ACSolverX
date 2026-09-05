@@ -5,6 +5,7 @@ from experiments.stable_ac.mms02_boundary_automorphism_corridor_certificate impo
     decide_boundary_second_switch, verify_second_switch_factors,
     decide_second_switch_magnus_corridor,
     decide_second_switch_short_killer,
+    decide_boundary_transport_return,
     shifted_h_factors,
     verify_shifted_h_factors,
 )
@@ -240,6 +241,32 @@ def test_second_switch_short_killer_has_independent_retained_f_identity():
     assert decision.defect == decision.product == defect
     assert decision.final_tuple == ("uaUB", "ubUBBaB", "bbABu")
     assert decision.verdict == "TARGET_STABLE_SECOND_SWITCH_SHORT_KILLER"
+
+
+def test_boundary_transport_returns_literally_to_existing_length15_pair():
+    decision = decide_boundary_transport_return()
+    source = ("uaUB", "ubUBBaB", "bbABu")
+    eliminate = {"u": "baBB", "a": "a", "b": "b"}
+    assert tuple(substitute(row, eliminate) for row in source) == (
+        "baBBabbABB", "babABBBaB", "",
+    )
+    assert decision.source_tuple == source
+    assert decision.eliminated_u == "baBB"
+    assert decision.raw_pair == ("baBBabbABB", "babABBBaB")
+    rename = {"a": "Q", "b": "p"}
+    renamed = tuple(substitute(row, rename) for row in decision.raw_pair)
+    assert decision.renamed_pair == renamed
+    assert substitute("baBB", rename) == decision.renamed_u == "pQPP"
+    direct = {"u": "pQPP", "a": "Q", "b": "p"}
+    assert substitute("bbABu", direct) == ""
+    assert conjugate(substitute("uaUB", direct), "qP") == "PPQppqPQ"
+    assert conjugate(substitute("ubUBBaB", direct), "QPqP") == "PPPQQpq"
+    assert decision.conjugators == ("qP", "QPqP")
+    assert decision.conjugated_pair == ("PPQppqPQ", "PPPQQpq")
+    assert decision.final_pair == ("PPPQQpq", "PPQppqPQ")
+    from experiments.stable_ac.mms02_terminal_preimage_killer_certificate import PINNED_TRANSITIONS
+    assert decision.final_pair == PINNED_TRANSITIONS[-1].target_pair
+    assert decision.verdict == "TARGET_TRANSPORT_RETURNS_TO_EXISTING_LENGTH15"
 
 
 def _sl2_seven_evaluate(word, parameter=3):

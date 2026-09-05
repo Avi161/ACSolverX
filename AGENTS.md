@@ -58,3 +58,13 @@ knot-group theorem. The guarded Python runtime has no `sympy`; for a
 two-by-two finite-field check use exact integer arithmetic, not a new
 dependency. Locate optional filenames with `rg --files` before passing
 globs to zsh, which rejects an unmatched glob before the command runs.
+
+### [2026-09-05] Check constructive corridors for return cycles
+
+[TRAP] The boundary-automorphism corridor shortened a live coefficient
+but its defining-row elimination returned exactly to the original
+length-15 pair. Before extending a promising stabilized reformulation,
+compare its eliminated endpoint to prior certified representatives and
+pin an explicit equivalence if it returns. Preserve the valid identities,
+but freeze a demonstrated return cycle instead of counting coefficient
+shortening as another net presentation reduction.

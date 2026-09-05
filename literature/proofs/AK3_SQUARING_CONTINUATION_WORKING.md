@@ -1,6 +1,10 @@
 # Boundary-automorphism corridor and the remaining donor gap
 
-Status: the corridor from Section 6.88 of
+Status: **frozen transport cycle**. The final short-killer form returns
+by explicit defining-row elimination to the same original length-15 pair;
+see the convergence audit at the end. These intermediate equivalences
+are retained, but they are not a new rank-two reduction.
+The corridor from Section 6.88 of
 `AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md` to the boundary-automorphism tuple
 below now has a literal restored-donor certificate. Its trivialization
 remains open: the power-two/power-five consequences are still not licensed
@@ -281,3 +285,49 @@ before any trace argument. The independent boundary tests pin these
 controls and the source-row evaluations. This closes the proposed direct
 literature transfer; it does not start a new exclusion census or resolve
 the all-row cancellation problem.
+
+## Convergence audit: the short-killer form returns to the starting pair
+
+The final row `bbABu` defines $u=ba b^{-2}$. Eliminate that defining
+generator using the established legal substitution-and-removal procedure.
+The remaining two words are exactly
+
+\[
+ (\mathtt{baBBabbABB},\quad\mathtt{babABBBaB}).
+\]
+
+Now apply the signed generator rename $a\mapsto q^{-1}$, $b\mapsto p$.
+Equivalently, substitute $(a,b,u)\mapsto
+(\mathtt{Q},\mathtt{p},\mathtt{pQPP})$ into the preceding three-row
+tuple. Its last row freely vanishes. The first row, conjugated by `qP`,
+is `PPQppqPQ`; the second, conjugated by `QPqP`, is `PPPQQpq`.
+Swapping these two rows gives
+
+\[
+ (\mathtt{PPPQQpq},\quad\mathtt{PPQppqPQ}),
+\]
+
+which is the **same ordered length-15 endpoint** certified in Section
+6.87 of the main bridge document. These equalities are literal and are
+pinned by `decide_boundary_transport_return()` and independent replay;
+they do not rely on a Whitehead-minimum or orbit-classification claim.
+
+Thus the displayed transport-and-return corridor is a closed stable-AC
+equivalence loop. Its automorphism descriptions and donor identities
+remain valid, but the four-letter coefficient is not a net reduction
+beyond the existing rank-two endpoint. This does not prove that every
+other continuation must return. As a convergence decision, however, this
+transport route is now frozen: no further variants are promoted merely
+for producing a shorter coefficient or a different mapping-torus form.
+A reopening requires an actual cancellation or a separately justified
+route that breaks this cycle.
+
+A success-only geometric probe of the short three-row tuple also found
+no witness: its ten-edge simple link support has eight spherical cyclic
+orders among 1,728 tested orders, and the corresponding contiguous
+parallel-edge block schemes gave no compatible signed ranks (960 phase
+tuples, 7,680 component-seed attempts). The standard rigid-support solver
+correctly reports this support as unsupported. The probe does **not**
+exhaust general embeddings for this nonrigid support and proves no
+nonthickenability theorem. It supplies no reason to reopen the frozen
+transport route or to claim stable AK3.
