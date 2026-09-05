@@ -452,9 +452,12 @@ def _per_state_bytes(mrl, track_path):
     at the cap width (the arena is one full-width allocation, widened in
     place, so the reservation charges this from birth), len1/len2 (2), depth
     (4), seg (1), score (8), heap (4), and parent+pmove (4+4) when paths are
-    captured. 91 B at cap 64 with paths, 83 without."""
-    from experiments.search.greedy_compact import row_width
-    return row_width(mrl) + 19 + (8 if track_path else 0)
+    captured. The row is hcompact's OWN width -- 2 bits a symbol, 32 B at
+    cap 64 -- not ``greedy_compact.row_width`` (the nibble engine's 64 B,
+    which the 1M runner's est curve still describes): 59 B at cap 64 with
+    paths, 51 without."""
+    from experiments.heuristic_search.core.hcompact import row_width_h
+    return row_width_h(mrl) + 19 + (8 if track_path else 0)
 
 
 def _table_gb(n):

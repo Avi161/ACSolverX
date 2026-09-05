@@ -1411,9 +1411,11 @@ def test_a_pre_cap_doubling_peak_does_not_seed_the_capped_engine(tmp_path):
     gov = RamGovernor(10_000_000, 64, cpu_cap=64, worst_gb=worst)
     assert _seed_governor(gov, str(p), log=lambda m: None) == 0
     assert gov.peaks == []
-    # worst-case admission under the 168 floor already seats three lanes
-    # on the measured 493 GiB box; the poisoned seed had cut it to one
-    assert gov.capacity([], free_gb=489) == 3
+    # worst-case admission under the 168 floor seats FOUR lanes on the
+    # measured 493 GiB box (108 GiB allocation-backed worst at 59 B/state --
+    # 2-bit rows; it was three at 91 B/state and 158 GiB); the poisoned seed
+    # had cut it to one
+    assert gov.capacity([], free_gb=489) == 4
 
 
 def test_states_per_node_env_overrides_a_campaign_floor_only(monkeypatch):
@@ -1726,13 +1728,17 @@ def test_the_full_width_allocation_clips_the_reservation_to_the_box():
     _, big = plan_memory(10_000_000, 64, available_gb=493,
                          states_per_node=209, log=lambda *a: None)
     assert big == 209 * 10_000_000 + 4 * 65 ** 2
-    # with paths: 2.09B x 91 B + 16 GiB = 193 GiB does not fit a 200 GB
-    # box's (200 - 2 - 10) usable; the clip lands below the ask and the
-    # clipped allocation really fits, table step included
-    _, clipped = plan_memory(10_000_000, 64, available_gb=200,
+    # with paths: 2.09B x 59 B + 16 GiB = 131 GiB (2-bit rows; 193 GiB at
+    # the nibble engine's 91 B) now FITS a 200 GB box, so the clip case is
+    # a 120 GB box: (120 - 2 - 10) usable is below the ask, the clip lands
+    # below it and the clipped allocation really fits, table step included
+    _, unclipped = plan_memory(10_000_000, 64, available_gb=200,
+                               states_per_node=209, log=lambda *a: None)
+    assert unclipped == big
+    _, clipped = plan_memory(10_000_000, 64, available_gb=120,
                              states_per_node=209, log=lambda *a: None)
     assert clipped < big
-    assert _allocation_gb(clipped, 64, True) <= (200 - 2.0) - 10.0
+    assert _allocation_gb(clipped, 64, True) <= (120 - 2.0) - 10.0
     assert clipped > 1_500_000_000            # a clip, not a collapse
     # the same box WITHOUT paths (u124) holds the full 214 floor: this is
     # what makes the 256 GiB class a one-lane u124 box
@@ -1751,12 +1757,16 @@ def test_the_full_width_allocation_clips_the_reservation_to_the_box():
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
 def test_lanes_are_the_allocation_backed_worst_not_the_est_curve():
     """The cost model for buying a box, pinned. The run header prints the
-    est-curve figure (~88.4 GB/search) for information; what the governor
-    admits against is the ALLOCATION-backed worst of the rate floor's
-    reservation (~200 GB/row at 209/node). With the campaign's real peaks
-    the unchanged max-peak governor seats 2 lanes on the 493 GiB 16xlarge
-    and 4 on a ~986 GiB usable 1 TiB box; a governor built without the
-    floor would seat 5 on 493 GiB and OOM the AC19 crash-loop way."""
+    est-curve figure (~88.4 GB/search; the 1M runner's curve, still on the
+    nibble engine's 64 B row) for information; what the governor admits
+    against is the ALLOCATION-backed worst of the rate floor's reservation,
+    sized by hcompact's OWN row width: 2 bits a symbol, 32 B at cap 64, so
+    59 B/state with paths and 51 without (91 and 83 at the nibble engine's
+    64 B row). At 209/node that is ~131 GB/row (was ~193). With the
+    campaign's real peaks the max-peak governor seats 3 lanes on the
+    493 GiB 16xlarge at either floor (the measured 158 GB peak, not the
+    model, now bounds a lane); a governor built without the floor would seat
+    5 on 493 GiB and OOM the AC19 crash-loop way."""
     from experiments.search.run_leftovers_5m import (
         RamGovernor, _reserved_worst_gb)
     def lanes(floor, free):
@@ -1765,26 +1775,32 @@ def test_lanes_are_the_allocation_backed_worst_not_the_est_curve():
         for p in (93.552, 158.021, 93.517):
             gov.note(p)
         return gov.capacity([], free_gb=free)
-    # per state at cap 64: 64 B row + 19 B fixed + 8 B paths = 91 B, plus
-    # the table EXACT (16 GiB from 1.07B to 2.147B) -- the old 12 B/state
-    # amortisation over-charged a 2.14B reservation by ~8 GiB per lane
-    assert 158.0 < _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64) < 159.0
-    assert 192.5 < _reserved_worst_gb(209 * 10_000_000 + 4 * 65 ** 2, 64) < 193.5
+    # per state at cap 64: 32 B row (2 bits a symbol) + 19 B fixed + 8 B
+    # paths = 59 B, plus the table EXACT (16 GiB from 1.07B to 2.147B) --
+    # the old 12 B/state amortisation over-charged a 2.14B reservation by
+    # ~8 GiB per lane. Before the 2-bit rows (64 B row, 91 B/state) these
+    # were 158.5, 193.0, 197.4 and 181.4 GiB.
+    assert 108.0 < _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64) < 108.6
+    assert 130.5 < _reserved_worst_gb(209 * 10_000_000 + 4 * 65 ** 2, 64) < 131.2
     R = 214 * 10_000_000 + 4 * 65 ** 2
-    assert 197.0 < _reserved_worst_gb(R, 64, True) < 197.8
-    assert 181.0 < _reserved_worst_gb(R, 64, False) < 181.8
+    assert 133.3 < _reserved_worst_gb(R, 64, True) < 133.9
+    assert 117.4 < _reserved_worst_gb(R, 64, False) < 118.0
     # first pass at 168 / second pass at 209, on the 512 GiB (489 admissible)
-    # and 1536 GiB (1532 admissible) boxes the campaign can buy
-    assert lanes(168, 489) == 3 and lanes(209, 489) == 2
-    assert lanes(168, 1532) == 9 and lanes(209, 1532) == 7
-    # u124 as it runs: 214/node without paths -- two lanes on 512 GiB, ONE
-    # on the 256 GiB class (246 admissible; zero before), eight on 1.5 TiB
+    # and 1536 GiB (1532 admissible) boxes the campaign can buy. The model's
+    # worst now sits BELOW the measured 158 GB peak at both floors, so the
+    # peak bounds the lane and the two floors seat alike (they were 3/2 on
+    # 489 and 9/7 on 1532 when the 209 floor's worst was 193 GiB).
+    assert lanes(168, 489) == 3 and lanes(209, 489) == 3
+    assert lanes(168, 1532) == 9 and lanes(209, 1532) == 9
+    # u124 as it runs: 214/node without paths at 117.6 GiB a lane -- FOUR
+    # lanes on 512 GiB, TWO on the 256 GiB class (246 admissible), twelve
+    # on 1.5 TiB (2 / 1 / 8 at the nibble engine's 181.4 GiB)
     def u124_lanes(free):
         gov = RamGovernor(10_000_000, 64, cpu_cap=192, track_path=False,
                           worst_gb=_reserved_worst_gb(R, 64, False))
         return gov.capacity([], free_gb=free)
-    assert u124_lanes(489) == 2 and u124_lanes(246) == 1
-    assert u124_lanes(1532) == 8
+    assert u124_lanes(489) == 4 and u124_lanes(246) == 2
+    assert u124_lanes(1532) == 12
     naive = RamGovernor(10_000_000, 64, cpu_cap=192)      # est curve only
     assert naive.capacity([], free_gb=489) >= 5
     # one grow-doubled ~260 GB peak would still collapse admission -- the
@@ -1812,7 +1828,7 @@ def test_the_rate_floor_rlimit_forbids_grow_doubling_on_big_boxes():
     assert res == 168 * 10_000_000 + 4 * 65 ** 2
     lim_gb = lim / 2 ** 30
     alloc_gb = _allocation_gb(res, 64, True)
-    assert alloc_gb == res * 91 / 2 ** 30 + 16.0
+    assert alloc_gb == res * 59 / 2 ** 30 + 16.0    # 32 B row + 19 + 8 paths
     assert alloc_gb < lim_gb <= alloc_gb + 10.0 + 1e-6   # the arrays fit...
     # ...but the doubling (2x everything, old arrays held) cannot
     assert lim_gb < 2 * alloc_gb
@@ -1848,7 +1864,9 @@ def test_the_governor_worst_is_floored_by_its_own_allocation():
     from experiments.search.run_leftovers_5m import (
         RamGovernor, _reserved_worst_gb)
     floor = _reserved_worst_gb(1_100_000_000, 64)
-    assert floor and floor > 90        # 91 B/state + 8 GiB table at 1.1B
+    # 59 B/state (2-bit rows) + the 16 GiB table (2^32 slots for 2.2B) at
+    # 1.1B: 76.4 GiB; it was > 90 at the nibble engine's 91 B/state
+    assert floor and 76.0 < floor < 77.0
     gov = RamGovernor(10_000_000, 64, worst_gb=floor)
     assert gov.worst >= floor
     assert RamGovernor(NODE_BUDGET_5M, MRL_5M, worst_gb=None).worst > 0
@@ -2122,11 +2140,14 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     assert "reserve_states  : 2,140,016,900 (full)" in p.stdout, p.stdout
     assert "allocation-backed worst" in p.stdout
     assert "paths not captured" in p.stdout
-    assert "181.4 GB allocation-backed worst" in p.stdout, p.stdout
+    # 2.14B states x 51 B (2-bit rows, no paths) + the 16 GiB table; the
+    # nibble engine's 83 B/state quoted 181.4 GB here
+    assert "117.6 GB allocation-backed worst" in p.stdout, p.stdout
     # a box that cannot: plan says so rather than printing a reservation
-    # the box would die inside
+    # the box would die inside (a 160 GB box used to be one; at 117.6 GB
+    # it now holds the full floor, so the small box is 120 GB)
     r = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
-                PLAN_GB="160", PLAN_CORES="32")
+                PLAN_GB="120", PLAN_CORES="32")
     assert r.returncode == 0, r.stderr
     assert "CLIPPED from 2,140,016,900 -- box is small" in r.stdout, r.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
