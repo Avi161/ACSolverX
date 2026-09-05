@@ -280,9 +280,9 @@ def gate_twin(args):
 
     ok = not failures
     print(f"[twin] {len(rows)} rows, budget={args.twin_budget}, mrl={args.mrl}, "
-          f"config=S20_MK2, decode-max={args.decode_max}, "
-          f"widen-lines={args.widen_lines}, vs {base_key}: "
-          f"{'PASS' if ok else 'FAIL'}")
+         f"config=S20_MK2, decode-max={args.decode_max}, "
+         f"widen-lines={args.widen_lines}, vs {base_key}: "
+         f"{'PASS' if ok else 'FAIL'}")
     if not ok:
         print(f"  {len(failures)} of {len(rows)} rows mismatched:")
         for name, fs in failures:

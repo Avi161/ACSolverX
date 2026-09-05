@@ -252,14 +252,38 @@ def _row_less_h(arena, len1, len2, a, b, w, rw):
 # ---------------------------------------------------------------------------
 @njit(inline='always')
 def _hash_codes(blob, o, la, lb):
+    """FNV-1a over (la, lb, r1 codes, r2 codes) of an unpacked candidate.
+
+    Same function, same 64-bit value as before, on every input: only the
+    INDEXING changed. ``blob[o + t]`` with a signed index makes numba emit a
+    wraparound check (``if i < 0: i += n``) on every byte, and on this loop
+    -- whose body is one ``xor`` and one ``imul`` -- that check was a third
+    of the time (measured 52.5 -> 35.0 ns per 45-symbol candidate on the lab
+    box). ``o``, ``la`` and ``lb`` are non-negative by construction (offsets
+    and lengths from ``expand_and_score_nj``), so indexing through ``uint64``
+    reads exactly the same bytes and drops the check. The value being
+    unchanged means slot placement, probe sequences and the table layout are
+    unchanged too -- nothing downstream can tell (``test_hcompact_kernels``
+    pins it against the frozen baseline's hash on random and real states).
+
+    On word-at-a-time hashing, since the memo ranked it first: a 4-lane
+    variant that breaks the serial chain measured NO faster than this below
+    ~60 symbols per candidate (the lab rows run 38-43) and 30% faster at 80;
+    the chain was never the bottleneck, the index checks were. By Lemma B
+    any hash is search-identical, so that variant stays available for a
+    campaign-length regime; it was not adopted here because it changes
+    values for no measurable gain at this budget.
+    """
     h = np.uint64(1469598103934665603)
     p = np.uint64(1099511628211)
     h = (h ^ np.uint64(la)) * p
     h = (h ^ np.uint64(lb)) * p
+    q = np.uint64(o)
     for t in range(la):
-        h = (h ^ np.uint64(blob[o + t])) * p
+        h = (h ^ np.uint64(blob[q + np.uint64(t)])) * p
+    q = np.uint64(o + la + 1)
     for t in range(lb):
-        h = (h ^ np.uint64(blob[o + la + 1 + t])) * p
+        h = (h ^ np.uint64(blob[q + np.uint64(t)])) * p
     return h
 
 

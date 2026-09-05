@@ -121,3 +121,40 @@ ones -- the same values, one third less time. The serial `xor`/`imul` chain the
 memo blamed is not the bottleneck: a 4-lane variant that breaks the chain is no
 faster than single-lane FNV below ~60 symbols. The same wraparound cost applies
 to every 2-D `rel[i, 0]` read in the expansion kernels.
+
+## After the expansion step (commit `f0167467`, plus the hash indexing)
+
+Same three rows, same 50,000 pops, same script, 2 reps, pinned to core 1
+while a bench ran on core 2 and another agent's job on core 3 (the shares are
+robust to that -- total and phases are timed in the same process -- the
+absolute microseconds carry a little of the box's load). The working tree
+also held the unsigned-index `_hash_codes` (step 2) when this was taken.
+
+| phase    | aca_0            | aca_4            | aca_5            |
+|----------|------------------|------------------|------------------|
+| expand   | 292.0 us  72.3 % | 418.1 us  68.7 % | 431.0 us  69.3 % |
+| lascan   |   2.9 us   0.7 % |   4.5 us   0.7 % |   4.6 us   0.7 % |
+| hash     |   5.2 us   1.3 % |   8.1 us   1.3 % |   8.4 us   1.3 % |
+| probe    |  49.7 us  12.3 % |  76.0 us  12.5 % |  71.3 us  11.5 % |
+| pack     |   7.4 us   1.8 % |   9.7 us   1.6 % |  10.0 us   1.6 % |
+| sift     |   6.6 us   1.6 % |   7.9 us   1.3 % |   6.6 us   1.1 % |
+| residual |  40.0 us   9.9 % |  83.9 us  13.8 % |  90.6 us  14.6 % |
+| **total**| **403.8 us**     | **608.2 us**     | **622.3 us**     |
+
+Against the table above: the pop is 1.67x / 1.72x / 1.81x faster; expansion
+went 551 -> 292, 854 -> 418, 958 -> 431 us (0.53x / 0.49x / 0.45x, in line
+with the kernel-only 0.466x); the hash went 7.2 -> 5.2, 11.4 -> 8.1,
+13.1 -> 8.4 us (the unsigned indexing, -28 % to -36 %, as the micro-bench
+predicted). Every diagnostic row -- states discovered, candidates, inserts,
+duplicate fractions, probe lengths -- is identical to the before table, which
+is the replay's own statement that the search did not change.
+
+What the residual shares now say about the remaining candidates: the whole
+dedup side (lascan + hash + probe + pack) is 15-16 % of the pop and the
+probe alone 11.5-12.5 %. Intra-pop duplicates are 24-29 % of candidates
+(and 20-28 % on ten further rows, `aca_1,2,3,6,7,8,9,10,11,12`, 20k pops),
+so skipping their global probe is worth at most f x probe ~ 3 % of the pop
+before paying for the per-pop set itself -- below this lab's +3 % bar, and
+group prefetching targets the same ~12 %. Expansion is still ~70 %: that is
+where the next step lives (Booth's algorithm twice per child, and numba's
+signed-index wraparound checks on every `rel[i, j]` read).
