@@ -1,5 +1,14 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Use the proved fixed-donor primitive criterion
+
+[WORKS] Section 6 of `literature/proofs/AK3_ARBITRARY_CONJUGATOR_PRIMITIVE_BARRIER.md`
+excludes every primitive recipient from either fixed-donor quotient of
+standard AK3, using all primitive slopes, not a search bound. Do not
+repeat such donor-only primitive searches. The criterion does not apply
+after changing both rows or stabilizing, and coprime exponent sums alone
+do not imply primitivity.
+
 ### [2026-09-05] Eliminate a proposed tag symbolically before probing
 
 [WORKS] For the AK3 half-twist tag `h=yyyXXXXz`, the product

@@ -167,3 +167,109 @@ It does **not** show that every one-edge child has Aut-floor above \(12\),
 does not cover two multiplications, and is not an obstruction to stable
 AC-triviality.  Its negative statement is unbounded in the conjugator
 length but local in the number of relator multiplications.
+
+## 6. The standard AK3 pair has no fixed-donor primitive completion
+
+This separate criterion concerns the original coordinates
+
+\[
+a=x^3y^{-4},\qquad b=xyxy^{-1}x^{-1}y^{-1}
+\quad\text{in }F(x,y),
+\]
+
+not the compression coordinates of Section 1. An ACM replacement of a
+recipient means any word conjugate to that recipient or its inverse in
+the quotient by the retained donor. Thus it includes arbitrary finite
+products of conjugates of that donor, not just one multiplication.
+
+**Theorem 6.1.** No primitive word of $F(x,y)$ is conjugate to
+$b^{\pm1}$ modulo $a$, or to $a^{\pm1}$ modulo $b$. Consequently no
+single ACM replacement from the standard AK3 pair exposes a primitive
+row. The same conclusion holds for a sequence that changes only one
+recipient while retaining the other donor, allowing the donor's temporary
+conjugation and inversion when it is restored.
+
+**Proof, with the power row retained.** In
+$G_a=\langle x,y\mid x^3=y^4\rangle$ use the homomorphism
+$\chi(x)=4$, $\chi(y)=3$. A hypothetical primitive word $p$ conjugate
+to $b^{\pm1}$ has $\chi(p)=\pm1$. Inverting $p$ if necessary, its
+exponent vector must be
+
+\[
+(u,v)=(1+3k,-1-4k),\qquad k\in\mathbb Z.
+\]
+
+At $k=0$ its primitive cyclic representative is $xY$. Otherwise the
+signs are opposite and $1<|v|/|u|\leq3/2$. The rank-two primitive-word
+classification gives a cyclic representative with unit $x$-blocks all
+of one sign and $y$-blocks of lengths one or two, also all of one sign.
+Here and below capitals denote inverses. This uses the signed Christoffel
+classification, not just coprimality of the exponent vector; see
+[Gilman--Keen, Section 3 and the primitive enumeration](https://arxiv.org/pdf/0802.2731).
+
+Pass to $C_3*C_4$ by imposing $x^3=y^4=1$. None of these blocks
+vanishes, so the image is cyclically reduced and all its $C_3$ syllables
+are the same element, either $x$ or $X$. In contrast, the cyclic word
+$b$ has $C_3$ syllables $(x,x,X)$, and $b^{-1}$ has the opposite mixed
+pattern. Since $x\neq X$ in $C_3$, no cyclic permutation can identify
+either pattern with the primitive image. The free-product conjugacy
+criterion rules out the proposed conjugacy already in this quotient.
+
+**Proof, with the braid row retained.** In
+$G_b=\langle x,y\mid xyx=yxy\rangle$, abelianization sends both
+generators to one. The exponent sum of a hypothetical primitive
+representative of $a^{\pm1}$ is therefore $\pm1$. Up to inversion and
+interchanging $x,y$, its exponent vector is $(k,-k-1)$ with $k\geq0$.
+The unique primitive conjugacy class of this vector is represented by
+
+\[
+p_k=(xY)^kY.
+\]
+
+These representatives are primitive directly: $(xY,Y)$ is a free basis,
+and multiplying its second member by a power of the first is a Nielsen
+move. Uniqueness is the same rank-two primitive classification.
+
+Use the braid representation
+
+\[
+\rho(x)=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+\rho(y)=\begin{pmatrix}1&0\\-1&1\end{pmatrix}.
+\]
+
+It kills $b$, and $\operatorname{tr}\rho(a)=14$. Put
+$M=\rho(xY)=\left(\begin{smallmatrix}2&1\\1&1\end{smallmatrix}\right)$
+and $t_k=\operatorname{tr}(M^k\rho(Y))$. The identity
+$M^2=3M-I$ gives
+
+\[
+t_0=2,\quad t_1=4,\quad
+t_{k+2}=3t_{k+1}-t_k,
+\qquad (t_0,t_1,t_2,t_3)=(2,4,10,26).
+\]
+
+The terms are positive and strictly increasing, by induction using
+$t_{k+2}-t_{k+1}=2t_{k+1}-t_k>0$. Hence no term is fourteen.
+Inversion preserves trace in $SL_2$, and exchanging $x,y$ is conjugation
+by the braid half-twist $xyx$ in this representation. The allowed
+normalizations therefore do not alter this obstruction. This proves
+the second assertion. Successive fixed-donor operations still preserve
+the recipient's conjugacy class up to inversion in its donor quotient,
+which proves the sequence statement. $\square$
+
+**Can-fail controls and scope.** The power-quotient test does not silently
+exclude AK2: in $C_2*C_3$, the primitive word `xYYxYxY` equals the image
+of $b$. With the basis $A=xY$, $B=Y$, that word is $ABA^2$, conjugate
+to $BA^3$. Thus its primitivity is explicit, while $x=X$ in $C_2$
+removes the mixed-syllable distinction. This is a quotient control,
+not a claimed literal AK2 donor transcript. For the matrix test, replacing
+the lower-left entry of $\rho(y)$ by $+1$ fails the braid row; that
+incorrect assignment is rejected before any trace is used.
+
+The dependency-free tests in
+`tests/stable_ac/test_ak3_fixed_donor_primitive_criterion.py` check the
+finite word and matrix data. The all-slope statements follow from the
+classification and recurrence arguments, not from a bounded enumeration.
+This closes the direct fixed-donor primitive criterion only. It does not
+obstruct paths changing both rows, any stabilized path, the MMS02 bridge,
+stable AK3, or ordinary AK3. No further exclusion family is opened here.
