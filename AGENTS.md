@@ -139,3 +139,13 @@ then use the image of its whole peripheral subgroup, not just one
 meridian conjugacy class. A finite representation can classify these
 fixed elements without distinguishing their AC orbits. Do not turn this
 geometric witness into another finite-quotient obstruction ledger.
+
+### [2026-09-05] Check original adjunction hypotheses
+
+[TRAP] McDermott §4.2 introduces surjectivity results with an injectivity
+framing, but the original Cohen--Rourke Main Theorem (p. 128) assumes only
+a torsion-free coefficient group and surjectivity of the natural map.
+The initial `logs/05-09-2026.md` audit incorrectly promoted that framing
+to a separate theorem hypothesis; Sol caught it and the original source
+confirmed the correction. Read the cited theorem itself before recording
+its exact hypotheses, even when only excluding an application.
