@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -75,6 +76,21 @@ def _solve_capturing_fd1(solver):
 
 def _widen_lines(text):
     return [ln for ln in text.splitlines() if "rows widen" in ln]
+
+
+_WIDEN_AT = re.compile(r"rows widen .* at ([\d,]+) states")
+
+
+def _widen_states(lines):
+    """The 'at N states' figure of each widen line -- the part of the line that
+    fingerprints the SEARCH (which pop widened the rows). The 'aB -> bB' widths
+    are a property of the row layout: a candidate that stores symbols in fewer
+    bits legitimately prints different widths at the very same pops."""
+    out = []
+    for ln in lines:
+        m = _WIDEN_AT.search(ln)
+        out.append(m.group(1) if m else ln)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -197,7 +213,15 @@ def gate_twin(args):
             row_fail.append(
                 f"stdout capture is unreliable: baseline printed "
                 f"{len(b_widen)} 'rows widen' line(s) but solver.widened={base.widened}")
-        if c_widen != b_widen:
+        if args.widen_lines == "states":
+            # layout-change mode: the state counts (and the number of widen
+            # events) must match exactly; the byte widths may differ
+            if _widen_states(c_widen) != _widen_states(b_widen):
+                row_fail.append(
+                    "'rows widen' state counts differ (--widen-lines states):\n"
+                    f"      candidate: {c_widen}\n"
+                    f"      baseline:  {b_widen}")
+        elif c_widen != b_widen:
             row_fail.append(
                 "'rows widen' stdout differs:\n"
                 f"      candidate: {c_widen}\n"
@@ -239,7 +263,8 @@ def gate_twin(args):
 
     ok = not failures
     print(f"[twin] {len(rows)} rows, budget={args.twin_budget}, mrl={args.mrl}, "
-         f"config=S20_MK2, decode-max={args.decode_max}: {'PASS' if ok else 'FAIL'}")
+         f"config=S20_MK2, decode-max={args.decode_max}, "
+         f"widen-lines={args.widen_lines}: {'PASS' if ok else 'FAIL'}")
     if not ok:
         print(f"  {len(failures)} of {len(rows)} rows mismatched:")
         for name, fs in failures:
@@ -282,6 +307,12 @@ def main(argv=None):
     ap.add_argument("--twin-budget", type=int, default=100_000)
     ap.add_argument("--decode-max", type=int, default=2_000_000,
                     help="compare at most this many decoded relators per row")
+    ap.add_argument("--widen-lines", choices=("exact", "states"), default="exact",
+                    help="twin: compare the 'rows widen' lines verbatim (exact, "
+                         "the default) or by their 'at N states' figures only "
+                         "(states) -- for a candidate whose ROW LAYOUT differs "
+                         "from the baseline's, so the byte widths it prints "
+                         "differ while the pops at which it widens must not")
     ap.add_argument("--mrl", type=int, default=64,
                     help="max_relator_length for both --oracle and --twin")
     ap.add_argument("--suite", action="store_true", help="run the pytest suite gate")

@@ -106,7 +106,13 @@ solved, and compared exactly:
   a check on **decoded strings**, not on raw arena bytes, so a candidate that
   changes the byte layout (different width, different packing) but preserves
   what each state actually *means* still passes;
-- the exact `"rows widen ..."` lines each engine prints while solving.
+- the exact `"rows widen ..."` lines each engine prints while solving. With
+  `--widen-lines states` only the `at N states` figure of each line (and the
+  number of lines) must match: that figure is the pop at which the rows
+  widened, i.e. part of the search's fingerprint, whereas the `aB -> bB`
+  widths describe the row layout -- a candidate that packs symbols in fewer
+  bits prints different widths at the very same pops. The default stays
+  `exact`; a report that used `states` should say so.
 
 **Capturing the print lines:** the two prints in `hcompact.py`
 (`_grow`/`_grow_width`) are plain Python `print()` calls, but the gate captures

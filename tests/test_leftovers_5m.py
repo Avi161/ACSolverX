@@ -2313,3 +2313,38 @@ def test_the_2bit_row_packs_symbols_most_significant_first():
     assert pack_row_h("XXXXY", "", 8)[1] == 0b01000000
     with pytest.raises(ValueError):
         pack_row_h("X" * 65, "X", 64)
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_row_hash_equals_the_codes_hash_for_the_same_state():
+    """A grow rehashes every stored state off its 2-bit row (``_hash_row``);
+    a candidate is hashed off the kernel's code blob (``_hash_codes``). If
+    the two ever disagreed a rediscovered state would probe a different slot
+    chain and could be inserted twice -- a different search. Pin them equal,
+    directly, on real states at every width they can live at, including
+    relators that exactly fill a region."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import (
+        HCompactSolver, _hash_codes, _hash_row)
+    from experiments.search.greedy_compact import _CHAR_TO_CODE
+
+    states = [("X", "X"), ("XYxy", "yxYX"), ("X" * 24, "y" * 24),
+              ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXY",
+               "XYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXy")]
+    s = HCompactSolver("YXXyxYx", "YYYYYYXyxyX", max_nodes=1200,
+                       max_relator_length=64)
+    s.solve()
+    states += [s.relators(sid) for sid in range(min(s.n_discovered, 300))]
+    checked = 0
+    for w in (6, 12, 16):
+        fit = [st for st in states if max(len(st[0]), len(st[1])) <= 4 * w]
+        arena, len1, len2 = _pack_two_bit_arena(fit, w)
+        for sid, (r1, r2) in enumerate(fit):
+            la, lb = len(r1), len(r2)
+            blob = np.zeros(la + lb + 8, dtype=np.uint8)   # [c1][0][c2], offset 3
+            blob[3:3 + la] = [_CHAR_TO_CODE[c] for c in r1]
+            blob[3 + la + 1:3 + la + 1 + lb] = [_CHAR_TO_CODE[c] for c in r2]
+            assert (int(_hash_row(arena, sid, len1, len2, 4 * w, 2 * w))
+                    == int(_hash_codes(blob, 3, la, lb))), (w, r1, r2)
+            checked += 1
+    assert checked > 600, checked

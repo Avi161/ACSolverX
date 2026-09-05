@@ -21,9 +21,13 @@ Three things must therefore be preserved, and each is preserved by construction:
    expression ``hsolve`` uses for its root. IEEE doubles from identical operation sequences are
    equal bit for bit, so ``score[a] != score[b]`` resolves exactly where ``hsolve``'s does.
 2. **The tie-break sorts like the key.** The comparator is seg, then score, then depth, then
-   ``memcmp`` on the arena row. The row memcmp-sorts exactly like the packed key
-   ``c1 + b'\\x00' + c2`` (``greedy_compact``'s invariant, pinned by its sort-corpus test), and
-   the code tables agree: ``hfast._pack``'s ``(2, 4, 1, 3)`` is ``greedy_compact._code_of``.
+   ``_row_less_h`` on the arena row: r1 lexicographic on the common prefix, shorter first on
+   a tie, then the same for r2. That is exactly how ``memcmp`` orders the packed key
+   ``c1 + b'\\x00' + c2`` (the separator sits below every code and ``bytes`` puts a prefix
+   first) and exactly how it ordered ``greedy_compact``'s zero-padded nibble rows; the proof
+   is in ``_row_less_h``'s docstring and the sort-corpus test in ``tests/test_leftovers_5m.py``
+   pins it pair for pair against ``greedy_compact.pack_row``. The code tables agree:
+   ``hfast._pack``'s ``(2, 4, 1, 3)`` is ``greedy_compact._code_of``.
 3. **Discovery order is the enumeration order** of the same kernel, so ``depth`` and the
    first-seen min/max statistics land on the same states. ``hsolve`` updates min and max with two
    INDEPENDENT ``if``s on discovery (not the heavy solver's ``elif``) and max-expanded on pop
@@ -35,8 +39,9 @@ field plus the first-seen min/max/expanded relator *strings*, which pin discover
 
 WHAT IT BUYS
 ============
-Per state: row (cap 48 → 48 B) + len1/len2 (2) + depth (4) + heap (4) + score (8) + seg (1)
-+ table (~8–16 amortised) ≈ **76–84 B**, reserved once at the projected count (lazily faulted,
+Per state: row (2 bits a symbol: cap 48 → 24 B, cap 64 → 32 B) + len1/len2 (2) + depth (4)
++ heap (4) + score (8) + seg (1) + table (~8–16 amortised) ≈ **52–68 B** (the nibble layout
+this replaced spent 48–64 B on the row alone), reserved once at the projected count (lazily faulted,
 never grow-copied unless exceeded — then loudly). The arena is one allocation at the cap
 width; rows start narrow and widen in place, so address space is the full-width figure from
 birth and physical memory is only what the rows at their current width have touched. Against ``hsolve``'s ~390 B/state that is the
@@ -67,8 +72,7 @@ from experiments.search.greedy_baseline import (                    # noqa: E402
 )
 from experiments.search.greedy_compact import (                     # noqa: E402
     _CODE_TO_CHAR, _HB_CHECK_EVERY, _EMPTY, _NEED_CAPACITY, _OK, _SOLVED,
-    _code_of, _decode, _get_nib, _insert, _next_pow2, _row_less,
-    _set_nib_at, _slot0, est_states, _RESERVE_SLACK,
+    _code_of, _insert, _next_pow2, _slot0, est_states, _RESERVE_SLACK,
 )
 from experiments.heuristic_search.core.hfast import (                    # noqa: E402
     _SEP, _feats_nj, _pack, compile_config, expand_and_score_nj,
@@ -237,7 +241,7 @@ def _row_less_h(arena, len1, len2, a, b, w, rw):
 #
 # ~94% of a pop's candidates are duplicates, and the original loop paid full
 # price to find that out: zero a 64-byte arena row, pack ~30 nibbles, FNV the
-# 64 bytes, then memcmp them. A zero-padded row is uniquely determined by
+# 64 bytes, then memcmp them. A row plus its lengths is uniquely determined by
 # (len1, len2, codes), so the same identity can be hashed straight off the
 # candidate's code array (~30 iterations, not 64), false collisions rejected
 # by two integer length compares before any content is read, and the row
@@ -260,8 +264,11 @@ def _hash_codes(blob, o, la, lb):
 
 
 @njit(inline='always')
-def _hash_row(arena, sid, len1, len2, nb2, rw):
-    """The same hash, computed from a packed arena row (rehash after a grow)."""
+def _hash_row(arena, sid, len1, len2, sym2, rw):
+    """The same hash as ``_hash_codes``, computed from a packed arena row
+    (rehash after a grow). ``_get_sym2`` yields the code (1..4) a symbol was
+    packed from, so the byte sequence fed to FNV is the candidate's own
+    ``(la, lb, r1 codes, r2 codes)``; pinned by a direct test."""
     h = np.uint64(1469598103934665603)
     p = np.uint64(1099511628211)
     la = np.int64(len1[sid])
@@ -270,28 +277,28 @@ def _hash_row(arena, sid, len1, len2, nb2, rw):
     h = (h ^ np.uint64(lb)) * p
     row = arena[sid * rw:(sid + 1) * rw]
     for t in range(la):
-        h = (h ^ np.uint64(_get_nib(row, t))) * p
+        h = (h ^ np.uint64(_get_sym2(row, t))) * p
     for t in range(lb):
-        h = (h ^ np.uint64(_get_nib(row, nb2 + t))) * p
+        h = (h ^ np.uint64(_get_sym2(row, sym2 + t))) * p
     return h
 
 
 @njit(inline='always')
-def _codes_equal_row(arena, sid, len1, len2, blob, o, la, lb, nb2, rw):
+def _codes_equal_row(arena, sid, len1, len2, blob, o, la, lb, sym2, rw):
     if np.int64(len1[sid]) != la or np.int64(len2[sid]) != lb:
         return False
     row = arena[sid * rw:(sid + 1) * rw]
     for t in range(la):
-        if _get_nib(row, t) != np.int64(blob[o + t]):
+        if _get_sym2(row, t) != np.int64(blob[o + t]):
             return False
     for t in range(lb):
-        if _get_nib(row, nb2 + t) != np.int64(blob[o + la + 1 + t]):
+        if _get_sym2(row, sym2 + t) != np.int64(blob[o + la + 1 + t]):
             return False
     return True
 
 
 @njit(inline='always')
-def _lookup_codes(table, tmask, arena, len1, len2, blob, o, la, lb, nb2, rw, h):
+def _lookup_codes(table, tmask, arena, len1, len2, blob, o, la, lb, sym2, rw, h):
     """Id of the state equal to the UNPACKED candidate, or -1. Linear probing."""
     i = _slot0(h, tmask)
     while True:
@@ -299,7 +306,7 @@ def _lookup_codes(table, tmask, arena, len1, len2, blob, o, la, lb, nb2, rw, h):
         if slot == 0:
             return -1
         if _codes_equal_row(arena, slot - 1, len1, len2, blob, o, la, lb,
-                            nb2, rw):
+                            sym2, rw):
             return slot - 1
         i += 1
         if i > tmask:
@@ -307,47 +314,61 @@ def _lookup_codes(table, tmask, arena, len1, len2, blob, o, la, lb, nb2, rw, h):
 
 
 @njit(cache=True)
-def _rehash_h(table, tmask, arena, len1, len2, n, nb2, rw):
+def _rehash_h(table, tmask, arena, len1, len2, n, sym2, rw):
     for sid in range(n):
-        _insert(table, tmask, _hash_row(arena, sid, len1, len2, nb2, rw), sid)
+        _insert(table, tmask, _hash_row(arena, sid, len1, len2, sym2, rw), sid)
 
 
 @njit(cache=True)
 def _init_state_h(arena, len1, len2, depth, table, tmask, a1, a2, w, rw):
-    """greedy_compact._init_state, inserting with the codes hash instead."""
-    nb2 = 2 * w
+    """greedy_compact._init_state on 2-bit rows, inserting with the codes hash."""
+    sym2 = 4 * w
     for t in range(rw):
         arena[t] = 0
     for t in range(len(a1)):
-        _set_nib_at(arena, 0, t, _code_of(a1[t, 0], a1[t, 1]))
+        _set_sym2_at(arena, 0, t, _code_of(a1[t, 0], a1[t, 1]))
     for t in range(len(a2)):
-        _set_nib_at(arena, 0, nb2 + t, _code_of(a2[t, 0], a2[t, 1]))
+        _set_sym2_at(arena, 0, sym2 + t, _code_of(a2[t, 0], a2[t, 1]))
     len1[0] = len(a1)
     len2[0] = len(a2)
     depth[0] = 0
-    _insert(table, tmask, _hash_row(arena, 0, len1, len2, nb2, rw), 0)
+    _insert(table, tmask, _hash_row(arena, 0, len1, len2, sym2, rw), 0)
+
+
+@njit(inline='always')
+def _decode_h(arena, sid, base, n, rw):
+    """2-bit region -> (n, 2) bool array, the form the kernel wants
+    (``greedy_compact._decode`` for these rows; same code->bits map)."""
+    off = sid * rw
+    a = np.empty((n, 2), dtype=np.bool_)
+    for t in range(n):
+        c = _get_sym2_at(arena, off, base + t)
+        a[t, 0] = (c & 1) == 1
+        a[t, 1] = c >= 3
+    return a
 
 
 # ---------------------------------------------------------------------------
-# heap ordered by (seg, score, depth, row) — hsolve's ((seg, sc), nd, key)
+# heap ordered by (seg, score, depth, row) — hsolve's ((seg, sc), nd, key).
+# The row step is _row_less_h, which needs the lengths and the region width.
 # ---------------------------------------------------------------------------
 @njit(inline='always')
-def _less_h(arena, seg, score, depth, a, b, rw):
+def _less_h(arena, len1, len2, seg, score, depth, a, b, w, rw):
     if seg[a] != seg[b]:
         return seg[a] < seg[b]
     if score[a] != score[b]:
         return score[a] < score[b]
     if depth[a] != depth[b]:
         return depth[a] < depth[b]
-    return _row_less(arena, a, b, rw)
+    return _row_less_h(arena, len1, len2, a, b, w, rw)
 
 
 @njit(inline='always')
-def _sift_up_h(heap, i, arena, seg, score, depth, rw):
+def _sift_up_h(heap, i, arena, len1, len2, seg, score, depth, w, rw):
     v = heap[i]
     while i > 0:
         parent = (i - 1) >> 1
-        if _less_h(arena, seg, score, depth, v, heap[parent], rw):
+        if _less_h(arena, len1, len2, seg, score, depth, v, heap[parent], w, rw):
             heap[i] = heap[parent]
             i = parent
         else:
@@ -356,16 +377,17 @@ def _sift_up_h(heap, i, arena, seg, score, depth, rw):
 
 
 @njit(inline='always')
-def _sift_down_h(heap, n, arena, seg, score, depth, rw):
+def _sift_down_h(heap, n, arena, len1, len2, seg, score, depth, w, rw):
     i = 0
     v = heap[0]
     while True:
         c = 2 * i + 1
         if c >= n:
             break
-        if c + 1 < n and _less_h(arena, seg, score, depth, heap[c + 1], heap[c], rw):
+        if c + 1 < n and _less_h(arena, len1, len2, seg, score, depth,
+                                 heap[c + 1], heap[c], w, rw):
             c += 1
-        if _less_h(arena, seg, score, depth, heap[c], v, rw):
+        if _less_h(arena, len1, len2, seg, score, depth, heap[c], v, w, rw):
             heap[i] = heap[c]
             i = c
         else:
@@ -385,8 +407,10 @@ def _widen_in_place(arena, n, w_old, w_new):
     source can overlap its destination (the first ``rw_old/(rw_new-rw_old)``
     rows), so each row is staged through ``tmp`` before it is written.
     Regions keep their bytes verbatim -- packed codes then zero padding -- so
-    no comparison outcome can change and the codes-based hash needs no
-    rehash. The old copy-into-a-second-arena repack held BOTH arenas in
+    no comparison outcome can change (``_row_less_h`` reads only the bytes
+    the lengths cover, and the lengths do not move) and the codes-based hash
+    needs no rehash. Regions are ``w`` bytes each whatever a byte holds,
+    so the 2-bit rows use this unchanged. The old copy-into-a-second-arena repack held BOTH arenas in
     address space at once (293 GiB on a 2.14B reservation at cap 64, the
     number that clipped 256 GiB boxes out of the u124 campaign) and touched
     +48 B/state of fresh pages during the copy (aca_1's 158 GB peak); this
@@ -427,7 +451,7 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
     max_id, max_total = st[6], st[7]
     exp_id, exp_total = st[8], st[9]
 
-    nb2 = 2 * w
+    sym2 = 4 * w                 # symbol index where the r2 region starts
     maxc = 4 * (cap + 1) * (cap + 1)
     pops = 0
     status = _OK
@@ -443,11 +467,12 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
             break
         # A child's single relator never exceeds the popped total, so this,
         # checked BEFORE the pop, guarantees every child of this pop fits the
-        # current storage width. At w == w_cap every child fits by the cap
-        # itself and the guard never fires.
+        # current storage width (4 symbols a byte, so 4*w a region). At
+        # w == w_cap every child fits by the cap itself and the guard never
+        # fires.
         if w < w_cap:
             nxt = heap[0]
-            if np.int64(len1[nxt]) + np.int64(len2[nxt]) > 2 * w:
+            if np.int64(len1[nxt]) + np.int64(len2[nxt]) > sym2:
                 status = _NEED_WIDTH
                 break
 
@@ -455,7 +480,8 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
         heap_len -= 1
         if heap_len > 0:
             heap[0] = heap[heap_len]
-            _sift_down_h(heap, heap_len, arena, seg, score, depth, rw)
+            _sift_down_h(heap, heap_len, arena, len1, len2, seg, score, depth,
+                         w, rw)
         nodes += 1
         pops += 1
 
@@ -471,8 +497,8 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
             status = _SOLVED
             break
 
-        a1 = _decode(arena, top, 0, l1, rw)
-        a2 = _decode(arena, top, nb2, l2, rw)
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
             expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
 
@@ -489,7 +515,7 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
 
             h = _hash_codes(blob, o, la, lb)
             if _lookup_codes(table, tmask, arena, len1, len2, blob, o,
-                             la, lb, nb2, rw, h) != -1:
+                             la, lb, sym2, rw, h) != -1:
                 continue
 
             sid = n_disc
@@ -497,9 +523,9 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
             for t in range(rw):
                 arena[off + t] = 0
             for t in range(la):
-                _set_nib_at(arena, off, t, np.int64(blob[o + t]))
+                _set_sym2_at(arena, off, t, np.int64(blob[o + t]))
             for t in range(lb):
-                _set_nib_at(arena, off, nb2 + t, np.int64(blob[o + la + 1 + t]))
+                _set_sym2_at(arena, off, sym2 + t, np.int64(blob[o + la + 1 + t]))
             len1[sid] = la
             len2[sid] = lb
             depth[sid] = d1
@@ -530,7 +556,8 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
 
             heap[heap_len] = sid
             heap_len += 1
-            _sift_up_h(heap, heap_len - 1, arena, seg, score, depth, rw)
+            _sift_up_h(heap, heap_len - 1, arena, len1, len2, seg, score,
+                       depth, w, rw)
 
     st[0] = nodes
     st[1] = heap_len
@@ -600,14 +627,14 @@ class HCompactSolver:
         self.cap = max_relator_length
         self.cyclic_reduce = cyclic_reduce
         # Storage width vs semantic cap. ``cap`` prunes children (the search);
-        # ``w`` only sizes arena rows (the storage). Rows start narrow -- most
-        # searches never store a relator near the cap, and at cap 64 full-width
-        # rows are ~80% padding -- and grow with a repack the first time a pop
-        # could produce a child that would not fit. Bit-identical by the
-        # padding-invariance of the tie-break memcmp: zero padding compares
-        # equal beyond both relators, so no comparison outcome depends on
+        # ``w`` only sizes arena rows (the storage): a region is ``w`` bytes
+        # of 4 symbols each. Rows start narrow -- most searches never store a
+        # relator near the cap, and at cap 64 full-width rows are ~80%
+        # padding -- and widen in place the first time a pop could produce a
+        # child that would not fit. Bit-identical because the tie-break reads
+        # only the bytes the lengths cover: no comparison outcome depends on
         # width (pinned by tests against full-width runs).
-        self.w_cap = (self.cap + 1) // 2
+        self.w_cap = (self.cap + 3) // 4
         self.grew = 0
         self.widened = 0
 
@@ -628,11 +655,11 @@ class HCompactSolver:
         # below it would overflow _init_state_h into the neighbouring region
         # and corrupt the earliest rows (caught by the width-identity gate).
         a1, a2 = self.initial_state
-        need = (max(len(a1), len(a2), 1) + 1) // 2
+        need = (max(len(a1), len(a2), 1) + 3) // 4
         if storage_width is not None:
             w0 = min(max(int(storage_width), need), self.w_cap)
         else:
-            w0 = min(max(12, need), self.w_cap)   # 24-symbol regions to start
+            w0 = min(max(6, need), self.w_cap)    # 24-symbol regions to start
         self.w = max(1, w0)
         self.rw = 2 * self.w
 
@@ -696,7 +723,7 @@ class HCompactSolver:
                 self.parent[:k] = old["parent"][:k]
                 self.pmove[:k, :] = old["pmove"][:k, :]
             _rehash_h(self.table, self.tcap - 1, self.arena,
-                      self.len1, self.len2, k, 2 * self.w, self.rw)
+                      self.len1, self.len2, k, 4 * self.w, self.rw)
 
     def _grow_width(self, st):
         self.widened += 1
@@ -858,12 +885,12 @@ class HCompactSolver:
     def relators(self, sid):
         off = sid * self.rw
         row = self.arena[off:off + self.rw]
-        nb2 = 2 * self.w
+        sym2 = 4 * self.w
 
         def word(base, n):
-            return ''.join(_CODE_TO_CHAR[int(_get_nib(row, base + t))]
+            return ''.join(_CODE_TO_CHAR[int(_get_sym2(row, base + t))]
                            for t in range(n))
-        return word(0, int(self.len1[sid])), word(nb2, int(self.len2[sid]))
+        return word(0, int(self.len1[sid])), word(sym2, int(self.len2[sid]))
 
 
 def greedy_search_hcompact(r1_str, r2_str, node_budget, max_relator_length=24,
