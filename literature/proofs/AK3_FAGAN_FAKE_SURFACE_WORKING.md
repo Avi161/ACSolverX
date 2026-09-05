@@ -1,6 +1,7 @@
 # AK3: the seven-vertex fake-surface input
 
-Status: source combinatorics checked; no reducing 3-deformation certified.
+Status: source combinatorics and one equivalent complexity-seven endpoint
+certified; no complexity reduction certified.
 
 ## Source and terminal target
 
@@ -74,16 +75,82 @@ Section 4.5.3 for disk 1 gives these candidate attaching words:
 ```
 
 The trial retains seven $K_4$ vertex links and three occurrences per edge,
-but that does not certify a 3-deformation. The local signed rewrite and
-its handling of shared external edges still require independent audit.
-No candidate above is accepted as an equivalent endpoint on these checks
-alone. In particular, the source-only embedded-face checker cannot simply
-be applied to the candidate: its second face repeats a vertex.
+but those checks alone do not certify a 3-deformation. The local signed
+rewrite and its handling of shared external edges remain unaudited as a
+geometric move. In particular, the source-only embedded-face checker cannot
+simply be applied to the candidate: its second face repeats a vertex.
+The separate algebraic certificate below establishes endpoint equivalence
+without asserting that this is the published local rewrite.
 
-Convergence budget: at most three checkpoints, counting this source
+## Certified endpoint equivalence by two donor factors
+
+**Terminal theorem for this checkpoint.** The displayed target is a
+complexity-seven fake surface whose maximal-tree-collapsed presentation,
+under the explicit cotree marking below, is ordinary AC-equivalent to a
+maximal-tree-collapsed presentation of the source. Consequently, using
+Fagan's external source theorem, its presentation is stably AC-equivalent
+to AK3. This does not trivialize either presentation.
+
+The generic endpoint checker identifies oriented edge endpoints using
+every attaching-word corner, without assuming embedded face boundaries.
+It independently verifies $(V,E,F)=(7,14,8)$, connectedness, triple edge
+incidences and all seven $K_4$ links. The source and target spanning trees
+are respectively
+\[
+T=\{2,4,7,8,9,11\},\qquad U=\{4,11,15,16,18,19\}.
+\]
+Both are checked to have six distinct edges, no cycle, and all seven
+vertices. Collapse each tree; name target cotree edge 17 as $x_1^{-1}$,
+and retain the other cotree names. This is a choice of names for two free
+bases, not an assertion that an arbitrary generator substitution is an
+ordinary AC move. The collapsed source rows, in integer-word notation,
+are
+
+```text
+(1,-3)
+(3,13,-12,-10)
+(10,-14)
+(12,-6)
+(6,14,-13)
+(10,5)
+(5,13,1,-14,-12)
+(1,3,5,6)
+```
+
+The target differs only in its first row, which is inverted, and its
+last row, which is $(3,1,5,6)$. Put $r=x_1x_3^{-1}$, and let $w,w'$
+denote these source and target last rows. Literal free reduction gives
+\[
+ww'^{-1}=x_1x_3x_1^{-1}x_3^{-1}
+=r\,(x_3r^{-1}x_3^{-1}).
+\]
+Use the retained first row to left-multiply $w$ by the inverse of this
+two-factor product, restoring the donor after each conjugation/inversion.
+This yields $w'$ exactly. Invert the first row last. All other rows are
+unchanged, proving the stated ordinary AC equivalence in the common
+marked free group.
+
+Tree collapse and Fagan's source theorem transfer stable equivalence and
+trivial fundamental group to the target. For this finite connected
+two-complex, simple connectivity and Euler characteristic one imply
+$H_2=0$: its second homology is free abelian and has rank zero. Thus it is
+acyclic and simply connected, hence contractible by Hurewicz and Whitehead.
+This conclusion uses the transferred fundamental-group statement, not
+Euler characteristic alone. The certificate's finite checks do not
+independently verify Fagan's external theorem.
+
+The independent tests reconstruct endpoint identifications with set
+merging, replay the tree collapses and donor identity, and reject an
+incomplete tree and a corrupted conjugator. All 28 focused fake-surface,
+boundary-corridor and preimage tests pass. Neither an exact local
+geometric rewrite nor a complexity reduction is claimed.
+
+Convergence budget: at most three checkpoints, counting the source
 checkpoint, to obtain an independently certified complexity reduction.
-First certify the occurrence-level local move; then inspect a bounded
-explicit continuation. Do not open a broad move census or a new residual
+This is checkpoint two: endpoint equivalence is now certified algebraically,
+while complexity remains seven. One checkpoint remains for an actual
+reduction; another complexity-preserving endpoint does not reset the budget.
+Do not open a broad move census or a new residual
 family merely because the moves preserve valid link graphs. If the budget
 expires without a reduction, freeze this input and return to the existing
 proof gates. Stable AK3 and ordinary AK3 remain unproved here.

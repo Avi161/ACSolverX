@@ -131,3 +131,146 @@ def decide_fagan_fake_surface() -> FaganFakeSurfaceDecision:
     transports = tuple(trace_face_sheet_transport(audit, index) for index in range(len(SOURCE_FACES)))
     return FaganFakeSurfaceDecision(audit, transports, False, False,
                                     "FAGAN_SOURCE_COMBINATORICS_AND_SHEET_TRANSPORT_ONLY")
+
+
+FIRST_TARGET_FACES = (
+    (3, 15, 17, -16), (3, 11, 13, -16, 18, -12, -10),
+    (-18, 10, -4, -14), (4, 12, -6, -11, 15),
+    (6, 14, -15, 19, -13), (19, -16, 10, 5, -11),
+    (5, 13, -17, -14, -12), (3, 19, -17, 4, 5, 6, -18),
+)
+SOURCE_TREE = (2, 4, 7, 8, 9, 11)
+FIRST_TARGET_TREE = (4, 11, 15, 16, 18, 19)
+EXPECTED_SOURCE_COLLAPSED = (
+    (1, -3), (3, 13, -12, -10), (10, -14), (12, -6),
+    (6, 14, -13), (10, 5), (5, 13, 1, -14, -12), (1, 3, 5, 6),
+)
+
+
+def integer_inverse(word: tuple[int, ...]) -> tuple[int, ...]:
+    return tuple(-letter for letter in reversed(word))
+
+
+def integer_reduce(word: tuple[int, ...]) -> tuple[int, ...]:
+    stack = []
+    for letter in word:
+        if stack and stack[-1] == -letter:
+            stack.pop()
+        else:
+            stack.append(letter)
+    return tuple(stack)
+
+
+@dataclass(frozen=True)
+class EndpointGraphAudit:
+    endpoints: tuple[tuple[int, int, int], ...]
+    vertex_count: int
+    edge_count: int
+    face_count: int
+    edge_occurrences: tuple[tuple[int, int], ...]
+    vertex_links: tuple[tuple[tuple[int, int], ...], ...]
+
+
+def reconstruct_endpoint_graph(faces: tuple[tuple[int, ...], ...]) -> EndpointGraphAudit:
+    edges = sorted({abs(letter) for face in faces for letter in face})
+    if not edges or 0 in edges or any(not face for face in faces):
+        raise AssertionError("endpoint reconstruction requires nonempty signed-edge faces")
+    parent = {(edge, end): (edge, end) for edge in edges for end in (0, 1)}
+
+    def find(endpoint):
+        while parent[endpoint] != endpoint:
+            parent[endpoint] = parent[parent[endpoint]]
+            endpoint = parent[endpoint]
+        return endpoint
+
+    for face in faces:
+        for index, incoming in enumerate(face):
+            outgoing = face[(index + 1) % len(face)]
+            head = (abs(incoming), 1 if incoming > 0 else 0)
+            tail = (abs(outgoing), 0 if outgoing > 0 else 1)
+            parent[find(head)] = find(tail)
+    roots = sorted({find(endpoint) for endpoint in parent})
+    vertex = {root: index for index, root in enumerate(roots)}
+    endpoints = {edge: (vertex[find((edge, 0))], vertex[find((edge, 1))]) for edge in edges}
+    counts = Counter(abs(letter) for face in faces for letter in face)
+    if len(roots) != 7 or len(edges) != 14 or any(counts[edge] != 3 for edge in edges):
+        raise AssertionError("the endpoint vertex, edge, or incidence counts drifted")
+    links = defaultdict(list)
+    for face in faces:
+        for index, incoming in enumerate(face):
+            head = endpoints[abs(incoming)][1 if incoming > 0 else 0]
+            outgoing = face[(index + 1) % len(face)]
+            links[head].append(tuple(sorted((-incoming, outgoing))))
+    for at in range(7):
+        germs = sorted(signed for edge in edges for signed in (edge, -edge)
+                       if endpoints[edge][0 if signed > 0 else 1] == at)
+        if len(germs) != 4 or Counter(links[at]) != Counter(combinations(germs, 2)):
+            raise AssertionError("the reconstructed endpoint link is not exactly K4")
+    reached = {0}
+    for _ in range(7):
+        reached |= {other for ends in endpoints.values() for at, other in (ends, ends[::-1]) if at in reached}
+    if len(reached) != 7:
+        raise AssertionError("the reconstructed endpoint graph is disconnected")
+    return EndpointGraphAudit(tuple((edge, *endpoints[edge]) for edge in edges), 7, 14, len(faces),
+                              tuple(sorted(counts.items())), tuple(tuple(sorted(links[at])) for at in range(7)))
+
+
+def validate_endpoint_tree(audit: EndpointGraphAudit, tree: tuple[int, ...]) -> None:
+    endpoints = {edge: (start, end) for edge, start, end in audit.endpoints}
+    if len(tree) != 6 or len(set(tree)) != 6 or not set(tree) <= endpoints.keys():
+        raise AssertionError("the endpoint tree must contain six distinct source edges")
+    parent = list(range(audit.vertex_count))
+    for edge in tree:
+        start, end = endpoints[edge]
+        while parent[start] != start:
+            start = parent[start]
+        while parent[end] != end:
+            end = parent[end]
+        if start == end:
+            raise AssertionError("the endpoint tree has a cycle")
+        parent[start] = end
+    roots = set()
+    for vertex in range(audit.vertex_count):
+        while parent[vertex] != vertex:
+            vertex = parent[vertex]
+        roots.add(vertex)
+    if len(roots) != 1:
+        raise AssertionError("the endpoint tree is not spanning")
+
+
+@dataclass(frozen=True)
+class FirstFourgonEndpointDecision:
+    source_audit: EndpointGraphAudit
+    target_audit: EndpointGraphAudit
+    source_tree: tuple[int, ...]
+    target_tree: tuple[int, ...]
+    source_collapsed: tuple[tuple[int, ...], ...]
+    target_collapsed: tuple[tuple[int, ...], ...]
+    defect: tuple[int, ...]
+    product: tuple[int, ...]
+    geometric_local_rewrite_certified: bool
+    complexity_reduction_claimed: bool
+    verdict: str
+
+
+def decide_first_fourgon_endpoint() -> FirstFourgonEndpointDecision:
+    source = reconstruct_endpoint_graph(SOURCE_FACES)
+    target = reconstruct_endpoint_graph(FIRST_TARGET_FACES)
+    validate_endpoint_tree(source, SOURCE_TREE)
+    validate_endpoint_tree(target, FIRST_TARGET_TREE)
+    source_rows = tuple(integer_reduce(tuple(letter for letter in face if abs(letter) not in SOURCE_TREE))
+                        for face in SOURCE_FACES)
+    target_rows = tuple(integer_reduce(tuple(-1 if letter == 17 else 1 if letter == -17 else letter
+                                             for letter in face if abs(letter) not in FIRST_TARGET_TREE))
+                        for face in FIRST_TARGET_FACES)
+    expected_target = (integer_inverse(EXPECTED_SOURCE_COLLAPSED[0]),) + EXPECTED_SOURCE_COLLAPSED[1:-1] + ((3, 1, 5, 6),)
+    if source_rows != EXPECTED_SOURCE_COLLAPSED or target_rows != expected_target:
+        raise AssertionError("the first-fourgon collapsed presentation drifted")
+    defect = integer_reduce(source_rows[-1] + integer_inverse(target_rows[-1]))
+    r_row = source_rows[0]
+    product = integer_reduce(r_row + (3,) + integer_inverse(r_row) + (-3,))
+    if defect != (1, 3, -1, -3) or defect != product:
+        raise AssertionError("the first-fourgon retained-row identity drifted")
+    return FirstFourgonEndpointDecision(source, target, SOURCE_TREE, FIRST_TARGET_TREE,
+                                        source_rows, target_rows, defect, product, False, False,
+                                        "FIRST_FOURGON_ENDPOINT_PRESENTATION_EQUIVALENCE_ONLY")
