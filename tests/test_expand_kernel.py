@@ -34,7 +34,7 @@ def _popped_states(r1, r2, budget, every):
     """States a real search pops, as (a1, a2) bool arrays."""
     from experiments.heuristic_search.core.perf_lab.phase_split import RecordingSolver
     from experiments.search.run_leftovers_1m import S20_MK2
-    from experiments.search.greedy_compact import _decode
+    from experiments.heuristic_search.core.hcompact import _decode_h
 
     s = RecordingSolver(r1, r2, max_nodes=budget, max_relator_length=64,
                         config=S20_MK2, track_path=False)
@@ -42,8 +42,9 @@ def _popped_states(r1, r2, budget, every):
     out = []
     for i in range(0, budget, every):
         top = int(s.popped[i])
-        out.append((_decode(s.arena, top, 0, int(s.len1[top]), s.rw).copy(),
-                    _decode(s.arena, top, 2 * s.w, int(s.len2[top]), s.rw).copy()))
+        # the engine's own 2-bit decoder; r2's region starts at symbol 4*w
+        out.append((_decode_h(s.arena, top, 0, int(s.len1[top]), s.rw).copy(),
+                    _decode_h(s.arena, top, 4 * s.w, int(s.len2[top]), s.rw).copy()))
     return out
 
 

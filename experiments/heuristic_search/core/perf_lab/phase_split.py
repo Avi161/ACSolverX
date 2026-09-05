@@ -23,7 +23,7 @@ METHOD
    pops, timed with ``perf_counter`` around the kernel call (Python overhead is
    one call per batch of 64 pops, i.e. nil):
 
-   (a) expand:  ``_decode`` + ``expand_and_score_nj`` over the popped
+   (a) expand:  ``_decode_h`` + ``expand_and_score_nj`` over the popped
                 sequence, exactly the engine's per-pop call.
    (b) hash:    ``_hash_codes`` over every candidate the expansion produced
                 (candidates are materialised into a batch buffer first so
@@ -41,7 +41,7 @@ METHOD
                 width-invariant. The replay asserts ``heap[0] == popped[i]``
                 at every pop, which is what proves the replay IS the run.
    (e) lascan:  the per-candidate zero-scan that finds ``la`` in the blob.
-   (f) pack:    zero + nibble-pack a row for the candidates that were new.
+   (f) pack:    zero + pack a row (2 bits a symbol) for the candidates that were new.
 
    The residual is the plain engine's measured per-pop time minus the sum:
    ``_insert``, the min/max and heap bookkeeping, the pre-pop guards, the
@@ -85,10 +85,10 @@ from experiments.heuristic_search.core import hcompact as H            # noqa: E
 from experiments.heuristic_search.core.hcompact import (                # noqa: E402
     HCompactSolver, _hash_codes, _lookup_codes, _codes_equal_row,
     _sift_up_h, _sift_down_h, _NEED_WIDTH, greedy_search_hcompact,
+    _decode_h, _set_sym2_at,
 )
 from experiments.search.greedy_compact import (                         # noqa: E402
-    _OK, _SOLVED, _EMPTY, _NEED_CAPACITY, _decode, _set_nib_at, _insert,
-    _slot0,
+    _OK, _SOLVED, _EMPTY, _NEED_CAPACITY, _insert, _slot0,
 )
 from experiments.heuristic_search.core.hfast import expand_and_score_nj  # noqa: E402
 from experiments.heuristic_search.core.perf_lab.bench import load_rows   # noqa: E402
@@ -110,7 +110,7 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
     max_id, max_total = st[6], st[7]
     exp_id, exp_total = st[8], st[9]
 
-    nb2 = 2 * w
+    sym2 = 4 * w                 # symbol index where the r2 region starts
     maxc = 4 * (cap + 1) * (cap + 1)
     pops = 0
     status = _OK
@@ -126,7 +126,7 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
             break
         if w < w_cap:
             nxt = heap[0]
-            if np.int64(len1[nxt]) + np.int64(len2[nxt]) > 2 * w:
+            if np.int64(len1[nxt]) + np.int64(len2[nxt]) > sym2:
                 status = _NEED_WIDTH
                 break
 
@@ -134,7 +134,8 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
         heap_len -= 1
         if heap_len > 0:
             heap[0] = heap[heap_len]
-            _sift_down_h(heap, heap_len, arena, seg, score, depth, rw)
+            _sift_down_h(heap, heap_len, arena, len1, len2, seg, score, depth,
+                         w, rw)
         nodes += 1
         pops += 1
         popped[nodes - 1] = top                       # <-- recording store 1
@@ -152,8 +153,8 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
             status = _SOLVED
             break
 
-        a1 = _decode(arena, top, 0, l1, rw)
-        a2 = _decode(arena, top, nb2, l2, rw)
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
             expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
 
@@ -170,7 +171,7 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
 
             h = _hash_codes(blob, o, la, lb)
             if _lookup_codes(table, tmask, arena, len1, len2, blob, o,
-                             la, lb, nb2, rw, h) != -1:
+                             la, lb, sym2, rw, h) != -1:
                 continue
 
             sid = n_disc
@@ -178,9 +179,9 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
             for t in range(rw):
                 arena[off + t] = 0
             for t in range(la):
-                _set_nib_at(arena, off, t, np.int64(blob[o + t]))
+                _set_sym2_at(arena, off, t, np.int64(blob[o + t]))
             for t in range(lb):
-                _set_nib_at(arena, off, nb2 + t, np.int64(blob[o + la + 1 + t]))
+                _set_sym2_at(arena, off, sym2 + t, np.int64(blob[o + la + 1 + t]))
             len1[sid] = la
             len2[sid] = lb
             depth[sid] = d1
@@ -207,7 +208,8 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
 
             heap[heap_len] = sid
             heap_len += 1
-            _sift_up_h(heap, heap_len - 1, arena, seg, score, depth, rw)
+            _sift_up_h(heap, heap_len - 1, arena, len1, len2, seg, score,
+                       depth, w, rw)
         nd_after[nodes - 1] = n_disc                  # <-- recording store 2
 
     st[0] = nodes
@@ -245,7 +247,7 @@ class RecordingSolver(HCompactSolver):
 # ---------------------------------------------------------------------------
 @njit(cache=True)
 def replay_expand(arena, len1, len2, popped, i0, i1, cap, cyclic, seg_upto,
-                  seg_w, rw, nb2):
+                  seg_w, rw, sym2):
     tot = 0
     for i in range(i0, i1):
         top = popped[i]
@@ -253,8 +255,8 @@ def replay_expand(arena, len1, len2, popped, i0, i1, cap, cyclic, seg_upto,
         l2 = len2[top]
         if l1 == 1 and l2 == 1:
             continue
-        a1 = _decode(arena, top, 0, l1, rw)
-        a2 = _decode(arena, top, nb2, l2, rw)
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
             expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
         tot += count
@@ -263,7 +265,7 @@ def replay_expand(arena, len1, len2, popped, i0, i1, cap, cyclic, seg_upto,
 
 @njit(cache=True)
 def materialize(arena, len1, len2, popped, i0, i1, cap, cyclic, seg_upto,
-                seg_w, rw, nb2, bblob, boffs, bkl, bpop):
+                seg_w, rw, sym2, bblob, boffs, bkl, bpop):
     """Expand pops [i0, i1) and copy every candidate's key bytes back to back
     into ``bblob``; per candidate its offset, key length and pop index."""
     pos = 0
@@ -274,8 +276,8 @@ def materialize(arena, len1, len2, popped, i0, i1, cap, cyclic, seg_upto,
         l2 = len2[top]
         if l1 == 1 and l2 == 1:
             continue
-        a1 = _decode(arena, top, 0, l1, rw)
-        a2 = _decode(arena, top, nb2, l2, rw)
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
             expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
         for j in range(count):
@@ -321,11 +323,11 @@ def replay_hash(bblob, boffs, bla, blb, nc, bh):
 
 @njit(cache=True)
 def replay_probe(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
-                 nc, nb2, rw, bsid):
+                 nc, sym2, rw, bsid):
     acc = 0
     for j in range(nc):
         sid = _lookup_codes(table, tmask, arena, len1, len2, bblob, boffs[j],
-                            bla[j], blb[j], nb2, rw, bh[j])
+                            bla[j], blb[j], sym2, rw, bh[j])
         bsid[j] = sid
         acc += sid
     return acc
@@ -333,7 +335,7 @@ def replay_probe(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
 
 @njit(cache=True)
 def probe_stats(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
-                nc, nb2, rw):
+                nc, sym2, rw):
     """Untimed: total slots visited and total row compares (length-matched
     slots) over the batch -- the memo's M2/M5 numbers, from the same lookups."""
     slots = 0
@@ -351,7 +353,7 @@ def probe_stats(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
             s = slot - 1
             if np.int64(len1[s]) == la and np.int64(len2[s]) == lb:
                 rowcmp += 1
-            if _codes_equal_row(arena, s, len1, len2, bblob, o, la, lb, nb2, rw):
+            if _codes_equal_row(arena, s, len1, len2, bblob, o, la, lb, sym2, rw):
                 break
             i += 1
             if i > tmask:
@@ -387,10 +389,10 @@ def classify(bsid, bpop, nc, nd_after, i0):
 
 
 @njit(cache=True)
-def replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc, nd_after, nb2, rw,
+def replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc, nd_after, sym2, rw,
                 scratch):
-    """Zero + pack a row for each NEW candidate (as the engine does), into a
-    scratch row. Same classification walk as ``classify``."""
+    """Zero + pack a 2-bit row for each NEW candidate (as the engine does),
+    into a scratch row. Same classification walk as ``classify``."""
     acc = 0
     cur_pop = -1
     nd_before = 0
@@ -410,15 +412,16 @@ def replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc, nd_after, nb2, rw,
             for t in range(rw):
                 scratch[t] = 0
             for t in range(la):
-                _set_nib_at(scratch, 0, t, np.int64(bblob[o + t]))
+                _set_sym2_at(scratch, 0, t, np.int64(bblob[o + t]))
             for t in range(lb):
-                _set_nib_at(scratch, 0, nb2 + t, np.int64(bblob[o + la + 1 + t]))
+                _set_sym2_at(scratch, 0, sym2 + t, np.int64(bblob[o + la + 1 + t]))
             acc += np.int64(scratch[0])
     return acc
 
 
 @njit(cache=True)
-def replay_heap(arena, seg, score, depth, rw, popped, nd_after, npop, heap):
+def replay_heap(arena, len1, len2, seg, score, depth, w, rw, popped, nd_after,
+                npop, heap):
     heap[0] = 0
     heap_len = 1
     n_disc = 1
@@ -430,11 +433,13 @@ def replay_heap(arena, seg, score, depth, rw, popped, nd_after, npop, heap):
         heap_len -= 1
         if heap_len > 0:
             heap[0] = heap[heap_len]
-            _sift_down_h(heap, heap_len, arena, seg, score, depth, rw)
+            _sift_down_h(heap, heap_len, arena, len1, len2, seg, score, depth,
+                         w, rw)
         for sid in range(n_disc, nd_after[i]):
             heap[heap_len] = sid
             heap_len += 1
-            _sift_up_h(heap, heap_len - 1, arena, seg, score, depth, rw)
+            _sift_up_h(heap, heap_len - 1, arena, len1, len2, seg, score,
+                       depth, w, rw)
         n_disc = nd_after[i]
     return mism
 
@@ -483,7 +488,7 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
     arena, len1, len2 = rs.arena, rs.len1, rs.len2
     depth, seg, score, table = rs.depth, rs.seg, rs.score, rs.table
     rw, w, cap = rs.rw, rs.w, rs.cap
-    nb2 = 2 * w
+    sym2 = 4 * w                 # the r2 region's first symbol (4 a byte)
     tmask = rs.tcap - 1
     cyclic = rs.cyclic_reduce
     seg_upto, seg_w = rs.seg_upto, rs.seg_w
@@ -505,21 +510,22 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
 
     # compile every replay kernel on a tiny batch before timing anything
     materialize(arena, len1, len2, popped, 0, 1, cap, cyclic, seg_upto, seg_w,
-                rw, nb2, bblob, boffs, bkl, bpop)
+                rw, sym2, bblob, boffs, bkl, bpop)
     replay_expand(arena, len1, len2, popped, 0, 1, cap, cyclic, seg_upto,
-                  seg_w, rw, nb2)
+                  seg_w, rw, sym2)
     nc0, _ = materialize(arena, len1, len2, popped, 0, 1, cap, cyclic,
-                         seg_upto, seg_w, rw, nb2, bblob, boffs, bkl, bpop)
+                         seg_upto, seg_w, rw, sym2, bblob, boffs, bkl, bpop)
     replay_lascan(bblob, boffs, bkl, nc0, bla, blb)
     replay_hash(bblob, boffs, bla, blb, nc0, bh)
     replay_probe(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
-                 nc0, nb2, rw, bsid)
+                 nc0, sym2, rw, bsid)
     probe_stats(table, tmask, arena, len1, len2, bblob, boffs, bla, blb, bh,
-                nc0, nb2, rw)
+                nc0, sym2, rw)
     classify(bsid, bpop, nc0, nd_after, 0)
-    replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc0, nd_after, nb2, rw,
+    replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc0, nd_after, sym2, rw,
                 scratch)
-    replay_heap(arena, seg, score, depth, rw, popped, nd_after, 1, heap)
+    replay_heap(arena, len1, len2, seg, score, depth, w, rw, popped, nd_after,
+                1, heap)
 
     times = {p: [] for p in PHASES}
     diag = None
@@ -533,11 +539,11 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
             i1 = min(npop, i0 + batch)
             a = time.perf_counter()
             replay_expand(arena, len1, len2, popped, i0, i1, cap, cyclic,
-                          seg_upto, seg_w, rw, nb2)
+                          seg_upto, seg_w, rw, sym2)
             t["expand"] += time.perf_counter() - a
 
             nc, pos = materialize(arena, len1, len2, popped, i0, i1, cap,
-                                  cyclic, seg_upto, seg_w, rw, nb2, bblob,
+                                  cyclic, seg_upto, seg_w, rw, sym2, bblob,
                                   boffs, bkl, bpop)
             n_cand += nc
             n_sym += pos - nc                 # key bytes minus separators
@@ -552,11 +558,11 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
 
             a = time.perf_counter()
             replay_probe(table, tmask, arena, len1, len2, bblob, boffs, bla,
-                         blb, bh, nc, nb2, rw, bsid)
+                         blb, bh, nc, sym2, rw, bsid)
             t["probe"] += time.perf_counter() - a
 
             a = time.perf_counter()
-            replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc, nd_after, nb2,
+            replay_pack(bblob, boffs, bla, blb, bsid, bpop, nc, nd_after, sym2,
                         rw, scratch)
             t["pack"] += time.perf_counter() - a
 
@@ -566,13 +572,13 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
                 n_new += nw
                 n_intra += ni
                 s_, r_ = probe_stats(table, tmask, arena, len1, len2, bblob,
-                                     boffs, bla, blb, bh, nc, nb2, rw)
+                                     boffs, bla, blb, bh, nc, sym2, rw)
                 slots += s_
                 rowcmp += r_
 
         a = time.perf_counter()
-        mism = replay_heap(arena, seg, score, depth, rw, popped, nd_after,
-                           npop, heap)
+        mism = replay_heap(arena, len1, len2, seg, score, depth, w, rw, popped,
+                           nd_after, npop, heap)
         t["sift"] += time.perf_counter() - a
         assert mism == 0, f"heap replay diverged from the run at {mism} pops"
 
