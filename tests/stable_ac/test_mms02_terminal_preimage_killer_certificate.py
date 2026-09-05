@@ -304,3 +304,36 @@ def test_squaring_norm_keeps_literal_cyclic_boundary_and_positive_control():
     assert norm(positive) == "aBAA"
     assert norm(positive)[0] == norm(positive)[-1].swapcase()
     assert norm(positive)[1:-1] == "BA"
+
+
+def test_rejected_half_twist_tag_returns_literally_to_ak3():
+    r_row, s_row, delta = "xyxYXY", "xxxYYYY", "xyx"
+    prefixes = ("", "y", "yy", "yyy", "yyyX", "yyyXX", "yyyXXX")
+    defect = reduce_word(delta + s_row + invert(delta) + invert("yyyXXXX"))
+    product = reduce_word("".join(prefix + r_row + invert(prefix) for prefix in prefixes))
+    assert defect == product
+    corrupted = ("x",) + prefixes[1:]
+    assert reduce_word("".join(prefix + r_row + invert(prefix) for prefix in corrupted)) != defect
+    tagged = "yyyXXXXz"
+    defining = reduce_word(s_row + tagged)
+    assert defining == "xxxYXXXXz"
+
+    def substitute(word, images):
+        signed = images | {letter.upper(): invert(value) for letter, value in images.items()}
+        return reduce_word("".join(signed[letter] for letter in word))
+
+    alpha = {"x": "x", "y": "XXXXzxxx", "z": "z"}
+    beta = {"x": "x", "z": "xxxxyXXX"}
+    assert substitute(defining, alpha) == ""
+    for generator in "xy":
+        assert substitute(substitute(generator, alpha), beta) == generator
+    for generator in "xz":
+        assert substitute(substitute(generator, beta), alpha) == generator
+    y_prime = "XXXXzxxx"
+    assert substitute(tagged, alpha) == reduce_word(y_prime * 3 + "XXXXz")
+    assert substitute(tagged, alpha) == reduce_word(y_prime * 4 + "XXX")
+    assert substitute(tagged, alpha) == substitute(invert(s_row), alpha)
+    transformed = (substitute(r_row, alpha), substitute(tagged, alpha))
+    returned = tuple(substitute(row, beta) for row in transformed)
+    assert returned == (r_row, invert(s_row))
+    assert (returned[0], invert(returned[1])) == ("xyxYXY", "xxxYYYY")

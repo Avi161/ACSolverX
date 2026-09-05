@@ -1,5 +1,15 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Eliminate a proposed tag symbolically before probing
+
+[WORKS] For the AK3 half-twist tag `h=yyyXXXXz`, the product
+`s*h=xxxYXXXXz` defines `y=XXXXzxxx`. Under this substitution the
+retained `h` is exactly the substituted `s^-1`, so the apparent
+stabilized shortcut is only a basis change of the original pair.
+Sol's literal return check avoided an unnecessary descent probe.
+Before exploring a tagged elimination, substitute into every retained
+row and check for this immediate return, not only for shorter words.
+
 ### [2026-09-05] Identify the terminal presentation after a strict reduction
 
 [WORKS] The length-fourteen target in
