@@ -72,7 +72,12 @@ from experiments.search.run_leftovers_1m import (
 #          big box before the cap carry doubling peaks (u124 aca_37: 286.4 GB
 #          on 493 GiB) that no gen-3 row can produce; seeding them pinned
 #          every box to one lane. Not evidence about this profile: skipped.
-ENGINE_MEM_GEN = 3
+#   gen 4: the arena is one full-width allocation and rows widen IN PLACE,
+#          so the width-repack transient (+48 B/state of fresh pages, and a
+#          second arena in address space) no longer exists; and a campaign
+#          may run without path capture (u124 does: -8 B/state). Gen-3 peaks
+#          include repack transients no gen-4 row can produce: skipped.
+ENGINE_MEM_GEN = 4
 
 # The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
 # coexist and must never be conflated:
@@ -87,7 +92,13 @@ MRL_5M = 64
 # Every row records its solution path. `path_length` alone is not the result:
 # the move sequence IS the certificate, and it is unrecoverable after the fact
 # -- the arena is overwritten, so a finished run without it cannot be mined for
-# paths later, only re-run. 8 B/state buys it.
+# paths later, only re-run. 8 B/state buys it. This is the module default
+# (AC19 runs with it); a campaign may opt out with ``"track_path": False`` in
+# CAMPAIGNS when its rows almost never solve and the 8 B/state buys lanes
+# instead -- the certificate of a row that DOES solve is then recovered by
+# re-running that one row with paths on at its recorded ``nodes_explored``
+# (the search is deterministic, so the re-run pops the same sequence and
+# ends on the same solve).
 TRACK_PATH = True
 
 NODE_BUDGET_5M = 5_000_000
@@ -122,6 +133,7 @@ CAMPAIGNS = {
         # None = the est_states-based reservation this campaign already runs
         # under; changed mid-flight it would alter the live boxes' sizing.
         "states_per_node": None,
+        "track_path": True,               # every AC19 solve carries its moves
     },
     "u124": {
         "label": "124 unsolved Miller-Schupp AC classes at 10M",
@@ -152,12 +164,20 @@ CAMPAIGNS = {
         # covering it is cheaper than dying at 95% of budget on most rows.
         # 214 = the measured maximum + 15%, and the last floor at which the
         # hash table stays 16 GiB (it doubles past 214/node, +16 GB on every
-        # row's peak). Worst is ~205 GB/row: two lanes on a 512 GiB box,
-        # seven on 1.5 TiB. STATES_PER_NODE in the environment overrides
-        # this for a second pass over rows that still die; plan_memory's
-        # width-repack transient clip has the last word on any box (a 246 GB
-        # box clips to ~167/node and cannot run this campaign at all).
+        # row's peak). Without paths (below) the allocation-backed worst is
+        # ~181 GiB/row: two lanes on a 512 GiB box, one on 256 GiB, eight on
+        # 1.5 TiB. STATES_PER_NODE in the environment overrides this for a
+        # second pass over rows that still die; plan_memory clips it to the
+        # box when the full-width allocation does not fit.
         "states_per_node": 214,
+        # No path capture: every completed u124 row so far is unsolved, so
+        # parent+pmove (8 B/state, 16 GiB of address space per lane at this
+        # reservation) were dead weight on every one. A row that solves is
+        # recorded with solved=True, path_length and empty path/path_moves;
+        # its certificate is recovered by re-running that row alone with
+        # track_path=True and node_budget=nodes_explored -- one row's time
+        # per SOLVED row, of which there have been zero.
+        "track_path": False,
     },
 }
 
@@ -295,9 +315,11 @@ def classify_5m(rows, budget=NODE_BUDGET_5M, checkpoints=CHECKPOINTS_5M,
 
 ROW_TIMEOUT_DEFAULT = None       # seconds per row; None = no CPU-time kill
 
-# Address-space headroom held back from the width-repack transient bound in
+# Address-space headroom held back from the full-width allocation bound in
 # plan_memory: interpreter + numba runtime + MemAvailable estimation noise.
-_TRANSIENT_MARGIN_GB = 10.0
+# Measured adequate: the 16xlarge's rows widened 24B->32B under a limit set
+# exactly this far above their (then much larger) repack transient.
+_ADDRESS_MARGIN_GB = 10.0
 
 # What the child reports when the memory guard stops a row. The prefix is
 # stable (status tools grep it); the engine appends the measurement.
@@ -425,22 +447,46 @@ def _sibling_results(out, prefix, key):
     return sorted(got)
 
 
+def _per_state_bytes(mrl, track_path):
+    """Address space one RESERVED state costs, table excluded: the arena row
+    at the cap width (the arena is one full-width allocation, widened in
+    place, so the reservation charges this from birth), len1/len2 (2), depth
+    (4), seg (1), score (8), heap (4), and parent+pmove (4+4) when paths are
+    captured. 91 B at cap 64 with paths, 83 without."""
+    from experiments.search.greedy_compact import row_width
+    return row_width(mrl) + 19 + (8 if track_path else 0)
+
+
+def _table_gb(n):
+    """The open-addressing table for ``n`` reserved states: int32 slots at
+    the next power of two at or above 2n (16 GiB from 1.07B to 2.147B)."""
+    return (1 << max(1, 2 * n - 1).bit_length()) * 4 / 2 ** 30
+
+
+def _allocation_gb(n, mrl, track_path):
+    """What ``n`` reserved states cost in address space, table included."""
+    return n * _per_state_bytes(mrl, track_path) / 2 ** 30 + _table_gb(n)
+
+
 def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
-                available_gb=None, states_per_node=None, log=print):
+                available_gb=None, states_per_node=None, log=print,
+                track_path=None):
     """``(mem_limit_bytes, reserve_states)`` sized to THIS machine.
 
     Uses the engine's own sizing pieces (``est_states``/``row_width``/slack) --
     the reservation is the engine default when it fits, and clipped to free RAM
     when it does not, with a note that clipped rows fail cleanly on MemoryError
     rather than by OOM kill. Returns ``(None, None)`` without the engine.
+    ``track_path`` defaults to the module's TRACK_PATH; a campaign that does
+    not capture paths sizes 8 B/state lighter.
     """
     if not HAVE_HCOMPACT:
         return None, None
-    from experiments.search.greedy_compact import (
-        _RESERVE_SLACK, est_states, row_width)
+    from experiments.search.greedy_compact import _RESERVE_SLACK, est_states
+    if track_path is None:
+        track_path = TRACK_PATH
     avail = available_gb if available_gb is not None else _available_gb()
     limit_gb = max(avail - 2.0, 3.0)
-    per_state = row_width(mrl) + 31 + (8 if TRACK_PATH else 0)
     default_n = int(est_states(budget) * _RESERVE_SLACK) + 4 * (mrl + 1) ** 2
     if states_per_node:
         # A measured discovery-rate floor beats the est_states curve: AC19's
@@ -450,60 +496,55 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
         # its honest steady state.
         default_n = max(default_n,
                         int(states_per_node * budget) + 4 * (mrl + 1) ** 2)
-    cap_n = int(max(limit_gb - 2.5, 1.0) * 0.95 * 2 ** 30 / per_state)
-    # The width ladder's LAST repack (previous rung -> full width) holds BOTH
-    # arenas at once, so a widening row's address-space peak is the repack,
-    # not the steady worst -- aca_1 measured it at 158.0 GB VmHWM on a 1.50B
-    # reserve. A reservation whose repack cannot fit under this box's
-    # RLIMIT_AS turns every widening row into a death at ~90% of budget;
-    # clipping the reservation instead keeps width-legal rows completable
-    # and only shortens the runway of over-rate rows, which fail cleanly at
-    # reservation exhaustion either way.
-    w_cap = (mrl + 1) // 2
-    if w_cap > 12:
-        w_prev = w = 12
-        while w < w_cap:
-            w_prev, w = w, min(2 * w, w_cap)
-        per_tr = 2 * w_prev + 2 * w_cap + 19 + (8 if TRACK_PATH else 0)
-        cand = max(1024, min(default_n, cap_n))
-        table_gb = (1 << max(1, 2 * cand - 1).bit_length()) * 4 / 2 ** 30
-        tr_gb = max(limit_gb - _TRANSIENT_MARGIN_GB - table_gb, 1.0)
-        cap_n = min(cap_n, int(tr_gb * 2 ** 30 / per_tr))
+    # The arena is one full-width allocation and rows widen in place, so a
+    # row's address-space peak IS its allocation: reserve x per-state + the
+    # table. (The old copy-repack held two arenas at once -- 293 GiB on a
+    # 2.14B reserve -- and that phantom clipped every 256 GiB box out of
+    # u124.) Clip the reservation to what fits under this box's RLIMIT with
+    # the runtime margin; the table is a power-of-two step, so re-solve
+    # after each cut until it fits.
+    usable_gb = max(limit_gb - _ADDRESS_MARGIN_GB, 1.0)
+    cap_n = default_n
+    for _ in range(64):
+        need = _allocation_gb(cap_n, mrl, track_path)
+        if need <= usable_gb or cap_n <= 1024:
+            break
+        cap_n = int(cap_n * usable_gb / need)
     reserve = max(1024, min(default_n, cap_n))
     if reserve < default_n:
         log(f"  memory  : reservation clipped to {reserve:,} states "
-            f"(engine default {default_n:,} does not fit {avail:.0f} GB free, "
-            f"width-repack transient included); a row that outgrows it fails "
-            f"with a clean MemoryError row, never an OOM kill")
-    if states_per_node and w_cap > 12:
+            f"(engine default {default_n:,} does not fit {avail:.0f} GB free "
+            f"at full width); a row that outgrows it fails with a clean "
+            f"MemoryError row, never an OOM kill")
+    if states_per_node:
         # Under a rate floor the reservation IS the sizing model, so the
         # per-child RLIMIT doubles as the poisoning vaccine: on a box big
         # enough that a grow-doubling FITS in address space, a row past the
         # floor balloons to ~2x its reservation and completes -- and its
         # recorded peak then throttles admission for the whole campaign (a
         # ~260 GB peak would pin a 512 GB box to one lane, permanently,
-        # via governor seeding). Cap the child just above its widest
-        # legitimate allocation -- the width-repack transient -- and a row
-        # that outgrows a rate-floored reservation dies the same clean,
-        # recorded, retried MemoryError on every box size. The est-based
-        # path (states_per_node=None) is deliberately ungated: THERE the
-        # reservation is a guess and the grow is load-bearing (AC19's
-        # 72.9 GB rows completed through it).
-        table_gb = (1 << max(1, 2 * reserve - 1).bit_length()) * 4 / 2 ** 30
-        repack_gb = reserve * per_tr / 2 ** 30 + table_gb
-        limit_gb = min(limit_gb, repack_gb + _TRANSIENT_MARGIN_GB)
+        # via governor seeding). Cap the child just above its allocation
+        # and a row that outgrows a rate-floored reservation dies the same
+        # clean, recorded, retried MemoryError on every box size. The
+        # est-based path (states_per_node=None) is deliberately ungated:
+        # THERE the reservation is a guess and the grow is load-bearing
+        # (AC19's 72.9 GB rows completed through it).
+        limit_gb = min(limit_gb, _allocation_gb(reserve, mrl, track_path)
+                       + _ADDRESS_MARGIN_GB)
     return int(limit_gb * 2 ** 30), reserve
 
 
-def _reserved_worst_gb(reserve_states, mrl):
+def _reserved_worst_gb(reserve_states, mrl, track_path=None):
     """What the reservation itself costs if every reserved state materializes
-    at worst-case width -- the allocation-backed worst case. A governor whose
-    worst case sits below its own allocation admits rows the box cannot hold."""
+    at worst-case width -- the allocation-backed worst case, table exact. A
+    governor whose worst case sits below its own allocation admits rows the
+    box cannot hold; one that amortises the table at 12 B/state (the est
+    curve's convention) overstates a 2.14B reservation by ~8 GiB per lane."""
     if not reserve_states or not HAVE_HCOMPACT:
         return None
-    from experiments.search.greedy_compact import row_width
-    per = row_width(mrl) + 31 + (8 if TRACK_PATH else 0)
-    return reserve_states * per / 2 ** 30
+    if track_path is None:
+        track_path = TRACK_PATH
+    return _allocation_gb(reserve_states, mrl, track_path)
 
 
 def _rss_gb(pid="self"):
@@ -550,7 +591,7 @@ def _set_worker_name(name):
 
 
 def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
-                   reserve_states):
+                   reserve_states, track_path=TRACK_PATH):
     """Runs in a spawned process. Everything that can go wrong is a message."""
     _set_worker_name(row["name"])     # named first, so even a crash is named
     try:
@@ -567,7 +608,7 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
                                   init_total=len(row["r1"]) + len(row["r2"]))
         t = time.time()
         st = spec["run"](row["r1"], row["r2"], budget, mrl, progress=hb,
-                         reserve_states=reserve_states, track_path=TRACK_PATH)
+                         reserve_states=reserve_states, track_path=track_path)
         q.put(("done", {
             "name": row["name"], "arm": arm, "r1": row["r1"], "r2": row["r2"],
             "budget": budget, "max_relator_length": mrl,
@@ -613,14 +654,15 @@ class RamGovernor:
     """
 
     def __init__(self, budget, mrl, cpu_cap=None, max_workers=None,
-                 headroom_gb=None, safety=1.25, min_samples=3, worst_gb=None):
+                 headroom_gb=None, safety=1.25, min_samples=3, worst_gb=None,
+                 track_path=TRACK_PATH):
         # sized for what this stage actually runs -- path capture included,
         # or the governor admits rows the machine cannot hold. worst_gb lets
         # the caller floor this with the ALLOCATION-backed worst (what the
         # actual reservation costs if every reserved state materializes) --
         # a rate-based reservation is bigger than the est curve, and a worst
         # case below one's own allocation admits rows the box cannot hold.
-        self.worst = max(est_gb(budget, mrl, track_path=TRACK_PATH),
+        self.worst = max(est_gb(budget, mrl, track_path=track_path),
                          worst_gb or 0.0)
         self.cpus = cpu_cap or os.cpu_count() or 1
         self.max_workers = max_workers
@@ -699,7 +741,7 @@ class _RowProc:
     can hold several at once and still record an error for any that dies."""
 
     def __init__(self, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
-                 reserve_states, timeout_secs, log):
+                 reserve_states, timeout_secs, log, track_path=TRACK_PATH):
         self.arm, self.row, self.budget, self.mrl = arm, row, budget, mrl
         self.timeout_secs, self.log = timeout_secs, log
         ctx = mp.get_context("spawn")
@@ -707,7 +749,7 @@ class _RowProc:
         self.proc = ctx.Process(
             target=_child_run_row,
             args=(self.q, arm, row, budget, mrl, heartbeat_secs,
-                  mem_limit_bytes, reserve_states))
+                  mem_limit_bytes, reserve_states, track_path))
         self.reserve_states = reserve_states
         self.t0 = time.time()
         self.proc.start()
@@ -756,7 +798,8 @@ class _RowProc:
 
 
 def run_rows_dynamic(arm, todo, budget, mrl, heartbeat_secs, mem_limit_bytes,
-                     reserve_states, timeout_secs, governor, log=print):
+                     reserve_states, timeout_secs, governor, log=print,
+                     track_path=TRACK_PATH):
     """Yield records as rows finish, holding as many in flight as RAM allows.
 
     This replaces both of the old paths. The fixed-size pool had no per-row
@@ -771,7 +814,7 @@ def run_rows_dynamic(arm, todo, budget, mrl, heartbeat_secs, mem_limit_bytes,
             r = pending.pop(0)
             live.append(_RowProc(arm, r, budget, mrl, heartbeat_secs,
                                  mem_limit_bytes, reserve_states,
-                                 timeout_secs, log))
+                                 timeout_secs, log, track_path))
             n -= 1
         settled = []
         for p in live:
@@ -788,10 +831,10 @@ def run_rows_dynamic(arm, todo, budget, mrl, heartbeat_secs, mem_limit_bytes,
 
 
 def _run_row_isolated(arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
-                      reserve_states, timeout_secs, log):
+                      reserve_states, timeout_secs, log, track_path=TRACK_PATH):
     """One row, one process. Whatever kills the child, the run continues."""
     p = _RowProc(arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
-                 reserve_states, timeout_secs, log)
+                 reserve_states, timeout_secs, log, track_path)
     while True:
         rec = p.poll(timeout=0.5)
         if rec is not None:
@@ -871,11 +914,15 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
                 "If a fresh pass at these settings is REALLY wanted, set "
                 "RESUME_FRESH_OK=1 (or pass resume=False).")
     auto = n_workers in (None, "auto")
+    # whether this campaign captures paths sizes everything below: the
+    # reservation, the child's RLIMIT, the governor's worst, the child itself
+    track_path = bool(camp.get("track_path", TRACK_PATH))
     n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl,
-                                        track_path=TRACK_PATH)
+                                        track_path=track_path)
     if mem_limit_bytes is None and reserve_states is None:
         mem_limit_bytes, reserve_states = plan_memory(
-            budget, mrl, states_per_node=_floor_for(camp, log), log=log)
+            budget, mrl, states_per_node=_floor_for(camp, log), log=log,
+            track_path=track_path)
     # a row that died at reservation exhaustion under this sizing would die
     # again at the same pop; it waits for a bigger reservation or box
     deferred = _deferred_exhausted(out, reserve_states, budget) if resume else {}
@@ -884,7 +931,9 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
     # is a ceiling, never a target -- RAM still has the last word.
     governor = RamGovernor(budget, mrl,
                            max_workers=None if auto else n_workers,
-                           worst_gb=_reserved_worst_gb(reserve_states, mrl))
+                           worst_gb=_reserved_worst_gb(reserve_states, mrl,
+                                                       track_path),
+                           track_path=track_path)
     log(f"  campaign: {camp['label']}")
     log(f"  arm     : {key} -- {spec1m['label']}")
     log(f"  rows    : {len(rows)} (chunk {chunk_index} of {chunks}, "
@@ -897,6 +946,9 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
         f"{governor.cpus} cores); the governor admits against "
         f"{governor.worst:.1f} GB/row (allocation-backed worst) -- the est "
         f"curve's {per_gb:.1f} GB is NOT the admission figure")
+    log("  paths   : " + ("captured (8 B/state)" if track_path else
+        "not captured -- a solved row's certificate is recovered by re-running "
+        "that row with paths on at its recorded nodes_explored (deterministic)"))
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
     if deferred:
         names = ", ".join(f"{n} ({why})" for n, why in sorted(deferred.items())[:8])
@@ -919,7 +971,8 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
             # wide box one OOM took every row in flight with it.
             for rec in run_rows_dynamic(key, todo, budget, mrl, heartbeat_secs,
                                         mem_limit_bytes, reserve_states,
-                                        row_timeout_secs, governor, log):
+                                        row_timeout_secs, governor, log,
+                                        track_path=track_path):
                 fh.write(json.dumps(rec) + "\n")
                 fh.flush()
                 done += 1

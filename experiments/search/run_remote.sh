@@ -89,20 +89,24 @@ if rate_floor and os.environ.get("STATES_PER_NODE"):
     rate_floor = int(os.environ["STATES_PER_NODE"])
     print(f"floor          : STATES_PER_NODE={rate_floor} overrides the campaign's "
           f"{camp.get('states_per_node')} states/node")
+# path capture is per campaign and sizes everything: 8 B/state, 16 GiB of
+# address space per lane at u124's reservation
+tp = bool(camp.get("track_path", TRACK_PATH))
 lim, res = plan_memory(B, MRL, available_gb=gb, states_per_node=rate_floor,
-                       log=lambda *a: None)
-per = est_gb(B, MRL, track_path=TRACK_PATH)
+                       log=lambda *a: None, track_path=tp)
+per = est_gb(B, MRL, track_path=tp)
 worst = per
 if res is not None:
-    worst = max(per, _reserved_worst_gb(res, MRL) or 0.0)
+    worst = max(per, _reserved_worst_gb(res, MRL, tp) or 0.0)
 print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row (est), "
       f"{worst:.1f} GB allocation-backed worst"
-      f"{' (paths captured)' if TRACK_PATH else ''}")
+      + (" (paths captured)" if tp else
+         " (paths not captured: a solve is certified by deterministic re-run)"))
 tot = 0.0
 for arm in ARMS:
     n = len(load_rows_5m(arm, campaign=CAMPAIGN)[0])   # fails loudly on a stale clone
     w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
-                           track_path=TRACK_PATH)
+                           track_path=tp)
     w = min(w, max(1, int((gb - 4.0) // worst)))   # the governor floors worst too
     rate = 708 if arm == "greedy" else 846          # measured at 1M, this engine
     h = n * (B / rate) / 3600 / max(w, 1)
@@ -137,9 +141,9 @@ export PYTHONUNBUFFERED=1
 # used. Left at their defaults they still spin up one thread per vCPU at
 # import, and each thread reserves a 64 MiB malloc arena -- on a 128-vCPU
 # box that is ~8 GB of ADDRESS SPACE per child, charged against the
-# rate-floor RLIMIT cap whose margin above the width-repack transient is
-# exactly what a widening row needs to survive. Pinned to 1 in the job so
-# every child inherits it.
+# rate-floor RLIMIT cap whose margin above the full-width allocation is
+# exactly what the interpreter and numba runtime need. Pinned to 1 in the
+# job so every child inherits it.
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
 # A raised states-per-node floor for a second pass over rows that died at
 # reservation exhaustion is baked into the job at write time (empty if unset).

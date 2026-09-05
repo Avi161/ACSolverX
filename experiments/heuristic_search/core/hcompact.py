@@ -37,7 +37,9 @@ WHAT IT BUYS
 ============
 Per state: row (cap 48 → 48 B) + len1/len2 (2) + depth (4) + heap (4) + score (8) + seg (1)
 + table (~8–16 amortised) ≈ **76–84 B**, reserved once at the projected count (lazily faulted,
-never grow-copied unless exceeded — then loudly). Against ``hsolve``'s ~390 B/state that is the
+never grow-copied unless exceeded — then loudly). The arena is one allocation at the cap
+width; rows start narrow and widen in place, so address space is the full-width figure from
+birth and physical memory is only what the rows at their current width have touched. Against ``hsolve``'s ~390 B/state that is the
 difference between 10⁶ nodes needing ~24 GB and needing ~7 GB, i.e. between 2M being the ceiling
 on a 51 GB machine and ~5M fitting. No path is tracked (the ``keep_path=False`` trade); recover a
 certificate by re-running the one presentation that solved through ``greedy_search_h`` — the
@@ -220,23 +222,36 @@ _NEED_WIDTH = 4          # storage rows too narrow for this pop's children
 
 
 @njit(cache=True)
-def _repack(old_arena, new_arena, n, w_old, w_new):
-    """Copy every row into wider rows. Regions keep their bytes verbatim --
-    packed codes then zero padding -- so no comparison outcome can change and
-    the codes-based hash needs no rehash."""
+def _widen_in_place(arena, n, w_old, w_new):
+    """Re-lay the first ``n`` rows at the wider stride IN PLACE, last row
+    first. Row ``sid`` moves from ``sid*rw_old`` to ``sid*rw_new``; every
+    lower row's source lies below ``sid*rw_old <= sid*rw_new``, so a
+    backward pass never overwrites a byte it has yet to read. A row's own
+    source can overlap its destination (the first ``rw_old/(rw_new-rw_old)``
+    rows), so each row is staged through ``tmp`` before it is written.
+    Regions keep their bytes verbatim -- packed codes then zero padding -- so
+    no comparison outcome can change and the codes-based hash needs no
+    rehash. The old copy-into-a-second-arena repack held BOTH arenas in
+    address space at once (293 GiB on a 2.14B reservation at cap 64, the
+    number that clipped 256 GiB boxes out of the u124 campaign) and touched
+    +48 B/state of fresh pages during the copy (aca_1's 158 GB peak); this
+    holds one arena and touches only the widened tail."""
     rw_old = 2 * w_old
     rw_new = 2 * w_new
-    for sid in range(n):
+    tmp = np.empty(rw_old, dtype=np.uint8)
+    for sid in range(n - 1, -1, -1):
         so = sid * rw_old
         sn = sid * rw_new
+        for i in range(rw_old):
+            tmp[i] = arena[so + i]
         for i in range(w_old):
-            new_arena[sn + i] = old_arena[so + i]
+            arena[sn + i] = tmp[i]
         for i in range(w_old, w_new):
-            new_arena[sn + i] = 0
+            arena[sn + i] = 0
         for i in range(w_old):
-            new_arena[sn + w_new + i] = old_arena[so + w_old + i]
+            arena[sn + w_new + i] = tmp[w_old + i]
         for i in range(w_old, w_new):
-            new_arena[sn + w_new + i] = 0
+            arena[sn + w_new + i] = 0
 
 
 @njit(cache=True)
@@ -480,7 +495,13 @@ class HCompactSolver:
 
     def _alloc(self, n, old=None):
         self.states_cap = n
-        self.arena = np.empty(n * self.rw, dtype=np.uint8)
+        # Reserved at the CAP width once; rows live at the current stride
+        # ``rw`` in its prefix and are re-laid in place when they widen. The
+        # address space is the full-width figure from birth (np.empty commits
+        # nothing until touched, so physical memory is still what the rows
+        # at their current width actually occupy), and a widen allocates
+        # nothing -- there is no second arena and no repack transient.
+        self.arena = np.empty(n * 2 * self.w_cap, dtype=np.uint8)
         self.len1 = np.empty(n, dtype=np.uint8)
         self.len2 = np.empty(n, dtype=np.uint8)
         self.depth = np.empty(n, dtype=np.int32)
@@ -527,11 +548,9 @@ class HCompactSolver:
         n = int(st[2])
         w_new = min(max(2 * self.w, 1), self.w_cap)
         print(f"    [hcompact:{_proc_name()}] rows widen {self.w}B -> {w_new}B "
-              f"per relator at {n:,} states (this repacks)", flush=True)
-        new_arena = np.empty(self.states_cap * 2 * w_new, dtype=np.uint8)
-        _advise_hugepages(new_arena)      # before _repack touches its pages
-        _repack(self.arena, new_arena, n, self.w, w_new)
-        self.arena = new_arena
+              f"per relator at {n:,} states (in place)", flush=True)
+        # the arena was advised for hugepages at _alloc; nothing new to advise
+        _widen_in_place(self.arena, n, self.w, w_new)
         self.w = w_new
         self.rw = 2 * w_new
 
@@ -563,7 +582,15 @@ class HCompactSolver:
                 + self.heap.nbytes + self.table.nbytes)
 
     def bytes_per_state(self):
-        return self.bytes_reserved() / self.states_cap
+        """What one discovered state occupies at the CURRENT row width, the
+        table amortised over the reservation. ``bytes_reserved`` is address
+        space and charges the arena at the cap width from birth; this is the
+        physical figure adaptive width actually saves."""
+        fixed = (self.len1.itemsize + self.len2.itemsize + self.depth.itemsize
+                 + self.seg.itemsize + self.score.itemsize + self.heap.itemsize
+                 + ((self.parent.itemsize + self.pmove.shape[1])
+                    if self.track_path else 0))
+        return self.rw + fixed + self.table.nbytes / self.states_cap
 
     def solve(self, progress=None):
         a1, a2 = self.initial_state

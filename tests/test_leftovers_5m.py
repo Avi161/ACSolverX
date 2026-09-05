@@ -1088,6 +1088,84 @@ def test_the_initial_state_always_fits_the_storage_rows():
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_widening_in_place_lays_out_exactly_what_the_repack_did():
+    """Byte-for-byte against a numpy reference of the old copy-repack, on
+    the rows whose source overlaps their own destination (sid 0..2 at
+    12B->24B) and on enough rows to cross many pages; bytes beyond the
+    widened rows are never touched."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import _widen_in_place
+    rng = np.random.default_rng(7)
+    for n, wo, wn in [(1, 12, 24), (2, 12, 24), (3, 12, 24), (5, 4, 8),
+                      (10_000, 12, 24), (50_000, 24, 32), (777, 1, 2),
+                      (4, 16, 32)]:
+        rows = rng.integers(0, 256, size=(n, 2 * wo), dtype=np.uint8)
+        arena = np.full(n * 2 * wn + 64, 0xAB, dtype=np.uint8)
+        arena[:n * 2 * wo] = rows.reshape(-1)
+        want = np.zeros((n, 2 * wn), dtype=np.uint8)
+        want[:, :wo] = rows[:, :wo]
+        want[:, wn:wn + wo] = rows[:, wo:]
+        _widen_in_place(arena, n, wo, wn)
+        assert np.array_equal(arena[:n * 2 * wn], want.reshape(-1)), (n, wo, wn)
+        assert (arena[n * 2 * wn:] == 0xAB).all()
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_a_widen_allocates_no_second_arena():
+    """The arena is reserved at the cap width once; a widen re-lays rows in
+    the SAME buffer. No second arena means no 2x address-space transient
+    under RLIMIT_AS and no +48 B/state of freshly touched pages."""
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    s = HCompactSolver("YYXYYXXXyX", "YYXYXXXYYXXXX", max_nodes=20_000,
+                       max_relator_length=64, storage_width=4)
+    arena0 = s.arena
+    assert arena0.nbytes == s.states_cap * 2 * s.w_cap
+    s.solve()
+    assert s.widened >= 2 and s.w > 4
+    assert s.arena is arena0                     # same buffer, widened in place
+
+
+def test_u124_runs_without_paths_and_ac19_with_them():
+    """8 B/state (16 GiB of address space per lane at u124's reservation)
+    buys nothing on a campaign whose rows do not solve; the certificate of
+    one that does is a deterministic re-run. AC19 keeps its moves."""
+    from experiments.search.run_leftovers_5m import CAMPAIGNS
+    assert CAMPAIGNS["ac19"]["track_path"] is True
+    assert CAMPAIGNS["u124"]["track_path"] is False
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_child_honors_the_campaigns_track_path():
+    """The same solve with and without paths: identical search, identical
+    solved/path_length, and the pathless record carries empty path fields
+    (the marker that its certificate is a re-run away)."""
+    import experiments.search.run_leftovers_5m as r5
+
+    class Q:
+        def __init__(self):
+            self.msgs = []
+        def put(self, m):
+            self.msgs.append(m)
+
+    r1, r2, _, _ = _REAL
+    recs = {}
+    for tp in (True, False):
+        q = Q()
+        r5._child_run_row(q, "s20_mk2", {"name": "t", "r1": r1, "r2": r2},
+                          200_000, 58, 3600, None, None, track_path=tp)
+        kind, rec = q.msgs[-1]
+        assert kind == "done", rec
+        recs[tp] = rec
+    on, off = recs[True], recs[False]
+    assert on["solved"] is True and off["solved"] is True
+    for k in ("nodes_explored", "path_length", "min_relator_length",
+              "max_relator_length_expanded"):
+        assert on[k] == off[k], k
+    assert on["path_moves"] and on["path"]
+    assert off["path"] == [] and off["path_moves"] == []
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
 def test_adaptive_width_actually_saves_memory():
     from experiments.heuristic_search.core.hcompact import HCompactSolver
     kw = dict(max_nodes=50_000, max_relator_length=64, track_path=True)
@@ -1143,9 +1221,24 @@ def test_an_explicit_reservation_is_honored_as_is_not_reslacked():
     to 8 GiB resident per worker (operator-measured ~19.6 GiB/worker where the
     width math predicted far less)."""
     from experiments.heuristic_search.core.hcompact import HCompactSolver
+    from experiments.search.greedy_compact import _next_pow2
     reserve = 463_821_928                       # the real 5M plan_memory value
-    s = HCompactSolver("YYXXyxx", "YYxYxxyXYX", max_nodes=1000,
-                       max_relator_length=64, reserve_states=reserve)
+    # The arena is reserved at the cap width from birth (64 B/state here),
+    # so a real 464M-state solver is a ~30 GiB allocation a small test box
+    # cannot hand out; the claim under test is the constructor's arithmetic,
+    # so capture what _alloc is ASKED for instead of allocating it.
+    asked = []
+    def fake_alloc(self, n, old=None):
+        asked.append(n)
+        self.states_cap = n
+        self.tcap = _next_pow2(2 * n)
+    HCompactSolver._alloc, real = fake_alloc, HCompactSolver._alloc
+    try:
+        s = HCompactSolver("YYXXyxx", "YYxYxxyXYX", max_nodes=1000,
+                           max_relator_length=64, reserve_states=reserve)
+    finally:
+        HCompactSolver._alloc = real
+    assert asked == [reserve + 4 * 65 ** 2]
     assert s.states_cap == reserve + 4 * 65 ** 2
     assert s.tcap * 4 == 2 ** 32, "table should be 2^30 slots (4 GiB), not 2^31"
 
@@ -1485,15 +1578,16 @@ def test_the_big_arrays_take_hugepage_advice_and_small_ones_are_skipped():
 def test_hugepage_advice_lands_before_any_page_is_touched():
     """Advice after the first touch is too late -- the pages are already
     faulted at 4 KiB. Pin the order in the source: _alloc advises before the
-    grow-copy, _grow_width before the repack."""
+    grow-copy. A widen allocates nothing (in place, in the arena _alloc
+    already advised), so there is nothing to advise there -- pin THAT."""
     src = open(os.path.join(ROOT, "experiments", "heuristic_search", "core",
                             "hcompact.py")).read()
     alloc_advise = src.index("_advise_hugepages(self.arena")
     grow_copy = src.index("if old is None:")
     assert alloc_advise < grow_copy
-    width_advise = src.index("_advise_hugepages(new_arena)")
-    repack = src.index("_repack(self.arena, new_arena")
-    assert width_advise < repack
+    body = src[src.index("def _grow_width"):src.index("def _grow(")]
+    assert "np.empty" not in body and "np.zeros" not in body
+    assert "_widen_in_place(self.arena" in body
 
 
 # ----------------------------------------------------------- named workers
@@ -1619,28 +1713,39 @@ def test_the_campaigns_carry_their_reservation_rates():
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
-def test_the_repack_transient_clips_the_reservation_to_the_box():
-    """The width ladder's last repack holds both arenas at once (aca_1
-    measured it: 158.0 GB VmHWM on a 1.50B reserve). A reservation whose
-    repack cannot fit under RLIMIT_AS kills every widening row at ~90% of
-    budget, so plan_memory must clip the rate floor to what THIS box can
-    complete -- and must leave a big box's full floor alone."""
-    from experiments.search.run_leftovers_5m import plan_memory
-    # 493 GiB class (the measured 16xlarge): the second pass's 209/node
-    # fits outright, repack transient included
+def test_the_full_width_allocation_clips_the_reservation_to_the_box():
+    """The arena is one full-width allocation (rows widen in place), so a
+    row's address-space peak IS its allocation: reserve x per-state + the
+    pow2 table. plan_memory clips the rate floor to what fits under THIS
+    box's RLIMIT with the runtime margin -- and leaves a big box's full
+    floor alone. (The old copy-repack held both arenas at once, 293 GiB on
+    a 2.14B reserve, and that phantom clipped every 256 GiB box out of
+    u124; aca_1's 158 GB peak was its physical shadow.)"""
+    from experiments.search.run_leftovers_5m import (
+        _allocation_gb, plan_memory)
     _, big = plan_memory(10_000_000, 64, available_gb=493,
                          states_per_node=209, log=lambda *a: None)
     assert big == 209 * 10_000_000 + 4 * 65 ** 2
-    # a small box: the transient bound (not the steady fit) is the binder;
-    # the clip must land BELOW the full 1.68B ask yet ABOVE what the steady
-    # cap alone would allow completing through a repack
+    # with paths: 2.09B x 91 B + 16 GiB = 193 GiB does not fit a 200 GB
+    # box's (200 - 2 - 10) usable; the clip lands below the ask and the
+    # clipped allocation really fits, table step included
     _, clipped = plan_memory(10_000_000, 64, available_gb=200,
                              states_per_node=209, log=lambda *a: None)
     assert clipped < big
-    # and the clipped repack really fits: old rung + full width + fixed
-    # arrays + the pow2 table, under (avail - 2) with margin
-    tr_gb = clipped * (48 + 64 + 27) / 2 ** 30 + 16.0
-    assert tr_gb <= (200 - 2.0) - 8.0
+    assert _allocation_gb(clipped, 64, True) <= (200 - 2.0) - 10.0
+    assert clipped > 1_500_000_000            # a clip, not a collapse
+    # the same box WITHOUT paths (u124) holds the full 214 floor: this is
+    # what makes the 256 GiB class a one-lane u124 box
+    _, u124 = plan_memory(10_000_000, 64, available_gb=246,
+                          states_per_node=214, log=lambda *a: None,
+                          track_path=False)
+    assert u124 == 214 * 10_000_000 + 4 * 65 ** 2
+    # a box that cannot hold even the table plus a modest arena still gets
+    # a usable, fitting reservation rather than zero
+    _, tiny = plan_memory(10_000_000, 64, available_gb=20,
+                          states_per_node=214, log=lambda *a: None)
+    assert 1024 <= tiny < u124
+    assert _allocation_gb(tiny, 64, True) <= (20 - 2.0) - 10.0
 
 
 @pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
@@ -1660,12 +1765,26 @@ def test_lanes_are_the_allocation_backed_worst_not_the_est_curve():
         for p in (93.552, 158.021, 93.517):
             gov.note(p)
         return gov.capacity([], free_gb=free)
-    assert 160.0 < _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64) < 162.0
-    assert 199.0 < _reserved_worst_gb(209 * 10_000_000 + 4 * 65 ** 2, 64) < 201.0
+    # per state at cap 64: 64 B row + 19 B fixed + 8 B paths = 91 B, plus
+    # the table EXACT (16 GiB from 1.07B to 2.147B) -- the old 12 B/state
+    # amortisation over-charged a 2.14B reservation by ~8 GiB per lane
+    assert 158.0 < _reserved_worst_gb(168 * 10_000_000 + 4 * 65 ** 2, 64) < 159.0
+    assert 192.5 < _reserved_worst_gb(209 * 10_000_000 + 4 * 65 ** 2, 64) < 193.5
+    R = 214 * 10_000_000 + 4 * 65 ** 2
+    assert 197.0 < _reserved_worst_gb(R, 64, True) < 197.8
+    assert 181.0 < _reserved_worst_gb(R, 64, False) < 181.8
     # first pass at 168 / second pass at 209, on the 512 GiB (489 admissible)
     # and 1536 GiB (1532 admissible) boxes the campaign can buy
     assert lanes(168, 489) == 3 and lanes(209, 489) == 2
     assert lanes(168, 1532) == 9 and lanes(209, 1532) == 7
+    # u124 as it runs: 214/node without paths -- two lanes on 512 GiB, ONE
+    # on the 256 GiB class (246 admissible; zero before), eight on 1.5 TiB
+    def u124_lanes(free):
+        gov = RamGovernor(10_000_000, 64, cpu_cap=192, track_path=False,
+                          worst_gb=_reserved_worst_gb(R, 64, False))
+        return gov.capacity([], free_gb=free)
+    assert u124_lanes(489) == 2 and u124_lanes(246) == 1
+    assert u124_lanes(1532) == 8
     naive = RamGovernor(10_000_000, 64, cpu_cap=192)      # est curve only
     assert naive.capacity([], free_gb=489) >= 5
     # one grow-doubled ~260 GB peak would still collapse admission -- the
@@ -1683,18 +1802,25 @@ def test_the_rate_floor_rlimit_forbids_grow_doubling_on_big_boxes():
     doubling could not fit under RLIMIT_AS. On 493 GB the doubling FITS,
     completes at ~260 GB, and its recorded peak pins the box to one lane
     forever via governor seeding. Under a rate floor the child's limit is
-    therefore capped just above the width-repack transient: past-the-floor
+    therefore capped just above its full-width allocation: past-the-floor
     rows die the same clean MemoryError on every box size. The est-based
     path keeps the box-owning limit -- AC19's grows were load-bearing."""
-    from experiments.search.run_leftovers_5m import plan_memory
+    from experiments.search.run_leftovers_5m import (
+        _allocation_gb, plan_memory)
     lim, res = plan_memory(10_000_000, 64, available_gb=493,
                            states_per_node=168, log=lambda *a: None)
     assert res == 168 * 10_000_000 + 4 * 65 ** 2
     lim_gb = lim / 2 ** 30
-    repack_gb = res * (48 + 64 + 27) / 2 ** 30 + 16.0
-    assert repack_gb < lim_gb <= repack_gb + 10.0 + 1e-6   # repack fits...
-    # ...but the doubling (old arenas held + 2x realloc, ~400 GB) cannot
-    assert lim_gb < 400.0
+    alloc_gb = _allocation_gb(res, 64, True)
+    assert alloc_gb == res * 91 / 2 ** 30 + 16.0
+    assert alloc_gb < lim_gb <= alloc_gb + 10.0 + 1e-6   # the arrays fit...
+    # ...but the doubling (2x everything, old arrays held) cannot
+    assert lim_gb < 2 * alloc_gb
+    # without paths the cap is 8 B/state lower, never higher
+    lim2, _ = plan_memory(10_000_000, 64, available_gb=493,
+                          states_per_node=168, log=lambda *a: None,
+                          track_path=False)
+    assert lim2 / 2 ** 30 == pytest.approx(lim_gb - res * 8 / 2 ** 30)
     # est-based sizing (no rate floor) keeps the whole box, unchanged
     lim2, _ = plan_memory(5_000_000, 48, available_gb=251,
                           log=lambda *a: None)
@@ -1722,7 +1848,7 @@ def test_the_governor_worst_is_floored_by_its_own_allocation():
     from experiments.search.run_leftovers_5m import (
         RamGovernor, _reserved_worst_gb)
     floor = _reserved_worst_gb(1_100_000_000, 64)
-    assert floor and floor > 90        # ~103 B/state at cap 64 with paths
+    assert floor and floor > 90        # 91 B/state + 8 GiB table at 1.1B
     gov = RamGovernor(10_000_000, 64, worst_gb=floor)
     assert gov.worst >= floor
     assert RamGovernor(NODE_BUDGET_5M, MRL_5M, worst_gb=None).worst > 0
@@ -1991,10 +2117,18 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
     p = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
                 PLAN_GB="251", PLAN_CORES="32")
     assert p.returncode == 0, p.stderr
-    # a 251 GB box cannot hold this floor's repack transient: plan says so
-    # rather than printing a reservation the box would die inside
-    assert "CLIPPED from 2,140,016,900 -- box is small" in p.stdout
+    # the 256 GiB class holds u124's full floor once the arena widens in
+    # place and paths are off: the plan quotes the run's reservation, full
+    assert "reserve_states  : 2,140,016,900 (full)" in p.stdout, p.stdout
     assert "allocation-backed worst" in p.stdout
+    assert "paths not captured" in p.stdout
+    assert "181.4 GB allocation-backed worst" in p.stdout, p.stdout
+    # a box that cannot: plan says so rather than printing a reservation
+    # the box would die inside
+    r = _remote("plan", OUT=str(tmp_path), CAMPAIGN="u124",
+                PLAN_GB="160", PLAN_CORES="32")
+    assert r.returncode == 0, r.stderr
+    assert "CLIPPED from 2,140,016,900 -- box is small" in r.stdout, r.stdout
     q = _remote("plan", OUT=str(tmp_path), CAMPAIGN="ac19",
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr

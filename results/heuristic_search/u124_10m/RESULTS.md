@@ -36,6 +36,35 @@ reference `greedy_search_h` with the S20_MK2 config
 every shared field for the rows spot-checked. The 24B->32B widens
 (113M-1.1B states) are correctly absent at a 1k budget.
 
+## Memory profile change (engine_mem_gen 4, 2026-09-05)
+
+Rows recorded from gen 4 on differ from the snapshot above in two ways:
+
+- **No path capture.** u124 runs with `track_path=False` (every completed
+  row so far is unsolved, so the 8 B/state parent+move arrays were dead
+  weight: 16 GiB of address space per lane at the 2.14B reservation). A
+  row that solves is recorded with `solved: true`, its `path_length`, and
+  EMPTY `path`/`path_moves`. Its certificate is recovered by re-running
+  that one row with paths on at its recorded node count -- the search is
+  deterministic, so the re-run pops the identical sequence and ends on the
+  same solve (one row's time per solved row):
+
+      python -m experiments.search.rerun_row --row aca_N --campaign u124 \
+          --arm s20_mk2 --budget <nodes_explored> \
+          --reserve-states 2140016900 --out-dir <dir>
+
+  (`rerun_row` captures paths by default; pass the campaign's reservation
+  so the re-run never grows.) Certify the result by replaying `path_moves`
+  through `greedy_baseline.moves_to_states`, as for AC19.
+- **No width-repack transient.** The arena is one full-width allocation
+  and rows widen in place, so aca_1's 158.0 GB peak (old 24B rows + new
+  32B rows + fixed arrays + table, held at once during the copy) can no
+  longer occur: the same row now peaks at its steady state, ~109 GB. The
+  allocation-backed worst per lane at the 214 states/node floor is
+  181.4 GiB (was 205 with paths and a 12 B/state table amortisation):
+  two lanes on a 512 GiB box, one on the 256 GiB class (zero before),
+  eight on 1.5 TiB.
+
 ## Notable
 
 All nine completions are rigid at this budget: `min_relator_length`
