@@ -3,6 +3,7 @@ from dataclasses import replace
 from experiments.stable_ac.mms02_terminal_preimage_killer_certificate import (
     EXPECTED_BASE_PAIR, EXPECTED_PRODUCT_MINIMUM, PINNED_FACTOR_PREFIXES,
     PINNED_TRANSITIONS, decide_preimage_killer, decide_squaring_hnn_target,
+    decide_constructive_length_fourteen,
     replay_cyclic_continuation,
     rho_factors, verify_rho_factors,
 )
@@ -151,6 +152,68 @@ def test_squaring_hnn_basis_conjugations_and_killer_orientation_are_literal():
     assert decision.final_tuple[2] == decision.killer_prefix + "t"
     assert decision.killer_prefix == "AAbbA"
     assert decision.killer_prefix != invert("AAbbA")
+
+
+def test_constructive_length_fourteen_has_independent_outer_donor_expansion():
+    decision = decide_constructive_length_fourteen()
+    h_word, q_word = "qqPq", "QpQPPqpqPqpqqPq"
+    assert q_word.count("p") - q_word.count("P") == -1
+    assert all(image(letter).count("p") == image(letter).count("P") for letter in "pq")
+    assert image(h_word) == "pqPqpqqPq"
+    w_word = reduce_word(h_word + q_word + invert(image(h_word)))
+    assert w_word == "qPPq"
+    assert dict(decision.inputs) == {"h": h_word, "Q": q_word, "phi_h": "pqPqpqqPq", "W": w_word}
+    inverse_h = invert(h_word)
+    prefix, pins = "", []
+    for letter in inverse_h:
+        sign = 1 if letter.islower() else -1
+        pins.append((1 if letter.lower() == "p" else 2, sign,
+                     image(prefix + (letter if sign == -1 else ""))))
+        prefix += letter
+    assert len(pins) == 4
+    assert tuple(pins) == ((2, -1, "QpQP"), (1, 1, "QpQP"),
+                           (2, -1, "QpQQP"), (2, -1, "QpQQPQpQP"))
+    assert tuple((factor.row, factor.sign, factor.conjugator) for factor in decision.factors) == tuple(pins)
+    outer = reduce_word(h_word + q_word)
+    conjugated = reduce_word(h_word + q_word + "x" + invert(h_word))
+    corrected = w_word + "x"
+    defect = reduce_word(conjugated + invert(corrected))
+    assert reduce_word(outer + expanded(decision.factors) + invert(outer)) == defect
+    assert decision.outer_conjugator == outer
+    assert decision.conjugated_killer == conjugated
+    assert decision.corrected_killer == corrected
+    assert decision.defect == decision.expanded_defect == defect
+    corrupted = (replace(decision.factors[0], sign=-decision.factors[0].sign),) + decision.factors[1:]
+    assert reduce_word(outer + expanded(corrupted) + invert(outer)) != defect
+
+
+def test_constructive_length_fourteen_stable_elimination_and_moves_are_literal():
+    decision = decide_constructive_length_fourteen()
+
+    def substitute(word, images):
+        signed = images | {letter.upper(): invert(value) for letter, value in images.items()}
+        return reduce_word("".join(signed[letter] for letter in word))
+
+    corrected = "qPPqx"
+    images = {"p": "p", "q": "q", "x": invert("qPPq") + "x"}
+    transformed = tuple(substitute(row, images) for row in ("xpXQ", "xqXQpQP", corrected))
+    assert transformed == decision.transformed_rows
+    assert transformed[2] == "x"
+    base = tuple(substitute(row, {"p": "p", "q": "q", "x": ""}) for row in transformed[:2])
+    assert base == decision.base_pair == ("QppQpqPP", "QppqPQP")
+    b_inverse = invert(base[1])
+    rotated = (base[0][6:] + base[0][:6], b_inverse[4:] + b_inverse[:4])
+    assert rotated == decision.rotated_pair == ("PPQppQpq", "PPqpqpQ")
+    a_row, b_row = rotated
+    raw_product = a_row[1:] + a_row[:1] + b_row[4:] + b_row[:4]
+    assert reduce_word(raw_product) == decision.product == "PQppQpqPqpQPPqp"
+    conjugated = reduce_word("PPqp" + decision.product + invert("PPqp"))
+    assert conjugated == decision.conjugated_product == "QpqPqpQ"
+    negative = invert(conjugated)
+    final = (b_row, negative[1:] + negative[:1])
+    assert final == decision.final_pair == ("PPqpqpQ", "PQpQPqq")
+    assert sum(map(len, final)) == 14
+    assert decision.verdict == "CONSTRUCTIVE_LENGTH_FOURTEEN_TARGET_ONLY"
 
 
 def test_squaring_norm_keeps_literal_cyclic_boundary_and_positive_control():

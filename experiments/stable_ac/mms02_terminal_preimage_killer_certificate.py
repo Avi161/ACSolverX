@@ -258,3 +258,68 @@ def decide_squaring_hnn_target() -> SquaringHNNDecision:
         stage_words, donor_defects, donor_products, final_tuple,
         ("b", "aa"), "AAbbA", "TARGET_STABLE_SQUARING_HNN_KILLER_GATE",
     )
+
+
+@dataclass(frozen=True)
+class ConstructiveLengthFourteenDecision:
+    inputs: tuple[tuple[str, str], ...]
+    factors: tuple[DonorFactor, ...]
+    outer_conjugator: str
+    conjugated_killer: str
+    corrected_killer: str
+    defect: str
+    expanded_defect: str
+    transformed_rows: tuple[str, ...]
+    base_pair: tuple[str, str]
+    rotated_pair: tuple[str, str]
+    product: str
+    conjugated_product: str
+    final_pair: tuple[str, str]
+    verdict: str
+
+
+def decide_constructive_length_fourteen() -> ConstructiveLengthFourteenDecision:
+    h_word = "qqPq"
+    phi_h = phi(h_word)
+    w_word = free_reduce(h_word + Q_WORD + inverse(phi_h))
+    if phi_h != "pqPqpqqPq" or w_word != "qPPq":
+        raise AssertionError("the length-fourteen killer inputs drifted")
+    conjugated = free_reduce(h_word + Q_WORD + "x" + inverse(h_word))
+    corrected = w_word + "x"
+    outer = free_reduce(h_word + Q_WORD)
+    factors = rho_factors(inverse(h_word))
+    if len(factors) != 4:
+        raise AssertionError("the length-fourteen correction must have four donor factors")
+    verify_rho_factors(inverse(h_word), factors)
+    expanded = free_reduce(outer + expand_factors(factors) + inverse(outer))
+    defect = free_reduce(conjugated + inverse(corrected))
+    if defect != expanded:
+        raise AssertionError("the length-fourteen killer donor correction drifted")
+    ambient = {"p": "p", "q": "q", "x": inverse(w_word) + "x"}
+    transformed = tuple(apply_images(row, ambient) for row in (R1, R2, corrected))
+    if transformed[2] != "x":
+        raise AssertionError("the length-fourteen killer did not become x")
+    base = tuple(apply_images(row, {"p": "p", "q": "q", "x": ""}) for row in transformed[:2])
+    if base != ("QppQpqPP", "QppqPQP"):
+        raise AssertionError("the length-fourteen stable base pair drifted")
+    inverted_second = inverse(base[1])
+    rotated = (base[0][6:] + base[0][:6], inverted_second[4:] + inverted_second[:4])
+    if rotated != ("PPQppQpq", "PPqpqpQ"):
+        raise AssertionError("the length-fourteen pinned base rotations drifted")
+    a_row, b_row = rotated
+    product = free_reduce(a_row[1:] + a_row[:1] + b_row[4:] + b_row[:4])
+    if product != "PQppQpqPqpQPPqp":
+        raise AssertionError("the length-fourteen literal row product drifted")
+    conjugated_product = free_reduce("PPqp" + product + inverse("PPqp"))
+    if conjugated_product != "QpqPqpQ":
+        raise AssertionError("the length-fourteen product conjugation drifted")
+    inverted_product = inverse(conjugated_product)
+    final = (b_row, inverted_product[1:] + inverted_product[:1])
+    if final != ("PPqpqpQ", "PQpQPqq") or sum(map(len, final)) != 14:
+        raise AssertionError("the constructive length-fourteen endpoint drifted")
+    return ConstructiveLengthFourteenDecision(
+        (("h", h_word), ("Q", Q_WORD), ("phi_h", phi_h), ("W", w_word)),
+        factors, outer, conjugated, corrected, defect, expanded, transformed,
+        base, rotated, product, conjugated_product, final,
+        "CONSTRUCTIVE_LENGTH_FOURTEEN_TARGET_ONLY",
+    )

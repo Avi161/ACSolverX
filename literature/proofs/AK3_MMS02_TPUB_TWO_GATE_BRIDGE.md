@@ -2,15 +2,16 @@
 
 ## Status
 
-Latest constructive checkpoint (Section 6.87): the sufficient target is
-stably AC-equivalent to the explicit length-fifteen pair
-$(\mathtt{PPPQQpq},\mathtt{PPQppqPQ})$. This improves the earlier
-length-thirty-one representative; it does not trivialize the target or AK(3).
+Latest constructive checkpoint (Section 6.89): the sufficient target is
+stably AC-equivalent to the explicit length-fourteen pair
+$(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$. This improves the earlier
+length-fifteen representative; it does not trivialize the target or AK(3).
 
 The subsequent [boundary-automorphism transport](AK3_SQUARING_CONTINUATION_WORKING.md#convergence-audit-the-short-killer-form-returns-to-the-starting-pair)
 is now frozen: its short-killer form returns by literal defining-row
-elimination to this same ordered pair. Its intermediate identities are
-valid, but they do not improve the rank-two endpoint.
+elimination to the previous ordered length-fifteen pair. Its intermediate
+identities are valid, but they do not improve that endpoint. Section 6.89
+instead returns to the preimage-killer checkpoint before this transport.
 
 This note isolates the highest-value theory route to stable AK(3).  It
 proves that either of two explicit normal-closure memberships is sufficient
@@ -10088,6 +10089,83 @@ group-triviality calculation is not an AC trivialization: its derived
 power relations still have not been realized as donor rows. This
 continuation therefore does not contradict the preceding fixed-row audit
 or close the MMS02 bridge.
+
+### 6.89. Four-letter twisted coefficient and a length-fourteen target
+
+Return to the corrected live row $Qx$ of Section 6.87, retaining
+$R_1=xpXQ$ and $R_2=xqXQpQP$. The map remains
+$\phi(p)=q$, $\phi(q)=pqPq$. Put
+\[
+ h=\mathtt{qqPq},\qquad
+ \phi(h)=\mathtt{pqPqpqqPq},\qquad
+ W=hQ\phi(h)^{-1}=\mathtt{qPPq}.
+ \tag{533}
+\]
+All three equalities are literal free-word calculations, not quotient
+equalities. A direct repeat of the raw preimage shift is unavailable:
+$Q$ has $p$-exponent $-1$, whereas every $\phi$-image has $p$-exponent
+zero. Equation (533) is a different operation, a conjugation of the live
+row corrected using the retained defining donors.
+
+Specifically, with $\rho(v)=xvx^{-1}\phi(v)^{-1}$, let
+$K=hQxh^{-1}$ and $K'=Wx$. Their exact discrepancy is
+\[
+ KK'^{-1}={}^{hQ}\rho(h^{-1}).
+ \tag{534}
+\]
+The four signed donor factors for $\rho(h^{-1})$, in order, are
+
+| Donor | Sign | Conjugator |
+| --- | --- | --- |
+| $R_2$ | $-1$ | `QpQP` |
+| $R_1$ | $+1$ | `QpQP` |
+| $R_2$ | $-1$ | `QpQQP` |
+| $R_2$ | $-1$ | `QpQQPQpQP` |
+
+Conjugate all four factors additionally by $hQ$. Left-multiplication of
+$K$ by the inverse product gives $K'$, with the defining donors restored.
+The established balanced trivial-group hypothesis permits the stable
+ambient substitution $x\mapsto W^{-1}x$. Remove the resulting $x$-row.
+The two remaining rows are exactly
+\[
+(\mathtt{QppQpqPP},\mathtt{QppqPQP}).
+\tag{535}
+\]
+Rotate the first row left by six letters; invert the second and rotate
+it left by four. This gives
+\[
+(A,B)=(\mathtt{PPQppQpq},\mathtt{PPqpqpQ}).
+\tag{536}
+\]
+Replace $A$ by the product of its left rotation by one and $B$'s left
+rotation by four, restoring the retained $B$. The literal product is
+`PQppQpqPqpQPPqp`. Conjugation by `PPqp` reduces it to `QpqPqpQ`;
+inverting and rotating left by one gives `PQpQPqq`. Finally swap rows.
+
+**Theorem 6.84 (constructive length-fourteen target).** The sufficient
+target $P_T$ is stably AC-equivalent to
+\[
+\boxed{(A_{14},B_{14})=(\mathtt{PPqpqpQ},\mathtt{PQpQPqq}).}
+\tag{537}
+\]
+
+**Proof.** Compose the certified preimage-killer correction from Section
+6.87 with (533)--(534), the stable substitution and deletion giving (535),
+and the explicitly listed row moves. The four-factor discrepancy uses
+only defining donors distinct from the live recipient. After elimination,
+all moves are ordinary row conjugations, inversion, multiplication and
+permutation; there is no additional ambient basis change. The certificate
+and independent replay are appended to the preimage-killer files cited in
+Section 6.87. $\square$
+
+The bounded constructive probe evaluated 636 cyclic single-product
+candidates across three selected representatives and found this strict
+decrease from 15 to 14. It found no further decrease from the final pair;
+this is neither a minimum theorem nor an obstruction. No broader census
+or transport family is introduced. A stable trivialization of (537)
+would close the sufficient stable-AK(3) route, but neither relator has
+been cleared. Stable AK(3), ordinary AK(3), and the general conjectures
+remain unresolved.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
