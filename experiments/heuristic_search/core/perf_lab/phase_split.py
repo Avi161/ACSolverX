@@ -91,7 +91,13 @@ from experiments.search.greedy_compact import (                         # noqa: 
     _OK, _SOLVED, _EMPTY, _NEED_CAPACITY, _insert, _slot0,
 )
 from experiments.heuristic_search.core.hfast import expand_and_score_nj  # noqa: E402
+from experiments.heuristic_search.core.hlab import N_FEAT                # noqa: E402
 from experiments.heuristic_search.core.perf_lab.bench import load_rows   # noqa: E402
+from experiments.search.greedy_baseline import (                        # noqa: E402
+    expand_node_topk_nj, inverse_relator_nj, reduce_relator_nj,
+    canonical_relator_nj, lex_cmp_array, _ridx, _inv_at,
+    _seam_reduced_len_nj, _reduce_into, _canon_into,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -453,12 +459,479 @@ def sum_lens(len1, len2, popped, npop):
 
 
 # ---------------------------------------------------------------------------
+# 2b. Sub-split INSIDE the expansion kernel (--sub).
+#
+# The same differencing method one level down. ``expand_and_score_nj`` is
+# ``expand_node_topk_nj`` (pass 1: the seam test and the seam-reduced length
+# for every (k1, k2); pass 2: raw word, reduce, canonicalise, order-normalise,
+# encode) followed by the blob assembly and the feature/score loop. Each
+# kernel below is that pipeline cut off after one more stage, its code copied
+# verbatim from the live kernels (the helpers are imported, not rewritten),
+# and consumes its last stage's output in a checksum so nothing is dead. Each
+# is replayed over the recorded pops exactly like ``replay_expand``; the
+# stage costs are the successive differences and their sum is, by
+# construction, the full kernel's time (the last cut IS ``replay_expand``).
+#
+#   x_pass1  pass 1 only                                  -> (c) pass-1 filter
+#   x_gen    + raw child word + free/cyclic reduce        -> (a) generate+reduce
+#   x_canon  + canonical form (two Booth passes, inverse, -> (b) canonicalise
+#              lex pick; the per-pop hoisted canonicals)
+#   x_child  = expand_node_topk_nj: + order-normalise,    -> (b') normalise+encode
+#              encode to codes, the output arrays
+#   x_blob   + blob assembly (offs/klens/tots, key bytes) -> (e) blob
+#   x_full   = expand_and_score_nj: + features, segment   -> (d) features+score
+#              pick, weighted sum
+#
+# A caveat that is inherent to differencing: every cut is compiled on its
+# own, so a stage's figure carries whatever LLVM does differently with the
+# truncated pipeline (register pressure, inlining) -- read the stages as
+# shares, not as microsecond-exact costs.
+# ---------------------------------------------------------------------------
+@njit(inline='always')
+def _p1(r1, r2, cap, cyclic, c_len, c_tot, c_mv, inv1, inv2):
+    """Pass 1 of ``expand_node_topk_nj``, verbatim, into caller scratch."""
+    cnt = 0
+    for target in range(1, 3):
+        if target == 1:
+            ri = r1
+            rj = r2
+            rj_inv = inv2
+        else:
+            ri = r2
+            rj = r1
+            rj_inv = inv1
+        len_i = len(ri)
+        if len_i == 0:
+            continue
+        oth = reduce_relator_nj(rj, cyclic)
+        len_oth = len(oth)
+        if len_oth > cap:
+            continue
+        for idx in range(2):
+            oj = rj if idx == 0 else rj_inv
+            jsign = 1 if idx == 0 else -1
+            len_o = len(oj)
+            if len_o == 0:
+                continue
+            for k1 in range(len_i):
+                li = _ridx(k1, len_i - 1, len_i)
+                for k2 in range(len_o):
+                    if not _inv_at(ri, li, oj, _ridx(k2, 0, len_o)):
+                        continue
+                    m = _seam_reduced_len_nj(ri, k1, oj, k2, cyclic)
+                    if m > cap:
+                        continue
+                    c_len[cnt] = m
+                    c_tot[cnt] = m + len_oth
+                    c_mv[cnt, 0] = target
+                    c_mv[cnt, 1] = jsign
+                    c_mv[cnt, 2] = k1
+                    c_mv[cnt, 3] = k2
+                    cnt += 1
+    return cnt
+
+
+@njit(cache=True)
+def x_pass1(r1, r2, cap, cyclic):
+    n1 = len(r1)
+    n2 = len(r2)
+    ub = 4 * (n1 + 1) * (n2 + 1)
+    c_len = np.empty(ub, dtype=np.int64)
+    c_tot = np.empty(ub, dtype=np.int64)
+    c_mv = np.empty((ub, 4), dtype=np.int32)
+    inv1 = inverse_relator_nj(r1)
+    inv2 = inverse_relator_nj(r2)
+    cnt = _p1(r1, r2, cap, cyclic, c_len, c_tot, c_mv, inv1, inv2)
+    acc = 0
+    for s in range(cnt):
+        acc += c_len[s] + c_mv[s, 3]
+    return cnt, acc
+
+
+@njit(cache=True)
+def x_gen(r1, r2, cap, cyclic):
+    n1 = len(r1)
+    n2 = len(r2)
+    ub = 4 * (n1 + 1) * (n2 + 1)
+    c_len = np.empty(ub, dtype=np.int64)
+    c_tot = np.empty(ub, dtype=np.int64)
+    c_mv = np.empty((ub, 4), dtype=np.int32)
+    inv1 = inverse_relator_nj(r1)
+    inv2 = inverse_relator_nj(r2)
+    cnt = _p1(r1, r2, cap, cyclic, c_len, c_tot, c_mv, inv1, inv2)
+    nn = n1 + n2
+    pbuf = np.empty((nn, 2), dtype=np.bool_)
+    rbuf = np.empty((nn, 2), dtype=np.bool_)
+    acc = 0
+    for s in range(cnt):
+        target = c_mv[s, 0]
+        k1 = c_mv[s, 2]
+        k2 = c_mv[s, 3]
+        if target == 1:
+            ri = r1
+            oj = r2 if c_mv[s, 1] == 1 else inv2
+        else:
+            ri = r2
+            oj = r1 if c_mv[s, 1] == 1 else inv1
+        ni = len(ri)
+        no = len(oj)
+        for t in range(ni):
+            src = _ridx(k1, t, ni)
+            pbuf[t, 0] = ri[src, 0]
+            pbuf[t, 1] = ri[src, 1]
+        for t in range(no):
+            src = _ridx(k2, t, no)
+            pbuf[ni + t, 0] = oj[src, 0]
+            pbuf[ni + t, 1] = oj[src, 1]
+        lo, m = _reduce_into(pbuf, ni + no, cyclic, rbuf)
+        acc += m
+        if m > 0:
+            acc += rbuf[lo, 0]
+    return cnt, acc
+
+
+@njit(cache=True)
+def x_canon(r1, r2, cap, cyclic):
+    n1 = len(r1)
+    n2 = len(r2)
+    ub = 4 * (n1 + 1) * (n2 + 1)
+    c_len = np.empty(ub, dtype=np.int64)
+    c_tot = np.empty(ub, dtype=np.int64)
+    c_mv = np.empty((ub, 4), dtype=np.int32)
+    inv1 = inverse_relator_nj(r1)
+    inv2 = inverse_relator_nj(r2)
+    cnt = _p1(r1, r2, cap, cyclic, c_len, c_tot, c_mv, inv1, inv2)
+    cro_t1 = canonical_relator_nj(reduce_relator_nj(r2, cyclic))
+    cro_t2 = canonical_relator_nj(reduce_relator_nj(r1, cyclic))
+    nn = n1 + n2
+    pbuf = np.empty((nn, 2), dtype=np.bool_)
+    rbuf = np.empty((nn, 2), dtype=np.bool_)
+    ibuf = np.empty((nn, 2), dtype=np.bool_)
+    cbuf1 = np.empty((nn, 2), dtype=np.bool_)
+    cbuf2 = np.empty((nn, 2), dtype=np.bool_)
+    fbuf = np.empty(2 * nn, dtype=np.int32)
+    acc = len(cro_t1) + len(cro_t2)
+    for s in range(cnt):
+        target = c_mv[s, 0]
+        k1 = c_mv[s, 2]
+        k2 = c_mv[s, 3]
+        if target == 1:
+            ri = r1
+            oj = r2 if c_mv[s, 1] == 1 else inv2
+        else:
+            ri = r2
+            oj = r1 if c_mv[s, 1] == 1 else inv1
+        ni = len(ri)
+        no = len(oj)
+        for t in range(ni):
+            src = _ridx(k1, t, ni)
+            pbuf[t, 0] = ri[src, 0]
+            pbuf[t, 1] = ri[src, 1]
+        for t in range(no):
+            src = _ridx(k2, t, no)
+            pbuf[ni + t, 0] = oj[src, 0]
+            pbuf[ni + t, 1] = oj[src, 1]
+        lo, m = _reduce_into(pbuf, ni + no, cyclic, rbuf)
+        crp = _canon_into(rbuf[lo:lo + m], m, fbuf, ibuf, cbuf1, cbuf2)
+        acc += len(crp)
+        if m > 0:
+            acc += crp[0, 1]
+    return cnt, acc
+
+
+@njit(cache=True)
+def x_child(r1, r2, cap, cyclic):
+    codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, 0)
+    acc = 0
+    for i in range(count):
+        acc += lens[i, 0] + codes[i, 0]
+    return count, acc
+
+
+@njit(cache=True)
+def x_blob(r1, r2, cap, cyclic, seg_upto, seg_w):
+    """``expand_and_score_nj`` up to (not including) the feature loop."""
+    codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, 0)
+    offs = np.empty(count + 1, dtype=np.int64)
+    klens = np.empty(count, dtype=np.int64)
+    tots = np.empty(count, dtype=np.int64)
+    knots = np.empty(count, dtype=np.int64)
+    pos = 0
+    for i in range(count):
+        offs[i] = pos
+        k = lens[i, 0] + lens[i, 1] + 1
+        klens[i] = k
+        tots[i] = lens[i, 0] + lens[i, 1]
+        pos += k
+    offs[count] = pos
+    blob = np.empty(pos if pos > 0 else 1, dtype=np.uint8)
+    for i in range(count):
+        la = lens[i, 0]
+        lb = lens[i, 1]
+        o = offs[i]
+        for t in range(la):
+            blob[o + t] = codes[i, t]
+        blob[o + la] = 0
+        for t in range(lb):
+            blob[o + la + 1 + t] = codes[i, la + t]
+    n_seg = len(seg_upto)
+    seg_idx = np.empty(count, dtype=np.int64)
+    score = np.empty(count, dtype=np.float64)
+    f = np.empty(N_FEAT, dtype=np.float64)
+    r_isx = np.empty(2 * cap + 2, dtype=np.bool_)
+    r_len = np.empty(2 * cap + 2, dtype=np.int64)
+    acc = pos + n_seg + len(seg_idx) + len(score) + len(f) + len(r_isx) + len(r_len)
+    for i in range(count):
+        acc += blob[offs[i]] + tots[i]
+    return count, acc
+
+
+@njit(cache=True)
+def x_full(r1, r2, cap, cyclic, seg_upto, seg_w):
+    blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
+        expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w, 0)
+    acc = 0
+    for i in range(count):
+        acc += seg_idx[i] + knots[i]
+    return count, acc
+
+
+@njit(cache=True)
+def replay_sub(which, arena, len1, len2, popped, i0, i1, cap, cyclic,
+               seg_upto, seg_w, rw, sym2):
+    tot = 0
+    acc = 0
+    for i in range(i0, i1):
+        top = popped[i]
+        l1 = len1[top]
+        l2 = len2[top]
+        if l1 == 1 and l2 == 1:
+            continue
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
+        if which == 0:
+            c, a = x_pass1(a1, a2, cap, cyclic)
+        elif which == 1:
+            c, a = x_gen(a1, a2, cap, cyclic)
+        elif which == 2:
+            c, a = x_canon(a1, a2, cap, cyclic)
+        elif which == 3:
+            c, a = x_child(a1, a2, cap, cyclic)
+        elif which == 4:
+            c, a = x_blob(a1, a2, cap, cyclic, seg_upto, seg_w)
+        else:
+            c, a = x_full(a1, a2, cap, cyclic, seg_upto, seg_w)
+        tot += c
+        acc += a
+    return tot, acc
+
+
+@njit(cache=True)
+def x_diag(r1, r2, cap, cyclic):
+    """Untimed pass-1 counts for one pop: (k1, k2) pairs enumerated, pairs
+    whose seam cancels (the seam-reduced length is computed for these),
+    survivors of the cap filter, and survivors flagged by the cut-shift
+    criterion (k1 >= 1 and the child's back seam cancels: A[0] inverse to
+    B[-1] for A = roll(ri, k1), B = roll(oj, k2)) -- the exact intra-pop
+    duplicate criterion candidate change 4 proposes."""
+    n_pairs = 0
+    n_seam = 0
+    n_surv = 0
+    n_crit = 0
+    inv1 = inverse_relator_nj(r1)
+    inv2 = inverse_relator_nj(r2)
+    for target in range(1, 3):
+        if target == 1:
+            ri = r1
+            rj = r2
+            rj_inv = inv2
+        else:
+            ri = r2
+            rj = r1
+            rj_inv = inv1
+        len_i = len(ri)
+        if len_i == 0:
+            continue
+        oth = reduce_relator_nj(rj, cyclic)
+        if len(oth) > cap:
+            continue
+        for idx in range(2):
+            oj = rj if idx == 0 else rj_inv
+            len_o = len(oj)
+            if len_o == 0:
+                continue
+            n_pairs += len_i * len_o
+            for k1 in range(len_i):
+                li = _ridx(k1, len_i - 1, len_i)
+                for k2 in range(len_o):
+                    if not _inv_at(ri, li, oj, _ridx(k2, 0, len_o)):
+                        continue
+                    n_seam += 1
+                    m = _seam_reduced_len_nj(ri, k1, oj, k2, cyclic)
+                    if m > cap:
+                        continue
+                    n_surv += 1
+                    if cyclic and k1 >= 1 and _inv_at(
+                            ri, _ridx(k1, 0, len_i), oj, _ridx(k2, len_o - 1, len_o)):
+                        n_crit += 1
+    return n_pairs, n_seam, n_surv, n_crit
+
+
+@njit(cache=True)
+def x_crit_check(r1, r2, cap, cyclic):
+    """Untimed empirical check of the cut-shift criterion on one pop: for
+    every flagged child (k1, k2) the child of (k1 - 1, (k2 + 1) mod no) in
+    the same (target, sign) block must exist EARLIER in generation order
+    with identical (la, lb, codes). Returns (flagged, violations)."""
+    codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, 0)
+    n1 = len(r1)
+    n2 = len(r2)
+    flagged = 0
+    bad = 0
+    for i in range(count):
+        target = moves[i, 0]
+        js = moves[i, 1]
+        k1 = moves[i, 2]
+        k2 = moves[i, 3]
+        ni = n1 if target == 1 else n2
+        no = n2 if target == 1 else n1
+        if not (cyclic and k1 >= 1):
+            continue
+        if target == 1:
+            ri = r1
+            oj = r2 if js == 1 else inverse_relator_nj(r2)
+        else:
+            ri = r2
+            oj = r1 if js == 1 else inverse_relator_nj(r1)
+        if not _inv_at(ri, _ridx(k1, 0, ni), oj, _ridx(k2, no - 1, no)):
+            continue
+        flagged += 1
+        pk1 = k1 - 1
+        pk2 = k2 + 1
+        if pk2 >= no:
+            pk2 -= no
+        found = False
+        j = i - 1
+        while j >= 0:
+            if (moves[j, 0] == target and moves[j, 1] == js
+                    and moves[j, 2] == pk1 and moves[j, 3] == pk2):
+                found = True
+                break
+            j -= 1
+        if not found:
+            bad += 1
+            continue
+        if lens[j, 0] != lens[i, 0] or lens[j, 1] != lens[i, 1]:
+            bad += 1
+            continue
+        k = lens[i, 0] + lens[i, 1]
+        for t in range(k):
+            if codes[j, t] != codes[i, t]:
+                bad += 1
+                break
+    return flagged, bad
+
+
+@njit(cache=True)
+def replay_diag(arena, len1, len2, popped, i0, i1, cap, cyclic, rw, sym2):
+    n_pairs = 0
+    n_seam = 0
+    n_surv = 0
+    n_crit = 0
+    flagged = 0
+    bad = 0
+    for i in range(i0, i1):
+        top = popped[i]
+        l1 = len1[top]
+        l2 = len2[top]
+        if l1 == 1 and l2 == 1:
+            continue
+        a1 = _decode_h(arena, top, 0, l1, rw)
+        a2 = _decode_h(arena, top, sym2, l2, rw)
+        p, s, v, c = x_diag(a1, a2, cap, cyclic)
+        n_pairs += p
+        n_seam += s
+        n_surv += v
+        n_crit += c
+        f, b = x_crit_check(a1, a2, cap, cyclic)
+        flagged += f
+        bad += b
+    return n_pairs, n_seam, n_surv, n_crit, flagged, bad
+
+
+SUB_CUTS = ("pass1", "gen", "canon", "child", "blob", "full")
+SUB_STAGES = (
+    ("pass1", "(c) pass-1 filter: seam test + seam-reduced length"),
+    ("gen", "(a) raw child word + free/cyclic reduce"),
+    ("canon", "(b) canonicalise: 2x Booth, inverse, lex pick"),
+    ("encode", "(b') order-normalise + encode + output arrays"),
+    ("blob", "(e) blob assembly (offs, klens, key bytes)"),
+    ("feats", "(d) features + segment pick + weighted sum"),
+)
+
+
+def sub_split(arena, len1, len2, popped, npop, cap, cyclic, seg_upto, seg_w,
+              rw, sym2, batch, reps):
+    """Replay every cut over all pops; return per-cut medians (s) and the
+    stage differences, plus the pass-1 diagnostics."""
+    for which in range(len(SUB_CUTS)):
+        replay_sub(which, arena, len1, len2, popped, 0, 1, cap, cyclic,
+                   seg_upto, seg_w, rw, sym2)
+    replay_diag(arena, len1, len2, popped, 0, 1, cap, cyclic, rw, sym2)
+
+    cut_t = {c: [] for c in SUB_CUTS}
+    cut_cnt = {}
+    for rep in range(reps):
+        for which, cname in enumerate(SUB_CUTS):
+            t = 0.0
+            tot = 0
+            for i0 in range(0, npop, batch):
+                i1 = min(npop, i0 + batch)
+                a = time.perf_counter()
+                c, _ = replay_sub(which, arena, len1, len2, popped, i0, i1,
+                                  cap, cyclic, seg_upto, seg_w, rw, sym2)
+                t += time.perf_counter() - a
+                tot += c
+            cut_t[cname].append(t)
+            cut_cnt[cname] = tot
+    # every cut must see the same candidate count: the pipeline is one
+    assert len(set(cut_cnt.values())) == 1, cut_cnt
+
+    d = {"n_pairs": 0, "n_seam": 0, "n_surv": 0, "n_crit": 0,
+         "crit_flagged": 0, "crit_violations": 0}
+    for i0 in range(0, npop, batch):
+        i1 = min(npop, i0 + batch)
+        p, s, v, c, f, b = replay_diag(arena, len1, len2, popped, i0, i1,
+                                       cap, cyclic, rw, sym2)
+        d["n_pairs"] += p
+        d["n_seam"] += s
+        d["n_surv"] += v
+        d["n_crit"] += c
+        d["crit_flagged"] += f
+        d["crit_violations"] += b
+    assert d["n_surv"] == cut_cnt["full"], (d["n_surv"], cut_cnt["full"])
+    assert d["n_crit"] == d["crit_flagged"], (d["n_crit"], d["crit_flagged"])
+
+    med = {c: statistics.median(cut_t[c]) for c in SUB_CUTS}
+    stages = {
+        "pass1": med["pass1"],
+        "gen": med["gen"] - med["pass1"],
+        "canon": med["canon"] - med["gen"],
+        "encode": med["child"] - med["canon"],
+        "blob": med["blob"] - med["child"],
+        "feats": med["full"] - med["blob"],
+    }
+    return med, stages, d, cut_t
+
+
+# ---------------------------------------------------------------------------
 # 3. Driver
 # ---------------------------------------------------------------------------
 PHASES = ("expand", "lascan", "hash", "probe", "pack", "sift")
 
 
-def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
+def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm,
+                  sub=False):
     from experiments.search.run_leftovers_1m import S20_MK2  # noqa: F401
     cfg = config
 
@@ -592,6 +1065,27 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
                 "probe_slots": slots, "probe_rowcmp": rowcmp,
             }
 
+    sub_res = None
+    if sub:
+        t0 = time.perf_counter()
+        smed, stages, sdiag, sraw = sub_split(
+            arena, len1, len2, popped, npop, cap, cyclic, seg_upto, seg_w, rw,
+            sym2, batch, reps)
+        t_sub = time.perf_counter() - t0
+        sub_res = {
+            "cut_us_per_pop": {c: 1e6 * smed[c] / npop for c in SUB_CUTS},
+            "stage_us_per_pop": {k: 1e6 * v / npop for k, v in stages.items()},
+            "diag": sdiag,
+            "pairs_per_pop": sdiag["n_pairs"] / npop,
+            "seam_per_pop": sdiag["n_seam"] / npop,
+            "surv_per_pop": sdiag["n_surv"] / npop,
+            "crit_per_pop": sdiag["n_crit"] / npop,
+            "crit_frac_of_cand": sdiag["n_crit"] / max(1, sdiag["n_surv"]),
+            "crit_violations": sdiag["crit_violations"],
+            "t_sub_s": t_sub,
+            "raw_times_s": sraw,
+        }
+
     med = {p: statistics.median(times[p]) for p in PHASES}
     tot = t_plain
     us = {p: 1e6 * med[p] / npop for p in PHASES}
@@ -619,6 +1113,7 @@ def split_one_row(name, r1, r2, budget, mrl, config, reps, batch, warm):
         "probe_slots_per_lookup": diag["probe_slots"] / max(1, diag["n_cand"]),
         "probe_rowcmp_per_lookup": diag["probe_rowcmp"] / max(1, diag["n_cand"]),
         "reps": reps, "raw_times_s": times,
+        "sub": sub_res,
     }
     return out
 
@@ -658,6 +1153,56 @@ def fmt_table(results):
     return "\n".join(lines)
 
 
+def fmt_sub_table(results):
+    lines = []
+    rs = [r for r in results if r.get("sub")]
+    if not rs:
+        return ""
+    hdr = f"{'expand stage':52s}" + "".join(f"{r['row']:>24s}" for r in rs)
+    lines.append(hdr)
+    lines.append("-" * len(hdr))
+    for key, label in SUB_STAGES:
+        cells = []
+        for r in rs:
+            u = r["sub"]["stage_us_per_pop"][key]
+            ex = r["us_per_pop"]["expand"]
+            tot = r["us_per_pop_total"]
+            cells.append(f"{u:8.1f} us {100*u/ex:5.1f}%e {100*u/tot:5.1f}%p")
+        lines.append(f"{label:52s}" + "".join(f"{c:>24s}" for c in cells))
+    cells = []
+    for r in rs:
+        u = r["sub"]["cut_us_per_pop"]["full"]
+        ex = r["us_per_pop"]["expand"]
+        tot = r["us_per_pop_total"]
+        cells.append(f"{u:8.1f} us {100*u/ex:5.1f}%e {100*u/tot:5.1f}%p")
+    lines.append(f"{'sum = full kernel (x_full cut)':52s}"
+                 + "".join(f"{c:>24s}" for c in cells))
+    cells = []
+    for r in rs:
+        u = r["us_per_pop"]["expand"]
+        tot = r["us_per_pop_total"]
+        cells.append(f"{u:8.1f} us {100.0:5.1f}%e {100*u/tot:5.1f}%p")
+    lines.append(f"{'expand phase (replay_expand, outer split)':52s}"
+                 + "".join(f"{c:>24s}" for c in cells))
+    lines.append("")
+    lines.append("(%e = share of the expand phase, %p = share of the pop)")
+    lines.append("")
+    for k, label in (
+            ("pairs_per_pop", "(k1, k2) pairs enumerated / pop"),
+            ("seam_per_pop", "seam-matching pairs / pop (before cap filter)"),
+            ("surv_per_pop", "candidates after pass 1 / pop"),
+            ("crit_per_pop", "cut-shift-flagged candidates / pop"),
+            ("crit_frac_of_cand", "cut-shift-flagged fraction of candidates"),
+            ("crit_violations", "cut-shift criterion violations (must be 0)"),
+            ("t_sub_s", "sub-split wall (s)")):
+        cells = []
+        for r in rs:
+            v = r["sub"][k]
+            cells.append(f"{v:.3f}" if isinstance(v, float) else f"{v}")
+        lines.append(f"{label:52s}" + "".join(f"{c:>24s}" for c in cells))
+    return "\n".join(lines)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -669,6 +1214,8 @@ def main(argv=None):
     ap.add_argument("--cpu", type=int, default=2)
     ap.add_argument("--warm", type=int, default=2000)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--sub", action="store_true",
+                    help="also split the expansion kernel into its stages")
     args = ap.parse_args(argv)
 
     try:
@@ -682,7 +1229,7 @@ def main(argv=None):
     for name, r1, r2 in rows:
         t0 = time.time()
         res = split_one_row(name, r1, r2, args.budget, args.mrl, S20_MK2,
-                            args.reps, args.batch, args.warm)
+                            args.reps, args.batch, args.warm, sub=args.sub)
         results.append(res)
         print(f"[{name}] done in {time.time() - t0:.0f}s: total "
               f"{res['us_per_pop_total']:.1f} us/pop, sum of phases "
@@ -690,6 +1237,9 @@ def main(argv=None):
               flush=True)
     print()
     print(fmt_table(results))
+    if args.sub:
+        print()
+        print(fmt_sub_table(results))
     if args.out:
         with open(args.out, "w") as f:
             json.dump({"args": vars(args), "results": results}, f, indent=1)
