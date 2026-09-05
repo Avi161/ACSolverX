@@ -2133,3 +2133,183 @@ def test_plan_sizes_with_the_campaigns_rate_floor(tmp_path):
                 PLAN_GB="251", PLAN_CORES="32")
     assert q.returncode == 0, q.stderr
     assert "2,140,016,900" not in q.stdout      # ac19 sizing unchanged
+
+
+# ---------------------------------------------------------------------------
+# 2-bit rows: half the arena, the same search. A symbol is ``code - 1`` in two
+# bits (most significant first), regions are (cap+3)//4 bytes, so a state's
+# row is 32 B at cap 64 instead of 64. With no spare value for padding the
+# tie-break can no longer be a memcmp; ``_row_less_h`` is length-aware and
+# must reproduce the nibble memcmp order EXACTLY, pair for pair -- that order
+# is the Python reference's ``c1 + b'\x00' + c2`` key order, and the pop
+# sequence follows from it. The sort corpus below is the pin.
+# ---------------------------------------------------------------------------
+_SYMS = "XYxy"
+
+
+def _two_bit_corpus(rng, n_random=6000, n_base=200):
+    """``[(r1, r2), ...]`` over lengths 0..64: random pairs, plus adversarial
+    families built from each of ``n_base`` random bases -- identical copies,
+    one relator a prefix of the other (extended or truncated by 1..4, so the
+    prefix ends on every residue mod the 4 symbols a byte holds), the last
+    symbol changed, one symbol changed at byte-boundary indices, in BOTH
+    regions -- plus a systematic sweep of every length 1..64 differing only in
+    the last symbol. Distinct from the real-row corpus the test adds itself."""
+    def word(n):
+        return "".join(rng.choice(_SYMS) for _ in range(n))
+
+    def flip(s, k):
+        if k >= len(s):
+            return s
+        return s[:k] + _SYMS[(_SYMS.index(s[k]) + 1) % 4] + s[k + 1:]
+
+    corpus = []
+    for _ in range(n_random):
+        la = 0 if rng.random() < 0.03 else rng.randint(1, 64)
+        lb = 0 if rng.random() < 0.03 else rng.randint(1, 64)
+        corpus.append((word(la), word(lb)))
+    boundary = (0, 1, 3, 4, 5, 7, 8, 15, 16, 23, 24, 31, 32, 47, 48, 62, 63)
+    for _ in range(n_base):
+        r1, r2 = word(rng.randint(1, 64)), word(rng.randint(1, 64))
+        corpus.append((r1, r2))
+        corpus.append((r1, r2))                      # an exact duplicate
+        for k in range(1, 5):
+            if len(r1) + k <= 64:
+                corpus.append((r1 + word(k), r2))    # r2 equal, r1 extended
+            if len(r2) + k <= 64:
+                corpus.append((r1, r2 + word(k)))    # r1 equal, r2 extended
+            corpus.append((r1[:-k], r2))             # truncations (maybe empty)
+            corpus.append((r1, r2[:-k]))
+        corpus.append((flip(r1, len(r1) - 1), r2))   # last symbol differs
+        corpus.append((r1, flip(r2, len(r2) - 1)))
+        for k in boundary:
+            corpus.append((flip(r1, k), r2))
+            corpus.append((r1, flip(r2, k)))
+    for n in range(1, 65):                           # the systematic sweep
+        base = _SYMS[n % 4] * n
+        for s in _SYMS:
+            corpus.append((base[:-1] + s, "X"))
+            corpus.append(("X", base[:-1] + s))
+            corpus.append((base[:-1] + s, base))
+        corpus.append((base, base))
+    return corpus
+
+
+def _pack_two_bit_arena(states, w):
+    """States -> (arena, len1, len2) at region width ``w`` bytes, using the
+    engine's own Python mirror of its packer."""
+    import numpy as np
+    from experiments.heuristic_search.core.hcompact import pack_row_h
+    rw = 2 * w
+    arena = np.zeros(len(states) * rw, dtype=np.uint8)
+    len1 = np.zeros(len(states), dtype=np.uint8)
+    len2 = np.zeros(len(states), dtype=np.uint8)
+    for i, (r1, r2) in enumerate(states):
+        arena[i * rw:(i + 1) * rw] = np.frombuffer(pack_row_h(r1, r2, 4 * w),
+                                                    dtype=np.uint8)
+        len1[i], len2[i] = len(r1), len(r2)
+    return arena, len1, len2
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_2bit_comparator_reproduces_the_nibble_memcmp_order_pair_for_pair():
+    """EVERY ordered pair of an 11,557-state adversarial corpus at the cap
+    width (16 B regions) and again at the 6 B and 12 B widths rows live at
+    mid-search (1,544 and 5,906 states fit), plus 6,000 random pairs each
+    against 40 random partners, plus every ordered pair of 624 real states
+    (the 124 campaign rows and the first 500 states a real search discovers)
+    -- ~171M ordered pairs: ``_row_less_h`` agrees with
+    the frozen nibble engine's ``pack_row`` memcmp order, with the reference
+    solver's ``c1 + b'\\x00' + c2`` key order, and with ``(r1, r2)`` string
+    order. Duplicates in the corpus pin the equal case (neither is less)."""
+    import csv
+    import random
+    import numpy as np
+    from numba import njit
+    from experiments.heuristic_search.core.hcompact import (
+        HCompactSolver, _row_less_h)
+    from experiments.search.greedy_compact import _CHAR_TO_CODE, pack_row
+
+    @njit
+    def less_matrix(arena, len1, len2, n, w, rw, out):
+        for i in range(n):
+            for j in range(n):
+                out[i, j] = _row_less_h(arena, len1, len2, i, j, w, rw)
+
+    def key(r1, r2):
+        c = bytes(_CHAR_TO_CODE[ch] for ch in r1)
+        d = bytes(_CHAR_TO_CODE[ch] for ch in r2)
+        return c + b"\x00" + d
+
+    def check_all_pairs(states, w):
+        n = len(states)
+        arena, len1, len2 = _pack_two_bit_arena(states, w)
+        got = np.zeros((n, n), dtype=np.bool_)
+        less_matrix(arena, len1, len2, n, w, 2 * w, got)
+        cap = 4 * w
+        rows = [pack_row(r1, r2, cap) for r1, r2 in states]
+        keys = [key(r1, r2) for r1, r2 in states]
+        # rank under each reference order; equal keys share a rank
+        def ranks(vals):
+            order = {v: i for i, v in enumerate(sorted(set(vals)))}
+            return np.array([order[v] for v in vals])
+        for name, ref in (("pack_row memcmp", ranks(rows)),
+                          ("c1+0+c2 key", ranks(keys)),
+                          ("(r1, r2) strings", ranks(states))):
+            want = ref[:, None] < ref[None, :]
+            bad = np.argwhere(got != want)
+            assert bad.size == 0, (
+                f"w={w}: {len(bad)} pair(s) disagree with {name}; first: "
+                f"{states[bad[0][0]]!r} vs {states[bad[0][1]]!r} "
+                f"got less={got[bad[0][0], bad[0][1]]}")
+        return n * n
+
+    rng = random.Random(20240905)
+    corpus = _two_bit_corpus(rng)
+    random_part, adversarial = corpus[:6000], corpus[6000:]
+
+    checked = 0
+    # (1) every ordered pair of the adversarial families, at the cap width
+    checked += check_all_pairs(adversarial, 16)
+    # (2) the same families at the widths the rows actually live at during a
+    #     search (24- and 48-symbol regions), for the states that fit them
+    for w in (6, 12):
+        fit = [s for s in adversarial if max(len(s[0]), len(s[1])) <= 4 * w]
+        checked += check_all_pairs(fit, w)
+    # (3) random pairs, each against 40 random partners
+    arena, len1, len2 = _pack_two_bit_arena(random_part, 16)
+    n = len(random_part)
+    for i in range(n):
+        for j in rng.sample(range(n), 40):
+            got = bool(_row_less_h(arena, len1, len2, i, j, 16, 32))
+            want = (pack_row(*random_part[i], 64) < pack_row(*random_part[j], 64))
+            assert got == want, (random_part[i], random_part[j], got, want)
+            checked += 1
+    # (4) real states: the 124 campaign rows, and what a real search stores
+    with open(os.path.join(ROOT, "results", "stable_ac", "fable",
+                           "aca_124.csv"), newline="") as f:
+        real = [(r["r1"], r["r2"]) for r in csv.DictReader(f)]
+    s = HCompactSolver(real[0][0], real[0][1], max_nodes=1500,
+                       max_relator_length=64)
+    s.solve()
+    real += [s.relators(sid) for sid in range(min(s.n_discovered, 500))]
+    checked += check_all_pairs(real, 16)
+    assert checked > 2_000_000, checked
+
+
+@pytest.mark.skipif(not HAVE_HCOMPACT, reason="engine not on this branch")
+def test_the_2bit_row_packs_symbols_most_significant_first():
+    """Byte-wise order equals symbol-wise order only if the first symbol of a
+    byte sits in its top two bits. Pin the layout, the code map (X<Y<x<y as
+    0..3) and the region width."""
+    from experiments.heuristic_search.core.hcompact import (
+        pack_row_h, row_width_h)
+    assert row_width_h(64) == 32 and row_width_h(48) == 24
+    assert row_width_h(1) == 2 and row_width_h(5) == 4
+    assert pack_row_h("X", "", 64) == bytes(32)
+    assert pack_row_h("y", "", 64)[0] == 0b11000000
+    assert pack_row_h("XYxy", "yxYX", 64) == (
+        bytes([0b00011011]) + bytes(15) + bytes([0b11100100]) + bytes(15))
+    assert pack_row_h("XXXXY", "", 8)[1] == 0b01000000
+    with pytest.raises(ValueError):
+        pack_row_h("X" * 65, "X", 64)

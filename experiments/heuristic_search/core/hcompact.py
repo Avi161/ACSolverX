@@ -78,6 +78,161 @@ from experiments.heuristic_search.core.hsolve import LENGTH_ONLY         # noqa:
 
 
 # ---------------------------------------------------------------------------
+# 2-bit rows.
+#
+# The alphabet is four symbols with order-preserving codes 1..4 (X=1 < Y=2 <
+# x=3 < y=4, ``_code_of``). ``greedy_compact`` spends a nibble on each and
+# leaves 0 free as padding, which is what lets a plain ``memcmp`` of the row
+# double as the heap's tie-break. Here a symbol is two bits -- ``code - 1``,
+# most-significant field first within each byte -- so a row is
+#
+#     [r1 region: w bytes][r2 region: w bytes]      w = (cap + 3) // 4
+#
+# zero padded, 32 B per state at cap 64 instead of 64. Within a byte the value
+# is ``64*s0 + 16*s1 + 4*s2 + s3`` (base 4, most significant first), so byte
+# order IS symbol order for the four symbols a byte holds, and the region
+# layout is the nibble engine's with w halved: ``_widen_in_place`` (regions of
+# w bytes each) and the arena reservation shape carry over untouched.
+#
+# What does NOT carry over is the comparator. 0 is now a code (X), so padding
+# is no longer a terminator and raw memcmp cannot see where a relator ends;
+# ``_row_less_h`` below is length-aware and reproduces the nibble order
+# exactly (its docstring carries the proof; the sort-corpus test in
+# tests/test_leftovers_5m.py pins it against ``greedy_compact.pack_row``).
+# ---------------------------------------------------------------------------
+_CHAR_TO_CODE = {c: k for k, c in _CODE_TO_CHAR.items()}
+
+
+def row_width_h(cap):
+    """Bytes per arena row of THIS engine at the cap: two byte-aligned regions
+    of ``(cap + 3) // 4``, i.e. 32 at cap 64 (``greedy_compact.row_width``
+    describes the nibble engine and is 64 there)."""
+    return 2 * ((cap + 3) // 4)
+
+
+def pack_row_h(r1, r2, cap):
+    """``(r1_str, r2_str)`` -> the 2-bit arena row at the cap width, as
+    ``bytes``. Python mirror of the njit packer (``_set_sym2_at``), for tests
+    that want to build rows without running a search. NOTE: unlike
+    ``greedy_compact.pack_row`` this does NOT memcmp-sort like ``(r1, r2)``
+    -- only ``_row_less_h`` does, given the lengths."""
+    if len(r1) > cap or len(r2) > cap:
+        raise ValueError(f"relator longer than cap={cap}")
+    w = (cap + 3) // 4
+    row = bytearray(2 * w)
+    for base, word in ((0, r1), (w, r2)):
+        for t, ch in enumerate(word):
+            row[base + (t >> 2)] |= (_CHAR_TO_CODE[ch] - 1) << (6 - 2 * (t & 3))
+    return bytes(row)
+
+
+@njit(inline='always')
+def _get_sym2(row, t):
+    """Code (1..4) of symbol ``t`` of a row slice. int64 throughout: numba
+    unifies a uint8/int64 mix to float64 and the caller then fails to type."""
+    b = np.int64(row[t >> 2])
+    return ((b >> (6 - 2 * (t & 3))) & 3) + 1
+
+
+@njit(inline='always')
+def _get_sym2_at(arena, off, t):
+    """Code of symbol ``t`` of the row at byte ``off`` -- no slice allocated."""
+    b = np.int64(arena[off + (t >> 2)])
+    return ((b >> (6 - 2 * (t & 3))) & 3) + 1
+
+
+@njit(inline='always')
+def _set_sym2_at(arena, off, t, v):
+    """Store code ``v`` (1..4) as symbol ``t``. ORs into a byte the caller has
+    already zeroed (rows are zero-filled before packing, and a widen zeroes the
+    bytes it opens), exactly as ``_set_nib_at`` assumes."""
+    i = off + (t >> 2)
+    arena[i] = np.uint8(np.int64(arena[i])
+                        | ((np.int64(v) - 1) << (6 - 2 * (t & 3))))
+
+
+@njit(inline='always')
+def _region_cmp2(arena, oa, ob, la, lb):
+    """Compare one region of two rows as words: -1, 0 or +1.
+
+    The common prefix is ``m = min(la, lb)`` symbols: ``m >> 2`` whole bytes
+    compared as bytes, then the ``m & 3`` symbols of the next byte compared
+    under a mask that keeps only its top ``2 * (m & 3)`` bits. If the prefix
+    agrees the shorter word is smaller; equal lengths and an equal prefix mean
+    the words are equal.
+    """
+    m = la if la < lb else lb
+    nfull = m >> 2
+    for i in range(nfull):
+        va = arena[oa + i]
+        vb = arena[ob + i]
+        if va != vb:
+            return np.int64(-1) if va < vb else np.int64(1)
+    r = m & 3
+    if r != 0:
+        mask = np.int64((0xFF << (8 - 2 * r)) & 0xFF)
+        va = np.int64(arena[oa + nfull]) & mask
+        vb = np.int64(arena[ob + nfull]) & mask
+        if va != vb:
+            return np.int64(-1) if va < vb else np.int64(1)
+    if la != lb:
+        return np.int64(-1) if la < lb else np.int64(1)
+    return np.int64(0)
+
+
+@njit(inline='always')
+def _row_less_h(arena, len1, len2, a, b, w, rw):
+    """The heap's last tie-break on 2-bit rows: ``row_a < row_b`` in exactly
+    the order ``greedy_compact._row_less`` (memcmp on nibble rows) gives the
+    same two states, which is the order of the Python reference's packed key
+    ``c1 + b'\x00' + c2``.
+
+    THE TARGET RELATION. A nibble row is ``[c1, 0-pad][c2, 0-pad]``, one
+    nibble per symbol, most significant first, so byte memcmp on it is
+    nibble-lexicographic. Walk two such rows: they agree on the first
+    ``m = min(la, lb)`` nibbles iff r1's common prefixes agree; if not, the
+    first differing symbol decides (codes compare as codes). If they agree
+    and ``la < lb``, nibble ``la`` is 0 in ``a`` (padding; ``la < lb <=``
+    region size, so it IS inside the region) and a code ``>= 1`` in ``b``,
+    so ``a < b`` -- and symmetrically. If ``la == lb`` the r1 regions are
+    identical bytes (codes then zeros) and the walk reaches the r2 regions,
+    where the same argument repeats; two rows with equal words are equal.
+    That is: r1 lexicographic on the common prefix, then shorter-is-smaller,
+    then the same for r2. ``pack_key``'s ``c1 + b'\x00' + c2`` sorts the
+    same way for the same reason (the separator 0 sits below every code,
+    and ``bytes`` order is shorter-is-smaller on a tie).
+
+    WHY THIS FUNCTION COMPUTES IT. Symbol ``t`` of a region is stored as
+    ``code - 1`` in bits ``6 - 2*(t & 3)`` of byte ``t >> 2``, so a byte is
+    ``64*s0 + 16*s1 + 4*s2 + s3``: the base-4, most-significant-first number
+    of its four symbols. Hence (i) for two bytes holding four common-prefix
+    symbols each, byte order is symbol-lexicographic order, and the FIRST
+    byte that differs among the ``m >> 2`` whole prefix bytes contains the
+    first differing symbol and orders it correctly; (ii) for the byte holding
+    the last ``r = m & 3 != 0`` prefix symbols, masking to its top ``2r``
+    bits zeroes every symbol beyond the prefix in both operands (a code in the
+    longer word, padding in the shorter -- the very bits a raw memcmp would
+    wrongly read, since ``X`` and padding are both 0), and the masked values
+    compare as those ``r`` symbols do; (iii) if all ``m`` symbols agree the
+    lengths decide, shorter first, exactly the padding-versus-code step of the
+    nibble walk, and equal lengths with an equal prefix means equal words, so
+    the comparison moves to r2 (``+w`` bytes in). Region boundaries are
+    respected by construction: the partial byte is read only when ``r != 0``,
+    which forces ``m < 4w`` and so ``m >> 2 <= w - 1``. No terminator is
+    needed and none is stored; the lengths ``len1``/``len2`` the engine
+    already keeps supply the ends. Pinned pair-for-pair against
+    ``greedy_compact.pack_row`` by the sort-corpus test.
+    """
+    oa = a * rw
+    ob = b * rw
+    c = _region_cmp2(arena, oa, ob, np.int64(len1[a]), np.int64(len1[b]))
+    if c != 0:
+        return c < 0
+    c = _region_cmp2(arena, oa + w, ob + w, np.int64(len2[a]), np.int64(len2[b]))
+    return c < 0
+
+
+# ---------------------------------------------------------------------------
 # dedup without packing.
 #
 # ~94% of a pop's candidates are duplicates, and the original loop paid full
