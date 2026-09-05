@@ -129,3 +129,35 @@ few times the row length.
 - A solved u124 row has empty `path` fields by design; recover the
   certificate with `rerun_row` at the recorded node count and the
   campaign's reservation, then replay the moves (RESULTS.md).
+
+## 7. Positive control: prove the running build still solves
+
+Every u124 row is unsolved by construction, so a build that silently
+stopped solving would look identical to a healthy one. `ac19_15866`
+(`r1 = YXXXyXYx`, `r2 = YXyxxxyxx`, in
+`results/heuristic_search/ac19_autmin_screen/unsolved_10k_s20_mk2.csv`)
+is solved by s20_mk2 at 17,369 nodes with a 96-move path, and greedy
+leaves it unsolved at 1M (cap 48) and 5M (cap 64). Its widest expanded
+total is 35, so caps 48 and 64 give the identical search. Run it from the
+checkout on an idle core; it never touches a campaign jsonl and needs no
+environment (`STATES_PER_NODE` applies only to campaigns with a floor):
+
+    nice -n 10 taskset -c <idle core> env PYTHONPATH=. python3 -m experiments.search.rerun_row \
+      --row ac19_15866 --campaign ac19 --arm s20_mk2 \
+      --csv results/heuristic_search/ac19_autmin_screen/unsolved_10k_s20_mk2.csv \
+      --budget 1000000 --mrl 64 --out-dir <dir>
+
+Expected record: solved true, nodes_explored 17369, path_length 96, path
+of 97 states ending `["Y","X"]`, 96 path_moves, min_relator_length 2,
+max_relator_length_expanded 35. Capture is on by default in `rerun_row`
+and does not alter the search, so the record is the certificate; replay
+it with `greedy_baseline.moves_to_states` over `str_to_move` of the moves
+and check it equals the recorded path. Any other node count means the
+search is not the one that produced the archive: stop the campaign and
+find out why before reading any result.
+
+Run on the campaign box on `edfa8c68` (2026-09-05, core 95, nice 10,
+campaign untouched): both the u124 configuration (cap 64, 1M budget,
+1.97 s, 1.31 GB peak) and the archived configuration (cap 48, 200k
+budget) returned 17,369 / 96 / 2 / 35 exactly, and the replay ended at
+the trivial pair.

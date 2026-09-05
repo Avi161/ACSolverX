@@ -319,3 +319,14 @@ split (209.8 vs 941.6 us per pop). Box aggregate about 23,000 nodes/s
 across six lanes, against about 5,400 on `3093592d` and about 3,600 on
 `5d047da5`. 59 of 124 rows complete at 2026-09-05, projected finish the
 same day, remaining cost about $15.
+
+### Positive control on the running build (operator, 2026-09-05)
+
+`ac19_15866` (s20_mk2 solves it at 17,369 nodes; greedy does not at 5M)
+run on the campaign box on `edfa8c68` via `rerun_row`, campaign untouched:
+under the u124 configuration (cap 64, budget 1,000,000) solved true,
+nodes_explored 17,369, path_length 96, 97 path states ending at the
+trivial pair, 96 moves, min/max relator 2/35, engine_mem_gen 5, 1.97 s,
+peak 1.31 GB; under the archived configuration (cap 48, budget 200,000)
+the identical 17,369 / 96 / 2 / 35; the moves replay into the recorded
+path. Recipe and expected values in RUNBOOK.md section 7.
