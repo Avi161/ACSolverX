@@ -1,5 +1,12 @@
 # ACSolverX agent instructions
 
+### [2026-09-05] Validate PDF downloads before rendering
+
+[TRAP] The eScholarship dissertation endpoint returned an empty file with
+a successful curl status. Check nonzero byte count before rendering; use
+an identified primary-source alternative when available. Valid local link
+graphs after a transcribed geometric move do not certify the 3-deformation.
+
 ### [2026-09-05] Pure power consequences cannot be live rows
 
 [TRAP] The boundary continuation proposed realizing `C^2` and `C^5`
