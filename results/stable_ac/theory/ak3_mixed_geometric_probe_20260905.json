@@ -1,0 +1,4844 @@
+{
+  "ac_obstruction_claimed": false,
+  "attempt_budget_reached": true,
+  "candidates": [
+    {
+      "attempt": 2,
+      "cores": [
+        "yxxxYYYYxyXYX",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 540,
+          "component_seed_budget": 540,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 90,
+          "phase_pairs_considered": 90,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yxxxYYYYxyXYX",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 1,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxxxYYYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 2,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yxxxYYYYxyXYX",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 35,
+      "cores": [
+        "xyxYXYxxYYYYx",
+        "xxYYYYx"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 792,
+          "component_seed_budget": 792,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 99,
+          "phase_pairs_considered": 99,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xyxYXYxxYYYYx",
+        "xxYYYYx"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 33,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 34,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 35,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXYxxYYYYx",
+            "xxYYYYx"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 53,
+      "cores": [
+        "YYYxyxYXYxxYYYYxxxxY",
+        "yXXXyyy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 2,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 3240,
+          "component_seed_budget": 3240,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 180,
+          "phase_pairs_considered": 180,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YYYxyxYXYxxYYYYxxxxY",
+        "yXXXyyy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 33,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 34,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 35,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXYxxYYYYx",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 36,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxyxYXYxxYYYYxy",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 38,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "YxyxYXYxxYYYYxy",
+            "yxxYYYYxY"
+          ]
+        },
+        {
+          "attempt": 39,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "yxxYYYYxY"
+          ]
+        },
+        {
+          "attempt": 40,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 41,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "xYYYYxx"
+          ]
+        },
+        {
+          "attempt": 42,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "YxyxYXYxxYYYYxy",
+            "xYYYYxx"
+          ]
+        },
+        {
+          "attempt": 43,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "YXyyyyXXyxyXYXy",
+            "xYYYYxx"
+          ]
+        },
+        {
+          "attempt": 44,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YXyyyyXXyxyXYXy",
+            "XXyyyyX"
+          ]
+        },
+        {
+          "attempt": 45,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "YXyyyyXXyxyXYXy",
+            "XXXyyyy"
+          ]
+        },
+        {
+          "attempt": 47,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "YXyyyyXXyxyXYXy",
+            "yXXXyyy"
+          ]
+        },
+        {
+          "attempt": 48,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYXyyyyXXyxyXYXyy",
+            "yXXXyyy"
+          ]
+        },
+        {
+          "attempt": 49,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "yXXXyyy"
+          ]
+        },
+        {
+          "attempt": 50,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "xyXXXyyyX"
+          ]
+        },
+        {
+          "attempt": 51,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "YYxyxYXYxxYYYYxyy",
+            "yXXXyyy"
+          ]
+        },
+        {
+          "attempt": 52,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYYxyxYXYxxYYYYxyyy",
+            "yXXXyyy"
+          ]
+        },
+        {
+          "attempt": 53,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "YYYxyxYXYxxYYYYxxxxY",
+            "yXXXyyy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 68,
+      "cores": [
+        "yxYXYxyyyyXXX",
+        "yyyyXXX"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 594,
+          "component_seed_budget": 594,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 99,
+          "phase_pairs_considered": 99,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yxYXYxyyyyXXX",
+        "yyyyXXX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 65,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 66,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 67,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 68,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "yyyyXXX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 72,
+      "cores": [
+        "XyyxYXYxyyyyXXXYxyyyyXXX",
+        "xxxYYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 4,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2618,
+          "component_seed_budget": 2618,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 238,
+          "phase_pairs_considered": 238,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "XyyxYXYxyyyyXXXYxyyyyXXX",
+        "xxxYYYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 65,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 66,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 67,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 68,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 69,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yyxYXYxyyyyXXXY",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 70,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyyxYXYxyyyyXXXYx",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 71,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "XyyxYXYxyyyyXXXYx",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 72,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "XyyxYXYxyyyyXXXYxyyyyXXX",
+            "xxxYYYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 132,
+      "cores": [
+        "xxYYYYx",
+        "yxyXYXYXyyyyXXy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1170,
+          "component_seed_budget": 1170,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 117,
+          "phase_pairs_considered": 117,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "y",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YxxYYYYxy",
+        "yxyXYXYXyyyyXXy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 129,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 130,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxYYYYx",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 131,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxYYYYxy",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 132,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "YxxYYYYxy",
+            "yxyXYXYXyyyyXXy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "Y",
+        ""
+      ]
+    },
+    {
+      "attempt": 163,
+      "cores": [
+        "yyyXXXyyxyXYX",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 540,
+          "component_seed_budget": 540,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 90,
+          "phase_pairs_considered": 90,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Y",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "yyyyXXXyyxyXYXY",
+        "yxyxYXYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 161,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 162,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 163,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yyyyXXXyyxyXYXY",
+            "yxyxYXYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "y",
+        "y"
+      ]
+    },
+    {
+      "attempt": 170,
+      "cores": [
+        "XyyyXXXyyxyXyxyXYXY",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 1,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1560,
+          "component_seed_budget": 1560,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 156,
+          "phase_pairs_considered": 156,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "XyyyXXXyyxyXyxyXYXY",
+        "yxyxYXYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 161,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 162,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 163,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yyyyXXXyyxyXYXY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 164,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "yyyyXXXyyxyXYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 165,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "yyyyXXXyyxyXYXY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 166,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "yyyyXXXyyxyXYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 167,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "yyyXXXyyxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 168,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyyyXXXyyxyXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 169,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "XyyyXXXyyxyXY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 170,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "XyyyXXXyyxyXyxyXYXY",
+            "yxyxYXYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        "y"
+      ]
+    },
+    {
+      "attempt": 197,
+      "cores": [
+        "xxxYYYxyXYxxYYYY",
+        "xyXYxxYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1540,
+          "component_seed_budget": 1540,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 154,
+          "phase_pairs_considered": 154,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "xxxYYYxyXYxxYYYY",
+        "yxyXYxxYYYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 193,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 194,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 195,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 196,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYxxYYYY"
+          ]
+        },
+        {
+          "attempt": 197,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYxxYYYY",
+            "yxyXYxxYYYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        "y"
+      ]
+    },
+    {
+      "attempt": 200,
+      "cores": [
+        "xxYYYxyXYxxYXXyxY",
+        "yyyXXyxYX"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2028,
+          "component_seed_budget": 2028,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 169,
+          "phase_pairs_considered": 169,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "X",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xxxYYYxyXYxxYXXyxYX",
+        "yyyXXyxYX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 193,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 194,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 195,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 196,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYxxYYYY"
+          ]
+        },
+        {
+          "attempt": 197,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYxxYYYY",
+            "yxyXYxxYYYY"
+          ]
+        },
+        {
+          "attempt": 198,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYxxYYYY",
+            "yyyyXXyxYXY"
+          ]
+        },
+        {
+          "attempt": 199,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYxxYYYY",
+            "yyyXXyxYX"
+          ]
+        },
+        {
+          "attempt": 200,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYxxYXXyxYX",
+            "yyyXXyxYX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "x",
+        ""
+      ]
+    },
+    {
+      "attempt": 235,
+      "cores": [
+        "yXYxxxYYYxyxYXYxYxyXYXy",
+        "xyXYXy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 4,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1890,
+          "component_seed_budget": 1890,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 210,
+          "phase_pairs_considered": 210,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yXYxxxYYYxyxYXYxYxyXYXy",
+        "xyXYXy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 225,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 226,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "YxxxYYYxyxYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 227,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yxyXYXyyyXXXy",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 228,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "yxyXYXyyyXXXy",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 229,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "yxyXYXyyyXXXy",
+            "xyxyXYXX"
+          ]
+        },
+        {
+          "attempt": 230,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyxyXYXyyyXXXyx",
+            "xyxyXYXX"
+          ]
+        },
+        {
+          "attempt": 231,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyxyXYXyyyXXXyx",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 232,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "XYxxxYYYxyxYXYx",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 233,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "XYxxxYYYxyxYXYx",
+            "xyXYXy"
+          ]
+        },
+        {
+          "attempt": 234,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yXYxxxYYYxyxYXYxY",
+            "xyXYXy"
+          ]
+        },
+        {
+          "attempt": 235,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "yXYxxxYYYxyxYXYxYxyXYXy",
+            "xyXYXy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 296,
+      "cores": [
+        "xxxYYYY",
+        "XyxyXYYYxyyyyXXXXyy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 2,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1320,
+          "component_seed_budget": 1320,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 165,
+          "phase_pairs_considered": 165,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Xyy",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YYxxxxYYYYXyy",
+        "XyxyXYYYxyyyyXXXXyy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 289,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 290,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 291,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 292,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 293,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 294,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXy",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 295,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 296,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "YYx",
+        ""
+      ]
+    },
+    {
+      "attempt": 313,
+      "cores": [
+        "yxYXYx",
+        "XyxyXYYYxyyyyXXXXyy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1232,
+          "component_seed_budget": 1232,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 154,
+          "phase_pairs_considered": 154,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yxYXYx",
+        "XyxyXYYYxyyyyXXXXyy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 289,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 290,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 291,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 292,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 293,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 294,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXy",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 295,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 296,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        },
+        {
+          "attempt": 297,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "YYxyyyyXXXXyy",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        },
+        {
+          "attempt": 307,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YYxyyyyXXXXyy",
+            "YYxxxxYYYYXyyyxYXYx"
+          ]
+        },
+        {
+          "attempt": 308,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YYxyyyyXXXXyy",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        },
+        {
+          "attempt": 309,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YYxyyyyXXXXyy",
+            "YYxxxxYYYYXyyyxYXYx"
+          ]
+        },
+        {
+          "attempt": 311,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YYxyyyyXXXXyy",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        },
+        {
+          "attempt": 313,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "XyxyXYYYxyyyyXXXXyy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 333,
+      "cores": [
+        "XyyyxxxYYYYYxyxYXYYxyXY",
+        "yxYXYx"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2448,
+          "component_seed_budget": 2448,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 204,
+          "phase_pairs_considered": 204,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "XyyyxxxYYYYYxyxYXYYxyXY",
+        "yxYXYx"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 321,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxxxYYYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 322,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyxxxYYYYYx",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 323,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "XyxxxYYYYYx"
+          ]
+        },
+        {
+          "attempt": 324,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "yxxxYYYYY"
+          ]
+        },
+        {
+          "attempt": 325,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "yxxxYYYYYxyxYXY"
+          ]
+        },
+        {
+          "attempt": 326,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "yxxxYYYYYxyxYXY"
+          ]
+        },
+        {
+          "attempt": 327,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "yyxxxYYYYYxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 328,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "yyxxxYYYYYxyxYXYY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 329,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "yyxxxYYYYYxyxYXYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 330,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yyyxxxYYYYYxyxYXYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 331,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyyyxxxYYYYYxyxYXYYYx",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 332,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyyyxxxYYYYYxyxYXYYYx",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 333,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "XyyyxxxYYYYYxyxYXYYxyXY",
+            "yxYXYx"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 354,
+      "cores": [
+        "xyxYXY",
+        "xxxYYYYxyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 540,
+          "component_seed_budget": 540,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 90,
+          "phase_pairs_considered": 90,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xyxYXY",
+        "xxxYYYYxyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 353,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 354,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYYxyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 355,
+      "cores": [
+        "xyxYXY",
+        "xxxYYYYxyxYXYxyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 1,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1248,
+          "component_seed_budget": 1248,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 156,
+          "phase_pairs_considered": 156,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xyxYXY",
+        "xxxYYYYxyxYXYxyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 353,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 354,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYYxyxYXY"
+          ]
+        },
+        {
+          "attempt": 355,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYYxyxYXYxyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 388,
+      "cores": [
+        "YYxxxxYYYYXyyyxyXYX",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1232,
+          "component_seed_budget": 1232,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 154,
+          "phase_pairs_considered": 154,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YYxxxxYYYYXyyyxyXYX",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 385,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 386,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXy",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 387,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 388,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyyyxyXYX",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 390,
+      "cores": [
+        "YxxxxYYYYXyyyxyXYXYxyxYXY",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2380,
+          "component_seed_budget": 2380,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 238,
+          "phase_pairs_considered": 238,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YxxxxYYYYXyyyxyXYXYxyxYXY",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 385,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 386,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXy",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 387,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyy",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 388,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "YYxxxxYYYYXyyyxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 389,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXyyyxyXYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 390,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "YxxxxYYYYXyyyxyXYXYxyxYXY",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 426,
+      "cores": [
+        "yyyyXXX",
+        "xyxyXYxxYYYYXyxxxYYYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1632,
+          "component_seed_budget": 1632,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 204,
+          "phase_pairs_considered": 204,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Y",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yyyyyXXXY",
+        "xyxyXYxxYYYYXyxxxYYYYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 417,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 418,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYxxYYYY"
+          ]
+        },
+        {
+          "attempt": 419,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xyxyXYxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 420,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxyXYxxYYYYX",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 421,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xyxyXYxxYYYYX",
+            "yyyyXXX"
+          ]
+        },
+        {
+          "attempt": 422,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "xyxyXYxxYYYYX",
+            "yyyyyXXXY"
+          ]
+        },
+        {
+          "attempt": 423,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "yyyyyXXXY",
+            "xyxyXYxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 424,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "yyyyyXXXY",
+            "xxyxyXYxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 425,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "yyyyyXXXY",
+            "xyxyXYxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 426,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "yyyyyXXXY",
+            "xyxyXYxxYYYYXyxxxYYYYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "y",
+        ""
+      ]
+    },
+    {
+      "attempt": 485,
+      "cores": [
+        "yyxyXyyyXXXyXYX",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 880,
+          "component_seed_budget": 880,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 110,
+          "phase_pairs_considered": 110,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yyxyXyyyXXXyXYX",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 481,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 482,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYxYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 483,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxxxxYYYxYXYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 484,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyxyXyyyXXXXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 485,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yyxyXyyyXXXyXYX",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 491,
+      "cores": [
+        "yxyXYX",
+        "YXyyxyXyyyXXXyXyxyxYXYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2080,
+          "component_seed_budget": 2080,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 208,
+          "phase_pairs_considered": 208,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Y",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yyxyXYXY",
+        "YXyyxyXyyyXXXyXyxyxYXYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 481,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 482,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYxYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 483,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxxxxYYYxYXYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 484,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyxyXyyyXXXXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 485,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yyxyXyyyXXXyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 486,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyyxyXyyyXXXyXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 487,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "XyyxyXyyyXXXyXY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 488,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YXyyxyXyyyXXXyX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 489,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "YXyyxyXyyyXXXyX"
+          ]
+        },
+        {
+          "attempt": 490,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yyxyXYXY",
+            "YXyyxyXyyyXXXyX"
+          ]
+        },
+        {
+          "attempt": 491,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "yyxyXYXY",
+            "YXyyxyXyyyXXXyXyxyxYXYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "y",
+        ""
+      ]
+    },
+    {
+      "attempt": 551,
+      "cores": [
+        "YxxxYYY",
+        "yyxyxYXYYYxYxxxYYYX"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1980,
+          "component_seed_budget": 1980,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 165,
+          "phase_pairs_considered": 165,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "X",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xYxxxYYYX",
+        "yyxyxYXYYYxYxxxYYYX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 545,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 546,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 547,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "yyxyXYXY"
+          ]
+        },
+        {
+          "attempt": 548,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "yyyxyXYXYY"
+          ]
+        },
+        {
+          "attempt": 549,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "yyxyxYXYYY"
+          ]
+        },
+        {
+          "attempt": 550,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xYxxxYYYX",
+            "yyxyxYXYYY"
+          ]
+        },
+        {
+          "attempt": 551,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xYxxxYYYX",
+            "yyxyxYXYYYxYxxxYYYX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "x",
+        ""
+      ]
+    },
+    {
+      "attempt": 586,
+      "cores": [
+        "XXyyyyX",
+        "xyXYXyxYYYYxx"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 792,
+          "component_seed_budget": 792,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 99,
+          "phase_pairs_considered": 99,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Y",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "yXXyyyyXY",
+        "yxyXYXyxYYYYxxY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 577,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxYYYYx",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 578,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 579,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "XyyyyXX"
+          ]
+        },
+        {
+          "attempt": 580,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "XyyyyXX"
+          ]
+        },
+        {
+          "attempt": 581,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "YXyyyyXXy"
+          ]
+        },
+        {
+          "attempt": 582,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "YXyyyyXXy",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 583,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "XyyyyXX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 584,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XXyyyyX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 585,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "yXXyyyyXY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 586,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "yXXyyyyXY",
+            "yxyXYXyxYYYYxxY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "y",
+        "y"
+      ]
+    },
+    {
+      "attempt": 643,
+      "cores": [
+        "YYxxxYY",
+        "xyxYXYYYxxxYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 891,
+          "component_seed_budget": 891,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 99,
+          "phase_pairs_considered": 99,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YYxxxYY",
+        "xyxYXYYYxxxYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 641,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 642,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 643,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "YYxxxYY",
+            "xyxYXYYYxxxYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 650,
+      "cores": [
+        "yyXXXyyyxyXYXXyyyyXX",
+        "YxxxYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 2,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 2340,
+          "component_seed_budget": 2340,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 180,
+          "phase_pairs_considered": 180,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "Xy",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YxyyXXXyyyxyXYXXyyyyXXXy",
+        "YxxxYYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 641,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 642,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YYxxxYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 643,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "YYxxxYY",
+            "xyxYXYYYxxxYY"
+          ]
+        },
+        {
+          "attempt": 644,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xyxYXYYYxxxYY"
+          ]
+        },
+        {
+          "attempt": 645,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xxyxYXYYYxxxYYX"
+          ]
+        },
+        {
+          "attempt": 646,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxyxYXYYYxxxYYX",
+            "YxxxYYY"
+          ]
+        },
+        {
+          "attempt": 647,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxyxYXYYYxxxYYXy",
+            "YxxxYYY"
+          ]
+        },
+        {
+          "attempt": 648,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "YxyyXXXyyyxyXYXXy",
+            "YxxxYYY"
+          ]
+        },
+        {
+          "attempt": 650,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "YxyyXXXyyyxyXYXXyyyyXXXy",
+            "YxxxYYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "Yx",
+        ""
+      ]
+    },
+    {
+      "attempt": 681,
+      "cores": [
+        "xyxYXyyyXXyxYXY",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 5,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 880,
+          "component_seed_budget": 880,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 110,
+          "phase_pairs_considered": 110,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xyxYXyyyXXyxYXY",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 673,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 674,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 675,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 676,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 677,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "xxxYYYxyXYX"
+          ]
+        },
+        {
+          "attempt": 678,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 679,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 680,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "xyxYXyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 681,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXyyyXXyxYXY",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 682,
+      "cores": [
+        "xyxYXyyyXXyxYXYxyxYXY",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 13,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1820,
+          "component_seed_budget": 1820,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 182,
+          "phase_pairs_considered": 182,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xyxYXyyyXXyxYXYxyxYXY",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 673,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 674,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 675,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 676,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 677,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "yxyXYX",
+            "xxxYYYxyXYX"
+          ]
+        },
+        {
+          "attempt": 678,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 679,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 680,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "xyxYXyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 681,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXyyyXXyxYXY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 682,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "xyxYXyyyXXyxYXYxyxYXY",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 708,
+      "cores": [
+        "xxxYYYY",
+        "xYXYxxxxYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 2,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 486,
+          "component_seed_budget": 486,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 81,
+          "phase_pairs_considered": 81,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "xxxYYYY",
+        "yxYXYxxxxYYYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 705,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxyXYX"
+          ]
+        },
+        {
+          "attempt": 706,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "XyxyXY"
+          ]
+        },
+        {
+          "attempt": 707,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 708,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxYXYxxxxYYYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        "y"
+      ]
+    },
+    {
+      "attempt": 739,
+      "cores": [
+        "xxxYYYY",
+        "xyxYXYxxxYYYY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 594,
+          "component_seed_budget": 594,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 99,
+          "phase_pairs_considered": 99,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "X",
+        "X"
+      ],
+      "freely_reduced_pair": [
+        "xxxxYYYYX",
+        "xxyxYXYxxxYYYYX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 737,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 738,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 739,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xxyxYXYxxxYYYYX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "x",
+        "x"
+      ]
+    },
+    {
+      "attempt": 810,
+      "cores": [
+        "xYXYxy",
+        "xxxxxYYYYXYXYxy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1100,
+          "component_seed_budget": 1100,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 110,
+          "phase_pairs_considered": 110,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xYXYxy",
+        "xxxxxYYYYXYXYxy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 801,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 802,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 803,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 804,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 805,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 806,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 807,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 808,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxxxxYYYYXX",
+            "xYXYxy"
+          ]
+        },
+        {
+          "attempt": 809,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 810,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXYXYxy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 811,
+      "cores": [
+        "yyyyXXX",
+        "xxxxxYYYYXYXYxy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 605,
+          "component_seed_budget": 605,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 121,
+          "phase_pairs_considered": 121,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "XX",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xxyyyyXXXXX",
+        "xxxxxYYYYXYXYxy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 801,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 802,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 803,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 804,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 805,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 806,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "yxYXYx",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 807,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 808,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxxxxYYYYXX",
+            "xYXYxy"
+          ]
+        },
+        {
+          "attempt": 809,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 810,
+          "operation": [
+            "multiply",
+            1,
+            1
+          ],
+          "resulting_pair": [
+            "xYXYxy",
+            "xxxxxYYYYXYXYxy"
+          ]
+        },
+        {
+          "attempt": 811,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxyyyyXXXXX",
+            "xxxxxYYYYXYXYxy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "xx",
+        ""
+      ]
+    },
+    {
+      "attempt": 836,
+      "cores": [
+        "xxYYYYx",
+        "yxYXYXyyyyX"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 385,
+          "component_seed_budget": 385,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 77,
+          "phase_pairs_considered": 77,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        "X"
+      ],
+      "freely_reduced_pair": [
+        "xxYYYYx",
+        "xyxYXYXyyyyXX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 833,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 834,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xyxYXY",
+            "xxYYYYx"
+          ]
+        },
+        {
+          "attempt": 835,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxYYYYx",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 836,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "xxYYYYx",
+            "xyxYXYXyyyyXX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        "x"
+      ]
+    },
+    {
+      "attempt": 874,
+      "cores": [
+        "YxyxYXYxxxYYY",
+        "xxxYXXXyxyXYXy"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1440,
+          "component_seed_budget": 1440,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 180,
+          "phase_pairs_considered": 180,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "YxyxYXYxxxYYY",
+        "xxxYXXXyxyXYXy"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 865,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 866,
+          "operation": [
+            "conjugate",
+            0,
+            "Y"
+          ],
+          "resulting_pair": [
+            "YxxxYYY",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 867,
+          "operation": [
+            "conjugate",
+            0,
+            "y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xxyxYXYX"
+          ]
+        },
+        {
+          "attempt": 868,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 869,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 870,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "yyyyXXX",
+            "xyxYXYxxxYYYY"
+          ]
+        },
+        {
+          "attempt": 871,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "xyxYXYxxxYYYY"
+          ]
+        },
+        {
+          "attempt": 872,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "YxyxYXYxxxYYY"
+          ]
+        },
+        {
+          "attempt": 873,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "YxyxYXYxxxYYY",
+            "xxxYYYY"
+          ]
+        },
+        {
+          "attempt": 874,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "YxyxYXYxxxYYY",
+            "xxxYXXXyxyXYXy"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 898,
+      "cores": [
+        "xxxYYYYXyxyXY",
+        "yxYXYx"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 630,
+          "component_seed_budget": 630,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 90,
+          "phase_pairs_considered": 90,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "xxxYYYYXyxyXY",
+        "yxYXYx"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 897,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 898,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYYXyxyXY",
+            "yxYXYx"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 901,
+      "cores": [
+        "yxYXYxyyyyXXXyxyXYX",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 1,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1248,
+          "component_seed_budget": 1248,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 156,
+          "phase_pairs_considered": 156,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        ""
+      ],
+      "freely_reduced_pair": [
+        "yxYXYxyyyyXXXyxyXYX",
+        "xyxYXY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 897,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 898,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYYXyxyXY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 899,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 900,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 901,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXXyxyXYX",
+            "xyxYXY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        ""
+      ]
+    },
+    {
+      "attempt": 905,
+      "cores": [
+        "XyxYXYxyyyyXXyyxyXYXY",
+        "xyxYXY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 1980,
+          "component_seed_budget": 1980,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 180,
+          "phase_pairs_considered": 180,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "",
+        "Y"
+      ],
+      "freely_reduced_pair": [
+        "XyxYXYxyyyyXXyyxyXYXY",
+        "yxyxYXYY"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 897,
+          "operation": [
+            "conjugate",
+            1,
+            "X"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 898,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "xxxYYYYXyxyXY",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 899,
+          "operation": [
+            "invert",
+            0
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "yxYXYx"
+          ]
+        },
+        {
+          "attempt": 900,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 901,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXXyxyXYX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 902,
+          "operation": [
+            "multiply",
+            0,
+            1
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "xyxYXY"
+          ]
+        },
+        {
+          "attempt": 903,
+          "operation": [
+            "conjugate",
+            1,
+            "y"
+          ],
+          "resulting_pair": [
+            "yxYXYxyyyyXXX",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 904,
+          "operation": [
+            "conjugate",
+            0,
+            "X"
+          ],
+          "resulting_pair": [
+            "XyxYXYxyyyyXX",
+            "yxyxYXYY"
+          ]
+        },
+        {
+          "attempt": 905,
+          "operation": [
+            "multiply",
+            0,
+            -1
+          ],
+          "resulting_pair": [
+            "XyxYXYxyyyyXXyyxyXYXY",
+            "yxyxYXYY"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "",
+        "y"
+      ]
+    },
+    {
+      "attempt": 967,
+      "cores": [
+        "xyXYXy",
+        "xxxYYYYXYxyxY"
+      ],
+      "decision": {
+        "counters": {
+          "closed_component_assignments": 0,
+          "component_combination_budget": 0,
+          "component_combinations_considered": 0,
+          "component_seed_attempts": 630,
+          "component_seed_budget": 630,
+          "cross_cycle_collision_rejections": 0,
+          "exhaustive": true,
+          "phase_pair_budget": 90,
+          "phase_pairs_considered": 90,
+          "scheme_budget": 1,
+          "schemes_considered": 1,
+          "union_cardinality_checks": 0,
+          "union_cardinality_rejections": 0,
+          "within_cycle_collision_rejections": 0,
+          "witness_replay_failures": 0
+        },
+        "reason": null,
+        "spherical": false,
+        "support": "K4",
+        "verdict": "NOT_SPHERICAL"
+      },
+      "final_conjugators": [
+        "X",
+        "XX"
+      ],
+      "freely_reduced_pair": [
+        "xxyXYXyX",
+        "xxxxxYYYYXYxyxYXX"
+      ],
+      "from_root_trail": [
+        {
+          "attempt": 961,
+          "operation": [
+            "conjugate",
+            1,
+            "Y"
+          ],
+          "resulting_pair": [
+            "xxxYYYY",
+            "YxyxYX"
+          ]
+        },
+        {
+          "attempt": 962,
+          "operation": [
+            "conjugate",
+            0,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "YxyxYX"
+          ]
+        },
+        {
+          "attempt": 963,
+          "operation": [
+            "invert",
+            1
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xyXYXy"
+          ]
+        },
+        {
+          "attempt": 964,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxxxYYYYX",
+            "xxyXYXyX"
+          ]
+        },
+        {
+          "attempt": 965,
+          "operation": [
+            "swap"
+          ],
+          "resulting_pair": [
+            "xxyXYXyX",
+            "xxxxYYYYX"
+          ]
+        },
+        {
+          "attempt": 966,
+          "operation": [
+            "conjugate",
+            1,
+            "x"
+          ],
+          "resulting_pair": [
+            "xxyXYXyX",
+            "xxxxxYYYYXX"
+          ]
+        },
+        {
+          "attempt": 967,
+          "operation": [
+            "multiply",
+            1,
+            -1
+          ],
+          "resulting_pair": [
+            "xxyXYXyX",
+            "xxxxxYYYYXYxyxYXX"
+          ]
+        }
+      ],
+      "peel_prefixes": [
+        "x",
+        "xx"
+      ]
+    }
+  ],
+  "config": {
+    "max_attempts": 1000,
+    "max_free_length": 32,
+    "max_solver_calls": 64,
+    "min_cyclic_length": 18,
+    "operations": [
+      [
+        "invert",
+        0
+      ],
+      [
+        "invert",
+        1
+      ],
+      [
+        "swap"
+      ],
+      [
+        "multiply",
+        0,
+        1
+      ],
+      [
+        "multiply",
+        0,
+        -1
+      ],
+      [
+        "multiply",
+        1,
+        1
+      ],
+      [
+        "multiply",
+        1,
+        -1
+      ],
+      [
+        "conjugate",
+        0,
+        "x"
+      ],
+      [
+        "conjugate",
+        0,
+        "X"
+      ],
+      [
+        "conjugate",
+        0,
+        "y"
+      ],
+      [
+        "conjugate",
+        0,
+        "Y"
+      ],
+      [
+        "conjugate",
+        1,
+        "x"
+      ],
+      [
+        "conjugate",
+        1,
+        "X"
+      ],
+      [
+        "conjugate",
+        1,
+        "y"
+      ],
+      [
+        "conjugate",
+        1,
+        "Y"
+      ]
+    ],
+    "restart_interval": 32,
+    "seed": 20260905
+  },
+  "controls": [
+    {
+      "expected_spherical": true,
+      "spherical": true,
+      "status": "PASSED",
+      "support": "K4-e",
+      "verdict": "SPHERICAL",
+      "words": [
+        "X",
+        "XYXy"
+      ]
+    },
+    {
+      "expected_spherical": false,
+      "spherical": false,
+      "status": "PASSED",
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "words": [
+        "xxxYYYY",
+        "xyxYXY"
+      ]
+    }
+  ],
+  "positive_found": false,
+  "positive_validation_required": "independent neighborhood and 3-ball validation before any thickenability or AK3 claim",
+  "schema": "acsolverx.ak3.mixed-geometric-probe.v1",
+  "solver_budget_reached": false,
+  "source": [
+    "xxxYYYY",
+    "xyxYXY"
+  ],
+  "status": "bounded_probe_completed",
+  "summary": {
+    "accepted_moves": 677,
+    "attempted_moves": 1000,
+    "below_length": 211,
+    "completed_solver_calls": 37,
+    "duplicates": 429,
+    "rejected_moves": 323,
+    "restarts": 32,
+    "solver_calls": 37,
+    "unsupported": 0
+  }
+}
