@@ -428,3 +428,30 @@ def test_identity_coset_covector_has_exact_vertical_loop_counterexample():
     assert root_vertical == {("b", "E"): -1}
     assert root_final == {("", "E"): 1, ("b", "E"): -1}
     assert ("T", "E") in after_inverse_product
+
+
+def test_restored_mms02_donors_replace_q_by_inverse_x():
+    A, q, v, u = "xzYXyxZXYxyZ", "Xy", "Xyz", "zYX"
+    k = product(u, "y", "x")
+    kz = product(k, "z")
+    assert product("x", conjugate(k, q)) == product(A, conjugate(kz, v))
+
+    def replay(v_conjugator):
+        rows = [A, q, v, "t"]
+        rows[1] = conjugate(k, rows[1])
+        rows[2] = inverse(rows[2])
+        rows[2] = conjugate(v_conjugator, rows[2])
+        rows[1] = product(rows[1], rows[2])
+        rows[2] = conjugate(inverse(v_conjugator), rows[2])
+        rows[2] = inverse(rows[2])
+        assert rows[0] == A and rows[2:] == [v, "t"]
+        rows[0] = inverse(rows[0])
+        rows[1] = product(rows[1], rows[0])
+        rows[0] = inverse(rows[0])
+        assert rows[0] == A and rows[2:] == [v, "t"]
+        return tuple(rows)
+
+    assert replay(kz) == (A, "X", v, "t")
+    wrong = replay(k)
+    assert wrong != (A, "X", v, "t")
+    assert wrong[1] != "X"

@@ -2925,6 +2925,34 @@ stable-letter syllables.  No tag-rigidity or destabilization theorem is
 proved.  The gate (130), the unrestricted MMS02 bridge, stable AK(3), and
 ordinary AK(3) remain open.
 
+**Literal source normalization.** Put $k=uyx$. In $Q_A$, the identities
+$rC=x$ and $r=[u,C]$ give $x=uCu^{-1}$. Killing $v$ gives
+$C=yxYY={}^{yx}q^{-1}$, hence ${}^kq=X$. Thus the open gate (130) is
+equivalently $(X,t)\longrightarrow(B,t)$ in the same relative ambient
+group, with the target unchanged.
+
+This source normalization also has a short certificate before taking any
+quotient. Put $C_0=yxYY={}^{yx}q^{-1}$. Free reduction gives
+$C={}^{yxz}v\,C_0$, and therefore
+
+\[
+ A=xuC^{-1}u^{-1}
+   =x\,{}^kq\,{}^{kz}v^{-1},
+ \qquad
+ \boxed{x\,{}^kq=A\,{}^{kz}v.}
+\]
+
+Starting at $(A,q,v,t)$, conjugate the second row by $k$, right-multiply
+it by ${}^{kz}v^{-1}$ using the third row as a restored donor, and then
+right-multiply by $A^{-1}$ using the first row as a restored donor. The
+endpoint is exactly $(A,X,v,t)$. In particular no equality modulo a
+relation module, and no ability to donate the row being changed, enters
+this step. The [independent literal replay](../../tests/stable_ac/test_ak3_mms02_tagged_buffer.py)
+checks the identity, the elementary row operations, and a wrong-conjugator
+control. This only normalizes the source; the necessary interleaved path
+to $(A,B,v,t)$ is still absent. It neither reopens the frozen Hall--Witt
+lane nor resolves any AK(3) gate.
+
 ### 6.19. The first tagged defect module is induced without a free summand
 
 The correct linear ambient object for (130) is not $L$ alone.  Put

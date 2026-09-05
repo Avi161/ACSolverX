@@ -149,3 +149,11 @@ The initial `logs/05-09-2026.md` audit incorrectly promoted that framing
 to a separate theorem hypothesis; Sol caught it and the original source
 confirmed the correction. Read the cited theorem itself before recording
 its exact hypotheses, even when only excluding an application.
+
+### [2026-09-05] Use literal anchors for TeX proof edits
+
+[TRAP] A TeX-containing `rg` pattern failed with a repetition-quantifier
+error, and a patch against a guessed wrapped sentence did not match
+`AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`. Use `rg -F -e` for literal TeX
+searches and a read-back, unique heading as an insertion anchor; do not
+guess line wrapping in the long proof document.
