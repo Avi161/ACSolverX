@@ -91,6 +91,7 @@ from experiments.search.greedy_compact import (                         # noqa: 
     _OK, _SOLVED, _EMPTY, _NEED_CAPACITY, _insert, _slot0,
 )
 from experiments.heuristic_search.core.hfast import expand_and_score_nj  # noqa: E402
+from experiments.heuristic_search.core.hexpand import expand_and_score_h  # noqa: E402
 from experiments.heuristic_search.core.hlab import N_FEAT                # noqa: E402
 from experiments.heuristic_search.core.perf_lab.bench import load_rows   # noqa: E402
 from experiments.search.greedy_baseline import (                        # noqa: E402
@@ -162,7 +163,7 @@ def _run_chunk_rec(arena, len1, len2, depth, seg, score, heap, table, st,
         a1 = _decode_h(arena, top, 0, l1, rw)
         a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
-            expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
+            expand_and_score_h(a1, a2, cap, cyclic, seg_upto, seg_w, True, False)
 
         d1 = depth[top] + 1
         for i in range(count):

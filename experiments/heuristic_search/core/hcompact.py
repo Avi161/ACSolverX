@@ -78,6 +78,9 @@ from experiments.heuristic_search.core.hfast import (                    # noqa:
     _SEP, _feats_nj, _pack, compile_config, expand_and_score_nj,
 )
 from experiments.heuristic_search.core.hlab import N_FEAT                # noqa: E402
+from experiments.heuristic_search.core.hexpand import (                  # noqa: E402
+    expand_and_score_h,
+)
 from experiments.heuristic_search.core.hsolve import LENGTH_ONLY         # noqa: E402
 
 
@@ -524,7 +527,7 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
         a1 = _decode_h(arena, top, 0, l1, rw)
         a2 = _decode_h(arena, top, sym2, l2, rw)
         blob, offs, klens, seg_idx, sc, tots, knots, moves, count = \
-            expand_and_score_nj(a1, a2, cap, cyclic, seg_upto, seg_w, 0)
+            expand_and_score_h(a1, a2, cap, cyclic, seg_upto, seg_w, True, False)
 
         d1 = depth[top] + 1
         for i in range(count):

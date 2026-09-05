@@ -29,8 +29,20 @@ absolute path from somewhere else).
   and the candidate together: `bench.py` would report a ratio of ~1.0 for a real
   speedup and `gates.py --twin` would pass on a changed search. For kernel work
   the yardstick is `--engines frozen,candidate` and `gates.py --frozen`.
+- `frozen2/` -- the same wiring for the build the campaign runs today:
+  `hcompact_frozen2.py`, `greedy_baseline.py` and `hfast.py` verbatim at
+  `a1d1be23` (2-bit rows, the allocation-free expansion kernel, the
+  uint64-indexed hash). **Never edit these.** `bench.py --engines
+  current,candidate` and `gates.py --frozen2` measure and certify against
+  it; every ratio reported after `a1d1be23` is candidate over `current`.
 - `phase_split.py` / `PHASE_SPLIT.md` -- the per-pop phase split by replay (see
-  the file header) and its measured result on this box.
+  the file header) and its measured result on this box. `--sub` splits the
+  expansion kernel itself into its stages (pass-1 filter, raw word + reduce,
+  canonicalise, normalise + encode, blob, features + score) by the same
+  differencing method, with the pass-1 candidate counts and the cut-shift
+  duplicate criterion checked on every pop; `EXPAND_SPLIT.md` is that result
+  on `aca_47` at 300,000 pops, the measurement that ordered the expansion
+  work in `hexpand.py`.
 
 ## numba's on-disk cache and why both scripts purge it
 
