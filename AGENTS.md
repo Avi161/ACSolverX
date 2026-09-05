@@ -33,3 +33,9 @@ substitution beyond the trivial-group hypothesis of the cited theorem.
 Before promoting a word identity to stable AC, explicitly carry the
 balanced trivial-presentation hypothesis through every ambient substitution
 and generator-removal step. Free-word replay alone does not check this gate.
+
+### [2026-09-05] Multi-hunk proof-note patches
+
+[TRAP] A proof-note patch failed because its final context omitted text on
+the same line. After a context-mismatch error, recheck the literal context
+and retry only the intended hunks; do not assume earlier hunks were applied.

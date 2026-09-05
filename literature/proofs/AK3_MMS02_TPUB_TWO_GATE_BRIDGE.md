@@ -10060,6 +10060,16 @@ free-word test pins (532), the doubling images and this can-fail control.
 No broader conjugator family or depth census is opened: a constructive
 continuation must go beyond this fixed-defining-row conjugation cleanup.
 
+An explicit continuation changing the defining rows is now recorded in
+[`AK3_SQUARING_CONTINUATION_WORKING.md`](AK3_SQUARING_CONTINUATION_WORKING.md).
+Its restored-donor certificate reaches
+$(xuXV,xvXvU,uvUVUx)$, whose automorphism sends $u\mapsto v$,
+$v\mapsto uv^{-1}$ and inverts $[u,v]$ literally. The accompanying
+group-triviality calculation is not an AC trivialization: its derived
+power relations still have not been realized as donor rows. This
+continuation therefore does not contradict the preceding fixed-row audit
+or close the MMS02 bridge.
+
 ## 7. Stable-AK(3) implication and strict nonclaims
 
 The verified MMS02 corridor gives a stable equivalence between

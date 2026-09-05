@@ -1,43 +1,86 @@
-# Squaring-target continuation: working calculations only
+# Boundary-automorphism corridor and the remaining donor gap
 
-Status: no new AC or stable-AC theorem. The certified starting point is
-Section 6.88 of `AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md`. The changes of
-presentation below have not been compiled into a restored-donor transcript;
-they must not be cited as an additional verified stable-AC corridor.
+Status: the corridor from Section 6.88 of
+`AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md` to the boundary-automorphism tuple
+below now has a literal restored-donor certificate. Its trivialization
+remains open: the power-two/power-five consequences are still not licensed
+donor rows. No AK3 resolution is claimed.
 
-## Candidate coordinates
+## Certified change of presentation
 
-Preliminary substitutions through `c=t a^-2` suggest the two rows
+Write the starting rows as $R_1=taTB$, $R_2=tbTAA$, $J=AAbbAt$.
+Set $H=ttaTTAA$, $J'=AAtaaTAt$ and $L=taT$. With
+${}^g w=gwg^{-1}$, the first two literal defects are
+
+\[
+ R_2H^{-1}={}^tR_1^{-1},\qquad
+ J(J')^{-1}={}^{AA}R_1^{-1}\;{}^{AA L}R_1^{-1}.
+\]
+
+Use these products to replace the two recipients, restoring $R_1$ after
+each donor use. Neither recipient now contains $b$, so the defining
+$b$-row can be removed. Substitute $t\mapsto ca^2$; the image of $H$
+is `caacaCAACAA` and the image of $J'$ is `AAcaaCAcaa`. Conjugating
+the latter by `caa` gives the two rows
 
 ```
 ccaaCA
 caacaCAACAA
 ```
 
-where capitals denote inverses. Under `c=x, a=Xy`, literal substitution
-gives `xyXyXYx` and `yXyyXYxYYxYx`. The first, after a cyclic conjugation,
-has Magnus form `y_2 y_1 y_0^-1`. Thus the candidate base map is
+where capitals denote inverses. Under `c=x, a=Xu`, literal substitution
+and conjugation of the first row by $x$ give
+$K_*=\mathtt{xxuXuXU}$ and $H_*=\mathtt{uXuuXUxUUxUx}$.
+Adjoin $v=xux^{-1}$ with defining row $D=xuXV$, and put $E=xvXvU$.
+The literal identity
+
+\[
+ K_*E^{-1}={}^xD\;{}^{xvX}D
+\]
+
+replaces the first row using the restored $D$-donor. These defining rows
+now give the base map
 
 \[
  \phi(u)=v,\qquad \phi(v)=uv^{-1},\qquad
  \phi^{-1}(u)=vu,\qquad \phi^{-1}(v)=u.
 \]
 
-Using these coordinate identities, the second row rewrites to a height-one
-word with base coefficient `uvUVUVU`. Its next two images are `vuVUUV`
-and `uvUVU`. All these finite word calculations, both inverse-map
-compositions, and the following commutator identity were checked by free
-reduction under the short computation guard:
+Conjugate the live row by $x^2$. Its resulting word is
+$Z=\mathtt{xxuXuuXUxUUxUX}$. Its seven Magnus coordinates are
+$(2,u),(1,u),(1,u),(0,U),(1,U),(1,U),(2,U)$, with final height one.
+Let $F=\mathtt{uvUVUx}$. The exact defect $ZF^{-1}$ is the product of
+the eight donor factors in this table, in the displayed order:
+
+| donor | sign | conjugator |
+| --- | --- | --- |
+| $D$ | $+1$ | `x` |
+| $E$ | $+1$ | empty word |
+| $D$ | $+1$ | `uV` |
+| $D$ | $+1$ | `u` |
+| $D$ | $-1$ | `uvUV` |
+| $D$ | $-1$ | `uvUVV` |
+| $E$ | $-1$ | `uvUVU` |
+| $D$ | $-1$ | `uvUVUx` |
+
+Left-multiplying $Z$ by the inverse of that product gives $F$. The
+defining donors remain distinct from the live recipient and are restored.
+For $C=[u,v]$, the finite word identities also give
 
 \[
  C=[u,v],\qquad \phi(C)=C^{-1},\qquad
  \mathtt{uvUVU}=Cu^{-1}.
 \]
 
-**Missing certificate:** the preceding quotient substitutions have not yet
-been individually assigned to distinct, restored donor rows. The free-word
-checks verify the displayed coordinate calculations, not that missing AC
-transcript.
+**Certified conclusion.** The squaring target, and hence the sufficient
+target $P_T$, is stably AC-equivalent to
+$(xuXV,xvXvU,uvUVUx)$. The preceding defects, substitutions, defining-row
+expansion/removal and permutations are its proof. Every ambient step uses
+the established balanced trivial-presentation hypothesis.
+`experiments/stable_ac/mms02_boundary_automorphism_corridor_certificate.py`
+pins the transcript; the corresponding test file independently replays
+the word identities and rejects a corrupted transport factor. Rename
+$x=t$ in the rest of this note.
 
 ## Group-triviality calculation, not an AC trivialization
 
@@ -76,5 +119,5 @@ shortening relator substitutions did not reduce it. This is only a failed
 certificate attempt, not a normal-closure or conjugacy obstruction.
 
 Do not expand this note with new residual categories. A useful next advance
-must supply the missing legal transcript or directly realize a simplifying
-row replacement; group consequence manipulations alone do not close AK3.
+must directly realize a simplifying row replacement or the power-row
+argument; group consequence manipulations alone do not close AK3.
