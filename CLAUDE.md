@@ -1,0 +1,45 @@
+# ACSolverX: notes for the next session
+
+Campaign branch: `claude/ac19-leftover-solver-notebook-6yan6d` (PR #22,
+draft). Do not merge to main. Never pull on a live campaign box; the
+box-side boot script pins a SHA and restores the jsonl from S3.
+
+## Where things are
+
+- Operations, the pinned build, the u124 memory profile, lanes per box,
+  and the rules learned: `experiments/heuristic_search/core/perf_lab/RUNBOOK.md`.
+- Measurements, identity arguments, verification commands, commit table:
+  `experiments/heuristic_search/core/perf_lab/REPORT.md`.
+- Promotion recipe for any engine change: `perf_lab/README.md`, section
+  "Standard promotion recipe". Bit-identity gates against the Python
+  reference and a frozen copy of the running build, then one 300k-pop
+  bench on `aca_47`. Lab benches at 50k to 100k pops do not predict
+  campaign length.
+- Campaign results and how a solved u124 row is certified:
+  `results/heuristic_search/u124_10m/RESULTS.md`,
+  `results/heuristic_search/leftovers_5m/RESULTS.md`.
+
+## Standing constraints
+
+- The u124 heuristic is `s20_mk2` (priority L + 20 S + 2 MK). Never run
+  `RECOMMENDED`.
+- Engine is `hcompact` (2-bit rows, `hexpand.py` expansion). No new
+  solver; no silent Python fallback; `run_remote.sh` refuses to plan
+  without the engine.
+- Every engine change must leave the explored set, discovery order and
+  pop order bit-identical. No fastmath, no float32 scores, no pruning, no
+  approximate dedup. Storage and work scheduling may change; results may not.
+- Run sizes: gates at 60 rows x 1,000 and 6 rows x 30,000; decision bench
+  one 300k run; the full suite once; never re-run a passed gate on the
+  same code. A run that takes 30 minutes when 5 would answer is a bug.
+- Do not bake a cheap-SKU assumption into sizing; the reservation floor
+  and the box are separate decisions, and `plan_memory` clips to the box.
+
+## Tests
+
+`python -m pytest tests/ -q` with `PYTHONPATH=.` from the repo root (about
+7 minutes on 4 cores with fresh numba caches). Ten tests pin the checked-out
+branch name into the committed notebooks and fail by construction on any
+other branch. After editing a numba kernel, purge `__pycache__/*.nbi` and
+`*.nbc`: numba's cache is keyed on the caller's file, so an unchanged caller
+silently reloads the old kernel.

@@ -180,6 +180,34 @@ reports pass/fail. This is the project's own existing test suite; the gate
 exists so "the harness's gates pass" and "the suite the rest of the repo
 trusts passes" are checked from the same command.
 
+## Standard promotion recipe (the bar every engine change goes through)
+
+Reference: `frozen<N>/`, a verbatim copy of the build the campaign is
+running (`frozen2/` = `a1d1be23`, engine-identical to `3093592d`; after the
+`edfa8c68` roll the next round freezes `hcompact.py`, `hexpand.py`,
+`greedy_baseline.py`, `hfast.py` at that SHA the same way). Bench key
+`current`, gate flag `--frozen2` (or the next number).
+
+1. Diagnose first, at campaign length: `phase_split.py --rows aca_47
+   --budget 300000 --reps 1` (add `--sub` for the inside of the expansion
+   kernel), and on a live campaign worker `perf stat -e
+   cycles,instructions,dTLB-load-misses -p <pid> -- sleep 60`. Pick the
+   target from the split, not from a memo; a stage under 10% of a pop is
+   not a target.
+2. Identity gates per kept step, never re-run on the same code:
+   `gates.py --oracle` (60 rows at 1,000 against the Python reference) and
+   `gates.py --twin --twin-rows 6 --twin-budget 30000 --widen-lines states`
+   against the frozen build. Both must print PASS.
+3. Decision bench per step, one run: `bench.py --rows aca_47 --budget
+   300000 --reps 1 --engines current,candidate`. Keep the step at >= 1.05x;
+   the operator rolls a build only at >= 1.1x confirmed by the same run on
+   the campaign box, or at more lanes per GB.
+4. Once at the end: the full suite with numba caches purged, and one
+   breadth bench (`--budget 100000 --reps 3` on the default six rows).
+5. Report wall time next to every gate and bench; state what was not
+   verified. Lab benches at 50k to 100k pops on short rows are for breadth
+   only; they do not predict campaign length (REPORT.md section 7).
+
 ## Promotion criteria
 
 A candidate is promotable when **all three gates pass bit-identically**

@@ -289,3 +289,23 @@ tree shows the ten branch-name pins failing by construction, plus the
 rerun observer's end-to-end test, whose 2,000-pop toy row now finishes
 inside the observer's first poll; the observer samples before it polls
 since `edfa8c68`.)
+
+### On-box confirmation and roll (operator, 2026-09-05 13:20Z)
+
+Confirmation before the roll, from a worktree at `edfa8c68` on an idle core
+of the r8ib.24xlarge: `phase_split.py --rows aca_47 --budget 300000` gave
+209.8 us per pop against 941.6 on `3093592d`, a 4.49x on the Xeon 6975P-C
+(above the lab box's 2.34x), with the search statistics identical:
+44,077,944 states discovered, 331.728 candidates per pop, 146.926 inserts
+per pop, intra-pop duplicate fraction 0.350, final load factor 0.328.
+Tooling caveat on this build: the split's sub-phase timers summed to
+505.9 us with `expand` at 408 us and a negative residual, because the
+expand replay runs the unskipped reference kernel; the plain per-pop total
+is the valid figure (RUNBOOK.md rule 5).
+
+Rolled at 13:20Z: presync, boot script re-pinned to `edfa8c68`, verify
+PASS, governor admitting against 117.6 GB per row, six lanes. Four minutes
+in: aca_53 6,203, aca_54 4,781, aca_57 3,886, aca_58 3,875 pops/s at 100%
+CPU and 24 to 25 GB RSS each, against 1,000 to 1,300 at the same depth on
+`3093592d`. 53 of 124 rows complete at the roll; first row times on this
+build expected at 2,500 to 4,000 s against 12,300 to 13,800 s before.

@@ -84,7 +84,10 @@ perf_lab/`); the numbers that change are memory and speed:
   96.7 to 101.1 GB peak against 155 to 156 GB). The campaign-length work
   that followed (cut-shift skip and packed-word canonicalisation, REPORT.md
   section 8) measures 2.34x at 300k pops on aca_47 on the lab box against
-  that build, pending the operator's confirmation on the campaign box.
+  that build; confirmed on the campaign box at 4.49x (209.8 vs 941.6 us
+  per pop, identical search statistics) and rolled as `edfa8c68` on
+  2026-09-05 with 53 of 124 rows complete. Operations: `experiments/
+  heuristic_search/core/perf_lab/RUNBOOK.md`.
 
 The widen lines now print 2-bit widths ("6B -> 12B" where the archived
 log says "12B -> 24B"); the "at N states" figures, which are the search's
