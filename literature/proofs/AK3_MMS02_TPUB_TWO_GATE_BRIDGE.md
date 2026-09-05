@@ -2,6 +2,11 @@
 
 ## Status
 
+Section 6.91 identifies the common-row quotient $G_-$ literally with the
+$6_3$ knot group and transports both terminal words. This opens a geometric
+interpretation of the existing endpoint problem, not a new quotient ledger
+or a proof that either endpoint is peripheral. The bridge remains open.
+
 Latest convergence checkpoint (Section 6.90): the length-fourteen pair
 $(\mathtt{PPqpqpQ},\mathtt{PQpQPqq})$ returns to standard AK(3).
 The explicit corridor uses ordinary AC moves and ambient automorphisms;
@@ -10272,6 +10277,81 @@ through this marking reaches the known unresolved AK(3) pair, rather than
 a standard free basis. Freeze this short-target continuation as a return
 corridor. The unrestricted MMS02 bridge remains open; neither stable nor
 ordinary AK(3) has been trivialized.
+
+### 6.91. The common-row quotient is the six-three knot group
+
+The mapping-torus model (418) has a direct two-bridge identification.
+Use the exact relator from (414):
+
+\[
+R_*=\mathtt{YZYzYzYZyzyZYzYzYZYzyZyZyz}.
+\]
+
+Define mutually inverse free-basis substitutions
+
+\[
+\begin{aligned}
+\alpha:F(y,z)&\longrightarrow F(a,b),&
+\alpha(y)&=a^{-1},&\alpha(z)&=a^{-2}b^{-1},\\
+\beta:F(a,b)&\longrightarrow F(y,z),&
+\beta(a)&=y^{-1},&\beta(b)&=z^{-1}y^2.
+\end{aligned}
+\tag{544}
+\]
+
+Both compositions freely fix their two generators. This is the substitution
+$m=y^{-2}z$, followed by $a=y^{-1},b=m^{-1}$; it is not an identification
+inferred from Alexander polynomials.
+
+For $1\leq i\leq12$, put $\epsilon_i=(-1)^{\lfloor5i/13\rfloor}$.
+Their ordered values are $(+,+,-,-,-,+,+,-,-,-,+,+)$. Thus
+
+\[
+\begin{aligned}
+w&=b^{\epsilon_1}a^{\epsilon_2}\cdots
+ b^{\epsilon_{11}}a^{\epsilon_{12}}=\mathtt{baBABabABAba},\\
+\alpha(R_*)&=a w b^{-1}w^{-1}
+ =\mathtt{abaBABabABAbaBABabaBAbabAB}.
+\end{aligned}
+\tag{545}
+\]
+
+The second line is exact free reduction, without a cyclic rotation or
+conjugacy correction. In the convention of
+[Clay--Desmarais--Naylor, Section 3](https://doi.org/10.4153/CMB-2016-023-6),
+$\langle a,b\mid aw=wb\rangle$ is the two-bridge knot group for $5/13$.
+[Cooper--Long--Reid, printed page 260](https://web.math.ucsb.edu/~cooper/13.pdf)
+identify that normal form with $6_3$.
+
+**Theorem 6.86 (literal knot-group interface).** The quotient
+$G_-=F(x,y,z)/\operatorname{Ncl}(A,B)$ is isomorphic to
+$\pi_1(S^3\setminus6_3)$. Composing the certified collapse (414) with
+(544) transports the two specific endpoint elements to
+
+\[
+\alpha(U_*)=\mathtt{AABAbABabaBAbabABAbaa},\qquad
+\alpha(V_*)=\mathtt{AABabABabaBABabABAbaa}.
+\tag{546}
+\]
+
+**Proof.** The existing collapse identifies $G_-$ with
+$\langle y,z\mid R_*\rangle$. Equations (544)--(545) give an isomorphism
+of this presented group with the cited two-bridge group. Substitution in
+the two literal words (414) gives (546). $\square$
+
+The independent [word checks](../../tests/stable_ac/test_mms02_six_three_knot_interface.py)
+pin the source relator, both inverse compositions, the Schubert signs, and
+both endpoint transports. A trefoil specialization checks the source
+convention; altered signs and a wrong basis substitution are can-fail
+controls. The external knot identification is not proved by those checks.
+
+This identifies the quotient group, not a thickening of the original
+presentation complex. It does not make $U_*,V_*$ meridians or other
+peripheral elements merely because they normally generate, and it does
+not solve (413), (426), or lift a quotient path to the MMS02 triple.
+The useful next geometric question concerns these exact transported words;
+no additional finite quotient or residual category is introduced. Stable
+and ordinary AK(3) remain unresolved.
 
 ## 7. Stable-AK(3) implication and strict nonclaims
 
