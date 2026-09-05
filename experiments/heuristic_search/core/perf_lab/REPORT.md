@@ -309,3 +309,13 @@ in: aca_53 6,203, aca_54 4,781, aca_57 3,886, aca_58 3,875 pops/s at 100%
 CPU and 24 to 25 GB RSS each, against 1,000 to 1,300 at the same depth on
 `3093592d`. 53 of 124 rows complete at the roll; first row times on this
 build expected at 2,500 to 4,000 s against 12,300 to 13,800 s before.
+
+First four completed rows on `edfa8c68` (six lanes, gen 5, 10,000,000 nodes
+each, unsolved): aca_54 2,349.7 s at 89.98 GB peak, aca_58 2,525.4 s at
+90.68, aca_57 2,794.2 s at 98.45, aca_56 2,839.1 s at 100.44. Against the
+`3093592d` rows on the same box (12,320 to 13,428 s at 96.7 to 101.1 GB)
+that is 4.4x to 5.2x per row with peak RSS unchanged, matching the 300k
+split (209.8 vs 941.6 us per pop). Box aggregate about 23,000 nodes/s
+across six lanes, against about 5,400 on `3093592d` and about 3,600 on
+`5d047da5`. 59 of 124 rows complete at 2026-09-05, projected finish the
+same day, remaining cost about $15.

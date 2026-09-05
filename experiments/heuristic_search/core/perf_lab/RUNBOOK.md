@@ -85,7 +85,8 @@ few times the row length.
 | lanes on the 743 GB box | 4 | 6 | governor |
 | per-pop time, `3093592d` -> `edfa8c68` | 941.6 us | 209.8 us (4.49x) | `phase_split.py --rows aca_47 --budget 300000` on the campaign box, identical search statistics (44,077,944 states, 331.7 candidates per pop, 146.9 inserts per pop) |
 | live per-lane rate at six lanes, `edfa8c68` | 1,000 to 1,300 pops/s | 3,875 to 6,203 pops/s | four minutes after the roll |
-| 10M-row wall time | 12,300 to 13,800 s | expected 2,500 to 4,000 s (fill in from the first completed rows) | campaign records |
+| 10M-row wall time | 12,320 to 13,428 s (aca_47, 50, 49, 48) at 96.7 to 101.1 GB peak | 2,350 to 2,839 s (aca_54, 58, 57, 56) at 90.0 to 100.4 GB peak: 4.4x to 5.2x per row, peak RSS unchanged | first four completed rows on each build, same box, six lanes |
+| box aggregate | ~3,600 nodes/s on `5d047da5`, ~5,400 on `3093592d` | ~23,000 nodes/s across six lanes | campaign box |
 
 ## 5. Rules learned, stated as rules
 
