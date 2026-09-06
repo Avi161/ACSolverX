@@ -609,6 +609,42 @@ It excludes the stated primitive-fixed-coordinate certificate for the
 fixed target rows, not prior AC changes of those rows, arbitrary
 stabilized paths, the MMS02 bridge, stable AK3, or ordinary AK3.
 
+### All exact rank-two substitution factorizations
+
+The overgroup list also removes the primitive-preimage hypothesis from
+the exclusion of proper primitive-fixed-coordinate substitutions.
+Define \(\eta:F(x,y)\to F(x,y)\) by
+\(\eta(x)=A,\eta(y)=B\). The recorded basis of K shows that eta is
+an isomorphism onto K.
+
+**Corollary (endomorphism dichotomy).** If an endomorphism alpha of
+\(F(x,y)\) has both A and B in its image, then either alpha is an
+automorphism or
+\[
+\alpha=\eta\circ\beta,\qquad \beta\in\operatorname{Aut}(F(x,y)).
+\]
+In particular, if that image contains any ambient primitive element,
+only the automorphism alternative is possible.
+
+**Proof.** The image H has rank at most two and contains the noncyclic
+group K, hence has rank two. The epimorphism \(F_2\to H\cong F_2\)
+is injective by Hopficity. The terminal theorem gives H=K or H=F2.
+The latter makes alpha an automorphism; in the former case
+\(\beta=\eta^{-1}\circ\alpha\) is an automorphism. Since K has no
+ambient primitive element, the final assertion follows. \(\square\)
+
+Thus every exact proper substitution preimage of the fixed pair is
+\((\beta^{-1}(x),\beta^{-1}(y))\), already a free basis. This is a
+classification of factorizations, not a legal AC certificate for eta:
+transporting that basis to A,B by eta is precisely the missing operation,
+and its stable admissibility is not supplied by injectivity or by the
+trivial preimage presentation. In the automorphism alternative, the
+preimage is just the original AK3 pair in reversible ambient coordinates.
+In particular, the broader construction fixing a primitive coordinate
+cannot have the fixed AK3 pair as an exact endpoint through a proper
+substitution, regardless of the preimage rows. No target-row AC changes,
+higher-rank substitutions, or arbitrary stabilized paths are classified.
+
 ## 7. Internal relative conjugators cannot expose a primitive row
 
 The whole family has a uniform first barrier.  Let

@@ -324,3 +324,11 @@ but nonprimitive members of a chosen K basis do not exclude other primitive
 elements of K. Close that gap with the sign-restricted directed-cycle proof
 on the saved core, not an unbounded basis enumeration. The resulting theorem
 excludes this fixed-pair inverse-substitution criterion only, not stable AK3.
+
+### [2026-09-06] Extract the full consequence of a complete overgroup list
+
+[WORKS] For the fixed AK3 pair, H=K or F2 classifies every endomorphism
+whose image contains both rows: an automorphism or eta precomposed with
+an automorphism. A basis preimage under eta is automatic, not an AC
+certificate. Separate that algebraic factorization from legal stable
+transport; do not spend another search budget rediscovering such preimages.
