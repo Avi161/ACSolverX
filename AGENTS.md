@@ -376,3 +376,11 @@ still called conditions unresolved after Sections 6.28--6.29 settled them
 negatively. When a later theorem settles an earlier obligation, update
 the opening status with the exact later reference and retain the scope:
 failure of one detector or donor family does not settle the full bridge.
+
+### [2026-09-06] Primitive quotient images need a legal transport certificate
+
+[TRAP] At the stored compression root, the surjective endomorphism
+of the one-relator quotient sending x to x^3 makes the second row
+primitive but kills a nontrivial Britton-reduced commutator. Check
+injectivity and free-word defects before treating a quotient substitution
+as a basis change; a primitive image alone is not an AC certificate.
