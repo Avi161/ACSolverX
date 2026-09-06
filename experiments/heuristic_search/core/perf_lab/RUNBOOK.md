@@ -307,3 +307,65 @@ onto only 18 distinct minimal presentations (three of the groups landing
 on the start of another row in the same list), so the residue is a
 smaller problem than its row count suggests and a budget doubling is not
 what is binding on it.
+
+## 9. ac19_cascade_screen: the whole screen, on a small box
+
+Every other campaign in this runbook is sized by RAM. This one is not,
+and that is the only reason it exists as a separate stage: it sweeps all
+72,779 AC19 Aut-min orbits at a 501-node budget, touches hcompact only
+for an import, and reserves nothing. It is the one campaign here that a
+cheap two-to-four-core VM runs well.
+
+| quantity | value | where |
+|---|---|---|
+| rows | 72,779 orbits (all of them) | `ac19_autmin_screen/ac19_autmin_orbits.csv` |
+| budget, cap | 501 nodes, cap 255 | `hybrid_10m.PREFIX_BUDGET`, `SEARCH_CAP` |
+| search | `cascade_heuristics.search`: basis normalization, then the BS rewrite, then `s40_gen` | `experiments/search/cascade_heuristics.py` |
+| peak RSS | 0.18 GB per worker, measured | `plan` prints it |
+| worker RLIMIT_AS | 2.0 GB (an order of magnitude of headroom) | `run_ac19_cascade_screen.WORKER_RLIMIT_GB` |
+| sizing rule | `2 GB x workers + 1 GB`; 8 workers fit in 17 GB | `plan` prints it |
+
+    CAMPAIGN=ac19_cascade_screen ./experiments/search/run_remote.sh plan
+    CAMPAIGN=ac19_cascade_screen ./experiments/search/run_remote.sh smoke
+    CAMPAIGN=ac19_cascade_screen ./experiments/search/run_remote.sh run
+
+`SCREEN=1` is set by the campaign case and routes `plan`, `smoke`, `run`
+and `report` past the big-RAM planner -- which would otherwise price a
+reservation this stage never makes. Resume, chunking and the detached
+job work exactly as they do for the other campaigns.
+
+### The row list has to be rebuilt before the first run
+
+The screen list itself was never committed; only its residues were. Build
+it once, from the dataset, and let it cross-check itself against every
+shipped residue CSV before you trust it:
+
+    PYTHONPATH=. python3 -m experiments.search.make_ac19_autmin_screen --write
+
+That prints `agreement : exact on every shipped row` or dies. It is about
+6 minutes on two cores.
+
+### What comes back, and the one column that matters
+
+`cascade_heuristics`' `s40_gen` arm pushes Nielsen images into the same
+heap as AC substitutions. A path that uses one proves AC-triviality of an
+automorphic image, not of the presentation, so the runner splits them and
+`solved` counts only the first kind:
+
+| column | meaning |
+|---|---|
+| `solved` | AC-trivialized. Substitution-only, replayed through `moves_to_states`, lands on a terminal pair. |
+| `aut_assisted` | Solved only by also changing basis. Recorded, never counted as solved, never certified. |
+| `certificate_sha256` | Digest of the move sequence. The run jsonl does not carry paths (57 MB even so); `certify` regenerates and re-verifies them. |
+
+This is the same distinction `hybrid_10m.run_hybrid_10m` enforces by
+refusing a prefix solve outright. That refusal is right for its three
+pinned rows and wrong for a screen, where the prefix settles most of the
+list; here the split replaces the refusal.
+
+### What gets committed
+
+The raw run jsonl is git-ignored. What ships is what the next stage
+reads: `unsolved_cascade501.csv`, `aut_assisted_cascade501.csv`, the
+certificates file, and `RESULTS.md`. `run` writes the residues itself;
+`certify` writes the certificates on demand.

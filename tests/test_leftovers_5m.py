@@ -2656,7 +2656,13 @@ def test_the_u124_engine_generations_are_recorded_per_row():
     finished = [r for r in read_rows(U124_JSONL) if not r.get("error")]
     gens = collections.Counter(r["engine_mem_gen"] for r in finished)
     assert dict(gens) == {2: 38, 3: 5, 4: 4, 5: 77}
-    assert max(gens) == ENGINE_MEM_GEN
+    # u124 is COMPLETE and frozen: it will never gain a row under a newer
+    # profile, so the archive's newest generation only has to be no newer
+    # than the one running. gen 6 (allocation-exact explicit reservations)
+    # arrived after u124 closed, which is exactly the case the tag exists to
+    # mark -- `_seed_governor` skips every one of these 124 peaks.
+    assert max(gens) <= ENGINE_MEM_GEN
+    assert max(gens) == 5, "the u124 archive is frozen at the 2-bit profile"
     by_gen = collections.defaultdict(list)
     for r in finished:
         by_gen[r["engine_mem_gen"]].append(r["peak_rss_gb"])

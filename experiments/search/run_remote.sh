@@ -30,8 +30,24 @@ case "$CAMPAIGN" in
   # the 10M stage of AC19, per arm like the 1M and 5M stages: greedy runs
   # its own 31 unsolved-at-5M rows, s20_mk2 its own 9, each to its own jsonl
   ac19_10m) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-greedy s20_mk2} ;;
-  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m)" >&2; exit 2 ;;
+  # The screen-wide 501-node cascade pass. Nothing like the stages above: it
+  # never touches hcompact, reserves nothing, and finishes all ~72.8k orbits
+  # in about 4 core-hours under 200 MB per worker. It is the one campaign
+  # here a small, cheap box runs well -- SCREEN=1 routes every subcommand
+  # away from the big-RAM planner, which would otherwise refuse to plan.
+  ac19_cascade_screen) SCREEN=1; BUDGET=${BUDGET:-501}; MRL=${MRL:-255}
+                       ARMS=${ARMS:-cascade501} ;;
+  # The three joint 5M survivors under the 501-node prefix + S20 restart, at
+  # 10M and cap 255. This is the OPPOSITE of the screen above: cap 255 plans a
+  # 2,140,262,144-state reservation, 319 GiB per lane. On a small box
+  # plan_memory clips it by ~170x and every row dies at reservation
+  # exhaustion, so `plan` is not optional here -- read the clip line first.
+  ac19_hybrid_10m) HYBRID=1; BUDGET=${BUDGET:-10000000}; MRL=${MRL:-255}
+                   ARMS=${ARMS:-hybrid_10m} ;;
+  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m|ac19_cascade_screen|ac19_hybrid_10m)" >&2; exit 2 ;;
 esac
+SCREEN=${SCREEN:-0}
+HYBRID=${HYBRID:-0}
 MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
 OUT=${OUT:-$HOME/leftovers_5m}
@@ -61,6 +77,14 @@ setup() {
 
 plan() {
   setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen plan --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m plan --out-dir "$OUT"
+    return
+  fi
   $PY - <<'PYEOF'
 import os, multiprocessing as mp
 from experiments.search.run_leftovers_1m import est_gb, resolve_workers, _available_gb
@@ -129,7 +153,16 @@ if res is not None:
 PYEOF
 }
 
-smoke() { setup; for a in $ARMS; do
+smoke() { setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen smoke --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m smoke --out-dir "$OUT"
+    return
+  fi
+  for a in $ARMS; do
     $PY -m experiments.search.run_leftovers_5m --arm "$a" --campaign "$CAMPAIGN" \
         --smoke --out-dir "$OUT"; done; }
 
@@ -155,6 +188,17 @@ export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THRE
 # reservation exhaustion is baked into the job at write time (empty if unset).
 ${STATES_PER_NODE:+export STATES_PER_NODE=$STATES_PER_NODE}
 ${RETRY_EXHAUSTED:+export RETRY_EXHAUSTED=$RETRY_EXHAUSTED}
+# The screen pass has one arm, no reservation and no per-row memory plan,
+# so it takes the same --chunks/--chunk-index convention and nothing else.
+if [ "$SCREEN" = 1 ]; then
+  $PY -m experiments.search.run_ac19_cascade_screen run \
+      --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
+elif [ "$HYBRID" = 1 ]; then
+  # This entry point also reports and then certifies every solve by a
+  # deterministic re-run with paths captured -- the campaign records none.
+  $PY -m experiments.search.run_ac19_hybrid_10m run \
+      --workers $WORKERS --out-dir "$OUT"
+else
 for a in $ARMS; do
   # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
   # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
@@ -167,6 +211,7 @@ for a in $ARMS; do
       --budget $BUDGET --mrl $MRL --workers $WORKERS \\
       --chunks 1 --chunk-index 1 --out-dir "$OUT"
 done
+fi
 echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
 # Completion, as an ARTIFACT rather than only a cloud API call: a marker
 # file in the results dir. Anything that already ships the results (an S3
@@ -232,7 +277,16 @@ job_only() { setup; write_job; echo "$OUT/_job.sh"; }
 
 tail_log() { tail -f "$LOG"; }
 
-report() { setup; for a in $ARMS; do
+report() { setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen report --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m report --out-dir "$OUT"
+    return
+  fi
+  for a in $ARMS; do
     $PY -c "
 from experiments.search.run_leftovers_5m import report_5m
 report_5m('$a', '$OUT', chunks=1, chunk_index=1, budget=$BUDGET, mrl=$MRL,
@@ -281,7 +335,7 @@ verify() {
   return $fail
 }
 
-export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES
+export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
   install-service) install_service ;;
