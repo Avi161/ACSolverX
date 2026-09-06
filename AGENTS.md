@@ -308,3 +308,19 @@ to r. Collect X-letters by their preceding signed r-height to expose
 the exact old-donor product. This broadens the legal construction, but
 does not extend the later external-conjugator bounds beyond their
 stated conjugating family or justify a new search ledger.
+
+### [2026-09-06] Preflight transitive dependencies before bounded checks
+
+[TRAP] The inverse-substitution preflight failed before enumeration because
+`rank3_whitehead` imports `one_edge`, then `acmoves`, then unavailable NumPy.
+Use the standard-library Whitehead helpers in `mms02_terminal_hnn_certificate`
+for this small rank-two check; validate imports and controls before spending
+the single enumeration budget. Do not install a numerical stack for word reduction.
+
+### [2026-09-06] Separate basis screening from primitive containment
+
+[WORKS] The 82-quotient AK3 overgroup certificate leaves only K and F2,
+but nonprimitive members of a chosen K basis do not exclude other primitive
+elements of K. Close that gap with the sign-restricted directed-cycle proof
+on the saved core, not an unbounded basis enumeration. The resulting theorem
+excludes this fixed-pair inverse-substitution criterion only, not stable AK3.

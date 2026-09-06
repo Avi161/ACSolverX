@@ -504,6 +504,111 @@ conjugating family \(\phi_g\) and must not be transferred to arbitrary u.
 This scope clarification opens no word census, new obstruction ledger,
 or claim of stable or ordinary AK3 triviality.
 
+### A sufficient certificate for inverse use
+
+Let \(K=\langle A,B\rangle\le F(x,y)\) for the original AK3 rows,
+whose exponent matrix has determinant one. Suppose a rank-two overgroup
+\(H\ge K\) has a free basis \((p,u)\) with p primitive in the ambient
+\(F(x,y)\). Write \(A=\widehat A(p,u)\) and
+\(B=\widehat B(p,u)\). If either pulled-back row is primitive in the
+abstract free group on that basis, these data suffice for stable AK3.
+
+**Proof.** The image of \(H_{\mathrm{ab}}\) in \(\mathbb Z^2\) contains
+the two exponent vectors of A and B, hence is all of \(\mathbb Z^2\).
+The basis exponent matrix of H is therefore unimodular, and so is the
+pulled-back pair's exponent matrix. Complete the primitive pulled-back
+row to a free basis. Killing that row leaves a one-generator
+presentation whose remaining relator has exponent \(\pm1\). Thus the
+pulled-back pair is a balanced trivial presentation, independently of any
+inference from triviality of the ambient AK3 presentation. In those
+coordinates, restored-donor substitution and defining deletion also give
+a stable trivialization of this pair.
+
+Complete p to an ambient basis \((p,q)\). The q-exponent of u is
+\(\pm1\), since the inclusion matrix of H is unimodular. Invert the
+second H-basis element if needed so this exponent is one. The preceding
+stable-substitution construction, now fixing p and sending q to u,
+applies to the proved balanced trivial preimage pair and produces A,B.
+Reversing that stable equivalence proves the stated sufficient criterion.
+All basis changes and defining deletions retain their stable-AC
+interfaces; ordinary fixed-rank triviality is not asserted. \(\square\)
+
+This criterion requires both ambient and pulled-back primitivity; mere
+subgroup containment is not a certificate. A positive computational
+candidate still requires literal basis witnesses, pullback replay, and
+the resulting stable move certificates before any AK3 claim.
+
+There are finitely many rank-two overgroups to inspect as labelled core
+graphs. Indeed K is noncyclic of rank two, so it cannot lie in a proper
+free factor of a rank-two H. Such an extension is algebraic and its core
+is a principal quotient of the core of K; see
+[Kapovich–Myasnikov, Theorems 11.2–11.3](https://web.stevens.edu/algebraic/alexeim/Teaching/GroupTheory626/graph5.pdf).
+Identifying vertices and folding gives a finite graph calculation, not
+an enumeration of AC histories. Testing only a chosen tree basis of each
+H is nevertheless only a sufficient-certificate test, not a complete
+test for whether H contains an ambient primitive element.
+
+### Terminal inverse-substitution theorem for the fixed AK3 rows
+
+**Theorem (fixed-pair criterion excluded).** For
+\(K=\langle x^3y^{-4},xyxy^{-1}x^{-1}y^{-1}\rangle\), the only
+rank-two overgroups in \(F(x,y)\) are K and \(F(x,y)\). The subgroup
+K contains no ambient primitive element. Consequently no overgroup
+satisfies the preceding sufficient inverse-substitution criterion.
+
+**Finite overgroup certificate.** The single guarded pass completed at
+82 distinct principal quotients, below its 5,000-state cap. Exactly two
+have rank two: record 0 is K, with tree basis \((B^{-1},A)\), and
+record 21 is the full rose, with basis \((y^{-1},x^{-1})\).
+The [saved record](../../results/stable_ac/theory/ak3_inverse_substitution_overgroups_20260906.json)
+contains every graph, parent identification, tree basis, exact row
+preimages, and Whitehead descent. The
+[independent replay](../../tests/stable_ac/test_ak3_inverse_substitution_overgroups.py)
+checks the initial fold from the literal rows, every parent fold, all
+vertex-pair identifications for closure, and the spanning-tree rewrites.
+No rank pruning is used. Finiteness and the principal-quotient theorem
+therefore turn this completed closure into the stated overgroup list.
+The ambient minima of the K basis are 5 and 7; in the full rose the
+pulled-back row minima are 7 and 5. These numbers alone only exclude
+the chosen-basis test, not primitive containment in K.
+
+**Primitive-containment proof.** A cyclically reduced primitive word of
+\(F(x,y)\) uses at most one sign of each generator. This standard
+rank-two consequence of Cohen--Metzler--Zimmermann is stated explicitly
+in [Carette--Francaviglia--Kapovich--Martino, p. 1481](https://msp.org/agt/2012/12-3/agt-v12-n3-p09-p.pdf).
+Use the canonical vertex numbering of record 0. Its subgraph with labels
+\(x,y\) is directed acyclic, as is its inverse subgraph with labels
+\(x^{-1},y^{-1}\). The entire set of edges lying on directed cycles
+in the \(x,y^{-1}\) subgraph is exactly
+\[
+0\xrightarrow{x}1\xrightarrow{x}3\xrightarrow{x}7
+\xrightarrow{y^{-1}}9\xrightarrow{y^{-1}}6
+\xrightarrow{y^{-1}}2\xrightarrow{y^{-1}}0.
+\]
+The opposite-sign subgraph has precisely the reversed cycle. The replay
+checks these statements by directed reachability, including absence of
+extra cyclic edges, and checks an ambient rose as a can-fail control.
+
+If a nontrivial primitive p belonged to K, cyclic reduction of its based
+closed path would give a closed path at some vertex of the same core.
+The sign condition forces its label to be a cyclic rotation of
+\(A^n\) or \(A^{-n}\), with \(n\ge1\). For \(n>1\), the exponent
+vector \(\pm n(3,-4)\) is not primitive. For \(n=1\), A is
+nonprimitive: its checked Whitehead minimum is 7, not 1. Primitivity is
+invariant under conjugation and inversion, giving a contradiction.
+Thus K contains no ambient primitive element.
+
+For H=K the ambient-primitive requirement fails. For H=\(F(x,y)\)
+neither A nor B is primitive, so the pulled-back requirement fails.
+This proves the theorem. \(\square\)
+
+This closes the one-pass route without new residual categories or a
+larger search budget. It is not an obstruction to arbitrary injective
+preimages: mapping a free basis to A,B already gives such a preimage.
+It excludes the stated primitive-fixed-coordinate certificate for the
+fixed target rows, not prior AC changes of those rows, arbitrary
+stabilized paths, the MMS02 bridge, stable AK3, or ordinary AK3.
+
 ## 7. Internal relative conjugators cannot expose a primitive row
 
 The whole family has a uniform first barrier.  Let
