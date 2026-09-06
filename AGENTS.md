@@ -280,3 +280,11 @@ even when conjugators are restricted to the image of the free base.
 The preceding one-checkpoint allowance is [SUPERSEDED] by this completed
 evaluation: freeze this changed-donor route, with CD7 still unsolved.
 Do not extend to another finite group, nilpotent layer, or word census.
+
+### [2026-09-06] Check local type before invoking fake-surface complexity
+
+[TRAP] The certified 19-vertex prism endpoint has five triangles at edge
+`(0,2)` and is not a closed fake surface. A small simplicial vertex count
+is not fake-surface complexity. Check the local-type hypothesis first;
+one failed edge incidence ends this applicability audit without reopening
+the frozen deformation corridor or implying an AK3 obstruction.

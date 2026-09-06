@@ -362,3 +362,43 @@ the underlying presentation problem smaller. Close this geometric
 corridor here: neither another reduction-order sweep nor a new family
 of geometric residuals is justified by this return. The stable AK3 and
 ordinary AK3 gates remain open.
+
+## Terminal fake-surface applicability check
+
+A read-only check of the saved 19-vertex endpoint does not reopen the
+deformation corridor. Theorem 6 of
+[Fagan–Qiu–Wang, arXiv:2412.12293v2](https://arxiv.org/html/2412.12293v2#S4)
+applies to a closed contractible fake surface with connected singular
+one-skeleton and at most five true vertices. Its complexity counts
+tetrahedral-link singularities, not vertices in an arbitrary triangulation.
+
+The present endpoint fails the local fake-surface hypothesis before any
+complexity or singular-connectivity test is needed. Its edge $(0,2)$ lies
+in exactly the following five triangles:
+\[
+ (0,2,8),\quad (0,2,19),\quad (0,2,24),\quad
+ (0,2,53),\quad (0,2,91).
+\]
+At an interior point of an edge with $m$ incident triangles, the local link
+is the suspension of $m$ points. The permitted closed fake-surface links
+are a circle, a theta graph, and a subdivision of $K_4$. For $m=5$ the
+link has two branch points of valence five, so it is none of these.
+This is an intrinsic local failure, not a choice of vertex numbering or
+triangulation subdivision.
+
+The complete edge-incidence histogram is
+\[
+ \#\{e:\deg_2(e)=2,3,5,6,7,9\}=(72,1,1,2,1,1).
+\]
+It accounts for all 78 edges and 180 triangle-edge incidences. The
+[focused audit](../../tests/stable_ac/test_ak3_prism_fake_surface_applicability.py)
+reconstructs the face closure and every incidence independently from the
+saved maximal simplices. Both tests passed, including two-sheet and
+three-sheet positive local controls and a four-sheet can-fail control.
+
+Consequently this particular endpoint is not a closed fake surface, and
+the cited theorem cannot be applied directly to it. The check stops here:
+no additional moves, subdivision sweep, or complexity-reduction ledger
+is authorized by this failure. It says nothing against a different
+three-deformable representative being a suitable fake surface, and it
+does not obstruct stable AK3 or ordinary AK3.
