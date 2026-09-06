@@ -1,0 +1,7 @@
+{
+  "rewrite_s40_s20": {
+    "starter_budget": 500,
+    "rewrite_budget": 1000,
+    "intermediate_cap": 256
+  }
+}

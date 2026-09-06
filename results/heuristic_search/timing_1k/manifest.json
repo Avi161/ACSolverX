@@ -1,0 +1,48 @@
+{
+  "arms": [
+    "greedy",
+    "s20",
+    "whitehead2",
+    "aut_edges"
+  ],
+  "cap": 48,
+  "budget": 1000,
+  "repeats": 1,
+  "rows": 60,
+  "engine": "shared Python heap and parent map; optimized compiled expansion",
+  "capture": true,
+  "warmup_seconds": 0.6832204579841346,
+  "wall_timer": "time.perf_counter",
+  "cpu_timer": "time.process_time",
+  "excluded": "warmup, gc.collect before run, certificate replay, JSON output, cooldown",
+  "order": "cyclic arm rotation by row index; each arm occupies each position 15 times",
+  "cooldown": "max(0.5 seconds, previous search wall seconds)",
+  "pinning": "not available through this runner on macOS; OS schedules physical core",
+  "priority": "priority adjustment denied; inherited priority retained",
+  "python": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "numpy": "2.4.6",
+  "numba": "0.66.0",
+  "numba_threads": 1,
+  "source_snapshots": {
+    "experiments/search/heuristic_1k.py": "results/heuristic_search/timing_1k/heuristic_runner_snapshot.py"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1"
+  },
+  "sha256": {
+    "benchmark/subsets/benchmark_subset_60.json": "db550cd1e7fd874796c82740f66ef144a9b2a66e03dc98db5f86f2f90e51074d",
+    "experiments/search/time_heuristic_1k.py": "b403f2cafa36e254deed1ca063c5f5e65fe6dae7ed5b39bc450ba8008cd6aa62",
+    "experiments/search/heuristic_1k.py": "342699c3684b97dd0ed9f9a469472c49e2d52cd44776bf2e630f6d92c6d4086a",
+    "experiments/heuristic_search/core/hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "experiments/heuristic_search/core/hfast.py": "3eb8183ce1522df68d0b0e8b7b48dad8501e6d0805640538d542e31825728bc5",
+    "experiments/search/heuristics.py": "4e7644fb2ba554dd9115138462f5d4cd381dcc5830d8a472c870e2c539c5c46c",
+    "experiments/equivalence_classes/lib/words.py": "131cbc3f991e5e9862c2774c2e72b78f4d04aa531ff3f6e1aae8b2ecac9cc26b",
+    "experiments/search/greedy_baseline.py": "553626798fe802f4bcc95d41102df1e3330f88f0773b19c3c17b52fd56a6b57f"
+  }
+}

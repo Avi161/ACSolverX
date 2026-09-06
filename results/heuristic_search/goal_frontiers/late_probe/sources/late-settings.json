@@ -1,0 +1,10 @@
+{
+  "pop_s20_gen0": {
+    "normalization": "pop",
+    "generators": false
+  },
+  "pop_s20_gen1": {
+    "normalization": "pop",
+    "generators": true
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "beam1_s20_gen0": {
+    "beam": 1,
+    "generators": false
+  },
+  "beam1_s20_gen1": {
+    "beam": 1,
+    "generators": true
+  },
+  "beam4_s20_gen0": {
+    "beam": 4,
+    "generators": false
+  },
+  "beam4_s20_gen1": {
+    "beam": 4,
+    "generators": true
+  },
+  "beam16_s20_gen0": {
+    "beam": 16,
+    "generators": false
+  },
+  "beam16_s20_gen1": {
+    "beam": 16,
+    "generators": true
+  },
+  "deep_s20_gen0": {
+    "deep_ties": true,
+    "generators": false
+  },
+  "deep_s20_gen1": {
+    "deep_ties": true,
+    "generators": true
+  },
+  "pop_s20_gen0": {
+    "normalization": "pop",
+    "generators": false
+  },
+  "pop_s20_gen1": {
+    "normalization": "pop",
+    "generators": true
+  },
+  "children_s20_gen0": {
+    "normalization": "children",
+    "generators": false
+  },
+  "children_s20_gen1": {
+    "normalization": "children",
+    "generators": true
+  },
+  "children_beam4_s20": {
+    "normalization": "children",
+    "beam": 4
+  },
+  "children_beam16_s20": {
+    "normalization": "children",
+    "beam": 16
+  }
+}

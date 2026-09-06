@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "pop_s20_gen0": {
+      "normalization": "pop",
+      "generators": false
+    },
+    "pop_s20_gen1": {
+      "normalization": "pop",
+      "generators": true
+    }
+  },
+  "ids": [
+    596,
+    605,
+    622,
+    637
+  ],
+  "budget": 10000,
+  "cap": 48,
+  "source_sha256": {
+    "benchmark/subsets/benchmark_subset_60.json": "db550cd1e7fd874796c82740f66ef144a9b2a66e03dc98db5f86f2f90e51074d",
+    ".scratch/heuristic_goal/late-settings.json": "204a79f6c29c32220b711ac05ae39f20bf3663f9a1ec40ae210aca0d98d3512b",
+    "experiments/search/screen_frontiers.py": "ed455d90bfc9e2bacc97d490eab43f42aa0402f1176110715f8ceddcab0e6fb5",
+    "experiments/search/frontier_heuristics.py": "c25eb457cd8a5149ea626da1aee95734322324070d7c7f917c37321ac459a7d2",
+    "experiments/search/basis_moves.py": "d3352d1e20912a56d0b95334d660dab63e2229e26d39beb173d0e4ef4d36ba08",
+    "experiments/search/heuristic_1k.py": "720ed144d5ccfa740ec1df7273e7dfe308cc01784612face6e3573e08ed1df1e",
+    "experiments/search/greedy_baseline.py": "553626798fe802f4bcc95d41102df1e3330f88f0773b19c3c17b52fd56a6b57f",
+    "experiments/search/heuristics.py": "4e7644fb2ba554dd9115138462f5d4cd381dcc5830d8a472c870e2c539c5c46c",
+    "experiments/equivalence_classes/lib/words.py": "131cbc3f991e5e9862c2774c2e72b78f4d04aa531ff3f6e1aae8b2ecac9cc26b",
+    "experiments/heuristic_search/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/heuristic_search/core/hcompact.py": "275357b714233071db8d0a394b61ce7fc1399f120e8abc002cbf8871dd7b9e5d",
+    "experiments/heuristic_search/core/hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "experiments/heuristic_search/core/hfast.py": "3eb8183ce1522df68d0b0e8b7b48dad8501e6d0805640538d542e31825728bc5",
+    "experiments/heuristic_search/core/hlab.py": "721c3760dbc26ac5ae3c728469e684b4231093c66b9a0dd38db0289c2be5ee72",
+    "experiments/heuristic_search/core/hsolve.py": "20dc3f0d42aeab598aff11136be5c39ea6f67e6d417eee7b2618006f48f498e8"
+  },
+  "warmup_seconds": 0.254955125041306,
+  "priority": "inherited; priority adjustment denied",
+  "threads": 1,
+  "timeout": null,
+  "search_timing": "wall perf_counter and CPU process_time around search; normalization included",
+  "excluded": "warmup, explicit GC, verification, output, cooldown",
+  "execution": "serial; rotating settings per row; cooldown max(0.5s, preceding search wall)",
+  "scope": "exploratory subset60 selection; structurally different candidates may advance despite low1k count"
+}

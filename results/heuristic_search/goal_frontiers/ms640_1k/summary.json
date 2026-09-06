@@ -1,0 +1,56 @@
+{
+  "rows": 640,
+  "solved": 640,
+  "failed": 0,
+  "hybrid": {
+    "charged_nodes": {
+      "total": 22075,
+      "mean": 34.4921875,
+      "median": 13.0,
+      "minimum": 4,
+      "maximum": 404
+    },
+    "path_length": {
+      "total": 13686,
+      "mean": 21.384375,
+      "median": 10.0,
+      "minimum": 2,
+      "maximum": 260
+    },
+    "search_wall_seconds": 2.356715951114893,
+    "search_cpu_seconds": 2.3243340000000003,
+    "winners": {
+      "terminal": 0,
+      "rewrite": 254,
+      "s40_gen": 386,
+      "s20_mk2": 0,
+      "null": 0
+    }
+  },
+  "saved_greedy": {
+    "solved": 640,
+    "nodes": {
+      "total": 3176297,
+      "mean": 4962.9640625,
+      "median": 11.0,
+      "minimum": 3,
+      "maximum": 574959
+    },
+    "path_length": {
+      "total": 23533,
+      "mean": 36.7703125,
+      "median": 9.0,
+      "minimum": 2,
+      "maximum": 708
+    },
+    "historical_time_seconds": {
+      "total": 2554.674,
+      "mean": 3.991678125,
+      "median": 0.00455,
+      "minimum": 0.0006,
+      "maximum": 375.2362
+    },
+    "timing_comparability": "historical run; not same-machine matched timing"
+  },
+  "batch_elapsed_including_verification_output_and_cooldown_seconds": 6.321894667111337
+}

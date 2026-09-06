@@ -1,0 +1,58 @@
+{
+  "sources": {
+    "benchmark/subsets/benchmark_subset_60.json": "db550cd1e7fd874796c82740f66ef144a9b2a66e03dc98db5f86f2f90e51074d",
+    "results/heuristic_search/goal_frontiers/matched_10k/runs.jsonl": "5126de6a1f8af1b9a111c46cb721e7e2dfe8f9290aa38fdaf0e9807685eb94ac"
+  },
+  "count": 60,
+  "metrics": {
+    "greedy_nodes": {
+      "total": 2714651,
+      "mean": 45244.183333333334,
+      "median": 1310.5,
+      "minimum": 3,
+      "maximum": 574959
+    },
+    "hybrid_charged_nodes": {
+      "total": 6286,
+      "mean": 104.76666666666667,
+      "median": 57.0,
+      "minimum": 4,
+      "maximum": 404
+    },
+    "greedy_path": {
+      "total": 8557,
+      "mean": 142.61666666666667,
+      "median": 46.5,
+      "minimum": 2,
+      "maximum": 708
+    },
+    "hybrid_path": {
+      "total": 3650,
+      "mean": 60.833333333333336,
+      "median": 25.0,
+      "minimum": 3,
+      "maximum": 260
+    }
+  },
+  "comparisons": {
+    "nodes": {
+      "hybrid_higher": 7,
+      "equal": 2,
+      "hybrid_lower": 51
+    },
+    "path": {
+      "hybrid_higher": 6,
+      "equal": 5,
+      "hybrid_lower": 49
+    }
+  },
+  "hybrid_step_types": {
+    "automorphism": 289,
+    "substitution": 3361
+  },
+  "hybrid_winners": {
+    "rewrite": 21,
+    "s40_gen": 39
+  },
+  "fresh_greedy_solved_rows_matching_saved_nodes_and_path": 40
+}

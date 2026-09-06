@@ -1,0 +1,35 @@
+{
+  "totals": {
+    "greedy": {
+      "solved": 29,
+      "pops": 36090,
+      "wall_seconds": 5.049893504474312,
+      "cpu_seconds": 5.010288999999991,
+      "certificate_seconds": 0.007239706581458449
+    },
+    "s20": {
+      "solved": 37,
+      "pops": 28658,
+      "wall_seconds": 4.490181249333546,
+      "cpu_seconds": 4.402835000000015,
+      "certificate_seconds": 0.01213624863885343
+    },
+    "whitehead2": {
+      "solved": 42,
+      "pops": 27952,
+      "wall_seconds": 5.35763316298835,
+      "cpu_seconds": 5.290297000000011,
+      "certificate_seconds": 0.014912077691406012
+    },
+    "aut_edges": {
+      "solved": 43,
+      "pops": 18961,
+      "wall_seconds": 4.71257137414068,
+      "cpu_seconds": 4.593535000000003,
+      "certificate_seconds": 0.011919375509023666
+    }
+  },
+  "warmup_seconds": 0.6832204579841346,
+  "batch_elapsed_including_cooldown_seconds": 151.4764490001835,
+  "all_240_saved_outcome_and_pop_counts_match": true
+}

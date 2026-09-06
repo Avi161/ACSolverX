@@ -1,0 +1,30 @@
+{
+  "rows": 640,
+  "budget": 1000,
+  "threads": 1,
+  "ordinary_search_cap": 48,
+  "rewrite_intermediate_cap": 256,
+  "greedy_source": {
+    "commit": "525050dd9ed9b9e1ee06cde2d739ad05940c8172",
+    "object": "results/greedy_baseline/greedy_1000000_640_mrl24_cyc_all_07_11_26.jsonl",
+    "sha256": "458fb15f1db97fc8c9cef1ab411ef91b04e0bc237a58e970f9ca50ea82eda1ec",
+    "budget": 1000000,
+    "cap": 24
+  },
+  "search_timing": "perf_counter/process_time around cascade search only",
+  "excluded_from_search_timing": "warmup, verification, serialization, progress output, cooldown",
+  "cooldown": {
+    "every": 50,
+    "seconds": 0.25
+  },
+  "warmup_seconds": 0.2155734170228243,
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "source_sha256": {
+    "experiments/search/run_cascade_ms640.py": "5380cba0736443b8030e23f8842501832ef50f941ddf429ea9ac1b57f469945f",
+    "experiments/search/cascade_heuristics.py": "71ff7e5d0bf39e452bdaa8d77250509b3640c6a88d5466f624de33d795b8e624",
+    "experiments/search/bs_collapse.py": "04a10a8b78b8ad2fa022e124642eb133bbba92b3223759b35e7e92425b58b750",
+    "experiments/search/basis_moves.py": "d3352d1e20912a56d0b95334d660dab63e2229e26d39beb173d0e4ef4d36ba08",
+    "experiments/search/heuristic_1k.py": "720ed144d5ccfa740ec1df7273e7dfe308cc01784612face6e3573e08ed1df1e",
+    "data/ms640_solved.txt": "fbf976f78ce2ebba33e5a66940987047dff585a537a72725977b5dfcb0132a43"
+  }
+}

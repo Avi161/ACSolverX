@@ -1,0 +1,24 @@
+{
+  "pop_s20_gen0": {
+    "n": 4,
+    "solved": 2,
+    "solved_ids": [
+      596,
+      605
+    ],
+    "pops": 32814,
+    "wall_seconds": 4.705611457582563,
+    "cpu_seconds": 4.691283000000001
+  },
+  "pop_s20_gen1": {
+    "n": 4,
+    "solved": 2,
+    "solved_ids": [
+      596,
+      605
+    ],
+    "pops": 39166,
+    "wall_seconds": 4.202306000050157,
+    "cpu_seconds": 4.1851020000000005
+  }
+}
