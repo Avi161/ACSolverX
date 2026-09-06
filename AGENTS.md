@@ -246,3 +246,12 @@ fold with a strict simplex-count decrease. Its final edge collapse needs
 degree exactly two in the entire input complex, not just in the pictured
 tetrahedron. Save expansions as well as collapses and independently replay
 global cofaces; a terminal monotone reduction is not a general obstruction.
+
+### [2026-09-06] Edge contractions need the full link condition
+
+[TRAP] A common-neighbor test alone accepts every edge of a tetrahedron
+boundary, although identifying one would destroy its sphere topology.
+`AK3_PRISM_COLLAPSE_WORKING.md` requires common link edges as well as
+vertices, and gives explicit dimension-three expansions and collapses.
+Credit the classical contraction theorem; novelty of an AK3 application
+does not make its underlying local move a new theorem.

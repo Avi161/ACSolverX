@@ -191,3 +191,82 @@ closed; changing its ordering, adding seeds, or treating its terminal
 state as an obstruction is not part of the result. Further progress needs
 a new geometric argument permitting moves not covered by this strict
 reduction lemma.
+
+## Certified edge contraction
+
+Let $uv$ be an edge of a finite two-complex $L$, writing juxtaposition
+for union with the named vertices. Require, for every
+$\sigma$ disjoint from $u,v$ (including the empty face),
+\[
+ u\sigma,v\sigma\in L\quad\Longrightarrow\quad uv\sigma\in L.
+\tag{EC}
+\]
+This is the standard link condition, not merely a common-neighbor test.
+The contraction theorem is classical: see Ehrenborg--Hetyei,
+[Definition 2.2 and Theorem 2.4](https://www.ms.uky.edu/~jrge/Papers/Independence.pdf).
+Here is the explicit dimension bound needed for this certificate.
+
+Put $S=\{\sigma:u,v\notin\sigma,\ v\sigma\in L\}$. For each
+$\sigma\in S$ with $u\sigma$ absent, in increasing cardinality, expand
+by $(uv\sigma,u\sigma)$. Condition (EC) and induction supply all other
+proper faces. Next, in decreasing cardinality over all $S$, collapse
+$(uv\sigma,v\sigma)$; larger cofaces have already been removed.
+The final pair is $(uv,v)$. The endpoint is exactly the simplicial image
+of $L$ under $v\mapsto u$. Since $|\sigma|\leq2$, no intermediate
+simplex has dimension above three. This proves an explicit three-deformation,
+not just preservation of homology. The vertex count drops by one and the
+total nonempty face count strictly decreases.
+
+More precisely, the three distinct faces $u,v,uv$ have the same image,
+so a completed contraction loses at least two faces. This supplies the
+same strict complexity decrease as the two earlier move types.
+
+For the saved $(66,222,157)$ endpoint, permit one deterministic combined
+pass: first ordinary collapses, then the preceding triangle folds, then
+the lexicographically first edge satisfying (EC), always identifying its
+larger vertex with its smaller vertex. Restart this priority order after
+each completed move. The strict face decrease bounds the number of
+completed moves, independently of runtime. In particular at most 65
+contractions can occur. Record every elementary operation, not merely
+the identified edges. Independently replay the full trace and verify the
+terminal tests globally. A point would complete the geometric route;
+otherwise close this prescribed pass without a permutation or seed sweep.
+
+Preflight controls must include a contraction requiring an expansion,
+the boundary of a triangle (common vertex but missing triangle), and the
+boundary of a tetrahedron (common link edge but missing tetrahedron).
+The latter catches an implementation that checks only common neighbors.
+
+## Recorded contraction endpoint
+
+The two preflight tests passed before the single prescribed AK3 pass.
+It performed 46 contractions, three triangle folds, and three ordinary
+collapses, recording 592 elementary operations in 52 completed blocks.
+The [saved certificate](../../results/stable_ac/theory/ak3_prism_edge_contraction_20260906.json)
+ends at a two-complex with face vector
+\[
+ (19,78,60),\qquad 19-78+60=1.
+\]
+There are 157 nonempty simplices, compared with 445 at the input and 325
+in the original presentation triangulation. Thus this is also a strict
+size reduction relative to that original triangulation. The certificate
+stores every expansion and collapse, each block's operation interval,
+and the full endpoint via its maximal simplices.
+
+All eleven focused construction, control, and replay tests passed. The
+new [independent verifier](../../tests/stable_ac/test_ak3_prism_edge_contraction.py)
+reconstructs the original triangulation separately, replays all three
+saved stages, checks each contraction against independently formed links
+and its direct simplicial image, and confirms that no ordinary collapse,
+triangle fold, or link-condition edge contraction remains at the endpoint.
+
+The exact terminal theorem is now a three-deformation from the displayed
+AK3 presentation complex to this specific 19-vertex complex. The complete
+chain has 721 initial expansions, 610 prism collapses, the 97 operations
+of the first reduction, and these 592 operations. It is not a deformation
+to a point. No stable or ordinary AK3 claim follows merely from the
+smaller face vector or Euler characteristic. The prescribed combined
+monotone pass is closed; its terminal move tests do not exclude other
+three-deformations. Before extending it, identify the terminal complex's
+presentation and check whether the reduction simply returns to a known
+AK3 representative in a smaller triangulation.
