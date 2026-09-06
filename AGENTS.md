@@ -255,3 +255,11 @@ boundary, although identifying one would destroy its sphere topology.
 vertices, and gives explicit dimension-three expansions and collapses.
 Credit the classical contraction theorem; novelty of an AK3 application
 does not make its underlying local move a new theorem.
+
+### [2026-09-06] A smaller complex can return to the same AK3 presentation
+
+[WORKS] The prism corridor reaches a 19-vertex complex, but its recorded
+tree presentation and 58 defining deletions give `(a^2 B)^3 a^4, b a B a B a`.
+The basis `x=a^2 B, y=A` returns exactly to standard AK3 after one relator
+conjugation. Freeze this corridor: fewer simplices alone do not justify
+another search when the terminal presentation explicitly returns.

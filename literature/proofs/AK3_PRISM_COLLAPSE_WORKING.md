@@ -270,3 +270,95 @@ monotone pass is closed; its terminal move tests do not exclude other
 three-deformations. Before extending it, identify the terminal complex's
 presentation and check whether the reduction simply returns to a known
 AK3 representative in a smaller triangulation.
+
+## Reading the terminal presentation
+
+Choose the lexicographic spanning tree in the terminal one-skeleton,
+adding an edge exactly when it joins two different tree components.
+Its 18 edges are assigned the identity. Orient all other edges from
+smaller to larger vertex and name them in lexicographic order. The
+triangle $a<b<c$ gives the row $e_{ab}e_{bc}e_{ac}^{-1}$, omitting tree
+edges. This yields 60 generators and 60 rows. Row identifiers retain the
+sorted triangle order; no row is discarded because it is redundant or
+represents the identity in the presented group.
+
+For identification, use only the following defining-generator deletion.
+If a freely reduced row is $A g^\varepsilon B$ with exactly one occurrence
+of $g^{\pm1}$, rotate it to $g^\varepsilon BA$. For $\varepsilon=1$
+substitute $g=(BA)^{-1}$ in every other row; for $\varepsilon=-1$
+substitute $g=BA$. Delete that defining row and generator. The replacement
+contains no $g$, so the inverse presentation map adjoins exactly this
+definition. Keep empty rows and free-reduce only; do not silently apply
+cyclic normalization. Each deletion is recorded with its pivot and
+replacement for independent replay.
+
+One deterministic pass chooses the least pair (row identifier, generator
+identifier) at each step. There are at most 60 deletions. A 10,000-letter
+guard is checked before constructing a substitution that could exceed it;
+no order sweep or general relation search is authorized. The terminal
+words identify this chosen presentation through explicit defining Tietze
+moves. A group-isomorphism statement alone is not a stable-AC certificate,
+and no arbitrary insertion or deletion of a consequence is permitted.
+
+### Literal defining-row interface
+
+Normalize a defining row by conjugation and, if necessary, inversion to
+$r=gW$, where $W$ omits $g$. Write ${}^h r=hrh^{-1}$. The two identities
+\[
+ ({}^A r)^{-1}(AgB)=AW^{-1}B,
+ \qquad
+ {}^{AW}r\,(Ag^{-1}B)=AWB
+\]
+implement the positive and negative substitutions by left multiplication
+with a conjugate of the current defining row. Conjugate and invert that
+donor as necessary, multiply the recipient, then undo the donor changes.
+These are restored-donor ordinary AC macros. Repetition removes $g$ from
+every non-pivot row. Coordinates $g'=gW$ then make the pivot $g'$, with
+all other rows unchanged, permitting destabilization.
+
+The ambient-basis step is not being counted as an ordinary fixed-rank
+relator move. A stable-AC use must retain the balanced trivial-presentation
+hypothesis of the ambient-basis theorem and the geometric-to-presentation
+CW dictionary. The recorded identification below does not silently
+replace either gate by an abstract isomorphism of trivial groups.
+
+## Exact return to standard AK3
+
+The [recorded defining-generator pass](../../results/stable_ac/theory/ak3_prism_endpoint_presentation_20260906.json)
+uses 58 deletions. Its remaining generator identifiers are 53 and 58;
+call them $a,b$. Remaining row identifiers 57 and 59 are respectively
+\[
+ R=(a^2b^{-1})^3a^4,
+ \qquad S=bab^{-1}ab^{-1}a.
+\]
+Their freely reduced lengths are 13 and 6. This is not a new unresolved
+presentation: take the free basis
+\[
+ x=a^2b^{-1},\qquad y=a^{-1},
+ \qquad a=y^{-1},\quad b=x^{-1}y^{-2}.
+\]
+The displayed maps compose to the identity in both directions, without
+using any relator. Direct free substitution gives
+\[
+ R=x^3y^{-4},\qquad S=x^{-1}y^{-1}xyxy^{-1}.
+\]
+Conjugating the second row by $yx$ gives $xyxy^{-1}x^{-1}y^{-1}$.
+Thus the extracted pair returns exactly to
+\[
+ \langle x,y\mid x^3y^{-4},\ xyxy^{-1}x^{-1}y^{-1}\rangle,
+\]
+the original AK3 presentation.
+
+All six [focused checks](../../tests/stable_ac/test_ak3_prism_endpoint_presentation.py)
+passed: small topological controls, both pivot signs and retained empty
+rows, a can-fail prospective-size guard, the literal donor formulas,
+independent tree construction and replay of all 58 saved deletions, and
+the bidirectional basis maps with the exact final relator conjugation.
+
+This is a literal free-basis identification followed by a relator
+conjugation, not an inference from group triviality. The geometric
+certificates remain valid, but their smaller triangulation has not made
+the underlying presentation problem smaller. Close this geometric
+corridor here: neither another reduction-order sweep nor a new family
+of geometric residuals is justified by this return. The stable AK3 and
+ordinary AK3 gates remain open.
