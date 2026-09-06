@@ -368,3 +368,11 @@ trivialization. This gives a direct control for the interpretation of the
 AK3/MMS02 no-cyclic-complement results; a determinant-two graph control
 alone did not establish that separation. Keep graph sufficiency distinct
 from an invariant of AC orbits.
+
+### [2026-09-06] Propagate discharged gates into opening status
+
+[TRAP] The MMS02 bridge's opening summaries of Sections 6.20--6.21
+still called conditions unresolved after Sections 6.28--6.29 settled them
+negatively. When a later theorem settles an earlier obligation, update
+the opening status with the exact later reference and retain the scope:
+failure of one detector or donor family does not settle the full bridge.

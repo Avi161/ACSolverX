@@ -127,14 +127,18 @@ move or cancel that residual.
 Section 6.20 derives the elementary affine defect formulas and isolates one
 candidate covector.  It survives all vertical component conjugations and two
 universal tag-interchange loops.  Its invariance under the complete tame loop
-stabilizer is equivalent to three explicit containment laws; those laws are
-the sole remaining first-derived gate and are not yet proved.
+stabilizer is equivalent to three explicit containment laws. Section 6.28
+refutes the universal covector condition (141), so this candidate does not
+obstruct the full defect set. The full first-derived defect set and the
+tagged Peiffer gate remain open.
 
 Section 6.21 evaluates the proposed Hall--Witt shortcut.  One cyclic triple
 commutator is legally tag-donatable, but the exact cyclic exchange leaves the
 mixed term ${}^h[t,[X,r]]$.  Its triviality and donor membership are
-unevaluated, so the mechanism is frozen at that one obligation and no higher
-Hall--Witt remainder ladder is opened.
+settled negatively in Section 6.29: its image is nontrivial after killing
+the fixed/current donors $(A,v,rt)$. Thus this fixed-donor shortcut is
+closed, not pending evaluation; no higher Hall--Witt remainder ladder is
+opened, and other interleavings remain outside that conclusion.
 
 Section 6.22 returns to the raw MMS02 corridor and changes which printed row
 is omitted.  Omitting row fourteen instead of row twelve gives an exact
