@@ -261,8 +261,8 @@ which proves the sequence statement. $\square$
 exclude AK2: in $C_2*C_3$, the primitive word `xYYxYxY` equals the image
 of $b$. With the basis $A=xY$, $B=Y$, that word is $ABA^2$, conjugate
 to $BA^3$. Thus its primitivity is explicit, while $x=X$ in $C_2$
-removes the mixed-syllable distinction. This is a quotient control,
-not a claimed literal AK2 donor transcript. For the matrix test, replacing
+removes the mixed-syllable distinction. The literal transcript below now
+strengthens this quotient control. For the matrix test, replacing
 the lower-left entry of $\rho(y)$ by $+1$ fails the braid row; that
 incorrect assignment is rejected before any trace is used.
 
@@ -273,3 +273,60 @@ classification and recurrence arguments, not from a bounded enumeration.
 This closes the direct fixed-donor primitive criterion only. It does not
 obstruct paths changing both rows, any stabilized path, the MMS02 bridge,
 stable AK3, or ordinary AK3. No further exclusion family is opened here.
+
+### Literal AK2 positive control and the unsuccessful AK3 transfer
+
+Put $r_n=x^ny^{-(n+1)}$ and $b=xyxYXY$, with $n\ge2$.
+Retain $r_n$ as donor. Left-multiply the recipient $b$ successively by
+the following signed conjugates, restoring the donor after every use:
+
+| step | sign | conjugator |
+| --- | --- | --- |
+| 1 | $+1$ | $xyxYX$ |
+| 2 | $+1$ | $xY^n$ |
+| 3 | $-1$ | $xY^nx$ |
+| 4 | $+1$ | $xY^nxY$ |
+| 5 | $-1$ | $xY^nxYx^{n-1}$ |
+
+The literal intermediate recipients, in order, are
+\[
+\begin{aligned}
+ s_1&=xyxYx^{n-1}Y^{n+2},\\
+ s_2&=xY^nx^{n+1}Yx^{n-1}Y^{n+2},\\
+ s_3&=xY^nxy^nx^{n-1}Y^{n+2},\\
+ s_4&=xY^nxYx^{2n-1}Y^{n+2},\\
+ w_n&=xY^nxYx^{n-1}Y.
+\end{aligned}
+\]
+These identities follow by the respective local replacements
+$X\mapsto Xr_n$, $y\mapsto Y^nx^n$,
+$x^n\mapsto y^{n+1}$, $y^n\mapsto Yx^n$, and
+$x^n\mapsto y^{n+1}$ at the indicated prefixes. The table supplies the
+literal donor factors; it does not treat a quotient equality as a move.
+
+For $n=2$, use the free-basis notation $p=xY$, $q=Y$. Then
+$r_2=pQpqq$ and $w_2=pqpp$. Conjugating the second row by $P$ gives
+$z=qp^3$. In the free basis $(p,z)$, the first row is exactly
+\[
+ p^4z^{-1}p z p^{-3}z p^{-3}.
+\]
+Left-multiply it by ${}^{p^4}z$, then ${}^{p^5}z^{-1}$, then
+${}^{p^2}z^{-1}$, with the second row restored each time. The successive
+first rows are $p^5z p^{-3}z p^{-3}$, $p^2z p^{-3}$, and $p^{-1}$.
+Invert the first row. Right-multiply the second row by $p^{-1}$ three
+times to obtain $q$; right-multiply the first row by $q^{-1}$ to obtain
+$x$, and invert the second row to obtain $y$.
+
+Thus the transcript actually ends at $(x,y)$ using ordinary AC moves.
+The free bases above are notation for words in $x,y$, not extra ambient
+automorphism moves or stabilization. The [independent replay](../../tests/stable_ac/test_ak2_primitive_donor_transcript.py)
+checks all five factors, the restored donor, both coordinate changes,
+the final cleanup in the original generators, and a corrupted-sign control.
+
+At $n=3$, the same five legal factors instead give
+$w_3=\mathtt{xYYYxYxxY}$. This is only another representative modulo the
+retained power row. The all-conjugator fixed-donor theorem above already
+precludes its primitive completion, so the AK2 cleanup cannot be transferred
+as a fixed-donor shortcut. No larger probe or residual family is attached
+to this failed transfer. Its outcome is a fully literal positive control,
+not a shorter AK3 terminal problem or an AK3 trivialization.

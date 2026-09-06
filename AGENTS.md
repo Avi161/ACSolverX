@@ -212,3 +212,12 @@ note. The audit was already complete. Also distinguish Lisitsa's original
 preprint claim from the corrected final journal abstract, which expressly
 does not claim stable AK3. Locate authoritative paths first and check version
 status before repeating an audit or attributing an obsolete conclusion.
+
+### [2026-09-06] Replay positive controls through their final live rows
+
+[WORKS] `test_ak2_primitive_donor_transcript.py` upgrades the AK2
+quotient-only primitive control to a full ordinary AC transcript ending
+at literal `(x,y)`. The symbols `p,z` denote words in the original
+generators; they need not be charged as ambient automorphism moves.
+Keep restored-donor factors and replay cleanup in original coordinates.
+An unsuccessful transfer of this certificate to AK3 is not a new obstruction.
