@@ -340,3 +340,14 @@ axis intersection or shortest bridge. Distinct outgoing labels and overlap
 shorter than both periods certify the barbell/wedge/theta is already folded.
 Do not infer a subgroup theorem from an axis sketch without this check;
 keep initial conjugations followed by Nielsen moves separate from interleaving.
+
+### [2026-09-06] Check cyclic completion before constructing a kernel tag
+
+[WORKS] A unimodular pair completed to a generating triple has a primitive
+kernel normal generator with tag exponent one, enabling legal one-tag
+transport. The saved AK3 core has no pair identification yielding the full
+rose, so its join corank is two. Reuse this certificate rather than search
+for a nonexistent cyclic complement; do not extrapolate to two-tag legality.
+For a claimed one-generator rank bound, do not merely invoke the stable
+ambient-basis interface: transport the entire known path from a free basis
+and prefix its starting-basis Nielsen moves, keeping the rank explicit.

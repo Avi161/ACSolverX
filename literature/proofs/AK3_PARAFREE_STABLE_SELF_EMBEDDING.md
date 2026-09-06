@@ -645,6 +645,86 @@ cannot have the fixed AK3 pair as an exact endpoint through a proper
 substitution, regardless of the preimage rows. No target-row AC changes,
 higher-rank substitutions, or arbitrary stabilized paths are classified.
 
+### A cyclic complement would supply legal primitive-kernel transport
+
+The preceding factorization classification does not by itself decide
+whether eta can be realized by a primitive deletion in one higher rank.
+There is a concrete sufficient condition for such a realization.
+
+**Proposition (cyclic-complement criterion).** Let \((A,B)\) be a pair
+in \(F(a,b)\) whose exponent matrix is unimodular. If a word c satisfies
+\(\langle A,B,c\rangle=F(a,b)\), then \((A,B)\) is stably
+AC-trivial by a construction using one extra generator.
+
+**Proof.** Define the epimorphism
+\[
+f:F(x,y,t)\longrightarrow F(a,b),\qquad
+f(x)=A,\quad f(y)=B,\quad f(t)=c.
+\]
+Nielsen reduction of the generating triple supplies a free basis
+\((W,u,v)\) of the domain with
+\(\ker f=\operatorname{Ncl}(W)\). In particular W normally generates
+the entire kernel; merely finding an element in the kernel would not
+suffice. The abelianization of W generates the kernel of the integer
+matrix with columns \([A],[B],[c]\). Because its first two columns
+have determinant \(\pm1\), the t-coordinate of that kernel generator
+is \(\pm1\). Invert W if necessary to get
+\(W(1,1,t)=t\).
+
+Put \(h=x^{-1}W\). Then \(ht^{-1}\in\operatorname{Ncl}(x,y)\)
+in the free group on x,y,t. A finite normal-product expression therefore
+gives restored-donor moves
+\[
+(x,y,t)\sim_{\rm AC}(x,y,h)
+\sim_{\rm AC}(W,y,h).
+\]
+For the first step, left-donate the factors of \(ht^{-1}\) in reverse
+order, using only the first two rows and restoring them. The second
+step right-multiplies the first row by the third. No recipient row is
+used to supply its own replacement.
+
+Here the ambient basis change can be implemented without adding more
+generators. First Nielsen-adjust u,v so that \(f(u)=a,f(v)=b\);
+their original images form a free basis, so this preserves the domain
+basis \((W,u,v)\). Let theta send that basis to \((t,x,y)\), and
+let M denote the rank-three AC path just constructed. Applying theta
+to every word and conjugator in M gives a rank-three AC path from the
+free basis \((\theta(x),\theta(y),\theta(t))\) to
+\((t,\theta(y),\theta(h))\). Nielsen row moves take the standard
+free basis to that starting free basis. Concatenate these paths, then
+use the first row t as a restored donor to remove every t-letter from
+the other rows and delete t with its generator. The chosen marking
+identifies the survivors with \((B,A^{-1})\). Invert and reorder them
+to obtain \((A,B)\). Thus only one extra generator is used; no general
+assumption that an ambient automorphism is an allowed row move is
+needed. This proves stable, not ordinary unstabilized, AC-triviality.
+\(\square\)
+
+**Exact AK3 boundary.** This criterion cannot be used on the fixed
+standard AK3 rows. Their subgroup K has **join corank two**, where join
+corank is the smallest number of words that must be adjoined to generate
+the ambient free group. For a finite Stallings core with more than one
+vertex, a cyclic complement exists precisely when identifying some
+pair of distinct vertices and folding yields the full labelled rose;
+see [Delgado--Silva, Lemmas 5.3 and 5.7](https://gcc.episciences.org/6059/pdf).
+
+The saved ten-vertex core has 45 such pairs. The
+[independent saved-data test](../../tests/stable_ac/test_ak3_inverse_substitution_overgroups.py)
+checks all 45 and none gives the full rose. It also verifies the saved
+two-step identification path, records \(0\to1\to21\), which does
+give the full rose. Equivalently, the lower bound is two and adjoining
+the ambient generators always gives the upper bound two. A control
+subgroup \(\langle x,y^2\rangle\) succeeds after one identification.
+These checks use the existing certificate; no overgroup enumeration or
+complement-word search is rerun.
+
+Thus no word c makes \((A,B,c)\) a generating triple of \(F_2\).
+This closes the cyclic-complement criterion at the fixed pair. Two
+complement words do not automatically supply legal simultaneous tag
+replacements, and no such extension is asserted. Changing the target
+rows, the unrestricted MMS02 bridge, and stable or ordinary AK3 remain
+outside this conclusion; no further complement ledger is opened.
+
 ## 7. Internal relative conjugators cannot expose a primitive row
 
 The whole family has a uniform first barrier.  Let

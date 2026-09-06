@@ -200,3 +200,26 @@ def test_saved_initial_graph_sign_restricted_cycles():
     wedge = {(0, label, 0) for label in (-2, -1, 1, 2)}
     assert cyclic_edges(wedge, (1, 2)) == {(0, 1, 0), (0, 2, 0)}
     assert topological_remainder(wedge, (1, 2)) == {0}
+
+
+def test_saved_initial_graph_needs_two_pair_merges_to_reach_full_rose():
+    path = Path(__file__).resolve().parents[2] / "results/stable_ac/theory/ak3_inverse_substitution_overgroups_20260906.json"
+    artifact = json.loads(path.read_text(encoding="utf-8"))
+    records = artifact["records"]
+    initial = tuple(tuple(edge) for edge in records[0]["graph"])
+    full_rose = ((0, -2, 0), (0, -1, 0), (0, 1, 0), (0, 2, 0))
+    vertices = sorted({vertex for source, _, target in initial for vertex in (source, target)})
+    pairs = tuple(combinations(vertices, 2))
+    assert len(vertices) == 10 and len(pairs) == 45
+    assert all(independent_merge(initial, pair) != full_rose for pair in pairs)
+    first = records[1]
+    final = records[21]
+    first_graph = tuple(tuple(edge) for edge in first["graph"])
+    assert first["parent"] == 0
+    assert independent_merge(initial, first["merged_pair"]) == first_graph
+    assert final["parent"] == 1 and final["full_group"]
+    assert tuple(tuple(edge) for edge in final["graph"]) == full_rose
+    assert independent_merge(first_graph, final["merged_pair"]) == full_rose
+    control = initial_graph(((1,), (2, 2)))
+    control_vertices = sorted({vertex for source, _, target in control for vertex in (source, target)})
+    assert any(independent_merge(control, pair) == full_rose for pair in combinations(control_vertices, 2))
