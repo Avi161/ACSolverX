@@ -355,3 +355,94 @@ endpoint and distinguishes the actual donor from the AK2 coordinate word.
 Freeze this full-transcript transfer without scaling it or attaching a new
 residual category. Its failure to simplify is not an obstruction to other
 both-row paths or to AK3.
+
+## 7. Initial conjugations followed by arbitrary Nielsen row moves
+
+This section concerns the **standard** rows
+\(A_3=x^3y^{-4}=\mathtt{xxxYYYY}\) and
+\(B_3=xyxy^{-1}x^{-1}y^{-1}=\mathtt{xyxYXY}\), not the
+compression-root words of Section 1. Capital letters denote inverses.
+
+**Theorem 7.1.** For every \(g\in F(x,y)\), the subgroup
+\[
+K_g=\langle A_3,gB_3g^{-1}\rangle
+\]
+contains no primitive element of the ambient free group. Consequently,
+independently conjugating the two standard rows and then applying an
+arbitrary finite sequence of Nielsen row operations cannot expose a
+primitive row or reach a free basis.
+
+**Proof.** Use the labelled Cayley tree. Every consecutive triple on the
+axis of \(B_3\), in either orientation, alternates generator names.
+No consecutive triple on the axis of \(A_3\) alternates generator names:
+its cyclic runs have lengths three and four. Thus the axes of \(A_3\)
+and \(gB_3g^{-1}\) have intersection length at most two.
+
+If the axes are disjoint, join them by their shortest bridge and quotient
+each axis by its own period. The result is a labelled barbell. If they
+intersect, use their maximal intersection segment and quotient by the
+two periods, obtaining a wedge or theta graph. These graphs are already
+immersed: at the attachment endpoints, the shortest-bridge property or
+maximality of the intersection gives distinct outgoing labels. Moreover,
+the intersection is shorter than both periods, six and seven, so it
+identifies only proper embedded arcs of the two circles. There are no
+further folds or forced vertex identifications. The graph has rank two,
+and its two period loops generate a subgroup conjugate to \(K_g\).
+It therefore represents the core relevant to cyclic words of \(K_g\).
+
+By the rank-two primitive classification used in Lemma 3.1, a cyclically
+reduced primitive word uses at most one sign of each generator. Call
+such a word sign-coherent. This necessary condition is also stated
+explicitly in
+[Carette--Francaviglia--Kapovich--Martino, p. 1481](https://msp.org/agt/2012/12-3/agt-v12-n3-p09-p.pdf).
+For any choice of signs, retain only graph edges labelled with those
+signs. Every nonempty closed walk in this directed graph decomposes into
+directed simple cycles.
+
+In a barbell a closed walk using the bridge traverses a bridge edge in
+both directions, so cannot be sign-coherent. In a wedge the only simple
+cycles are the two period circles. In a theta graph there is additionally
+the mixed simple cycle, made from the complementary arcs of those
+circles after deleting their common segment of length at most two.
+Neither orientation of this mixed cycle is sign-coherent:
+
+- Deleting at most two consecutive cyclic letters from either orientation
+  of \(A_3\) leaves both x and Y, or both X and y, respectively. These
+  determine the only possible sign choice for the mixed cycle.
+- In \(B_3\), the letters offending the choice \(\{x,Y\}\) are y and X,
+  three positions apart cyclically. A segment of length at most two
+  cannot remove both. In \(B_3^{-1}\) there are four offending letters,
+  also too many to remove. Inverting both words gives the other choice
+  \(\{X,y\}\).
+
+The \(B_3\)-circle itself is not sign-coherent. Hence in each signed
+subgraph the only possible directed simple cycle is the appropriately
+oriented \(A_3\)-circle. Every nonempty sign-coherent closed walk is
+therefore a cyclic rotation of \(A_3^n\) or \(A_3^{-n}\), \(n\ge1\).
+This also treats a word of \(K_g\) which is not initially cyclically
+reduced: cyclic reduction moves the basepoint of its loop within the
+core and leaves a nonempty closed path there.
+
+For \(n>1\), the exponent vector \(\pm n(3,-4)\) is not primitive.
+For \(n=1\), \(A_3\) is nonprimitive because
+\(F(x,y)/\operatorname{Ncl}(A_3)\) surjects onto the nonabelian free
+product \(C_3*C_4\), whereas quotienting by a primitive element would
+give an infinite cyclic group. Primitivity is preserved by conjugation
+and inversion. This proves the subgroup assertion.
+
+Two independent initial conjugations reduce to the displayed form by
+a common conjugation. Nielsen row operations preserve the generated
+subgroup: these are row inversions, permutations, and multiplication by
+another row or its inverse. The asserted consequence follows. \(\square\)
+
+The three [focused finite-word checks](../../tests/stable_ac/test_ak3_conjugation_nielsen_axis_barrier.py)
+verify the overlap and short-deletion facts, with can-fail controls.
+They enumerate no conjugator words or AC histories; the immersed-core
+argument supplies the all-conjugator conclusion.
+
+This is a completed two-block theorem, not a new residual ledger. It
+does not cover Nielsen changes before the independent conjugations,
+interleaving further independent conjugations with row multiplications,
+or stabilization. Those change the subgroup or the ambient rank to
+which the argument applies. The MMS02 bridge, stable AK3, and ordinary
+AK3 remain open.

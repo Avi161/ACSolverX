@@ -332,3 +332,11 @@ whose image contains both rows: an automorphism or eta precomposed with
 an automorphism. A basis preimage under eta is automatic, not an AC
 certificate. Separate that algebraic factorization from legal stable
 transport; do not spend another search budget rediscovering such preimages.
+
+### [2026-09-06] Prove immersion before using an axis picture as a core
+
+[WORKS] The standard AK3 conjugation--Nielsen barrier uses a maximal
+axis intersection or shortest bridge. Distinct outgoing labels and overlap
+shorter than both periods certify the barbell/wedge/theta is already folded.
+Do not infer a subgroup theorem from an axis sketch without this check;
+keep initial conjugations followed by Nielsen moves separate from interleaving.
