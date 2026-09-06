@@ -352,3 +352,48 @@ def test_an_unknown_arm_is_refused_at_both_layers():
         screen.search_row(("xyX", "yyx"), "s20_mk2")
     with pytest.raises(SystemExit, match="unknown arm"):
         screen.run("/o", arm="s20_mk2", log=lambda _: None)
+
+
+def test_the_ladder_feeds_each_rung_the_rung_belows_leftovers(monkeypatch, tmp_path):
+    """A rung must run the residue, not the screen again. Running every rung
+    over all 72,779 rows would cost four screens and change no answer."""
+    seen = []
+
+    def fake_run(out_dir, *, arm, budget, rows_csv, workers, chunks,
+                 chunk_index, log):
+        seen.append((budget, rows_csv))
+
+    counts = iter([{"rows": 100, "ac": 90, "aut_assisted": 0, "unsolved": 10},
+                   {"rows": 10, "ac": 8, "aut_assisted": 0, "unsolved": 2},
+                   {"rows": 2, "ac": 2, "aut_assisted": 0, "unsolved": 0}])
+    monkeypatch.setattr(screen, "run", fake_run)
+    monkeypatch.setattr(screen, "report", lambda *a, **k: next(counts))
+    monkeypatch.setattr(screen, "residues",
+                        lambda *a, **k: [f"resid_b{k['budget']}.csv", "aut.csv"])
+
+    got = screen.ladder(str(tmp_path), arm="ac501", rungs=(501, 1000, 10_000),
+                        log=lambda _: None)
+    assert seen == [(501, None), (1000, "resid_b501.csv"),
+                    (10_000, "resid_b1000.csv")]
+    assert [r["budget"] for r in got] == [501, 1000, 10_000]
+
+
+def test_the_ladder_stops_as_soon_as_nothing_is_left(monkeypatch, tmp_path):
+    seen = []
+    monkeypatch.setattr(screen, "run",
+                        lambda out_dir, **k: seen.append(k["budget"]))
+    monkeypatch.setattr(screen, "report", lambda *a, **k: {
+        "rows": 5, "ac": 5, "aut_assisted": 0, "unsolved": 0})
+    monkeypatch.setattr(screen, "residues", lambda *a, **k: ["u.csv", "a.csv"])
+    screen.ladder(str(tmp_path), rungs=(501, 1000, 10_000, 100_000),
+                  log=lambda _: None)
+    assert seen == [501], "a finished ladder must not run the rungs above it"
+
+
+def test_the_ladder_stops_where_the_cheap_pass_stops():
+    assert screen.LADDER[0] == PREFIX_BUDGET == 501
+    assert screen.LADDER[-1] == screen.MAX_BUDGET == 100_000
+    # cascade_heuristics refuses anything past this, and past it the
+    # hcompact campaigns are the right tool anyway
+    with pytest.raises(ValueError, match="outside 1..100000"):
+        screen.search_row(("xyX", "yyx"), "ac501", 100_001)

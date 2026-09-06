@@ -490,6 +490,41 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
     return written
 
 
+def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
+           chunks=1, chunk_index=1, log=print):
+    """Walk the budget ladder, each rung over the rung below's leftovers.
+
+    This is the shape the campaign actually wants: almost every orbit falls
+    at 501 nodes, a thin tail needs 1k to 100k, and what survives 100,000 is
+    the short list worth a big-RAM box at 1M and beyond. Running every rung
+    over the whole screen instead would multiply the cost by the number of
+    rungs and change no answer -- a search at budget B is the first B pops of
+    any longer search, so a row solved at 501 is solved at 100,000.
+    """
+    previous, summary = None, []
+    for budget in rungs:
+        log(f"\n=== rung: {budget:,} nodes ===")
+        run(out_dir, arm=arm, budget=budget, rows_csv=previous,
+            workers=workers, chunks=chunks, chunk_index=chunk_index, log=log)
+        got = report(out_dir, arm=arm, budget=budget, chunks=chunks,
+                     chunk_index=chunk_index, log=log)
+        written = residues(out_dir, arm=arm, budget=budget, chunks=chunks,
+                           chunk_index=chunk_index, log=log)
+        summary.append(dict(got, budget=budget))
+        previous = written[0]                       # the unsolved list
+        if got["unsolved"] == 0:
+            log(f"  nothing left after {budget:,} nodes; ladder ends here")
+            break
+    log("\n=== ladder ===")
+    log(f"  {'budget':>9}  {'in':>7}  {'AC':>7}  {'aut':>7}  {'left':>7}")
+    for row in summary:
+        log(f"  {row['budget']:>9,}  {row['rows']:>7,}  {row['ac']:>7,}  "
+            f"{row['aut_assisted']:>7,}  {row['unsolved']:>7,}")
+    log(f"\n  {summary[-1]['unsolved']:,} rows survive {rungs[-1]:,} nodes. "
+        "Those are the ones a big-RAM box runs at 1M and beyond.")
+    return summary
+
+
 def _all_records(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET):
     paths = ([out_path(out_dir, chunks, i, arm, budget)
               for i in range(1, (chunks or 1) + 1)]
@@ -507,7 +542,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=("plan", "smoke", "run", "report",
-                                       "certify", "residues"))
+                                       "certify", "residues", "ladder"))
     ap.add_argument("--out-dir", default=DEFAULT_OUT)
     ap.add_argument("--arm", default=ARM, choices=ARMS)
     ap.add_argument("--budget", type=int, default=PREFIX_BUDGET,
@@ -531,6 +566,9 @@ def main(argv=None):
             limit=args.limit or 25, resume=False)
         report(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
                chunks=1, chunk_index=1)
+    elif args.command == "ladder":
+        ladder(args.out_dir, arm=args.arm, workers=args.workers,
+               chunks=args.chunks, chunk_index=args.chunk_index)
     elif args.command == "run":
         run(args.out_dir, arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=args.workers, chunks=args.chunks,

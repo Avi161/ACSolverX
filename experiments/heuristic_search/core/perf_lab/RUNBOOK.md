@@ -363,6 +363,22 @@ refusing a prefix solve outright. That refusal is right for its three
 pinned rows and wrong for a screen, where the prefix settles most of the
 list; here the split replaces the refusal.
 
+### The ladder, and where this stage hands off
+
+Almost every orbit falls at 501 nodes; a thin tail wants more. Rather
+than re-running the whole screen at each budget, `ladder` runs rung N+1
+over rung N's `unsolved_*` CSV. That is sound because a search at budget
+B is exactly the first B pops of any longer search, so a row solved at
+501 stays solved at 100,000 and never needs re-running.
+
+    PYTHONPATH=. python3 -m experiments.search.run_ac19_cascade_screen         ladder --arm ac501 --workers 3
+
+Rungs are 501 -> 1,000 -> 10,000 -> 100,000. It stops at 100,000 because
+`cascade_heuristics.search` refuses more and because past that point this
+stage is no longer the cheap one: what survives 100,000 nodes is the
+short list for the big-RAM campaigns (`ac19` at 1M/5M, `ac19_10m`,
+`ac19_hybrid_10m`), which are sized by reservation, not by wall clock.
+
 ### What gets committed
 
 The raw run jsonl is git-ignored. What ships is what the next stage
