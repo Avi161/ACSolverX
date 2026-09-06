@@ -42,6 +42,12 @@ not prove ordinary AK(3), because the verified MMS02 corridor uses the
 rank-changing Tietze/AC4--AC5 passage between the rank-three triple and
 AK(3).
 
+The separate [cyclic-complement check](AK3_PARAFREE_STABLE_SELF_EMBEDDING.md#the-same-criterion-on-the-literal-mms02-triple)
+is complete: no single word adjoined to the literal three rows generates
+the ambient free group. Thus the constructive primitive-kernel transport
+criterion does not apply to this exact triple. This is not an invariant
+of paths changing the rows and does not obstruct the unrestricted bridge.
+
 Section 6 proves that quotient reachability for the unrestricted path is
 automatic: after killing $A,B$, any two normal generators become
 AC-equivalent once one identity row is retained.  Thus further

@@ -351,3 +351,12 @@ for a nonexistent cyclic complement; do not extrapolate to two-tag legality.
 For a claimed one-generator rank bound, do not merely invoke the stable
 ambient-basis interface: transport the entire known path from a free basis
 and prefix its starting-basis Nielsen moves, keeping the rank explicit.
+
+### [2026-09-06] Preserve the preflight launch form
+
+[TRAP] Directly launching a test file placed its directory on sys.path
+and failed with `ModuleNotFoundError: No module named 'experiments'`
+before the MMS02 pair-fold recorder ran. Keep the successful guarded
+`python -c` / `runpy.run_path` launch form from preflight; do not change
+entry-point semantics for the full pass. No enumeration budget was spent
+by that failed import.

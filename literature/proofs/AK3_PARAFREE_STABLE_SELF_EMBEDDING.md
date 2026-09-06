@@ -725,6 +725,47 @@ replacements, and no such extension is asserted. Changing the target
 rows, the unrestricted MMS02 bridge, and stable or ordinary AK3 remain
 outside this conclusion; no further complement ledger is opened.
 
+### The same criterion on the literal MMS02 triple
+
+The cyclic-complement proposition extends to an n-tuple with unimodular
+exponent matrix in \(F_n\). A completing word gives an epimorphism
+\(F_{n+1}\to F_n\) with a primitive kernel normal generator W.
+The unimodular n-column minor again makes its extra-generator exponent
+\(\pm1\). Set \(h=x_1^{-1}W\) and use the n original basis rows
+as restored donors. The same transported-path argument stays at rank
+\(n+1\); deleting W leaves \((R_2,\ldots,R_n,R_1^{-1})\).
+Thus a cyclic complement would also provide a one-stabilization
+certificate for the literal MMS02 triple.
+
+That positive criterion was checked once on the pinned words
+\[
+T_{\rm pub}=(\mathtt{xzYXyxZXYxyZ},
+\mathtt{XyxZXYXyxzXYxy},\mathtt{Xyz}).
+\]
+Their exponent matrix has determinant one. The folded subgroup core has
+25 vertices and 27 unoriented edges, hence rank three. None of its
+\(\binom{25}{2}=300\) distinct vertex-pair identifications folds to
+the full three-petal rose. By the same Delgado--Silva criterion, there
+is **no** word c such that
+\(\langle T_{\rm pub},c\rangle=F(x,y,z)\).
+
+The [saved finite certificate](../../results/stable_ac/theory/mms02_tpub_cyclic_complement_20260906.json)
+contains the literal words, initial core, and every pair-fold result.
+The [independent replay](../../tests/stable_ac/test_mms02_tpub_cyclic_complement.py)
+checks the literal input against the existing MMS02 source, reconstructs
+the initial fold with the separate union-find implementation, and
+recomputes all 300 pair folds independently of the set-partition
+recorder. It also checks a full-rose control and the cyclic-complement
+control \(\langle x,y,z^2\rangle\); the latter has determinant two,
+so it tests the graph criterion, not the unimodular transport theorem.
+
+This rules out only one-word completion of this exact triple. Its join
+corank is at least two; no exact higher corank is asserted here. The
+recording pass and its verification are complete, with no AC-history
+search and no additional complement family opened. A path changing the
+MMS02 rows may change this property. The unrestricted bridge, stable
+AK3, and ordinary AK3 remain open.
+
 ## 7. Internal relative conjugators cannot expose a primitive row
 
 The whole family has a uniform first barrier.  Let
