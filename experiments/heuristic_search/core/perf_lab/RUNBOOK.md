@@ -385,3 +385,56 @@ The raw run jsonl is git-ignored. What ships is what the next stage
 reads: `unsolved_cascade501.csv`, `aut_assisted_cascade501.csv`, the
 certificates file, and `RESULTS.md`. `run` writes the residues itself;
 `certify` writes the certificates on demand.
+
+## 10. Cap 255 buys nothing on the AC19 rows -- do not provision for it
+
+`ac19_hybrid_10m` runs at cap 255, which plans a 2,140,262,144-state
+reservation: **309.0 GiB allocation-backed per lane, 319.0 GiB RLIMIT**,
+against cap 64's 133.6 / 143.6. On a 768 GB box that is 2 lanes instead
+of 5. Before paying for it, two measurements say the wider cap explores
+the same states.
+
+**From the finished archive.** Across all 40 completed `ac19_10m`
+row-runs at cap 64 -- 400 million popped nodes -- the longest relator any
+expansion ever produced is **39 letters**. Zero rows of 40 reached the
+cap. (`max_relator_length` in those records is the configured cap echoed
+back; `max_relator_expanded` is what the search actually made.)
+
+**Directly, on the nine rows that are still open.** s20_mk2, 400,000
+nodes, cap 64 against cap 255:
+
+| row | cap 64 states | cap 255 states | longest relator |
+|---|---:|---:|---:|
+| ac19_16286 | 55,790,334 | 55,790,334 | 29 |
+| ac19_27254 | 51,061,320 | 51,061,320 | 24 |
+| ac19_28131 | 55,788,484 | 55,788,484 | 29 |
+| ac19_44381 | 58,706,251 | 58,706,251 | 23 |
+| ac19_50841 | 48,565,359 | 48,565,359 | 25 |
+| ac19_51034 | 49,963,796 | 49,963,796 | 31 |
+| ac19_59576 | 55,790,114 | 55,790,114 | 29 |
+| ac19_65753 | 50,023,522 | 50,023,522 | 31 |
+| ac19_7284  | 54,610,254 | 54,610,254 | 31 |
+
+Nine of nine identical, state for state. The cap never binds, so cap 255
+costs 2.3x the memory and 3 of 5 lanes for the same search.
+
+Two consequences worth stating as rules:
+
+- **A cap is a pruning parameter, not a capacity parameter.** Raising it
+  changes results only if the search was hitting it. Check
+  `max_relator_expanded` on a finished run before widening one.
+- **The discovery rate here is 139.5 states per popped node** (55.8M
+  states / 400k nodes), well under the 214 floor the campaigns reserve
+  against. The floor is conservative on AC19 rows, which is why no 10M
+  row died at reservation exhaustion.
+
+### And 10M is the engine ceiling, not a choice
+
+State ids are signed int32, so the reservation cannot exceed 2,147,483,647
+states -- **10,034,970 nodes at the 214 floor**. The 10M stage already
+sits at 99.65% of that. `plan_memory` clips a 15M or 20M request back to
+the int32 maximum, and rows then die at reservation exhaustion rather
+than finishing short. Going past 10M needs int64 state ids in
+`hcompact.py`, which is an engine change and goes through the full
+promotion recipe in `perf_lab/README.md` -- oracle and twin gates first,
+then one 300k decision bench.
