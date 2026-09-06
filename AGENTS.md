@@ -384,3 +384,10 @@ of the one-relator quotient sending x to x^3 makes the second row
 primitive but kills a nontrivial Britton-reduced commutator. Check
 injectivity and free-word defects before treating a quotient substitution
 as a basis change; a primitive image alone is not an AC certificate.
+
+### [2026-09-06] Check the inverse defining substitutions before branching
+
+[WORKS] Retaining the cube-substitution defining row at the compression
+root returns exactly to (A, conjugate B) after two defining eliminations
+and a Nielsen basis change. Carry every defining row through the inverse
+calculation before treating a different one-relator form as a new route.
