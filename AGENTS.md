@@ -271,3 +271,12 @@ rank-five free-by-cyclic model, unlike either original fixed-donor model.
 Check the monodromy and its inverse literally before claiming an embedded
 base. The resulting primitive gate has one subsequent evaluation checkpoint;
 do not turn a new presentation model into an expanding quotient ledger.
+
+### [2026-09-06] Changed-donor budget spent: A5 gives no restriction
+
+[WORKS] The complete 240-pair A5 covering table for `R=Abar Bbar` has
+only cyclic and order-ten dihedral images. Every primitive slope passes,
+even when conjugators are restricted to the image of the free base.
+The preceding one-checkpoint allowance is [SUPERSEDED] by this completed
+evaluation: freeze this changed-donor route, with CD7 still unsolved.
+Do not extend to another finite group, nilpotent layer, or word census.

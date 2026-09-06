@@ -533,3 +533,61 @@ relator, both coefficients in (CD6), and the conjugacy formula. Corrupting
 the final monodromy image or reversing the solved defining relation makes
 the corresponding check fail. These controls verify the model, not a
 solution of (CD7); no conjugator search has been run.
+
+### Terminal evaluation: the complete A5 check is vacuous
+
+The one permitted follow-up checkpoint tested all homomorphisms
+$Q_R\to A_5$, up to a complete covering set under $S_5$ conjugation.
+Choose $a$ from the identity, a double transposition, a three-cycle,
+and a five-cycle, and let $t$ range through all 60 even permutations.
+These 240 pairs cover every possible pair of images: $S_5$ conjugation
+preserves $A_5$ and its internal conjugacy relation. This is a covering
+set, not a claim that its entries are distinct orbits.
+
+For each pair set $x=at^2,y=t$ and evaluate the pinned raw words. Use
+the pair only if $R=\overline A\overline B$ evaluates to the identity.
+Then compare $\overline A$ with $a^m t$ by actual $A_5$ conjugacy, not
+just element order. Testing $m$ modulo 30 covers every integer slope,
+since each possible order of $a$ divides 30. A true solution of (CD7)
+would pass every such comparison; the converse is not asserted.
+
+The [complete saved table](../../results/stable_ac/theory/mms02_changed_donor_a5_check_20260906.json)
+has exactly 65 valid representative pairs:
+
+- All 60 pairs with $a=1$ are valid. They have $\overline A=t$,
+  $\overline B=t^{-1}$, and $a^mt=t$ for every $m$.
+- There are five valid pairs with $a$ the fixed five-cycle. In each,
+  $t^2=1$, $tat^{-1}=a^{-1}$, and
+  $\overline A=\overline B=at$. Their image is the dihedral group of
+  order ten.
+- No pair with $a$ a double transposition or a three-cycle is valid.
+
+In the dihedral cases the identity
+\[
+ a^k(at)a^{-k}=a^{2k+1}t
+\]
+shows that every $a^m t$ passes: solve $2k+1=m$ modulo five. These
+conjugators already lie in $\rho(H)$, so restricting the comparison from
+$A_5$ to the image of the free base gives no extra information. Thus every
+homomorphism $Q_R\to A_5$ has cyclic or order-ten dihedral image, and this
+entire finite test imposes no restriction on (CD7).
+
+**Vacuity audit.** Both original rows are killed only by the trivial
+representative map; there are 64 nontrivial valid images. Nevertheless
+all maps are vacuous for this conjugacy test. In each dihedral case an
+artificial identity target fails comparison with every $a^m t$, whereas
+the actual target passes every slope. Separately, the controls distinguish
+a five-cycle from its square, which have the same order but are not
+conjugate in $A_5$. These controls detect vacuity and conjugacy errors;
+they are not evidence that (CD7) has a solution.
+
+All seven combined model and [finite-table verification tests](../../tests/stable_ac/test_mms02_changed_donor_a5_check.py)
+passed. The final test independently evaluates every saved pair point by
+point, checks the full covering set and all residues, and verifies the
+cyclic/dihedral classification and both vacuity controls. The recorder
+was run once; the verification does not call its table generator.
+
+**Frozen.** The single subsequent checkpoint is spent. Equation (CD7)
+remains unsolved, and this changed-donor route is now frozen without a
+new finite group, nilpotent layer, conjugator census, or residual category.
+The MMS02 bridge, stable AK3, and ordinary AK3 remain unresolved.
