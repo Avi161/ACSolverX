@@ -1,13 +1,26 @@
 """How much cheaper is s20_mk2 than greedy, and does that depend on difficulty?
 
-THE ONLY PLACE THE TWO ARMS MEET
---------------------------------
-The AC19 ladder gives each arm its own residual list, so at 1M, 5M and 10M the
-two arms are mostly searching different rows and no honest per-row comparison
-exists. The 100k stage is the exception: greedy ran the 831 rows the 10k screen
-left it and s20_mk2 ran its own 259, and **225 rows appear on both lists at the
-same budget and the same cap** (100,000 nodes, mrl 48). Those 225 are the paired
-sample -- every row both arms actually searched under identical conditions.
+WHAT THIS SAMPLE IS -- AND WHAT IT IS NOT
+-----------------------------------------
+greedy ran the 831 rows the 10k screen left it and s20_mk2 ran its own 259;
+**225 rows appear on both lists** at the same budget and cap (100,000 nodes,
+mrl 48). Those 225 are the rows *both* arms failed at 10k -- the mutual hard
+residue, 0.32% of the 70,723-orbit screen. They are the hardest tail of the
+census, not a sample of it, and nothing here should be read as a screen-wide
+statement about the two orderings.
+
+The screen-wide comparison already exists and is not this: splicing the 10k,
+100k and 1M waves gives a paired result over all 70,723 orbits in
+``results/heuristic_search/leftovers_1m/RESULTS.md``, where the s20_mk2
+advantage *does* grow with difficulty under arm-independent binning (geometric
+ratio 0.999 at total length < 12 falling to 0.505 at 24-28) for a 4.2x
+aggregate reduction in node work. This module measures the far tail of that
+distribution, where the per-row ratio has gone flat and the difference between
+the arms has turned into a difference in solve rate.
+
+Every row is the Aut(F2)-minimal canonical representative of its orbit rather
+than a presentation as it appeared in ``data/AC19_extended.txt``, so the
+comparison cannot turn on which member of an orbit was drawn.
 
 WHY "BOTH SOLVED" IS NOT THE WHOLE STORY
 ----------------------------------------
@@ -228,6 +241,8 @@ def report(summary):
     print(f"  corr(log speedup, log difficulty): {o['corr_logspeedup_vs_log_greedy_nodes']:+.3f} "
           f"binning on greedy nodes (biased), "
           f"{o['corr_logspeedup_vs_log_geomean_nodes']:+.3f} arm-neutral")
+    print("  (flat here because these are the mutual 10k failures; across the whole")
+    print("   70,723-orbit screen the ratio does move with difficulty -- leftovers_1m)")
     print(f"  rank corr(total length, greedy solved): "
           f"{o['rank_corr_length_vs_greedy_solved']:+.3f} -> shorter is harder here\n")
     head = f"  {'bin':<8} {'n':>4} {'both':>5} {'s20only':>8} {'neither':>8} " \
