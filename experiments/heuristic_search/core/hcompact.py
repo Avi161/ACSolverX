@@ -565,10 +565,13 @@ def _run_chunk_h(arena, len1, len2, depth, seg, score, heap, table, st,
             score[sid] = s_val
             if track:
                 parent[sid] = top
-                # a move is (target, jsign, k1, k2); all four fit in int8
-                # (target 0/1, jsign +-1, k1/k2 bounded by cap <= 127)
+                # target/jsign are signed int8. Cut positions use the same
+                # byte as an unsigned 0..255 value and are decoded on output.
                 for t in range(4):
-                    pmove[sid, t] = np.int8(moves[i, t])
+                    v = moves[i, t]
+                    if t >= 2 and v >= 128:
+                        v -= 256
+                    pmove[sid, t] = np.int8(v)
             _insert(table, tmask, h, sid)
             n_disc += 1
 
@@ -641,6 +644,11 @@ def _advise_hugepages(*arrays):
         return 0
 
 
+def _decode_stored_move(row):
+    raw = tuple(int(v) for v in row)
+    return raw[0], raw[1], raw[2] & 0xff, raw[3] & 0xff
+
+
 class HCompactSolver:
     """Pops in exactly the order ``greedy_search_h`` does. Tracks no paths."""
 
@@ -682,6 +690,8 @@ class HCompactSolver:
         # below it would overflow _init_state_h into the neighbouring region
         # and corrupt the earliest rows (caught by the width-identity gate).
         a1, a2 = self.initial_state
+        if max(len(a1), len(a2)) > self.cap:
+            raise ValueError("reduced input exceeds max_relator_length")
         need = (max(len(a1), len(a2), 1) + 3) // 4
         if storage_width is not None:
             w0 = min(max(int(storage_width), need), self.w_cap)
@@ -695,14 +705,20 @@ class HCompactSolver:
         # 2.25x the estimate -- which pushed the hash table across a
         # power-of-two boundary to 8 GiB resident per worker at 5M.
         if reserve_states:
-            n = max(1024, int(reserve_states)) + 4 * (self.cap + 1) ** 2
+            n = max(1024, int(reserve_states))
         else:
             n = (max(1024, int(est_states(max_nodes) * _RESERVE_SLACK))
                  + 4 * (self.cap + 1) ** 2)
+        if n > np.iinfo(np.int32).max:
+            raise MemoryError(
+                f"reservation {n:,} exceeds signed int32 state-id capacity")
         self._alloc(n)
         self.solved_id = None
 
     def _alloc(self, n, old=None):
+        if n > np.iinfo(np.int32).max:
+            raise MemoryError(
+                f"reservation {n:,} exceeds signed int32 state-id capacity")
         self.states_cap = n
         # Reserved at the CAP width once; rows live at the current stride
         # ``rw`` in its prefix and are re-laid in place when they widen. The
@@ -905,7 +921,7 @@ class HCompactSolver:
                 states.reverse()
                 moves.reverse()
                 return states, moves
-            moves.append(tuple(int(v) for v in self.pmove[sid]))
+            moves.append(_decode_stored_move(self.pmove[sid]))
             sid = p
         raise RuntimeError("parent chain did not reach the root -- corrupt arena")
 

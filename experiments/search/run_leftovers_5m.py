@@ -82,7 +82,9 @@ from experiments.search.run_leftovers_1m import (
 #          nibble rows and overstate this profile by up to 32 B/state:
 #          skipped. The search itself is identical across every generation;
 #          only the memory profile a recorded peak describes has changed.
-ENGINE_MEM_GEN = 5
+#   gen 6: explicit reservations are allocation-exact. The planner already
+#          includes padding; the solver no longer adds it a second time.
+ENGINE_MEM_GEN = 6
 
 # The 5M stage runs a WIDER corridor than the 1M wave did. Two caps therefore
 # coexist and must never be conflated:
@@ -234,6 +236,25 @@ CAMPAIGNS = {
         # AC19 convention: every solve carries its moves. At 214/node with
         # paths a lane is 133.6 GiB: 5 lanes on the 743 GB box (6 without
         # paths, at the price of a certification re-run per solved row).
+        "track_path": True,
+    },
+    "ac19_hybrid_10m": {
+        "label": "three AC19 joint survivors under the hybrid at 10M",
+        "spec": {
+            "csv": os.path.join(
+                os.path.dirname(SCREEN_DIR), "ac19_hybrid_10m",
+                "joint_survivors.csv"),
+            "n_rows": 3,
+            "chunks": 1,
+        },
+        "budget": 10_000_000,
+        "mrl": 255,
+        "floor": None,
+        "floor_mrl": None,
+        "prefix": "ac19_hybrid_10m",
+        "ids_stem": "ac19_hybrid_10m",
+        "checkpoints": (1_000_000, 5_000_000, 10_000_000),
+        "states_per_node": 214,
         "track_path": True,
     },
 }
@@ -591,6 +612,11 @@ def plan_memory(budget=NODE_BUDGET_5M, mrl=MRL_5M,
             break
         cap_n = int(cap_n * usable_gb / need)
     reserve = max(1024, min(default_n, cap_n))
+    int32_max = (1 << 31) - 1
+    if reserve > int32_max:
+        log(f"  memory  : reservation clipped to {int32_max:,} states "
+            "(hcompact state ids are signed int32)")
+        reserve = int32_max
     if reserve < default_n:
         log(f"  memory  : reservation clipped to {reserve:,} states "
             f"(engine default {default_n:,} does not fit {avail:.0f} GB free "
@@ -679,8 +705,9 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             import resource
             resource.setrlimit(resource.RLIMIT_AS,
                                (int(mem_limit_bytes), int(mem_limit_bytes)))
-    except (ImportError, ValueError, OSError):
-        pass                                   # no rlimit support: guard degrades
+    except (ImportError, ValueError, OSError) as e:
+        q.put(("err", f"cannot enforce worker address-space limit: {e}"))
+        return
     try:
         _, spec = resolve_arm(arm)
         hb = _in_search_heartbeat(row["name"], budget, heartbeat_secs,
@@ -703,6 +730,10 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "max_relator_expanded": st.get("max_relator_expanded"),
             "path": st.get("path", []),
             "path_moves": st.get("path_moves", []),
+            **{k: st[k] for k in (
+                "hybrid_prefix_nodes", "hybrid_fallback_nodes",
+                "hybrid_prefix_best", "hybrid_prefix_max_relator_length_seen",
+                "hybrid_prefix_attempts") if k in st},
             "seconds": round(time.time() - t, 3),
             "peak_rss_gb": _peak_rss_gb(),
             "engine_mem_gen": ENGINE_MEM_GEN,

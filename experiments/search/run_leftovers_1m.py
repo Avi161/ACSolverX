@@ -339,6 +339,13 @@ def _run_s20_mk2(r1, r2, budget, mrl, progress=None, reserve_states=None,
                                 progress=progress)
 
 
+def _run_hybrid_10m(r1, r2, budget, mrl, progress=None, reserve_states=None,
+                    track_path=False):
+    from experiments.search.hybrid_10m import run_hybrid_10m
+    return run_hybrid_10m(r1, r2, budget, mrl, progress=progress,
+                          reserve_states=reserve_states, track_path=track_path)
+
+
 def est_gb(budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH, track_path=False):
     """Peak GB one search costs, for sizing the pool. Not a limit, an estimate.
 
@@ -380,6 +387,15 @@ ARMS = {
         "n_rows": 39,
         "n_common": 39,
         "label": "s20_mk2 (priority = L + 20*S + 2*MK)",
+    },
+    "hybrid_10m": {
+        "run": _run_hybrid_10m,
+        "csv": os.path.join(ROOT, "results", "heuristic_search",
+                            "ac19_hybrid_10m", "joint_survivors.csv"),
+        "jsonl": "",
+        "n_rows": 3,
+        "n_common": 3,
+        "label": "501-node cascade prefix + compact S20_MK2 restart",
     },
 }
 

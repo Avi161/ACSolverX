@@ -1244,8 +1244,8 @@ def test_an_explicit_reservation_is_honored_as_is_not_reslacked():
                            max_relator_length=64, reserve_states=reserve)
     finally:
         HCompactSolver._alloc = real
-    assert asked == [reserve + 4 * 65 ** 2]
-    assert s.states_cap == reserve + 4 * 65 ** 2
+    assert asked == [reserve]
+    assert s.states_cap == reserve
     assert s.tcap * 4 == 2 ** 32, "table should be 2^30 slots (4 GiB), not 2^31"
 
 
