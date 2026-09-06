@@ -122,3 +122,72 @@ improve on the initial triangulation, and no minimality is claimed. The
 one prescribed unmodified-prism attempt is closed. A new geometric move
 or a new collapse argument would be needed for further progress; no seed
 sweep, subdivision sweep, or obstruction claim is authorized by this run.
+
+## A monotone triangle fold through a tetrahedron
+
+The next construction changes the complex; it does not rerun the prism's
+collapse order. Let $L$ be a two-dimensional simplicial complex. Suppose
+an edge $e=\{u,v\}$ has exactly two incident triangles
+$t_1=\{u,v,c\}$ and $t_2=\{u,v,d\}$. Suppose exactly one of the two
+other faces $\{u,c,d\},\{v,c,d\}$ is present. Denote the absent face by
+$\mu$ and the four-vertex simplex by $\sigma=\{u,v,c,d\}$.
+
+**Lemma (strict triangle reduction).** There is an elementary
+three-deformation replacing $t_1,t_2,e$ by $\mu$, leaving every other
+simplex unchanged. It removes one edge and one triangle in total.
+
+**Proof.** The three present tetrahedral faces contain all six edges of
+$\sigma$. Add the pair $(\sigma,\mu)$ by a $(3,2)$ elementary expansion.
+Then collapse $\sigma$ through $t_1$, which has no other proper coface
+because $L$ was two-dimensional. Finally collapse $t_2$ through $e$.
+The global degree-two hypothesis guarantees that $e$ now has only the
+coface $t_2$; the new face $\mu$ does not contain $e$. The net change is
+exactly the one stated, with dimension never exceeding three. $\square$
+
+The test of edge degree is against the entire complex, not just the
+displayed tetrahedron. If both other faces are absent, the required
+expansion is not available; if the edge has an extra incident triangle,
+the final collapse is not licensed. These are explicit can-fail controls.
+
+Starting with the saved two-complex above, the planned deterministic pass
+exhausts ordinary collapses, then applies the lexicographically first
+eligible triangle fold, and repeats. Ordinary collapses are ordered by
+decreasing upper dimension and then lexicographically. Every completed
+fold reduces the total simplex count by two, as does every ordinary
+collapse, so the procedure terminates. In particular there can be at most
+196 folds, the initial number of triangles. This bound is a monotonicity
+proof, not an arbitrary search cap. There is no branching or seed choice.
+
+The complete expansion/collapse trace must be independently replayed.
+For an expansion, both new simplices must be absent beforehand, all
+remaining proper faces must already be present, and the reverse collapse
+must be legal. For a collapse, the lower face must have exactly the
+specified proper coface in the entire current complex. All intermediates
+must remain face closed and have dimension at most three. A point endpoint
+would complete the geometric proof route; a non-point endpoint would only
+close this prescribed monotone pass, not decide other three-deformations.
+
+## Recorded monotone reduction
+
+The single prescribed pass performed 23 triangle folds and 28 ordinary
+collapses, recorded as 97 elementary operations. Its endpoint has face
+vector
+\[
+ (66,222,157).
+\]
+Thus it removes 102 nonempty simplices from the saved core, preserves
+Euler characteristic one, and ends at a non-point two-complex. The
+[complete trace](../../results/stable_ac/theory/ak3_prism_shell_reduction_20260906.json)
+retains the endpoint's maximal simplices and links its exact source
+artifact. This is a strict simplification of that core, not of the original
+presentation triangulation, whose total simplex count was 325.
+
+The terminal result of this construction is a dimension-at-most-three
+elementary deformation from the explicitly triangulated AK3 presentation
+complex to the displayed 445-simplex two-complex. It combines the reverse
+721-pair reference collapse, the previous 610 collapses, and these 97
+operations. It does not trivialize the complex. The monotone pass is now
+closed; changing its ordering, adding seeds, or treating its terminal
+state as an obstruction is not part of the result. Further progress needs
+a new geometric argument permitting moves not covered by this strict
+reduction lemma.

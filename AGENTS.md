@@ -238,3 +238,11 @@ Root now owns an explicit presentation-complex prism construction, aiming
 at a verifiable collapse certificate rather than another quotient residual.
 Verify the complex and the three-deformation implication first; bounded
 collapse failure is neither noncollapsibility nor an AK3 obstruction.
+
+### [2026-09-06] Certify geometric simplifications with global incidence
+
+[WORKS] `AK3_PRISM_COLLAPSE_WORKING.md` gives a three-operation tetrahedral
+fold with a strict simplex-count decrease. Its final edge collapse needs
+degree exactly two in the entire input complex, not just in the pictured
+tetrahedron. Save expansions as well as collapses and independently replay
+global cofaces; a terminal monotone reduction is not a general obstruction.
