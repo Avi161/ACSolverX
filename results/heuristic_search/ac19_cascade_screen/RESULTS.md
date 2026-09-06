@@ -1,6 +1,6 @@
 # ac19_cascade_screen: the 501-node cascade over all 72,779 AC19 orbits
 
-Status: **cascade arm COMPLETE**, control arm and ladder in progress.
+Status: **both 501-node arms COMPLETE**, budget ladder in progress.
 Branch `claude/ac19-leftover-solver-notebook-6yan6d`. Not merged to main.
 
 ## What was run
@@ -72,8 +72,44 @@ so the refusal would fire on nearly every row.
 **`aut_assisted` does not mean "no AC path exists".** It means the
 cheapest path this heap reached used a basis change. Which of the two it
 is takes a control -- the same search with that door shut. That is the
-`ac501` arm, and its result belongs in this file before any of the 59.75%
-is quoted as anything.
+`ac501` arm, and it has now run.
+
+## The control, and what it says about the Nielsen moves
+
+`ac501` is `s40_gen` with one door shut: same priority (L + 40*S), same
+501 nodes, same cap 255, no Nielsen image ever entering the heap. Same
+72,779 rows, 1.22 core-hours.
+
+| outcome | cascade501 | ac501 (control) |
+|---|---:|---:|
+| AC-certified | 27,164 (37.32%) | **64,541 (88.68%)** |
+| aut-assisted only | 43,485 (59.75%) | 0 |
+| neither | 2,130 (2.93%) | 8,238 (11.32%) |
+| rejected certificates | 0 | 0 |
+
+Paired over all 72,779:
+
+| | rows |
+|---|---:|
+| AC-solved by the control only | 38,658 |
+| AC-solved by both | 25,883 |
+| AC-solved by the cascade only | 1,281 |
+| AC-solved by neither | 6,957 |
+
+Of the 43,485 rows the cascade could only reach by changing basis, the
+control AC-solves **38,512 (88.6%)** at the same budget. Only 4,973 are
+out of AC reach at 501 nodes.
+
+**So the Nielsen images are not buying AC certificates, they are costing
+them** -- 38,658 of them, against 1,281 gained. For AC purposes the
+automorphism edges in `s40_gen` are a net loss: they divert the beam into
+automorphic images and return paths that are not certificates. The plain
+L + 40*S ordering at cap 255 is the strong search here.
+
+What the cascade does add is `bs_collapse`. Its 1,281 exclusive solves
+are the rows the beam cannot reach and the pattern can, including all 22
+below. The arm worth building next is the obvious one and nobody has run
+it: `bs_collapse` first, then the AC-only beam, no Nielsen edges at all.
 
 ## Against the shipped hard lists
 
@@ -85,12 +121,39 @@ is quoted as anything.
 | `unsolved_5m_s20_mk2.csv` | 9 | 0 |
 
 The 22 are real and they are one family: every one of them has
-`r1 = YXXyx`, the shape `bs_collapse` recognizes. s20_mk2 spent 10,000
-nodes on each and did not solve them; `bs_collapse` settles each in 106
-to 257 nodes with a 105-to-256-move substitution path that replays to a
-terminal pair. That is a genuine win over s20_mk2, and it is a pattern
-recognizer's win, not a better ordering's: on the 39, 14 and 9 rows of
-the harder lists the same recognizer fires zero times.
+`r1 = YXXyx`, the shape `bs_collapse` recognizes. `bs_collapse` settles
+each in 106 to 257 nodes with a 105-to-256-move substitution path that
+replays to a terminal pair.
+
+**It is a speed win, not a coverage win.** Given 100,000 nodes instead of
+10,000, s20_mk2 solves all 22 itself, at 10,131 to 33,768 nodes (median
+10,249). Against the cascade's median 112 nodes that is a **92x median
+speedup** -- worth having, and not new mathematics. It is also a pattern
+recognizer's win rather than a better ordering's: on the 39, 14 and 9
+rows of the harder lists the same recognizer fires zero times, and the
+AC-only control solves 0 of the 259.
+
+## What is actually still open
+
+Every orbit absent from `unsolved_10k_s20_mk2.csv` was AC-solved by
+s20_mk2 within 10,000 nodes. So of the 8,238-row control residue, only
+**259** are rows anyone still owes a proof for, and the open set is the
+one the earlier ladder already found:
+
+| list | rows | still unsolved by `ac501` at 501 nodes |
+|---|---:|---:|
+| `unsolved_100k_s20_mk2.csv` | 39 | 39 |
+| `unsolved_1m_s20_mk2.csv` | 14 | 14 |
+| `unsolved_5m_s20_mk2.csv` | 9 | 9 |
+
+Neither 501-node arm touched any of them. Nothing in this pass changes
+what is open; it changes how cheaply the settled part can be re-settled.
+
+One gap the repo cannot close: 2,056 of the 72,779 orbits sit outside the
+70,723-orbit intersection that `run_leftovers_1m.py` documents, and
+nothing records which. A ladder survivor that is not on a shipped list is
+therefore either a row this arm is weak on or a row nobody ever searched,
+and only an s20_mk2 re-run at 10,000 nodes tells them apart.
 
 ## Files
 
