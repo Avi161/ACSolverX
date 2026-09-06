@@ -3,7 +3,9 @@
 Operational companion to `REPORT.md` (which holds the measurements, the
 identity arguments and the verification commands; nothing there is
 repeated here). Written 2026-09-05 after the u124 campaign rolled the
-promoted build.
+promoted build; u124 itself finished 2026-09-06 (124/124 rows at the full
+10M budget, 0 solved -- `results/heuristic_search/u124_10m/RESULTS.md`),
+and section 2 now records what its floor ladder ended at.
 
 ## 1. The build to pin
 
@@ -46,10 +48,22 @@ checkout alone (no environment):
 
 The governor can seat one more lane than the allocation arithmetic after
 three completed rows report peaks well under the worst (it predicts 1.25x
-the largest measured peak). Rows at the measured maximum rate, 186 states
-per node, peak near 104 GiB physical, so that extra lane is safe for the
-measured population; `--workers N` (or `WORKERS=N` for the job) pins the
-count when zero OOM exposure is preferred.
+the largest measured peak). Rows at the rate measured when this was
+written, 186 states per node, peak near 104 GiB physical, so that extra
+lane is safe for the measured population; `--workers N` (or `WORKERS=N`
+for the job) pins the count when zero OOM exposure is preferred.
+
+**How the ladder ended.** Five more rows beat the 214 floor late in the
+campaign (aca_63, aca_64, aca_65, aca_71, aca_72, at 218.51 to 222.83
+states per node, all dying past 9.6M of their 10M pops), and a second pass
+at `STATES_PER_NODE=236` with `RETRY_EXHAUSTED` naming them completed all
+five: 144.1 GiB a lane without paths, five lanes on the 743 GB box,
+because 236 doubles the hash table to 32 GiB. Campaign maximum:
+**222.83 states per popped node**. The rule this leaves behind is in the
+row-hygiene section: a discovery rate measured over the first half of a
+budget understates the rate at the end, so a floor chosen from early
+evidence is a first pass, not a guarantee -- plan the second pass rather
+than paying for the extra lane up front.
 
 ## 3. A fresh box from the checkout alone
 
@@ -126,6 +140,11 @@ few times the row length.
 - Rows recorded under earlier memory generations are valid results (the
   search is identical across every generation); only their peaks are
   ignored for governor seeding.
+- A row's discovery rate is not flat in pops: u124 rows that cleared 168
+  states per node for 9.5M pops died at 175 to 180, and rows that cleared
+  214 for 9.6M pops died at 218 to 223. Expect a floor set from early or
+  half-budget evidence to lose a few rows at ~96% of budget, and budget one
+  second pass for them instead of over-reserving every lane.
 - A solved u124 row has empty `path` fields by design; recover the
   certificate with `rerun_row` at the recorded node count and the
   campaign's reservation, then replay the moves (RESULTS.md).
@@ -210,7 +229,15 @@ steady, ~175 GiB during the copy) on lanes admitted at 88 GB: the 5M
 stage's crash loop again. 214 covers the whole interval with 15% over
 its top at the last value that keeps the table at 16 GiB. A row above
 214 dies at reservation exhaustion with its rate recorded and waits for
-the second pass, as on u124 (section 5).
+the second pass, as on u124 (section 6).
+
+Expect that second pass to have work: the (92.8, 185.5) interval is what
+these rows demonstrated over their first 5M pops, and u124's history says
+the rate climbs with pops (its rows died at 218 to 223 after clearing 214
+for 9.6M). Raising the floor to 236 up front would cost a lane -- 161.7
+GiB with paths at 10M, four lanes instead of five -- so the cheaper plan is
+five lanes at 214 and one pass at `STATES_PER_NODE=236` over whatever
+dies, which is what the boot table below is written for.
 
 Preview, from the checkout on the box (prints the table above):
 

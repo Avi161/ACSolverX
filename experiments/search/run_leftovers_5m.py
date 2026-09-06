@@ -179,9 +179,14 @@ CAMPAIGNS = {
         # figures, the search is deterministic), aca_39 at 175.8, aca_41 at
         # 178.6. That is a population above the floor, not a tail, so
         # covering it is cheaper than dying at 95% of budget on most rows.
-        # 214 = the measured maximum + 15%, and the last floor at which the
-        # hash table stays 16 GiB (it doubles past 214/node, +16 GB on every
-        # row's peak). Without paths (below), on 2-bit rows (51 B/state),
+        # 214 = that maximum + 15%, and the last floor at which the hash
+        # table stays 16 GiB (it doubles past 214/node, +16 GB on every
+        # row's peak). The campaign then beat 214 too: aca_63/64/65/71/72
+        # died at 218.5 to 222.8 states/node, all past 9.6M of their 10M
+        # pops, and a second pass at STATES_PER_NODE=236 completed all
+        # five. Campaign maximum: 222.83. A rate measured over the first
+        # half of a budget understates the rate at the end, so this
+        # constant is a first pass with a planned retry, not a guarantee. Without paths (below), on 2-bit rows (51 B/state),
         # the allocation-backed worst is ~118 GiB/row: four lanes on a
         # 512 GiB box, two on the 256 GiB class, twelve on 1.5 TiB (it was
         # ~181 GiB and 2/1/8 on nibble rows). STATES_PER_NODE overrides this for a

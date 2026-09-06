@@ -2599,3 +2599,103 @@ def test_the_ac19_10m_plan_on_the_campaign_box():
     assert "greedy    31 rows,  5 workers" in out
     assert "s20_mk2    9 rows,  5 workers" in out
     assert "reserve_states  : 2,140,016,900 (full)" in out
+
+
+# ---------------------------------------------------------------------------
+# The archived u124 campaign result (complete 2026-09-06). Derived, not
+# trusted: the same discipline every earlier wave's row lists get.
+# ---------------------------------------------------------------------------
+import collections                                              # noqa: E402
+
+from experiments.search.run_leftovers_5m import ENGINE_MEM_GEN   # noqa: E402
+from experiments.search.run_leftovers_1m import SCREEN_DIR as _SCREEN  # noqa: E402
+
+U124_DIR = os.path.join(os.path.dirname(_SCREEN), "u124_10m")
+U124_JSONL = os.path.join(
+    U124_DIR, "u124_10m_s20_mk2_b10000000_mrl64.jsonl")
+U124_REDUCED = os.path.join(U124_DIR, "aca_124_reduced_again.csv")
+
+
+def _u124_rows():
+    return load_rows_5m("s20_mk2", campaign="u124")[0]
+
+
+def test_the_archived_u124_result_is_complete_and_consistent():
+    """124/124 rows, every one at the full budget, nothing solved, no name
+    left with only an error record -- and the presentations are the shipped
+    list's, row for row."""
+    recs = read_rows(U124_JSONL)
+    assert recs, U124_JSONL
+    c = classify_5m(recs, budget=10_000_000, checkpoints=(10_000_000,),
+                    floor=0)
+    assert c["n"] == 124
+    assert c["errored"] == []              # every death was retried
+    assert c["solved_at_5m"] == []         # 0 solved at 10M
+    assert len(c["unsolved_at_5m"]) == 124
+    shipped = {r["name"]: (r["r1"], r["r2"]) for r in _u124_rows()}
+    finished = {r["name"]: r for r in recs if not r.get("error")}
+    assert set(finished) == set(shipped)
+    for n, r in finished.items():
+        assert (r["r1"], r["r2"]) == shipped[n], n
+        assert int(r["nodes_explored"]) == 10_000_000, n
+        assert r["arm"] == "s20_mk2" and int(r["max_relator_length"]) == 64
+        # no row solved, so no row carries a certificate
+        assert r["path"] == [] and r["path_moves"] == []
+    # the deaths that were retried, with the rate each measured -- the
+    # floor ladder's evidence (the last rung, 236, lost nothing)
+    rates = sorted(round(float(r["states_per_node_measured"]), 2)
+                   for r in recs if r.get("states_per_node_measured"))
+    assert rates == [175.83, 178.57, 180.34, 218.51, 221.89, 222.16,
+                     222.33, 222.83]
+    assert max(rates) > CAMPAIGNS["u124"]["states_per_node"]   # why 236 exists
+
+
+def test_the_u124_engine_generations_are_recorded_per_row():
+    """A peak measured under an old memory profile must never seed the
+    governor for the profile running now, which is what the tag is for."""
+    finished = [r for r in read_rows(U124_JSONL) if not r.get("error")]
+    gens = collections.Counter(r["engine_mem_gen"] for r in finished)
+    assert dict(gens) == {2: 38, 3: 5, 4: 4, 5: 77}
+    assert max(gens) == ENGINE_MEM_GEN
+    by_gen = collections.defaultdict(list)
+    for r in finished:
+        by_gen[r["engine_mem_gen"]].append(r["peak_rss_gb"])
+    # the 2-bit engine's rows are the lightest of any generation
+    assert max(by_gen[5]) < min(max(by_gen[g]) for g in (2, 3, 4))
+
+
+def test_the_u124_reduction_study_matches_the_row_list_and_the_search():
+    """`aca_124_reduced_again.csv` is a separate line of work on the same
+    presentations. It must describe THIS set (name, relators and orbit
+    columns identical to the shipped list), be arithmetically
+    self-consistent, and never contradict the search: every row the search
+    shortened is one the study also reduced, to a total no longer than the
+    one the search reached."""
+    import csv as _csv
+    with open(U124_REDUCED, newline="") as fh:
+        study = {r["name"]: r for r in _csv.DictReader(fh)}
+    shipped = {r["name"]: r for r in _csv.DictReader(
+        open(load_rows_5m("s20_mk2", campaign="u124")[1], newline=""))}
+    assert set(study) == set(shipped) and len(study) == 124
+    for n, r in study.items():
+        s = shipped[n]
+        assert (r["r1"], r["r2"]) == (s["r1"], s["r2"]), n
+        assert (r["n_members"], r["members"]) == (s["n_members"], s["members"]), n
+        start = len(s["r1"]) + len(s["r2"])
+        if r["reduced"] == "yes":
+            assert int(r["mu_in"]) == start, n
+            assert int(r["mu_out"]) == len(r["new_r1"]) + len(r["new_r2"]), n
+            assert int(r["mu_out"]) <= int(r["mu_in"]), n
+        else:
+            assert r["reduce_kind"] == "none" and r["new_r1"] == "none", n
+    reduced = {n for n, r in study.items() if r["reduced"] == "yes"}
+    assert len(reduced) == 39
+    finished = {r["name"]: r for r in read_rows(U124_JSONL)
+                if not r.get("error")}
+    lowered = {n for n, r in finished.items()
+               if int(r["min_relator_length"])
+               < len(shipped[n]["r1"]) + len(shipped[n]["r2"])}
+    assert len(lowered) == 14
+    assert lowered < reduced                      # strict subset
+    for n in lowered:
+        assert int(study[n]["mu_out"]) <= int(finished[n]["min_relator_length"]), n
