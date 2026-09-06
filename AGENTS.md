@@ -229,3 +229,12 @@ the actual `d=YYxYxxYxY`, not the AK2 coordinate word `z=Y(xY)^3`.
 The exact resulting rows have lengths 121 and 93, so this transfer is
 frozen. A fixed-donor exclusion does not exclude this both-row replay;
 check its real endpoint once before deciding whether it offers progress.
+
+### [2026-09-06] Strategy correction: target a constructive three-deformation
+
+[TRAP] Successive donor exclusions and failed transfers did not produce
+an AK3 bridge. The user explicitly requested a new first-principles route.
+Root now owns an explicit presentation-complex prism construction, aiming
+at a verifiable collapse certificate rather than another quotient residual.
+Verify the complex and the three-deformation implication first; bounded
+collapse failure is neither noncollapsibility nor an AK3 obstruction.
