@@ -418,7 +418,29 @@ nodes, cap 64 against cap 255:
 Nine of nine identical, state for state. The cap never binds, so cap 255
 costs 2.3x the memory and 3 of 5 lanes for the same search.
 
-Two consequences worth stating as rules:
+### Two different caps -- clamp the wrong one and the rewrite breaks
+
+`cascade_heuristics.search` carries two caps and only one of them costs
+memory. Astra's development note on the 60-row subset gives both ("hybrid
+search uses 48, with rewrite cap 256 and observed maximum 131"), and the
+72,779-row screen confirms the number exactly:
+
+| cap | what it bounds | measured need | costs |
+|---|---|---:|---|
+| `cap` (search) | children `mixed_search`/hcompact will keep | **max 31** on the 9 open rows at 400k nodes; **max 39** across 40 rows at 10M | the reservation -- 133.6 GiB/lane at 64, 309.0 at 255 |
+| `intermediate_cap` (rewrite) | `bs_collapse`'s intermediate relators | **max 131**, p99 41, median 13 over 72,779 rows | nothing -- pure Python, no arena |
+
+Across the whole screen, 23 rows of 72,779 produced a relator longer than
+64. **All 23 are the rewrite's intermediates; zero come from the search.**
+Zero rows exceed 131, so Astra's 256 has ample headroom.
+
+So the two settings pull in opposite directions and both are right:
+keep `intermediate_cap` at 256 or `None`, and drop the hcompact search
+cap to 64. `hybrid_10m` currently sets `SEARCH_CAP = 255` for both, which
+buys the rewrite nothing it does not already have and costs the search
+2.3x its memory.
+
+Two more consequences worth stating as rules:
 
 - **A cap is a pruning parameter, not a capacity parameter.** Raising it
   changes results only if the search was hitting it. Check

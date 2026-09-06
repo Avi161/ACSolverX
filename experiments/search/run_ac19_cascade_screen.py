@@ -461,7 +461,13 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
     existing runner can take them as input.
     """
     records = _all_records(out_dir, chunks, chunk_index, arm, budget)
-    orbits = {r["name"]: r for r in load_rows()}   # always the full screen
+    # Orbit columns when the row came off the screen list; the record's own
+    # fields when it did not, so a run over any other list still gets its
+    # residues instead of a KeyError.
+    try:
+        orbits = {r["name"]: r for r in load_rows()}
+    except SystemExit:
+        orbits = {}
     groups = {
         f"unsolved_{arm}_b{budget}.csv":
             [r for r in records.values()
@@ -472,17 +478,18 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
     written = []
     for filename, rows in groups.items():
         path = os.path.join(out_dir, filename)
-        rows.sort(key=lambda r: int(r["name"].split("_")[1]))
+        rows.sort(key=lambda r: int(r["name"].rsplit("_", 1)[1]))
         with open(path, "w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=(
                 "name", "r1", "r2", "n_members", "members",
                 "nodes_explored", "min_relator_length"))
             w.writeheader()
             for r in rows:
-                orbit = orbits[r["name"]]
+                orbit = orbits.get(r["name"], {})
                 w.writerow({"name": r["name"], "r1": r["r1"], "r2": r["r2"],
-                            "n_members": orbit["n_members"],
-                            "members": orbit["members"],
+                            "n_members": orbit.get("n_members",
+                                                   r.get("n_members", 1)),
+                            "members": orbit.get("members", ""),
                             "nodes_explored": r["nodes_explored"],
                             "min_relator_length": r["min_relator_length"]})
         log(f"  wrote {path} ({len(rows):,} rows)")
