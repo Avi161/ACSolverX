@@ -30,6 +30,26 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   was after 5M. The 214 floor held, so the provisioned second pass at
   `STATES_PER_NODE=236` was never needed.
 
+- The AC19 aut-min SCREEN itself (72,779 `Aut(F2)` orbits of
+  `data/AC19_extended.txt`, 156,762 members) is now in the repo:
+  `results/heuristic_search/ac19_autmin_screen/ac19_autmin_orbits.csv`,
+  rebuilt and self-checked by
+  `experiments/search/make_ac19_autmin_screen.py`. Before this it existed
+  only off-repo, and every campaign list named rows from a list nothing
+  could regenerate.
+- The cheap-box stage is `CAMPAIGN=ac19_cascade_screen` (RUNBOOK section
+  9): the 501-node cascade prefix over the whole screen, 0.55 core-hours
+  and 0.18 GB per worker for all 72,779 rows. Results and the AC vs
+  automorphism-assisted split:
+  `results/heuristic_search/ac19_cascade_screen/RESULTS.md`. Its `ac501`
+  arm is the control -- same priority, budget and cap, no Nielsen image in
+  the heap -- and no share of the `aut_assisted` rows should be quoted
+  without it.
+- `cascade_heuristics`' `s40_gen` arm searches Aut(F2) moves alongside AC
+  substitutions. A path that uses one is NOT an AC certificate. Never
+  count one as a solve; `hybrid_10m` refuses them outright, the screen
+  runner records them under `aut_assisted`.
+
 ## Standing constraints
 
 - The u124 heuristic is `s20_mk2` (priority L + 20 S + 2 MK). Never run
