@@ -2,7 +2,8 @@
 
 Date: 2026-07-27
 
-Proof simplification: 2026-09-06 (Sections 7 and 11).
+Proof updates: 2026-09-06 (constructive scope in Section 6;
+dependency simplification in Sections 7 and 11).
 
 Status: **PROVEN**.  The simultaneous proper-extension obstruction of
 Result 117 is realizable by a primitive stable deletion.  The resulting
@@ -434,6 +435,74 @@ self-embedding corridor.  The explicit map (5.5) is the case \(g=yx\).
 This family turns the next search into a theoretical design problem:
 choose or exclude a conjugator g whose proper image exposes a new
 primitive compression, rather than searching the AC graph blindly.
+
+### Constructive scope: the tag need not become a conjugate of itself
+
+The stable construction has a broader sufficient hypothesis than the
+conjugating family. Let \((A(X,U),B(X,U))\) be a balanced presentation
+of the trivial group, and let \(u(X,r)\) be any word with
+\(u(1,r)=r\) in the free cyclic group. Equivalently, its r-exponent sum
+is one. Define
+\[
+\psi(x)=x,\qquad \psi(y)=u(x,y),\qquad R=U^{-1}u(X,r).
+\]
+Then
+\[
+(A(x,y),B(x,y))\sim_{\mathrm{stable\ AC}}
+(A(x,u(x,y)),B(x,u(x,y))).
+\]
+
+**Proof.** Stabilize the original pair by the row r. To expose the donor
+traffic, enumerate the X-letters in the chosen spelling of u in their
+literal order. Let their signs be \(\epsilon_i\in\{1,-1\}\), and let
+\(h_i\) be the signed r-exponent sum strictly before that occurrence.
+Collecting the r-letters to the right gives the free-group identity
+\[
+u(X,r)=\left(\prod_i r^{h_i}X^{\epsilon_i}r^{-h_i}\right)r,
+\qquad
+Rr^{-1}=U^{-1}\prod_i r^{h_i}X^{\epsilon_i}r^{-h_i}.
+\]
+The old pair normally generates \(F(X,U)\), so choose finite normal
+products of its rows for X and U. Substituting these products in the
+displayed expression makes \(Rr^{-1}\) a finite product of conjugates
+of the two old rows and their inverses. Left-donate these factors to the
+r-row from right to left, restoring each donor, to reach
+\((A,B,R)\). No use of the recipient row as a donor is involved.
+
+The unique U-occurrence in R permits the same stable defining-row
+deletion used above, with \(U=u(X,r)\). Renaming \((X,r)\) as \((x,y)\)
+gives the asserted endpoint. This step retains the balanced-trivial
+hypothesis and the stable basis/substitution interface of Section 5;
+it is not a claim about ordinary fixed-rank AC moves. \(\square\)
+
+The endpoint still presents the trivial group directly: substituting the
+old normal-closure certificates places both x and u in the new relator
+normal closure, and setting x to one makes \(u(1,y)=y\). The map \(\psi\)
+is injective. Indeed, its exponent matrix is
+\(\left(\begin{smallmatrix}1&k\\0&1\end{smallmatrix}\right)\), where k
+is the x-exponent sum of u. Its image is therefore a noncyclic
+two-generated free subgroup of rank two, and the rank-two Hopfian argument
+from Section 1 applies.
+
+For example, \(u=y[x,y]^2\) satisfies the hypothesis but is not conjugate
+to y: conjugating away its outer \(yx\) leaves the cyclically reduced
+word \(y x^{-1}y^{-1}xy\) of length five. Thus this sufficient class is
+strictly larger than the family \(\phi_g\). No new explicit AK3 move list
+or primitive endpoint is asserted here; the proof gives a finite
+factorization construction, not a computed transcript.
+
+All three [focused literal controls](../../tests/stable_ac/test_ak3_unimodular_substitution_identity.py)
+passed: signed occurrence collection including negative heights and
+cancelling letters, an exponent-two can-fail control for the terminal
+tag, and the displayed length-five cyclic core. These check the local
+identities, not a complete AC transcript or the universal quantifiers of
+the proof.
+
+The reflection theorem in Section 11 applies to \(\psi\), but the
+external-conjugator bounds in the remaining sections concern the original
+conjugating family \(\phi_g\) and must not be transferred to arbitrary u.
+This scope clarification opens no word census, new obstruction ledger,
+or claim of stable or ordinary AK3 triviality.
 
 ## 7. Internal relative conjugators cannot expose a primitive row
 

@@ -299,3 +299,12 @@ free-factor argument before importing quotient-embedding machinery;
 retain that machinery only where actual quotient embeddings are asserted.
 After replacing a proof, search the whole document for the removed
 dependency names: the final review caught a stale Section 10 attribution.
+
+### [2026-09-06] Separate stable-substitution scope from family-specific bounds
+
+[WORKS] In `AK3_PARAFREE_STABLE_SELF_EMBEDDING.md` Section 6, the
+tag-replacement construction needs only `u(1,r)=r`, not conjugacy of u
+to r. Collect X-letters by their preceding signed r-height to expose
+the exact old-donor product. This broadens the legal construction, but
+does not extend the later external-conjugator bounds beyond their
+stated conjugating family or justify a new search ledger.
