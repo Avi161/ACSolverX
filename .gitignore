@@ -21,5 +21,7 @@ literature
 # pattern (see results/heuristic_search/ac19_autmin_screen/) commits the
 # residues and the certificates, not the screen itself.
 results/heuristic_search/ac19_cascade_screen/ac19_cascade_screen_*.jsonl
-!results/heuristic_search/ac19_cascade_screen/*_certificates.jsonl
+results/heuristic_search/ac19_extended_screen/ac19_cascade_screen_*.jsonl
+!results/heuristic_search/*/*_certificates.jsonl
 results/heuristic_search/ac19_cascade_screen_smoke/
+results/heuristic_search/ac19_extended_screen_smoke/
