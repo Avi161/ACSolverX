@@ -46,9 +46,18 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   the heap -- and no share of the `aut_assisted` rows should be quoted
   without it.
 - `cascade_heuristics`' `s40_gen` arm searches Aut(F2) moves alongside AC
-  substitutions. A path that uses one is NOT an AC certificate. Never
-  count one as a solve; `hybrid_10m` refuses them outright, the screen
-  runner records them under `aut_assisted`.
+  substitutions, and a path that uses one IS still an AC solve -- AC moves
+  are equivariant under Aut(F2), so pushing the basis change back through
+  the path collapses every automorphism step and leaves a pure AC path to
+  some basis of F2, which Nielsen's theorem then carries to (x,y) by moves
+  that are themselves AC moves. Verified on MS640; the basis tail is 1 to
+  5 letters. What is missing is a DECODER, not a proof: nothing in the
+  repo performs that push-back, so `hybrid_10m` refuses such solves rather
+  than write an Aut move into a move-string field, and the screen runner
+  parks them under `aut_assisted`. Building the decoder is the open task.
+  Do not repeat the earlier claim in this file's history that these are
+  not AC certificates -- it is wrong and it inverted the arm comparison
+  (cascade 70,649 vs control 64,541 at 501 nodes, decoded).
 
 ## Standing constraints
 

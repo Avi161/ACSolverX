@@ -1,6 +1,8 @@
 # ac19_cascade_screen: the 501-node cascade over all 72,779 AC19 orbits
 
 Status: **both 501-node arms COMPLETE**, budget ladder in progress.
+Carries a correction dated 2026-09-07 -- read it before quoting any
+number in this file.
 Branch `claude/ac19-leftover-solver-notebook-6yan6d`. Not merged to main.
 
 ## What was run
@@ -53,6 +55,43 @@ AC-certified, by which component won:
 Median nodes to an AC solve: 12. Maximum: 257. Nothing about this pass
 is expensive on the rows it settles.
 
+## CORRECTION (2026-09-07): `aut_assisted` rows ARE AC-solved
+
+Everything below that treats an automorphism-assisted path as "not an AC
+solve" is **wrong**, and the two arms' headline comparison inverts once it
+is fixed. Recorded in place rather than edited away, because the wrong
+version was quoted.
+
+AC moves are equivariant under `Aut(F2)`: apply `phi^-1` to every word of
+`r_i -> r_i r_j`, `r_i -> r_i^-1` or `r_i -> w r_i w^-1` and the result is
+the same move on the images. So push the accumulated basis change back
+through a mixed path and every automorphism step collapses to a no-op,
+leaving a pure AC path from the input to SOME basis of `F2`. Nielsen's
+theorem finishes it: any basis reaches `(x, y)` by tuple Nielsen moves
+(swap, invert, multiply), and those are themselves AC moves.
+
+Measured on MS640 aut-assisted solves: 26 of 30 push back to a genuine AC
+step sequence directly, and the other 4 are not failures -- the path
+passes through a terminal before its recorded end. The pure-AC prefix
+lands on bases 1 to 5 letters long (`('Y','Yx')`, `('Y','YYX')`,
+`('Y','X')`), so the tail is a handful of moves.
+
+So the corrected comparison at 501 nodes over all 72,779 orbits:
+
+| arm | AC-solved once decoded |
+|---|---:|
+| cascade501 | 27,164 + 43,485 = **70,649 (97.07%)** |
+| ac501 (no Nielsen images in the heap) | 64,541 (88.68%) |
+
+The Nielsen moves are a net **gain of about 6,100 rows**, not the loss of
+38,658 claimed below. Same for MS640: 640/640 is an AC result, not
+146/640.
+
+What is true is narrower and is a code fact, not a mathematical one:
+`hybrid_10m` refuses these solves because nothing in the repo decodes
+them, and writing an Aut move into a move-string field would be a format
+bug. The decoder is the missing piece, not the proof.
+
 ## The distinction the numbers turn on
 
 `cascade_heuristics`' `s40_gen` arm pushes Nielsen images into the same
@@ -70,9 +109,11 @@ rows. On a screen it is not usable: the prefix settles 97% of the list,
 so the refusal would fire on nearly every row.
 
 **`aut_assisted` does not mean "no AC path exists".** It means the
-cheapest path this heap reached used a basis change. Which of the two it
-is takes a control -- the same search with that door shut. That is the
-`ac501` arm, and it has now run.
+cheapest path this heap reached used a basis change -- and per the
+correction above, such a path decodes to an AC certificate. The control
+below is still worth having: it says what the search reaches with the
+Nielsen door shut. It is not, as first written, the arbiter of which
+solves are real.
 
 ## The control, and what it says about the Nielsen moves
 
@@ -100,11 +141,11 @@ Of the 43,485 rows the cascade could only reach by changing basis, the
 control AC-solves **38,512 (88.6%)** at the same budget. Only 4,973 are
 out of AC reach at 501 nodes.
 
-**So the Nielsen images are not buying AC certificates, they are costing
-them** -- 38,658 of them, against 1,281 gained. For AC purposes the
-automorphism edges in `s40_gen` are a net loss: they divert the beam into
-automorphic images and return paths that are not certificates. The plain
-L + 40*S ordering at cap 255 is the strong search here.
+**Superseded by the correction at the top of this file.** The paired
+counts here are counts of rows whose recorded certificate was already
+substitution-only. They are not counts of AC-solvable rows: a decoded
+aut-assisted path is an AC certificate too, and with decoding the cascade
+reaches 70,649 against the control's 64,541.
 
 What the cascade does add is `bs_collapse`. Its 1,281 exclusive solves
 are the rows the beam cannot reach and the pattern can, including all 22
