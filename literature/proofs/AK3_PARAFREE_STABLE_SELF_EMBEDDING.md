@@ -2,6 +2,8 @@
 
 Date: 2026-07-27
 
+Proof simplification: 2026-09-06 (Sections 7 and 11).
+
 Status: **PROVEN**.  The simultaneous proper-extension obstruction of
 Result 117 is realizable by a primitive stable deletion.  The resulting
 proper endomorphism also gives an infinite stable self-embedding corridor
@@ -467,24 +469,18 @@ image source is exactly
 \tag{7.3}
 \]
 
-or the analogous expression with A and B exchanged.  By Section 6,
-Klyachko gives an injection
+or the analogous expression with A and B exchanged. The elementary
+subgroup argument of Theorem 11.1 applies because \(\phi_g\) is injective:
 
 \[
-F_2/\langle\!\langle V\rangle\!\rangle
-\hookrightarrow
-F_2/\langle\!\langle\phi_g(V)\rangle\!\rangle.
+\phi_g(V)\text{ primitive in }F_2
+\quad\Longrightarrow\quad V\text{ primitive in }F_2.
 \tag{7.4}
 \]
 
-If \(\phi_g(V)\) were primitive, the group on the right would be infinite
-cyclic.  Hence the group on the left would be cyclic.  Its abelianization
-is already infinite cyclic by (7.2), so it would be \(\mathbb Z\).
-Normalize the resulting epimorphism \(F_2\to\mathbb Z\) by an ambient
-automorphism.  Its kernel is then the normal closure of one basis element
-P.  Thus \(\langle\!\langle V\rangle\!\rangle=
-\langle\!\langle P\rangle\!\rangle\), and Magnus's normal-closure theorem
-makes V conjugate to \(P^{\pm1}\), contrary to the axis-alignment result.
+This contradicts the axis-alignment result for V. No one-relator quotient
+embedding, root-free hypothesis, or normal-closure theorem is needed for
+this implication.
 
 Therefore no one-source multiplication whose relative conjugator lies in
 the image subgroup can create a primitive row.  This holds for every g,
@@ -768,7 +764,8 @@ Lemma 10.1 and the standard tree product estimate give
 
 The same estimate holds with the sources exchanged.  This exceeds the
 Osborne--Zieschang primitive lengths 9 and 5.  If \(h\in K_c\), Result
-121 gives nonprimitivity by the Klyachko--Magnus quotient argument.
+121 gives nonprimitivity by Section 7 and the primitivity-reflection
+argument of Theorem 11.1.
 Combining the internal and external cases proves
 
 \[
@@ -789,11 +786,14 @@ row-changing edge, or change the stabilizer architecture.
 
 ## 11. The corridor maps reflect primitivity
 
-The Klyachko argument is not limited to AK source products.
+Primitivity reflection is an elementary subgroup fact, not a special
+consequence of the corridor's quotient-embedding properties.
 
 ### Theorem 11.1 (primitivity reflection)
 
-For every \(g\in F_2\) and every \(V\in F_2\),
+Every injective homomorphism \(\alpha:F_m\to F_n\) of finite-rank free
+groups reflects primitivity. In particular, for every \(g\in F_2\) and
+every \(V\in F_2\),
 
 \[
 \phi_g(V)\text{ primitive in }F_2
@@ -802,33 +802,38 @@ V\text{ primitive in }F_2.
 \tag{11.1}
 \]
 
-**Proof.**  Since \(\phi_g\) is injective, a proper-power V would have
-proper-power image, so (11.1)'s hypothesis makes V root-free.  Section 6
-and Klyachko then embed
+**Proof.** Let \(p=\alpha(w)\) be primitive in \(F_n\), and put
+\(K=\alpha(F_m)\). Choose an ambient free basis containing p. In its
+Schreier graph with vertices the right cosets \(Kf\), the edge labelled
+p at the base vertex K is a loop, because \(p\in K\). Reading labels
+identifies the based fundamental group of this graph with K: a word
+labels a closed path at K exactly when it belongs to K, and free edge
+reduction agrees with free word reduction.
 
+A maximal spanning tree omits that loop. The usual graph basis, with one
+based loop for each oriented edge outside the tree (one orientation per
+geometric edge), therefore contains p itself. This argument also applies
+when the Schreier graph is infinite; no finite-index hypothesis is used.
+Consequently, for a free subgroup \(K'\),
 \[
-G(V)=F_2/\langle\!\langle V\rangle\!\rangle
-\hookrightarrow
-F_2/\langle\!\langle\phi_g(V)\rangle\!\rangle
-\cong\mathbb Z.
+K=\langle p\rangle*K'.
 \tag{11.2}
 \]
-
-Thus \(G(V)\) is cyclic.  The map \(\phi_g\) is the identity on
-abelianization, and a primitive image has primitive exponent vector.
-Consequently \(H_1(G(V))\cong\mathbb Z\), so \(G(V)\cong\mathbb Z\).
-Normalize the quotient epimorphism \(F_2\to\mathbb Z\) by an ambient
-automorphism.  Its kernel is the normal closure of a basis element P.
-Hence
-
+Since \(\alpha:F_m\to K\) is an isomorphism, pulling back gives
 \[
-\langle\!\langle V\rangle\!\rangle
-=\langle\!\langle P\rangle\!\rangle.
+F_m=\langle w\rangle*\alpha^{-1}(K'),
 \tag{11.3}
 \]
+so w is primitive. Apply this to the injective map \(\phi_g\) to obtain
+(11.1). \(\square\)
 
-Magnus's normal-closure theorem makes V conjugate to \(P^{\pm1}\), proving
-that V is primitive. \(\square\)
+This is the standard Schreier-graph/free-factor argument; see also
+[Kapovich–Myasnikov, Section 6](https://web.stevens.edu/algebraic/alexeim/Teaching/GroupTheory626/graph5.pdf)
+for spanning trees and free subgroup bases. It requires neither
+unimodularity nor a one-relator quotient embedding. Klyachko remains
+needed for the separate quotient-embedding assertions in Sections 2 and
+6; those assertions have not been removed or weakened. The change here
+simplifies the dependency of the existing exclusion, not its AK3 scope.
 
 There is an immediate history-level consequence.  Start from
 \((\phi_g(A),\phi_g(B))\) and perform any finite AC1--AC3 history in which

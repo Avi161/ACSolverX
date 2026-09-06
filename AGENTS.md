@@ -288,3 +288,14 @@ Do not extend to another finite group, nilpotent layer, or word census.
 is not fake-surface complexity. Check the local-type hypothesis first;
 one failed edge incidence ends this applicability audit without reopening
 the frozen deformation corridor or implying an AK3 obstruction.
+
+### [2026-09-06] Prefer subgroup structure for primitivity reflection
+
+[WORKS] `AK3_PARAFREE_STABLE_SELF_EMBEDDING.md` Sections 7 and 11
+do not need Klyachko or Magnus to reflect primitivity through an injection.
+An ambient primitive element in a subgroup is a distinguished loop in its
+Schreier graph and belongs to a spanning-tree basis. Check this elementary
+free-factor argument before importing quotient-embedding machinery;
+retain that machinery only where actual quotient embeddings are asserted.
+After replacing a proof, search the whole document for the removed
+dependency names: the final review caught a stale Section 10 attribution.
