@@ -269,3 +269,41 @@ When it lands: copy both jsonls and `run.log` to
 `results/heuristic_search/leftovers_5m/RESULTS.md`, and write the
 ladder line there: greedy 222 -> 134 solved at 1M -> 57 at 5M -> N at
 10M; s20_mk2 39 -> 25 -> 5 -> N.
+
+### What it actually did (2026-09-06, COMPLETE)
+
+Ladder line: greedy 222 -> 134 -> 57 -> **3**; s20_mk2 39 -> 25 -> 5 ->
+**0**. Archive and certificates in
+`results/heuristic_search/ac19_10m/RESULTS.md`. No `run.log` was
+delivered with the jsonls.
+
+**The 214 floor was enough and the second pass never happened.** All 40
+row-runs reached their full 10,000,000 pops; no error records, no
+reservation exhaustion, so nothing was left for `STATES_PER_NODE=236`.
+Peak RSS over all 40 rows was 108.15 GB (greedy 49.4-92.3, s20_mk2
+90.6-108.2) against the 133.6 GiB allocation-backed worst per lane --
+about 75% of it, five lanes together peaking near 541 GB of 743 GB. The
+prediction above that the rate would climb past 214 with pops, as it did
+on u124, did not hold for these rows: they are shorter than u124's, and
+none of them exceeded the floor over the full 10M. Read that as a fact
+about this row set, not a licence to drop the floor elsewhere -- u124
+still died at 218 to 223.
+
+Cost came in under the estimate: 22.18 core-hours of row time (greedy
+16.14, s20_mk2 6.04) against the 7.4 box-hour worst case, which is about
+4.4 h of box wall-clock at five lanes with perfect packing.
+
+The wrong-search alarm (any solve at or below 5,000,000 nodes at cap 64)
+did not fire: the three solves came in at 5.31M, 8.01M and 8.20M pops.
+
+Scientifically the stage was a null. All three greedy solves are rows
+s20_mk2 had already solved at 100k, 100k and 1M -- 472x, 334x and 29x
+fewer nodes -- so no presentation changed AC-status and the mutual
+residue is the same 9 rows it was after 5M. On those 9 the arms tied on
+`min_relator_length` row for row while s20_mk2 spent 1.14x the wall and
+1.27x the memory to explore words 11 to 16 letters longer. Before
+provisioning a 20M stage, note that the 28 exhausted greedy rows collapse
+onto only 18 distinct minimal presentations (three of the groups landing
+on the start of another row in the same list), so the residue is a
+smaller problem than its row count suggests and a budget doubling is not
+what is binding on it.
