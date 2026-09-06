@@ -263,3 +263,11 @@ tree presentation and 58 defining deletions give `(a^2 B)^3 a^4, b a B a B a`.
 The basis `x=a^2 B, y=A` returns exactly to standard AK3 after one relator
 conjugation. Freeze this corridor: fewer simplices alone do not justify
 another search when the terminal presentation explicitly returns.
+
+### [2026-09-06] Rebuild the quotient after a genuine donor change
+
+[WORKS] Retaining `R=Abar Bbar` changes the MMS02 quotient to an explicit
+rank-five free-by-cyclic model, unlike either original fixed-donor model.
+Check the monodromy and its inverse literally before claiming an embedded
+base. The resulting primitive gate has one subsequent evaluation checkpoint;
+do not turn a new presentation model into an expanding quotient ledger.
