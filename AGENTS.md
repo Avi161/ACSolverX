@@ -221,3 +221,11 @@ at literal `(x,y)`. The symbols `p,z` denote words in the original
 generators; they need not be charged as ambient automorphism moves.
 Keep restored-donor factors and replay cleanup in original coordinates.
 An unsuccessful transfer of this certificate to AK3 is not a new obstruction.
+
+### [2026-09-06] Transferred moves must donate the actual current row
+
+[WORKS] The full AK2 cleanup remains legal on AK3 only when its donor is
+the actual `d=YYxYxxYxY`, not the AK2 coordinate word `z=Y(xY)^3`.
+The exact resulting rows have lengths 121 and 93, so this transfer is
+frozen. A fixed-donor exclusion does not exclude this both-row replay;
+check its real endpoint once before deciding whether it offers progress.

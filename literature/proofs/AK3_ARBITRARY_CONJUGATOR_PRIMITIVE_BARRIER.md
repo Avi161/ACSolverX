@@ -330,3 +330,28 @@ precludes its primitive completion, so the AK2 cleanup cannot be transferred
 as a fixed-donor shortcut. No larger probe or residual family is attached
 to this failed transfer. Its outcome is a fully literal positive control,
 not a shorter AK3 terminal problem or an AK3 trivialization.
+
+**The full both-row transfer was also checked once.** The preceding
+fixed-donor stopping statement does not forbid applying the rest of the
+AK2 move list to the actual AK3 recipient. Put $p=xY$ and
+$d=p^{-1}w_3p=\mathtt{YYxYxxYxY}$; this row is not the AK2 word $z=Yp^3$.
+The three cleanup macros, now donating $d$ rather than $z$, give
+\[
+ f={}^{p^2}d^{-1}\;{}^{p^5}d^{-1}\;{}^{p^4}d\;r_3
+ =\mathtt{XyXyyxYXyXyyyXYYxYxyXyxxYYYY}.
+\]
+The actual first-row lengths are $22,27,28$. Apply the remaining moves
+using the current rows: invert the first; right-multiply the second by
+the current first inverse three times; right-multiply the first by the
+current second inverse; invert the second. The exact endpoint is
+\[
+ (f^{-4}d^{-1},\ f^{-3}d^{-1}).
+\]
+Both rows are cyclically reduced and have lengths $121$ and $93$.
+This is a legal ordinary-AC path changing both rows, not an application
+of the fixed-donor obstruction. It produces no shorter endpoint than the
+initial total length thirteen. The focused replay retains its literal
+endpoint and distinguishes the actual donor from the AK2 coordinate word.
+Freeze this full-transcript transfer without scaling it or attaching a new
+residual category. Its failure to simplify is not an obstruction to other
+both-row paths or to AK3.

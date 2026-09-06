@@ -109,3 +109,35 @@ def test_ak2_cleanup_is_an_ordinary_ac_transcript_in_original_generators():
         q_row = inverse(q_row)
         if images == original_basis:
             assert (row, q_row) == ("x", "y")
+
+
+def test_actual_ak3_both_row_replay_keeps_the_actual_donor():
+    p_word, first, w_word = "xY", "xxxYYYY", "xYYYxYxxY"
+    donor = conjugate(w_word, inverse(p_word))
+    assert donor == "YYxYxxYxY"
+    assert donor != substitute("z", {"p": "xY", "z": "YxYxYxY"})
+    lengths = []
+    for exponent, sign in ((4, 1), (5, -1), (2, -1)):
+        prefix = power(p_word, exponent)
+        temporary = conjugate(donor if sign == 1 else inverse(donor), prefix)
+        first = reduced(temporary + first)
+        lengths.append(len(first))
+        restored = conjugate(temporary, inverse(prefix))
+        if sign == -1:
+            restored = inverse(restored)
+        assert restored == donor
+    f_word = "XyXyyxYXyXyyyXYYxYxyXyxxYYYY"
+    assert first == f_word
+    assert lengths == [22, 27, 28]
+    first = inverse(first)
+    second = donor
+    for _ in range(3):
+        second = reduced(second + inverse(first))
+    first = reduced(first + inverse(second))
+    second = inverse(second)
+    assert (first, second) == (reduced(power(f_word, -4) + inverse(donor)),
+                               reduced(power(f_word, -3) + inverse(donor)))
+    assert (len(first), len(second)) == (121, 93)
+    for row in (first, second):
+        assert reduced(row) == row
+        assert row[0] != row[-1].swapcase()
