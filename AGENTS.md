@@ -360,3 +360,11 @@ before the MMS02 pair-fold recorder ran. Keep the successful guarded
 `python -c` / `runpy.run_path` launch form from preflight; do not change
 entry-point semantics for the full pass. No enumeration budget was spent
 by that failed import.
+
+### [2026-09-06] Use a solved unimodular pair to calibrate an obstruction
+
+[WORKS] AK2 has join corank two despite its replayed ordinary-AC
+trivialization. This gives a direct control for the interpretation of the
+AK3/MMS02 no-cyclic-complement results; a determinant-two graph control
+alone did not establish that separation. Keep graph sufficiency distinct
+from an invariant of AC orbits.

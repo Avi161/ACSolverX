@@ -223,3 +223,37 @@ def test_saved_initial_graph_needs_two_pair_merges_to_reach_full_rose():
     control = initial_graph(((1,), (2, 2)))
     control_vertices = sorted({vertex for source, _, target in control for vertex in (source, target)})
     assert any(independent_merge(control, pair) == full_rose for pair in combinations(control_vertices, 2))
+
+
+def ak2_cyclic_complement_control_data():
+    words = ((1, 1, -2, -2, -2), (1, 2, 1, -2, -1, -2))
+    graph = initial_graph(words)
+    vertices = sorted({0} | {vertex for source, _, target in graph for vertex in (source, target)})
+    pairs = tuple(combinations(vertices, 2))
+    full_rose = ((0, -2, 0), (0, -1, 0), (0, 1, 0), (0, 2, 0))
+    hits = [pair for pair in pairs if independent_merge(graph, pair) == full_rose]
+    return {"words": words, "vertices": len(vertices), "edges": len(graph) // 2,
+            "rank": len(graph) // 2 - len(vertices) + 1, "pair_count": len(pairs),
+            "hits_full_rose": hits}
+
+
+def test_ordinary_ac_trivial_ak2_has_no_cyclic_complement():
+    import runpy
+
+    result = ak2_cyclic_complement_control_data()
+    assert (result["vertices"], result["edges"], result["rank"], result["pair_count"]) == (8, 9, 2, 28)
+    assert result["hits_full_rose"] == []
+    wedge, fresh = [], 1
+    for word in result["words"]:
+        source = 0
+        for position, letter in enumerate(word):
+            target = 0 if position == len(word) - 1 else fresh
+            if target:
+                fresh += 1
+            wedge.extend(((source, letter, target), (target, -letter, source)))
+            source = target
+    assert initial_graph(result["words"]) == independent_merge(wedge, (0, 0))
+    transcript = runpy.run_path(str(Path(__file__).with_name("test_ak2_primitive_donor_transcript.py")))
+    transcript["test_five_left_donor_factors_have_the_prescribed_family_transcript"]()
+    transcript["test_ak2_primitive_donor_basis_and_defining_deletion_are_literal"]()
+    transcript["test_ak2_cleanup_is_an_ordinary_ac_transcript_in_original_generators"]()

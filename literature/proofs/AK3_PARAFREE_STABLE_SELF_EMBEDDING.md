@@ -725,6 +725,21 @@ replacements, and no such extension is asserted. Changing the target
 rows, the unrestricted MMS02 bridge, and stable or ordinary AK3 remain
 outside this conclusion; no further complement ledger is opened.
 
+**Ordinary-AC positive control for the negative graph result.** The
+known AC-trivial AK2 pair \((x^2y^{-3},xyxy^{-1}x^{-1}y^{-1})\)
+also has no cyclic complement. Its folded core has eight vertices and
+nine unoriented edges; all 28 distinct vertex-pair identifications fail
+to produce the full rose. Its join corank is therefore two as well.
+The [combined control](../../tests/stable_ac/test_ak3_inverse_substitution_overgroups.py)
+independently reconstructs that initial fold, checks every pair, and
+replays the three existing stages of the
+[literal AK2 ordinary-AC certificate](AK3_ARBITRARY_CONJUGATOR_PRIMITIVE_BARRIER.md#literal-ak2-positive-control-and-the-unsuccessful-ak3-transfer)
+ending at \((x,y)\). Thus even for a unimodular balanced trivial pair,
+failure of cyclic completion does not obstruct ordinary or stable AC
+triviality. Join corank is not an AC invariant: this same ordinary-AC
+orbit contains a subgroup of corank two and the full free group of
+corank zero. This control is not a new AK3 route or search family.
+
 ### The same criterion on the literal MMS02 triple
 
 The cyclic-complement proposition extends to an n-tuple with unimodular
