@@ -3315,6 +3315,31 @@ finite scales. This closes the single proposed conjugacy transfer without
 opening another family. It does not obstruct interleaved AC moves or prove
 or disprove stable or ordinary AK3.
 
+**The symmetry strategy has no further iterated killers.** Its square
+is inner in $Q_A$. The distinction from a free-group identity is pinned
+by the exact formulas
+\[
+ \sigma^2(a)={}^{b^{-1}}a,\qquad \sigma^2(b)=b,\qquad
+ \sigma^2(x)({}^{b^{-1}}x)^{-1}={}^{b^{-1}}r_b^{-1}.
+\]
+The last defect is nonempty as a freely reduced word. After quotienting
+by the defining rows, however, $\sigma^2=\operatorname{Inn}(b^{-1})$.
+Since $\sigma(b)=b$, for every integer $k$ its even and odd powers are
+$\operatorname{Inn}(b^{-k})$ and
+$\operatorname{Inn}(b^{-k})\sigma$, respectively. Inner automorphisms
+form a normal subgroup, so arbitrary interleavings with them add no
+further conjugacy classes. Starting from $x^{-1}$ and also allowing
+killer inversion gives only the classes of $x^{\pm1}$ and $S^{\pm1}$.
+Theorem 6.11 with the source/target normalizations excludes the first
+pair from $h$; the preceding comparison excludes the second.
+
+Donations from the defining rows vanish in this quotient while their
+fixed normal closure is preserved. Thus no composition of these symmetry
+operations, inner conjugations, inversions and such donations supplies
+the required killer. This freezes the symmetry-transfer strategy without
+an iteration search. It does not cover moves in which the killer changes
+the defining normal closure, and does not obstruct general AC paths.
+
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[
  u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,

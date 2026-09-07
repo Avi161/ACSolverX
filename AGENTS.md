@@ -604,3 +604,9 @@ before reusing a Mahler argument. The target's base coefficient changes
 the operator and annihilator; copying the earlier three-p shift would be
 wrong. The new five-coefficient certificate closes conjugacy transfer only,
 not interleaved AC equivalence or the whole MMS02 bridge.
+
+[WORKS] Before iterating the HNN symmetry, reduce its square in the actual
+quotient: it is inner there, with a nonempty free defect equal to a
+conjugate of r_b^-1. All integer powers and inner interleavings therefore
+have only the two already-tested killer classes up to inversion. Freeze
+that strategy; this does not cover changing the defining normal closure.

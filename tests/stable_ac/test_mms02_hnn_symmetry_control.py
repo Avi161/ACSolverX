@@ -135,3 +135,15 @@ def test_single_hnn_comparison_coefficient_functional_at_four_scales():
         outside_domain = operator({-p: 1})
         assert outside_domain == {p: 1, -2 * p: -1, -p: 1}
         assert functional(outside_domain) == 2
+
+
+def test_hnn_symmetry_square_is_inner_only_modulo_the_relator():
+    square = {generator: substitute(substitute(generator, SIGMA), SIGMA) for generator in "abx"}
+    for generator in "ab":
+        assert square[generator] == conjugate(generator, "B")
+    assert square["x"] == reduce_word("bAb", "aBx")
+    inner_x = conjugate("x", "B")
+    defect = reduce_word(square["x"], inverse(inner_x))
+    assert defect == conjugate(inverse(R2), "B")
+    assert square["x"] != inner_x
+    assert defect != ""
