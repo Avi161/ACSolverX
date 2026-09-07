@@ -57,6 +57,15 @@ import sys
 import time
 import traceback
 
+# Must precede any numba-backed import. The kernel is single-threaded, but
+# BLAS/OpenMP pools spin one thread per vCPU at import and each reserves a
+# ~64 MiB malloc arena -- multiple GiB of address space on a large box,
+# which blows the worker RLIMIT_AS before a row runs. Set here as well as in
+# run_remote.sh so a direct `python -m` invocation is safe too.
+for _var in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS",
+             "NUMBA_NUM_THREADS"):
+    os.environ.setdefault(_var, "1")
+
 from experiments.equivalence_classes.lib.words import canon_pair
 from experiments.search.greedy_baseline import moves_to_states, str_to_move
 from experiments.search.hybrid_10m import (
@@ -99,8 +108,12 @@ DEFAULT_OUT = os.path.join(ROOT, "results", "heuristic_search", CAMPAIGN)
 
 # Measured, not assumed: see the module docstring. The worker ceiling is the
 # observed peak with a wide margin, so a runaway row dies instead of the box.
+# Measured per budget: a bigger budget costs more only on the rows that do
+# not settle early. 501 over the 72,779 orbits; 1,000 over all 156,762.
+SECONDS_PER_ROW_BY_BUDGET = {501: 0.027, 1_000: 0.0316, 10_000: 1.00,
+                             100_000: 1.29}
 SECONDS_PER_ROW = 0.027
-PEAK_RSS_GB_PER_WORKER = 0.18
+PEAK_RSS_GB_PER_WORKER = 0.22
 WORKER_RLIMIT_GB = 2.0
 
 
@@ -292,23 +305,43 @@ def _init_worker(rlimit_bytes):
         pass
 
 
-def plan(log=print):
-    rows = load_rows() if os.path.exists(ROWS_CSV) else []
+def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
+         log=print):
+    """What THIS invocation would run -- not what the defaults would run.
+
+    `plan` used to ignore the budget and the row list and always describe the
+    orbit screen at 501 nodes, so it disagreed with the run it was supposed to
+    be planning. Reported by the operator against `CAMPAIGN=ac19_all`, which
+    runs 156,762 rows at 1,000.
+    """
+    path = rows_csv or ROWS_CSV
+    rows = load_rows(path) if os.path.exists(path) else []
     n = len(rows) or 72_779
     cores = os.cpu_count() or 1
-    core_hours = n * SECONDS_PER_ROW / 3600
+    n_workers = (max(1, cores - 1) if workers == "auto" else max(1, int(workers)))
+    per_row = SECONDS_PER_ROW_BY_BUDGET.get(budget, SECONDS_PER_ROW)
+    core_hours = n * per_row / 3600
     info = {
         "rows": n,
-        "budget_per_row": PREFIX_BUDGET,
+        "rows_csv": path,
+        "budget_per_row": budget,
+        "record": "move-wise (steps stored)" if emit_mixed else "summary only",
+        "workers": n_workers,
         "cap": SEARCH_CAP,
-        "seconds_per_row_measured": SECONDS_PER_ROW,
+        "seconds_per_row_measured": per_row,
         "core_hours": round(core_hours, 2),
-        "wall_hours_on_this_box": round(core_hours / max(1, cores - 1), 2),
+        "wall_minutes_at_this_worker_count": round(core_hours * 60 / n_workers, 1),
         "cores_here": cores,
         "peak_rss_gb_per_worker_measured": PEAK_RSS_GB_PER_WORKER,
-        "worker_rlimit_gb": WORKER_RLIMIT_GB,
-        "gb_needed_for_n_workers": {
-            str(w): round(w * WORKER_RLIMIT_GB + 1.0, 1) for w in (2, 4, 8, 16)},
+        # RLIMIT_AS caps a worker's ADDRESS SPACE. It does not reserve RAM,
+        # so N workers do not need N * this much memory -- the RSS line is
+        # what sizes the box. Reported separately because conflating them
+        # makes a 63-worker run look like it needs 127 GB when it needs 14.
+        "worker_rlimit_gb_address_space": WORKER_RLIMIT_GB,
+        "ram_gb_needed": round(n_workers * PEAK_RSS_GB_PER_WORKER + 2.0, 1),
+        "ram_gb_needed_for_n_workers": {
+            str(w): round(w * PEAK_RSS_GB_PER_WORKER + 2.0, 1)
+            for w in (8, 16, 32, 63)},
     }
     log(json.dumps(info, indent=2))
     log("\n  For contrast, the 10M hybrid at this same cap 255 plans a")
@@ -516,7 +549,8 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
 
 
 def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
-           chunks=1, chunk_index=1, log=print):
+           chunks=1, chunk_index=1, rows_csv=None, emit_mixed=False,
+           log=print):
     """Walk the budget ladder, each rung over the rung below's leftovers.
 
     This is the shape the campaign actually wants: almost every orbit falls
@@ -526,11 +560,12 @@ def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
     rungs and change no answer -- a search at budget B is the first B pops of
     any longer search, so a row solved at 501 is solved at 100,000.
     """
-    previous, summary = None, []
+    previous, summary = rows_csv, []
     for budget in rungs:
         log(f"\n=== rung: {budget:,} nodes ===")
         run(out_dir, arm=arm, budget=budget, rows_csv=previous,
-            workers=workers, chunks=chunks, chunk_index=chunk_index, log=log)
+            workers=workers, chunks=chunks, chunk_index=chunk_index,
+            emit_mixed=emit_mixed, log=log)
         got = report(out_dir, arm=arm, budget=budget, chunks=chunks,
                      chunk_index=chunk_index, log=log)
         written = residues(out_dir, arm=arm, budget=budget, chunks=chunks,
@@ -588,7 +623,8 @@ def main(argv=None):
                     help="certify: comma-separated row names")
     args = ap.parse_args(argv)
     if args.command == "plan":
-        plan()
+        plan(budget=args.budget, rows_csv=args.rows_csv, workers=args.workers,
+             emit_mixed=args.emit_mixed)
     elif args.command == "smoke":
         run(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=1, chunks=1, chunk_index=1,
@@ -596,8 +632,10 @@ def main(argv=None):
         report(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
                chunks=1, chunk_index=1)
     elif args.command == "ladder":
-        ladder(args.out_dir, arm=args.arm, workers=args.workers,
-               chunks=args.chunks, chunk_index=args.chunk_index)
+        rungs = tuple(b for b in LADDER if b >= args.budget) or (args.budget,)
+        ladder(args.out_dir, arm=args.arm, rungs=rungs, workers=args.workers,
+               chunks=args.chunks, chunk_index=args.chunk_index,
+               rows_csv=args.rows_csv, emit_mixed=args.emit_mixed)
     elif args.command == "run":
         run(args.out_dir, arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=args.workers, chunks=args.chunks,

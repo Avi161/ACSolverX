@@ -8,7 +8,19 @@ measured on a 4-core 15 GB box, on a 1,046-row stride sample of
 
 156,762 presentations -- every line of `data/AC19_extended.txt`,
 Aut-duplicates included -- through the cascade at a 1,000-node budget,
-storing a **move-wise** certificate per solved row.
+storing a **move-wise** certificate per solved row, then escalating what
+is left up the ladder rather than stopping.
+
+Measured on the 3,208 rows that survive 1,000 nodes: **95% fall at 10,000**
+(114/120 sampled) and **40/40 of a sample fall at 100,000**. So the
+escalation is 3.21 + 4.13 core-hours, minutes on a large box, not a second
+campaign.
+
+| rung | rows in | cost |
+|---|---:|---|
+| 1,000 | 156,762 | 1.38 core-hours |
+| 10,000 | ~3,208 | 3.21 core-hours |
+| 100,000 | whatever survives | 4.13 core-hours |
 
 ## Cost, measured
 
@@ -46,6 +58,20 @@ implementations of the four operations.
 
 ## Sizing
 
+`RLIMIT_AS` caps a worker's ADDRESS SPACE; it does not reserve RAM. 63
+workers at a 2 GiB cap need about 63 x 0.22 = 14 GiB of memory, not 126.
+`plan` reports the two separately (`ram_gb_needed` against
+`worker_rlimit_gb_address_space`) because conflating them makes this look
+like a big-memory job.
+
+One thing that DOES scale with core count: BLAS and OpenMP spin one thread
+per vCPU at import and each reserves a ~64 MiB malloc arena. Unpinned on a
+64-vCPU box that is multiple GiB of address space per process and it blows
+the worker cap before a row runs -- `std::bad_alloc`, no output. `setup()`
+now exports `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+NUMBA_NUM_THREADS=1` for every subcommand, and the runner sets the same
+defaults at module import so a bare `python -m` is safe too.
+
 Output is 0.13 GiB and peak RSS is 0.22 GiB per worker, so **neither disk
 nor RAM binds**. Cores do, and only for about 90 seconds of wall clock on
 a large box. The default root volume is enough; there is nothing to
@@ -54,9 +80,17 @@ interval.
 
 ## Run it
 
-    CAMPAIGN=ac19_all ./experiments/search/run_remote.sh plan
-    CAMPAIGN=ac19_all ./experiments/search/run_remote.sh smoke
-    CAMPAIGN=ac19_all ./experiments/search/run_remote.sh run
+`run_remote.sh` uses `set -euo pipefail`, so export the three variables it
+does not default for you before calling it:
+
+    export SRC=$HOME/ACSolverX PY=python3 PYTHONPATH=$SRC
+    CAMPAIGN=ac19_all OUT=$HOME/ac19_all WORKERS=48 $SRC/experiments/search/run_remote.sh plan
+    CAMPAIGN=ac19_all OUT=$HOME/ac19_all WORKERS=48 $SRC/experiments/search/run_remote.sh smoke
+    CAMPAIGN=ac19_all OUT=$HOME/ac19_all WORKERS=48 $SRC/experiments/search/run_remote.sh run
+
+`plan` must report `"rows": 156762`, `"budget_per_row": 1000` and
+`"record": "move-wise (steps stored)"`. If it does not, stop -- it is
+describing a different job from the one `run` would execute.
 
 `run` writes the move-wise jsonl, reports, writes the residue lists, and
 then runs `decode_ac_jsonl` over the result to produce

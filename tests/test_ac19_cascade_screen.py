@@ -179,6 +179,21 @@ def test_the_worker_guard_fails_closed(monkeypatch):
         screen._init_worker(1 << 30)
 
 
+def test_plan_describes_the_invocation_not_the_defaults():
+    """It used to always describe the orbit screen at 501 nodes, whatever it
+    was asked to plan. The operator caught it against CAMPAIGN=ac19_all."""
+    got = screen.plan(budget=1000, workers=63, emit_mixed=True,
+                      rows_csv=os.path.join(
+                          ROOT, "results", "heuristic_search",
+                          "ac19_autmin_screen", "ac19_extended_rows.csv"),
+                      log=lambda _: None)
+    assert got["rows"] == 156_762
+    assert got["budget_per_row"] == 1000
+    assert got["workers"] == 63
+    assert got["record"] == "move-wise (steps stored)"
+    assert got["seconds_per_row_measured"] == 0.0316
+
+
 def test_plan_reports_the_measured_cost_not_a_guess():
     info = screen.plan(log=lambda _: None)
     assert info["budget_per_row"] == PREFIX_BUDGET == 501
@@ -186,7 +201,10 @@ def test_plan_reports_the_measured_cost_not_a_guess():
     assert info["seconds_per_row_measured"] == screen.SECONDS_PER_ROW
     assert info["peak_rss_gb_per_worker_measured"] < 1.0
     # the whole point of this pass: it fits where the 10M hybrid cannot
-    assert info["gb_needed_for_n_workers"]["8"] < 32
+    assert info["ram_gb_needed_for_n_workers"]["63"] < 32
+    # RLIMIT_AS is an address-space cap, not a RAM reservation: 63 workers
+    # need ~14 GB of RAM, not 63 * 2
+    assert info["ram_gb_needed"] < 63 * info["worker_rlimit_gb_address_space"]
 
 
 def test_a_row_that_blows_up_comes_back_as_an_error_not_an_exception():
@@ -287,6 +305,7 @@ def test_the_screen_campaign_plans_without_the_big_ram_planner():
     assert got.returncode == 0, got.stderr
     assert '"rows": 72779' in got.stdout
     assert '"budget_per_row": 501' in got.stdout
+    assert '"workers":' in got.stdout
     assert "319.0 GiB per lane" in got.stdout       # the contrast, on the page
 
 
@@ -294,7 +313,7 @@ def test_the_screen_job_runs_the_screen_runner_not_the_5m_runner(tmp_path):
     got = _remote("job", CAMPAIGN="ac19_cascade_screen", OUT=str(tmp_path))
     assert got.returncode == 0, got.stderr
     job = (tmp_path / "_job.sh").read_text()
-    assert "run_ac19_cascade_screen run" in job
+    assert "run_ac19_cascade_screen ladder" in job
     assert 'if [ "1" = 1 ]; then' in job            # SCREEN baked at write time
     import subprocess
     assert subprocess.run(["bash", "-n", str(tmp_path / "_job.sh")]).returncode == 0
@@ -360,7 +379,7 @@ def test_the_ladder_feeds_each_rung_the_rung_belows_leftovers(monkeypatch, tmp_p
     seen = []
 
     def fake_run(out_dir, *, arm, budget, rows_csv, workers, chunks,
-                 chunk_index, log):
+                 chunk_index, emit_mixed, log):
         seen.append((budget, rows_csv))
 
     counts = iter([{"rows": 100, "ac": 90, "aut_assisted": 0, "unsolved": 10},
@@ -448,14 +467,47 @@ def test_an_aut_assisted_row_is_decodable_even_though_solved_is_false():
     assert _has_certificate(found) is True
 
 
+def test_plan_and_run_describe_the_same_job_for_ac19_all(tmp_path):
+    """The operator's stop rule: if plan does not say 156,762 rows at 1,000
+    nodes, do not start. It used to say 72,779 at 501 because SCREEN_FLAGS
+    was assembled before ROWS_CSV existed."""
+    got = _remote("plan", CAMPAIGN="ac19_all", OUT=str(tmp_path), WORKERS="63")
+    assert got.returncode == 0, got.stderr
+    assert '"rows": 156762' in got.stdout
+    assert '"budget_per_row": 1000' in got.stdout
+    assert '"record": "move-wise (steps stored)"' in got.stdout
+    assert '"workers": 63' in got.stdout
+    job = _remote("job", CAMPAIGN="ac19_all", OUT=str(tmp_path))
+    assert job.returncode == 0, job.stderr
+    text = (tmp_path / "_job.sh").read_text()
+    assert "--budget 1000" in text and "ac19_extended_rows.csv" in text
+
+
+def test_every_subcommand_pins_the_thread_pools(tmp_path):
+    """Unpinned, BLAS/OpenMP spin one thread per vCPU at import and each
+    reserves a ~64 MiB malloc arena. On a 64-vCPU box that blew the worker
+    RLIMIT_AS and `smoke` aborted with std::bad_alloc before any row ran.
+    The pins used to live only inside the generated job."""
+    src = open(REMOTE_SH).read()
+    setup = src.split("setup() {", 1)[1].split("\n}", 1)[0]
+    assert "OPENBLAS_NUM_THREADS=1" in setup
+    assert "NUMBA_NUM_THREADS=1" in setup
+    # and again at module import, so `python -m` is safe without the wrapper
+    module = open(os.path.join(
+        ROOT, "experiments", "search", "run_ac19_cascade_screen.py")).read()
+    assert 'os.environ.setdefault(_var, "1")' in module
+
+
 def test_the_all_of_ac19_campaign_is_wired_end_to_end(tmp_path):
     got = _remote("job", CAMPAIGN="ac19_all", OUT=str(tmp_path))
     assert got.returncode == 0, got.stderr
     job = (tmp_path / "_job.sh").read_text()
-    assert "run_ac19_cascade_screen run --budget 1000" in job
+    assert "run_ac19_cascade_screen ladder --budget 1000" in job
     assert "--emit-mixed" in job
     assert "ac19_extended_rows.csv" in job
     assert "--chunks 1 --chunk-index 1" in job
-    assert "decode_ac_jsonl" in job          # elementary form, on demand
+    # the elementary expansion is opt-in: the move-wise record is the
+    # deliverable and it is restorable from the stored moves
+    assert 'if [ "0" = 1 ]; then' in job
     import subprocess
     assert subprocess.run(["bash", "-n", str(tmp_path / "_job.sh")]).returncode == 0

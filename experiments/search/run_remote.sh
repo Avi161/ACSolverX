@@ -44,8 +44,7 @@ case "$CAMPAIGN" in
   # bytes a row against 889, and `decode_ac_jsonl` regenerates it on demand
   # from the stored moves. Output is ~160 MB, so disk does not bind either.
   ac19_all) SCREEN=1; EMIT_MIXED=1; BUDGET=${BUDGET:-1000}; MRL=${MRL:-255}
-            ARMS=${ARMS:-cascade501}
-            ROWS_CSV=${ROWS_CSV:-$SRC/results/heuristic_search/ac19_autmin_screen/ac19_extended_rows.csv} ;;
+            ARMS=${ARMS:-cascade501}; WANT_DATASET_ROWS=1 ;;
   # The three joint 5M survivors under the 501-node prefix + S20 restart, at
   # 10M and cap 255. This is the OPPOSITE of the screen above: cap 255 plans a
   # 2,140,262,144-state reservation, 319 GiB per lane. On a small box
@@ -57,15 +56,23 @@ case "$CAMPAIGN" in
 esac
 SCREEN=${SCREEN:-0}
 HYBRID=${HYBRID:-0}
+WANT_DATASET_ROWS=${WANT_DATASET_ROWS:-0}
 EMIT_MIXED=${EMIT_MIXED:-0}
+DECODE_ELEMENTARY=${DECODE_ELEMENTARY:-0}
 ROWS_CSV=${ROWS_CSV:-}
-SCREEN_FLAGS=""
-[ "$EMIT_MIXED" = 1 ] && SCREEN_FLAGS="$SCREEN_FLAGS --emit-mixed"
-[ -n "$ROWS_CSV" ] && SCREEN_FLAGS="$SCREEN_FLAGS --rows-csv $ROWS_CSV"
 MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
 OUT=${OUT:-$HOME/leftovers_5m}
 SRC=${SRC:-$HOME/ACSolverX}
+# Defaults that need SRC must come after it, not inside the campaign case.
+[ "$WANT_DATASET_ROWS" = 1 ] && ROWS_CSV=${ROWS_CSV:-$SRC/results/heuristic_search/ac19_autmin_screen/ac19_extended_rows.csv}
+# Assembled AFTER ROWS_CSV exists -- building it earlier silently dropped the
+# row list, so `plan` described the orbit screen while `run` would have run
+# the extended set.
+SCREEN_FLAGS=""
+[ "$EMIT_MIXED" = 1 ] && SCREEN_FLAGS="$SCREEN_FLAGS --emit-mixed"
+[ -n "$ROWS_CSV" ] && SCREEN_FLAGS="$SCREEN_FLAGS --rows-csv $ROWS_CSV"
+true
 LOG="$OUT/run.log"
 PY=${PY:-python3}
 
@@ -87,12 +94,21 @@ setup() {
     $PY -c 'import numba, numpy' || { echo "STOP: numba unavailable"; exit 1; }
   fi
   export PYTHONPATH="$SRC"
+  # The search kernel is single-threaded numba; BLAS/OpenMP pools are never
+  # used, but left at their defaults they spin up one thread per vCPU AT
+  # IMPORT and each reserves a ~64 MiB malloc arena. On a 64-vCPU box that
+  # is multiple GiB of ADDRESS SPACE per process, which blows the worker
+  # RLIMIT_AS before a single row runs (std::bad_alloc, no output). This
+  # used to be set only inside the generated job, so `plan` and `smoke`
+  # aborted on any large-core box.
+  export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
 }
 
 plan() {
   setup
   if [ "$SCREEN" = 1 ]; then
-    $PY -m experiments.search.run_ac19_cascade_screen plan --out-dir "$OUT"
+    $PY -m experiments.search.run_ac19_cascade_screen plan --budget $BUDGET \
+        $SCREEN_FLAGS --workers $WORKERS --out-dir "$OUT"
     return
   fi
   if [ "$HYBRID" = 1 ]; then
@@ -206,10 +222,19 @@ ${RETRY_EXHAUSTED:+export RETRY_EXHAUSTED=$RETRY_EXHAUSTED}
 # The screen pass has one arm, no reservation and no per-row memory plan,
 # so it takes the same --chunks/--chunk-index convention and nothing else.
 if [ "$SCREEN" = 1 ]; then
-  $PY -m experiments.search.run_ac19_cascade_screen run --budget $BUDGET \
+  # LADDER, not a single pass: rung 1 stores a move-wise certificate for
+  # every row it settles, then each higher rung runs only what the rung
+  # below left. Measured on the 3,208 that survive 1,000 nodes -- 95% fall
+  # at 10,000 and 40/40 of a sample fall at 100,000 -- so the escalation is
+  # minutes, not a second campaign.
+  $PY -m experiments.search.run_ac19_cascade_screen ladder --budget $BUDGET \
       $SCREEN_FLAGS --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
-  # Elementary AC moves are NOT stored per row; regenerate them on demand.
-  if [ "$EMIT_MIXED" = 1 ]; then
+  # Elementary AC moves are NOT produced by default. The move-wise record is
+  # the deliverable and it is restorable: `decode_ac_jsonl` rebuilds the
+  # states from the moves and expands to generator-level AC operations
+  # whenever someone actually wants them. Set DECODE_ELEMENTARY=1 to do it
+  # here, at 10,440 bytes a row against 889.
+  if [ "$DECODE_ELEMENTARY" = 1 ]; then
     $PY -m experiments.search.decode_ac_jsonl \
         "$OUT/ac19_cascade_screen_cascade501_b${BUDGET}_mrl${MRL}.jsonl" \
         "$OUT/ac19_all_elementary.jsonl"
@@ -357,7 +382,7 @@ verify() {
   return $fail
 }
 
-export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID EMIT_MIXED ROWS_CSV SCREEN_FLAGS
+export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID EMIT_MIXED DECODE_ELEMENTARY ROWS_CSV SCREEN_FLAGS
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
   install-service) install_service ;;
