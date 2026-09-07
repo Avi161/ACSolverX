@@ -391,3 +391,12 @@ as a basis change; a primitive image alone is not an AC certificate.
 root returns exactly to (A, conjugate B) after two defining eliminations
 and a Nielsen basis change. Carry every defining row through the inverse
 calculation before treating a different one-relator form as a new route.
+
+### [2026-09-07] State which quotient kernel has licensed donors
+
+[WORKS] In MMS02 Section 6.18, paths modulo Ncl(A,v) lift because A,v
+remain available to correct endpoint errors. This covers the specified
+relative donation macros, not arbitrary paths changing those base rows.
+Do not transfer that argument to a deeper quotient whose extra kernel
+has no supplied donor family, or call the existing relative lift a new
+AK3 construction.

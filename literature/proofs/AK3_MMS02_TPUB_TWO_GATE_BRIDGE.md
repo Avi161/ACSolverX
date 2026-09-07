@@ -2935,7 +2935,28 @@ canonical relative class (83) is equivalent to closure of the tagged gate
 (130).  Both $q$ and $B$ normally generate $Q_A$, while Theorem 6.11 proves
 that they are not conjugate there.
 
-The final sentence does not turn literal nonconjugacy into tagged-pair
+**Fixed-donor lifting scope and proof.** The equivalence of (129) and
+(130) concerns the relative path class: the two live rows may undergo
+AC1--AC3 moves, and the base rows $A,v$ may supply conjugate-donation
+macros which restore them. It is not a classification of arbitrary
+four-row paths that change the base rows using live-row donations.
+Put $F_t=F(x,y,z,t)$ and $N=\operatorname{Ncl}_{F_t}(A,v)$, so
+$F_t/N=Q_A*\langle t\rangle$. Lift a path in (130) operation by
+operation, choosing any $F_t$ representatives of its conjugators and
+leaving the base rows intact. Its lifted live endpoint $(w_1,w_2)$
+satisfies $Bw_1^{-1},tw_2^{-1}\in N$. Express these two errors as finite
+products of conjugates of $A^{\pm1},v^{\pm1}$ and left-donate their
+factors in reverse product order to the corresponding live rows,
+restoring each donor after use. The endpoint is literally $(A,B,v,t)$.
+Conversely, projection of the specified relative macros gives quotient
+AC moves or identity steps, since all base-donor factors lie in $N$.
+Thus no further lifting condition remains once an actual path in (130)
+is supplied. This argument does not apply automatically to a path in a
+further derived quotient of $Q_A$: its additional kernel has not been
+provided as available donor rows. Those affine and Peiffer lifting
+obligations remain separate and unresolved.
+
+The nonconjugacy assertion in Theorem 6.12 does not imply tagged-pair
 inequivalence.  Arbitrary Andrews--Curtis paths may multiply the first row
 by conjugates of the tag row, move the tag row, and later cancel the added
 stable-letter syllables.  No tag-rigidity or destabilization theorem is
