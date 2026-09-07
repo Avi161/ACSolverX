@@ -218,17 +218,27 @@ def bridge(source, target, max_depth=3):
     """
     if source == target:
         return []
+    # Close with `find_move` rather than by walking into the target. A blind
+    # BFS branches ~400 per node here, so depth 3 is ~35 minutes; closing the
+    # last step with the matcher makes depth d cost d-1 expansions instead of
+    # d, which is the difference between seconds and unusable.
+    limit = sum(map(len, target)) + 2 * max(map(len, target))
     frontier = {source: []}
-    for _ in range(max_depth):
+    seen = {source}
+    for depth in range(1, max_depth + 1):
+        for state, moves in frontier.items():
+            move = find_move(state, target)
+            if move is not None:
+                return moves + [move]
+        if depth == max_depth:
+            return None
         nxt = {}
         for state, moves in frontier.items():
             for child, move in _children(state).items():
-                if child in frontier or child in nxt:
+                if child in seen or sum(map(len, child)) > limit:
                     continue
-                path = moves + [move]
-                if child == target:
-                    return path
-                nxt[child] = path
+                seen.add(child)
+                nxt[child] = moves + [move]
         if not nxt:
             return None
         frontier = nxt

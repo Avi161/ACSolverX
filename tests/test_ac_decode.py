@@ -165,3 +165,33 @@ def test_decode_reports_why_it_failed_instead_of_returning_junk():
                          bridge_depth=1)
     assert moves is None
     assert "no AC move sequence" in info["reason"]
+
+
+def test_the_bridge_closes_with_the_matcher_rather_than_walking_in():
+    """A blind BFS branches ~400 per node here, so depth 3 is ~35 minutes.
+    Closing the last step with `find_move` makes depth d cost d-1 expansions.
+    The guard is a time bound: the rows that need a bridge must stay usable."""
+    import time
+    source = ("Y", "YX")
+    target = tuple(moves_to_states("Y", "YX", [(2, 1, 0, 0), (1, 1, 0, 0)])[-1])
+    started = time.time()
+    span = bridge(source, target, max_depth=3)
+    assert span is not None
+    assert time.time() - started < 20, "the bridge must not search blind"
+    assert tuple(moves_to_states(source[0], source[1], span)[-1]) == target
+
+
+def test_a_row_that_needs_a_conjugated_step_decodes_in_seconds():
+    """MS640 row 571 is one of the eleven whose pushed-back path contains a
+    step the four-integer encoding cannot say in one move."""
+    import time
+    pair = _rows(572)[571]
+    got = _run(pair)
+    assert got["solved"]
+    started = time.time()
+    moves, info = decode(pair, got["states"], got["steps"])
+    elapsed = time.time() - started
+    assert moves is not None, info["reason"]
+    assert info["bridged"] == 1
+    assert is_terminal(tuple(moves_to_states(pair[0], pair[1], moves)[-1]))
+    assert elapsed < 60, f"took {elapsed:.0f}s; the bridge has regressed"
