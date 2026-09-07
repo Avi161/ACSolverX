@@ -2001,6 +2001,37 @@ multiplying the two base rows changes the quotient multiword and is
 outside the conclusion. The unrestricted MMS02 bridge, stable AK(3), and
 ordinary AK(3) remain open.
 
+**The shared-subword multiplication returns to AK(3).** One can leave the
+fixed quotient class by a particularly short multiplication, but it does
+not supply a new terminal problem. Write the two rows of $W$ as $W_1,W_2$.
+Conjugate $W_2$ by $y$ and right-multiply it by $W_1^{-1}$. The result is
+$S=\mathtt{yXYXyxx}$. In the ambient basis $z=yx$, with inverse $y=zX$,
+the first row is $U=\mathtt{XZxZXzxZxzX}$; inverting the second row and
+conjugating by $zx$ gives the braid donor $B=\mathtt{xzxZXZ}$.
+Conjugate $U$ by $\Delta=xzx$. The exact reduced-word chain is
+
+\[
+\begin{aligned}
+\mathtt{xxZXzxZxzXXZX}
+&\longrightarrow\mathtt{xxxZZxzXXZX}\\
+&\longrightarrow\mathtt{xxxZZZxzXZX}\\
+&\longrightarrow\mathtt{xxxZZZZ}.
+\end{aligned}
+\]
+
+The first substitution is $Xzx\to zxZ$, and the next two are
+$xzX\to Zxz$, with free reduction after each. Their literal defects are
+$(Xzx)(zxZ)^{-1}=XB^{-1}x$ and
+$(xzX)(Zxz)^{-1}=ZB^{-1}z$; equivalently, the three left donations use
+$B$ conjugated by $\mathtt{xxZX}$, $\mathtt{xxxZZZ}$, and
+$\mathtt{xxxZZZZ}$, respectively. The donor is restored each time.
+The endpoint is exactly $(x^3z^{-4},xzxZXZ)$, standard AK(3).
+The focused test above checks both inverse basis compositions and the
+actual donor updates. This is a mixed-move return certificate, with the
+ambient marking change distinguished from relator AC moves; it is not a
+trivialization or a compiled ordinary-AC certificate. This particular
+shared-subword continuation is closed without a new search.
+
 ### 6.10. Tail-free boundary donor moves are also nonthickenable
 
 Let $\operatorname{cyc}(w)$ denote the freely and cyclically reduced word

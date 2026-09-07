@@ -544,3 +544,9 @@ a planarity census; see Section 6.9 and its independent corner-parser test.
 realizations. A trivial presented group forces orientability of an actual
 thickening, not of every such multicurve realization. Exclude both signs,
 or explicitly retain two-sidedness when using the orientation character.
+
+[WORKS] The same minimum's shared suffix gives a seven-letter row after
+one base multiplication, but z=yx exposes a braid donor and three literal
+donations return to standard AK3. Identify the resulting marked pair
+before interpreting a destroyed geometric obstruction as constructive
+progress toward triviality; the focused test preserves the current donor.

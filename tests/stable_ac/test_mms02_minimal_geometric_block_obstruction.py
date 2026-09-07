@@ -132,3 +132,53 @@ def test_three_cyclic_blocks_have_six_cell_control_and_noninterval_negative():
                for index, label in enumerate(artificial_positive)) == 3
     assert sum(label != artificial_negative[index - 1]
                for index, label in enumerate(artificial_negative)) > 3
+
+
+def test_shared_subword_multiplication_returns_to_ak3():
+    """Replay the specified return to AK3, not a trivialization."""
+    def inverse(word):
+        return word[::-1].swapcase()
+
+    def substitute(word, images):
+        return free_reduce("".join(
+            images[letter.lower()] if letter.islower() else inverse(images[letter.lower()])
+            for letter in word
+        ))
+
+    def conjugate(word, prefix):
+        return free_reduce(prefix + word + inverse(prefix))
+
+    w1, w2 = WORDS
+    second_prime = conjugate(w2, "y")
+    s = free_reduce(second_prime + inverse(w1))
+    assert s == "yXYXyxx"
+    forward = {"x": "x", "y": "zX"}
+    backward = {"x": "x", "z": "yx"}
+    for generator in "xy":
+        assert substitute(substitute(generator, forward), backward) == generator
+    for generator in "xz":
+        assert substitute(substitute(generator, backward), forward) == generator
+    u = substitute(w1, forward)
+    assert u == "XZxZXzxZxzX"
+    donor = conjugate(inverse(substitute(s, forward)), "zx")
+    assert donor == "xzxZXZ"
+    d = "xzx"
+    old = conjugate(u, d)
+    assert old == "xxZXzxZxzXXZX"
+    rows = (old, donor)
+    for before, after, c, expected in (
+        ("Xzx", "zxZ", "X", "xxxZZxzXXZX"),
+        ("xzX", "Zxz", "Z", "xxxZZZxzXZX"),
+        ("xzX", "Zxz", "Z", "xxxZZZZ"),
+    ):
+        assert free_reduce(before + inverse(after)) == conjugate(inverse(donor), c)
+        index = rows[0].index(before)
+        prefix = rows[0][:index]
+        rewritten = free_reduce(prefix + after + rows[0][index + len(before):])
+        assert rewritten == expected
+        donation_prefix = free_reduce(prefix + c)
+        donated = free_reduce(conjugate(rows[1], donation_prefix) + rows[0])
+        assert donated == rewritten
+        rows = (donated, rows[1])
+        assert rows[1] == donor
+    assert rows == ("xxxZZZZ", "xzxZXZ")
