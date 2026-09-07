@@ -481,3 +481,15 @@ and v produces a root-adjoining amalgam and an injective HNN extension of
 F(x,y). Its old commutator survives. After a determinant pass, test the
 donor-independent quotient before claiming that auxiliary rows clear old
 commutators; do not silently use the active alpha,beta rows again.
+
+### [2026-09-07] Certify composed lifts without expanding the final words
+
+[WORKS] A folded retraction can send the doubled surface boundary to one,
+so an obstruction that projects it to the original boundary need not apply.
+Verify the coordinate maps, elementary automorphisms, both inverses and
+induced quotient actions separately, then prove the finite composition rule.
+Boundary preservation does not certify replacing defining rows by fixed-point
+rows or removing the added generators by balanced AC moves.
+[TRAP] Root mistyped an inverse in the folded-lift check's word W; the
+projection assertion caught it. Construct signed products with explicit
+inverse calls and label assertions so a failed component is identifiable.
