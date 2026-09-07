@@ -173,3 +173,87 @@ def test_folded_fixed_point_kernel_replacement_has_nonunit_determinant():
     assert len(determinant) == 7
     assert not (len(determinant) == 1 and abs(next(iter(determinant.values()))) == 1)
     assert fixed_point_determinant(phi0_matrix) == {(0, 0): 1}
+
+
+def test_dihedral_literal_certificate_separates_independent_kernel_rows():
+    saved = runpy.run_path(str(Path(__file__).with_name("test_ak3_folded_boundary_lift.py")))
+    factors = saved["push_factors"]()
+    folded_phi0 = saved["compose"](
+        saved["ORIGINAL_IN_STANDARD"], saved["PHI0"], saved["STANDARD_IN_ORIGINAL"]
+    )
+
+    def pair_product(left, right):
+        n, e = left
+        k, f = right
+        return (n + (-1) ** e * k) % 5, (e + f) % 2
+
+    def pair_inverse(value):
+        n, e = value
+        return (-(-1) ** e * n) % 5, e
+
+    def pair_evaluate(word, assignment):
+        result = (0, 0)
+        for letter in word:
+            value = assignment[letter.lower()]
+            if letter.isupper():
+                value = pair_inverse(value)
+            result = pair_product(result, value)
+        return result
+
+    permutation_identity = tuple(range(5))
+
+    def permutation_product(left, right):
+        return tuple(left[right[index]] for index in range(5))
+
+    def permutation_inverse(value):
+        return tuple(value.index(index) for index in range(5))
+
+    def permutation_evaluate(word, assignment):
+        result = permutation_identity
+        for letter in word:
+            value = assignment[letter.lower()]
+            if letter.isupper():
+                value = permutation_inverse(value)
+            result = permutation_product(result, value)
+        return result
+
+    pair_identity, pair_a, pair_b = (0, 0), (1, 0), (0, 1)
+    permutation_a = tuple((index + 1) % 5 for index in range(5))
+    permutation_b = tuple(-index % 5 for index in range(5))
+    pair_generators = {"a": pair_a, "b": pair_b}
+    permutation_generators = {"a": permutation_a, "b": permutation_b}
+    for relator in ("aaaaa", "bb", "baba"):
+        assert pair_evaluate(relator, pair_generators) == pair_identity
+        assert permutation_evaluate(relator, permutation_generators) == permutation_identity
+    assert pair_product(pair_b, pair_a) != pair_product(pair_a, pair_b)
+    assert permutation_product(permutation_b, permutation_a) != permutation_product(permutation_a, permutation_b)
+
+    start_pair = dict(zip("rslm", (pair_identity, pair_identity, pair_b, pair_a)))
+    start_permutation = dict(zip("rslm", (permutation_identity, permutation_identity, permutation_b, permutation_a)))
+    pair_state = start_pair.copy()
+    permutation_state = start_permutation.copy()
+    assert saved["W_STANDARD"] == "LRlrlR"
+    for factor in [*(factors[letter] for letter in reversed(saved["W_STANDARD"])), folded_phi0]:
+        pair_state = {generator: pair_evaluate(factor[generator], pair_state) for generator in "rslm"}
+        permutation_state = {
+            generator: permutation_evaluate(factor[generator], permutation_state) for generator in "rslm"
+        }
+        assert permutation_state == {
+            generator: tuple((n + (-1) ** e * index) % 5 for index in range(5))
+            for generator, (n, e) in pair_state.items()
+        }
+    assert tuple(pair_state[generator] for generator in "rslm") == (pair_b, pair_identity, pair_b, pair_a)
+    assert tuple(permutation_state[generator] for generator in "rslm") == (
+        permutation_b, permutation_identity, permutation_b, permutation_a
+    )
+    for generator in "sm":
+        assert pair_product(pair_state[generator], pair_inverse(start_pair[generator])) == pair_identity
+        assert permutation_product(
+            permutation_state[generator], permutation_inverse(start_permutation[generator])
+        ) == permutation_identity
+    assert start_pair["m"] != pair_identity
+    assert start_permutation["m"] != permutation_identity
+    assert pair_product(pair_state["r"], pair_inverse(start_pair["r"])) == pair_b != pair_identity
+    assert permutation_product(
+        permutation_state["r"], permutation_inverse(start_permutation["r"])
+    ) == permutation_b != permutation_identity

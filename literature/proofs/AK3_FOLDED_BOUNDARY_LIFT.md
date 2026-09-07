@@ -161,3 +161,17 @@ coefficient control, not a normal-generation theorem. This independent
 replacement step is frozen. The positive boundary lift remains valid;
 the exclusion concerns neither coupled base-row moves, other lift
 families, nor AK3 itself, and creates no further residual ledger.
+
+An alternate certificate for the same exclusion uses
+`D10=<a,b | a^5=b^2=1, bab=a^-1>`. Assign `(r,s,l,m)=(1,1,b,a)`.
+Literal evaluation of the factored `Phi` gives `(b,1,b,a)`, so both
+kernel fixed-point rows vanish while `m=a` survives. Consequently their
+ambient normal closure does not contain `m`, and cannot equal `N`.
+The test evaluates the actual saved push words in reverse `W` order,
+then folded `Phi0`, without expanding total `Phi` or using Fox matrices.
+It checks the tuple both as pairs `(n,e)` with product
+`(n,e)(k,f)=(n+(-1)^e k,e+f)` modulo `(5,2)` and independently as
+permutations of five points, with `a(i)=i+1` and `b(i)=-i`.
+The base `r` fixed-point row evaluates to `b`, not identity. Thus this
+certificate does not survive imposing all base rows and supplies no
+obstruction to their coupled replacement or to AK3.

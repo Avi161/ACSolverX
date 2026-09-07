@@ -503,3 +503,10 @@ Cross-check against full Fox gradients and one literal factor composition;
 state the image-row or image-column convention before multiplying matrices.
 A nonunit Laurent determinant rules out independent normal generation of
 the defining kernel, not coupled AC moves using the base relators.
+
+[WORKS] The folded kernel obstruction also has a literal dihedral-group
+countermodel: its two kernel rows vanish but the base r-row survives.
+Check both the rows being excluded and the base rows explicitly; a finite
+countermodel to a kernel-only replacement is not a quotient of the full
+AK3 presentation. Evaluate the actual factor words independently of Fox
+matrices when certifying such a countermodel.
