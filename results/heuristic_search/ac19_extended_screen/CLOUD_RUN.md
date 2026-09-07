@@ -16,11 +16,18 @@ Measured on the 3,208 rows that survive 1,000 nodes: **95% fall at 10,000**
 escalation is 3.21 + 4.13 core-hours, minutes on a large box, not a second
 campaign.
 
-| rung | rows in | cost |
-|---|---:|---|
-| 1,000 | 156,762 | 1.38 core-hours |
-| 10,000 | ~3,208 | 3.21 core-hours |
-| 100,000 | whatever survives | 4.13 core-hours |
+| rung | rows in | predicted | MEASURED on c7i.16xlarge, 63 workers |
+|---|---:|---|---|
+| 1,000 | 156,762 | 1.38 core-hours | **2.73 core-hours, 2.6 min wall** |
+| 10,000 | 3,208 | 3.21 core-hours | 3,208 -> 227 left (92.9% cleared) |
+| 100,000 | 227 | 4.13 core-hours | -- |
+
+The rung-1 count predictions were exact -- 153,554 solved, 3,208 unsolved,
+29,371 AC-certified, 124,183 needing the decoder, 0 rejected, and
+s20_mk2 783 -- but the COST prediction missed by 2x: 0.063 s/row measured
+against 0.0316 predicted, 999 rows/s against ~1,700. The per-row figure in
+`plan` comes from a 4-core box and does not survive 63-way contention.
+Treat `core_hours` as a lower bound on a many-core machine.
 
 ## Cost, measured
 
@@ -57,6 +64,14 @@ certificates replay to `["x", "y"]`, verified twice with independent
 implementations of the four operations.
 
 ## Sizing
+
+**The parent, not the workers, is what ran out of memory.** `read_done`
+parsed every finished row into a dict to answer "have I seen this name":
+1.08 GiB resident for a rung-1-sized file, and `report` and `residues`
+each loaded another copy. `ladder` held all of it across the loop and then
+forked the next rung's workers from underneath it -- MemoryError inside
+`Pool.__init__`, before a single row ran. Resume now reads names only, and
+`report`/`residues` stream.
 
 `RLIMIT_AS` caps a worker's ADDRESS SPACE; it does not reserve RAM. 63
 workers at a 2 GiB cap need about 63 x 0.22 = 14 GiB of memory, not 126.

@@ -148,6 +148,34 @@ def stride_chunk(rows, chunks, chunk_index):
     return rows[chunk_index - 1::chunks]
 
 
+def read_done_names(path):
+    """Just the finished row names -- resume needs nothing else.
+
+    `read_done` parses every finished row into a dict, which at rung 1 of the
+    ladder is 156,762 records CARRYING THEIR MOVE SEQUENCES: gigabytes of live
+    Python objects in the parent. `ladder` then holds that across the loop and
+    forks the next rung's workers from underneath it, which is where the
+    100,000-node rung died -- MemoryError inside `Pool.__init__`, before a
+    single row ran. Resume only ever asks "have I seen this name", so it gets
+    a set of strings.
+    """
+    names = set()
+    if not os.path.exists(path):
+        return names
+    with open(path) as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue                       # a torn final line; it gets redone
+            if not record.get("error"):
+                names.add(record["name"])
+    return names
+
+
 def read_done(path):
     if not os.path.exists(path):
         return {}
@@ -363,8 +391,9 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         rows = rows[:int(limit)]
     os.makedirs(out_dir, exist_ok=True)
     path = out_path(out_dir, chunks, chunk_index, arm, budget)
-    done = read_done(path) if resume else {}
+    done = read_done_names(path) if resume else set()
     todo = [r for r in rows if r["name"] not in done]
+    del done                                   # not held across the pool fork
     n_workers = (max(1, (os.cpu_count() or 2) - 1) if workers == "auto"
                  else max(1, int(workers)))
     log(f"  campaign : {CAMPAIGN} / {arm} at {budget:,} nodes")
@@ -413,15 +442,24 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
 
 
 def report(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, chunk_index=None, log=print):
-    records = _all_records(out_dir, chunks, chunk_index, arm, budget)
-    total = len(records)
-    ac = [r for r in records.values() if r.get("solved")]
-    aut = [r for r in records.values() if r.get("aut_assisted")]
-    rejected = [r for r in records.values() if r.get("certificate_rejected")]
-    by_winner = {}
-    for r in ac:
-        by_winner[r["winner"]] = by_winner.get(r["winner"], 0) + 1
-    seconds = sum(r.get("seconds", 0.0) for r in records.values())
+    # Streamed, not collected: at 156,762 rows carrying move sequences a full
+    # dict is gigabytes, and `ladder` would hold it across the next rung's
+    # pool fork -- which is exactly how the 100,000-node rung died.
+    total = n_ac = n_aut = 0
+    by_winner, seconds, rejected = {}, 0.0, []
+    for record in _stream_records(out_dir, chunks, chunk_index, arm, budget):
+        total += 1
+        seconds += record.get("seconds", 0.0) or 0.0
+        if record.get("solved"):
+            n_ac += 1
+            by_winner[record["winner"]] = by_winner.get(record["winner"], 0) + 1
+        elif record.get("aut_assisted"):
+            n_aut += 1
+        if record.get("certificate_rejected"):
+            rejected.append(record["name"])
+    if not total:
+        raise SystemExit(f"no records under {out_dir}")
+    ac, aut = range(n_ac), range(n_aut)
     log(f"  rows scored          : {total:,}")
     log(f"  AC-certified solves  : {len(ac):,} "
         f"({100.0 * len(ac) / total:.2f}%)   by winner: {by_winner or '{}'}")
@@ -511,7 +549,19 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
     residues is. Two files, both in the shipped screen-list schema so any
     existing runner can take them as input.
     """
-    records = _all_records(out_dir, chunks, chunk_index, arm, budget)
+    # Only the unsettled rows are kept, and only their small fields -- the
+    # move sequences are dropped as they stream past.
+    records = {}
+    for r in _stream_records(out_dir, chunks, chunk_index, arm, budget):
+        if r.get("solved"):
+            continue
+        records[r["name"]] = {k: r[k] for k in
+                              ("name", "r1", "r2", "aut_assisted",
+                               "nodes_explored", "min_relator_length")
+                              if k in r}
+    if not records:
+        log("  nothing unsettled; no residue lists written")
+        return []
     # Orbit columns when the row came off the screen list; the record's own
     # fields when it did not, so a run over any other list still gets its
     # residues instead of a KeyError.
@@ -521,8 +571,7 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
         orbits = {}
     groups = {
         f"unsolved_{arm}_b{budget}.csv":
-            [r for r in records.values()
-             if not r.get("solved") and not r.get("aut_assisted")],
+            [r for r in records.values() if not r.get("aut_assisted")],
         f"aut_assisted_{arm}_b{budget}.csv":
             [r for r in records.values() if r.get("aut_assisted")],
     }
@@ -583,6 +632,29 @@ def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
     log(f"\n  {summary[-1]['unsolved']:,} rows survive {rungs[-1]:,} nodes. "
         "Those are the ones a big-RAM box runs at 1M and beyond.")
     return summary
+
+
+def _stream_records(out_dir, chunks, chunk_index, arm=ARM,
+                    budget=PREFIX_BUDGET):
+    """Finished rows one at a time. Nothing is retained."""
+    paths = ([out_path(out_dir, chunks, i, arm, budget)
+              for i in range(1, (chunks or 1) + 1)]
+             if chunk_index is None and chunks and chunks > 1
+             else [out_path(out_dir, chunks, chunk_index or 1, arm, budget)])
+    for path in paths:
+        if not os.path.exists(path):
+            continue
+        with open(path) as fh:
+            for line in fh:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if not record.get("error"):
+                    yield record
 
 
 def _all_records(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET):
