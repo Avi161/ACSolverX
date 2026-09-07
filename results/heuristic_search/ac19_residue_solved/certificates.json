@@ -1,0 +1,1754 @@
+[
+ {
+  "elementary_move_count": 30679,
+  "elementary_replay_final": [
+   "x",
+   "y"
+  ],
+  "end_total": 2,
+  "name": "ac19_44381",
+  "nodes_explored": 985,
+  "peak_at_step": 8,
+  "peak_total": 23,
+  "r1": "YXXYXXyxx",
+  "r2": "YXyXyxxxxx",
+  "replay_verified": true,
+  "start_total": 19,
+  "starter_budget": 1000,
+  "states": [
+   [
+    "YXXYXXyxx",
+    "YXyXyxxxxx"
+   ],
+   [
+    "YXYXXyxx",
+    "YXyXXyxxxxx"
+   ],
+   [
+    "YXYXXyxx",
+    "YYxyXXXYX"
+   ],
+   [
+    "YXYXXyxx",
+    "YXYXXYxyXXXYx"
+   ],
+   [
+    "YXYXXyxx",
+    "YXYXYXYXXYxyX"
+   ],
+   [
+    "YXYXXyxx",
+    "YXyxxyXyxxxyx"
+   ],
+   [
+    "YYXXyxx",
+    "YXYxyXYXXYxx"
+   ],
+   [
+    "YXXyxxYx",
+    "YYxyXYXYxxx"
+   ],
+   [
+    "YXXyxxYx",
+    "YXYxxyXXYxxYxyX"
+   ],
+   [
+    "YXXyxxYx",
+    "YXYxxYxyXYx"
+   ],
+   [
+    "YXYXyxyxx",
+    "YXYxyxxyXYx"
+   ],
+   [
+    "YXyXXXyx",
+    "YXYXyxyxx"
+   ],
+   [
+    "YXyXXyx",
+    "YXyxxyxxYXX"
+   ],
+   [
+    "YXyXXyx",
+    "YXXXYxxxxyxx"
+   ],
+   [
+    "YXyXyx",
+    "YXXXXYxxxxyxx"
+   ],
+   [
+    "YXyXyx",
+    "YXXXYxxxxyxYx"
+   ],
+   [
+    "YXyXyx",
+    "YXXXYxxxxxYxx"
+   ],
+   [
+    "YXyXyx",
+    "YXXYxxxxxYxYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXYXyxyxyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXYXyxyXyXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXYXyxyXXXyX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXYXyXyXXyX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXyXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXXXXYXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYxxYXyXXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYxyXXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYXyXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXXXYXXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXyXXXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXyxxyxxyxxxxYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXYxyXXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXyXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXXXYXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYxxYXyXXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYxyXXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYXyXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXXYXXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXyXXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXyxxyxxyxxxYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXYxyXXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXyXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXXYXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYxxYXyXXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYxyXXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYxYXyXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXyXXYXXXYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXyXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXyxxyxxyxxYx"
+   ],
+   [
+    "YXXyx",
+    "YXYXYxyXXyXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXyXyXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXYXyXXXyX"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXXXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXXXXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXXXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXXXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXXXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXXXyXX"
+   ],
+   [
+    "YXXyx",
+    "YXyXXYXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXyXX"
+   ],
+   [
+    "YXXyx",
+    "YXYXXXyX"
+   ],
+   [
+    "YXXyx",
+    "YXXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXXXXX"
+   ],
+   [
+    "YXXyx",
+    "YXXXX"
+   ],
+   [
+    "YXXX",
+    "YXXXX"
+   ],
+   [
+    "X",
+    "YXXX"
+   ],
+   [
+    "X",
+    "YXX"
+   ],
+   [
+    "X",
+    "YX"
+   ],
+   [
+    "Y",
+    "X"
+   ]
+  ],
+  "steps": 72,
+  "steps_detail": [
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_3_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_2"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_4"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_7_4"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_8_1"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_5_8"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_8_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_1_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_2_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_1_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_4_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_10_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_9_2"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_7_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_10_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_6_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_9_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_8_2"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_6_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_9_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_5_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_8_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_7_2"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_5_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_8_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_4_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_1_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_5_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_7_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_4_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_6_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_3_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_5_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_2_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_4_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_1_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_4_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_3_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_-1_2_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   }
+  ],
+  "totals": [
+   19,
+   19,
+   17,
+   21,
+   21,
+   21,
+   19,
+   19,
+   23,
+   19,
+   20,
+   17,
+   18,
+   19,
+   19,
+   19,
+   19,
+   19,
+   21,
+   20,
+   21,
+   20,
+   19,
+   20,
+   21,
+   20,
+   19,
+   20,
+   19,
+   20,
+   19,
+   18,
+   19,
+   20,
+   19,
+   18,
+   19,
+   18,
+   19,
+   18,
+   17,
+   18,
+   19,
+   18,
+   17,
+   18,
+   17,
+   18,
+   17,
+   16,
+   17,
+   16,
+   17,
+   16,
+   15,
+   16,
+   15,
+   14,
+   15,
+   14,
+   13,
+   14,
+   13,
+   12,
+   13,
+   12,
+   11,
+   10,
+   9,
+   5,
+   4,
+   3,
+   2
+  ],
+  "winner": "s40_gen"
+ },
+ {
+  "elementary_move_count": 14249,
+  "elementary_replay_final": [
+   "x",
+   "y"
+  ],
+  "end_total": 2,
+  "name": "ac19_51034",
+  "nodes_explored": 4273,
+  "peak_at_step": 5,
+  "peak_total": 28,
+  "r1": "YYXXXXYX",
+  "r2": "YYYXYXyyX",
+  "replay_verified": true,
+  "start_total": 17,
+  "starter_budget": 5000,
+  "states": [
+   [
+    "YYXXXXYX",
+    "YYYXYXyyX"
+   ],
+   [
+    "YYYYXYYXyX",
+    "YYYXYXYXYXYYX"
+   ],
+   [
+    "YYYYXYYXyX",
+    "YYXyxYxyXYXYX"
+   ],
+   [
+    "YYYYXYYXyX",
+    "YYYxyxYXyXX"
+   ],
+   [
+    "YYYXYXyyX",
+    "YYYxxYXyyXyX"
+   ],
+   [
+    "YYYXYXyyX",
+    "YYYYYYXYXyyxYXyyXyX"
+   ],
+   [
+    "YYYXYXyyX",
+    "YYYXYXyyxYXyyXYxyx"
+   ],
+   [
+    "YYYXYXyyX",
+    "YYYXYXYXYXyXyyXYxyx"
+   ],
+   [
+    "YYYXYXyyX",
+    "YYYXYXYXYXyyxyyxyx"
+   ],
+   [
+    "YYXyXyXYxYx",
+    "YYYYXyXyyXyyxYxYx"
+   ],
+   [
+    "YYXyXyXYxYx",
+    "YYYYYYXyXyyXyxYx"
+   ],
+   [
+    "YYXyXyXYxYx",
+    "YYYYYXyXyxYYX"
+   ],
+   [
+    "YYYYYYYXyXYX",
+    "YYYYYXyXyxYYX"
+   ],
+   [
+    "YYXYYxyyX",
+    "YYYYYXyXyxYYX"
+   ],
+   [
+    "YYXyyxyx",
+    "YYYYXyyXyxYYX"
+   ],
+   [
+    "YYXyyxyx",
+    "YYXYYXYXXyx"
+   ],
+   [
+    "YYxYxyXyX",
+    "YYXXyxYxYYx"
+   ],
+   [
+    "YYxYxyXyX",
+    "YYXXYxYxYx"
+   ],
+   [
+    "YYxYxyXyX",
+    "YYxYXYxYxYxYXyX"
+   ],
+   [
+    "YYxYxyXyX",
+    "YYYYYxYXYx"
+   ],
+   [
+    "YYYYYxYXYx",
+    "YYYYXYYxYYx"
+   ],
+   [
+    "YYYYxYXYx",
+    "YYYYXYYxYx"
+   ],
+   [
+    "YYYYxYXYx",
+    "YYYXYYxyyyXyx"
+   ],
+   [
+    "YYYxYXYx",
+    "YYYXYYxyyyXyx"
+   ],
+   [
+    "YYxYXYx",
+    "YYYXYYxyyyXyx"
+   ],
+   [
+    "YXYxYx",
+    "YYYXYYxyyyXyx"
+   ],
+   [
+    "YXYxYx",
+    "YYYXyyxyyXYxYYx"
+   ],
+   [
+    "YXYxYx",
+    "YYXYYxyyXYxyXyx"
+   ],
+   [
+    "YXYxYx",
+    "YYXyxYxyXYxYXyx"
+   ],
+   [
+    "YXYxYx",
+    "YYYxYYxyXYxYXyx"
+   ],
+   [
+    "YXYxYx",
+    "YYxyXYxyXYxYXyx"
+   ],
+   [
+    "YXYxx",
+    "YXyXYxyXyxYXyx"
+   ],
+   [
+    "YXYxyx",
+    "YXyxYXXYxyXyx"
+   ],
+   [
+    "YXYxyx",
+    "YXyXXyxYXyx"
+   ],
+   [
+    "YXyxxyX",
+    "YXyXyxYXyx"
+   ],
+   [
+    "YXyxxyX",
+    "YXYxxYxyX"
+   ],
+   [
+    "YXyxxxyX",
+    "YXyXyxxyx"
+   ],
+   [
+    "YXYxYXX",
+    "YXyxxxyX"
+   ],
+   [
+    "YXyXXYx",
+    "YXyXyXYxx"
+   ],
+   [
+    "YXYXyx",
+    "YXyXXYx"
+   ],
+   [
+    "YXYXyx",
+    "YYXyXYX"
+   ],
+   [
+    "YYXyx",
+    "YYxYXyX"
+   ],
+   [
+    "YYXyx",
+    "YXYXYx"
+   ],
+   [
+    "YYYYX",
+    "YYXyx"
+   ],
+   [
+    "YYYX",
+    "YYXyx"
+   ],
+   [
+    "YYX",
+    "YYYX"
+   ],
+   [
+    "Y",
+    "YYX"
+   ],
+   [
+    "Y",
+    "YX"
+   ],
+   [
+    "Y",
+    "X"
+   ]
+  ],
+  "steps": 48,
+  "steps_detail": [
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_8_6"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_5"
+   },
+   {
+    "images": {
+     "x": "xY",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_8_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_8_2"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_3_1"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_9"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_7"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_1_0_8"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_-1_2_8"
+   },
+   {
+    "images": {
+     "x": "xY",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_6_5"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_2_4"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_7_5"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_7"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_1_1_6"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_5"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_11_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_10_5"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_10_5"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_3_5"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_2_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "images": {
+     "x": "xY",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_-1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_2_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_1_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_1_0"
+   }
+  ],
+  "totals": [
+   17,
+   23,
+   23,
+   21,
+   21,
+   28,
+   27,
+   28,
+   27,
+   28,
+   27,
+   24,
+   25,
+   22,
+   21,
+   19,
+   20,
+   19,
+   24,
+   19,
+   21,
+   19,
+   22,
+   21,
+   20,
+   19,
+   21,
+   21,
+   21,
+   21,
+   21,
+   19,
+   19,
+   17,
+   17,
+   16,
+   17,
+   15,
+   16,
+   13,
+   13,
+   12,
+   11,
+   10,
+   9,
+   7,
+   4,
+   3,
+   2
+  ],
+  "winner": "s40_gen"
+ },
+ {
+  "elementary_move_count": 12964,
+  "elementary_replay_final": [
+   "x",
+   "y"
+  ],
+  "end_total": 2,
+  "name": "ac19_65753",
+  "nodes_explored": 4275,
+  "peak_at_step": 6,
+  "peak_total": 28,
+  "r1": "YXXYxYxxx",
+  "r2": "YYYYXyXyxxx",
+  "replay_verified": true,
+  "start_total": 20,
+  "starter_budget": 5000,
+  "states": [
+   [
+    "YXXYxYxxx",
+    "YYYYXyXyxxx"
+   ],
+   [
+    "YXYxxYxxxx",
+    "YXyXXyxxxYxYxYx"
+   ],
+   [
+    "YXYxxYxxxx",
+    "YxYxYxYxxxYxx"
+   ],
+   [
+    "YXYxxYxxxx",
+    "YXXXXyXyXyxxx"
+   ],
+   [
+    "YXYxxYxxxx",
+    "YYXYxyXyxxx"
+   ],
+   [
+    "YXXYxYxxx",
+    "YYXyxxyxyXXX"
+   ],
+   [
+    "YXXYxYxxx",
+    "YXYXXYxyXXYxYxxxxxx"
+   ],
+   [
+    "YXXYxYxxx",
+    "YXyxxyXYxYXXXyXyxx"
+   ],
+   [
+    "YXXYxYxxx",
+    "YXYxYxYxYxxxyXyxYXX"
+   ],
+   [
+    "YXXYxYxxx",
+    "YXXXyXyXyXyxxYxxYx"
+   ],
+   [
+    "YXXYxYxxx",
+    "YXXyXyXyXyXyXyxxYxx"
+   ],
+   [
+    "YXYXYxxyxyx",
+    "YXYXXXXXXyxyxxyx"
+   ],
+   [
+    "YXYXYxxyxyx",
+    "YXYxxxxxYxxyX"
+   ],
+   [
+    "YXYxxxxxxxYx",
+    "YXYxxxxxYxxyX"
+   ],
+   [
+    "YXXyxxYxx",
+    "YXYxxxxxYxxyX"
+   ],
+   [
+    "YXXyxxYx",
+    "YXXYxxxxYxxyX"
+   ],
+   [
+    "YXXyxxYx",
+    "YYxYxxYxxyX"
+   ],
+   [
+    "YXYXyxyxx",
+    "YYxxyxxyxyX"
+   ],
+   [
+    "YXYXyxyxx",
+    "YYxxyxyxyx"
+   ],
+   [
+    "YXYXyxyxx",
+    "YXYXYXyxyXXYXyX"
+   ],
+   [
+    "YXYXyxyxx",
+    "YXyXYXXXXX"
+   ],
+   [
+    "YXyXYXXXXX",
+    "YXXYXXXXyXX"
+   ],
+   [
+    "YXyXYXXXX",
+    "YXYXXXXyXX"
+   ],
+   [
+    "YXyXYXXXX",
+    "YXXXyXXYxxxyx"
+   ],
+   [
+    "YXyXYXXX",
+    "YXXXyXXYxxxyx"
+   ],
+   [
+    "YXyXYXX",
+    "YXXXyXXYxxxyx"
+   ],
+   [
+    "YXYXyX",
+    "YXXXyXXYxxxyx"
+   ],
+   [
+    "YXYXyX",
+    "YXXYXXXyxxYxxyX"
+   ],
+   [
+    "YXYXyX",
+    "YXyxYXXyxxYxxyX"
+   ],
+   [
+    "YXYXyX",
+    "YXYxyXYXyxYXXyx"
+   ],
+   [
+    "YXYXyX",
+    "YXyxYXXXYXXYxyX"
+   ],
+   [
+    "YXYXyX",
+    "YXyxYXyxxyXYxyx"
+   ],
+   [
+    "YYXyX",
+    "YXYxyXYxyXYXyx"
+   ],
+   [
+    "YXyXYx",
+    "YYxyXYxyXYXyx"
+   ],
+   [
+    "YXyXYx",
+    "YYXYxyXYxyX"
+   ],
+   [
+    "YYxyXyx",
+    "YXYxyXYxyX"
+   ],
+   [
+    "YYxyXyx",
+    "YYXYxyXyX"
+   ],
+   [
+    "YYYxyXyx",
+    "YYxYXyxyx"
+   ],
+   [
+    "YYxyxYx",
+    "YYYxyXyx"
+   ],
+   [
+    "YYXYxyx",
+    "YYXyxyxyX"
+   ],
+   [
+    "YXyXyx",
+    "YYXYxyx"
+   ],
+   [
+    "YXyXyx",
+    "YXYxxYx"
+   ],
+   [
+    "YXXyx",
+    "YXYxyxx"
+   ],
+   [
+    "YXXyx",
+    "YXyXyX"
+   ],
+   [
+    "YXXyx",
+    "Yxxxx"
+   ],
+   [
+    "Yxxx",
+    "YXXyx"
+   ],
+   [
+    "Yxx",
+    "Yxxx"
+   ],
+   [
+    "X",
+    "Yxx"
+   ],
+   [
+    "X",
+    "Yx"
+   ],
+   [
+    "Y",
+    "X"
+   ]
+  ],
+  "steps": 49,
+  "steps_detail": [
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_8_9"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_5"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_6_6"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_11_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_-1_4_8"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_7_7"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_7_6"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_6_7"
+   },
+   {
+    "kind": "substitution",
+    "move": "1_-1_4_3"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_6_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_11_4"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_10_4"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_3_3"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_5_2"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yX"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_3"
+   },
+   {
+    "images": {
+     "x": "xY",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_5"
+   },
+   {
+    "images": {
+     "x": "xY",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_3_6"
+   },
+   {
+    "images": {
+     "x": "x",
+     "y": "yx"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_3_6"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "images": {
+     "x": "xy",
+     "y": "y"
+    },
+    "kind": "automorphism"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_1"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_2_4"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_1_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_-1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_0"
+   },
+   {
+    "kind": "substitution",
+    "move": "2_1_0_0"
+   }
+  ],
+  "totals": [
+   20,
+   25,
+   23,
+   23,
+   21,
+   21,
+   28,
+   27,
+   28,
+   27,
+   28,
+   27,
+   24,
+   25,
+   22,
+   21,
+   19,
+   20,
+   19,
+   24,
+   19,
+   21,
+   19,
+   22,
+   21,
+   20,
+   19,
+   21,
+   21,
+   21,
+   21,
+   21,
+   19,
+   19,
+   17,
+   17,
+   16,
+   17,
+   15,
+   16,
+   13,
+   13,
+   12,
+   11,
+   10,
+   9,
+   7,
+   4,
+   3,
+   2
+  ],
+  "winner": "s40_gen"
+ }
+]

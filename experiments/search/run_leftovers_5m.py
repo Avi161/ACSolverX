@@ -728,6 +728,15 @@ def _child_run_row(q, arm, row, budget, mrl, heartbeat_secs, mem_limit_bytes,
             "min_relator": st.get("min_relator"),
             "max_relator_length_expanded": st["max_relator_length_expanded"],
             "max_relator_expanded": st.get("max_relator_expanded"),
+            # The engine's OWN max_total: the largest |r1|+|r2| ever
+            # DISCOVERED, against `max_relator_length` above which is the
+            # configured --mrl flag echoed back and measures nothing. Without
+            # this the jsonl cannot answer "did the frontier reach the cap" --
+            # `..._expanded` only covers states that were also popped, and the
+            # frontier runs well ahead of it (75 discovered vs 45 popped on
+            # ac19_44381 at 200k nodes). See RUNBOOK section 10.
+            "max_relator_length_discovered": st.get("max_relator_length"),
+            "max_relator_discovered": st.get("max_relator"),
             "path": st.get("path", []),
             "path_moves": st.get("path_moves", []),
             **{k: st[k] for k in (
