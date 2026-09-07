@@ -433,3 +433,13 @@ uppercase block's first letter with a lowercase incoming generator, splitting
 the final `ZZ` into two blocks. Compare both letters after lowercasing;
 the exact reduced word has fifteen letters but fourteen syllables. Keep
 word equality and block counting as separate assertions.
+
+### [2026-09-07] Recover a diagram without trusting extracted PDF text
+
+[WORKS] Web screenshots of Akbulut's journal PDF failed with cache and
+content-type errors. Downloading the cited PDF into `tmp/pdfs/`, checking
+its nonzero size and PDF type, then rendering only pages 7--8 with the
+existing `pdftoppm` recovered the figures. Fontconfig cache warnings did
+not prevent rendering; inspect the PNGs before relying on them. A visible
+meridian determines a generator only in the chosen diagram basis, not an
+untracked algebraic marking from an earlier figure.
