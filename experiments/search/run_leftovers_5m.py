@@ -1095,7 +1095,8 @@ def run_arm_5m(arm, out_dir, chunks=None, chunk_index=1, budget=NODE_BUDGET_5M,
 
 
 def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M,
-              mrl=MRL_5M, write_ids=True, campaign="ac19", log=print):
+              mrl=MRL_5M, write_ids=True, campaign="ac19", csv_path=None,
+              log=print):
     """Report one chunk, or — with ``chunk_index=None`` — every chunk merged.
 
     The merged view is what the experiment answers; a single chunk's numbers are
@@ -1120,7 +1121,8 @@ def report_5m(arm, out_dir, chunks=None, chunk_index=None, budget=NODE_BUDGET_5M
     c = classify_5m(rows, budget=budget, checkpoints=camp["checkpoints"],
                     floor=camp["floor"] or 0)
     expected = (cspec["n_rows"] if chunk_index is None
-                else len(stride_chunk(load_rows_5m(key, campaign=ckey)[0],
+                else len(stride_chunk(load_rows_5m(key, csv_path=csv_path,
+                                                   campaign=ckey)[0],
                                       chunks, chunk_index)))
     scope = ("all chunks merged" if chunk_index is None
              else f"chunk {chunk_index} of {chunks} ONLY -- progress, not a result")
@@ -1191,6 +1193,14 @@ def main(argv=None):
     ap.add_argument("--mrl", type=int, default=None,
                     help="max relator length (per relator); tags the jsonl name")
     ap.add_argument("--workers", default="auto")
+    # `run_arm_5m` has always taken a csv_path; the CLI never exposed it, so
+    # this runner could only ever run its own hardcoded per-arm lists. That is
+    # fine for the shipped campaigns and useless the moment you have a row list
+    # of your own -- e.g. the residue another arm left behind.
+    ap.add_argument("--csv-path", default=None,
+                    help="row list to run instead of the arm's shipped CSV; "
+                         "the row-count check against the campaign spec is "
+                         "skipped when this is given")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--smoke", action="store_true",
                     help="2 rows at a 2,000-node budget -- proves the pipeline, "
@@ -1206,9 +1216,9 @@ def main(argv=None):
         out_dir = out_dir + "_smoke"
     run_arm_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
                budget=budget, mrl=mrl, n_workers=a.workers, limit=limit,
-               campaign=ckey)
+               campaign=ckey, csv_path=a.csv_path)
     report_5m(a.arm, out_dir, chunks=a.chunks, chunk_index=a.chunk_index,
-              budget=budget, mrl=mrl, campaign=ckey)
+              budget=budget, mrl=mrl, campaign=ckey, csv_path=a.csv_path)
 
 
 if __name__ == "__main__":
