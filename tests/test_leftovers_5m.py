@@ -2705,3 +2705,21 @@ def test_the_u124_reduction_study_matches_the_row_list_and_the_search():
     assert lowered < reduced                      # strict subset
     for n in lowered:
         assert int(study[n]["mu_out"]) <= int(finished[n]["min_relator_length"]), n
+
+
+def test_the_cli_can_run_a_row_list_that_is_not_the_arm_s_own():
+    """`run_arm_5m` always took csv_path; the CLI never exposed it, so this
+    runner could only run the lists hardcoded in SPEC_5M. An ad-hoc list --
+    one arm's residue as another arm's input -- could not be run at all."""
+    import subprocess
+    out = subprocess.run(
+        ["python3", "-m", "experiments.search.run_leftovers_5m", "--help"],
+        capture_output=True, text=True,
+        env=dict(os.environ, PYTHONPATH=ROOT), timeout=300).stdout
+    assert "--csv-path" in out
+    import inspect
+    from experiments.search import run_leftovers_5m as m
+    assert "csv_path" in inspect.signature(m.run_arm_5m).parameters
+    # the report must count against the same list, or a partial run reads
+    # as a complete one -- the u124 "22 of 88" failure in a new costume
+    assert "csv_path" in inspect.signature(m.report_5m).parameters

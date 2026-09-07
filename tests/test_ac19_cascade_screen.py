@@ -594,3 +594,19 @@ def test_a_worker_that_dies_after_the_search_leaves_no_record_but_is_not_done():
         assert "lost_in_the_pickle" not in done
     finally:
         os.unlink(path)
+
+
+def test_rows_csv_is_refused_rather_than_dropped_on_the_hcompact_campaigns():
+    """ROWS_CSV only reaches SCREEN_FLAGS. On `ac19` it used to be accepted
+    and silently ignored, so asking for twelve rows gave a full shipped-list
+    run. That cost the operator a launch."""
+    got = _remote("plan", CAMPAIGN="ac19", ROWS_CSV="/tmp/twelve.csv")
+    assert got.returncode == 2, got.stdout
+    assert "only honoured by the screen campaigns" in got.stderr
+    assert "--csv-path /tmp/twelve.csv" in got.stderr
+
+
+def test_rows_csv_is_still_honoured_where_it_works():
+    got = _remote("plan", CAMPAIGN="ac19_all", WORKERS="8")
+    assert got.returncode == 0, got.stderr
+    assert '"rows": 156762' in got.stdout

@@ -72,6 +72,19 @@ SRC=${SRC:-$HOME/ACSolverX}
 SCREEN_FLAGS=""
 [ "$EMIT_MIXED" = 1 ] && SCREEN_FLAGS="$SCREEN_FLAGS --emit-mixed"
 [ -n "$ROWS_CSV" ] && SCREEN_FLAGS="$SCREEN_FLAGS --rows-csv $ROWS_CSV"
+# ROWS_CSV only reaches the SCREEN path. On the hcompact campaigns it used to
+# be accepted and silently dropped, so the operator got a full shipped-list
+# run when they had asked for their own twelve rows. Refuse instead: the
+# runner takes --csv-path directly and the message says so.
+if [ -n "$ROWS_CSV" ] && [ "$SCREEN" != 1 ]; then
+  echo "STOP: ROWS_CSV is only honoured by the screen campaigns" >&2
+  echo "      (ac19_cascade_screen, ac19_all). CAMPAIGN='$CAMPAIGN' runs" >&2
+  echo "      run_leftovers_5m, which takes the list directly:" >&2
+  echo "        \$PY -m experiments.search.run_leftovers_5m --arm <arm> \\" >&2
+  echo "            --campaign $CAMPAIGN --csv-path $ROWS_CSV \\" >&2
+  echo "            --budget <n> --mrl 64 --workers <n> --chunks 1 --chunk-index 1" >&2
+  exit 2
+fi
 true
 LOG="$OUT/run.log"
 PY=${PY:-python3}
@@ -230,7 +243,7 @@ if [ "$SCREEN" = 1 ]; then
   $PY -m experiments.search.run_ac19_cascade_screen ladder --budget $BUDGET \
       $SCREEN_FLAGS --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
   # Elementary AC moves are NOT produced by default. The move-wise record is
-  # the deliverable and it is restorable: `decode_ac_jsonl` rebuilds the
+  # the deliverable and it is restorable: decode_ac_jsonl rebuilds the
   # states from the moves and expands to generator-level AC operations
   # whenever someone actually wants them. Set DECODE_ELEMENTARY=1 to do it
   # here, at 10,440 bytes a row against 889.
