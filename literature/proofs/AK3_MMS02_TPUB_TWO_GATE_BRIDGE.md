@@ -3240,9 +3240,80 @@ substitution makes $r_b=b^{-1}$ literally; setting $b=1$ then makes
 $r_a=a$. The [independent symmetry control](../../tests/stable_ac/test_mms02_hnn_symmetry_control.py)
 checks both inverse compositions, intertwining, defining-row identities,
 restoration and these substitutions. This is a positive control, not a
-new target family: no conjugacy or AC identification of $S$ with the
-required killer $abx^{-1}$ has been established. In particular it supplies
-no MMS02 bridge or stable/ordinary AK3 resolution.
+new target family. The following exact comparison excludes its direct
+conjugacy transfer to the required killer; no general AC identification
+or MMS02 bridge follows.
+
+**The control killer is not conjugate to the required killer.** Put
+$h=abx^{-1}$. In the affine coordinates of Section 6.14,
+$S=(-1/2,-1)$ and $h=(3,-1)$. Conjugation by $c_0=a^7$ takes the first
+to the second in that quotient. The centralizer of $S$ there consists
+exactly of $(2^k-1,k)=S^{-k}$, $k\in\mathbb Z$. Consequently every
+possible literal conjugator has the form $n a^7S^j$, with
+$n\in Q_A''$, and would require
+\[
+ E:=a^7Sa^{-7}h^{-1}=n^{-1}({}^h n).
+\]
+Using $j_m(w)=x^{-m}wx^m$, the exact defect is $E=j_1(e)$, where
+\[
+ e=b^8a^{-1}b^{-1}a^{-7}d^{-1}b^{-1},\qquad
+ \operatorname{ab}(e)=(-8,4).
+\]
+Thus $E=j_2(\zeta)$ with $\zeta=\varphi(e)\in F(a,b)'$.
+Its abelianized Fox vector is $f(1-\mathsf b,\mathsf a-1)$, with
+\[
+ f=\mathsf a^{-1}
+ (\mathsf b^7-2\mathsf b^8-\mathsf b^{10}-\mathsf b^{12}
+ -\mathsf b^{14}+\mathsf b^{15}-\mathsf b^{16}).
+\]
+Use the same direct-limit module, $s$, $\alpha$ and injective $\tau$
+as in Section 6.16. Represent $[n]$ by $g$ at any sufficiently late
+stage $m\ge2$. At stage $m+1$, the coefficient of $({}^h-1)[n]$ is
+$\mathsf b^{3\cdot2^m}g-s\alpha(g)$, since the base part of $h$ is
+$ab$. Set $K=\alpha(g)$, $Q=2^{m+1}$ and
+$W(t)=1-2t-t^3-t^5-t^7+t^8-t^9$. Equality would force
+\[
+ \mathsf b^{3Q}K(\mathsf b)
+ +\mathsf b^3(\mathsf b^2-1)K(\mathsf b^2)
+ =\mathsf b^{4Q-3}
+ \prod_{i=1}^{m-1}(1-\mathsf b^{2^i})W(\mathsf b^{Q/2}).
+\]
+The right side has least degree $4Q-3$, greatest degree $9Q-5$, and
+only odd powers. Hence $K$ has only odd powers, with least degree
+$2Q-3$ and greatest degree $9Q/2-5$. At the possible lower collision
+$3Q-3$, both terms start above the required least degree; at the upper
+collision $3Q-5$, the leading coefficients add and the degree is too low.
+These collisions therefore supply no alternative.
+
+Set $z=\mathsf b^2$ and $K=\mathsf b^{2Q-3}G(z)$. The same integral
+divisibility induction as in (121) gives
+$P=\prod_{j=0}^{m-2}(1-z^{2^j})\mid G$: at each step the next factor
+divides the second term and the right side, and is coprime to the first
+term's monomial. Write $G=PH$. The established lower-degree bound makes
+$G$, and hence $H$, an ordinary polynomial. For $p=Q/4=2^{m-1}$ the
+reduced equation is
+\[
+ \mathcal M_pH:=z^{2p}H(z)-H(z^2)+z^pH(z^2)=W(z^p).
+\]
+Here $p\ge2$ is even. For every ordinary power series $H$, define
+\[
+ \Xi_p(F)=4[z^0]F+2[z^p]F+2[z^{2p}]F+[z^{3p}]F+[z^{4p}]F.
+\]
+The five relevant coefficients of $\mathcal M_pH$ are
+$-h_0$, $h_0-h_{p/2}$, $h_0-h_p+h_{p/2}$,
+$2h_p-h_{3p/2}$ and $h_{3p/2}$. Thus
+$\Xi_p(\mathcal M_pH)=0$, but $\Xi_p(W(z^p))=-1$, a contradiction.
+This excludes every correction $n$ and therefore every conjugator
+$S\to h$. Both elements have height $-1$, so conjugacy to the inverse
+is excluded separately.
+
+The symmetry control test also pins the literal defect's Fox coefficient
+and this functional at four scales. Its solvable control $H=1$ has
+$\mathcal M_pH=-1+z^p+z^{2p}$ and value zero; the excluded-domain control
+$H=z^{-p}$ has value two. The all-stage argument is the proof, not the
+finite scales. This closes the single proposed conjugacy transfer without
+opening another family. It does not obstruct interleaved AC moves or prove
+or disprove stable or ordinary AK3.
 
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[

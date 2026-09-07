@@ -597,3 +597,10 @@ move. Its killer XbAB is not identified with the required abX killer.
 an ignored-directory warning despite staging the requested modifications.
 Use `git add -u --` for tracked proof files and a separate exact add for
 new tests; inspect the staged names after any staging error before commit.
+
+[WORKS] For the single HNN-control comparison, classify affine conjugators
+first and move the resulting defect to its actual commutator-module stage
+before reusing a Mahler argument. The target's base coefficient changes
+the operator and annihilator; copying the earlier three-p shift would be
+wrong. The new five-coefficient certificate closes conjugacy transfer only,
+not interleaved AC equivalence or the whole MMS02 bridge.
