@@ -153,3 +153,38 @@ hypothesis at a vertex where all three cyclically reduced rows have zero
 or multiple $t$-occurrences, or by using operations outside the stated move
 set. Changing which qualifying row serves as anchor is covered. No lower bound
 for those paths and no stable or ordinary AK3 resolution is claimed.
+
+## Application to the two-live-row MMS02 gate
+
+The same argument has a rank-one relative version. Let $G$ be any group.
+If a relator AC path from $(g,t)$ to $(h,t)$ in $G*\langle t\rangle$
+has, at every vertex, some row conjugate to $(tc)^{\pm1}$ with $c\in G$,
+then $g$ is conjugate in $G$ to $h$ or $h^{-1}$. Here again the generator
+$t$ is fixed and no ambient automorphisms or further stabilizations are
+allowed.
+
+Indeed, the retraction $\theta_c$ fixing $G$ and sending $t$ to $c^{-1}$
+has kernel the normal closure of $tc$, for arbitrary $G$. All displayed
+donor and overlap identities remain valid. There is now just one retained
+row, so no other row needs per-letter transport: normalize its old value
+to $k$, then restore its required new conjugate or inverse. When the anchor
+does not change, the retained row is only conjugated or inverted, or
+receives an identity donation. The same edge dichotomy and handoffs
+therefore concatenate to conjugation/inversion of a single element of $G$.
+No freeness or torsion-free assumption on $G$ is used.
+
+Apply this to $G=Q_A$ and the gate $(q,t)\longrightarrow(B,t)$ in
+[Section 6.18 of the MMS02 bridge](AK3_MMS02_TPUB_TWO_GATE_BRIDGE.md#618-the-tagged-coefficient-can-be-removed-exactly).
+Theorem 6.11 there excludes conjugacy of $q$ and $B$. Its height map,
+also recorded in (117) and (507), has $\chi(q)=\chi(B)=-1$, excluding
+conjugacy of $q$ with $B^{-1}$ as well. Consequently every successful
+path in this relative gate has a vertex where **neither live row** is
+conjugate to $(tc)^{\pm1}$ for any $c\in Q_A$.
+
+Qualification here is tested in the actual free product
+$Q_A*\langle t\rangle$, not on raw free-word representatives before
+quotienting. The allowed restored $A,v$-donation macros project to identity
+steps and cannot evade the conclusion. There is no bound on the number
+of moves inside the qualifying region. Paths leaving that region, paths
+changing the fixed base donors, the unrestricted MMS02 bridge, and stable
+or ordinary AK3 remain undecided.

@@ -3119,8 +3119,15 @@ obligations remain separate and unresolved.
 The nonconjugacy assertion in Theorem 6.12 does not imply tagged-pair
 inequivalence.  Arbitrary Andrews--Curtis paths may multiply the first row
 by conjugates of the tag row, move the tag row, and later cancel the added
-stable-letter syllables.  No tag-rigidity or destabilization theorem is
-proved.  The gate (130), the unrestricted MMS02 bridge, stable AK(3), and
+stable-letter syllables. The [relative one-occurrence descent theorem](AK3_DEFINING_TAG_DESCENT.md#application-to-the-two-live-row-mms02-gate)
+does prove a restricted boundary: every successful path in (130) must
+have a vertex where neither live row is conjugate to $(tc)^{\pm1}$ for
+any $c\in Q_A$. Otherwise elimination and anchor handoffs would conjugate
+or invert $q$ to $B$, contradicting Theorem 6.11 and their common height
+$-1$. This condition is in $Q_A*\langle t\rangle$, not in raw free-word
+representatives; restored $A,v$-donations project to identities. No
+unrestricted tag-rigidity or destabilization theorem is proved.
+The gate (130), the unrestricted MMS02 bridge, stable AK(3), and
 ordinary AK(3) remain open.
 
 **Literal source normalization.** Put $k=uyx$. In $Q_A$, the identities

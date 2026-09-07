@@ -568,3 +568,8 @@ k, transport R, and restore the second donor with the minus sign. Use an
 unchanged qualifying row across an elementary edge when one exists;
 otherwise the changed row qualifies at both ends. This removes anchor
 bookkeeping as an escape from the every-vertex descent hypothesis.
+
+[WORKS] With two live rows over G*<t>, anchor descent leaves only one
+projected row and therefore preserves its conjugacy class up to inversion.
+For the MMS02 relative gate, test qualification in Q_A*<t>, not in raw
+F(x,y,z,t) representatives; restored A,v-donations vanish on projection.
