@@ -525,3 +525,11 @@ kernel and marked-boundary data explicitly.
 [TRAP] A sentence-only patch did not match a dated log paragraph stored
 on one physical line. Read that exact line and patch the full line;
 use a verified source URL without guessing a theorem fragment identifier.
+
+### [2026-09-07] Match geometric obstructions to their actual input
+
+[TRAP] MMS02 Section 6.9 certifies the exact rank-three complex, not the
+rank-two quotient multiword. Before extending a finite donor class by
+geometric cancellation, establish nongeometricity of that quotient
+multiword separately; exact-complex nonthickenability supplies neither
+that premise nor invariance under changing word realizations.

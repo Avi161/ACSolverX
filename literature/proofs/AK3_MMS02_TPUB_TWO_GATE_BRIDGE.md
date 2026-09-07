@@ -1872,6 +1872,22 @@ invariants in this argument.  A later AC-equivalent representative may be
 thickenable.  Thus Theorem 6.3 neither proves nor disproves the bridge,
 stable AK(3), ordinary AK(3), stable Andrews--Curtis, or Andrews--Curtis.
 
+**Quotient-geometric scope.** Theorem 6.3 tests the exact rank-three
+complex, not geometricity of the rank-two quotient multiword obtained by
+setting $v=1$. Thus it supplies no quotient-nongeometricity premise for
+extending Section 6.10 to arbitrary conjugate-$v$ donations, even though
+those donations preserve the quotient conjugacy classes. Moreover,
+[Lackenby, Section 6](https://arxiv.org/html/2606.06122v1) explicitly
+distinguishes thickenability of specified semigroup realizations from
+relators viewed as free-group elements; this argument has not proved that
+an exact-complex obstruction is an obstruction for every realization of
+the multiword. In the positive direction, a verified thickenable
+representative of the balanced trivial quotient presentation, with its
+marking connected to the intended relators, would imply its ordinary AC
+triviality by Lackenby's Theorems 6.3--6.4. No such representative or
+quotient-multiword obstruction has been established here, and the frozen
+finite class is not enlarged by this observation.
+
 ### 6.10. Tail-free boundary donor moves are also nonthickenable
 
 Let $\operatorname{cyc}(w)$ denote the freely and cyclically reduced word
