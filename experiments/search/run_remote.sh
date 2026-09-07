@@ -1,0 +1,393 @@
+#!/usr/bin/env bash
+# Run the AC19 leftover campaign on a rented high-RAM CPU box (vast.ai, Hetzner,
+# bare metal -- anything with SSH). Colab's constraint was RAM per row: at 5M
+# nodes hcompact reserves ~34.7 GB for ONE row on ONE core, so a 51 GB Colab
+# runs a single row at a time. A big-RAM box runs N of them, and N is what you
+# are actually buying.
+#
+#   ./run_remote.sh plan     # what THIS box would do -- run before you rent
+#   PLAN_GB=512 PLAN_CORES=64 ./run_remote.sh plan   # price an offer first
+#   ./run_remote.sh smoke    # 2 rows x 2,000 nodes; proves the pipeline
+#   ./run_remote.sh run      # the campaign, detached (survives an SSH drop)
+#   ./run_remote.sh install-service   # ... and survives a Spot preemption
+#   ./run_remote.sh tail     # follow the log
+#   ./run_remote.sh report   # totals so far; safe to run mid-flight
+#
+# Env overrides: CAMPAIGN BUDGET MRL WORKERS ARMS OUT BRANCH REPO
+set -euo pipefail
+PLAN_GB=${PLAN_GB:-}; PLAN_CORES=${PLAN_CORES:-}
+
+BRANCH=${BRANCH:-claude/ac19-leftover-solver-notebook-6yan6d}
+REPO=${REPO:-https://github.com/Avi161/ACSolverX.git}
+# One env var selects the whole campaign: budget, arm list, row lists and
+# output filenames all follow from it (explicit BUDGET/ARMS still win).
+# Without this, pre-staging u124 meant hand-assembling four flags that had
+# to agree -- and a missed one ran the WRONG CAMPAIGN's rows at 10M.
+CAMPAIGN=${CAMPAIGN:-ac19}
+case "$CAMPAIGN" in
+  ac19) BUDGET=${BUDGET:-5000000};  ARMS=${ARMS:-greedy s20_mk2} ;;
+  u124) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-s20_mk2} ;;
+  # the 10M stage of AC19, per arm like the 1M and 5M stages: greedy runs
+  # its own 31 unsolved-at-5M rows, s20_mk2 its own 9, each to its own jsonl
+  ac19_10m) BUDGET=${BUDGET:-10000000}; ARMS=${ARMS:-greedy s20_mk2} ;;
+  # The screen-wide 501-node cascade pass. Nothing like the stages above: it
+  # never touches hcompact, reserves nothing, and finishes all ~72.8k orbits
+  # in about 4 core-hours under 200 MB per worker. It is the one campaign
+  # here a small, cheap box runs well -- SCREEN=1 routes every subcommand
+  # away from the big-RAM planner, which would otherwise refuse to plan.
+  ac19_cascade_screen) SCREEN=1; BUDGET=${BUDGET:-501}; MRL=${MRL:-255}
+                       ARMS=${ARMS:-cascade501} ;;
+  # ALL of AC19: every line of data/AC19_extended.txt (156,762 rows,
+  # Aut-duplicates included), at 1,000 nodes, storing the MOVE-WISE
+  # certificate -- nodes explored, path length, and the move sequence as
+  # the search produced it. Not the elementary expansion: that is 10,440
+  # bytes a row against 889, and `decode_ac_jsonl` regenerates it on demand
+  # from the stored moves. Output is ~160 MB, so disk does not bind either.
+  ac19_all) SCREEN=1; EMIT_MIXED=1; BUDGET=${BUDGET:-1000}; MRL=${MRL:-255}
+            ARMS=${ARMS:-cascade501}; WANT_DATASET_ROWS=1 ;;
+  # The three joint 5M survivors under the 501-node prefix + S20 restart, at
+  # 10M and cap 255. This is the OPPOSITE of the screen above: cap 255 plans a
+  # 2,140,262,144-state reservation, 319 GiB per lane. On a small box
+  # plan_memory clips it by ~170x and every row dies at reservation
+  # exhaustion, so `plan` is not optional here -- read the clip line first.
+  ac19_hybrid_10m) HYBRID=1; BUDGET=${BUDGET:-10000000}; MRL=${MRL:-255}
+                   ARMS=${ARMS:-hybrid_10m} ;;
+  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m|ac19_cascade_screen|ac19_all|ac19_hybrid_10m)" >&2; exit 2 ;;
+esac
+SCREEN=${SCREEN:-0}
+HYBRID=${HYBRID:-0}
+WANT_DATASET_ROWS=${WANT_DATASET_ROWS:-0}
+EMIT_MIXED=${EMIT_MIXED:-0}
+DECODE_ELEMENTARY=${DECODE_ELEMENTARY:-0}
+ROWS_CSV=${ROWS_CSV:-}
+MRL=${MRL:-64}
+WORKERS=${WORKERS:-auto}
+OUT=${OUT:-$HOME/leftovers_5m}
+SRC=${SRC:-$HOME/ACSolverX}
+# Defaults that need SRC must come after it, not inside the campaign case.
+[ "$WANT_DATASET_ROWS" = 1 ] && ROWS_CSV=${ROWS_CSV:-$SRC/results/heuristic_search/ac19_autmin_screen/ac19_extended_rows.csv}
+# Assembled AFTER ROWS_CSV exists -- building it earlier silently dropped the
+# row list, so `plan` described the orbit screen while `run` would have run
+# the extended set.
+SCREEN_FLAGS=""
+[ "$EMIT_MIXED" = 1 ] && SCREEN_FLAGS="$SCREEN_FLAGS --emit-mixed"
+[ -n "$ROWS_CSV" ] && SCREEN_FLAGS="$SCREEN_FLAGS --rows-csv $ROWS_CSV"
+true
+LOG="$OUT/run.log"
+PY=${PY:-python3}
+
+have_repo() { [ -d "$SRC/experiments/search" ]; }
+
+setup() {
+  mkdir -p "$OUT"
+  if ! have_repo; then
+    command -v git >/dev/null || { apt-get update -qq && apt-get install -y -qq git; }
+    git clone --branch "$BRANCH" --depth 1 "$REPO" "$SRC"
+  fi
+  cd "$SRC"
+  # numba + numpy are the only runtime deps of the search. requirements.txt
+  # pulls the JAX/PPO stack, which this campaign never imports -- skip it.
+  # Debian 12 / Ubuntu 24 mark the system Python "externally managed" (PEP 668)
+  # and refuse a plain pip install, which is exactly what a fresh GCE image is.
+  if ! $PY -c 'import numba, numpy' 2>/dev/null; then
+    $PY -m pip -q install numba numpy 2>/dev/null       || $PY -m pip -q install --break-system-packages numba numpy       || { sudo apt-get update -qq && sudo apt-get install -y -qq python3-pip            && $PY -m pip -q install --break-system-packages numba numpy; }
+    $PY -c 'import numba, numpy' || { echo "STOP: numba unavailable"; exit 1; }
+  fi
+  export PYTHONPATH="$SRC"
+  # The search kernel is single-threaded numba; BLAS/OpenMP pools are never
+  # used, but left at their defaults they spin up one thread per vCPU AT
+  # IMPORT and each reserves a ~64 MiB malloc arena. On a 64-vCPU box that
+  # is multiple GiB of ADDRESS SPACE per process, which blows the worker
+  # RLIMIT_AS before a single row runs (std::bad_alloc, no output). This
+  # used to be set only inside the generated job, so `plan` and `smoke`
+  # aborted on any large-core box.
+  export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
+}
+
+plan() {
+  setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen plan --budget $BUDGET \
+        $SCREEN_FLAGS --workers $WORKERS --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m plan --out-dir "$OUT"
+    return
+  fi
+  $PY - <<'PYEOF'
+import os, multiprocessing as mp
+from experiments.search.run_leftovers_1m import est_gb, resolve_workers, _available_gb
+from experiments.search.run_leftovers_5m import (
+    SPEC_5M, _reserved_worst_gb, plan_memory, load_rows_5m, resolve_campaign,
+    TRACK_PATH)
+from experiments.search.run_leftovers_1m import HAVE_HCOMPACT
+
+B, MRL = int(os.environ["BUDGET"]), int(os.environ["MRL"])
+CAMPAIGN = os.environ.get("CAMPAIGN", "ac19")
+ARMS = os.environ.get("ARMS", "greedy s20_mk2").split()
+# PLAN_GB/PLAN_CORES price an offer you have NOT rented yet -- the whole
+# point on a spot market is choosing the box before paying for it.
+gb = float(os.environ.get("PLAN_GB") or _available_gb())
+cores = int(os.environ.get("PLAN_CORES") or mp.cpu_count())
+where = "offer" if os.environ.get("PLAN_GB") else "this box"
+print(f"{where:<15}: {cores} cores, {gb:.0f} GB RAM")
+print(f"engine         : hcompact={HAVE_HCOMPACT}")
+if not HAVE_HCOMPACT:
+    raise SystemExit("STOP: hcompact missing -- the Python fallback at this "
+                     "budget is a hundreds-of-GB code path, not a slow one.")
+# the plan must size the way the RUN sizes: a campaign with a measured
+# states-per-node floor reserves past the est curve, and the plan quoting
+# the est number while the run reserves the bigger one is the "plan lied"
+# bug in a new costume.
+_, camp = resolve_campaign(CAMPAIGN)
+rate_floor = camp.get("states_per_node")
+if rate_floor and os.environ.get("STATES_PER_NODE"):
+    rate_floor = int(os.environ["STATES_PER_NODE"])
+    print(f"floor          : STATES_PER_NODE={rate_floor} overrides the campaign's "
+          f"{camp.get('states_per_node')} states/node")
+# path capture is per campaign and sizes everything: 8 B/state, 16 GiB of
+# address space per lane at u124's reservation
+tp = bool(camp.get("track_path", TRACK_PATH))
+lim, res = plan_memory(B, MRL, available_gb=gb, states_per_node=rate_floor,
+                       log=lambda *a: None, track_path=tp)
+per = est_gb(B, MRL, track_path=tp)
+worst = per
+if res is not None:
+    worst = max(per, _reserved_worst_gb(res, MRL, tp) or 0.0)
+print(f"budget {B:,} @ cap {MRL}: {per:.1f} GB per row (est), "
+      f"{worst:.1f} GB allocation-backed worst"
+      + (" (paths captured)" if tp else
+         " (paths not captured: a solve is certified by deterministic re-run)"))
+tot = 0.0
+for arm in ARMS:
+    n = len(load_rows_5m(arm, campaign=CAMPAIGN)[0])   # fails loudly on a stale clone
+    w, _ = resolve_workers(arm, os.environ["WORKERS"], gb, cores, B, MRL,
+                           track_path=tp)
+    w = min(w, max(1, int((gb - 4.0) // worst)))   # the governor floors worst too
+    # per-lane pops/s: 708/846 were measured at 1M on the nibble engine;
+    # the campaign box measures 3,000-3,600 per lane at 10M on edfa8c68
+    # (u124 rows, longer than AC19's), so 3,000 is the conservative figure
+    rate = 3000
+    h = n * (B / rate) / 3600 / max(w, 1)
+    tot += h
+    print(f"  {arm:<8} {n:>3} rows, {w:>2} workers -> {h:5.1f} h  (worst case)")
+print(f"total wall clock: {tot:.1f} h if every row runs the full budget")
+if res is not None:
+    from experiments.search.greedy_compact import est_states, _RESERVE_SLACK
+    default = int(est_states(B) * _RESERVE_SLACK) + 4 * (MRL + 1) ** 2
+    if rate_floor:
+        default = max(default, int(rate_floor * B) + 4 * (MRL + 1) ** 2)
+    tag = "full" if res >= default else f"CLIPPED from {default:,} -- box is small"
+    print(f"reserve_states  : {res:,} ({tag})")
+PYEOF
+}
+
+smoke() { setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen smoke --budget $BUDGET \
+        $SCREEN_FLAGS --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m smoke --out-dir "$OUT"
+    return
+  fi
+  for a in $ARMS; do
+    $PY -m experiments.search.run_leftovers_5m --arm "$a" --campaign "$CAMPAIGN" \
+        --smoke --out-dir "$OUT"; done; }
+
+write_job() {
+  cat > "$OUT/_job.sh" <<JOB
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$SRC"; export PYTHONPATH="$SRC"
+# stdout goes to a log FILE under both systemd and nohup, so Python
+# block-buffers it: heartbeats fire every 60s but the log freezes for ~27 min
+# at a time, and tail -f shows nothing -- "a quiet hour is indistinguishable
+# from a hung session". Unbuffered fixes the log, not the run.
+export PYTHONUNBUFFERED=1
+# The search kernel is single-threaded numba; BLAS/OpenMP pools are never
+# used. Left at their defaults they still spin up one thread per vCPU at
+# import, and each thread reserves a 64 MiB malloc arena -- on a 128-vCPU
+# box that is ~8 GB of ADDRESS SPACE per child, charged against the
+# rate-floor RLIMIT cap whose margin above the full-width allocation is
+# exactly what the interpreter and numba runtime need. Pinned to 1 in the
+# job so every child inherits it.
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
+# A raised states-per-node floor for a second pass over rows that died at
+# reservation exhaustion is baked into the job at write time (empty if unset).
+${STATES_PER_NODE:+export STATES_PER_NODE=$STATES_PER_NODE}
+${RETRY_EXHAUSTED:+export RETRY_EXHAUSTED=$RETRY_EXHAUSTED}
+# The screen pass has one arm, no reservation and no per-row memory plan,
+# so it takes the same --chunks/--chunk-index convention and nothing else.
+if [ "$SCREEN" = 1 ]; then
+  # LADDER, not a single pass: rung 1 stores a move-wise certificate for
+  # every row it settles, then each higher rung runs only what the rung
+  # below left. Measured on the 3,208 that survive 1,000 nodes -- 95% fall
+  # at 10,000 and 40/40 of a sample fall at 100,000 -- so the escalation is
+  # minutes, not a second campaign.
+  $PY -m experiments.search.run_ac19_cascade_screen ladder --budget $BUDGET \
+      $SCREEN_FLAGS --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
+  # Elementary AC moves are NOT produced by default. The move-wise record is
+  # the deliverable and it is restorable: `decode_ac_jsonl` rebuilds the
+  # states from the moves and expands to generator-level AC operations
+  # whenever someone actually wants them. Set DECODE_ELEMENTARY=1 to do it
+  # here, at 10,440 bytes a row against 889.
+  if [ "$DECODE_ELEMENTARY" = 1 ]; then
+    $PY -m experiments.search.decode_ac_jsonl \
+        "$OUT/ac19_cascade_screen_cascade501_b${BUDGET}_mrl${MRL}.jsonl" \
+        "$OUT/ac19_all_elementary.jsonl"
+  fi
+elif [ "$HYBRID" = 1 ]; then
+  # This entry point also reports and then certifies every solve by a
+  # deterministic re-run with paths captured -- the campaign records none.
+  $PY -m experiments.search.run_ac19_hybrid_10m run \
+      --workers $WORKERS --out-dir "$OUT"
+else
+for a in $ARMS; do
+  # --chunks 1 --chunk-index 1 is the SINGLE-BOX convention: stride_chunk(rows,
+  # 1, 1) is rows[0::1], i.e. all of them, into one untagged jsonl -- which is
+  # what the report subcommand already reads. Without it the runner falls back
+  # to the arm's default chunk count (4 for greedy) and silently runs 22 of 88
+  # rows, then prints CAMPAIGN COMPLETE. The 4-way split is for four Colabs.
+  # NOTE: this heredoc is unquoted so \$BUDGET interpolates -- never put a
+  # backtick or \$( ) in it, they execute HERE and splice output into the job.
+  $PY -m experiments.search.run_leftovers_5m --arm "\$a" --campaign $CAMPAIGN \\
+      --budget $BUDGET --mrl $MRL --workers $WORKERS \\
+      --chunks 1 --chunk-index 1 --out-dir "$OUT"
+done
+fi
+echo "CAMPAIGN COMPLETE \$(date -u +%FT%TZ)"
+# Completion, as an ARTIFACT rather than only a cloud API call: a marker
+# file in the results dir. Anything that already ships the results (an S3
+# sync timer, a Drive mirror, an rsync) ships the finished-flag with them,
+# and each cloud attaches its own notifier to the artifact -- S3 event ->
+# SNS on AWS, the gcloud beacon below on GCP. A later session resuming
+# from a synced copy also learns finished-vs-partial from the marker.
+date -u +%FT%TZ > "$OUT/COMPLETE_$CAMPAIGN"
+# Best-effort beacon into Cloud Logging so an alert policy can email the
+# owner at completion even if no session is watching. Harmless where
+# gcloud or the logWriter role is absent. (Heredoc rule: no backticks, no
+# unescaped command substitution.)
+command -v gcloud >/dev/null 2>&1 && gcloud logging write ac19-campaign \\
+    "CAMPAIGN COMPLETE $CAMPAIGN" --severity=NOTICE 2>/dev/null || true
+JOB
+  chmod +x "$OUT/_job.sh"
+}
+
+run() {
+  setup; write_job
+  # setsid + nohup: the run outlives the SSH session that started it. On a
+  # rented box the connection WILL drop; the job must not care.
+  setsid nohup "$OUT/_job.sh" >>"$LOG" 2>&1 < /dev/null &
+  echo "started pid $! -- log: $LOG"
+  echo "results (rsync these off the box BEFORE you destroy it):"
+  echo "  rsync -avz <user>@<host>:$OUT/*.jsonl ./"
+}
+
+# A Spot VM WILL be preempted during a 14 h run. With
+# --instance-termination-action=STOP the disk survives, so the whole recovery
+# is "boot again": this unit restarts the campaign and RESUME skips every row
+# already on disk. Nothing to babysit.
+install_service() {
+  setup; write_job
+  sudo tee /etc/systemd/system/ac19.service >/dev/null <<UNIT
+[Unit]
+Description=AC19 leftover campaign
+After=network-online.target
+
+[Service]
+Type=simple
+User=$(id -un)
+Environment=PYTHONUNBUFFERED=1
+ExecStart=$OUT/_job.sh
+StandardOutput=append:$LOG
+StandardError=append:$LOG
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now ac19.service
+  echo "ac19.service enabled -- survives reboot AND Spot preemption."
+  echo "  status: systemctl status ac19  |  log: $LOG"
+}
+
+# Write the job script and print its path, starting nothing. Exists so the
+# generated file can be syntax-checked -- a heredoc that silently executes
+# something at generation time produces a job that dies on its first line.
+job_only() { setup; write_job; echo "$OUT/_job.sh"; }
+
+tail_log() { tail -f "$LOG"; }
+
+report() { setup
+  if [ "$SCREEN" = 1 ]; then
+    $PY -m experiments.search.run_ac19_cascade_screen report --budget $BUDGET \
+        --out-dir "$OUT"
+    return
+  fi
+  if [ "$HYBRID" = 1 ]; then
+    $PY -m experiments.search.run_ac19_hybrid_10m report --out-dir "$OUT"
+    return
+  fi
+  for a in $ARMS; do
+    $PY -c "
+from experiments.search.run_leftovers_5m import report_5m
+report_5m('$a', '$OUT', chunks=1, chunk_index=1, budget=$BUDGET, mrl=$MRL,
+          campaign='$CAMPAIGN')"; done; }
+
+# Assert the generated job and the installed unit agree with THIS config.
+# Read-only: never patches, never starts or stops anything -- a boot-time
+# self-heal script calls this and decides what to do with a failure (the
+# convention: an unparseable job means do NOT start the unit). Campaign
+# flags are derived from the same variables that wrote the job, so the
+# checks can never rot against a new campaign the way a hardcoded
+# "--mrl 64" list would. UNIT_FILE is overridable for tests.
+UNIT_FILE=${UNIT_FILE:-/etc/systemd/system/ac19.service}
+verify() {
+  local job="$OUT/_job.sh" fail=0
+  chk() { if [ "$1" = 0 ]; then echo "verify: PASS -- $2";
+          else echo "verify: FAIL -- $2"; fail=1; fi; }
+  if [ ! -f "$job" ]; then
+    chk 1 "job exists: $job"
+  else
+    if bash -n "$job" 2>/dev/null; then chk 0 "job parses"; else chk 1 "job parses"; fi
+    if grep -q 'PYTHONUNBUFFERED=1' "$job"; then chk 0 "job exports PYTHONUNBUFFERED"; else chk 1 "job exports PYTHONUNBUFFERED"; fi
+    if grep -q 'OPENBLAS_NUM_THREADS=1' "$job"; then chk 0 "job pins BLAS/OMP/numba threads to 1"; else chk 1 "job pins BLAS/OMP/numba threads to 1"; fi
+    for flag in "--campaign $CAMPAIGN" "--budget $BUDGET" "--mrl $MRL" \
+                "--chunks 1 --chunk-index 1"; do
+      if grep -q -- "$flag" "$job"; then chk 0 "job carries $flag"; else chk 1 "job carries $flag"; fi
+    done
+    if grep -q '`' "$job"; then chk 1 "no backticks in job"; else chk 0 "no backticks in job"; fi
+    # $( ) may appear in comments (the heredoc warning mentions it) and in
+    # the one CAMPAIGN COMPLETE date line; anywhere else is a splice.
+    splices=$(grep '\$(' "$job" | grep -v '^[[:space:]]*#' \
+              | grep -vc 'CAMPAIGN COMPLETE' || true)
+    if [ "${splices:-0}" = 0 ]; then chk 0 "no spliced command output"; else chk 1 "no spliced command output"; fi
+  fi
+  if [ -f "$UNIT_FILE" ]; then
+    if grep -q 'Environment=PYTHONUNBUFFERED=1' "$UNIT_FILE"; then chk 0 "unit sets PYTHONUNBUFFERED"; else chk 1 "unit sets PYTHONUNBUFFERED"; fi
+    if grep -q "ExecStart=$job" "$UNIT_FILE"; then chk 0 "unit runs this job"; else chk 1 "unit runs this job"; fi
+  else
+    echo "verify: WARN -- unit not installed at $UNIT_FILE"
+  fi
+  if PYTHONPATH="$SRC" $PY -c 'from experiments.heuristic_search.core import hcompact' 2>/dev/null; then
+    chk 0 "hcompact engine imports"
+  else
+    chk 1 "hcompact engine imports (python fallback would be silent and wrong)"
+  fi
+  return $fail
+}
+
+export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID EMIT_MIXED DECODE_ELEMENTARY ROWS_CSV SCREEN_FLAGS
+case "${1:-plan}" in
+  plan) plan ;; smoke) smoke ;; run) run ;;
+  install-service) install_service ;;
+  job) job_only ;;
+  verify) verify ;;
+  tail) tail_log ;; report) report ;;
+  *) echo "usage: $0 {plan|smoke|run|install-service|job|verify|tail|report}" >&2; exit 2 ;;
+esac

@@ -1,0 +1,798 @@
+{
+  "args": {
+    "rows": "aca_0,aca_1,aca_3,aca_4,aca_5,aca_8",
+    "budget": 100000,
+    "reps": 3,
+    "mrl": 64,
+    "cpu": 2,
+    "out": "/tmp/claude-0/-home-user-ACSolverX/eb7ec879-0928-5ceb-ae6d-743c24df5774/scratchpad/final_bench_6rows_100k.json",
+    "engines": "current,candidate",
+    "timeout": 600.0
+  },
+  "wall_seconds": 1081.823780298233,
+  "runs": [
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 34.7408533809994,
+      "nodes_explored": 100000,
+      "pops_per_second": 2878.4554859176947,
+      "peak_rss_gib": 1.3534584045410156,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 18.15008262399988,
+      "nodes_explored": 100000,
+      "pops_per_second": 5509.616791924124,
+      "peak_rss_gib": 1.3806724548339844,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 33.8958582919995,
+      "nodes_explored": 100000,
+      "pops_per_second": 2950.2129475093766,
+      "peak_rss_gib": 1.2176322937011719,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 16.85588976500003,
+      "nodes_explored": 100000,
+      "pops_per_second": 5932.6443987336925,
+      "peak_rss_gib": 1.2166290283203125,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 34.613773811999636,
+      "nodes_explored": 100000,
+      "pops_per_second": 2889.0233276249346,
+      "peak_rss_gib": 1.2176742553710938,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_0",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 18.632975776999956,
+      "nodes_explored": 100000,
+      "pops_per_second": 5366.829281420379,
+      "peak_rss_gib": 1.220550537109375,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 523 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 36.736751891000495,
+      "nodes_explored": 100000,
+      "pops_per_second": 2722.069721806224,
+      "peak_rss_gib": 1.2169647216796875,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 18.28153859699978,
+      "nodes_explored": 100000,
+      "pops_per_second": 5469.999117930435,
+      "peak_rss_gib": 1.2204818725585938,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 38.357169809999505,
+      "nodes_explored": 100000,
+      "pops_per_second": 2607.074518149943,
+      "peak_rss_gib": 1.2177810668945312,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 18.6966110809999,
+      "nodes_explored": 100000,
+      "pops_per_second": 5348.562879484787,
+      "peak_rss_gib": 1.2184982299804688,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 38.21926622299998,
+      "nodes_explored": 100000,
+      "pops_per_second": 2616.4814210854993,
+      "peak_rss_gib": 1.2177886962890625,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_1",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 17.964657305999935,
+      "nodes_explored": 100000,
+      "pops_per_second": 5566.485254722975,
+      "peak_rss_gib": 1.22039794921875,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 2,415 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 27.481119733000014,
+      "nodes_explored": 100000,
+      "pops_per_second": 3638.8619158016877,
+      "peak_rss_gib": 0.653839111328125,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 12.507823483999346,
+      "nodes_explored": 100000,
+      "pops_per_second": 7994.996102073647,
+      "peak_rss_gib": 0.6562385559082031,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 27.64975319000041,
+      "nodes_explored": 100000,
+      "pops_per_second": 3616.668811212579,
+      "peak_rss_gib": 0.6523666381835938,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 12.509818487999837,
+      "nodes_explored": 100000,
+      "pops_per_second": 7993.721099624743,
+      "peak_rss_gib": 0.6538848876953125,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 27.22920902900023,
+      "nodes_explored": 100000,
+      "pops_per_second": 3672.5268036062257,
+      "peak_rss_gib": 0.6530876159667969,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_3",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 12.520081576999473,
+      "nodes_explored": 100000,
+      "pops_per_second": 7987.168405013357,
+      "peak_rss_gib": 0.6556777954101562,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 348 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 48.314257461000125,
+      "nodes_explored": 100000,
+      "pops_per_second": 2069.782404929254,
+      "peak_rss_gib": 1.2177848815917969,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 22.712178534000486,
+      "nodes_explored": 100000,
+      "pops_per_second": 4402.924177894183,
+      "peak_rss_gib": 1.220123291015625,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 48.28643755900066,
+      "nodes_explored": 100000,
+      "pops_per_second": 2070.97489595937,
+      "peak_rss_gib": 1.2176666259765625,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 22.200618996999765,
+      "nodes_explored": 100000,
+      "pops_per_second": 4504.378910043643,
+      "peak_rss_gib": 1.2186965942382812,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 48.53713050100032,
+      "nodes_explored": 100000,
+      "pops_per_second": 2060.278367670274,
+      "peak_rss_gib": 1.2183303833007812,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_4",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 23.230929639999886,
+      "nodes_explored": 100000,
+      "pops_per_second": 4304.606038142195,
+      "peak_rss_gib": 1.2204780578613281,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 837 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 49.705845084999964,
+      "nodes_explored": 100000,
+      "pops_per_second": 2011.8358279392298,
+      "peak_rss_gib": 1.2180824279785156,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 23.661236932000065,
+      "nodes_explored": 100000,
+      "pops_per_second": 4226.321738267091,
+      "peak_rss_gib": 1.2166404724121094,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 50.33029116000034,
+      "nodes_explored": 100000,
+      "pops_per_second": 1986.8750546683568,
+      "peak_rss_gib": 1.2179031372070312,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 23.36355106100018,
+      "nodes_explored": 100000,
+      "pops_per_second": 4280.171269295013,
+      "peak_rss_gib": 1.2195472717285156,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 50.00293263399999,
+      "nodes_explored": 100000,
+      "pops_per_second": 1999.8827015198706,
+      "peak_rss_gib": 1.2190322875976562,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_5",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 23.26488556000004,
+      "nodes_explored": 100000,
+      "pops_per_second": 4298.323313996127,
+      "peak_rss_gib": 1.21856689453125,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 816 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 27.984494180000183,
+      "nodes_explored": 100000,
+      "pops_per_second": 3573.4074504540267,
+      "peak_rss_gib": 0.63720703125,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 12.220743685000343,
+      "nodes_explored": 100000,
+      "pops_per_second": 8182.808066152252,
+      "peak_rss_gib": 0.6373100280761719,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 27.936707555000794,
+      "nodes_explored": 100000,
+      "pops_per_second": 3579.5198773199586,
+      "peak_rss_gib": 0.637115478515625,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 12.289141075999396,
+      "nodes_explored": 100000,
+      "pops_per_second": 8137.265198728924,
+      "peak_rss_gib": 0.6405982971191406,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 1
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 28.20829798199975,
+      "nodes_explored": 100000,
+      "pops_per_second": 3545.056141416682,
+      "peak_rss_gib": 0.6381034851074219,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 2
+    },
+    {
+      "row": "aca_8",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 11.963304036999943,
+      "nodes_explored": 100000,
+      "pops_per_second": 8358.894807882618,
+      "peak_rss_gib": 0.6377067565917969,
+      "bytes_per_state": 44.40991575249165,
+      "bytes_reserved": 644668678,
+      "solved": false,
+      "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 13,999 states (in place)"
+      ],
+      "rep": 2
+    }
+  ],
+  "aggregate": {
+    "aca_0": {
+      "current": {
+        "median_pops_per_second": 2889.0233276249346,
+        "min_pops_per_second": 2878.4554859176947,
+        "max_pops_per_second": 2950.2129475093766,
+        "median_peak_rss_gib": 1.2176742553710938,
+        "min_peak_rss_gib": 1.2176322937011719,
+        "max_peak_rss_gib": 1.3534584045410156,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156"
+      },
+      "candidate": {
+        "median_pops_per_second": 5509.616791924124,
+        "min_pops_per_second": 5366.829281420379,
+        "max_pops_per_second": 5932.6443987336925,
+        "median_peak_rss_gib": 1.220550537109375,
+        "min_peak_rss_gib": 1.2166290283203125,
+        "max_peak_rss_gib": 1.3806724548339844,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "e662c9317876e41e68df9443032e7376d05c3b63f30e8093d6dbf71aac8dd156"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 1.907086294264567,
+      "ratio_reference_engine": "current"
+    },
+    "aca_1": {
+      "current": {
+        "median_pops_per_second": 2616.4814210854993,
+        "min_pops_per_second": 2607.074518149943,
+        "max_pops_per_second": 2722.069721806224,
+        "median_peak_rss_gib": 1.2177810668945312,
+        "min_peak_rss_gib": 1.2169647216796875,
+        "max_peak_rss_gib": 1.2177886962890625,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731"
+      },
+      "candidate": {
+        "median_pops_per_second": 5469.999117930435,
+        "min_pops_per_second": 5348.562879484787,
+        "max_pops_per_second": 5566.485254722975,
+        "median_peak_rss_gib": 1.22039794921875,
+        "min_peak_rss_gib": 1.2184982299804688,
+        "max_peak_rss_gib": 1.2204818725585938,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "2bbbbdbb5fd1771d98cb4739b85e0f7211a4237d350e4e82dc6bd0b5584d7731"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.0905935252775834,
+      "ratio_reference_engine": "current"
+    },
+    "aca_3": {
+      "current": {
+        "median_pops_per_second": 3638.8619158016877,
+        "min_pops_per_second": 3616.668811212579,
+        "max_pops_per_second": 3672.5268036062257,
+        "median_peak_rss_gib": 0.6530876159667969,
+        "min_peak_rss_gib": 0.6523666381835938,
+        "max_peak_rss_gib": 0.653839111328125,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d"
+      },
+      "candidate": {
+        "median_pops_per_second": 7993.721099624743,
+        "min_pops_per_second": 7987.168405013357,
+        "max_pops_per_second": 7994.996102073647,
+        "median_peak_rss_gib": 0.6556777954101562,
+        "min_peak_rss_gib": 0.6538848876953125,
+        "max_peak_rss_gib": 0.6562385559082031,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "42230ef0c6fa6314bbb3c3a7fd6fd8f696405ffb8af2fb42e7de5158f601af7d"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.196764066509961,
+      "ratio_reference_engine": "current"
+    },
+    "aca_4": {
+      "current": {
+        "median_pops_per_second": 2069.782404929254,
+        "min_pops_per_second": 2060.278367670274,
+        "max_pops_per_second": 2070.97489595937,
+        "median_peak_rss_gib": 1.2177848815917969,
+        "min_peak_rss_gib": 1.2176666259765625,
+        "max_peak_rss_gib": 1.2183303833007812,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add"
+      },
+      "candidate": {
+        "median_pops_per_second": 4402.924177894183,
+        "min_pops_per_second": 4304.606038142195,
+        "max_pops_per_second": 4504.378910043643,
+        "median_peak_rss_gib": 1.220123291015625,
+        "min_peak_rss_gib": 1.2186965942382812,
+        "max_peak_rss_gib": 1.2204780578613281,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "01f8b79d4779fcc0e1f4e6da9fc20a24e800d5b4b96c14f3cf597303ddf27add"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.127240123120419,
+      "ratio_reference_engine": "current"
+    },
+    "aca_5": {
+      "current": {
+        "median_pops_per_second": 1999.8827015198706,
+        "min_pops_per_second": 1986.8750546683568,
+        "max_pops_per_second": 2011.8358279392298,
+        "median_peak_rss_gib": 1.2180824279785156,
+        "min_peak_rss_gib": 1.2179031372070312,
+        "max_peak_rss_gib": 1.2190322875976562,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233"
+      },
+      "candidate": {
+        "median_pops_per_second": 4280.171269295013,
+        "min_pops_per_second": 4226.321738267091,
+        "max_pops_per_second": 4298.323313996127,
+        "median_peak_rss_gib": 1.21856689453125,
+        "min_peak_rss_gib": 1.2166404724121094,
+        "max_peak_rss_gib": 1.2195472717285156,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "04b31e04e53a680a091a06762318a27cc2ec4ea78b079790d713534efca12233"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.1402111564054076,
+      "ratio_reference_engine": "current"
+    },
+    "aca_8": {
+      "current": {
+        "median_pops_per_second": 3573.4074504540267,
+        "min_pops_per_second": 3545.056141416682,
+        "max_pops_per_second": 3579.5198773199586,
+        "median_peak_rss_gib": 0.63720703125,
+        "min_peak_rss_gib": 0.637115478515625,
+        "max_peak_rss_gib": 0.6381034851074219,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc"
+      },
+      "candidate": {
+        "median_pops_per_second": 8182.808066152252,
+        "min_pops_per_second": 8137.265198728924,
+        "max_pops_per_second": 8358.894807882618,
+        "median_peak_rss_gib": 0.6377067565917969,
+        "min_peak_rss_gib": 0.6373100280761719,
+        "max_peak_rss_gib": 0.6405982971191406,
+        "bytes_per_state": 44.40991575249165,
+        "bytes_reserved": 644668678,
+        "solved": false,
+        "fingerprint": "c0d569856ade112e9a9c2f11f8a08e7a0fb3dc856e035c8b45c33d28e276e0bc"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.289917447032962,
+      "ratio_reference_engine": "current"
+    }
+  },
+  "fingerprint_mismatches": []
+}
