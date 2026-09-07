@@ -25,20 +25,24 @@ WHAT THE SEARCH'S OWN NEIGHBOUR SET DOES NOT COVER
 --------------------------------------------------
 ``get_neighbors_with_moves_nj`` emits only moves whose seam CANCELS -- a
 pruning the search uses for speed. The image of a cancelling-seam move under
-``phi^-1`` need not cancel, so a decoded path uses the full move set. Every
-move is still an ordinary ``(target, jsign, k1, k2)`` and ``moves_to_states``
-replays it, so certificates stay in the format the rest of the repo reads.
+``phi^-1`` need not cancel, so a decoded path uses the full move set. The
+legacy ``decode`` function below represents these operations with
+``(target, jsign, k1, k2)`` moves. ``decode_elementary`` instead expands them
+into a JSON-safe stream of generator-level invert, swap, conjugate and multiply
+operations, and ``replay_elementary`` verifies that stream without implicit
+canonicalization.
 """
 from __future__ import annotations
 
 import heapq
+from collections import deque
 
 import numpy as np
 from numba import njit
 
 from experiments.equivalence_classes.lib.words import (
-    SIGNED_PERMS, apply_hom, apply_pair, canon_pair, cyc_reduce, free_reduce,
-    inv,
+    SIGNED_PERMS, apply_hom, apply_pair, canon_pair, canon_rel, cyc_reduce,
+    free_reduce, inv,
 )
 from experiments.search.greedy_baseline import (
     canonical_pair_nj, inverse_relator_nj, moves_to_states, reduce_relator_nj,
@@ -116,6 +120,249 @@ def apply_conjugator(pair, target, jsign, c):
 def is_terminal(pair):
     return (len(pair[0]) == len(pair[1]) == 1
             and pair[0].lower() != pair[1].lower())
+
+
+def _canonical_word_witness(word, target):
+    """Return ``(sign, conjugator)`` with target = c^-1 word^sign c."""
+    reduced = free_reduce(word)
+    stripped = []
+    while len(reduced) >= 2 and reduced[0] == reduced[-1].swapcase():
+        stripped.append(reduced[0])
+        reduced = reduced[1:-1]
+    outer = "".join(stripped)
+    if target != canon_rel(word):
+        raise ValueError(f"{target!r} is not the canonical form of {word!r}")
+    if not reduced:
+        return 1, ""
+    for sign, oriented in ((1, reduced), (-1, inv(reduced))):
+        for cut in range(len(oriented)):
+            if oriented[cut:] + oriented[:cut] != target:
+                continue
+            conjugator = free_reduce(outer + oriented[:cut])
+            check = free_reduce(
+                inv(conjugator) + (word if sign == 1 else inv(word)) + conjugator)
+            if check == target:
+                return sign, conjugator
+    raise AssertionError(f"no canonicalization witness for {word!r} -> {target!r}")
+
+
+class _ElementaryTrace:
+    def __init__(self, pair):
+        self.pair = [free_reduce(pair[0]), free_reduce(pair[1])]
+        self.moves = []
+
+    def _record(self, move):
+        self.moves.append(move)
+
+    def invert(self, target):
+        if isinstance(target, bool) or target not in (1, 2):
+            raise ValueError(f"target must be 1 or 2, got {target!r}")
+        i = target - 1
+        self.pair[i] = inv(self.pair[i])
+        self._record({"op": "invert", "target": target})
+
+    def swap(self):
+        self.pair.reverse()
+        self._record({"op": "swap"})
+
+    def conjugate_letter(self, target, letter):
+        if isinstance(target, bool) or target not in (1, 2):
+            raise ValueError(f"target must be 1 or 2, got {target!r}")
+        if len(letter) != 1 or letter not in "xXyY":
+            raise ValueError(f"conjugation must use one generator letter: {letter!r}")
+        i = target - 1
+        self.pair[i] = free_reduce(inv(letter) + self.pair[i] + letter)
+        self._record({"op": "conjugate", "target": target, "by": letter})
+
+    def conjugate_word(self, target, word):
+        if any(letter not in "xXyY" for letter in word):
+            raise ValueError(f"conjugation word is outside F2: {word!r}")
+        i = target - 1
+        self.pair[i] = free_reduce(inv(word) + self.pair[i] + word)
+        self.moves.extend(
+            {"op": "conjugate", "target": target, "by": letter}
+            for letter in word)
+
+    def multiply(self, target, source):
+        if (isinstance(target, bool) or isinstance(source, bool)
+                or target not in (1, 2) or source not in (1, 2) or target == source):
+            raise ValueError(
+                f"multiply requires distinct target/source in 1,2; got {target!r}/{source!r}")
+        i, j = target - 1, source - 1
+        self.pair[i] = free_reduce(self.pair[i] + self.pair[j])
+        self._record({"op": "multiply", "target": target, "source": source})
+
+    def conjugated_multiply(self, target, source_sign, conjugator):
+        source = 2 if target == 1 else 1
+        if source_sign == -1:
+            self.invert(source)
+        self.conjugate_word(source, conjugator)
+        self.multiply(target, source)
+        self.conjugate_word(source, inv(conjugator))
+        if source_sign == -1:
+            self.invert(source)
+
+
+def replay_elementary(pair, moves, keep_states=False):
+    """Replay the elementary JSON move schema without canonicalization."""
+    code = {"x": 1, "X": -1, "y": 2, "Y": -2}
+    symbol_to_letter = {1: "x", -1: "X", 2: "y", -2: "Y"}
+    current = [deque(code[c] for c in free_reduce(word)) for word in pair]
+
+    def words():
+        return ["".join(symbol_to_letter[c] for c in word) for word in current]
+
+    def append_reduced(word, symbol):
+        if word and word[-1] == -symbol:
+            word.pop()
+        else:
+            word.append(symbol)
+
+    states = [words()]
+    for move in moves:
+        op = move.get("op")
+        if op == "invert":
+            target = move["target"]
+            if isinstance(target, bool) or target not in (1, 2):
+                raise ValueError(f"target must be 1 or 2, got {target!r}")
+            current[target - 1] = deque(-c for c in reversed(current[target - 1]))
+        elif op == "swap":
+            current.reverse()
+        elif op == "conjugate":
+            target = move["target"]
+            letter = move["by"]
+            if isinstance(target, bool) or target not in (1, 2):
+                raise ValueError(f"target must be 1 or 2, got {target!r}")
+            if len(letter) != 1 or letter not in "xXyY":
+                raise ValueError(f"conjugation must use one generator letter: {letter!r}")
+            i = target - 1
+            symbol = code[letter]
+            if current[i] and current[i][0] == symbol:
+                current[i].popleft()
+            else:
+                current[i].appendleft(-symbol)
+            append_reduced(current[i], symbol)
+        elif op == "multiply":
+            target, source = move["target"], move["source"]
+            if (isinstance(target, bool) or isinstance(source, bool)
+                    or target not in (1, 2) or source not in (1, 2)
+                    or target == source):
+                raise ValueError(
+                    f"multiply requires distinct target/source in 1,2; "
+                    f"got {target!r}/{source!r}")
+            for symbol in current[source - 1]:
+                append_reduced(current[target - 1], symbol)
+        else:
+            raise ValueError(f"unknown elementary AC operation: {op!r}")
+        if keep_states:
+            states.append(words())
+    return states if keep_states else words()
+
+
+def _emit_canonicalization(trace, raw_pair, target_pair, inverse_image):
+    own = [canon_rel(raw_pair[0]), canon_rel(raw_pair[1])]
+    for i in range(2):
+        sign, conjugator = _canonical_word_witness(raw_pair[i], own[i])
+        if sign == -1:
+            trace.invert(i + 1)
+        trace.conjugate_word(i + 1, apply_hom(conjugator, inverse_image))
+    target = list(target_pair)
+    if own == target:
+        return
+    if own[::-1] == target:
+        trace.swap()
+        return
+    raise AssertionError(f"pair canonicalization mismatch: {own} -> {target}")
+
+
+def _emit_signed_permutation(trace, image):
+    x_image, y_image = image["x"], image["y"]
+    if len(x_image) != 1 or len(y_image) != 1:
+        raise ValueError(f"not a signed permutation: {image}")
+    if x_image.lower() == "y":
+        trace.swap()
+    if x_image.isupper():
+        trace.invert(1)
+    if y_image.isupper():
+        trace.invert(2)
+
+
+def _emit_tuple_image(trace, image):
+    for index, candidate in enumerate(NIELSEN):
+        if image != candidate:
+            continue
+        target = 1 if index < 2 else 2
+        sign = 1 if index % 2 == 0 else -1
+        trace.conjugated_multiply(target, sign, "")
+        return
+    if image in [candidate for _, candidate in SIGNED_PERMS]:
+        _emit_signed_permutation(trace, image)
+        return
+    raise ValueError(f"not an elementary automorphism: {image}")
+
+
+def decode_elementary(pair, states, steps):
+    """Convert a mixed certificate to generator-level elementary AC moves."""
+    if len(states) != len(steps) + 1:
+        raise ValueError("states must contain exactly one more entry than steps")
+    if tuple(states[0]) != tuple(canon_pair(*pair)):
+        raise ValueError("certificate root does not match the canonical input")
+
+    trace = _ElementaryTrace(pair)
+    inverse_image = dict(IDENTITY)
+    applied = []
+    _emit_canonicalization(trace, pair, states[0], inverse_image)
+    if trace.pair != [apply_hom(w, inverse_image) for w in states[0]]:
+        raise AssertionError("initial canonicalization frame mismatch")
+
+    for index, step in enumerate(steps):
+        current = tuple(states[index])
+        target_state = tuple(states[index + 1])
+        if step.get("kind") == "automorphism":
+            image = step["images"]
+            inverse_image = _compose(elementary_inverse(image), inverse_image)
+            applied.append(image)
+            raw = tuple(apply_hom(word, image) for word in current)
+        elif step.get("kind") == "substitution":
+            move = tuple(map(int, step["move"].split("_")))
+            target, source_sign, conjugator = to_conjugator(current, move)
+            transported = apply_hom(conjugator, inverse_image)
+            trace.conjugated_multiply(target, source_sign, transported)
+            source = current[2 - target]
+            oriented = source if source_sign == 1 else inv(source)
+            raw = list(current)
+            raw[target - 1] = free_reduce(
+                current[target - 1] + inv(conjugator) + oriented + conjugator)
+            raw = tuple(raw)
+        else:
+            raise ValueError(f"unknown mixed step kind: {step.get('kind')!r}")
+
+        _emit_canonicalization(trace, raw, target_state, inverse_image)
+        expected = [apply_hom(word, inverse_image) for word in target_state]
+        if trace.pair != expected:
+            raise AssertionError(
+                f"transport frame diverged at mixed step {index}: "
+                f"got={trace.pair}, expected={expected}")
+
+    terminal = list(states[-1])
+    if not is_terminal(tuple(terminal)):
+        raise ValueError(f"mixed certificate does not end at a basis: {terminal}")
+    if terminal[0].lower() == "y":
+        trace.swap()
+        terminal.reverse()
+    if terminal[0] == "X":
+        trace.invert(1)
+    if terminal[1] == "Y":
+        trace.invert(2)
+    for image in reversed(applied):
+        _emit_tuple_image(trace, image)
+
+    if trace.pair != ["x", "y"]:
+        raise AssertionError(f"elementary replay ended at {trace.pair}, not ['x', 'y']")
+    replayed = replay_elementary(pair, trace.moves)
+    if replayed != ["x", "y"]:
+        raise AssertionError(f"independent elementary replay ended at {replayed}")
+    return trace.moves
 
 
 @njit(cache=True)
