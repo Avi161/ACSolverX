@@ -123,7 +123,19 @@ WORKER_RLIMIT_GB = 2.0
 # MemoryError, when with room it SOLVES. Roughly 0.05 GiB per 1,000 nodes
 # above a 0.37 GiB baseline, so a row that runs a full 100,000 wants ~5.4;
 # 8.0 leaves margin for the tail.
-WORKER_RLIMIT_GB_BY_BUDGET = {501: 2.0, 1_000: 2.0, 10_000: 4.0, 100_000: 8.0}
+# 100,000 was 8.0 and that was still too tight on the aut-min representatives,
+# which are harder than the extended set: workers died in
+# `multiprocessing.reduction.dumps` -- AFTER the search, while pickling a 15 KB
+# result -- because the search had already consumed the cap. Those rows get NO
+# record at all (run_row's try/except covers only the search), though resume
+# recovers them since absent is not done.
+#
+# Measured on the box while it was happening: largest process RSS 891 MB, 116
+# of 123 GB free. Address space is not memory; it is nearly free to hand out
+# on 64-bit, and the cap is only there to stop a runaway. 24.0 leaves room for
+# the search AND everything after it, and a single runaway at 24 GB RSS is
+# still survivable on a 123 GB box.
+WORKER_RLIMIT_GB_BY_BUDGET = {501: 2.0, 1_000: 2.0, 10_000: 4.0, 100_000: 24.0}
 
 
 def worker_rlimit_gb(budget):

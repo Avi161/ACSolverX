@@ -545,8 +545,8 @@ def test_the_worker_rlimit_scales_with_the_budget():
     assert screen.worker_rlimit_gb(501) == 2.0
     assert screen.worker_rlimit_gb(1_000) == 2.0
     assert screen.worker_rlimit_gb(10_000) == 4.0
-    assert screen.worker_rlimit_gb(100_000) == 8.0
-    assert screen.worker_rlimit_gb(1_000_000) == 8.0     # clamps, never drops
+    assert screen.worker_rlimit_gb(100_000) == 24.0
+    assert screen.worker_rlimit_gb(1_000_000) == 24.0    # clamps, never drops
     for lower, higher in zip(sorted(screen.WORKER_RLIMIT_GB_BY_BUDGET),
                              sorted(screen.WORKER_RLIMIT_GB_BY_BUDGET)[1:]):
         assert (screen.worker_rlimit_gb(lower)
@@ -557,7 +557,7 @@ def test_plan_quotes_the_cap_for_the_budget_it_is_planning():
     small = screen.plan(budget=1_000, workers=8, log=lambda _: None)
     large = screen.plan(budget=100_000, workers=8, log=lambda _: None)
     assert small["worker_rlimit_gb_address_space"] == 2.0
-    assert large["worker_rlimit_gb_address_space"] == 8.0
+    assert large["worker_rlimit_gb_address_space"] == 24.0
 
 
 def test_an_oomed_row_is_never_counted_as_done():
@@ -571,5 +571,26 @@ def test_an_oomed_row_is_never_counted_as_done():
     try:
         assert screen.read_done_names(path) == {"good"}
         assert "died" not in screen.read_done_names(path)
+    finally:
+        os.unlink(path)
+
+
+def test_a_worker_that_dies_after_the_search_leaves_no_record_but_is_not_done():
+    """`run_row`'s try/except covers the SEARCH only. A worker killed while
+    pickling its result back to the parent writes nothing at all -- so the
+    row must not be mistaken for finished. Absence is what saves it."""
+    import inspect
+    src = inspect.getsource(screen.run_row)
+    assert "except Exception as exc:" in src
+    assert src.index("result = search_row") < src.index("except Exception as exc:")
+    # and a name never written is never 'done'
+    import tempfile
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as fh:
+        fh.write(json.dumps({"name": "written", "solved": True}) + "\n")
+        path = fh.name
+    try:
+        done = screen.read_done_names(path)
+        assert done == {"written"}
+        assert "lost_in_the_pickle" not in done
     finally:
         os.unlink(path)
