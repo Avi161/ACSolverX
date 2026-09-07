@@ -476,3 +476,106 @@ def test_restored_mms02_donor_shortens_v_eliminated_target():
     wrong_defect = product(conjugate("xxYx", Bbar), inverse(C))
     assert wrong_defect != conjugate("y", inverse(Abar))
     assert substitute(C, {"y": "zX"}) == "zzXXX"
+
+
+def test_mms02_short_target_return_basis_and_local_donors():
+    R, z = "uvuVUV", "uvu"
+    images = {"x": "uv", "y": product(R, "v")}
+    inverse_images = {"u": "Xyx", "v": "XYxx"}
+    assert images["y"] == "uvuVU"
+    for generator in "xy":
+        assert substitute(images[generator], inverse_images) == generator
+    for generator in "uv":
+        assert substitute(inverse_images[generator], images) == generator
+    assert substitute("yxyXX", images) == conjugate(z, R)
+    assert product(images["y"], "V") == R
+
+    Abar = "xYxYXyyXYxyXy"
+    chain = ("uuVUvUVuvUv", "uuuVUUVuvUv", "uuuVUvUUv", "uuuuVUUUv")
+    assert substitute(Abar, {"x": "uv", "y": "v"}) == chain[0]
+    prefix = ""
+    factors = []
+    donor_specs = []
+    for letter in Abar:
+        if letter in "yY":
+            by = prefix if letter == "y" else product(prefix, "V")
+            sign = 1 if letter == "y" else -1
+            donor_specs.append((by, sign))
+            factors.append(conjugate(by, R if sign == 1 else inverse(R)))
+        prefix = product(prefix, substitute(letter, {"x": "uv", "y": "v"}))
+    old_A = substitute(Abar, images)
+    assert product(*factors) == product(old_A, inverse(chain[0]))
+    rows = [R, old_A]
+    for by, sign in donor_specs:
+        if sign == 1:
+            rows[0] = inverse(rows[0])
+        rows[0] = conjugate(by, rows[0])
+        rows[1] = product(rows[0], rows[1])
+        rows[0] = conjugate(inverse(by), rows[0])
+        if sign == 1:
+            rows[0] = inverse(rows[0])
+        assert rows[0] == R
+    assert rows == [R, chain[0]]
+    rules = (
+        ("VUv", "uVU", "VU", -1),
+        ("Vuv", "uvU", "V", 1),
+    )
+    for old, new, by, sign in rules:
+        donor = R if sign == 1 else inverse(R)
+        assert product(old, inverse(new)) == conjugate(by, donor)
+
+    rows = [R, chain[0]]
+    for index, (prefix, rule_index) in enumerate((("uu", 0), ("uuuVUU", 1), ("uuu", 0))):
+        old, new, by, sign = rules[rule_index]
+        assert rows[1].startswith(prefix + old)
+        suffix = rows[1][len(prefix + old):]
+        assert product(prefix, new, suffix) == chain[index + 1]
+        conjugator = product(prefix, by)
+        defect = conjugate(conjugator, R if sign == 1 else inverse(R))
+        assert product(rows[1], inverse(chain[index + 1])) == defect
+        if sign == 1:
+            rows[0] = inverse(rows[0])
+        rows[0] = conjugate(conjugator, rows[0])
+        rows[1] = product(rows[0], rows[1])
+        rows[0] = conjugate(inverse(conjugator), rows[0])
+        if sign == 1:
+            rows[0] = inverse(rows[0])
+        assert rows == [R, chain[index + 1]]
+
+    w, old = "uvU", "Vuv"
+    assert substitute(w, {"v": "Uwu"}) == "w"
+    assert substitute("Uwu", {"w": w}) == "v"
+    assert product(old, inverse(w)) == conjugate("V", R)
+    assert chain[-1] == product("uuuu", inverse(old) * 3)
+    inverse_defect = conjugate(inverse(old), conjugate("V", inverse(R)))
+    assert inverse_defect == product(inverse(old), w)
+    cube_defect = product(
+        inverse_defect,
+        conjugate(inverse(w), inverse_defect),
+        conjugate(inverse(w) * 2, inverse_defect),
+    )
+    target = product("uuuu", inverse(w) * 3)
+    assert product(chain[-1], inverse(target)) == conjugate("uuuu", cube_defect)
+    for index in range(3):
+        by = product("uuuu", inverse(w) * index, inverse(old), "V")
+        rows[0] = conjugate(by, rows[0])
+        rows[1] = product(rows[0], rows[1])
+        rows[0] = conjugate(inverse(by), rows[0])
+        assert rows[0] == R
+    assert rows == [R, target]
+
+    final_images = {"u": "u", "v": "Uwu"}
+    final_inverse = {"u": "u", "w": w}
+    for generator in "uv":
+        assert substitute(final_images[generator], final_inverse) == generator
+    for generator in "uw":
+        assert substitute(final_inverse[generator], final_images) == generator
+    final_braid = conjugate("u", substitute(R, final_images))
+    final_power = substitute(target, final_images)
+    assert final_braid == "uwuWUW"
+    assert final_power == "uuuuWWW"
+    rename = {"u": "y", "w": "x"}
+    assert (
+        inverse(substitute(final_power, rename)),
+        inverse(substitute(final_braid, rename)),
+    ) == ("xxxYYYY", "xyxYXY")

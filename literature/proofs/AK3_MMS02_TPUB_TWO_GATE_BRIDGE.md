@@ -3017,6 +3017,36 @@ this shortening. The same independent replay checks the original
 $z=y^{-1}x$ substitution, the donor identity, row restoration and a
 wrong-conjugator control.
 
+**Convergence check: return to standard AK3.** Use the inverse basis maps
+\[
+ u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,
+ \qquad x=uv,\quad y=uvu v^{-1}u^{-1}.
+\]
+Here $u,v$ are new basis symbols, not the earlier MMS02 words.
+Put $R=uvu(vuv)^{-1}$. The short target becomes
+${}^{uvu}R$, and the image of $y$ is exactly $Rv$.
+Conjugating the donor to $R$ permits replacing those $Rv$ occurrences
+by $v$ in the other row. The two local free-word identities
+\[
+ (VUv)(uVU)^{-1}={}^{VU}R^{-1},\qquad
+ (Vuv)(uvU)^{-1}={}^{V}R
+\]
+then provide restored-donor corrections along
+\[
+ \mathtt{uuVUvUVuvUv}
+ \longrightarrow\mathtt{uuuVUUVuvUv}
+ \longrightarrow\mathtt{uuuVUvUUv}
+ \longrightarrow\mathtt{uuuuVUUUv}.
+\]
+With $w=uvu^{-1}$, the same corrections change the last word to
+$u^4w^{-3}$. In the basis $(u,w)$ the donor, after conjugation,
+is $uwu(wuw)^{-1}$. Swapping $u,w$ and inverting both rows gives
+the standard AK3 power and braid relators. The focused replay verifies
+the basis inverses and the finite donor corrections separately: an
+ambient basis change is not being called an elementary relator move.
+This is a return of the trivialization problem to standard AK3, not
+a path to the free basis. The shortening opens no further corridor.
+
 The [integral fixed-donor theorem](AK3_MMS02_PRIMITIVE_COMPLETION_TRACE_CHECK.md#all-integer-primitive-completions-are-excluded)
 now excludes replacing $\overline B$ by any primitive word while retaining
 $\overline A$ as donor: $B$ is not conjugate to $Xy^m$ in $Q_A$ for any

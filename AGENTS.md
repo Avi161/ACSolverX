@@ -408,3 +408,12 @@ after conjugation and one restored A-donor correction; the focused
 tagged-buffer test checks the original substitution and a wrong conjugator.
 Keep this exact normalization separate from a solution of the coupled
 path: the shorter row is a trefoil relator, not a primitive target.
+
+### [2026-09-07] Distinguish a defect product from its correction product
+
+[TRAP] Root's initial instructions for the short-target return reversed
+inverse donations twice. If old*new^-1=f1...fk, successive LEFT donations
+are f1^-1, then f2^-1, through fk^-1, in the original factor order.
+If new*old^-1 itself is factored instead, donate those factors in reverse
+order. The tagged-buffer return test checks the accumulated word and
+restores the donor after each correction; fix the orientation before runs.
