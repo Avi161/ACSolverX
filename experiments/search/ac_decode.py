@@ -37,7 +37,8 @@ import numpy as np
 from numba import njit
 
 from experiments.equivalence_classes.lib.words import (
-    SIGNED_PERMS, apply_hom, apply_pair, canon_pair,
+    SIGNED_PERMS, apply_hom, apply_pair, canon_pair, cyc_reduce, free_reduce,
+    inv,
 )
 from experiments.search.greedy_baseline import (
     canonical_pair_nj, inverse_relator_nj, moves_to_states, reduce_relator_nj,
@@ -68,6 +69,48 @@ def elementary_inverse(image):
     if key not in _INVERSE:
         raise ValueError(f"not an elementary automorphism: {image}")
     return _INVERSE[key]
+
+
+def to_conjugator(pair, move):
+    """``(target, jsign, c)`` -- the move with its conjugator as a WORD.
+
+    A stored move is ``(target, jsign, k1, k2)`` with ``k1``/``k2`` rotation
+    offsets into the current relators, and an offset means nothing once a
+    basis change has rewritten the words. The conjugator it stands for does:
+    ``rot_k(r) = u^-1 r u`` where ``u`` is the length ``len(r) - k`` prefix,
+    so the move is ``(u^-1 r_i u)(p^-1 r_j^s p)``.
+
+    One word is enough for both. Since
+    ``(u^-1 r_i u)(p^-1 o_j p) = u^-1 [ r_i . (u p^-1 o_j p u^-1) ] u`` and the
+    canonical form absorbs the outer conjugation, rotating ``r_i`` is the same
+    as conjugating the other factor. So every AC move is
+    ``r_i <- r_i . (c^-1 r_j^s c)`` for a single ``c = p . u^-1``, and under a
+    basis change ``psi`` it is simply ``c -> psi(c)``. Verified against
+    ``moves_to_states`` on 1,096 moves.
+
+    NOTE: the pair is canonicalised first, exactly as the engine does. Reading
+    the offsets off the raw pair is wrong and was a real bug -- ``('xyX',...)``
+    cyclically reduces to ``('y',...)``, so the offsets index a different word.
+    """
+    pair = tuple(canon_pair(*pair))
+    target, jsign, k1, k2 = move
+    ri = pair[target - 1]
+    rj = pair[2 - target]
+    oj = rj if jsign == 1 else inv(rj)
+    u = ri[:len(ri) - k1]
+    p = oj[:len(oj) - k2]
+    return target, jsign, free_reduce(p + inv(u))
+
+
+def apply_conjugator(pair, target, jsign, c):
+    """Apply a word-form move. Inverse of :func:`to_conjugator`."""
+    pair = tuple(canon_pair(*pair))
+    ri = pair[target - 1]
+    rj = pair[2 - target]
+    oj = rj if jsign == 1 else inv(rj)
+    out = list(pair)
+    out[target - 1] = cyc_reduce(free_reduce(ri + inv(c) + oj + c))
+    return tuple(canon_pair(*out))
 
 
 def is_terminal(pair):

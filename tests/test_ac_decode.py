@@ -195,3 +195,37 @@ def test_a_row_that_needs_a_conjugated_step_decodes_in_seconds():
     assert info["bridged"] == 1
     assert is_terminal(tuple(moves_to_states(pair[0], pair[1], moves)[-1]))
     assert elapsed < 60, f"took {elapsed:.0f}s; the bridge has regressed"
+
+
+# --- the word form, which is what survives a basis change ------------------
+@pytest.mark.parametrize("pair", [
+    ("YXXyx", "YYYYYXyyyxyxxx"), ("xyX", "yyx"), ("YYXyx", "Yx"),
+    ("YXYxyXYXX", "YXYXyxYXYXX"), ("Y", "YX"), ("YXXYXXyxx", "YXyXyxxxxx"),
+])
+def test_one_conjugator_word_reproduces_every_offset_move(pair):
+    """An offset move names a conjugator that happens to be a prefix of the
+    relator. Say it as a word and it survives any psi; say it as an offset
+    and it does not."""
+    from experiments.search.ac_decode import apply_conjugator, to_conjugator
+    canon = tuple(canon_pair(*pair))
+    checked = 0
+    for target in (1, 2):
+        for jsign in (1, -1):
+            for k1 in range(len(canon[target - 1])):
+                for k2 in range(len(canon[2 - target])):
+                    move = (target, jsign, k1, k2)
+                    want = tuple(moves_to_states(pair[0], pair[1], [move])[-1])
+                    t, s, c = to_conjugator(pair, move)
+                    assert (t, s) == (target, jsign)
+                    assert apply_conjugator(pair, t, s, c) == want, (move, c)
+                    checked += 1
+    assert checked
+
+
+def test_reading_offsets_off_an_uncanonicalised_pair_is_the_bug_it_looks_like():
+    """('xyX', ...) cyclically reduces to ('y', ...), so offsets read off the
+    raw pair index a different word. `to_conjugator` canonicalises first."""
+    from experiments.search.ac_decode import to_conjugator
+    assert list(canon_pair("xyX", "yyx"))[0] != "xyX"
+    _, _, c = to_conjugator(("xyX", "yyx"), (1, 1, 0, 0))
+    assert isinstance(c, str)
