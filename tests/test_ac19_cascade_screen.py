@@ -522,7 +522,9 @@ def test_resume_reports_the_finished_count_without_holding_the_records(tmp_path)
     assert "n_done = len(done)" in src
     assert "del done" in src
     assert "{n_done:,} already done" in src
-    assert "len(done)" not in src, "the set is gone before the log line runs"
+    # the only surviving len(done) is the capture itself, before `del`
+    assert src.count("len(done)") == 1
+    assert src.index("del done") > src.index("n_done = len(done)")
 
 
 def test_resume_actually_skips_rows_already_on_disk(tmp_path):
