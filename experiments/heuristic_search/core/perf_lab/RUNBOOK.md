@@ -420,6 +420,74 @@ nodes, cap 64 against cap 255:
 Nine of nine identical, state for state. The cap never binds, so cap 255
 costs 2.3x the memory and 3 of 5 lanes for the same search.
 
+### The cap cannot have bound -- this is a proof, not a sample
+
+Both tables above are measurements, so they only cover the budgets that
+were run. The bound is stronger than that, and it is free.
+
+A child is `r_i <- rot(r_i) . rot(r_j^s)` with the other relator kept, so
+(`hexpand.expand_children_h`, and the comment at `hcompact.py:495`):
+
+    |new relator| <= |r_i| + |r_j| = the POPPED total
+    |kept relator| = |r_j|         <= the POPPED total
+
+**Every relator of every child -- accepted or rejected -- is bounded by
+the popped total.** So a run whose largest popped total stays under the
+cap cannot have had a single child rejected by it. That largest popped
+total is recorded on every row as `max_relator_length_expanded`.
+
+Across the nine open rows at 10M it is 50, 52, 53, 54, 54, 54, 54, 54,
+55. The worst is **55 against a cap of 64**. The cap rejected zero
+children in 90 million popped nodes, and no larger budget at cap 64 can
+change that conclusion retroactively -- it is readable off any finished
+row before deciding to widen.
+
+Confirmed empirically end to end on ac19_44381 at 200,000 nodes, caps 64
+/ 96 / 128 / 255: **28,808,038 discovered states at every cap**, same
+min total (19), same max total (75), same longest discovered pair
+(33 + 42 letters). Identical, four ways.
+
+### Widening the cap is not free even when it changes nothing
+
+The arena is packed at the CURRENT row width (`off = sid * rw`, widened
+in place), not at the cap width, so the cap costs address space, not
+resident pages -- but `_grow_width` doubles `w` toward `w_cap`, and a
+higher cap lets it take one more doubling. On these rows `w` settles at
+16 B/relator under cap 64 and at 24 B under any cap >= 96, so the row
+goes 32 B -> 48 B and stays there:
+
+| cap | w_cap | settled row | 200k nodes | nodes/sec |
+|---|---:|---:|---:|---:|
+| 64  | 16 | 32 B | 70 s  | 2,857 |
+| 96  | 24 | 48 B | 101 s | 1,980 |
+| 128 | 32 | 48 B | 103 s | 1,942 |
+| 255 | 64 | 48 B | 102 s | 1,961 |
+
+**-32% nodes/sec for a bit-identical search**, saturating at cap 96: 128
+and 255 cost exactly what 96 does. Peak RSS rises with the settled width
+too, ~108 GB -> ~135 GB per lane at 10M.
+
+### Reading the length fields -- two of the three are traps
+
+`run_leftovers_5m` writes `"max_relator_length": mrl` (line 721): the
+**configured flag**, echoed back. It is not a measurement and it is 64 on
+every mrl-64 row by construction. `min_relator_length` is a TOTAL
+(`|r1|+|r2|` at the best point), not a per-relator minimum. Reading those
+two as a range gives "min 17 / max 64" and the false impression that rows
+are jammed against the corridor.
+
+| field | what it is | on the three open rows at 10M |
+|---|---|---|
+| `max_relator_length` | the `--mrl` flag | 64, 64, 64 -- carries no information |
+| `min_relator_length` | best TOTAL reached | 19, 17, 17 |
+| `max_relator_length_expanded` | largest popped TOTAL | 53, 54, 54 |
+| `max_relator_expanded` | that pair, as words | longest single relator **33** |
+
+The engine's own `max_total` (largest total ever discovered, 75 on
+ac19_44381 at 200k) never reaches the jsonl at all -- the runner drops it.
+Only `max_relator_length_expanded` and `max_relator_expanded` answer "did
+the corridor bind".
+
 ### Two different caps -- clamp the wrong one and the rewrite breaks
 
 `cascade_heuristics.search` carries two caps and only one of them costs
