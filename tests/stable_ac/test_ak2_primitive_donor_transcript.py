@@ -111,6 +111,42 @@ def test_ak2_cleanup_is_an_ordinary_ac_transcript_in_original_generators():
             assert (row, q_row) == ("x", "y")
 
 
+def test_based_boundary_extension_failure_also_occurs_on_solved_ak2():
+    phi = {"p": "q", "q": "Pq"}
+    phi_inverse = {"p": "pQ", "q": "p"}
+    for generator in "pq":
+        assert substitute(substitute(generator, phi), phi_inverse) == generator
+        assert substitute(substitute(generator, phi_inverse), phi) == generator
+
+    def normal_form(word):
+        factors = {"x": ("", 1), "X": ("", -1),
+                   "y": ("p", 1), "Y": ("qP", -1)}
+        coefficient, height = "", 0
+        for letter in word:
+            factor, shift = factors[letter]
+            action = phi if height >= 0 else phi_inverse
+            for _ in range(abs(height)):
+                factor = substitute(factor, action)
+            coefficient = reduced(coefficient + factor)
+            height += shift
+        return coefficient, height
+
+    assert normal_form("xyxYXY") == ("", 0)
+    assert normal_form("yX") == ("p", 0)
+    assert normal_form("xyXX") == ("q", 0)
+    w2, height = normal_form("xxYYY")
+    assert (w2, height) == ("QPqP", -1)
+    assert tuple(w2.count(g) - w2.count(g.upper()) for g in "pq") == (-2, 0)
+    boundary = "pQPq"
+    assert substitute(boundary, phi) == boundary
+    psi = {g: conjugate(phi[g], inverse(w2)) for g in "pq"}
+    boundary_image = substitute(boundary, psi)
+    assert boundary_image == conjugate(boundary, inverse(w2))
+    assert reduced(boundary_image + inverse(boundary))
+    control = {g: conjugate(phi[g], inverse(boundary)) for g in "pq"}
+    assert substitute(boundary, control) == boundary
+
+
 def test_actual_ak3_both_row_replay_keeps_the_actual_donor():
     p_word, first, w_word = "xY", "xxxYYYY", "xYYYxYxxY"
     donor = conjugate(w_word, inverse(p_word))
