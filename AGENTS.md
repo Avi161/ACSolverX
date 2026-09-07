@@ -528,8 +528,19 @@ use a verified source URL without guessing a theorem fragment identifier.
 
 ### [2026-09-07] Match geometric obstructions to their actual input
 
-[TRAP] MMS02 Section 6.9 certifies the exact rank-three complex, not the
+[TRAP] The original MMS02 Theorem 6.3 certifies the exact rank-three complex, not the
 rank-two quotient multiword. Before extending a finite donor class by
 geometric cancellation, establish nongeometricity of that quotient
 multiword separately; exact-complex nonthickenability supplies neither
 that premise nor invariance under changing word realizations.
+
+### [2026-09-07] Use class intersections before planar rank enumeration
+
+[WORKS] At the actual MMS02 quotient minimum, the y-end occurrence matching
+has seven nonempty class intersections, but two three-block partitions of
+a circle allow at most six. The proof excludes either matching sign without
+a planarity census; see Section 6.9 and its independent corner-parser test.
+[TRAP] Cashen allows one-sided curves in nonorientable geometric
+realizations. A trivial presented group forces orientability of an actual
+thickening, not of every such multicurve realization. Exclude both signs,
+or explicitly retain two-sidedness when using the orientation character.

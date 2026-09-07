@@ -70,7 +70,10 @@ stable AK(3) remain open.
 Section 6.10 closes and freezes the next finite thickenability class: none
 of the four tail-free boundary-cancelling moves by a cyclic conjugate of
 $v^{\pm1}$ produces a thickenable complex.  Arbitrary surviving conjugator
-tails and multi-move paths remain outside that theorem.
+tails and multi-move paths remain outside that finite theorem. The
+independent seven-cell argument in Section 6.9 now excludes thickenability
+for every fixed-$v$ donation path preserving the quotient multiword;
+it does not exclude base-row multiplications or unrestricted AC paths.
 
 Section 6.11 gives a separate stable reduction.  One fresh tagged row lets
 the certified $A$-branch run while retaining $rt$; the same two-factor
@@ -1884,9 +1887,119 @@ an exact-complex obstruction is an obstruction for every realization of
 the multiword. In the positive direction, a verified thickenable
 representative of the balanced trivial quotient presentation, with its
 marking connected to the intended relators, would imply its ordinary AC
-triviality by Lackenby's Theorems 6.3--6.4. No such representative or
-quotient-multiword obstruction has been established here, and the frozen
-finite class is not enlarged by this observation.
+triviality by Lackenby's Theorems 6.3--6.4. The following independent
+minimal-multiword argument supplies the previously missing negative
+premise; it does not infer it from Theorem 6.3 or rerun the finite class.
+
+#### The minimal quotient has a seven-cell block obstruction
+
+Use the actual quotient pair $P$ and its certified Whitehead minimum from
+Section 6.7, not a merely AC-equivalent presentation:
+
+\[
+ P=(\mathtt{xYxYXyyXYxyXy},\mathtt{XyyXYXyxYYxy}),\qquad
+ W=(\mathtt{XXYYXyxYxy},\mathtt{XYXYXyxYxyy}).
+\]
+
+The saved substitutions $(x,y)\mapsto(xy,y)$ and then
+$(x,y)\mapsto(x,xy)$, with independent cyclic conjugation, inversion, and
+row order between them, give $W$. All twelve second-kind Whitehead maps
+have nondecreasing total cyclic length at $W$, so its length 21 is minimal.
+
+**Theorem (seven-cell quotient obstruction).** The multiword $P$ is not
+geometric, even allowing nonorientable handlebodies and either consistency
+sign at inverse generator ends.
+
+**Proof.** Use the corner convention $ab\mapsto\{a^{-1},b\}$. The six
+parallel-class multiplicities of the Whitehead graph of $W$ are
+
+\[
+\begin{array}{c|rrrrrr}
+\text{class}&xX&yY&xy&xY&Xy&XY\\\hline
+\text{multiplicity}&1&2&4&5&5&4.
+\end{array}
+\]
+
+Its simple support is $K_4$. In any planar embedding, every parallel class
+forms a circular interval at both endpoints: deleting those endpoints
+leaves connected support, which must lie in one region between the
+parallel edges. Consequently there are exactly three nonempty class
+intervals at each vertex.
+
+Identify the eleven occurrences of $y^{\pm1}$ with the darts at the
+positive $y$ end, and use the occurrence involution $B$ to identify them
+with the darts at the negative end. Label each dart by the other endpoint
+of its corner edge. The joint count of the two labels is
+
+\[
+\begin{array}{c|rrr}
+ &x&X&y\\\hline
+x&2&2&0\\
+X&2&1&2\\
+Y&1&1&0.
+\end{array}
+\]
+
+For clarity, the first row of $W$ contributes the five pairs
+$(Y,x),(X,y),(x,x),(x,X),(X,X)$; the second contributes
+$(X,x),(X,x),(x,x),(x,X),(X,y),(Y,X)$.
+Thus seven joint-label cells are nonempty.
+
+Consistency at the inverse vertices, with either sign, would put both
+three-class partitions on the same occurrence circle as partitions into
+three intervals. Their union has at most six boundary gaps. Their common
+refinement therefore has at most six components, and hence at most six
+nonempty joint-label cells. This contradicts the displayed seven cells.
+Reversing a cyclic order preserves intervalness, so the argument excludes
+both signs without an orientability assumption.
+
+[Cashen, *Splitting line patterns in free groups*, p. 663, following
+Proposition 5.2](https://msp.org/agt/2016/16-2/agt-v16-n2-p01-s.pdf),
+states the Zieschang/Berge criterion: a geometric multiword has consistent
+planar embeddings of every minimal Whitehead graph. Applying it to this
+same minimal $W$ gives nongeometricity; ambient automorphisms, conjugacy,
+inversion, and permutation transport that conclusion to $P$.
+$\square$
+
+The focused check
+`tests/stable_ac/test_mms02_minimal_geometric_block_obstruction.py`
+reconstructs the matching both from letters and from independent corner
+darts, checks the saved minimum and all twelve length inequalities, and
+includes a realizable circular-interval control. No planar-rotation or
+conjugator census is used.
+
+**Corollary (all retained-$v$ donation tails).** Let $(R_1,R_2,v)$ be a
+rank-three presentation with $v=Xyz$, whose quotient pair under
+$\pi_v(z)=Yx$ has the same unordered conjugacy classes as $P$, up to
+inversion and an ambient automorphism of $F(x,y)$. It has no orientable
+geometric realization. If it presents the trivial group, no exact word
+realization of it is thickenable, of either orientation.
+
+**Proof.** In an orientable geometric realization, the curve representing
+$v$ is algebraically primitive because $(x,y,v)$ is a free basis.
+[Hensel, *(Un)distorted stabilisers in the handlebody group*, Section 4](https://londmathsoc.onlinelibrary.wiley.com/doi/full/10.1112/topo.12186)
+recalls the equivalence with having a dual meridian intersecting the curve
+once. Attach a 2-handle along that curve and cancel its dual 1-handle.
+The result is a genus-two handlebody, with the other disjoint curves still
+on its boundary. Their conjugacy classes are the quotient pair, which the
+theorem proves nongeometric, a contradiction. This cancellation produces
+a geometric quotient realization; it is not asserted to preserve the
+canonical quotient presentation complex.
+
+An actual thickening of a trivial-group presentation cannot be
+nonorientable: its orientation character would be a nontrivial character
+of that trivial group. Here the attaching curves are necessarily
+two-sided, unlike arbitrary curves in a nonorientable geometric
+realization. The orientable case was already excluded. $\square$
+
+In particular this covers every finite sequence of donations of arbitrary
+conjugates of $v^{\pm1}$ to the first two rows, while retaining $v$, with
+base-row conjugations, inversions, and permutations allowed. No bound on
+surviving conjugator tails or on the number of such donations is needed.
+It is a geometric endpoint obstruction, not an obstruction to all-row AC:
+multiplying the two base rows changes the quotient multiword and is
+outside the conclusion. The unrestricted MMS02 bridge, stable AK(3), and
+ordinary AK(3) remain open.
 
 ### 6.10. Tail-free boundary donor moves are also nonthickenable
 
