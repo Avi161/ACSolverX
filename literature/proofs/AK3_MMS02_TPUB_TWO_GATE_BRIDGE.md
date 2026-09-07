@@ -2963,6 +2963,25 @@ cancel, leaving $h_{2p}=1$.  The right side of (122) has coefficient zero
 there.  This contradiction proves that (119), hence (116), has no
 solution.
 
+Equivalently, the last step has an explicit finite dual certificate. For
+$p\geq1$, put $\mathcal L_pH=z^{3p}H-H(z^2)+z^{2p}H(z^2)$ and define
+\[
+ \Lambda_p(F)=2[z^0]F+2[z^{2p}]F+[z^{4p}]F+[z^{6p}]F.
+\]
+For every $H\in\mathbb Z[[z]]$, the four relevant coefficients of
+$\mathcal L_pH$ are $-h_0$, $h_0-h_p$, $2h_p-h_{2p}$, and $h_{2p}$.
+Thus $\Lambda_p(\mathcal L_pH)=0$, whereas
+$\Lambda_p(-1+z^{4p}-z^{8p})=-1$. The earlier extremal and divisibility
+arguments are essential here: they make the actual $H$ a polynomial,
+so negative-index coefficients cannot enter this calculation. As a
+solvable control, $H=1+z^p+z^{2p}$ gives
+$\mathcal L_pH=-1+z^{3p}+z^{4p}+z^{5p}+z^{6p}$, which is annihilated
+by $\Lambda_p$. The independent second-derived test checks this control,
+the target value and unit-monomial images at four scales; the displayed
+coefficient identity, not those finite scales, proves the all-$p$ claim.
+The domain restriction has a literal countercontrol:
+$\Lambda_p(\mathcal L_p(z^{-p}))=4$, not zero.
+
 **Theorem 6.10 (second-derived correction-coset obstruction).**  There is
 no $n\in Q_A''$ for which $nD^{-1}$ conjugates $q$ to $B$ in $Q_A$.
 Equivalently, the whole coset $Q_A''D^{-1}$ is disjoint from the set of

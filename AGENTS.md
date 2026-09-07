@@ -573,3 +573,13 @@ bookkeeping as an escape from the every-vertex descent hypothesis.
 projected row and therefore preserves its conjugacy class up to inversion.
 For the MMS02 relative gate, test qualification in Q_A*<t>, not in raw
 F(x,y,z,t) representatives; restored A,v-donations vanish on projection.
+
+### [2026-09-07] Pin the domain of a coefficient obstruction
+
+[WORKS] The four-coefficient functional in MMS02 Section 6.16 annihilates
+the Mahler operator on ordinary power series, but gives 4 on the image
+of z^(-p). Preserve the extremal/divisibility proof that makes H a
+polynomial; a bounded coefficient test cannot replace that domain step.
+[TRAP] A patch failed after treating the end of a wrapped source line as
+a complete line. Re-read the literal paragraph and match whole source
+lines before retrying a proof-document insertion.

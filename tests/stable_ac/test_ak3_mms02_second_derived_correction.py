@@ -344,3 +344,30 @@ def test_second_derived_fraction_semidirect_conjugator_family():
     for power in range(-12, 13):
         conjugator = semidirect_multiply(c0, semidirect_power(q, power))
         assert semidirect_conjugate(conjugator, q) == B
+
+
+def test_explicit_mahler_coefficient_functional_at_four_scales():
+    """Finite coefficient controls, not a proof for all scales or inputs."""
+    for p in (1, 2, 4, 8):
+        def operator(polynomial):
+            at_z_squared = {2 * exponent: coefficient for exponent, coefficient in polynomial.items()}
+            return add(
+                {exponent + 3 * p: coefficient for exponent, coefficient in polynomial.items()},
+                neg(at_z_squared),
+                {exponent + 2 * p: coefficient for exponent, coefficient in at_z_squared.items()},
+            )
+
+        def functional(polynomial):
+            return (2 * polynomial.get(0, 0) + 2 * polynomial.get(2 * p, 0)
+                    + polynomial.get(4 * p, 0) + polynomial.get(6 * p, 0))
+
+        for exponent in range(6 * p + 1):
+            assert functional(operator({exponent: 1})) == 0
+        target = {0: -1, 4 * p: 1, 8 * p: -1}
+        assert functional(target) == -1
+        solvable = operator({0: 1, p: 1, 2 * p: 1})
+        assert solvable == {0: -1, 3 * p: 1, 4 * p: 1, 5 * p: 1, 6 * p: 1}
+        assert functional(solvable) == 0
+        outside_domain = operator({-p: 1})
+        assert outside_domain == {2 * p: 1, -2 * p: -1, 0: 1}
+        assert functional(outside_domain) == 4
