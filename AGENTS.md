@@ -550,3 +550,13 @@ one base multiplication, but z=yx exposes a braid donor and three literal
 donations return to standard AK3. Identify the resulting marked pair
 before interpreting a destroyed geometric obstruction as constructive
 progress toward triviality; the focused test preserves the current donor.
+
+### [2026-09-07] Compare both defining substitutions through the live donor
+
+[WORKS] In `AK3_DEFINING_TAG_DESCENT.md`, changing a designated tag from
+a conjugate of (tc)^epsilon to one of (td)^eta makes the old and new
+projected donating row conjugate/inverse to the same k=c^-1 d. Normalize
+that row to k and correct every other row letter by letter before restoring
+it. This handles sign flips without discarding the live donor. The descent
+requires one t-occurrence up to conjugacy at every path vertex, not just
+primitivity, exponent sum one, or linear tags at the two endpoints.
