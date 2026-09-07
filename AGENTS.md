@@ -425,3 +425,11 @@ Use approved read-only inspection, suppress full command arguments, and
 identify entrypoints before termination. Long-lived idle Python processes
 here included AWS pricing MCP services and an unrelated HTTP server;
 elapsed time alone did not establish a stale proof computation.
+
+### [2026-09-07] Normalize both sides of free-product block comparisons
+
+[TRAP] The cyclic control's first inline syllable counter compared an
+uppercase block's first letter with a lowercase incoming generator, splitting
+the final `ZZ` into two blocks. Compare both letters after lowercasing;
+the exact reduced word has fifteen letters but fourteen syllables. Keep
+word equality and block counting as separate assertions.
