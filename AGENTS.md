@@ -443,3 +443,17 @@ existing `pdftoppm` recovered the figures. Fontconfig cache warnings did
 not prevent rendering; inspect the PNGs before relying on them. A visible
 meridian determines a generator only in the chosen diagram basis, not an
 untracked algebraic marking from an earlier figure.
+
+### [2026-09-07] Propagate discharged hypotheses into terminal gates
+
+[TRAP] The witness-orbit lifting proposition in
+`literature/proofs/AK3_DEPTH4_PERIOD_TWO_FULL_LIFT_BOUNDARY.md` Section 1.1
+discharged the orbit's gauge-lifting prerequisite, but the terminal paragraph
+and gate list still required `RG-Lift`. After discharging a prerequisite,
+check every downstream implication and gate list; retain the exact remaining
+coverage hypothesis rather than asserting global liftability.
+
+[TRAP] An explicit `git add` of the tracked proof note returned an ignored
+`literature` warning and exit 1 after staging all three requested files.
+Inspect `git status --short`, `git ls-files --stage` and the cached diff
+before retrying; do not infer an unchanged index or force-add the directory.

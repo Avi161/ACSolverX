@@ -664,8 +664,8 @@ fixed-fiber statement
 A sufficient class-two terminal theorem is the nonexistence assertion in
 (3.8): $[\Theta(F)]\ne0$ in $\mathcal C_2$ for every balanced finite
 $F$.  Proving it would obstruct every literal lift of $\mathbf h^*$.
-By (1.10c7), it would also obstruct every fiber in
-$\Gamma_H\mathbf h^*$.  If Hrg-Class and RG-Lift hold, then
+By literal gauge lifting on the witness orbit, it would also obstruct
+every fiber in $[\mathbf h^*]_{\sim_{H{\rm rg}}}$. If Hrg-Class holds, then
 $\mathsf T_{\rm fixed}$ would obstruct the full period-two recurrence attached
 to the depth-four signature $(8,3,5,-3,5)$.  Even that conditional
 recurrence obstruction is not AK(3), stable AK(3), stable
@@ -681,7 +681,7 @@ The remaining implications are kept as separate gates:
 2. **Literal higher lifting:** if a class-two candidate survives, decide
    its residual in every subsequent nonabelian layer and finally in
    $F(c,t)$.
-3. **Quotient coverage:** prove Hrg-Class and RG-Lift, find an alternative
+3. **Quotient coverage:** prove Hrg-Class, find an alternative
    complete lift-compatible quotient action, or obstruct the remaining
    quotient fibers directly before transferring a fixed-witness result to
    the full signature recurrence.
