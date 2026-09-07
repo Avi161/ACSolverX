@@ -43,9 +43,11 @@ Hurwitz symmetry already carries $\mathbf h^*$ through infinitely many of
 its gauge classes.  Four recurrence-prefix Hurwitz symmetries are proved
 literal-lift compatible. Root-free centralizers now also make every row
 gauge on the enlarged witness orbit lift compatible, so a fixed-fiber
-obstruction would transfer across that whole orbit. The equal-length
-hyperbolic quotient-solution branch is still not classified modulo the
-enlarged action. No global gauge-lifting assertion outside this orbit is made.
+obstruction would transfer across that whole orbit. That enlarged orbit is
+also proved incomplete: an exact exchange of the last two conjugated
+$S$-rows changes the cyclic syllable length of $U$ from six to ten.
+The exchange itself preserves literal liftability, but coverage of all
+quotient solutions by lift-obstructed fibers remains unresolved.
 
 Sections 3.41--3.43 now prove that each of the eight paired occurrence
 tensors is individually anisotropic on every nonzero finitely supported
@@ -630,21 +632,86 @@ syllable data, and replay (1.10c8) on perturbed literal conjugators with a
 wrong-donor control. These finite checks support the displayed algebraic
 proof; they do not enumerate the orbit or prove coverage of $\mathscr S_Q$.
 
-One sufficient orbit-promotion condition is therefore now just
+The proposed orbit-coverage assertion is
 
 \[
  \text{Hrg-Class: }\quad\mathscr S_Q=[\mathbf h^*]_{\sim_{H{\rm rg}}}.
  \tag{1.10d}
 \]
 
-Hrg-Class is not proved. Global row-gauge liftability outside the witness
-orbit is not asserted and is no longer a separate prerequisite for this
-promotion route. Hrg-Class is not logically necessary: a different
-explicitly lift-compatible action, or separate literal obstructions on the
-remaining quotient fibers, could also finish quotient coverage.  The exact
-quotient-scope gap is therefore coverage of all of $\mathscr S_Q$ by
-lift-obstructed fibers.  Row-gauge completeness itself is no longer an open
-possibility.
+**Proposition (the enlarged witness orbit is incomplete).** Hrg-Class is
+false. An explicit solution outside that orbit nevertheless has the same
+literal liftability as the fixed witness.
+
+**Proof.** For any conjugator tuple put $C=g_3Sg_3^{-1}$ and define
+
+\[
+\mathcal J(\mathbf g)
+ =(g_0,g_1,g_3,Ug_2,Cg_4).
+\tag{1.10d1}
+\]
+
+Writing $D=g_2Sg_2^{-1}$ gives $U=RD^{-1}$ and $Z=U^{-1}C$.
+Under this exchange, direct substitution gives
+
+\[
+R'=R,\qquad S'=S,\qquad U'=RC^{-1},\qquad
+Z'=CR^{-1}UDU^{-1}=CU^{-1}=CZC^{-1}.
+\tag{1.10d2}
+\]
+
+The target conjugate of $t$ changes by the same conjugation. These
+identities hold in the free group, without imposing $c^2=1$, so the
+literal residual changes to $C\mathcal R C^{-1}$. The map is invertible:
+from $\mathbf k=\mathcal J(\mathbf g)$, recompute its unchanged $R,S$,
+put $C=k_2Sk_2^{-1}$, and recover
+
+\[
+\mathbf g=(k_0,k_1,R^{-1}k_3S,k_2,C^{-1}k_4).
+\tag{1.10d3}
+\]
+
+Here $Ug_2=Rg_2S^{-1}$ proves the third-coordinate recovery.
+Thus $\mathcal J$ preserves quotient solutions and equivalence of
+literal liftability in both directions.
+
+At the fixed witness, its quotient tuple is
+
+\[
+\mathcal J(\mathbf h^*)=
+\bigl(ct^{-2}ct^3,\ 1,\ t,\
+ t^{-2}ct^2ct^{-2}ct^3,\
+ t^{-2}ct^2ct^{-1}ct\bigr).
+\tag{1.10d4}
+\]
+
+The two $U$-rows have the normal forms
+
+\[
+\begin{aligned}
+U_*&=t^{-2}ct^2ct^{-1}c,\\
+U'&=kWk^{-1},\qquad k=t^{-2}ct,\\
+W&=ct^{-1}ctct^{-1}ctct^{-1}.
+\end{aligned}
+\tag{1.10d5}
+\]
+
+Both $U_*$ and $W$ are cyclically reduced hyperbolic words in
+$C_2*\mathbb Z$, with respectively six and ten free-product syllables.
+Conjugacy preserves their cyclic syllable length. Every row gauge fixes
+$U$, and every transformation in (1.10c4) preserves its conjugacy class.
+Consequently $\mathcal J(\mathbf h^*)$ lies outside
+$[\mathbf h^*]_{\sim_{H{\rm rg}}}$, proving the assertion. $\square$
+
+The focused quotient-Hurwitz tests check both literal inverse compositions,
+the residual identity on non-solution tuples, a wrong-target control,
+and the displayed quotient normal forms using two reducers.
+Neither the old row gauge nor its four-prefix-Hurwitz enlargement is
+complete. The exchange above supplies one further lift-compatible map,
+not a classification of its enlarged orbits or of all $\mathscr S_Q$.
+The exact quotient-scope gap remains coverage of all quotient solutions
+by lift-obstructed fibers; global row-gauge liftability outside the
+proved witness orbit is not asserted.
 
 The terminal theorem targeted by the present document is therefore the
 fixed-fiber statement
@@ -665,9 +732,11 @@ A sufficient class-two terminal theorem is the nonexistence assertion in
 (3.8): $[\Theta(F)]\ne0$ in $\mathcal C_2$ for every balanced finite
 $F$.  Proving it would obstruct every literal lift of $\mathbf h^*$.
 By literal gauge lifting on the witness orbit, it would also obstruct
-every fiber in $[\mathbf h^*]_{\sim_{H{\rm rg}}}$. If Hrg-Class holds, then
-$\mathsf T_{\rm fixed}$ would obstruct the full period-two recurrence attached
-to the depth-four signature $(8,3,5,-3,5)$.  Even that conditional
+every fiber in $[\mathbf h^*]_{\sim_{H{\rm rg}}}$ and its image under
+$\mathcal J$. To obstruct the full period-two recurrence attached to the
+depth-four signature $(8,3,5,-3,5)$, one must additionally cover every
+quotient solution by lift-obstructed fibers; (1.10d) cannot provide that
+coverage because it is false. Even a full
 recurrence obstruction is not AK(3), stable AK(3), stable
 Andrews--Curtis, or Andrews--Curtis: each requires its own subsequent
 bridge theorem.
@@ -681,8 +750,8 @@ The remaining implications are kept as separate gates:
 2. **Literal higher lifting:** if a class-two candidate survives, decide
    its residual in every subsequent nonabelian layer and finally in
    $F(c,t)$.
-3. **Quotient coverage:** prove Hrg-Class, find an alternative
-   complete lift-compatible quotient action, or obstruct the remaining
+3. **Quotient coverage:** find a complete lift-compatible quotient action,
+   or obstruct the remaining
    quotient fibers directly before transferring a fixed-witness result to
    the full signature recurrence.
 4. **MMS02 bridge:** decide the independent equivalence from

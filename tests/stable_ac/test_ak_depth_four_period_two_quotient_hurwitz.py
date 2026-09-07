@@ -215,3 +215,90 @@ def test_literal_right_row_power_gauges_preserve_arbitrary_lift_recurrences() ->
     witness_rows = literal_recurrence(RAW_WITNESS)
     wrong = (literal_multiply(RAW_WITNESS[0], RAW_A),) + RAW_WITNESS[1:]
     assert literal_recurrence(wrong)[0] != witness_rows[0]
+
+
+def literal_hurwitz_swap(conjugators):
+    g0, g1, g2, g3, g4 = conjugators
+    _, s, u, _, _, _ = literal_recurrence(conjugators)
+    c = literal_conjugate(s, g3)
+    return g0, g1, g3, literal_multiply(u, g2), literal_multiply(c, g4)
+
+
+def literal_hurwitz_swap_inverse(conjugators):
+    k0, k1, k2, k3, k4 = conjugators
+    r, s = literal_recurrence(conjugators)[:2]
+    c = literal_conjugate(s, k2)
+    return (
+        k0,
+        k1,
+        literal_multiply(literal_inverse(r), k3, s),
+        k2,
+        literal_multiply(literal_inverse(c), k4),
+    )
+
+
+def test_literal_hurwitz_swap_and_inverse_conjugate_nonzero_residuals() -> None:
+    cases = (RAW_WITNESS, ("c", "t", "T", "C", "ct"), ("tC", "c", "ct", "T", "tc"))
+    nonzero_residuals = []
+    wrong_fifth_controls = []
+    for conjugators in cases:
+        r, s, u, z, target, residual = literal_recurrence(conjugators)
+        c = literal_conjugate(s, conjugators[3])
+        swapped = literal_hurwitz_swap(conjugators)
+        assert swapped == (
+            conjugators[0], conjugators[1], conjugators[3],
+            literal_multiply(u, conjugators[2]), literal_multiply(c, conjugators[4]),
+        )
+        assert literal_recurrence(swapped) == (
+            r, s, literal_multiply(r, literal_inverse(c)),
+            literal_conjugate(z, c), literal_conjugate(target, c),
+            literal_conjugate(residual, c),
+        )
+        assert literal_hurwitz_swap_inverse(swapped) == conjugators
+        assert literal_hurwitz_swap(literal_hurwitz_swap_inverse(conjugators)) == conjugators
+        nonzero_residuals.append(bool(residual))
+        wrong_fifth = swapped[:4] + (conjugators[4],)
+        wrong_rows = literal_recurrence(wrong_fifth)
+        wrong_fifth_controls.append(
+            wrong_rows[4] != literal_conjugate(target, c)
+            and wrong_rows[5] != literal_conjugate(residual, c)
+        )
+    assert all(nonzero_residuals[1:])
+    assert all(wrong_fifth_controls[1:])
+
+
+def test_hurwitz_swap_changes_witness_u_cyclic_syllable_length_in_quotient() -> None:
+    original = literal_recurrence(RAW_WITNESS)
+    swapped_conjugators = literal_hurwitz_swap(RAW_WITNESS)
+    assert tuple(independent_c2_z_reduce(word) for word in swapped_conjugators) == (
+        "cTTcttt", "", "t", "TTcttcTTcttt", "TTcttcTct",
+    )
+    swapped = literal_recurrence(swapped_conjugators)
+    r, s, _, z, target, residual = original
+    c = literal_conjugate(s, RAW_WITNESS[3])
+    assert swapped == (
+        r, s, literal_multiply(r, literal_inverse(c)),
+        literal_conjugate(z, c), literal_conjugate(target, c),
+        literal_conjugate(residual, c),
+    )
+    assert independent_c2_z_reduce(z) == independent_c2_z_reduce(target)
+    assert independent_c2_z_reduce(swapped[3]) == independent_c2_z_reduce(swapped[4])
+    u = "TTcttcTc"
+    u_prime = "TTctcTctcTctcTTctt"
+    k = "TTct"
+    w = "cTctcTctcT"
+    assert independent_c2_z_reduce(original[2]) == u
+    assert independent_c2_z_reduce(swapped[2]) == u_prime
+    assert independent_c2_z_reduce(literal_conjugate(w, k)) == u_prime
+    assert independent_c2_z_reduce(u) == u
+    assert independent_c2_z_reduce(w) == w
+    assert u[0].lower() != u[-1].lower()
+    assert w[0].lower() != w[-1].lower()
+    u_syllables = 1 + sum(a.lower() != b.lower() for a, b in zip(u, u[1:]))
+    w_syllables = 1 + sum(a.lower() != b.lower() for a, b in zip(w, w[1:]))
+    assert u_syllables == 6
+    assert w_syllables == 10
+    encoding = {"c": 1, "C": -1, "t": 2, "T": -2}
+    for word in (*original, *swapped, u, u_prime, k, w, literal_conjugate(w, k)):
+        encoded = tuple(encoding[letter] for letter in word)
+        assert lift.literal(lift.quotient_reduce(encoded)) == independent_c2_z_reduce(word)

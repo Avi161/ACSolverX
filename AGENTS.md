@@ -457,3 +457,12 @@ coverage hypothesis rather than asserting global liftability.
 `literature` warning and exit 1 after staging all three requested files.
 Inspect `git status --short`, `git ls-files --stage` and the cached diff
 before retrying; do not infer an unchanged index or force-add the directory.
+
+### [2026-09-07] Test orbit coverage against invariant-changing exchanges
+
+[WORKS] Prefix Hurwitz maps in the depth-four recurrence preserve the
+conjugacy class of the intermediate row U, but exchanging its last two
+conjugated S-rows gives an invertible literal map changing the witness's
+cyclic U-length from six to ten. Use an invariant of the proposed action
+and an explicit recurrence-preserving exchange to test coverage; literal
+lift compatibility does not imply that the previously named orbit is complete.
