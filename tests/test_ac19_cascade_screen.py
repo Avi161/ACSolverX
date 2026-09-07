@@ -610,3 +610,38 @@ def test_rows_csv_is_still_honoured_where_it_works():
     got = _remote("plan", CAMPAIGN="ac19_all", WORKERS="8")
     assert got.returncode == 0, got.stderr
     assert '"rows": 156762' in got.stdout
+
+
+def test_small_row_counts_are_not_starved_by_the_chunk_size():
+    """chunksize was a flat 16: a 12-row rung handed ALL twelve to one worker
+    as a single chunk and the other eleven never received a task. Reported
+    live -- one process at 100% and eleven at TIME 00:00:00 on a 64-core box.
+    It is invisible at 72,779 rows and total at 12."""
+    import inspect
+    src = inspect.getsource(screen.run)
+    assert "chunksize=16" not in src
+    assert "len(todo) // (n_workers * 4)" in src
+
+    def chunksize(todo, workers):
+        return max(1, min(16, todo // (workers * 4)))
+
+    # every worker gets work at every scale we actually run
+    for todo, workers in ((72_779, 63), (3_208, 32), (227, 12), (147, 12),
+                          (12, 12), (12, 8)):
+        cs = chunksize(todo, workers)
+        tasks = -(-todo // cs)
+        assert min(workers, tasks) == min(workers, todo), (todo, workers, cs)
+    # and batching is still on where it pays
+    assert chunksize(72_779, 63) == 16
+    assert chunksize(12, 12) == 1
+
+
+def test_the_hcompact_runner_does_not_share_this_bug():
+    """`run_leftovers_5m` dispatches one isolated process per row through
+    `run_rows_dynamic`, not a Pool with a chunk size, so the s20_mk2 rungs
+    are unaffected."""
+    import inspect
+    from experiments.search import run_leftovers_5m as m
+    src = inspect.getsource(m.run_rows_dynamic)
+    assert "chunksize" not in src
+    assert "_RowProc" in src

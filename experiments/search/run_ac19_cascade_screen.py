@@ -449,10 +449,18 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         else:
             pool = ctx.Pool(n_workers, initializer=_init_worker,
                             initargs=(rlimit,))
+            # chunksize was a flat 16, which is a batching win on 72,779 rows
+            # and total starvation on 12: imap hands ALL of them to one worker
+            # as a single chunk and the rest never receive a task. Size it so
+            # every worker gets several chunks, and never batch past that.
+            chunksize = max(1, min(16, len(todo) // (n_workers * 4)))
+            if chunksize == 1:
+                log(f"  dispatch : one row per task ({len(todo):,} rows over "
+                    f"{n_workers} workers)")
             stream = pool.imap_unordered(
                 functools.partial(run_row, arm=arm, budget=budget,
                                   emit_mixed=emit_mixed),
-                todo, chunksize=16)
+                todo, chunksize=chunksize)
         try:
             for record in stream:
                 fh.write(json.dumps(record) + "\n")
