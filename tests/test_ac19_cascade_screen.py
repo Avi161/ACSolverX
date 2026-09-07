@@ -534,3 +534,42 @@ def test_resume_actually_skips_rows_already_on_disk(tmp_path):
         fh.write(json.dumps({"name": "ac19x_634", "solved": False,
                              "aut_assisted": False}) + "\n")
     assert screen.read_done_names(path) == {"ac19x_634"}
+
+
+# --- the address-space cap, which is budget-dependent ----------------------
+def test_the_worker_rlimit_scales_with_the_budget():
+    """A flat 2.0 GB was sized for budget 1,000. Measured on ac19x_131595,
+    which the 100,000-node rung killed: 0.83 GiB at 10,000 nodes and 2.02 at
+    33,725 -- it missed the cap by 20 MB and was written off as a MemoryError
+    when with room it SOLVES."""
+    assert screen.worker_rlimit_gb(501) == 2.0
+    assert screen.worker_rlimit_gb(1_000) == 2.0
+    assert screen.worker_rlimit_gb(10_000) == 4.0
+    assert screen.worker_rlimit_gb(100_000) == 8.0
+    assert screen.worker_rlimit_gb(1_000_000) == 8.0     # clamps, never drops
+    for lower, higher in zip(sorted(screen.WORKER_RLIMIT_GB_BY_BUDGET),
+                             sorted(screen.WORKER_RLIMIT_GB_BY_BUDGET)[1:]):
+        assert (screen.worker_rlimit_gb(lower)
+                <= screen.worker_rlimit_gb(higher)), "must be monotone"
+
+
+def test_plan_quotes_the_cap_for_the_budget_it_is_planning():
+    small = screen.plan(budget=1_000, workers=8, log=lambda _: None)
+    large = screen.plan(budget=100_000, workers=8, log=lambda _: None)
+    assert small["worker_rlimit_gb_address_space"] == 2.0
+    assert large["worker_rlimit_gb_address_space"] == 8.0
+
+
+def test_an_oomed_row_is_never_counted_as_done():
+    """Resume must re-run a row that died, or the hard rows the rung exists
+    to settle get silently written off."""
+    import tempfile
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as fh:
+        fh.write(json.dumps({"name": "good", "solved": True}) + "\n")
+        fh.write(json.dumps({"name": "died", "error": "MemoryError"}) + "\n")
+        path = fh.name
+    try:
+        assert screen.read_done_names(path) == {"good"}
+        assert "died" not in screen.read_done_names(path)
+    finally:
+        os.unlink(path)

@@ -116,6 +116,23 @@ SECONDS_PER_ROW = 0.027
 PEAK_RSS_GB_PER_WORKER = 0.22
 WORKER_RLIMIT_GB = 2.0
 
+# Address space scales with nodes actually explored, so it scales with the
+# budget. Measured on ac19x_131595, one of the rows the 100,000-node rung
+# killed: 0.83 GiB at 10,000 nodes, 2.02 GiB at 33,725 -- against a flat 2.0
+# cap sized for budget 1,000. It missed by 20 MB and was recorded as a
+# MemoryError, when with room it SOLVES. Roughly 0.05 GiB per 1,000 nodes
+# above a 0.37 GiB baseline, so a row that runs a full 100,000 wants ~5.4;
+# 8.0 leaves margin for the tail.
+WORKER_RLIMIT_GB_BY_BUDGET = {501: 2.0, 1_000: 2.0, 10_000: 4.0, 100_000: 8.0}
+
+
+def worker_rlimit_gb(budget):
+    """Address-space cap for one worker at this budget, measured not guessed."""
+    for rung in sorted(WORKER_RLIMIT_GB_BY_BUDGET):
+        if budget <= rung:
+            return WORKER_RLIMIT_GB_BY_BUDGET[rung]
+    return max(WORKER_RLIMIT_GB_BY_BUDGET.values())
+
 
 def out_path(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET):
     stem = f"{CAMPAIGN}_{arm}_b{budget}_mrl{SEARCH_CAP}"
@@ -365,7 +382,7 @@ def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
         # so N workers do not need N * this much memory -- the RSS line is
         # what sizes the box. Reported separately because conflating them
         # makes a 63-worker run look like it needs 127 GB when it needs 14.
-        "worker_rlimit_gb_address_space": WORKER_RLIMIT_GB,
+        "worker_rlimit_gb_address_space": worker_rlimit_gb(budget),
         "ram_gb_needed": round(n_workers * PEAK_RSS_GB_PER_WORKER + 2.0, 1),
         "ram_gb_needed_for_n_workers": {
             str(w): round(w * PEAK_RSS_GB_PER_WORKER + 2.0, 1)
@@ -380,7 +397,7 @@ def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
 
 def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         workers="auto", chunks=1, chunk_index=1, limit=None, resume=True,
-        emit_mixed=False, log=print):
+        emit_mixed=False, rlimit_gb=None, log=print):
     if arm not in ARMS:
         raise SystemExit(f"unknown arm {arm!r}; choose from {ARMS}")
     if not 1 <= budget <= MAX_BUDGET:
@@ -401,14 +418,15 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     log(f"  input    : {rows_csv or ROWS_CSV}")
     log(f"  rows     : {len(rows):,} in this chunk, {n_done:,} already done, "
         f"{len(todo):,} to run")
-    log(f"  workers  : {n_workers} (rlimit {WORKER_RLIMIT_GB} GB each)")
+    cap_gb = rlimit_gb if rlimit_gb else worker_rlimit_gb(budget)
+    log(f"  workers  : {n_workers} (rlimit {cap_gb} GB address space each)")
     log(f"  record   : {'move-wise (steps stored)' if emit_mixed else 'summary only'}")
     log(f"  out      : {path}")
     if not todo:
         log("  nothing to do")
         return path
 
-    rlimit = int(WORKER_RLIMIT_GB * 2 ** 30)
+    rlimit = int(cap_gb * 2 ** 30)
     started = time.time()
     written = 0
     ctx = mp.get_context("fork")
@@ -688,6 +706,10 @@ def main(argv=None):
     ap.add_argument("--chunk-index", type=int, default=1)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-resume", action="store_true")
+    ap.add_argument("--worker-rlimit-gb", type=float, default=None,
+                    help="override the per-worker address-space cap; the "
+                         "default is measured per budget "
+                         f"({WORKER_RLIMIT_GB_BY_BUDGET})")
     ap.add_argument("--emit-mixed", action="store_true",
                     help="store the move sequence per solved row (889 B/row) "
                          "so `decode_ac_jsonl` can produce elementary AC "
@@ -701,7 +723,8 @@ def main(argv=None):
     elif args.command == "smoke":
         run(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=1, chunks=1, chunk_index=1,
-            limit=args.limit or 25, resume=False, emit_mixed=args.emit_mixed)
+            limit=args.limit or 25, resume=False,
+            emit_mixed=args.emit_mixed, rlimit_gb=args.worker_rlimit_gb)
         report(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
                chunks=1, chunk_index=1)
     elif args.command == "ladder":
@@ -713,7 +736,8 @@ def main(argv=None):
         run(args.out_dir, arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=args.workers, chunks=args.chunks,
             chunk_index=args.chunk_index, limit=args.limit,
-            resume=not args.no_resume, emit_mixed=args.emit_mixed)
+            resume=not args.no_resume, emit_mixed=args.emit_mixed,
+            rlimit_gb=args.worker_rlimit_gb)
         report(args.out_dir, arm=args.arm, budget=args.budget,
                chunks=args.chunks, chunk_index=args.chunk_index)
         if not args.limit:
