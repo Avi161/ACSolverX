@@ -20,6 +20,18 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DEFAULT_OUT = os.path.join(ROOT, "results", "heuristic_search", CAMPAIGN)
 
 
+def _verify_path(row, rec):
+    moves = [str_to_move(m) for m in rec["path_moves"]]
+    states = moves_to_states(row["r1"], row["r2"], moves)
+    if states != rec["path"]:
+        raise RuntimeError(f"stored path does not match move replay for {row['name']}")
+    last = states[-1]
+    if not (len(last[0]) == len(last[1]) == 1
+            and last[0].lower() != last[1].lower()):
+        raise RuntimeError(f"replayed path is not terminal for {row['name']}: {last}")
+    return moves
+
+
 def run(out_dir=DEFAULT_OUT, *, workers="auto", limit=None, resume=True,
         log=print):
     return run_arm_5m(
@@ -51,29 +63,25 @@ def certify(out_dir=DEFAULT_OUT, *, log=print):
                 continue
             expected = records[name]
             node_budget = int(expected["nodes_explored"])
-            mem_limit, reserve = plan_memory(
-                node_budget, CAP, states_per_node=states_per_node,
-                track_path=True, log=log)
-            rec = _run_row_isolated(
-                ARM, rows[name], node_budget, CAP, 60, mem_limit, reserve,
-                None, log, track_path=True)
-            if rec.get("error"):
-                raise RuntimeError(f"certificate rerun failed for {name}: {rec['error']}")
-            if not rec.get("solved") or int(rec["nodes_explored"]) != node_budget:
-                raise RuntimeError(
-                    f"deterministic rerun mismatch for {name}: "
-                    f"solved={rec.get('solved')} nodes={rec.get('nodes_explored')} "
-                    f"expected={node_budget}")
-            moves = [str_to_move(m) for m in rec["path_moves"]]
-            states = moves_to_states(rows[name]["r1"], rows[name]["r2"], moves)
-            if states != rec["path"]:
-                raise RuntimeError(f"stored path does not match move replay for {name}")
-            last = states[-1]
-            if not (len(last[0]) == len(last[1]) == 1
-                    and last[0].lower() != last[1].lower()):
-                raise RuntimeError(f"replayed path is not terminal for {name}: {last}")
+            rec = expected
+            if not rec.get("path"):
+                mem_limit, reserve = plan_memory(
+                    node_budget, CAP, states_per_node=states_per_node,
+                    track_path=True, log=log)
+                rec = _run_row_isolated(
+                    ARM, rows[name], node_budget, CAP, 60, mem_limit, reserve,
+                    None, log, track_path=True)
+                if rec.get("error"):
+                    raise RuntimeError(f"certificate rerun failed for {name}: {rec['error']}")
+                if not rec.get("solved") or int(rec["nodes_explored"]) != node_budget:
+                    raise RuntimeError(
+                        f"deterministic rerun mismatch for {name}: "
+                        f"solved={rec.get('solved')} nodes={rec.get('nodes_explored')} "
+                        f"expected={node_budget}")
+            moves = _verify_path(rows[name], rec)
             rec["certified"] = True
-            rec["discovery_record"] = expected
+            if rec is not expected:
+                rec["discovery_record"] = expected
             fh.write(json.dumps(rec) + "\n")
             fh.flush()
             log(f"certified {name}: {node_budget:,} nodes, {len(moves)} moves")
@@ -89,7 +97,8 @@ def main(argv=None):
     if args.command == "plan":
         _, campaign = resolve_campaign(CAMPAIGN)
         mem, reserve = plan_memory(
-            BUDGET, CAP, states_per_node=_floor_for(campaign), track_path=False)
+            BUDGET, CAP, states_per_node=_floor_for(campaign),
+            track_path=campaign["track_path"])
         print(json.dumps({"budget": BUDGET, "cap": CAP,
                           "reserve_states": reserve, "mem_limit_bytes": mem},
                          indent=2))

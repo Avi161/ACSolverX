@@ -255,7 +255,7 @@ CAMPAIGNS = {
         "ids_stem": "ac19_hybrid_10m",
         "checkpoints": (1_000_000, 5_000_000, 10_000_000),
         "states_per_node": 214,
-        "track_path": False,
+        "track_path": True,
     },
 }
 

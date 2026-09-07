@@ -42,7 +42,7 @@ def test_campaign_parameters_are_pinned():
     assert (BUDGET, CAP, STATES_PER_NODE) == (10_000_000, 255, 214)
     assert c["budget"] == BUDGET and c["mrl"] == CAP
     assert c["states_per_node"] == STATES_PER_NODE
-    assert c["track_path"] is False and c["floor"] is None
+    assert c["track_path"] is True and c["floor"] is None
     assert spec["n_rows"] == 3 and spec["chunks"] == 1
     assert SEARCH_CAP == CAP and MACRO_CAP is None
     assert ENGINE_MEM_GEN == 6
@@ -137,3 +137,20 @@ def test_run_command_finishes_with_certificate_recovery(monkeypatch, tmp_path):
     monkeypatch.setattr(runner, "certify", lambda *a, **k: calls.append("certify") or "certs")
     runner.main(["run", "--out-dir", str(tmp_path), "--workers", "1"])
     assert calls == ["run", "report", "certify"]
+
+
+def test_captured_solution_is_verified_without_a_search_rerun(monkeypatch, tmp_path):
+    import json
+    import experiments.search.run_ac19_hybrid_10m as runner
+
+    source = {"name": "toy", "r1": "x", "r2": "y", "solved": True,
+              "nodes_explored": 1, "path": [["Y", "X"]], "path_moves": []}
+    monkeypatch.setattr(runner, "read_rows", lambda path: [source] if
+                        path.endswith("_b10000000_mrl255.jsonl") else [])
+    monkeypatch.setattr(runner, "load_rows_5m", lambda *a, **k: ([{
+        "name": "toy", "r1": "x", "r2": "y"}], "toy.csv"))
+    monkeypatch.setattr(runner, "_run_row_isolated", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("captured paths must not rerun the search")))
+    target = runner.certify(str(tmp_path), log=lambda _: None)
+    saved = json.loads(open(target).read())
+    assert saved["certified"] is True and saved["path"] == [["Y", "X"]]

@@ -388,11 +388,13 @@ certificates file, and `RESULTS.md`. `run` writes the residues itself;
 
 ## 10. Cap 255 buys nothing on the AC19 rows -- do not provision for it
 
-`ac19_hybrid_10m` runs at cap 255, which plans a 2,140,262,144-state
-reservation: **309.0 GiB allocation-backed per lane, 319.0 GiB RLIMIT**,
-against cap 64's 133.6 / 143.6. On a 768 GB box that is 2 lanes instead
-of 5. Before paying for it, two measurements say the wider cap explores
-the same states.
+`ac19_hybrid_10m` runs at cap 255 and, since `0e77ffce`, captures paths.
+That plans a 2,140,262,144-state reservation: **325.0 GiB
+allocation-backed per lane, 335.0 GiB RLIMIT**, against cap 64 with paths
+at 133.6 / 143.6. On a 768 GB box that is 2 lanes instead of 5. (Path
+capture itself is cheap here -- 309.0 GiB without it, so 2 lanes either
+way; the cap is what costs the other three.) Before paying for it, two
+measurements say the wider cap explores the same states.
 
 **From the finished archive.** Across all 40 completed `ac19_10m`
 row-runs at cap 64 -- 400 million popped nodes -- the longest relator any
@@ -427,7 +429,7 @@ search uses 48, with rewrite cap 256 and observed maximum 131"), and the
 
 | cap | what it bounds | measured need | costs |
 |---|---|---:|---|
-| `cap` (search) | children `mixed_search`/hcompact will keep | **max 31** on the 9 open rows at 400k nodes; **max 39** across 40 rows at 10M | the reservation -- 133.6 GiB/lane at 64, 309.0 at 255 |
+| `cap` (search) | children `mixed_search`/hcompact will keep | **max 31** on the 9 open rows at 400k nodes; **max 39** across 40 rows at 10M | the reservation -- 133.6 GiB/lane at 64, 325.0 at 255, both with paths |
 | `intermediate_cap` (rewrite) | `bs_collapse`'s intermediate relators | **max 131**, p99 41, median 13 over 72,779 rows | nothing -- pure Python, no arena |
 
 Across the whole screen, 23 rows of 72,779 produced a relator longer than
@@ -438,7 +440,7 @@ So the two settings pull in opposite directions and both are right:
 keep `intermediate_cap` at 256 or `None`, and drop the hcompact search
 cap to 64. `hybrid_10m` currently sets `SEARCH_CAP = 255` for both, which
 buys the rewrite nothing it does not already have and costs the search
-2.3x its memory.
+2.4x its memory -- and, on a 768 GB box, three of its five lanes.
 
 Two more consequences worth stating as rules:
 
