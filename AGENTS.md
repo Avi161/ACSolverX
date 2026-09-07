@@ -519,3 +519,9 @@ Keep a free-group inequality control: this is not a literal identity for
 the original T. Handlebody extension and the quotient F/(N Kfix) do not
 identify F/Kfix or provide a balanced AC comparison; retain the meridian
 kernel and marked-boundary data explicitly.
+
+### [2026-09-07] Patch the physical checkpoint line
+
+[TRAP] A sentence-only patch did not match a dated log paragraph stored
+on one physical line. Read that exact line and patch the full line;
+use a verified source URL without guessing a theorem fragment identifier.
