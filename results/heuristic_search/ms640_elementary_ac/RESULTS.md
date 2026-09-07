@@ -4,12 +4,12 @@
 ordinary generator-level AC operations. Each output row identifies its source
 by presentation ID and the SHA-256 of the complete source JSONL.
 
-The compact move encoding is:
+Targets and sources are 1-based. The compact move encoding is:
 
 - `["I", target]`: invert relator `target`.
 - `["S"]`: swap the two relators.
-- `["C", target, letter]`: conjugate relator `target` by one letter in
-  `x`, `X`, `y`, `Y`.
+- `["C", target, letter]`: replace `r_target` by
+  `letter^-1 r_target letter`, for one letter in `x`, `X`, `y`, `Y`.
 - `["M", target, source]`: right-multiply relator `target` by the other
   relator.
 
