@@ -417,3 +417,11 @@ are f1^-1, then f2^-1, through fk^-1, in the original factor order.
 If new*old^-1 itself is factored instead, donate those factors in reverse
 order. The tagged-buffer return test checks the accumulated word and
 restores the donor after each correction; fix the orientation before runs.
+
+### [2026-09-07] Identify services before stopping alleged stale runs
+
+[TRAP] Sandboxed process inspection returned `operation not permitted: ps`.
+Use approved read-only inspection, suppress full command arguments, and
+identify entrypoints before termination. Long-lived idle Python processes
+here included AWS pricing MCP services and an unrelated HTTP server;
+elapsed time alone did not establish a stale proof computation.
