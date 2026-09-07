@@ -44,12 +44,25 @@ def replay_packed(pair, moves):
 def certificate_from_record(row):
     if "states" in row and "steps" in row:
         return row["states"], row["steps"]
+    if "steps" in row:
+        # Move-wise record: states are redundant with the moves and are
+        # rebuilt rather than stored. 889 bytes a row instead of 1,278.
+        return None, row["steps"]
     if "path" in row and "path_moves" in row:
         return row["path"], [
             {"kind": "substitution", "move": move}
             for move in row["path_moves"]
         ]
     raise ValueError("solved record has neither states/steps nor path/path_moves")
+
+
+def _has_certificate(row):
+    """Does this row carry a path to decode, whatever its solved flag says?"""
+    if row.get("states") and row.get("steps"):
+        return True
+    if row.get("path") and row.get("path_moves") is not None:
+        return True
+    return bool(row.get("steps"))
 
 
 def decode_file(source, output):
@@ -84,7 +97,12 @@ def decode_file(source, output):
                     "source_solved": bool(row.get("solved")),
                     "source_winner": row.get("winner"),
                 }
-                if row.get("solved"):
+                # A row is decodable when it carries a certificate, not when
+                # its `solved` flag is set. The screen runner reserves
+                # `solved` for paths that are ALREADY substitution-only and
+                # files the automorphism-assisted ones under `aut_assisted`
+                # -- and those are exactly the rows this decoder exists for.
+                if _has_certificate(row):
                     states, steps = certificate_from_record(row)
                     moves = decode_elementary(
                         (row["r1"], row["r2"]), states, steps)
@@ -109,6 +127,7 @@ def decode_file(source, output):
             partial.unlink(missing_ok=True)
         raise
     return {"rows": len(rows), "solved": sum(bool(r.get("solved")) for r in rows),
+            "with_certificate": sum(_has_certificate(r) for r in rows),
             "decoded": decoded, "source_sha256": source_sha256,
             "output": str(output)}
 

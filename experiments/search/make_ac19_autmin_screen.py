@@ -32,6 +32,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DATASET = os.path.join(ROOT, "data", "AC19_extended.txt")
 SCREEN_DIR = os.path.join(ROOT, "results", "heuristic_search", "ac19_autmin_screen")
 OUT = os.path.join(SCREEN_DIR, "ac19_autmin_orbits.csv")
+DATASET_CSV = os.path.join(SCREEN_DIR, "ac19_extended_rows.csv")
 FIELDS = ("name", "r1", "r2", "n_members", "members")
 
 # The dataset stores zero-padded signed integer arrays, two 24-slot relators to
@@ -107,9 +108,10 @@ def shipped_residues():
     output lands in this same directory, and a cross-check that includes it
     is a cross-check against itself -- it would pass on any list whatsoever.
     """
+    generated = {os.path.basename(OUT), os.path.basename(DATASET_CSV)}
     known = {}
     for entry in sorted(os.listdir(SCREEN_DIR)):
-        if not entry.endswith(".csv") or entry == os.path.basename(OUT):
+        if not entry.endswith(".csv") or entry in generated:
             continue
         with open(os.path.join(SCREEN_DIR, entry)) as fh:
             for row in csv.DictReader(fh):
@@ -152,17 +154,45 @@ def write(rows, path=OUT, log=print):
     return path
 
 
+
+def write_dataset_rows(path=DATASET_CSV, log=print):
+    """Every dataset presentation as a row list, Aut-duplicates included.
+
+    The orbit list above is one row per Aut(F2) class; this is one row per
+    line of ``data/AC19_extended.txt``, which is what a run over "all of
+    AC19" means. Names are ``ac19x_<line index>``, zero-based.
+    """
+    pairs = load_dataset()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=FIELDS)
+        writer.writeheader()
+        for index, (r1, r2) in enumerate(pairs):
+            writer.writerow({"name": f"ac19x_{index}", "r1": r1, "r2": r2,
+                             "n_members": 1, "members": str(index)})
+    log(f"  wrote         : {path} ({len(pairs):,} rows, "
+        f"{os.path.getsize(path):,} B)")
+    return path
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--jobs", type=int, default=max(1, (os.cpu_count() or 1) - 1))
     ap.add_argument("--write", action="store_true",
                     help="write the list once it has been cross-checked")
     ap.add_argument("--out", default=OUT)
+    ap.add_argument("--dataset-rows", action="store_true",
+                    help="also write one row per dataset line (Aut-duplicates "
+                         "included), which is what a run over ALL of AC19 uses")
     args = ap.parse_args(argv)
     rows = build(args.jobs)
     verify(rows)
     if args.write:
         write(rows, args.out)
+        if args.dataset_rows:
+            write_dataset_rows()
+    elif args.dataset_rows:
+        write_dataset_rows()
     else:
         print("  (dry run; pass --write to commit the list to disk)")
     return 0

@@ -397,3 +397,65 @@ def test_the_ladder_stops_where_the_cheap_pass_stops():
     # hcompact campaigns are the right tool anyway
     with pytest.raises(ValueError, match="outside 1..100000"):
         screen.search_row(("xyX", "yyx"), "ac501", 100_001)
+
+
+# --- the move-wise record, which is what gets persisted --------------------
+def test_emit_mixed_stores_the_moves_and_nothing_bigger():
+    """Truett's schema: nodes explored, path length, the move sequence. NOT
+    the elementary expansion -- 889 bytes a row against 10,440."""
+    row = dict(AC_ROW, n_members=1)
+    lean = screen.run_row(row)
+    fat = screen.run_row(row, emit_mixed=True)
+    assert "steps" not in lean
+    assert fat["steps"] and fat["path_length"] == len(fat["steps"])
+    assert fat["nodes_explored"] == lean["nodes_explored"]
+    assert "elementary_moves" not in fat
+    # the claim is a comparison, not a byte cap: the same row's elementary
+    # expansion is what Truett does not want on disk
+    from experiments.search.ac_decode import decode_elementary
+    elementary = decode_elementary((row["r1"], row["r2"]), None, fat["steps"])
+    stored = len(json.dumps(fat))
+    expanded = len(json.dumps([[m["op"]] for m in elementary])) + stored
+    assert stored < expanded / 2, (stored, expanded)
+
+
+def test_a_move_wise_record_decodes_to_elementary_without_stored_states():
+    """States are redundant with the moves, so they are not persisted."""
+    from experiments.search.ac_decode import (
+        decode_elementary, replay_elementary, states_from_steps,
+    )
+    row = dict(AC_ROW, n_members=1)
+    record = screen.run_row(row, emit_mixed=True)
+    assert "states" not in record
+    rebuilt = states_from_steps((row["r1"], row["r2"]), record["steps"])
+    moves = decode_elementary((row["r1"], row["r2"]), None, record["steps"])
+    assert replay_elementary((row["r1"], row["r2"]), moves) == ["x", "y"]
+    assert rebuilt[0] == list(canon_pair(row["r1"], row["r2"]))
+
+
+def test_an_aut_assisted_row_is_decodable_even_though_solved_is_false():
+    """The decoder keys off the certificate, not the solved flag -- those
+    rows are exactly the ones it exists for."""
+    from experiments.search.decode_ac_jsonl import _has_certificate
+    found = None
+    for row in _rows():
+        record = screen.run_row(row, emit_mixed=True)
+        if record.get("aut_assisted"):
+            found = record
+            break
+    assert found is not None
+    assert found["solved"] is False
+    assert _has_certificate(found) is True
+
+
+def test_the_all_of_ac19_campaign_is_wired_end_to_end(tmp_path):
+    got = _remote("job", CAMPAIGN="ac19_all", OUT=str(tmp_path))
+    assert got.returncode == 0, got.stderr
+    job = (tmp_path / "_job.sh").read_text()
+    assert "run_ac19_cascade_screen run --budget 1000" in job
+    assert "--emit-mixed" in job
+    assert "ac19_extended_rows.csv" in job
+    assert "--chunks 1 --chunk-index 1" in job
+    assert "decode_ac_jsonl" in job          # elementary form, on demand
+    import subprocess
+    assert subprocess.run(["bash", "-n", str(tmp_path / "_job.sh")]).returncode == 0

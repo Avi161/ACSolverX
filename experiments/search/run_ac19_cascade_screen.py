@@ -222,7 +222,7 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET):
                 min_total_length_seen=got["min_total_length_seen"])
 
 
-def run_row(row, arm=ARM, budget=PREFIX_BUDGET):
+def run_row(row, arm=ARM, budget=PREFIX_BUDGET, emit_mixed=False):
     """One orbit. Never raises: a failure comes back as an ``error`` record."""
     started = time.time()
     record = {"name": row["name"], "r1": row["r1"], "r2": row["r2"],
@@ -259,10 +259,19 @@ def run_row(row, arm=ARM, budget=PREFIX_BUDGET):
         min_relator_length=int(result["min_total_length_seen"]),
         max_relator_length_seen=int(result["max_relator_length_seen"]),
         certificate_sha256=(_fingerprint(steps) if certified else None),
+        path_length=len(steps) if result["solved"] else 0,
         seconds=round(time.time() - started, 4),
         peak_rss_gb=round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                           / 2 ** 20, 3),
     )
+    # The persisted certificate is MOVE-WISE: nodes explored, path length and
+    # the move sequence as the search produced it. Not the elementary
+    # expansion -- that is 10,440 bytes a row against 889, and 98.5% of it is
+    # conjugation letters that are no-ops on the canonical state.
+    # `experiments.search.decode_ac_jsonl` produces the elementary form on
+    # demand, rebuilding the states from the moves.
+    if emit_mixed and result["solved"]:
+        record["steps"] = steps
     # A rejected certificate is a bug in the search, not a quiet "unsolved".
     if record["certificate_rejected"]:
         record["error"] = ("substitution-only path failed replay: "
@@ -310,7 +319,7 @@ def plan(log=print):
 
 def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         workers="auto", chunks=1, chunk_index=1, limit=None, resume=True,
-        log=print):
+        emit_mixed=False, log=print):
     if arm not in ARMS:
         raise SystemExit(f"unknown arm {arm!r}; choose from {ARMS}")
     if not 1 <= budget <= MAX_BUDGET:
@@ -330,6 +339,7 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     log(f"  rows     : {len(rows):,} in this chunk, {len(done):,} already done, "
         f"{len(todo):,} to run")
     log(f"  workers  : {n_workers} (rlimit {WORKER_RLIMIT_GB} GB each)")
+    log(f"  record   : {'move-wise (steps stored)' if emit_mixed else 'summary only'}")
     log(f"  out      : {path}")
     if not todo:
         log("  nothing to do")
@@ -342,12 +352,13 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     with open(path, "a") as fh:
         if n_workers == 1:
             _init_worker(rlimit)
-            stream = (run_row(r, arm, budget) for r in todo)
+            stream = (run_row(r, arm, budget, emit_mixed) for r in todo)
         else:
             pool = ctx.Pool(n_workers, initializer=_init_worker,
                             initargs=(rlimit,))
             stream = pool.imap_unordered(
-                functools.partial(run_row, arm=arm, budget=budget),
+                functools.partial(run_row, arm=arm, budget=budget,
+                                  emit_mixed=emit_mixed),
                 todo, chunksize=16)
         try:
             for record in stream:
@@ -569,6 +580,10 @@ def main(argv=None):
     ap.add_argument("--chunk-index", type=int, default=1)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-resume", action="store_true")
+    ap.add_argument("--emit-mixed", action="store_true",
+                    help="store the move sequence per solved row (889 B/row) "
+                         "so `decode_ac_jsonl` can produce elementary AC "
+                         "moves later without re-running the search")
     ap.add_argument("--names", default=None,
                     help="certify: comma-separated row names")
     args = ap.parse_args(argv)
@@ -577,7 +592,7 @@ def main(argv=None):
     elif args.command == "smoke":
         run(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=1, chunks=1, chunk_index=1,
-            limit=args.limit or 25, resume=False)
+            limit=args.limit or 25, resume=False, emit_mixed=args.emit_mixed)
         report(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
                chunks=1, chunk_index=1)
     elif args.command == "ladder":
@@ -587,7 +602,7 @@ def main(argv=None):
         run(args.out_dir, arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=args.workers, chunks=args.chunks,
             chunk_index=args.chunk_index, limit=args.limit,
-            resume=not args.no_resume)
+            resume=not args.no_resume, emit_mixed=args.emit_mixed)
         report(args.out_dir, arm=args.arm, budget=args.budget,
                chunks=args.chunks, chunk_index=args.chunk_index)
         if not args.limit:

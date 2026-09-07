@@ -106,7 +106,8 @@ def test_the_three_joint_survivors_come_off_this_list_unchanged():
 
 def test_the_cross_check_never_includes_the_file_it_is_checking():
     """`--write` drops the rebuilt list into the same directory the residues
-    live in. Counting it as evidence would make `verify` pass on anything."""
+    live in, and `--dataset-rows` drops a 156,762-row list beside it.
+    Counting either as evidence would make `verify` pass on anything."""
     assert os.path.exists(ORBITS), "build the list first"
     known = build.shipped_residues()
     assert len(known) == 865, len(known)

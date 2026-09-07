@@ -37,6 +37,15 @@ case "$CAMPAIGN" in
   # away from the big-RAM planner, which would otherwise refuse to plan.
   ac19_cascade_screen) SCREEN=1; BUDGET=${BUDGET:-501}; MRL=${MRL:-255}
                        ARMS=${ARMS:-cascade501} ;;
+  # ALL of AC19: every line of data/AC19_extended.txt (156,762 rows,
+  # Aut-duplicates included), at 1,000 nodes, storing the MOVE-WISE
+  # certificate -- nodes explored, path length, and the move sequence as
+  # the search produced it. Not the elementary expansion: that is 10,440
+  # bytes a row against 889, and `decode_ac_jsonl` regenerates it on demand
+  # from the stored moves. Output is ~160 MB, so disk does not bind either.
+  ac19_all) SCREEN=1; EMIT_MIXED=1; BUDGET=${BUDGET:-1000}; MRL=${MRL:-255}
+            ARMS=${ARMS:-cascade501}
+            ROWS_CSV=${ROWS_CSV:-$SRC/results/heuristic_search/ac19_autmin_screen/ac19_extended_rows.csv} ;;
   # The three joint 5M survivors under the 501-node prefix + S20 restart, at
   # 10M and cap 255. This is the OPPOSITE of the screen above: cap 255 plans a
   # 2,140,262,144-state reservation, 319 GiB per lane. On a small box
@@ -44,10 +53,15 @@ case "$CAMPAIGN" in
   # exhaustion, so `plan` is not optional here -- read the clip line first.
   ac19_hybrid_10m) HYBRID=1; BUDGET=${BUDGET:-10000000}; MRL=${MRL:-255}
                    ARMS=${ARMS:-hybrid_10m} ;;
-  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m|ac19_cascade_screen|ac19_hybrid_10m)" >&2; exit 2 ;;
+  *) echo "STOP: unknown CAMPAIGN='$CAMPAIGN' (ac19|u124|ac19_10m|ac19_cascade_screen|ac19_all|ac19_hybrid_10m)" >&2; exit 2 ;;
 esac
 SCREEN=${SCREEN:-0}
 HYBRID=${HYBRID:-0}
+EMIT_MIXED=${EMIT_MIXED:-0}
+ROWS_CSV=${ROWS_CSV:-}
+SCREEN_FLAGS=""
+[ "$EMIT_MIXED" = 1 ] && SCREEN_FLAGS="$SCREEN_FLAGS --emit-mixed"
+[ -n "$ROWS_CSV" ] && SCREEN_FLAGS="$SCREEN_FLAGS --rows-csv $ROWS_CSV"
 MRL=${MRL:-64}
 WORKERS=${WORKERS:-auto}
 OUT=${OUT:-$HOME/leftovers_5m}
@@ -155,7 +169,8 @@ PYEOF
 
 smoke() { setup
   if [ "$SCREEN" = 1 ]; then
-    $PY -m experiments.search.run_ac19_cascade_screen smoke --out-dir "$OUT"
+    $PY -m experiments.search.run_ac19_cascade_screen smoke --budget $BUDGET \
+        $SCREEN_FLAGS --out-dir "$OUT"
     return
   fi
   if [ "$HYBRID" = 1 ]; then
@@ -191,8 +206,14 @@ ${RETRY_EXHAUSTED:+export RETRY_EXHAUSTED=$RETRY_EXHAUSTED}
 # The screen pass has one arm, no reservation and no per-row memory plan,
 # so it takes the same --chunks/--chunk-index convention and nothing else.
 if [ "$SCREEN" = 1 ]; then
-  $PY -m experiments.search.run_ac19_cascade_screen run \
-      --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
+  $PY -m experiments.search.run_ac19_cascade_screen run --budget $BUDGET \
+      $SCREEN_FLAGS --workers $WORKERS --chunks 1 --chunk-index 1 --out-dir "$OUT"
+  # Elementary AC moves are NOT stored per row; regenerate them on demand.
+  if [ "$EMIT_MIXED" = 1 ]; then
+    $PY -m experiments.search.decode_ac_jsonl \
+        "$OUT/ac19_cascade_screen_cascade501_b${BUDGET}_mrl${MRL}.jsonl" \
+        "$OUT/ac19_all_elementary.jsonl"
+  fi
 elif [ "$HYBRID" = 1 ]; then
   # This entry point also reports and then certifies every solve by a
   # deterministic re-run with paths captured -- the campaign records none.
@@ -279,7 +300,8 @@ tail_log() { tail -f "$LOG"; }
 
 report() { setup
   if [ "$SCREEN" = 1 ]; then
-    $PY -m experiments.search.run_ac19_cascade_screen report --out-dir "$OUT"
+    $PY -m experiments.search.run_ac19_cascade_screen report --budget $BUDGET \
+        --out-dir "$OUT"
     return
   fi
   if [ "$HYBRID" = 1 ]; then
@@ -335,7 +357,7 @@ verify() {
   return $fail
 }
 
-export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID
+export BUDGET MRL WORKERS ARMS CAMPAIGN PLAN_GB PLAN_CORES SCREEN HYBRID EMIT_MIXED ROWS_CSV SCREEN_FLAGS
 case "${1:-plan}" in
   plan) plan ;; smoke) smoke ;; run) run ;;
   install-service) install_service ;;
