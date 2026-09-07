@@ -472,3 +472,12 @@ limits powers of J to two old orbits without asserting that J normalizes
 the old action. Keep the literal fifth entry RZg4 until the solution
 equation is invoked; replacing it by Rg4t off the solution set loses a
 nonzero residual.
+
+### [2026-09-07] Balanced auxiliary rows can preserve the old free group
+
+[WORKS] The three-tag MMS02 preparation with auxiliary rows alpha-squared A,
+[alpha,beta]B and beta-fourth gamma is legal, but deleting only those rows
+and v produces a root-adjoining amalgam and an injective HNN extension of
+F(x,y). Its old commutator survives. After a determinant pass, test the
+donor-independent quotient before claiming that auxiliary rows clear old
+commutators; do not silently use the active alpha,beta rows again.
