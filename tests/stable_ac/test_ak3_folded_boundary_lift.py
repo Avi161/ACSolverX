@@ -185,3 +185,23 @@ def test_antihomomorphic_factor_order_gives_total_projected_lift():
         projected_factors["r"], projected_factors["l"]
     )
     assert compose(PHI, projected_push) != psi
+
+
+def test_capped_surface_substitution_is_distinct_from_free_group_innerness():
+    j = commutator("r", "s")
+    k_cap = inverse(j)
+    l_cap = multiply(inverse(k_cap), "s")
+    c = multiply("r", "s", inverse("r"))
+    capped_t = {
+        "r": multiply("r", k_cap),
+        "s": conjugate("s", inverse(k_cap)),
+        "l": conjugate("l", l_cap),
+        "m": conjugate("m", l_cap),
+    }
+    inner_c = {generator: conjugate(generator, c) for generator in "rslm"}
+    assert capped_t == inner_c
+    assert multiply(c, substitute(inverse(c), TAU)) == multiply(j, inverse("r"))
+    assert substitute(multiply(j, inverse("r")), S) == multiply(K, inverse("l"))
+    assert T != inner_c
+    assert H_STANDARD == multiply(j, K)
+    assert H_STANDARD != ""

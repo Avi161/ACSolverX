@@ -175,3 +175,55 @@ permutations of five points, with `a(i)=i+1` and `b(i)=-i`.
 The base `r` fixed-point row evaluates to `b`, not identity. Thus this
 certificate does not survive imposing all base rows and supplies no
 obstruction to their coupled replacement or to AK3.
+
+## Capping removes the push from outer monodromy, not from the AC problem
+
+Let `Pi=F/Ncl(H)`, the closed genus-two surface group, and place a bar
+over an induced automorphism of `Pi`. Then
+
+    bar F_r = Inn(J r^-1),
+    bar F_l = Inn(K l^-1),
+    [bar Phi] = [bar Phi0] in Out(Pi).
+
+Here `J=[r,s]` and `K=[l,m]`. To prove this, the capped relation gives
+`K=J^-1`. Set `C=Js=rsr^-1`. Substituting this value of `K` in the
+displayed tuple for `T` makes all four images conjugation by `C`.
+Since `tau` fixes `H`, it descends to `Pi`, and the composition convention
+gives
+
+    bar F_r = Inn(C tau(C^-1)) = Inn(J r^-1).
+
+The identities `S(J)=K` and `S(r)=l` give the formula for `bar F_l`.
+Every factor of `P(W)` is therefore inner in `Pi`, proving the outer
+equality for `Phi`. This is a surface-quotient calculation: actual `T`
+is not `Inn(C)` in the free group. The focused capped-surface test checks
+the substituted tuple and both conjugator identities by free reduction,
+with explicit nonidentity-boundary and unequal-free-tuple controls.
+
+There is also a geometric realization, with a precise scope. Mark a
+once-bordered genus-two surface by `r,s,l,m` and boundary `H`.
+Literal preservation of `H` realizes `Phi` by a boundary-fixed surface
+homeomorphism, by [Massuyeau, Theorem 4.1, p. 12](https://massuyea.perso.math.cnrs.fr/notes/MCG.pdf).
+Choose the standard handlebody with meridians `s,m`. The intertwining
+identity and the automorphic inverse imply `Phi(N)=N`. Since `H` lies
+in `N`, the capped map preserves the handlebody kernel `N/Ncl(H)`.
+Thus its capped mapping class extends over that handlebody, by
+[Hensel, Corollary 5.11, p. 18](https://www.math.lmu.de/~hensel/papers/hno4.pdf).
+No extension of the intermediate `tau` is asserted.
+
+These conclusions do not erase the marked boundary data. In particular,
+write `Kfix=Ncl(Phi(x)x^-1 : x=r,s,l,m)` and `Gfix=F/Kfix`.
+The retraction induces exactly the epimorphism
+
+    Gfix -> Coeq(psi,id),
+    ker = N Kfix / Kfix,
+    Gfix / (N Kfix / Kfix) = F/(N Kfix) = Coeq(psi,id).
+
+Indeed, after killing `N`, the images of the fixed-point relations are
+the fixed-point relations of `psi`; `rho(r),rho(l)` freely generate the
+quotient. This identifies a quotient, not `Gfix` itself. Even a trivial
+target does not show that the displayed kernel vanishes. Nor does
+triviality of a group alone provide a balanced AC comparison of its
+presentations. The terminal results of this section are capped outer
+monodromy equality and handlebody extension, not a cancellation, a
+balanced row replacement, or stable or ordinary AK3.

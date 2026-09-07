@@ -510,3 +510,12 @@ Check both the rows being excluded and the base rows explicitly; a finite
 countermodel to a kernel-only replacement is not a quotient of the full
 AK3 presentation. Evaluate the actual factor words independently of Fox
 matrices when certifying such a countermodel.
+
+### [2026-09-07] Preserve the marked boundary when simplifying monodromy
+
+[WORKS] In the folded lift, substituting K=J^-1 only after imposing
+H=JK=1 makes T inner and removes every push from capped outer monodromy.
+Keep a free-group inequality control: this is not a literal identity for
+the original T. Handlebody extension and the quotient F/(N Kfix) do not
+identify F/Kfix or provide a balanced AC comparison; retain the meridian
+kernel and marked-boundary data explicitly.
