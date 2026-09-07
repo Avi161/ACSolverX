@@ -400,3 +400,11 @@ relative donation macros, not arbitrary paths changing those base rows.
 Do not transfer that argument to a deeper quotient whose extra kernel
 has no supplied donor family, or call the existing relative lift a new
 AK3 construction.
+
+### [2026-09-07] Certify a shorter target without promoting its scope
+
+[WORKS] MMS02's twelve-letter target has a five-letter representative
+after conjugation and one restored A-donor correction; the focused
+tagged-buffer test checks the original substitution and a wrong conjugator.
+Keep this exact normalization separate from a solution of the coupled
+path: the shorter row is a trefoil relator, not a primitive target.

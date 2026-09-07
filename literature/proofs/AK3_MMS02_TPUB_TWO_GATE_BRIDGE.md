@@ -2991,6 +2991,32 @@ control. This only normalizes the source; the necessary interleaved path
 to $(A,B,v,t)$ is still absent. It neither reopens the frozen Hall--Witt
 lane nor resolves any AK(3) gate.
 
+**Literal target normalization.** After eliminating the defining $v$-row
+by $z=y^{-1}x$, write
+\[
+ \overline A=\mathtt{xYxYXyyXYxyXy},\qquad
+ \overline B=\mathtt{XyyXYXyxYYxy},\qquad
+ h_B=x^2y^{-2}x,\qquad b_{\mathrm{short}}=yxyx^{-2}.
+\]
+There is a single-donor identity in the free group $F(x,y)$:
+\[
+ \boxed{
+ h_B\overline B h_B^{-1}b_{\mathrm{short}}^{-1}
+ =y\overline A^{-1}y^{-1}.}
+\]
+Conjugate the live $\overline B$-row by $h_B$ and left-donate
+$y\overline A y^{-1}$, restoring the $\overline A$-row. The live
+row becomes exactly $b_{\mathrm{short}}$. Thus the same relative gate
+can be written $(X,t)\longrightarrow(b_{\mathrm{short}},t)$ in
+$Q_A*\langle t\rangle$; this is a normalization of (130), not another
+residual problem. The literal row length drops from twelve to five,
+but the new target is not primitive: in the free basis $x,s=yx$ it
+is $s^2x^{-3}$, whose one-relator quotient surjects onto the nonabelian
+group $C_2*C_3$. No coupled path or AK3 trivialization follows from
+this shortening. The same independent replay checks the original
+$z=y^{-1}x$ substitution, the donor identity, row restoration and a
+wrong-conjugator control.
+
 The [integral fixed-donor theorem](AK3_MMS02_PRIMITIVE_COMPLETION_TRACE_CHECK.md#all-integer-primitive-completions-are-excluded)
 now excludes replacing $\overline B$ by any primitive word while retaining
 $\overline A$ as donor: $B$ is not conjugate to $Xy^m$ in $Q_A$ for any

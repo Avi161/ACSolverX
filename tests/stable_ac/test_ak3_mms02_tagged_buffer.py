@@ -455,3 +455,24 @@ def test_restored_mms02_donors_replace_q_by_inverse_x():
     wrong = replay(k)
     assert wrong != (A, "X", v, "t")
     assert wrong[1] != "X"
+
+
+def test_restored_mms02_donor_shortens_v_eliminated_target():
+    Abar = substitute("xzYXyxZXYxyZ", {"z": "Yx"})
+    Bbar = substitute("XyxZXYXyxzXYxy", {"z": "Yx"})
+    assert Abar == "xYxYXyyXYxyXy"
+    assert Bbar == "XyyXYXyxYYxy"
+    h, C = "xxYYx", "yxyXX"
+    defect = product(conjugate(h, Bbar), inverse(C))
+    assert defect == conjugate("y", inverse(Abar))
+
+    rows = [Abar, Bbar]
+    rows[1] = conjugate(h, rows[1])
+    rows[0] = conjugate("y", rows[0])
+    rows[1] = product(rows[0], rows[1])
+    rows[0] = conjugate("Y", rows[0])
+    assert rows == [Abar, C]
+
+    wrong_defect = product(conjugate("xxYx", Bbar), inverse(C))
+    assert wrong_defect != conjugate("y", inverse(Abar))
+    assert substitute(C, {"y": "zX"}) == "zzXXX"
