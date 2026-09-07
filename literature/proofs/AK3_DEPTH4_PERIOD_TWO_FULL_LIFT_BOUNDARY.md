@@ -703,9 +703,38 @@ $U$, and every transformation in (1.10c4) preserves its conjugacy class.
 Consequently $\mathcal J(\mathbf h^*)$ lies outside
 $[\mathbf h^*]_{\sim_{H{\rm rg}}}$, proving the assertion. $\square$
 
+**Corollary (powers of the exchange give only two old orbits).** For
+arbitrary literal tuples,
+
+\[
+\mathcal J^2(\mathbf g)
+ =(g_0,g_1,Rg_2S^{-1},Rg_3S^{-1},RZg_4).
+\tag{1.10d6}
+\]
+
+Indeed, the first exchange gives $C'=UDU^{-1}=RU^{-1}$, so its
+second target multiplier is $C'C=RZ$; the other coordinates follow
+from $Ug_2=Rg_2S^{-1}$. Its literal residual is conjugated by $RZ$.
+On quotient solutions, $Zg_4=g_4t$. Hence (1.10d6) is
+$\mathcal H_R^{-1}$ followed by the right row gauges
+$S^{-1},S^{-1},t$ in slots $2,3,4$.
+Thus $\mathcal J^2(\mathbf q)\sim_{H{\rm rg}}\mathbf q$ at every
+quotient solution $\mathbf q$.
+
+Applying that equivalence separately at each iterate, in either direction,
+places every even power of $\mathcal J$ at $\mathbf h^*$ in its original
+orbit and every odd power in the orbit of $\mathcal J(\mathbf h^*)$.
+These are exactly two distinct old orbits by (1.10d5). This does not
+assume that $\mathcal J$ normalizes the old action and does not classify
+the action generated jointly with it. In particular, iterating
+$\mathcal J$ alone supplies no further orbit representatives.
+For nonsolving literal lifts the last coordinate must remain $RZg_4$:
+replacing it by $Rg_4t$ would discard the residual.
+
 The focused quotient-Hurwitz tests check both literal inverse compositions,
 the residual identity on non-solution tuples, a wrong-target control,
-and the displayed quotient normal forms using two reducers.
+the displayed quotient normal forms using two reducers, and the square
+identity with a nonzero literal-residual control.
 Neither the old row gauge nor its four-prefix-Hurwitz enlargement is
 complete. The exchange above supplies one further lift-compatible map,
 not a classification of its enlarged orbits or of all $\mathscr S_Q$.

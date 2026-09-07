@@ -302,3 +302,42 @@ def test_hurwitz_swap_changes_witness_u_cyclic_syllable_length_in_quotient() -> 
     for word in (*original, *swapped, u, u_prime, k, w, literal_conjugate(w, k)):
         encoded = tuple(encoding[letter] for letter in word)
         assert lift.literal(lift.quotient_reduce(encoded)) == independent_c2_z_reduce(word)
+
+
+def test_hurwitz_swap_square_is_row_gauge_only_on_quotient_solution() -> None:
+    cases = (RAW_WITNESS, ("c", "t", "T", "C", "ct"), ("tC", "c", "ct", "T", "tc"))
+    for conjugators in cases:
+        g0, g1, g2, g3, g4 = conjugators
+        r, s, _, z, _, residual = literal_recurrence(conjugators)
+        twice = literal_hurwitz_swap(literal_hurwitz_swap(conjugators))
+        assert twice == (
+            g0, g1,
+            literal_multiply(r, g2, literal_inverse(s)),
+            literal_multiply(r, g3, literal_inverse(s)),
+            literal_multiply(r, z, g4),
+        )
+        assert literal_recurrence(twice)[5] == literal_conjugate(
+            residual, literal_multiply(r, z),
+        )
+
+    g0, g1, g2, g3, g4 = RAW_WITNESS
+    r, s, _, z, target, residual = literal_recurrence(RAW_WITNESS)
+    twice = literal_hurwitz_swap(literal_hurwitz_swap(RAW_WITNESS))
+    row_gauge = (
+        g0, g1,
+        literal_multiply(r, g2, literal_inverse(s)),
+        literal_multiply(r, g3, literal_inverse(s)),
+        literal_multiply(r, g4, "t"),
+    )
+    assert residual
+    assert z != target
+    assert independent_c2_z_reduce(residual) == ""
+    assert twice != row_gauge
+    assert twice[:4] == row_gauge[:4]
+    assert tuple(independent_c2_z_reduce(word) for word in twice) == tuple(
+        independent_c2_z_reduce(word) for word in row_gauge
+    )
+    encoding = {"c": 1, "C": -1, "t": 2, "T": -2}
+    for word in (*twice, *row_gauge):
+        encoded = tuple(encoding[letter] for letter in word)
+        assert lift.literal(lift.quotient_reduce(encoded)) == independent_c2_z_reduce(word)

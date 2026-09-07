@@ -466,3 +466,9 @@ conjugated S-rows gives an invertible literal map changing the witness's
 cyclic U-length from six to ten. Use an invariant of the proposed action
 and an explicit recurrence-preserving exchange to test coverage; literal
 lift compatibility does not imply that the previously named orbit is complete.
+
+[WORKS] The pointwise relation J-squared(q) ~ q on quotient solutions
+limits powers of J to two old orbits without asserting that J normalizes
+the old action. Keep the literal fifth entry RZg4 until the solution
+equation is invoked; replacing it by Rg4t off the solution set loses a
+nonzero residual.
