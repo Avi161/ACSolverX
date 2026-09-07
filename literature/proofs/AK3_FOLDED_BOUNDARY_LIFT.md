@@ -124,3 +124,40 @@ original presentation. No balanced AC replacement of
 supplied here. No geometric attaching curves, cancellation certificate,
 or stable AK3 conclusion is supplied. The positive result is precisely
 the boundary-preserving free-group lift stated above.
+
+## The independent kernel-row replacement fails for this lift
+
+Let `N=Ncl(s,m)` in `F(r,s,l,m)`. Its relation module `N_ab` is free
+over `Z[F(r,l)]` with basis `s,m`. Use image columns and derivative rows
+`s,m`, and specialize coefficients to `Z[R^±1,L^±1]` by abelianizing
+the quotient `F(r,l)`. The assembled `N`-preserving push factors give
+
+    Kr = [[1,0],[(L-1)/R,1/R]],
+    Kl = [[1/L,(R-1)/L],[0,1]],
+    K0 = [[1,1/L],[-L,0]].
+
+Here `K0` is the matrix of folded `Phi0`, not the earlier word `[a,c]`.
+The chain rule is used only for the assembled `N`-preserving factors,
+never for intermediate `T` or `tau`. Push factors act trivially on the
+abelianized quotient. Since `W=LRlrlR`, the total image-column matrix is
+
+    K = Kr^-1 Kl Kr Kl Kr^-1 Kl^-1 K0,
+    det(K-I) = -L^-2+L^-1-1+L+R/L-RL+R^2 L.
+
+The seven distinct monomials make this a nonunit despite augmentation
+one. The two fixed-point rows `Phi(s)s^-1`, `Phi(m)m^-1` have relation
+module coefficient columns `J-I` before specialization, and `K-I` after
+specialization. If these rows independently normally generated `N` in
+the ambient free group, their coefficient map would be onto `N_ab`.
+Specialization preserves surjectivity; a square matrix onto a free module
+over this commutative Laurent ring has unit determinant. Thus these two
+rows do not independently normally generate `N` for this specific lift.
+
+`test_ak3_folded_kernel_replacement.py` checks the displayed matrices,
+their chain rule against a literal two-factor composition, and the exact
+determinant using independent direct and full-then-specialized Fox
+gradients. Its untwisted control is `det(K0-I)=1`; this is only a
+coefficient control, not a normal-generation theorem. This independent
+replacement step is frozen. The positive boundary lift remains valid;
+the exclusion concerns neither coupled base-row moves, other lift
+families, nor AK3 itself, and creates no further residual ledger.

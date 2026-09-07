@@ -493,3 +493,13 @@ rows or removing the added generators by balanced AC moves.
 [TRAP] Root mistyped an inverse in the folded-lift check's word W; the
 projection assertion caught it. Construct signed products with explicit
 inverse calls and label assertions so a failed component is identifiable.
+
+### [2026-09-07] Restrict kernel Jacobians only after assembling valid factors
+
+[WORKS] The folded lift's push maps preserve the defining normal subgroup,
+but the intermediate map tau(s)=sr does not. Compute the two-by-two kernel
+Fox matrices from the assembled literal push maps, not from tau in isolation.
+Cross-check against full Fox gradients and one literal factor composition;
+state the image-row or image-column convention before multiplying matrices.
+A nonunit Laurent determinant rules out independent normal generation of
+the defining kernel, not coupled AC moves using the base relators.
