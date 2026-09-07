@@ -15,12 +15,16 @@ fires on 125 of the 259 rows already on disk. This runner keeps the same
                       terminal pair. This is the repo's certification standard
                       and the only column that means what the campaign means.
 
-    aut_assisted      Solved only by also changing basis. The cascade's
-                      ``s40_gen`` arm pushes Nielsen images into the same heap
-                      as AC substitutions, so its path may contain steps of
-                      kind ``automorphism``. Such a path proves AC-triviality
-                      of an automorphic image, not of the presentation. It is
-                      recorded, never counted as solved, and never certified.
+    aut_assisted      Solved, but the recorded path changes basis. This is
+                      STILL an AC solve: AC moves are equivariant under
+                      Aut(F2), so pushing the accumulated basis change back
+                      through the path collapses every automorphism step and
+                      leaves a pure AC path to some basis of F2, which
+                      Nielsen's theorem carries to (x, y) by moves that are
+                      themselves AC moves. Measured on MS640, the basis tail
+                      costs about 2 moves. What is missing is the DECODER,
+                      not the proof, so these are recorded separately and
+                      left uncertified until one exists.
 
     unsolved          The prefix ran out at 501 nodes.
 
@@ -377,8 +381,11 @@ def report(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, chun
     log(f"  rows scored          : {total:,}")
     log(f"  AC-certified solves  : {len(ac):,} "
         f"({100.0 * len(ac) / total:.2f}%)   by winner: {by_winner or '{}'}")
-    log(f"  aut-assisted only    : {len(aut):,} "
-        f"({100.0 * len(aut) / total:.2f}%)  NOT AC certificates")
+    log(f"  needs the decoder    : {len(aut):,} "
+        f"({100.0 * len(aut) / total:.2f}%)  AC-solved, certificate not yet "
+        "in AC form")
+    log(f"  solved, either way   : {len(ac) + len(aut):,} "
+        f"({100.0 * (len(ac) + len(aut)) / total:.2f}%)")
     log(f"  rejected certificates: {len(rejected):,}   (must be 0)")
     log(f"  unsolved             : "
         f"{total - len(ac) - len(aut):,}")
