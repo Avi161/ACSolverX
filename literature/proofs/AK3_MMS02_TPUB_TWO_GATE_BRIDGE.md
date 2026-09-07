@@ -3203,6 +3203,47 @@ this shortening. The same independent replay checks the original
 $z=y^{-1}x$ substitution, the donor identity, row restoration and a
 wrong-conjugator control.
 
+**A literal HNN-symmetry positive control.** In the established base
+$a=y$, $b=xyx^{-1}$, write $d=b^2a^{-1}bab^{-1}$ and
+\[
+ r_a=xax^{-1}b^{-1},\qquad r_b=xbx^{-1}d^{-1}.
+\]
+Let $\alpha(a)=a^{-1}b$, $\alpha(b)=b$, $z=bab^{-1}$ and
+$\varphi(a)=b$, $\varphi(b)=d$. Literal free-word evaluation gives
+$\alpha\varphi=\operatorname{Inn}(z)\varphi\alpha$.
+The triangular free automorphism
+\[
+ \sigma(a)=a^{-1}b,\quad \sigma(b)=b,\quad \sigma(x)=zx
+\]
+has inverse images $ba^{-1},b,bab^{-2}x$, respectively. More importantly,
+its effect on the defining rows is itself given by legal relator moves:
+\[
+ \sigma(r_a)={}^{zb^{-1}}(r_a^{-1}r_b),\qquad
+ \sigma(r_b)={}^{z}r_b.
+\]
+Undo these conjugations, right-multiply the first row by $r_b^{-1}$,
+then invert it. This restores $(r_a,r_b)$ while leaving the third row
+unchanged.
+
+The tuple $(r_a,r_b,x^{-1})$ is ordinarily AC-trivial: use the third row
+as a restored donor to remove $x$ from the first two, then use the resulting
+$ab^{-1}$ row to replace $a$ by $b$ in the second, obtaining $b^{-1}$.
+Clear the first row and invert the last two generator rows. Transport this
+ordinary move sequence through $\sigma$ and Nielsen-reduce its terminal
+free-basis tuple. Together with the displayed defining-row restoration,
+this proves that $(r_a,r_b,S)$ is ordinarily rank-three AC-trivial, where
+\[
+ S=\sigma(x^{-1})=x^{-1}ba^{-1}b^{-1}.
+\]
+There is also a direct check: $S$ defines $x=ba^{-1}b^{-1}$, whose
+substitution makes $r_b=b^{-1}$ literally; setting $b=1$ then makes
+$r_a=a$. The [independent symmetry control](../../tests/stable_ac/test_mms02_hnn_symmetry_control.py)
+checks both inverse compositions, intertwining, defining-row identities,
+restoration and these substitutions. This is a positive control, not a
+new target family: no conjugacy or AC identification of $S$ with the
+required killer $abx^{-1}$ has been established. In particular it supplies
+no MMS02 bridge or stable/ordinary AK3 resolution.
+
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[
  u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,

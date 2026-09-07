@@ -583,3 +583,12 @@ polynomial; a bounded coefficient test cannot replace that domain step.
 [TRAP] A patch failed after treating the end of a wrapped source line as
 a complete line. Re-read the literal paragraph and match whole source
 lines before retrying a proof-document insertion.
+
+### [2026-09-07] Transport a known solution instead of assuming ambient moves
+
+[WORKS] The HNN symmetry in MMS02 Section 6.18 has a free inverse and
+explicit relator Nielsen/conjugation identities. Applying it to a known
+ordinary AC solution transports every donor and conjugator; the terminal
+free basis then Nielsen-reduces by relator moves. This proves the new
+control tuple trivial without declaring an ambient map an elementary AC
+move. Its killer XbAB is not identified with the required abX killer.
