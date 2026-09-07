@@ -560,3 +560,11 @@ that row to k and correct every other row letter by letter before restoring
 it. This handles sign flips without discarding the live donor. The descent
 requires one t-occurrence up to conjugacy at every path vertex, not just
 primitivity, exponent sum one, or linear tags at the two endpoints.
+
+[WORKS] The qualifying row need not have a fixed index: at an overlap
+(R, ^u(tc)^epsilon, ^v(td)^eta), the two retained donor projections are
+conjugates of k^eta and k^(-epsilon), respectively. Normalize to the live
+k, transport R, and restore the second donor with the minus sign. Use an
+unchanged qualifying row across an elementary edge when one exists;
+otherwise the changed row qualifies at both ends. This removes anchor
+bookkeeping as an escape from the every-vertex descent hypothesis.

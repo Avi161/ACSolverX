@@ -2,18 +2,18 @@
 
 ## Scope
 
-Work in the free group $F(x,y,t)$, with a fixed designated third relator.
+Work in the free group $F(x,y,t)$, with the extra generator $t$ fixed.
 An elementary relator AC move in this note is inversion, multiplication by
 another relator or its inverse on either side, conjugation, or interchange
-of the first two rows. There are no ambient basis changes, further
-stabilizations, or interchanges involving the designated third row.
+of any two rows. There are no ambient basis changes or further
+stabilizations.
 
-The condition below concerns the freely and cyclically reduced third row
-at **every vertex** of the path. It is stronger than exponent sum one and
+The condition below requires at least one qualifying row at **every vertex**
+of the path; its index may change. It is stronger than exponent sum one and
 is not replaced by algebraic primitivity.
 
 **Theorem.** Suppose an AC path from $(a,b,t)$ to $(a',b',t)$ has
-$a,b,a',b'\in F(x,y)$, and at every vertex its designated third row is
+$a,b,a',b'\in F(x,y)$, and at every vertex at least one of its rows is
 conjugate to a word with exactly one occurrence of $t^{\pm1}$. Then there
 is an ordinary rank-two AC path from $(a,b)$ to $(a',b')$.
 
@@ -25,7 +25,7 @@ stabilizations can be eliminated.
 
 ## The defining substitution
 
-Write a qualifying third row in the form
+Temporarily designate a qualifying row as the third row and write it in the form
 
 \[
 r={}^u(tc)^\varepsilon,
@@ -103,21 +103,53 @@ For multiplication by $R_j^{-1}$, invert that base row first, use the
 reviewed case, and invert it back. These inserted inversions leave the
 designated tag unchanged, so they preserve the hypothesis.
 
+## Changing the anchor without changing the tuple
+
+Suppose two rows qualify in the same tuple, ordered as
+
+\[
+(R,r,s),\qquad r={}^u(tc)^\varepsilon,\quad
+s={}^v(td)^\eta,\quad k=c^{-1}d.
+\]
+
+Eliminating $r$ or $s$ gives respectively
+
+\[
+\bigl(\theta_c(R),{}^{\theta_c(v)}k^\eta\bigr),
+\qquad
+\bigl(\theta_d(R),{}^{\theta_d(u)}k^{-\varepsilon}\bigr).
+\]
+
+Normalize the second row of the first pair to $k$. The same per-letter
+donations proved above change the first row to $\theta_d(R)$, while
+restoring the donor after every use. Then conjugate and invert that donor
+to the second row of the second pair. The sign is $-\varepsilon$, since
+$\theta_d(tc)=d^{-1}c=k^{-1}$. If $k=1$, the two substitutions coincide
+and both second rows are trivial. Thus different qualifying anchors
+define the same ordinary AC class, up to permutation of the retained rows.
+
 ## Concatenation and verification boundary
 
-Apply the preceding finite projected transitions to every elementary
-move. At each endpoint the tag is $t$, so $c=1$; the original and final
+For any elementary move other than a permutation, only one row changes.
+If an unchanged row qualifies, use it as the anchor at both ends and
+project the move directly. Otherwise, the every-vertex hypothesis forces
+the changed row to qualify at both ends; apply the defining-row transition
+proved above. A permutation transports the anchor and merely permutes the
+retained rows. At shared vertices, the anchor-change argument connects
+the choices made for successive edges by ordinary rank-two AC moves.
+
+At each endpoint choose the row $t$, so $c=1$; the original and final
 base rows are $t$-free. Their projections are therefore the stated
 rank-two endpoints. Concatenation proves the theorem.
 
 The focused test
 `tests/stable_ac/test_ak3_defining_tag_descent.py` checks literal donor
-identities, sign changes, conjugating tails involving $t$, and per-letter
+identities, sign changes, anchor handoffs, conjugating tails involving $t$, and per-letter
 corrections with a restored donor. It is a check of these formulas, not
 an enumeration of AK3 paths or a proof of their existence.
 
 This closes the one-occurrence mechanism only. A path can leave the
-hypothesis by changing the designated row so that its cyclic reduction
-has zero or multiple $t$-occurrences, by exchanging its role with another
-row, or by using operations outside the stated move set. No lower bound
+hypothesis at a vertex where all three cyclically reduced rows have zero
+or multiple $t$-occurrences, or by using operations outside the stated move
+set. Changing which qualifying row serves as anchor is covered. No lower bound
 for those paths and no stable or ordinary AK3 resolution is claimed.

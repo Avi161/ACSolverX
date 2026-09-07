@@ -132,3 +132,30 @@ def test_tag_inversion_conjugation_and_exponent_sum_premise_control():
     assert control[0] != control[-1].swapcase()
     assert sum(letter.lower() == "t" for letter in control) == 3
     assert control.count("t") - control.count("T") == 1
+
+
+def test_defining_anchor_handoff_uses_projected_live_rows():
+    """The fictitious donor is a formula device, not an original live row."""
+    u, v, other = "tXT", "ytX", "txyTXtY"
+    for c, d in (("xy", "YXy"), ("xy", "xy")):
+        k = reduce_word(inverse(c), d)
+        for epsilon in (-1, 1):
+            for eta in (-1, 1):
+                r = conjugate(signed(reduce_word("t", c), epsilon), u)
+                s = conjugate(signed(reduce_word("t", d), eta), v)
+                old_pair = (theta(other, c), theta(s, c))
+                target_pair = (theta(other, d), theta(r, d))
+                assert old_pair[1] == conjugate(signed(k, eta), theta(v, c))
+                assert target_pair[1] == conjugate(signed(k, -epsilon), theta(u, d))
+                fictitious_donor = reduce_word(inverse(r), s)
+                assert theta(fictitious_donor, c) == old_pair[1]
+                corrected, final_donor = check_right_edge(
+                    r, s, fictitious_donor, c, d, u, v, epsilon, eta, other
+                )
+                assert final_donor == inverse(target_pair[1])
+                handoff_pair = (corrected, inverse(final_donor))
+                assert handoff_pair == target_pair
+                if c == d:
+                    assert k == ""
+                    assert old_pair[1] == target_pair[1] == ""
+                    assert old_pair == handoff_pair
