@@ -592,3 +592,8 @@ ordinary AC solution transports every donor and conjugator; the terminal
 free basis then Nielsen-reduces by relator moves. This proves the new
 control tuple trivial without declaring an ambient map an elementary AC
 move. Its killer XbAB is not identified with the required abX killer.
+
+[TRAP] Plain `git add --` on the tracked ignored literature path returned
+an ignored-directory warning despite staging the requested modifications.
+Use `git add -u --` for tracked proof files and a separate exact add for
+new tests; inspect the staged names after any staging error before commit.
