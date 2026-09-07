@@ -511,3 +511,24 @@ def test_the_all_of_ac19_campaign_is_wired_end_to_end(tmp_path):
     assert 'if [ "0" = 1 ]; then' in job
     import subprocess
     assert subprocess.run(["bash", "-n", str(tmp_path / "_job.sh")]).returncode == 0
+
+
+def test_resume_reports_the_finished_count_without_holding_the_records(tmp_path):
+    """`del done` freed the set the pool fork could not afford -- and broke
+    the log line that read it. The count must survive the deletion, and the
+    operator reads that line to decide whether resume is working."""
+    import inspect
+    src = inspect.getsource(screen.run)
+    assert "n_done = len(done)" in src
+    assert "del done" in src
+    assert "{n_done:,} already done" in src
+    assert "len(done)" not in src, "the set is gone before the log line runs"
+
+
+def test_resume_actually_skips_rows_already_on_disk(tmp_path):
+    path = screen.out_path(str(tmp_path), 1, 1, "cascade501", 1000)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as fh:
+        fh.write(json.dumps({"name": "ac19x_634", "solved": False,
+                             "aut_assisted": False}) + "\n")
+    assert screen.read_done_names(path) == {"ac19x_634"}

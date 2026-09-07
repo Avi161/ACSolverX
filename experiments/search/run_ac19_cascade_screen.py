@@ -392,13 +392,14 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     os.makedirs(out_dir, exist_ok=True)
     path = out_path(out_dir, chunks, chunk_index, arm, budget)
     done = read_done_names(path) if resume else set()
+    n_done = len(done)
     todo = [r for r in rows if r["name"] not in done]
     del done                                   # not held across the pool fork
     n_workers = (max(1, (os.cpu_count() or 2) - 1) if workers == "auto"
                  else max(1, int(workers)))
     log(f"  campaign : {CAMPAIGN} / {arm} at {budget:,} nodes")
     log(f"  input    : {rows_csv or ROWS_CSV}")
-    log(f"  rows     : {len(rows):,} in this chunk, {len(done):,} already done, "
+    log(f"  rows     : {len(rows):,} in this chunk, {n_done:,} already done, "
         f"{len(todo):,} to run")
     log(f"  workers  : {n_workers} (rlimit {WORKER_RLIMIT_GB} GB each)")
     log(f"  record   : {'move-wise (steps stored)' if emit_mixed else 'summary only'}")
