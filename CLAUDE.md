@@ -59,6 +59,25 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   not AC certificates -- it is wrong and it inverted the arm comparison
   (cascade 70,649 vs control 64,541 at 501 nodes, decoded).
 
+- The un-starved residue sweep is
+  `results/heuristic_search/ac19_residue_unstarved/RESULTS.md`. The screen
+  runner's `--starter-budget` flag exists because `starter_budget` used to be
+  an imported constant, so every rung of the 501/1k/10k/100k ladder gave
+  `s40_gen` exactly 500 nodes and gave the extra rope to `s20_mk2`. Default
+  is unchanged; a non-default value writes a `_sb<N>` filename so it cannot
+  be confused with the archive. Read that RESULTS.md's framing section before
+  quoting it: it is component attribution, not 2,122 new solves, and the
+  hybrid is strictly WORSE than `s20_mk2` on 8 of the 12 `bench12` rows.
+- `mixed_search` takes `capture=False` (bare dedup set, no parent pointers):
+  bit-identical search, 50.6 -> 20.0 KB per POPPED node, 2.5x the reachable
+  budget per lane. A solve returns no path -- re-run that one row with
+  capture on, which is deterministic and retraces the same nodes. The cost
+  is branching, not paths: ~95 children stored per popped node.
+- u124 at a campaign budget is `experiments/search/run_u124_s40.py`
+  (`mixed_search` direct; the cascade validator refuses a budget past
+  100,000). u124 carries TWO zeros and they are different: `s20_mk2` at
+  10,000,000 and `s40_gen` at 10,000. Never quote "0 of 124" without both.
+
 ## Standing constraints
 
 - The u124 heuristic is `s20_mk2` (priority L + 20 S + 2 MK). Never run
