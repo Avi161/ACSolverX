@@ -125,10 +125,20 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
     upto, weights, _ = compile_config(BASELINE_CONFIG if arm == 'greedy' else config)
     nodes = 0
     basis_evaluations = 0
+    # The largest |r1|+|r2| ever POPPED, which is what decides whether the cap
+    # could have bound. A child is r_i <- rot(r_i).rot(r_j^-1) keeping the
+    # other relator, so every relator of every child -- accepted or filtered --
+    # is bounded by the popped total it came from. If this stays below `cap`,
+    # no child was ever filtered and the cap provably did not bind. Without it
+    # `max_relator_length_seen` only covers children that SURVIVED the filter,
+    # which cannot distinguish "nothing was too long" from "something was
+    # dropped silently". See RUNBOOK section 10.
+    max_popped_total = len(root) - 1
     while heap and nodes < budget:
         _, depth, key = heapq.heappop(heap)
         nodes += 1
         state = unpack(key)
+        max_popped_total = max(max_popped_total, len(state[0]) + len(state[1]))
         if len(state[0]) == len(state[1]) == 1 and state[0].lower() != state[1].lower():
             steps, states = [], []
             cur = key if capture else None
@@ -141,6 +151,7 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                 steps.append(step)
             return dict(solved=True, nodes_explored=nodes, states=states[::-1],
                         steps=steps[::-1], path_available=capture,
+                        max_popped_total_seen=max_popped_total,
                         basis_evaluations=basis_evaluations,
                         best_state=list(unpack(best)), min_total_length_seen=best_total,
                         min_max_relator_length_seen=best_max,
@@ -185,7 +196,7 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                                       w_weight, s_weight, mk_weight)
                     heapq.heappush(heap, (score, depth + 1, child))
     return dict(solved=False, nodes_explored=nodes, states=[], steps=[],
-                path_available=capture,
+                path_available=capture, max_popped_total_seen=max_popped_total,
                 basis_evaluations=basis_evaluations, best_state=list(unpack(best)),
                 min_total_length_seen=best_total,
                 min_max_relator_length_seen=best_max,
