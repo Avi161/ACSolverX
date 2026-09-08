@@ -64,13 +64,24 @@ S40 = dict(arm="aut_edges", s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 # Measured, not assumed. 20.0 KB per popped node with capture off (one u124
 # row, 100,000 nodes, fresh process); 50.6 KB with it on. The 0.16 GiB is the
 # warm interpreter with numba loaded.
-# 20.0 was the dev-box figure (one row, 100,000 nodes, cap 255). The first
-# real 500,000-node wave on r7i measured 7.401 GiB peak RSS on a row that ran
-# the full budget -- 15.2 KB/node, 24% cheaper than predicted. Use the measured
-# value and let --kb-per-node override it, because branching grows with depth
-# (89.5 children per popped node at 25,000 nodes, 95.1 at 100,000), so this is
-# a function of the budget and one calibration does not settle every rung.
-KB_PER_NODE_NOCAPTURE = 15.5
+# 23.6 KB/node: 11.5 GiB peak RSS at 500,000 nodes on r7i, on rows that ran
+# the full budget under a guard proven non-binding.
+#
+# This constant has been wrong twice and both errors are instructive. 20.0 was
+# one dev-box row at 100,000 nodes -- too small a search to reach the steady
+# state. 15.5 was worse and came from a SURVIVORSHIP-BIASED sample: it was
+# calibrated from the rows that completed under a 11.6 GiB address-space
+# ceiling, which is to say from the only rows light enough to survive it,
+# while the true peak was 11.2-11.5 and the heavy 78 had been culled. The
+# reading was not noisy; the population was censored by the very guard the
+# measurement was meant to size.
+#
+# So: only ever calibrate from rows that ran to completion under a guard
+# already shown not to bind, and check that the sample is not the guard's
+# survivors. Branching also grows with depth (89.5 children per popped node at
+# 25,000, 95.1 at 100,000), so this is a function of the budget too -- pass
+# `--kb-per-node` for a rung far above the one it was measured at.
+KB_PER_NODE_NOCAPTURE = 23.6
 KB_PER_NODE_CAPTURE = 50.6
 BASE_GIB = 0.16
 # What must fit in RAM is RESIDENT, so lanes are clipped against RSS. Address
