@@ -632,3 +632,15 @@ an apparent improvement from shifting only the mapping rows is not a
 new endpoint. `test_finite_defining_telescope_returns_with_killer_retained`
 checks this defining-substitution return, not a transcript justifying the
 initial defining adjunctions from bare stabilization rows.
+
+### [2026-09-08] A spherical ribbon cut need not be a balanced move
+
+[WORKS] In the positive HNN model, deleting the two `pU` corner pairs
+from a minimum rotation changes its genus from one to zero, but the
+actual restored-donor band slide ends at `(uqUPQ,QpQPu,pUPq)`, whose
+minimum compatible rotation genus is two. Recompute the full endpoint;
+do not equate removal of pictured corners with a relator multiplication.
+The bare-`v` split keeps a one-letter-row seam whose nested smoothing
+recovers the old corners. This is a planar-link implication, not a
+collapse of the presentation complex. These two specified constructions
+are closed; do not launch a neighbouring-slide or handle-resolution census.

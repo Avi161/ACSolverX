@@ -3420,6 +3420,47 @@ reconstructs and exhausts all three cases separately from the existing
 occurrence-permutation implementation. No neighbouring-presentation search
 or additional obstruction family is opened by this table.
 
+One geometrically specified two-corner proposal illustrates the missing
+move certificate. Number occurrences from zero in
+$\mathtt{uqUPQupUQPPqpU}$, with departure dart $2i$ and arrival dart
+$2i+1$. One of the two mirror minimum rotations has positive occurrence
+orders
+\[
+ p:(3,9,10,6,12),\quad q:(1,11,4,8),\quad u:(0,5,7,13,2).
+\]
+Deleting the corner pairs $(13,14)$ and $(25,26)$, and skipping their
+darts in the remaining rotations, changes $(E,V,L,F)$ from $(14,6,1,8)$
+to $(12,6,1,8)$: the resulting ribbon surface is spherical. These are
+the two $pU$ corners in $s_p$ and $k$. This deletion is not a word move.
+The actual common-prefix band slide is
+\[
+ r={}^U s_p=pUQPu,\qquad s={}^{Qp}k=pUPq,\qquad
+ r\longleftarrow s^{-1}r=QpQPu,
+\]
+with $s$ retained. Its full endpoint $(uqUPQ,QpQPu,pUPq)$ has exactly
+$3456$ compatible orders, with defects $4:192,6:1478,8:1786$.
+Its minimum rotation-surface genus is therefore two, not zero; the
+independent corner-dart replay checks this additional exact endpoint.
+The legal row slide does not implement the spherical ribbon deletion.
+
+A literal balanced auxiliary split also retains a seam:
+\[
+ (s_q,s_p,k,v)\longrightarrow(uqUPQ,upvUQP,PqpvU,v).
+\]
+The two insertions are restored donations from the new row $v$, with
+conjugators $up$ and $Pqp$. In any compatible spherical link rotation,
+contract the link edge contributed by the one-letter $v$ row. Label its
+matched ends $a_0,b_0$ and the two other matched pairs $a_i,b_i$.
+Up to reflection, the orders before contraction are
+$(a_0,a_1,a_2)$ and $(b_0,b_2,b_1)$, leaving
+$(a_1,a_2,b_2,b_1)$. The matched pairs are nested and can be smoothed
+disjointly inside the resulting disk. This recovers precisely the old
+$pU$ corners and every old germ order, contradicting the original
+negative rotation census. This is a planar-link argument, not a
+contraction of the presentation complex. It closes this bare-$v$ split
+and the specified band slide, not arbitrary balanced handle resolutions;
+no neighbouring slides or new obstruction family are pursued.
+
 There is a genuine coupled strip slide, but it returns to AK3. Conjugate
 $k$ by $p$, giving $k_0=qpUP$, and multiply the first defining row by this
 live killer:

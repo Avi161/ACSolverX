@@ -257,3 +257,27 @@ def test_finite_defining_telescope_returns_with_killer_retained():
     rows = (rows[1], rows[0], rows[2])
     renamed = {"p": "v", "q": "w", "u": "u"}
     assert rows == tuple(substitute(row, renamed) for row in (sq, sp, k))
+
+
+def test_pu_band_slide_uses_current_killer():
+    rows = ("uqUPQ", "upUQP", "PqpU")
+    rows = (rows[0], conjugate(rows[1], "U"), rows[2])
+    assert rows[1] == "pUQPu"
+    rows = (rows[0], rows[1], conjugate(rows[2], "Qp"))
+    assert rows[2] == "pUPq"
+    rows = (rows[0], rows[1], inverse(rows[2]))
+    rows = (rows[0], reduce_word(rows[2], rows[1]), rows[2])
+    rows = (rows[0], rows[1], inverse(rows[2]))
+    assert rows == ("uqUPQ", "QpQPu", "pUPq")
+
+
+def test_pu_auxiliary_split_retains_defining_row():
+    rows = ("uqUPQ", "upUQP", "PqpU", "v")
+    rows = (rows[0], rows[1], rows[2], conjugate(rows[3], "up"))
+    rows = (rows[0], reduce_word(rows[3], rows[1]), rows[2], rows[3])
+    rows = (rows[0], rows[1], rows[2], conjugate(rows[3], inverse("up")))
+    assert rows[3] == "v"
+    rows = (rows[0], rows[1], rows[2], conjugate(rows[3], "Pqp"))
+    rows = (rows[0], rows[1], reduce_word(rows[3], rows[2]), rows[3])
+    rows = (rows[0], rows[1], rows[2], conjugate(rows[3], inverse("Pqp")))
+    assert rows == ("uqUPQ", "upvUQP", "PqpvU", "v")

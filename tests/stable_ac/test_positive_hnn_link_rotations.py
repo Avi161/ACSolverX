@@ -1,4 +1,4 @@
-"""Exact orientable rotation diagnostics for three literal marked triples.
+"""Exact orientable rotation diagnostics for literal marked triples.
 
 The qU comparison's triviality does not imply geometricity. A negative
 rotation diagnostic is not an AC obstruction.
@@ -16,6 +16,8 @@ CASES = (
      "eec40396186fe9f0b4f46581d713863a8201394d85f479a9549f0b32c8a54a49"),
     (("p", "q", "u"), 1, {0: 1}, 3,
      "28a2826f6ed6d2c780db0a8479ba8c02f54771e61b388556dedb9c08cdf5d698"),
+    (("uqUPQ", "QpQPu", "pUPq"), 3456, {4: 192, 6: 1478, 8: 1786}, 1,
+     "70e9bd49da4da0502965d667dc1b42b8fd13e45d8d311855daa1f94122fbe051"),
 )
 
 
@@ -109,3 +111,43 @@ def test_production_rotation_histograms_and_exact_trace_hashes():
         assert census.defect_histogram == histogram
         assert census.link_components == {components}
         assert census.trace_sha256 == trace_sha256
+
+
+def test_pu_ribbon_cut_is_not_a_word_move():
+    """Ribbon deletion only, not a compatible word rotation or legal balanced move."""
+    from experiments.stable_ac.thickenable.neuwirth_permutation_certificate import (
+        OccurrenceData, _build_C, compose, cycle_count, orbit_count,
+    )
+
+    words = ("uqUPQ", "upUQP", "PqpU")
+    letters = "".join(words)
+    data = OccurrenceData.from_words(words)
+    occurrence_orders = {"p": (3, 9, 10, 6, 12), "q": (1, 11, 4, 8),
+                         "u": (0, 5, 7, 13, 2)}
+    positive_orders = tuple(
+        tuple(2 * index + int(letters[index].isupper())
+              for index in occurrence_orders[generator])
+        for generator in data.positive_ends
+    )
+    A = data.A
+    C = _build_C(data, positive_orders)
+    assert (cycle_count(A), cycle_count(C), orbit_count((A, C)),
+            cycle_count(compose(A, C))) == (14, 6, 1, 8)
+    deleted = {13, 14, 25, 26}
+    assert A[13] == 14 and A[25] == 26
+    assert letters[6:8] == letters[12:14] == "pU"
+    remaining = tuple(dart for dart in range(len(A)) if dart not in deleted)
+    reindex = {dart: index for index, dart in enumerate(remaining)}
+    restricted_A = tuple(reindex[A[dart]] for dart in remaining)
+    successors = []
+    for dart in remaining:
+        following = C[dart]
+        while following in deleted:
+            following = C[following]
+        successors.append(reindex[following])
+    restricted_C = tuple(successors)
+    E, V, L, F = (cycle_count(restricted_A), cycle_count(restricted_C),
+                  orbit_count((restricted_A, restricted_C)),
+                  cycle_count(compose(restricted_A, restricted_C)))
+    assert (E, V, L, F) == (12, 6, 1, 8)
+    assert E - V + 2 * L - F == 0
