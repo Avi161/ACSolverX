@@ -3391,6 +3391,35 @@ distinct killer substitutions. No collapse of the actual disk-attached
 complex, thickenability result, or AK3 trivialization follows from positivity
 of the base graph map alone.
 
+The direct thickening possibility for this exact word complex can be
+decided without a presentation search. Its positive-germ degrees are
+$(5,4,5)$, giving exactly $4!3!4!=3456$ cyclic-order choices. At each
+inverse germ use the reversed occurrence-matched order. If $E,V,L,F$
+are the corner-edge count, germ count, link-component count and face
+count, respectively, the orientable ribbon-link defect is
+$\delta=E-V+2L-F$. Complete enumeration gives the following counts;
+unlisted defects occur zero times.
+
+| Exact triple | Orders | Link components | Defect histogram $\delta:\text{count}$ |
+| --- | ---: | ---: | --- |
+| $(s_q,s_p,k)$ | 3456 | 1 | $2:2,\ 4:164,\ 6:1422,\ 8:1868$ |
+| $(s_q,s_p,qU)$ | 288 | 1 | $2:6,\ 4:98,\ 6:184$ |
+| $(p,q,u)$ | 1 | 3 | $0:1$ |
+
+Thus the required exact complex has no compatible spherical rotation and
+admits no orientable PL thickening. This closes only the direct use of
+this unchanged complex, not geometric transformations of it. The
+explicitly AC-trivial $qU$ comparison also has minimum rotation-surface genus one:
+after its defining substitution the rows are $(qPQ,qpQQP,qU)$; normalize
+the first to $P$, clear $p$ from the second to obtain $Q$, and clear $q$
+from the third to obtain $U$, then invert the rows. Its negative rotation
+verdict is therefore a concrete control against treating this diagnostic
+as an AC invariant. The
+[independent corner-dart replay](../../tests/stable_ac/test_positive_hnn_link_rotations.py)
+reconstructs and exhausts all three cases separately from the existing
+occurrence-permutation implementation. No neighbouring-presentation search
+or additional obstruction family is opened by this table.
+
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[
  u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,

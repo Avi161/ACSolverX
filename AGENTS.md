@@ -610,3 +610,15 @@ quotient: it is inner there, with a nonempty free defect equal to a
 conjugate of r_b^-1. All integer powers and inner interleavings therefore
 have only the two already-tested killer classes up to inversion. Freeze
 that strategy; this does not cover changing the defining normal closure.
+
+### [2026-09-08] Separate an expanding graph map from its attached disk
+
+[WORKS] The positive HNN model in MMS02 Section 6.18 has an expanding
+rose immersion, but the exact killer-attached complex has no compatible
+spherical rotation. Its explicitly ordinary-AC-trivial qU comparison also
+fails that test. Use a genuinely spherical control such as (p,q,u), not
+AC triviality alone, to calibrate an exact-complex thickening diagnostic.
+The independent corner-dart check in
+`tests/stable_ac/test_positive_hnn_link_rotations.py` independently exhausts
+all 3,745 order choices and reproduces the existing checker's histograms.
+Do not turn this failure into an AC invariant or a neighbouring-state scan.
