@@ -250,6 +250,59 @@ def arm_on_bands(arm, cascade_cost):
 
 # ------------------------------------------------------------------ other blocks
 
+def head2head(cascade_cost):
+    """The three arms priced against each other, on rows where all three are real.
+
+    The full-population bands cannot compare arms: greedy and s20_mk2 have no
+    stored cost for the rows they solved under the 10,000-node screen. What they
+    DO have is every row that failed it, and those rows all have a cascade cost
+    too -- so on that tail, and only there, a real head-to-head exists.
+
+    Three nested sets, never pooled and always stated where used:
+        cascade + greedy    831   cascade + s20_mk2   259   all three   225
+
+    A censored row (28 greedy, 9 s20_mk2, unsolved at 10,000,000) enters at the
+    ceiling, which pushes that arm's median UP. So every band this table gives to
+    greedy or s20_mk2 is given in spite of the substitution, not because of it.
+    """
+    g_exact, g_cens, _ = arm_costs("greedy")
+    s_exact, s_cens, _ = arm_costs("s20_mk2")
+    have_g = set(g_exact) | g_cens
+    have_s = set(s_exact) | s_cens
+    tri = sorted(have_g & have_s & set(cascade_cost))
+    cost = {"cascade": lambda n: cascade_cost[n],
+            "s20_mk2": lambda n: s_exact.get(n, TEN_M),
+            "greedy": lambda n: g_exact.get(n, TEN_M)}
+
+    bands = []
+    for i, label in enumerate(BAND_LABELS):
+        rows = [n for n in tri if band_of(cascade_cost[n]) == i]
+        if not rows:
+            continue
+        entry = {"band": label, "n": len(rows),
+                 "censored": sum(1 for n in rows if n in g_cens or n in s_cens)}
+        for arm, fn in cost.items():
+            v = sorted(fn(n) for n in rows)
+            entry[arm] = int(st.median(v))
+            entry[arm + "_total"] = sum(v)
+        entry["winner"] = min(cost, key=lambda a: entry[a])
+        bands.append(entry)
+
+    totals = {arm: {"median": int(st.median(sorted(fn(n) for n in tri))),
+                    "total": sum(fn(n) for n in tri)} for arm, fn in cost.items()}
+    crossover = next((b["band"] for b in bands if b["winner"] != "cascade"), None)
+    return {
+        "n": len(tri), "n_greedy": len(have_g & set(cascade_cost)),
+        "n_s20": len(have_s & set(cascade_cost)),
+        "bands": bands, "totals": totals, "crossover": crossover,
+        "wins_greedy": sum(1 for n in tri if cascade_cost[n] < cost["greedy"](n)),
+        "wins_s20": sum(1 for n in tri if cascade_cost[n] < cost["s20_mk2"](n)),
+        "ratio_greedy": round(totals["greedy"]["total"] / totals["cascade"]["total"], 1),
+        "ratio_s20": round(totals["s20_mk2"]["total"] / totals["cascade"]["total"], 1),
+        "censored_greedy": len(g_cens), "censored_s20": len(s_cens),
+    }
+
+
 def stage_block():
     from experiments.search.stage_attribution import attribute, final_rows
     rows = final_rows()
@@ -459,6 +512,64 @@ def fig_arms(cas_tbl, g_rows, s_rows):
     save(fig, "arms_on_bins")
 
 
+def fig_arms_summary(h2):
+    """Front-of-deck headline: one number per arm, on the same 225 rows."""
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(11.4, 3.5),
+                                  gridspec_kw={"width_ratios": [1.25, 1]})
+    order = ["greedy", "s20_mk2", "cascade"]
+    tot = [h2["totals"][a]["total"] for a in order]
+    for i, (a, v) in enumerate(zip(order, tot)):
+        ax.barh([i], [v], color=ARM_COLOR[a], height=.52)
+        ax.text(v * 1.04, i, f"{v / 1e6:.1f}M", va="center", fontsize=12.5,
+                color=ARM_COLOR[a], fontweight="bold")
+    ax.set_yticks(range(3)); ax.set_yticklabels(order)
+    ax.set_xlim(0, max(tot) * 1.22); ax.set_xticks([])
+    ax.set_title(f"total nodes over the same {h2['n']} rows", loc="left", color=INK)
+    for s in ("top", "right", "bottom"):
+        ax.spines[s].set_visible(False)
+
+    med = [h2["totals"][a]["median"] for a in order]
+    ax2.bar(range(3), med, color=[ARM_COLOR[a] for a in order], width=.56)
+    for i, v in enumerate(med):
+        ax2.text(i, v * 1.12, f"{v:,}", ha="center", fontsize=11.5, color=ARM_COLOR[order[i]])
+    ax2.set_yscale("log"); ax2.set_xticks(range(3)); ax2.set_xticklabels(order)
+    ax2.set_ylabel("median nodes (log)"); ax2.set_ylim(1, max(med) * 6)
+    ax2.set_title("median nodes per row", loc="left", color=INK)
+    for s in ("top", "right"):
+        ax2.spines[s].set_visible(False)
+    save(fig, "arms_summary")
+
+
+def fig_headtohead(h2):
+    """Per band, all three arms -- and the band where the cascade stops winning."""
+    fig, ax = plt.subplots(figsize=(10.4, 4.3))
+    bands = h2["bands"]
+    x = list(range(len(bands)))
+    for arm, marker in (("greedy", "s"), ("s20_mk2", "^"), ("cascade", "o")):
+        y = [b[arm] for b in bands]
+        ax.plot(x, y, marker + "-", color=ARM_COLOR[arm], lw=2.2, ms=8, label=arm,
+                zorder=3 if arm == "cascade" else 2)
+    # Mark the crossover band -- the one the cascade does not win.
+    for i, b in enumerate(bands):
+        if b["winner"] != "cascade":
+            ax.axvspan(i - .42, i + .42, color=FAINT, zorder=0)
+            ax.annotate(f"{b['winner']} wins\nthis band", (i, b[b["winner"]]),
+                        textcoords="offset points", xytext=(0, -46), ha="center",
+                        fontsize=10.5, color=ARM_COLOR[b["winner"]], linespacing=1.3)
+    for i, b in enumerate(bands):
+        ax.annotate(f"{b['cascade']:,}", (i, b["cascade"]), textcoords="offset points",
+                    xytext=(0, -18), ha="center", fontsize=10, color=BLUE)
+    ax.set_yscale("log"); ax.set_xticks(x)
+    ax.set_xticklabels([f"{b['band']}\nn={b['n']}" for b in bands])
+    ax.set_ylabel("median nodes (log)")
+    ax.set_title(f"Median nodes per band, all three arms · {h2['n']} rows where "
+                 "every arm has a real cost", loc="left", color=INK)
+    ax.legend(frameon=False, fontsize=11, loc="upper left")
+    for s in ("top", "right"):
+        ax.spines[s].set_visible(False)
+    save(fig, "arms_headtohead")
+
+
 def fig_stages(sb):
     fig, ax = plt.subplots(figsize=(9.6, 3.0))
     order = ["rewrite (BS collapse)", "s40_gen", "s20_mk2", "terminal", "unsolved"]
@@ -576,6 +687,7 @@ def main():
     s_rows, s_exact, s_cens, s_failed = arm_on_bands("s20_mk2", cas_aut)
 
     sb, rb = stage_block(), rewrite_block()
+    h2 = head2head(cas_aut)
     tb, ob, ub = tenm_block(cas_aut), originals_block(), u124_block()
 
     W = {
@@ -595,6 +707,7 @@ def main():
                         "bounded": N_AUT - s_failed, "failed_10k": s_failed},
         },
         "stages": sb, "rewrite": rb, "tenm": tb, "orig": ob, "u124": ub,
+        "head2head": h2,
         "job_b_provisional": JOB_B_PROVISIONAL,
     }
 
@@ -610,6 +723,8 @@ def main():
              "bins_extended", unsolved=ext_unsolved, truncated_from=3)
     fig_compare(aut_tbl, ext_tbl)
     fig_arms(aut_tbl, g_rows, s_rows)
+    fig_arms_summary(h2)
+    fig_headtohead(h2)
     fig_stages(sb)
     fig_tenm(tb)
     fig_originals(ob)
@@ -625,6 +740,20 @@ def main():
           f"  +{ext_unsolved:,} unsolved")
     print(f"arm coverage: greedy exact {g_exact:,} censored {g_cens} · "
           f"s20_mk2 exact {s_exact:,} censored {s_cens}")
+    print(f"\nhead-to-head on {h2['n']} rows "
+          f"(cascade+greedy {h2['n_greedy']}, cascade+s20_mk2 {h2['n_s20']}):")
+    print(f"  {'band':<9}{'n':>5}{'cascade':>10}{'s20_mk2':>10}{'greedy':>10}   winner")
+    for b in h2["bands"]:
+        print(f"  {b['band']:<9}{b['n']:>5}{b['cascade']:>10,}{b['s20_mk2']:>10,}"
+              f"{b['greedy']:>10,}   {b['winner']}")
+    t = h2["totals"]
+    print(f"  {'ALL':<9}{h2['n']:>5}{t['cascade']['median']:>10,}"
+          f"{t['s20_mk2']['median']:>10,}{t['greedy']['median']:>10,}")
+    print(f"  total work: cascade {t['cascade']['total']:,}  "
+          f"s20_mk2 {t['s20_mk2']['total']:,} ({h2['ratio_s20']}x)  "
+          f"greedy {t['greedy']['total']:,} ({h2['ratio_greedy']}x)")
+    print(f"  cascade wins: {h2['wins_greedy']}/{h2['n']} vs greedy, "
+          f"{h2['wins_s20']}/{h2['n']} vs s20_mk2 · crossover band {h2['crossover']}")
     build_standalone()
     return 0
 

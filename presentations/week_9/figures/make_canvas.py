@@ -34,13 +34,17 @@ SRC = os.path.join(WEEK, "standalone.html")
 # the entry artboard. The rest are named for what they show, so the canvas is
 # navigable by name rather than by number.
 STEMS = [
-    "Main", "Populations", "Cascade", "Pattern", "BinsAutMin", "BinsExtended",
-    "BandTable", "Compare", "Arms", "ArmsOnBands", "Stages", "Starvation",
-    "TenMillion", "AutMinHarder", "U124", "Appendix",
+    "Main", "Populations", "ThreeArms", "Cascade", "Pattern", "BinsAutMin",
+    "BinsExtended", "BandTable", "Compare", "Arms", "HeadToHead", "PerBand",
+    "Coverage", "Stages", "Starvation", "TenMillion", "AutMinHarder", "U124",
+    "Appendix",
 ]
 
 W, H = 1440, 820          # the deck's own slide box
-COLS, GAP_X, GAP_Y = 4, 140, 200
+# ONE COLUMN. Four across made a 6,300px-wide canvas, so zoom-to-fit rendered
+# every slide at ~350px and nothing could be read. A single column means the
+# canvas scrolls like the deck does, and `launch` opens it on slide 1 full size.
+COLS, GAP_X, GAP_Y = 1, 140, 160
 
 EXTRACT = r"""
 const {chromium} = require('/opt/node22/lib/node_modules/playwright');
@@ -110,13 +114,13 @@ def main():
     manifest = {
         "artboards": boards,
         "annotations": [{
-            "id": "how-to-edit", "x": 0, "y": -190, "w": 900,
+            "id": "how-to-edit", "x": 0, "y": -150, "w": 1440,
             "text": ("Week 9 · the AC19 cascade. Retype any wording in place and Save.\n"
                      "Numbers come from the campaign jsonl and are regenerated, so edit "
                      "words, not figures — tell me which number looks wrong and I will "
                      "check it against the archive."),
         }],
-        "launch": {"view": "canvas"},
+        "launch": {"view": "focused", "file": "Main.dc.html"},
     }
     with open(os.path.join(OUTDIR, "canvas.json"), "w") as fh:
         json.dump(manifest, fh, indent=2)

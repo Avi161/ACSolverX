@@ -21,6 +21,7 @@ const RW = W.rewrite || {};
 const TM = W.tenm || {rows: []};
 const OG = W.orig || {};
 const U = W.u124 || {};
+const H2 = W.head2head || {bands: [], totals: {cascade: {}, s20_mk2: {}, greedy: {}}};
 
 const k = x => (x == null ? '—' : x.toLocaleString('en-US'));
 const band = (t, b) => (t.bins || []).find(r => r.band === b) || {};
@@ -45,6 +46,23 @@ const SLIDES = [
           'full 501 / 1,000 / 100,000 ladder · the orbit list is rebuilt and self-checked ' +
           'by make_ac19_autmin_screen.py, so every campaign row names a list something ' +
           'can regenerate',
+  },
+
+  {
+    title: 'Three arms, on the <strong>' + k(H2.n) + '</strong> rows all three ran',
+    stat: [
+      { n: k((H2.totals.cascade || {}).median), label: 'cascade · median nodes', on: true },
+      { n: k((H2.totals.s20_mk2 || {}).median), label: 's20_mk2' },
+      { n: k((H2.totals.greedy || {}).median), label: 'greedy' },
+      { n: H2.ratio_s20 + '× / ' + H2.ratio_greedy + '×', label: 'total work saved' },
+    ],
+    figs: [{ img: A + 'arms_summary.svg' }],
+    foot: '<b>' + k(H2.n) + ' rows, not ' + k(W.n_aut) + '.</b> This is the only set ' +
+          'where every arm has a real per-row cost — the tail that failed the ' +
+          k(W.screen_budget) + '-node screen · the cascade is not a clean sweep: it wins ' +
+          k(H2.wins_greedy) + '/' + k(H2.n) + ' against greedy and ' + k(H2.wins_s20) +
+          '/' + k(H2.n) + ' against s20_mk2, and <b>loses the ' + H2.crossover +
+          ' band outright</b> — see the head-to-head below',
   },
 
   {
@@ -195,7 +213,53 @@ const SLIDES = [
   },
 
   {
-    title: 'All three arms, on the same bands',
+    title: 'Where the cascade stops winning',
+    stat: [
+      { n: H2.crossover, label: 'the band it loses', on: true },
+      { n: k(H2.wins_greedy) + ' / ' + k(H2.n), label: 'beats greedy' },
+      { n: k(H2.wins_s20) + ' / ' + k(H2.n), label: 'beats s20_mk2' },
+    ],
+    figs: [{ img: A + 'arms_headtohead.svg' }],
+    foot: 'the cheap bands go to the cascade by three orders of magnitude — its ' +
+          'rewrite and s40_gen stages settle those rows before either other arm has ' +
+          'started · the <b>' + H2.crossover + '</b> band goes to s20_mk2, and that is ' +
+          'not an artefact of the censoring: the ' + k(H2.censored_greedy) + ' greedy and ' +
+          k(H2.censored_s20) + ' s20_mk2 rows still unsolved at ' + k(W.ten_m) +
+          ' enter at the ceiling, which pushes those arms\' medians <b>up</b>, so the ' +
+          'band is won in spite of the substitution rather than because of it',
+  },
+
+  {
+    wide: true,
+    title: 'The same numbers, per band',
+    table: {
+      head: ['band', 'rows', 'cascade', 's20_mk2', 'greedy', 'winner', 'censored'],
+      rows: (H2.bands || []).map(b => ({
+        cells: [b.band, k(b.n), k(b.cascade), k(b.s20_mk2), k(b.greedy),
+                b.winner, b.censored ? k(b.censored) : '—'],
+        on: b.winner !== 'cascade',
+      })).concat([{
+        cells: ['<b>all</b>', '<b>' + k(H2.n) + '</b>',
+                '<b>' + k((H2.totals.cascade || {}).median) + '</b>',
+                '<b>' + k((H2.totals.s20_mk2 || {}).median) + '</b>',
+                '<b>' + k((H2.totals.greedy || {}).median) + '</b>', 'cascade', '—'],
+      }, {
+        cells: ['total nodes', k(H2.n),
+                k((H2.totals.cascade || {}).total), k((H2.totals.s20_mk2 || {}).total),
+                k((H2.totals.greedy || {}).total),
+                H2.ratio_s20 + '× / ' + H2.ratio_greedy + '×', '—'],
+      }]),
+      cap: 'Median nodes per row, on the ' + k(H2.n) + ' rows where all three arms have ' +
+           'a real cost. The nested sets are not pooled: cascade + greedy covers ' +
+           k(H2.n_greedy) + ' rows, cascade + s20_mk2 covers ' + k(H2.n_s20) + ', all ' +
+           'three cover ' + k(H2.n) + '. A censored row enters at ' + k(W.ten_m) + ', ' +
+           'which inflates that arm — so every band greedy or s20_mk2 wins, it wins ' +
+           'against a handicap.',
+    },
+  },
+
+  {
+    title: 'Why the comparison is <em>tail-only</em>',
     stat: [
       { n: k(G.exact), label: 'greedy rows with a stored cost' },
       { n: k(S.exact), label: 's20_mk2 rows with a stored cost' },
