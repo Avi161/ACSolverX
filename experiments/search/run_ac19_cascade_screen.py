@@ -278,10 +278,10 @@ def _fingerprint(steps):
 
 
 def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
-               starter_budget=STARTER_BUDGET):
+               starter_budget=STARTER_BUDGET, max_budget=MAX_BUDGET):
     """Run one arm on one pair and return a cascade-shaped result dict."""
-    if not 1 <= budget <= MAX_BUDGET:
-        raise ValueError(f"budget {budget} outside 1..{MAX_BUDGET}")
+    if not 1 <= budget <= max_budget:
+        raise ValueError(f"budget {budget} outside 1..{max_budget}")
     if not 0 <= starter_budget <= MAX_STARTER_BUDGET:
         raise ValueError(f"starter_budget {starter_budget} outside "
                          f"0..{MAX_STARTER_BUDGET}")
@@ -294,10 +294,19 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
         # `s40_gen` exactly 500 nodes at EVERY rung -- raise this and a rung
         # stops being an extension of the one below, which is the point of the
         # flag but means the rungs are no longer comparable to the archive.
+        # Raising `budget` past MAX_BUDGET moves ONE allowance. Stages 1-3 are
+        # capped by their own constants -- normalization by the trace length,
+        # rewrite by `min(REWRITE_BUDGET, ...)`, `s40_gen` by
+        # `min(starter_budget, ...)` -- so all three are bit-identical at any
+        # budget above their own ceilings. Only stage 4 sees `budget - spent`,
+        # and `mixed_search` pops in a deterministic priority order, so a
+        # smaller budget's stage 4 is a strict PREFIX of a larger one's. A 10M
+        # run therefore reproduces the 100k run exactly and then keeps going.
         return cascade(pair, budget=budget, cap=SEARCH_CAP,
                        starter_budget=starter_budget,
                        rewrite_budget=REWRITE_BUDGET,
-                       intermediate_cap=INTERMEDIATE_CAP)
+                       intermediate_cap=INTERMEDIATE_CAP,
+                       max_budget=max_budget)
     if arm != "ac501":
         raise ValueError(f"unknown arm {arm!r}; choose from {ARMS}")
     from experiments.search.heuristic_1k import mixed_search
@@ -312,7 +321,7 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
 
 
 def run_row(row, arm=ARM, budget=PREFIX_BUDGET, emit_mixed=False,
-            starter_budget=STARTER_BUDGET):
+            starter_budget=STARTER_BUDGET, max_budget=MAX_BUDGET):
     """One orbit. Never raises: a failure comes back as an ``error`` record."""
     started = time.time()
     record = {"name": row["name"], "r1": row["r1"], "r2": row["r2"],
@@ -320,7 +329,8 @@ def run_row(row, arm=ARM, budget=PREFIX_BUDGET, emit_mixed=False,
               "budget": budget, "cap": SEARCH_CAP, "arm": arm,
               "campaign": CAMPAIGN, "starter_budget": starter_budget}
     try:
-        result = search_row((row["r1"], row["r2"]), arm, budget, starter_budget)
+        result = search_row((row["r1"], row["r2"]), arm, budget, starter_budget,
+                            max_budget)
     except Exception as exc:
         record.update(error=f"{type(exc).__name__}: {exc}",
                       traceback=traceback.format_exc()[-2000:],
@@ -431,12 +441,18 @@ def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
 def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         workers="auto", chunks=1, chunk_index=1, limit=None, resume=True,
         emit_mixed=False, rlimit_gb=None, starter_budget=STARTER_BUDGET,
-        log=print):
+        max_budget=MAX_BUDGET, log=print):
     if arm not in ARMS:
         raise SystemExit(f"unknown arm {arm!r}; choose from {ARMS}")
-    if not 1 <= budget <= MAX_BUDGET:
-        raise SystemExit(f"budget {budget} outside 1..{MAX_BUDGET}; past that "
-                         "the hcompact campaigns take over")
+    if not 1 <= budget <= max_budget:
+        raise SystemExit(
+            f"budget {budget} outside 1..{max_budget}. The shipped bound is "
+            f"{MAX_BUDGET:,}; past that the hcompact campaigns normally take "
+            "over. Raise --max-budget only together with --worker-rlimit-gb "
+            "sized for the box: an unsolved row runs to the full budget at "
+            "~50.6 KB per popped node with paths captured (10M pops is about "
+            "483 GiB), and the run only stays cheap because rows that SOLVE "
+            "stop early.")
     if not 0 <= starter_budget <= MAX_STARTER_BUDGET:
         raise SystemExit(f"starter-budget {starter_budget} outside "
                          f"0..{MAX_STARTER_BUDGET}")
@@ -473,7 +489,8 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     with open(path, "a") as fh:
         if n_workers == 1:
             _init_worker(rlimit)
-            stream = (run_row(r, arm, budget, emit_mixed, starter_budget)
+            stream = (run_row(r, arm, budget, emit_mixed, starter_budget,
+                              max_budget)
                       for r in todo)
         else:
             pool = ctx.Pool(n_workers, initializer=_init_worker,
@@ -489,7 +506,8 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
             stream = pool.imap_unordered(
                 functools.partial(run_row, arm=arm, budget=budget,
                                   emit_mixed=emit_mixed,
-                                  starter_budget=starter_budget),
+                                  starter_budget=starter_budget,
+                                  max_budget=max_budget),
                 todo, chunksize=chunksize)
         try:
             for record in stream:
@@ -771,6 +789,16 @@ def main(argv=None):
                          "--budget alone hands the extra nodes to s20_mk2. A "
                          "non-default value writes to a `_sb<N>` filename so "
                          "it can never be confused with the archive.")
+    ap.add_argument("--max-budget", type=int, default=MAX_BUDGET,
+                    help=f"raise the --budget ceiling above {MAX_BUDGET:,}. "
+                         "Only stage 4's allowance moves: stages 1-3 are "
+                         "capped by their own constants, and `mixed_search` "
+                         "pops in a deterministic order, so a larger budget "
+                         "reproduces the smaller run exactly and continues "
+                         "past where it stopped. Rows that solve stop early; "
+                         "a row that does NOT solve runs the full budget at "
+                         "~50.6 KB per popped node, so pair this with "
+                         "--worker-rlimit-gb sized for the box.")
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--chunks", type=int, default=1)
     ap.add_argument("--chunk-index", type=int, default=1)
@@ -810,7 +838,8 @@ def main(argv=None):
             chunk_index=args.chunk_index, limit=args.limit,
             resume=not args.no_resume, emit_mixed=args.emit_mixed,
             rlimit_gb=args.worker_rlimit_gb,
-            starter_budget=args.starter_budget)
+            starter_budget=args.starter_budget,
+            max_budget=args.max_budget)
         report(args.out_dir, arm=args.arm, budget=args.budget,
                chunks=args.chunks, chunk_index=args.chunk_index,
                starter_budget=args.starter_budget)

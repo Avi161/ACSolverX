@@ -7,10 +7,22 @@ from experiments.search.bs_collapse import bs_collapse
 from experiments.search.heuristic_1k import NIELSEN, mixed_search, pack, unpack
 
 
+# The default budget ceiling. Not a property of the search -- the stages are
+# budget-agnostic -- but a guard against a caller asking for a run whose memory
+# nobody sized. `mixed_search` keeps its dedup set and parent pointers in plain
+# Python dicts, so a stage-4 allowance of N pops costs ~50.6 KB each with paths
+# captured, ~23.6 KB without. A caller that has sized the box passes
+# `max_budget` explicitly; every other caller keeps the shipped bound and
+# behaves exactly as before.
+MAX_BUDGET = 100_000
+
+
 def search(pair, *, budget=1000, cap=48, starter_budget=500, rewrite_budget=1000,
-           intermediate_cap=256):
-    if isinstance(budget, bool) or not isinstance(budget, int) or not 1 <= budget <= 100000:
-        raise ValueError('Budget must be an integer in1..100000')
+           intermediate_cap=256, max_budget=MAX_BUDGET):
+    if isinstance(max_budget, bool) or not isinstance(max_budget, int) or max_budget < 1:
+        raise ValueError('max_budget must be a positive integer')
+    if isinstance(budget, bool) or not isinstance(budget, int) or not 1 <= budget <= max_budget:
+        raise ValueError(f'Budget must be an integer in1..{max_budget}')
     if (cap is not None and (not isinstance(cap, int) or isinstance(cap, bool) or cap < 1)) \
             or not 0 <= starter_budget <= 10000 or not 1 <= rewrite_budget <= 10000:
         raise ValueError('Invalid search cap or component budget')
