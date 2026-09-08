@@ -130,6 +130,19 @@ SPEC_10M = {
     "s20_mk2": {"csv": "unsolved_5m_s20_mk2.csv", "n_rows": 9, "chunks": 1},
 }
 
+# arm -> (the PRE-AUT-MIN originals of that arm's 10M failures, count, chunks).
+# Lucas Fagan's question: does a raw AC19 presentation solve where its
+# Aut(F2)-minimal representative does not? Both lists are DERIVED from the two
+# 10M jsonls by ``experiments/search/make_ac19_orig_10m_lists.py`` (never by
+# hand) and re-derived by ``tests/test_ac19_orig_10m.py``. Every original
+# behind a failed orbit is here, not one per orbit: 7 of the 28 greedy orbits
+# carry more than one, which is within-orbit variance for free. The 9 s20_mk2
+# orbits are a subset of the 28, so its 18 originals are a subset of the 40.
+SPEC_ORIG_10M = {
+    "greedy": {"csv": "unsolved_10m_orig_baseline.csv", "n_rows": 40, "chunks": 1},
+    "s20_mk2": {"csv": "unsolved_10m_orig_s20_mk2.csv", "n_rows": 18, "chunks": 1},
+}
+
 
 U124_CSV = os.path.join(os.path.dirname(os.path.dirname(SCREEN_DIR)),
                         "stable_ac", "fable", "aca_124.csv")
@@ -236,6 +249,39 @@ CAMPAIGNS = {
         # AC19 convention: every solve carries its moves. At 214/node with
         # paths a lane is 133.6 GiB: 5 lanes on the 743 GB box (6 without
         # paths, at the price of a certification re-run per solved row).
+        "track_path": True,
+    },
+    "ac19_orig_10m": {
+        "label": "pre-aut-min originals of the AC19 10M residue, at 10M",
+        "spec": SPEC_ORIG_10M,            # per arm, like the 5M and 10M stages
+        "budget": 10_000_000,
+        # Cap 64 is not a free choice here. The control for every row is that
+        # arm's own 10M record on the orbit representative, which ran at 64;
+        # a different cap would compare two different searches.
+        "mrl": 64,
+        # NO FLOOR, and this is the point of the experiment rather than an
+        # oversight. Every other 10M list is rows that already failed at 5M, so
+        # a solve under 5M means the wrong search is running. These rows have
+        # never been searched by this arm at any budget -- only their orbit
+        # representatives have -- so an early solve is not an alarm, it IS the
+        # result: the original solving where the aut-minimal form did not.
+        "floor": None,
+        "floor_mrl": None,
+        "prefix": "ac19_orig_10m",    # never an ac19_10m_* name
+        "ids_stem": "ac19_orig_10m",
+        # solved_at is a prefix property, so one 10M run also reports the
+        # anytime curve at 1M and 5M -- the "solves far cheaper than the
+        # representative" case comes free, with no second run.
+        "checkpoints": (1_000_000, 5_000_000, 10_000_000),
+        # 214 states per popped node, the ac19_10m floor. It was calibrated on
+        # the representatives, whose total length is at most 24; these
+        # originals reach 32, and nothing says which way that moves the rate --
+        # a longer start can widen the frontier or narrow it. If rows die at
+        # reservation exhaustion, RUNBOOK section 8's second pass at
+        # STATES_PER_NODE=236 is the remedy, exactly as for u124.
+        "states_per_node": 214,
+        # A solve here is the headline finding, so it must arrive with a
+        # replayable certificate. Paths on, 5 lanes on the 743 GB box.
         "track_path": True,
     },
     "ac19_hybrid_10m": {
