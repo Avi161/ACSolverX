@@ -95,6 +95,13 @@ DEFAULT_OUT = os.path.join(ROOT, "results", "heuristic_search", CAMPAIGN)
 ORACLE_CSV = {"greedy": "unsolved_10k_baseline.csv",
               "s20_mk2": "unsolved_10k_s20_mk2.csv"}
 
+# How many of the 72,779 orbits the ORIGINAL 10k wave actually judged, per arm
+# (hsearch_ac19_hard100k/RESULTS.md, "Residual set sizes"). This run judges all
+# 72,779, so it may legitimately fail on rows the archive never saw -- but only
+# on those. More extra failures than the gap means the extras are not gap rows
+# and something else has changed.
+ARCHIVED_COVERAGE = {"greedy": 71_556, "s20_mk2": 71_582}
+
 # Measured on this machine over a 300-row uniform sample, not assumed.
 SECONDS_PER_ROW = {"greedy": 0.0291, "s20_mk2": 0.0185}
 
@@ -299,8 +306,10 @@ def verify(arm, out_dir=DEFAULT_OUT, chunks=1, budget=BUDGET, mrl=MRL,
     experiments. That is a stop, not a warning.
 
     The converse is allowed and expected in one direction only: the original
-    wave covered 71,556 of the 72,779 orbits on the greedy arm, so this run may
-    fail on rows the archive never judged.
+    wave judged 71,556 of the 72,779 orbits on the greedy arm and 71,582 on
+    s20_mk2, so this run may fail on rows the archive never saw. That licence
+    is bounded, not open: at most 1,223 (greedy) / 1,197 (s20_mk2) rows sit in
+    the gap, so more extra failures than that is not a coverage difference.
     """
     key, _ = resolve_arm(arm)
     recs = _all_records(key, out_dir, chunks, budget, mrl)
@@ -322,13 +331,16 @@ def verify(arm, out_dir=DEFAULT_OUT, chunks=1, budget=BUDGET, mrl=MRL,
             wrong_nodes.append((name, nodes, int(rec["nodes_explored"])))
 
     new_fail = {n for n, r in recs.items() if not r.get("solved")}
+    gap = N_ROWS - ARCHIVED_COVERAGE[key]
+    extra = new_fail - set(oracle)
     log(f"  arm            : {key}")
     log(f"  records        : {len(recs):,}")
     log(f"  oracle         : {oracle_path} ({len(oracle):,} archived failures)")
     log(f"  reproduced     : {len(oracle) - len(now_solved) - len(missing):,}")
     log(f"  not yet run    : {len(missing):,}")
     log(f"  failures now   : {len(new_fail):,} "
-        f"({len(new_fail - set(oracle)):,} outside the archived list)")
+        f"({len(extra):,} outside the archived list; the wave never judged "
+        f"{gap:,} of the {N_ROWS:,} orbits)")
     ok = True
     if now_solved:
         ok = False
@@ -336,6 +348,11 @@ def verify(arm, out_dir=DEFAULT_OUT, chunks=1, budget=BUDGET, mrl=MRL,
             f"{now_solved[:5]} -- the engine or the arm has diverged from the "
             "run that built the archive. STOP: do not splice this file onto "
             "the 100k/1M/5M rungs.")
+    if len(extra) > gap:
+        ok = False
+        log(f"  !! {len(extra):,} failures outside the archived list, but only "
+            f"{gap:,} orbits were ever outside it. The surplus cannot be "
+            "explained by coverage.")
     if wrong_nodes:
         ok = False
         log(f"  !! {len(wrong_nodes)} archived failure(s) ran a different node "
@@ -348,7 +365,8 @@ def verify(arm, out_dir=DEFAULT_OUT, chunks=1, budget=BUDGET, mrl=MRL,
             "missing": len(missing), "now_solved": now_solved,
             "wrong_nodes": wrong_nodes,
             "new_failures": len(new_fail),
-            "failures_outside_archive": len(new_fail - set(oracle))}
+            "failures_outside_archive": len(extra),
+            "coverage_gap": gap}
 
 
 def report(arm, out_dir=DEFAULT_OUT, chunks=1, budget=BUDGET, mrl=MRL,
