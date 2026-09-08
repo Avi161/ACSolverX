@@ -49,20 +49,28 @@ const SLIDES = [
   },
 
   {
-    title: 'Three arms, on the <strong>' + k(H2.n) + '</strong> rows all three ran',
+    title: 'Three arms, on all <strong>' + k(H2.n) + '</strong> rows',
     stat: [
       { n: k((H2.totals.cascade || {}).median), label: 'cascade · median nodes', on: true },
       { n: k((H2.totals.s20_mk2 || {}).median), label: 's20_mk2' },
       { n: k((H2.totals.greedy || {}).median), label: 'greedy' },
-      { n: H2.ratio_s20 + '× / ' + H2.ratio_greedy + '×', label: 'total work saved' },
+      { n: H2.ratio_s20_clean + '× / ' + H2.ratio_greedy_clean + '×',
+        label: 'total work, uncensored rows' },
     ],
     figs: [{ img: A + 'arms_summary.svg' }],
-    foot: '<b>' + k(H2.n) + ' rows, not ' + k(W.n_aut) + '.</b> This is the only set ' +
-          'where every arm has a real per-row cost — the tail that failed the ' +
-          k(W.screen_budget) + '-node screen · the cascade is not a clean sweep: it wins ' +
-          k(H2.wins_greedy) + '/' + k(H2.n) + ' against greedy and ' + k(H2.wins_s20) +
-          '/' + k(H2.n) + ' against s20_mk2, and <b>loses the ' + H2.crossover +
-          ' band outright</b> — see the head-to-head below',
+    foot: '<b>' + k(H2.n) + ' rows.</b> This slide used to read 225 — the mutual ' +
+          k(W.screen_budget) + '-node failures, the only tail the archive priced for all ' +
+          'three arms. Both plain arms have since been re-run over the whole screen, so ' +
+          'the comparison is the population · <b>the ratio is quoted over the ' +
+          k(H2.n_clean) + ' rows where nothing is censored</b>: with the ' +
+          k(H2.censored_greedy) + ' greedy and ' + k(H2.censored_s20) + ' s20_mk2 rows ' +
+          'still unsolved at ' + k(W.ten_m) + ' entered at the ceiling the same ratios ' +
+          'read ' + H2.ratio_s20 + '× / ' + H2.ratio_greedy + '×, but ' +
+          H2.censored_share_s20 + '% and ' + H2.censored_share_greedy + '% of those ' +
+          'totals is then the substitution, not a measurement · the cascade is no sweep: ' +
+          'it wins ' + k(H2.wins_greedy) + '/' + k(H2.n) + ' against greedy and ' +
+          k(H2.wins_s20) + '/' + k(H2.n) + ' against s20_mk2, ties ' + k(H2.ties_s20) +
+          ', and <b>loses the ' + H2.crossover + ' band outright</b>',
   },
 
   {
@@ -126,7 +134,7 @@ const SLIDES = [
   },
 
   {
-    title: 'AC19 <strong>extended</strong> · the same bins, one budget',
+    title: 'AC19 <strong>extended</strong> · the same bins, full ladder',
     stat: [
       { n: k(EXT.total.median), label: 'median nodes, ' + k(EXT.total.n) + ' reached (x,y)',
         on: true },
@@ -135,12 +143,17 @@ const SLIDES = [
       { n: k(EXT.unsolved), label: 'unsolved at ' + k(EXT.budget) },
     ],
     figs: [{ img: A + 'bins_extended.svg' }],
-    foot: '<b>The empty bands are the budget, not the data.</b> This run stopped at ' +
-          k(EXT.budget) + ' nodes, so its tail is the <b>' + k(EXT.unsolved) + '</b> ' +
-          'unsolved, not an absent band — the one row in 1k–10k solved on the budget\'s ' +
-          'very last node · and <b>reached (x, y) is not certified</b>: only ' + k(EXT.ac) +
-          ' of the ' + k(EXT.total.n) + ' carry an AC certificate, the other ' +
-          k(EXT.aut_assisted) + ' went through a Nielsen image',
+    foot: '<b>Every band is real and the set is closed</b> — ' + k(EXT.total.n) + ' of ' +
+          k(EXT.total.n) + ', nothing left at the ceiling. An earlier version of this ' +
+          'slide said the two hard bands were empty because the run stopped at ' +
+          k(EXT.budget_first_rung) + ' nodes; the ' + k(W.screen_budget) + ' and ' +
+          k(EXT.budget) + ' rungs had in fact run, each over the rung below\'s residue, ' +
+          'and between them they finish it · the 100,000 file carries 397 lines for 227 ' +
+          'names because 91 are MemoryError records from workers that OOM\'d and were ' +
+          're-run on resume, so it is read by name and never by line count · and ' +
+          '<b>reached (x, y) is not certified</b>: only ' + k(EXT.ac) + ' of the ' +
+          k(EXT.total.n) + ' carry an AC certificate, the other ' + k(EXT.aut_assisted) +
+          ' went through a Nielsen image',
   },
 
   {
@@ -169,11 +182,12 @@ const SLIDES = [
                 k(EXT.unsolved), '—', '—', '—'],
       }]),
       cap: 'Cascade nodes. Shares are of the whole population, so each column\'s bands ' +
-           'plus its unsolved row account for all of it. <b>Only the first three bands ' +
-           'compare across populations</b> — beyond them the extended run stops at ' +
-           k(EXT.budget) + ', so the two totals are not a like-for-like pair and the ' +
-           'aut-min mean is the one carrying a tail. ' + k(AUT.job_b_n) + ' aut-min rows ' +
-           'are reconstructed rather than measured.',
+           'plus its unsolved row account for all of it. <b>All five bands now compare</b> ' +
+           '— the extended side used to stop at ' + k(EXT.budget_first_rung) + ' nodes, ' +
+           'which made its two hard bands an artefact of the budget rather than a ' +
+           'measurement; its full ladder has since landed and the set is closed, so the ' +
+           'two columns are a like-for-like pair. ' + k(AUT.job_b_n) + ' aut-min rows are ' +
+           'reconstructed rather than measured, and they sit in the last band.',
     },
   },
 
@@ -189,9 +203,10 @@ const SLIDES = [
     foot: 'at the head the minimised form is the cheaper one — ' +
           band(AUT, '< 10').share_pop + '% of the orbits settle under 10 nodes against ' +
           band(EXT, '< 10').share_pop + '% of the raw presentations, both counted over ' +
-          'their full populations · the effect is understated here, since the extended ' +
-          'side\'s ' + k(EXT.unsolved) + ' unsolved rows are its hardest and carry no cost ' +
-          '· the tail says the opposite, and that is the slide two on',
+          'their full populations · this no longer needs a caveat: the extended side ' +
+          'used to be missing its hardest rows, which understated the comparison, and ' +
+          'now all ' + k(EXT.total.n) + ' are priced · the tail says the opposite, and ' +
+          'that is the slide two on',
   },
 
   {
@@ -220,13 +235,17 @@ const SLIDES = [
       { n: k(H2.wins_s20) + ' / ' + k(H2.n), label: 'beats s20_mk2' },
     ],
     figs: [{ img: A + 'arms_headtohead.svg' }],
-    foot: 'the cheap bands go to the cascade by three orders of magnitude — its ' +
-          'rewrite and s40_gen stages settle those rows before either other arm has ' +
-          'started · the <b>' + H2.crossover + '</b> band goes to s20_mk2, and that is ' +
-          'not an artefact of the censoring: the ' + k(H2.censored_greedy) + ' greedy and ' +
-          k(H2.censored_s20) + ' s20_mk2 rows still unsolved at ' + k(W.ten_m) +
-          ' enter at the ceiling, which pushes those arms\' medians <b>up</b>, so the ' +
-          'band is won in spite of the substitution rather than because of it',
+    foot: 'the cascade owns the MIDDLE, not the ends. It takes 100–1k by 4× over s20_mk2 ' +
+          'and 9× over greedy — its rewrite and s40_gen stages settle those rows before ' +
+          'either plain arm has started · it <b>loses the cheapest band</b>, where its own ' +
+          'fixed prefix costs more than the whole search: a row a plain arm finishes in 6 ' +
+          'nodes cannot be beaten by an algorithm that spends nodes normalising first · ' +
+          'and it <b>loses the ' + k(band(AUT, '≥ 10k').n) + ' rows of the top band ' +
+          'badly</b>, 14k against ~4k, which says its hard rows are not the plain arms\' ' +
+          'hard rows · that band is won against a handicap, not with one: the ' +
+          k(H2.censored_greedy) + ' greedy and ' + k(H2.censored_s20) + ' s20_mk2 rows ' +
+          'unsolved at ' + k(W.ten_m) + ' enter at the ceiling, pushing those medians ' +
+          '<b>up</b>',
   },
 
   {
@@ -250,37 +269,43 @@ const SLIDES = [
                 H2.ratio_s20 + '× / ' + H2.ratio_greedy + '×', '—'],
       }]),
       cap: 'Median nodes per row, on the ' + k(H2.n) + ' rows where all three arms have ' +
-           'a real cost. The nested sets are not pooled: cascade + greedy covers ' +
-           k(H2.n_greedy) + ' rows, cascade + s20_mk2 covers ' + k(H2.n_s20) + ', all ' +
-           'three cover ' + k(H2.n) + '. A censored row enters at ' + k(W.ten_m) + ', ' +
-           'which inflates that arm — so every band greedy or s20_mk2 wins, it wins ' +
-           'against a handicap.',
+           'a real cost — which is now nearly the whole screen, not the 225-row tail this ' +
+           'table was built on. cascade + greedy covers ' + k(H2.n_greedy) + ' rows, ' +
+           'cascade + s20_mk2 ' + k(H2.n_s20) + ', all three ' + k(H2.n) + '. <b>Read the ' +
+           'total-nodes row with the censoring in mind</b>: ' + k(H2.censored_greedy) + ' ' +
+           'greedy and ' + k(H2.censored_s20) + ' s20_mk2 rows enter at ' + k(W.ten_m) + ', ' +
+           'which is ' + H2.censored_share_greedy + '% and ' + H2.censored_share_s20 +
+           '% of those two totals. Over the ' + k(H2.n_clean) + ' rows where nothing is ' +
+           'censored the same comparison is ' + k(H2.totals_clean.cascade.total) + ' / ' +
+           k(H2.totals_clean.s20_mk2.total) + ' / ' + k(H2.totals_clean.greedy.total) +
+           ' nodes — ' + H2.ratio_s20_clean + '× and ' + H2.ratio_greedy_clean + '×.',
     },
   },
 
   {
-    title: 'Why the comparison is <em>tail-only</em>',
+    title: 'The rung that was <em>missing</em>',
     stat: [
-      { n: k(G.exact), label: 'greedy rows with a stored cost' },
-      { n: k(S.exact), label: 's20_mk2 rows with a stored cost' },
-      { n: k(AUT.total.n), label: 'cascade rows with a stored cost', on: true },
+      { n: k(G.exact), label: 'greedy rows with a measured cost', on: true },
+      { n: k(S.exact), label: 's20_mk2 rows with a measured cost' },
+      { n: k(AUT.total.n), label: 'cascade rows with a measured cost' },
+      { n: '225 → ' + k(H2.n), label: 'rows the comparison runs on' },
     ],
     figs: [{ img: A + 'arms_on_bins.svg' }],
-    foot: '<b>The bands are only exact for the cascade.</b> greedy and s20_mk2 stored a ' +
-          'per-row cost only for rows that FAILED the ' + k(W.screen_budget) + '-node ' +
-          'screen — ' + k(G.failed_10k) + ' and ' + k(S.failed_10k) + ' rows, of which ' +
-          k(G.exact) + ' and ' + k(S.exact) + ' went on to solve at a later rung. For ' +
-          'every other row the archive keeps a failure list and nothing else, so all that ' +
-          'is known is "solved at ≤ ' + k(W.screen_budget) + '" — a genuine 1-to-' +
-          k(W.screen_budget) + ' interval, not a near-miss estimate · so the right panel ' +
-          'plots COVERAGE, not cost: drawing their node counts beside the cascade\'s would ' +
-          'be drawing a bracket that spans the whole chart · re-running the ~72k to close ' +
-          'it is barred by the standing archive rule · ' + k(G.censored) + ' greedy and ' +
-          k(S.censored) + ' s20_mk2 rows sit at the far end, still unsolved at ' + k(W.ten_m),
+    foot: 'Until 2026-09-08 this slide said the comparison was <b>tail-only</b>, and it ' +
+          'was: the 1k/10k wave ran in Colab and only its FAILURE lists came back, so ' +
+          'greedy and s20_mk2 had a stored cost for the ' + k(W.screen_budget) + '-node ' +
+          'screen\'s ' + '831 and 259 failures and nothing for the ~72k ' +
+          'they solved · every rung above is a funnel — each ran the rung below\'s ' +
+          'failures — so no later file could fill it · re-running both arms over all ' +
+          k(W.n_aut) + ' orbits took <b>one core-hour</b>, and reproduced every archived ' +
+          'failure at exactly its archived node count (831/831 and 259/259), which is a ' +
+          'cross-generation bit-identity check as much as a re-run · what remains ' +
+          'unmeasured is ' + k(G.censored) + ' + ' + k(S.censored) + ' rows censored at ' +
+          k(W.ten_m) + ' and ' + k(G.unescalated) + ' + ' + k(S.unescalated) + ' the ' +
+          'original wave never judged, so no higher rung ever ran them',
   },
 
   {
-    wide: true,
     title: 'Which stage returned the certificate',
     stat: [
       { n: k(SG.counts['s40_gen']), label: 's40_gen', on: true },
@@ -380,22 +405,25 @@ const SLIDES = [
     wide: true,
     title: '<strong>Appendix</strong> · what each arm actually stored',
     table: {
-      head: ['arm', 'rows with an exact cost', 'bounded ≤ ' + k(W.screen_budget),
+      head: ['arm', 'rows with an exact cost', 'never escalated',
              'unsolved at its deepest budget', 'quotable bare?'],
       rows: [
-        { cells: ['greedy', k(G.exact), k(G.bounded), k(G.censored) + ' at ' + k(W.ten_m),
-                  'no — a bracket'] },
-        { cells: ['s20_mk2', k(S.exact), k(S.bounded), k(S.censored) + ' at ' + k(W.ten_m),
-                  'no — a bracket'] },
+        { cells: ['greedy', k(G.exact), k(G.unescalated), k(G.censored) + ' at ' + k(W.ten_m),
+                  'yes, bar ' + k(G.censored + G.unescalated)] },
+        { cells: ['s20_mk2', k(S.exact), k(S.unescalated), k(S.censored) + ' at ' + k(W.ten_m),
+                  'yes, bar ' + k(S.censored + S.unescalated)] },
         { cells: ['cascade', k(AUT.total.n), '0',
                   k((SG.open || []).length) + ' at 100,000', 'yes, bar ' + k(AUT.job_b_n)],
           on: true },
       ],
-      cap: 'The two substitutions push in OPPOSITE directions — an unknown-easy row entered ' +
-           'at ' + k(W.screen_budget) + ' overstates it, a censored row entered at ' +
-           k(W.ten_m) + ' understates it — so a single mean for greedy or s20_mk2 is a ' +
-           'bound in neither direction, and the figures show a 1-to-' + k(W.screen_budget) +
-           ' bracket instead. The deepest budget differs by arm: greedy and s20_mk2 were ' +
+      cap: 'This table used to say "no — a bracket" for both plain arms, because an ' +
+           'unknown-easy row could only be entered at ' + k(W.screen_budget) + ' and a ' +
+           'censored one at ' + k(W.ten_m) + ', substitutions that push in OPPOSITE ' +
+           'directions, so no single mean was a bound in either. The ' +
+           k(W.screen_budget) + '-node rung has since been re-run over all ' + k(W.n_aut) +
+           ' orbits, so the first column is measured and the bracket is gone; what is ' +
+           'left out is named per row rather than averaged over. The deepest budget ' +
+           'differs by arm: greedy and s20_mk2 were ' +
            'carried to ' + k(W.ten_m) + ', the cascade ladder stops at 100,000. Its ' +
            k(AUT.job_b_n) + ' rows re-run above that are transcribed from a run log whose ' +
            'jsonl has not landed, and they carry ' + AUT.job_b_pct + '% of the node mass.',

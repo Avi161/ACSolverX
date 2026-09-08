@@ -391,6 +391,19 @@ def head2head(cascade_cost):
 
     totals = {arm: {"median": int(st.median(sorted(fn(n) for n in tri))),
                     "total": sum(fn(n) for n in tri)} for arm, fn in cost.items()}
+    # THE CENSORED ROWS DOMINATE THE TOTALS, so the totals cannot be quoted
+    # alone. 28 greedy and 9 s20_mk2 rows are unsolved at 10,000,000 and enter
+    # at the ceiling: that is 280,000,000 and 90,000,000 nodes, which is 53% of
+    # greedy's total and 72% of s20_mk2's. A "38.8x less work" headline computed
+    # over those is mostly an artefact of the substitution rather than a
+    # measurement. So the same totals are also computed over the rows where NO
+    # arm is censored -- every number real, nothing entered at a ceiling -- and
+    # the deck quotes that one as the ratio.
+    clean = [n for n in tri if n not in g_cens and n not in s_cens]
+    totals_clean = {arm: {"median": int(st.median(sorted(fn(n) for n in clean))),
+                          "total": sum(fn(n) for n in clean)}
+                    for arm, fn in cost.items()}
+    censored_mass = {"greedy": len(g_cens) * TEN_M, "s20_mk2": len(s_cens) * TEN_M}
     crossover = next((b["band"] for b in bands if b["winner"] != "cascade"), None)
     return {
         "n": len(tri), "n_greedy": len(have_g & set(cascade_cost)),
@@ -401,6 +414,18 @@ def head2head(cascade_cost):
         "ratio_greedy": round(totals["greedy"]["total"] / totals["cascade"]["total"], 1),
         "ratio_s20": round(totals["s20_mk2"]["total"] / totals["cascade"]["total"], 1),
         "censored_greedy": len(g_cens), "censored_s20": len(s_cens),
+        "n_clean": len(clean), "totals_clean": totals_clean,
+        "censored_mass": censored_mass,
+        "censored_share_greedy": round(
+            100 * censored_mass["greedy"] / totals["greedy"]["total"], 1),
+        "censored_share_s20": round(
+            100 * censored_mass["s20_mk2"] / totals["s20_mk2"]["total"], 1),
+        "ratio_greedy_clean": round(
+            totals_clean["greedy"]["total"] / totals_clean["cascade"]["total"], 1),
+        "ratio_s20_clean": round(
+            totals_clean["s20_mk2"]["total"] / totals_clean["cascade"]["total"], 1),
+        "ties_greedy": sum(1 for n in tri if cascade_cost[n] == cost["greedy"](n)),
+        "ties_s20": sum(1 for n in tri if cascade_cost[n] == cost["s20_mk2"](n)),
     }
 
 

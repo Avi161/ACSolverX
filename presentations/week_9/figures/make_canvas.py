@@ -36,7 +36,7 @@ SRC = os.path.join(WEEK, "standalone.html")
 STEMS = [
     "Main", "Populations", "ThreeArms", "Cascade", "Pattern", "BinsAutMin",
     "BinsExtended", "BandTable", "Compare", "Arms", "HeadToHead", "PerBand",
-    "Coverage", "Stages", "Starvation", "TenMillion", "AutMinHarder", "U124",
+    "MissingRung", "Stages", "Starvation", "TenMillion", "AutMinHarder", "U124",
     "Appendix",
 ]
 
