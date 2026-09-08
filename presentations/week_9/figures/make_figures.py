@@ -25,20 +25,28 @@ only arm with a per-row cost on every row, so it has to define the bands; the ho
 move is to say so rather than to pretend the bands are arm-neutral. BANDS and their
 labels are byte-identical to week 8's so the two decks can be read together.
 
-WHY greedy AND s20_mk2 ARE BOUNDS, NOT NUMBERS
+greedy AND s20_mk2 ARE NUMBERS NOW, NOT BOUNDS
 ----------------------------------------------
-Their per-row cost was only ever stored for rows that FAILED the 10,000-node screen
-(831 and 259 rows). For the other ~72k the archive keeps a failure list and nothing
-else, so all that is known is "solved at <= 10,000". Re-running them is barred by the
-standing archive rule, so this script substitutes:
+They used to be bounds, and the reason is worth keeping: their per-row cost was only
+ever stored for rows that FAILED the 10,000-node screen (831 and 259). For the other
+~72k the archive kept a failure list and nothing else, so all that was known was
+"solved at <= 10,000" -- a bracket of 1 to 10,000 that no figure could usefully draw,
+and a three-arm comparison that could only run on the 225 mutual failures.
 
-    <= 10,000       for a row the arm solved at or below the 10k screen
-    exact           where a later rung recorded it
-    >= 10,000,000   for a row that exhausted the 10M budget
+On 2026-09-08 both arms were re-run over all 72,779 orbits at the same budget and the
+same cap 48 (experiments/search/run_ac19_autmin_10k.py), reproducing every archived
+failure at exactly its archived node count. So every row now carries a measured cost
+for every arm. Two residues survive and are counted rather than substituted:
 
-Those two substitutions push in OPPOSITE directions, so a single mean is not a bound
-in either direction. Means are therefore emitted as a [lo, hi] bracket and medians as
-a bound string. The cascade column is exact throughout and is the only one quoted bare.
+    exact           measured, on 72,7xx rows per arm
+    >= 10,000,000   a row that exhausted the 10M budget; enters AT the ceiling,
+                    which pushes that arm's median UP, so any band it still wins
+                    it wins in spite of the substitution
+    unescalated     failed the 10k rung and no higher rung ever ran it, because
+                    those higher lists were built from what the original wave saw
+                    and it judged 71,556 / 71,582 of the 72,779. Dropped, counted.
+
+The cascade column is exact throughout, and is no longer the only one quoted bare.
 
 Emits presentations/assets/week_9/{*.svg, stats.js} and week_9/standalone.html.
 """
@@ -156,12 +164,34 @@ def cascade_autmin():
     return cost
 
 
+# The extended set's own ladder, cheapest rung first. Only the 1,000-node rung
+# was in reach when this deck was first built, so three of its slides said the
+# extended population was truncated at 1,000 with 3,208 rows unsettled and only
+# three live bands. It is not: the 10,000 and 100,000 rungs ran too, over the
+# rung below's residue each time, and between them they close it. The 100,000
+# file carries 397 lines for 227 names because 91 of them are MemoryError
+# records from workers that OOM'd and were re-run on resume -- so it is read by
+# name with error records skipped, never by line count.
+EXT_LADDER = [
+    "ac19_extended_screen/ac19_cascade_screen_cascade501_b1000_mrl255.jsonl",
+    "ac19_extended_screen/ac19_cascade_screen_cascade501_b10000_mrl255.jsonl",
+    "ac19_extended_screen/ac19_cascade_screen_cascade501_b100000_mrl255.jsonl",
+]
+
+
 def cascade_extended():
-    rows = jsonl("ac19_extended_screen/ac19_cascade_screen_cascade501_b1000_mrl255.jsonl")
-    solved = {r["name"]: r["nodes_explored"] for r in rows
-              if r.get("solved") or r.get("aut_assisted")}
-    ac = sum(1 for r in rows if r.get("solved"))
-    return solved, len(rows) - len(solved), ac, len(solved) - ac
+    """name -> nodes over the 156,762, each row at the rung that settled it."""
+    cost, ac, seen = {}, set(), set()
+    for rel in EXT_LADDER:
+        for r in jsonl(rel):
+            seen.add(r["name"])
+            if r.get("error") or r["name"] in cost:
+                continue
+            if r.get("solved") or r.get("aut_assisted"):
+                cost[r["name"]] = r["nodes_explored"]
+                if r.get("solved"):
+                    ac.add(r["name"])
+    return cost, len(seen) - len(cost), len(ac), len(cost) - len(ac)
 
 
 def bin_table(cost, population=None):
@@ -185,22 +215,46 @@ def bin_table(cost, population=None):
 
 # ------------------------------------------------------- greedy / s20_mk2 bounds
 
+# The rungs, cheapest first. The 10,000-node rung at the head is the one that
+# was missing until 2026-09-08: the original 1k/10k wave ran in Colab and only
+# its FAILURE lists came back, so for every row greedy or s20_mk2 SOLVED under
+# the screen this deck had no cost at all -- which is why its three-arm
+# comparison used to rest on 225 rows, the mutual failures being the only rows
+# the archive priced for both arms. `experiments/search/run_ac19_autmin_10k.py`
+# re-ran both arms over all 72,779 orbits at the same budget and the same cap
+# 48, and reproduced every archived failure at exactly its archived node count
+# (831/831 greedy, 259/259 s20_mk2), so the new rung splices onto the ones
+# above it rather than merely sitting beside them.
 ARM_RUNGS = {
-    "greedy": ["hsearch_ac19_hard100k/ac19_unsolved10k_baseline_b100000_mrl48.jsonl",
+    "greedy": ["ac19_autmin_10k/ac19_autmin_10k_greedy_b10000_mrl48.jsonl",
+               "hsearch_ac19_hard100k/ac19_unsolved10k_baseline_b100000_mrl48.jsonl",
                "leftovers_1m/leftovers_1m_greedy_b1000000_mrl48.jsonl",
                "leftovers_5m/leftovers_5m_greedy_b5000000_mrl64.jsonl",
                "ac19_10m/ac19_10m_greedy_b10000000_mrl64.jsonl"],
-    "s20_mk2": ["hsearch_ac19_hard100k/ac19_unsolved10k_s20_mk2_b100000_mrl48.jsonl",
+    "s20_mk2": ["ac19_autmin_10k/ac19_autmin_10k_s20_mk2_b10000_mrl48.jsonl",
+                "hsearch_ac19_hard100k/ac19_unsolved10k_s20_mk2_b100000_mrl48.jsonl",
                 "leftovers_1m/leftovers_1m_s20_mk2_b1000000_mrl48.jsonl",
                 "leftovers_5m/leftovers_5m_s20_mk2_b5000000_mrl64.jsonl",
                 "ac19_10m/ac19_10m_s20_mk2_b10000000_mrl64.jsonl"],
 }
+# The archived failure lists. No longer the source of "failed the screen" --
+# the re-run measures that directly -- but kept as a cross-check, because they
+# were written by a different engine generation on a different machine and
+# agreeing with them is worth asserting rather than assuming.
 ARM_10K_LIST = {"greedy": "ac19_autmin_screen/unsolved_10k_baseline.csv",
                 "s20_mk2": "ac19_autmin_screen/unsolved_10k_s20_mk2.csv"}
 
 
 def arm_costs(arm):
-    """(exact, censored, failed_10k) for one arm over the aut-min population."""
+    """(exact, censored, unescalated) for one arm over the aut-min population.
+
+    `exact` is a measured node count. `censored` is a row still unsolved at the
+    10,000,000 ceiling, which has no cost, only a lower bound. `unescalated` is
+    the small residue in between: a row that failed the 10k rung and that no
+    higher rung ever ran, because the original wave judged 71,556 of 72,779
+    orbits on greedy and 71,582 on s20_mk2 and the lists above were built from
+    what it saw. Those rows are counted and excluded, never bracketed.
+    """
     exact, censored = {}, set()
     for rel in ARM_RUNGS[arm]:
         for r in jsonl(rel):
@@ -209,7 +263,52 @@ def arm_costs(arm):
     for r in jsonl(ARM_RUNGS[arm][-1]):
         if not r.get("solved"):
             censored.add(r["name"])
-    return exact, censored, names(ARM_10K_LIST[arm])
+    failed_10k = {r["name"] for r in jsonl(ARM_RUNGS[arm][0]) if not r.get("solved")}
+    # Cross-generation check, cheap and worth keeping in the pipeline: every row
+    # the 2026-07-31 Colab wave recorded as a 10k failure must still be one.
+    archived = names(ARM_10K_LIST[arm])
+    assert archived <= failed_10k, (
+        f"{arm}: {len(archived - failed_10k)} archived 10k failure(s) now solve "
+        "-- the re-run is not the search that built the archive")
+    return exact, censored, failed_10k - set(exact) - censored
+
+
+def arm_on_bands(arm, cascade_cost):
+    """Per cascade band, each arm's REAL median and mean -- no longer a bracket.
+
+    This function used to draw brackets, and had to: greedy and s20_mk2 had no
+    stored cost for any row they solved under the 10,000-node screen, so ~98% of
+    the population could only be bounded between 1 and 10,000. `ac19_autmin_10k`
+    measured every one of the 72,779, so the bracket is gone and what is plotted
+    is what was counted. The two residues are counted, not guessed: `censored`
+    enters at the 10,000,000 ceiling (which pushes that arm's median UP, so
+    every band it wins, it wins in spite of the substitution), and
+    `unescalated` is dropped.
+    """
+    exact, censored, unescalated = arm_costs(arm)
+    rows = []
+    for i, label in enumerate(BAND_LABELS):
+        vals, kinds = [], {"exact": 0, "censored": 0, "unescalated": 0,
+                           "solved_10k": 0, "in_band": 0}
+        for name, c in cascade_cost.items():
+            if band_of(c) != i:
+                continue
+            kinds["in_band"] += 1
+            if exact.get(name, TEN_M + 1) <= SCREEN_BUDGET:
+                kinds["solved_10k"] += 1
+            if name in censored:
+                vals.append(TEN_M); kinds["censored"] += 1
+            elif name in exact:
+                vals.append(exact[name]); kinds["exact"] += 1
+            else:
+                kinds["unescalated"] += 1
+        if not vals:
+            rows.append({"band": label, "n": 0, **kinds}); continue
+        rows.append({"band": label, "n": len(vals),
+                     "mean": round(st.mean(vals), 1),
+                     "median": int(st.median(sorted(vals))),
+                     "total": sum(vals), **kinds})
+    return rows, len(exact), len(censored), len(unescalated)
 
 
 def arm_on_bands(arm, cascade_cost):
@@ -253,17 +352,19 @@ def arm_on_bands(arm, cascade_cost):
 def head2head(cascade_cost):
     """The three arms priced against each other, on rows where all three are real.
 
-    The full-population bands cannot compare arms: greedy and s20_mk2 have no
-    stored cost for the rows they solved under the 10,000-node screen. What they
-    DO have is every row that failed it, and those rows all have a cascade cost
-    too -- so on that tail, and only there, a real head-to-head exists.
-
-    Three nested sets, never pooled and always stated where used:
-        cascade + greedy    831   cascade + s20_mk2   259   all three   225
+    This used to be 225 rows -- the mutual 10k failures -- because that was the
+    only tail for which the archive held a cost for greedy AND s20_mk2 AND the
+    cascade. Everything they solved under the screen was unpriced. With the
+    10,000-node rung re-run over all 72,779 orbits the comparison is the whole
+    population, and `n` says so rather than this docstring: it is computed, not
+    asserted.
 
     A censored row (28 greedy, 9 s20_mk2, unsolved at 10,000,000) enters at the
     ceiling, which pushes that arm's median UP. So every band this table gives to
     greedy or s20_mk2 is given in spite of the substitution, not because of it.
+    The reverse bias no longer exists: when the set was the mutual failures it
+    was, by construction, the hardest 0.3% of the screen, and the cascade's win
+    there said nothing about the 99.7%.
     """
     g_exact, g_cens, _ = arm_costs("greedy")
     s_exact, s_cens, _ = arm_costs("s20_mk2")
@@ -441,8 +542,17 @@ def fig_bins(table, total, title, name, unsolved=None, truncated_from=None):
 
 
 def fig_compare(aut, ext):
+    """Both populations, band for band.
+
+    The band list used to be hard-coded to [0, 1, 2]: the extended set had only
+    run at 1,000 nodes, so its two hard bands were empty by construction and
+    plotting them would have compared a measured share against a budget
+    ceiling. Its 10k and 100k rungs have since landed -- 156,762 of 156,762
+    settled -- so all five bands are real on both sides and the figure shows
+    every band either population has rows in.
+    """
     fig, ax = plt.subplots(figsize=(9.4, 4.0))
-    idx = [0, 1, 2]
+    idx = [i for i in range(len(BAND_LABELS)) if aut[i]["n"] or ext[i]["n"]]
     w = .38
     # share_pop, not share: the legend names the FULL populations, so the bars
     # have to be over those too. Dividing the extended side by the 153,554 it
@@ -456,7 +566,8 @@ def fig_compare(aut, ext):
         ax.text(i + w / 2, a[i], f"{a[i]}%", ha="center", va="bottom", fontsize=10.5, color=BLUE)
     ax.set_xticks(idx); ax.set_xticklabels([BAND_LABELS[i] for i in idx])
     ax.set_ylabel("share of the population (%)")
-    ax.set_title("The three bands both populations actually ran", loc="left", color=INK)
+    ax.set_title(f"All {len(idx)} bands, both populations, fully settled",
+                 loc="left", color=INK)
     ax.legend(frameon=False, fontsize=11)
     ax.set_ylim(0, max(a + e) * 1.2)
     for s in ("top", "right"):
@@ -465,55 +576,69 @@ def fig_compare(aut, ext):
 
 
 def fig_arms(cas_tbl, g_rows, s_rows):
-    """What is actually KNOWN per band, per arm -- not a fabricated comparison.
+    """Three arms, per difficulty band, on real costs.
 
-    An earlier version drew greedy and s20_mk2 as node-count brackets beside the
-    cascade's median. With the bracket stated honestly (1 to 10,000) both arms
-    became one full-height block covering the whole plot: truthful and useless.
-    The informative quantity is not their cost -- it is how much of each band
-    they have any cost for at all, which is almost none until the hard tail.
+    Two earlier versions of this figure were wrong in opposite directions. The
+    first drew greedy and s20_mk2 as node-count brackets beside the cascade's
+    median; stated honestly the bracket was 1 to 10,000, so both arms became one
+    full-height block covering the whole plot -- truthful and useless. The second
+    gave up on cost and plotted COVERAGE instead: what fraction of each band the
+    two arms had any stored number for, which was under 1% until the hard tail.
+
+    Both were consequences of the same missing file. With the 10,000-node rung
+    recovered every row has a measured cost for every arm, so the left panel is
+    now the comparison it always should have been: three medians, same rows,
+    same bands. The right panel keeps a coverage question worth asking on its
+    own terms -- what share of each band an arm finishes inside the screen at
+    all, which is where the two orderings separate.
     """
     idx = [i for i, b in enumerate(cas_tbl) if b["n"]]
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(11.6, 4.3),
-                                  gridspec_kw={"width_ratios": [1, 1.25]})
+                                  gridspec_kw={"width_ratios": [1.15, 1]})
     x = list(range(len(idx)))
 
-    ax.plot(x, [cas_tbl[i]["median"] for i in idx], "o-", color=BLUE, lw=2.4, ms=8)
+    series = (("cascade", [cas_tbl[i]["median"] for i in idx], BLUE),
+              ("s20_mk2", [s_rows[i].get("median") for i in idx], ORANGE),
+              ("greedy", [g_rows[i].get("median") for i in idx], INK))
+    for arm, ys, col in series:
+        ax.plot(x, ys, "o-", color=col, lw=2.2, ms=7, label=arm)
     for j, i in enumerate(idx):
         ax.annotate(f"{cas_tbl[i]['median']:,}", (j, cas_tbl[i]["median"]),
-                    textcoords="offset points", xytext=(0, -17), ha="center",
-                    fontsize=10, color=BLUE)
+                    textcoords="offset points", xytext=(0, -18), ha="center",
+                    fontsize=9.5, color=BLUE)
     ax.set_yscale("log"); ax.set_xticks(x)
     ax.set_xticklabels([BAND_LABELS[i] for i in idx])
     ax.set_ylabel("median nodes (log)")
-    ax.set_title("cascade — exact on every row", loc="left", color=BLUE)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
+    ax.set_title("median cost per band — all three arms, all rows",
+                 loc="left", color=INK)
+    ax.legend(frameon=False, fontsize=10.5, loc="upper left")
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
 
     w = .38
     for off, (arm, rows, col) in zip((-w / 2, w / 2),
                                      (("greedy", g_rows, INK),
                                       ("s20_mk2", s_rows, ORANGE))):
-        known = [100 * (rows[i].get("exact", 0) + rows[i].get("censored", 0))
-                 / max(rows[i]["n"], 1) for i in idx]
-        ax2.bar([j + off for j in x], known, w, color=col, label=arm)
-        for j, v in zip(x, known):
+        pct = [100 * rows[i].get("solved_10k", 0) / max(rows[i].get("in_band", 1), 1)
+               for i in idx]
+        ax2.bar([j + off for j in x], pct, w, color=col, label=arm)
+        for j, v in zip(x, pct):
             ax2.text(j + off, v + 1.5, f"{v:.0f}%" if v >= 1 else "<1%",
                      ha="center", fontsize=9.5,
                      color=col if v >= 1 else MUTED)
     ax2.set_xticks(x); ax2.set_xticklabels([BAND_LABELS[i] for i in idx])
-    ax2.set_ylabel("% of the band with a stored cost")
+    ax2.set_ylabel("% of the band solved inside 10,000 nodes")
     ax2.set_ylim(0, 118)
-    ax2.set_title("greedy and s20_mk2 — how much is even known",
+    ax2.set_title("how much each band each arm finishes in the screen",
                   loc="left", color=INK)
-    ax2.legend(frameon=False, fontsize=10.5, loc="upper left")
-    for s in ("top", "right"):
-        ax2.spines[s].set_visible(False)
+    ax2.legend(frameon=False, fontsize=10.5, loc="lower left")
+    for sp in ("top", "right"):
+        ax2.spines[sp].set_visible(False)
     save(fig, "arms_on_bins")
 
 
 def fig_arms_summary(h2):
-    """Front-of-deck headline: one number per arm, on the same 225 rows."""
+    """Front-of-deck headline: one number per arm, on the same rows (now all of them)."""
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(11.4, 3.5),
                                   gridspec_kw={"width_ratios": [1.25, 1]})
     order = ["greedy", "s20_mk2", "cascade"]
@@ -683,8 +808,8 @@ def main():
     # deck has to be able to say how much of the total rests on them.
     job_b_mass = sum(JOB_B.values())
 
-    g_rows, g_exact, g_cens, g_failed = arm_on_bands("greedy", cas_aut)
-    s_rows, s_exact, s_cens, s_failed = arm_on_bands("s20_mk2", cas_aut)
+    g_rows, g_exact, g_cens, g_unesc = arm_on_bands("greedy", cas_aut)
+    s_rows, s_exact, s_cens, s_unesc = arm_on_bands("s20_mk2", cas_aut)
 
     sb, rb = stage_block(), rewrite_block()
     h2 = head2head(cas_aut)
@@ -697,14 +822,14 @@ def main():
                 "job_b_n": len(JOB_B), "job_b_mass": job_b_mass,
                 "job_b_pct": round(100 * job_b_mass / aut_tot["total"], 1)},
         "ext": {"bins": ext_tbl, "total": ext_tot, "n": len(cas_ext),
-                "unsolved": ext_unsolved, "budget": 1000,
+                "unsolved": ext_unsolved, "budget": 100_000, "budget_first_rung": 1000,
                 "ac": ext_ac, "aut_assisted": ext_aut,
                 "live_bands": sum(1 for b in ext_tbl if b["n"])},
         "arms": {
             "greedy": {"bins": g_rows, "exact": g_exact, "censored": g_cens,
-                       "bounded": N_AUT - g_failed, "failed_10k": g_failed},
+                       "unescalated": g_unesc},
             "s20_mk2": {"bins": s_rows, "exact": s_exact, "censored": s_cens,
-                        "bounded": N_AUT - s_failed, "failed_10k": s_failed},
+                        "unescalated": s_unesc},
         },
         "stages": sb, "rewrite": rb, "tenm": tb, "orig": ob, "u124": ub,
         "head2head": h2,
@@ -719,8 +844,8 @@ def main():
     fig_funnel()
     fig_bins(aut_tbl, aut_tot, f"AC19 aut-min · {N_AUT:,} orbits · full ladder",
              "bins_autmin")
-    fig_bins(ext_tbl, ext_tot, f"AC19 extended · {N_EXT:,} · budget 1,000 only",
-             "bins_extended", unsolved=ext_unsolved, truncated_from=3)
+    fig_bins(ext_tbl, ext_tot, f"AC19 extended · {N_EXT:,} · full 1k/10k/100k ladder",
+             "bins_extended", unsolved=ext_unsolved)
     fig_compare(aut_tbl, ext_tbl)
     fig_arms(aut_tbl, g_rows, s_rows)
     fig_arms_summary(h2)
@@ -738,8 +863,9 @@ def main():
         f"{b['band']}={b['n']:,}(med {b['median']})" for b in ext_tbl if b["n"]))
     print(f"  total {ext_tot['n']:,}  mean {ext_tot['mean']:,}  median {ext_tot['median']:,}"
           f"  +{ext_unsolved:,} unsolved")
-    print(f"arm coverage: greedy exact {g_exact:,} censored {g_cens} · "
-          f"s20_mk2 exact {s_exact:,} censored {s_cens}")
+    print(f"arm coverage: greedy exact {g_exact:,} censored {g_cens} "
+          f"unescalated {g_unesc} · s20_mk2 exact {s_exact:,} censored {s_cens} "
+          f"unescalated {s_unesc}")
     print(f"\nhead-to-head on {h2['n']} rows "
           f"(cascade+greedy {h2['n_greedy']}, cascade+s20_mk2 {h2['n_s20']}):")
     print(f"  {'band':<9}{'n':>5}{'cascade':>10}{'s20_mk2':>10}{'greedy':>10}   winner")
