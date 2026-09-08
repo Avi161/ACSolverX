@@ -100,6 +100,11 @@ S40 = dict(s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 # past it the hcompact campaigns (1M/5M/10M) take over.
 LADDER = (PREFIX_BUDGET, 1_000, 10_000, 100_000)
 MAX_BUDGET = 100_000
+# `cascade_heuristics.search` refuses a starter budget past 10,000. Mirrored
+# here so an out-of-range flag fails at the CLI, not once per row: `run_row`
+# turns every exception into an `error` record, so without this a bad value
+# writes thousands of silent failures instead of stopping.
+MAX_STARTER_BUDGET = 10_000
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROWS_CSV = os.path.join(ROOT, "results", "heuristic_search",
@@ -146,8 +151,14 @@ def worker_rlimit_gb(budget):
     return max(WORKER_RLIMIT_GB_BY_BUDGET.values())
 
 
-def out_path(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET):
+def out_path(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET,
+             starter_budget=STARTER_BUDGET):
     stem = f"{CAMPAIGN}_{arm}_b{budget}_mrl{SEARCH_CAP}"
+    # Only a non-default starter budget renames the file. Every path written
+    # before this flag existed keeps its name, so resume still finds them and
+    # the archived jsonl are still what `report` reads.
+    if starter_budget != STARTER_BUDGET:
+        stem += f"_sb{starter_budget}"
     if chunks and chunks > 1:
         stem += f"_part{chunk_index}of{chunks}"
     return os.path.join(out_dir, stem + ".jsonl")
@@ -266,17 +277,25 @@ def _fingerprint(steps):
     return hashlib.sha256(joined.encode()).hexdigest()
 
 
-def search_row(pair, arm=ARM, budget=PREFIX_BUDGET):
+def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
+               starter_budget=STARTER_BUDGET):
     """Run one arm on one pair and return a cascade-shaped result dict."""
     if not 1 <= budget <= MAX_BUDGET:
         raise ValueError(f"budget {budget} outside 1..{MAX_BUDGET}")
+    if not 0 <= starter_budget <= MAX_STARTER_BUDGET:
+        raise ValueError(f"starter_budget {starter_budget} outside "
+                         f"0..{MAX_STARTER_BUDGET}")
     if arm == "cascade501":
         from experiments.search.cascade_heuristics import search as cascade
-        # The prefix keeps its pinned shape at every rung: the extra rope goes
-        # to the final S20 component, not to `s40_gen`, so a rung is a strict
-        # extension of the rung below and not a different search.
+        # At the pinned STARTER_BUDGET the prefix keeps its shape at every
+        # rung: the extra rope goes to the final S20 component, not to
+        # `s40_gen`, so a rung is a strict extension of the rung below and not
+        # a different search. That is also why the 501/1k/10k/100k ladder gave
+        # `s40_gen` exactly 500 nodes at EVERY rung -- raise this and a rung
+        # stops being an extension of the one below, which is the point of the
+        # flag but means the rungs are no longer comparable to the archive.
         return cascade(pair, budget=budget, cap=SEARCH_CAP,
-                       starter_budget=STARTER_BUDGET,
+                       starter_budget=starter_budget,
                        rewrite_budget=REWRITE_BUDGET,
                        intermediate_cap=INTERMEDIATE_CAP)
     if arm != "ac501":
@@ -292,15 +311,16 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET):
                 min_total_length_seen=got["min_total_length_seen"])
 
 
-def run_row(row, arm=ARM, budget=PREFIX_BUDGET, emit_mixed=False):
+def run_row(row, arm=ARM, budget=PREFIX_BUDGET, emit_mixed=False,
+            starter_budget=STARTER_BUDGET):
     """One orbit. Never raises: a failure comes back as an ``error`` record."""
     started = time.time()
     record = {"name": row["name"], "r1": row["r1"], "r2": row["r2"],
               "n_members": int(row.get("n_members", 1) or 1),
               "budget": budget, "cap": SEARCH_CAP, "arm": arm,
-              "campaign": CAMPAIGN}
+              "campaign": CAMPAIGN, "starter_budget": starter_budget}
     try:
-        result = search_row((row["r1"], row["r2"]), arm, budget)
+        result = search_row((row["r1"], row["r2"]), arm, budget, starter_budget)
     except Exception as exc:
         record.update(error=f"{type(exc).__name__}: {exc}",
                       traceback=traceback.format_exc()[-2000:],
@@ -363,7 +383,7 @@ def _init_worker(rlimit_bytes):
 
 
 def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
-         log=print):
+         starter_budget=STARTER_BUDGET, log=print):
     """What THIS invocation would run -- not what the defaults would run.
 
     `plan` used to ignore the budget and the row list and always describe the
@@ -382,6 +402,7 @@ def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
         "rows": n,
         "rows_csv": path,
         "budget_per_row": budget,
+        "starter_budget_s40_gen": starter_budget,
         "record": "move-wise (steps stored)" if emit_mixed else "summary only",
         "workers": n_workers,
         "cap": SEARCH_CAP,
@@ -409,17 +430,21 @@ def plan(budget=PREFIX_BUDGET, rows_csv=None, workers="auto", emit_mixed=False,
 
 def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
         workers="auto", chunks=1, chunk_index=1, limit=None, resume=True,
-        emit_mixed=False, rlimit_gb=None, log=print):
+        emit_mixed=False, rlimit_gb=None, starter_budget=STARTER_BUDGET,
+        log=print):
     if arm not in ARMS:
         raise SystemExit(f"unknown arm {arm!r}; choose from {ARMS}")
     if not 1 <= budget <= MAX_BUDGET:
         raise SystemExit(f"budget {budget} outside 1..{MAX_BUDGET}; past that "
                          "the hcompact campaigns take over")
+    if not 0 <= starter_budget <= MAX_STARTER_BUDGET:
+        raise SystemExit(f"starter-budget {starter_budget} outside "
+                         f"0..{MAX_STARTER_BUDGET}")
     rows = stride_chunk(load_rows(rows_csv), chunks, chunk_index)
     if limit:
         rows = rows[:int(limit)]
     os.makedirs(out_dir, exist_ok=True)
-    path = out_path(out_dir, chunks, chunk_index, arm, budget)
+    path = out_path(out_dir, chunks, chunk_index, arm, budget, starter_budget)
     done = read_done_names(path) if resume else set()
     n_done = len(done)
     todo = [r for r in rows if r["name"] not in done]
@@ -427,6 +452,9 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     n_workers = (max(1, (os.cpu_count() or 2) - 1) if workers == "auto"
                  else max(1, int(workers)))
     log(f"  campaign : {CAMPAIGN} / {arm} at {budget:,} nodes")
+    if starter_budget != STARTER_BUDGET:
+        log(f"  s40_gen  : {starter_budget:,} nodes "
+            f"(pinned default is {STARTER_BUDGET:,})")
     log(f"  input    : {rows_csv or ROWS_CSV}")
     log(f"  rows     : {len(rows):,} in this chunk, {n_done:,} already done, "
         f"{len(todo):,} to run")
@@ -445,7 +473,8 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     with open(path, "a") as fh:
         if n_workers == 1:
             _init_worker(rlimit)
-            stream = (run_row(r, arm, budget, emit_mixed) for r in todo)
+            stream = (run_row(r, arm, budget, emit_mixed, starter_budget)
+                      for r in todo)
         else:
             pool = ctx.Pool(n_workers, initializer=_init_worker,
                             initargs=(rlimit,))
@@ -459,7 +488,8 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
                     f"{n_workers} workers)")
             stream = pool.imap_unordered(
                 functools.partial(run_row, arm=arm, budget=budget,
-                                  emit_mixed=emit_mixed),
+                                  emit_mixed=emit_mixed,
+                                  starter_budget=starter_budget),
                 todo, chunksize=chunksize)
         try:
             for record in stream:
@@ -480,13 +510,15 @@ def run(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, rows_csv=None,
     return path
 
 
-def report(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, chunk_index=None, log=print):
+def report(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1,
+           chunk_index=None, starter_budget=STARTER_BUDGET, log=print):
     # Streamed, not collected: at 156,762 rows carrying move sequences a full
     # dict is gigabytes, and `ladder` would hold it across the next rung's
     # pool fork -- which is exactly how the 100,000-node rung died.
     total = n_ac = n_aut = 0
     by_winner, seconds, rejected = {}, 0.0, []
-    for record in _stream_records(out_dir, chunks, chunk_index, arm, budget):
+    for record in _stream_records(out_dir, chunks, chunk_index, arm,
+                                  starter_budget, budget):
         total += 1
         seconds += record.get("seconds", 0.0) or 0.0
         if record.get("solved"):
@@ -520,7 +552,8 @@ def report(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, chun
             "core_hours": round(seconds / 3600, 3)}
 
 
-def certify(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1,
+def certify(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET,
+            starter_budget=STARTER_BUDGET, chunks=1,
             chunk_index=None, names=None, limit=None, log=print):
     """Regenerate full certificates for solved rows and re-verify each one.
 
@@ -532,7 +565,8 @@ def certify(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1,
     """
     from experiments.search.make_ac19_autmin_screen import shipped_residues
 
-    records = _all_records(out_dir, chunks, chunk_index, arm, budget)
+    records = _all_records(out_dir, chunks, chunk_index, arm, budget,
+                           starter_budget)
     solved = {n: r for n, r in records.items() if r.get("solved")}
     if names:
         wanted = [n for n in names if n in solved]
@@ -581,7 +615,8 @@ def certify(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1,
     return target
 
 
-def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, chunk_index=None, log=print):
+def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1,
+             chunk_index=None, starter_budget=STARTER_BUDGET, log=print):
     """Write the lists the next stage reads: what this pass did NOT settle.
 
     Committing the 57 MB run jsonl is not the house pattern; committing the
@@ -591,7 +626,8 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
     # Only the unsettled rows are kept, and only their small fields -- the
     # move sequences are dropped as they stream past.
     records = {}
-    for r in _stream_records(out_dir, chunks, chunk_index, arm, budget):
+    for r in _stream_records(out_dir, chunks, chunk_index, arm,
+                             starter_budget, budget):
         if r.get("solved"):
             continue
         records[r["name"]] = {k: r[k] for k in
@@ -637,6 +673,7 @@ def residues(out_dir=DEFAULT_OUT, *, arm=ARM, budget=PREFIX_BUDGET, chunks=1, ch
 
 
 def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
+           starter_budget=STARTER_BUDGET,
            chunks=1, chunk_index=1, rows_csv=None, emit_mixed=False,
            log=print):
     """Walk the budget ladder, each rung over the rung below's leftovers.
@@ -653,11 +690,13 @@ def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
         log(f"\n=== rung: {budget:,} nodes ===")
         run(out_dir, arm=arm, budget=budget, rows_csv=previous,
             workers=workers, chunks=chunks, chunk_index=chunk_index,
-            emit_mixed=emit_mixed, log=log)
+            emit_mixed=emit_mixed, starter_budget=starter_budget, log=log)
         got = report(out_dir, arm=arm, budget=budget, chunks=chunks,
-                     chunk_index=chunk_index, log=log)
+                     chunk_index=chunk_index, starter_budget=starter_budget,
+                     log=log)
         written = residues(out_dir, arm=arm, budget=budget, chunks=chunks,
-                           chunk_index=chunk_index, log=log)
+                           chunk_index=chunk_index,
+                           starter_budget=starter_budget, log=log)
         summary.append(dict(got, budget=budget))
         previous = written[0]                       # the unsolved list
         if got["unsolved"] == 0:
@@ -673,13 +712,14 @@ def ladder(out_dir=DEFAULT_OUT, *, arm=ARM, rungs=LADDER, workers="auto",
     return summary
 
 
-def _stream_records(out_dir, chunks, chunk_index, arm=ARM,
+def _stream_records(out_dir, chunks, chunk_index, arm=ARM, starter_budget=STARTER_BUDGET,
                     budget=PREFIX_BUDGET):
     """Finished rows one at a time. Nothing is retained."""
-    paths = ([out_path(out_dir, chunks, i, arm, budget)
+    paths = ([out_path(out_dir, chunks, i, arm, budget, starter_budget)
               for i in range(1, (chunks or 1) + 1)]
              if chunk_index is None and chunks and chunks > 1
-             else [out_path(out_dir, chunks, chunk_index or 1, arm, budget)])
+             else [out_path(out_dir, chunks, chunk_index or 1, arm, budget,
+                            starter_budget)])
     for path in paths:
         if not os.path.exists(path):
             continue
@@ -696,11 +736,13 @@ def _stream_records(out_dir, chunks, chunk_index, arm=ARM,
                     yield record
 
 
-def _all_records(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET):
-    paths = ([out_path(out_dir, chunks, i, arm, budget)
+def _all_records(out_dir, chunks, chunk_index, arm=ARM, budget=PREFIX_BUDGET,
+                 starter_budget=STARTER_BUDGET):
+    paths = ([out_path(out_dir, chunks, i, arm, budget, starter_budget)
               for i in range(1, (chunks or 1) + 1)]
              if chunk_index is None and chunks and chunks > 1
-             else [out_path(out_dir, chunks, chunk_index or 1, arm, budget)])
+             else [out_path(out_dir, chunks, chunk_index or 1, arm, budget,
+                            starter_budget)])
     records = {}
     for p in paths:
         records.update(read_done(p))
@@ -721,6 +763,14 @@ def main(argv=None):
                          + ", ".join(f"{b:,}" for b in LADDER) + ")")
     ap.add_argument("--rows-csv", default=None,
                     help="run a residue CSV instead of the whole screen")
+    ap.add_argument("--starter-budget", type=int, default=STARTER_BUDGET,
+                    help=f"nodes for the `s40_gen` component, "
+                         f"0..{MAX_STARTER_BUDGET} (default {STARTER_BUDGET}, "
+                         "the pinned value every archived rung used). Raising "
+                         "it is the only way to give `s40_gen` more rope: "
+                         "--budget alone hands the extra nodes to s20_mk2. A "
+                         "non-default value writes to a `_sb<N>` filename so "
+                         "it can never be confused with the archive.")
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--chunks", type=int, default=1)
     ap.add_argument("--chunk-index", type=int, default=1)
@@ -739,43 +789,51 @@ def main(argv=None):
     args = ap.parse_args(argv)
     if args.command == "plan":
         plan(budget=args.budget, rows_csv=args.rows_csv, workers=args.workers,
-             emit_mixed=args.emit_mixed)
+             emit_mixed=args.emit_mixed, starter_budget=args.starter_budget)
     elif args.command == "smoke":
         run(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=1, chunks=1, chunk_index=1,
             limit=args.limit or 25, resume=False,
-            emit_mixed=args.emit_mixed, rlimit_gb=args.worker_rlimit_gb)
+            emit_mixed=args.emit_mixed, rlimit_gb=args.worker_rlimit_gb,
+            starter_budget=args.starter_budget)
         report(args.out_dir + "_smoke", arm=args.arm, budget=args.budget,
-               chunks=1, chunk_index=1)
+               chunks=1, chunk_index=1, starter_budget=args.starter_budget)
     elif args.command == "ladder":
         rungs = tuple(b for b in LADDER if b >= args.budget) or (args.budget,)
         ladder(args.out_dir, arm=args.arm, rungs=rungs, workers=args.workers,
                chunks=args.chunks, chunk_index=args.chunk_index,
-               rows_csv=args.rows_csv, emit_mixed=args.emit_mixed)
+               rows_csv=args.rows_csv, emit_mixed=args.emit_mixed,
+               starter_budget=args.starter_budget)
     elif args.command == "run":
         run(args.out_dir, arm=args.arm, budget=args.budget,
             rows_csv=args.rows_csv, workers=args.workers, chunks=args.chunks,
             chunk_index=args.chunk_index, limit=args.limit,
             resume=not args.no_resume, emit_mixed=args.emit_mixed,
-            rlimit_gb=args.worker_rlimit_gb)
+            rlimit_gb=args.worker_rlimit_gb,
+            starter_budget=args.starter_budget)
         report(args.out_dir, arm=args.arm, budget=args.budget,
-               chunks=args.chunks, chunk_index=args.chunk_index)
+               chunks=args.chunks, chunk_index=args.chunk_index,
+               starter_budget=args.starter_budget)
         if not args.limit:
             residues(args.out_dir, arm=args.arm, budget=args.budget,
-                     chunks=args.chunks, chunk_index=args.chunk_index)
+                     chunks=args.chunks, chunk_index=args.chunk_index,
+                     starter_budget=args.starter_budget)
     else:
         index = None if args.chunks > 1 else args.chunk_index
         if args.command == "report":
             report(args.out_dir, arm=args.arm, budget=args.budget,
-                   chunks=args.chunks, chunk_index=index)
+                   chunks=args.chunks, chunk_index=index,
+                   starter_budget=args.starter_budget)
         elif args.command == "certify":
             print(certify(args.out_dir, arm=args.arm, budget=args.budget,
                           chunks=args.chunks, chunk_index=index,
+                          starter_budget=args.starter_budget,
                           names=args.names.split(",") if args.names else None,
                           limit=args.limit))
         else:
             residues(args.out_dir, arm=args.arm, budget=args.budget,
-                     chunks=args.chunks, chunk_index=index)
+                     chunks=args.chunks, chunk_index=index,
+                     starter_budget=args.starter_budget)
     return 0
 
 

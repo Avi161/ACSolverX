@@ -379,8 +379,8 @@ def test_the_ladder_feeds_each_rung_the_rung_belows_leftovers(monkeypatch, tmp_p
     seen = []
 
     def fake_run(out_dir, *, arm, budget, rows_csv, workers, chunks,
-                 chunk_index, emit_mixed, log):
-        seen.append((budget, rows_csv))
+                 chunk_index, emit_mixed, starter_budget, log):
+        seen.append((budget, rows_csv, starter_budget))
 
     counts = iter([{"rows": 100, "ac": 90, "aut_assisted": 0, "unsolved": 10},
                    {"rows": 10, "ac": 8, "aut_assisted": 0, "unsolved": 2},
@@ -392,8 +392,9 @@ def test_the_ladder_feeds_each_rung_the_rung_belows_leftovers(monkeypatch, tmp_p
 
     got = screen.ladder(str(tmp_path), arm="ac501", rungs=(501, 1000, 10_000),
                         log=lambda _: None)
-    assert seen == [(501, None), (1000, "resid_b501.csv"),
-                    (10_000, "resid_b1000.csv")]
+    assert seen == [(501, None, screen.STARTER_BUDGET),
+                    (1000, "resid_b501.csv", screen.STARTER_BUDGET),
+                    (10_000, "resid_b1000.csv", screen.STARTER_BUDGET)]
     assert [r["budget"] for r in got] == [501, 1000, 10_000]
 
 
