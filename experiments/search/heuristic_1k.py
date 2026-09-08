@@ -87,7 +87,25 @@ def score_key(codes, whitehead, w_weight=2.0, s_weight=20.0, mk_weight=2.0):
 
 
 def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
-                 s_weight=20.0, mk_weight=2.0):
+                 s_weight=20.0, mk_weight=2.0, capture=True):
+    """Best-first over AC substitutions, plus Nielsen images on `aut_edges`.
+
+    `capture=False` drops the parent pointers and keeps a bare dedup set. The
+    search is unchanged -- the only use of `parent` inside the loop is the
+    membership test `child in parent`, which a set answers identically -- so
+    the explored set, the discovery order and the pop order are bit-identical
+    and `nodes_explored` matches. What is lost is the path: a solve returns
+    empty `states`/`steps` and `path_available=False`. Re-run that one row
+    with `capture=True` to get the certificate; the search is deterministic,
+    so it retraces the same nodes and stops at the same place.
+
+    It is worth the trouble only at campaign budgets. Measured on one u124
+    row: every popped node stores ~95 children, at 545 B each with capture
+    and 215 B without, so 50.6 KB per node falls to 20.0 KB -- 2.5x the
+    reachable budget for a given lane. The residual 215 B is a set entry plus
+    the heap tuple, and no flag can drop those: the heap holds nearly every
+    child (9,410,483 entries against 9,510,483 stored at 100,000 nodes).
+    """
     if w_weight is None:
         w_weight = 2.0 if arm == 'whitehead2' else 0.0
     root = pack(canon_pair(*pair))
@@ -95,7 +113,10 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
     priority = float(len(root) - 1) if arm == 'greedy' else score_key(
         np.frombuffer(root, dtype=np.uint8), whitehead, w_weight, s_weight, mk_weight)
     heap = [(priority, 0, root)]
-    parent = {root: None}
+    # Same membership semantics either way; only the payload differs.
+    parent = {root: None} if capture else {root}
+    remember = ((lambda child, entry: parent.__setitem__(child, entry))
+                if capture else (lambda child, entry: parent.add(child)))
     best = root
     best_total = len(root) - 1
     best_max = max(map(len, unpack(root)))
@@ -110,7 +131,7 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
         state = unpack(key)
         if len(state[0]) == len(state[1]) == 1 and state[0].lower() != state[1].lower():
             steps, states = [], []
-            cur = key
+            cur = key if capture else None
             while cur is not None:
                 states.append(list(unpack(cur)))
                 prev = parent[cur]
@@ -119,7 +140,8 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                 cur, step = prev
                 steps.append(step)
             return dict(solved=True, nodes_explored=nodes, states=states[::-1],
-                        steps=steps[::-1], basis_evaluations=basis_evaluations,
+                        steps=steps[::-1], path_available=capture,
+                        basis_evaluations=basis_evaluations,
                         best_state=list(unpack(best)), min_total_length_seen=best_total,
                         min_max_relator_length_seen=best_max,
                         max_relator_length_seen=max_seen)
@@ -135,7 +157,8 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
             child = raw[o:o + int(lengths[i])]
             if child in parent:
                 continue
-            parent[child] = key, {'kind': 'substitution', 'move': '_'.join(str(int(x)) for x in moves[i])}
+            remember(child, (key, {'kind': 'substitution',
+                                   'move': '_'.join(str(int(x)) for x in moves[i])}))
             child_state = unpack(child)
             child_total = sum(map(len, child_state))
             child_max = max(map(len, child_state))
@@ -151,7 +174,8 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                     continue
                 child = pack(nxt)
                 if child not in parent:
-                    parent[child] = key, {'kind': 'automorphism', 'images': transform}
+                    remember(child, (key, {'kind': 'automorphism',
+                                           'images': transform}))
                     child_total = sum(map(len, nxt))
                     child_max = max(map(len, nxt))
                     max_seen = max(max_seen, child_max)
@@ -161,6 +185,7 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                                       w_weight, s_weight, mk_weight)
                     heapq.heappush(heap, (score, depth + 1, child))
     return dict(solved=False, nodes_explored=nodes, states=[], steps=[],
+                path_available=capture,
                 basis_evaluations=basis_evaluations, best_state=list(unpack(best)),
                 min_total_length_seen=best_total,
                 min_max_relator_length_seen=best_max,
