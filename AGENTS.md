@@ -622,3 +622,13 @@ The independent corner-dart check in
 `tests/stable_ac/test_positive_hnn_link_rotations.py` independently exhausts
 all 3,745 order choices and reproduces the existing checker's histograms.
 Do not turn this failure into an AC invariant or a neighbouring-state scan.
+
+### [2026-09-08] Reindex the attached row in a finite telescope
+
+[WORKS] The positive HNN telescope with defining rows `vQP,wPQ`
+returns exactly to `(uwUVW,uvUWV,VwvU)`, the original triple renamed.
+Substitute through the killer as well as both retained defining rows;
+an apparent improvement from shifting only the mapping rows is not a
+new endpoint. `test_finite_defining_telescope_returns_with_killer_retained`
+checks this defining-substitution return, not a transcript justifying the
+initial defining adjunctions from bare stabilization rows.

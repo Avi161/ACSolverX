@@ -230,3 +230,30 @@ def test_positive_hnn_coupled_strip_returns_to_ak3():
     rows = (inverse(rows[0]), rows[1])
     rows = (rows[1], rows[0])
     assert rows == ("uuuQQQQ", "uquQUQ")
+
+
+def test_finite_defining_telescope_returns_with_killer_retained():
+    """Defining-substitution replay, not an elementary stabilization transcript.
+
+    Dv and Dw are starting assumptions for this check, not claimed free
+    donations into bare new rows.
+    """
+    sq, sp, k = "uqUPQ", "upUQP", "PqpU"
+    Dv, Dw = "vQP", "wPQ"
+    defining_p = reduce_word(sp, inverse(Dv))
+    defining_q = reduce_word(sq, inverse(Dw))
+    assert defining_p == "upUV"
+    assert defining_q == "uqUW"
+    defining_p = conjugate(defining_p, "U")
+    defining_q = conjugate(defining_q, "U")
+    assert defining_p == "pUVu"
+    assert defining_q == "qUWu"
+    images = {"p": "Uvu", "q": "Uwu", "u": "u", "v": "v", "w": "w"}
+    assert substitute(defining_p, images) == ""
+    assert substitute(defining_q, images) == ""
+    rows = tuple(substitute(row, images) for row in (Dv, Dw, k))
+    assert rows == ("vUWVu", "wUVWu", "UVwv")
+    rows = tuple(conjugate(row, "u") for row in rows)
+    rows = (rows[1], rows[0], rows[2])
+    renamed = {"p": "v", "q": "w", "u": "u"}
+    assert rows == tuple(substitute(row, renamed) for row in (sq, sp, k))
