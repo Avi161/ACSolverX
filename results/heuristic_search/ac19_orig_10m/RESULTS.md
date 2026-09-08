@@ -14,6 +14,33 @@ Every one of the 58 row-runs solved. **Not one needed 100,000 nodes** -- the
 budget the cascade screen runs at -- against representatives that were given
 **10,000,000** and exhausted every one.
 
+### 58 is row-runs, not presentations
+
+**The 18 `s20_mk2` originals are a strict subset of the 40 `greedy` originals**
+-- set difference empty, checked from the derived lists, and pinned by
+`tests/test_ac19_orig_10m.py::test_s20_mk2_originals_are_a_subset_of_greedy`.
+The 9 `s20_mk2` orbits likewise sit inside the 28 `greedy` orbits.
+
+So the target set is **28 distinct orbits and 40 distinct originals**, not 37
+and 58. The 58 counts (arm x original) cells: 18 originals had BOTH arms run
+on them, and both arms solved all 18. Any sentence of the form "all 58
+presentations" overcounts distinct presentations by 18 and should say "all 58
+row-runs" or "all 40 originals".
+
+That overlap is not waste -- it is a paired head-to-head on 18 rows at equal
+budget and cap, which no other part of this campaign has. It goes the
+expected way on most of them and the other way on at least one, so it is a
+distribution rather than a verdict:
+
+| original | `greedy` | `s20_mk2` |
+|---|---:|---:|
+| `ac19x_139445` | 50,800 | 958 |
+| `ac19x_90583` | 50,621 | 967 |
+| `ac19x_91095` | 1,839 | **2,638** |
+
+Those three are transcribed from the terminal, not re-derived; the full
+18-row comparison is computed from the records once the jsonls land.
+
 | arm | min | p50 | p90 | max | sum |
 |---|---:|---:|---:|---:|---:|
 | `greedy` | 509 | 5,720 | 45,868 | 52,143 | 714,752 |
