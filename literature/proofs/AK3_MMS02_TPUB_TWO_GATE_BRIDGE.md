@@ -1163,6 +1163,57 @@ factor as a conjugate of $R^{\pm1}$ or $S^{\pm1}$, checks every displayed
 equality defect, and checks that the final left sides are literally $x,y$
 while the right sides are empty.  All three focused checks pass.
 
+A shorter literal alternative exposes the common-power argument without
+introducing a new group consequence as a live relator. Put $a=x^3$ and
+$P=S\,{}^yS\,{}^{y^2}S$. Since $a$ commutes freely with $x$, direct
+free-word identities give
+\[
+ [a,y]=R\,{}^yR^{-1},\qquad
+ {}^\Delta a\,a^{-1}={}^{xy}R\,{}^xR^{-1}=P Y R^{-1}.
+\]
+Here $[a,y]=aya^{-1}y^{-1}$. Solving the last identity, then using
+(33a), gives
+\[
+ \begin{aligned}
+ F_y&=R^{-1}\,{}^xR\,{}^{xy}R^{-1}\,S\,{}^yS\,{}^{y^2}S=y,\\
+ F_x&={}^xS\,{}^\Delta F_y=x.
+ \end{aligned}
+\]
+Thus $F_y,F_x$ have six and seven conjugate-relator factors, respectively.
+The same independent free-word checker verifies both literal expansions;
+the longer certificates above remain intact. These normal-closure
+factorizations do not replace either current relator by $x$ or $y$.
+
+They do license an explicit auxiliary preparation. Starting from the
+stabilized tuple $(R,S,t)$, right-donate the factors of $F_x^{-1}$ into
+row $t$ three times, restoring the actual $R,S$ donor after every factor.
+The row becomes $d=tX^3$. The twenty-one factor donations expand to
+$201$ inversions, single-letter conjugations and right multiplications;
+five further such moves left-multiply the original $R$ row by $d$.
+The stored endpoint is exactly $(tY^4,S,tX^3)$, after $206$ moves from
+the already stabilized tuple, with no row permutation counted. The
+replay checks the donor restoration after every factor, the three
+intermediate rows $tX,tX^2,tX^3$, and this complete endpoint.
+
+There is a coupled power exchange from this preparation, but not an
+index decrease. For distinct current rows $D=tg^{-m}$ and $E=th^{-n}$,
+\[
+ [E,h]\,{}^hD=t h g^{-m}h^{-1}.
+\]
+Conjugate $D$ by $h$, then left-donate ${}^hE^{-1}$ and $E$, restoring
+the other row. With $d=tX^3$, $e=tY^4$ and $z=xyX$, apply this macro
+first to $e$ with donor $d$ and $h=x$, then to $d$ with the changed
+$e$ and $h=z$. The literal identity $zxz^{-1}=Sy$ lets the retained
+$S$ row correct $d$ to $tY^3$. Apply the macro once more to $e$, now
+with this changed $d$ and $h=y$; $yzY=S^{-1}x$ lets the retained
+$S$ row correct $e$ to $tX^4$. The replay uses three positive
+$S$-donations with conjugators $tY,tY^2,tY^3$ for the first correction
+and four negative ones with conjugators $tX,tX^2,tX^3,tX^4$ for the
+second. Eliminating $t$ from $(tY^3,tX^4,S)$ gives mirrored AK3,
+$(y^3X^4,S)$, not AK2 or a free basis. This evaluates this specific
+coupled exchange; neither the short normal certificates nor the
+licensed preparation proves stable or ordinary AK3.
+
 Lemma 6.1 therefore proves
 
 \[

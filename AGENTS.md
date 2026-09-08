@@ -646,3 +646,15 @@ collapse of the presentation complex. These two specified constructions
 are closed; do not launch a neighbouring-slide or handle-resolution census.
 [TRAP] A genus-zero ribbon neighbourhood still has boundary. Say its
 capped surface is spherical; do not call the uncapped neighbourhood a sphere.
+
+### [2026-09-08] Use the short common-power normal certificate with live donors
+
+[WORKS] `test_ak3_normal_closure_certificate.py` now supplies literal
+normal factorizations of x and y with seven and six factors; the older
+3,107/3,448-factor certificates remain intact. They license manufacturing
+`tXXX` while restoring R,S, not replacing R or S by a generator.
+Twenty-one factor donations are 201 elementary moves, not twenty-one;
+the full preparation reaches `(tYYYY,S,tXXX)` in 206 moves after the
+initial stabilization. The checked three-stage coupled power exchange
+ends at `(tYYY,tXXXX,S)`, mirrored AK3. Do not repeat that exchange as
+an index-lowering proposal or promote normal generation to AC triviality.

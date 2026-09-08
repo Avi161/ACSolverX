@@ -238,3 +238,122 @@ def test_final_normal_closure_certificates_are_literal_generators() -> None:
     assert final["y_one"].right == ""
     verify(final["x_one"])
     verify(final["y_one"])
+
+
+def central_power_certificate() -> dict[str, EqCert]:
+    yf = (
+        Factor("", "R", -1),
+        Factor("x", "R", 1),
+        Factor("xy", "R", -1),
+        Factor("", "S", 1),
+        Factor("y", "S", 1),
+        Factor("yy", "S", 1),
+    )
+    xf = (Factor("x", "S", 1),) + tuple(
+        Factor("xyx" + factor.conjugator, factor.relator, factor.sign)
+        for factor in yf
+    )
+    return {"x_one": EqCert("x", "", xf), "y_one": EqCert("y", "", yf)}
+
+
+def test_central_power_certificates_have_exact_factors_and_coefficients() -> None:
+    certificates = central_power_certificate()
+    for name, count, coefficients in (("x_one", 7, (-1, 4)),
+                                      ("y_one", 6, (-1, 3))):
+        cert = certificates[name]
+        assert len(cert.factors) == count
+        verify(cert)
+        assert tuple(sum(factor.sign for factor in cert.factors
+                         if factor.relator == relator)
+                     for relator in ("R", "S")) == coefficients
+
+
+def test_central_power_preparation_replays_elementary_donor_moves() -> None:
+    """Licensed preparation only, not a trivialization."""
+    xf = central_power_certificate()["x_one"].factors
+    x_inverse_factors = tuple(
+        Factor(factor.conjugator, factor.relator, -factor.sign)
+        for factor in reversed(xf)
+    )
+    assert len(x_inverse_factors) == 7
+    rows = [R, S, "t"]
+    conjugations = inversions = multiplications = 0
+    for block in range(1, 4):
+        for factor in x_inverse_factors:
+            donor = 0 if factor.relator == "R" else 1
+            if factor.sign == -1:
+                rows[donor] = inverse(rows[donor])
+                inversions += 1
+            for letter in reversed(factor.conjugator):
+                rows[donor] = reduce_word(letter + rows[donor] + inverse(letter))
+                conjugations += 1
+            rows[2] = reduce_word(rows[2] + rows[donor])
+            multiplications += 1
+            for letter in reversed(inverse(factor.conjugator)):
+                rows[donor] = reduce_word(letter + rows[donor] + inverse(letter))
+                conjugations += 1
+            if factor.sign == -1:
+                rows[donor] = inverse(rows[donor])
+                inversions += 1
+            assert rows[:2] == [R, S]
+        assert rows[2] == "t" + "X" * block
+        assert (conjugations, inversions, multiplications) == (
+            50 * block, 10 * block, 7 * block,
+        )
+    assert multiplications == 21
+    assert conjugations + inversions + multiplications == 201
+
+    rows[0] = inverse(rows[0])
+    inversions += 1
+    rows[2] = inverse(rows[2])
+    inversions += 1
+    rows[0] = reduce_word(rows[0] + rows[2])
+    multiplications += 1
+    rows[0] = inverse(rows[0])
+    inversions += 1
+    rows[2] = inverse(rows[2])
+    inversions += 1
+    assert rows == ["tYYYY", S, "tXXX"]
+    assert conjugations + inversions + multiplications == 206
+
+
+def test_coupled_common_power_exchange_returns_to_mirror() -> None:
+    """Restored-donor macro replay ending at mirrored AK3, not a trivialization."""
+    rows = ["tXXX", "tYYYY", S]
+
+    def conj(word: str, prefix: str) -> str:
+        return reduce_word(prefix + word + inverse(prefix))
+
+    def donate(recipient: int, donor: int, prefix: str, sign: int) -> None:
+        assert recipient != donor
+        assert sign in (-1, 1)
+        original_donor = rows[donor]
+        if sign == -1:
+            rows[donor] = inverse(rows[donor])
+        rows[donor] = conj(rows[donor], prefix)
+        rows[recipient] = reduce_word(rows[donor] + rows[recipient])
+        rows[donor] = conj(rows[donor], inverse(prefix))
+        if sign == -1:
+            rows[donor] = inverse(rows[donor])
+        assert rows[donor] == original_donor
+
+    def sweep(recipient: int, donor: int, prefix: str) -> None:
+        rows[recipient] = conj(rows[recipient], prefix)
+        donate(recipient, donor, prefix, -1)
+        donate(recipient, donor, "", 1)
+
+    z = "xyX"
+    assert conj("x", z) == reduce_word(S + "y")
+    assert conj(z, "y") == reduce_word(inverse(S) + "x")
+    sweep(1, 0, "x")
+    assert rows[1] == reduce_word("t" + inverse(z) * 4)
+    sweep(0, 1, z)
+    assert rows[0] == reduce_word("t" + inverse(S + "y") * 3)
+    for index in range(1, 4):
+        donate(0, 2, "t" + "Y" * index, 1)
+    assert rows[0] == "tYYY"
+    sweep(1, 0, "y")
+    assert rows[1] == reduce_word("t" + inverse(inverse(S) + "x") * 4)
+    for index in range(1, 5):
+        donate(1, 2, "t" + "X" * index, -1)
+    assert rows == ["tYYY", "tXXXX", S]
