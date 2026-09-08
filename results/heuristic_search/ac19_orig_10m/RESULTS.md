@@ -41,10 +41,20 @@ distribution rather than a verdict:
 Those three are transcribed from the terminal, not re-derived; the full
 18-row comparison is computed from the records once the jsonls land.
 
-| arm | min | p50 | p90 | max | sum |
-|---|---:|---:|---:|---:|---:|
-| `greedy` | 509 | 5,720 | 45,868 | 52,143 | 714,752 |
-| `s20_mk2` | 190 | 1,575 | 6,522 | 10,229 | 49,540 |
+| arm | min | p50 | p90 | max | sum | source |
+|---|---:|---:|---:|---:|---:|---|
+| `greedy` | 509 | 5,720 | 47,428 | 52,143 | 714,752 | **re-derived from the jsonl** |
+| `s20_mk2` | 190 | 1,575 | 6,522 | 10,229 | 49,540 | reported, jsonl not yet in repo |
+
+`p90` is nearest-rank, `nodes[int(0.9 * n)]`. On 40 points that index is 36;
+index 35 is 45,868, and both are defensible p90s. An earlier draft quoted
+45,868. Nothing is wrong with either number -- but quote the convention with
+it, because a p90 that moves by 3% between two correct definitions is the
+kind of cell that later reads as an error. `verify_ac19_orig_10m.py` prints
+both neighbouring order statistics for exactly this reason.
+
+Every other greedy cell -- min, p50, max, sum, and all 40 solve counts --
+re-derives from the records exactly.
 
 0 errors, 0 OOM. The box peaked at **14 GiB of 743**, and the campaign that
 was sized for 6.5 hours finished in **6 minutes**, because every row solved
