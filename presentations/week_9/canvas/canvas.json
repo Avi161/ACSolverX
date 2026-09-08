@@ -1,0 +1,144 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 820,
+      "title": "01 \u00b7 Main"
+    },
+    {
+      "file": "Populations.dc.html",
+      "x": 1580,
+      "y": 0,
+      "w": 1440,
+      "h": 820,
+      "title": "02 \u00b7 Populations"
+    },
+    {
+      "file": "Cascade.dc.html",
+      "x": 3160,
+      "y": 0,
+      "w": 1440,
+      "h": 820,
+      "title": "03 \u00b7 Cascade"
+    },
+    {
+      "file": "Pattern.dc.html",
+      "x": 4740,
+      "y": 0,
+      "w": 1440,
+      "h": 820,
+      "title": "04 \u00b7 Pattern"
+    },
+    {
+      "file": "BinsAutMin.dc.html",
+      "x": 0,
+      "y": 1020,
+      "w": 1440,
+      "h": 820,
+      "title": "05 \u00b7 BinsAutMin"
+    },
+    {
+      "file": "BinsExtended.dc.html",
+      "x": 1580,
+      "y": 1020,
+      "w": 1440,
+      "h": 820,
+      "title": "06 \u00b7 BinsExtended"
+    },
+    {
+      "file": "BandTable.dc.html",
+      "x": 3160,
+      "y": 1020,
+      "w": 1440,
+      "h": 820,
+      "title": "07 \u00b7 BandTable"
+    },
+    {
+      "file": "Compare.dc.html",
+      "x": 4740,
+      "y": 1020,
+      "w": 1440,
+      "h": 820,
+      "title": "08 \u00b7 Compare"
+    },
+    {
+      "file": "Arms.dc.html",
+      "x": 0,
+      "y": 2040,
+      "w": 1440,
+      "h": 820,
+      "title": "09 \u00b7 Arms"
+    },
+    {
+      "file": "ArmsOnBands.dc.html",
+      "x": 1580,
+      "y": 2040,
+      "w": 1440,
+      "h": 820,
+      "title": "10 \u00b7 ArmsOnBands"
+    },
+    {
+      "file": "Stages.dc.html",
+      "x": 3160,
+      "y": 2040,
+      "w": 1440,
+      "h": 820,
+      "title": "11 \u00b7 Stages"
+    },
+    {
+      "file": "Starvation.dc.html",
+      "x": 4740,
+      "y": 2040,
+      "w": 1440,
+      "h": 820,
+      "title": "12 \u00b7 Starvation"
+    },
+    {
+      "file": "TenMillion.dc.html",
+      "x": 0,
+      "y": 3060,
+      "w": 1440,
+      "h": 820,
+      "title": "13 \u00b7 TenMillion"
+    },
+    {
+      "file": "AutMinHarder.dc.html",
+      "x": 1580,
+      "y": 3060,
+      "w": 1440,
+      "h": 820,
+      "title": "14 \u00b7 AutMinHarder"
+    },
+    {
+      "file": "U124.dc.html",
+      "x": 3160,
+      "y": 3060,
+      "w": 1440,
+      "h": 820,
+      "title": "15 \u00b7 U124"
+    },
+    {
+      "file": "Appendix.dc.html",
+      "x": 4740,
+      "y": 3060,
+      "w": 1440,
+      "h": 820,
+      "title": "16 \u00b7 Appendix"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "how-to-edit",
+      "x": 0,
+      "y": -190,
+      "w": 900,
+      "text": "Week 9 \u00b7 the AC19 cascade. Retype any wording in place and Save.\nNumbers come from the campaign jsonl and are regenerated, so edit words, not figures \u2014 tell me which number looks wrong and I will check it against the archive."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
