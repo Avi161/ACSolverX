@@ -3430,7 +3430,7 @@ orders
 \]
 Deleting the corner pairs $(13,14)$ and $(25,26)$, and skipping their
 darts in the remaining rotations, changes $(E,V,L,F)$ from $(14,6,1,8)$
-to $(12,6,1,8)$: the resulting ribbon surface is spherical. These are
+to $(12,6,1,8)$: the capped ribbon surface is spherical. These are
 the two $pU$ corners in $s_p$ and $k$. This deletion is not a word move.
 The actual common-prefix band slide is
 \[

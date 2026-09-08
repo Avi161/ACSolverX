@@ -644,3 +644,5 @@ The bare-`v` split keeps a one-letter-row seam whose nested smoothing
 recovers the old corners. This is a planar-link implication, not a
 collapse of the presentation complex. These two specified constructions
 are closed; do not launch a neighbouring-slide or handle-resolution census.
+[TRAP] A genus-zero ribbon neighbourhood still has boundary. Say its
+capped surface is spherical; do not call the uncapped neighbourhood a sphere.
