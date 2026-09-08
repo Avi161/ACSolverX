@@ -5,8 +5,10 @@ when the `s40_gen` component is given more than its pinned 500 nodes.
 
 Read [the framing section](#what-this-is-and-is-not) before quoting any
 number here. Most of these rows were already solved in the archive. The new
-thing is **which component solves them and at what cost**, plus four rows of
-genuinely new coverage.
+thing is **which stage of the pipeline solves them and at what cost**, plus
+four rows of genuinely new coverage. Stage-by-stage attribution over the
+whole 72,779-orbit screen is in
+[pipeline attribution](#pipeline-attribution-which-stage-returns-the-certificate).
 
 ## The runs
 
@@ -20,9 +22,11 @@ budget was an imported constant, so every rung of the shipped ladder gave
 | 1 | `--budget 1000 --starter-budget 1000` | 2,130 |
 | 2 | `--budget 100000 --starter-budget 10000` | 1,496 |
 
-Rung 1 sets `budget == starter_budget` on purpose: the `s20_mk2` fallback
-gets an allowance of zero and never runs, so whatever solves is `s40_gen`
-alone and the attribution is unambiguous.
+Rung 1 sets `budget == starter_budget` on purpose: `s20_mk2` gets an
+allowance of zero and never runs, so whatever solves is `s40_gen` alone and
+the attribution is unambiguous. That is the same arithmetic that makes the
+stage unreachable at the shipped default -- see
+[below](#s20_mk2-is-structurally-unreachable-at-the-shipped-default).
 
 Cost: rung 2 was 2.43 core-hours, 5.849 s/row, three workers on one 4-core
 dev box. No cloud box was used or needed.
@@ -44,17 +48,98 @@ from the `bench12` hard tail.
 is four times the 500 the shipped ladder allowed it, so these are rows the
 component could reach all along and was never given the budget to.
 
+## Pipeline attribution: which stage returns the certificate
+
+`cascade_heuristics.search()` is one algorithm with four stages, not an arm
+plus a fallback. The deciding stage is recorded per row in `winner`, so the
+whole screen can be attributed without re-running anything. Regenerate this
+table with `PYTHONPATH=. python experiments/search/stage_attribution.py`.
+
+Over all 72,779 orbits, each taken at the highest rung it reached:
+
+| stage | rows | share | AC-certified | `aut_assisted` |
+|---|---:|---:|---:|---:|
+| Nielsen descent alone | 0 | 0.000% | 0 | 0 |
+| special rewrite (BS collapse) | 18,839 | 25.885% | 18,839 | 0 |
+| 500-pop L+40S (`s40_gen`) | 53,624 | 73.681% | 8,324 | 45,300 |
+| `s20_mk2` after the frontier discard | 307 | 0.422% | 307 | 0 |
+| terminal pre-check | 1 | 0.001% | 1 | 0 |
+| unsolved | 8 | 0.011% | -- | -- |
+
+Folded up: 70,649 settled at the 501 rung, plus 634 at rung 1 and 1,488 at
+rung 2, is **72,771 of 72,779 settled and 8 open** -- 27,471 AC-certified,
+45,300 `aut_assisted`.
+
+**Descent alone is empty, and that is a measurement rather than a gap in the
+recording.** A descent that landed on (x,y) would reach `bs_collapse` and
+come back with `reason='terminal'`. All 18,839 rewrite rows carry
+`reason='collapsed'` instead. The basis descent never lands on (x,y) by
+itself anywhere on this set; it feeds the rewrite stage and nothing else.
+
+The decoder exposure sits in exactly one bucket. The rewrite and `s20_mk2`
+stages are 100% AC-certified; all 45,300 `aut_assisted` rows come from
+`s40_gen`.
+
+### What the special rewrite recognises
+
+The Baumslag-Solitar relation `b^-1 a b a^-2`. `_recognize` in
+`bs_collapse.py` scans the 16 ordered generator pairs `(a,b)` over `xXyY`
+with `a != b`, forms that word, canonicalises it, and compares it against a
+relator of length **exactly 5**; the companion relator must then carry
+`b`-exponent `+-1`. Recognition is structural, not a lookup -- 16 candidate
+reductions, constant time, no table. The archive confirms the gate: **all
+18,839** rewrite rows have a relator of length exactly 5, against 14,195 of
+51,810 for every other stage combined.
+
+The collapse then runs three certified phases -- pinch the companion down to
+a single stable letter, use it to eliminate `b` from the relation leaving
+`a^-1`, then use that generator to kill every remaining `a`. Each phase is
+proof-carrying: every rewrite is realised as a concrete AC move
+`(target+1, sign, target_cut, cut)` and checked by
+`replay_move(state, move) == desired_pair`, which raises rather than emit an
+unverified step. Certificates run 2 to 256 moves, median 15, p99 103.
+
+### `s20_mk2` is structurally unreachable at the shipped default
+
+The stage allowances are `min(starter_budget, B - spent)` for `s40_gen` and
+`min(B, B - spent)` for `s20_mk2`, and the loop skips any stage whose
+allowance is `<= 0`. Across all 53,939 rows that reached `s40_gen` at the 501
+rung, normalization plus rewrite cost **exactly 1 node, every time**. So at
+the shipped default:
+
+    spent before s20_mk2 = 1 + 500 = 501
+    allowance            = min(501, 501 - 501) = 0   -> stage skipped
+
+**Zero of the 72,779 rows at the 501 rung carry an `s20_mk2` attempt.** The
+same arithmetic holds at rung 1 here (`B` = 1,000 with `starter_budget` =
+1,000). Only rung 2 (`B` = 100,000, `starter_budget` = 10,000) enters the
+stage at all, with exactly 89,999 pops.
+
+This is the starvation finding stated from the other end, and it is the
+cleaner statement of it. The shipped 501-node screen is not a four-stage
+pipeline whose last stage rarely fires; it is a **three-stage pipeline with a
+fourth stage that provably cannot be entered at that budget**. `B - 501` is
+the right formula for what `s20_mk2` would receive -- at `B = 501` it
+evaluates to zero.
+
 ## What this is, and is not
 
 **It is not 2,122 new solves.** The shipped ladder already settled almost
-all of these by its 100,000 rung, through the `s20_mk2` fallback, at much
-higher cost. Those rung results live in S3, not in this repo, which is part
-of why the distinction is easy to lose.
+all of these by its 100,000 rung, at much higher cost. Those rung results
+live in S3, not in this repo, which is part of why the distinction is easy
+to lose.
 
-**It is component attribution.** `s40_gen` un-starved wins 1,181 of the
-1,488 rung-2 solves — 79% — at a median of 2,173 nodes, on rows the archive
-needed the fallback for. That is the efficiency claim, and it is the honest
-version of it.
+**It is stage attribution inside one pipeline.** The 307 rows `s20_mk2`
+settles at rung 2 are not a fallback outside the algorithm: `s20_mk2` is the
+fourth stage of `cascade_heuristics.search()`, entered after the frontier is
+discarded and the original pair restarted. Attributing them to `s20_mk2`
+names the stage that paid, not a competing arm that won.
+
+**The efficiency claim is therefore a within-pipeline one.** Un-starved,
+`s40_gen` takes 1,181 of the 1,488 rung-2 solves -- 79% -- at a median of
+2,173 nodes, on rows the shipped ladder had to carry all the way to its
+`s20_mk2` stage. That is the honest version: a cheap early stage absorbing
+work an expensive late stage was doing, within the same algorithm.
 
 **The genuinely new coverage is twelve rows wide**, and it is enumerated
 below rather than folded into a percentage.
@@ -152,6 +237,7 @@ verdict here therefore rests on the recorded field, not on the theorem.
 | `unsolved_cascade501_b100000.csv` | the 8 survivors |
 | `aut_assisted_cascade501_b100000.csv` | rung-2 solves whose path uses a basis change |
 | `summary.json` | the numbers on this page, machine-readable |
+| `../../../experiments/search/stage_attribution.py` | regenerates the pipeline attribution table and re-checks the `s20_mk2` allowance |
 
 The `_sb<N>` in the filenames is the non-default starter budget. Runs at the
 pinned default keep their original names, so nothing here can be confused
