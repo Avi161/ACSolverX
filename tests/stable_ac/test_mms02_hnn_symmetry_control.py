@@ -197,3 +197,36 @@ def test_positive_hnn_killer_elimination_is_only_a_control():
     projected_sp = substitute(sp, elimination)
     assert substitute(projected_sp, {"p": "", "q": "q"}) == "Q"
     assert substitute(k, elimination) == "PqpQ" != ""
+
+
+def test_positive_hnn_coupled_strip_returns_to_ak3():
+    """The coupled strip returns to AK3; it does not trivialize the tuple."""
+    sq, sp, k = "uqUPQ", "upUQP", "PqpU"
+    k0 = conjugate(k, "p")
+    assert k0 == "qpUP"
+    defining = reduce_word(sq, k0)
+    assert defining == "uqUUP"
+    elimination = {"p": "uqUU", "q": "q", "u": "u"}
+    assert substitute(defining, elimination) == ""
+    braid = substitute(k0, elimination)
+    assert braid == "quqUQU"
+    current = substitute(sp, elimination)
+    assert current == "uuqUUUQuuQU"
+    current = conjugate(current, "U")
+    assert current == "uqUUUQuuQ"
+    assert reduce_word("qUQ", inverse("UQu")) == conjugate(braid, "UQ")
+
+    rows = (braid, current)
+    for prefix in ("Q", "QQ", "QQQ"):
+        rows = (inverse(rows[0]), rows[1])
+        rows = (conjugate(rows[0], prefix), rows[1])
+        rows = (rows[0], reduce_word(rows[0], rows[1]))
+        rows = (conjugate(rows[0], inverse(prefix)), rows[1])
+        rows = (inverse(rows[0]), rows[1])
+        assert rows[0] == braid
+    assert rows == (braid, "QQQuuuQ")
+    rows = (rows[0], conjugate(rows[1], "qqq"))
+    assert rows == (braid, "uuuQQQQ")
+    rows = (inverse(rows[0]), rows[1])
+    rows = (rows[1], rows[0])
+    assert rows == ("uuuQQQQ", "uquQUQ")

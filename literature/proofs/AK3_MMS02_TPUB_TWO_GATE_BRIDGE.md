@@ -3420,6 +3420,29 @@ reconstructs and exhausts all three cases separately from the existing
 occurrence-permutation implementation. No neighbouring-presentation search
 or additional obstruction family is opened by this table.
 
+There is a genuine coupled strip slide, but it returns to AK3. Conjugate
+$k$ by $p$, giving $k_0=qpUP$, and multiply the first defining row by this
+live killer:
+\[
+ s_qk_0=uqU^2P.
+\]
+This defines $p=uqU^2$. Eliminate $p$ from both retained rows, obtaining
+\[
+ k_0\longmapsto B_0=quqUQU,\qquad
+ s_p\longmapsto u^2qU^3Qu^2QU.
+\]
+Conjugating the second by $U$ gives $W=uqU^3Qu^2Q$. The exact defect
+$(qUQ)(UQu)^{-1}={}^{UQ}B_0$ supplies three restored left donations of
+$B_0^{-1}$ with conjugators $Q,Q^2,Q^3$, in that order. They change $W$
+to $Q^3u^3Q$, which conjugation by $q^3$ takes to $u^3Q^4$.
+Invert the retained braid row $B_0$ and order the rows to obtain exactly
+$(u^3Q^4,uquQUQ)$, standard AK3 in $(u,q)$.
+The focused word control replays the defining
+elimination in both rows and all three actual donations. This explains
+the result of the specified coupled geometric slide without discarding
+a commutator or introducing another terminal problem; it is not a route
+to the trivializing $qU$ control or to a free basis.
+
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[
  u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,
