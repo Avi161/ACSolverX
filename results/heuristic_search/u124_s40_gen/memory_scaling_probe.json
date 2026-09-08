@@ -1,0 +1,28 @@
+[
+ {
+  "budget": 100000,
+  "nodes": 100000,
+  "stored": 9510483,
+  "heap": 9410483,
+  "dups": 1773449,
+  "store_per_node": 95.1,
+  "dup_rate": 0.1572,
+  "peak_rss": 2.06,
+  "delta_rss": 1.906,
+  "kb_per_node": 19.98,
+  "secs": 55.0
+ },
+ {
+  "budget": 250000,
+  "nodes": 250000,
+  "stored": 24931026,
+  "heap": 24681026,
+  "dups": 4849296,
+  "store_per_node": 99.72,
+  "dup_rate": 0.1628,
+  "peak_rss": 5.545,
+  "delta_rss": 5.391,
+  "kb_per_node": 22.61,
+  "secs": 154.0
+ }
+]

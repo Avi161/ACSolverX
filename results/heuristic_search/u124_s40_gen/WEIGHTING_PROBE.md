@@ -60,3 +60,48 @@ remaining 20 units.
 
 `u124_weighting_probe_b10000_mrl128.jsonl` -- one record per job, with
 `minTOT`, `maxrel`, `maxpop`, `nodes` and wall time.
+
+---
+
+# Does the dedupe set saturate with budget?
+
+A second hypothesis, raised from the campaign box: MAX peak RSS was 27.53 GiB
+at 500,000 nodes and 28.23 GiB at 1,000,000 -- 2x the budget for +2.5% -- so
+memory on this path might be budget INDEPENDENT. If it were, 2,000,000 would
+cost ~30 GiB per lane rather than the ~105 linear scaling predicts, and every
+budget ruled out tonight on memory grounds would reopen.
+
+The mechanism is measurable without waiting for a campaign: stored entries per
+POPPED node, and the fraction of generated children already in the store.
+Linear growth means every pop still discovers new states; saturation means the
+search is re-deriving what it already holds and the duplicate rate is climbing
+toward 1.
+
+Measured on `aca_2`, capture off, cap 255, one budget per fresh process:
+
+| budget | stored | per popped node | duplicate rate | RSS delta | KB/node |
+|---:|---:|---:|---:|---:|---:|
+| 100,000 | 9,510,483 | 95.1 | 0.157 | 1.906 GiB | 20.0 |
+| 250,000 | 24,931,026 | **99.7** | **0.163** | 5.391 GiB | 22.6 |
+
+**No saturation, and the trend runs the other way.** Stored entries per popped
+node RISE from 95.1 to 99.7. The duplicate rate is flat -- 15.7% to 16.3%
+across a 2.5x budget increase. RSS grows 2.83x for 2.5x the budget, mildly
+SUPERlinear.
+
+For memory to go budget-independent between 500,000 and 1,000,000 the
+duplicate rate would have to climb from about 16% to nearly 100% over that one
+interval. Nothing in the measured trend supports that.
+
+**Stated limit on this evidence:** the dev box has 15 GiB of RAM, so 500,000
+nodes (~11 GiB) and 1,000,000 (~22 GiB) are not reachable here. The two points
+above bracket a lower range than the observation they address. What they
+establish is the mechanism and its direction, not a measurement inside the
+interval in question.
+
+The far likelier explanation of the campaign reading is the censoring trap
+that caught this project three times in one night: the 1,000,000 MAX came from
+21 of 124 rows, and the heavy rows land late -- at 500,000 the MAX climbed
+21.09 -> 26.28 -> 27.53 as the run progressed. The prediction on record is
+that at 124/124 the 1,000,000 MAX lands near twice the 500,000 MAX, roughly
+55 GiB, not 28.
