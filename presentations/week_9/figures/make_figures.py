@@ -160,16 +160,25 @@ def cascade_extended():
     rows = jsonl("ac19_extended_screen/ac19_cascade_screen_cascade501_b1000_mrl255.jsonl")
     solved = {r["name"]: r["nodes_explored"] for r in rows
               if r.get("solved") or r.get("aut_assisted")}
-    return solved, len(rows) - len(solved)
+    ac = sum(1 for r in rows if r.get("solved"))
+    return solved, len(rows) - len(solved), ac, len(solved) - ac
 
 
-def bin_table(cost):
-    """Per-band n / mean / median, plus the pooled total."""
+def bin_table(cost, population=None):
+    """Per-band n / mean / median, plus the pooled total.
+
+    Two shares, because they answer different questions and mixing them is how
+    the extended and aut-min columns stopped being comparable: `share` is of the
+    rows that HAVE a cost (the table's own denominator), `share_pop` is of the
+    whole population including rows that never solved.
+    """
     out = []
+    pop = population or len(cost)
     for i, label in enumerate(BAND_LABELS):
         vals = [v for v in cost.values() if band_of(v) == i]
         d = describe(vals) if vals else {"n": 0, "mean": None, "median": None}
-        out.append({"band": label, "share": round(100 * d["n"] / len(cost), 2), **d})
+        out.append({"band": label, "share": round(100 * d["n"] / len(cost), 2),
+                    "share_pop": round(100 * d["n"] / pop, 2), **d})
     total = describe(list(cost.values()))
     return out, total
 
@@ -206,7 +215,12 @@ def arm_costs(arm):
 def arm_on_bands(arm, cascade_cost):
     """Per cascade band, the arm's cost bracket. See the module docstring."""
     exact, censored, failed = arm_costs(arm)
-    floor = min(exact.values()) if exact else 1
+    # The low end of an unknown-easy row's bracket is 1, NOT min(exact): `exact`
+    # holds only rows that FAILED the 10k screen, so its minimum is above 10,000
+    # (10,008 greedy, 10,131 s20_mk2) and pairing it with a 10,000 ceiling
+    # inverted every bracket -- mean_lo > mean_hi on all five bands, and the
+    # figure then drew both arms as flat lines pinned to the ceiling.
+    floor = 1
     rows = []
     for i, label in enumerate(BAND_LABELS):
         lo_vals, hi_vals, kinds = [], [], {"exact": 0, "bounded": 0, "censored": 0}
@@ -268,15 +282,22 @@ def tenm_block(cascade_cost):
     g = {r["name"] for r in jsonl(ARM_RUNGS["greedy"][-1]) if not r["solved"]}
     s = {r["name"] for r in jsonl(ARM_RUNGS["s20_mk2"][-1]) if not r["solved"]}
     mutual = sorted(g & s)
+    # The rung that SETTLED the row, not the first rung it appears in. Every row
+    # appears in the 501 screen (it is the whole population), so keying on first
+    # appearance reported budget=501 for all nine and made the slide claim 9/9
+    # settled inside the prefix when the true figure is 6.
     by_name = {}
     for rel in CASCADE_LADDER:
         for r in jsonl(rel):
-            if r["name"] in mutual and r["name"] not in by_name:
+            if r["name"] in mutual and (r["solved"] or r["aut_assisted"]) \
+                    and r["name"] not in by_name:
                 by_name[r["name"]] = r
     return {"greedy_open": len(g), "s20_open": len(s), "mutual": mutual,
             "rows": [{"name": n, "nodes": cascade_cost[n],
                       "budget": by_name[n]["budget"],
-                      "ac": bool(by_name[n]["solved"])} for n in mutual]}
+                      "ac": bool(by_name[n]["solved"])} for n in mutual],
+            "in_prefix": sum(1 for n in mutual if by_name[n]["budget"] == 501),
+            "ac_certified": sum(1 for n in mutual if by_name[n]["solved"])}
 
 
 def originals_block():
@@ -297,12 +318,17 @@ def originals_block():
 
 
 def u124_block():
+    # Count DISTINCT rows, not lines: the 10M jsonl has 137 lines for 124 rows
+    # (a resumed lane re-appends), and len() made the slide say "0 / 137" beside
+    # a foot saying "0 of 124".
     s20 = jsonl("u124_10m/u124_10m_s20_mk2_b10000000_mrl64.jsonl")
-    s40 = jsonl("u124_s40_gen/u124_s40_gen_starter10000.jsonl")
-    ok = [r for r in s40 if not r.get("error")]
-    return {"s20_n": len(s20), "s20_solved": sum(1 for r in s20 if r.get("solved")),
-            "s20_budget": TEN_M,
-            "s40_n": len(ok), "s40_solved": sum(1 for r in ok if r.get("solved")),
+    s40 = [r for r in jsonl("u124_s40_gen/u124_s40_gen_starter10000.jsonl")
+           if not r.get("error")]
+    s20_solved = {r["name"] for r in s20 if r.get("solved")}
+    s40_solved = {r["name"] for r in s40 if r.get("solved")}
+    return {"s20_n": len({r["name"] for r in s20}), "s20_solved": len(s20_solved),
+            "s20_budget": TEN_M, "s20_lines": len(s20),
+            "s40_n": len({r["name"] for r in s40}), "s40_solved": len(s40_solved),
             "s40_budget": 10_000}
 
 
@@ -365,8 +391,11 @@ def fig_compare(aut, ext):
     fig, ax = plt.subplots(figsize=(9.4, 4.0))
     idx = [0, 1, 2]
     w = .38
-    a = [aut[i]["share"] for i in idx]
-    e = [ext[i]["share"] for i in idx]
+    # share_pop, not share: the legend names the FULL populations, so the bars
+    # have to be over those too. Dividing the extended side by the 153,554 it
+    # solved while labelling it 156,762 inflated every extended bar.
+    a = [aut[i]["share_pop"] for i in idx]
+    e = [ext[i]["share_pop"] for i in idx]
     ax.bar([i - w / 2 for i in idx], e, w, color=GRAY, label=f"AC19 extended · {N_EXT:,}")
     ax.bar([i + w / 2 for i in idx], a, w, color=BLUE, label=f"aut-min · {N_AUT:,}")
     for i in idx:
@@ -383,24 +412,50 @@ def fig_compare(aut, ext):
 
 
 def fig_arms(cas_tbl, g_rows, s_rows):
-    fig, ax = plt.subplots(figsize=(11.0, 4.4))
+    """What is actually KNOWN per band, per arm -- not a fabricated comparison.
+
+    An earlier version drew greedy and s20_mk2 as node-count brackets beside the
+    cascade's median. With the bracket stated honestly (1 to 10,000) both arms
+    became one full-height block covering the whole plot: truthful and useless.
+    The informative quantity is not their cost -- it is how much of each band
+    they have any cost for at all, which is almost none until the hard tail.
+    """
     idx = [i for i, b in enumerate(cas_tbl) if b["n"]]
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(11.6, 4.3),
+                                  gridspec_kw={"width_ratios": [1, 1.25]})
     x = list(range(len(idx)))
-    cas = [cas_tbl[i]["median"] for i in idx]
-    ax.plot(x, cas, "o-", color=BLUE, lw=2.4, ms=8, label="cascade · exact", zorder=3)
-    for arm, rows, col in (("greedy", g_rows, INK), ("s20_mk2", s_rows, ORANGE)):
-        lo = [rows[i].get("median_lo") for i in idx]
-        hi = [rows[i].get("median_hi") for i in idx]
-        ax.fill_between(x, lo, hi, color=col, alpha=.16, lw=0)
-        ax.plot(x, hi, "--", color=col, lw=1.8, label=f"{arm} · bound")
+
+    ax.plot(x, [cas_tbl[i]["median"] for i in idx], "o-", color=BLUE, lw=2.4, ms=8)
+    for j, i in enumerate(idx):
+        ax.annotate(f"{cas_tbl[i]['median']:,}", (j, cas_tbl[i]["median"]),
+                    textcoords="offset points", xytext=(0, -17), ha="center",
+                    fontsize=10, color=BLUE)
     ax.set_yscale("log"); ax.set_xticks(x)
     ax.set_xticklabels([BAND_LABELS[i] for i in idx])
     ax.set_ylabel("median nodes (log)")
-    ax.set_title("Median nodes per band — the cascade is exact, the other two are brackets",
-                 loc="left", color=INK)
-    ax.legend(frameon=False, fontsize=10.5, loc="upper left")
+    ax.set_title("cascade — exact on every row", loc="left", color=BLUE)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
+
+    w = .38
+    for off, (arm, rows, col) in zip((-w / 2, w / 2),
+                                     (("greedy", g_rows, INK),
+                                      ("s20_mk2", s_rows, ORANGE))):
+        known = [100 * (rows[i].get("exact", 0) + rows[i].get("censored", 0))
+                 / max(rows[i]["n"], 1) for i in idx]
+        ax2.bar([j + off for j in x], known, w, color=col, label=arm)
+        for j, v in zip(x, known):
+            ax2.text(j + off, v + 1.5, f"{v:.0f}%" if v >= 1 else "<1%",
+                     ha="center", fontsize=9.5,
+                     color=col if v >= 1 else MUTED)
+    ax2.set_xticks(x); ax2.set_xticklabels([BAND_LABELS[i] for i in idx])
+    ax2.set_ylabel("% of the band with a stored cost")
+    ax2.set_ylim(0, 118)
+    ax2.set_title("greedy and s20_mk2 — how much is even known",
+                  loc="left", color=INK)
+    ax2.legend(frameon=False, fontsize=10.5, loc="upper left")
+    for s in ("top", "right"):
+        ax2.spines[s].set_visible(False)
     save(fig, "arms_on_bins")
 
 
@@ -508,11 +563,14 @@ def main():
     print("reading the frozen campaign files (no search is run)")
 
     cas_aut = cascade_autmin()
-    assert len(cas_aut) == N_AUT - 0, f"aut-min cascade coverage {len(cas_aut):,}"
-    aut_tbl, aut_tot = bin_table(cas_aut)
+    assert len(cas_aut) == N_AUT, f"aut-min cascade coverage {len(cas_aut):,}"
+    aut_tbl, aut_tot = bin_table(cas_aut, N_AUT)
 
-    cas_ext, ext_unsolved = cascade_extended()
-    ext_tbl, ext_tot = bin_table(cas_ext)
+    cas_ext, ext_unsolved, ext_ac, ext_aut = cascade_extended()
+    ext_tbl, ext_tot = bin_table(cas_ext, N_EXT)
+    # Job B's 8 reconstructed rows are a tenth of the aut-min node mass, so the
+    # deck has to be able to say how much of the total rests on them.
+    job_b_mass = sum(JOB_B.values())
 
     g_rows, g_exact, g_cens, g_failed = arm_on_bands("greedy", cas_aut)
     s_rows, s_exact, s_cens, s_failed = arm_on_bands("s20_mk2", cas_aut)
@@ -523,9 +581,12 @@ def main():
     W = {
         "n_ext": N_EXT, "n_aut": N_AUT, "screen_budget": SCREEN_BUDGET, "ten_m": TEN_M,
         "bands": BAND_LABELS,
-        "aut": {"bins": aut_tbl, "total": aut_tot, "n": len(cas_aut)},
+        "aut": {"bins": aut_tbl, "total": aut_tot, "n": len(cas_aut),
+                "job_b_n": len(JOB_B), "job_b_mass": job_b_mass,
+                "job_b_pct": round(100 * job_b_mass / aut_tot["total"], 1)},
         "ext": {"bins": ext_tbl, "total": ext_tot, "n": len(cas_ext),
                 "unsolved": ext_unsolved, "budget": 1000,
+                "ac": ext_ac, "aut_assisted": ext_aut,
                 "live_bands": sum(1 for b in ext_tbl if b["n"])},
         "arms": {
             "greedy": {"bins": g_rows, "exact": g_exact, "censored": g_cens,

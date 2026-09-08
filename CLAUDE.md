@@ -51,10 +51,17 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   the path collapses every automorphism step and leaves a pure AC path to
   some basis of F2, which Nielsen's theorem then carries to (x,y) by moves
   that are themselves AC moves. Verified on MS640; the basis tail is 1 to
-  5 letters. What is missing is a DECODER, not a proof: nothing in the
-  repo performs that push-back, so `hybrid_10m` refuses such solves rather
-  than write an Aut move into a move-string field, and the screen runner
-  parks them under `aut_assisted`. Building the decoder is the open task.
+  5 letters. **The decoder now EXISTS** -- `experiments/search/ac_decode.py`
+  with `decode_ac_jsonl.py` -- and all 640 MS640 mixed certificates convert to
+  elementary AC moves and replay from their original input to the terminal
+  basis (`results/heuristic_search/ms640_elementary_ac/RESULTS.md`). Do not
+  repeat this file's earlier claim that building it is the open task; that is
+  stale. What the 45,300 `aut_assisted` screen rows still lack is their
+  PATHS: the screen stored `certificate: aut_assisted` with `certificate_moves`
+  and `certificate_sha256` both null, so there is nothing for the decoder to
+  eat. Closing them is a re-run with path capture plus a decode pass, not new
+  mathematics. `hybrid_10m` still refuses such solves rather than write an Aut
+  move into a move-string field, and the screen runner still parks them.
   Do not repeat the earlier claim in this file's history that these are
   not AC certificates -- it is wrong and it inverted the arm comparison
   (cascade 70,649 vs control 64,541 at 501 nodes, decoded).
