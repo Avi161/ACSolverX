@@ -147,3 +147,53 @@ def test_hnn_symmetry_square_is_inner_only_modulo_the_relator():
     assert defect == conjugate(inverse(R2), "B")
     assert square["x"] != inner_x
     assert defect != ""
+
+
+def test_positive_hnn_coordinates_and_live_row_replay():
+    old_to_new = {"a": "q", "b": "qp", "x": "qpu"}
+    new_to_old = {"p": "Ab", "q": "a", "u": "Bx"}
+    for generator in "abx":
+        assert substitute(substitute(generator, old_to_new), new_to_old) == generator
+    for generator in "pqu":
+        assert substitute(substitute(generator, new_to_old), old_to_new) == generator
+
+    c, C = "qp", "PQ"
+    sq, sp, k = "uqUPQ", "upUQP", "PqpU"
+    assert inverse(c) == C
+    rows = tuple(substitute(word, old_to_new) for word in (R1, R2, "abX"))
+    assert rows[0] == reduce_word(c, sq, C)
+    assert rows[1] == reduce_word(c, sq, c, sp, C, C)
+    assert rows[2] == "qqpUPQ" == reduce_word(c, k, C)
+
+    rows = tuple(conjugate(row, C) for row in rows)
+    assert rows == (sq, reduce_word(sq, c, sp, C), k)
+    rows = (rows[0], reduce_word(inverse(rows[0]), rows[1]), rows[2])
+    assert rows == (sq, reduce_word(c, sp, C), k)
+    rows = (rows[0], conjugate(rows[1], C), rows[2])
+    assert rows == (sq, sp, k)
+
+
+def test_positive_rose_map_has_no_allowed_turn_cancellation():
+    images = {"p": "pq", "q": "qp", "P": "QP", "Q": "PQ"}
+    assert len({word[0] for word in images.values()}) == 4
+    for letter in "pq":
+        assert images[letter.swapcase()] == inverse(images[letter])
+        word = images[letter]
+        assert (word.count("p") - word.count("P"),
+                word.count("q") - word.count("Q")) == (1, 1)
+    for left in images:
+        for right in images:
+            if right != left.swapcase():
+                assert reduce_word(images[left], images[right]) == images[left] + images[right]
+
+
+def test_positive_hnn_killer_elimination_is_only_a_control():
+    """Defining substitutions alone prove neither nonconjugacy nor AK3."""
+    sq, sp, k = "uqUPQ", "upUQP", "PqpU"
+    elimination = {"p": "p", "q": "q", "u": "q"}
+    assert substitute("qU", elimination) == ""
+    projected_sq = substitute(sq, elimination)
+    assert projected_sq == "qPQ" == conjugate("P", "q")
+    projected_sp = substitute(sp, elimination)
+    assert substitute(projected_sp, {"p": "", "q": "q"}) == "Q"
+    assert substitute(k, elimination) == "PqpQ" != ""

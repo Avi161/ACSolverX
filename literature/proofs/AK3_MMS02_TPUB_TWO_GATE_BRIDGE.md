@@ -3340,6 +3340,57 @@ the required killer. This freezes the symmetry-transfer strategy without
 an iteration search. It does not cover moves in which the killer changes
 the defining normal closure, and does not obstruct general AC paths.
 
+**An expanding positive graph model with the killer retained.** A change
+of coordinates exposes a geometric description of this same open problem.
+Put
+\[
+ p=a^{-1}b,\quad q=a,\quad u=b^{-1}x,
+ \qquad a=q,\quad b=qp,\quad x=qpu.
+\]
+These are inverse free-basis maps. Here $p,q,u$ are new symbols, unrelated
+to the earlier MMS02 words with those names. Write $P=p^{-1}$, $Q=q^{-1}$,
+$U=u^{-1}$, $c=qp$, and
+\[
+ s_q=uqUPQ,\qquad s_p=upUQP,\qquad k=PqpU.
+\]
+Under this basis change the literal images, denoted by stars, satisfy
+\[
+ r_a^*=c s_q c^{-1},\qquad
+ r_b^*=c(s_q c s_p c^{-1})c^{-1},\qquad
+ h^*=qqpUPQ=c k c^{-1}.
+\]
+Conjugate all three rows by $c^{-1}$, left-multiply the second by the
+inverse of the retained first row, and conjugate the second by $c^{-1}$.
+The resulting tuple is exactly $(s_q,s_p,k)$. Thus the description retains
+the required killer, not just the abstract group presented by the two
+defining rows. The basis change is recorded separately from these relator
+AC moves; it is not itself being declared an elementary relator move.
+
+The normalized two-row presentation complex is the mapping torus of the rose map
+\[
+ \psi(p)=pq,\qquad\psi(q)=qp.
+\]
+The four oriented edge images are $pq,QP,qp,PQ$, whose initial directions
+are distinct. Every reduced edge path therefore maps to a reduced edge
+path of twice its length: the graph map is an expanding immersion and the
+free-group endomorphism is injective. Its abelianization matrix is
+$\left(\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\right)$, so it is
+not an automorphism. The disk that must be attached to this mapping torus
+has boundary $k=p^{-1}qp u^{-1}$, not the vertical loop $u^{-1}$.
+
+There is a useful literal control: replacing $k$ by $qU$ allows $u=q$;
+then $s_q=qPQ$ is a conjugate of $P$, and setting $p=1$ makes $s_p=Q$.
+These substitutions are implementable by restored defining-row donations
+and generator cancellations. In contrast the actual $k$ becomes the
+nonempty commutator $PqpQ$ under $u=q$; that substitution does not remove
+the required row. This is only a check of this proposed elimination, not
+a conjugacy or AC-inequivalence argument. The
+[independent word controls](../../tests/stable_ac/test_mms02_hnn_symmetry_control.py)
+pin the inverse coordinates, complete row certificate, oriented turns and
+distinct killer substitutions. No collapse of the actual disk-attached
+complex, thickenability result, or AK3 trivialization follows from positivity
+of the base graph map alone.
+
 **Convergence check: return to standard AK3.** Use the inverse basis maps
 \[
  u=x^{-1}yx,\quad v=x^{-1}y^{-1}x^2,
