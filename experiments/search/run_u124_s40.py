@@ -64,14 +64,37 @@ S40 = dict(arm="aut_edges", s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 # Measured, not assumed. 20.0 KB per popped node with capture off (one u124
 # row, 100,000 nodes, fresh process); 50.6 KB with it on. The 0.16 GiB is the
 # warm interpreter with numba loaded.
-KB_PER_NODE_NOCAPTURE = 20.0
+# 20.0 was the dev-box figure (one row, 100,000 nodes, cap 255). The first
+# real 500,000-node wave on r7i measured 7.401 GiB peak RSS on a row that ran
+# the full budget -- 15.2 KB/node, 24% cheaper than predicted. Use the measured
+# value and let --kb-per-node override it, because branching grows with depth
+# (89.5 children per popped node at 25,000 nodes, 95.1 at 100,000), so this is
+# a function of the budget and one calibration does not settle every rung.
+KB_PER_NODE_NOCAPTURE = 15.5
 KB_PER_NODE_CAPTURE = 50.6
 BASE_GIB = 0.16
+# What must fit in RAM is RESIDENT, so lanes are clipped against RSS. Address
+# space is not memory -- it is nearly free to hand out on 64-bit -- so the
+# RLIMIT_AS ceiling is a multiple of RSS with NO box-derived clip. Conflating
+# the two cost 78 of 124 rows on the first 500,000-node wave: a 16 GiB ceiling
+# sized from a 9.7 GiB RSS estimate, against a numba worker whose address
+# space runs far above its resident set.
+RSS_HEADROOM = 0.85
+RLIMIT_MULTIPLE = 4.0
+RLIMIT_FLOOR_GIB = 24.0
 
 
-def lane_gib(budget, capture=False):
-    kb = KB_PER_NODE_CAPTURE if capture else KB_PER_NODE_NOCAPTURE
+def lane_gib(budget, capture=False, kb_per_node=None):
+    """Expected peak RESIDENT set for one lane -- the number that has to fit
+    in RAM, and the only one a lane count may be derived from."""
+    kb = kb_per_node or (KB_PER_NODE_CAPTURE if capture else KB_PER_NODE_NOCAPTURE)
     return BASE_GIB + budget * kb / 1048576.0
+
+
+def lanes_that_fit(budget, box_gib, kb_per_node=None):
+    """How many lanes the box holds by resident set, with headroom."""
+    return max(1, int(RSS_HEADROOM * box_gib
+                      / lane_gib(budget, kb_per_node=kb_per_node)))
 
 
 def load_rows(path=None):
@@ -174,17 +197,22 @@ def plan(budget, lanes, capture=False, rows_csv=None, log=print):
     return info
 
 
-def lane_rlimit_gb(budget, lanes, box_gib=None):
-    """Per-lane address-space ceiling: generous against the measurement, but
-    small enough that every lane hitting it at once still fits the box."""
-    measured = lane_gib(budget)
-    if box_gib:
-        return max(measured * 1.2, min(measured * 3.0, 0.92 * box_gib / lanes))
-    return measured * 3.0
+def lane_rlimit_gb(budget, lanes=None, box_gib=None, kb_per_node=None):
+    """Per-lane ADDRESS-SPACE ceiling: a runaway stop, not a memory budget.
+
+    Deliberately independent of the lane count and of the box. RLIMIT_AS caps
+    address space, and a numba worker reserves far more of that than it ever
+    makes resident, so a ceiling derived from `box_gib / lanes` is a tripwire
+    across the ordinary rows rather than a guard against a runaway one. The
+    first 500,000-node wave lost 78 of 124 rows to exactly that. `lanes` and
+    `box_gib` are accepted and ignored so existing callers keep working.
+    """
+    return max(RLIMIT_FLOOR_GIB,
+               RLIMIT_MULTIPLE * lane_gib(budget, kb_per_node=kb_per_node))
 
 
 def run(out_path, budget, lanes, cap=255, rows_csv=None, resume=True,
-        rlimit_gb=None, box_gib=None, log=print):
+        rlimit_gb=None, box_gib=None, kb_per_node=None, log=print):
     rows = load_rows(rows_csv)
     done = set()
     if resume and os.path.exists(out_path):
@@ -202,11 +230,19 @@ def run(out_path, budget, lanes, cap=255, rows_csv=None, resume=True,
     todo = [(n, a, b, budget, cap) for n, a, b in rows if n not in done]
     log(f"  rows    : {len(rows)}, {len(done)} done, {len(todo)} to run")
     log(f"  budget  : {budget:,} nodes/row at cap {cap}, capture off")
-    cap_gb = rlimit_gb or lane_rlimit_gb(budget, lanes, box_gib)
-    log(f"  lanes   : {lanes} x {lane_gib(budget):.1f} GiB measured = "
-        f"{lane_gib(budget) * lanes:.0f} GiB resident")
-    log(f"  guard   : {cap_gb:.1f} GiB address space per lane "
-        f"({cap_gb * lanes:.0f} GiB if every lane hit it at once)")
+    cap_gb = rlimit_gb or lane_rlimit_gb(budget, kb_per_node=kb_per_node)
+    per = lane_gib(budget, kb_per_node=kb_per_node)
+    log(f"  lanes   : {lanes} x {per:.1f} GiB expected RSS = "
+        f"{per * lanes:.0f} GiB resident"
+        + (f" of {box_gib:.0f} GiB ({100 * per * lanes / box_gib:.0f}%)"
+           if box_gib else ""))
+    if box_gib:
+        fits = lanes_that_fit(budget, box_gib, kb_per_node)
+        if lanes > fits:
+            log(f"  WARNING : {lanes} lanes exceeds the {fits} that fit at "
+                f"{100 * RSS_HEADROOM:.0f}% of {box_gib:.0f} GiB")
+    log(f"  guard   : {cap_gb:.1f} GiB ADDRESS SPACE per lane -- a runaway "
+        "stop, not a memory budget; address space is not resident")
     log(f"  out     : {out_path}")
     if not todo:
         log("  nothing to do")
@@ -285,7 +321,14 @@ def main(argv=None):
                          "measured need, clipped so every lane hitting it at "
                          "once still fits --box-gib")
     ap.add_argument("--box-gib", type=float, default=None,
-                    help="usable RAM, used only to clip the lane ceiling")
+                    help="usable RAM. Only warns when the lane count exceeds "
+                         "what fits by RESIDENT set; it never shrinks the "
+                         "address-space ceiling")
+    ap.add_argument("--kb-per-node", type=float, default=None,
+                    help=f"measured KB of RSS per popped node (default "
+                         f"{KB_PER_NODE_NOCAPTURE}, measured on r7i at "
+                         "500,000 nodes). Recalibrate from max(peak_rss_gb) "
+                         "of a completed wave and pass it for the next rung.")
     ap.add_argument("--name", default=None, help="recover: which row")
     ap.add_argument("--nodes", type=int, default=None,
                     help="recover: the solve's recorded nodes_explored")
@@ -305,7 +348,8 @@ def main(argv=None):
     else:
         run(args.out, args.budget, args.lanes, cap=args.cap,
             rows_csv=args.rows_csv, resume=not args.no_resume,
-            rlimit_gb=args.lane_rlimit_gb, box_gib=args.box_gib)
+            rlimit_gb=args.lane_rlimit_gb, box_gib=args.box_gib,
+            kb_per_node=args.kb_per_node)
     return 0
 
 
