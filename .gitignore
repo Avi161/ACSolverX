@@ -44,3 +44,8 @@ results/heuristic_search/ac19_autmin_10k_smoke/
 # commit less of it.
 results/heuristic_search/ac19_s40_1k/ac19_cascade_screen_*.jsonl
 !results/heuristic_search/ac19_s40_1k/ac19_cascade_screen_*.jsonl.gz
+# Same for the bs_probe arm. Without this rule a `git add -A` mid-run committed
+# a PARTIALLY WRITTEN jsonl, which is worse than committing nothing: it looks
+# like a result and is a prefix of one.
+results/heuristic_search/ac19_bs_probe/ac19_cascade_screen_*.jsonl
+!results/heuristic_search/ac19_bs_probe/ac19_cascade_screen_*.jsonl.gz
