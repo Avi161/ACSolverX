@@ -1,0 +1,72 @@
+{
+  "input": "research/residual_20260909/panels/ms640.csv",
+  "input_sha256": "5ca1f7911cdfc76c643b0722369f51f61270f67e11633bd522c4bda21a907667",
+  "policy": "K3p_c14aut",
+  "note": "Per-row budget sweep. 267 is the exact threshold at which all 640 rows solve: at 267 the four dearest rows (ms_636..ms_639) finish on their last charged unit, at 266 they do not. Budgets other than 1000 were run into a scratch directory; the 1000 row is the committed bundle.",
+  "command": "PYTHONPATH=. python3 -m research.residual_20260909.census_run --input research/residual_20260909/panels/ms640.csv --policy K3p_c14aut --budget <B> --out <dir> --shard-size 160 --workers 4",
+  "sweep": [
+    {
+      "budget": 1000,
+      "rows": 640,
+      "solved": 640,
+      "verified": 640,
+      "errors": 0,
+      "units": 13082,
+      "max_charge": 267
+    },
+    {
+      "budget": 300,
+      "rows": 640,
+      "solved": 640,
+      "verified": 640,
+      "errors": 0,
+      "units": 13082,
+      "max_charge": 267
+    },
+    {
+      "budget": 267,
+      "rows": 640,
+      "solved": 640,
+      "verified": 640,
+      "errors": 0,
+      "units": 13082,
+      "max_charge": 267
+    },
+    {
+      "budget": 266,
+      "rows": 640,
+      "solved": 636,
+      "verified": 636,
+      "errors": 0,
+      "units": 13078,
+      "max_charge": 266
+    },
+    {
+      "budget": 200,
+      "rows": 640,
+      "solved": 626,
+      "verified": 626,
+      "errors": 0,
+      "units": 10766,
+      "max_charge": 200
+    },
+    {
+      "budget": 100,
+      "rows": 640,
+      "solved": 612,
+      "verified": 612,
+      "errors": 0,
+      "units": 6070,
+      "max_charge": 100
+    },
+    {
+      "budget": 50,
+      "rows": 640,
+      "solved": 612,
+      "verified": 612,
+      "errors": 0,
+      "units": 3270,
+      "max_charge": 50
+    }
+  ]
+}

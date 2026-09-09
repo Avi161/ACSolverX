@@ -3,7 +3,9 @@
 Recomputes everything from the shard JSONL files and the manifest rather than
 trusting SUMMARY.json:
 
-* the input file hash matches the manifest and the settled AC19 hash;
+* the input file hash matches the manifest and the expected input identity
+  (by default the settled AC19 census hash and row count; ``--expect-sha256``
+  / ``--expect-rows`` name a different input, e.g. a panel);
 * the shards cover [0, population) exactly once, names are unique and equal,
   in order, to the input names;
 * every charge is <= budget, every solved row is verified, no row has an error;
@@ -13,6 +15,7 @@ trusting SUMMARY.json:
 
 Usage: PYTHONPATH=. python3 -m research.residual_20260909.verify_bundle \
            --result-dir results/heuristic_search/<dir> [--input data/AC19_extended_aut_min.csv]
+           [--expect-sha256 SHA256 --expect-rows N]
 Exit status 0 only when every check passes.
 """
 import argparse
@@ -25,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 AC19_SHA256 = '7e220253bd0d950378d6ca6944be46ff4b77e49f30067b9ff6c6c6da82f64ae2'
+AC19_ROWS = 72779
 
 
 def sha256(path):
@@ -35,6 +39,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--result-dir', required=True)
     parser.add_argument('--input', default='data/AC19_extended_aut_min.csv')
+    parser.add_argument('--expect-sha256', default=AC19_SHA256,
+                        help='expected SHA-256 of --input (default: the settled AC19 census hash)')
+    parser.add_argument('--expect-rows', type=int, default=AC19_ROWS,
+                        help='expected row count of --input (default: 72779)')
     args = parser.parse_args(argv)
     out = ROOT / args.result_dir
     failures = []
@@ -49,12 +57,14 @@ def main(argv=None):
     manifest = json.loads(manifests[0].read_text())
     input_path = ROOT / args.input
     input_hash = sha256(input_path)
-    check(input_hash == AC19_SHA256, 'input sha256 is the settled AC19 hash')
+    check(input_hash == args.expect_sha256,
+          f'input sha256 is the expected {input_path.name} hash')
     check(manifest['input_sha256'] == input_hash, 'manifest input sha256 matches the input file')
     with open(input_path, newline='') as stream:
         names = [row['name'] for row in csv.DictReader(stream)]
     population = len(names)
-    check(population == 72779 and len(set(names)) == population, 'input has 72,779 unique names')
+    check(population == args.expect_rows and len(set(names)) == population,
+          f'input has {args.expect_rows:,} unique names')
     check(manifest['offset'] == 0 and manifest['end'] == population, 'manifest covers [0, population)')
     budget = manifest['budget']
 

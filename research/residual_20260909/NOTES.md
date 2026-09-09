@@ -318,3 +318,29 @@ every path from them must first pass a longer relator, which is exactly what the
 table supplies. Negative results are recorded as bounded refutations (W5, W6). One
 family (r1 = YYXXYxYXX: ac19_11753, ac19_38222) is solved by the table but still has no
 structural explanation. `FAMILY_verify.py` passes; its search sections are opt-in.
+
+## MS-640 (the solved Miller–Schupp set) under K3p_c14aut at 1,000 units
+
+Panel `panels/ms640.csv` (SHA-256 `5ca1f791…a7667`), built by `panels/build_ms640.py`
+from `data/ms640_solved.txt` (SHA-256 `fbf976f7…32a43`): the 640 presentations the
+greedy baseline solved at a 1,000,000-node budget, decoded from the padded integer rows
+with {1: x, -1: X, 2: y, -2: Y} and kept in source order. Total lengths 7-25 (median 15).
+
+- 640 / 640 solved and verified, 0 errors; 13,082 charged units, max 267, median 0,
+  mean 20.4. Routes: ball_root 550 (0 units — the root is already in the cap-14 ball),
+  plain_s20 62, bs_demote 24, strict_donor 4.
+- Budget threshold is exact at **267** (`budget_sweep.json`): 267 -> 640, 266 -> 636.
+  The four rows that need the last unit are ms_636..ms_639, all
+  r1 = YYYYYYYYXyyyyyyyx against an 8-letter companion. 200 -> 626, 100 -> 612, 50 -> 612.
+- Frozen policy on the same panel at the same budget: 602 / 640, 87,531 units, 38 rows
+  exhaust the 1,000. 38 gained, 0 lost, and on every one of the 602 rows both solve
+  K3p_c14aut is strictly cheaper. (No contradiction with the MS census: these rows are
+  "solved" at 10^6 greedy nodes, not at 1,000 units.)
+- Independent replay: 640 / 640 certificates re-decoded and replayed to (x, y) in fresh
+  processes, 0 failures. `verify_bundle` PASSes.
+
+`verify_bundle.py` gained `--expect-sha256` / `--expect-rows` so the input-identity checks
+can name a panel; both default to the settled AC19 census hash and 72,779, so the AC19
+bundle is certified by exactly the same two checks as before (re-verified PASS).
+
+Results: results/heuristic_search/ms640_K3p_c14aut_1k/ and ms640_frozen_1k/.
