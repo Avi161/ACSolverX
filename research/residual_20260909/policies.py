@@ -263,7 +263,8 @@ def ball_table(stem):
 
 
 def make_policy(cap, prepass_cap=250, plain_prefix=872, force_arm=None,
-                certified_overrun=False, use_stable_power=False, aut=False, name=None):
+                certified_overrun=False, use_stable_power=False, use_bs_demote=False,
+                aut=False, name=None):
     """A complete ball cascade as a ``policy(pair, budget)`` callable.
 
     ``cap`` picks the table (``tables/ball_cap<NN>[_aut].pkl``, loaded lazily
@@ -277,14 +278,16 @@ def make_policy(cap, prepass_cap=250, plain_prefix=872, force_arm=None,
         result = dict(_final_policy_ball.search(
             pair, budget=budget, prepass_cap=prepass_cap, plain_prefix=plain_prefix,
             force_arm=force_arm, certified_overrun=certified_overrun,
-            use_stable_power=use_stable_power, table=ball_table(stem)))
+            use_stable_power=use_stable_power, use_bs_demote=use_bs_demote,
+            table=ball_table(stem)))
         result['ball_table'] = stem
         return result
 
     run.__doc__ = (f'final_policy_ball.search with the {stem} backward ball, '
                    f'prepass_cap={prepass_cap}, plain_prefix={plain_prefix}, '
                    f'force_arm={force_arm!r}, certified_overrun={certified_overrun}, '
-                   f'use_stable_power={use_stable_power}.')
+                   f'use_stable_power={use_stable_power}, '
+                   f'use_bs_demote={use_bs_demote}.')
     if name is not None:
         run.__name__ = name
         policy(name)(run)
@@ -327,3 +330,28 @@ make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_pow
 make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_power=True,
             force_arm='aut_edges', name='K5')
 make_policy(12, aut=True, name='frozen_ball12aut')
+
+
+# --------------------------------------------------------------------------
+# The revised candidate set.  The stable-power gate is dropped: on
+# regression60 it lost ac19_28267, which 'frozen' and K1 both solve at exactly
+# 973 units, because its charged failed attempts pushed the row past 1,000.
+# K1 stays the zero-loss reference (ball terminal only, frozen allocation, no
+# charged addition at all).  K2'..K5' add the certified consecutive-BS overrun
+# and the free BS-DEMOTE root macro, and reallocate stages.  Each is offered
+# on both automorphism-closed tables.
+# --------------------------------------------------------------------------
+def _register_candidates(cap, suffix):
+    make_policy(cap, aut=True, name=f'K1{suffix}')
+    make_policy(cap, aut=True, certified_overrun=True, use_bs_demote=True,
+                name=f'K2p{suffix}')
+    make_policy(cap, aut=True, plain_prefix=300, certified_overrun=True,
+                use_bs_demote=True, name=f'K3p{suffix}')
+    make_policy(cap, aut=True, plain_prefix=0, certified_overrun=True,
+                use_bs_demote=True, name=f'K4p{suffix}')
+    make_policy(cap, aut=True, plain_prefix=0, certified_overrun=True,
+                use_bs_demote=True, force_arm='aut_edges', name=f'K5p{suffix}')
+
+
+_register_candidates(10, '_c10aut')
+_register_candidates(12, '_c12aut')

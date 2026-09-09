@@ -52,7 +52,18 @@ untouched so they stay the comparison implementation.  Three things are added.
    off in every ``frozen_ball*`` policy and NOT covered by the dominance
    argument.
 
-4. ``certified_overrun`` (default ``False``): let an accepted BS certificate
+4. ``use_bs_demote`` (default ``False``, on in the K candidates): the
+   BS-DEMOTE root macro of ``bs_demote_gate`` as stage 0, run on the canonical
+   root before the donor prepass.  ``recognize``/``demotable`` are pure
+   recognition and charge nothing, so a row the gate does not fire on costs
+   exactly zero; ``complete`` is entered only on a demotable label and predicts
+   its whole cost before the first move, refusing inside 2 units when that cost
+   does not fit.  It fires only on stalled consecutive-BS roots, which the
+   frozen cascade never closes at the root, but a refusal would still spend up
+   to 2 units the frozen cascade does not, so it is off in the ``frozen_ball*``
+   names that carry the dominance guarantee.
+
+5. ``certified_overrun`` (default ``False``): let an accepted BS certificate
    finish even when it costs more than the stage-1 cap.
    When ``DONOR_NORMALIZED_BS.inspect`` reports ``bs_preflight`` status
    ``'accept'`` at a donor endpoint, ``consecutive_bs.collapse`` is a compiler
@@ -77,6 +88,7 @@ import time
 
 from experiments.equivalence_classes.lib.words import apply_pair, canon_pair, canon_rel
 from experiments.search.heuristic_1k import pack
+from research.residual_20260909 import bs_demote_gate
 from research.residual_20260909.backward_table import tail as ball_tail
 from research.residual_20260909.mid_search_ball import bs_escape_feature, mixed_search
 from research.residual_20260909.plain_search_ball import mixed_search as plain_search
@@ -143,7 +155,8 @@ def incumbent(pair, budget, table, force_arm=None, use_high_core_escape=True,
 
 
 def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
-           certified_overrun=False, use_stable_power=False, table=_UNSET):
+           certified_overrun=False, use_stable_power=False, use_bs_demote=False,
+           table=_UNSET):
     """Fixed donor prepass, plain S20 prefix, incumbent restart -- ball-aware."""
     if type(budget) is not int or budget < 1:
         raise ValueError('budget must be positive integer')
@@ -157,6 +170,8 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
         raise ValueError('certified_overrun must be boolean')
     if not isinstance(use_stable_power, bool):
         raise ValueError('use_stable_power must be boolean')
+    if not isinstance(use_bs_demote, bool):
+        raise ValueError('use_bs_demote must be boolean')
     table = _resolve(table)
     started, cpu = time.perf_counter(), time.process_time()
     root = list(canon_pair(*pair))
@@ -194,6 +209,29 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
         return ball_finish(states, steps, charges, route)
 
     result = probe([root], [], 0, 'ball_root', 'root')
+    # Stage 0: the BS-DEMOTE root macro.  ``recognize`` and ``demotable`` are
+    # pure recognition and charge nothing; ``complete`` is entered only on a
+    # demotable label and refuses inside 2 units when the work it predicts does
+    # not fit the remaining allowance, so a row the gate does not close costs
+    # at most 2 units and a row it never fires on costs zero.
+    bs_demote_recognized = bs_demote_demotable = False
+    bs_demote_work = 0
+    if result is None and use_bs_demote:
+        label = bs_demote_gate.recognize(tuple(root))
+        bs_demote_recognized = label is not None
+        bs_demote_demotable = bool(bs_demote_gate.demotable(label))
+        if bs_demote_demotable and budget - charged >= 1:
+            macro = bs_demote_gate.complete(tuple(root), budget=budget - charged)
+            charged += macro['work']
+            bs_demote_work = macro['work']
+            if macro['solved']:
+                result = dict(solved=True, nodes_explored=charged,
+                              states=macro['states'], steps=macro['steps'],
+                              best_state=['Y', 'X'], min_total_length_seen=2,
+                              min_max_relator_length_seen=1,
+                              policy_route='bs_demote', winner='bs_demote')
+                if macro.get('elementary_tail') is not None:
+                    result['elementary_tail'] = macro['elementary_tail']
     if result is None:
         for index, donor in enumerate(root):
             if charged >= limit:
@@ -304,7 +342,10 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
                   ball_stage=ball_stage,
                   ball_enabled=table is not None, ball_size=len(table) if table else 0,
                   force_arm=force_arm, certified_overrun=certified_overrun,
-                  use_stable_power=use_stable_power,
+                  use_stable_power=use_stable_power, use_bs_demote=use_bs_demote,
+                  bs_demote_recognized=bs_demote_recognized,
+                  bs_demote_demotable=bs_demote_demotable,
+                  bs_demote_work=bs_demote_work,
                   work_unit_note='Image evaluations + accepted maps + terminal/fallback search '
                                  'charges; not calibrated equivalent pops. Gate symbol work '
                                  'separate. Backward-ball lookups are free and counted in '
