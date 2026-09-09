@@ -58,6 +58,21 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   replay to a terminal pair with a 0-5 move basis tail, so the conversion works
   -- it has just never been run over the 57,650. Do not quote 96.7% bare until
   it has.
+- **`cascade_bs`** (`results/heuristic_search/ac19_bs_probe/RESULTS.md`) hands
+  stage 2's BS pattern test to stages 3 and 4, via `mixed_search(bs_probe=True)`.
+  It adds NO moves, only an earlier stopping condition, and at budget 501 over
+  all 72,779 it takes the residue from **2,130 unsolved to 1,200 (-44%)** and
+  nodes down 10.1%. But WALL TIME RISES 5.93%: the check is 1/68 of a node and
+  a collapse that fires and fails costs seconds while being charged zero nodes.
+  Quote both or neither. 0 regressions (nothing the control solves is lost --
+  argued from early termination, then measured), and the `rewrite` winner count
+  is identical at 18,839, which is the check that input-recognizable rows are
+  untouched. The certificate hope did NOT pay: only 464 rows convert
+  aut_assisted -> AC-certified, because a collapse purifies a path only from the
+  fire onward and a prefix that already used an `s40_gen` automorphism stays
+  impure. The 2x2's four arms are in `ac19_s40_1k/RESULTS.md`: the Nielsen moves
+  and the priority INTERACT (-4,859), so `s40_gen`'s strength is the pairing and
+  neither ingredient is good alone.
 - **`s20_bare` and the campaign's `s20_mk2` are bit-identical**: the same 68,475
   rows and the same node count on every one, across two engines (Python
   `mixed_search` vs `hcompact`) and two caps (255 vs 48). Engine and cap make no
