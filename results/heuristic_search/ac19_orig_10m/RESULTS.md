@@ -150,6 +150,17 @@ failure. Beyond that, every certificate was replayed end to end from the
 representative's own words to `(x, y)` by `replay_elementary`, which trusts
 nothing above it.
 
+A single row is walked move by move, with both pairs printed at every step, in
+[`WORKED_EXAMPLE.md`](WORKED_EXAMPLE.md). It also carries the mechanism behind
+the cost: `phi` is a change of coordinates chosen to make **one point** short,
+the starting pair, and it inflates every other point on the route. On the
+example row `phi` sends a single `y` to `YXX`, so the last seven moves strip a
+three-letter block on the aut-min side where the original strips one letter.
+Over all 40: aut-minimising shortens the start on 34 rows and raises the peak
+length on **40 of 40**, median 29 to 49. Since the arms are best-first on
+length and the count of words grows like `3^n`, that higher ridge is the
+search cost.
+
 ### The picture
 
 ![length profiles](ac19_orig_10m_transport_profiles.png)
@@ -385,6 +396,7 @@ In the repo, all under this directory:
 | `ac19_orig_10m_transported_{greedy,s20_mk2}.jsonl` | 40 + 18 | each original's certificate carried onto its representative, replayed |
 | `ac19_orig_10m_originals.{xlsx,csv}` | 40 | the workbook and its git-diffable twin: original, aut-min form, greedy's cost, both path lengths |
 | `ac19_orig_10m_transport_profiles.{svg,png}` | 40 panels | total relator length along the shared path, both starting points; `plot_ac19_orig_transport.py` |
+| `WORKED_EXAMPLE.md` | 1 row | `ac19x_144949` move by move, both pairs at every step; `make_ac19_worked_example.py --check` |
 
 `verify_ac19_orig_10m.py` re-derives every number above from these files and
 replays all 58 certificates as elementary AC moves (`all checks pass`).

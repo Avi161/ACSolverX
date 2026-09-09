@@ -98,7 +98,13 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   `test_every_step_is_equivariant`. The trap that check hides is canonicalizing
   BETWEEN steps: that can swap the two relators, after which the move's target
   addresses the wrong one and a correct transport reads as 7 of 23.
-  `ac19_orig_10m_transport_profiles.png` plots it, one panel per original. Names:
+  `ac19_orig_10m_transport_profiles.png` plots it, one panel per original,
+  and `ac19_orig_10m/WORKED_EXAMPLE.md` walks one row move by move. The
+  mechanism, if asked again why the shorter presentation is the harder one:
+  aut-minimising is a change of basis that shortens ONE point, the start, and
+  inflates the rest of the route. Start median 25 -> 19, peak median 29 -> 49,
+  peak higher on 40 of 40 rows. The arms are best-first on length and words
+  grow like 3^n, so the raised ridge is the search cost. Names:
   `ac19_<n>` is the n-th ORBIT (position in the orbit list), `ac19x_<n>` is
   dataset LINE n; `ac19_50892` is orbit 50,892 = line 90,721. The workbook
   `ac19_orig_10m_originals.xlsx` (+ CSV twin) is one deliberately small sheet,
