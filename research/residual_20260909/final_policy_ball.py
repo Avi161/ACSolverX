@@ -167,6 +167,7 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
     ball_lookups = 0
     ball_hit = False
     ball_depth = 0
+    ball_stage = None
 
     def ball_finish(states, steps, charges, route):
         """A hit on ``states[-1]``: splice the stored substitution tail."""
@@ -179,8 +180,8 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
                     min_max_relator_length_seen=1, policy_route=route,
                     ball_hit=True, ball_depth=table[key][0])
 
-    def probe(states, steps, charges, route):
-        nonlocal ball_lookups, ball_hit, ball_depth
+    def probe(states, steps, charges, route, stage):
+        nonlocal ball_lookups, ball_hit, ball_depth, ball_stage
         if table is None:
             return None
         ball_lookups += 1
@@ -189,9 +190,10 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
             return None
         ball_hit = True
         ball_depth = table[key][0]
+        ball_stage = stage
         return ball_finish(states, steps, charges, route)
 
-    result = probe([root], [], 0, 'ball_root')
+    result = probe([root], [], 0, 'ball_root', 'root')
     if result is None:
         for index, donor in enumerate(root):
             if charged >= limit:
@@ -216,7 +218,7 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
                 states.append(list(apply_pair(states[-1], image)))
                 steps.append(dict(kind='automorphism', images=image))
                 charged += 1
-                result = probe(states, steps, charged, 'strict_donor')
+                result = probe(states, steps, charged, 'strict_donor', 'donor_transport')
                 if result is not None:
                     break
             if result is not None:
@@ -253,6 +255,8 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
             ball_lookups += tail.get('ball_lookups', 0)
             attempt.update(terminal_solved=tail['solved'], terminal_charges=tail['nodes_explored'])
             if tail['solved']:
+                if tail.get('ball_hit'):
+                    ball_stage = 'donor_terminal'
                 ball_hit = ball_hit or bool(tail.get('ball_hit'))
                 ball_depth = max(ball_depth, int(tail.get('ball_depth') or 0))
                 result = dict(tail)
@@ -270,6 +274,8 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
         ball_lookups += plain.get('ball_lookups', 0)
         plain_wall, plain_cpu = time.perf_counter() - t, time.process_time() - c
         if plain['solved'] or charged + plain_charges >= budget:
+            if plain.get('ball_hit'):
+                ball_stage = 'plain'
             ball_hit = ball_hit or bool(plain.get('ball_hit'))
             ball_depth = max(ball_depth, int(plain.get('ball_depth') or 0))
             result = dict(plain)
@@ -280,6 +286,8 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
                              force_arm=force_arm, use_high_core_escape=True,
                              use_stable_power=use_stable_power)
         ball_lookups += fallback.get('ball_lookups', 0)
+        if fallback.get('ball_hit'):
+            ball_stage = 'incumbent'
         ball_hit = ball_hit or bool(fallback.get('ball_hit'))
         ball_depth = max(ball_depth, int(fallback.get('ball_depth') or 0))
         result = dict(fallback)
@@ -293,6 +301,7 @@ def search(pair, budget=1000, prepass_cap=250, plain_prefix=872, force_arm=None,
                   policy_wall=time.perf_counter() - started,
                   policy_cpu=time.process_time() - cpu,
                   ball_lookups=ball_lookups, ball_hit=ball_hit, ball_depth=ball_depth,
+                  ball_stage=ball_stage,
                   ball_enabled=table is not None, ball_size=len(table) if table else 0,
                   force_arm=force_arm, certified_overrun=certified_overrun,
                   use_stable_power=use_stable_power,

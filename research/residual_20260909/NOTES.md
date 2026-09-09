@@ -124,3 +124,35 @@ The generator arm costs about twice as much wall per charged unit as the ordinar
 census wall time comparable to the frozen census (389 s search + 109 s certificate), so
 the candidate is judged on wall time as well as solves; per-node cost of the generator
 arm is an optimization target once the design is fixed.
+
+## Frozen cascade + tables (dominance-preserving allocation 250/872/rest), dev and reg60 at 1,000
+
+| table | dev solved | dev units | dev wall (s) | reg60 solved | reg60 units | reg60 wall (s) |
+|---|---:|---:|---:|---:|---:|---:|
+| none (frozen) | 0 | 102,000 | 34.7 | 60 | 57,166 | 16.8 |
+| cap 8 | 6 | | | 60 | | |
+| cap 10 | 24 | 100,071 | 38.5 | 60 | 54,044 | 16.4 |
+| cap 10 automorphism-closed | 78 | 34,872 | 14.6 | 60 | 22,176 | 7.1 |
+| cap 12 | 71 | 71,085 | 27.3 | 60 | 26,607 | 9.8 |
+| cap 12 automorphism-closed (1,488,649 states, 625 s build) | 91 | 15,221 | 7.2 | 60 | 6,733 | 2.4 |
+
+The automorphism-closed cap-12 table raises coverage AND cuts wall time (fewer units per
+row), which is what the goal's time constraint needs.
+Table load cost (cap 12 automorphism-closed): 68.7 MB pickle, 1.85 s to load, 507 MB RSS
+per process; acceptable for a four-worker census run (about 2 GB).
+
+## Candidate screens with the cap-10 automorphism-closed table (dev / reg60 at 1,000)
+
+| candidate | dev solved | dev units | dev wall (s) | reg60 | reg60 units |
+|---|---:|---:|---:|---:|---:|
+| K1 (frozen allocation + table) | 78 | 34,872 | 14.3 | 60 | 22,176 |
+| K2 (K1 + overrun + stable-power) | 80 | 34,044 | 14.5 | 59 (lost ac19_28267) | 22,145 |
+| K3 (250 / 300 / rest + table + SP) | 92 | 26,132 | 18.0 | 60 | 9,524 |
+| K4 (250 / none / rest + table + SP) | pending | | | 60 | 2,022 |
+
+Dominance break found: the stable-power gate charges its failed attempts, and on
+ac19_28267 (frozen solve at exactly 973 units) those charges pushed K2 past 1,000. SP is
+dropped from all candidates. The overrun rule fires only on preflight-accepted BS states;
+it CAN in principle cost a row (a collapse needing more than the whole remaining budget
+burns it, where the frozen cascade would have moved on to stages 2-3), so its zero-loss
+claim is checked on the census comparison, not asserted.

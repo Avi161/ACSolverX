@@ -27,6 +27,22 @@ Contract
     substitutions, which ``certificate_decoder_compact_moves.decode_elementary``
     already handles).  The certificate decodes and replays to ``['x', 'y']``.
 
+Recommended wiring
+------------------
+``recognize`` is free (it emits nothing and charges nothing), so a cascade
+should use it as the admission test and only enter ``complete`` when the label
+is demotable::
+
+    label = recognize(state)
+    if demotable(label):
+        macro = complete(state, budget=budget - charged)
+        charged += macro['work']
+
+Wired that way the gate costs a row on which it does not fire exactly zero
+charged units.  Calling ``complete`` unconditionally is also safe - it refuses
+at 1 unit off the family and 2 units inside it - but that is 1-2 units of pure
+overhead on every state.
+
 Work charged
 ------------
 1 for recognition; +1 for a failed applicability test (so every refusal costs

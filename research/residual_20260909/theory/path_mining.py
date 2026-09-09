@@ -14,7 +14,9 @@ contain no consecutive-BS root at all, which is itself a reported result.
 
 Writes, next to this file:
   path_mining_rows.jsonl        one record per analysed row
-  unsolved_stalled_roots.json   the stalled-BS roots the census failed on
+  unsolved_stalled_roots.json   AGGREGATE class counts for the stalled-BS roots
+                                the census failed on (no row identities: the
+                                val/test panels are hidden)
 
 Usage:  PYTHONPATH=. python3 research/residual_20260909/theory/path_mining.py
 """
@@ -312,10 +314,23 @@ def main():
     with open(OUT, "w") as handle:
         for record in records:
             handle.write(json.dumps(record) + "\n")
+    labels, necklaces = Counter(), Counter()
+    for row in unsolved_stalled:
+        info = bs_class_of(tuple(row["pair"])) or {}
+        if info.get("label"):
+            labels[str(tuple(info["label"]))] += 1
+        else:
+            necklaces["m=%d, s_red=%d, necklace=%s"
+                      % (info.get("m"), info.get("s"),
+                         tuple(info.get("reduced_signs", ())))] += 1
     with open(os.path.join(HERE, "unsolved_stalled_roots.json"), "w") as handle:
-        json.dump([{"name": r["name"], "pair": r["pair"],
-                    "nodes_explored": r["nodes_explored"], "route": r["route"]}
-                   for r in unsolved_stalled], handle, indent=1)
+        json.dump({"note": "Aggregate only. Row identities are withheld because "
+                           "the val/test panels are hidden.",
+                   "stalled_bs_roots_unsolved_by_the_frozen_1k_policy":
+                       len(unsolved_stalled),
+                   "by_s3_class_label": dict(sorted(labels.items())),
+                   "by_wide_necklace": dict(sorted(necklaces.items()))},
+                  handle, indent=1)
     checked, failures = verify_paths([r for r in records if "stalled" in r["group"]])
     print(f"replayed substitutions of {checked} stalled-root paths, {failures} mismatches",
           file=sys.stderr)

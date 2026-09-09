@@ -6,9 +6,10 @@ Four things are pinned here.
 * THE TABLE IS EXACT.  ``build(6)`` is compared key for key against
   ``bruteforce_ball(6)``, which computes the true backward ball by expanding
   EVERY canonical pair with both relators of length <= 6 (6,903 of them) and
-  running a reverse BFS -- no predecessor enumeration involved.  The
-  ``verify=False`` variant is shown to be a strict superset, i.e. the forward
-  verification really does reject candidates.
+  running a reverse BFS -- no predecessor enumeration involved.  The forward
+  verification is shown to actually reject candidates (16 of 6,084 at cap 8
+  are full-product neighbours that the kernel does not emit) and to be what
+  supplies the stored move.
 * EVERY STORED EDGE REPLAYS.  Every entry of every shipped table is replayed
   with the pure-Python ``words.replay_move`` / ``words.apply_pair``, and the
   successor's depth is checked to be one less.
@@ -80,10 +81,21 @@ def test_build_cap6_equals_bruteforce_ball():
 
 
 def test_forward_verification_rejects_candidates():
-    """Without the kernel check the ball is strictly bigger, so the check bites."""
-    verified = bt.build(6, verify=True)
+    """The kernel check bites, and it is what supplies the stored move.
+
+    At cap 8, 16 of the 6,084 full-product neighbours the enumeration proposes
+    are not children the kernel emits and are dropped.  (They happen to be
+    states the BFS reaches by another route, which is why the ball SET is the
+    same either way -- but without the check there is no verified move, hence
+    no replayable tail, which the second half asserts.)
+    """
+    stats = {}
+    table = bt.build(8, stats=stats)
+    rejected = stats['forward_verifications'] - (len(table) - 1)
+    assert rejected == 16
     unchecked = bt.build(6, verify=False, stats={})
-    assert set(verified) < set(unchecked)
+    assert all(move is None for _depth, _successor, move in unchecked.values())
+    assert not bt.check_replay(unchecked)['ok']
 
 
 def test_cap8_layers_match_the_prototype():

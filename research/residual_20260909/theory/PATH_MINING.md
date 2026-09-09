@@ -258,20 +258,22 @@ All 18 unsolved stalled rows have the identical charge split
 consulted in Stage 3, which therefore never got more than 120 units on any of
 them, while the 584 solved siblings needed a median of 58 and up to 541 units.
 
-On the four rows the brief permits searching, giving Stage 3 its full 1,000
-units solves two of them outright (verified by
-`verify_stalled_bs_examples.py`, section G, decoded and replayed to `['x','y']`):
+On the four rows the brief permits searching (one representative each of
+classes `(7,2,5)`, `(5,1,4)` and two of class `(5,2,4)`, of which only
+`ac19_102` is a dev row), giving Stage 3 its full 1,000 units solves two of
+them outright, decoded and replayed to `['x','y']`:
 
-| row | class | `root_router(budget=1000)` | gated `mid_search(budget=2000)` |
+| representative | class | `root_router(budget=1000)` | gated `mid_search(budget=2000)` |
 |---|---|---|---|
-| ac19_99 | `(7,2,5)` | **solved, 896 units** | not solved at 2,000 |
-| ac19_102 | `(5,2,4)` | **solved, 608 units** | solved, 1,638 units |
-| ac19_103 | `(5,2,4)` | not solved at 1,000 | solved, 1,743 units |
-| ac19_105 | `(5,1,4)` | not solved at 1,000 | solved, 1,191 units |
+| dev row **ac19_102** | `(5,2,4)` | **solved, 608 units** | solved, 1,638 units |
+| a non-dev representative | `(7,2,5)` | **solved, 896 units** | not solved at 2,000 |
+| a non-dev representative | `(5,2,4)` | not solved at 1,000 | solved, 1,743 units |
+| a non-dev representative | `(5,1,4)` | not solved at 1,000 | solved, 1,191 units |
 
-and Rule BS-DEMOTE certifies ac19_105 (and its whole class) with **no search at
+and Rule BS-DEMOTE certifies the whole of class `(5,1,4)` with **no search at
 all**: 17 carry moves plus 64 pinch rewrites, decoded to 1,515 elementary moves
-and replayed to `['x','y']`.
+and replayed to `['x','y']`.  Row identities outside the dev panel are withheld
+because val/test are hidden; only class-level counts are reported.
 
 ## 7. What the mining says to implement
 

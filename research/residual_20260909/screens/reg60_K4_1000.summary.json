@@ -1,0 +1,91 @@
+{
+  "rows": 60,
+  "solved": 60,
+  "verified": 60,
+  "errors": 0,
+  "unsolved_names": [],
+  "total_nodes_explored": 2022,
+  "mean_elementary_count": 1785.2166666666667,
+  "route_counts": {
+    "ball_root": 8,
+    "incumbent_restart": 51,
+    "strict_donor": 1
+  },
+  "clocks": {
+    "search_wall": {
+      "sum": 0.5925691409997853,
+      "max": 0.06983890199990128
+    },
+    "search_cpu": {
+      "sum": 0.5925032870000003,
+      "max": 0.06981503200000005
+    },
+    "certificate_wall": {
+      "sum": 0.47286569400239387,
+      "max": 0.15224269200007257
+    },
+    "certificate_cpu": {
+      "sum": 0.47287191600000067,
+      "max": 0.152235599
+    }
+  },
+  "panel": "research/residual_20260909/panels/regression60.csv",
+  "panel_sha256": "8abe9188e3ca27d0a749d1cb4272e5223421396c9d77f7e68794ede588a8c37f",
+  "policy": "K4",
+  "budget": 1000,
+  "tag": "reg60_K4_1000",
+  "limit": null,
+  "names": null,
+  "warmup_wall": 0.10341494900012549,
+  "git_head": "b2212b8ecba0c3380336eac1e35d1cfd5547e8cc",
+  "versions": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+    "numpy": "2.1.3",
+    "numba": "0.63.1",
+    "llvmlite": "0.46.0"
+  },
+  "source_sha256": {
+    "research/supermoves_20260908/DONOR_NORMALIZED_BS.py": "19986c8e814447fec276ec39176fef9c89d9e0f2c6a5e535ac8330be12e45047",
+    "research/supermoves_20260908/bs_preflight.py": "cb162957be81fbe075cea5694ce834107cd053320db623d49be0bb59db53f16b",
+    "research/supermoves_20260908/certificate_compress.py": "465723e4f5328032b5be4725074c61f13a6499296425d5546213b401bfad8314",
+    "research/supermoves_20260908/certificate_decoder.py": "05a2bf2bc4851b8099b6743211cb3b5ae8867153439931dccb3d9467f13b41fc",
+    "research/supermoves_20260908/certificate_decoder_compact_moves.py": "b3799842c86ae85c1c13b6834899e5ccc385afddb64103185ef7861dae6a58ce",
+    "research/supermoves_20260908/certificate_decoder_fast.py": "44fc0853bb12fecdbefa78727759d1c95e52dac9dac39760a74370434604fe22",
+    "research/supermoves_20260908/certificate_words_numba.py": "b380eb365c0e0f971157a5ef23caecc7a06ffd6d77d8556fe02ec157ef2d25d9",
+    "research/supermoves_20260908/cheap_gates.py": "fc593b0594b5fb3b05a3e321222d8516e5daea25626d9fc592b6537fb946031d",
+    "research/supermoves_20260908/check_final_release.py": "dbadb123470d0e6ff2642b600f01641fdb5cea1ee818b525b1f7b61218163261",
+    "research/supermoves_20260908/check_summarize_full_ac19_final1k.py": "82bef56f0d1d2426d58a316822694d262ff97f6d68b73794a4ee3e8db26ab8f6",
+    "research/supermoves_20260908/christoffel_primitive_gate.py": "5c9fdd69c6dfa30c23025bf58724dc9c70eecda07b72bcf5692f810a8d3d5393",
+    "research/supermoves_20260908/consecutive_bs.py": "d3c8cce2ce228e21955d85f47ec3b5a02de1c3422ea94ac961744f7896f40a86",
+    "research/supermoves_20260908/final_policy.py": "c1ff3670abaf9a2e0bf7195a1d07cab1c24b0cb35eee6ed6935df231bde492d8",
+    "research/supermoves_20260908/final_policy_measured.py": "191dd9bb338b817a15515161632e3b89167ec665f8478214e487faf0dfda37d2",
+    "research/supermoves_20260908/mid_search.py": "37165f8a35037ef9000dd5f51f8a95ff29800174835cdaf4bbe6f74db47f12aa",
+    "research/supermoves_20260908/packed_words.py": "e5aaca14b04044419b510703d7b0fde6ceca603d20177bbe9614f4632f49391a",
+    "research/supermoves_20260908/plain_search_fast.py": "0087fae600a86dfb784f0f83e3a01b59fead6d12cb0f9ec3ca45744ef6fd8251",
+    "research/supermoves_20260908/primitive_completion.py": "fc9f9103f1df7e41a55e7d757c2983099f1bfbd7b52a33e11141f290fcdc19fd",
+    "research/supermoves_20260908/root_router.py": "8035632cbee1141804ab41e5953918ee0142fd2e9a59c8ac5c4eb018626e81d4",
+    "research/supermoves_20260908/run_final_policy.py": "cda99a19a51f507ad89cbd5045030a52da174a96b1591a66e9a1a204db445f12",
+    "research/supermoves_20260908/run_full_ac19_final1k.py": "b5fd074801476fc6b5fbb06babd85f43e5ce262b67a088db6559f8e100f10510",
+    "research/supermoves_20260908/splice_power_family.py": "0e7bf0cc3337d1632f520dcdce847598ae87b7ce416fcca8c759915b92575e51",
+    "research/supermoves_20260908/stable_power.py": "3f31d99aa674a1b9f6818c519241b5345f0e1d76c77b758bbc55e2a1753a7bde",
+    "research/supermoves_20260908/stable_power_Q.py": "9713e0ef6bf1cbfcd58a4af717a9d8343b41d9f967cd3fdc39e9facafbd3201c",
+    "research/supermoves_20260908/stable_square.py": "235601943566afa41d9733e4b755c366f4d052bdfd86d847420ae40abae3b844",
+    "research/supermoves_20260908/strict_donor_route.py": "22d46e28395945ebbdba5011076198eb6b8693b8cb69de21a70e5196513b7b38",
+    "research/supermoves_20260908/strict_donor_route_fast.py": "2989301639a6def869dc30a12ecfaed1bdf9d10410b959e1506cbbfedb0c5bdf",
+    "research/supermoves_20260908/summarize_full_ac19_final1k.py": "0acb4d2b07e0d97f4c892e01f69ff6cdb84e2191763e7a4e05dd22a8b872e867",
+    "research/supermoves_20260908/two_block.py": "6b3e481f90b218223db58235b078ecb4acdae70c0b0dfc7f952ae76adfa07fed",
+    "research/supermoves_20260908/verify_final_bundle.py": "5266037ac1a1a13b2c9282986889508791746af22b676c81ec9358293e5fd1d8",
+    "research/residual_20260909/backward_table.py": "37576e2a0556e236775c853c2c40f5da7cd18fc8e136bff358469cba7b2e5cdb",
+    "research/residual_20260909/bs_demote_gate.py": "7ac33835f54efde2384e7165163b904da0a222adba2a17b7ed6e68ad6438b7d5",
+    "research/residual_20260909/census_run.py": "d11b8c868616084816c5ce9405dba5f29e2dffe0b4db6c55bf55d945e64d9551",
+    "research/residual_20260909/census_summarize.py": "1363da41dbb623da0ef9c47b32f2979a9a3799826d1b1c131b28cda11ce1fd82",
+    "research/residual_20260909/compare.py": "31ba56e45c60625798b5d5cc96a164981187b786fa5c943c74498ece9e516074",
+    "research/residual_20260909/final_policy_ball.py": "b9f75122b3d19f19d9165737dd1df1d6ee3fd13df8cd5ff88ee6239be5286a86",
+    "research/residual_20260909/harness.py": "fa03dae56e1835039c0b87aa779225125c71a51d82e1cfcb8279619bd5710aec",
+    "research/residual_20260909/mid_search_ball.py": "67236855b73410aad8430a3ec45fb7d4943a8ebf2088676fa36b6528c092a03f",
+    "research/residual_20260909/plain_search_ball.py": "5856721b385b45515101cb03e82b3405578fbd794f3b54c9ccfa0e7c2032c426",
+    "research/residual_20260909/policies.py": "7e710e1d15a6460a185913e185cffa2b0536a6f557990d06638e4d5f0611a066",
+    "research/residual_20260909/theorem_frequency.py": "3da52b504ddee0a8d23c0f588dd8ef6fe940dc0bd6580f7adaf1e306d183ef8a"
+  }
+}

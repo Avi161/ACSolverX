@@ -159,8 +159,8 @@ def check_no_terminal_while_R_fixed():
 def check_demotion_positive():
     print("D. Rule BS-DEMOTE: positive certificates, replayed to (x, y)")
     cases = [
-        ("census ac19_105 class (5,1,4) - unsolved by the frozen 1k policy",
-         ("YYXXXXyX", "YXXXXXyxxxxxx")),
+        ("planted m=5 class (5,1,4) - the class the 1k policy fails on",
+         planted(5, 1, (0, 1, 4))),
         ("census ac19_42 class (2,1,1)", ("YYXXyx", "YXXXyxx")),
         ("census ac19_73 class (3,1,2)", ("YYXXXyxx", "YXXXXyxxx")),
         ("planted m=4 class (4,1,3)", planted(4, 1, (0, 1, 3))),
@@ -182,8 +182,8 @@ def check_demotion_positive():
 def check_demotion_negative():
     print("E. Rule BS-DEMOTE: adversarial negatives (must refuse, cheaply)")
     cases = [
-        ("census ac19_102 class (5,2,4)", ("YYXXyx", "YXXXXXXyxxxxx")),
-        ("census ac19_99 class (7,2,5)", ("YYXXyxx", "YXXXXXXXXyxxxxxxx")),
+        ("dev row ac19_102, class (5,2,4)", ("YYXXyx", "YXXXXXXyxxxxx")),
+        ("planted class (7,2,5)", planted(7, 1, (0, 6, 2))),
         ("planted m=5 class (5,2,3)", planted(5, 1, (0, 2, 3))),
         ("planted m=7 class (7,3,3)", planted(7, 1, (0, 3, 3))),
         ("pinchable companion (not stalled)", planted(3, 1, (0, 4, 3))),
@@ -222,8 +222,8 @@ def normal_state(pair):
 def check_class_transport():
     print("F. same label => common normal form after one relabelling")
     for left, right, name in [
-            (("YYXXyx", "YXXXXXXyxxxxx"), ("YYXXXXyX", "YXXXXXXyxxxxx"),
-             "ac19_102 / ac19_103, class (5,2,4)"),
+            (("YYXXyx", "YXXXXXXyxxxxx"), planted(5, 1, (0, 4 + 6, 1 + 5)),
+             "dev row ac19_102 vs a planted partner, class (5,2,4)"),
             (("YYXXyx", "YXXXyxx"), ("YYXXXyX", "YXXyxxx"),
              "two class (2,1,1) census rows")]:
         labels = [analyse_pair(canon_pair(*p))["label"] for p in (left, right)]
@@ -268,8 +268,13 @@ def check_census_family():
 def check_router_certificates():
     print("G. residual classes reachable with a full 1000-unit incumbent stage")
     from research.supermoves_20260908.root_router import search as router
-    for name, pair in [("ac19_99 class (7,2,5)", ("YYXXyxx", "YXXXXXXXXyxxxxxxx")),
-                       ("ac19_102 class (5,2,4)", ("YYXXyx", "YXXXXXXyxxxxx"))]:
+    cases = [("dev row ac19_102, class (5,2,4)", ("YYXXyx", "YXXXXXXyxxxxx"))]
+    if "--full" in sys.argv:
+        # one non-dev class representative; only run under --full so a default
+        # verification never searches a row that may sit in a hidden panel.
+        cases.append(("a class (7,2,5) representative",
+                      ("YYXXyxx", "YXXXXXXXXyxxxxxxx")))
+    for name, pair in cases:
         result = router(canon_pair(*pair), budget=1000, use_high_core_escape=True)
         if not result["solved"]:
             check(name, False, f"router did not solve within 1000 units ({result['nodes_explored']})")
@@ -300,10 +305,11 @@ def check_full_census_batch():
         ok, _built = demote_and_collapse(pair)
         if ok is not True:
             bad.append(name)
-    unsolved = [n for n, _p, solved, _m in rows if not solved]
+    unsolved = sum(1 for _n, _p, solved, _m in rows if not solved)
     check("every demotable census row certifies and replays to (x,y)", not bad,
           f"{len(rows)} rows, {len(bad)} failures; "
-          f"{len(unsolved)} of them were unsolved by the 1k policy: {unsolved}")
+          f"{unsolved} of them were unsolved by the 1k policy "
+          f"(row identities withheld: possible val/test members)")
 
 
 def main():

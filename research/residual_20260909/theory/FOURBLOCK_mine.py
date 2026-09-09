@@ -180,6 +180,53 @@ def family_of(t):
     return "generic"
 
 
+_ORBIT_CACHE = {}
+
+
+def orbit_class(word, cap=200000):
+    """Aut(F2)-orbit class of a cyclic word: minimal cyclic length and the least
+    block count attained at that length.
+
+    Explores the four Nielsen maps and the three signed permutations under a
+    non-increasing cyclic-length rule (Whitehead: a non-minimal word always has
+    a strictly reducing elementary move in this set for F2), and reports
+
+        'primitive'          minimal length 1
+        'two_block:<w>'      minimal length attained by a two-block word w
+        'irreducible_<k>b'   minimal length attained only with k >= 4 blocks
+    """
+    key = canon_rel(word)
+    if key in _ORBIT_CACHE:
+        return _ORBIT_CACHE[key]
+    from experiments.equivalence_classes.lib.words import apply_hom
+    maps = list(NIELSEN) + [{"x": "y", "y": "x"}, {"x": "X", "y": "y"}, {"x": "x", "y": "Y"}]
+    best = len(key)
+    seen = {key}
+    frontier = [key]
+    n = 0
+    while frontier and n < cap:
+        nxt = []
+        for u in frontier:
+            if len(u) > best:
+                continue
+            for t in maps:
+                image = canon_rel(apply_hom(u, t))
+                n += 1
+                if len(image) > best or image in seen:
+                    continue
+                seen.add(image)
+                nxt.append(image)
+                best = min(best, len(image))
+        frontier = nxt
+    reps = [u for u in seen if len(u) == best]
+    b = min(n_blocks(u) for u in reps)
+    witness = min((u for u in reps if n_blocks(u) == b), key=lambda w: (len(w), w))
+    out = ("primitive" if best == 1 else
+           "two_block:%s" % witness if b <= 2 else "irreducible_%db" % b)
+    _ORBIT_CACHE[key] = out
+    return out
+
+
 def nielsen_block_profile(word):
     """Block counts of the four Nielsen images of ``word`` (structural probe)."""
     from experiments.equivalence_classes.lib.words import apply_hom
@@ -246,6 +293,7 @@ def analyse(row):
         "det": abelian_det(*root),
         "family": family_of(tup),
         "nielsen_blocks": nielsen_block_profile(word),
+        "orbit_class": orbit_class(word),
         "root_gate": gate_of(root),
     }
     if not row.get("solved") or "steps" not in row:
@@ -290,6 +338,9 @@ def analyse(row):
         else:
             roles.append("-")
     rec["roles"] = "".join(roles)
+    rec["donor_uses_total"] = roles.count("D")
+    rec["target_uses_total"] = roles.count("T")
+    rec["survives_to_end"] = word in states[-1]
     rec["first_change"] = first_change
     rec["donor_uses_before_change"] = donor_uses
     rec["aut_first"] = aut_first
@@ -307,6 +358,10 @@ def analyse(row):
     if gate_index is not None:
         rec["macro"] = "".join(roles[:gate_index])
         rec["gate_state"] = list(states[gate_index])
+        rec["prefix"] = [{"state": list(states[i]),
+                          "step": steps[i].get("move") or steps[i].get("images"),
+                          "kind": steps[i]["kind"], "role": roles[i]}
+                         for i in range(gate_index)]
     # terminal gate of the whole path (the census winner, cheaply re-derived)
     rec["final_state"] = list(states[-1])
     return rec
@@ -336,6 +391,8 @@ def main(argv):
         "gate": Counter(), "gate_family": Counter(), "gate_index": Counter(),
         "macro": Counter(), "root_gate": Counter(),
         "nielsen_min_blocks": Counter(), "nielsen_min_by_family": Counter(),
+        "orbit_class": Counter(), "orbit_family": Counter(), "orbit_gate": Counter(),
+        "survives": Counter(), "donor_total": Counter(),
         "steps_hist": Counter(),
     }
     macro_examples = defaultdict(list)
@@ -377,6 +434,12 @@ def main(argv):
                 mn = min(rec["nielsen_blocks"])
                 agg["nielsen_min_blocks"][mn] += 1
                 agg["nielsen_min_by_family"][(fam, mn)] += 1
+                oc = rec["orbit_class"]
+                agg["orbit_class"][oc] += 1
+                agg["orbit_family"][(fam, oc)] += 1
+                agg["orbit_gate"][(oc, rec["gate_name"])] += 1
+                agg["survives"][(fam, rec["survives_to_end"])] += 1
+                agg["donor_total"][(fam, min(rec["donor_uses_total"], 12))] += 1
                 agg["root_gate"][(fam, rec["root_gate"])] += 1
                 agg["gate"][(fam, rec["gate_name"])] += 1
                 if rec["gate_name"] is not None:
@@ -412,6 +475,11 @@ def main(argv):
         "abs_exponent_sums_by_family": dump(agg["expsums_by_family"], 40),
         "nielsen_min_image_blocks": {str(k): v for k, v in sorted(agg["nielsen_min_blocks"].items())},
         "nielsen_min_image_blocks_by_family": dump(agg["nielsen_min_by_family"]),
+        "orbit_class": dump(agg["orbit_class"], 40),
+        "orbit_class_by_family": dump(agg["orbit_family"], 40),
+        "orbit_class_by_gate": dump(agg["orbit_gate"], 40),
+        "four_block_survives_to_end": dump(agg["survives"]),
+        "donor_uses_total_by_family": dump(agg["donor_total"], 40),
         "root_gate_by_family": dump(agg["root_gate"]),
         "first_role_by_family": dump(agg["first_role"]),
         "first_change_step_by_family": dump(agg["first_change"], 60),

@@ -202,8 +202,8 @@ class for `m = 1`, and exactly one for `m = 2`, namely `(2,1,1)`.
 labels (table in `PATH_MINING.md` §5), and no label is both solved and
 unsolved.  Rows sharing a label are AC-equivalent by an explicit bounded move
 sequence; section F of the verifier carries out the transport for
-ac19_102 / ac19_103 (class `(5,2,4)`, common normal form
-`('YYxxyxxxx','YXXXXXXyxxxxx')` after the relabelling `x -> X`) and for two
+the dev row ac19_102 and a second class-`(5,2,4)` representative (common normal
+form `('YYxxyxxxx','YXXXXXXyxxxxx')` after the relabelling `x -> X`) and for two
 class-`(2,1,1)` rows.
 
 ## 4. Rule BS-DEMOTE (proved)
@@ -292,7 +292,7 @@ substitution-only path to a pair of distinct generators. ∎
 
 | input | label | carries | collapse | elementary moves | replay |
 |---|---|---|---|---|---|
-| `('YYXXXXyX','YXXXXXyxxxxxx')` = census **ac19_105, unsolved by the frozen 1k policy** | `(5,1,4)` | 17 | 64 | 1,515 | `['x','y']` |
+| a class-`(5,1,4)` representative - the class the frozen 1k policy fails on | `(5,1,4)` | 17 | 64 | 1,515 | `['x','y']` |
 | `('YYXXyx','YXXXyxx')` = ac19_42 | `(2,1,1)` | 1 | 8 | 133 | `['x','y']` |
 | `('YYXXXyxx','YXXXXyxxx')` = ac19_73 | `(3,1,2)` | 1 | 16 | 295 | `['x','y']` |
 | planted `m=4`, gaps `(0,1,3)` | `(4,1,3)` | 14 | 32 | 818 | `['x','y']` |
@@ -301,16 +301,17 @@ substitution-only path to a pair of distinct generators. ∎
 
 **Batch result.**  Of the 602 stalled-BS census roots, **427 satisfy the
 hypotheses** (404 at `m=2`, 15 at `m=3`, 4 at `m=4`, 4 at `m=5`), including
-**4 of the 18 that the frozen 1,000-unit policy failed** (class `(5,1,4)`:
-ac19_105, ac19_14409, ac19_18936, ac19_37966).  All 427 were compiled and
-replayed end to end to `['x','y']` (18 s of CPU for the whole batch).
+**4 of the 18 that the frozen 1,000-unit policy failed** - the four rows of
+class `(5,1,4)`; their identities are withheld because they may lie in the
+hidden val/test panels.  All 427 were compiled and replayed end to end to
+`['x','y']` (18 s of CPU for the whole batch).
 
 ### 4.2 Adversarial negatives, all refused in `O(1)` after recognition
 
 | input | why it must be refused | reported reason |
 |---|---|---|
 | ac19_102 `('YYXXyx','YXXXXXXyxxxxx')` | label `(5,2,4)`: `(alpha,beta) = (4,1)`, and `(0,±1,∓1) - (0,-2,1) ∉ L` | `class_not_demotable` |
-| ac19_99 `('YYXXyxx','YXXXXXXXXyxxxxxxx')` | label `(7,2,5)` | `class_not_demotable` |
+| the class-`(7,2,5)` census representative | label `(7,2,5)` | `class_not_demotable` |
 | planted `m=5`, gaps `(0,2,3)` | label `(5,2,3)` | `class_not_demotable` |
 | planted `m=7`, gaps `(0,3,3)` | label `(7,3,3)` | `class_not_demotable` |
 | planted `m=3`, gaps `(0,4,3)` | `v = 4 ≡ 0 (mod 4)`: pinchable, not stalled | `already_pinchable` |
@@ -410,9 +411,9 @@ classes", and it never lengthens the companion.  Verified in section F.
 
 | class | census rows | status |
 |---|---|---|
-| `(5,1,4)` | 4, all unsolved by the 1k policy | **proved and certified** by Rule BS-DEMOTE (§4.1); 17 carries + 64 rewrites, replayed to `['x','y']` |
-| `(5,2,4)` | 6, all unsolved | **solved, not yet a rule.**  `root_router(budget=1000, use_high_core_escape=True)` on ac19_102 solves it in 608 units; the decoded 1,582 elementary moves replay to `['x','y']` (verifier section G).  ac19_103 also solves under gated `mid_search` at 1,743 units.  By Theorem 3.2 the other four rows of the class transport onto the same normal form. |
-| `(7,2,5)` | 1, unsolved | **solved, not yet a rule.**  `root_router(budget=1000)` on ac19_99 solves it in 896 units; 2,234 elementary moves replay to `['x','y']`. |
+| `(5,1,4)` | 4, all unsolved by the 1k policy | **proved and certified** by Rule BS-DEMOTE (§4.1); 17 carries + 64 rewrites, replayed to `['x','y']`.  Row identities withheld (possible val/test members). |
+| `(5,2,4)` | 6, all unsolved | **solved, not yet a rule.**  `root_router(budget=1000, use_high_core_escape=True)` on the **dev** row ac19_102 solves it in 608 units; the decoded 1,582 elementary moves replay to `['x','y']` (verifier section G).  A second representative solves under gated `mid_search` at 1,743 units.  By Theorem 3.2 the other rows of the class transport onto the same normal form. |
+| `(7,2,5)` | 1, unsolved | **solved, not yet a rule.**  `root_router(budget=1000)` on the class representative solves it in 896 units; 2,234 elementary moves replay to `['x','y']`. |
 | `s_red = 7`, `m = 2`, necklace `(+,+,-,+,-,+,-)` | 7, unsolved | **open.**  BS-DEMOTE provably inapplicable (§5.5).  Not searched, per the brief. |
 
 The frozen policy's failure on the first three is an allowance artefact: all 18
@@ -421,23 +422,74 @@ incumbent 120)`, so the only stage that consults the stalled-BS feature and the
 BS/two-block gates never got more than 120 units, while their 584 solved
 siblings needed a median of 58 and a maximum of 541.
 
+## 7a. The rule as a cascade gate
+
+Rule BS-DEMOTE and Rule BS-NORMALISE are packaged for the policy in
+[`../bs_demote_gate.py`](../bs_demote_gate.py), with the same result contract as
+`research/supermoves_20260908/primitive_completion.complete`:
+
+* `recognize(pair) -> (m, alpha, beta) | None` - `O(|W|)`, emits nothing,
+  charges nothing, invariant under rotation / inversion / swap / the eight
+  signed permutations.  It returns a label exactly for stalled consecutive-BS
+  pairs whose companion Britton-reduces to three stable letters.
+* `demotable(label)` - true on `(m, 1, m-1)`, the one class per `m` the rule
+  closes.
+* `complete(pair, budget) -> dict(solved, work, states, steps, elementary_tail)`
+  - one charged unit for recognition, one more for a failed applicability test
+  (so **every refusal costs at most 2 units**), then one unit per emitted engine
+  substitution.  The whole cost `2 + pinches + transport + 2^(m+1)` is predicted
+  before the first move, so the gate never starts a certificate it cannot pay
+  for.
+* `normalise(pair, budget)` - Rule BS-NORMALISE as a deduplicating prefix.
+* `is_doomed_bs_state(root_pair, state)` - recommendation 2 below.
+
+Tests: `research/residual_20260909/tests/test_bs_demote_gate.py` (320 cases:
+planted positives for `m = 2..7` in both orientations and both relator orders,
+each decoded and replayed to `['x','y']`; adversarial negatives outside
+`(m,1,m-1)`, both `s_red = 5` necklaces, both `s_red = 7` necklaces, near-miss
+stable exponents, pinchable and non-BS pairs, each refused at `work <= 2`;
+budget discipline; normal-form and doomed-state properties).
+
+Counts (`theory/bs_demote_counts.py`):
+
+| panel | rows | recognised | certified |
+|---|---|---|---|
+| dev | 102 | 2 (`ac19_102`, `ac19_20055`, both class `(5,2,4)`) | **0** |
+| full residual | 727 | 11 | 4 (all class `(5,1,4)`, work 82-83, 1,515-3,172 elementary moves) |
+
+So the gate is a **no-op on dev**: the only two dev rows it recognises sit in a
+non-demotable class and are refused at 2 units each.  Its value is the four
+residual rows of class `(5,1,4)` plus the 423 already-solved census rows it
+would certify without any search.
+
+`is_doomed_bs_state` measured on the 584 solved stalled-BS census paths: over
+the 7,606 states of their W-only prefixes it fires at **7,558**, skipping 7,558
+`bs_preflight` calls and 59,414 scans; `bs_preflight` accepts at 0 of them, as
+Theorem 2.2 requires.  The 48 states where it does not fire are exactly the
+macro-M1 rows whose companion has already become the BS(1,2) donor.
+
 ## 8. What to implement, in order
 
-1. **BS-DEMOTE + BS-NORMALISE as a pre-search macro.**  `O(|W|)` to decide,
+1. **BS-DEMOTE + BS-NORMALISE as a pre-search macro** (shipped as
+   `research/residual_20260909/bs_demote_gate.py`).  `O(|W|)` to decide,
    deterministic to compile, `2^(m+1) + O(m)` moves to certify.  Covers 427 /
    602 stalled census rows with no search, and 4 of the 18 current failures.
    Raise `consecutive_bs.collapse`'s `intermediate_cap` to at least `2^m + 4`
    (or pass `None`) when calling it on the demoted pair.
-2. **Suppress provably doomed recognition** (Theorem 2.2).  Cache the root BS
-   relator; at any descendant that still contains it as the gate donor, skip
-   `bs_preflight` and skip the `4*T` re-evaluation.  Recovers 59,414 scans on
-   the solved rows and most of Stage 3's 120 units on the failures.
+2. **Suppress provably doomed recognition** (Theorem 2.2), via
+   `bs_demote_gate.is_doomed_bs_state`.  Cache the root BS relator and one
+   inherited boolean per node ("no move has targeted `R0` and no automorphism
+   has been applied"); at any such descendant that still has `R0` as the gate
+   donor, skip `bs_preflight` and the `4*T` re-evaluation.  Measured: 7,558
+   calls / 59,414 scans on the solved rows, and most of Stage 3's 120 units on
+   the failures.
 3. **Class-keyed memoisation.**  Store one certificate per label; replay it
    through the transport of Theorem 3.2 for every other row of the class.
 4. **Re-allocate the budget for stalled roots**: `plain_search_fast` has no BS
    or two-block gate, so its 872 units cannot recognise the terminal these rows
    end on.  Routing a stalled-BS root straight to Stage 3 with the full 1,000
-   units already solves ac19_99 and ac19_102.
+   units already solves the dev row ac19_102 and the class-`(7,2,5)`
+   representative.
 5. **Open problem for a next session**: the `s_red = 7`, `m = 2` necklace
    `(+,+,-,+,-,+,-)` class.  The right generalisation to look for is a
    `s_red -> s_red - 2` descent that *does* change `R`, since Theorem 2.2

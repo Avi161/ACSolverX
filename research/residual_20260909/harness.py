@@ -51,6 +51,15 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]  # research/residual_20260909 -> research -> repo root
 ALPHABET = frozenset('xXyY')
 WARMUP_PAIR = ('YYXyX', 'YXXyx')
+# Optional per-row diagnostics copied straight through from the policy result
+# when present: the cascade's stage charges, and the backward-ball terminal's
+# accounting (see research/residual_20260909/BACKWARD_TABLE.md).
+DIAGNOSTIC_KEYS = (
+    'prepass_charges', 'plain_charges', 'fallback_nodes', 'prepass_cap',
+    'plain_prefix', 'route', 'winner', 'force_arm', 'certified_overrun',
+    'use_stable_power', 'ball_hit', 'ball_depth', 'ball_lookups', 'ball_stage',
+    'ball_table', 'ball_size', 'ball_enabled',
+)
 
 
 def _validate_word(word, which, row_name):
@@ -128,6 +137,12 @@ def run_row(policy_fn, name, pair, budget):
         best_state=result.get('best_state'),
         min_total_length_seen=result.get('min_total_length_seen'),
     )
+    # Stage accounting and backward-ball diagnostics, when the policy reports
+    # them, so a loss can be attributed to a stage straight from the JSONL.
+    # Purely additive: policies that do not set these keys are unaffected.
+    for _key in DIAGNOSTIC_KEYS:
+        if _key in result:
+            record[_key] = result[_key]
     if record['solved']:
         wall1, cpu1 = time.perf_counter(), time.process_time()
         moves = decode_elementary(pair, result['states'], result['steps'], result.get('elementary_tail'))
