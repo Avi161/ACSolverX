@@ -7,7 +7,7 @@
     "replay_failures": 0,
     "mu_evals": 360052,
     "nodes": 360000,
-    "wall": 508.70235316899925
+    "wall": 558.9116664370049
   },
   "aut_edges": {
     "rows": 36,
@@ -17,7 +17,7 @@
     "replay_failures": 0,
     "mu_evals": 361150,
     "nodes": 360000,
-    "wall": 552.0711042730018
+    "wall": 603.6557003850012
   },
-  "wall_total": 536.9658745070001
+  "wall_total": 590.7985886039987
 }
