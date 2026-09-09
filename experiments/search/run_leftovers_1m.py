@@ -936,6 +936,12 @@ def main(argv=None):
     # when a path is given, since such a list is not that arm's 100k residue.
     ap.add_argument("--csv-path", default=None,
                     help="row list to run instead of the arm's shipped CSV")
+    # The cap is in the jsonl filename, so run and report must agree on it;
+    # one flag feeds both. Default is the campaign's 48. The pre-aut-min
+    # originals need 64, because their control is that arm's 10M record on the
+    # representative and that ran at 64 -- a different cap is a different search.
+    ap.add_argument("--mrl", type=int, default=MAX_RELATOR_LENGTH,
+                    help="max relator length; tags the jsonl name")
     ap.add_argument("--floor", type=int, default=100_000,
                     help="the budget every row on the list already failed at; a "
                          "solve at or below it means the wrong search is running")
@@ -951,9 +957,10 @@ def main(argv=None):
     if a.smoke:
         budget, limit = 2_000, 2
         out_dir = out_dir + "_smoke"
-    run_arm(a.arm, out_dir, budget=budget, n_workers=a.workers, limit=limit,
-            common_denominator=a.common_denominator, csv_path=a.csv_path)
-    report(a.arm, out_dir, budget=budget,
+    run_arm(a.arm, out_dir, budget=budget, mrl=a.mrl, n_workers=a.workers,
+            limit=limit, common_denominator=a.common_denominator,
+            csv_path=a.csv_path)
+    report(a.arm, out_dir, budget=budget, mrl=a.mrl,
            common_denominator=a.common_denominator, csv_path=a.csv_path,
            floor=a.floor)
 
