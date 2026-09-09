@@ -73,6 +73,15 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   impure. The 2x2's four arms are in `ac19_s40_1k/RESULTS.md`: the Nielsen moves
   and the priority INTERACT (-4,859), so `s40_gen`'s strength is the pairing and
   neither ingredient is good alone.
+- **Lucas Fagan's question is answered in `results/heuristic_search/ac19_orig_10m/RESULTS.md`**:
+  the pre-aut-min originals of the orbits both arms exhausted at 10M all
+  solve -- greedy 40/40 (median 5,720, max 52,143), s20_mk2 18/18 (median
+  1,575, max 10,229) -- while 0 of 28 / 0 of 9 representatives solve at
+  10,000,000. Both jsonls are in the repo; the s20_mk2 one was re-run locally
+  at 1M cap 64 (10M needs 88 GB) and reproduces the cloud run's min, median,
+  max and sum exactly (its p90 is one order statistic off, a convention).
+  Within-orbit variance is up to 31x, so never quote a per-orbit cost without
+  naming the original.
 - **`s20_bare` and the campaign's `s20_mk2` are bit-identical**: the same 68,475
   rows and the same node count on every one, across two engines (Python
   `mixed_search` vs `hcompact`) and two caps (255 vs 48). Engine and cap make no
