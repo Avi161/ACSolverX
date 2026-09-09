@@ -24,7 +24,8 @@ def main():
     for r in load('aca36_initial_mu_10000.jsonl'):
         if r['path_replayed']:
             best[r['name']][f"mu:{r['arm']}"] = r['best_mu']
-    for r in load('aca36_initial_orbit_10000.jsonl'):
+    orbit_file = 'aca36_initial_orbit_10000_v2.jsonl' if (HERE / 'aca36_initial_orbit_10000_v2.jsonl').exists() else 'aca36_initial_orbit_10000.jsonl'
+    for r in load(orbit_file):
         if r['path_replayed']:
             best[r['name']]['mu:orbit'] = r['best_mu']
     autstart = defaultdict(list)
