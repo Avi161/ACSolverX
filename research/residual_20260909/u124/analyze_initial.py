@@ -36,7 +36,13 @@ def main():
     for r in load('aca36_initial_K3p_c14aut_10000.jsonl'):
         if r.get('min_total_length_seen') is not None:
             best[r['name']]['raw:cascade'] = r['min_total_length_seen']
-    methods = ['raw:s20', 'raw:aut_edges', 'raw:cascade', 'raw:autstart', 'mu:s20', 'mu:aut_edges', 'mu:orbit', 'mu:autstart']
+    ref = {}
+    for r in load('ref_u124_10m_s20_mk2_b10000000_mrl64.jsonl'):
+        if r.get('name') in mu and (r['name'] not in ref or r.get('nodes_explored', 0) >= ref[r['name']].get('nodes_explored', 0)):
+            ref[r['name']] = r
+    for name, r in ref.items():
+        best[name]['ref:10M_s20'] = int(r['min_relator_length'])
+    methods = ['raw:s20', 'raw:aut_edges', 'raw:cascade', 'raw:autstart', 'mu:s20', 'mu:aut_edges', 'mu:orbit', 'mu:autstart', 'ref:10M_s20']
     present = [m for m in methods if any(m in b for b in best.values())]
     print('name      init ladder | ' + ' | '.join(f'{m:13s}' for m in present) + ' | best  gap')
     gaps = []
@@ -44,7 +50,8 @@ def main():
     for name, row in mu.items():
         mi, mo = int(row['mu_in']), int(row['mu_out'])
         vals = {m: best[name].get(m) for m in present}
-        b = min(v for v in vals.values() if v is not None) if any(v is not None for v in vals.values()) else mi
+        ours = {m: v for m, v in vals.items() if not m.startswith('ref:') and v is not None}
+        b = min(ours.values()) if ours else mi
         gaps.append(b - mo)
         for m, v in vals.items():
             if v is not None and v <= mo:
