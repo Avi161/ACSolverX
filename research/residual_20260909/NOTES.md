@@ -203,3 +203,29 @@ inside the cap-12 automorphism-closed ball), strict_donor 24,415, plain_s20 23,4
 incumbent_restart 148 solved / 41 unsolved, bs_demote 43. Results in
 results/heuristic_search/ac19_ball_cascade_full_1k/ (SUMMARY.json, RESULTS.md,
 COMPARISON.md, unsolved.csv, 73 shards, manifests).
+
+## Diagnosis of the six census losses (round 1)
+
+All six are rows the frozen plain stage solved at 491-638 plain units; with the cap-12
+automorphism-closed table the ordinary arm needs 413-569 units, i.e. more than K3''s
+300-unit plain stage, and the incumbent stage does not reach them within its ~692 units.
+Two families: r1 = YYXyxYXXyx (4 rows) and r1 = YXyXYXyxx (2 rows); the same first
+relators recur among the 41 unsolved rows. Of the 41 unsolved roots, 34 have both relators
+of length <= 14, so a cap-14 automorphism-closed table could resolve them at the root if a
+cap-14 path exists (24,708 census roots already lie in the cap-12 ball).
+Of the 692 gains, 460 were roots that lie INSIDE the cap-12 automorphism-closed ball
+(route ball_root, one lookup), 164 plain_s20, 57 incumbent, 7 strict_donor, 4 bs_demote.
+
+## Exact ball membership of the 47 remaining roots (41 unsolved + 6 lost), decided by
+## exhaustive forward components under a relator cap, with the cap-12 aut ball as target
+
+| cap | in the ball | provably outside | undecided |
+|---|---:|---:|---:|
+| 14 | 35 | 12 | 0 |
+| 15 | 46 | 1 (ac19_66543) | 0 |
+| 16 | 47 | 0 | 0 |
+
+The forward components under these caps are small (tens to a few thousand states), i.e.
+the roots sit in "pockets" whose exits pass through a length-15/16 relator. A cap-14
+automorphism-closed table would resolve 35 of the 47 at the root; the rest need the search
+to find a short path (depth 3-15) through a longer state before meeting the table.
