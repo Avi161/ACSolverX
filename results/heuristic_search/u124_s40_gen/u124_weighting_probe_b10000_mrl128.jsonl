@@ -1,0 +1,24 @@
+{"name": "aca_99", "label": "s40_gen L+40S", "start": 25, "minTOT": 22, "solved": false, "maxrel": 46, "maxpop": 38, "nodes": 10000, "secs": 21.4}
+{"name": "aca_99", "label": "s20_mk2 L+20S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 51, "maxpop": 43, "nodes": 10000, "secs": 22.3}
+{"name": "aca_99", "label": "L+40S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 54, "maxpop": 45, "nodes": 10000, "secs": 25.6}
+{"name": "aca_99", "label": "L+40S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 59, "maxpop": 50, "nodes": 10000, "secs": 27.6}
+{"name": "aca_99", "label": "L+10S+5MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 55, "maxpop": 48, "nodes": 10000, "secs": 23.0}
+{"name": "aca_107", "label": "s40_gen L+40S", "start": 25, "minTOT": 22, "solved": false, "maxrel": 50, "maxpop": 39, "nodes": 10000, "secs": 22.1}
+{"name": "aca_99", "label": "L+20S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 65, "maxpop": 53, "nodes": 10000, "secs": 27.3}
+{"name": "aca_107", "label": "s20_mk2 L+20S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 51, "maxpop": 43, "nodes": 10000, "secs": 22.4}
+{"name": "aca_107", "label": "L+10S+5MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 55, "maxpop": 48, "nodes": 10000, "secs": 18.5}
+{"name": "aca_107", "label": "L+40S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 54, "maxpop": 45, "nodes": 10000, "secs": 25.3}
+{"name": "aca_107", "label": "L+20S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 73, "maxpop": 57, "nodes": 10000, "secs": 27.1}
+{"name": "aca_107", "label": "L+40S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 67, "maxpop": 54, "nodes": 10000, "secs": 29.4}
+{"name": "aca_110", "label": "s40_gen L+40S", "start": 25, "minTOT": 22, "solved": false, "maxrel": 45, "maxpop": 38, "nodes": 10000, "secs": 17.5}
+{"name": "aca_110", "label": "s20_mk2 L+20S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 51, "maxpop": 43, "nodes": 10000, "secs": 22.5}
+{"name": "aca_110", "label": "L+40S+2MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 54, "maxpop": 45, "nodes": 10000, "secs": 25.9}
+{"name": "aca_110", "label": "L+40S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 63, "maxpop": 52, "nodes": 10000, "secs": 31.9}
+{"name": "aca_110", "label": "L+20S+8MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 67, "maxpop": 54, "nodes": 10000, "secs": 24.8}
+{"name": "aca_110", "label": "L+10S+5MK", "start": 25, "minTOT": 22, "solved": false, "maxrel": 55, "maxpop": 48, "nodes": 10000, "secs": 19.0}
+{"name": "aca_113", "label": "s40_gen L+40S", "start": 25, "minTOT": 23, "solved": false, "maxrel": 49, "maxpop": 39, "nodes": 10000, "secs": 20.6}
+{"name": "aca_113", "label": "s20_mk2 L+20S+2MK", "start": 25, "minTOT": 23, "solved": false, "maxrel": 54, "maxpop": 44, "nodes": 10000, "secs": 21.6}
+{"name": "aca_113", "label": "L+40S+2MK", "start": 25, "minTOT": 23, "solved": false, "maxrel": 54, "maxpop": 46, "nodes": 10000, "secs": 28.5}
+{"name": "aca_113", "label": "L+40S+8MK", "start": 25, "minTOT": 23, "solved": false, "maxrel": 71, "maxpop": 56, "nodes": 10000, "secs": 30.1}
+{"name": "aca_113", "label": "L+20S+8MK", "start": 25, "minTOT": 23, "solved": false, "maxrel": 81, "maxpop": 61, "nodes": 10000, "secs": 24.6}
+{"name": "aca_113", "label": "L+10S+5MK", "start": 25, "minTOT": 23, "solved": false, "maxrel": 53, "maxpop": 47, "nodes": 10000, "secs": 18.1}

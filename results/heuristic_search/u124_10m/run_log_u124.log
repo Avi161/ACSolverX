@@ -1,0 +1,1664 @@
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_1: 134,183/10,000,000 nodes (1.3%) 2,228 n/s, ~74 min left on this row | L 15->15 best, 39 widest
+      aca_0: 149,512/10,000,000 nodes (1.5%) 2,484 n/s, ~66 min left on this row | L 18->18 best, 37 widest
+      aca_1: 260,135/10,000,000 nodes (2.6%) 2,161 n/s, ~75 min left on this row | L 15->15 best, 41 widest
+      aca_0: 304,136/10,000,000 nodes (3.0%) 2,521 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+      aca_0: 434,184/10,000,000 nodes (4.3%) 2,402 n/s, ~66 min left on this row | L 18->18 best, 39 widest
+      aca_1: 386,087/10,000,000 nodes (3.9%) 2,137 n/s, ~75 min left on this row | L 15->15 best, 42 widest
+      aca_0: 587,784/10,000,000 nodes (5.9%) 2,441 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+      aca_1: 511,015/10,000,000 nodes (5.1%) 2,123 n/s, ~74 min left on this row | L 15->15 best, 42 widest
+      aca_1: 629,799/10,000,000 nodes (6.3%) 2,092 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_0: 716,808/10,000,000 nodes (7.2%) 2,379 n/s, ~65 min left on this row | L 18->18 best, 40 widest
+      aca_0: 859,144/10,000,000 nodes (8.6%) 2,377 n/s, ~64 min left on this row | L 18->18 best, 41 widest
+      aca_1: 738,343/10,000,000 nodes (7.4%) 2,042 n/s, ~76 min left on this row | L 15->15 best, 43 widest
+      aca_0: 1,002,504/10,000,000 nodes (10.0%) 2,376 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 854,055/10,000,000 nodes (8.5%) 2,024 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_1: 977,959/10,000,000 nodes (9.8%) 2,029 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,128,456/10,000,000 nodes (11.3%) 2,339 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,084,455/10,000,000 nodes (10.8%) 2,001 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,249,288/10,000,000 nodes (12.5%) 2,302 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,202,215/10,000,000 nodes (12.0%) 1,996 n/s, ~73 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,382,408/10,000,000 nodes (13.8%) 2,293 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,327,143/10,000,000 nodes (13.3%) 2,003 n/s, ~72 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,529,864/10,000,000 nodes (15.3%) 2,308 n/s, ~61 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,455,143/10,000,000 nodes (14.6%) 2,013 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_0: 1,689,608/10,000,000 nodes (16.9%) 2,336 n/s, ~59 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,555,495/10,000,000 nodes (15.6%) 1,986 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_0: 1,818,632/10,000,000 nodes (18.2%) 2,321 n/s, ~59 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,667,111/10,000,000 nodes (16.7%) 1,976 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 1,930,248/10,000,000 nodes (19.3%) 2,288 n/s, ~59 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,760,295/10,000,000 nodes (17.6%) 1,947 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,054,152/10,000,000 nodes (20.5%) 2,272 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_0: 2,202,632/10,000,000 nodes (22.0%) 2,284 n/s, ~57 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,865,767/10,000,000 nodes (18.7%) 1,935 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,352,136/10,000,000 nodes (23.5%) 2,296 n/s, ~56 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,952,807/10,000,000 nodes (19.5%) 1,907 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_1: 2,074,663/10,000,000 nodes (20.7%) 1,913 n/s, ~69 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,494,472/10,000,000 nodes (24.9%) 2,299 n/s, ~54 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,202,663/10,000,000 nodes (22.0%) 1,924 n/s, ~68 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,622,472/10,000,000 nodes (26.2%) 2,290 n/s, ~54 min left on this row | L 18->18 best, 43 widest
+      aca_0: 2,762,760/10,000,000 nodes (27.6%) 2,292 n/s, ~53 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,318,375/10,000,000 nodes (23.2%) 1,924 n/s, ~67 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,419,751/10,000,000 nodes (24.2%) 1,913 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_0: 2,899,976/10,000,000 nodes (29.0%) 2,291 n/s, ~52 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,519,079/10,000,000 nodes (25.2%) 1,901 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,036,168/10,000,000 nodes (30.4%) 2,289 n/s, ~51 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,615,335/10,000,000 nodes (26.2%) 1,888 n/s, ~65 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,168,264/10,000,000 nodes (31.7%) 2,285 n/s, ~50 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,719,783/10,000,000 nodes (27.2%) 1,881 n/s, ~64 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,287,048/10,000,000 nodes (32.9%) 2,272 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,847,783/10,000,000 nodes (28.5%) 1,891 n/s, ~63 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,384,328/10,000,000 nodes (33.8%) 2,246 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,971,687/10,000,000 nodes (29.7%) 1,898 n/s, ~62 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,493,896/10,000,000 nodes (34.9%) 2,230 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,089,447/10,000,000 nodes (30.9%) 1,900 n/s, ~61 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,617,800/10,000,000 nodes (36.2%) 2,223 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,201,063/10,000,000 nodes (32.0%) 1,898 n/s, ~60 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,749,896/10,000,000 nodes (37.5%) 2,222 n/s, ~47 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,306,535/10,000,000 nodes (33.1%) 1,893 n/s, ~59 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,881,992/10,000,000 nodes (38.8%) 2,221 n/s, ~46 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,415,079/10,000,000 nodes (34.2%) 1,890 n/s, ~58 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,994,632/10,000,000 nodes (39.9%) 2,209 n/s, ~45 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,531,815/10,000,000 nodes (35.3%) 1,892 n/s, ~57 min left on this row | L 15->15 best, 46 widest
+      aca_0: 4,119,560/10,000,000 nodes (41.2%) 2,205 n/s, ~44 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,640,359/10,000,000 nodes (36.4%) 1,889 n/s, ~56 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,261,896/10,000,000 nodes (42.6%) 2,210 n/s, ~43 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,731,495/10,000,000 nodes (37.3%) 1,877 n/s, ~56 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,414,472/10,000,000 nodes (44.1%) 2,219 n/s, ~42 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,826,727/10,000,000 nodes (38.3%) 1,868 n/s, ~55 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,571,144/10,000,000 nodes (45.7%) 2,231 n/s, ~41 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,930,151/10,000,000 nodes (39.3%) 1,864 n/s, ~54 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,725,768/10,000,000 nodes (47.3%) 2,240 n/s, ~39 min left on this row | L 18->18 best, 43 widest
+      aca_1: 4,042,791/10,000,000 nodes (40.4%) 1,864 n/s, ~53 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,858,888/10,000,000 nodes (48.6%) 2,239 n/s, ~38 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,147,239/10,000,000 nodes (41.5%) 1,860 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,976,648/10,000,000 nodes (49.8%) 2,232 n/s, ~38 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,097,480/10,000,000 nodes (51.0%) 2,226 n/s, ~37 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,232,231/10,000,000 nodes (42.3%) 1,848 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,319,271/10,000,000 nodes (43.2%) 1,838 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,213,192/10,000,000 nodes (52.1%) 2,218 n/s, ~36 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,417,575/10,000,000 nodes (44.2%) 1,833 n/s, ~51 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,317,640/10,000,000 nodes (53.2%) 2,205 n/s, ~35 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,513,831/10,000,000 nodes (45.1%) 1,827 n/s, ~50 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,415,944/10,000,000 nodes (54.2%) 2,191 n/s, ~35 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,603,943/10,000,000 nodes (46.0%) 1,819 n/s, ~49 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,524,488/10,000,000 nodes (55.2%) 2,182 n/s, ~34 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,636,104/10,000,000 nodes (56.4%) 2,174 n/s, ~33 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,687,911/10,000,000 nodes (46.9%) 1,809 n/s, ~49 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,788,263/10,000,000 nodes (47.9%) 1,806 n/s, ~48 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,752,840/10,000,000 nodes (57.5%) 2,169 n/s, ~33 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,893,735/10,000,000 nodes (48.9%) 1,804 n/s, ~47 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,856,264/10,000,000 nodes (58.6%) 2,158 n/s, ~32 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,014,567/10,000,000 nodes (50.1%) 1,809 n/s, ~46 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,010,888/10,000,000 nodes (60.1%) 2,167 n/s, ~31 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,132,327/10,000,000 nodes (51.3%) 1,812 n/s, ~45 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,179,848/10,000,000 nodes (61.8%) 2,181 n/s, ~29 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,243,943/10,000,000 nodes (52.4%) 1,813 n/s, ~44 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,323,208/10,000,000 nodes (63.2%) 2,185 n/s, ~28 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,362,727/10,000,000 nodes (53.6%) 1,816 n/s, ~43 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,470,664/10,000,000 nodes (64.7%) 2,190 n/s, ~27 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,468,199/10,000,000 nodes (54.7%) 1,815 n/s, ~42 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,599,688/10,000,000 nodes (66.0%) 2,189 n/s, ~26 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,580,839/10,000,000 nodes (55.8%) 1,816 n/s, ~41 min left on this row | L 15->15 best, 47 widest
+      aca_0: 6,735,880/10,000,000 nodes (67.4%) 2,191 n/s, ~25 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,674,023/10,000,000 nodes (56.7%) 1,811 n/s, ~40 min left on this row | L 15->15 best, 48 widest
+      aca_0: 6,885,384/10,000,000 nodes (68.9%) 2,196 n/s, ~24 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,774,375/10,000,000 nodes (57.7%) 1,808 n/s, ~39 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,031,816/10,000,000 nodes (70.3%) 2,201 n/s, ~22 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,875,751/10,000,000 nodes (58.8%) 1,806 n/s, ~38 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,177,224/10,000,000 nodes (71.8%) 2,205 n/s, ~21 min left on this row | L 18->18 best, 44 widest
+      aca_1: 5,980,199/10,000,000 nodes (59.8%) 1,804 n/s, ~37 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,307,272/10,000,000 nodes (73.1%) 2,204 n/s, ~20 min left on this row | L 18->18 best, 44 widest
+      aca_1: 6,068,263/10,000,000 nodes (60.7%) 1,798 n/s, ~36 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,451,656/10,000,000 nodes (74.5%) 2,208 n/s, ~19 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,601,160/10,000,000 nodes (76.0%) 2,212 n/s, ~18 min left on this row | L 18->18 best, 44 widest
+      aca_1: 6,151,207/10,000,000 nodes (61.5%) 1,790 n/s, ~36 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,708,680/10,000,000 nodes (77.1%) 2,205 n/s, ~17 min left on this row | L 18->18 best, 45 widest
+      aca_1: 6,251,559/10,000,000 nodes (62.5%) 1,788 n/s, ~35 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,833,608/10,000,000 nodes (78.3%) 2,203 n/s, ~16 min left on this row | L 18->18 best, 45 widest
+      aca_1: 6,342,695/10,000,000 nodes (63.4%) 1,783 n/s, ~34 min left on this row | L 15->15 best, 48 widest
+      aca_0: 7,957,512/10,000,000 nodes (79.6%) 2,200 n/s, ~15 min left on this row | L 18->18 best, 45 widest
+      aca_1: 6,424,615/10,000,000 nodes (64.2%) 1,776 n/s, ~34 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,561,831/10,000,000 nodes (65.6%) 1,785 n/s, ~32 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,089,608/10,000,000 nodes (80.9%) 2,200 n/s, ~14 min left on this row | L 18->18 best, 45 widest
+      aca_1: 6,686,759/10,000,000 nodes (66.9%) 1,789 n/s, ~31 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,223,752/10,000,000 nodes (82.2%) 2,200 n/s, ~13 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,356,872/10,000,000 nodes (83.6%) 2,201 n/s, ~12 min left on this row | L 18->18 best, 45 widest
+      aca_1: 6,821,927/10,000,000 nodes (68.2%) 1,796 n/s, ~29 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,932,519/10,000,000 nodes (69.3%) 1,797 n/s, ~28 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,486,920/10,000,000 nodes (84.9%) 2,200 n/s, ~11 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,043,111/10,000,000 nodes (70.4%) 1,798 n/s, ~27 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,625,160/10,000,000 nodes (86.3%) 2,201 n/s, ~10 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,183,399/10,000,000 nodes (71.8%) 1,806 n/s, ~26 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,757,256/10,000,000 nodes (87.6%) 2,201 n/s, ~9 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,308,327/10,000,000 nodes (73.1%) 1,810 n/s, ~25 min left on this row | L 15->15 best, 48 widest
+      aca_0: 8,891,400/10,000,000 nodes (88.9%) 2,202 n/s, ~8 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,430,183/10,000,000 nodes (74.3%) 1,813 n/s, ~24 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,024,520/10,000,000 nodes (90.2%) 2,202 n/s, ~7 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,154,568/10,000,000 nodes (91.5%) 2,201 n/s, ~6 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,537,703/10,000,000 nodes (75.4%) 1,812 n/s, ~23 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,281,544/10,000,000 nodes (92.8%) 2,200 n/s, ~5 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,655,463/10,000,000 nodes (76.6%) 1,814 n/s, ~22 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,414,664/10,000,000 nodes (94.1%) 2,200 n/s, ~4 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,757,863/10,000,000 nodes (77.6%) 1,813 n/s, ~21 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,540,616/10,000,000 nodes (95.4%) 2,199 n/s, ~3 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,852,071/10,000,000 nodes (78.5%) 1,809 n/s, ~20 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,664,520/10,000,000 nodes (96.6%) 2,197 n/s, ~3 min left on this row | L 18->18 best, 45 widest
+      aca_1: 7,956,519/10,000,000 nodes (79.6%) 1,808 n/s, ~19 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,788,424/10,000,000 nodes (97.9%) 2,195 n/s, ~2 min left on this row | L 18->18 best, 45 widest
+      aca_1: 8,054,823/10,000,000 nodes (80.5%) 1,806 n/s, ~18 min left on this row | L 15->15 best, 48 widest
+      aca_0: 9,906,184/10,000,000 nodes (99.1%) 2,192 n/s, ~1 min left on this row | L 18->18 best, 45 widest
+      aca_1: 8,148,007/10,000,000 nodes (81.5%) 1,802 n/s, ~17 min left on this row | L 15->15 best, 48 widest
+    [hcompact:aca_0] reservation exceeded at 1,100,016,915 states; growing to 2,200,067,600 (this copies)
+    !! aca_0: MemoryError: the memory guard stopped this row before the OOM killer could -- it needs a bigger machine
+    [1/124] aca_0 ERROR (MemoryError: the memory guard stopped this row before the OOM killer could -- it) -- 0.8 rows/h, eta 155.0 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_2] rows widen 12B -> 24B per relator at 423 states (this repacks)
+      aca_1: 8,235,047/10,000,000 nodes (82.4%) 1,798 n/s, ~16 min left on this row | L 15->15 best, 48 widest
+      aca_2: 142,344/10,000,000 nodes (1.4%) 2,370 n/s, ~69 min left on this row | L 16->16 best, 41 widest
+      aca_1: 8,330,279/10,000,000 nodes (83.3%) 1,795 n/s, ~16 min left on this row | L 15->15 best, 48 widest
+      aca_2: 278,536/10,000,000 nodes (2.8%) 2,311 n/s, ~70 min left on this row | L 16->16 best, 42 widest
+      aca_1: 8,430,631/10,000,000 nodes (84.3%) 1,793 n/s, ~15 min left on this row | L 15->15 best, 48 widest
+      aca_2: 394,248/10,000,000 nodes (3.9%) 2,181 n/s, ~73 min left on this row | L 16->16 best, 43 widest
+      aca_1: 8,530,983/10,000,000 nodes (85.3%) 1,791 n/s, ~14 min left on this row | L 15->15 best, 48 widest
+      aca_2: 528,392/10,000,000 nodes (5.3%) 2,191 n/s, ~72 min left on this row | L 16->16 best, 43 widest
+      aca_1: 8,618,023/10,000,000 nodes (86.2%) 1,787 n/s, ~13 min left on this row | L 15->15 best, 48 widest
+      aca_2: 644,104/10,000,000 nodes (6.4%) 2,136 n/s, ~73 min left on this row | L 16->16 best, 44 widest
+      aca_1: 8,711,207/10,000,000 nodes (87.1%) 1,784 n/s, ~12 min left on this row | L 15->15 best, 48 widest
+      aca_2: 776,200/10,000,000 nodes (7.8%) 2,146 n/s, ~72 min left on this row | L 16->16 best, 44 widest
+      aca_1: 8,814,631/10,000,000 nodes (88.1%) 1,783 n/s, ~11 min left on this row | L 15->15 best, 48 widest
+      aca_2: 894,984/10,000,000 nodes (8.9%) 2,122 n/s, ~72 min left on this row | L 16->16 best, 45 widest
+      aca_1: 8,940,583/10,000,000 nodes (89.4%) 1,787 n/s, ~10 min left on this row | L 15->15 best, 48 widest
+    [hcompact:aca_1] rows widen 24B -> 32B per relator at 1,095,951,220 states (this repacks)
+      aca_2: 1,007,624/10,000,000 nodes (10.1%) 2,090 n/s, ~72 min left on this row | L 16->16 best, 45 widest
+      aca_1: 8,971,465/10,000,000 nodes (89.7%) 1,772 n/s, ~10 min left on this row | L 15->15 best, 49 widest
+      aca_2: 1,103,880/10,000,000 nodes (11.0%) 2,036 n/s, ~73 min left on this row | L 16->16 best, 45 widest
+    [hcompact:aca_1] reservation exceeded at 1,100,016,980 states; growing to 2,200,067,600 (this copies)
+    !! aca_1: MemoryError: the memory guard stopped this row before the OOM killer could -- it needs a bigger machine
+    [2/124] aca_1 ERROR (MemoryError: the memory guard stopped this row before the OOM killer could -- it) -- 1.4 rows/h, eta 86.1 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_3] rows widen 12B -> 24B per relator at 348 states (this repacks)
+      aca_2: 1,244,168/10,000,000 nodes (12.4%) 2,065 n/s, ~71 min left on this row | L 16->16 best, 45 widest
+      aca_3: 169,990/10,000,000 nodes (1.7%) 2,820 n/s, ~58 min left on this row | L 17->17 best, 36 widest
+      aca_2: 1,369,096/10,000,000 nodes (13.7%) 2,067 n/s, ~70 min left on this row | L 16->16 best, 46 widest
+      aca_3: 328,710/10,000,000 nodes (3.3%) 2,725 n/s, ~59 min left on this row | L 17->17 best, 37 widest
+      aca_2: 1,468,424/10,000,000 nodes (14.7%) 2,031 n/s, ~70 min left on this row | L 16->16 best, 46 widest
+      aca_3: 489,478/10,000,000 nodes (4.9%) 2,707 n/s, ~59 min left on this row | L 17->17 best, 38 widest
+      aca_2: 1,583,112/10,000,000 nodes (15.8%) 2,021 n/s, ~69 min left on this row | L 16->16 best, 46 widest
+      aca_3: 640,006/10,000,000 nodes (6.4%) 2,657 n/s, ~59 min left on this row | L 17->17 best, 39 widest
+      aca_2: 1,730,568/10,000,000 nodes (17.3%) 2,051 n/s, ~67 min left on this row | L 16->16 best, 46 widest
+      aca_3: 794,630/10,000,000 nodes (7.9%) 2,641 n/s, ~58 min left on this row | L 17->17 best, 39 widest
+      aca_2: 1,854,472/10,000,000 nodes (18.5%) 2,051 n/s, ~66 min left on this row | L 16->16 best, 46 widest
+      aca_3: 942,086/10,000,000 nodes (9.4%) 2,608 n/s, ~58 min left on this row | L 17->17 best, 39 widest
+      aca_2: 1,971,208/10,000,000 nodes (19.7%) 2,043 n/s, ~65 min left on this row | L 16->16 best, 46 widest
+      aca_3: 1,072,134/10,000,000 nodes (10.7%) 2,545 n/s, ~58 min left on this row | L 17->17 best, 39 widest
+      aca_2: 2,083,848/10,000,000 nodes (20.8%) 2,034 n/s, ~65 min left on this row | L 16->16 best, 46 widest
+      aca_3: 1,241,094/10,000,000 nodes (12.4%) 2,577 n/s, ~57 min left on this row | L 17->17 best, 39 widest
+      aca_2: 2,186,248/10,000,000 nodes (21.9%) 2,015 n/s, ~65 min left on this row | L 16->16 best, 47 widest
+      aca_3: 1,391,622/10,000,000 nodes (13.9%) 2,569 n/s, ~56 min left on this row | L 17->17 best, 40 widest
+      aca_2: 2,323,464/10,000,000 nodes (23.2%) 2,029 n/s, ~63 min left on this row | L 16->16 best, 47 widest
+      aca_3: 1,527,814/10,000,000 nodes (15.3%) 2,538 n/s, ~56 min left on this row | L 17->17 best, 40 widest
+      aca_2: 2,461,704/10,000,000 nodes (24.6%) 2,042 n/s, ~62 min left on this row | L 16->16 best, 47 widest
+      aca_3: 1,669,126/10,000,000 nodes (16.7%) 2,520 n/s, ~55 min left on this row | L 17->17 best, 40 widest
+      aca_2: 2,582,536/10,000,000 nodes (25.8%) 2,041 n/s, ~61 min left on this row | L 16->16 best, 47 widest
+      aca_3: 1,836,038/10,000,000 nodes (18.4%) 2,542 n/s, ~54 min left on this row | L 17->17 best, 40 widest
+      aca_2: 2,708,488/10,000,000 nodes (27.1%) 2,042 n/s, ~60 min left on this row | L 16->16 best, 47 widest
+      aca_3: 1,973,254/10,000,000 nodes (19.7%) 2,521 n/s, ~53 min left on this row | L 17->17 best, 41 widest
+      aca_2: 2,821,128/10,000,000 nodes (28.2%) 2,035 n/s, ~59 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,127,878/10,000,000 nodes (21.3%) 2,525 n/s, ~52 min left on this row | L 17->17 best, 41 widest
+      aca_2: 2,957,320/10,000,000 nodes (29.6%) 2,044 n/s, ~57 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,280,454/10,000,000 nodes (22.8%) 2,526 n/s, ~51 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,078,152/10,000,000 nodes (30.8%) 2,043 n/s, ~56 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,427,910/10,000,000 nodes (24.3%) 2,521 n/s, ~50 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,190,792/10,000,000 nodes (31.9%) 2,036 n/s, ~56 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,572,294/10,000,000 nodes (25.7%) 2,514 n/s, ~49 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,281,928/10,000,000 nodes (32.8%) 2,017 n/s, ~56 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,710,534/10,000,000 nodes (27.1%) 2,502 n/s, ~49 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,417,096/10,000,000 nodes (34.2%) 2,025 n/s, ~54 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,841,606/10,000,000 nodes (28.4%) 2,485 n/s, ~48 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,546,120/10,000,000 nodes (35.5%) 2,029 n/s, ~53 min left on this row | L 16->16 best, 47 widest
+      aca_3: 2,953,222/10,000,000 nodes (29.5%) 2,453 n/s, ~48 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,648,520/10,000,000 nodes (36.5%) 2,018 n/s, ~52 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,072,006/10,000,000 nodes (30.7%) 2,431 n/s, ~48 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,757,064/10,000,000 nodes (37.6%) 2,011 n/s, ~52 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,212,294/10,000,000 nodes (32.1%) 2,426 n/s, ~47 min left on this row | L 17->17 best, 41 widest
+      aca_2: 3,896,328/10,000,000 nodes (39.0%) 2,020 n/s, ~50 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,380,230/10,000,000 nodes (33.8%) 2,442 n/s, ~45 min left on this row | L 17->17 best, 41 widest
+      aca_2: 4,028,424/10,000,000 nodes (40.3%) 2,026 n/s, ~49 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,555,334/10,000,000 nodes (35.6%) 2,461 n/s, ~44 min left on this row | L 17->17 best, 41 widest
+      aca_2: 4,142,088/10,000,000 nodes (41.4%) 2,022 n/s, ~48 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,700,742/10,000,000 nodes (37.0%) 2,459 n/s, ~43 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,251,656/10,000,000 nodes (42.5%) 2,016 n/s, ~48 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,840,006/10,000,000 nodes (38.4%) 2,454 n/s, ~42 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,377,608/10,000,000 nodes (43.8%) 2,018 n/s, ~46 min left on this row | L 16->16 best, 47 widest
+      aca_3: 3,972,102/10,000,000 nodes (39.7%) 2,444 n/s, ~41 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,515,848/10,000,000 nodes (45.2%) 2,026 n/s, ~45 min left on this row | L 16->16 best, 47 widest
+      aca_3: 4,102,150/10,000,000 nodes (41.0%) 2,434 n/s, ~40 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,647,944/10,000,000 nodes (46.5%) 2,030 n/s, ~44 min left on this row | L 16->16 best, 47 widest
+      aca_3: 4,225,030/10,000,000 nodes (42.3%) 2,420 n/s, ~40 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,757,512/10,000,000 nodes (47.6%) 2,024 n/s, ~43 min left on this row | L 16->16 best, 47 widest
+      aca_3: 4,336,646/10,000,000 nodes (43.4%) 2,401 n/s, ~39 min left on this row | L 17->17 best, 42 widest
+      aca_2: 4,889,608/10,000,000 nodes (48.9%) 2,028 n/s, ~42 min left on this row | L 16->16 best, 47 widest
+      aca_3: 4,438,022/10,000,000 nodes (44.4%) 2,378 n/s, ~39 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,620,294/10,000,000 nodes (46.2%) 2,399 n/s, ~37 min left on this row | L 17->17 best, 42 widest
+      aca_2: 5,014,536/10,000,000 nodes (50.1%) 2,030 n/s, ~41 min left on this row | L 16->16 best, 47 widest
+      aca_3: 4,776,966/10,000,000 nodes (47.8%) 2,405 n/s, ~36 min left on this row | L 17->17 best, 42 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 12 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-hk7vlh6t': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-hbana0xm': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-_q5ggd6p': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-q5_jozg2': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-kype22ls': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-m0klhuwg': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-yrlltxo_': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-13miyd35': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-3h5wt_2c': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-uxxw4gzi': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-xn0c74kz': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-erzz4xow': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_1: 128,039/10,000,000 nodes (1.3%) 2,133 n/s, ~77 min left on this row | L 15->15 best, 39 widest
+      aca_0: 146,440/10,000,000 nodes (1.5%) 2,436 n/s, ~67 min left on this row | L 18->18 best, 37 widest
+      aca_1: 255,015/10,000,000 nodes (2.6%) 2,123 n/s, ~77 min left on this row | L 15->15 best, 41 widest
+      aca_0: 301,064/10,000,000 nodes (3.0%) 2,501 n/s, ~65 min left on this row | L 18->18 best, 38 widest
+      aca_1: 377,895/10,000,000 nodes (3.8%) 2,092 n/s, ~77 min left on this row | L 15->15 best, 42 widest
+      aca_0: 433,160/10,000,000 nodes (4.3%) 2,399 n/s, ~66 min left on this row | L 18->18 best, 39 widest
+      aca_0: 587,784/10,000,000 nodes (5.9%) 2,441 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+      aca_1: 501,799/10,000,000 nodes (5.0%) 2,083 n/s, ~76 min left on this row | L 15->15 best, 42 widest
+      aca_0: 717,832/10,000,000 nodes (7.2%) 2,383 n/s, ~65 min left on this row | L 18->18 best, 40 widest
+      aca_1: 620,583/10,000,000 nodes (6.2%) 2,060 n/s, ~76 min left on this row | L 15->15 best, 43 widest
+      aca_0: 861,192/10,000,000 nodes (8.6%) 2,383 n/s, ~64 min left on this row | L 18->18 best, 41 widest
+      aca_1: 728,103/10,000,000 nodes (7.3%) 2,012 n/s, ~77 min left on this row | L 15->15 best, 43 widest
+      aca_0: 1,005,576/10,000,000 nodes (10.1%) 2,386 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 837,671/10,000,000 nodes (8.4%) 1,986 n/s, ~77 min left on this row | L 15->15 best, 43 widest
+      aca_0: 1,130,504/10,000,000 nodes (11.3%) 2,348 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 964,647/10,000,000 nodes (9.6%) 2,000 n/s, ~75 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,254,408/10,000,000 nodes (12.5%) 2,316 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,072,167/10,000,000 nodes (10.7%) 1,976 n/s, ~75 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,388,552/10,000,000 nodes (13.9%) 2,308 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,185,831/10,000,000 nodes (11.9%) 1,967 n/s, ~75 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,539,080/10,000,000 nodes (15.4%) 2,326 n/s, ~61 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,310,759/10,000,000 nodes (13.1%) 1,977 n/s, ~73 min left on this row | L 15->15 best, 44 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_1: 132,135/10,000,000 nodes (1.3%) 2,201 n/s, ~75 min left on this row | L 15->15 best, 39 widest
+      aca_0: 149,512/10,000,000 nodes (1.5%) 2,475 n/s, ~66 min left on this row | L 18->18 best, 37 widest
+      aca_1: 259,111/10,000,000 nodes (2.6%) 2,156 n/s, ~75 min left on this row | L 15->15 best, 41 widest
+      aca_0: 305,160/10,000,000 nodes (3.1%) 2,531 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_1: 131,111/10,000,000 nodes (1.3%) 2,179 n/s, ~75 min left on this row | L 15->15 best, 39 widest
+      aca_0: 147,464/10,000,000 nodes (1.5%) 2,445 n/s, ~67 min left on this row | L 18->18 best, 37 widest
+      aca_0: 303,112/10,000,000 nodes (3.0%) 2,514 n/s, ~64 min left on this row | L 18->18 best, 38 widest
+      aca_1: 259,111/10,000,000 nodes (2.6%) 2,147 n/s, ~76 min left on this row | L 15->15 best, 41 widest
+      aca_0: 435,208/10,000,000 nodes (4.4%) 2,408 n/s, ~66 min left on this row | L 18->18 best, 39 widest
+      aca_1: 385,063/10,000,000 nodes (3.9%) 2,129 n/s, ~75 min left on this row | L 15->15 best, 42 widest
+      aca_0: 591,880/10,000,000 nodes (5.9%) 2,458 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+      aca_1: 511,015/10,000,000 nodes (5.1%) 2,119 n/s, ~75 min left on this row | L 15->15 best, 42 widest
+      aca_0: 720,904/10,000,000 nodes (7.2%) 2,396 n/s, ~65 min left on this row | L 18->18 best, 40 widest
+      aca_1: 629,799/10,000,000 nodes (6.3%) 2,091 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_0: 865,288/10,000,000 nodes (8.7%) 2,395 n/s, ~64 min left on this row | L 18->18 best, 41 widest
+      aca_1: 738,343/10,000,000 nodes (7.4%) 2,043 n/s, ~76 min left on this row | L 15->15 best, 43 widest
+      aca_1: 854,055/10,000,000 nodes (8.5%) 2,026 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_0: 1,011,720/10,000,000 nodes (10.1%) 2,399 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_1: 978,983/10,000,000 nodes (9.8%) 2,032 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,135,624/10,000,000 nodes (11.4%) 2,356 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,261,576/10,000,000 nodes (12.6%) 2,327 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,086,503/10,000,000 nodes (10.9%) 2,004 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,397,768/10,000,000 nodes (14.0%) 2,320 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,206,311/10,000,000 nodes (12.1%) 2,002 n/s, ~73 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,550,344/10,000,000 nodes (15.5%) 2,340 n/s, ~60 min left on this row | L 18->18 best, 41 widest
+      aca_1: 1,331,239/10,000,000 nodes (13.3%) 2,008 n/s, ~72 min left on this row | L 15->15 best, 44 widest
+      aca_0: 1,704,968/10,000,000 nodes (17.0%) 2,359 n/s, ~59 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,459,239/10,000,000 nodes (14.6%) 2,018 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_0: 1,837,064/10,000,000 nodes (18.4%) 2,346 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,559,591/10,000,000 nodes (15.6%) 1,990 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_0: 1,949,704/10,000,000 nodes (19.5%) 2,312 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,672,231/10,000,000 nodes (16.7%) 1,981 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,076,680/10,000,000 nodes (20.8%) 2,298 n/s, ~57 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,766,439/10,000,000 nodes (17.7%) 1,952 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,232,328/10,000,000 nodes (22.3%) 2,316 n/s, ~56 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,872,935/10,000,000 nodes (18.7%) 1,940 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,385,928/10,000,000 nodes (23.9%) 2,330 n/s, ~54 min left on this row | L 18->18 best, 42 widest
+      aca_1: 1,960,999/10,000,000 nodes (19.6%) 1,912 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,523,144/10,000,000 nodes (25.2%) 2,326 n/s, ~54 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,085,927/10,000,000 nodes (20.9%) 1,921 n/s, ~69 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,656,264/10,000,000 nodes (26.6%) 2,321 n/s, ~53 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,213,927/10,000,000 nodes (22.1%) 1,931 n/s, ~67 min left on this row | L 15->15 best, 45 widest
+      aca_0: 2,797,576/10,000,000 nodes (28.0%) 2,322 n/s, ~52 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,327,591/10,000,000 nodes (23.3%) 1,929 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_0: 2,937,864/10,000,000 nodes (29.4%) 2,322 n/s, ~51 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,431,015/10,000,000 nodes (24.3%) 1,919 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,074,056/10,000,000 nodes (30.7%) 2,320 n/s, ~50 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,528,295/10,000,000 nodes (25.3%) 1,906 n/s, ~65 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,205,128/10,000,000 nodes (32.1%) 2,314 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,625,575/10,000,000 nodes (26.3%) 1,893 n/s, ~65 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,317,768/10,000,000 nodes (33.2%) 2,295 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,737,191/10,000,000 nodes (27.4%) 1,891 n/s, ~64 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,416,072/10,000,000 nodes (34.2%) 2,268 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,866,215/10,000,000 nodes (28.7%) 1,901 n/s, ~63 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,536,904/10,000,000 nodes (35.4%) 2,258 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_1: 2,992,167/10,000,000 nodes (29.9%) 1,908 n/s, ~61 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,664,904/10,000,000 nodes (36.6%) 2,254 n/s, ~47 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,105,831/10,000,000 nodes (31.1%) 1,907 n/s, ~60 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,798,024/10,000,000 nodes (38.0%) 2,252 n/s, ~46 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,215,399/10,000,000 nodes (32.2%) 1,904 n/s, ~59 min left on this row | L 15->15 best, 46 widest
+      aca_0: 3,931,144/10,000,000 nodes (39.3%) 2,251 n/s, ~45 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,321,895/10,000,000 nodes (33.2%) 1,899 n/s, ~59 min left on this row | L 15->15 best, 46 widest
+      aca_0: 4,046,856/10,000,000 nodes (40.5%) 2,240 n/s, ~44 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,429,415/10,000,000 nodes (34.3%) 1,895 n/s, ~58 min left on this row | L 15->15 best, 46 widest
+      aca_0: 4,172,808/10,000,000 nodes (41.7%) 2,235 n/s, ~43 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,554,343/10,000,000 nodes (35.5%) 1,901 n/s, ~57 min left on this row | L 15->15 best, 46 widest
+      aca_0: 4,324,360/10,000,000 nodes (43.2%) 2,244 n/s, ~42 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,653,671/10,000,000 nodes (36.5%) 1,893 n/s, ~56 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,488,200/10,000,000 nodes (44.9%) 2,258 n/s, ~41 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,746,855/10,000,000 nodes (37.5%) 1,882 n/s, ~55 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,645,896/10,000,000 nodes (46.5%) 2,269 n/s, ~39 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,843,111/10,000,000 nodes (38.4%) 1,874 n/s, ~55 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,794,376/10,000,000 nodes (47.9%) 2,274 n/s, ~38 min left on this row | L 18->18 best, 43 widest
+      aca_1: 3,947,559/10,000,000 nodes (39.5%) 1,870 n/s, ~54 min left on this row | L 15->15 best, 47 widest
+      aca_0: 4,914,184/10,000,000 nodes (49.1%) 2,266 n/s, ~37 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,061,223/10,000,000 nodes (40.6%) 1,870 n/s, ~53 min left on this row | L 15->15 best, 47 widest
+      aca_0: 5,035,016/10,000,000 nodes (50.4%) 2,259 n/s, ~37 min left on this row | L 18->18 best, 44 widest
+      aca_1: 4,162,599/10,000,000 nodes (41.6%) 1,865 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_0: 151,560/10,000,000 nodes (1.5%) 2,514 n/s, ~65 min left on this row | L 18->18 best, 37 widest
+      aca_1: 135,207/10,000,000 nodes (1.4%) 2,241 n/s, ~73 min left on this row | L 15->15 best, 39 widest
+      aca_0: 306,184/10,000,000 nodes (3.1%) 2,543 n/s, ~64 min left on this row | L 18->18 best, 39 widest
+      aca_1: 261,159/10,000,000 nodes (2.6%) 2,161 n/s, ~75 min left on this row | L 15->15 best, 41 widest
+      aca_0: 438,280/10,000,000 nodes (4.4%) 2,425 n/s, ~66 min left on this row | L 18->18 best, 39 widest
+      aca_1: 387,111/10,000,000 nodes (3.9%) 2,135 n/s, ~75 min left on this row | L 15->15 best, 42 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-zoa2ahog': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-p6a0fmoc': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-uotnztq5': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-15_ynh72': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-emw041qy': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-vlhnmbte': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 0 row(s) already on disk, 124 to run
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_0] rows widen 12B -> 24B per relator at 523 states (this repacks)
+      aca_0: 151,560/10,000,000 nodes (1.5%) 2,526 n/s, ~65 min left on this row | L 18->18 best, 37 widest
+      aca_0: 307,208/10,000,000 nodes (3.1%) 2,552 n/s, ~63 min left on this row | L 18->18 best, 39 widest
+      aca_0: 440,328/10,000,000 nodes (4.4%) 2,437 n/s, ~65 min left on this row | L 18->18 best, 39 widest
+      aca_0: 595,976/10,000,000 nodes (6.0%) 2,474 n/s, ~63 min left on this row | L 18->18 best, 40 widest
+      aca_0: 727,048/10,000,000 nodes (7.3%) 2,414 n/s, ~64 min left on this row | L 18->18 best, 40 widest
+      aca_0: 871,432/10,000,000 nodes (8.7%) 2,410 n/s, ~63 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,016,840/10,000,000 nodes (10.2%) 2,412 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,139,720/10,000,000 nodes (11.4%) 2,365 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,267,720/10,000,000 nodes (12.7%) 2,337 n/s, ~62 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,404,936/10,000,000 nodes (14.0%) 2,331 n/s, ~61 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,558,536/10,000,000 nodes (15.6%) 2,351 n/s, ~60 min left on this row | L 18->18 best, 41 widest
+      aca_0: 1,711,112/10,000,000 nodes (17.1%) 2,367 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_0: 1,843,208/10,000,000 nodes (18.4%) 2,352 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_0: 1,955,848/10,000,000 nodes (19.6%) 2,318 n/s, ~58 min left on this row | L 18->18 best, 42 widest
+      aca_0: 2,081,800/10,000,000 nodes (20.8%) 2,303 n/s, ~57 min left on this row | L 18->18 best, 42 widest
+      aca_0: 2,239,496/10,000,000 nodes (22.4%) 2,323 n/s, ~56 min left on this row | L 18->18 best, 42 widest
+      aca_0: 2,391,048/10,000,000 nodes (23.9%) 2,335 n/s, ~54 min left on this row | L 18->18 best, 42 widest
+      aca_0: 2,528,264/10,000,000 nodes (25.3%) 2,331 n/s, ~53 min left on this row | L 18->18 best, 43 widest
+      aca_0: 2,662,408/10,000,000 nodes (26.6%) 2,326 n/s, ~53 min left on this row | L 18->18 best, 43 widest
+      aca_0: 2,803,720/10,000,000 nodes (28.0%) 2,327 n/s, ~52 min left on this row | L 18->18 best, 43 widest
+      aca_0: 2,945,032/10,000,000 nodes (29.5%) 2,328 n/s, ~51 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,082,248/10,000,000 nodes (30.8%) 2,325 n/s, ~50 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,213,320/10,000,000 nodes (32.1%) 2,318 n/s, ~49 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,323,912/10,000,000 nodes (33.2%) 2,298 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,423,240/10,000,000 nodes (34.2%) 2,272 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,545,096/10,000,000 nodes (35.5%) 2,262 n/s, ~48 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,674,120/10,000,000 nodes (36.7%) 2,257 n/s, ~47 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,808,264/10,000,000 nodes (38.1%) 2,256 n/s, ~46 min left on this row | L 18->18 best, 43 widest
+      aca_0: 3,940,360/10,000,000 nodes (39.4%) 2,254 n/s, ~45 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,057,096/10,000,000 nodes (40.6%) 2,244 n/s, ~44 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,184,072/10,000,000 nodes (41.8%) 2,240 n/s, ~43 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,335,624/10,000,000 nodes (43.4%) 2,248 n/s, ~42 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,499,464/10,000,000 nodes (45.0%) 2,263 n/s, ~41 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,659,208/10,000,000 nodes (46.6%) 2,274 n/s, ~39 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,809,736/10,000,000 nodes (48.1%) 2,280 n/s, ~38 min left on this row | L 18->18 best, 43 widest
+      aca_0: 4,925,448/10,000,000 nodes (49.3%) 2,270 n/s, ~37 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,048,328/10,000,000 nodes (50.5%) 2,264 n/s, ~36 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,166,088/10,000,000 nodes (51.7%) 2,256 n/s, ~36 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,278,728/10,000,000 nodes (52.8%) 2,246 n/s, ~35 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,379,080/10,000,000 nodes (53.8%) 2,231 n/s, ~35 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,483,528/10,000,000 nodes (54.8%) 2,219 n/s, ~34 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,597,192/10,000,000 nodes (56.0%) 2,211 n/s, ~33 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,717,000/10,000,000 nodes (57.2%) 2,206 n/s, ~32 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,821,448/10,000,000 nodes (58.2%) 2,195 n/s, ~32 min left on this row | L 18->18 best, 44 widest
+      aca_0: 5,968,904/10,000,000 nodes (59.7%) 2,201 n/s, ~31 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,133,768/10,000,000 nodes (61.3%) 2,212 n/s, ~29 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,280,200/10,000,000 nodes (62.8%) 2,217 n/s, ~28 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,429,704/10,000,000 nodes (64.3%) 2,222 n/s, ~27 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,559,752/10,000,000 nodes (65.6%) 2,221 n/s, ~26 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,694,920/10,000,000 nodes (66.9%) 2,222 n/s, ~25 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,843,400/10,000,000 nodes (68.4%) 2,226 n/s, ~24 min left on this row | L 18->18 best, 44 widest
+      aca_0: 6,990,856/10,000,000 nodes (69.9%) 2,231 n/s, ~22 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,138,312/10,000,000 nodes (71.4%) 2,235 n/s, ~21 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,269,384/10,000,000 nodes (72.7%) 2,234 n/s, ~20 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,412,744/10,000,000 nodes (74.1%) 2,236 n/s, ~19 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,561,224/10,000,000 nodes (75.6%) 2,240 n/s, ~18 min left on this row | L 18->18 best, 44 widest
+      aca_0: 7,684,104/10,000,000 nodes (76.8%) 2,237 n/s, ~17 min left on this row | L 18->18 best, 45 widest
+      aca_0: 7,800,840/10,000,000 nodes (78.0%) 2,232 n/s, ~16 min left on this row | L 18->18 best, 45 widest
+      aca_0: 7,926,792/10,000,000 nodes (79.3%) 2,229 n/s, ~16 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,054,792/10,000,000 nodes (80.5%) 2,228 n/s, ~15 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,188,936/10,000,000 nodes (81.9%) 2,228 n/s, ~14 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,320,008/10,000,000 nodes (83.2%) 2,227 n/s, ~13 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,458,248/10,000,000 nodes (84.6%) 2,228 n/s, ~12 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,588,296/10,000,000 nodes (85.9%) 2,227 n/s, ~11 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,727,560/10,000,000 nodes (87.3%) 2,228 n/s, ~10 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,856,584/10,000,000 nodes (88.6%) 2,227 n/s, ~9 min left on this row | L 18->18 best, 45 widest
+      aca_0: 8,991,752/10,000,000 nodes (89.9%) 2,227 n/s, ~8 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,119,752/10,000,000 nodes (91.2%) 2,226 n/s, ~7 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,253,896/10,000,000 nodes (92.5%) 2,226 n/s, ~6 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,381,896/10,000,000 nodes (93.8%) 2,224 n/s, ~5 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,511,944/10,000,000 nodes (95.1%) 2,223 n/s, ~4 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,636,872/10,000,000 nodes (96.4%) 2,221 n/s, ~3 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,757,704/10,000,000 nodes (97.6%) 2,218 n/s, ~2 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,880,584/10,000,000 nodes (98.8%) 2,216 n/s, ~1 min left on this row | L 18->18 best, 45 widest
+      aca_0: 9,991,176/10,000,000 nodes (99.9%) 2,211 n/s, ~0 min left on this row | L 18->18 best, 45 widest
+    [1/124] aca_0 solved=False nodes=10,000,000 (4524s) -- 0.8 rows/h, eta 154.6 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_1] rows widen 12B -> 24B per relator at 2,415 states (this repacks)
+      aca_1: 135,207/10,000,000 nodes (1.4%) 2,245 n/s, ~73 min left on this row | L 15->15 best, 39 widest
+      aca_1: 261,159/10,000,000 nodes (2.6%) 2,165 n/s, ~75 min left on this row | L 15->15 best, 41 widest
+      aca_1: 387,111/10,000,000 nodes (3.9%) 2,138 n/s, ~75 min left on this row | L 15->15 best, 42 widest
+      aca_1: 512,039/10,000,000 nodes (5.1%) 2,124 n/s, ~74 min left on this row | L 15->15 best, 42 widest
+      aca_1: 630,823/10,000,000 nodes (6.3%) 2,092 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_1: 738,343/10,000,000 nodes (7.4%) 2,041 n/s, ~76 min left on this row | L 15->15 best, 43 widest
+      aca_1: 853,031/10,000,000 nodes (8.5%) 2,022 n/s, ~75 min left on this row | L 15->15 best, 43 widest
+      aca_1: 976,935/10,000,000 nodes (9.8%) 2,027 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_1: 1,084,455/10,000,000 nodes (10.8%) 1,999 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_1: 1,201,191/10,000,000 nodes (12.0%) 1,994 n/s, ~74 min left on this row | L 15->15 best, 44 widest
+      aca_1: 1,326,119/10,000,000 nodes (13.3%) 2,000 n/s, ~72 min left on this row | L 15->15 best, 44 widest
+      aca_1: 1,454,119/10,000,000 nodes (14.5%) 2,011 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_1: 1,553,447/10,000,000 nodes (15.5%) 1,983 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_1: 1,665,063/10,000,000 nodes (16.7%) 1,974 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_1: 1,758,247/10,000,000 nodes (17.6%) 1,945 n/s, ~71 min left on this row | L 15->15 best, 45 widest
+      aca_1: 1,863,719/10,000,000 nodes (18.6%) 1,933 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_1: 1,951,783/10,000,000 nodes (19.5%) 1,905 n/s, ~70 min left on this row | L 15->15 best, 45 widest
+      aca_1: 2,072,615/10,000,000 nodes (20.7%) 1,910 n/s, ~69 min left on this row | L 15->15 best, 45 widest
+      aca_1: 2,200,615/10,000,000 nodes (22.0%) 1,921 n/s, ~68 min left on this row | L 15->15 best, 45 widest
+      aca_1: 2,316,327/10,000,000 nodes (23.2%) 1,921 n/s, ~67 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,417,703/10,000,000 nodes (24.2%) 1,910 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,518,055/10,000,000 nodes (25.2%) 1,899 n/s, ~66 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,614,311/10,000,000 nodes (26.1%) 1,885 n/s, ~65 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,717,735/10,000,000 nodes (27.2%) 1,878 n/s, ~65 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,845,735/10,000,000 nodes (28.5%) 1,888 n/s, ~63 min left on this row | L 15->15 best, 46 widest
+      aca_1: 2,970,663/10,000,000 nodes (29.7%) 1,895 n/s, ~62 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,088,423/10,000,000 nodes (30.9%) 1,897 n/s, ~61 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,199,015/10,000,000 nodes (32.0%) 1,895 n/s, ~60 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,303,463/10,000,000 nodes (33.0%) 1,890 n/s, ~59 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,412,007/10,000,000 nodes (34.1%) 1,887 n/s, ~58 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,526,695/10,000,000 nodes (35.3%) 1,887 n/s, ~57 min left on this row | L 15->15 best, 46 widest
+      aca_1: 3,637,287/10,000,000 nodes (36.4%) 1,886 n/s, ~56 min left on this row | L 15->15 best, 47 widest
+      aca_1: 3,727,399/10,000,000 nodes (37.3%) 1,874 n/s, ~56 min left on this row | L 15->15 best, 47 widest
+      aca_1: 3,822,631/10,000,000 nodes (38.2%) 1,866 n/s, ~55 min left on this row | L 15->15 best, 47 widest
+      aca_1: 3,925,031/10,000,000 nodes (39.3%) 1,861 n/s, ~54 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,036,647/10,000,000 nodes (40.4%) 1,860 n/s, ~53 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,142,119/10,000,000 nodes (41.4%) 1,857 n/s, ~53 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,228,135/10,000,000 nodes (42.3%) 1,845 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,314,151/10,000,000 nodes (43.1%) 1,835 n/s, ~52 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,412,455/10,000,000 nodes (44.1%) 1,829 n/s, ~51 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,508,711/10,000,000 nodes (45.1%) 1,824 n/s, ~50 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,598,823/10,000,000 nodes (46.0%) 1,816 n/s, ~50 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,681,767/10,000,000 nodes (46.8%) 1,806 n/s, ~49 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,782,119/10,000,000 nodes (47.8%) 1,802 n/s, ~48 min left on this row | L 15->15 best, 47 widest
+      aca_1: 4,885,543/10,000,000 nodes (48.9%) 1,800 n/s, ~47 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,006,375/10,000,000 nodes (50.1%) 1,805 n/s, ~46 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,124,135/10,000,000 nodes (51.2%) 1,808 n/s, ~45 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,234,727/10,000,000 nodes (52.3%) 1,808 n/s, ~44 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,355,559/10,000,000 nodes (53.6%) 1,812 n/s, ~43 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,461,031/10,000,000 nodes (54.6%) 1,811 n/s, ~42 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,575,719/10,000,000 nodes (55.8%) 1,812 n/s, ~41 min left on this row | L 15->15 best, 47 widest
+      aca_1: 5,667,879/10,000,000 nodes (56.7%) 1,807 n/s, ~40 min left on this row | L 15->15 best, 48 widest
+      aca_1: 5,769,255/10,000,000 nodes (57.7%) 1,804 n/s, ~39 min left on this row | L 15->15 best, 48 widest
+      aca_1: 5,870,631/10,000,000 nodes (58.7%) 1,802 n/s, ~38 min left on this row | L 15->15 best, 48 widest
+      aca_1: 5,975,079/10,000,000 nodes (59.8%) 1,801 n/s, ~37 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,063,143/10,000,000 nodes (60.6%) 1,795 n/s, ~37 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,145,063/10,000,000 nodes (61.5%) 1,787 n/s, ~36 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,244,391/10,000,000 nodes (62.4%) 1,785 n/s, ~35 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,335,527/10,000,000 nodes (63.4%) 1,780 n/s, ~34 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,413,351/10,000,000 nodes (64.1%) 1,772 n/s, ~34 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,547,495/10,000,000 nodes (65.5%) 1,779 n/s, ~32 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,674,471/10,000,000 nodes (66.7%) 1,785 n/s, ~31 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,810,663/10,000,000 nodes (68.1%) 1,792 n/s, ~30 min left on this row | L 15->15 best, 48 widest
+      aca_1: 6,923,303/10,000,000 nodes (69.2%) 1,793 n/s, ~29 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,030,823/10,000,000 nodes (70.3%) 1,793 n/s, ~28 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,169,063/10,000,000 nodes (71.7%) 1,801 n/s, ~26 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,298,087/10,000,000 nodes (73.0%) 1,806 n/s, ~25 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,415,847/10,000,000 nodes (74.2%) 1,808 n/s, ~24 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,528,487/10,000,000 nodes (75.3%) 1,809 n/s, ~23 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,642,151/10,000,000 nodes (76.4%) 1,810 n/s, ~22 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,747,623/10,000,000 nodes (77.5%) 1,809 n/s, ~21 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,841,831/10,000,000 nodes (78.4%) 1,806 n/s, ~20 min left on this row | L 15->15 best, 48 widest
+      aca_1: 7,943,207/10,000,000 nodes (79.4%) 1,804 n/s, ~19 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,042,535/10,000,000 nodes (80.4%) 1,802 n/s, ~18 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,137,767/10,000,000 nodes (81.4%) 1,799 n/s, ~17 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,226,855/10,000,000 nodes (82.3%) 1,795 n/s, ~16 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,320,039/10,000,000 nodes (83.2%) 1,792 n/s, ~16 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,421,415/10,000,000 nodes (84.2%) 1,790 n/s, ~15 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,522,791/10,000,000 nodes (85.2%) 1,788 n/s, ~14 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,609,831/10,000,000 nodes (86.1%) 1,784 n/s, ~13 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,701,991/10,000,000 nodes (87.0%) 1,781 n/s, ~12 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,801,319/10,000,000 nodes (88.0%) 1,779 n/s, ~11 min left on this row | L 15->15 best, 48 widest
+      aca_1: 8,927,271/10,000,000 nodes (89.3%) 1,783 n/s, ~10 min left on this row | L 15->15 best, 48 widest
+    [hcompact:aca_1] rows widen 24B -> 32B per relator at 1,095,951,220 states (this repacks)
+      aca_1: 8,966,345/10,000,000 nodes (89.7%) 1,769 n/s, ~10 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,054,409/10,000,000 nodes (90.5%) 1,765 n/s, ~9 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,133,257/10,000,000 nodes (91.3%) 1,760 n/s, ~8 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,218,249/10,000,000 nodes (92.2%) 1,756 n/s, ~7 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,303,241/10,000,000 nodes (93.0%) 1,752 n/s, ~7 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,398,473/10,000,000 nodes (94.0%) 1,750 n/s, ~6 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,493,705/10,000,000 nodes (94.9%) 1,748 n/s, ~5 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,597,129/10,000,000 nodes (96.0%) 1,748 n/s, ~4 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,695,433/10,000,000 nodes (97.0%) 1,746 n/s, ~3 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,798,857/10,000,000 nodes (98.0%) 1,746 n/s, ~2 min left on this row | L 15->15 best, 49 widest
+      aca_1: 9,908,425/10,000,000 nodes (99.1%) 1,747 n/s, ~1 min left on this row | L 15->15 best, 49 widest
+    [2/124] aca_1 solved=False nodes=10,000,000 (5724s) -- 0.7 rows/h, eta 173.7 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_2] rows widen 12B -> 24B per relator at 423 states (this repacks)
+      aca_2: 142,344/10,000,000 nodes (1.4%) 2,368 n/s, ~69 min left on this row | L 16->16 best, 41 widest
+      aca_2: 279,560/10,000,000 nodes (2.8%) 2,323 n/s, ~70 min left on this row | L 16->16 best, 42 widest
+      aca_2: 396,296/10,000,000 nodes (4.0%) 2,191 n/s, ~73 min left on this row | L 16->16 best, 43 widest
+      aca_2: 531,464/10,000,000 nodes (5.3%) 2,202 n/s, ~72 min left on this row | L 16->16 best, 43 widest
+      aca_2: 648,200/10,000,000 nodes (6.5%) 2,148 n/s, ~73 min left on this row | L 16->16 best, 44 widest
+      aca_2: 782,344/10,000,000 nodes (7.8%) 2,162 n/s, ~71 min left on this row | L 16->16 best, 44 widest
+      aca_2: 901,128/10,000,000 nodes (9.0%) 2,136 n/s, ~71 min left on this row | L 16->16 best, 45 widest
+      aca_2: 1,012,744/10,000,000 nodes (10.1%) 2,101 n/s, ~71 min left on this row | L 16->16 best, 45 widest
+      aca_2: 1,114,120/10,000,000 nodes (11.1%) 2,054 n/s, ~72 min left on this row | L 16->16 best, 45 widest
+      aca_2: 1,255,432/10,000,000 nodes (12.6%) 2,084 n/s, ~70 min left on this row | L 16->16 best, 45 widest
+      aca_2: 1,379,336/10,000,000 nodes (13.8%) 2,081 n/s, ~69 min left on this row | L 16->16 best, 46 widest
+      aca_2: 1,475,592/10,000,000 nodes (14.8%) 2,040 n/s, ~70 min left on this row | L 16->16 best, 46 widest
+      aca_2: 1,598,472/10,000,000 nodes (16.0%) 2,039 n/s, ~69 min left on this row | L 16->16 best, 46 widest
+      aca_2: 1,746,952/10,000,000 nodes (17.5%) 2,070 n/s, ~66 min left on this row | L 16->16 best, 46 widest
+      aca_2: 1,865,736/10,000,000 nodes (18.7%) 2,064 n/s, ~66 min left on this row | L 16->16 best, 46 widest
+      aca_2: 1,982,472/10,000,000 nodes (19.8%) 2,055 n/s, ~65 min left on this row | L 16->16 best, 46 widest
+      aca_2: 2,095,112/10,000,000 nodes (21.0%) 2,044 n/s, ~64 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,200,584/10,000,000 nodes (22.0%) 2,028 n/s, ~64 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,340,872/10,000,000 nodes (23.4%) 2,043 n/s, ~62 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,480,136/10,000,000 nodes (24.8%) 2,057 n/s, ~61 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,596,872/10,000,000 nodes (26.0%) 2,051 n/s, ~60 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,728,968/10,000,000 nodes (27.3%) 2,058 n/s, ~59 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,842,632/10,000,000 nodes (28.4%) 2,050 n/s, ~58 min left on this row | L 16->16 best, 47 widest
+      aca_2: 2,976,776/10,000,000 nodes (29.8%) 2,058 n/s, ~57 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,098,632/10,000,000 nodes (31.0%) 2,056 n/s, ~56 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,207,176/10,000,000 nodes (32.1%) 2,047 n/s, ~55 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,304,456/10,000,000 nodes (33.0%) 2,031 n/s, ~55 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,443,720/10,000,000 nodes (34.4%) 2,041 n/s, ~54 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,565,576/10,000,000 nodes (35.7%) 2,041 n/s, ~53 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,667,976/10,000,000 nodes (36.7%) 2,029 n/s, ~52 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,782,664/10,000,000 nodes (37.8%) 2,025 n/s, ~51 min left on this row | L 16->16 best, 47 widest
+      aca_2: 3,926,024/10,000,000 nodes (39.3%) 2,036 n/s, ~50 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,051,976/10,000,000 nodes (40.5%) 2,038 n/s, ~49 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,164,616/10,000,000 nodes (41.6%) 2,033 n/s, ~48 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,277,256/10,000,000 nodes (42.8%) 2,028 n/s, ~47 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,410,376/10,000,000 nodes (44.1%) 2,033 n/s, ~46 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,545,544/10,000,000 nodes (45.5%) 2,039 n/s, ~45 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,676,616/10,000,000 nodes (46.8%) 2,042 n/s, ~43 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,792,328/10,000,000 nodes (47.9%) 2,039 n/s, ~43 min left on this row | L 16->16 best, 47 widest
+      aca_2: 4,918,280/10,000,000 nodes (49.2%) 2,041 n/s, ~42 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,047,304/10,000,000 nodes (50.5%) 2,043 n/s, ~40 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,170,184/10,000,000 nodes (51.7%) 2,043 n/s, ~39 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,287,944/10,000,000 nodes (52.9%) 2,041 n/s, ~38 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,383,176/10,000,000 nodes (53.8%) 2,030 n/s, ~38 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,507,080/10,000,000 nodes (55.1%) 2,031 n/s, ~37 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,644,296/10,000,000 nodes (56.4%) 2,036 n/s, ~36 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,747,720/10,000,000 nodes (57.5%) 2,029 n/s, ~35 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,847,048/10,000,000 nodes (58.5%) 2,021 n/s, ~34 min left on this row | L 16->16 best, 47 widest
+      aca_2: 5,992,456/10,000,000 nodes (59.9%) 2,029 n/s, ~33 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,129,672/10,000,000 nodes (61.3%) 2,034 n/s, ~32 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,242,312/10,000,000 nodes (62.4%) 2,031 n/s, ~31 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,352,904/10,000,000 nodes (63.5%) 2,027 n/s, ~30 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,475,784/10,000,000 nodes (64.8%) 2,027 n/s, ~29 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,590,472/10,000,000 nodes (65.9%) 2,025 n/s, ~28 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,696,968/10,000,000 nodes (67.0%) 2,020 n/s, ~27 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,808,584/10,000,000 nodes (68.1%) 2,017 n/s, ~26 min left on this row | L 16->16 best, 47 widest
+      aca_2: 6,929,416/10,000,000 nodes (69.3%) 2,017 n/s, ~25 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,070,728/10,000,000 nodes (70.7%) 2,023 n/s, ~24 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,204,872/10,000,000 nodes (72.0%) 2,026 n/s, ~23 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,312,392/10,000,000 nodes (73.1%) 2,022 n/s, ~22 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,447,560/10,000,000 nodes (74.5%) 2,026 n/s, ~21 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,570,440/10,000,000 nodes (75.7%) 2,026 n/s, ~20 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,697,416/10,000,000 nodes (77.0%) 2,027 n/s, ~19 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,820,296/10,000,000 nodes (78.2%) 2,027 n/s, ~18 min left on this row | L 16->16 best, 47 widest
+      aca_2: 7,920,648/10,000,000 nodes (79.2%) 2,022 n/s, ~17 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,027,144/10,000,000 nodes (80.3%) 2,018 n/s, ~16 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,166,408/10,000,000 nodes (81.7%) 2,022 n/s, ~15 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,281,096/10,000,000 nodes (82.8%) 2,020 n/s, ~14 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,378,376/10,000,000 nodes (83.8%) 2,015 n/s, ~13 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,507,400/10,000,000 nodes (85.1%) 2,016 n/s, ~12 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,651,784/10,000,000 nodes (86.5%) 2,022 n/s, ~11 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,768,520/10,000,000 nodes (87.7%) 2,021 n/s, ~10 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,881,160/10,000,000 nodes (88.8%) 2,019 n/s, ~9 min left on this row | L 16->16 best, 47 widest
+      aca_2: 8,990,728/10,000,000 nodes (89.9%) 2,016 n/s, ~8 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,108,488/10,000,000 nodes (91.1%) 2,015 n/s, ~7 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,222,152/10,000,000 nodes (92.2%) 2,013 n/s, ~6 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,339,912/10,000,000 nodes (93.4%) 2,013 n/s, ~5 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,450,504/10,000,000 nodes (94.5%) 2,010 n/s, ~5 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,553,928/10,000,000 nodes (95.5%) 2,007 n/s, ~4 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,662,472/10,000,000 nodes (96.6%) 2,004 n/s, ~3 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,768,968/10,000,000 nodes (97.7%) 2,001 n/s, ~2 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,880,584/10,000,000 nodes (98.8%) 1,999 n/s, ~1 min left on this row | L 16->16 best, 47 widest
+      aca_2: 9,994,248/10,000,000 nodes (99.9%) 1,998 n/s, ~0 min left on this row | L 16->16 best, 47 widest
+    [3/124] aca_2 solved=False nodes=10,000,000 (5006s) -- 0.7 rows/h, eta 170.9 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_3] rows widen 12B -> 24B per relator at 348 states (this repacks)
+      aca_3: 173,062/10,000,000 nodes (1.7%) 2,875 n/s, ~57 min left on this row | L 17->17 best, 36 widest
+      aca_3: 333,830/10,000,000 nodes (3.3%) 2,771 n/s, ~58 min left on this row | L 17->17 best, 37 widest
+      aca_3: 498,694/10,000,000 nodes (5.0%) 2,762 n/s, ~57 min left on this row | L 17->17 best, 38 widest
+      aca_3: 649,222/10,000,000 nodes (6.5%) 2,697 n/s, ~58 min left on this row | L 17->17 best, 39 widest
+      aca_3: 811,014/10,000,000 nodes (8.1%) 2,695 n/s, ~57 min left on this row | L 17->17 best, 39 widest
+      aca_3: 958,470/10,000,000 nodes (9.6%) 2,654 n/s, ~57 min left on this row | L 17->17 best, 39 widest
+      aca_3: 1,096,710/10,000,000 nodes (11.0%) 2,602 n/s, ~57 min left on this row | L 17->17 best, 39 widest
+      aca_3: 1,271,814/10,000,000 nodes (12.7%) 2,642 n/s, ~55 min left on this row | L 17->17 best, 39 widest
+      aca_3: 1,419,270/10,000,000 nodes (14.2%) 2,619 n/s, ~55 min left on this row | L 17->17 best, 40 widest
+      aca_3: 1,553,414/10,000,000 nodes (15.5%) 2,580 n/s, ~55 min left on this row | L 17->17 best, 40 widest
+      aca_3: 1,708,038/10,000,000 nodes (17.1%) 2,579 n/s, ~54 min left on this row | L 17->17 best, 40 widest
+      aca_3: 1,868,806/10,000,000 nodes (18.7%) 2,586 n/s, ~52 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,018,310/10,000,000 nodes (20.2%) 2,578 n/s, ~52 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,174,982/10,000,000 nodes (21.7%) 2,580 n/s, ~51 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,332,678/10,000,000 nodes (23.3%) 2,582 n/s, ~49 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,481,158/10,000,000 nodes (24.8%) 2,574 n/s, ~49 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,628,614/10,000,000 nodes (26.3%) 2,566 n/s, ~48 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,766,854/10,000,000 nodes (27.7%) 2,551 n/s, ~47 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,893,830/10,000,000 nodes (28.9%) 2,528 n/s, ~47 min left on this row | L 17->17 best, 41 widest
+      aca_3: 2,998,278/10,000,000 nodes (30.0%) 2,489 n/s, ~47 min left on this row | L 17->17 best, 41 widest
+      aca_3: 3,142,662/10,000,000 nodes (31.4%) 2,484 n/s, ~46 min left on this row | L 17->17 best, 41 widest
+      aca_3: 3,296,262/10,000,000 nodes (33.0%) 2,487 n/s, ~45 min left on this row | L 17->17 best, 41 widest
+      aca_3: 3,469,318/10,000,000 nodes (34.7%) 2,504 n/s, ~43 min left on this row | L 17->17 best, 41 widest
+      aca_3: 3,645,446/10,000,000 nodes (36.5%) 2,522 n/s, ~42 min left on this row | L 17->17 best, 41 widest
+      aca_3: 3,778,566/10,000,000 nodes (37.8%) 2,510 n/s, ~41 min left on this row | L 17->17 best, 42 widest
+      aca_3: 3,918,854/10,000,000 nodes (39.2%) 2,503 n/s, ~40 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,054,022/10,000,000 nodes (40.5%) 2,493 n/s, ~40 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,180,998/10,000,000 nodes (41.8%) 2,479 n/s, ~39 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,301,830/10,000,000 nodes (43.0%) 2,462 n/s, ~39 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,405,254/10,000,000 nodes (44.1%) 2,438 n/s, ~38 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,571,142/10,000,000 nodes (45.7%) 2,448 n/s, ~37 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,728,838/10,000,000 nodes (47.3%) 2,453 n/s, ~36 min left on this row | L 17->17 best, 42 widest
+      aca_3: 4,896,774/10,000,000 nodes (49.0%) 2,463 n/s, ~35 min left on this row | L 17->17 best, 42 widest
+      aca_3: 5,051,398/10,000,000 nodes (50.5%) 2,467 n/s, ~33 min left on this row | L 17->17 best, 42 widest
+      aca_3: 5,220,358/10,000,000 nodes (52.2%) 2,477 n/s, ~32 min left on this row | L 17->17 best, 42 widest
+      aca_3: 5,386,246/10,000,000 nodes (53.9%) 2,484 n/s, ~31 min left on this row | L 17->17 best, 42 widest
+      aca_3: 5,545,990/10,000,000 nodes (55.5%) 2,489 n/s, ~30 min left on this row | L 17->17 best, 42 widest
+      aca_3: 5,678,086/10,000,000 nodes (56.8%) 2,481 n/s, ~29 min left on this row | L 17->17 best, 43 widest
+      aca_3: 5,809,158/10,000,000 nodes (58.1%) 2,474 n/s, ~28 min left on this row | L 17->17 best, 43 widest
+      aca_3: 5,951,494/10,000,000 nodes (59.5%) 2,471 n/s, ~27 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,102,022/10,000,000 nodes (61.0%) 2,472 n/s, ~26 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,253,574/10,000,000 nodes (62.5%) 2,473 n/s, ~25 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,402,054/10,000,000 nodes (64.0%) 2,473 n/s, ~24 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,555,654/10,000,000 nodes (65.6%) 2,474 n/s, ~23 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,703,110/10,000,000 nodes (67.0%) 2,474 n/s, ~22 min left on this row | L 17->17 best, 43 widest
+      aca_3: 6,852,614/10,000,000 nodes (68.5%) 2,474 n/s, ~21 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,002,118/10,000,000 nodes (70.0%) 2,474 n/s, ~20 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,143,430/10,000,000 nodes (71.4%) 2,471 n/s, ~19 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,290,886/10,000,000 nodes (72.9%) 2,471 n/s, ~18 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,434,246/10,000,000 nodes (74.3%) 2,469 n/s, ~17 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,572,486/10,000,000 nodes (75.7%) 2,465 n/s, ~16 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,709,702/10,000,000 nodes (77.1%) 2,462 n/s, ~16 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,845,894/10,000,000 nodes (78.5%) 2,458 n/s, ~15 min left on this row | L 17->17 best, 43 widest
+      aca_3: 7,983,110/10,000,000 nodes (79.8%) 2,454 n/s, ~14 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,120,326/10,000,000 nodes (81.2%) 2,451 n/s, ~13 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,250,374/10,000,000 nodes (82.5%) 2,446 n/s, ~12 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,379,398/10,000,000 nodes (83.8%) 2,440 n/s, ~11 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,504,326/10,000,000 nodes (85.0%) 2,434 n/s, ~10 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,617,990/10,000,000 nodes (86.2%) 2,425 n/s, ~9 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,722,438/10,000,000 nodes (87.2%) 2,413 n/s, ~9 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,817,670/10,000,000 nodes (88.2%) 2,400 n/s, ~8 min left on this row | L 17->17 best, 43 widest
+      aca_3: 8,909,830/10,000,000 nodes (89.1%) 2,386 n/s, ~8 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,041,926/10,000,000 nodes (90.4%) 2,383 n/s, ~7 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,167,878/10,000,000 nodes (91.7%) 2,378 n/s, ~6 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,315,334/10,000,000 nodes (93.2%) 2,379 n/s, ~5 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,479,174/10,000,000 nodes (94.8%) 2,384 n/s, ~4 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,638,918/10,000,000 nodes (96.4%) 2,388 n/s, ~3 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,789,446/10,000,000 nodes (97.9%) 2,390 n/s, ~1 min left on this row | L 17->17 best, 43 widest
+      aca_3: 9,969,670/10,000,000 nodes (99.7%) 2,399 n/s, ~0 min left on this row | L 17->17 best, 43 widest
+    [4/124] aca_3 solved=False nodes=10,000,000 (4167s) -- 0.7 rows/h, eta 161.9 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_4] rows widen 12B -> 24B per relator at 837 states (this repacks)
+      aca_4: 105,486/10,000,000 nodes (1.1%) 1,748 n/s, ~94 min left on this row | L 18->18 best, 44 widest
+      aca_4: 204,814/10,000,000 nodes (2.0%) 1,701 n/s, ~96 min left on this row | L 18->18 best, 45 widest
+      aca_4: 299,022/10,000,000 nodes (3.0%) 1,657 n/s, ~98 min left on this row | L 18->18 best, 46 widest
+      aca_4: 405,518/10,000,000 nodes (4.1%) 1,686 n/s, ~95 min left on this row | L 18->18 best, 47 widest
+      aca_4: 489,486/10,000,000 nodes (4.9%) 1,627 n/s, ~97 min left on this row | L 18->18 best, 47 widest
+      aca_4: 583,694/10,000,000 nodes (5.8%) 1,616 n/s, ~97 min left on this row | L 18->18 best, 47 widest
+      aca_4: 661,518/10,000,000 nodes (6.6%) 1,571 n/s, ~99 min left on this row | L 18->18 best, 48 widest
+      aca_4: 772,110/10,000,000 nodes (7.7%) 1,604 n/s, ~96 min left on this row | L 18->18 best, 48 widest
+      aca_4: 868,366/10,000,000 nodes (8.7%) 1,604 n/s, ~95 min left on this row | L 18->18 best, 48 widest
+    [hcompact:aca_4] rows widen 24B -> 32B per relator at 120,626,047 states (this repacks)
+      aca_4: 956,753/10,000,000 nodes (9.6%) 1,590 n/s, ~95 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,046,865/10,000,000 nodes (10.5%) 1,582 n/s, ~94 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,119,569/10,000,000 nodes (11.2%) 1,551 n/s, ~95 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,196,369/10,000,000 nodes (12.0%) 1,529 n/s, ~96 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,278,289/10,000,000 nodes (12.8%) 1,516 n/s, ~96 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,374,545/10,000,000 nodes (13.7%) 1,522 n/s, ~94 min left on this row | L 18->18 best, 49 widest
+      aca_4: 1,465,681/10,000,000 nodes (14.7%) 1,521 n/s, ~94 min left on this row | L 18->18 best, 50 widest
+      aca_4: 1,533,265/10,000,000 nodes (15.3%) 1,497 n/s, ~94 min left on this row | L 18->18 best, 50 widest
+      aca_4: 1,633,617/10,000,000 nodes (16.3%) 1,506 n/s, ~93 min left on this row | L 18->18 best, 50 widest
+      aca_4: 1,738,065/10,000,000 nodes (17.4%) 1,518 n/s, ~91 min left on this row | L 18->18 best, 50 widest
+      aca_4: 1,840,465/10,000,000 nodes (18.4%) 1,527 n/s, ~89 min left on this row | L 18->18 best, 50 widest
+      aca_4: 1,932,625/10,000,000 nodes (19.3%) 1,527 n/s, ~88 min left on this row | L 18->18 best, 50 widest
+      aca_4: 2,021,713/10,000,000 nodes (20.2%) 1,525 n/s, ~87 min left on this row | L 18->18 best, 50 widest
+      aca_4: 2,105,681/10,000,000 nodes (21.1%) 1,519 n/s, ~87 min left on this row | L 18->18 best, 50 widest
+      aca_4: 2,181,457/10,000,000 nodes (21.8%) 1,508 n/s, ~86 min left on this row | L 18->18 best, 50 widest
+      aca_4: 2,285,905/10,000,000 nodes (22.9%) 1,517 n/s, ~85 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,373,969/10,000,000 nodes (23.7%) 1,515 n/s, ~84 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,461,009/10,000,000 nodes (24.6%) 1,512 n/s, ~83 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,540,881/10,000,000 nodes (25.4%) 1,505 n/s, ~83 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,615,633/10,000,000 nodes (26.2%) 1,495 n/s, ~82 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,679,121/10,000,000 nodes (26.8%) 1,480 n/s, ~82 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,740,561/10,000,000 nodes (27.4%) 1,465 n/s, ~83 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,821,457/10,000,000 nodes (28.2%) 1,461 n/s, ~82 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,888,017/10,000,000 nodes (28.9%) 1,450 n/s, ~82 min left on this row | L 18->18 best, 51 widest
+      aca_4: 2,977,105/10,000,000 nodes (29.8%) 1,451 n/s, ~81 min left on this row | L 18->18 best, 51 widest
+      aca_4: 3,071,313/10,000,000 nodes (30.7%) 1,454 n/s, ~79 min left on this row | L 18->18 best, 51 widest
+      aca_4: 3,164,497/10,000,000 nodes (31.6%) 1,456 n/s, ~78 min left on this row | L 18->18 best, 51 widest
+      aca_4: 3,245,393/10,000,000 nodes (32.5%) 1,453 n/s, ~77 min left on this row | L 18->18 best, 51 widest
+      aca_4: 3,342,673/10,000,000 nodes (33.4%) 1,457 n/s, ~76 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,438,929/10,000,000 nodes (34.4%) 1,461 n/s, ~75 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,521,873/10,000,000 nodes (35.2%) 1,459 n/s, ~74 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,589,457/10,000,000 nodes (35.9%) 1,451 n/s, ~74 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,648,849/10,000,000 nodes (36.5%) 1,440 n/s, ~74 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,716,433/10,000,000 nodes (37.2%) 1,432 n/s, ~73 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,807,569/10,000,000 nodes (38.1%) 1,434 n/s, ~72 min left on this row | L 18->18 best, 52 widest
+      aca_4: 3,915,089/10,000,000 nodes (39.2%) 1,441 n/s, ~70 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,015,441/10,000,000 nodes (40.2%) 1,446 n/s, ~69 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,107,601/10,000,000 nodes (41.1%) 1,448 n/s, ~68 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,201,809/10,000,000 nodes (42.0%) 1,450 n/s, ~67 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,305,233/10,000,000 nodes (43.1%) 1,456 n/s, ~65 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,403,537/10,000,000 nodes (44.0%) 1,459 n/s, ~64 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,493,649/10,000,000 nodes (44.9%) 1,460 n/s, ~63 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,587,857/10,000,000 nodes (45.9%) 1,462 n/s, ~62 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,674,897/10,000,000 nodes (46.7%) 1,461 n/s, ~61 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,758,865/10,000,000 nodes (47.6%) 1,460 n/s, ~60 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,838,737/10,000,000 nodes (48.4%) 1,458 n/s, ~59 min left on this row | L 18->18 best, 52 widest
+      aca_4: 4,923,729/10,000,000 nodes (49.2%) 1,457 n/s, ~58 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,006,673/10,000,000 nodes (50.1%) 1,455 n/s, ~57 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,077,329/10,000,000 nodes (50.8%) 1,450 n/s, ~57 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,155,153/10,000,000 nodes (51.6%) 1,448 n/s, ~56 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,225,809/10,000,000 nodes (52.3%) 1,443 n/s, ~55 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,287,249/10,000,000 nodes (52.9%) 1,436 n/s, ~55 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,354,833/10,000,000 nodes (53.5%) 1,431 n/s, ~54 min left on this row | L 18->18 best, 52 widest
+      aca_4: 5,464,401/10,000,000 nodes (54.6%) 1,437 n/s, ~53 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,556,561/10,000,000 nodes (55.6%) 1,438 n/s, ~51 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,637,457/10,000,000 nodes (56.4%) 1,437 n/s, ~51 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,724,497/10,000,000 nodes (57.2%) 1,437 n/s, ~50 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,808,465/10,000,000 nodes (58.1%) 1,436 n/s, ~49 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,890,385/10,000,000 nodes (58.9%) 1,435 n/s, ~48 min left on this row | L 18->18 best, 53 widest
+      aca_4: 5,971,281/10,000,000 nodes (59.7%) 1,434 n/s, ~47 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,050,129/10,000,000 nodes (60.5%) 1,432 n/s, ~46 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,122,833/10,000,000 nodes (61.2%) 1,428 n/s, ~45 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,196,561/10,000,000 nodes (62.0%) 1,425 n/s, ~44 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,267,217/10,000,000 nodes (62.7%) 1,422 n/s, ~44 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,332,753/10,000,000 nodes (63.3%) 1,417 n/s, ~43 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,392,145/10,000,000 nodes (63.9%) 1,412 n/s, ~43 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,447,441/10,000,000 nodes (64.5%) 1,405 n/s, ~42 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,503,761/10,000,000 nodes (65.0%) 1,399 n/s, ~42 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,562,129/10,000,000 nodes (65.6%) 1,393 n/s, ~41 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,636,881/10,000,000 nodes (66.4%) 1,391 n/s, ~40 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,718,801/10,000,000 nodes (67.2%) 1,391 n/s, ~39 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,788,433/10,000,000 nodes (67.9%) 1,388 n/s, ~39 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,851,921/10,000,000 nodes (68.5%) 1,384 n/s, ~38 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,917,457/10,000,000 nodes (69.2%) 1,380 n/s, ~37 min left on this row | L 18->18 best, 53 widest
+      aca_4: 6,996,305/10,000,000 nodes (70.0%) 1,379 n/s, ~36 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,110,993/10,000,000 nodes (71.1%) 1,386 n/s, ~35 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,187,793/10,000,000 nodes (71.9%) 1,384 n/s, ~34 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,278,929/10,000,000 nodes (72.8%) 1,386 n/s, ~33 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,377,233/10,000,000 nodes (73.8%) 1,388 n/s, ~31 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,450,961/10,000,000 nodes (74.5%) 1,387 n/s, ~31 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,543,121/10,000,000 nodes (75.4%) 1,388 n/s, ~29 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,632,209/10,000,000 nodes (76.3%) 1,389 n/s, ~28 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,709,009/10,000,000 nodes (77.1%) 1,388 n/s, ~28 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,777,617/10,000,000 nodes (77.8%) 1,385 n/s, ~27 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,855,441/10,000,000 nodes (78.6%) 1,384 n/s, ~26 min left on this row | L 18->18 best, 53 widest
+      aca_4: 7,928,145/10,000,000 nodes (79.3%) 1,382 n/s, ~25 min left on this row | L 18->18 best, 53 widest
+      aca_4: 8,023,377/10,000,000 nodes (80.2%) 1,384 n/s, ~24 min left on this row | L 18->18 best, 53 widest
+      aca_4: 8,124,753/10,000,000 nodes (81.2%) 1,387 n/s, ~23 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,216,913/10,000,000 nodes (82.2%) 1,389 n/s, ~21 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,306,001/10,000,000 nodes (83.1%) 1,390 n/s, ~20 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,385,873/10,000,000 nodes (83.9%) 1,389 n/s, ~19 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,465,745/10,000,000 nodes (84.7%) 1,388 n/s, ~18 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,536,401/10,000,000 nodes (85.4%) 1,386 n/s, ~18 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,602,961/10,000,000 nodes (86.0%) 1,383 n/s, ~17 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,661,329/10,000,000 nodes (86.6%) 1,379 n/s, ~16 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,711,505/10,000,000 nodes (87.1%) 1,374 n/s, ~16 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,770,897/10,000,000 nodes (87.7%) 1,370 n/s, ~15 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,841,553/10,000,000 nodes (88.4%) 1,368 n/s, ~14 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,908,113/10,000,000 nodes (89.1%) 1,366 n/s, ~13 min left on this row | L 18->18 best, 54 widest
+      aca_4: 8,957,265/10,000,000 nodes (89.6%) 1,360 n/s, ~13 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,053,521/10,000,000 nodes (90.5%) 1,363 n/s, ~12 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,148,753/10,000,000 nodes (91.5%) 1,365 n/s, ~10 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,242,961/10,000,000 nodes (92.4%) 1,366 n/s, ~9 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,358,673/10,000,000 nodes (93.6%) 1,371 n/s, ~8 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,452,881/10,000,000 nodes (94.5%) 1,373 n/s, ~7 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,547,089/10,000,000 nodes (95.5%) 1,374 n/s, ~5 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,641,297/10,000,000 nodes (96.4%) 1,376 n/s, ~4 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,730,385/10,000,000 nodes (97.3%) 1,377 n/s, ~3 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,817,425/10,000,000 nodes (98.2%) 1,377 n/s, ~2 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,902,417/10,000,000 nodes (99.0%) 1,378 n/s, ~1 min left on this row | L 18->18 best, 54 widest
+      aca_4: 9,984,337/10,000,000 nodes (99.8%) 1,377 n/s, ~0 min left on this row | L 18->18 best, 54 widest
+    [5/124] aca_4 solved=False nodes=10,000,000 (7261s) -- 0.7 rows/h, eta 176.4 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_5] rows widen 12B -> 24B per relator at 816 states (this repacks)
+      aca_5: 103,437/10,000,000 nodes (1.0%) 1,706 n/s, ~97 min left on this row | L 19->19 best, 44 widest
+      aca_5: 199,693/10,000,000 nodes (2.0%) 1,646 n/s, ~99 min left on this row | L 19->19 best, 45 widest
+      aca_5: 299,021/10,000,000 nodes (3.0%) 1,645 n/s, ~98 min left on this row | L 19->19 best, 46 widest
+      aca_5: 398,349/10,000,000 nodes (4.0%) 1,647 n/s, ~97 min left on this row | L 19->19 best, 47 widest
+      aca_5: 477,197/10,000,000 nodes (4.8%) 1,581 n/s, ~100 min left on this row | L 19->19 best, 47 widest
+      aca_5: 574,477/10,000,000 nodes (5.7%) 1,586 n/s, ~99 min left on this row | L 19->19 best, 48 widest
+      aca_5: 658,445/10,000,000 nodes (6.6%) 1,559 n/s, ~100 min left on this row | L 19->19 best, 48 widest
+      aca_5: 762,893/10,000,000 nodes (7.6%) 1,581 n/s, ~97 min left on this row | L 19->19 best, 48 widest
+    [hcompact:aca_5] rows widen 24B -> 32B per relator at 113,227,850 states (this repacks)
+      aca_5: 847,945/10,000,000 nodes (8.5%) 1,563 n/s, ~98 min left on this row | L 19->19 best, 49 widest
+      aca_5: 937,033/10,000,000 nodes (9.4%) 1,555 n/s, ~97 min left on this row | L 19->19 best, 49 widest
+      aca_5: 1,011,785/10,000,000 nodes (10.1%) 1,526 n/s, ~98 min left on this row | L 19->19 best, 49 widest
+      aca_5: 1,088,585/10,000,000 nodes (10.9%) 1,504 n/s, ~99 min left on this row | L 19->19 best, 49 widest
+      aca_5: 1,163,337/10,000,000 nodes (11.6%) 1,484 n/s, ~99 min left on this row | L 19->19 best, 49 widest
+      aca_5: 1,258,569/10,000,000 nodes (12.6%) 1,491 n/s, ~98 min left on this row | L 19->19 best, 49 widest
+      aca_5: 1,348,681/10,000,000 nodes (13.5%) 1,490 n/s, ~97 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,417,289/10,000,000 nodes (14.2%) 1,468 n/s, ~97 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,513,545/10,000,000 nodes (15.1%) 1,475 n/s, ~96 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,616,969/10,000,000 nodes (16.2%) 1,489 n/s, ~94 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,715,273/10,000,000 nodes (17.2%) 1,496 n/s, ~92 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,808,457/10,000,000 nodes (18.1%) 1,498 n/s, ~91 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,892,425/10,000,000 nodes (18.9%) 1,493 n/s, ~91 min left on this row | L 19->19 best, 50 widest
+      aca_5: 1,966,153/10,000,000 nodes (19.7%) 1,481 n/s, ~90 min left on this row | L 19->19 best, 50 widest
+      aca_5: 2,062,409/10,000,000 nodes (20.6%) 1,486 n/s, ~89 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,147,401/10,000,000 nodes (21.5%) 1,483 n/s, ~88 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,230,345/10,000,000 nodes (22.3%) 1,479 n/s, ~88 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,306,121/10,000,000 nodes (23.1%) 1,471 n/s, ~87 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,375,753/10,000,000 nodes (23.8%) 1,459 n/s, ~87 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,437,193/10,000,000 nodes (24.4%) 1,442 n/s, ~87 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,509,897/10,000,000 nodes (25.1%) 1,434 n/s, ~87 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,587,721/10,000,000 nodes (25.9%) 1,429 n/s, ~86 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,652,233/10,000,000 nodes (26.5%) 1,417 n/s, ~86 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,742,345/10,000,000 nodes (27.4%) 1,420 n/s, ~85 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,833,481/10,000,000 nodes (28.3%) 1,422 n/s, ~84 min left on this row | L 19->19 best, 51 widest
+      aca_5: 2,922,569/10,000,000 nodes (29.2%) 1,424 n/s, ~83 min left on this row | L 19->19 best, 51 widest
+      aca_5: 3,004,489/10,000,000 nodes (30.0%) 1,423 n/s, ~82 min left on this row | L 19->19 best, 51 widest
+      aca_5: 3,105,865/10,000,000 nodes (31.1%) 1,430 n/s, ~80 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,187,785/10,000,000 nodes (31.9%) 1,428 n/s, ~80 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,259,465/10,000,000 nodes (32.6%) 1,421 n/s, ~79 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,318,857/10,000,000 nodes (33.2%) 1,410 n/s, ~79 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,388,489/10,000,000 nodes (33.9%) 1,404 n/s, ~78 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,466,313/10,000,000 nodes (34.7%) 1,401 n/s, ~78 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,569,737/10,000,000 nodes (35.7%) 1,409 n/s, ~76 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,670,089/10,000,000 nodes (36.7%) 1,415 n/s, ~75 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,761,225/10,000,000 nodes (37.6%) 1,417 n/s, ~73 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,854,409/10,000,000 nodes (38.5%) 1,419 n/s, ~72 min left on this row | L 19->19 best, 52 widest
+      aca_5: 3,957,833/10,000,000 nodes (39.6%) 1,426 n/s, ~71 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,046,921/10,000,000 nodes (40.5%) 1,427 n/s, ~70 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,142,153/10,000,000 nodes (41.4%) 1,430 n/s, ~68 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,231,241/10,000,000 nodes (42.3%) 1,431 n/s, ~67 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,316,233/10,000,000 nodes (43.2%) 1,431 n/s, ~66 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,396,105/10,000,000 nodes (44.0%) 1,429 n/s, ~65 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,481,097/10,000,000 nodes (44.8%) 1,428 n/s, ~64 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,563,017/10,000,000 nodes (45.6%) 1,427 n/s, ~63 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,635,721/10,000,000 nodes (46.4%) 1,423 n/s, ~63 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,712,521/10,000,000 nodes (47.1%) 1,420 n/s, ~62 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,781,129/10,000,000 nodes (47.8%) 1,415 n/s, ~61 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,844,617/10,000,000 nodes (48.4%) 1,408 n/s, ~61 min left on this row | L 19->19 best, 52 widest
+      aca_5: 4,922,441/10,000,000 nodes (49.2%) 1,406 n/s, ~60 min left on this row | L 19->19 best, 52 widest
+      aca_5: 5,023,817/10,000,000 nodes (50.2%) 1,411 n/s, ~59 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,106,761/10,000,000 nodes (51.1%) 1,410 n/s, ~58 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,189,705/10,000,000 nodes (51.9%) 1,410 n/s, ~57 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,269,577/10,000,000 nodes (52.7%) 1,408 n/s, ~56 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,348,425/10,000,000 nodes (53.5%) 1,407 n/s, ~55 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,426,249/10,000,000 nodes (54.3%) 1,405 n/s, ~54 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,503,049/10,000,000 nodes (55.0%) 1,403 n/s, ~53 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,574,729/10,000,000 nodes (55.7%) 1,400 n/s, ~53 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,643,337/10,000,000 nodes (56.4%) 1,396 n/s, ~52 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,710,921/10,000,000 nodes (57.1%) 1,392 n/s, ~51 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,772,361/10,000,000 nodes (57.7%) 1,386 n/s, ~51 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,827,657/10,000,000 nodes (58.3%) 1,379 n/s, ~50 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,886,025/10,000,000 nodes (58.9%) 1,373 n/s, ~50 min left on this row | L 19->19 best, 53 widest
+      aca_5: 5,946,441/10,000,000 nodes (59.5%) 1,368 n/s, ~49 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,022,217/10,000,000 nodes (60.2%) 1,367 n/s, ~49 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,105,161/10,000,000 nodes (61.1%) 1,367 n/s, ~48 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,178,889/10,000,000 nodes (61.8%) 1,365 n/s, ~47 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,246,473/10,000,000 nodes (62.5%) 1,361 n/s, ~46 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,300,745/10,000,000 nodes (63.0%) 1,355 n/s, ~45 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,384,713/10,000,000 nodes (63.8%) 1,356 n/s, ~44 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,476,873/10,000,000 nodes (64.8%) 1,358 n/s, ~43 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,564,937/10,000,000 nodes (65.6%) 1,359 n/s, ~42 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,640,713/10,000,000 nodes (66.4%) 1,358 n/s, ~41 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,742,089/10,000,000 nodes (67.4%) 1,362 n/s, ~40 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,821,961/10,000,000 nodes (68.2%) 1,361 n/s, ~39 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,904,905/10,000,000 nodes (69.0%) 1,361 n/s, ~38 min left on this row | L 19->19 best, 53 widest
+      aca_5: 6,995,017/10,000,000 nodes (70.0%) 1,363 n/s, ~37 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,073,865/10,000,000 nodes (70.7%) 1,362 n/s, ~36 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,145,545/10,000,000 nodes (71.5%) 1,360 n/s, ~35 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,223,369/10,000,000 nodes (72.2%) 1,359 n/s, ~34 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,299,145/10,000,000 nodes (73.0%) 1,358 n/s, ~33 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,386,185/10,000,000 nodes (73.9%) 1,359 n/s, ~32 min left on this row | L 19->19 best, 53 widest
+      aca_5: 7,485,513/10,000,000 nodes (74.9%) 1,362 n/s, ~31 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,575,625/10,000,000 nodes (75.8%) 1,364 n/s, ~30 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,651,401/10,000,000 nodes (76.5%) 1,363 n/s, ~29 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,728,201/10,000,000 nodes (77.3%) 1,362 n/s, ~28 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,801,929/10,000,000 nodes (78.0%) 1,360 n/s, ~27 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,868,489/10,000,000 nodes (78.7%) 1,357 n/s, ~26 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,927,881/10,000,000 nodes (79.3%) 1,353 n/s, ~26 min left on this row | L 19->19 best, 54 widest
+      aca_5: 7,979,081/10,000,000 nodes (79.8%) 1,348 n/s, ~25 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,042,569/10,000,000 nodes (80.4%) 1,345 n/s, ~24 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,113,225/10,000,000 nodes (81.1%) 1,343 n/s, ~23 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,180,809/10,000,000 nodes (81.8%) 1,341 n/s, ~23 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,238,153/10,000,000 nodes (82.4%) 1,337 n/s, ~22 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,309,833/10,000,000 nodes (83.1%) 1,336 n/s, ~21 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,406,089/10,000,000 nodes (84.1%) 1,338 n/s, ~20 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,500,297/10,000,000 nodes (85.0%) 1,341 n/s, ~19 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,605,769/10,000,000 nodes (86.1%) 1,344 n/s, ~17 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,703,049/10,000,000 nodes (87.0%) 1,347 n/s, ~16 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,790,089/10,000,000 nodes (87.9%) 1,348 n/s, ~15 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,887,369/10,000,000 nodes (88.9%) 1,350 n/s, ~14 min left on this row | L 19->19 best, 54 widest
+      aca_5: 8,972,361/10,000,000 nodes (89.7%) 1,351 n/s, ~13 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,058,377/10,000,000 nodes (90.6%) 1,351 n/s, ~12 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,141,321/10,000,000 nodes (91.4%) 1,352 n/s, ~11 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,218,121/10,000,000 nodes (92.2%) 1,351 n/s, ~10 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,300,041/10,000,000 nodes (93.0%) 1,351 n/s, ~9 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,378,889/10,000,000 nodes (93.8%) 1,351 n/s, ~8 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,474,121/10,000,000 nodes (94.7%) 1,353 n/s, ~6 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,560,137/10,000,000 nodes (95.6%) 1,353 n/s, ~5 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,651,273/10,000,000 nodes (96.5%) 1,354 n/s, ~4 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,749,577/10,000,000 nodes (97.5%) 1,357 n/s, ~3 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,835,593/10,000,000 nodes (98.4%) 1,357 n/s, ~2 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,923,657/10,000,000 nodes (99.2%) 1,358 n/s, ~1 min left on this row | L 19->19 best, 54 widest
+      aca_5: 9,994,313/10,000,000 nodes (99.9%) 1,357 n/s, ~0 min left on this row | L 19->19 best, 54 widest
+    [6/124] aca_5 solved=False nodes=10,000,000 (7371s) -- 0.6 rows/h, eta 186.1 h
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored in: <Finalize object, dead>
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/multiprocessing/util.py", line 227, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/multiprocessing/synchronize.py", line 87, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+    [hcompact:aca_6] rows widen 12B -> 24B per relator at 378 states (this repacks)
+      aca_6: 115,717/10,000,000 nodes (1.2%) 1,925 n/s, ~86 min left on this row | L 19->19 best, 43 widest
+      aca_6: 232,453/10,000,000 nodes (2.3%) 1,928 n/s, ~84 min left on this row | L 19->19 best, 45 widest
+      aca_6: 335,877/10,000,000 nodes (3.4%) 1,858 n/s, ~87 min left on this row | L 19->19 best, 45 widest
+      aca_6: 445,445/10,000,000 nodes (4.5%) 1,849 n/s, ~86 min left on this row | L 19->19 best, 46 widest
+      aca_6: 565,253/10,000,000 nodes (5.7%) 1,876 n/s, ~84 min left on this row | L 19->19 best, 46 widest
+      aca_6: 653,317/10,000,000 nodes (6.5%) 1,806 n/s, ~86 min left on this row | L 19->19 best, 47 widest
+      aca_6: 764,933/10,000,000 nodes (7.6%) 1,813 n/s, ~85 min left on this row | L 19->19 best, 47 widest
+      aca_6: 869,381/10,000,000 nodes (8.7%) 1,803 n/s, ~84 min left on this row | L 19->19 best, 47 widest
+      aca_6: 976,901/10,000,000 nodes (9.8%) 1,802 n/s, ~83 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,078,277/10,000,000 nodes (10.8%) 1,790 n/s, ~83 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,190,917/10,000,000 nodes (11.9%) 1,797 n/s, ~82 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,314,821/10,000,000 nodes (13.1%) 1,819 n/s, ~80 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,412,101/10,000,000 nodes (14.1%) 1,803 n/s, ~79 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,518,597/10,000,000 nodes (15.2%) 1,800 n/s, ~79 min left on this row | L 19->19 best, 48 widest
+    [hcompact:aca_6] rows widen 24B -> 32B per relator at 187,567,427 states (this repacks)
+      aca_6: 1,584,716/10,000,000 nodes (15.8%) 1,753 n/s, ~80 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,663,564/10,000,000 nodes (16.6%) 1,724 n/s, ~81 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,772,108/10,000,000 nodes (17.7%) 1,729 n/s, ~79 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,889,868/10,000,000 nodes (18.9%) 1,742 n/s, ~78 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,983,052/10,000,000 nodes (19.8%) 1,731 n/s, ~77 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,076,236/10,000,000 nodes (20.8%) 1,721 n/s, ~77 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,186,828/10,000,000 nodes (21.9%) 1,726 n/s, ~75 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,294,348/10,000,000 nodes (22.9%) 1,729 n/s, ~74 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,413,132/10,000,000 nodes (24.1%) 1,740 n/s, ~73 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,510,412/10,000,000 nodes (25.1%) 1,734 n/s, ~72 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,586,188/10,000,000 nodes (25.9%) 1,715 n/s, ~72 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,690,636/10,000,000 nodes (26.9%) 1,716 n/s, ~71 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,792,012/10,000,000 nodes (27.9%) 1,715 n/s, ~70 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,886,220/10,000,000 nodes (28.9%) 1,709 n/s, ~69 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,005,004/10,000,000 nodes (30.1%) 1,719 n/s, ~68 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,122,764/10,000,000 nodes (31.2%) 1,727 n/s, ~66 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,234,380/10,000,000 nodes (32.3%) 1,731 n/s, ~65 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,362,380/10,000,000 nodes (33.6%) 1,743 n/s, ~63 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,476,044/10,000,000 nodes (34.8%) 1,747 n/s, ~62 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,588,684/10,000,000 nodes (35.9%) 1,751 n/s, ~61 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,684,940/10,000,000 nodes (36.8%) 1,747 n/s, ~60 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,775,052/10,000,000 nodes (37.8%) 1,739 n/s, ~60 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,859,020/10,000,000 nodes (38.6%) 1,730 n/s, ~59 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,959,372/10,000,000 nodes (39.6%) 1,728 n/s, ~58 min left on this row | L 19->19 best, 50 widest
+      aca_6: 4,050,508/10,000,000 nodes (40.5%) 1,722 n/s, ~58 min left on this row | L 19->19 best, 50 widest
+      aca_6: 4,134,476/10,000,000 nodes (41.3%) 1,714 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,198,988/10,000,000 nodes (42.0%) 1,698 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,259,404/10,000,000 nodes (42.6%) 1,681 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,334,156/10,000,000 nodes (43.3%) 1,671 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,421,196/10,000,000 nodes (44.2%) 1,666 n/s, ~56 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,518,476/10,000,000 nodes (45.2%) 1,665 n/s, ~55 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,633,164/10,000,000 nodes (46.3%) 1,670 n/s, ~54 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,752,972/10,000,000 nodes (47.5%) 1,676 n/s, ~52 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,867,660/10,000,000 nodes (48.7%) 1,681 n/s, ~51 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,963,916/10,000,000 nodes (49.6%) 1,679 n/s, ~50 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,062,220/10,000,000 nodes (50.6%) 1,678 n/s, ~49 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,147,212/10,000,000 nodes (51.5%) 1,673 n/s, ~48 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,213,772/10,000,000 nodes (52.1%) 1,662 n/s, ~48 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,310,028/10,000,000 nodes (53.1%) 1,661 n/s, ~47 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,426,764/10,000,000 nodes (54.3%) 1,666 n/s, ~46 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,525,068/10,000,000 nodes (55.3%) 1,665 n/s, ~45 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,635,660/10,000,000 nodes (56.4%) 1,668 n/s, ~44 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,766,732/10,000,000 nodes (57.7%) 1,677 n/s, ~42 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,907,020/10,000,000 nodes (59.1%) 1,688 n/s, ~40 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,032,972/10,000,000 nodes (60.3%) 1,695 n/s, ~39 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,161,996/10,000,000 nodes (61.6%) 1,702 n/s, ~38 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,277,708/10,000,000 nodes (62.8%) 1,706 n/s, ~36 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,390,348/10,000,000 nodes (63.9%) 1,708 n/s, ~35 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,500,940/10,000,000 nodes (65.0%) 1,710 n/s, ~34 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,604,364/10,000,000 nodes (66.0%) 1,710 n/s, ~33 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,705,740/10,000,000 nodes (67.1%) 1,710 n/s, ~32 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,820,428/10,000,000 nodes (68.2%) 1,713 n/s, ~31 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,922,828/10,000,000 nodes (69.2%) 1,713 n/s, ~30 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,014,988/10,000,000 nodes (70.1%) 1,710 n/s, ~29 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,112,268/10,000,000 nodes (71.1%) 1,708 n/s, ~28 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,219,788/10,000,000 nodes (72.2%) 1,709 n/s, ~27 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,321,164/10,000,000 nodes (73.2%) 1,709 n/s, ~26 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,421,516/10,000,000 nodes (74.2%) 1,708 n/s, ~25 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,543,372/10,000,000 nodes (75.4%) 1,712 n/s, ~24 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,642,700/10,000,000 nodes (76.4%) 1,712 n/s, ~23 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,744,076/10,000,000 nodes (77.4%) 1,711 n/s, ~22 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,821,900/10,000,000 nodes (78.2%) 1,705 n/s, ~21 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,922,252/10,000,000 nodes (79.2%) 1,705 n/s, ~20 min left on this row | L 19->19 best, 51 widest
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 21 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-r64_exyc': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-xpv9g6yb': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-rc155yz7': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-av2ax2sp': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-l957gtan': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-pam1gko1': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-ghdufvqa': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-lajrgih5': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-nap54gho': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-11kppyr5': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-7qvqiq4_': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-ddsc4hor': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-i3ylw_yj': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-t2v7ax90': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-aqhmbw_b': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-ijfw865r': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-_jlhsjt3': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-om8tqv6s': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-s5zmmd3_': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-doksxwgj': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib64/python3.11/multiprocessing/resource_tracker.py:267: UserWarning: resource_tracker: '/mp-b_cdlygf': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+  campaign: 124 unsolved Miller-Schupp AC classes at 10M
+  arm     : s20_mk2 -- s20_mk2 (priority = L + 20*S + 2*MK)
+  rows    : 124 (chunk 1 of 1, stride split of 124) from /home/ec2-user/ACSolverX/results/stable_ac/fable/aca_124.csv
+  budget  : 10,000,000 nodes, cap 64
+  workers : 2 to start, then dynamic (auto, 32 cores, ~88.4 GB/search worst case)
+  resume  : 6 row(s) already on disk, 118 to run
+  governor: seeded 6 peak(s) from finished rows; next-row prediction 158.0 GB
+  -> /home/ec2-user/u124/u124_10m_s20_mk2_b10000000_mrl64.jsonl
+    [hcompact:aca_6] rows widen 12B -> 24B per relator at 378 states (this repacks)
+      aca_6: 112,645/10,000,000 nodes (1.1%) 1,867 n/s, ~88 min left on this row | L 19->19 best, 43 widest
+      aca_6: 230,405/10,000,000 nodes (2.3%) 1,908 n/s, ~85 min left on this row | L 19->19 best, 45 widest
+      aca_6: 332,805/10,000,000 nodes (3.3%) 1,839 n/s, ~88 min left on this row | L 19->19 best, 45 widest
+      aca_6: 442,373/10,000,000 nodes (4.4%) 1,836 n/s, ~87 min left on this row | L 19->19 best, 46 widest
+      aca_6: 562,181/10,000,000 nodes (5.6%) 1,866 n/s, ~84 min left on this row | L 19->19 best, 46 widest
+      aca_6: 650,245/10,000,000 nodes (6.5%) 1,799 n/s, ~87 min left on this row | L 19->19 best, 47 widest
+      aca_6: 762,885/10,000,000 nodes (7.6%) 1,809 n/s, ~85 min left on this row | L 19->19 best, 47 widest
+      aca_6: 865,285/10,000,000 nodes (8.7%) 1,796 n/s, ~85 min left on this row | L 19->19 best, 47 widest
+      aca_6: 974,853/10,000,000 nodes (9.7%) 1,799 n/s, ~84 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,075,205/10,000,000 nodes (10.8%) 1,785 n/s, ~83 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,186,821/10,000,000 nodes (11.9%) 1,792 n/s, ~82 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,310,725/10,000,000 nodes (13.1%) 1,814 n/s, ~80 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,409,029/10,000,000 nodes (14.1%) 1,800 n/s, ~80 min left on this row | L 19->19 best, 48 widest
+      aca_6: 1,514,501/10,000,000 nodes (15.1%) 1,796 n/s, ~79 min left on this row | L 19->19 best, 48 widest
+    [hcompact:aca_6] rows widen 24B -> 32B per relator at 187,567,427 states (this repacks)
+      aca_6: 1,582,668/10,000,000 nodes (15.8%) 1,751 n/s, ~80 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,659,468/10,000,000 nodes (16.6%) 1,721 n/s, ~81 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,766,988/10,000,000 nodes (17.7%) 1,725 n/s, ~80 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,884,748/10,000,000 nodes (18.8%) 1,738 n/s, ~78 min left on this row | L 19->19 best, 49 widest
+      aca_6: 1,979,980/10,000,000 nodes (19.8%) 1,730 n/s, ~77 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,072,140/10,000,000 nodes (20.7%) 1,719 n/s, ~77 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,179,660/10,000,000 nodes (21.8%) 1,723 n/s, ~76 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,287,180/10,000,000 nodes (22.9%) 1,726 n/s, ~74 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,405,964/10,000,000 nodes (24.1%) 1,736 n/s, ~73 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,506,316/10,000,000 nodes (25.1%) 1,733 n/s, ~72 min left on this row | L 19->19 best, 49 widest
+      aca_6: 2,580,044/10,000,000 nodes (25.8%) 1,713 n/s, ~72 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,685,516/10,000,000 nodes (26.9%) 1,714 n/s, ~71 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,787,916/10,000,000 nodes (27.9%) 1,713 n/s, ~70 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,881,100/10,000,000 nodes (28.8%) 1,707 n/s, ~70 min left on this row | L 19->19 best, 50 widest
+      aca_6: 2,997,836/10,000,000 nodes (30.0%) 1,715 n/s, ~68 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,117,644/10,000,000 nodes (31.2%) 1,724 n/s, ~67 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,231,308/10,000,000 nodes (32.3%) 1,729 n/s, ~65 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,357,260/10,000,000 nodes (33.6%) 1,740 n/s, ~64 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,470,924/10,000,000 nodes (34.7%) 1,745 n/s, ~62 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,582,540/10,000,000 nodes (35.8%) 1,748 n/s, ~61 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,681,868/10,000,000 nodes (36.8%) 1,745 n/s, ~60 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,771,980/10,000,000 nodes (37.7%) 1,738 n/s, ~60 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,854,924/10,000,000 nodes (38.5%) 1,728 n/s, ~59 min left on this row | L 19->19 best, 50 widest
+      aca_6: 3,954,252/10,000,000 nodes (39.5%) 1,726 n/s, ~58 min left on this row | L 19->19 best, 50 widest
+      aca_6: 4,046,412/10,000,000 nodes (40.5%) 1,720 n/s, ~58 min left on this row | L 19->19 best, 50 widest
+      aca_6: 4,131,404/10,000,000 nodes (41.3%) 1,712 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,195,916/10,000,000 nodes (42.0%) 1,696 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,257,356/10,000,000 nodes (42.6%) 1,679 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,331,084/10,000,000 nodes (43.3%) 1,669 n/s, ~57 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,418,124/10,000,000 nodes (44.2%) 1,664 n/s, ~56 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,515,404/10,000,000 nodes (45.2%) 1,663 n/s, ~55 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,628,044/10,000,000 nodes (46.3%) 1,667 n/s, ~54 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,748,876/10,000,000 nodes (47.5%) 1,674 n/s, ~52 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,863,564/10,000,000 nodes (48.6%) 1,679 n/s, ~51 min left on this row | L 19->19 best, 51 widest
+      aca_6: 4,958,796/10,000,000 nodes (49.6%) 1,677 n/s, ~50 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,056,076/10,000,000 nodes (50.6%) 1,676 n/s, ~49 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,143,116/10,000,000 nodes (51.4%) 1,671 n/s, ~48 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,209,676/10,000,000 nodes (52.1%) 1,660 n/s, ~48 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,305,932/10,000,000 nodes (53.1%) 1,659 n/s, ~47 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,418,572/10,000,000 nodes (54.2%) 1,663 n/s, ~46 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,516,876/10,000,000 nodes (55.2%) 1,662 n/s, ~45 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,629,516/10,000,000 nodes (56.3%) 1,666 n/s, ~44 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,758,540/10,000,000 nodes (57.6%) 1,674 n/s, ~42 min left on this row | L 19->19 best, 51 widest
+      aca_6: 5,897,804/10,000,000 nodes (59.0%) 1,685 n/s, ~41 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,023,756/10,000,000 nodes (60.2%) 1,692 n/s, ~39 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,152,780/10,000,000 nodes (61.5%) 1,699 n/s, ~38 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,268,492/10,000,000 nodes (62.7%) 1,703 n/s, ~37 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,379,084/10,000,000 nodes (63.8%) 1,705 n/s, ~35 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,489,676/10,000,000 nodes (64.9%) 1,707 n/s, ~34 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,592,076/10,000,000 nodes (65.9%) 1,707 n/s, ~33 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,694,476/10,000,000 nodes (66.9%) 1,707 n/s, ~32 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,812,236/10,000,000 nodes (68.1%) 1,711 n/s, ~31 min left on this row | L 19->19 best, 51 widest
+      aca_6: 6,912,588/10,000,000 nodes (69.1%) 1,710 n/s, ~30 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,006,796/10,000,000 nodes (70.1%) 1,708 n/s, ~29 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,098,956/10,000,000 nodes (71.0%) 1,705 n/s, ~28 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,209,548/10,000,000 nodes (72.1%) 1,707 n/s, ~27 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,309,900/10,000,000 nodes (73.1%) 1,706 n/s, ~26 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,407,180/10,000,000 nodes (74.1%) 1,705 n/s, ~25 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,529,036/10,000,000 nodes (75.3%) 1,709 n/s, ~24 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,631,436/10,000,000 nodes (76.3%) 1,709 n/s, ~23 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,732,812/10,000,000 nodes (77.3%) 1,709 n/s, ~22 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,812,684/10,000,000 nodes (78.1%) 1,704 n/s, ~21 min left on this row | L 19->19 best, 51 widest
+      aca_6: 7,907,916/10,000,000 nodes (79.1%) 1,702 n/s, ~20 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,022,604/10,000,000 nodes (80.2%) 1,705 n/s, ~19 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,121,932/10,000,000 nodes (81.2%) 1,704 n/s, ~18 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,212,044/10,000,000 nodes (82.1%) 1,701 n/s, ~18 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,277,580/10,000,000 nodes (82.8%) 1,693 n/s, ~17 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,383,052/10,000,000 nodes (83.8%) 1,694 n/s, ~16 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,490,572/10,000,000 nodes (84.9%) 1,695 n/s, ~15 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,600,140/10,000,000 nodes (86.0%) 1,696 n/s, ~14 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,702,540/10,000,000 nodes (87.0%) 1,696 n/s, ~13 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,795,724/10,000,000 nodes (88.0%) 1,695 n/s, ~12 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,886,860/10,000,000 nodes (88.9%) 1,692 n/s, ~11 min left on this row | L 19->19 best, 51 widest
+      aca_6: 8,987,212/10,000,000 nodes (89.9%) 1,692 n/s, ~10 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,084,492/10,000,000 nodes (90.8%) 1,691 n/s, ~9 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,157,196/10,000,000 nodes (91.6%) 1,686 n/s, ~8 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,282,124/10,000,000 nodes (92.8%) 1,690 n/s, ~7 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,403,980/10,000,000 nodes (94.0%) 1,693 n/s, ~6 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,508,428/10,000,000 nodes (95.1%) 1,694 n/s, ~5 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,630,284/10,000,000 nodes (96.3%) 1,697 n/s, ~4 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,743,948/10,000,000 nodes (97.4%) 1,699 n/s, ~3 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,851,468/10,000,000 nodes (98.5%) 1,700 n/s, ~1 min left on this row | L 19->19 best, 51 widest
+      aca_6: 9,943,628/10,000,000 nodes (99.4%) 1,698 n/s, ~1 min left on this row | L 19->19 best, 51 widest
+    [1/118] aca_6 solved=False nodes=10,000,000 (5896s) -- 0.6 rows/h, eta 191.6 h
+    [hcompact:aca_7] rows widen 12B -> 24B per relator at 2,127 states (this repacks)
+      aca_7: 144,416/10,000,000 nodes (1.4%) 2,396 n/s, ~69 min left on this row | L 16->16 best, 38 widest
+      aca_7: 286,752/10,000,000 nodes (2.9%) 2,381 n/s, ~68 min left on this row | L 16->16 best, 38 widest
+      aca_7: 435,232/10,000,000 nodes (4.4%) 2,408 n/s, ~66 min left on this row | L 16->16 best, 39 widest
+      aca_7: 579,616/10,000,000 nodes (5.8%) 2,406 n/s, ~65 min left on this row | L 16->16 best, 39 widest
+      aca_7: 714,784/10,000,000 nodes (7.1%) 2,373 n/s, ~65 min left on this row | L 16->16 best, 39 widest
+      aca_7: 835,616/10,000,000 nodes (8.4%) 2,310 n/s, ~66 min left on this row | L 16->16 best, 39 widest
+      aca_7: 952,352/10,000,000 nodes (9.5%) 2,258 n/s, ~67 min left on this row | L 16->16 best, 39 widest
+      aca_7: 1,094,688/10,000,000 nodes (10.9%) 2,271 n/s, ~65 min left on this row | L 16->16 best, 39 widest
+      aca_7: 1,223,712/10,000,000 nodes (12.2%) 2,257 n/s, ~65 min left on this row | L 16->16 best, 40 widest
+      aca_7: 1,341,472/10,000,000 nodes (13.4%) 2,226 n/s, ~65 min left on this row | L 16->16 best, 40 widest
+      aca_7: 1,473,568/10,000,000 nodes (14.7%) 2,222 n/s, ~64 min left on this row | L 16->16 best, 40 widest
+      aca_7: 1,621,024/10,000,000 nodes (16.2%) 2,241 n/s, ~62 min left on this row | L 16->16 best, 40 widest
+      aca_7: 1,751,072/10,000,000 nodes (17.5%) 2,235 n/s, ~62 min left on this row | L 16->16 best, 41 widest
+      aca_7: 1,863,712/10,000,000 nodes (18.6%) 2,209 n/s, ~61 min left on this row | L 16->16 best, 41 widest
+      aca_7: 1,975,328/10,000,000 nodes (19.8%) 2,186 n/s, ~61 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,090,016/10,000,000 nodes (20.9%) 2,168 n/s, ~61 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,196,512/10,000,000 nodes (22.0%) 2,144 n/s, ~61 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,309,152/10,000,000 nodes (23.1%) 2,129 n/s, ~60 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,422,816/10,000,000 nodes (24.2%) 2,116 n/s, ~60 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,554,912/10,000,000 nodes (25.5%) 2,119 n/s, ~59 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,718,752/10,000,000 nodes (27.2%) 2,148 n/s, ~56 min left on this row | L 16->16 best, 41 widest
+      aca_7: 2,853,920/10,000,000 nodes (28.5%) 2,152 n/s, ~55 min left on this row | L 16->16 best, 42 widest
+      aca_7: 2,965,536/10,000,000 nodes (29.7%) 2,139 n/s, ~55 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,079,200/10,000,000 nodes (30.8%) 2,129 n/s, ~54 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,199,008/10,000,000 nodes (32.0%) 2,123 n/s, ~53 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,299,360/10,000,000 nodes (33.0%) 2,106 n/s, ~53 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,418,144/10,000,000 nodes (34.2%) 2,100 n/s, ~52 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,545,120/10,000,000 nodes (35.5%) 2,101 n/s, ~51 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,673,120/10,000,000 nodes (36.7%) 2,101 n/s, ~50 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,819,552/10,000,000 nodes (38.2%) 2,112 n/s, ~49 min left on this row | L 16->16 best, 42 widest
+      aca_7: 3,952,672/10,000,000 nodes (39.5%) 2,115 n/s, ~48 min left on this row | L 16->16 best, 42 widest
+      aca_7: 4,091,936/10,000,000 nodes (40.9%) 2,121 n/s, ~46 min left on this row | L 16->16 best, 42 widest
+      aca_7: 4,233,248/10,000,000 nodes (42.3%) 2,128 n/s, ~45 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,347,936/10,000,000 nodes (43.5%) 2,122 n/s, ~44 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,458,528/10,000,000 nodes (44.6%) 2,113 n/s, ~44 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,559,904/10,000,000 nodes (45.6%) 2,101 n/s, ~43 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,667,424/10,000,000 nodes (46.7%) 2,093 n/s, ~42 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,776,992/10,000,000 nodes (47.8%) 2,085 n/s, ~42 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,876,320/10,000,000 nodes (48.8%) 2,074 n/s, ~41 min left on this row | L 16->16 best, 43 widest
+      aca_7: 4,989,984/10,000,000 nodes (49.9%) 2,069 n/s, ~40 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,102,624/10,000,000 nodes (51.0%) 2,064 n/s, ~40 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,208,096/10,000,000 nodes (52.1%) 2,057 n/s, ~39 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,307,424/10,000,000 nodes (53.1%) 2,047 n/s, ~38 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,406,752/10,000,000 nodes (54.1%) 2,038 n/s, ~38 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,505,056/10,000,000 nodes (55.1%) 2,029 n/s, ~37 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,621,792/10,000,000 nodes (56.2%) 2,027 n/s, ~36 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,726,240/10,000,000 nodes (57.3%) 2,020 n/s, ~35 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,815,328/10,000,000 nodes (58.2%) 2,009 n/s, ~35 min left on this row | L 16->16 best, 43 widest
+      aca_7: 5,912,608/10,000,000 nodes (59.1%) 2,001 n/s, ~34 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,022,176/10,000,000 nodes (60.2%) 1,997 n/s, ~33 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,145,056/10,000,000 nodes (61.5%) 1,998 n/s, ~32 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,276,128/10,000,000 nodes (62.8%) 2,001 n/s, ~31 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,424,608/10,000,000 nodes (64.2%) 2,010 n/s, ~30 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,572,064/10,000,000 nodes (65.7%) 2,018 n/s, ~28 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,714,400/10,000,000 nodes (67.1%) 2,024 n/s, ~27 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,855,712/10,000,000 nodes (68.6%) 2,030 n/s, ~26 min left on this row | L 16->16 best, 43 widest
+      aca_7: 6,988,832/10,000,000 nodes (69.9%) 2,033 n/s, ~25 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,101,472/10,000,000 nodes (71.0%) 2,030 n/s, ~24 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,204,896/10,000,000 nodes (72.0%) 2,025 n/s, ~23 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,304,224/10,000,000 nodes (73.0%) 2,018 n/s, ~22 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,411,744/10,000,000 nodes (74.1%) 2,014 n/s, ~21 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,505,952/10,000,000 nodes (75.1%) 2,007 n/s, ~21 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,615,520/10,000,000 nodes (76.2%) 2,004 n/s, ~20 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,726,112/10,000,000 nodes (77.3%) 2,001 n/s, ~19 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,829,536/10,000,000 nodes (78.3%) 1,997 n/s, ~18 min left on this row | L 16->16 best, 44 widest
+      aca_7: 7,924,768/10,000,000 nodes (79.2%) 1,990 n/s, ~17 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,015,904/10,000,000 nodes (80.2%) 1,983 n/s, ~17 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,123,424/10,000,000 nodes (81.2%) 1,980 n/s, ~16 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,234,016/10,000,000 nodes (82.3%) 1,978 n/s, ~15 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,325,152/10,000,000 nodes (83.3%) 1,972 n/s, ~14 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,459,296/10,000,000 nodes (84.6%) 1,975 n/s, ~13 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,575,008/10,000,000 nodes (85.8%) 1,974 n/s, ~12 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,710,176/10,000,000 nodes (87.1%) 1,978 n/s, ~11 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,850,464/10,000,000 nodes (88.5%) 1,983 n/s, ~10 min left on this row | L 16->16 best, 44 widest
+      aca_7: 8,962,080/10,000,000 nodes (89.6%) 1,981 n/s, ~9 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,098,272/10,000,000 nodes (91.0%) 1,985 n/s, ~8 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,235,488/10,000,000 nodes (92.4%) 1,988 n/s, ~6 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,366,560/10,000,000 nodes (93.7%) 1,991 n/s, ~5 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,490,464/10,000,000 nodes (94.9%) 1,992 n/s, ~4 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,609,248/10,000,000 nodes (96.1%) 1,991 n/s, ~3 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,729,056/10,000,000 nodes (97.3%) 1,991 n/s, ~2 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,845,792/10,000,000 nodes (98.5%) 1,991 n/s, ~1 min left on this row | L 16->16 best, 44 widest
+      aca_7: 9,966,624/10,000,000 nodes (99.7%) 1,991 n/s, ~0 min left on this row | L 16->16 best, 44 widest
+    [2/118] aca_7 solved=False nodes=10,000,000 (5025s) -- 0.7 rows/h, eta 176.0 h
+    [hcompact:aca_8] rows widen 12B -> 24B per relator at 13,999 states (this repacks)
+      aca_8: 174,337/10,000,000 nodes (1.7%) 2,901 n/s, ~56 min left on this row | L 15->15 best, 34 widest
+      aca_8: 329,985/10,000,000 nodes (3.3%) 2,747 n/s, ~59 min left on this row | L 15->15 best, 35 widest
+      aca_8: 483,585/10,000,000 nodes (4.8%) 2,684 n/s, ~59 min left on this row | L 15->15 best, 36 widest
+      aca_8: 625,921/10,000,000 nodes (6.3%) 2,605 n/s, ~60 min left on this row | L 15->15 best, 37 widest
+      aca_8: 760,065/10,000,000 nodes (7.6%) 2,530 n/s, ~61 min left on this row | L 15->15 best, 37 widest
+      aca_8: 922,881/10,000,000 nodes (9.2%) 2,559 n/s, ~59 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,095,937/10,000,000 nodes (11.0%) 2,604 n/s, ~57 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,255,681/10,000,000 nodes (12.6%) 2,609 n/s, ~56 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,410,305/10,000,000 nodes (14.1%) 2,603 n/s, ~55 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,544,449/10,000,000 nodes (15.4%) 2,566 n/s, ~55 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,684,737/10,000,000 nodes (16.8%) 2,545 n/s, ~54 min left on this row | L 15->15 best, 37 widest
+      aca_8: 1,836,289/10,000,000 nodes (18.4%) 2,543 n/s, ~54 min left on this row | L 15->15 best, 38 widest
+      aca_8: 1,968,385/10,000,000 nodes (19.7%) 2,517 n/s, ~53 min left on this row | L 15->15 best, 38 widest
+      aca_8: 2,109,697/10,000,000 nodes (21.1%) 2,505 n/s, ~53 min left on this row | L 15->15 best, 38 widest
+      aca_8: 2,249,985/10,000,000 nodes (22.5%) 2,493 n/s, ~52 min left on this row | L 15->15 best, 38 widest
+      aca_8: 2,405,633/10,000,000 nodes (24.1%) 2,498 n/s, ~51 min left on this row | L 15->15 best, 38 widest
+      aca_8: 2,574,593/10,000,000 nodes (25.7%) 2,516 n/s, ~49 min left on this row | L 15->15 best, 38 widest
+      aca_8: 2,710,785/10,000,000 nodes (27.1%) 2,502 n/s, ~49 min left on this row | L 15->15 best, 39 widest
+      aca_8: 2,844,929/10,000,000 nodes (28.4%) 2,487 n/s, ~48 min left on this row | L 15->15 best, 39 widest
+      aca_8: 2,970,881/10,000,000 nodes (29.7%) 2,468 n/s, ~47 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,104,001/10,000,000 nodes (31.0%) 2,456 n/s, ~47 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,237,121/10,000,000 nodes (32.4%) 2,445 n/s, ~46 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,367,169/10,000,000 nodes (33.7%) 2,432 n/s, ~45 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,491,073/10,000,000 nodes (34.9%) 2,416 n/s, ~45 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,619,073/10,000,000 nodes (36.2%) 2,405 n/s, ~44 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,741,953/10,000,000 nodes (37.4%) 2,390 n/s, ~44 min left on this row | L 15->15 best, 39 widest
+      aca_8: 3,872,001/10,000,000 nodes (38.7%) 2,381 n/s, ~43 min left on this row | L 15->15 best, 39 widest
+      aca_8: 4,010,241/10,000,000 nodes (40.1%) 2,378 n/s, ~42 min left on this row | L 15->15 best, 39 widest
+      aca_8: 4,149,505/10,000,000 nodes (41.5%) 2,376 n/s, ~41 min left on this row | L 15->15 best, 39 widest
+      aca_8: 4,315,393/10,000,000 nodes (43.2%) 2,389 n/s, ~40 min left on this row | L 15->15 best, 39 widest
+      aca_8: 4,468,993/10,000,000 nodes (44.7%) 2,394 n/s, ~39 min left on this row | L 15->15 best, 39 widest
+      aca_8: 4,598,017/10,000,000 nodes (46.0%) 2,386 n/s, ~38 min left on this row | L 15->15 best, 40 widest
+      aca_8: 4,730,113/10,000,000 nodes (47.3%) 2,380 n/s, ~37 min left on this row | L 15->15 best, 40 widest
+      aca_8: 4,850,945/10,000,000 nodes (48.5%) 2,370 n/s, ~36 min left on this row | L 15->15 best, 40 widest
+      aca_8: 4,975,873/10,000,000 nodes (49.8%) 2,361 n/s, ~35 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,100,801/10,000,000 nodes (51.0%) 2,353 n/s, ~35 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,232,897/10,000,000 nodes (52.3%) 2,349 n/s, ~34 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,361,921/10,000,000 nodes (53.6%) 2,343 n/s, ~33 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,484,801/10,000,000 nodes (54.8%) 2,335 n/s, ~32 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,607,681/10,000,000 nodes (56.1%) 2,328 n/s, ~31 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,738,753/10,000,000 nodes (57.4%) 2,324 n/s, ~31 min left on this row | L 15->15 best, 40 widest
+      aca_8: 5,881,089/10,000,000 nodes (58.8%) 2,325 n/s, ~30 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,006,017/10,000,000 nodes (60.1%) 2,319 n/s, ~29 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,156,545/10,000,000 nodes (61.6%) 2,323 n/s, ~28 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,296,833/10,000,000 nodes (63.0%) 2,323 n/s, ~27 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,447,361/10,000,000 nodes (64.5%) 2,327 n/s, ~25 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,605,057/10,000,000 nodes (66.1%) 2,334 n/s, ~24 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,767,873/10,000,000 nodes (67.7%) 2,341 n/s, ~23 min left on this row | L 15->15 best, 40 widest
+      aca_8: 6,927,617/10,000,000 nodes (69.3%) 2,348 n/s, ~22 min left on this row | L 15->15 best, 40 widest
+      aca_8: 7,078,145/10,000,000 nodes (70.8%) 2,351 n/s, ~21 min left on this row | L 15->15 best, 40 widest
+      aca_8: 7,194,881/10,000,000 nodes (71.9%) 2,343 n/s, ~20 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,312,641/10,000,000 nodes (73.1%) 2,335 n/s, ~19 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,437,569/10,000,000 nodes (74.4%) 2,330 n/s, ~18 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,564,545/10,000,000 nodes (75.6%) 2,326 n/s, ~17 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,677,185/10,000,000 nodes (76.8%) 2,317 n/s, ~17 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,786,753/10,000,000 nodes (77.9%) 2,308 n/s, ~16 min left on this row | L 15->15 best, 41 widest
+      aca_8: 7,908,609/10,000,000 nodes (79.1%) 2,303 n/s, ~15 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,027,393/10,000,000 nodes (80.3%) 2,298 n/s, ~14 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,146,177/10,000,000 nodes (81.5%) 2,292 n/s, ~13 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,264,961/10,000,000 nodes (82.6%) 2,287 n/s, ~13 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,379,649/10,000,000 nodes (83.8%) 2,280 n/s, ~12 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,498,433/10,000,000 nodes (85.0%) 2,275 n/s, ~11 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,618,241/10,000,000 nodes (86.2%) 2,271 n/s, ~10 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,743,169/10,000,000 nodes (87.4%) 2,268 n/s, ~9 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,871,169/10,000,000 nodes (88.7%) 2,265 n/s, ~8 min left on this row | L 15->15 best, 41 widest
+      aca_8: 8,994,049/10,000,000 nodes (89.9%) 2,262 n/s, ~7 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,112,833/10,000,000 nodes (91.1%) 2,258 n/s, ~7 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,216,257/10,000,000 nodes (92.2%) 2,250 n/s, ~6 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,335,041/10,000,000 nodes (93.4%) 2,246 n/s, ~5 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,451,777/10,000,000 nodes (94.5%) 2,241 n/s, ~4 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,571,585/10,000,000 nodes (95.7%) 2,238 n/s, ~3 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,689,345/10,000,000 nodes (96.9%) 2,234 n/s, ~2 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,801,985/10,000,000 nodes (98.0%) 2,229 n/s, ~1 min left on this row | L 15->15 best, 41 widest
+      aca_8: 9,912,577/10,000,000 nodes (99.1%) 2,224 n/s, ~1 min left on this row | L 15->15 best, 41 widest
+    [3/118] aca_8 solved=False nodes=10,000,000 (4507s) -- 0.7 rows/h, eta 164.3 h
+    [hcompact:aca_9] rows widen 12B -> 24B per relator at 10,641 states (this repacks)
+      aca_9: 163,020/10,000,000 nodes (1.6%) 2,710 n/s, ~60 min left on this row | L 15->15 best, 34 widest
+      aca_9: 319,692/10,000,000 nodes (3.2%) 2,659 n/s, ~61 min left on this row | L 15->15 best, 34 widest
+      aca_9: 489,676/10,000,000 nodes (4.9%) 2,716 n/s, ~58 min left on this row | L 15->15 best, 34 widest
+      aca_9: 657,612/10,000,000 nodes (6.6%) 2,735 n/s, ~57 min left on this row | L 15->15 best, 34 widest
+      aca_9: 825,548/10,000,000 nodes (8.3%) 2,748 n/s, ~56 min left on this row | L 15->15 best, 34 widest
+      aca_9: 992,460/10,000,000 nodes (9.9%) 2,752 n/s, ~55 min left on this row | L 15->15 best, 34 widest
+      aca_9: 1,159,372/10,000,000 nodes (11.6%) 2,754 n/s, ~54 min left on this row | L 15->15 best, 34 widest
+      aca_9: 1,334,476/10,000,000 nodes (13.3%) 2,772 n/s, ~52 min left on this row | L 15->15 best, 34 widest
+      aca_9: 1,487,052/10,000,000 nodes (14.9%) 2,745 n/s, ~52 min left on this row | L 15->15 best, 35 widest
+      aca_9: 1,627,340/10,000,000 nodes (16.3%) 2,704 n/s, ~52 min left on this row | L 15->15 best, 35 widest
+      aca_9: 1,769,676/10,000,000 nodes (17.7%) 2,673 n/s, ~51 min left on this row | L 15->15 best, 35 widest
+      aca_9: 1,921,228/10,000,000 nodes (19.2%) 2,660 n/s, ~51 min left on this row | L 15->15 best, 35 widest
+      aca_9: 2,076,876/10,000,000 nodes (20.8%) 2,654 n/s, ~50 min left on this row | L 15->15 best, 35 widest
+      aca_9: 2,234,572/10,000,000 nodes (22.3%) 2,651 n/s, ~49 min left on this row | L 15->15 best, 35 widest
+      aca_9: 2,398,412/10,000,000 nodes (24.0%) 2,656 n/s, ~48 min left on this row | L 15->15 best, 35 widest
+      aca_9: 2,564,300/10,000,000 nodes (25.6%) 2,662 n/s, ~47 min left on this row | L 15->15 best, 35 widest
+      aca_9: 2,718,924/10,000,000 nodes (27.2%) 2,656 n/s, ~46 min left on this row | L 15->15 best, 36 widest
+      aca_9: 2,855,116/10,000,000 nodes (28.6%) 2,634 n/s, ~45 min left on this row | L 15->15 best, 36 widest
+      aca_9: 2,995,404/10,000,000 nodes (30.0%) 2,617 n/s, ~45 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,136,716/10,000,000 nodes (31.4%) 2,603 n/s, ~44 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,275,980/10,000,000 nodes (32.8%) 2,590 n/s, ~43 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,412,172/10,000,000 nodes (34.1%) 2,575 n/s, ~43 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,574,988/10,000,000 nodes (35.7%) 2,581 n/s, ~41 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,719,372/10,000,000 nodes (37.2%) 2,574 n/s, ~41 min left on this row | L 15->15 best, 36 widest
+      aca_9: 3,866,828/10,000,000 nodes (38.7%) 2,568 n/s, ~40 min left on this row | L 15->15 best, 36 widest
+      aca_9: 4,015,308/10,000,000 nodes (40.2%) 2,564 n/s, ~39 min left on this row | L 15->15 best, 36 widest
+      aca_9: 4,171,980/10,000,000 nodes (41.7%) 2,566 n/s, ~38 min left on this row | L 15->15 best, 36 widest
+      aca_9: 4,327,628/10,000,000 nodes (43.3%) 2,566 n/s, ~37 min left on this row | L 15->15 best, 36 widest
+      aca_9: 4,470,988/10,000,000 nodes (44.7%) 2,560 n/s, ~36 min left on this row | L 15->15 best, 37 widest
+      aca_9: 4,602,060/10,000,000 nodes (46.0%) 2,547 n/s, ~35 min left on this row | L 15->15 best, 37 widest
+      aca_9: 4,728,012/10,000,000 nodes (47.3%) 2,532 n/s, ~35 min left on this row | L 15->15 best, 37 widest
+      aca_9: 4,857,036/10,000,000 nodes (48.6%) 2,520 n/s, ~34 min left on this row | L 15->15 best, 37 widest
+      aca_9: 4,988,108/10,000,000 nodes (49.9%) 2,510 n/s, ~33 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,119,180/10,000,000 nodes (51.2%) 2,500 n/s, ~33 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,251,276/10,000,000 nodes (52.5%) 2,491 n/s, ~32 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,382,348/10,000,000 nodes (53.8%) 2,482 n/s, ~31 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,514,444/10,000,000 nodes (55.1%) 2,474 n/s, ~30 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,647,564/10,000,000 nodes (56.5%) 2,467 n/s, ~29 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,779,660/10,000,000 nodes (57.8%) 2,460 n/s, ~29 min left on this row | L 15->15 best, 37 widest
+      aca_9: 5,909,708/10,000,000 nodes (59.1%) 2,453 n/s, ~28 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,057,164/10,000,000 nodes (60.6%) 2,453 n/s, ~27 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,237,388/10,000,000 nodes (62.4%) 2,465 n/s, ~25 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,373,580/10,000,000 nodes (63.7%) 2,460 n/s, ~25 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,509,772/10,000,000 nodes (65.1%) 2,456 n/s, ~24 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,646,988/10,000,000 nodes (66.5%) 2,452 n/s, ~23 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,785,228/10,000,000 nodes (67.9%) 2,449 n/s, ~22 min left on this row | L 15->15 best, 37 widest
+      aca_9: 6,923,468/10,000,000 nodes (69.2%) 2,446 n/s, ~21 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,060,684/10,000,000 nodes (70.6%) 2,442 n/s, ~20 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,217,356/10,000,000 nodes (72.2%) 2,446 n/s, ~19 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,374,028/10,000,000 nodes (73.7%) 2,449 n/s, ~18 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,528,652/10,000,000 nodes (75.3%) 2,451 n/s, ~17 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,673,036/10,000,000 nodes (76.7%) 2,450 n/s, ~16 min left on this row | L 15->15 best, 37 widest
+      aca_9: 7,810,252/10,000,000 nodes (78.1%) 2,446 n/s, ~15 min left on this row | L 15->15 best, 38 widest
+      aca_9: 7,937,228/10,000,000 nodes (79.4%) 2,440 n/s, ~14 min left on this row | L 15->15 best, 38 widest
+      aca_9: 8,063,180/10,000,000 nodes (80.6%) 2,434 n/s, ~13 min left on this row | L 15->15 best, 38 widest

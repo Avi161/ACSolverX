@@ -1,0 +1,169 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 820,
+      "title": "01 \u00b7 Main"
+    },
+    {
+      "file": "Populations.dc.html",
+      "x": 0,
+      "y": 980,
+      "w": 1440,
+      "h": 820,
+      "title": "02 \u00b7 Populations"
+    },
+    {
+      "file": "ThreeArms.dc.html",
+      "x": 0,
+      "y": 1960,
+      "w": 1440,
+      "h": 820,
+      "title": "03 \u00b7 ThreeArms"
+    },
+    {
+      "file": "Cascade.dc.html",
+      "x": 0,
+      "y": 2940,
+      "w": 1440,
+      "h": 820,
+      "title": "04 \u00b7 Cascade"
+    },
+    {
+      "file": "Pattern.dc.html",
+      "x": 0,
+      "y": 3920,
+      "w": 1440,
+      "h": 820,
+      "title": "05 \u00b7 Pattern"
+    },
+    {
+      "file": "BinsAutMin.dc.html",
+      "x": 0,
+      "y": 4900,
+      "w": 1440,
+      "h": 820,
+      "title": "06 \u00b7 BinsAutMin"
+    },
+    {
+      "file": "BinsExtended.dc.html",
+      "x": 0,
+      "y": 5880,
+      "w": 1440,
+      "h": 820,
+      "title": "07 \u00b7 BinsExtended"
+    },
+    {
+      "file": "BandTable.dc.html",
+      "x": 0,
+      "y": 6860,
+      "w": 1440,
+      "h": 820,
+      "title": "08 \u00b7 BandTable"
+    },
+    {
+      "file": "Compare.dc.html",
+      "x": 0,
+      "y": 7840,
+      "w": 1440,
+      "h": 820,
+      "title": "09 \u00b7 Compare"
+    },
+    {
+      "file": "Arms.dc.html",
+      "x": 0,
+      "y": 8820,
+      "w": 1440,
+      "h": 820,
+      "title": "10 \u00b7 Arms"
+    },
+    {
+      "file": "HeadToHead.dc.html",
+      "x": 0,
+      "y": 9800,
+      "w": 1440,
+      "h": 820,
+      "title": "11 \u00b7 HeadToHead"
+    },
+    {
+      "file": "PerBand.dc.html",
+      "x": 0,
+      "y": 10780,
+      "w": 1440,
+      "h": 820,
+      "title": "12 \u00b7 PerBand"
+    },
+    {
+      "file": "MissingRung.dc.html",
+      "x": 0,
+      "y": 11760,
+      "w": 1440,
+      "h": 820,
+      "title": "13 \u00b7 MissingRung"
+    },
+    {
+      "file": "Stages.dc.html",
+      "x": 0,
+      "y": 12740,
+      "w": 1440,
+      "h": 820,
+      "title": "14 \u00b7 Stages"
+    },
+    {
+      "file": "Starvation.dc.html",
+      "x": 0,
+      "y": 13720,
+      "w": 1440,
+      "h": 820,
+      "title": "15 \u00b7 Starvation"
+    },
+    {
+      "file": "TenMillion.dc.html",
+      "x": 0,
+      "y": 14700,
+      "w": 1440,
+      "h": 820,
+      "title": "16 \u00b7 TenMillion"
+    },
+    {
+      "file": "AutMinHarder.dc.html",
+      "x": 0,
+      "y": 15680,
+      "w": 1440,
+      "h": 820,
+      "title": "17 \u00b7 AutMinHarder"
+    },
+    {
+      "file": "U124.dc.html",
+      "x": 0,
+      "y": 16660,
+      "w": 1440,
+      "h": 820,
+      "title": "18 \u00b7 U124"
+    },
+    {
+      "file": "Appendix.dc.html",
+      "x": 0,
+      "y": 17640,
+      "w": 1440,
+      "h": 820,
+      "title": "19 \u00b7 Appendix"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "how-to-edit",
+      "x": 0,
+      "y": -150,
+      "w": 1440,
+      "text": "Week 9 \u00b7 the AC19 cascade. Retype any wording in place and Save.\nNumbers come from the campaign jsonl and are regenerated, so edit words, not figures \u2014 tell me which number looks wrong and I will check it against the archive."
+    }
+  ],
+  "launch": {
+    "view": "focused",
+    "file": "Main.dc.html"
+  }
+}

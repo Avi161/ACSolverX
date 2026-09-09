@@ -166,6 +166,8 @@ def phi(r1, r2):
 # because the research harness this was ported from speaks the same format.
 
 BASELINE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
+S20_MK2 = {"segments": [
+    {"upto": None, "w": {"L": 1.0, "S": 20.0, "MK": 2.0}}]}
 
 # The shipped ordering. One segment, no boundary, five of the seventeen features:
 #

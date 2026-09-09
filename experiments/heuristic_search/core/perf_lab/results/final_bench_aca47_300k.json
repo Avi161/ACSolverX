@@ -1,0 +1,80 @@
+{
+  "args": {
+    "rows": "aca_47",
+    "budget": 300000,
+    "reps": 1,
+    "mrl": 64,
+    "cpu": 2,
+    "out": "/tmp/claude-0/-home-user-ACSolverX/eb7ec879-0928-5ceb-ae6d-743c24df5774/scratchpad/final_bench_aca47_300k.json",
+    "engines": "current,candidate",
+    "timeout": 600.0
+  },
+  "wall_seconds": 345.7572011947632,
+  "runs": [
+    {
+      "row": "aca_47",
+      "engine_module": "experiments.heuristic_search.core.perf_lab.frozen2.hcompact_frozen2",
+      "seconds": 205.1184483799998,
+      "nodes_explored": 300000,
+      "pops_per_second": 1462.5695658745617,
+      "peak_rss_gib": 3.15570068359375,
+      "bytes_per_state": 40.1387500147668,
+      "bytes_reserved": 1766474937,
+      "solved": false,
+      "fingerprint": "1474b44b0bae608fbb433671ee1f837ee6e17a07a3675b8d4eda94b6474197e9",
+      "engine_key": "current",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 63 states (in place)"
+      ],
+      "rep": 0
+    },
+    {
+      "row": "aca_47",
+      "engine_module": "experiments.heuristic_search.core.hcompact",
+      "seconds": 88.62698544700015,
+      "nodes_explored": 300000,
+      "pops_per_second": 3384.973532462109,
+      "peak_rss_gib": 3.1844024658203125,
+      "bytes_per_state": 40.1387500147668,
+      "bytes_reserved": 1766474937,
+      "solved": false,
+      "fingerprint": "1474b44b0bae608fbb433671ee1f837ee6e17a07a3675b8d4eda94b6474197e9",
+      "engine_key": "candidate",
+      "widen_lines": [
+        "    [hcompact:python] rows widen 6B -> 12B per relator at 63 states (in place)"
+      ],
+      "rep": 0
+    }
+  ],
+  "aggregate": {
+    "aca_47": {
+      "current": {
+        "median_pops_per_second": 1462.5695658745617,
+        "min_pops_per_second": 1462.5695658745617,
+        "max_pops_per_second": 1462.5695658745617,
+        "median_peak_rss_gib": 3.15570068359375,
+        "min_peak_rss_gib": 3.15570068359375,
+        "max_peak_rss_gib": 3.15570068359375,
+        "bytes_per_state": 40.1387500147668,
+        "bytes_reserved": 1766474937,
+        "solved": false,
+        "fingerprint": "1474b44b0bae608fbb433671ee1f837ee6e17a07a3675b8d4eda94b6474197e9"
+      },
+      "candidate": {
+        "median_pops_per_second": 3384.973532462109,
+        "min_pops_per_second": 3384.973532462109,
+        "max_pops_per_second": 3384.973532462109,
+        "median_peak_rss_gib": 3.1844024658203125,
+        "min_peak_rss_gib": 3.1844024658203125,
+        "max_peak_rss_gib": 3.1844024658203125,
+        "bytes_per_state": 40.1387500147668,
+        "bytes_reserved": 1766474937,
+        "solved": false,
+        "fingerprint": "1474b44b0bae608fbb433671ee1f837ee6e17a07a3675b8d4eda94b6474197e9"
+      },
+      "ratio_candidate_over_baseline_median_pops_per_second": 2.3144017292866486,
+      "ratio_reference_engine": "current"
+    }
+  },
+  "fingerprint_mismatches": []
+}

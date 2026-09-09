@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+  body{margin:0;background:#ffffff;}
+
+  :root{
+    --bg:#ffffff; --ink:#16181d; --muted:#6b7280; --faint:#9aa1b0;
+    --accent:#4864e8; --line:#e9ebf0;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Inter,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow:hidden;
+  }
+
+  
+
+  
+  
+  .slide{height:820px;width:1440px;display:flex;flex-direction:column;
+    justify-content:center;padding:clamp(22px,4.4vh,56px) clamp(36px,7vw,120px);overflow:hidden}
+  .slide-inner{width:100%;max-width:1240px;margin:0 auto}
+
+  h1{font-size:clamp(30px,3.9vw,52px);line-height:1.06;margin:0;
+    font-weight:250;letter-spacing:-1.2px}
+  h1 strong{font-weight:650}
+  h1 em{font-style:normal;color:var(--accent)}
+  .hero h1{font-size:clamp(56px,9vw,130px);letter-spacing:-4px}
+  .sub{font-size:clamp(14px,1.4vw,17px);color:var(--muted);margin:clamp(8px,1.5vh,14px) 0 0;
+    max-width:860px;font-weight:400;line-height:1.5}
+
+  .stats{display:flex;flex-wrap:wrap;gap:clamp(28px,4.5vw,72px);margin:clamp(14px,2.4vh,26px) 0 0}
+  .stat b{display:block;font-size:clamp(26px,3vw,42px);font-weight:650;
+    letter-spacing:-1px;line-height:1}
+  .stat span{display:block;margin-top:7px;font-size:11.5px;color:var(--faint);
+    text-transform:uppercase;letter-spacing:1.2px;font-weight:500}
+  .stat.on b{color:var(--accent)}
+  /* per-arm tinting inside one stat number, so "563.3 -> 263.2" carries the same
+     colours as the figures: .g = length baseline (black), .h = heuristic (blue).
+     Declared after .stat.on b so it wins the specificity tie. */
+  .stat b i{font-style:normal;display:inline;font-size:inherit;letter-spacing:inherit;
+    text-transform:none;font-weight:inherit;margin:0}
+  .stat b i.g{color:var(--ink)}
+  .stat b i.h{color:var(--accent)}
+  .stat b i.ar{color:var(--faint);font-weight:400;padding:0 .04em}
+
+  /* column count follows the step count (auto-flow), so a 3-step slide does not leave a
+     dead fourth column; tighter gap + margin so the figures below keep the room */
+  .steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+    gap:clamp(12px,1.5vw,24px);margin:clamp(14px,2.6vh,30px) 0 0}
+  .step .n{font-size:13px;color:var(--faint);font-weight:500;letter-spacing:1px}
+  .step .t{font-size:clamp(17px,1.8vw,23px);font-weight:600;margin:10px 0 8px;
+    letter-spacing:-.3px}
+  .step .d{font-size:clamp(13px,1.25vw,15px);color:var(--muted);line-height:1.55}
+  .step{border-top:1px solid var(--ink);padding-top:16px}
+
+  figure{margin:clamp(14px,2.6vh,30px) 0 0;text-align:center}
+  figure img{max-width:100%;max-height:50vh;border:1px solid var(--line);
+    border-radius:10px;cursor:zoom-in;background:#fff}
+  .slide-inner.figonly figure{margin-top:22px}
+  /* a figure that IS the slide (the 60-presentation census) gets the whole page: out of the
+     1240px reading column, and as tall as a title + the slide's own padding leaves */
+  .slide-inner.figonly{max-width:1900px}
+  .slide-inner.figonly figure img{max-height:60vh}
+  /* slides that also carry a stat row: keep figure short enough to fit 100vh.
+     ">" matters — a stat row nested INSIDE a figure must not shrink its own image */
+  .slide-inner:has(> .stats) figure{margin-top:22px}
+  .slide-inner:has(> .stats) figure img{max-height:34vh}
+  /* same reasoning for a step row: title + 3 step cards + a 64vh figure overflowed 100vh,
+     and .foot is absolutely positioned, so the overflow landed as text ON the figure */
+  .slide-inner:has(> .steps) figure{margin-top:26px}
+  .slide-inner:has(> .steps) figure img{max-height:36vh}
+  /* a sub line above the step row costs ~2vh, which is exactly the margin slide 2 had left:
+     it overflowed by 7px at a 612px viewport until the figure gave that back */
+  .slide-inner:has(> .steps):has(> .sub) figure{margin-top:18px}
+  .slide-inner:has(> .steps):has(> .sub) figure img{max-height:34vh}
+
+  table.tbl{margin:36px 0 0;border-collapse:collapse;font-size:clamp(13px,1.35vw,16.5px)}
+  .tbl th{font-size:11.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;
+    font-weight:500;text-align:left;padding:0 clamp(18px,3vw,48px) 12px 0}
+  .tbl td{padding:13px clamp(18px,3vw,48px) 13px 0;border-top:1px solid var(--line)}
+  .tbl td:first-child{color:var(--muted)}
+  .tbl tr.on td{color:var(--accent);font-weight:600}
+  /* relators are case-sensitive words (x vs X = a generator vs its inverse), so they need a
+     font where the two are unmistakable */
+  code{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:0.92em;letter-spacing:0.02em}
+  .tcap{margin:18px 0 0;font-size:12.5px;color:var(--faint)}
+
+  .figrow{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;
+    margin:30px 0 0;align-items:center}
+  .figrow figure{margin:0}
+  .figrow figure img{max-height:44vh}
+  /* a PAIR of figures is half as wide each, so the 44vh cap above leaves the column
+     unfilled — give them the height back, they still clear a 100vh slide */
+  .slide-inner:has(> .stats) .figrow figure img{max-height:42vh}
+  /* a "wide" slide: a stat row AND the 60-bar census figure. .figonly can't serve it (it is
+     keyed on having no stat row), so this is the same escape from the reading column, plus a
+     lopsided pair — the census needs ~2/3 of the width for its 60 ticks to survive. */
+  .slide-inner.wide{max-width:1900px}
+  /* 1 : 1.77 is the two figures' own aspect ratios (1.41 and 2.50), so both fill the row to
+     the same height and neither is downscaled harder than it has to be */
+  .slide-inner.wide .figrow.n2{grid-template-columns:1fr 1.77fr;gap:22px}
+  .slide-inner.wide:has(> .stats) .figrow figure img{max-height:40vh}
+  /* three figures: narrower first column, so the two square scatters stay readable */
+  .figrow.n3{grid-template-columns:0.72fr 1fr 1fr;gap:20px}
+  /* a figure sharing a slide with a table gets the leftover height, not 44vh */
+  .slide-inner:has(.tbl) figure{margin-top:24px}
+  .slide-inner:has(.tbl) figure img{max-height:30vh}
+  /* per-figure stat pair: sits above its own image, so each metric stays on its side */
+  figure .stats{margin:0 0 14px;justify-content:center;text-align:left;
+    gap:clamp(20px,3vw,48px)}
+  .slide-inner.figonly .figrow figure{margin-top:0}
+  figure .stats .stat b{font-size:clamp(22px,2.2vw,32px)}
+  figcaption{margin-top:12px;font-size:12.5px;color:var(--faint)}
+
+  /* the right bound keeps a long provenance foot from running under 
+  .slide{position:relative}
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+
+  @media (max-width:760px){
+    .steps{grid-auto-flow:row;grid-template-columns:1fr 1fr}
+    
+  }
+
+  </style>
+</helmet>
+<section class="slide"><div class="slide-inner figonly"><h1><strong>156,762</strong> presentations, <strong>72,779</strong> orbits</h1><figure><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="180pt" viewBox="0 0 648 180" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:rdf xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+    <dc:date>2026-09-09T00:16:00.923476</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:agent>
+      <dc:title>Matplotlib v3.10.1, https://matplotlib.org/</dc:title>
+     </cc:agent>
+    </dc:creator>
+   </cc:work>
+  </rdf:rdf>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 180 
+L 648 180 
+L 648 0 
+L 0 0 
+z
+" style="fill: #ffffff"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 12.96 167.04 
+L 635.04 167.04 
+L 635.04 29.04 
+L 12.96 29.04 
+z
+" style="fill: #ffffff"></path>
+   </g>
+   <g id="patch_3">
+    <path d="M 12.96 78.231388 
+L 427.68 78.231388 
+L 427.68 35.312727 
+L 12.96 35.312727 
+z
+" clip-path="url(#pc7ea4c8173)" style="fill: #b9bec9"></path>
+   </g>
+   <g id="patch_4">
+    <path d="M 12.96 160.767273 
+L 205.49969 160.767273 
+L 205.49969 117.848612 
+L 12.96 117.848612 
+z
+" clip-path="url(#pc7ea4c8173)" style="fill: #4864e8"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+   <g id="text_1">
+    <text style="font-size: 11.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Avant Garde', sans-serif; text-anchor: start; fill: #16181d" x="435.9744" y="59.945339" transform="rotate(-0 435.9744 59.945339)">156,762 raw presentations</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Avant Garde', sans-serif; text-anchor: start; fill: #4864e8" x="209.350484" y="142.481224" transform="rotate(-0 209.350484 142.481224)">72,779 Aut(F₂) orbits</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 500; font-size: 13px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Avant Garde', sans-serif; text-anchor: start; fill: #16181d" x="12.96" y="23.04" transform="rotate(-0 12.96 23.04)">AC19_extended, and the orbit representatives it collapses to</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc7ea4c8173">
+   <rect x="12.96" y="29.04" width="622.08" height="138"></rect>
+  </clipPath>
+ </defs>
+</svg>
+</figure></div><div class="foot">AC19_extended.txt, and its Aut(F₂) orbit representatives · the two are run at different budgets and are <b>not the same experiment</b>: the extended set was searched at <b>100,000</b> nodes only, the orbits across the full 501 / 1,000 / 100,000 ladder · the orbit list is rebuilt and self-checked by make_ac19_autmin_screen.py, so every campaign row names a list something can regenerate</div></section>
+</x-dc>
+</body>
+</html>

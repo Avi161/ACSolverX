@@ -591,10 +591,151 @@ def expand_node_nj(r1, r2, max_relator_length, cyclic):
 
 
 @njit(inline='always')
+def _ridx(k, t, n):
+    """Row index of element ``t`` of ``np.roll(rel, 2 * k)`` for a relator of
+    ``n`` symbols: ``(t - k) % n`` in Python's floor sense. Every caller has
+    ``0 <= t < n`` and ``0 <= k < n``, so ``t - k`` lies in ``(-n, n)`` and
+    the floor-modulo is ``t - k`` when that is non-negative and ``t - k + n``
+    otherwise -- a compare and an add, where ``%`` cost a signed integer
+    division per symbol touch (LLVM cannot strength-reduce a runtime
+    divisor). Index-exact by that argument, so every value downstream is
+    unchanged."""
+    i = t - k
+    if i < 0:
+        i += n
+    return i
+
+
+@njit(inline='always')
 def _rot_at(rel, k, t):
     """Element ``t`` of ``np.roll(rel, 2 * k)`` without building the rotation."""
-    n = len(rel)
-    return rel[(t - k) % n]
+    return rel[_ridx(k, t, len(rel))]
+
+
+@njit(inline='always')
+def _inv_at(ri, i, oj, j):
+    """``is_inverse_nj(ri[i], oj[j])`` read as four scalars: no row view is
+    built for either symbol (a view costs a struct and refcount traffic per
+    call in the innermost loops of the expansion kernel)."""
+    return (ri[i, 0] == oj[j, 0]) and (ri[i, 1] != oj[j, 1])
+
+
+@njit(inline='always')
+def _w_at(ri, k1, oj, k2, c, left, pos):
+    """Symbol ``pos`` of the seam-reduced word ``rot_i[:n1-c] ++ rot_o[c:]``
+    as its two bits: ``rot_i[pos]`` if ``pos < left`` else
+    ``rot_o[pos - left + c]``."""
+    if pos < left:
+        i = _ridx(k1, pos, len(ri))
+        return ri[i, 0], ri[i, 1]
+    j = _ridx(k2, pos - left + c, len(oj))
+    return oj[j, 0], oj[j, 1]
+
+
+@njit(inline='always')
+def _reduce_into(rel, n, cyclic, out):
+    """``reduce_relator_nj(rel[:n], cyclic)`` written into the scratch ``out``;
+    returns ``(lo, m)`` with the reduced word at ``out[lo:lo+m]``. Mirrors the
+    original line for line: the stack pass, then the cyclic trim that returns
+    ``rel_list[i:-i]`` -- here a start offset instead of a slice. Only the
+    expansion kernel calls it; ``reduce_relator_nj`` itself is untouched."""
+    length = 0
+    for idx in range(n):
+        if length > 0 and (out[length - 1, 0] == rel[idx, 0]) \
+                and (out[length - 1, 1] != rel[idx, 1]):
+            length -= 1
+        else:
+            out[length, 0] = rel[idx, 0]
+            out[length, 1] = rel[idx, 1]
+            length += 1
+    lo = 0
+    if cyclic and length > 1 and (out[0, 0] == out[length - 1, 0]) \
+            and (out[0, 1] != out[length - 1, 1]):
+        i = 1
+        half_len = length / 2
+        while i < half_len and (out[i, 0] == out[length - 1 - i, 0]) \
+                and (out[i, 1] != out[length - 1 - i, 1]):
+            i += 1
+        lo = i
+        length = length - 2 * i
+    return lo, length
+
+
+@njit(inline='always')
+def _lt(a0, a1, b0, b1):
+    """``is_less_than`` on the two bits of each symbol: Y < y < X < x."""
+    if a0 != b0:
+        return b0
+    return a1 < b1
+
+
+@njit(inline='always')
+def _booth_k(rel, n, f):
+    """``find_minimal_rotation``'s start index ``k`` for ``rel[:n]``, Booth's
+    algorithm reading the doubled word ``rel ++ rel`` by index instead of
+    materialising it, with the failure table in the int32 scratch ``f``
+    (length >= 2n; reset to -1 here exactly as ``np.full`` did). Same
+    comparisons in the same order, so the same ``k``."""
+    n2 = 2 * n
+    for i in range(n2):
+        f[i] = -1
+    k = 0
+    for j in range(1, n2):
+        i = f[j - k - 1]
+        jj = j if j < n else j - n
+        rj0 = rel[jj, 0]
+        rj1 = rel[jj, 1]
+        while i != -1:
+            q = k + i + 1
+            qq = q if q < n else q - n
+            q0 = rel[qq, 0]
+            q1 = rel[qq, 1]
+            if rj0 == q0 and rj1 == q1:
+                break
+            if _lt(rj0, rj1, q0, q1):
+                k = j - i - 1
+            i = f[i]
+        if i == -1:
+            kk = k if k < n else k - n
+            k0 = rel[kk, 0]
+            k1 = rel[kk, 1]
+            if not (rj0 == k0 and rj1 == k1):
+                if _lt(rj0, rj1, k0, k1):
+                    k = j
+                f[j - k] = -1
+            else:
+                f[j - k] = i + 1
+        else:
+            f[j - k] = i + 1
+    return k
+
+
+@njit(inline='always')
+def _canon_into(rel, n, f, ibuf, cbuf1, cbuf2):
+    """``canonical_relator_nj(rel[:n])`` on scratch: the least rotation of the
+    word (``cbuf1``) and of its inverse (``cbuf2``; the inverse is written
+    into ``ibuf`` as ``inverse_relator_nj`` defines it, reversed with the
+    inversion bit flipped), then the same ``lex_cmp_array`` picks between
+    the two. Returns a view of the chosen buffer."""
+    kr = _booth_k(rel, n, f)
+    for t in range(n):
+        ibuf[t, 0] = rel[n - 1 - t, 0]
+        ibuf[t, 1] = not rel[n - 1 - t, 1]
+    ki = _booth_k(ibuf, n, f)
+    for t in range(n):
+        x = kr + t
+        if x >= n:
+            x -= n
+        cbuf1[t, 0] = rel[x, 0]
+        cbuf1[t, 1] = rel[x, 1]
+        y = ki + t
+        if y >= n:
+            y -= n
+        cbuf2[t, 0] = ibuf[y, 0]
+        cbuf2[t, 1] = ibuf[y, 1]
+    if lex_cmp_array(cbuf1[:n], cbuf2[:n]):
+        return cbuf2[:n]
+    return cbuf1[:n]
 
 
 @njit(cache=True)
@@ -612,30 +753,26 @@ def _seam_reduced_len_nj(ri, k1, oj, k2, cyclic):
     n2 = len(oj)
     lim = n1 if n1 < n2 else n2
     c = 0
-    while c < lim and is_inverse_nj(_rot_at(ri, k1, n1 - 1 - c),
-                                    _rot_at(oj, k2, c)):
+    while c < lim and _inv_at(ri, _ridx(k1, n1 - 1 - c, n1),
+                              oj, _ridx(k2, c, n2)):
         c += 1
     m = n1 + n2 - 2 * c
     if (not cyclic) or m <= 1:
         return m
-    # W[pos] = rot_i[pos] for pos < left, else rot_o[pos - left + c]
+    # W[pos] = rot_i[pos] for pos < left, else rot_o[pos - left + c]; W[0]
+    # is rot_i[0] when left > 0 and rot_o[c] otherwise, which is _w_at(0).
     left = n1 - c
     p_last = m - 1
-    a = _rot_at(ri, k1, 0) if left > 0 else _rot_at(oj, k2, c)
-    b = (_rot_at(ri, k1, p_last) if p_last < left
-         else _rot_at(oj, k2, p_last - left + c))
-    if not is_inverse_nj(a, b):
+    a0, a1 = _w_at(ri, k1, oj, k2, c, left, 0)
+    b0, b1 = _w_at(ri, k1, oj, k2, c, left, p_last)
+    if not ((a0 == b0) and (a1 != b1)):
         return m
     i = 1
     half = m / 2
     while i < half:
-        pl = i
-        pr = m - 1 - i
-        a = (_rot_at(ri, k1, pl) if pl < left
-             else _rot_at(oj, k2, pl - left + c))
-        b = (_rot_at(ri, k1, pr) if pr < left
-             else _rot_at(oj, k2, pr - left + c))
-        if not is_inverse_nj(a, b):
+        a0, a1 = _w_at(ri, k1, oj, k2, c, left, i)
+        b0, b1 = _w_at(ri, k1, oj, k2, c, left, m - 1 - i)
+        if not ((a0 == b0) and (a1 != b1)):
             break
         i += 1
     return m - 2 * i
@@ -667,13 +804,21 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
     c_mv = np.empty((ub, 4), dtype=np.int32)
     cnt = 0
 
+    # The inverses are loop-invariant: two per pop. They used to be rebuilt
+    # per sign in pass 1 and PER CHILD in pass 2 (inverse_relator_nj is a
+    # pure function, so hoisting cannot change a value).
+    inv1 = inverse_relator_nj(r1)
+    inv2 = inverse_relator_nj(r2)
+
     for target in range(1, 3):
         if target == 1:
             ri = r1
             rj = r2
+            rj_inv = inv2
         else:
             ri = r2
             rj = r1
+            rj_inv = inv1
         len_i = len(ri)
         if len_i == 0:
             continue
@@ -683,15 +828,15 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
         if len_oth > cap:
             continue
         for idx in range(2):
-            oj = rj if idx == 0 else inverse_relator_nj(rj)
+            oj = rj if idx == 0 else rj_inv
             jsign = 1 if idx == 0 else -1
             len_o = len(oj)
             if len_o == 0:
                 continue
             for k1 in range(len_i):
-                last_i = _rot_at(ri, k1, len_i - 1)
+                li = _ridx(k1, len_i - 1, len_i)
                 for k2 in range(len_o):
-                    if not is_inverse_nj(last_i, _rot_at(oj, k2, 0)):
+                    if not _inv_at(ri, li, oj, _ridx(k2, 0, len_o)):
                         continue
                     m = _seam_reduced_len_nj(ri, k1, oj, k2, cyclic)
                     if m > cap:
@@ -714,6 +859,31 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
     lens = np.empty((count if count > 0 else 1, 2), dtype=np.int32)
     moves = np.empty((count if count > 0 else 1, 4), dtype=np.int32)
 
+    # The untouched relator is IDENTICAL for every child of a target, yet the
+    # loop below used to reduce + canonicalise it per child -- at ~300 children
+    # a pop, ~300 recomputations of the same canonical form, and min-rotation
+    # is the expensive half of a child's cost. Hoist both once. ``reduce`` is
+    # idempotent and ``canonical_relator_nj`` is a pure function of the reduced
+    # word, so the per-child results are bit-identical (pinned by the golden
+    # kernel-output test).
+    cro_t1 = canonical_relator_nj(reduce_relator_nj(r2, cyclic))  # target==1
+    cro_t2 = canonical_relator_nj(reduce_relator_nj(r1, cyclic))  # target==2
+
+    # The raw child word rot_k1(ri) ++ rot_k2(oj) is written by index into
+    # one scratch buffer instead of roll + roll + concatenate. Element t of
+    # np.roll(x, 2k) is x[_ridx(k, t, n)], so the bytes are the same...
+    nn = n1 + n2
+    pbuf = np.empty((nn, 2), dtype=np.bool_)
+    # ...and the reduce / inverse / two least-rotations that follow each go
+    # to their own scratch too, so pass 2 allocates nothing per child (it
+    # used to: zeros_like in reduce, concatenate + full twice in Booth, a
+    # copy in the inverse -- ~10 allocations a child).
+    rbuf = np.empty((nn, 2), dtype=np.bool_)
+    ibuf = np.empty((nn, 2), dtype=np.bool_)
+    cbuf1 = np.empty((nn, 2), dtype=np.bool_)
+    cbuf2 = np.empty((nn, 2), dtype=np.bool_)
+    fbuf = np.empty(2 * nn, dtype=np.int32)
+
     for out in range(count):
         s = order[out]
         target = c_mv[s, 0]
@@ -721,19 +891,33 @@ def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
         k2 = c_mv[s, 3]
         if target == 1:
             ri = r1
-            rj = r2
+            oj = r2 if c_mv[s, 1] == 1 else inv2
         else:
             ri = r2
-            rj = r1
-        oj = rj if c_mv[s, 1] == 1 else inverse_relator_nj(rj)
-        piece = np.concatenate((np.roll(ri, 2 * k1), np.roll(oj, 2 * k2)))
+            oj = r1 if c_mv[s, 1] == 1 else inv1
+        ni = len(ri)
+        no = len(oj)
+        for t in range(ni):
+            src = _ridx(k1, t, ni)
+            pbuf[t, 0] = ri[src, 0]
+            pbuf[t, 1] = ri[src, 1]
+        for t in range(no):
+            src = _ridx(k2, t, no)
+            pbuf[ni + t, 0] = oj[src, 0]
+            pbuf[ni + t, 1] = oj[src, 1]
+        lo, m = _reduce_into(pbuf, ni + no, cyclic, rbuf)
+        crp = _canon_into(rbuf[lo:lo + m], m, fbuf, ibuf, cbuf1, cbuf2)
+        # canonical_pair_nj = canonical of each side, then order-normalise;
+        # the canonicals are hoisted/computed above, so only the normalise
+        # remains -- same comparison, same tie-break, same argument order.
         if target == 1:
-            a = reduce_relator_nj(piece, cyclic)
-            b = reduce_relator_nj(r2, cyclic)
+            c1, c2 = crp, cro_t1
         else:
-            a = reduce_relator_nj(r1, cyclic)
-            b = reduce_relator_nj(piece, cyclic)
-        ca, cb = canonical_pair_nj(a, b)
+            c1, c2 = cro_t2, crp
+        if len(c1) > len(c2) or (len(c1) == len(c2) and lex_cmp_array(c1, c2)):
+            ca, cb = c2, c1
+        else:
+            ca, cb = c1, c2
         la = len(ca)
         lb = len(cb)
         for t in range(la):
