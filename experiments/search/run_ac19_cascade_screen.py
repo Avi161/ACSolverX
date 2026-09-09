@@ -108,7 +108,11 @@ INTERMEDIATE_CAP = None
 #               changes BOTH against s20_bare. With it the design is a clean
 #               factorial -- priority on one axis, move set on the other --
 #               and each main effect is measured twice.
-ARMS = ("cascade501", "ac501", "s40_gen", "s20_bare", "s20_gen")
+#   cascade_bs  the shipped cascade with stage 2's pattern test also handed to
+#               stages 3 and 4, so a row that BECOMES a BS pair mid-search is
+#               closed by rewriting instead of searched past. `cascade501` is
+#               its exact control: same budget, cap and starter budget, one flag.
+ARMS = ("cascade501", "ac501", "s40_gen", "s20_bare", "s20_gen", "cascade_bs")
 S40 = dict(s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 
 # The ladder. 501 is the prefix `hybrid_10m` pins; the rungs above it are the
@@ -303,7 +307,7 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
     if not 0 <= starter_budget <= MAX_STARTER_BUDGET:
         raise ValueError(f"starter_budget {starter_budget} outside "
                          f"0..{MAX_STARTER_BUDGET}")
-    if arm == "cascade501":
+    if arm in ("cascade501", "cascade_bs"):
         from experiments.search.cascade_heuristics import search as cascade
         # At the pinned STARTER_BUDGET the prefix keeps its shape at every
         # rung: the extra rope goes to the final S20 component, not to
@@ -324,7 +328,8 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
                        starter_budget=starter_budget,
                        rewrite_budget=REWRITE_BUDGET,
                        intermediate_cap=INTERMEDIATE_CAP,
-                       max_budget=max_budget)
+                       max_budget=max_budget,
+                       bs_probe=(arm == "cascade_bs"))
     if arm not in ("ac501", "s40_gen", "s20_bare", "s20_gen"):
         raise ValueError(f"unknown arm {arm!r}; choose from {ARMS}")
     from experiments.search.heuristic_1k import mixed_search

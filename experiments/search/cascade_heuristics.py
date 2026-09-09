@@ -18,7 +18,16 @@ MAX_BUDGET = 100_000
 
 
 def search(pair, *, budget=1000, cap=48, starter_budget=500, rewrite_budget=1000,
-           intermediate_cap=256, max_budget=MAX_BUDGET):
+           intermediate_cap=256, max_budget=MAX_BUDGET, bs_probe=False):
+    """The four-stage cascade. `bs_probe` extends stage 2's pattern test.
+
+    Stage 2 tests the Baumslag-Solitar pattern ONCE, on the normalized input, so
+    it catches a row only if it ARRIVES recognizable -- 18,839 of the screen's
+    72,779. `bs_probe=True` hands the same test to stages 3 and 4, which run it
+    on every popped state and finish by rewriting when it fires, catching a row
+    that BECOMES recognizable mid-search. Default False and bit-identical off,
+    so the shipped cascade is unchanged and this is a separate arm.
+    """
     if isinstance(max_budget, bool) or not isinstance(max_budget, int) or max_budget < 1:
         raise ValueError('max_budget must be a positive integer')
     if isinstance(budget, bool) or not isinstance(budget, int) or not 1 <= budget <= max_budget:
@@ -94,7 +103,8 @@ def search(pair, *, budget=1000, cap=48, starter_budget=500, rewrite_budget=1000
         allowance = min(limit, budget-spent)
         if allowance <= 0:
             continue
-        record = mixed_search(pair, budget=allowance, cap=cap, **kwargs)
+        record = mixed_search(pair, budget=allowance, cap=cap, bs_probe=bs_probe,
+                              **kwargs)
         observe([record['best_state']])
         max_seen = max(max_seen, record['max_relator_length_seen'])
         spent += record['nodes_explored']
