@@ -26,7 +26,7 @@ and the new-rules sweep were never affected.
 | frozen published policy | 0 / 124 | 0 | identical outcome, 13.2 s per row |
 | S20_MK2 search, ordinary moves (`reduce_search.py`, corrected, cap 64) | 0 / 124 | 0 | 8 rows reach an equal-length pair with a shorter longest relator |
 | S20_MK2 + 4 Nielsen edges (corrected, cap 64) | 0 / 124 | 0 | 9 such rebalances |
-| mu-probe: search + Whitehead minimisation of every visited state (corrected) | 0 / 124 | 0 orbit-floor descents | see `aca124_mu_10000.summary.json` |
+| mu-probe: search + Whitehead minimisation of every visited state (corrected) | 0 / 124 | 0 orbit-floor descents | 2.48 M `aut_min` evaluations over both arms |
 | orbit search: re-root at the Whitehead-minimal rep after every move (`orbit_search.py`) | 0 / 124 | 0 | exhaustive for 114 classes within 8 letters of the floor (95-8,555 orbit reps each) |
 | aut-start: 4,276 starting automorphisms, 1,000 pops each (`aut_start_search.py`) | 0 | 0 | descents back to the floor are smoothest after x->xy or a signed permutation, roughest after y->yx / y->Xy; none goes below it |
 | all-gates supermove sweep (`supermove_sweep.py`) | 0 / 124 | 0 | 122,842 BS-donor states, all rejected by the Britton preflight; 20,282 stable-power and 15,703 stable-square rewrites, none productive |
@@ -72,6 +72,15 @@ best states goes lower only on aca_36 and exhausts the reachable orbit graph
 on 11 of them.  The rows the orbit search misses (aca_107, 110, 113, 114)
 need a hump more than 12 letters above the start (slack 12 / 30,000 pops
 still exhausts without them); plain S20_MK2 crosses it in 460-630 pops.
+
+Weight schedules (ordinary moves, 10,000 pops, cap 64, from the 36 unreduced
+pairs; `grid36_*`): the shipped S20_MK2 and MK8 shorten the same 8 rows, MK8
+about twice as fast (median 329 pops against 628); S5 the same 8 rows but
+slower (2,620); S40 7; the length schedule (S 20 below 24 letters, 5 above) 7;
+S 20 then 5 after depth 8: 5; the Whitehead-adjusted score 3; MK0 2; pure
+length 0; S 5 then 20 after depth 8: 0.  Both the mean-block and the knot
+terms are load-bearing, and pushing the knot term harder only speeds up the
+same descents.
 
 Full per-row tables: `PYTHONPATH=. python3 research/residual_20260909/u124/analyze_speed.py`
 and `analyze_initial.py`.
