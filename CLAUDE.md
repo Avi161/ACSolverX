@@ -90,8 +90,9 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   search result: the representatives still do not SOLVE at 10M. Names:
   `ac19_<n>` is the n-th ORBIT (position in the orbit list), `ac19x_<n>` is
   dataset LINE n; `ac19_50892` is orbit 50,892 = line 90,721. The workbook
-  `ac19_orig_10m_originals.xlsx` (+ CSV twin) has every original with its
-  lines, paths and transported lengths. `run_leftovers_1m --track-path`
+  `ac19_orig_10m_originals.xlsx` (+ CSV twin) is one deliberately small sheet,
+  `greedy` only: 40 rows of aut-min pair, original pair, nodes, path length,
+  and the transported `autmin_path_length`. `run_leftovers_1m --track-path`
   writes a `_paths` jsonl; the plain runner strips certificates.
 - **`s20_bare` and the campaign's `s20_mk2` are bit-identical**: the same 68,475
   rows and the same node count on every one, across two engines (Python

@@ -288,19 +288,18 @@ gives the wrong presentation.
   90,721. Only `ac19_0` coincides with a line number. Pinned by
   `tests/test_ac19_autmin_screen_list.py::test_orbit_names_are_positions_not_dataset_lines`.
 - **`ac19x_<n>` is line `n` of `data/AC19_extended.txt`, zero-based.** An
-  editor shows it as line `n + 1`; the workbook carries both.
+  editor counts that line as `n + 1`.
 - **`data/AC19.txt` is a different file.** Its 140,535 rows are all contained
   in the extended file but in a different order, so it is not a prefix, and
-  only 6 of the 40 originals occur in it by exact pair. The workbook's
-  `ac19_txt_line_0based` column is that exact-match line and is blank for the
-  other 34.
+  only 6 of the 40 originals occur in it by exact pair. Names here never
+  refer to it.
 
-The workbook `ac19_orig_10m_originals.xlsx` (sheets `originals`, `orbits`,
-`naming`; CSV twin `ac19_orig_10m_originals.csv` for git) holds, per original:
-orbit and its position, representative, dataset line in all three forms, the
-words, both arms' node counts and full paths, the transported certificate
-lengths, and both representatives' 10M status. Built and checked by
-`make_ac19_orig_10m_xlsx.py --check`.
+The workbook `ac19_orig_10m_originals.xlsx` (one sheet, `greedy` only; CSV
+twin `ac19_orig_10m_originals.csv` for git) is one row per original with nine
+columns: the orbit and its aut-min pair, the original and its pair, the nodes
+and path length greedy paid on the ORIGINAL, and `autmin_path_length` -- the
+aut-min pair's own path length, from transporting that same certificate.
+Built and checked by `make_ac19_orig_10m_xlsx.py --check`.
 
 ## Files
 
@@ -317,7 +316,7 @@ In the repo, all under this directory:
 | `leftovers_1m_s20_mk2_b1000000_mrl64.jsonl` | 18 | `s20_mk2` on the originals, local, 1M (see above) |
 | `leftovers_1m_s20_mk2_b1000000_mrl64_paths.jsonl` | 18 | the same 18 searches with `--track-path`: identical on every key but `seconds`, plus `path` and `path_moves` |
 | `ac19_orig_10m_transported_{greedy,s20_mk2}.jsonl` | 40 + 18 | each original's certificate carried onto its representative, replayed |
-| `ac19_orig_10m_originals.{xlsx,csv}` | 40 | the workbook and its git-diffable twin |
+| `ac19_orig_10m_originals.{xlsx,csv}` | 40 | the workbook and its git-diffable twin: original, aut-min form, greedy's cost, both path lengths |
 
 `verify_ac19_orig_10m.py` re-derives every number above from these files and
 replays all 58 certificates as elementary AC moves (`all checks pass`).
