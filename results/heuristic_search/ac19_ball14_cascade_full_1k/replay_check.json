@@ -1,0 +1,12 @@
+{
+  "shards": 73,
+  "rows": 72779,
+  "solved": 72779,
+  "replayed_ok": 72779,
+  "elementary_moves": 42304643,
+  "failures": [],
+  "replay_wall": 46.46669946400107,
+  "replay_cpu_sum": 180.52969651299463,
+  "workers": 4,
+  "result_dir": "results/heuristic_search/ac19_ball14_cascade_full_1k"
+}

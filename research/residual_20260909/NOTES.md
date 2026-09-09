@@ -216,8 +216,16 @@ cap-14 path exists (24,708 census roots already lie in the cap-12 ball).
 Of the 692 gains, 460 were roots that lie INSIDE the cap-12 automorphism-closed ball
 (route ball_root, one lookup), 164 plain_s20, 57 incumbent, 7 strict_donor, 4 bs_demote.
 
-## Exact ball membership of the 47 remaining roots (41 unsolved + 6 lost), decided by
-## exhaustive forward components under a relator cap, with the cap-12 aut ball as target
+## Ball membership of the round-1 remaining roots (SUPERSEDED, see the correction below)
+
+CORRECTION (round 2): the six round-1 losses are among the 41 round-1 unsolved rows, so
+the residual after round 1 is 41 roots, not 47; the list below double-counted them. The
+forward-component counts below also disagree with the exact table lookup made once the
+cap-14 automorphism-closed table existed: exactly 26 of the 41 roots are in the cap-14
+ball (0 in the cap-12 ball); the remaining 15 (largest relator 17 letters) are solved by
+the plain stage in 9-201 units on the way into the ball. The table below is kept only as
+the record of what was believed when the cap-14 build was ordered.
+
 
 | cap | in the ball | provably outside | undecided |
 |---|---:|---:|---:|
@@ -229,3 +237,84 @@ The forward components under these caps are small (tens to a few thousand states
 the roots sit in "pockets" whose exits pass through a length-15/16 relator. A cap-14
 automorphism-closed table would resolve 35 of the 47 at the root; the rest need the search
 to find a short path (depth 3-15) through a longer state before meeting the table.
+
+## Round 2: compact cap-14 automorphism-closed table (tables/ball_cap14_aut.npz)
+
+Built by `python -m research.residual_20260909.backward_table --cap 14 --aut-edges
+--compact` (BACKWARD_TABLE.md section 10): 12,803,449 states (2,269,806 automorphism
+edges), max depth 100, 1,612 s single-thread build, 1.95 GB peak build RSS, 281.7 MB
+`.npz` (sha256 c2bbbf3e...13f94, recorded in tables/ball_cap14_aut.npz.manifest.json),
+1.27 s load, 0.37 GB process RSS, 1.2-2.7 M lookups/s. Replay check: every entry of depth
+<= 3 plus a random sample, 150,050 edges re-derived in pure Python, 0 failures. The
+compact builder reproduces the dict tables key-for-key and depth-for-depth at caps 8, 10
+and 12 (plain and automorphism-closed). The 269 MiB file is gitignored; only its manifest
+is committed.
+
+Panels at 1,000 units with the same cascade as round 1 (K3' = 250-unit certified-overrun
+donor stage, 300-unit plain S20 stage, incumbent restart, BS-DEMOTE), now `K3p_c14aut`:
+
+| panel | rows | solved | verified | units | search wall (s) |
+|---|---:|---:|---:|---:|---:|
+| smoke (already solved) | 12 | 12 | 12 | 480 | 0.03 |
+| regression60 (near-limit frozen solves) | 60 | 60 | 60 | 0 | 0.02 |
+| dev | 102 | 102 | 102 | 754 | 0.3 |
+| val (hidden, opened once in round 1) | 102 | 102 | 102 | 740 | 0.3 |
+| test (frozen, opened once in round 1) | 101 | 101 | 101 | 1,504 | 1.0 |
+| round-1 residual (panels/residual_round1.csv) | 41 | 41 | 41 | 691 | 0.28 |
+
+No regression row costs more than in the census (all 60 resolve at the root for 0
+units). `K1_c14aut` (frozen allocation, no overrun, no BS-DEMOTE) solves 101/102 dev; the
+one miss is ac19_109, the 256-rewrite certified-overrun row. Round 2 changed the terminal
+table only; no constant was re-tuned on val or test.
+
+## Full census, round 2 (policy K3p_c14aut, 1,000 units, 4 workers, commit 4a4500af)
+
+**72,779 / 72,779 solved and verified (100 %); 0 unsolved; 0 errors; 727 gained, 0 lost
+against the published census.** Charged units 949,521 (published 6,621,411; round 1
+2,829,457); maximum 699 (ac19_32603, incumbent route), median 0, 99th percentile 251;
+66,151 roots (90.9 %) resolve inside the cap-14 automorphism-closed ball for 0 charged
+units. No row is charged more than the published policy charged it. Routes: ball_root
+66,151, strict_donor 4,508, plain_s20 2,113, incumbent_restart 7 (all solved); bs_demote
+0 (every BS-DEMOTE row of round 1 is now inside the ball).
+
+Time (all rows, this container, 4 workers): search wall 46.7 s (published 389.2 s; round
+1 172.4 s), certificate decode + replay wall 186.2 s (published 109.4 s; round 1 203.1 s),
+compute 233 s against 499 s; census wall 70 s from manifest creation to the last shard
+(round 1: 108 s; the published serial run took 1,976 s elapsed including 1,471 s of
+recorded cooldown). Worst single row: 0.456 s search wall (published 0.454 s), 0.063 s
+certificate wall (published 0.042 s).
+
+Certificates: 42,304,643 elementary moves in total, median 243 per row (published 248),
+longest 26,002 (published 17,485; ac19 rows whose ball tail is long). On the 72,052 rows
+both censuses solve, the elementary paths total 40.97 M moves against 39.39 M (+4.0 %);
+37,645 rows are longer now and 28,696 shorter.
+
+Verification, independent of the census process:
+
+- `verify_bundle.py --result-dir results/heuristic_search/ac19_ball14_cascade_full_1k`:
+  PASS. Input hash 7e220253...4ae2; 73 shards tile [0, 72779) once; names unique and equal
+  to the input names in order; 0 errors; max charge 699 <= 1000; solved == verified ==
+  72,779; SUMMARY.json totals and clocks recomputed from the rows; the manifest's 42 source
+  hashes and 8 table hashes match the tree at 4a4500af.
+- `replay_census.py --result-dir ... --workers 4`: every one of the 72,779 stored mixed
+  paths decoded again with `certificate_decoder_compact_moves.decode_elementary` and
+  replayed with `certificate_decoder.replay_elementary` in fresh processes, all ending at
+  (x, y) with the recorded move count; 0 failures; 46.5 s wall (replay_check.json).
+- `pytest research/residual_20260909/tests`: 341 passed.
+
+Results: results/heuristic_search/ac19_ball14_cascade_full_1k/ (73 shards with the mixed
+paths, manifest, SUMMARY.json, RESULTS.md, COMPARISON.md, comparison.json, unsolved.csv
+(empty), replay_check.json, census_run.log, summarize.log).
+
+## Family theory for the 41 round-1 roots (theory/FAMILY_THEORY.md, FAMILY_DATA.md)
+
+Written before the cap-14 result and kept as the explanation of why those rows were hard:
+the conjugacy class of the companion in <x, y | R> is a complete invariant of the moves
+that preserve R (Theorems W2-W4, algebra machine-checked on all 2,346 R-preserving
+children of the 41 roots); Rule W-TRANSPORT certifies 20 of the 41 with 1-8 charged
+R-preserving moves onto a solved census row (each certificate decoded and independently
+replayed); 17 of the roots have both relators <= 12 yet lie outside the cap-12 ball, so
+every path from them must first pass a longer relator, which is exactly what the cap-14
+table supplies. Negative results are recorded as bounded refutations (W5, W6). One
+family (r1 = YYXXYxYXX: ac19_11753, ac19_38222) is solved by the table but still has no
+structural explanation. `FAMILY_verify.py` passes; its search sections are opt-in.
