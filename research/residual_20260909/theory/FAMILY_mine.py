@@ -16,8 +16,18 @@ CLI
     PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_mine.py --build
         build (and cache) the census relator-orbit index
 
+    PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_mine.py --families
+        print the 19 residual families
+
     PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_mine.py --report
         write FAMILY_mine.json: per-family tables used by FAMILY_DATA.md
+
+Beyond the CLI this module is the library the proofs use:
+``w_children`` / ``w_ball`` / ``w_path`` enumerate R-preserving (companion-only)
+Definition 2.1 moves, ``magnus_frame`` / ``magnus_word`` compute and check the
+Magnus/HNN frame of a family relator, and ``build_corpus`` / ``LayeredTable``
+turn the published census certificates into an extra terminal table for the
+ball-aware searches.  See FAMILY_THEORY.md.
 """
 import argparse
 import csv
@@ -43,6 +53,8 @@ PUB = ROOT / 'results' / 'heuristic_search' / 'ac19_final_policy_full_1k'
 UNSOLVED = BALL / 'unsolved.csv'
 CACHE = HERE / 'FAMILY_index.pkl'
 
+# The six rows the published frozen census solved (in its plain-S20 stage) and
+# the ball cascade lost; all six are inside the 41.
 LOST_ROWS = ('ac19_17417', 'ac19_31624', 'ac19_51124',
              'ac19_56260', 'ac19_57787', 'ac19_65876')
 

@@ -8,12 +8,18 @@ machine output [`FAMILY_mine.json`](FAMILY_mine.json) and
 
 ```bash
 PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_mine.py --families --report
-PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py           # proofs and certificates
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all --matrix   # + the section-8 runs
 ```
 
 The subject is the 41 rows of
 `results/heuristic_search/ac19_ball_cascade_full_1k/unsolved.csv` — everything
 the 1,000-unit policy `K3p_c12aut` leaves open in the 72,779-row AC19 census.
+(While this note was being written, the campaign's cap-14 automorphism-closed
+ball closed all 41 at 1,000 units; see section 8a.  Everything measured here is
+on the cap-12 table, and the diagnosis it reaches is what the cap-14 result
+confirms.)
+
 Nothing under `research/supermoves_20260908/`, `results/` or `data/` was
 modified; the census shards are read-only inputs.
 
@@ -113,8 +119,8 @@ Reading all solved members of each family:
 Two readings matter.
 
 * **The family relator is destroyed almost at once.**  The median number of
-  moves before `R` stops being one of the two relators is 1 or 2 in 17 of the
-  19 families (4 in the other two).  In `YXYxxYXyxYXyx` and `YXYxYXXYXyx`
+  moves before `R` stops being one of the two relators is 1 or 2 in 16 of the
+  19 families (3, 4 and 4 in the other three).  In `YXYxxYXyxYXyx` and `YXYxYXXYXyx`
   *every* solved member's first move rewrites `R` itself.  This is the same
   phenomenon `STALLED_BS_THEORY.md` §5.3 records for the BS family ("every one
   of the 584 solved stalled paths modifies `R`"), and it is the reason section
@@ -246,17 +252,41 @@ Three facts fall straight out.
    `ordinary_T` arm on the **bare ball** at 1,163 and 1,156 units.  Across the
    eight configurations every one of the 41 rows is solved and verified.
 
+## 8a. Superseded by the round-2 table (recorded, not re-run here)
+
+While this note was being written the residual campaign built the **cap-14**
+automorphism-closed backward ball (`tables/ball_cap14_aut.npz`, 12,803,449
+states, built 2026-09-09T16:45Z) and reports that the cascade `K3p_c14aut`
+solves **all 41 rows at 1,000 units, at most 201 charged units each, with
+verified certificates**.  That result is the orchestrator's, not this note's; it
+was not re-run here.
+
+It does not change anything measured above — every number in sections 2-8 is on
+the cap-12 table — but it does settle the practical question: the residual was
+an *endgame-table reach* problem, exactly as section 4 diagnosed (the routes go
+uphill past length 12), and enlarging the exact ball by two symbols is enough.
+The corpus terminal of `FAMILY_THEORY.md` §6 and the allocation change of §7
+remain valid measurements and remain useful for inputs outside any shipped ball,
+but they are no longer needed for these 41 rows.
+
 ## 9. Reproduction
 
 ```bash
 PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_mine.py --build --families --report
-PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py             # sections A, B, C/D, F, G
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all --matrix
 ```
 
-`FAMILY_verify.py --all` rebuilds the corpus from the published census shards
-(about 6 s, 112,261 states) and re-runs the 41 rows under the cascade and the
-`ordinary_T` arm; `--all --matrix` reproduces the whole section-8 table (two
-tables x four arms x two budgets, about 10 minutes on one thread).  The backward
+The default run does no policy search: it checks the symmetry claims, the W-move
+algebra, builds and replays the 20 Rule W-TRANSPORT certificates, expands the
+`R`-preserving balls, checks the Magnus frames and audits the gates, and writes
+`FAMILY_verify.json`.  That is the run required to pass, and it is what the
+committed `FAMILY_verify.json` records.  Adding `--corpus` rebuilds the corpus
+from the published census shards (about 6 s, 112,261 states) and re-runs the 41
+rows under the cascade and the `ordinary_T` arm; `--all --matrix` reproduces the
+whole section-8 table (two tables x four arms x two budgets, about 10 minutes on
+one thread).  Those search runs are the source of sections 5 and 8 and are
+recorded, not re-run for the commit.  The backward
 ball is loaded by `FAMILY_mine.load_ball`, which accepts either the `.npz`
 compact table or the `.pkl` dict and, if the manifest is mid-migration, checks
 the pinned sha256 itself.

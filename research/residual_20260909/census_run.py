@@ -17,7 +17,7 @@ Provenance and resume
 Each invocation computes a *fingerprint*: the input file's SHA-256, the
 policy name, the budget, the SHA-256 of every ``research/supermoves_20260908/
 *.py`` and ``research/residual_20260909/*.py`` source file, and the SHA-256
-of every ``research/residual_20260909/tables/*.pkl`` table file. This is
+of every ``research/residual_20260909/tables/*.pkl`` and ``*.npz`` table file. This is
 written to ``manifest_<offset>_<end>.json`` (one per invocation, covering
 its whole ``[offset, end)`` row range) -- "verify the input SHA-256" here
 means computing and recording it, and cross-checking it (with the rest of
@@ -85,9 +85,14 @@ def read_rows(input_path):
 
 
 def table_hashes():
-    """SHA-256 of every research/residual_20260909/tables/*.pkl file."""
+    """SHA-256 of every research/residual_20260909/tables/*.pkl and *.npz
+    table file (the compact ``.npz`` tables joined in round 2; the round-1
+    manifests, written before that, list the ``.pkl`` files only)."""
+    if not TABLES_DIR.is_dir():
+        return {}
+    paths = sorted(list(TABLES_DIR.glob('*.pkl')) + list(TABLES_DIR.glob('*.npz')))
     return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
-            for path in sorted(TABLES_DIR.glob('*.pkl'))} if TABLES_DIR.is_dir() else {}
+            for path in paths}
 
 
 def _shard_intervals(offset, end, shard_size):

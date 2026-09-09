@@ -3338,242 +3338,306 @@
    }
   }
  },
- "E": {
-  "corpus_states": 112261,
-  "ball_states": 1488649,
-  "runs": {
-   "cascade@1000": {
-    "solved": 30,
-    "verified": 30,
-    "units": 17311,
-    "unsolved": [
-     "ac19_11753",
-     "ac19_18125",
-     "ac19_38222",
-     "ac19_45056",
-     "ac19_45684",
-     "ac19_54514",
-     "ac19_60781",
-     "ac19_62816",
-     "ac19_65967",
-     "ac19_66724",
-     "ac19_70845"
-    ],
-    "per_row": {
-     "ac19_99": 13,
-     "ac19_2696": 9,
-     "ac19_6554": 344,
-     "ac19_11753": 1000,
-     "ac19_14690": 66,
-     "ac19_17417": 324,
-     "ac19_18125": 1000,
-     "ac19_18413": 328,
-     "ac19_22263": 310,
-     "ac19_25325": 349,
-     "ac19_31624": 309,
-     "ac19_33080": 368,
-     "ac19_37426": 310,
-     "ac19_38222": 1000,
-     "ac19_40167": 29,
-     "ac19_45056": 1000,
-     "ac19_45684": 1000,
-     "ac19_49255": 335,
-     "ac19_50262": 313,
-     "ac19_50610": 115,
-     "ac19_51034": 410,
-     "ac19_51124": 9,
-     "ac19_54337": 29,
-     "ac19_54514": 1000,
-     "ac19_56260": 309,
-     "ac19_57787": 309,
-     "ac19_58570": 339,
-     "ac19_60781": 1000,
-     "ac19_62145": 9,
-     "ac19_62816": 1000,
-     "ac19_63737": 310,
-     "ac19_64163": 19,
-     "ac19_65737": 346,
-     "ac19_65753": 338,
-     "ac19_65876": 309,
-     "ac19_65967": 1000,
-     "ac19_66385": 10,
-     "ac19_66543": 19,
-     "ac19_66724": 1000,
-     "ac19_69139": 24,
-     "ac19_70845": 1000
-    }
+ "F": {
+  "frames": [
+   {
+    "family": "YYXXyxx",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "y"
+    },
+    "transported": "YYXXyxx",
+    "mu": -2,
+    "nu": 0,
+    "counts": {
+     "-2": 1,
+     "-1": 0,
+     "0": 2
+    },
+    "kind": "ascending HNN of F_2",
+    "round_trip": true
    },
-   "cascade@5000": {
-    "solved": 39,
-    "verified": 39,
-    "units": 45280,
-    "unsolved": [
-     "ac19_11753",
-     "ac19_38222"
-    ],
-    "per_row": {
-     "ac19_99": 13,
-     "ac19_2696": 9,
-     "ac19_6554": 344,
-     "ac19_11753": 5000,
-     "ac19_14690": 66,
-     "ac19_17417": 324,
-     "ac19_18125": 3051,
-     "ac19_18413": 328,
-     "ac19_22263": 310,
-     "ac19_25325": 349,
-     "ac19_31624": 309,
-     "ac19_33080": 368,
-     "ac19_37426": 310,
-     "ac19_38222": 5000,
-     "ac19_40167": 29,
-     "ac19_45056": 3295,
-     "ac19_45684": 3041,
-     "ac19_49255": 335,
-     "ac19_50262": 313,
-     "ac19_50610": 115,
-     "ac19_51034": 410,
-     "ac19_51124": 9,
-     "ac19_54337": 29,
-     "ac19_54514": 3258,
-     "ac19_56260": 309,
-     "ac19_57787": 309,
-     "ac19_58570": 339,
-     "ac19_60781": 3252,
-     "ac19_62145": 9,
-     "ac19_62816": 3294,
-     "ac19_63737": 310,
-     "ac19_64163": 19,
-     "ac19_65737": 346,
-     "ac19_65753": 338,
-     "ac19_65876": 309,
-     "ac19_65967": 3269,
-     "ac19_66385": 10,
-     "ac19_66543": 19,
-     "ac19_66724": 3252,
-     "ac19_69139": 24,
-     "ac19_70845": 3257
-    }
+   {
+    "family": "YYXXYxYXXXYx",
+    "frame": null
    },
-   "ordinary_T@1000": {
-    "solved": 28,
-    "verified": 28,
-    "units": 19795,
-    "unsolved": [
-     "ac19_11753",
-     "ac19_18125",
-     "ac19_38222",
-     "ac19_45056",
-     "ac19_45684",
-     "ac19_51034",
-     "ac19_54514",
-     "ac19_60781",
-     "ac19_62816",
-     "ac19_65753",
-     "ac19_65967",
-     "ac19_66724",
-     "ac19_70845"
-    ],
-    "per_row": {
-     "ac19_99": 13,
-     "ac19_2696": 1,
-     "ac19_6554": 78,
-     "ac19_11753": 1000,
-     "ac19_14690": 745,
-     "ac19_17417": 277,
-     "ac19_18125": 1000,
-     "ac19_18413": 79,
-     "ac19_22263": 228,
-     "ac19_25325": 78,
-     "ac19_31624": 562,
-     "ac19_33080": 58,
-     "ac19_37426": 237,
-     "ac19_38222": 1000,
-     "ac19_40167": 587,
-     "ac19_45056": 1000,
-     "ac19_45684": 1000,
-     "ac19_49255": 746,
-     "ac19_50262": 504,
-     "ac19_50610": 56,
-     "ac19_51034": 1000,
-     "ac19_51124": 1,
-     "ac19_54337": 530,
-     "ac19_54514": 1000,
-     "ac19_56260": 572,
-     "ac19_57787": 94,
-     "ac19_58570": 746,
-     "ac19_60781": 1000,
-     "ac19_62145": 1,
-     "ac19_62816": 1000,
-     "ac19_63737": 224,
-     "ac19_64163": 1,
-     "ac19_65737": 134,
-     "ac19_65753": 1000,
-     "ac19_65876": 96,
-     "ac19_65967": 1000,
-     "ac19_66385": 2,
-     "ac19_66543": 1,
-     "ac19_66724": 1000,
-     "ac19_69139": 144,
-     "ac19_70845": 1000
-    }
+   {
+    "family": "YYXyxYXXyx",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yX"
+    },
+    "transported": "xYxYXyxYXXy",
+    "mu": 0,
+    "nu": 2,
+    "counts": {
+     "0": 1,
+     "1": 2,
+     "2": 2
+    },
+    "kind": "ascending HNN of F_2",
+    "round_trip": true
    },
-   "ordinary_T@5000": {
-    "solved": 35,
-    "verified": 35,
-    "units": 61188,
-    "unsolved": [
-     "ac19_18125",
-     "ac19_45684",
-     "ac19_51034",
-     "ac19_65753",
-     "ac19_66724",
-     "ac19_70845"
-    ],
-    "per_row": {
-     "ac19_99": 13,
-     "ac19_2696": 1,
-     "ac19_6554": 78,
-     "ac19_11753": 1163,
-     "ac19_14690": 745,
-     "ac19_17417": 277,
-     "ac19_18125": 5000,
-     "ac19_18413": 79,
-     "ac19_22263": 228,
-     "ac19_25325": 78,
-     "ac19_31624": 562,
-     "ac19_33080": 58,
-     "ac19_37426": 237,
-     "ac19_38222": 1156,
-     "ac19_40167": 587,
-     "ac19_45056": 4615,
-     "ac19_45684": 5000,
-     "ac19_49255": 746,
-     "ac19_50262": 504,
-     "ac19_50610": 56,
-     "ac19_51034": 5000,
-     "ac19_51124": 1,
-     "ac19_54337": 530,
-     "ac19_54514": 4618,
-     "ac19_56260": 572,
-     "ac19_57787": 94,
-     "ac19_58570": 746,
-     "ac19_60781": 3612,
-     "ac19_62145": 1,
-     "ac19_62816": 4615,
-     "ac19_63737": 224,
-     "ac19_64163": 1,
-     "ac19_65737": 134,
-     "ac19_65753": 5000,
-     "ac19_65876": 96,
-     "ac19_65967": 4614,
-     "ac19_66385": 2,
-     "ac19_66543": 1,
-     "ac19_66724": 5000,
-     "ac19_69139": 144,
-     "ac19_70845": 5000
-    }
+   {
+    "family": "YYXXYxYXX",
+    "frame": null
+   },
+   {
+    "family": "YXXXyxx",
+    "stable": "y",
+    "shear": {
+     "x": "x",
+     "y": "y"
+    },
+    "transported": "YXXXyxx",
+    "mu": -1,
+    "nu": 0,
+    "counts": {
+     "-1": 3,
+     "0": 2
+    },
+    "kind": "one-relator base",
+    "round_trip": true
+   },
+   {
+    "family": "YYXXYXYYXXX",
+    "frame": null
+   },
+   {
+    "family": "YXYxxYXyxYXyx",
+    "stable": "y",
+    "shear": {
+     "x": "xyy",
+     "y": "y"
+    },
+    "transported": "YXYxyyxYXyxYXyx",
+    "mu": -2,
+    "nu": 0,
+    "counts": {
+     "-2": 1,
+     "-1": 3,
+     "0": 3
+    },
+    "kind": "ascending HNN of F_2",
+    "round_trip": true
+   },
+   {
+    "family": "YXyXYXyxx",
+    "stable": "y",
+    "shear": {
+     "x": "x",
+     "y": "y"
+    },
+    "transported": "YXyXYXyxx",
+    "mu": -1,
+    "nu": 0,
+    "counts": {
+     "-1": 2,
+     "0": 3
+    },
+    "kind": "one-relator base",
+    "round_trip": true
+   },
+   {
+    "family": "YXYxYXXYXyx",
+    "frame": null
+   },
+   {
+    "family": "YXYxYXXYx",
+    "stable": "y",
+    "shear": {
+     "x": "xYYYY",
+     "y": "y"
+    },
+    "transported": "XYxYXyyyyXYxY",
+    "mu": -2,
+    "nu": 2,
+    "counts": {
+     "-2": 1,
+     "-1": 1,
+     "0": 1,
+     "1": 1,
+     "2": 1
+    },
+    "kind": "mapping torus F_4 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YXYXyXXYXyX",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yXXXXXX"
+    },
+    "transported": "YxxxxxYXyXXYXyX",
+    "mu": 0,
+    "nu": 5,
+    "counts": {
+     "0": 1,
+     "1": 1,
+     "2": 1,
+     "3": 0,
+     "4": 1,
+     "5": 1
+    },
+    "kind": "mapping torus F_5 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YYXXYxYxyX",
+    "stable": "y",
+    "shear": {
+     "x": "xYYY",
+     "y": "y"
+    },
+    "transported": "yXyyyXYxYYYYxyX",
+    "mu": -1,
+    "nu": 4,
+    "counts": {
+     "-1": 1,
+     "0": 1,
+     "1": 1,
+     "2": 0,
+     "3": 1,
+     "4": 1
+    },
+    "kind": "mapping torus F_5 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YYXXXyXYXyX",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yXXXXXX"
+    },
+    "transported": "YxxxxxxYXXXyXYXyX",
+    "mu": 0,
+    "nu": 6,
+    "counts": {
+     "0": 1,
+     "1": 1,
+     "2": 1,
+     "3": 1,
+     "4": 0,
+     "5": 0,
+     "6": 1
+    },
+    "kind": "mapping torus F_6 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YYXXXXYX",
+    "frame": null
+   },
+   {
+    "family": "YXXYxxyx",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yx"
+    },
+    "transported": "YXXXYxxyx",
+    "mu": -3,
+    "nu": 0,
+    "counts": {
+     "-3": 1,
+     "-2": 0,
+     "-1": 1,
+     "0": 1
+    },
+    "kind": "mapping torus F_3 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YXXYxYxx",
+    "stable": "y",
+    "shear": {
+     "x": "xyyy",
+     "y": "y"
+    },
+    "transported": "YXYYYXYxyyxyyyx",
+    "mu": -5,
+    "nu": 0,
+    "counts": {
+     "-5": 1,
+     "-4": 1,
+     "-3": 1,
+     "-2": 0,
+     "-1": 1,
+     "0": 1
+    },
+    "kind": "mapping torus F_5 x| Z",
+    "round_trip": true
+   },
+   {
+    "family": "YXXYxYxxx",
+    "frame": null
+   },
+   {
+    "family": "YXXyXyxx",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yx"
+    },
+    "transported": "YXXyyxx",
+    "mu": -2,
+    "nu": 0,
+    "counts": {
+     "-2": 2,
+     "-1": 0,
+     "0": 1
+    },
+    "kind": "ascending HNN of F_2",
+    "round_trip": true
+   },
+   {
+    "family": "YYXYXyXXyX",
+    "stable": "x",
+    "shear": {
+     "x": "x",
+     "y": "yXXXXX"
+    },
+    "transported": "YxxxxxYxxxxYXyXXXXXXXyX",
+    "mu": 0,
+    "nu": 9,
+    "counts": {
+     "0": 1,
+     "1": 1,
+     "2": 0,
+     "3": 0,
+     "4": 0,
+     "5": 1,
+     "6": 0,
+     "7": 0,
+     "8": 1,
+     "9": 1
+    },
+    "kind": "mapping torus F_9 x| Z",
+    "round_trip": true
    }
-  }
+  ],
+  "trefoil_base": true,
+  "f5_star": true
+ },
+ "G": {
+  "two_block": 0,
+  "one_occurrence": 0,
+  "bs_donor": 2,
+  "bs_preflight_accept": 0,
+  "bs_demote_labels": [
+   [
+    "ac19_99",
+    [
+     7,
+     2,
+     5
+    ],
+    false
+   ]
+  ]
  }
 }

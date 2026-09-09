@@ -6,9 +6,15 @@ checks: [`FAMILY_verify.py`](FAMILY_verify.py) (output
 [`FAMILY_mine.py`](FAMILY_mine.py).
 
 ```bash
-PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py          # A, B, C/D, F, G
-PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all    # + E (Rule TRAIL)
+# the proofs and all 20 W-TRANSPORT certificates; no policy search is run
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py
+# adds section E: Rule TRAIL, i.e. the recorded search runs of section 6
+PYTHONPATH=. python3 research/residual_20260909/theory/FAMILY_verify.py --all --matrix
 ```
+
+The first command is the one that has to pass and is what the committed
+`FAMILY_verify.json` records; the second re-runs the searches of §6 and §7 and
+is not needed to check anything proved here.
 
 Every certificate claimed here is built and checked twice: once by replaying
 each stored state with `experiments/equivalence_classes/lib/words`
@@ -19,6 +25,23 @@ ordinary invert/swap/conjugate/multiply sequence with
 `certificate_decoder.replay_elementary`, requiring the literal terminal
 `['x', 'y']` — the census's own contract, the same one
 `research/residual_20260909/harness.run_row` applies.
+
+**Status of every claim in this note.**
+
+| claim | status |
+|---|---|
+| Lemma W1, Theorem W2, Theorem W3, Corollary W4 (§2) | **proved**, with the algebra machine-checked on all 2,346 `R`-preserving children of the 41 roots |
+| Rule W-TRANSPORT (§3) | **proved**; 20 of the 41 rows certified, each certificate decoded and independently replayed to `['x', 'y']` |
+| Observation W5 (§4) | **bounded refutation** — a statement about one explicit ball (`slack = 4`, `depth = 4`), not about all `R`-preserving macros |
+| Observation W6 (§4) | **proved** for the four terminal recognisers the census policy actually uses, given Theorem W2; the gate audit is §G of the verifier |
+| Magnus frames, the trefoil base, the `F_5` monodromy (§5) | **proved**, with the rewriting round-trip and the two identities machine-checked |
+| decidability of conjugacy in these `G` (§5.1, §5.2) | **cited**, not proved and not implemented here |
+| Lemma T1, Lemma T2 (§6) | **proved** |
+| every count, unit, table row and solve (§3, §6, §7 and `FAMILY_DATA.md`) | **measured**, every solve decoded and independently replayed |
+| "no correlation between Magnus type and difficulty" (§5.4) | **an observation on 19 families**, not a theorem |
+
+Nothing in this note is offered as a conjecture; where an argument stops, it is
+labelled *bounded*, *cited* or *measured* rather than extended by guess.
 
 ---
 
@@ -200,7 +223,7 @@ reach it and a proved gate then fires.  For the 41 residual rows:
   gate verdict, is invariant;
 * and the census's own solved certificates in these families leave the class
   almost immediately — the median number of moves before `R` stops being one of
-  the two relators is 1 or 2 in 17 of the 19 families
+  the two relators is 1 or 2 in 16 of the 19 families
   ([`FAMILY_DATA.md`](FAMILY_DATA.md) §3).
 
 So *within the shape "bounded `R`-preserving macro to a state a proved gate
@@ -259,7 +282,8 @@ a word in `G` is reduced iff no subword `y^-1 u y` with `u in A` and no
 `y u y^-1` with `u in A'` occurs, and the companion invariant of Theorem W2 is
 the conjugacy class of the cyclically reduced form.  The trefoil group has
 centre `<b^3>` with quotient `PSL(2, Z) = Z/2 * Z/3`, which is virtually free,
-so membership in `<a>` and `<b>` and conjugacy in `B` are decidable; the
+so membership in `<a>` and `<b>` and conjugacy in `B` are decidable (standard
+facts about virtually-free and torus-knot groups, cited, not checked here); the
 invariant of Corollary W4 is therefore computable in this family.  We did not
 implement it — the bounded `B_W` balls of §3 were enough to separate the rows.
 
@@ -379,7 +403,9 @@ so re-running the census with it is meaningless (0 units per row).  It is an
 endgame table for *new* inputs, and the 41 residual rows are the only fair test
 available here.
 
-**Result** (all decoded and independently replayed):
+**Result** (all decoded and independently replayed; these runs are recorded, and
+section E of the verifier reproduces them on demand with `--corpus` /
+`--all --matrix` — they were not re-run for the final commit):
 
 | configuration | @1,000 | @5,000 |
 |---|---:|---:|
@@ -390,9 +416,10 @@ available here.
 | `aut_edges` arm, ball + corpus | 28 / 41 | 37 / 41 |
 
 Median charge for the 30 solved at 1,000 units is 309; ten of them cost under
-30 units and the most expensive is 410.  Provenance of the hit state: 6 of the 30 land on a certificate
-of a row in their own family, 24 on a row from elsewhere in the census — the
-corpus works as a global endgame table, **not** because of family structure.
+30 units and the most expensive is 410.  Provenance of the hit state: 6 of the
+30 land on a certificate of a row in their own family, 24 on a row from
+elsewhere in the census — the corpus works as a global endgame table, **not**
+because of family structure.
 
 The two rows the corpus cascade misses at 5,000, `ac19_11753` and `ac19_38222`
 (family `YYXXYxYXX`), are solved by the `ordinary_T` arm on the **bare ball** at
@@ -428,6 +455,18 @@ residual.
 | `YYXXYxYXX` | 2 | **refuted for W-TRANSPORT** (`B_W` = 36 and 1,184 states, meeting only each other); both closed by `ordinary_T` + ball at ~1,160 units | 0 |
 | `YYXXYXYYXXX`, `YYXXYxYxyX`, `YYXXyxx`, `YXXXyxx`, `YXXYxYxx`, `YXXYxYxxx`, `YXXyXyxx`, `YXYxYXXYXyx`, `YYXXXXYX`, `YYXXXyXYXyX`, `YYXXYxYXXXYx`, `YYXYXyXXyX` | 1-2 each | W-TRANSPORT proved for `99`, `2696`, `25325`, `64163`, `69139`, `70845`; refuted (bounded) for the rest | 6 |
 
+**Superseding fact (recorded, not re-run here).**  The residual campaign has
+since built the cap-14 automorphism-closed backward ball
+(`tables/ball_cap14_aut.npz`, 12,803,449 states) and reports that the cascade
+`K3p_c14aut` closes **all 41 rows at 1,000 units, at most 201 charged units
+each, verified**.  That is the orchestrator's result, not this note's.  It
+confirms the diagnosis of `FAMILY_DATA.md` §4 — the residual is an endgame-table
+*reach* problem, and two more symbols of cap are enough — and it demotes items 1
+and 2 below from "needed" to "useful for inputs outside whatever ball is
+shipped".  Items 3 and 4 are unaffected: Rule W-TRANSPORT is a proved rule with
+an invariant behind it, and Observation W6 is a statement about which macros can
+ever work here.
+
 **Implement, in order.**
 
 1. **Reallocate for the residual.**  Route a root that survives the donor
@@ -437,12 +476,16 @@ residual.
    the cost on `regression60` and the smoke panel before shipping — the
    plain-`S20` prefix is what closes 23,424 census rows cheaply, so this must be
    a *routed* change, not a global one.
-2. **Ship Rule TRAIL** — build the corpus once from the published certificate
-   shards (112,261 states, 6 s, a few tens of MB) and layer it over the ball
-   with `FAMILY_mine.LayeredTable`.  Lemma T2 makes it zero-loss by
-   construction; measured: 0 -> 30 of the residual at 1,000 units.  Publish it
-   as a table artefact with its own manifest, exactly like the ball, and state
-   the census self-reference caveat in the manifest.
+2. **Rule TRAIL, if an uncapped complement is ever wanted** — build the corpus
+   once from the published certificate shards (112,261 states, 6 s, a few tens
+   of MB) and layer it over whatever ball is shipped, with
+   `FAMILY_mine.LayeredTable`.  Lemma T2 makes it zero-loss by construction;
+   measured on the cap-12 table: 0 -> 30 of the residual at 1,000 units.  The
+   cap-14 ball has since made this unnecessary *for these 41 rows*; its
+   remaining argument is that its states are not length-capped at all (median
+   max-relator 15, tail to 131), which is where a ball of any fixed cap stops.
+   If it is ever shipped, publish it as a table artefact with its own manifest
+   and state the census self-reference caveat there.
 3. **Ship Rule W-TRANSPORT as a bounded root macro.**  One `R`-preserving BFS
    at `slack = 4`, `depth <= 4`, testing `relabel_key` membership in a table of
    census roots; certifies 20 of the 41 with 1-8 charged moves and a proved
@@ -452,11 +495,15 @@ residual.
 4. **Do not** widen BS-DEMOTE or any other `R`-preserving gate macro for this
    residual: Observation W6 shows there is no gate inside the class to reach.
 
-**Open.**  The `YYXXYxYXX` family (`ac19_11753`, `ac19_38222`) is the only one
-with a *closed* `R`-preserving component, no census neighbour, no single-shear
-Magnus frame, and no corpus contribution (all 40 solved members are ball roots,
-so their certificates lie entirely inside the ball).  Both rows are AC-trivial —
-`ordinary_T` certifies them — but nothing in this note explains them.  The right
-next object is their `W`-class invariant in `G = <x, y | YYXXYxYXX>`, which needs
-the two-step change of basis `sigma(R) = (-3,-4) -> (0, ±1)` and therefore a
-much longer transported relator.
+**Open (theory, not practice).**  The `YYXXYxYXX` family (`ac19_11753`,
+`ac19_38222`) is the only one with a *closed* `R`-preserving component, no census
+neighbour, no single-shear Magnus frame, and no corpus contribution (all 40
+solved members are ball roots, so their certificates lie entirely inside the
+cap-12 ball).  Both rows are AC-trivial and are now closed cheaply by the cap-14
+ball, and the `ordinary_T` arm certifies them on the cap-12 ball at ~1,160 units
+— but nothing proved in this note explains them.  The right next object is their
+`W`-class invariant in `G = <x, y | YYXXYxYXX>`, which needs the two-step change
+of basis `sigma(R) = (-3, -4) -> (0, ±1)` — realisable as a `GL_2(Z)` matrix such
+as `[[4, -3], [1, -1]]` — and therefore a much longer transported relator.  We
+did not compute it; that is a conjecture-free statement of what is missing, not
+a conjecture.

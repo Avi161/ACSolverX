@@ -497,20 +497,112 @@ one clobbering the other's manifest), carrying the sha256 of the `.npz`, the
 cap, the size, the depth histogram, the build wall seconds, peak RSS, and the
 replay check. `load` refuses a file whose sha256 does not match.
 
-MEASUREMENT_COMPACT_PLACEHOLDER
+### Sizes, build cost and lookup speed
+
+One thread, numba warmed before timing, on a 4-core box.
+
+| table | states | automorphism edges | max depth | build wall | peak RSS | artifact | load |
+|---|---|---|---|---|---|---|---|
+| `ball_cap12_aut.pkl` (dict) | 1,488,649 | 356,571 | 47 | 658.5 s | ~0.8 GB | 68.7 MB pickle | 2.16 s |
+| `ball_cap12_aut.npz` (compact) | 1,488,649 | 312,644 | 47 | **131.3 s** | ~0.5 GB | **32.8 MB** npz | **0.14 s** |
+| `ball_cap14_aut.npz` (compact) | **12,803,449** | 2,269,806 | 100 | **1,612 s** (26.9 min) | **1.95 GB** | 281.7 MB npz | 1.27 s |
+
+Compact mode is 5.0x faster to build and 15x faster to load at cap 12, at half
+the bytes on disk. Cap 14 is 8.6x the states of cap 12 for 12.3x the build
+time; the whole loaded table is 282 MB of numpy (0.37 GB process RSS), against
+roughly 3 GB for the equivalent dict of `bytes` keys -- which is what makes it
+usable in a per-worker census run at all. Peak build RSS stayed at 1.95 GB, and
+the widest level (`levels` in the manifest) peaked at 1.37 GB, because the
+frontier is chunked.
+
+Lookups, measured on 100,000 distinct keys of each kind (the searches mostly
+miss, so the second column is the one that matters):
+
+| table | present | absent |
+|---|---|---|
+| `ball_cap12_aut` dict | 1.89 M/s | 9.67 M/s |
+| `ball_cap12_aut` compact | 1.64 M/s | 2.82 M/s |
+| `ball_cap14_aut` compact | 1.18 M/s | 2.72 M/s |
+
+So a compact miss costs ~370 ns against a dict's ~100 ns. A row that spends its
+whole 1,000 units doing ~100,000 lookups pays about 37 ms for them, against
+about 10 ms with a dict -- a rounding error next to the search itself, and it
+buys an order of magnitude in table size.
+
+The replay check on the cap-14 table covered every entry of depth <= 3 plus a
+uniform random sample: **150,050 edges re-derived in pure Python, zero
+failures** (`checks.replay_sampled_entries` in the manifest).
+
+### Rebuilding the artifacts
+
+The cap >= 12 tables are gitignored (their manifests -- hashes, sizes, depth
+histograms, build stats and check results -- are committed). Exact commands,
+each deterministic and reproducing the sha256 in its manifest:
+
+```
+PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1   python3 -m research.residual_20260909.backward_table --cap 12       --out research/residual_20260909/tables/ball_cap12.pkl
+PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1   python3 -m research.residual_20260909.backward_table --cap 12 --aut-edges       --out research/residual_20260909/tables/ball_cap12_aut.pkl
+PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1   python3 -m research.residual_20260909.backward_table --cap 12 --aut-edges --compact       --sample 150000 --out research/residual_20260909/tables/ball_cap12_aut.npz
+PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1   python3 -m research.residual_20260909.backward_table --cap 14 --aut-edges --compact       --sample 150000 --buffer 6000000       --out research/residual_20260909/tables/ball_cap14_aut.npz
+```
+
+The last one is the shipped cap-14 table: 26.9 minutes, 1.95 GB peak RSS,
+sha256 `c2bbbf3e899e849b966858bcf79cc8c163e41aa0216c74dda517c95c30b13f94`.
+
+### What cap 14 does to the panels
+
+`K3p_c14aut` and `K1_c14aut` are `K3'` and `K1` with the cap-14
+automorphism-closed table; everything else about the cascades is unchanged.
+
+| panel | policy | solved | verified | units | over census | wall |
+|---|---|---|---|---|---|---|
+| smoke (12) | K3'/c14aut | 12/12 | 12 | 480 | -- | 0.03 s |
+| regression60 (60) | K3'/c14aut | 60/60 | 60 | **0** | 0 | 0.02 s |
+| regression60 (60) | K1/c14aut | 60/60 | 60 | **0** | 0 | 0.02 s |
+| dev (102) | K3'/c14aut | **102/102** | 102 | 754 | -- | 0.3 s |
+| dev (102) | K1/c14aut | 101/102 | 101 | 1,494 | -- | 0.6 s |
+| val (102) | K3'/c14aut | **102/102** | 102 | 740 | -- | 0.3 s |
+| val (102) | K3'/c12aut | 94/102 | 94 | 11,585 | -- | 8.0 s |
+| test (101) | K3'/c14aut | **101/101** | 101 | 1,504 | -- | 1.0 s |
+| test (101) | K3'/c12aut | 97/101 | 97 | 9,407 | -- | 6.7 s |
+| round-1 residual (41) | K3'/c14aut | 41/41 | 41 | 691 | -- | 0.28 s |
+
+Every solve on every panel decoded with `decode_elementary` and independently
+replayed with `replay_elementary` to the trivial basis.
+
+All 60 regression60 rows and 95 of 102 dev rows are resolved **at the canonical
+root for zero charged units** -- the whole certificate is the stored tail. The
+single dev row `K1` misses is `ac19_109`, the certified-overrun example of
+section 7: it needs the 256-rewrite consecutive-BS collapse that only
+`certified_overrun=True` is allowed to pay for, which is exactly what `K3'`
+adds. The most expensive solved row anywhere is 699 units (test), against the
+1,000-unit allowance.
+
+That is the honest shape of the result: at cap 14 with the automorphism
+closure, the residual panels are no longer a search problem, they are a table
+lookup. Section 11's caveat is therefore the whole story -- see it before
+reading any of these numbers as a statement about search.
+
 
 ## 11. Caveats
 
 * **The table is an offline precomputation and its cost is outside the
-  per-row 1,000-unit allowance.** Section 4 is the price: 0.4 s to 10.5 minutes
-  of single-threaded build, 230 KB to 66 MB of pickle, plus a few hundred MB of
-  process memory to hold the largest table. None of that is charged to any row,
+  per-row 1,000-unit allowance.** Sections 4 and 10 are the price: 0.4 s to
+  **26.9 minutes** of single-threaded build, 230 KB to **282 MB** of artifact,
+  and up to **1.95 GB** of peak build memory (0.37 GB to hold the cap-14 table
+  once loaded). At cap 14 the per-row search cost on the residual panels
+  collapses to nearly nothing precisely because the work moved into that
+  26.9-minute precomputation; a per-row unit count is no longer a meaningful
+  measure of difficulty for a row the table already contains, and should not be
+  reported as one without this sentence attached. None of that is charged to any row,
   and it should not be: it is paid once for the whole campaign. But a
   comparison against the frozen policy's per-row numbers is a comparison of
   *search* work only, and any claim of the form "policy X solves N rows in
   1,000 units" carries this table as a silent premise.
 * **The cap is the knob, and it is exponential.** ~17x more states per +2 cap
-  from 8 to 10, ~11x from 10 to 12. Every doubling of reach costs an order of
+  from 8 to 10, ~11x from 10 to 12, ~8.6x from 12 to 14 (automorphism-closed:
+  7,613 -> 127,873 -> 1,488,649 -> 12,803,449).  Cap 16 would be of order 100
+  million states and several GB even packed at 8 bytes a state. Every doubling of reach costs an order of
   magnitude of memory. There is no free lunch hiding here: the table is a
   memoised endgame, and endgames get big.
 * **`depth` is an upper bound**, per section 3(c). Tails are valid, not
