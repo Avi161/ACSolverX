@@ -1,0 +1,12 @@
+{
+  "rows": 36,
+  "starts": 1061,
+  "budget": 1000,
+  "solved_starts": 0,
+  "solved_rows": 0,
+  "rows_with_raw_gain": 10,
+  "rows_with_mu_gain": 12,
+  "starts_reaching_floor": 903,
+  "mean_starts_per_row": 29.47222222222222,
+  "wall_total": 620.7522818360003
+}
