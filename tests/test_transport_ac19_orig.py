@@ -12,11 +12,19 @@ import os
 import pytest
 
 from experiments.equivalence_classes.lib.autcanon import aut_canon
-from experiments.equivalence_classes.lib.words import canon_pair
+from experiments.equivalence_classes.lib.words import (
+    apply_hom, canon_pair, free_reduce, inv,
+)
 from experiments.search import transport_ac19_orig as tr
-from experiments.search.ac_decode import decode_elementary, replay_elementary
+from experiments.search.ac_decode import (
+    decode_elementary, replay_elementary, to_conjugator,
+)
 from experiments.search.decode_ac_jsonl import replay_packed
 from experiments.search.run_leftovers_1m import read_rows
+
+# Step counts of the shipped paths. Asserted so a regression cannot pass by
+# quietly checking fewer rows.
+STEPS = {"greedy": 2_211, "s20_mk2": 1_069}
 
 
 def _source(arm):
@@ -91,3 +99,76 @@ def test_twenty_eight_orbits_all_carry_a_certificate():
     best = tr.per_orbit({arm: _shipped(arm) for arm in tr.SOURCE})
     assert len(best) == 28
     assert all(1 <= b["tail_moves"] <= 4 for b in best)
+
+
+def _equivariant_steps(rec):
+    """``(matching, total)`` steps of one path under its own ``aut_canon`` phi.
+
+    The identity being checked is the content of the theorem: applying the SAME
+    move -- same target, same sign, conjugator word carried through phi -- to
+    phi of a state gives phi of the next state.
+
+    The move must be applied in the pair's OWN order, with no canonicalization
+    between steps. Canonicalizing mid-check can swap the two relators, after
+    which ``target`` addresses the wrong one and a correct transport reads as a
+    failure (it scored 7 of 23 on the first row that way).
+    """
+    _, _, phi = aut_canon((rec["r1"], rec["r2"]))
+    states, moves = rec["path"], rec["path_moves"]
+    ok = 0
+    for index, move in enumerate(moves):
+        current, nxt = tuple(states[index]), tuple(states[index + 1])
+        target, sign, conjugator = to_conjugator(
+            current, tuple(int(v) for v in move.split("_")))
+        pair = [apply_hom(current[0], phi), apply_hom(current[1], phi)]
+        other = pair[2 - target]
+        oriented = other if sign == 1 else inv(other)
+        moved = apply_hom(conjugator, phi)
+        pair[target - 1] = free_reduce(
+            pair[target - 1] + inv(moved) + oriented + moved)
+        ok += canon_pair(*pair) == canon_pair(apply_hom(nxt[0], phi),
+                                              apply_hom(nxt[1], phi))
+    return ok, len(moves)
+
+
+@pytest.mark.parametrize("arm", sorted(tr.SOURCE))
+def test_every_step_is_equivariant(arm):
+    """phi(move(S)) == move_phi(phi(S)) on every step of every shipped path."""
+    ok = total = 0
+    for rec in _source(arm):
+        a, b = _equivariant_steps(rec)
+        ok += a
+        total += b
+    assert total == STEPS[arm], f"{arm}: {total} steps, expected {STEPS[arm]}"
+    assert ok == total, f"{arm}: only {ok} of {total} steps are equivariant"
+
+
+def test_the_check_would_fail_on_an_untranslated_conjugator():
+    """The equivariance test has to be able to fail, or it proves nothing.
+
+    Leaving the conjugator in the ORIGINAL basis instead of carrying it through
+    phi is the exact mistake the theorem rules out; it must not pass.
+    """
+    rec = _source("greedy")[0]
+    _, _, phi = aut_canon((rec["r1"], rec["r2"]))
+    states, moves = rec["path"], rec["path_moves"]
+    ok = 0
+    for index, move in enumerate(moves):
+        current, nxt = tuple(states[index]), tuple(states[index + 1])
+        target, sign, conjugator = to_conjugator(
+            current, tuple(int(v) for v in move.split("_")))
+        pair = [apply_hom(current[0], phi), apply_hom(current[1], phi)]
+        other = pair[2 - target]
+        oriented = other if sign == 1 else inv(other)
+        pair[target - 1] = free_reduce(          # conjugator NOT transported
+            pair[target - 1] + inv(conjugator) + oriented + conjugator)
+        ok += canon_pair(*pair) == canon_pair(apply_hom(nxt[0], phi),
+                                              apply_hom(nxt[1], phi))
+    assert ok < len(moves), "untranslated conjugators must not reproduce the path"
+
+
+def test_the_tail_is_never_empty_and_never_long():
+    """phi of a terminal pair is a basis, so a tail is always needed."""
+    tails = [r["tail_moves"] for arm in tr.SOURCE for r in _shipped(arm)]
+    assert len(tails) == 58
+    assert min(tails) >= 1 and max(tails) <= 4

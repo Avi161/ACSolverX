@@ -87,7 +87,18 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   Aut(F2)-equivariant) and Nielsen-reduces the resulting basis; 58/58 replay
   from the representative's own words, `rep_moves` = original path_length +
   a 1-4 move tail (median 56 over the 28). That is a certificate, not a
-  search result: the representatives still do not SOLVE at 10M. Names:
+  search result: the representatives still do not SOLVE at 10M. **The
+  equivariance theorem is written out** in that RESULTS.md's "The theorem"
+  section -- the one-line homomorphism computation, what transports (move type,
+  target, sign; the conjugator becomes phi(c)) and what does NOT (the engine's
+  k1/k2 rotation offsets, which is why `to_conjugator` exists), why the tail is
+  never empty, and that it runs both ways. Do not re-derive it. It is checked
+  per step, not just at the endpoint: 2,211 greedy + 1,069 s20_mk2 steps all
+  satisfy phi(move(S)) == move_phi(phi(S)), pinned by
+  `test_every_step_is_equivariant`. The trap that check hides is canonicalizing
+  BETWEEN steps: that can swap the two relators, after which the move's target
+  addresses the wrong one and a correct transport reads as 7 of 23.
+  `ac19_orig_10m_transport_profiles.png` plots it, one panel per original. Names:
   `ac19_<n>` is the n-th ORBIT (position in the orbit list), `ac19x_<n>` is
   dataset LINE n; `ac19_50892` is orbit 50,892 = line 90,721. The workbook
   `ac19_orig_10m_originals.xlsx` (+ CSV twin) is one deliberately small sheet,

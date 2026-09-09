@@ -85,16 +85,83 @@ and nothing ran to exhaustion.
 Avi asked whether the original's path can be applied to the representative
 it came from. It can, and it settles all 28 with an explicit certificate each.
 
+### The theorem
+
 `aut_canon(original)` ships the automorphism `phi` with
-`canon_pair(phi(original)) == representative`. AC moves are equivariant
-under `Aut(F2)`: every stored move is `r_i <- r_i . c^-1 r_j^s c` for a
-conjugator word `c`, and under `phi` it is the same move with `c -> phi(c)`.
-So the original's path, carried step by step, is a path from the
-representative to `(phi(t1), phi(t2))` -- the image of the terminal pair, a
-**basis** of `F2` -- and Nielsen's theorem finishes it with a short tail of
-AC moves (`ac_decode.reduce_basis`, shortest first). No search runs. Every
-certificate was replayed from the representative's own words to `(x, y)` by
-`replay_elementary`, which trusts nothing above it.
+`canon_pair(phi(original)) == representative`.
+
+> **Equivariance.** Let `phi` be an automorphism of `F2`. If a presentation `P`
+> reaches the trivial presentation in `n` AC moves, then `phi(P)` reaches it in
+> `n + k` moves, for a small explicit `k`.
+
+Every AC move is one of three things: invert a relator, swap the two relators,
+or replace `r_i` by `r_i . c^-1 r_j^s c` for a word `c` and a sign `s`. Only the
+third carries any data, and it takes one line, because `phi` is a homomorphism:
+
+    phi( r_i . c^-1 . r_j^s . c )  =  phi(r_i) . phi(c)^-1 . phi(r_j)^s . phi(c)
+
+The right-hand side is **the same move** applied to `(phi(r1), phi(r2))`, with
+the conjugator word `c` replaced by `phi(c)`. Inversion and swap carry no
+conjugator and commute with `phi` for free. So applying `phi` to every state of
+a solving path yields another valid AC path. That is the whole argument, and it
+runs in both directions, since `phi^-1` is an automorphism too: the original and
+its representative are AC-trivial together or not at all.
+
+This is exactly the invariance the **whole 72,779-orbit screen already assumes**
+-- collapsing 156,762 presentations to their `Aut(F2)` orbits is only legitimate
+because AC-triviality is constant on an orbit. What is new here is that it is
+**constructive**: not "both or neither", but an actual move list for the
+representative, which a verifier replays.
+
+**What transports and what does not.** The move type, the target relator and the
+sign are unchanged. The conjugator word becomes `phi(c)`. The engine's
+`(target, jsign, k1, k2)` encoding does NOT transport -- `k1`/`k2` are rotation
+offsets into the current relators, and an offset is meaningless once a basis
+change has rewritten the words. That is why `ac_decode.to_conjugator` converts a
+stored move to its conjugator word first, and why the transport is written
+against words rather than offsets.
+
+**Why there is a tail at all.** The original's path stops at a terminal pair,
+say `(Y, X)`. Push that through `phi` and you get something like `(X, YXX)`:
+still a **basis** of `F2`, because an automorphism carries a generating pair to
+a generating pair, but no longer two single letters. Nielsen's theorem reduces
+any basis to `(x, y)` by invert, swap and multiply, each of which is itself an
+AC move; `ac_decode.reduce_basis` finds the shortest such tail. It is never
+empty and never long:
+
+| tail length | 1 | 2 | 3 | 4 |
+|---|---:|---:|---:|---:|
+| certificates (of 58) | 5 | 17 | 19 | 17 |
+
+**Verified per step, not just at the endpoint.** For every move of every path,
+the translated move applied to `phi` of the state reproduces `phi` of the next
+state:
+
+| | steps | equivariant |
+|---|---:|---:|
+| `greedy`, 40 paths | 2,211 | **2,211** |
+| `s20_mk2`, 18 paths | 1,069 | **1,069** |
+
+`tests/test_transport_ac19_orig.py::test_every_step_is_equivariant` pins this.
+The check must apply the move **in the pair's own order without canonicalizing
+between steps**: canonicalizing mid-check can swap the two relators, after which
+the move's target points at the wrong one and a correct transport reads as a
+failure. Beyond that, every certificate was replayed end to end from the
+representative's own words to `(x, y)` by `replay_elementary`, which trusts
+nothing above it.
+
+### The picture
+
+![length profiles](ac19_orig_10m_transport_profiles.png)
+
+One panel per original, `x` the AC move number and `y` the total relator length.
+The two curves in a panel are **the same sequence of moves**: blue starting from
+the raw dataset presentation, orange starting from its aut-min representative.
+They run move for move to the blue curve's terminal, and the dashed orange stub
+is the Nielsen tail. What the panels show is that the identical route is a much
+harder climb from the aut-min side -- the representative starts shorter and is
+driven far higher in total length on the way -- which is the same fact the node
+counts report, in the geometry rather than in the search.
 
 | | greedy | `s20_mk2` |
 |---|---:|---:|
@@ -317,6 +384,7 @@ In the repo, all under this directory:
 | `leftovers_1m_s20_mk2_b1000000_mrl64_paths.jsonl` | 18 | the same 18 searches with `--track-path`: identical on every key but `seconds`, plus `path` and `path_moves` |
 | `ac19_orig_10m_transported_{greedy,s20_mk2}.jsonl` | 40 + 18 | each original's certificate carried onto its representative, replayed |
 | `ac19_orig_10m_originals.{xlsx,csv}` | 40 | the workbook and its git-diffable twin: original, aut-min form, greedy's cost, both path lengths |
+| `ac19_orig_10m_transport_profiles.{svg,png}` | 40 panels | total relator length along the shared path, both starting points; `plot_ac19_orig_transport.py` |
 
 `verify_ac19_orig_10m.py` re-derives every number above from these files and
 replays all 58 certificates as elementary AC moves (`all checks pass`).
