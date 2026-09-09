@@ -175,6 +175,11 @@ itself -- plus the `checks` that were run.
 `load(path)` recomputes the sha256 and refuses the table if it does not match
 the manifest.
 
+**Determinism is checked, not asserted.** All six tables were rebuilt from
+scratch after every source edit and every pickle came out **byte-identical** to
+the first build (same sha256), which is what makes the manifest's source hashes
+meaningful: the same sources at the same cap give the same table.
+
 ```
 PYTHONPATH=. python3 -m research.residual_20260909.backward_table \
     --cap 10 [--aut-edges] --out research/residual_20260909/tables/ball_cap10.pkl
@@ -345,7 +350,67 @@ alone with the plain cap-10 table -- reaches 86/102, so most of the value is in
 letting the *search* take automorphism edges, and the automorphism-closed table
 is the cheap way to get the same reach out of the frozen allocation.
 
-MEASUREMENT_K_TABLE_PLACEHOLDER
+### The pre-registered candidate cascades (NOTES.md section "Pre-registered candidate cascades")
+
+`K0` is `frozen`. `K1` is the pure ball cascade: the frozen allocation
+(donor 250 / plain 872 / routed rest) plus the ball terminal and nothing else,
+so it is the one candidate the section-7 dominance guarantee covers.
+`K2'`..`K5'` add the certified consecutive-BS overrun and the free BS-DEMOTE
+root macro and reallocate the stages; the stable-power gate that the original
+K2..K5 carried has been **withdrawn** (it lost `ac19_28267` on regression60).
+
+| id | stage 0 | stage 1 (strict donor) | stage 2 (plain S20) | stage 3 (incumbent) |
+|---|---|---|---|---|
+| K1 | -- | 250 + ball | 872 + ball | rest, routed + ball |
+| K2' | BS-DEMOTE | 250 + ball + overrun | 872 + ball | rest, routed + ball |
+| K3' | BS-DEMOTE | 250 + ball + overrun | 300 + ball | rest, routed + ball |
+| K4' | BS-DEMOTE | 250 + ball + overrun | none | rest, routed + ball |
+| K5' | BS-DEMOTE | 250 + ball + overrun | none | rest, forced generator arm + ball |
+
+Each was run once on dev and once on regression60 at 1,000 units, on both
+automorphism-closed tables. `over census` counts regression60 rows charged more
+than the published census spent on them; it must be zero.
+
+| candidate | table | dev solved | dev verified | dev units | dev wall | reg60 solved | reg60 verified | reg60 units | over census | reg60 wall |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K1 | cap-10 aut | 78/102 | 78 | 34,872 | 14.7 s | 60/60 | 60 | 22,176 | 0 | 6.5 s |
+| K2' | cap-10 aut | 79/102 | 79 | 34,132 | 13.7 s | 60/60 | 60 | 22,176 | 0 | 7.4 s |
+| K3' | cap-10 aut | 92/102 | 92 | 26,375 | 15.9 s | 60/60 | 60 | 9,490 | 0 | 3.0 s |
+| K4' | cap-10 aut | 92/102 | 92 | 20,019 | 17.5 s | 60/60 | 60 | 1,970 | 0 | 0.5 s |
+| K5' | cap-10 aut | 92/102 | 92 | 19,850 | 16.5 s | 60/60 | 60 | 1,970 | 0 | 0.6 s |
+| K1 | cap-12 aut | 91/102 | 91 | 15,221 | 6.2 s | 60/60 | 60 | 6,733 | 0 | 2.6 s |
+| K2' | cap-12 aut | 92/102 | 92 | 14,481 | 6.3 s | 60/60 | 60 | 6,733 | 0 | 2.2 s |
+| **K3'** | **cap-12 aut** | **94/102** | **94** | **11,771** | **8.5 s** | **60/60** | **60** | **3,065** | **0** | **1.0 s** |
+| K4' | cap-12 aut | 92/102 | 92 | 13,031 | 13.2 s | 60/60 | 60 | 740 | 0 | 0.2 s |
+| K5' | cap-12 aut | 92/102 | 92 | 13,028 | 13.2 s | 60/60 | 60 | 740 | 0 | 0.2 s |
+
+Best on dev is **K3' on the cap-12 automorphism-closed table, 94/102**, all 94
+decoded and independently replayed, 60/60 on regression60 with no row over its
+census cost. The eight dev rows it does not close are
+
+```
+ac19_11753  ac19_18413  ac19_38222  ac19_45684
+ac19_49255  ac19_54337  ac19_60781  ac19_62145
+```
+
+(the six in **every** candidate's unsolved list, on both tables, are
+`ac19_38222`, `ac19_45684`, `ac19_49255`, `ac19_54337`, `ac19_60781`,
+`ac19_62145` -- the residual core.) None of this is a selection: val.csv and
+test.csv were not opened, and the selection rule in NOTES.md still runs on
+val.csv.
+
+Where the hits happen, from the per-row `ball_stage` field (K3' / cap-12 aut,
+dev): 66 at the canonical **root** -- the row is already inside the ball before
+a single unit is charged -- 1 during donor transport, 20 in the plain S20
+stage, 4 in the incumbent restart. That distribution is the whole story of the
+table: at cap 12 with the automorphism closure, two thirds of the residual dev
+panel is endgame.
+
+The BS-DEMOTE stage-0 macro is a measured **no-op on both panels**: zero rows
+recognised, zero demotable, zero units charged on all 102 dev and all 60
+regression60 rows. It is carried for the residual rows outside these panels
+that it certifies; it costs those panels nothing, exactly as its contract says.
+
 
 ## 9. Caveats
 

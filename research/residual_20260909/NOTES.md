@@ -169,3 +169,37 @@ claim is checked on the census comparison, not asserted.
 - Consistent check: the disabled `stable_square` rule (the b = 2 instance of the
   Britton-over-zero-exponent-generator idea, donor YYXXyxx) stalls on all 8 dev rows that
   carry its donor. Zero residual reach from these rules; their value is cost and theory.
+
+## Validation run (val.csv, 102 hidden rows, opened once; cap-12 automorphism-closed table)
+
+| candidate | solved | verified | units | search wall (s) | smoke |
+|---|---:|---:|---:|---:|---:|
+| K1 | 90 | 90 | 14,258 | 5.7 | 12/12 |
+| K2' | 90 | 90 | 14,258 | 6.0 | 12/12 |
+| K3' | 94 | 94 | 11,585 | 8.9 | 12/12 |
+| K4' | 94 | 94 | 11,868 | 12.2 | 12/12 |
+| K5' | 93 | 93 | 12,058 | 11.3 | 12/12 |
+
+Selected by the pre-registered rule (solves, then units, then wall): K3' on the cap-12
+automorphism-closed table, registered as `K3p_c12aut`: BS-DEMOTE root stage; strict donor
+250 with certified overrun; plain S20 300; incumbent with the rest, routed; the table
+terminal at every generated state in every stage. Regression60 60/60 with no row over its
+census cost; smoke 12/12.
+
+## Frozen test run (test.csv, 101 hidden rows, opened once, after the candidate was fixed)
+
+K3' on the cap-12 automorphism-closed table: **97/101 solved and verified**, 0 errors,
+9,407 units, 6.8 s search wall, 0.43 s certificate wall. Unsolved: ac19_99 (the row the
+BS theory agent had touched once), ac19_6554, ac19_50262, ac19_58570.
+
+## Full census, round 1 (policy K3p_c12aut, 1,000 units, 4 workers)
+
+**72,738 / 72,779 solved and verified (99.944 %); 41 unsolved; 0 errors.** Against the
+published census: 692 gained, 6 lost (all six were plain_s20 solves needing more than the
+300-unit plain stage). Charged units 2,829,457 (published: 6,621,411). Search wall 172.4 s
+(published 389.2 s); certificate wall 203.1 s (published 109.4 s; the table tails add decode
+work); total compute 375 s vs 499 s. Routes: ball_root 24,708 (a third of the census is
+inside the cap-12 automorphism-closed ball), strict_donor 24,415, plain_s20 23,424,
+incumbent_restart 148 solved / 41 unsolved, bs_demote 43. Results in
+results/heuristic_search/ac19_ball_cascade_full_1k/ (SUMMARY.json, RESULTS.md,
+COMPARISON.md, unsolved.csv, 73 shards, manifests).

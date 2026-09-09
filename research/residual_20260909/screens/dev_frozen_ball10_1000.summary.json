@@ -91,20 +91,20 @@
   },
   "clocks": {
     "search_wall": {
-      "sum": 38.49658749199807,
-      "max": 0.6043642589997944
+      "sum": 36.84959755900309,
+      "max": 0.6010036299994681
     },
     "search_cpu": {
-      "sum": 38.493714906999976,
-      "max": 0.6043055000000024
+      "sum": 36.846353393,
+      "max": 0.6009778539999999
     },
     "certificate_wall": {
-      "sum": 0.12727862200017626,
-      "max": 0.017659271999946213
+      "sum": 0.12310907700157259,
+      "max": 0.01885766400027933
     },
     "certificate_cpu": {
-      "sum": 0.12733093999998935,
-      "max": 0.017661458000000074
+      "sum": 0.12313605699999508,
+      "max": 0.018859892000000045
     }
   },
   "panel": "research/residual_20260909/panels/dev.csv",
@@ -114,8 +114,8 @@
   "tag": "dev_frozen_ball10_1000",
   "limit": null,
   "names": null,
-  "warmup_wall": 0.05085276399995564,
-  "git_head": "1168a2a27158de6adcb97d58f314a35b09dd9fc3",
+  "warmup_wall": 0.05974716300079308,
+  "git_head": "f58e75c1f0d0922239e69c251b59c7ac99548d01",
   "versions": {
     "python": "3.11.15",
     "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
@@ -155,15 +155,15 @@
     "research/supermoves_20260908/two_block.py": "6b3e481f90b218223db58235b078ecb4acdae70c0b0dfc7f952ae76adfa07fed",
     "research/supermoves_20260908/verify_final_bundle.py": "5266037ac1a1a13b2c9282986889508791746af22b676c81ec9358293e5fd1d8",
     "research/residual_20260909/backward_table.py": "37576e2a0556e236775c853c2c40f5da7cd18fc8e136bff358469cba7b2e5cdb",
-    "research/residual_20260909/bs_demote_gate.py": "51ad40144e458d95e1674730d020a6b3db3cc3d7259de6764dc6dd4d91192892",
+    "research/residual_20260909/bs_demote_gate.py": "8573e8de28863b5ccd3e167904becd8fa4d3ce68408b7f171f3e4de8c5705cd2",
     "research/residual_20260909/census_run.py": "d11b8c868616084816c5ce9405dba5f29e2dffe0b4db6c55bf55d945e64d9551",
     "research/residual_20260909/census_summarize.py": "1363da41dbb623da0ef9c47b32f2979a9a3799826d1b1c131b28cda11ce1fd82",
     "research/residual_20260909/compare.py": "31ba56e45c60625798b5d5cc96a164981187b786fa5c943c74498ece9e516074",
-    "research/residual_20260909/final_policy_ball.py": "b9f75122b3d19f19d9165737dd1df1d6ee3fd13df8cd5ff88ee6239be5286a86",
-    "research/residual_20260909/harness.py": "fa03dae56e1835039c0b87aa779225125c71a51d82e1cfcb8279619bd5710aec",
+    "research/residual_20260909/final_policy_ball.py": "86653480c1f43caaa1ec9a7584afc05cda678a29cc51f7d03d75f41091fac93e",
+    "research/residual_20260909/harness.py": "b314be17feb9479491124ec402d856089f16c57c52659fa63da80036e8d38d35",
     "research/residual_20260909/mid_search_ball.py": "67236855b73410aad8430a3ec45fb7d4943a8ebf2088676fa36b6528c092a03f",
     "research/residual_20260909/plain_search_ball.py": "5856721b385b45515101cb03e82b3405578fbd794f3b54c9ccfa0e7c2032c426",
-    "research/residual_20260909/policies.py": "87ccc2b4e85fdd7bbdb43d1e584f06f5ce914d31bbf6b2370efeabc96e57fd92",
+    "research/residual_20260909/policies.py": "7328afe0bbc1a9de2d39e0d7eca90ec65455af27f7db634abbfe69a18c693598",
     "research/residual_20260909/theorem_frequency.py": "3da52b504ddee0a8d23c0f588dd8ef6fe940dc0bd6580f7adaf1e306d183ef8a"
   }
 }
