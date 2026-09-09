@@ -31,8 +31,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from experiments.equivalence_classes.lib.words import (
-    SIGNED_PERMS, abelian_det, apply_hom, apply_pair, canon_pair, canon_rel,
-    cyc_reduce, exp_sums, inv, replay_move, rot,
+    SIGNED_PERMS, apply_hom, canon_pair, canon_rel, cyc_reduce, exp_sums, inv,
+    replay_move,
 )
 
 HERE = Path(__file__).resolve().parent
@@ -213,27 +213,12 @@ def donor_trace(record, family_relator_canon):
                 n_steps=len(steps))
 
 
-def replay_check(pair, states, steps):
-    """Independently re-run a mixed certificate with words.replay_move /
-    words.apply_pair; returns True iff every stored state is reproduced."""
-    cur = canon_pair(*pair)
-    if list(cur) != [canon_rel(states[0][0]), canon_rel(states[0][1])] and \
-       tuple(cur) != tuple(states[0]):
-        cur = tuple(states[0])
-    for i, step in enumerate(steps):
-        if step.get('kind') == 'automorphism':
-            cur = apply_pair(cur, step['images'])
-        else:
-            cur = replay_move(cur, parse_move(step['move']))
-        if tuple(cur) != tuple(states[i + 1]):
-            return False
-    return True
-
-
 # --------------------------------------------------------------------------
 # family assembly
 # --------------------------------------------------------------------------
 def family(key, index=None, census=None, records=True):
+    """Every census row carrying the orbit ``key``, in the family frame, with
+    its census certificate record attached when ``records``."""
     index = load_index() if index is None else index
     census = load_census() if census is None else census
     by_name = {row['name']: row for row in census}
@@ -243,13 +228,329 @@ def family(key, index=None, census=None, records=True):
         frame = normalize_row(row['r1'], row['r2'], key)
         members.append(dict(name=name, index=int(row['name'].split('_')[1]),
                             r1=row['r1'], r2=row['r2'], **frame))
-    members.sort(key=lambda m: m['index'])
+    members.sort(key=lambda member: member['index'])
     if records:
-        recs = load_records([m['name'] for m in members])
-        for m in members:
-            r = recs.get(m['name'])
-            m['record'] = r
+        found = load_records([member['name'] for member in members])
+        for member in members:
+            member['record'] = found.get(member['name'])
     return members
+
+
+# --------------------------------------------------------------------------
+# the backward ball (whichever representation is currently shipped)
+# --------------------------------------------------------------------------
+TABLES = ROOT / 'research' / 'residual_20260909' / 'tables'
+_BALL = {}
+
+# sha256 of tables/ball_cap12_aut.pkl as verified against its manifest at the
+# start of this session.  A concurrent session is migrating that manifest to a
+# compact .npz, so the loader tries whichever representation is loadable and,
+# if the manifest is missing entirely, checks the digest against this pin.
+BALL_CAP12_AUT_SHA256 = 'c12115452e9d4d99c2d6d057ff8324ce06516f4043d9a15026f59916f6f46cfb'
+BALL_CAP12_AUT_SIZE = 1488649
+
+
+def load_ball(stem='ball_cap12_aut'):
+    """Load ``tables/<stem>``, accepting the ``.npz`` compact table or the
+    ``.pkl`` dict, and verifying the digest here when no manifest is present."""
+    import hashlib
+    from research.residual_20260909 import backward_table as _bt
+    if stem in _BALL:
+        return _BALL[stem]
+    errors = []
+    for suffix in ('.npz', '.pkl'):
+        path = TABLES / f'{stem}{suffix}'
+        if not path.exists():
+            continue
+        try:
+            _BALL[stem] = _bt.load(path)
+            return _BALL[stem]
+        except Exception as exc:                      # missing / renamed manifest
+            errors.append(f'{path.name}: {exc}')
+    path = TABLES / f'{stem}.pkl'
+    if stem == 'ball_cap12_aut' and path.exists():
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != BALL_CAP12_AUT_SHA256:
+            raise ValueError(f'{path}: sha256 {digest} != pinned {BALL_CAP12_AUT_SHA256}')
+        table = _bt.load(path, verify_sha256=False)
+        if len(table) != BALL_CAP12_AUT_SIZE:
+            raise ValueError(f'{path}: {len(table)} states, expected {BALL_CAP12_AUT_SIZE}')
+        _BALL[stem] = table
+        return table
+    raise FileNotFoundError(f'no loadable table for {stem} in {TABLES}: ' + '; '.join(errors))
+
+
+# --------------------------------------------------------------------------
+# R-preserving ("W-") moves
+# --------------------------------------------------------------------------
+def w_children(pair, cap):
+    """``{child_pair: move}`` for every Definition 2.1 move of ``pair`` that
+    leaves one relator intact (an *R-preserving* move: only the companion is
+    rewritten) and keeps both relators at length ``<= cap``.
+
+    Children are produced with ``words.replay_move`` itself, so every move in
+    the returned dict is literally replayable.
+    """
+    out = {}
+    for target in (1, 2):
+        keep = canon_rel(pair[2 - target])
+        for jsign in (1, -1):
+            for k1 in range(len(pair[target - 1])):
+                for k2 in range(len(pair[2 - target])):
+                    move = (target, jsign, k1, k2)
+                    child = replay_move(pair, move)
+                    if keep not in child or max(map(len, child)) > cap:
+                        continue
+                    out.setdefault(child, move)
+    return out
+
+
+def w_ball(pair, cap, depth):
+    """BFS over R-preserving moves; returns ``{pair: (parent, move)}``."""
+    root = canon_pair(*pair)
+    parent = {root: (None, None)}
+    frontier = [root]
+    for _ in range(depth):
+        nxt = []
+        for state in frontier:
+            for child, move in w_children(state, cap).items():
+                if child in parent:
+                    continue
+                parent[child] = (state, move)
+                nxt.append(child)
+        frontier = nxt
+        if not nxt:
+            break
+    return parent
+
+
+def w_path(parent, state):
+    """``(states, moves)`` from the BFS root of ``parent`` down to ``state``."""
+    states, moves = [state], []
+    while parent[state][0] is not None:
+        previous, move = parent[state]
+        states.append(previous)
+        moves.append(move)
+        state = previous
+    return states[::-1], moves[::-1]
+
+
+# --------------------------------------------------------------------------
+# the certificate corpus ("trail table")
+# --------------------------------------------------------------------------
+def certificate_entries(record):
+    """``[(key, depth, successor_key, move), ...]`` for one verified census
+    certificate, in exactly the schema ``backward_table.tail`` walks.
+
+    Returns ``None`` unless the record is a verified solve whose stored mixed
+    path ends at the canonical trivial pair with no packed elementary tail (a
+    packed tail is not walkable as a successor chain).
+    """
+    from experiments.search.heuristic_1k import pack
+    if not record.get('solved') or not record.get('verified'):
+        return None
+    if record.get('elementary_tail'):
+        return None
+    states = [tuple(state) for state in record['states']]
+    if states[-1] != ('Y', 'X'):
+        return None
+    entries = []
+    depth = len(states) - 1
+    for i, step in enumerate(record['steps']):
+        move = (step['images'] if step.get('kind') == 'automorphism'
+                else tuple(int(v) for v in step['move'].split('_')))
+        entries.append((pack(states[i]), depth - i, pack(states[i + 1]), move))
+    return entries
+
+
+def build_corpus(records, base=None, provenance=None):
+    """``{key: (depth, successor_key, move)}`` over many certificates.
+
+    ``base`` (a backward ball) is subtracted: a state the ball already closes
+    contributes nothing.  ``provenance``, if a dict, collects
+    ``key -> record name`` for the shallowest contributor.
+    """
+    corpus = {}
+    for record in records:
+        entries = certificate_entries(record)
+        if entries is None:
+            continue
+        for key, depth, successor, move in entries:
+            if base is not None and key in base:
+                continue
+            current = corpus.get(key)
+            if current is None or current[0] > depth:
+                corpus[key] = (depth, successor, move)
+                if provenance is not None:
+                    provenance[key] = record.get('name')
+    return corpus
+
+
+def iter_records(directory=BALL):
+    """Stream every certificate record of a census result directory."""
+    for _lo, _hi, path in _shards(directory):
+        with open(path) as stream:
+            for line in stream:
+                if line.strip():
+                    yield json.loads(line)
+
+
+class LayeredTable:
+    """A corpus dict layered over a backward ball, with the ball's read API.
+
+    ``final_policy_ball`` / ``mid_search_ball`` / ``plain_search_ball`` only ask
+    a table for ``key in table``, ``table.get(key)``, ``table[key]`` and
+    ``len(table)``, and read a tail with ``backward_table.tail``, which walks
+    ``table[key] -> (depth, successor, move)``.  This object answers all of
+    those from the corpus first and the ball second, so it is a drop-in
+    replacement for the ball.
+    """
+    __slots__ = ('extra', 'base')
+
+    def __init__(self, extra, base):
+        self.extra, self.base = extra, base
+
+    def __len__(self):
+        return len(self.extra) + len(self.base)
+
+    def __contains__(self, key):
+        return key in self.extra or key in self.base
+
+    def get(self, key, default=None):
+        value = self.extra.get(key)
+        return value if value is not None else self.base.get(key, default)
+
+    def __getitem__(self, key):
+        value = self.extra.get(key)
+        if value is not None:
+            return value
+        return self.base[key]
+
+
+# --------------------------------------------------------------------------
+# Magnus frame of a one-relator family group G = <x, y | R>
+# --------------------------------------------------------------------------
+def magnus_frame(word):
+    """The Magnus/HNN data of ``G = <x, y | word>``, when one exponent sum
+    divides the other so a single Nielsen shear puts one of them at zero.
+
+    Returns a dict with
+
+    ``images``   the ambient shear (``x -> x y^m`` or ``y -> y x^k``) applied
+                 to reach the frame -- an ordinary transport step, not an AC
+                 move;
+    ``relator``  the transported relator ``R~`` (exponent sum 0 in ``stable``);
+    ``stable``   the stable letter of the HNN decomposition (the generator
+                 whose exponent sum in ``R~`` is 0);
+    ``base``     the other generator;  ``mu``/``nu`` the index range of the
+                 conjugates ``b_i = t^i b t^-i`` occurring in the rewritten
+                 relator, and ``star`` that relator as ``[(i, sign), ...]``.
+
+    ``None`` when neither exponent sum divides the other (no single-shear
+    frame; a frame still exists but needs a longer change of basis).
+    """
+    # The stable letter of the Magnus/HNN decomposition is the generator whose
+    # exponent sum in the relator is ZERO: it is the one that survives in the
+    # retraction G -> Z killing the relator, and the base is generated by the
+    # conjugates of the other generator.  (Check against BS(m, m+1) =
+    # b^-1 a^m b a^-(m+1): exp_b = 0 and b is the stable letter, as in
+    # STALLED_BS_THEORY.md section 1.)
+    ex, ey = exp_sums(word)
+    if ex == 0:
+        images, transported, stable, base = {'x': 'x', 'y': 'y'}, cyc_reduce(word), 'x', 'y'
+    elif ey == 0:
+        images, transported, stable, base = {'x': 'x', 'y': 'y'}, cyc_reduce(word), 'y', 'x'
+    elif ex % ey == 0:                      # y -> y x^(-ex/ey) puts exp_x at 0
+        k = ex // ey
+        images = {'x': 'x', 'y': 'y' + ('x' * (-k) if k < 0 else 'X' * k)}
+        transported, stable, base = cyc_reduce(apply_hom(word, images)), 'x', 'y'
+    elif ey % ex == 0:                      # x -> x y^(-ey/ex) puts exp_y at 0
+        m = ey // ex
+        images = {'x': 'x' + ('y' * (-m) if m < 0 else 'Y' * m), 'y': 'y'}
+        transported, stable, base = cyc_reduce(apply_hom(word, images)), 'y', 'x'
+    else:
+        return None
+    assert exp_sums(transported)['xy'.index(stable)] == 0
+    level, star = 0, []
+    for char in transported:
+        if char == stable:
+            level += 1
+        elif char == stable.upper():
+            level -= 1
+        elif char == base:
+            star.append((level, 1))
+        else:
+            star.append((level, -1))
+    indices = [i for i, _ in star]
+    counts = Counter(indices)
+    mu, nu = min(indices), max(indices)
+    return dict(images=images, relator=transported, stable=stable, base=base,
+                mu=mu, nu=nu, star=star, counts={i: counts[i] for i in range(mu, nu + 1)},
+                extremes_once=(counts[mu] == 1, counts[nu] == 1))
+
+
+def magnus_word(frame):
+    """Re-expand a Magnus rewriting into a word in ``x, y`` -- the check that
+    ``star`` really is the transported relator."""
+    stable, base = frame['stable'], frame['base']
+    out = []
+    for level, sign in frame['star']:
+        conj = (stable if level > 0 else stable.upper()) * abs(level)
+        out.append(conj + (base if sign > 0 else base.upper()) + inv(conj))
+    return cyc_reduce(''.join(out))
+
+
+def family_report(index=None, census=None):
+    """The per-family table FAMILY_DATA.md is built from."""
+    index = load_index() if index is None else index
+    census = load_census() if census is None else census
+    unsolved = load_unsolved()
+    by_family = defaultdict(list)
+    for row in unsolved:
+        by_family[orbit_key(row['r1'])].append(row['name'])
+    unsolved_names = {row['name'] for row in unsolved}
+    out = []
+    for key, names in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        members = family(key, index=index, census=census, records=True)
+        routes = Counter()
+        first_move = Counter()
+        survives = []
+        lengths = dict(solved=[], unsolved=[])
+        for member in members:
+            record = member['record']
+            solved = bool((record or {}).get('solved'))
+            lengths['solved' if solved else 'unsolved'].append(len(member['companion']))
+            if not solved:
+                continue
+            routes[record['policy_route']] += 1
+            own = canon_rel(member['r1'] if member['role'] == 1 else member['r2'])
+            states = [tuple(state) for state in record['states']]
+            steps = record['steps']
+            if steps:
+                step = steps[0]
+                if step.get('kind') == 'automorphism':
+                    first_move['automorphism'] += 1
+                else:
+                    target = parse_move(step['move'])[0]
+                    first_move['rewrites_R' if canon_rel(states[0][target - 1]) == own
+                               else 'keeps_R'] += 1
+            gone = next((i for i, state in enumerate(states)
+                         if own not in (canon_rel(state[0]), canon_rel(state[1]))), len(states))
+            survives.append(gone)
+        exps = exp_sums(key)
+        out.append(dict(
+            family=key, length=len(key), exp_x=exps[0], exp_y=exps[1],
+            census_rows=len(members), unsolved=sorted(names),
+            n_unsolved=len(names),
+            routes=dict(routes), first_move=dict(first_move),
+            steps_until_R_gone=dict(
+                minimum=min(survives) if survives else None,
+                median=sorted(survives)[len(survives) // 2] if survives else None,
+                maximum=max(survives) if survives else None),
+            companion_length=dict(
+                solved=sorted(lengths['solved']), unsolved=sorted(lengths['unsolved'])),
+        ))
+    return out
 
 
 def main(argv=None):
@@ -257,6 +558,8 @@ def main(argv=None):
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--build', action='store_true', help='rebuild the orbit index cache')
     parser.add_argument('--families', action='store_true', help='print the family table')
+    parser.add_argument('--report', action='store_true',
+                        help='write FAMILY_mine.json (the per-family tables)')
     args = parser.parse_args(argv)
     index = load_index(rebuild=args.build)
     if args.families:
@@ -269,6 +572,12 @@ def main(argv=None):
             ex, ey = exp_sums(key)
             print(f'{key:22s} {len(key):3d} {ex:3d} {ey:3d} {len(names):8d} '
                   f'{len(index.get(key, [])):7d}  ' + ','.join(names))
+    if args.report:
+        report = family_report(index=index)
+        path = HERE / 'FAMILY_mine.json'
+        with open(path, 'w') as stream:
+            json.dump(report, stream, indent=1)
+        print(f'wrote {path} ({len(report)} families)')
     return 0
 
 

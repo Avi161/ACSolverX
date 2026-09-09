@@ -19,20 +19,20 @@
   },
   "clocks": {
     "search_wall": {
-      "sum": 6.76915633999306,
-      "max": 1.1228532850000192
+      "sum": 6.701993003005555,
+      "max": 0.9739912579989323
     },
     "search_cpu": {
-      "sum": 6.755076332999997,
-      "max": 1.1092780060000003
+      "sum": 6.701205943000001,
+      "max": 0.9738581829999999
     },
     "certificate_wall": {
-      "sum": 0.4320487700033482,
-      "max": 0.009831958999711787
+      "sum": 0.443745366001167,
+      "max": 0.010727771999881952
     },
     "certificate_cpu": {
-      "sum": 0.4321372190000039,
-      "max": 0.009833721000000573
+      "sum": 0.44387584799999535,
+      "max": 0.010729635999999765
     }
   },
   "panel": "research/residual_20260909/panels/test.csv",
@@ -42,8 +42,8 @@
   "tag": "test_K3p_c12aut_1000",
   "limit": null,
   "names": null,
-  "warmup_wall": 1.9687542530000428,
-  "git_head": "f58e75c1f0d0922239e69c251b59c7ac99548d01",
+  "warmup_wall": 1.8860327110014623,
+  "git_head": "649430ead7d3fcd5c6cf9d11134b51e4ef1836e4",
   "versions": {
     "python": "3.11.15",
     "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
@@ -82,7 +82,7 @@
     "research/supermoves_20260908/summarize_full_ac19_final1k.py": "0acb4d2b07e0d97f4c892e01f69ff6cdb84e2191763e7a4e05dd22a8b872e867",
     "research/supermoves_20260908/two_block.py": "6b3e481f90b218223db58235b078ecb4acdae70c0b0dfc7f952ae76adfa07fed",
     "research/supermoves_20260908/verify_final_bundle.py": "5266037ac1a1a13b2c9282986889508791746af22b676c81ec9358293e5fd1d8",
-    "research/residual_20260909/backward_table.py": "37576e2a0556e236775c853c2c40f5da7cd18fc8e136bff358469cba7b2e5cdb",
+    "research/residual_20260909/backward_table.py": "025e8f69f92eebd76ae254b6f1478b7cb93c0231fd149a3aeca8423ee97a3fd2",
     "research/residual_20260909/bs_demote_gate.py": "8573e8de28863b5ccd3e167904becd8fa4d3ce68408b7f171f3e4de8c5705cd2",
     "research/residual_20260909/census_run.py": "d11b8c868616084816c5ce9405dba5f29e2dffe0b4db6c55bf55d945e64d9551",
     "research/residual_20260909/census_summarize.py": "1363da41dbb623da0ef9c47b32f2979a9a3799826d1b1c131b28cda11ce1fd82",
@@ -91,7 +91,8 @@
     "research/residual_20260909/harness.py": "b314be17feb9479491124ec402d856089f16c57c52659fa63da80036e8d38d35",
     "research/residual_20260909/mid_search_ball.py": "67236855b73410aad8430a3ec45fb7d4943a8ebf2088676fa36b6528c092a03f",
     "research/residual_20260909/plain_search_ball.py": "5856721b385b45515101cb03e82b3405578fbd794f3b54c9ccfa0e7c2032c426",
-    "research/residual_20260909/policies.py": "7328afe0bbc1a9de2d39e0d7eca90ec65455af27f7db634abbfe69a18c693598",
+    "research/residual_20260909/policies.py": "0c5d66812e2629b3ec4a4cfa0dde9b68d7a96cc843ece54eec2d601c5f05493c",
+    "research/residual_20260909/policies_round2.py": "a2da3612dd45489dff8002ec9be1da1510a03e5317adc8c00f8d33cfba7ccc3a",
     "research/residual_20260909/theorem_frequency.py": "3da52b504ddee0a8d23c0f588dd8ef6fe940dc0bd6580f7adaf1e306d183ef8a"
   }
 }

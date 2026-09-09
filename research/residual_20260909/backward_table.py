@@ -531,7 +531,15 @@ def _kernel_hashes():
 
 
 def manifest_path(path):
-    return Path(path).with_suffix('.manifest.json')
+    """The manifest beside a table file.
+
+    ``.pkl`` keeps the historical ``<stem>.manifest.json``; ``.npz`` appends
+    instead (``<stem>.npz.manifest.json``) so a compact table and a dict table
+    of the same ball never share -- and overwrite -- one manifest."""
+    path = Path(path)
+    if path.suffix == '.npz':
+        return path.with_name(path.name + '.manifest.json')
+    return path.with_suffix('.manifest.json')
 
 
 def save(table, path, cap=None, build_stats=None, checks=None):

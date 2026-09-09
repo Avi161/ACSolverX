@@ -412,7 +412,94 @@ regression60 rows. It is carried for the residual rows outside these panels
 that it certifies; it costs those panels nothing, exactly as its contract says.
 
 
-## 9. Caveats
+## 10. Compact mode: the cap-14 table
+
+At cap 12 the automorphism-closed ball is 1.49M states and a 69 MB pickle that
+inflates to roughly 600 MB of Python objects once loaded. At cap 14 it is an
+order of magnitude larger again, and the dict-of-`bytes` representation would
+need several gigabytes **per worker**. Compact mode stores the same ball in
+four numpy columns and never creates a Python object per state.
+
+### The packing
+
+A canonical pair is `(r1, r2)` with `la = len(r1)`, `lb = len(r2)`, both in
+`1..15`, and at cap <= 14 also `la + lb <= 28`. Each symbol is one of the four
+engine codes `X=1, Y=2, x=3, y=4`, so `code - 1` is exactly two bits. One
+uint64 holds the pair:
+
+```
+bits 63..60   la                       (4 bits, 1..15)
+bits 59..56   lb                       (4 bits, 1..15)
+bits 55..0    2 bits per symbol, code-1, little-endian:
+              symbol t of r1 at bits 2t, symbol t of r2 at bits 2*(la+t)
+```
+
+`2*(la+lb) <= 56` payload bits, so nothing collides with the two length
+nibbles. It is a **bijection** on canonical pairs with relators of length
+1..15: the lengths are stored outside the payload and every symbol has its own
+field, so `_unpack_u64` inverts it and returns the identical
+`heuristic_1k.pack` bytes the dict tables use (`test_compact_packing_is_a_bijection`
+round-trips a real ball and checks that an over-long pair packs to the reserved
+value `0`). `0` is never a valid word (`la >= 1` forces a nonzero high nibble),
+which is what lets it double as the empty slot of the build's hash set.
+
+The move is one int32:
+
+```
+-1                  no move (the trivial pair)
+-2                  substitution, not yet verified (build-time only)
+byte0 = 1 or 2      substitution: target; byte1 = 1 for jsign +1, 2 for -1;
+                    byte2 = k1; byte3 = k2
+byte0 = 0           RESERVED for the four Nielsen automorphism steps;
+                    byte1 is the index into heuristic_1k.NIELSEN
+```
+
+Every field is at most 14 at cap 14, so the value stays far below 2**31.
+
+### The build
+
+Same ball, same enumeration, same forward verification -- only the bookkeeping
+changes. Candidate generation, the Nielsen images, the free/cyclic reduction,
+the canonical form and the packing are all `@njit` and write packed uint64s
+straight into a preallocated buffer. Per level the frontier is walked in
+**chunks** sized so the candidate buffer can never overflow (`_level_chunk`
+returns how many states it consumed), which is what bounds peak memory no
+matter how wide a level gets. Per chunk: `_hs_missing` against a numba
+open-addressing hash set drops what is already known, `np.unique(..., return_index=True)`
+dedups keeping the first proposal, and `_verify_many` runs the production
+kernel on every remaining candidate in **one** numba call instead of one call
+per candidate. A candidate whose first proposal fails verification is retried
+against its other proposals at the same level, exactly as the dict builder
+does, so the ball and the depths come out identical.
+
+Checked, not asserted: at caps 8 and 10 (plain and automorphism-closed) and at
+cap 12 automorphism-closed, `build_compact` is **key-for-key and depth-for-depth
+identical** to `build`. The stored *successor* agrees on 73% of the cap-12
+entries and differs on the rest, because the frontier is ordered by packed key
+here and by raw byte key there; both are kernel edges, both replay, and both
+give the same certificate length distribution.
+
+### `CompactTable`
+
+`CompactTable` satisfies the same mapping protocol the cascade already uses --
+`key in table`, `table[key]`, `table.get(key)`, `len(table)`, with `key` the
+same `pack` bytes and `table[key] == (depth, successor_key_bytes, move)` -- so
+`plain_search_ball`, `mid_search_ball` and `final_policy_ball` are unchanged.
+`backward_table.tail` dispatches to `CompactTable.tail`, an index-walking fast
+path that never re-hashes. Lookup is `_find_bytes`: one numba call that takes
+the `bytes` object directly (numba reads it as a read-only uint8 buffer), packs
+it and binary-searches the sorted uint64 column, with no Python-level work in
+between.
+
+Persistence is `.npz` plus a `<name>.npz.manifest.json` (the suffix is part of
+the manifest name so a `.pkl` and a `.npz` of the same ball can coexist without
+one clobbering the other's manifest), carrying the sha256 of the `.npz`, the
+cap, the size, the depth histogram, the build wall seconds, peak RSS, and the
+replay check. `load` refuses a file whose sha256 does not match.
+
+MEASUREMENT_COMPACT_PLACEHOLDER
+
+## 11. Caveats
 
 * **The table is an offline precomputation and its cost is outside the
   per-row 1,000-unit allowance.** Section 4 is the price: 0.4 s to 10.5 minutes

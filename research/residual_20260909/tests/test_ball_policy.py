@@ -211,3 +211,88 @@ def test_automorphism_tail_certificate_decodes():
     pair = unpack(key)
     moves = decode_elementary(list(pair), states, steps, None)
     assert sorted(word.lower() for word in replay_elementary(list(pair), moves)) == ['x', 'y']
+
+
+# ---------------------------------------------------------------------------
+# compact mode: the same ball in four numpy columns
+# ---------------------------------------------------------------------------
+@pytest.mark.parametrize('aut', [False, True])
+def test_compact_build_matches_the_dict_build(aut):
+    """Same ball, same depths -- only the representation changes."""
+    compact = bt.build_compact(8, aut_edges=aut)
+    dictionary = bt.build(8, aut_edges=aut)
+    assert len(compact) == len(dictionary)
+    assert {bt._unpack_u64(key) for key in compact.keys} == set(dictionary)
+    for key, (depth, _successor, _move) in dictionary.items():
+        assert compact[key][0] == depth
+        assert key in compact
+    assert bt.check_replay_sample(compact, sample=len(compact))['ok']
+
+
+def test_compact_packing_is_a_bijection():
+    """`_pack_bytes_key` / `_unpack_u64` round-trip every key of a real ball,
+    and reject a pair with a relator longer than the packing allows."""
+    table = bt.build_compact(8, aut_edges=True)
+    for packed in table.keys[::37]:
+        key = bt._unpack_u64(packed)
+        assert bt._pack_bytes_key(key) == packed
+        assert bt.unpack(key) == bt.unpack(bt._unpack_u64(bt._pack_bytes_key(key)))
+    oversized = pack(('x' * 16, 'y' * 3))
+    assert bt._pack_bytes_key(oversized) == 0
+    assert oversized not in table
+
+
+def test_compact_move_codes_round_trip():
+    table = bt.build_compact(8, aut_edges=True)
+    seen_substitution = seen_automorphism = False
+    for i in range(0, len(table), 13):
+        move = bt._decode_move(table.move[i])
+        if move is None:
+            continue
+        assert bt._encode_move(move) == int(table.move[i])
+        seen_automorphism |= isinstance(move, dict)
+        seen_substitution |= not isinstance(move, dict)
+    assert seen_substitution and seen_automorphism
+
+
+def test_compact_save_load_and_tamper_detection(tmp_path):
+    table = bt.build_compact(8)
+    target = tmp_path / 'ball_cap08.npz'
+    bt.save(table, target, cap=8, build_stats={'build_wall_seconds': 0.0})
+    assert bt.manifest_path(target).name == 'ball_cap08.npz.manifest.json'
+    reloaded = bt.load(target)
+    assert len(reloaded) == len(table)
+    assert (reloaded.keys == table.keys).all()
+    assert (reloaded.succ == table.succ).all()
+    assert (reloaded.move == table.move).all()
+    blob = bytearray(target.read_bytes())
+    blob[-1] ^= 0xFF
+    target.write_bytes(bytes(blob))
+    with pytest.raises(ValueError, match='sha256'):
+        bt.load(target)
+
+
+def test_compact_tail_certificate_decodes():
+    table = bt.build_compact(8, aut_edges=True)
+    key = bt._unpack_u64(table.keys[int(table.depth.argmax())])
+    states, steps = bt.tail(table, key)          # dispatches to CompactTable.tail
+    assert states[-1] == ['Y', 'X']
+    pair = bt.unpack(key)
+    moves = decode_elementary(list(pair), states, steps, None)
+    assert sorted(word.lower() for word in replay_elementary(list(pair), moves)) == ['x', 'y']
+
+
+def test_compact_cascade_agrees_with_the_dict_cascade():
+    """Same table, two representations: same solved flags, same units, and
+    every compact certificate still decodes and replays."""
+    dict_table = bt.build(8, aut_edges=True)
+    compact_table = bt.build_compact(8, aut_edges=True)
+    for row in _rows(SMOKE):
+        pair = (row['r1'], row['r2'])
+        a = final_policy_ball.search(pair, budget=1000, table=dict_table)
+        b = final_policy_ball.search(pair, budget=1000, table=compact_table)
+        assert (a['solved'], a['nodes_explored'], a['policy_route']) == \
+               (b['solved'], b['nodes_explored'], b['policy_route']), row['name']
+        assert a['ball_hit'] == b['ball_hit'] and a['ball_stage'] == b['ball_stage']
+        if b['solved']:
+            assert _verify(pair, b), row['name']

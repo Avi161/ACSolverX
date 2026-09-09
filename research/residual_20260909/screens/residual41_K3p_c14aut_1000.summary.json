@@ -1,52 +1,41 @@
 {
-  "rows": 102,
-  "solved": 94,
-  "verified": 94,
+  "rows": 41,
+  "solved": 41,
+  "verified": 41,
   "errors": 0,
-  "unsolved_names": [
-    "ac19_14690",
-    "ac19_22263",
-    "ac19_25325",
-    "ac19_37426",
-    "ac19_40167",
-    "ac19_51034",
-    "ac19_66385",
-    "ac19_66724"
-  ],
-  "total_nodes_explored": 11585,
-  "mean_elementary_count": 1585.9893617021276,
+  "unsolved_names": [],
+  "total_nodes_explored": 691,
+  "mean_elementary_count": 1896.5853658536585,
   "route_counts": {
-    "ball_root": 63,
-    "plain_s20": 24,
-    "incumbent_restart": 14,
-    "strict_donor": 1
+    "plain_s20": 15,
+    "ball_root": 26
   },
   "clocks": {
     "search_wall": {
-      "sum": 7.955927246997817,
-      "max": 1.0718474320001405
+      "sum": 0.2825142020064959,
+      "max": 0.09458304799954931
     },
     "search_cpu": {
-      "sum": 7.954373470000006,
-      "max": 1.0717898050000003
+      "sum": 0.2824631339999999,
+      "max": 0.09458262799999995
     },
     "certificate_wall": {
-      "sum": 0.5377401600017038,
-      "max": 0.12227806500050065
+      "sum": 0.2732430059950275,
+      "max": 0.012922750000143424
     },
     "certificate_cpu": {
-      "sum": 0.537820724000003,
-      "max": 0.12228049299999988
+      "sum": 0.2732999250000008,
+      "max": 0.012925227999999844
     }
   },
-  "panel": "research/residual_20260909/panels/val.csv",
-  "panel_sha256": "47c17384ffb3ab925023def34f6a421ad5ab55a9927a270fc014f779a084b67c",
-  "policy": "K3p_c12aut",
+  "panel": "research/residual_20260909/panels/residual_round1.csv",
+  "panel_sha256": "ca8fe8a67beb3fe55a136efdf3f5f5ae535fa3762e4bfc8e04b036d932a797a6",
+  "policy": "K3p_c14aut",
   "budget": 1000,
-  "tag": "val_K3p_c12aut_1000",
+  "tag": "residual41_K3p_c14aut_1000",
   "limit": null,
   "names": null,
-  "warmup_wall": 1.9262871269984316,
+  "warmup_wall": 1.7920073679997586,
   "git_head": "649430ead7d3fcd5c6cf9d11134b51e4ef1836e4",
   "versions": {
     "python": "3.11.15",

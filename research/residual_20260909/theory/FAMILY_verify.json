@@ -1,0 +1,3579 @@
+{
+ "A": {
+  "words_checked": 155,
+  "symmetry_images_per_word": "8 perms x 2 x |R| rotations",
+  "failures": 0,
+  "families": 19
+ },
+ "B": {
+  "rotation_identities": 1832,
+  "r_preserving_children": 2346,
+  "failures": 0
+ },
+ "CD": {
+  "certified": [
+   "ac19_18413",
+   "ac19_25325",
+   "ac19_2696",
+   "ac19_31624",
+   "ac19_40167",
+   "ac19_45056",
+   "ac19_51124",
+   "ac19_54337",
+   "ac19_54514",
+   "ac19_56260",
+   "ac19_62145",
+   "ac19_62816",
+   "ac19_64163",
+   "ac19_6554",
+   "ac19_65967",
+   "ac19_66385",
+   "ac19_66543",
+   "ac19_69139",
+   "ac19_70845",
+   "ac19_99"
+  ],
+  "details": [
+   {
+    "name": "ac19_18413",
+    "r_preserving_moves": 5,
+    "chain": [
+     [
+      "ac19_18413",
+      "ac19_25325"
+     ]
+    ],
+    "source": "ac19_25945",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 47,
+    "elementary": 2561,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_25325",
+    "r_preserving_moves": 3,
+    "chain": [],
+    "source": "ac19_25945",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 44,
+    "elementary": 2473,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_2696",
+    "r_preserving_moves": 1,
+    "chain": [],
+    "source": "ac19_25945",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 41,
+    "elementary": 2427,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_31624",
+    "r_preserving_moves": 5,
+    "chain": [
+     [
+      "ac19_31624",
+      "ac19_51124"
+     ]
+    ],
+    "source": "ac19_36125",
+    "source_route": "plain_s20",
+    "mixed_steps": 25,
+    "elementary": 1037,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_40167",
+    "r_preserving_moves": 4,
+    "chain": [],
+    "source": "ac19_10229",
+    "source_route": "plain_s20",
+    "mixed_steps": 29,
+    "elementary": 1326,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_45056",
+    "r_preserving_moves": 4,
+    "chain": [],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 44,
+    "elementary": 2082,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_51124",
+    "r_preserving_moves": 1,
+    "chain": [],
+    "source": "ac19_36125",
+    "source_route": "plain_s20",
+    "mixed_steps": 20,
+    "elementary": 800,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_54337",
+    "r_preserving_moves": 3,
+    "chain": [],
+    "source": "ac19_10229",
+    "source_route": "plain_s20",
+    "mixed_steps": 28,
+    "elementary": 1280,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_54514",
+    "r_preserving_moves": 7,
+    "chain": [
+     [
+      "ac19_54514",
+      "ac19_45056"
+     ]
+    ],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 47,
+    "elementary": 2245,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_56260",
+    "r_preserving_moves": 5,
+    "chain": [
+     [
+      "ac19_56260",
+      "ac19_51124"
+     ]
+    ],
+    "source": "ac19_36125",
+    "source_route": "plain_s20",
+    "mixed_steps": 25,
+    "elementary": 915,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_62145",
+    "r_preserving_moves": 1,
+    "chain": [],
+    "source": "ac19_10229",
+    "source_route": "plain_s20",
+    "mixed_steps": 26,
+    "elementary": 1163,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_62816",
+    "r_preserving_moves": 6,
+    "chain": [
+     [
+      "ac19_62816",
+      "ac19_45056"
+     ]
+    ],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 46,
+    "elementary": 2191,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_64163",
+    "r_preserving_moves": 1,
+    "chain": [],
+    "source": "ac19_20858",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 30,
+    "elementary": 1910,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_6554",
+    "r_preserving_moves": 5,
+    "chain": [
+     [
+      "ac19_6554",
+      "ac19_25325"
+     ]
+    ],
+    "source": "ac19_25945",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 46,
+    "elementary": 2552,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_65967",
+    "r_preserving_moves": 5,
+    "chain": [
+     [
+      "ac19_65967",
+      "ac19_45056"
+     ]
+    ],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 45,
+    "elementary": 2150,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_66385",
+    "r_preserving_moves": 2,
+    "chain": [],
+    "source": "ac19_10229",
+    "source_route": "plain_s20",
+    "mixed_steps": 27,
+    "elementary": 1219,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_66543",
+    "r_preserving_moves": 7,
+    "chain": [
+     [
+      "ac19_66543",
+      "ac19_45056"
+     ]
+    ],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 47,
+    "elementary": 2241,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_69139",
+    "r_preserving_moves": 2,
+    "chain": [],
+    "source": "ac19_20858",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 31,
+    "elementary": 1953,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_70845",
+    "r_preserving_moves": 8,
+    "chain": [
+     [
+      "ac19_70845",
+      "ac19_54514"
+     ],
+     [
+      "ac19_54514",
+      "ac19_45056"
+     ]
+    ],
+    "source": "ac19_37598",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 49,
+    "elementary": 2275,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   },
+   {
+    "name": "ac19_99",
+    "r_preserving_moves": 3,
+    "chain": [],
+    "source": "ac19_64188",
+    "source_route": "incumbent_restart",
+    "mixed_steps": 32,
+    "elementary": 1282,
+    "words_replay": true,
+    "terminal": [
+     "x",
+     "y"
+    ],
+    "verified": true
+   }
+  ],
+  "components": [
+   [
+    "ac19_45056",
+    "ac19_54514",
+    "ac19_62816",
+    "ac19_65967",
+    "ac19_66543",
+    "ac19_70845"
+   ],
+   [
+    "ac19_14690",
+    "ac19_33080",
+    "ac19_49255",
+    "ac19_50610",
+    "ac19_58570"
+   ],
+   [
+    "ac19_18413",
+    "ac19_25325",
+    "ac19_2696",
+    "ac19_6554"
+   ],
+   [
+    "ac19_40167",
+    "ac19_54337",
+    "ac19_62145",
+    "ac19_66385"
+   ],
+   [
+    "ac19_17417",
+    "ac19_57787",
+    "ac19_65876"
+   ],
+   [
+    "ac19_22263",
+    "ac19_37426",
+    "ac19_63737"
+   ],
+   [
+    "ac19_31624",
+    "ac19_51124",
+    "ac19_56260"
+   ],
+   [
+    "ac19_11753",
+    "ac19_38222"
+   ],
+   [
+    "ac19_18125",
+    "ac19_45684"
+   ],
+   [
+    "ac19_51034",
+    "ac19_65753"
+   ],
+   [
+    "ac19_64163",
+    "ac19_69139"
+   ],
+   [
+    "ac19_50262"
+   ],
+   [
+    "ac19_60781"
+   ],
+   [
+    "ac19_65737"
+   ],
+   [
+    "ac19_66724"
+   ],
+   [
+    "ac19_99"
+   ]
+  ],
+  "survey": {
+   "ac19_99": {
+    "pair": [
+     "YYXXyxx",
+     "YXXXXXXXXyxxxxxxx"
+    ],
+    "cap": 21,
+    "depth": 4,
+    "ball": 4190,
+    "solved_met": {
+     "ac19_64188": {
+      "hub": [
+       "YYXXyxx",
+       "YYYYxxxxyXXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        0
+       ],
+       [
+        2,
+        1,
+        10,
+        5
+       ],
+       [
+        2,
+        1,
+        8,
+        5
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_15183": {
+      "hub": [
+       "YYXXyxx",
+       "YYYxxYYxxyXXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        0
+       ],
+       [
+        2,
+        1,
+        10,
+        5
+       ],
+       [
+        2,
+        1,
+        6,
+        5
+       ],
+       [
+        2,
+        1,
+        10,
+        6
+       ]
+      ],
+      "depth": 4
+     }
+    },
+    "unsolved_met": {}
+   },
+   "ac19_2696": {
+    "pair": [
+     "YYXXYxYXXXYx",
+     "YYXXXyxxYXXYx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 384,
+    "solved_met": {
+     "ac19_25945": {
+      "hub": [
+       "YYXXYxYXXXYx",
+       "YXXYxxxyXXXYx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        6
+       ]
+      ],
+      "depth": 1
+     }
+    },
+    "unsolved_met": {
+     "ac19_25325": {
+      "hub": [
+       "YXYxyXYXXYx",
+       "YYXXYxYXXXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        5,
+        4
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_18413": {
+      "hub": [
+       "YXyxYXyxYXXYx",
+       "YYXyxYXXYYXXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        5,
+        4
+       ],
+       [
+        1,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        1,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 4
+     },
+     "ac19_6554": {
+      "hub": [
+       "YYxyXXYxyX",
+       "YXyxYXyxYXXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        5,
+        4
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        1,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_6554": {
+    "pair": [
+     "YYXyxYXXyx",
+     "YXyxYXyxxyXyx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 601,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_18413": {
+      "hub": [
+       "YXyxYXyxxyXyx",
+       "YYXXYxyXYYxYXX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        4
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_25325": {
+      "hub": [
+       "YXYxYXXYXyx",
+       "YYxYXXXYxYXX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        7
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_2696": {
+      "hub": [
+       "YYxYXXXYxYXX",
+       "YYxYXXYxxyXXX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        7
+       ],
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_11753": {
+    "pair": [
+     "YYXXYxYXX",
+     "YYXXyXYYx"
+    ],
+    "cap": 13,
+    "depth": 4,
+    "ball": 36,
+    "solved_met": {},
+    "unsolved_met": {}
+   },
+   "ac19_14690": {
+    "pair": [
+     "YXXXyxx",
+     "YYXyXYxyXYxyX"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 449,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_33080": {
+      "hub": [
+       "YYXyXYxyXYxyX",
+       "YYXyXYXXyxYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        5
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_50610": {
+      "hub": [
+       "YYXyXYxyXYxyX",
+       "YYXyxYXXyXYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        1,
+        9
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_49255": {
+      "hub": [
+       "YYXyXyxYXX",
+       "YYXyXYxyXYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        5
+       ],
+       [
+        2,
+        1,
+        1,
+        12
+       ],
+       [
+        2,
+        -1,
+        1,
+        10
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_58570": {
+      "hub": [
+       "YYXyXyxYXX",
+       "YYxyXYxyxyX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        1,
+        9
+       ],
+       [
+        2,
+        -1,
+        0,
+        9
+       ],
+       [
+        2,
+        -1,
+        1,
+        8
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_17417": {
+    "pair": [
+     "YYXyxYXXyx",
+     "YXyXyxxyXYxyx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 366,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_65876": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YXYxyXXYxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        2,
+        3
+       ],
+       [
+        2,
+        -1,
+        0,
+        5
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_57787": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YYYxyXXYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        2,
+        3
+       ],
+       [
+        2,
+        -1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        3,
+        7
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_18125": {
+    "pair": [
+     "YYXXYXYYXXX",
+     "YYYxyyxYXXyX"
+    ],
+    "cap": 16,
+    "depth": 4,
+    "ball": 34,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_45684": {
+      "hub": [
+       "YYXXYXYYXXX",
+       "YYXYYXyXYYXXXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        5,
+        6
+       ],
+       [
+        2,
+        -1,
+        2,
+        4
+       ],
+       [
+        2,
+        -1,
+        8,
+        5
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_18413": {
+    "pair": [
+     "YXYxxYXyxYXyx",
+     "YYXYxxYYxxYXyx"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 394,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_6554": {
+      "hub": [
+       "YYxyXYxxyX",
+       "YXYxxYXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        9
+       ],
+       [
+        1,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_25325": {
+      "hub": [
+       "YXYxxYxyXYx",
+       "YYXYxxxYXYxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        9
+       ],
+       [
+        2,
+        1,
+        1,
+        6
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_2696": {
+      "hub": [
+       "YYXYxxxYXYxx",
+       "YYXYxxYXXyxxx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        3,
+        1
+       ],
+       [
+        2,
+        1,
+        0,
+        3
+       ],
+       [
+        1,
+        -1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        2,
+        2
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_22263": {
+    "pair": [
+     "YXyXYXyxx",
+     "YYXXyxxYxyX"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 245,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_63737": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_37426": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXyxYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        1
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_25325": {
+    "pair": [
+     "YXYxYXXYXyx",
+     "YYxYXXXYxYXX"
+    ],
+    "cap": 16,
+    "depth": 4,
+    "ball": 241,
+    "solved_met": {
+     "ac19_25945": {
+      "hub": [
+       "YYxYXXXYxYXX",
+       "YXXYxYXXXyxxx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        3,
+        1
+       ],
+       [
+        1,
+        -1,
+        1,
+        10
+       ],
+       [
+        2,
+        -1,
+        6,
+        1
+       ]
+      ],
+      "depth": 3
+     }
+    },
+    "unsolved_met": {
+     "ac19_2696": {
+      "hub": [
+       "YYxYXXXYxYXX",
+       "YYxYXXYxxyXXX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        3,
+        1
+       ],
+       [
+        1,
+        -1,
+        1,
+        10
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_6554": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YXyxYXyxxyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        6,
+        7
+       ],
+       [
+        1,
+        1,
+        3,
+        7
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_18413": {
+      "hub": [
+       "YXyxYXyxxyXyx",
+       "YYXXYxyXYYxYXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        6,
+        7
+       ],
+       [
+        1,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_31624": {
+    "pair": [
+     "YYXyxYXXyx",
+     "YXyxYXXYxyXyx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 749,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_56260": {
+      "hub": [
+       "YYxyXyxyX",
+       "YYXyxYXXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        1
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_51124": {
+      "hub": [
+       "YYxyXyxyX",
+       "YYXyxYXYxyXyxx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        2,
+        7
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        1,
+        2
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_33080": {
+    "pair": [
+     "YXYxxYXyxYXyx",
+     "YYxYXYxxYXyxyX"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 685,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_14690": {
+      "hub": [
+       "YYYxyyX",
+       "YXYxxYXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        9
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_49255": {
+      "hub": [
+       "YYxyXYXYxx",
+       "YXYxxYXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_50610": {
+      "hub": [
+       "YXYxxYXyxYXyx",
+       "YYxyXYxxYXyxYX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        5,
+        6
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_58570": {
+      "hub": [
+       "YYxyXYXYxx",
+       "YXyXyxYXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        5
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_37426": {
+    "pair": [
+     "YXyXYXyxx",
+     "YYXyxYxxyX"
+    ],
+    "cap": 14,
+    "depth": 4,
+    "ball": 104,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_22263": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXXyxxYxyX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        3,
+        8
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_63737": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        1,
+        4,
+        1
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_38222": {
+    "pair": [
+     "YYXXYxYXX",
+     "YYXXYxyXyyxxYX"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 1184,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_11753": {
+      "hub": [
+       "YYXyXXYYx",
+       "YYXXYxYXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_40167": {
+    "pair": [
+     "YXYxYXXYx",
+     "YYXXYXYxxyyXYx"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 400,
+    "solved_met": {
+     "ac19_10229": {
+      "hub": [
+       "YYXXyxxYXXyxx",
+       "YYXYXYxYYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        2,
+        1,
+        3,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        1,
+        1,
+        0,
+        10
+       ]
+      ],
+      "depth": 4
+     }
+    },
+    "unsolved_met": {
+     "ac19_54337": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXYxyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        9,
+        8
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_66385": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYYXXyxxYXYXYx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        2,
+        1,
+        3,
+        6
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_62145": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        2,
+        1,
+        3,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        4
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_45056": {
+    "pair": [
+     "YXYXyXXYXyX",
+     "YYYXyXXYXYXyXyyx"
+    ],
+    "cap": 20,
+    "depth": 4,
+    "ball": 293,
+    "solved_met": {
+     "ac19_37598": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYxYxyXYXyXXyXXYXyXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        7,
+        9
+       ],
+       [
+        2,
+        1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        1,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    },
+    "unsolved_met": {
+     "ac19_65967": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYXyXyyxYYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        7,
+        9
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_62816": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXXYXyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        1,
+        2,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_54514": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXyxYxyxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        1,
+        2,
+        0
+       ],
+       [
+        2,
+        -1,
+        2,
+        6
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_66543": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYxYxyXYXyXyxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        7,
+        9
+       ],
+       [
+        2,
+        1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_70845": {
+      "hub": [
+       "YYXyXXyXYX",
+       "YXYXyXXYXyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        1,
+        8,
+        0
+       ],
+       [
+        2,
+        -1,
+        3,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_45684": {
+    "pair": [
+     "YYXXYXYYXXX",
+     "YYXYYXyXYYXXXyx"
+    ],
+    "cap": 19,
+    "depth": 4,
+    "ball": 187,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_18125": {
+      "hub": [
+       "YYXXYXYYXXX",
+       "YYYxyyxYXXyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        0
+       ],
+       [
+        2,
+        1,
+        2,
+        7
+       ],
+       [
+        2,
+        -1,
+        5,
+        5
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_49255": {
+    "pair": [
+     "YYXXYxYxyX",
+     "YXyxYXyxYXXYx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 282,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_58570": {
+      "hub": [
+       "YYXXYxYxyX",
+       "YXYxyXYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        6
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_33080": {
+      "hub": [
+       "YXyxYXyxYXXYx",
+       "YYxyXyxYXXYxYX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        8
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_50610": {
+      "hub": [
+       "YXyxYXyxYXXYx",
+       "YYxYXyxYXXYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        6,
+        2
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_14690": {
+      "hub": [
+       "YYYxyyX",
+       "YXyxYXyxYXXYx"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        0,
+        2
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_50262": {
+    "pair": [
+     "YYXXXyXYXyX",
+     "YXXyxYXXyxx"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 1,
+    "solved_met": {},
+    "unsolved_met": {}
+   },
+   "ac19_50610": {
+    "pair": [
+     "YXYxxYXyxYXyx",
+     "YYxyXYxxYXyxYX"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 837,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_14690": {
+      "hub": [
+       "YYYxyyX",
+       "YXYxxYXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        11
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_49255": {
+      "hub": [
+       "YYxyXYXYxx",
+       "YXYxxYXyxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        7,
+        7
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_33080": {
+      "hub": [
+       "YXYxxYXyxYXyx",
+       "YYxYXYxxYXyxyX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        7,
+        7
+       ],
+       [
+        2,
+        -1,
+        0,
+        9
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_58570": {
+      "hub": [
+       "YYxyXYXYxx",
+       "YXyXyxYXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        2
+       ],
+       [
+        2,
+        -1,
+        0,
+        10
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_51034": {
+    "pair": [
+     "YYXXXXYX",
+     "YYYXYXyyX"
+    ],
+    "cap": 13,
+    "depth": 4,
+    "ball": 67,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_65753": {
+      "hub": [
+       "YYYXYXyyX",
+       "YYYxyxyXXXX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_51124": {
+    "pair": [
+     "YXyXYXyxx",
+     "YYXXyxYXyXYxyx"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 801,
+    "solved_met": {
+     "ac19_36125": {
+      "hub": [
+       "YYXXyXYxxyx",
+       "YYXXyxYXyXYxyx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        6
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_17379": {
+      "hub": [
+       "YYXXyXYxxyx",
+       "YYXXXyXYxyxYx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        6
+       ],
+       [
+        2,
+        1,
+        7,
+        7
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_30369": {
+      "hub": [
+       "YYXyyXYXyxYx",
+       "YYXXXyXYxyxYx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        6
+       ],
+       [
+        2,
+        1,
+        7,
+        7
+       ],
+       [
+        1,
+        -1,
+        3,
+        9
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_66452": {
+      "hub": [
+       "YYXyxYYXX",
+       "YYXyyXYXyxYx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        6
+       ],
+       [
+        2,
+        1,
+        7,
+        7
+       ],
+       [
+        1,
+        -1,
+        3,
+        9
+       ],
+       [
+        2,
+        1,
+        1,
+        8
+       ]
+      ],
+      "depth": 4
+     }
+    },
+    "unsolved_met": {
+     "ac19_56260": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYxyXYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        3,
+        1
+       ],
+       [
+        2,
+        -1,
+        5,
+        8
+       ]
+      ],
+      "depth": 4
+     },
+     "ac19_31624": {
+      "hub": [
+       "YYxyXYxxyX",
+       "YYxyXYxyXYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        4,
+        8
+       ],
+       [
+        2,
+        -1,
+        8,
+        8
+       ],
+       [
+        1,
+        -1,
+        1,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_54337": {
+    "pair": [
+     "YXYxYXXYx",
+     "YYXXyxxYXYxyXyx"
+    ],
+    "cap": 19,
+    "depth": 4,
+    "ball": 846,
+    "solved_met": {
+     "ac19_10229": {
+      "hub": [
+       "YYXXyxxYXXyxx",
+       "YYXYXYxYYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        1,
+        1,
+        0,
+        10
+       ]
+      ],
+      "depth": 3
+     }
+    },
+    "unsolved_met": {
+     "ac19_66385": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYYXXyxxYXYXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        8
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_40167": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXYXYxxyyXYx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        4,
+        4
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_62145": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        0,
+        4
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_54514": {
+    "pair": [
+     "YXYXyXXYXyX",
+     "YYYXyXXyxYxyxyx"
+    ],
+    "cap": 19,
+    "depth": 4,
+    "ball": 1774,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_70845": {
+      "hub": [
+       "YYXyXXyXYX",
+       "YXYXyXXYXyX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_62816": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXXYXyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        2,
+        5
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_45056": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXYXYXyXyyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        2,
+        5
+       ],
+       [
+        2,
+        -1,
+        2,
+        0
+       ],
+       [
+        2,
+        1,
+        3,
+        5
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_65967": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYXyXyyxYYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        2,
+        5
+       ],
+       [
+        2,
+        -1,
+        2,
+        0
+       ],
+       [
+        2,
+        1,
+        3,
+        5
+       ],
+       [
+        2,
+        -1,
+        7,
+        9
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_56260": {
+    "pair": [
+     "YXyXYXyxx",
+     "YYXyxYXXyx"
+    ],
+    "cap": 14,
+    "depth": 4,
+    "ball": 106,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_31624": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YYXyxYXyxYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        1,
+        0
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_51124": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYxxyXYxyxYXyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        4,
+        8
+       ],
+       [
+        2,
+        -1,
+        7,
+        1
+       ],
+       [
+        2,
+        -1,
+        0,
+        8
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_57787": {
+    "pair": [
+     "YYXyxYXXyx",
+     "YYYxyXXYXyx"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 125,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_65876": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YXYxyXXYxYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        4,
+        1
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_17417": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YXyXyxxyXYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        6,
+        9
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_58570": {
+    "pair": [
+     "YYXXYxYxyX",
+     "YXYxyXYxxyX"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 84,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_49255": {
+      "hub": [
+       "YYXXYxYxyX",
+       "YXyxYXyxYXXYx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_50610": {
+      "hub": [
+       "YXyxYXyxYXXYx",
+       "YYxYXyxYXXYxyX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        0
+       ],
+       [
+        1,
+        1,
+        0,
+        6
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_14690": {
+      "hub": [
+       "YYYxyyX",
+       "YXyxYXyxYXXYx"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        0,
+        0
+       ],
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        2,
+        0
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_33080": {
+      "hub": [
+       "YXyxYXyxYXXYx",
+       "YYxyXyxYXXYxYX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        1,
+        1,
+        0,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        8
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_60781": {
+    "pair": [
+     "YYXXyxx",
+     "YYXYXYxYxYX"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 168,
+    "solved_met": {},
+    "unsolved_met": {}
+   },
+   "ac19_62145": {
+    "pair": [
+     "YXYxYXXYx",
+     "YYXXyxxYXXyxx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 312,
+    "solved_met": {
+     "ac19_10229": {
+      "hub": [
+       "YYXXyxxYXXyxx",
+       "YYXYXYxYYXXyxx"
+      ],
+      "moves": [
+       [
+        1,
+        1,
+        0,
+        10
+       ]
+      ],
+      "depth": 1
+     }
+    },
+    "unsolved_met": {
+     "ac19_66385": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYYXXyxxYXYXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        4
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_54337": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXYxyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        4
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_40167": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXYXYxxyyXYx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        4
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        4,
+        4
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_62816": {
+    "pair": [
+     "YXYXyXXYXyX",
+     "YYYXyXXXYXyXyx"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 303,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_54514": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXyxYxyxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        6
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_45056": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXYXYXyXyyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        0
+       ],
+       [
+        2,
+        1,
+        3,
+        5
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_70845": {
+      "hub": [
+       "YYXyXXyXYX",
+       "YXYXyXXYXyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        6
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_65967": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYXyXyyxYYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        2,
+        0
+       ],
+       [
+        2,
+        1,
+        3,
+        5
+       ],
+       [
+        2,
+        -1,
+        7,
+        9
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_63737": {
+    "pair": [
+     "YXyXYXyxx",
+     "YYXXyxYXyx"
+    ],
+    "cap": 14,
+    "depth": 4,
+    "ball": 104,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_22263": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXXyxxYxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        8
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_37426": {
+      "hub": [
+       "YXyXYXyxx",
+       "YYXyxYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        8
+       ],
+       [
+        2,
+        -1,
+        3,
+        1
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_64163": {
+    "pair": [
+     "YXXYxxyx",
+     "YYXYXyXyXXyxxyx"
+    ],
+    "cap": 19,
+    "depth": 4,
+    "ball": 1446,
+    "solved_met": {
+     "ac19_20858": {
+      "hub": [
+       "YXXYxxyx",
+       "YYxxYxYxyxyXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_46054": {
+      "hub": [
+       "YXXYxxyx",
+       "YYxxYxYxyXYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        1,
+        1
+       ]
+      ],
+      "depth": 2
+     }
+    },
+    "unsolved_met": {
+     "ac19_69139": {
+      "hub": [
+       "YXXYxxyx",
+       "YYXYXyXyyxx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        1,
+        0
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_65737": {
+    "pair": [
+     "YXXYxYxx",
+     "YYxyxyXyX"
+    ],
+    "cap": 13,
+    "depth": 4,
+    "ball": 39,
+    "solved_met": {},
+    "unsolved_met": {}
+   },
+   "ac19_65753": {
+    "pair": [
+     "YXXYxYxxx",
+     "YYYYXyXyxxx"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 288,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_51034": {
+      "hub": [
+       "YYYYxxYx",
+       "YXXYxYxxx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        1,
+        8
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_65876": {
+    "pair": [
+     "YYXyxYXXyx",
+     "YXYxyXXYxYXyx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 389,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_17417": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YXyXyxxyXYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        8,
+        9
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_57787": {
+      "hub": [
+       "YYXyxYXXyx",
+       "YYYxyXXYXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        3,
+        7
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_65967": {
+    "pair": [
+     "YXYXyXXYXyX",
+     "YYXyXyyxYYxyx"
+    ],
+    "cap": 17,
+    "depth": 4,
+    "ball": 56,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_45056": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXYXYXyXyyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_66543": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYxYxyXYXyXyxyX"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        5
+       ],
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_62816": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXXYXyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        1,
+        2,
+        0
+       ]
+      ],
+      "depth": 3
+     },
+     "ac19_54514": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXyxYxyxyx"
+      ],
+      "moves": [
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        -1,
+        3,
+        6
+       ],
+       [
+        2,
+        1,
+        2,
+        0
+       ],
+       [
+        2,
+        -1,
+        2,
+        6
+       ]
+      ],
+      "depth": 4
+     }
+    }
+   },
+   "ac19_66385": {
+    "pair": [
+     "YXYxYXXYx",
+     "YYYXXyxxYXYXYx"
+    ],
+    "cap": 18,
+    "depth": 4,
+    "ball": 498,
+    "solved_met": {
+     "ac19_10229": {
+      "hub": [
+       "YYXXyxxYXXyxx",
+       "YYXYXYxYYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        4
+       ],
+       [
+        1,
+        1,
+        0,
+        10
+       ]
+      ],
+      "depth": 2
+     }
+    },
+    "unsolved_met": {
+     "ac19_54337": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXYxyXyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_62145": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXyxxYXXyxx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        4
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_40167": {
+      "hub": [
+       "YXYxYXXYx",
+       "YYXXYXYxxyyXYx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        -1,
+        4,
+        4
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   },
+   "ac19_66543": {
+    "pair": [
+     "YXYXyXXYXyX",
+     "YYxYxyXYXyXyxyX"
+    ],
+    "cap": 19,
+    "depth": 4,
+    "ball": 144,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_65967": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYXyXyyxYYxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        4,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        6
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_45056": {
+      "hub": [
+       "YXYXyXXYXyX",
+       "YYYXyXXYXYXyXyyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        4,
+        6
+       ],
+       [
+        2,
+        -1,
+        0,
+        6
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 3
+     }
+    }
+   },
+   "ac19_66724": {
+    "pair": [
+     "YXXyXyxx",
+     "YYYxxxxYYxx"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 137,
+    "solved_met": {},
+    "unsolved_met": {}
+   },
+   "ac19_69139": {
+    "pair": [
+     "YXXYxxyx",
+     "YYXYXyXyyxx"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 93,
+    "solved_met": {
+     "ac19_20858": {
+      "hub": [
+       "YXXYxxyx",
+       "YYxxYxYxyxyXX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ]
+      ],
+      "depth": 2
+     },
+     "ac19_46054": {
+      "hub": [
+       "YXXYxxyx",
+       "YYxxYxYxyXYxxyX"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        0,
+        1
+       ],
+       [
+        2,
+        1,
+        1,
+        1
+       ]
+      ],
+      "depth": 3
+     }
+    },
+    "unsolved_met": {
+     "ac19_64163": {
+      "hub": [
+       "YXXYxxyx",
+       "YYXYXyXyXXyxxyx"
+      ],
+      "moves": [
+       [
+        2,
+        -1,
+        1,
+        0
+       ]
+      ],
+      "depth": 1
+     }
+    }
+   },
+   "ac19_70845": {
+    "pair": [
+     "YYXYXyXXyX",
+     "YXYXyXYXXyX"
+    ],
+    "cap": 15,
+    "depth": 4,
+    "ball": 205,
+    "solved_met": {},
+    "unsolved_met": {
+     "ac19_54514": {
+      "hub": [
+       "YXYXyXYXXyX",
+       "YYYxyxyxYxyXXyX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        5,
+        8
+       ]
+      ],
+      "depth": 1
+     },
+     "ac19_62816": {
+      "hub": [
+       "YXYXyXYXXyX",
+       "YYYxyXyXYXXXyX"
+      ],
+      "moves": [
+       [
+        1,
+        -1,
+        5,
+        8
+       ],
+       [
+        2,
+        1,
+        4,
+        9
+       ]
+      ],
+      "depth": 2
+     }
+    }
+   }
+  }
+ },
+ "E": {
+  "corpus_states": 112261,
+  "ball_states": 1488649,
+  "runs": {
+   "cascade@1000": {
+    "solved": 30,
+    "verified": 30,
+    "units": 17311,
+    "unsolved": [
+     "ac19_11753",
+     "ac19_18125",
+     "ac19_38222",
+     "ac19_45056",
+     "ac19_45684",
+     "ac19_54514",
+     "ac19_60781",
+     "ac19_62816",
+     "ac19_65967",
+     "ac19_66724",
+     "ac19_70845"
+    ],
+    "per_row": {
+     "ac19_99": 13,
+     "ac19_2696": 9,
+     "ac19_6554": 344,
+     "ac19_11753": 1000,
+     "ac19_14690": 66,
+     "ac19_17417": 324,
+     "ac19_18125": 1000,
+     "ac19_18413": 328,
+     "ac19_22263": 310,
+     "ac19_25325": 349,
+     "ac19_31624": 309,
+     "ac19_33080": 368,
+     "ac19_37426": 310,
+     "ac19_38222": 1000,
+     "ac19_40167": 29,
+     "ac19_45056": 1000,
+     "ac19_45684": 1000,
+     "ac19_49255": 335,
+     "ac19_50262": 313,
+     "ac19_50610": 115,
+     "ac19_51034": 410,
+     "ac19_51124": 9,
+     "ac19_54337": 29,
+     "ac19_54514": 1000,
+     "ac19_56260": 309,
+     "ac19_57787": 309,
+     "ac19_58570": 339,
+     "ac19_60781": 1000,
+     "ac19_62145": 9,
+     "ac19_62816": 1000,
+     "ac19_63737": 310,
+     "ac19_64163": 19,
+     "ac19_65737": 346,
+     "ac19_65753": 338,
+     "ac19_65876": 309,
+     "ac19_65967": 1000,
+     "ac19_66385": 10,
+     "ac19_66543": 19,
+     "ac19_66724": 1000,
+     "ac19_69139": 24,
+     "ac19_70845": 1000
+    }
+   },
+   "cascade@5000": {
+    "solved": 39,
+    "verified": 39,
+    "units": 45280,
+    "unsolved": [
+     "ac19_11753",
+     "ac19_38222"
+    ],
+    "per_row": {
+     "ac19_99": 13,
+     "ac19_2696": 9,
+     "ac19_6554": 344,
+     "ac19_11753": 5000,
+     "ac19_14690": 66,
+     "ac19_17417": 324,
+     "ac19_18125": 3051,
+     "ac19_18413": 328,
+     "ac19_22263": 310,
+     "ac19_25325": 349,
+     "ac19_31624": 309,
+     "ac19_33080": 368,
+     "ac19_37426": 310,
+     "ac19_38222": 5000,
+     "ac19_40167": 29,
+     "ac19_45056": 3295,
+     "ac19_45684": 3041,
+     "ac19_49255": 335,
+     "ac19_50262": 313,
+     "ac19_50610": 115,
+     "ac19_51034": 410,
+     "ac19_51124": 9,
+     "ac19_54337": 29,
+     "ac19_54514": 3258,
+     "ac19_56260": 309,
+     "ac19_57787": 309,
+     "ac19_58570": 339,
+     "ac19_60781": 3252,
+     "ac19_62145": 9,
+     "ac19_62816": 3294,
+     "ac19_63737": 310,
+     "ac19_64163": 19,
+     "ac19_65737": 346,
+     "ac19_65753": 338,
+     "ac19_65876": 309,
+     "ac19_65967": 3269,
+     "ac19_66385": 10,
+     "ac19_66543": 19,
+     "ac19_66724": 3252,
+     "ac19_69139": 24,
+     "ac19_70845": 3257
+    }
+   },
+   "ordinary_T@1000": {
+    "solved": 28,
+    "verified": 28,
+    "units": 19795,
+    "unsolved": [
+     "ac19_11753",
+     "ac19_18125",
+     "ac19_38222",
+     "ac19_45056",
+     "ac19_45684",
+     "ac19_51034",
+     "ac19_54514",
+     "ac19_60781",
+     "ac19_62816",
+     "ac19_65753",
+     "ac19_65967",
+     "ac19_66724",
+     "ac19_70845"
+    ],
+    "per_row": {
+     "ac19_99": 13,
+     "ac19_2696": 1,
+     "ac19_6554": 78,
+     "ac19_11753": 1000,
+     "ac19_14690": 745,
+     "ac19_17417": 277,
+     "ac19_18125": 1000,
+     "ac19_18413": 79,
+     "ac19_22263": 228,
+     "ac19_25325": 78,
+     "ac19_31624": 562,
+     "ac19_33080": 58,
+     "ac19_37426": 237,
+     "ac19_38222": 1000,
+     "ac19_40167": 587,
+     "ac19_45056": 1000,
+     "ac19_45684": 1000,
+     "ac19_49255": 746,
+     "ac19_50262": 504,
+     "ac19_50610": 56,
+     "ac19_51034": 1000,
+     "ac19_51124": 1,
+     "ac19_54337": 530,
+     "ac19_54514": 1000,
+     "ac19_56260": 572,
+     "ac19_57787": 94,
+     "ac19_58570": 746,
+     "ac19_60781": 1000,
+     "ac19_62145": 1,
+     "ac19_62816": 1000,
+     "ac19_63737": 224,
+     "ac19_64163": 1,
+     "ac19_65737": 134,
+     "ac19_65753": 1000,
+     "ac19_65876": 96,
+     "ac19_65967": 1000,
+     "ac19_66385": 2,
+     "ac19_66543": 1,
+     "ac19_66724": 1000,
+     "ac19_69139": 144,
+     "ac19_70845": 1000
+    }
+   },
+   "ordinary_T@5000": {
+    "solved": 35,
+    "verified": 35,
+    "units": 61188,
+    "unsolved": [
+     "ac19_18125",
+     "ac19_45684",
+     "ac19_51034",
+     "ac19_65753",
+     "ac19_66724",
+     "ac19_70845"
+    ],
+    "per_row": {
+     "ac19_99": 13,
+     "ac19_2696": 1,
+     "ac19_6554": 78,
+     "ac19_11753": 1163,
+     "ac19_14690": 745,
+     "ac19_17417": 277,
+     "ac19_18125": 5000,
+     "ac19_18413": 79,
+     "ac19_22263": 228,
+     "ac19_25325": 78,
+     "ac19_31624": 562,
+     "ac19_33080": 58,
+     "ac19_37426": 237,
+     "ac19_38222": 1156,
+     "ac19_40167": 587,
+     "ac19_45056": 4615,
+     "ac19_45684": 5000,
+     "ac19_49255": 746,
+     "ac19_50262": 504,
+     "ac19_50610": 56,
+     "ac19_51034": 5000,
+     "ac19_51124": 1,
+     "ac19_54337": 530,
+     "ac19_54514": 4618,
+     "ac19_56260": 572,
+     "ac19_57787": 94,
+     "ac19_58570": 746,
+     "ac19_60781": 3612,
+     "ac19_62145": 1,
+     "ac19_62816": 4615,
+     "ac19_63737": 224,
+     "ac19_64163": 1,
+     "ac19_65737": 134,
+     "ac19_65753": 5000,
+     "ac19_65876": 96,
+     "ac19_65967": 4614,
+     "ac19_66385": 2,
+     "ac19_66543": 1,
+     "ac19_66724": 5000,
+     "ac19_69139": 144,
+     "ac19_70845": 5000
+    }
+   }
+  }
+ }
+}

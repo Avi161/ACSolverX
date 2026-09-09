@@ -355,3 +355,55 @@ def _register_candidates(cap, suffix):
 
 _register_candidates(10, '_c10aut')
 _register_candidates(12, '_c12aut')
+
+
+# --------------------------------------------------------------------------
+# Compact (.npz) tables.  At cap 14 the ball is tens of millions of states and
+# the dict-of-bytes representation would need several GB per worker, so the
+# table is four numpy columns keyed by a packed uint64
+# (backward_table.CompactTable).  It satisfies the same mapping protocol, so
+# the cascade is unchanged; only the loader differs.
+# --------------------------------------------------------------------------
+def ball_table_any(stem):
+    """Load ``tables/<stem>.pkl`` when it exists, else ``tables/<stem>.npz``.
+
+    Both are sha256-checked against their own manifest by
+    ``backward_table.load``.  The ``.pkl`` is preferred where both exist so the
+    already-published cap-8/10/12 measurements keep loading the exact artifact
+    they were run against.
+    """
+    if stem not in _BALL_TABLES:
+        pickled = TABLES / f'{stem}.pkl'
+        path = pickled if pickled.exists() else TABLES / f'{stem}.npz'
+        _BALL_TABLES[stem] = _backward_table.load(path)
+    return _BALL_TABLES[stem]
+
+
+def make_compact_policy(cap, prepass_cap=250, plain_prefix=872, force_arm=None,
+                        certified_overrun=False, use_stable_power=False,
+                        use_bs_demote=False, aut=False, name=None):
+    """``make_policy`` with the ``.pkl``-or-``.npz`` loader."""
+    stem = f'ball_cap{cap:02d}' + ('_aut' if aut else '')
+
+    def run(pair, budget):
+        result = dict(_final_policy_ball.search(
+            pair, budget=budget, prepass_cap=prepass_cap, plain_prefix=plain_prefix,
+            force_arm=force_arm, certified_overrun=certified_overrun,
+            use_stable_power=use_stable_power, use_bs_demote=use_bs_demote,
+            table=ball_table_any(stem)))
+        result['ball_table'] = stem
+        return result
+
+    run.__doc__ = (f'final_policy_ball.search with the {stem} backward ball, '
+                   f'prepass_cap={prepass_cap}, plain_prefix={plain_prefix}, '
+                   f'force_arm={force_arm!r}, certified_overrun={certified_overrun}, '
+                   f'use_stable_power={use_stable_power}, use_bs_demote={use_bs_demote}.')
+    if name is not None:
+        run.__name__ = name
+        policy(name)(run)
+    return run
+
+
+make_compact_policy(14, aut=True, name='K1_c14aut')
+make_compact_policy(14, aut=True, plain_prefix=300, certified_overrun=True,
+                    use_bs_demote=True, name='K3p_c14aut')
