@@ -93,3 +93,34 @@ fallback recommendation.
 Rows no arm reaches within 3,000 units with the cap-10 automorphism-closed table: 7
 (1 fixed by certified overrun, 2 BS T=6 rows which the incumbent's gates solve at full
 budget, 4 which only the ordinary arm solves and only at 3,000-5,400 units).
+
+## Negative result: score-guided backward table
+
+A best-first backward expansion from (x,y) under the S20_MK2 score (cap 16,
+automorphism-closed, stopped at 1,500,007 states after 36,422 pops, 108 s) is WORSE as a
+terminal than the uniform automorphism-closed cap-10 ball (127,873 states): on dev at
+1,000 units the generator arm solves 83 (vs 86) and the ordinary arm 26 (vs 72). The
+score-guided set is wide and shallow around a few low-score states; the uniform ball is
+the right object. Not shipped.
+
+## Census runner validated
+
+`census_run.py` / `census_summarize.py`: 300-row slice under the frozen policy matches the
+published shards row for row (0 mismatches; workers=1 and workers=3 identical). Full census
+estimate: 26-32 min at one worker, 7-10 min at four.
+
+## Timing facts (dev panel, 102 rows, one thread, warm JIT)
+
+| run | solved | units | search wall (s) | ms / unit |
+|---|---:|---:|---:|---:|
+| frozen @1000 | 0 | 102,000 | 34.7 | 0.34 |
+| incumbent alone @1000 | 87 | 39,336 | 28.5 | 0.73 |
+| aut_edges_s20 alone @1000 | 86 | 39,788 | 29.9 | 0.75 |
+| aut_edges + cap-10 table @1000 | 86 | 34,441 | 29.0 | 0.84 |
+| frozen + cap-10 table @1000 | 24 | 100,071 | 38.5 | 0.38 |
+
+The generator arm costs about twice as much wall per charged unit as the ordinary arm
+(Nielsen children, gate checks, W). Table lookups are negligible. The goal requires a
+census wall time comparable to the frozen census (389 s search + 109 s certificate), so
+the candidate is judged on wall time as well as solves; per-node cost of the generator
+arm is an optimization target once the design is fixed.

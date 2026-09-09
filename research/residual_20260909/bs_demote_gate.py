@@ -164,6 +164,13 @@ def _companion_move(state, donor, target_word):
     return None, goal
 
 
+def _shortest(value, modulus):
+    """The representative of ``value`` mod ``modulus`` with least |.| (ties: +)."""
+    low = value % modulus
+    high = low - modulus
+    return low if (abs(low), -low) <= (abs(high), -high) else high
+
+
 class _Exhausted(Exception):
     pass
 
@@ -266,7 +273,7 @@ def normalise(pair, budget=1000):
     rsigns = rsigns[start:] + rsigns[:start]
     rgaps = rgaps[start:] + rgaps[:start]
     Mv, Mw = (m + 1, m) if eps == 1 else (m, m + 1)
-    goal = (0, rgaps[1] % Mv, rgaps[2] % Mw)
+    goal = (0, _shortest(rgaps[1], Mv), _shortest(rgaps[2], Mw))
     found = transport_plan(m, eps, tuple(rgaps), goal)
     if found is None:
         return {"applicable": False, "work": REFUSAL_WORK, "reason": "no_transport"}

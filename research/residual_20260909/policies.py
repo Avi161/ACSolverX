@@ -326,3 +326,4 @@ make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_pow
             name='K4')
 make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_power=True,
             force_arm='aut_edges', name='K5')
+make_policy(12, aut=True, name='frozen_ball12aut')

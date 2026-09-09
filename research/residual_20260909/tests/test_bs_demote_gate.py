@@ -40,16 +40,24 @@ def moduli(m, eps):
     return (m + 1, m) if eps == 1 else (m, m + 1)
 
 
-# (m, eps, gaps) triples in the demotable class (m, 1, m-1) -----------------
+# (m, eps, gaps) triples in the demotable class (m, 1, m-1), all genuinely
+# stalled.  The two gap triples (0, 1, -1) and (0, -1, 1) are excluded on
+# purpose: those companions ARE the BS(1,2) relator, so the frozen
+# bs_gate + bs_preflight terminal already accepts them and the gate correctly
+# declines (ALREADY_ACCEPTED below).
 POSITIVES = []
 for _m in (2, 3, 4, 5, 6, 7):
     for _eps in (1, -1):
         _Mv, _Mw = moduli(_m, _eps)
-        POSITIVES.append((_m, _eps, (0, 1, -1)))                    # the target itself
         POSITIVES.append((_m, _eps, (0, 1 + _Mv, -1)))              # one carry away in v
         POSITIVES.append((_m, _eps, (0, 1, -1 - _Mw)))              # one carry away in w
         POSITIVES.append((_m, _eps, (2, 1 - _Mv, _Mw - 1)))         # u shifted, other rep
-        POSITIVES.append((_m, _eps, (0, -1, 1)))                    # the mirror target
+        POSITIVES.append((_m, _eps, (-1, 1, -1)))                   # u = -1
+        POSITIVES.append((_m, _eps, (0, -1 - _Mv, 1)))              # the mirror class
+
+ALREADY_ACCEPTED = [(m, eps, gaps)
+                    for m in (2, 3, 5) for eps in (1, -1)
+                    for gaps in ((0, 1, -1), (0, -1, 1))]
 
 # labels outside (m, 1, m-1), stalled but not demotable ---------------------
 NEGATIVE_CLASSES = [
@@ -58,14 +66,19 @@ NEGATIVE_CLASSES = [
     (7, -1, (0, 5, 2)), (5, 1, (0, -2, 1)),
 ]
 
-# wider stalled necklaces: s_red = 5 and s_red = 7 --------------------------
+# wider stalled necklaces: s_red = 5 and s_red = 7 -------------------------
+# Both s = 5 necklaces and both s = 7 necklaces over m = 2, each verified
+# below to be stalled with the full stable count (so the necklace obstruction
+# of STALLED_BS_THEORY.md 5.5 is what makes the gate decline, not a pinch).
+def _wide(signs, gaps, m=2):
+    return canon_pair(relator(m), canon_rel(word_from(signs, list(gaps), "x", "y")))
+
+
 WIDE_NECKLACES = [
-    ("s5", canon_pair(relator(2), canon_rel(word_from([1, 1, -1, 1, -1],
-                                                      [0, -1, 1, -2, 1], "x", "y")))),
-    ("s5b", canon_pair(relator(2), canon_rel(word_from([1, -1, 1, 1, -1],
-                                                       [0, 1, -1, 1, -2], "x", "y")))),
-    ("s7", canon_pair(relator(2), canon_rel(word_from([1, 1, -1, 1, -1, 1, -1],
-                                                      [0, -1, -1, 1, 1, -2, 1], "x", "y")))),
+    ("s5_a", _wide([1, 1, -1, 1, -1], (-2, -2, -1, -2, -1)), 5),
+    ("s5_b", _wide([1, 1, 1, -1, -1], (-2, -2, -2, -2, -1)), 5),
+    ("s7_a", _wide([1, 1, -1, 1, -1, 1, -1], (-2, -2, -1, -2, -1, -2, -1)), 7),
+    ("s7_b", _wide([1, 1, 1, -1, 1, -1, -1], (-2, -2, -2, -1, -2, -2, -1)), 7),
 ]
 
 # near misses --------------------------------------------------------------
@@ -129,9 +142,25 @@ def test_recognize_negative_class_is_labelled_but_not_demotable(m, eps, gaps):
     assert not demotable(label)
 
 
-@pytest.mark.parametrize("name,pair", WIDE_NECKLACES + NEAR_MISSES)
-def test_recognize_returns_none_off_the_s3_family(name, pair):
+@pytest.mark.parametrize("name,pair,expected",
+                         WIDE_NECKLACES + [(n, p, None) for n, p in NEAR_MISSES])
+def test_recognize_returns_none_off_the_s3_family(name, pair, expected):
+    from research.supermoves_20260908.bs_preflight import preflight
     assert recognize(pair) is None
+    if expected is not None:
+        check = preflight(pair)
+        assert check["status"] == "reject" and check["stable_letters"] == expected
+
+
+@pytest.mark.parametrize("m,eps,gaps", ALREADY_ACCEPTED)
+def test_demotion_word_is_already_a_frozen_terminal(m, eps, gaps):
+    """The gate declines the BS(1,2) companion: bs_preflight already accepts."""
+    from research.supermoves_20260908.bs_preflight import preflight
+    pair = planted(m, eps, gaps)
+    assert preflight(pair)["status"] == "accept"
+    assert recognize(pair) is None
+    result = complete(pair, budget=100_000)
+    assert result["solved"] is False and result["work"] <= 2
 
 
 def test_dev_row_ac19_102_is_recognised_but_not_demotable():
@@ -199,7 +228,8 @@ def test_complete_refuses_wrong_class_cheaply(m, eps, gaps):
     assert "states" not in result
 
 
-@pytest.mark.parametrize("name,pair", WIDE_NECKLACES + NEAR_MISSES)
+@pytest.mark.parametrize("name,pair", [(n, p) for n, p, _s in WIDE_NECKLACES]
+                                      + NEAR_MISSES)
 def test_complete_refuses_off_family_cheaply(name, pair):
     result = complete(pair, budget=100_000)
     assert result["solved"] is False
@@ -256,7 +286,13 @@ def test_normalise_is_a_valid_ac_prefix(m, eps, gaps):
         state = replay_move(state, tuple(int(v) for v in step["move"].split("_")))
         assert list(state) == list(nxt)
     assert list(state) == built["normal_state"]
-    assert recognize(tuple(built["normal_state"])) == built["label"]
+    # the normal form is in the same class; for the demotable classes with a
+    # short representative it IS the BS(1,2) word, which the frozen terminal
+    # already accepts and which the gate therefore no longer calls "stalled".
+    from research.supermoves_20260908.bs_preflight import preflight
+    normal = tuple(built["normal_state"])
+    assert (recognize(normal) == built["label"]
+            or preflight(normal)["status"] == "accept")
 
 
 def test_same_label_reaches_a_common_normal_form():
