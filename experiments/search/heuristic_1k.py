@@ -87,8 +87,20 @@ def score_key(codes, whitehead, w_weight=2.0, s_weight=20.0, mk_weight=2.0):
 
 
 def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
-                 s_weight=20.0, mk_weight=2.0, capture=True):
+                 s_weight=20.0, mk_weight=2.0, capture=True, bs_probe=False):
     """Best-first over AC substitutions, plus Nielsen images on `aut_edges`.
+
+    `bs_probe=True` tests EVERY POPPED STATE for the Baumslag-Solitar pattern
+    `bs_collapse` recognizes, and finishes by rewriting when it fires. Off by
+    default, and off is bit-identical to before this existed -- the flag adds a
+    branch, never a move. It is a goal test with lookahead rather than a
+    heuristic: the collapse is deterministic rewriting, so a state that matches
+    is already solved and the search below it is wasted. The cascade tests the
+    same pattern once, on its input, which catches a row only if it arrives
+    recognizable; this catches one that BECOMES recognizable. It can only end a
+    search earlier, never redirect it, so reach cannot fall -- the cost is one
+    `len(word) != 5` test per popped node, which rejects nearly everything
+    before any real work.
 
     `capture=False` drops the parent pointers and keeps a bare dedup set. The
     search is unchanged -- the only use of `parent` inside the loop is the
@@ -156,6 +168,36 @@ def mixed_search(pair, arm, budget=1000, cap=48, w_weight=None,
                         best_state=list(unpack(best)), min_total_length_seen=best_total,
                         min_max_relator_length_seen=best_max,
                         max_relator_length_seen=max_seen)
+        if bs_probe:
+            from experiments.search.bs_collapse import _recognize, bs_collapse
+            if _recognize(state) is not None:
+                macro = bs_collapse(state, budget=min(1000, max(1, budget - nodes + 1)),
+                                    intermediate_cap=cap)
+                if macro['solved']:
+                    steps, states = [], []
+                    cur = key if capture else None
+                    while cur is not None:
+                        states.append(list(unpack(cur)))
+                        prev = parent[cur]
+                        if prev is None:
+                            break
+                        cur, step = prev
+                        steps.append(step)
+                    # bs_collapse charges its own root, which this loop already
+                    # charged as a pop; -1 so the node count stays a true total.
+                    return dict(solved=True,
+                                nodes_explored=nodes + macro['nodes_explored'] - 1,
+                                states=states[::-1] + [list(t) for t in macro['states'][1:]],
+                                steps=steps[::-1] + macro['steps'],
+                                path_available=capture, bs_collapsed=True,
+                                bs_collapse_nodes=macro['nodes_explored'] - 1,
+                                max_popped_total_seen=max_popped_total,
+                                basis_evaluations=basis_evaluations,
+                                best_state=list(unpack(best)),
+                                min_total_length_seen=best_total,
+                                min_max_relator_length_seen=best_max,
+                                max_relator_length_seen=max(
+                                    max_seen, macro['max_intermediate_relator_length']))
         a, b = _arrs(key)
         expansion_cap = cap if cap is not None else len(state[0]) + len(state[1])
         blob, offsets, lengths, segs, scores, _, _, moves, count = expand_and_score_h(
