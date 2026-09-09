@@ -90,7 +90,19 @@ INTERMEDIATE_CAP = None
 # `aut_assisted` is not a row with no AC path -- it is a row where the
 # cheapest path the heap reached used a basis change. Only running the same
 # search with that door shut says which it is.
-ARMS = ("cascade501", "ac501")
+#   s40_gen     the cascade's THIRD stage, run bare over the whole screen.
+#               Same priority as ac501 (L + 40*S) and the one difference that
+#               matters: `arm='aut_edges'`, so the four Nielsen basis changes
+#               are pushed onto the heap beside the AC substitutions. ac501 is
+#               its exact control -- same weights, same cap, same budget, that
+#               door shut -- so the pair measures what the Nielsen images buy
+#               and nothing else.
+#   s20_bare    L + 20*S + 2*MK through THIS engine at THIS cap. The campaign's
+#               s20_mk2 numbers come from hcompact at cap 48, so putting them
+#               beside an s40_gen measured here would compare three things at
+#               once (priority, engine, cap). This arm changes only the
+#               priority.
+ARMS = ("cascade501", "ac501", "s40_gen", "s20_bare")
 S40 = dict(s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 
 # The ladder. 501 is the prefix `hybrid_10m` pins; the rungs above it are the
@@ -307,16 +319,24 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
                        rewrite_budget=REWRITE_BUDGET,
                        intermediate_cap=INTERMEDIATE_CAP,
                        max_budget=max_budget)
-    if arm != "ac501":
+    if arm not in ("ac501", "s40_gen", "s20_bare"):
         raise ValueError(f"unknown arm {arm!r}; choose from {ARMS}")
     from experiments.search.heuristic_1k import mixed_search
-    got = mixed_search(pair, "s20", budget=budget, cap=SEARCH_CAP, **S40)
+    # arm= is the move set; the weights are the priority. ac501 and s40_gen
+    # share weights and differ in the move set; s20_bare shares the move set
+    # with ac501 and differs in the weights. One knob apart in each direction.
+    inner, weights = {
+        "ac501": ("s20", S40),
+        "s40_gen": ("aut_edges", S40),
+        "s20_bare": ("s20", dict(s_weight=20.0, mk_weight=2.0, w_weight=0.0)),
+    }[arm]
+    got = mixed_search(pair, inner, budget=budget, cap=SEARCH_CAP, **weights)
     # `mixed_search` returns steps already tagged 'substitution'; wrap it in
     # the cascade's shape so one record schema covers both arms.
-    return dict(got, attempts=[dict(component="ac_s40",
+    return dict(got, attempts=[dict(component=arm,
                                     nodes=got["nodes_explored"],
                                     solved=got["solved"])],
-                winner=("ac_s40" if got["solved"] else None),
+                winner=(arm if got["solved"] else None),
                 min_total_length_seen=got["min_total_length_seen"])
 
 
