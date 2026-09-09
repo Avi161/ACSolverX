@@ -30,10 +30,25 @@ def test_the_dataset_decodes_to_the_documented_word_alphabet():
     assert build.decode("[0, 0, 0, 0]") == ("", "")
 
 
-def test_orbits_are_indexed_by_their_first_dataset_member():
+def test_orbits_are_ordered_by_their_first_dataset_member():
     rows = build.group(["b", "a", "b", "c", "a", "b"])
     assert [r["rep"] for r in rows] == ["b", "a", "c"]
     assert [r["members"] for r in rows] == [[0, 2, 5], [1, 4], [3]]
+
+
+def test_orbit_names_are_positions_not_dataset_lines():
+    """``ac19_<n>`` is the n-th orbit; ``ac19x_<n>`` is the n-th dataset line.
+
+    The two coincide only at ``ac19_0``. Read as a line number, ``ac19_50892``
+    would be the wrong presentation.
+    """
+    rows = _orbits()
+    assert [r["name"] for r in rows] == [f"ac19_{i}" for i in range(len(rows))]
+    first = [int(r["members"].split()[0]) for r in rows]
+    assert sum(1 for i, m in enumerate(first) if i == m) == 1
+    by_name = {r["name"]: r for r in rows}
+    assert by_name["ac19_50892"]["members"] == "90721"
+    assert by_name["ac19_16286"]["members"] == "21044 46185 51554 140735"
 
 
 def test_the_csv_projection_matches_the_shipped_column_layout():

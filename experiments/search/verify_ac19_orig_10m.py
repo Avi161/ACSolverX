@@ -39,10 +39,18 @@ from experiments.search.run_leftovers_1m import SCREEN_DIR, read_rows
 
 RESULTS_DIR = os.path.dirname(SCREEN_DIR)
 OUT_DIR = os.path.join(RESULTS_DIR, "ac19_orig_10m")
+# The s20_mk2 records were re-run locally at a 1,000,000 ceiling after the
+# cloud jsonl was lost (RESULTS.md, "run locally at 1,000,000"); every row
+# solved far below it, so the ceiling changes no reported cost. The ``_paths``
+# twin is the same search with the certificate captured (``--track-path``)
+# and must agree with the archived file on every shared key.
 JSONL = {"greedy": "ac19_orig_10m_greedy_b10000000_mrl64.jsonl",
-         "s20_mk2": "ac19_orig_10m_s20_mk2_b10000000_mrl64.jsonl"}
+         "s20_mk2": "leftovers_1m_s20_mk2_b1000000_mrl64.jsonl"}
+PATHS = {"greedy": None,
+         "s20_mk2": "leftovers_1m_s20_mk2_b1000000_mrl64_paths.jsonl"}
 CAP = 64
-BUDGET = 10_000_000
+BUDGET = {"greedy": 10_000_000, "s20_mk2": 1_000_000}
+CONTROL_BUDGET = 10_000_000
 # Not a measurement -- the configured cap, echoed into every record.
 CONFIG_ECHO = "max_relator_length"
 MEASURED = ("max_relator_length_expanded", "max_relator_length_discovered")
@@ -101,8 +109,8 @@ def verify_arm(arm, derived, log=print):
         row = want.get(r["name"])
         if row and (r["r1"], r["r2"]) != (row["r1"], row["r2"]):
             problems.append(f"{r['name']}: words differ from the derived list")
-        if r.get("budget") != BUDGET:
-            problems.append(f"{r['name']}: budget {r.get('budget')} != {BUDGET}")
+        if r.get("budget") != BUDGET[arm]:
+            problems.append(f"{r['name']}: budget {r.get('budget')} != {BUDGET[arm]}")
         if r.get(CONFIG_ECHO) != CAP:
             problems.append(f"{r['name']}: cap {r.get(CONFIG_ECHO)} != {CAP}")
 
@@ -112,7 +120,7 @@ def verify_arm(arm, derived, log=print):
     orbits = {want[r["name"]]["orbit"] for r in recs if r["name"] in want}
     bad_ctl = [o for o in orbits
                if o not in ctl or ctl[o]["solved"]
-               or ctl[o]["nodes_explored"] != BUDGET
+               or ctl[o]["nodes_explored"] != CONTROL_BUDGET
                or ctl[o].get(CONFIG_ECHO) != CAP]
     measured = [r[f] for r in recs for f in MEASURED if f in r]
 
@@ -124,12 +132,54 @@ def verify_arm(arm, derived, log=print):
             f"  p90 {nodes[int(len(nodes) * 0.9)]:,}  max {nodes[-1]:,}"
             f"  sum {sum(nodes):,}")
     log(f"    control: {len(orbits)} representatives, all exhausted at "
-        f"{BUDGET:,} cap {CAP}: {'YES' if not bad_ctl else 'NO ' + str(bad_ctl)}")
+        f"{CONTROL_BUDGET:,} cap {CAP}: {'YES' if not bad_ctl else 'NO ' + str(bad_ctl)}")
+    problems += verify_paths(arm, recs, log)
     if measured:
         log(f"    measured relator length {min(measured)}-{max(measured)} "
             f"vs cap {CAP}: cap bound on {sum(1 for m in measured if m >= CAP)} rows")
     for p in problems:
         log(f"    PROBLEM {p}")
+    return problems
+
+
+def verify_paths(arm, recs, log=print):
+    """Every certificate replays, from its own record or the ``_paths`` twin."""
+    from experiments.search.ac_decode import decode_elementary, replay_elementary
+    problems = []
+    if PATHS[arm]:
+        path = os.path.join(OUT_DIR, PATHS[arm])
+        twin = {r["name"]: r for r in read_rows(path)}
+        if not twin:
+            problems.append(f"MISSING {PATHS[arm]} -- no certificates for {arm}")
+            return problems
+        for r in recs:
+            t = twin.get(r["name"])
+            if t is None:
+                problems.append(f"{r['name']}: absent from {PATHS[arm]}")
+                continue
+            for k in r:
+                if k != "seconds" and t.get(k) != r[k]:
+                    problems.append(f"{r['name']}: {k} differs between the "
+                                    f"archived record and its _paths twin")
+        recs = [twin[r["name"]] for r in recs if r["name"] in twin]
+    replayed = 0
+    for r in recs:
+        steps = [{"kind": "substitution", "move": m} for m in r.get("path_moves", [])]
+        if not r.get("path") or len(r["path"]) != len(steps) + 1:
+            problems.append(f"{r['name']}: no path, or path/path_moves lengths disagree")
+            continue
+        if len(steps) != r["path_length"]:
+            problems.append(f"{r['name']}: {len(steps)} moves but path_length "
+                            f"{r['path_length']}")
+        try:
+            moves = decode_elementary((r["r1"], r["r2"]), r["path"], steps)
+            if replay_elementary((r["r1"], r["r2"]), moves) != ["x", "y"]:
+                raise AssertionError("replay did not end at ['x', 'y']")
+            replayed += 1
+        except Exception as e:  # noqa: BLE001 -- report, do not hide
+            problems.append(f"{r['name']}: certificate does not replay: {e}")
+    log(f"    certificates: {replayed}/{len(recs)} replay to ['x', 'y'] as "
+        f"elementary AC moves" + (f" (from {PATHS[arm]})" if PATHS[arm] else ""))
     return problems
 
 

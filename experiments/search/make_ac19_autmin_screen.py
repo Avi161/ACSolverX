@@ -9,9 +9,12 @@ and never committed, so a screen-wide campaign had nothing to iterate over.
 This regenerates it, and then proves the regeneration is the same list rather
 than merely a similar one: every row of every shipped residue CSV must come
 back byte-identical in name, representative, member count and member indices.
-The orbit index is the position of the orbit's FIRST dataset member in file
-order, zero-based; that convention is not documented anywhere else, it is
-recovered here and then checked against 1,000+ known rows.
+The orbit index is the orbit's POSITION in the list, zero-based, with orbits
+ordered by their first dataset member -- so ``ac19_50892`` is the 50,892nd
+orbit, whose one member is dataset line 90,721 (``ac19x_90721``), and only
+``ac19_0`` coincides with a line number. It is not a line of the file; the
+per-line names are ``ac19x_<line>``. That convention is not documented anywhere
+else, it is recovered here and then checked against 1,000+ known rows.
 
     PYTHONPATH=. python3 -m experiments.search.make_ac19_autmin_screen --verify
     PYTHONPATH=. python3 -m experiments.search.make_ac19_autmin_screen --write
@@ -114,7 +117,16 @@ def shipped_residues():
         if not entry.endswith(".csv") or entry in generated:
             continue
         with open(os.path.join(SCREEN_DIR, entry)) as fh:
-            for row in csv.DictReader(fh):
+            reader = csv.DictReader(fh)
+            # Only a file in the residue layout is a claim about this list.
+            # The originals lists name dataset LINES (``ac19x_<line>``) and
+            # the unescalated lists carry no member columns; reading either
+            # as a residue made ``verify`` fail on rows it never described.
+            if not set(FIELDS) <= set(reader.fieldnames or ()):
+                continue
+            for row in reader:
+                if not row["name"].startswith("ac19_"):
+                    continue
                 known.setdefault(row["name"], (entry, row))
     return known
 

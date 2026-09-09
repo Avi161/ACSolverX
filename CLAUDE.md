@@ -81,7 +81,18 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   at 1M cap 64 (10M needs 88 GB) and reproduces the cloud run's min, median,
   max and sum exactly (its p90 is one order statistic off, a convention).
   Within-orbit variance is up to 31x, so never quote a per-orbit cost without
-  naming the original.
+  naming the original. **All 28 representatives now carry an explicit AC
+  certificate** obtained without search: `transport_ac19_orig.py` carries the
+  original's path through the `aut_canon` automorphism (AC moves are
+  Aut(F2)-equivariant) and Nielsen-reduces the resulting basis; 58/58 replay
+  from the representative's own words, `rep_moves` = original path_length +
+  a 1-4 move tail (median 56 over the 28). That is a certificate, not a
+  search result: the representatives still do not SOLVE at 10M. Names:
+  `ac19_<n>` is the n-th ORBIT (position in the orbit list), `ac19x_<n>` is
+  dataset LINE n; `ac19_50892` is orbit 50,892 = line 90,721. The workbook
+  `ac19_orig_10m_originals.xlsx` (+ CSV twin) has every original with its
+  lines, paths and transported lengths. `run_leftovers_1m --track-path`
+  writes a `_paths` jsonl; the plain runner strips certificates.
 - **`s20_bare` and the campaign's `s20_mk2` are bit-identical**: the same 68,475
   rows and the same node count on every one, across two engines (Python
   `mixed_search` vs `hcompact`) and two caps (255 vs 48). Engine and cap make no

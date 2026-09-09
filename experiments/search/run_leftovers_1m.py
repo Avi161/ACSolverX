@@ -598,7 +598,10 @@ def _worker_log(msg):
 
 
 def _job(args):
-    arm, row, budget, mrl, heartbeat_secs = args
+    # A sixth element, ``track_path``, is optional so every existing caller's
+    # five-tuple still runs the exact search it always did.
+    arm, row, budget, mrl, heartbeat_secs, *rest = args
+    track_path = bool(rest[0]) if rest else False
     _, spec = resolve_arm(arm)
     # Both caches in heuristics are module-level and unbounded, so in a worker
     # that handles more than one row they carry the previous row's states into
@@ -609,8 +612,9 @@ def _job(args):
     st = spec["run"](row["r1"], row["r2"], budget, mrl,
                      progress=_in_search_heartbeat(row["name"], budget,
                                                    heartbeat_secs,
-                                                   log=_worker_log))
-    return {
+                                                   log=_worker_log),
+                     track_path=track_path)
+    rec = {
         "name": row["name"],
         "arm": arm,
         "r1": row["r1"],
@@ -624,6 +628,13 @@ def _job(args):
         "max_relator_length_expanded": st["max_relator_length_expanded"],
         "seconds": round(time.time() - t, 3),
     }
+    if track_path:
+        # The certificate: the presentation at every step and the move that
+        # produced it, exactly as ``run_leftovers_5m`` records them. Only
+        # present when asked for, so an untracked record keeps its shape.
+        rec["path"] = st.get("path", [])
+        rec["path_moves"] = st.get("path_moves", [])
+    return rec
 
 
 def read_rows(path):
@@ -672,10 +683,18 @@ def _ensure_trailing_newline(path):
         pass                       # no file yet: "a" below will create it
 
 
-def out_path(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
-    """The jsonl for one (arm, budget, cap). RUN and REPORT must agree on it."""
+def out_path(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
+             track_path=False):
+    """The jsonl for one (arm, budget, cap). RUN and REPORT must agree on it.
+
+    A path-capturing run gets its own ``_paths`` stem: ``run_arm`` resumes from
+    the output file, so writing into the plain name would find every row
+    already done and run nothing -- and would mix records of two shapes.
+    """
     key, _ = resolve_arm(arm)
-    return os.path.join(out_dir, f"leftovers_1m_{key}_b{budget}_mrl{mrl}.jsonl")
+    tag = "_paths" if track_path else ""
+    return os.path.join(out_dir,
+                        f"leftovers_1m_{key}_b{budget}_mrl{mrl}{tag}.jsonl")
 
 
 def classify(rows, budget=NODE_BUDGET, checkpoints=CHECKPOINTS, floor=100_000):
@@ -715,7 +734,7 @@ def classify(rows, budget=NODE_BUDGET, checkpoints=CHECKPOINTS, floor=100_000):
 def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
             n_workers="auto", resume=True, ids=None, csv_path=None,
             common_denominator=False, mirror_dir=None, limit=None,
-            heartbeat_secs=60, log=print):
+            heartbeat_secs=60, track_path=False, log=print):
     """Run one arm to ``out_dir/leftovers_1m_<arm>_b<budget>_mrl<mrl>.jsonl``.
 
     Appends locally and mirrors the whole file to ``mirror_dir`` (Drive) as it
@@ -729,17 +748,19 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
         rows = rows[:int(limit)]
 
     os.makedirs(out_dir, exist_ok=True)
-    out = out_path(key, out_dir, budget, mrl)
+    out = out_path(key, out_dir, budget, mrl, track_path)
     if resume:
         _seed_from_mirror(out, mirror_dir, log)
     seen = _done(out) if resume else set()
     todo = [r for r in rows if r["name"] not in seen]
 
-    n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl)
+    n_workers, per_gb = resolve_workers(key, n_workers, budget=budget, mrl=mrl,
+                                        track_path=track_path)
     log(f"  arm     : {key} -- {spec['label']}")
     log(f"  rows    : {len(rows)} from {used}"
         + ("  [common denominator]" if common_denominator else ""))
-    log(f"  budget  : {budget:,} nodes, cap {mrl}")
+    log(f"  budget  : {budget:,} nodes, cap {mrl}"
+        + ("  [paths captured]" if track_path else ""))
     log(f"  engine  : {'hcompact (packed arena, numba)' if HAVE_HCOMPACT else 'python fallback'}")
     log(f"  workers : {n_workers} (~{per_gb:.1f} GB/search reserved)")
     log(f"  resume  : {len(seen)} row(s) already on disk, {len(todo)} to run")
@@ -747,7 +768,7 @@ def run_arm(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
 
     t0 = time.time()
     last = t0
-    jobs = [(key, r, budget, mrl, heartbeat_secs) for r in todo]
+    jobs = [(key, r, budget, mrl, heartbeat_secs, track_path) for r in todo]
     done = 0
     if jobs:
         _ensure_trailing_newline(out)
@@ -863,7 +884,7 @@ def _mirror(out, mirror_dir):
 # ---------------------------------------------------------------------- report
 def report(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
            common_denominator=False, write_ids=True, csv_path=None,
-           floor=100_000, log=print):
+           floor=100_000, track_path=False, log=print):
     """Print what the 1M budget bought and write the id lists it produced.
 
     ``mrl`` is part of the jsonl filename, so a report that defaults it while the
@@ -871,7 +892,7 @@ def report(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     run. Callers pass the same value to both.
     """
     key, spec = resolve_arm(arm)
-    out = out_path(key, out_dir, budget, mrl)
+    out = out_path(key, out_dir, budget, mrl, track_path)
     rows = read_rows(out)
     if not rows:
         log(f"no rows yet at {out}")
@@ -951,6 +972,14 @@ def main(argv=None):
     ap.add_argument("--smoke", action="store_true",
                     help="2 rows at a 2,000-node budget -- proves the pipeline, "
                          "measures nothing")
+    # The engine can return the certificate (``track_path``) and the ``_run_*``
+    # wrappers have always accepted the flag; ``_job`` never passed it, so a
+    # solve recorded by this runner carried a path_length and no path. This is
+    # the recovery recipe for such a solve: the same search, bit-identical (the
+    # engine reproduces ``keep_path=True``), written to a ``_paths`` jsonl next
+    # to the archived one. The id lists are not rewritten from it.
+    ap.add_argument("--track-path", action="store_true",
+                    help="record path and path_moves; writes a *_paths.jsonl")
     a = ap.parse_args(argv)
     budget, limit = a.budget, a.limit
     out_dir = a.out_dir
@@ -959,10 +988,11 @@ def main(argv=None):
         out_dir = out_dir + "_smoke"
     run_arm(a.arm, out_dir, budget=budget, mrl=a.mrl, n_workers=a.workers,
             limit=limit, common_denominator=a.common_denominator,
-            csv_path=a.csv_path)
+            csv_path=a.csv_path, track_path=a.track_path)
     report(a.arm, out_dir, budget=budget, mrl=a.mrl,
            common_denominator=a.common_denominator, csv_path=a.csv_path,
-           floor=a.floor)
+           floor=a.floor, track_path=a.track_path,
+           write_ids=not a.track_path)
 
 
 if __name__ == "__main__":

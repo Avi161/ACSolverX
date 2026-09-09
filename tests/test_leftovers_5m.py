@@ -2723,3 +2723,13 @@ def test_the_cli_can_run_a_row_list_that_is_not_the_arm_s_own():
     # the report must count against the same list, or a partial run reads
     # as a complete one -- the u124 "22 of 88" failure in a new costume
     assert "csv_path" in inspect.signature(m.report_5m).parameters
+
+
+def test_track_path_writes_a_separate_jsonl_and_keeps_the_record_shape():
+    """``--track-path`` may add keys, never change the untracked record or file."""
+    from experiments.search.run_leftovers_1m import out_path
+    plain = out_path("s20_mk2", "/o", 1_000_000, 64)
+    paths = out_path("s20_mk2", "/o", 1_000_000, 64, track_path=True)
+    assert plain.endswith("leftovers_1m_s20_mk2_b1000000_mrl64.jsonl")
+    assert paths.endswith("leftovers_1m_s20_mk2_b1000000_mrl64_paths.jsonl")
+    assert out_path("s20_mk2", "/o", 1_000_000, 64, track_path=False) == plain
