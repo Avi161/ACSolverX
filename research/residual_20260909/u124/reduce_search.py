@@ -49,17 +49,35 @@ def _measure(key):
     return len(key) - 1, max(separator, len(key) - separator - 1)
 
 
-def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0):
+def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight=0.0,
+                depth_switch=None, late_s=None, late_mk=None, segments=None):
+    """``segments``: list of (upto_total_length, S, MK) for length-dependent weights
+    (kernel-side); ``depth_switch``/``late_s``/``late_mk``: after that search depth the
+    S/MK weights change (recomputed per child with ``score_key``); ``w_weight``: the
+    Whitehead-adjusted score of the ``whitehead2`` arm."""
+    whitehead = w_weight != 0.0
     root = pack(canon_pair(*pair))
-    priority = score_key(np.frombuffer(root, dtype=np.uint8), False, 0.0, s_weight, mk_weight)
+    priority = score_key(np.frombuffer(root, dtype=np.uint8), whitehead, w_weight, s_weight, mk_weight)
     heap = [(priority, 0, root)]
     parent = {root: None}
     best, (best_total, best_max) = root, _measure(root)
-    config = {'segments': [{'upto': None, 'w': {'L': 1.0, 'S': s_weight, 'MK': mk_weight}}]}
+    if segments:
+        config = {'segments': [{'upto': up, 'w': {'L': 1.0, 'S': sw, 'MK': mk}} for up, sw, mk in segments]}
+    else:
+        config = {'segments': [{'upto': None, 'w': {'L': 1.0, 'S': s_weight, 'MK': mk_weight}}]}
     upto, weights, _ = compile_config(config)
     nodes = 0
     solved_key = None
     ball_depth = None
+
+    def child_score(child, kernel_score, depth):
+        if depth_switch is not None and depth >= depth_switch:
+            return float(score_key(np.frombuffer(child, dtype=np.uint8), whitehead, w_weight,
+                                   s_weight if late_s is None else late_s,
+                                   mk_weight if late_mk is None else late_mk))
+        if whitehead:
+            return float(score_key(np.frombuffer(child, dtype=np.uint8), True, w_weight, s_weight, mk_weight))
+        return float(kernel_score)
 
     def consider(child, key, kind, payload):
         nonlocal best, best_total, best_max, solved_key, ball_depth
@@ -94,7 +112,7 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0):
             if consider(child, key, 0, tuple(int(v) for v in moves[i])):
                 hit = True
                 break
-            heapq.heappush(heap, (float(scores[i]), depth + 1, child))
+            heapq.heappush(heap, (child_score(child, scores[i], depth + 1), depth + 1, child))
         if hit:
             break
         if arm == 'aut_edges':
@@ -105,8 +123,7 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0):
                     hit = True
                     break
                 if parent[child] == (key, 1, transform):
-                    score = score_key(np.frombuffer(child, dtype=np.uint8), False, 0.0, s_weight, mk_weight)
-                    heapq.heappush(heap, (score, depth + 1, child))
+                    heapq.heappush(heap, (child_score(child, 0.0, depth + 1), depth + 1, child))
             if hit:
                 break
 
@@ -144,17 +161,17 @@ def replay(states, steps):
 
 
 def run_row(args):
-    row, arms, budget, stem = args
+    row, arms, budget, stem, kw = args
     table = _table(stem)
     pair = (row['r1'], row['r2'])
     out = []
     for arm in arms:
         started = time.perf_counter()
-        result = search_best(pair, arm, budget, table)
+        result = search_best(pair, arm, budget, table, **kw)
         states, steps = result['best']
         raw_total = len(row['r1']) + len(row['r2'])
         root_total = sum(map(len, result['root']))
-        record = dict(name=row['name'], arm=arm, budget=budget, r1=row['r1'], r2=row['r2'],
+        record = dict(name=row['name'], arm=arm, budget=budget, config=kw, r1=row['r1'], r2=row['r2'],
                       raw_total=raw_total, root=result['root'], root_total=root_total,
                       root_max=max(map(len, result['root'])),
                       best_pair=states[-1], best_total=result['best_total'], best_max=result['best_max'],
@@ -181,11 +198,27 @@ def main(argv=None):
     parser.add_argument('--table', default='ball_cap14_aut')
     parser.add_argument('--workers', type=int, default=2)
     parser.add_argument('--out', required=True)
+    parser.add_argument('--s-weight', type=float, default=20.0)
+    parser.add_argument('--mk-weight', type=float, default=2.0)
+    parser.add_argument('--w-weight', type=float, default=0.0)
+    parser.add_argument('--depth-switch', type=int, default=None)
+    parser.add_argument('--late-s', type=float, default=None)
+    parser.add_argument('--late-mk', type=float, default=None)
+    parser.add_argument('--segments', default=None,
+                        help='length-dependent weights: "upto:S:MK,upto:S:MK,..." (last upto may be none)')
     args = parser.parse_args(argv)
+    segments = None
+    if args.segments:
+        segments = []
+        for part in args.segments.split(','):
+            up, sw, mk = part.split(':')
+            segments.append((None if up == 'none' else float(up), float(sw), float(mk)))
+    kw = dict(s_weight=args.s_weight, mk_weight=args.mk_weight, w_weight=args.w_weight,
+              depth_switch=args.depth_switch, late_s=args.late_s, late_mk=args.late_mk, segments=segments)
     with open(args.panel, newline='') as stream:
         rows = list(csv.DictReader(stream))
     arms = args.arms.split(',')
-    jobs = [(row, arms, args.budget, args.table) for row in rows]
+    jobs = [(row, arms, args.budget, args.table, kw) for row in rows]
     out = Path(args.out)
     partial = out.with_suffix(out.suffix + '.partial')
     started = time.perf_counter()
