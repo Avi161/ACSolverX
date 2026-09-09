@@ -50,7 +50,7 @@ def _measure(key):
 
 
 def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight=0.0,
-                depth_switch=None, late_s=None, late_mk=None, segments=None):
+                depth_switch=None, late_s=None, late_mk=None, segments=None, cap=None):
     """``segments``: list of (upto_total_length, S, MK) for length-dependent weights
     (kernel-side); ``depth_switch``/``late_s``/``late_mk``: after that search depth the
     S/MK weights change (recomputed per child with ``score_key``); ``w_weight``: the
@@ -58,8 +58,10 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
     whitehead = w_weight != 0.0
     root = pack(canon_pair(*pair))
     priority = score_key(np.frombuffer(root, dtype=np.uint8), whitehead, w_weight, s_weight, mk_weight)
-    heap = [(priority, 0, root)]
-    parent = {root: None}
+    heap = [(priority, 0, root, None, 0, ())]
+    seen = {root}
+    parent = {root: None}          # popped states only (plus the root)
+    pending = {}                   # generated-but-not-popped children we may need a path to
     best, (best_total, best_max) = root, _measure(root)
     best_at = 0
     if segments:
@@ -83,29 +85,36 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
     def consider(child, key, kind, payload):
         """Register a new child; returns 'dup', 'hit' or 'new'."""
         nonlocal best, best_total, best_max, best_at, solved_key, ball_depth
-        if child in parent:
+        if child in seen:
             return 'dup'
-        parent[child] = (key, kind, payload)
+        seen.add(child)
         total, mx = _measure(child)
         if (total, mx, child) < (best_total, best_max, best):
+            if best in pending:
+                del pending[best]
             best, best_total, best_max, best_at = child, total, mx, nodes
+            pending[child] = (key, kind, payload)
         if table is not None and child in table:
             solved_key, ball_depth = child, table[child][0]
+            pending[child] = (key, kind, payload)
             return 'hit'
         return 'new'
 
     if table is not None and root in table:
         solved_key, ball_depth = root, table[root][0]
     while solved_key is None and heap and nodes < budget:
-        _, depth, key = heapq.heappop(heap)
+        _, depth, key, pkey, pkind, ppayload = heapq.heappop(heap)
         nodes += 1
+        if key not in parent:
+            parent[key] = None if pkey is None else (pkey, pkind, ppayload)
+            pending.pop(key, None)
         state = unpack(key)
         if len(state[0]) == len(state[1]) == 1 and state[0].lower() != state[1].lower():
             solved_key = key
             break
         a, b = _arrs(key)
         blob, offsets, lengths, segs, scores, _, _, moves, count = expand_and_score_h(
-            a, b, len(key) - 1, True, upto, weights, True, True)
+            a, b, cap if cap is not None else len(key) - 1, True, upto, weights, True, True)
         raw = blob.tobytes()
         hit = False
         for i in range(count):
@@ -117,19 +126,22 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
                 break
             if status == 'dup':
                 continue          # already generated: never re-push (the census kernel's rule)
-            heapq.heappush(heap, (child_score(child, scores[i], depth + 1), depth + 1, child))
+            heapq.heappush(heap, (child_score(child, scores[i], depth + 1), depth + 1, child,
+                                  key, 0, tuple(int(v) for v in moves[i])))
         if hit:
             break
         if arm == 'aut_edges':
             for transform in NIELSEN:
                 nxt = apply_pair(state, transform)
+                if cap is not None and max(map(len, nxt)) > cap:
+                    continue
                 child = pack(nxt)
                 status = consider(child, key, 1, transform)
                 if status == 'hit':
                     hit = True
                     break
                 if status == 'new':
-                    heapq.heappush(heap, (child_score(child, 0.0, depth + 1), depth + 1, child))
+                    heapq.heappush(heap, (child_score(child, 0.0, depth + 1), depth + 1, child, key, 1, transform))
             if hit:
                 break
 
@@ -138,7 +150,7 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
         cur = key
         while cur is not None:
             states.append(list(unpack(cur)))
-            previous = parent[cur]
+            previous = parent[cur] if cur in parent else pending[cur]
             if previous is None:
                 break
             cur, kind, payload = previous
@@ -204,6 +216,7 @@ def main(argv=None):
     parser.add_argument('--table', default='ball_cap14_aut')
     parser.add_argument('--workers', type=int, default=2)
     parser.add_argument('--out', required=True)
+    parser.add_argument('--cap', type=int, default=None, help='per-relator length cap (None = parent total length, the census default)')
     parser.add_argument('--s-weight', type=float, default=20.0)
     parser.add_argument('--mk-weight', type=float, default=2.0)
     parser.add_argument('--w-weight', type=float, default=0.0)
@@ -220,7 +233,7 @@ def main(argv=None):
             up, sw, mk = part.split(':')
             segments.append((None if up == 'none' else float(up), float(sw), float(mk)))
     kw = dict(s_weight=args.s_weight, mk_weight=args.mk_weight, w_weight=args.w_weight,
-              depth_switch=args.depth_switch, late_s=args.late_s, late_mk=args.late_mk, segments=segments)
+              depth_switch=args.depth_switch, late_s=args.late_s, late_mk=args.late_mk, segments=segments, cap=args.cap)
     with open(args.panel, newline='') as stream:
         rows = list(csv.DictReader(stream))
     arms = args.arms.split(',')

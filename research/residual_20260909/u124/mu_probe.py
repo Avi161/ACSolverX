@@ -50,12 +50,14 @@ def _table(stem):
     return _TABLE
 
 
-def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
+def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0, cap=None):
     root = pack(canon_pair(*pair))
     root_total = len(root) - 1
     priority = score_key(np.frombuffer(root, dtype=np.uint8), False, 0.0, s_weight, mk_weight)
-    heap = [(priority, 0, root)]
-    parent = {root: None}
+    heap = [(priority, 0, root, None, 0, ())]
+    seen = {root}
+    parent = {root: None}          # popped states only (plus the root)
+    pending = {}                   # generated children we may need a path to (best / solved)
     config = {'segments': [{'upto': None, 'w': {'L': 1.0, 'S': s_weight, 'MK': mk_weight}}]}
     upto, weights, _ = compile_config(config)
     nodes = 0
@@ -66,31 +68,39 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
 
     best_at = 0
 
-    def evaluate(key):
+    def evaluate(key, link=None):
         nonlocal best_mu, best_key, mu_evals, best_at
         mu_evals += 1
         mu = autcanon_fast.aut_min(unpack(key))[0]
         if (mu, len(key) - 1, key) < (best_mu, len(best_key) - 1, best_key):
+            if best_key in pending:
+                del pending[best_key]
             best_mu, best_key, best_at = mu, key, nodes
+            if link is not None:
+                pending[key] = link
 
     def consider(child, key, kind, payload):
         """Register a new child; returns 'dup', 'hit' or 'new'."""
         nonlocal solved_key
-        if child in parent:
+        if child in seen:
             return 'dup'
-        parent[child] = (key, kind, payload)
+        seen.add(child)
         if len(child) - 1 <= root_total + slack:
-            evaluate(child)
+            evaluate(child, (key, kind, payload))
         if table is not None and child in table:
             solved_key = child
+            pending[child] = (key, kind, payload)
             return 'hit'
         return 'new'
 
     if table is not None and root in table:
         solved_key = root
     while solved_key is None and heap and nodes < budget:
-        _, depth, key = heapq.heappop(heap)
+        _, depth, key, pkey, pkind, ppayload = heapq.heappop(heap)
         nodes += 1
+        if key not in parent:
+            parent[key] = None if pkey is None else (pkey, pkind, ppayload)
+            pending.pop(key, None)
         if len(key) - 1 > root_total + slack:
             evaluate(key)          # popped states are always evaluated
         state = unpack(key)
@@ -99,7 +109,7 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
             break
         a, b = _arrs(key)
         blob, offsets, lengths, segs, scores, _, _, moves, count = expand_and_score_h(
-            a, b, len(key) - 1, True, upto, weights, True, True)
+            a, b, cap if cap is not None else len(key) - 1, True, upto, weights, True, True)
         raw = blob.tobytes()
         hit = False
         for i in range(count):
@@ -111,19 +121,22 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
                 break
             if status == 'dup':
                 continue          # already generated: never re-push (the census kernel's rule)
-            heapq.heappush(heap, (float(scores[i]), depth + 1, child))
+            heapq.heappush(heap, (float(scores[i]), depth + 1, child, key, 0, tuple(int(v) for v in moves[i])))
         if hit:
             break
         if arm == 'aut_edges':
             for transform in NIELSEN:
-                child = pack(apply_pair(state, transform))
+                nxt = apply_pair(state, transform)
+                if cap is not None and max(map(len, nxt)) > cap:
+                    continue
+                child = pack(nxt)
                 status = consider(child, key, 1, transform)
                 if status == 'hit':
                     hit = True
                     break
                 if status == 'new':
                     score = score_key(np.frombuffer(child, dtype=np.uint8), False, 0.0, s_weight, mk_weight)
-                    heapq.heappush(heap, (score, depth + 1, child))
+                    heapq.heappush(heap, (score, depth + 1, child, key, 1, transform))
             if hit:
                 break
 
@@ -132,7 +145,7 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
         cur = key
         while cur is not None:
             states.append(list(unpack(cur)))
-            previous = parent[cur]
+            previous = parent[cur] if cur in parent else pending[cur]
             if previous is None:
                 break
             cur, kind, payload = previous
@@ -162,15 +175,15 @@ def replay(states, steps):
 
 
 def run_row(args):
-    row, arms, budget, stem, slack = args
+    row, arms, budget, stem, slack, cap = args
     table = _table(stem)
     autcanon_fast.warm()
     out = []
     for arm in arms:
         started = time.perf_counter()
-        r = probe((row['r1'], row['r2']), arm, budget, table, slack)
+        r = probe((row['r1'], row['r2']), arm, budget, table, slack, cap=cap)
         floor = int(autcanon_fast.aut_min((row['r1'], row['r2']))[0])
-        out.append(dict(name=row['name'], arm=arm, budget=budget, slack=slack, r1=row['r1'], r2=row['r2'],
+        out.append(dict(name=row['name'], arm=arm, budget=budget, slack=slack, cap=cap, r1=row['r1'], r2=row['r2'],
                         floor_mu=floor, root_total=r['root_total'], best_mu=r['best_mu'],
                         mu_reduction=floor - r['best_mu'], pops_to_best=r['pops_to_best'], best_rep=r['best_rep'], best_state=r['best_state'],
                         path_moves=len(r['best_steps']), path_replayed=replay(r['best_states'], r['best_steps']),
@@ -186,6 +199,7 @@ def main(argv=None):
     parser.add_argument('--arms', default='s20,aut_edges')
     parser.add_argument('--table', default='ball_cap14_aut')
     parser.add_argument('--slack', type=int, default=2)
+    parser.add_argument('--cap', type=int, default=None, help='per-relator length cap (None = parent total length)')
     parser.add_argument('--workers', type=int, default=2)
     parser.add_argument('--out', required=True)
     args = parser.parse_args(argv)
@@ -196,7 +210,7 @@ def main(argv=None):
     started = time.perf_counter()
     records = []
     with ProcessPoolExecutor(max_workers=args.workers) as pool, open(partial, 'w') as stream:
-        for batch in pool.map(run_row, [(row, arms, args.budget, args.table, args.slack) for row in rows]):
+        for batch in pool.map(run_row, [(row, arms, args.budget, args.table, args.slack, args.cap) for row in rows]):
             for record in batch:
                 stream.write(json.dumps(record) + '\n')
                 records.append(record)
