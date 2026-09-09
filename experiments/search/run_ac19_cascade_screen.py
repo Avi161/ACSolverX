@@ -102,7 +102,13 @@ INTERMEDIATE_CAP = None
 #               beside an s40_gen measured here would compare three things at
 #               once (priority, engine, cap). This arm changes only the
 #               priority.
-ARMS = ("cascade501", "ac501", "s40_gen", "s20_bare")
+#   s20_gen     the fourth cell of the 2x2. L+20S+2MK *with* the Nielsen door
+#               open. Without it the three arms above cannot separate "the
+#               basis moves help" from "the L+40S priority helps": s40_gen
+#               changes BOTH against s20_bare. With it the design is a clean
+#               factorial -- priority on one axis, move set on the other --
+#               and each main effect is measured twice.
+ARMS = ("cascade501", "ac501", "s40_gen", "s20_bare", "s20_gen")
 S40 = dict(s_weight=40.0, mk_weight=0.0, w_weight=0.0)
 
 # The ladder. 501 is the prefix `hybrid_10m` pins; the rungs above it are the
@@ -319,16 +325,23 @@ def search_row(pair, arm=ARM, budget=PREFIX_BUDGET,
                        rewrite_budget=REWRITE_BUDGET,
                        intermediate_cap=INTERMEDIATE_CAP,
                        max_budget=max_budget)
-    if arm not in ("ac501", "s40_gen", "s20_bare"):
+    if arm not in ("ac501", "s40_gen", "s20_bare", "s20_gen"):
         raise ValueError(f"unknown arm {arm!r}; choose from {ARMS}")
     from experiments.search.heuristic_1k import mixed_search
     # arm= is the move set; the weights are the priority. ac501 and s40_gen
     # share weights and differ in the move set; s20_bare shares the move set
     # with ac501 and differs in the weights. One knob apart in each direction.
+    #            move set      priority
+    #   ac501     AC only       L + 40*S
+    #   s40_gen   + Nielsen     L + 40*S
+    #   s20_bare  AC only       L + 20*S + 2*MK
+    #   s20_gen   + Nielsen     L + 20*S + 2*MK
+    S20MK2 = dict(s_weight=20.0, mk_weight=2.0, w_weight=0.0)
     inner, weights = {
         "ac501": ("s20", S40),
         "s40_gen": ("aut_edges", S40),
-        "s20_bare": ("s20", dict(s_weight=20.0, mk_weight=2.0, w_weight=0.0)),
+        "s20_bare": ("s20", S20MK2),
+        "s20_gen": ("aut_edges", S20MK2),
     }[arm]
     got = mixed_search(pair, inner, budget=budget, cap=SEARCH_CAP, **weights)
     # `mixed_search` returns steps already tagged 'substitution'; wrap it in
