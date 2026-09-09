@@ -324,105 +324,121 @@ def main(argv):
     if not files:
         raise SystemExit(f"no shards matched {ROWS_GLOB}")
 
-    total = 0
-    fb_rows = 0
-    by_route = Counter()
-    by_route_all = Counter()
-    tuples = Counter()
-    tuples_solved = Counter()
-    exps = Counter()
-    other_blocks = Counter()
-    both_fb = 0
-    roles_first = Counter()
-    first_change_hist = Counter()
-    donor_use_hist = Counter()
-    aut_image_blocks = Counter()
-    aut_image_gate = Counter()
-    gate_hist = Counter()
-    gate_by_index = Counter()
-    macro_gate = Counter()
+    agg = {
+        "total": 0, "fb_solved": 0, "fb_unsolved": 0, "both_fb": 0,
+        "by_route": Counter(), "by_route_all": Counter(),
+        "nblocks_pair": Counter(), "family": Counter(), "family_route": Counter(),
+        "tuples": Counter(), "tuples_by_family": defaultdict(Counter),
+        "expsums": Counter(), "expsums_by_family": Counter(),
+        "companion_blocks": Counter(), "det": Counter(),
+        "first_role": Counter(), "first_change": Counter(),
+        "donor_uses": Counter(), "aut_image_blocks": Counter(),
+        "gate": Counter(), "gate_family": Counter(), "gate_index": Counter(),
+        "macro": Counter(), "root_gate": Counter(),
+        "nielsen_min_blocks": Counter(), "nielsen_min_by_family": Counter(),
+        "steps_hist": Counter(),
+    }
     macro_examples = defaultdict(list)
-    det_hist = Counter()
-    nblocks_pair = Counter()
-    unsolved_fb = 0
+    fam_examples = defaultdict(list)
 
     for fn in files:
         with open(fn) as fh:
             for line in fh:
                 row = json.loads(line)
-                total += 1
-                by_route_all[(row["route"], row["solved"])] += 1
+                agg["total"] += 1
+                agg["by_route_all"][(row["route"], row["solved"])] += 1
                 rec = analyse(row)
                 if rec is None:
                     continue
-                nblocks_pair[tuple(sorted(n_blocks(w) for w in rec["root"]))] += 1
+                agg["nblocks_pair"][tuple(sorted(n_blocks(w) for w in rec["root"]))] += 1
                 if not rec["solved"]:
-                    unsolved_fb += 1
+                    agg["fb_unsolved"] += 1
                     continue
-                fb_rows += 1
-                by_route[rec["route"]] += 1
+                fam = rec["family"]
+                agg["fb_solved"] += 1
+                agg["by_route"][rec["route"]] += 1
+                agg["family"][fam] += 1
+                agg["family_route"][(fam, rec["route"])] += 1
                 tup = tuple(rec["fb_canon"])
-                tuples[tup] += 1
-                tuples_solved[tup] += 1
-                exps[tuple(rec["fb_exp"])] += 1
-                other_blocks[rec["other_blocks"]] += 1
-                det_hist[rec["det"]] += 1
-                both_fb += int(rec["both_four_block"])
-                roles_first[rec["roles"][:1] or "(none)"] += 1
-                first_change_hist[rec["first_change"]] += 1
-                donor_use_hist[rec["donor_uses_before_change"]] += 1
+                agg["tuples"][tup] += 1
+                agg["tuples_by_family"][fam][tup] += 1
+                ey, ex = rec["fb_exp"][1], rec["fb_exp"][0]
+                agg["expsums"][tuple(sorted((abs(ex), abs(ey))))] += 1
+                agg["expsums_by_family"][(fam, tuple(sorted((abs(ex), abs(ey)))))] += 1
+                agg["companion_blocks"][rec["other_blocks"]] += 1
+                agg["det"][rec["det"]] += 1
+                agg["both_fb"] += int(rec["both_four_block"])
+                agg["first_role"][(fam, rec["roles"][:1] or ".")] += 1
+                agg["first_change"][(fam, rec["first_change"])] += 1
+                agg["donor_uses"][(fam, min(rec["donor_uses_before_change"], 9))] += 1
+                agg["steps_hist"][(fam, min(rec["n_steps"] // 10 * 10, 60))] += 1
                 if rec["aut_first"]:
-                    aut_image_blocks[rec["aut_first"]["blocks"]] += 1
-                gate_hist[rec["gate_name"]] += 1
+                    agg["aut_image_blocks"][(fam, rec["aut_first"]["blocks"])] += 1
+                mn = min(rec["nielsen_blocks"])
+                agg["nielsen_min_blocks"][mn] += 1
+                agg["nielsen_min_by_family"][(fam, mn)] += 1
+                agg["root_gate"][(fam, rec["root_gate"])] += 1
+                agg["gate"][(fam, rec["gate_name"])] += 1
                 if rec["gate_name"] is not None:
-                    gate_by_index[(rec["gate_name"], rec["gate_index"])] += 1
-                    key = (rec["gate_name"], rec["macro"])
-                    macro_gate[key] += 1
+                    agg["gate_index"][(fam, rec["gate_name"], rec["gate_index"])] += 1
+                    key = (fam, rec["gate_name"], rec["macro"])
+                    agg["macro"][key] += 1
                     if len(macro_examples[key]) < MAX_EXAMPLES_PER_PATTERN:
                         macro_examples[key].append(rec)
+                if len(fam_examples[fam]) < 6 and rec["root_gate"] is None:
+                    fam_examples[fam].append(rec)
 
-    def top(counter, n=40):
-        return [[list(k) if isinstance(k, tuple) else k, v]
-                for k, v in counter.most_common(n)]
+    def dump(counter, n=None):
+        items = counter.most_common(n) if n else sorted(counter.items(), key=lambda kv: -kv[1])
+        return [["|".join(map(str, k)) if isinstance(k, tuple) else str(k), v] for k, v in items]
 
     out = {
         "shards": len(files),
-        "rows_scanned": total,
-        "solved_rows_with_four_block_root": fb_rows,
-        "unsolved_rows_with_four_block_root": unsolved_fb,
-        "by_route": dict(by_route),
-        "by_route_all_rows": {f"{r}|{s}": v for (r, s), v in by_route_all.items()},
-        "block_profile_of_pair": top(nblocks_pair, 30),
-        "both_relators_four_block": both_fb,
-        "companion_block_count": dict(other_blocks),
-        "det": dict(det_hist),
-        "canonical_tuples_top": top(tuples, 60),
-        "n_distinct_canonical_tuples": len(tuples),
-        "exponent_sums_top": top(exps, 40),
-        "first_role": dict(roles_first),
-        "first_change_step": {str(k): v for k, v in sorted(first_change_hist.items(),
-                                                           key=lambda kv: (kv[0] is None, kv[0]))},
-        "donor_uses_before_change": {str(k): v for k, v in sorted(donor_use_hist.items())},
-        "aut_image_block_count": {str(k): v for k, v in sorted(aut_image_blocks.items())},
-        "gate_reached": {str(k): v for k, v in gate_hist.items()},
-        "gate_by_index": [[list(k), v] for k, v in gate_by_index.most_common(60)],
-        "macro_patterns": [[list(k), v] for k, v in macro_gate.most_common(60)],
+        "rows_scanned": agg["total"],
+        "solved_rows_with_four_block_root": agg["fb_solved"],
+        "unsolved_rows_with_four_block_root": agg["fb_unsolved"],
+        "both_relators_four_block": agg["both_fb"],
+        "by_route": dict(agg["by_route"]),
+        "by_route_all_rows": dump(agg["by_route_all"]),
+        "block_profile_of_pair": dump(agg["nblocks_pair"], 30),
+        "family": dict(agg["family"]),
+        "family_by_route": dump(agg["family_route"]),
+        "companion_block_count": {str(k): v for k, v in sorted(agg["companion_blocks"].items())},
+        "det": {str(k): v for k, v in agg["det"].items()},
+        "n_distinct_canonical_tuples": len(agg["tuples"]),
+        "canonical_tuples_top": dump(agg["tuples"], 60),
+        "canonical_tuples_by_family": {f: dump(c, 25) for f, c in agg["tuples_by_family"].items()},
+        "abs_exponent_sums": dump(agg["expsums"], 30),
+        "abs_exponent_sums_by_family": dump(agg["expsums_by_family"], 40),
+        "nielsen_min_image_blocks": {str(k): v for k, v in sorted(agg["nielsen_min_blocks"].items())},
+        "nielsen_min_image_blocks_by_family": dump(agg["nielsen_min_by_family"]),
+        "root_gate_by_family": dump(agg["root_gate"]),
+        "first_role_by_family": dump(agg["first_role"]),
+        "first_change_step_by_family": dump(agg["first_change"], 60),
+        "donor_uses_before_change_by_family": dump(agg["donor_uses"], 60),
+        "aut_first_image_blocks_by_family": dump(agg["aut_image_blocks"]),
+        "steps_hist_by_family": dump(agg["steps_hist"], 60),
+        "gate_reached_by_family": dump(agg["gate"]),
+        "gate_index_by_family": dump(agg["gate_index"], 80),
+        "macro_patterns": dump(agg["macro"], 120),
     }
     with open(OUT_JSON, "w") as fh:
         json.dump(out, fh, indent=1, sort_keys=False)
     with open(OUT_EXAMPLES, "w") as fh:
-        for key, recs in sorted(macro_examples.items(), key=lambda kv: -macro_gate[kv[0]]):
+        for key, recs in sorted(macro_examples.items(), key=lambda kv: -agg["macro"][kv[0]]):
             for rec in recs:
-                fh.write(json.dumps({"pattern": list(key), "count": macro_gate[key], **rec}) + "\n")
-    print(json.dumps({k: v for k, v in out.items()
-                      if k not in ("canonical_tuples_top", "macro_patterns", "gate_by_index")},
-                     indent=1)[:4000])
-    print("\ntop canonical (a,b,c,d):")
-    for k, v in tuples.most_common(25):
-        print("  ", k, v)
-    print("\ntop macro patterns (gate, roles-before-gate):")
-    for k, v in macro_gate.most_common(25):
-        print("  ", k, v)
+                fh.write(json.dumps({"kind": "macro", "pattern": list(key),
+                                     "count": agg["macro"][key], **rec}) + "\n")
+        for fam, recs in sorted(fam_examples.items()):
+            for rec in recs:
+                fh.write(json.dumps({"kind": "family_example", "pattern": [fam], **rec}) + "\n")
+    for k in ("rows_scanned", "solved_rows_with_four_block_root",
+              "unsolved_rows_with_four_block_root", "both_relators_four_block",
+              "by_route", "family", "nielsen_min_image_blocks"):
+        print(k, "=", out[k])
+    print("\nroot_gate_by_family:", out["root_gate_by_family"][:14])
+    print("\ntop canonical tuples:", out["canonical_tuples_top"][:12])
+    print("\ntop macros:", out["macro_patterns"][:20])
     print("\nwrote", OUT_JSON, "and", OUT_EXAMPLES)
 
 

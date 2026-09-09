@@ -310,3 +310,19 @@ def aut_edges_ball10(pair, budget):
     result.setdefault('policy_route', 'aut_edges_ball10')
     result['ball_table'] = 'ball_cap10'
     return result
+
+
+# --------------------------------------------------------------------------
+# K1..K5 -- the pre-registered candidate cascades of NOTES.md, on the
+# automorphism-closed cap-10 table.  K0 is 'frozen'.  Only K1 is covered by
+# the dominance argument; K2..K5 charge units the frozen cascade does not
+# (certified overrun, stable-power gate) or reorder stage 3 (forced arm).
+# --------------------------------------------------------------------------
+make_policy(10, aut=True, name='K1')
+make_policy(10, aut=True, certified_overrun=True, use_stable_power=True, name='K2')
+make_policy(10, aut=True, plain_prefix=300, certified_overrun=True, use_stable_power=True,
+            name='K3')
+make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_power=True,
+            name='K4')
+make_policy(10, aut=True, plain_prefix=0, certified_overrun=True, use_stable_power=True,
+            force_arm='aut_edges', name='K5')

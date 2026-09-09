@@ -4,3 +4,4 @@ __pycache__/
 # their manifests (hashes, sizes, depth histograms) are committed, the pickles are not.
 tables/ball_cap12*.pkl
 tables/ball_cap1[3-9]*.pkl
+census_scratch/

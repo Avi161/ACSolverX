@@ -45,11 +45,39 @@ edge a second time with the pure-Python ``words.replay_move`` (a different
 implementation on a different data type), and the builder's CLI records the
 result in the manifest.
 
-Completeness of the enumeration (that no predecessor is missed) is inherited
-from the symmetry of the product set -- ``r_i <- r_i . r_j^{+1}`` and
-``r_i <- r_i . r_j^{-1}`` undo each other up to the rotation and inversion that
-canonicalisation quotients out -- and is checked directly against brute force
-on small caps by ``tests/test_ball_policy.py``.
+WHAT IS EXACT, AND WHAT ``depth`` MEANS
+=======================================
+Two different claims, checked separately.
+
+*The ball as a SET is exact.*  ``bruteforce_ball(cap)`` computes the true
+backward ball the honest way -- enumerate EVERY canonical pair with both
+relators of length <= cap, expand each with the kernel, reverse the edges and
+BFS from the trivial pair -- and it agrees with ``build(cap)`` key for key:
+
+    cap 6: 117 canonical relators,   6,903 canonical pairs, ball 317
+    cap 7: 275 canonical relators,  37,950 canonical pairs, ball 2,333
+    cap 8: 693 canonical relators, 240,471 canonical pairs, ball 6,069
+
+(the universe grows about 6x per +1 cap, so this ground truth stops being
+affordable above cap 8; ``tests/test_ball_policy.py`` runs the cap-6 case).
+Since the ball set is what decides whether a search hits, this is the claim the
+policies rest on.
+
+*Every stored edge is real.*  Each admitted predecessor was forward-verified
+with the very kernel the searches run, and ``check_replay`` re-derives every
+stored edge with the pure-Python ``words.replay_move`` / ``words.apply_pair``.
+So a spliced tail is a genuine path of engine moves to the trivial pair --
+which is what the certificate decoder then re-checks a third time.
+
+*``depth`` is an upper bound, not a geodesic.*  The predecessor enumeration
+finds every state, but not every edge: an edge ``c -> s`` whose product is a
+rotation of a CONJUGATE of ``s``'s relator (the case the kernel's cut-shift
+skip describes) is not of the enumerated shape, so a state can enter the BFS
+one or two layers later than its true backward distance.  Brute force puts the
+true eccentricity at 6 / 9 / 14 for caps 6 / 7 / 8 where this builder reports
+7 / 10 / 15.  Nothing depends on the number being minimal -- the stored tail is
+a valid path of that length, and ``ball_depth`` is reported, never charged --
+but it is an upper bound and is documented as one.
 
 DETERMINISM
 ===========
@@ -68,6 +96,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import pickle
 import subprocess
 import time
@@ -76,7 +105,7 @@ from pathlib import Path
 import numpy as np
 from numba import njit
 
-from experiments.equivalence_classes.lib.words import apply_pair, canon_pair, replay_move
+from experiments.equivalence_classes.lib.words import apply_pair, canon_pair, canon_rel, replay_move
 from experiments.heuristic_search.core.hexpand import (
     _U0, _canon_packed, _encode_packed, _packed_ge, expand_children_h)
 from experiments.heuristic_search.core.hfast import _arrs
@@ -332,6 +361,69 @@ def build(cap, verify=True, aut_edges=False, stats=None, progress=None):
     return table
 
 
+def canonical_relators(cap):
+    """Every canonical relator of length 1..``cap``, sorted -- the alphabet of
+    the universe of canonical pairs at that cap."""
+    found = set()
+
+    def walk(word):
+        if word and word[0] != word[-1].swapcase():
+            found.add(canon_rel(word))
+        if len(word) == cap:
+            return
+        for letter in 'xXyY':
+            if word and word[-1] == letter.swapcase():
+                continue
+            walk(word + letter)
+
+    walk('')
+    return sorted(word for word in found if word)
+
+
+def bruteforce_ball(cap):
+    """The true backward ball at ``cap``, computed without any predecessor
+    enumeration: expand EVERY canonical pair with both relators of length
+    <= ``cap`` with the kernel, reverse the edges, BFS from the trivial pair.
+
+    Returns ``{key: depth}``.  Exact by construction and exponentially more
+    expensive than ``build`` (the universe is ~6x larger per +1 cap), so it is
+    the ground truth for small caps only.
+    """
+    from collections import deque
+    from experiments.heuristic_search.core.hexpand import expand_and_score_h
+    from experiments.heuristic_search.core.hfast import compile_config
+    from experiments.search.heuristics import BASELINE_CONFIG
+    upto, weights, _unused = compile_config(BASELINE_CONFIG)
+    relators = canonical_relators(cap)
+    universe = set()
+    for i, first in enumerate(relators):
+        for second in relators[i:]:
+            universe.add(pack(canon_pair(first, second)))
+    predecessors = {}
+    for key in universe:
+        r1, r2 = _arrs(key)
+        blob, offsets, lengths, _segs, _scores, _t, _k, _moves, count = expand_and_score_h(
+            r1, r2, len(key) - 1, True, upto, weights, True, True)
+        raw = blob.tobytes()
+        for i in range(count):
+            start = int(offsets[i])
+            child = raw[start:start + int(lengths[i])]
+            sep = child.index(0)
+            if max(sep, len(child) - sep - 1) > cap:
+                continue
+            predecessors.setdefault(child, set()).add(key)
+    root = pack(canon_pair('x', 'y'))
+    depth = {root: 0}
+    queue = deque([root])
+    while queue:
+        state = queue.popleft()
+        for previous in predecessors.get(state, ()):
+            if previous not in depth:
+                depth[previous] = depth[state] + 1
+                queue.append(previous)
+    return depth
+
+
 def has_automorphism_edges(table):
     """Whether any stored edge is a Nielsen automorphism rather than a
     substitution -- i.e. whether the table was built with ``aut_edges=True``."""
@@ -447,7 +539,9 @@ def save(table, path, cap=None, build_stats=None, checks=None):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     blob = pickle.dumps(table, protocol=pickle.HIGHEST_PROTOCOL)
-    path.write_bytes(blob)
+    scratch = path.with_suffix(path.suffix + '.partial')
+    scratch.write_bytes(blob)
+    os.replace(scratch, path)
     stats = dict(build_stats or {})
     levels = stats.pop('levels', None)
     manifest = dict(
