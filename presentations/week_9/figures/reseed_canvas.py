@@ -58,8 +58,12 @@ def main():
     m = TAG.search(page)
     if not m:
         sys.exit("no <script id=\"appifact-doc\"> block in the payload")
-    end = page.index("</script>", m.end())
-    doc = json.loads(page[m.end():end])
+    # raw_decode, not index("</script>"): the JSON is one object, so the decoder
+    # itself finds its end. Searching for the closing tag instead breaks the
+    # moment an artboard's own "</script>" appears INSIDE the JSON -- which is
+    # exactly what a previous version of this script caused, by writing the
+    # payload back with literal "<".
+    doc, end = json.JSONDecoder().raw_decode(page, m.end())
 
     old = set(doc["content"]["files"])
     files = read_canvas()
@@ -67,7 +71,15 @@ def main():
     new = set(files)
 
     # `comments` rides through untouched -- see the module docstring.
-    body = json.dumps(doc, ensure_ascii=False)
+    #
+    # "<" MUST be escaped. This JSON lives inside a <script> element, so the
+    # first literal "</script>" in an artboard's own markup would terminate the
+    # block early and truncate the document -- the artboards each carry a
+    # <script src="./support.js"></script>, so that is every one of them. The
+    # original payload escapes "<" as \u003c for this reason; matching it is
+    # not cosmetic. "<" never occurs in JSON outside a string, so the blanket
+    # replace is safe.
+    body = json.dumps(doc, ensure_ascii=False).replace("<", "\\u003c")
     open(PAYLOAD, "w", encoding="utf-8").write(page[:m.end()] + body + page[end:])
 
     print(f"reseeded {len(files)} files into {os.path.relpath(PAYLOAD)} "

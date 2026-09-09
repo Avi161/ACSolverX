@@ -108,3 +108,57 @@ def test_run_refuses_a_silent_python_fallback(monkeypatch):
     monkeypatch.setattr(r10k, "HAVE_HCOMPACT", False)
     with pytest.raises(SystemExit, match="hcompact"):
         r10k.run("greedy", "/tmp/should-not-be-created", log=lambda *_: None)
+
+
+# --------------------------------------------------- the coverage-gap residue
+
+def test_unescalated_lists_re_derive():
+    """The 13 rows are derived from the jsonls, never stored and trusted."""
+    from experiments.search import make_ac19_unescalated_lists as mk
+    assert mk.check() == []
+    derived = mk.build()
+    assert len(derived["greedy"]) == 12
+    assert len(derived["s20_mk2"]) == 1
+
+
+def test_the_one_s20_row_is_the_documented_coverage_gap():
+    """`ac19_33435` is not a random gap row.
+
+    `run_leftovers_1m` names it as the single orbit outside the 70,723 both arms
+    searched at 10k. It reaching the never-escalated list from the other end --
+    failing s20_mk2's 10k screen with no rung above it -- is the same fact, and
+    pinning the identity keeps the two halves from drifting apart.
+    """
+    from experiments.search import make_ac19_unescalated_lists as mk
+    from experiments.search.run_leftovers_1m import COMMON_DENOMINATOR_EXCLUDED
+    assert [r["name"] for r in mk.build()["s20_mk2"]] == ["ac19_33435"]
+    assert COMMON_DENOMINATOR_EXCLUDED["greedy"] == ("ac19_33435",)
+
+
+def test_every_unescalated_row_is_now_closed():
+    """All 13 solve on the rung they were escalated to, and none below its floor.
+
+    Each of these rows failed at exactly 10,000 nodes on its own arm. A solve at
+    or below 10,000 in the re-run at the same cap would mean the search that ran
+    is not the search that built the list, exactly as the 10k oracle checks from
+    the other direction.
+    """
+    import json
+    out = os.path.join(r10k.ROOT, "results", "heuristic_search", "ac19_unescalated")
+    closed = {}
+    for stem in ("leftovers_1m_greedy_b100000_mrl48.jsonl",
+                 "leftovers_1m_greedy_b1000000_mrl48.jsonl",
+                 "leftovers_1m_s20_mk2_b100000_mrl48.jsonl"):
+        path = os.path.join(out, stem)
+        assert os.path.exists(path), f"{stem} missing -- the rung has not been run"
+        for line in open(path):
+            if not line.strip():
+                continue
+            rec = json.loads(line)
+            if rec.get("solved"):
+                assert rec["nodes_explored"] > r10k.BUDGET, (
+                    f"{rec['name']} solved at {rec['nodes_explored']} <= "
+                    f"{r10k.BUDGET}, which its 10k run says is impossible")
+                closed.setdefault(rec["arm"], set()).add(rec["name"])
+    assert len(closed["greedy"]) == 12
+    assert len(closed["s20_mk2"]) == 1

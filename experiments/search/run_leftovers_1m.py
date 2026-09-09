@@ -678,19 +678,26 @@ def out_path(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH):
     return os.path.join(out_dir, f"leftovers_1m_{key}_b{budget}_mrl{mrl}.jsonl")
 
 
-def classify(rows, budget=NODE_BUDGET, checkpoints=CHECKPOINTS):
+def classify(rows, budget=NODE_BUDGET, checkpoints=CHECKPOINTS, floor=100_000):
     """Split result rows, and read the smaller budgets off the same run.
 
     ``anytime`` is free: a row solved after N pops was solved at every budget >= N
     and unsolved below it. ``solved_at_or_below_100k`` should be EMPTY -- every row
-    in this experiment was unsolved at 100,000 by construction, so a name in there
-    says the search that ran is not the search that built the list.
+    in this experiment was unsolved at ``floor`` by construction, so a name in
+    there says the search that ran is not the search that built the list.
+
+    ``floor`` is a parameter because the shipped lists are not the only ones this
+    runner can be pointed at. Its own 100k residue failed at 100,000; the
+    never-escalated rows (``make_ac19_unescalated_lists.py``) failed at 10,000 and
+    solving one at 40,000 is the expected outcome, not an alarm. Hardcoding
+    100,000 would have made this check silently vacuous on that list -- the worst
+    kind of broken, since it still prints.
     """
     solved, unsolved, suspicious = [], [], []
     for r in rows:
         if r.get("solved") and int(r["nodes_explored"]) <= budget:
             solved.append(r["name"])
-            if int(r["nodes_explored"]) <= 100_000:
+            if int(r["nodes_explored"]) <= floor:
                 suspicious.append(r["name"])
         else:
             unsolved.append(r["name"])
@@ -855,7 +862,8 @@ def _mirror(out, mirror_dir):
 
 # ---------------------------------------------------------------------- report
 def report(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
-           common_denominator=False, write_ids=True, log=print):
+           common_denominator=False, write_ids=True, csv_path=None,
+           floor=100_000, log=print):
     """Print what the 1M budget bought and write the id lists it produced.
 
     ``mrl`` is part of the jsonl filename, so a report that defaults it while the
@@ -871,8 +879,12 @@ def report(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
     if common_denominator:
         drop = set(COMMON_DENOMINATOR_EXCLUDED.get(key, ()))
         rows = [r for r in rows if r["name"] not in drop]
-    c = classify(rows, budget=budget)
-    expected = spec["n_common"] if common_denominator else spec["n_rows"]
+    c = classify(rows, budget=budget, floor=floor)
+    if csv_path is not None:
+        # a list of our own: the arm spec's row count describes a different set
+        expected = len(load_rows(key, csv_path=csv_path)[0])
+    else:
+        expected = spec["n_common"] if common_denominator else spec["n_rows"]
     n_solved = len(c["solved_at_1m"])
 
     log("")
@@ -890,7 +902,8 @@ def report(arm, out_dir, budget=NODE_BUDGET, mrl=MAX_RELATOR_LENGTH,
         # Every row here failed at 100,000 in the run that built the list, so this
         # cannot happen unless a different search is running.
         log(f"    !! {len(c['solved_at_or_below_100k'])} row(s) solved at or below "
-            f"100,000 nodes, which the 100k run says is impossible: "
+            f"{floor:,} nodes, which the run that built this list says is "
+            f"impossible: "
             f"{c['solved_at_or_below_100k'][:5]}")
         log("       -> the search being run is not the one that built this list; "
             "stop and check the arm, the cap and the row list before reading "
@@ -914,6 +927,18 @@ def main(argv=None):
     ap.add_argument("--budget", type=int, default=NODE_BUDGET)
     ap.add_argument("--workers", default="auto")
     ap.add_argument("--limit", type=int, default=None)
+    # `run_arm` and `load_rows` have always taken a csv_path; the CLI never
+    # exposed it, so this runner could only run its own two shipped lists. That
+    # is right for the campaign and useless the moment a row list is DERIVED
+    # rather than shipped -- e.g. the rows that failed the 10k screen and were
+    # never escalated, which no rung above this one can contain by construction.
+    # `load_rows` already skips the row-count assertion against the arm spec
+    # when a path is given, since such a list is not that arm's 100k residue.
+    ap.add_argument("--csv-path", default=None,
+                    help="row list to run instead of the arm's shipped CSV")
+    ap.add_argument("--floor", type=int, default=100_000,
+                    help="the budget every row on the list already failed at; a "
+                         "solve at or below it means the wrong search is running")
     ap.add_argument("--common-denominator", action="store_true",
                     help="drop the rows outside the 70,723-orbit intersection "
                          "(one, on the greedy arm) so the count matches 221")
@@ -927,9 +952,10 @@ def main(argv=None):
         budget, limit = 2_000, 2
         out_dir = out_dir + "_smoke"
     run_arm(a.arm, out_dir, budget=budget, n_workers=a.workers, limit=limit,
-            common_denominator=a.common_denominator)
+            common_denominator=a.common_denominator, csv_path=a.csv_path)
     report(a.arm, out_dir, budget=budget,
-           common_denominator=a.common_denominator)
+           common_denominator=a.common_denominator, csv_path=a.csv_path,
+           floor=a.floor)
 
 
 if __name__ == "__main__":

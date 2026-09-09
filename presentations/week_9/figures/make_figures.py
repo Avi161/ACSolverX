@@ -9,13 +9,16 @@ interpolates this script's stats.js.
 
 TWO POPULATIONS, AND THEY ARE NOT THE SAME EXPERIMENT
 -----------------------------------------------------
-  AC19 extended : all 156,762 raw presentations, cascade at budget 1,000 ONLY.
+  AC19 extended : all 156,762 raw presentations, cascade over the 1k/10k/100k ladder.
   AC19 aut-min  : the 72,779 Aut(F2) orbit representatives, cascade over the full
                   501 / 1,000 / 100,000 ladder.
 
-So the extended set has no 1k-10k or >=10k bin -- not because it has no hard rows,
-but because its run stopped at 1,000. Its tail is the 3,208 unsolved, not an empty
-bin. Only the three head bins compare across populations, and the figures say so.
+Both are now CLOSED -- 156,762 of 156,762 and 72,779 of 72,779 settled -- so all five
+bands are real on both sides and the columns are a like-for-like pair. This section
+used to say the extended set had no 1k-10k or >=10k bin because its run stopped at
+1,000 with 3,208 unsolved. That was true of the only rung then in reach; its 10,000
+and 100,000 rungs had in fact run, each over the rung below's residue, and between
+them they finish it.
 
 BANDS ARE THE CASCADE'S OWN COST
 --------------------------------
@@ -42,9 +45,13 @@ for every arm. Two residues survive and are counted rather than substituted:
     >= 10,000,000   a row that exhausted the 10M budget; enters AT the ceiling,
                     which pushes that arm's median UP, so any band it still wins
                     it wins in spite of the substitution
-    unescalated     failed the 10k rung and no higher rung ever ran it, because
-                    those higher lists were built from what the original wave saw
-                    and it judged 71,556 / 71,582 of the 72,779. Dropped, counted.
+    unmeasured      failed every rung it was run at, the deepest of which is
+                    below 10,000,000. 13 such rows existed because the original
+                    wave judged only 71,556 / 71,582 of the 72,779 and every
+                    later list was built from what it saw; `ac19_unescalated`
+                    ran them up the same ladder. Dropped from the figures, and
+                    reported WITH the budget they reached rather than as
+                    "unknown".
 
 The cascade column is exact throughout, and is no longer the only one quoted bare.
 
@@ -227,11 +234,19 @@ def bin_table(cost, population=None):
 # above it rather than merely sitting beside them.
 ARM_RUNGS = {
     "greedy": ["ac19_autmin_10k/ac19_autmin_10k_greedy_b10000_mrl48.jsonl",
+               # the coverage gap's own rung: the 12 rows that failed the 10k
+               # screen and that no later list could contain, because every list
+               # above was built from what the original wave saw. Derived by
+               # experiments/search/make_ac19_unescalated_lists.py, run through
+               # the runner that owns the 100k/1M rungs at the same cap 48.
+               "ac19_unescalated/leftovers_1m_greedy_b100000_mrl48.jsonl",
+               "ac19_unescalated/leftovers_1m_greedy_b1000000_mrl48.jsonl",
                "hsearch_ac19_hard100k/ac19_unsolved10k_baseline_b100000_mrl48.jsonl",
                "leftovers_1m/leftovers_1m_greedy_b1000000_mrl48.jsonl",
                "leftovers_5m/leftovers_5m_greedy_b5000000_mrl64.jsonl",
                "ac19_10m/ac19_10m_greedy_b10000000_mrl64.jsonl"],
     "s20_mk2": ["ac19_autmin_10k/ac19_autmin_10k_s20_mk2_b10000_mrl48.jsonl",
+                "ac19_unescalated/leftovers_1m_s20_mk2_b100000_mrl48.jsonl",
                 "hsearch_ac19_hard100k/ac19_unsolved10k_s20_mk2_b100000_mrl48.jsonl",
                 "leftovers_1m/leftovers_1m_s20_mk2_b1000000_mrl48.jsonl",
                 "leftovers_5m/leftovers_5m_s20_mk2_b5000000_mrl64.jsonl",
@@ -246,20 +261,29 @@ ARM_10K_LIST = {"greedy": "ac19_autmin_screen/unsolved_10k_baseline.csv",
 
 
 def arm_costs(arm):
-    """(exact, censored, unescalated) for one arm over the aut-min population.
+    """(exact, censored, unmeasured) for one arm over the aut-min population.
 
     `exact` is a measured node count. `censored` is a row still unsolved at the
-    10,000,000 ceiling, which has no cost, only a lower bound. `unescalated` is
-    the small residue in between: a row that failed the 10k rung and that no
-    higher rung ever ran, because the original wave judged 71,556 of 72,779
-    orbits on greedy and 71,582 on s20_mk2 and the lists above were built from
-    what it saw. Those rows are counted and excluded, never bracketed.
+    10,000,000 ceiling -- no cost, only a lower bound. `unmeasured` is the
+    remainder, and it is a MAP from row to the deepest budget that row actually
+    reached, not a bare count: the deck has to be able to say "unsolved at
+    1,000,000" rather than "unknown", because those are different claims and the
+    second one understates what is known.
+
+    The category exists because the original wave judged 71,556 of 72,779 orbits
+    on greedy and 71,582 on s20_mk2, so 13 rows failed the 10k screen with no
+    later rung above them -- every later list was built from what that wave saw.
+    `ac19_unescalated` then ran exactly those 13 up the same ladder at the same
+    cap, which is why most of them are now in `exact`.
     """
-    exact, censored = {}, set()
+    exact, censored, deepest = {}, set(), {}
     for rel in ARM_RUNGS[arm]:
         for r in jsonl(rel):
             if r.get("solved") and r["name"] not in exact:
                 exact[r["name"]] = r["nodes_explored"]
+            b = int(r.get("budget") or 0)
+            if b > deepest.get(r["name"], 0):
+                deepest[r["name"]] = b
     for r in jsonl(ARM_RUNGS[arm][-1]):
         if not r.get("solved"):
             censored.add(r["name"])
@@ -270,7 +294,8 @@ def arm_costs(arm):
     assert archived <= failed_10k, (
         f"{arm}: {len(archived - failed_10k)} archived 10k failure(s) now solve "
         "-- the re-run is not the search that built the archive")
-    return exact, censored, failed_10k - set(exact) - censored
+    unmeasured = {n: deepest[n] for n in failed_10k - set(exact) - censored}
+    return exact, censored, unmeasured
 
 
 def arm_on_bands(arm, cascade_cost):
@@ -283,12 +308,12 @@ def arm_on_bands(arm, cascade_cost):
     is what was counted. The two residues are counted, not guessed: `censored`
     enters at the 10,000,000 ceiling (which pushes that arm's median UP, so
     every band it wins, it wins in spite of the substitution), and
-    `unescalated` is dropped.
+    `unmeasured` is dropped.
     """
-    exact, censored, unescalated = arm_costs(arm)
+    exact, censored, unmeasured = arm_costs(arm)
     rows = []
     for i, label in enumerate(BAND_LABELS):
-        vals, kinds = [], {"exact": 0, "censored": 0, "unescalated": 0,
+        vals, kinds = [], {"exact": 0, "censored": 0, "unmeasured": 0,
                            "solved_10k": 0, "in_band": 0}
         for name, c in cascade_cost.items():
             if band_of(c) != i:
@@ -301,50 +326,14 @@ def arm_on_bands(arm, cascade_cost):
             elif name in exact:
                 vals.append(exact[name]); kinds["exact"] += 1
             else:
-                kinds["unescalated"] += 1
+                kinds["unmeasured"] += 1
         if not vals:
             rows.append({"band": label, "n": 0, **kinds}); continue
         rows.append({"band": label, "n": len(vals),
                      "mean": round(st.mean(vals), 1),
                      "median": int(st.median(sorted(vals))),
                      "total": sum(vals), **kinds})
-    return rows, len(exact), len(censored), len(unescalated)
-
-
-def arm_on_bands(arm, cascade_cost):
-    """Per cascade band, the arm's cost bracket. See the module docstring."""
-    exact, censored, failed = arm_costs(arm)
-    # The low end of an unknown-easy row's bracket is 1, NOT min(exact): `exact`
-    # holds only rows that FAILED the 10k screen, so its minimum is above 10,000
-    # (10,008 greedy, 10,131 s20_mk2) and pairing it with a 10,000 ceiling
-    # inverted every bracket -- mean_lo > mean_hi on all five bands, and the
-    # figure then drew both arms as flat lines pinned to the ceiling.
-    floor = 1
-    rows = []
-    for i, label in enumerate(BAND_LABELS):
-        lo_vals, hi_vals, kinds = [], [], {"exact": 0, "bounded": 0, "censored": 0}
-        for name, c in cascade_cost.items():
-            if band_of(c) != i:
-                continue
-            if name in censored:
-                lo_vals.append(TEN_M); hi_vals.append(TEN_M); kinds["censored"] += 1
-            elif name in exact:
-                lo_vals.append(exact[name]); hi_vals.append(exact[name]); kinds["exact"] += 1
-            elif name in failed:
-                # failed the 10k screen but no later rung recorded it: should not
-                # happen, and if it does the row is dropped rather than guessed.
-                continue
-            else:
-                lo_vals.append(floor); hi_vals.append(SCREEN_BUDGET); kinds["bounded"] += 1
-        if not hi_vals:
-            rows.append({"band": label, "n": 0}); continue
-        rows.append({
-            "band": label, "n": len(hi_vals),
-            "mean_lo": round(st.mean(lo_vals), 1), "mean_hi": round(st.mean(hi_vals), 1),
-            "median_lo": int(st.median(lo_vals)), "median_hi": int(st.median(hi_vals)),
-            **kinds,
-        })
-    return rows, len(exact), len(censored), len(failed)
+    return rows, len(exact), len(censored), unmeasured
 
 
 # ------------------------------------------------------------------ other blocks
@@ -833,8 +822,8 @@ def main():
     # deck has to be able to say how much of the total rests on them.
     job_b_mass = sum(JOB_B.values())
 
-    g_rows, g_exact, g_cens, g_unesc = arm_on_bands("greedy", cas_aut)
-    s_rows, s_exact, s_cens, s_unesc = arm_on_bands("s20_mk2", cas_aut)
+    g_rows, g_exact, g_cens, g_unm = arm_on_bands("greedy", cas_aut)
+    s_rows, s_exact, s_cens, s_unm = arm_on_bands("s20_mk2", cas_aut)
 
     sb, rb = stage_block(), rewrite_block()
     h2 = head2head(cas_aut)
@@ -852,9 +841,11 @@ def main():
                 "live_bands": sum(1 for b in ext_tbl if b["n"])},
         "arms": {
             "greedy": {"bins": g_rows, "exact": g_exact, "censored": g_cens,
-                       "unescalated": g_unesc},
+                       "unmeasured": len(g_unm),
+                       "unmeasured_at": sorted(set(g_unm.values()))},
             "s20_mk2": {"bins": s_rows, "exact": s_exact, "censored": s_cens,
-                        "unescalated": s_unesc},
+                        "unmeasured": len(s_unm),
+                        "unmeasured_at": sorted(set(s_unm.values()))},
         },
         "stages": sb, "rewrite": rb, "tenm": tb, "orig": ob, "u124": ub,
         "head2head": h2,
@@ -889,8 +880,9 @@ def main():
     print(f"  total {ext_tot['n']:,}  mean {ext_tot['mean']:,}  median {ext_tot['median']:,}"
           f"  +{ext_unsolved:,} unsolved")
     print(f"arm coverage: greedy exact {g_exact:,} censored {g_cens} "
-          f"unescalated {g_unesc} · s20_mk2 exact {s_exact:,} censored {s_cens} "
-          f"unescalated {s_unesc}")
+          f"unmeasured {len(g_unm)} {sorted(g_unm.items())} · "
+          f"s20_mk2 exact {s_exact:,} censored {s_cens} "
+          f"unmeasured {len(s_unm)} {sorted(s_unm.items())}")
     print(f"\nhead-to-head on {h2['n']} rows "
           f"(cascade+greedy {h2['n_greedy']}, cascade+s20_mk2 {h2['n_s20']}):")
     print(f"  {'band':<9}{'n':>5}{'cascade':>10}{'s20_mk2':>10}{'greedy':>10}   winner")

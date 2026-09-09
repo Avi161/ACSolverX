@@ -115,6 +115,48 @@ far inside the bound. Those rows have no higher rung above them, since the
 100k/1M/5M lists were built from what the wave saw; the deck counts them
 as `unescalated` and drops them rather than guessing a cost.
 
+## The 13 never-escalated rows are closed
+
+The re-run left 12 greedy rows and 1 s20_mk2 row that failed at 10,000 with no
+higher rung above them -- every later list was built from what the original wave
+saw, and it never judged them. That is the whole residue of the coverage gap,
+and it is now empty.
+
+Derived by `experiments/search/make_ac19_unescalated_lists.py` (never by hand)
+and run up the same ladder at the same cap 48 by the runner that owns those
+rungs, into `results/heuristic_search/ac19_unescalated/`:
+
+    PYTHONPATH=. python3 -m experiments.search.make_ac19_unescalated_lists --write
+    PYTHONPATH=. python3 -m experiments.search.run_leftovers_1m --arm greedy \
+        --budget 100000 --floor 10000 \
+        --csv-path .../unescalated_10k_baseline.csv --out-dir .../ac19_unescalated
+
+| arm | rows | solved at 100,000 | solved at 1,000,000 | still open |
+|---|---:|---:|---:|---:|
+| greedy | 12 | 11 | **12** | **0** |
+| s20_mk2 | 1 | **1** | — | **0** |
+
+29 s and 14 s of wall clock. Costs run 11,431 to 44,793 nodes at the 100k rung;
+the one row that needed 1,000,000, `ac19_48537`, solved at **202,390**. The
+single s20_mk2 row, `ac19_33435`, solved at **62,705** -- and it is not a random
+gap row: `run_leftovers_1m.COMMON_DENOMINATOR_EXCLUDED` names it as the one
+orbit outside the 70,723 both arms searched at 10k, so this closes that
+discrepancy on that arm from the other end.
+
+None of the 13 was a hard presentation. The cascade settles all of them at 54 to
+23,393 nodes, and `s20_mk2` settles 11 of greedy's 12 inside 10,000. They were
+one arm's blind spots that the coverage gap happened to hide.
+
+Every solve is above its row's 10,000-node floor -- the minimum is 11,431 -- so
+the same "wrong search is running" check that the 10k oracle applies from below
+holds here from above. `run_leftovers_1m.classify` now takes that floor as a
+parameter rather than hardcoding 100,000, which on this list would have made the
+check silently vacuous while still printing.
+
+**Both arms are now complete over the population**: greedy 72,751 measured + 28
+censored at 10,000,000; s20_mk2 72,770 + 9. Nothing is unmeasured at an
+unstated budget.
+
 ## greedy vs s20_mk2, on all 72,779 for the first time
 
 | | rows |
