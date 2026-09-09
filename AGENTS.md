@@ -658,3 +658,14 @@ the full preparation reaches `(tYYYY,S,tXXX)` in 206 moves after the
 initial stabilization. The checked three-stage coupled power exchange
 ends at `(tYYY,tXXXX,S)`, mirrored AK3. Do not repeat that exchange as
 an index-lowering proposal or promote normal generation to AC triviality.
+
+### [2026-09-09] Two complementary words do not clear two auxiliary rows
+
+[TRAP] In the two-complement transfer, the projected kernel pair presents
+the same group as the original pair. Its normal generation requires the
+balanced-trivial hypothesis, not just a unimodular exponent matrix. An
+ordinary AC certificate for that projected pair is a separate sufficient
+condition; do not manufacture both auxiliary rows from determinant data.
+Keep a free-basis change distinct from a row move: it transports a whole
+trivialization and its terminal free basis, not an arbitrary claimed AC
+equivalence between a tuple and its image.
