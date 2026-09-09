@@ -61,6 +61,7 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
     heap = [(priority, 0, root)]
     parent = {root: None}
     best, (best_total, best_max) = root, _measure(root)
+    best_at = 0
     if segments:
         config = {'segments': [{'upto': up, 'w': {'L': 1.0, 'S': sw, 'MK': mk}} for up, sw, mk in segments]}
     else:
@@ -80,17 +81,18 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
         return float(kernel_score)
 
     def consider(child, key, kind, payload):
-        nonlocal best, best_total, best_max, solved_key, ball_depth
+        """Register a new child; returns 'dup', 'hit' or 'new'."""
+        nonlocal best, best_total, best_max, best_at, solved_key, ball_depth
         if child in parent:
-            return False
+            return 'dup'
         parent[child] = (key, kind, payload)
         total, mx = _measure(child)
         if (total, mx, child) < (best_total, best_max, best):
-            best, best_total, best_max = child, total, mx
+            best, best_total, best_max, best_at = child, total, mx, nodes
         if table is not None and child in table:
             solved_key, ball_depth = child, table[child][0]
-            return True
-        return False
+            return 'hit'
+        return 'new'
 
     if table is not None and root in table:
         solved_key, ball_depth = root, table[root][0]
@@ -109,9 +111,12 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
         for i in range(count):
             o = int(offsets[i])
             child = raw[o:o + int(lengths[i])]
-            if consider(child, key, 0, tuple(int(v) for v in moves[i])):
+            status = consider(child, key, 0, tuple(int(v) for v in moves[i]))
+            if status == 'hit':
                 hit = True
                 break
+            if status == 'dup':
+                continue          # already generated: never re-push (the census kernel's rule)
             heapq.heappush(heap, (child_score(child, scores[i], depth + 1), depth + 1, child))
         if hit:
             break
@@ -119,10 +124,11 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
             for transform in NIELSEN:
                 nxt = apply_pair(state, transform)
                 child = pack(nxt)
-                if consider(child, key, 1, transform):
+                status = consider(child, key, 1, transform)
+                if status == 'hit':
                     hit = True
                     break
-                if parent[child] == (key, 1, transform):
+                if status == 'new':
                     heapq.heappush(heap, (child_score(child, 0.0, depth + 1), depth + 1, child))
             if hit:
                 break
@@ -142,7 +148,7 @@ def search_best(pair, arm, budget, table, s_weight=20.0, mk_weight=2.0, w_weight
         steps.reverse()
         return states, steps
 
-    return dict(root=list(unpack(root)), nodes=nodes, solved=solved_key is not None,
+    return dict(root=list(unpack(root)), nodes=nodes, solved=solved_key is not None, pops_to_best=best_at,
                 ball_depth=ball_depth, best=path_to(best), best_total=best_total, best_max=best_max,
                 solved_path=path_to(solved_key) if solved_key is not None else None)
 
@@ -175,7 +181,7 @@ def run_row(args):
                       raw_total=raw_total, root=result['root'], root_total=root_total,
                       root_max=max(map(len, result['root'])),
                       best_pair=states[-1], best_total=result['best_total'], best_max=result['best_max'],
-                      reduction=root_total - result['best_total'],
+                      reduction=root_total - result['best_total'], pops_to_best=result['pops_to_best'],
                       path_moves=len(steps),
                       path_substitutions=sum(1 for s in steps if s['kind'] == 'substitution'),
                       path_automorphisms=sum(1 for s in steps if s['kind'] == 'automorphism'),

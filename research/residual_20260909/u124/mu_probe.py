@@ -64,24 +64,27 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
     best_mu, best_key = autcanon_fast.aut_min(unpack(root))[0], root
     mu_evals += 1
 
+    best_at = 0
+
     def evaluate(key):
-        nonlocal best_mu, best_key, mu_evals
+        nonlocal best_mu, best_key, mu_evals, best_at
         mu_evals += 1
         mu = autcanon_fast.aut_min(unpack(key))[0]
         if (mu, len(key) - 1, key) < (best_mu, len(best_key) - 1, best_key):
-            best_mu, best_key = mu, key
+            best_mu, best_key, best_at = mu, key, nodes
 
     def consider(child, key, kind, payload):
+        """Register a new child; returns 'dup', 'hit' or 'new'."""
         nonlocal solved_key
         if child in parent:
-            return False
+            return 'dup'
         parent[child] = (key, kind, payload)
         if len(child) - 1 <= root_total + slack:
             evaluate(child)
         if table is not None and child in table:
             solved_key = child
-            return True
-        return False
+            return 'hit'
+        return 'new'
 
     if table is not None and root in table:
         solved_key = root
@@ -102,19 +105,23 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
         for i in range(count):
             o = int(offsets[i])
             child = raw[o:o + int(lengths[i])]
-            if consider(child, key, 0, tuple(int(v) for v in moves[i])):
+            status = consider(child, key, 0, tuple(int(v) for v in moves[i]))
+            if status == 'hit':
                 hit = True
                 break
+            if status == 'dup':
+                continue          # already generated: never re-push (the census kernel's rule)
             heapq.heappush(heap, (float(scores[i]), depth + 1, child))
         if hit:
             break
         if arm == 'aut_edges':
             for transform in NIELSEN:
                 child = pack(apply_pair(state, transform))
-                if consider(child, key, 1, transform):
+                status = consider(child, key, 1, transform)
+                if status == 'hit':
                     hit = True
                     break
-                if parent[child] == (key, 1, transform):
+                if status == 'new':
                     score = score_key(np.frombuffer(child, dtype=np.uint8), False, 0.0, s_weight, mk_weight)
                     heapq.heappush(heap, (score, depth + 1, child))
             if hit:
@@ -137,7 +144,7 @@ def probe(pair, arm, budget, table, slack, s_weight=20.0, mk_weight=2.0):
 
     states, steps = path_to(best_key)
     mu, rep = autcanon_fast.aut_min(unpack(best_key))
-    return dict(root=list(unpack(root)), root_total=root_total, nodes=nodes, mu_evals=mu_evals,
+    return dict(root=list(unpack(root)), root_total=root_total, nodes=nodes, mu_evals=mu_evals, pops_to_best=best_at,
                 solved=solved_key is not None, best_mu=int(mu), best_rep=list(rep),
                 best_state=list(unpack(best_key)), best_states=states, best_steps=steps)
 
@@ -165,7 +172,7 @@ def run_row(args):
         floor = int(autcanon_fast.aut_min((row['r1'], row['r2']))[0])
         out.append(dict(name=row['name'], arm=arm, budget=budget, slack=slack, r1=row['r1'], r2=row['r2'],
                         floor_mu=floor, root_total=r['root_total'], best_mu=r['best_mu'],
-                        mu_reduction=floor - r['best_mu'], best_rep=r['best_rep'], best_state=r['best_state'],
+                        mu_reduction=floor - r['best_mu'], pops_to_best=r['pops_to_best'], best_rep=r['best_rep'], best_state=r['best_state'],
                         path_moves=len(r['best_steps']), path_replayed=replay(r['best_states'], r['best_steps']),
                         solved=r['solved'], nodes=r['nodes'], mu_evals=r['mu_evals'],
                         wall=time.perf_counter() - started, best_states=r['best_states'], best_steps=r['best_steps']))

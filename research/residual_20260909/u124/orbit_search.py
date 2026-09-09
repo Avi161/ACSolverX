@@ -66,6 +66,7 @@ def orbit_search(pair, budget, table, slack, s_weight=20.0, mk_weight=2.0):
     parent = {root: None}
     heap = [((int(mu0), float(score_key(np.frombuffer(root, dtype=np.uint8), False, 0.0, s_weight, mk_weight))), 0, root)]
     best_mu, best_key = int(mu0), root
+    best_at = 0
     nodes = canon_evals = 0
     solved_key = None
     while heap and nodes < budget and solved_key is None:
@@ -92,7 +93,7 @@ def orbit_search(pair, budget, table, slack, s_weight=20.0, mk_weight=2.0):
             parent[rep_key] = (key, tuple(int(v) for v in moves[i]), child)
             mu = int(mu)
             if (mu, rep_key) < (best_mu, best_key):
-                best_mu, best_key = mu, rep_key
+                best_mu, best_key, best_at = mu, rep_key, nodes
             if table is not None and rep_key in table:
                 solved_key = rep_key
                 break
@@ -115,7 +116,7 @@ def orbit_search(pair, budget, table, slack, s_weight=20.0, mk_weight=2.0):
         return states, steps
 
     states, steps = path_to(best_key)
-    return dict(mu0=int(mu0), rep0=list(rep0), nodes=nodes, canon_evals=canon_evals,
+    return dict(mu0=int(mu0), rep0=list(rep0), nodes=nodes, canon_evals=canon_evals, pops_to_best=best_at,
                 solved=solved_key is not None, best_mu=best_mu, best_rep=list(unpack(best_key)),
                 depth=len(steps), states=states, steps=steps,
                 solved_path=path_to(solved_key) if solved_key is not None else None)
@@ -141,7 +142,7 @@ def run_row(args):
     started = time.perf_counter()
     r = orbit_search((row['r1'], row['r2']), budget, table, slack)
     rec = dict(name=row['name'], r1=row['r1'], r2=row['r2'], budget=budget, slack=slack,
-               floor_mu=r['mu0'], best_mu=r['best_mu'], mu_reduction=r['mu0'] - r['best_mu'],
+               floor_mu=r['mu0'], best_mu=r['best_mu'], mu_reduction=r['mu0'] - r['best_mu'], pops_to_best=r['pops_to_best'],
                best_rep=r['best_rep'], depth=r['depth'], path_replayed=replay(r['states'], r['steps']),
                solved=r['solved'], nodes=r['nodes'], canon_evals=r['canon_evals'],
                wall=time.perf_counter() - started, states=r['states'], steps=r['steps'])
