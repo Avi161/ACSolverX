@@ -45,6 +45,23 @@ box-side boot script pins a SHA and restores the jsonl from S3.
   arm is the control -- same priority, budget and cap, no Nielsen image in
   the heap -- and no share of the `aut_assisted` rows should be quoted
   without it.
+- **`s40_gen` bare, at 1,000 nodes over the whole screen**, is
+  `results/heuristic_search/ac19_s40_1k/RESULTS.md`. Three arms one knob apart:
+  `s40_gen` (L+40S, Nielsen images in the heap) solves 70,391 of 72,779
+  (96.7%), its exact control `ac501` (same priority, door shut) 66,184 (90.9%),
+  and `s20_bare` (L+20S+2MK, same engine and cap) 68,475 (94.1%). So the
+  Nielsen moves are worth +4,207 net -- and NOT a strict improvement: 341 rows
+  `ac501` settles are lost to the extra branching. `s40_gen` is also the
+  CHEAPEST per row (p90 88 against 158 and 162), so its whole advantage is in
+  the tail. The catch is bookkeeping: 79.2% of its solves change basis, so only
+  17.5% are AC-certified today. 10 of 10 sampled aut-assisted rows decode and
+  replay to a terminal pair with a 0-5 move basis tail, so the conversion works
+  -- it has just never been run over the 57,650. Do not quote 96.7% bare until
+  it has.
+- **`s20_bare` and the campaign's `s20_mk2` are bit-identical**: the same 68,475
+  rows and the same node count on every one, across two engines (Python
+  `mixed_search` vs `hcompact`) and two caps (255 vs 48). Engine and cap make no
+  difference at this budget, which is what makes the table above readable.
 - `cascade_heuristics`' `s40_gen` arm searches Aut(F2) moves alongside AC
   substitutions, and a path that uses one IS still an AC solve -- AC moves
   are equivariant under Aut(F2), so pushing the basis change back through
