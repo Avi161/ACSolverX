@@ -32,9 +32,43 @@ cap** -- and that last pair is why this study can be read at all (below).
 
 | arm | solved | share | AC-certified | share | aut-assisted | unsolved | median | p90 | mean |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `s40_gen` | **70,391** | **96.7%** | 12,741 | 17.5% | 57,650 | 2,388 | 14 | **88** | **43.2** |
+| `s40_gen` | **70,391** | **96.7%** | 12,741 | 17.5% | 57,650 | 2,388 | 14 | 88 | 43.2 |
 | `s20_bare` | 68,475 | 94.1% | 68,475 | 94.1% | 0 | 4,304 | 13 | 158 | 63.6 |
+| `s20_gen` | 67,823 | 93.2% | 22,233 | 30.5% | 45,590 | 4,956 | **12** | **52** | **37.2** |
 | `ac501` | 66,184 | 90.9% | 66,184 | 90.9% | 0 | 6,595 | 16 | 162 | 65.6 |
+
+## THE HEADLINE: the two ingredients do not add, they interact
+
+|  | AC only | + Nielsen | **Nielsen effect** |
+|---|---:|---:|---:|
+| **L+40S** | `ac501` 66,184 (90.9%) | `s40_gen` **70,391 (96.7%)** | **+4,207** |
+| **L+20S+2MK** | `s20_bare` 68,475 (94.1%) | `s20_gen` 67,823 (93.2%) | **-652** |
+| **priority effect** | **+2,291** | **-2,568** | interaction **-4,859** |
+
+**Adding the Nielsen moves to L+20S+2MK makes it WORSE** -- not neutral, a net
+loss of 652 rows, at the highest compute cost of any arm (2.13 core-hours).
+
+And the ranking flips with the move set. Under AC-only moves L+20S+2MK wins by
+2,291; under Nielsen moves L+40S wins by 2,568. So neither ingredient is good on
+its own: **L+40S alone is the WORST of the four cells.** Its value is that the
+heavy S weight scores basis changes well -- S is a run-length statistic and a
+Nielsen move moves it sharply -- while L+20S+2MK dilutes S and adds MK, so it
+cannot steer through the enlarged branching and the four extra children per node
+merely spend budget.
+
+The lesson for anyone tuning this: `s40_gen`'s strength is the PAIRING. Quoting
+"Nielsen images help" or "L+40S is a good priority" separately is false, and the
+2x2 is the smallest design that shows it. Three arms could not -- `s40_gen`
+changes both knobs against `s20_bare`, so its margin was unattributable.
+
+### A counter-current worth keeping
+
+`s20_gen` is the cheapest arm PER SOLVED ROW -- median 12 nodes, p90 52, mean
+37.2, all the lowest -- and yields 30.5% AC-certified against `s40_gen`'s 17.5%,
+nearly double the certificates from fewer solves. Its extra wall clock is
+entirely failure cost: 4,956 unsolved rows burn the full 1,000 nodes each,
+against `s40_gen`'s 2,388. If certificate form is what is being bought rather
+than reach, that trade is not obviously the wrong one.
 
 Cost: `s40_gen` 1.47 core-hours (0.073 s/row), `s20_bare` 1.83 (0.091 s/row).
 
