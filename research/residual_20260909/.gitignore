@@ -1,0 +1,6 @@
+__pycache__/
+*.partial
+# Tables with cap >= 12 are regenerable in minutes (python -m research.residual_20260909.backward_table --cap 12);
+# their manifests (hashes, sizes, depth histograms) are committed, the pickles are not.
+tables/ball_cap12*.pkl
+tables/ball_cap1[3-9]*.pkl

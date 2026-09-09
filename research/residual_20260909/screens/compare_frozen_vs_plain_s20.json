@@ -1,0 +1,54 @@
+{
+  "runs": {
+    "frozen": "research/residual_20260909/screens/smoke_frozen.jsonl",
+    "plain_s20": "research/residual_20260909/screens/smoke_plain_s20.jsonl"
+  },
+  "summaries": {
+    "frozen": {
+      "rows": 12,
+      "solved": 12,
+      "verified": 12,
+      "errors": 0,
+      "nodes_explored_sum": 5369,
+      "search_wall_sum": 1.095205158999761,
+      "search_cpu_sum": 1.0949477939999996,
+      "certificate_wall_sum": 0.2887398550005855,
+      "certificate_cpu_sum": 0.2882393460000003
+    },
+    "plain_s20": {
+      "rows": 12,
+      "solved": 11,
+      "verified": 11,
+      "errors": 0,
+      "nodes_explored_sum": 4567,
+      "search_wall_sum": 1.2426926000002823,
+      "search_cpu_sum": 1.242693796,
+      "certificate_wall_sum": 0.06901995100042768,
+      "certificate_cpu_sum": 0.0690441759999999
+    }
+  },
+  "pairwise": [
+    {
+      "a": "frozen",
+      "b": "plain_s20",
+      "panel_names_only_in_a": [],
+      "panel_names_only_in_b": [],
+      "common_rows": 12,
+      "gained_by_b": [],
+      "lost_by_b": [
+        "ac19_185"
+      ],
+      "mcnemar": {
+        "b": 1,
+        "c": 0,
+        "statistic": 0.0,
+        "p_value": 1.0
+      },
+      "both_solved_verified": 11,
+      "mean_elementary_count_a": 1022.9090909090909,
+      "mean_elementary_count_b": 1013.0909090909091,
+      "mean_nodes_delta_b_minus_a": -80.0,
+      "max_abs_nodes_delta": 234
+    }
+  ]
+}

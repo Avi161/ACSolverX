@@ -1,0 +1,551 @@
+{
+  "format_version": 1,
+  "pickle": "ball_cap12.pkl",
+  "cap": 12,
+  "size": 1165797,
+  "max_relator_length": 12,
+  "depth_histogram": {
+    "0": 1,
+    "1": 4,
+    "2": 8,
+    "3": 40,
+    "4": 572,
+    "5": 17304,
+    "6": 97416,
+    "7": 161016,
+    "8": 183376,
+    "9": 144648,
+    "10": 109480,
+    "11": 81380,
+    "12": 64304,
+    "13": 52264,
+    "14": 41644,
+    "15": 30776,
+    "16": 21792,
+    "17": 15608,
+    "18": 13952,
+    "19": 12724,
+    "20": 12228,
+    "21": 11688,
+    "22": 10796,
+    "23": 8416,
+    "24": 9352,
+    "25": 7312,
+    "26": 8012,
+    "27": 6292,
+    "28": 5408,
+    "29": 3856,
+    "30": 3552,
+    "31": 2560,
+    "32": 2864,
+    "33": 2552,
+    "34": 2376,
+    "35": 2848,
+    "36": 2776,
+    "37": 2512,
+    "38": 2096,
+    "39": 1592,
+    "40": 1280,
+    "41": 976,
+    "42": 1040,
+    "43": 952,
+    "44": 944,
+    "45": 992,
+    "46": 640,
+    "47": 376,
+    "48": 296,
+    "49": 248,
+    "50": 136,
+    "51": 200,
+    "52": 136,
+    "53": 72,
+    "54": 64,
+    "55": 32,
+    "56": 16
+  },
+  "max_depth": 56,
+  "build_wall_seconds": 151.52644132700016,
+  "candidates_enumerated": 27326164,
+  "forward_verifications": 1167275,
+  "forward_verified": true,
+  "sha256": "30a53e6a2834c77e2f903a0e30aa1de156521682c8190833c9596cc4fb103823",
+  "bytes": 53876005,
+  "git_head": "98f719e2ad9ce98cac1525c0984555f4711e412b",
+  "kernel_source_sha256": {
+    "experiments/heuristic_search/core/hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "experiments/heuristic_search/core/hfast.py": "3eb8183ce1522df68d0b0e8b7b48dad8501e6d0805640538d542e31825728bc5",
+    "experiments/equivalence_classes/lib/words.py": "131cbc3f991e5e9862c2774c2e72b78f4d04aa531ff3f6e1aae8b2ecac9cc26b",
+    "experiments/search/greedy_baseline.py": "553626798fe802f4bcc95d41102df1e3330f88f0773b19c3c17b52fd56a6b57f",
+    "experiments/search/heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "research/residual_20260909/backward_table.py": "bd74ce51aff0532d2030b610808e4d2cb743e37dcb6b90f98a56dcaa0827d5a5"
+  },
+  "checks": {
+    "replay_all_entries": {
+      "entries": 1165797,
+      "checked": 1165796,
+      "failures": [],
+      "failure_count": 0,
+      "ok": true,
+      "wall_seconds": 25.98819453799979
+    }
+  },
+  "built_at": "2026-09-09T14:48:35Z",
+  "levels": [
+    {
+      "depth": 1,
+      "new": 4,
+      "total": 5,
+      "candidates": 4,
+      "verifications": 4,
+      "wall": 0.00021540099987760186
+    },
+    {
+      "depth": 2,
+      "new": 8,
+      "total": 13,
+      "candidates": 32,
+      "verifications": 8,
+      "wall": 0.0005230030001257546
+    },
+    {
+      "depth": 3,
+      "new": 40,
+      "total": 53,
+      "candidates": 144,
+      "verifications": 40,
+      "wall": 0.0015957669997987978
+    },
+    {
+      "depth": 4,
+      "new": 572,
+      "total": 625,
+      "candidates": 1856,
+      "verifications": 572,
+      "wall": 0.018516154999815626
+    },
+    {
+      "depth": 5,
+      "new": 17304,
+      "total": 17929,
+      "candidates": 51808,
+      "verifications": 17304,
+      "wall": 0.7025984560000325
+    },
+    {
+      "depth": 6,
+      "new": 97416,
+      "total": 115345,
+      "candidates": 738208,
+      "verifications": 97436,
+      "wall": 5.841563059999771
+    },
+    {
+      "depth": 7,
+      "new": 161016,
+      "total": 276361,
+      "candidates": 2807408,
+      "verifications": 161267,
+      "wall": 20.756819120999808
+    },
+    {
+      "depth": 8,
+      "new": 183376,
+      "total": 459737,
+      "candidates": 4120696,
+      "verifications": 183945,
+      "wall": 42.566071975999876
+    },
+    {
+      "depth": 9,
+      "new": 144648,
+      "total": 604385,
+      "candidates": 4335120,
+      "verifications": 145107,
+      "wall": 65.19048692399974
+    },
+    {
+      "depth": 10,
+      "new": 109480,
+      "total": 713865,
+      "candidates": 3277288,
+      "verifications": 109660,
+      "wall": 82.35290553000004
+    },
+    {
+      "depth": 11,
+      "new": 81380,
+      "total": 795245,
+      "candidates": 2419624,
+      "verifications": 81380,
+      "wall": 95.4116621789999
+    },
+    {
+      "depth": 12,
+      "new": 64304,
+      "total": 859549,
+      "candidates": 1767744,
+      "verifications": 64304,
+      "wall": 105.18889771199974
+    },
+    {
+      "depth": 13,
+      "new": 52264,
+      "total": 911813,
+      "candidates": 1373904,
+      "verifications": 52264,
+      "wall": 112.79717154799982
+    },
+    {
+      "depth": 14,
+      "new": 41644,
+      "total": 953457,
+      "candidates": 1105040,
+      "verifications": 41644,
+      "wall": 119.33216457599974
+    },
+    {
+      "depth": 15,
+      "new": 30776,
+      "total": 984233,
+      "candidates": 876592,
+      "verifications": 30776,
+      "wall": 124.38488771099992
+    },
+    {
+      "depth": 16,
+      "new": 21792,
+      "total": 1006025,
+      "candidates": 641080,
+      "verifications": 21792,
+      "wall": 128.05322769099985
+    },
+    {
+      "depth": 17,
+      "new": 15608,
+      "total": 1021633,
+      "candidates": 447616,
+      "verifications": 15608,
+      "wall": 130.78038992999973
+    },
+    {
+      "depth": 18,
+      "new": 13952,
+      "total": 1035585,
+      "candidates": 327984,
+      "verifications": 13952,
+      "wall": 132.7958604129999
+    },
+    {
+      "depth": 19,
+      "new": 12724,
+      "total": 1048309,
+      "candidates": 298384,
+      "verifications": 12724,
+      "wall": 134.53573707899977
+    },
+    {
+      "depth": 20,
+      "new": 12228,
+      "total": 1060537,
+      "candidates": 274880,
+      "verifications": 12228,
+      "wall": 136.18479990600008
+    },
+    {
+      "depth": 21,
+      "new": 11688,
+      "total": 1072225,
+      "candidates": 264736,
+      "verifications": 11688,
+      "wall": 137.76066399499996
+    },
+    {
+      "depth": 22,
+      "new": 10796,
+      "total": 1083021,
+      "candidates": 251568,
+      "verifications": 10796,
+      "wall": 139.24697389999983
+    },
+    {
+      "depth": 23,
+      "new": 8416,
+      "total": 1091437,
+      "candidates": 223376,
+      "verifications": 8416,
+      "wall": 140.63273594700013
+    },
+    {
+      "depth": 24,
+      "new": 9352,
+      "total": 1100789,
+      "candidates": 185920,
+      "verifications": 9352,
+      "wall": 141.83143635099987
+    },
+    {
+      "depth": 25,
+      "new": 7312,
+      "total": 1108101,
+      "candidates": 192528,
+      "verifications": 7312,
+      "wall": 142.937602469
+    },
+    {
+      "depth": 26,
+      "new": 8012,
+      "total": 1116113,
+      "candidates": 159184,
+      "verifications": 8012,
+      "wall": 143.95678529899988
+    },
+    {
+      "depth": 27,
+      "new": 6292,
+      "total": 1122405,
+      "candidates": 163776,
+      "verifications": 6292,
+      "wall": 144.95913738699983
+    },
+    {
+      "depth": 28,
+      "new": 5408,
+      "total": 1127813,
+      "candidates": 131648,
+      "verifications": 5408,
+      "wall": 145.87983644899987
+    },
+    {
+      "depth": 29,
+      "new": 3856,
+      "total": 1131669,
+      "candidates": 109360,
+      "verifications": 3856,
+      "wall": 146.54976261399997
+    },
+    {
+      "depth": 30,
+      "new": 3552,
+      "total": 1135221,
+      "candidates": 82448,
+      "verifications": 3552,
+      "wall": 147.09157223600005
+    },
+    {
+      "depth": 31,
+      "new": 2560,
+      "total": 1137781,
+      "candidates": 71504,
+      "verifications": 2560,
+      "wall": 147.5586291929999
+    },
+    {
+      "depth": 32,
+      "new": 2864,
+      "total": 1140645,
+      "candidates": 54480,
+      "verifications": 2864,
+      "wall": 147.91272526500006
+    },
+    {
+      "depth": 33,
+      "new": 2552,
+      "total": 1143197,
+      "candidates": 57216,
+      "verifications": 2552,
+      "wall": 148.27633501299988
+    },
+    {
+      "depth": 34,
+      "new": 2376,
+      "total": 1145573,
+      "candidates": 51408,
+      "verifications": 2376,
+      "wall": 148.59915134099992
+    },
+    {
+      "depth": 35,
+      "new": 2848,
+      "total": 1148421,
+      "candidates": 50848,
+      "verifications": 2848,
+      "wall": 148.9305573239999
+    },
+    {
+      "depth": 36,
+      "new": 2776,
+      "total": 1151197,
+      "candidates": 61456,
+      "verifications": 2776,
+      "wall": 149.31925507200003
+    },
+    {
+      "depth": 37,
+      "new": 2512,
+      "total": 1153709,
+      "candidates": 58688,
+      "verifications": 2512,
+      "wall": 149.72074485799976
+    },
+    {
+      "depth": 38,
+      "new": 2096,
+      "total": 1155805,
+      "candidates": 52192,
+      "verifications": 2096,
+      "wall": 150.0468523569998
+    },
+    {
+      "depth": 39,
+      "new": 1592,
+      "total": 1157397,
+      "candidates": 42384,
+      "verifications": 1592,
+      "wall": 150.32093801600013
+    },
+    {
+      "depth": 40,
+      "new": 1280,
+      "total": 1158677,
+      "candidates": 31472,
+      "verifications": 1280,
+      "wall": 150.51526804800005
+    },
+    {
+      "depth": 41,
+      "new": 976,
+      "total": 1159653,
+      "candidates": 24064,
+      "verifications": 976,
+      "wall": 150.66899421800008
+    },
+    {
+      "depth": 42,
+      "new": 1040,
+      "total": 1160693,
+      "candidates": 20752,
+      "verifications": 1040,
+      "wall": 150.81010882700002
+    },
+    {
+      "depth": 43,
+      "new": 952,
+      "total": 1161645,
+      "candidates": 20640,
+      "verifications": 952,
+      "wall": 150.93850285999997
+    },
+    {
+      "depth": 44,
+      "new": 944,
+      "total": 1162589,
+      "candidates": 19776,
+      "verifications": 944,
+      "wall": 151.05200280400004
+    },
+    {
+      "depth": 45,
+      "new": 992,
+      "total": 1163581,
+      "candidates": 18784,
+      "verifications": 992,
+      "wall": 151.17180465499996
+    },
+    {
+      "depth": 46,
+      "new": 640,
+      "total": 1164221,
+      "candidates": 18896,
+      "verifications": 640,
+      "wall": 151.27729761699993
+    },
+    {
+      "depth": 47,
+      "new": 376,
+      "total": 1164597,
+      "candidates": 11968,
+      "verifications": 376,
+      "wall": 151.34563018400013
+    },
+    {
+      "depth": 48,
+      "new": 296,
+      "total": 1164893,
+      "candidates": 6992,
+      "verifications": 296,
+      "wall": 151.3873286869998
+    },
+    {
+      "depth": 49,
+      "new": 248,
+      "total": 1165141,
+      "candidates": 5952,
+      "verifications": 248,
+      "wall": 151.4216808289998
+    },
+    {
+      "depth": 50,
+      "new": 136,
+      "total": 1165277,
+      "candidates": 4688,
+      "verifications": 136,
+      "wall": 151.44799172500007
+    },
+    {
+      "depth": 51,
+      "new": 200,
+      "total": 1165477,
+      "candidates": 2976,
+      "verifications": 200,
+      "wall": 151.46884687500005
+    },
+    {
+      "depth": 52,
+      "new": 136,
+      "total": 1165613,
+      "candidates": 3536,
+      "verifications": 136,
+      "wall": 151.49094886600005
+    },
+    {
+      "depth": 53,
+      "new": 72,
+      "total": 1165685,
+      "candidates": 2400,
+      "verifications": 72,
+      "wall": 151.50530013699972
+    },
+    {
+      "depth": 54,
+      "new": 64,
+      "total": 1165749,
+      "candidates": 1424,
+      "verifications": 64,
+      "wall": 151.51468684500014
+    },
+    {
+      "depth": 55,
+      "new": 32,
+      "total": 1165781,
+      "candidates": 992,
+      "verifications": 32,
+      "wall": 151.52142841299974
+    },
+    {
+      "depth": 56,
+      "new": 16,
+      "total": 1165797,
+      "candidates": 512,
+      "verifications": 16,
+      "wall": 151.52501744899973
+    },
+    {
+      "depth": 57,
+      "new": 0,
+      "total": 1165797,
+      "candidates": 208,
+      "verifications": 0,
+      "wall": 151.52643020799997
+    }
+  ]
+}

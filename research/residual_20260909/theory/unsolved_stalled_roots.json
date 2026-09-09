@@ -1,0 +1,164 @@
+[
+ {
+  "name": "ac19_99",
+  "pair": [
+   "YYXXyxx",
+   "YXXXXXXXXyxxxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_102",
+  "pair": [
+   "YYXXyx",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_103",
+  "pair": [
+   "YYXXXXyX",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_105",
+  "pair": [
+   "YYXXXXyX",
+   "YXXXXXyxxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_3820",
+  "pair": [
+   "YXXXyxx",
+   "YYXyXYxyxYXXyx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_7496",
+  "pair": [
+   "YYXXXXXXyxx",
+   "YXXXXXyxxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_9271",
+  "pair": [
+   "YXXXyxx",
+   "YYXyXYxyxYxyX"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_14409",
+  "pair": [
+   "YYXXXXXXyx",
+   "YXXXXXyxxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_14690",
+  "pair": [
+   "YXXXyxx",
+   "YYXyXYxyXYxyX"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_16808",
+  "pair": [
+   "YYXXXXyXX",
+   "YXXXXXyxxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_18936",
+  "pair": [
+   "YYXXXXXyX",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_20055",
+  "pair": [
+   "YYXXXXXXXXyx",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_23123",
+  "pair": [
+   "YXXXyxx",
+   "YYXyxYxyXYxyX"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_24119",
+  "pair": [
+   "YYXXXXyxxxx",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_28696",
+  "pair": [
+   "YXXXyxx",
+   "YYXXyxYXyxYXyx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_32031",
+  "pair": [
+   "YXXXyxx",
+   "YYXyxYXXyxYxyX"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_37966",
+  "pair": [
+   "YYXXXXXXXyx",
+   "YXXXXXXyxxxxx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ },
+ {
+  "name": "ac19_51462",
+  "pair": [
+   "YXXXyxx",
+   "YYXyXYxyXYxyx"
+  ],
+  "nodes_explored": 1000,
+  "route": "incumbent_restart"
+ }
+]
