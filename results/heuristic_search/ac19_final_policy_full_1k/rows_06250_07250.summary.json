@@ -1,0 +1,17 @@
+{
+  "rows": 7000,
+  "solved": 6930,
+  "verified": 6930,
+  "errors": 0,
+  "nodes": 591485,
+  "search_wall": 37.05248810490593,
+  "search_cpu": 36.469559999999596,
+  "certificate_wall": 9.578068518079817,
+  "certificate_cpu": 9.490604999999924,
+  "elementary_moves": 3402470,
+  "cooldown_wall": 132.091182166012,
+  "next_offset": 7250,
+  "warmup_wall": 0.17258833395317197,
+  "elapsed": 179.2664240419399,
+  "manifest": "manifest_00250_72779.json"
+}

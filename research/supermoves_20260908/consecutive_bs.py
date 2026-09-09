@@ -12,50 +12,51 @@ class _Limit(Exception):
 
 def _recognize(pair):
     for donor_index, donor in enumerate(pair):
-        if len(donor) != 5:
+        if len(donor) < 5 or len(donor) % 2 != 1:
             continue
+        m = (len(donor) - 3) // 2
+        n = m + 1
         for a in "xXyY":
             for b in "xXyY":
                 if a.lower() == b.lower():
                     continue
-                relation = inv(b) + a + b + inv(a) * 2
+                relation = inv(b) + a*m + b + inv(a)*n
                 if canon_rel(relation) != donor:
                     continue
-                companion = pair[1 - donor_index]
+                companion = pair[1-donor_index]
                 exponent = companion.count(b) - companion.count(inv(b))
                 if abs(exponent) == 1:
-                    return a, b, relation, inv(companion) if exponent == 1 else companion
+                    return a, b, relation, inv(companion) if exponent == 1 else companion, m, n
     return None
 
 
-def _pinch(word, a, b):
-    n = len(word)
+def _pinch(word, a, b, m, n):
     for reverse in (True, False):
         left, right = (b, inv(b)) if reverse else (inv(b), b)
-        for i in range(n):
+        divisor, output = (n, m) if reverse else (m, n)
+        for i in range(len(word)):
             if word[i] != left:
                 continue
             oriented = word[i:] + word[:i]
             j = 1
-            while j < n and oriented[j].lower() == a.lower():
+            while j < len(word) and oriented[j].lower() == a.lower():
                 j += 1
-            if j == 1 or j == n or oriented[j] != right:
+            if j == 1 or j == len(word) or oriented[j] != right:
+                continue
+            if (j-1) % divisor:
                 continue
             sign = oriented[1]
-            if reverse:
-                if (j - 1) % 2:
-                    continue
-                return oriented, b + sign * 2, sign + b
-            return oriented, inv(b) + sign, sign * 2 + inv(b)
+            return oriented, left+sign*divisor, sign*output+left
     return None
 
 
-def bs_collapse(pair, budget=10_000, intermediate_cap=256):
+def collapse(pair, budget=10_000, intermediate_cap=256):
     """Return a substitution-only path, charging the root and every rewrite.
 
-    Recognizes any signed-generator version of b^-1 a b a^-2, up to
+    Recognizes signed-generator versions of b^-1 a^m b a^-(m+1), m>=1, up to
     cyclic rotation/inversion and relator swap. No basis normalization is
-    performed here. A caller can prepend its separately verified basis path.
+    performed here. For m>1 success is conditional on divisibility-valid pinches;
+    exponent sum alone is not sufficient for this algorithm.
     """
     if isinstance(budget, bool) or not isinstance(budget, int) or not 1 <= budget <= 10_000:
         raise ValueError("budget must be an integer in 1..10000")
@@ -141,11 +142,11 @@ def bs_collapse(pair, budget=10_000, intermediate_cap=256):
     recognized = _recognize(state)
     if recognized is None:
         return result(False, "not_recognized", False)
-    a, b, relation, companion = recognized
-    pattern = {"a": a, "b": b, "power": 2}
+    a, b, relation, companion, m, n = recognized
+    pattern = {"a": a, "b": b, "m": m, "n": n}
     try:
         while sum(c.lower() == b.lower() for c in companion) > 1:
-            pinch = _pinch(companion, a, b)
+            pinch = _pinch(companion, a, b, m, n)
             if pinch is None:
                 return result(False, "normal_form_stalled", True)
             companion, lhs, rhs = pinch
@@ -175,5 +176,3 @@ def bs_collapse(pair, budget=10_000, intermediate_cap=256):
         raise AssertionError("completed rewrites are not terminal")
     return result(True, "collapsed", True)
 
-
-collapse = bs_collapse

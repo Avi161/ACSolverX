@@ -1,0 +1,6 @@
+data/AC19_extended_aut_min.csv -text -diff
+# Preserve audited source bytes, including existing EOF blank lines.
+research/supermoves_20260908/certificate_decoder.py whitespace=-blank-at-eof
+research/supermoves_20260908/certificate_decoder_fast.py whitespace=-blank-at-eof
+research/supermoves_20260908/christoffel_primitive_gate.py whitespace=-blank-at-eof
+research/supermoves_20260908/consecutive_bs.py whitespace=-blank-at-eof

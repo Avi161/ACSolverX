@@ -71,6 +71,14 @@ def test_cap_failure_does_not_hide_the_large_intermediate():
     replay(pair, record)
 
 
+def test_none_disables_the_intermediate_cap():
+    pair = family(7)
+    record = collapse(pair, intermediate_cap=None)
+    assert record["solved"] and record["intermediate_cap"] is None
+    assert record["max_intermediate_relator_length"] == 131
+    replay(pair, record)
+
+
 def test_nonrecognized_input_is_not_reported_solved():
     pair = ("YXYxyx", "YYYYxxx")
     record = collapse(pair)
@@ -92,7 +100,7 @@ def test_invalid_budget_is_rejected(budget):
         collapse(family(1), budget=budget)
 
 
-@pytest.mark.parametrize("cap", [0, 257, True, 1.5])
+@pytest.mark.parametrize("cap", [0, True, 1.5])
 def test_invalid_intermediate_cap_is_rejected(cap):
     with pytest.raises(ValueError, match="intermediate_cap"):
         collapse(family(1), intermediate_cap=cap)
