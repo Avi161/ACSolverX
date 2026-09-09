@@ -1,0 +1,470 @@
+{
+ "width": 3,
+ "depth": 2,
+ "census": [
+  {
+   "name": "ac19_28",
+   "pair": [
+    "YXXYx",
+    "YYYXYxyX"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 620,
+   "census_nodes": 30
+  },
+  {
+   "name": "ac19_107",
+   "pair": [
+    "YYXXXyX",
+    "YXXXXXXyxxxxxxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1652,
+   "census_nodes": 454
+  },
+  {
+   "name": "ac19_232",
+   "pair": [
+    "YYXXXyx",
+    "YYXYXXXXyxx"
+   ],
+   "family": "generic",
+   "gate": "bs_accept",
+   "depth": 2,
+   "units": 1092,
+   "census_nodes": 21
+  },
+  {
+   "name": "ac19_349",
+   "pair": [
+    "YXXXyXXyX",
+    "YYxxxyxxxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1360,
+   "census_nodes": 73
+  },
+  {
+   "name": "ac19_433",
+   "pair": [
+    "YXXyXyx",
+    "YYXYxxxxxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1260,
+   "census_nodes": 139
+  },
+  {
+   "name": "ac19_576",
+   "pair": [
+    "YYXXXyx",
+    "YYxxyXXyx"
+   ],
+   "family": "generic",
+   "gate": "one_occurrence",
+   "depth": 1,
+   "units": 252,
+   "census_nodes": 14
+  },
+  {
+   "name": "ac19_681",
+   "pair": [
+    "YXXYx",
+    "YYXXYXXYYx"
+   ],
+   "family": "merge_pm1",
+   "gate": "one_occurrence",
+   "depth": 2,
+   "units": 660,
+   "census_nodes": 13
+  },
+  {
+   "name": "ac19_804",
+   "pair": [
+    "YXXYx",
+    "YYXYYXYXyXyxx"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 980,
+   "census_nodes": 18
+  },
+  {
+   "name": "ac19_921",
+   "pair": [
+    "YYXXXYX",
+    "YYXXyXXYxxyx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1372,
+   "census_nodes": 97
+  },
+  {
+   "name": "ac19_1033",
+   "pair": [
+    "YYXXXyX",
+    "YYXyyxyxYxyx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1372,
+   "census_nodes": 23
+  },
+  {
+   "name": "ac19_1161",
+   "pair": [
+    "YYXXXYX",
+    "YYXXyxYXyx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1256,
+   "census_nodes": 115
+  },
+  {
+   "name": "ac19_1255",
+   "pair": [
+    "YXXYx",
+    "YYXYYXyXyyxYYx"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 1100,
+   "census_nodes": 21
+  },
+  {
+   "name": "ac19_1352",
+   "pair": [
+    "YXXYx",
+    "YYXYXYxYXyXyxx"
+   ],
+   "family": "merge_pm1",
+   "gate": "one_occurrence",
+   "depth": 2,
+   "units": 900,
+   "census_nodes": 18
+  },
+  {
+   "name": "ac19_1462",
+   "pair": [
+    "YXXYx",
+    "YYXyXYYx"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 660,
+   "census_nodes": 22
+  },
+  {
+   "name": "ac19_1581",
+   "pair": [
+    "YYXXYx",
+    "YYYYXyXXYxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1008,
+   "census_nodes": 23
+  },
+  {
+   "name": "ac19_1695",
+   "pair": [
+    "YXXYx",
+    "YYXyxyXyxYXYx"
+   ],
+   "family": "merge_pm1",
+   "gate": "one_occurrence",
+   "depth": 2,
+   "units": 820,
+   "census_nodes": 13
+  },
+  {
+   "name": "ac19_1788",
+   "pair": [
+    "YXXYx",
+    "YYXXXYxYxYXyyx"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 900,
+   "census_nodes": 26
+  },
+  {
+   "name": "ac19_1906",
+   "pair": [
+    "YXYXX",
+    "YYYXyXXyx"
+   ],
+   "family": "merge_pm1",
+   "gate": null,
+   "depth": null,
+   "units": 780,
+   "census_nodes": 260
+  },
+  {
+   "name": "ac19_2008",
+   "pair": [
+    "YYXXYx",
+    "YYYYXXYxYYX"
+   ],
+   "family": "generic",
+   "gate": "one_occurrence",
+   "depth": 1,
+   "units": 264,
+   "census_nodes": 16
+  },
+  {
+   "name": "ac19_2134",
+   "pair": [
+    "YYXXYx",
+    "YYYXyxxYXXyyx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1200,
+   "census_nodes": 24
+  }
+ ],
+ "dev": [
+  {
+   "name": "ac19_102",
+   "pair": [
+    "YYXXyx",
+    "YXXXXXXyxxxxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1248
+  },
+  {
+   "name": "ac19_109",
+   "pair": [
+    "YXXyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "family": "bs_stable_s1",
+   "gate": "bs_accept",
+   "depth": 0,
+   "units": 0
+  },
+  {
+   "name": "ac19_230",
+   "pair": [
+    "YYXXyxx",
+    "YYYXYXYYx"
+   ],
+   "family": "bs_stable_s2",
+   "gate": null,
+   "depth": null,
+   "units": 1148
+  },
+  {
+   "name": "ac19_2376",
+   "pair": [
+    "YYXXyxx",
+    "YXYxxYXyx"
+   ],
+   "family": "bs_stable_s2",
+   "gate": null,
+   "depth": null,
+   "units": 1036
+  },
+  {
+   "name": "ac19_3566",
+   "pair": [
+    "YYXXXYxx",
+    "YYYxxyXXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1252
+  },
+  {
+   "name": "ac19_5478",
+   "pair": [
+    "YYYXXXyxx",
+    "YYYXYXXXYxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1396
+  },
+  {
+   "name": "ac19_5652",
+   "pair": [
+    "YYXXyxx",
+    "YYYYXYxyx"
+   ],
+   "family": "bs_stable_s2",
+   "gate": null,
+   "depth": null,
+   "units": 1092
+  },
+  {
+   "name": "ac19_7037",
+   "pair": [
+    "YYXXXyX",
+    "YYXXXXyxyxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1164
+  },
+  {
+   "name": "ac19_8222",
+   "pair": [
+    "YYXXXyx",
+    "YXYXXXyXXYx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1220
+  },
+  {
+   "name": "ac19_8984",
+   "pair": [
+    "YYYXXXyxx",
+    "YYYxxyyXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1260
+  },
+  {
+   "name": "ac19_10820",
+   "pair": [
+    "YYXXXXYX",
+    "YYxyXyxxxyX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1472
+  },
+  {
+   "name": "ac19_12112",
+   "pair": [
+    "YYXXXXyx",
+    "YXYxxyXXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1252
+  },
+  {
+   "name": "ac19_14165",
+   "pair": [
+    "YYXXyx",
+    "YYYXYXXXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 912
+  },
+  {
+   "name": "ac19_15047",
+   "pair": [
+    "YYXXyxx",
+    "YYXYxxYxyyX"
+   ],
+   "family": "bs_stable_s2",
+   "gate": null,
+   "depth": null,
+   "units": 1204
+  },
+  {
+   "name": "ac19_18516",
+   "pair": [
+    "YYXXyxx",
+    "YYXYXXYYxyx"
+   ],
+   "family": "bs_stable_s2",
+   "gate": null,
+   "depth": null,
+   "units": 1260
+  },
+  {
+   "name": "ac19_20055",
+   "pair": [
+    "YYXXXXXXXXyx",
+    "YXXXXXXyxxxxx"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 2052
+  },
+  {
+   "name": "ac19_20172",
+   "pair": [
+    "YYXXXyX",
+    "YXYXyXXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1016
+  },
+  {
+   "name": "ac19_22628",
+   "pair": [
+    "YYXXXXyxxx",
+    "YYXXXXXYYxxYX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 2132
+  },
+  {
+   "name": "ac19_27787",
+   "pair": [
+    "YYYXyxyyX",
+    "YYXyXXXXX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1476
+  },
+  {
+   "name": "ac19_28253",
+   "pair": [
+    "YYXXXXyxxx",
+    "YYxxYXXXXYX"
+   ],
+   "family": "generic",
+   "gate": null,
+   "depth": null,
+   "units": 1884
+  }
+ ],
+ "census_hits": 6,
+ "dev_hits": 1
+}

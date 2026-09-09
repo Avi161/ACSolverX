@@ -183,24 +183,37 @@ def tuple_variants(word):
 
 
 def recognize_F3(pair):
-    """Recognize the twin four-block row reduction."""
+    """Recognize the twin four-block row reduction (all alignments, best branch).
+
+    Hypotheses (symmetry-invariant): both relators four-block; some reading of
+    them shares the y-block exponents (a,c) in matching cyclic positions;
+    |abelian_det| = 1.  The determinant then forces |a+c| = 1 and
+    |(b'+d') - (b+d)| = 1, so the difference word is automatically a
+    consecutive donor.
+    """
     p = canon_pair(*pair)
     if any(four_block_tuple(w) is None for w in p):
         return None
-    for t1, s1 in tuple_variants(p[0]):
-        for t2, s2 in tuple_variants(p[1]):
+    det = abelian_det(*p)
+    if abs(det) != 1:
+        return None
+    rank = {"terminal": 0, "bs": 1, "dead_stable_power": 2}
+    best = None
+    for t1, _s1 in tuple_variants(p[0]):
+        for t2, _s2 in tuple_variants(p[1]):
             if t1[0] != t2[0] or t1[2] != t2[2] or t1 == t2:
                 continue
             a, b, c, d = t1
             _, b2, _, d2 = t2
-            det = abelian_det(*p)
             branch = ("terminal" if (b2 == b) != (d2 == d)
                       else "bs" if abs(c) == 1 else "dead_stable_power")
-            return {"rule": "F3", "pair": list(p), "t1": list(t1), "t2": list(t2),
-                    "a": a, "c": c, "p": b2 - b, "q": d2 - d, "det": det,
-                    "branch": branch,
-                    "difference": word_of_tuple((-c, b2 - b, c, d2 - d))}
-    return None
+            hit = {"rule": "F3", "pair": list(p), "t1": list(t1), "t2": list(t2),
+                   "a": a, "c": c, "p": b2 - b, "q": d2 - d, "det": det,
+                   "branch": branch,
+                   "difference": word_of_tuple((-c, b2 - b, c, d2 - d))}
+            if best is None or rank[branch] < rank[best["branch"]]:
+                best = hit
+    return best
 
 
 def _find_move(state, want):
@@ -385,12 +398,13 @@ PLANTED_F3 = [
     ((-2, -2, 1, 2), (-2, -1, 1, 2)),      # only b differs -> terminal
     ((-2, -4, 1, 3), (-2, -3, 1, 3)),      # only b differs -> terminal
     ((-2, -2, 1, 1), (-2, -4, 1, 2)),      # both differ -> BS
-    ((1, 2, -2, 1), (1, 1, -2, 2)),        # (a,c) = (1,-2) orientation
+    ((1, 2, -2, 1), (1, 1, -2, 3)),        # (a,c) = (1,-2): alignment picks |a| = 1
 ]
 
 ADVERSARIAL_F3 = [
     (((-2, -2, 1, 1), (-1, -2, 1, 1)), "y-blocks differ (a = -2 vs -1)"),
-    (((-3, -2, 2, 1), (-3, -1, 2, 2)), "min(|a|,|c|) = 2: dead stable power"),
+    (((-3, -2, 2, 1), (-3, -1, 2, 2)), "min(|a|,|c|) = 2 and |det| = 2: rejected at the determinant"),
+    (((-3, -1, 2, -1), (-3, -2, 2, 1)), "|det| = 1 but min(|a|,|c|) = 2: dead stable power (N1)"),
     (((-2, -2, 1, 1), (-2, -2, 1, 1)), "identical relators"),
     (((-2, -2, 1, 1), (-2, -3, 1, 2)), "|det| != 1: block difference is 0"),
 ]
@@ -424,11 +438,96 @@ def planted_report_F3():
 
 
 # --------------------------------------------------------------------------
+# lemma verification (L1 forced consecutivity, N1 stable-power impossibility,
+# and the four-block primitivity classification)
+# --------------------------------------------------------------------------
+
+def stable_reading(word):
+    """(s, p, q, stable_gen, base_gen) when a four-block word has a vanishing
+    exponent sum, i.e. it is  t u^p t^-1 u^q  with t = <stable_gen>^s."""
+    t = four_block_tuple(word)
+    if t is None:
+        return None
+    a, b, c, d = t
+    if a + c == 0:
+        return abs(a), b, d, "y", "x"
+    if b + d == 0:
+        return abs(b), c, a, "x", "y"
+    return None
+
+
+def check_lemmas(pair, counters):
+    """Accumulate evidence for L1 and N1 on one canonical pair."""
+    p = canon_pair(*pair)
+    det = abelian_det(*p)
+    for i, w in enumerate(p):
+        sr = stable_reading(w)
+        if sr is None:
+            continue
+        s, u, v, stable, base = sr
+        counters["vanishing_expsum_relators"] += 1
+        counters["stable_run_%d" % s] += 1
+        if abs(det) == 1:
+            counters["L1_tested"] += 1
+            counters["L1_holds" if abs(u + v) == 1 else "L1_FAILS"] += 1
+            comp = p[1 - i]
+            e = exp_sums(comp)[0 if stable == "x" else 1]
+            counters["N1_tested"] += 1
+            if abs(e) != 1:
+                counters["N1_companion_exponent_not_pm1"] += 1
+            elif s >= 2:
+                counters["N1_holds_companion_outside_HNN_subgroup"] += 1
+            else:
+                counters["N1_s1_companion_in_subgroup"] += 1
+
+
+def verify_classification(limit=5):
+    """Exhaustive check of the four-block primitivity classification.
+
+    Compares ``merge_data(w)['primitive']`` (this module's O(1) test) with an
+    independent strict Nielsen descent and with the Christoffel primitivity
+    gate, over every four-block tuple with entries in [-limit, limit] \ {0}.
+    """
+    import itertools
+    from research.supermoves_20260908.christoffel_primitive_gate import recognize_canonical
+
+    def nielsen_descends(w, depth=24):
+        w = canon_rel(w)
+        for _ in range(depth):
+            if len(w) == 1:
+                return True
+            best = None
+            for t in NIELSEN:
+                im = canon_rel(apply_hom(w, t))
+                if len(im) < len(w) and (best is None or im < best):
+                    best = im
+            if best is None:
+                return False
+            w = best
+        return len(w) == 1
+
+    rng = [v for v in range(-limit, limit + 1) if v]
+    n = mism = prim = 0
+    for t in itertools.product(rng, repeat=4):
+        w = word_of_tuple(t)
+        if four_block_tuple(w) is None:
+            continue
+        n += 1
+        md = merge_data(w)
+        predicted = bool(md and md["primitive"])
+        prim += predicted
+        if predicted != nielsen_descends(w) or predicted != (recognize_canonical(w) is not None):
+            mism += 1
+    return {"tuples": n, "predicted_primitive": prim, "mismatches": mism, "limit": limit}
+
+
+# --------------------------------------------------------------------------
 # panels
 # --------------------------------------------------------------------------
 
 def dev_report():
     import csv
+    counters = Counter()
     out = {"rows": 0, "four_block": 0, "F1": 0, "F1_solved": 0,
            "F3": 0, "F3_solved": 0, "hits": []}
     with open(DEV_CSV) as fh:
@@ -437,6 +536,7 @@ def dev_report():
             pair = canon_pair(r["r1"], r["r2"])
             if any(four_block_tuple(w) is not None for w in pair):
                 out["four_block"] += 1
+            check_lemmas(pair, counters)
             if recognize_F1(pair) is not None:
                 out["F1"] += 1
                 cert = compile_F1(pair)
@@ -451,7 +551,43 @@ def dev_report():
                 out["F3_solved"] += int(bool(ok))
                 out["hits"].append({"name": r["name"], "rule": "F3",
                                     "solved": bool(ok), "work": cert.get("work")})
+    out["lemma_counters"] = dict(counters)
     return out
+
+
+RESIDUAL_CSV = "research/residual_20260909/panels/features_727.csv"
+
+
+def residual_report():
+    """Aggregate-only recognizer counts over the 727 unsolved census roots.
+
+    No search is run: only O(total length) recognizers, exactly as the
+    THEOREMS_PROOFS_AND_FREQUENCY audit did.  Per-row detail is reported only
+    for the dev panel (see dev_report); everything here is a count.
+    """
+    import csv
+    counters = Counter()
+    for r in csv.DictReader(open(RESIDUAL_CSV)):
+        pair = canon_pair(r["canon_r1"], r["canon_r2"])
+        counters["rows"] += 1
+        fb = [w for w in pair if four_block_tuple(w) is not None]
+        if fb:
+            counters["four_block"] += 1
+        if len(fb) == 2:
+            counters["both_four_block"] += 1
+        check_lemmas(pair, counters)
+        for w in fb:
+            md = merge_data(w)
+            if md is not None:
+                counters["mergeable_relators"] += 1
+                counters["merge_torus_2_%d" % abs(md["exponent"])] += 1
+        if recognize_F1(pair) is not None:
+            counters["F1"] += 1
+        h3 = recognize_F3(pair)
+        if h3 is not None:
+            counters["F3"] += 1
+            counters["F3_" + h3["branch"]] += 1
+    return dict(counters)
 
 
 def census_report(shard_limit=None, compile_sample=400):
@@ -459,7 +595,7 @@ def census_report(shard_limit=None, compile_sample=400):
     if shard_limit:
         files = files[:shard_limit]
     stats = Counter()
-    work_F1, work_F3, nodes_F1 = [], [], []
+    work_F1, work_F3, nodes_F1, tail_F1 = [], [], [], []
     compiled = 0
     for fn in files:
         for line in open(fn):
@@ -471,6 +607,7 @@ def census_report(shard_limit=None, compile_sample=400):
             if fb:
                 stats["four_block"] += 1
                 stats["four_block_solved"] += int(bool(row["solved"]))
+            check_lemmas(pair, stats)
             h1 = recognize_F1(pair)
             h3 = recognize_F3(pair)
             if h1 is not None:
@@ -485,6 +622,7 @@ def census_report(shard_limit=None, compile_sample=400):
                     stats["F1_compiled_ok"] += int(bool(ok))
                     if ok:
                         work_F1.append(cert["work"])
+                        tail_F1.append(len(cert["elementary_tail"]))
             if h3 is not None:
                 stats["F3"] += 1
                 stats["F3_" + h3["branch"]] += 1
@@ -503,13 +641,15 @@ def census_report(shard_limit=None, compile_sample=400):
         return {"n": len(v), "min": v[0], "median": v[len(v) // 2],
                 "mean": round(sum(v) / len(v), 1), "max": v[-1]}
     return {"stats": dict(stats), "F1_compiler_work": summarize(work_F1),
+            "F1_elementary_tail": summarize(tail_F1),
             "F3_compiler_work": summarize(work_F3),
             "census_nodes_on_F1_rows": summarize(nodes_F1)}
 
 
 def main(argv):
-    report = {"planted_F1": planted_report(), "planted_F3": planted_report_F3(),
-              "dev": dev_report()}
+    report = {"classification": verify_classification(5),
+              "planted_F1": planted_report(), "planted_F3": planted_report_F3(),
+              "dev": dev_report(), "residual": residual_report()}
     bad = [r for r in report["planted_F1"]
            if r["kind"] == "planted_F1" and not (r["solved"] and r["replayed"])]
     bad += [r for r in report["planted_F1"]

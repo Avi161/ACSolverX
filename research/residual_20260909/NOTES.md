@@ -156,3 +156,16 @@ dropped from all candidates. The overrun rule fires only on preflight-accepted B
 it CAN in principle cost a row (a collapse needing more than the whole remaining budget
 burns it, where the frozen cascade would have moved on to stages 2-3), so its zero-loss
 claim is checked on the census comparison, not asserted.
+
+## Four-block theory (theory/FOURBLOCK_THEORY.md, FOURBLOCK_PATHS.md)
+
+- 44,039 census roots have a four-block relator (60.7 % of solves; 293 residual).
+- Proved: F1 (four-block primitive merge, with sharp converse; 2,725 census rows, a cost
+  rule), F3 (twin four-block row reduction), L1 (forced consecutivity and forced companion
+  exponent). Proved negative N1: widening the BS donor pattern to stable runs s >= 2
+  recognizes 71 residual donors and closes none (|det| = 1 forces the companion exponent
+  to be 1, never divisible by s). The relator is consumed as a donor in 99 % of census
+  paths; Nielsen maps never lower its block count outside the merge family.
+- Consistent check: the disabled `stable_square` rule (the b = 2 instance of the
+  Britton-over-zero-exponent-generator idea, donor YYXXyxx) stalls on all 8 dev rows that
+  carry its donor. Zero residual reach from these rules; their value is cost and theory.

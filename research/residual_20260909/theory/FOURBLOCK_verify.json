@@ -1,4 +1,10 @@
 {
+ "classification": {
+  "tuples": 10000,
+  "predicted_primitive": 64,
+  "mismatches": 0,
+  "limit": 5
+ },
  "planted_F1": [
   {
    "kind": "planted_F1",
@@ -1000,20 +1006,20 @@
     1,
     1,
     -2,
-    2
+    3
    ],
    "pair": [
     "YYxyxx",
-    "YYxxyx"
+    "YYxxxyx"
    ],
-   "det": 0,
+   "det": 1,
    "recognized": true,
    "branch": "bs",
-   "difference": "YXyx",
-   "solved": false,
-   "replayed": false,
-   "work": 2,
-   "reason": "difference_not_bs_donor"
+   "difference": "YXXyx",
+   "solved": true,
+   "replayed": true,
+   "work": 12,
+   "reason": null
   },
   {
    "kind": "adversarial_F3",
@@ -1059,7 +1065,32 @@
     "YYYXXyyx"
    ],
    "det": -2,
-   "why": "min(|a|,|c|) = 2: dead stable power",
+   "why": "min(|a|,|c|) = 2 and |det| = 2: rejected at the determinant",
+   "recognized": false,
+   "branch": null,
+   "solved": false,
+   "reason": "not_recognized"
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -3,
+    -1,
+    2,
+    -1
+   ],
+   "t2": [
+    -3,
+    -2,
+    2,
+    1
+   ],
+   "pair": [
+    "YYYXyyX",
+    "YYYXXyyx"
+   ],
+   "det": 1,
+   "why": "|det| = 1 but min(|a|,|c|) = 2: dead stable power (N1)",
    "recognized": true,
    "branch": "dead_stable_power",
    "solved": false,
@@ -1110,10 +1141,10 @@
    ],
    "det": 0,
    "why": "|det| != 1: block difference is 0",
-   "recognized": true,
-   "branch": "bs",
+   "recognized": false,
+   "branch": null,
    "solved": false,
-   "reason": "difference_not_bs_donor"
+   "reason": "not_recognized"
   }
  ],
  "dev": {
@@ -1123,35 +1154,97 @@
   "F1_solved": 0,
   "F3": 0,
   "F3_solved": 0,
-  "hits": []
- },
- "planted_failures": [
-  {
-   "kind": "planted_F3",
-   "t1": [
-    1,
-    2,
-    -2,
-    1
-   ],
-   "t2": [
-    1,
-    1,
-    -2,
-    2
-   ],
-   "pair": [
-    "YYxyxx",
-    "YYxxyx"
-   ],
-   "det": 0,
-   "recognized": true,
-   "branch": "bs",
-   "difference": "YXyx",
-   "solved": false,
-   "replayed": false,
-   "work": 2,
-   "reason": "difference_not_bs_donor"
+  "hits": [],
+  "lemma_counters": {
+   "vanishing_expsum_relators": 17,
+   "stable_run_1": 6,
+   "L1_tested": 17,
+   "L1_holds": 17,
+   "N1_tested": 17,
+   "N1_s1_companion_in_subgroup": 6,
+   "stable_run_2": 9,
+   "N1_holds_companion_outside_HNN_subgroup": 11,
+   "stable_run_4": 1,
+   "stable_run_3": 1
   }
- ]
+ },
+ "residual": {
+  "rows": 727,
+  "four_block": 293,
+  "both_four_block": 28,
+  "vanishing_expsum_relators": 91,
+  "stable_run_2": 59,
+  "L1_tested": 91,
+  "L1_holds": 91,
+  "N1_tested": 91,
+  "N1_holds_companion_outside_HNN_subgroup": 71,
+  "stable_run_1": 20,
+  "N1_s1_companion_in_subgroup": 20,
+  "mergeable_relators": 13,
+  "merge_torus_2_5": 10,
+  "stable_run_4": 7,
+  "stable_run_3": 5,
+  "merge_torus_2_3": 2,
+  "merge_torus_2_7": 1
+ },
+ "planted_failures": [],
+ "census": {
+  "stats": {
+   "rows": 72779,
+   "solved": 72052,
+   "four_block": 44039,
+   "four_block_solved": 43746,
+   "vanishing_expsum_relators": 21565,
+   "stable_run_1": 19827,
+   "L1_tested": 21565,
+   "L1_holds": 21565,
+   "N1_tested": 21565,
+   "N1_s1_companion_in_subgroup": 19827,
+   "stable_run_2": 1541,
+   "N1_holds_companion_outside_HNN_subgroup": 1738,
+   "F1": 2725,
+   "F1_solved_row": 2725,
+   "F1_compiled": 400,
+   "F1_compiled_ok": 400,
+   "stable_run_5": 6,
+   "stable_run_4": 42,
+   "F3": 91,
+   "F3_terminal": 25,
+   "F3_solved_row": 91,
+   "F3_compiled_ok": 63,
+   "stable_run_3": 149,
+   "F3_bs": 65,
+   "F3_fail_preflight_reject": 27,
+   "F3_dead_stable_power": 1,
+   "F3_fail_dead_stable_power": 1
+  },
+  "F1_compiler_work": {
+   "n": 400,
+   "min": 191,
+   "median": 369,
+   "mean": 392.1,
+   "max": 1002
+  },
+  "F1_elementary_tail": {
+   "n": 400,
+   "min": 134,
+   "median": 299,
+   "mean": 321.9,
+   "max": 906
+  },
+  "F3_compiler_work": {
+   "n": 63,
+   "min": 6,
+   "median": 21,
+   "mean": 27.1,
+   "max": 63
+  },
+  "census_nodes_on_F1_rows": {
+   "n": 2725,
+   "min": 255,
+   "median": 263,
+   "mean": 264.2,
+   "max": 358
+  }
+ }
 }

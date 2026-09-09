@@ -307,6 +307,7 @@ def analyse(row):
 
     # --- role of the four-block relator, step by step -------------------
     roles = []
+    shapes = []
     first_change = None
     donor_uses = 0
     aut_first = None
@@ -316,13 +317,16 @@ def analyse(row):
             images = step["images"]
             k = NIELSEN.index(images)
             roles.append(f"A{k}")
+            shapes.append("aut")
             if present and first_change is None:
                 first_change = i
                 after = apply_pair((word, word), images)[0]   # image of the relator alone
                 aut_first = {"map": k, "image": after, "blocks": n_blocks(after),
                              "image_tuple": four_block_tuple(after)}
             continue
-        target, jsign, _k1, _k2 = parse_move(step["move"])
+        target, jsign, k1, k2 = parse_move(step["move"])
+        shapes.append("%s%s%s" % ("+" if jsign > 0 else "-",
+                                  "0" if k1 == 0 else "r", "0" if k2 == 0 else "r"))
         tgt = states[i][target - 1]
         don = states[i][2 - target]
         if present and tgt == word:
@@ -338,6 +342,7 @@ def analyse(row):
         else:
             roles.append("-")
     rec["roles"] = "".join(roles)
+    rec["shapes"] = shapes
     rec["donor_uses_total"] = roles.count("D")
     rec["target_uses_total"] = roles.count("T")
     rec["survives_to_end"] = word in states[-1]
@@ -357,6 +362,7 @@ def analyse(row):
     rec["gate_name"] = gate_name
     if gate_index is not None:
         rec["macro"] = "".join(roles[:gate_index])
+        rec["macro_shapes"] = "|".join(shapes[:gate_index])
         rec["gate_state"] = list(states[gate_index])
         rec["prefix"] = [{"state": list(states[i]),
                           "step": steps[i].get("move") or steps[i].get("images"),
@@ -371,7 +377,104 @@ def analyse(row):
 # driver
 # --------------------------------------------------------------------------
 
+def gate_probe(pair, width=3, depth=2, cap=3000):
+    """Deterministic bounded probe: keep the ``width`` shortest substitution
+    children at each level and test the three proved gates.
+
+    Charges one unit per generated child, so the whole probe on one row is
+    bounded by ``cap`` units.  Returns (gate name, depth, units) or
+    (None, None, units).
+    """
+    from experiments.equivalence_classes.lib.words import replay_move as rm
+    root = canon_pair(*pair)
+    level = [root]
+    units = 0
+    g = gate_of(root)
+    if g:
+        return g, 0, units
+    for d in range(1, depth + 1):
+        children = {}
+        for state in level:
+            for target in (1, 2):
+                for jsign in (1, -1):
+                    for k1 in range(len(state[target - 1])):
+                        for k2 in range(len(state[2 - target])):
+                            if units >= cap:
+                                return None, None, units
+                            units += 1
+                            child = rm(state, (target, jsign, k1, k2))
+                            key = tuple(child)
+                            if key not in children:
+                                children[key] = sum(map(len, child))
+        ranked = sorted(children, key=lambda k: (children[k], k))
+        for state in ranked[:width]:
+            g = gate_of(state)
+            if g:
+                return g, d, units
+        level = ranked[:width]
+    return None, None, units
+
+
+def probe_mode(n_rows=40, width=3, depth=2):
+    """Run the bounded probe on a few dozen rows: 20 census-solved four-block
+    roots and every dev-panel row with a four-block relator (capped)."""
+    import csv
+    out = {"width": width, "depth": depth, "census": [], "dev": []}
+    files = sorted(glob.glob(ROWS_GLOB))
+    picked = 0
+    for fn in files[:3]:
+        for line in open(fn):
+            row = json.loads(line)
+            if not row["solved"]:
+                continue
+            p = canon_pair(*row["pair"])
+            fb = [w for w in p if four_block_tuple(w) is not None]
+            if not fb or gate_of(p) is not None:
+                continue
+            if picked % 37:
+                picked += 1
+                continue
+            picked += 1
+            g, d, u = gate_probe(p, width, depth)
+            out["census"].append({"name": row["name"], "pair": list(p),
+                                  "family": family_of(four_block_tuple(fb[0])),
+                                  "gate": g, "depth": d, "units": u,
+                                  "census_nodes": row["nodes_explored"]})
+            if len(out["census"]) >= n_rows // 2:
+                break
+        if len(out["census"]) >= n_rows // 2:
+            break
+    with open("research/residual_20260909/panels/dev.csv") as fh:
+        for r in csv.DictReader(fh):
+            p = canon_pair(r["r1"], r["r2"])
+            fb = [w for w in p if four_block_tuple(w) is not None]
+            if not fb:
+                continue
+            if len(out["dev"]) >= n_rows // 2:
+                break
+            g, d, u = gate_probe(p, width, depth)
+            out["dev"].append({"name": r["name"], "pair": list(p),
+                               "family": family_of(four_block_tuple(fb[0])),
+                               "gate": g, "depth": d, "units": u})
+    out["census_hits"] = sum(1 for r in out["census"] if r["gate"])
+    out["dev_hits"] = sum(1 for r in out["dev"] if r["gate"])
+    return out
+
+
 def main(argv):
+    if "--probe" in argv:
+        res = probe_mode()
+        path = os.path.join(HERE, "FOURBLOCK_probe.json")
+        with open(path, "w") as fh:
+            json.dump(res, fh, indent=1)
+        print(json.dumps({k: v for k, v in res.items() if k not in ("census", "dev")},
+                         indent=1))
+        for tag in ("census", "dev"):
+            print("--", tag)
+            for r in res[tag]:
+                print("  ", r)
+        print("wrote", path)
+        return
     limit = int(argv[1]) if len(argv) > 1 else None
     files = sorted(glob.glob(ROWS_GLOB))
     if limit:
@@ -389,7 +492,8 @@ def main(argv):
         "first_role": Counter(), "first_change": Counter(),
         "donor_uses": Counter(), "aut_image_blocks": Counter(),
         "gate": Counter(), "gate_family": Counter(), "gate_index": Counter(),
-        "macro": Counter(), "root_gate": Counter(),
+        "macro": Counter(), "root_gate": Counter(), "shape1": Counter(),
+        "macro_shape": Counter(),
         "nielsen_min_blocks": Counter(), "nielsen_min_by_family": Counter(),
         "orbit_class": Counter(), "orbit_family": Counter(), "orbit_gate": Counter(),
         "survives": Counter(), "donor_total": Counter(),
@@ -441,11 +545,14 @@ def main(argv):
                 agg["survives"][(fam, rec["survives_to_end"])] += 1
                 agg["donor_total"][(fam, min(rec["donor_uses_total"], 12))] += 1
                 agg["root_gate"][(fam, rec["root_gate"])] += 1
+                agg["shape1"][(fam, rec["shapes"][0] if rec["shapes"] else ".")] += 1
                 agg["gate"][(fam, rec["gate_name"])] += 1
                 if rec["gate_name"] is not None:
                     agg["gate_index"][(fam, rec["gate_name"], rec["gate_index"])] += 1
                     key = (fam, rec["gate_name"], rec["macro"])
                     agg["macro"][key] += 1
+                    if 1 <= rec["gate_index"] <= 4:
+                        agg["macro_shape"][(rec["gate_name"], rec["macro_shapes"])] += 1
                     if len(macro_examples[key]) < MAX_EXAMPLES_PER_PATTERN:
                         macro_examples[key].append(rec)
                 if len(fam_examples[fam]) < 6 and rec["root_gate"] is None:
@@ -489,6 +596,8 @@ def main(argv):
         "gate_reached_by_family": dump(agg["gate"]),
         "gate_index_by_family": dump(agg["gate_index"], 80),
         "macro_patterns": dump(agg["macro"], 120),
+        "first_move_shape_by_family": dump(agg["shape1"], 40),
+        "macro_move_shapes_len1to4": dump(agg["macro_shape"], 40),
     }
     with open(OUT_JSON, "w") as fh:
         json.dump(out, fh, indent=1, sort_keys=False)
