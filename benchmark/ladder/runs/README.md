@@ -91,3 +91,53 @@ python3 -m benchmark.ladder.report_ladder --out benchmark/ladder/runs/report_200
            K3p_notable_1k=benchmark/ladder/runs/ladder_200_K3p_notable_b1000.jsonl \
            K3p_c14aut_1k=benchmark/ladder/runs/ladder_200_K3p_c14aut_b1000.jsonl
 ```
+
+## The same runs on `ladder_200_s20hard`
+
+The S20-hard family keeps, per level, the rows S20_MK2 finds hardest (`LADDER.md`).
+Same commands with `--panel benchmark/ladder/ladder_200_s20hard.csv`; the report is
+`report_200_s20hard_reference/REPORT.md`.
+
+| file | engine | budget | cap | workers | solved / 200 | run wall |
+|---|---|---:|---:|---:|---:|---:|
+| `ladder_200_s20hard_greedy_b10000_c48.jsonl` | plain greedy | 10,000 pops | 48 | 2 | **40** | 129 s |
+| `ladder_200_s20hard_greedy_b100000_c48.jsonl` | plain greedy | 100,000 pops | 48 | 2 | **80** | 1,330 s |
+| `ladder_200_s20hard_s20_mk2_b10000_c48.jsonl` | S20_MK2 | 10,000 pops | 48 | 2 | **34** | 166 s |
+| `ladder_200_s20hard_s20_mk2_b100000_c48.jsonl` | S20_MK2 | 100,000 pops | 48 | 2 | **141** | 1,158 s |
+| `ladder_200_s20hard_K3p_notable_b1000.jsonl` | `K3p_notable` | 1,000 units | – | 1 | **162** | 61 s |
+| `ladder_200_s20hard_K3p_c14aut_b1000.jsonl` | `K3p_c14aut` | 1,000 units | – | 1 | **180** | 28 s |
+| `ladder_200_s20hard_frozen_b1000.jsonl` | `frozen` | 1,000 units | – | 1 | **90** | 67 s |
+| `ladder_200_s20hard_frozen_reallocated_b1000.jsonl` | `frozen_reallocated` | 1,000 units | – | 1 | **161** | 61 s |
+| `ladder_200_s20hard_incumbent_b1000.jsonl` | `incumbent` | 1,000 units | – | 1 | **161** | 67 s |
+| `ladder_200_s20hard_plain_s20_b1000.jsonl` | `plain_s20` | 1,000 units | – | 1 | **0** | 75 s |
+| `ladder_200_s20hard_aut_edges_s20_b1000.jsonl` | `aut_edges_s20` | 1,000 units | – | 1 | **170** | 58 s |
+| `ladder_200_s20hard_ordinary_T_b1000.jsonl` | `ordinary_T` | 1,000 units | – | 1 | **53** | 154 s |
+| `ladder_200_s20hard_donor_only_b1000.jsonl` | `donor_only` | 1,000 units | – | 1 | **52** | 3 s |
+
+Per level (solved of 20):
+
+| level | greedy @10k | greedy @100k | S20_MK2 @10k | S20_MK2 @100k | `K3p_notable` @1k | `K3p_c14aut` @1k | `frozen` @1k | `frozen_reallocated` @1k | `incumbent` @1k | `plain_s20` @1k | `aut_edges_s20` @1k | `ordinary_T` @1k | `donor_only` @1k |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 20 | 20 | 20 | 20 | 17 | 20 | 11 | 20 | 20 | 0 | 20 | 10 | 8 |
+| 2 | 20 | 20 | 0 | 20 | 20 | 20 | 17 | 20 | 20 | 0 | 20 | 20 | 8 |
+| 3 | 0 | 20 | 0 | 20 | 20 | 20 | 12 | 17 | 17 | 0 | 20 | 3 | 13 |
+| 4 | 0 | 20 | 0 | 20 | 16 | 20 | 12 | 18 | 18 | 0 | 20 | 10 | 10 |
+| 5 | 0 | 0 | 0 | 20 | 19 | 20 | 13 | 15 | 15 | 0 | 19 | 0 | 12 |
+| 6 | 0 | 0 | 12 | 20 | 20 | 20 | 8 | 20 | 20 | 0 | 20 | 6 | 0 |
+| 7 | 0 | 0 | 2 | 12 | 19 | 20 | 7 | 19 | 19 | 0 | 19 | 4 | 1 |
+| 8 | 0 | 0 | 0 | 9 | 14 | 20 | 10 | 14 | 14 | 0 | 14 | 0 | 0 |
+| 9 | 0 | 0 | 0 | 0 | 17 | 20 | 0 | 18 | 18 | 0 | 18 | 0 | 0 |
+| 10 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **all** | **40** | **80** | **34** | **141** | **162** | **180** | **90** | **161** | **161** | **0** | **170** | **53** | **52** |
+
+- Greedy again solves exactly levels 1–2 at 10k and 1–4 at 100k (the levels are
+  still greedy bands), and the 100k runs reproduce every recorded `greedy_nodes` and
+  `s20_nodes` on these rows exactly.
+- **S20_MK2 drops from 118 to 34 at 10k and from 156 to 141 at 100k**; the anytime
+  curve at 100 / 1k / 10k / 100k pops is 0 / 0 / 34 / 141 against
+  0 / 20 / 40 / 80 for greedy. At 10k it holds only level 1 (picks of 3k–7.7k pops), takes 12 of
+  level 6 and 2 of level 7, and nothing else — that is what the selection is for.
+- `plain_s20` at 1,000 units solves nothing: the cheapest level-1 pick needs 3,116
+  pops. The cascades barely move (`K3p_c14aut` 180 → 180, `aut_edges_s20` 172 → 170,
+  `K3p_notable` 158 → 162), so S20-hardness is not cascade-hardness: their automorphism
+  and macro stages route around the ordering's bad starts.
