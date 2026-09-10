@@ -407,3 +407,36 @@ def make_compact_policy(cap, prepass_cap=250, plain_prefix=872, force_arm=None,
 make_compact_policy(14, aut=True, name='K1_c14aut')
 make_compact_policy(14, aut=True, plain_prefix=300, certified_overrun=True,
                     use_bs_demote=True, name='K3p_c14aut')
+
+
+def make_notable_policy(prepass_cap=250, plain_prefix=872, force_arm=None,
+                        certified_overrun=False, use_stable_power=False,
+                        use_bs_demote=False, name=None):
+    """``make_policy`` with NO backward table (``table=None``): the same
+    cascade, same knobs, and the ball terminal simply never fires.  This is
+    the honest no-table control for any ``K*p_c<NN>aut`` name -- every unit it
+    charges is forward search, so its solve count against the frozen policy
+    measures the new rules alone, and the gap to the tabled twin measures the
+    table alone."""
+
+    def run(pair, budget):
+        result = dict(_final_policy_ball.search(
+            pair, budget=budget, prepass_cap=prepass_cap, plain_prefix=plain_prefix,
+            force_arm=force_arm, certified_overrun=certified_overrun,
+            use_stable_power=use_stable_power, use_bs_demote=use_bs_demote,
+            table=None))
+        result['ball_table'] = None
+        return result
+
+    run.__doc__ = (f'final_policy_ball.search with no backward table, '
+                   f'prepass_cap={prepass_cap}, plain_prefix={plain_prefix}, '
+                   f'force_arm={force_arm!r}, certified_overrun={certified_overrun}, '
+                   f'use_stable_power={use_stable_power}, use_bs_demote={use_bs_demote}.')
+    if name is not None:
+        run.__name__ = name
+        policy(name)(run)
+    return run
+
+
+make_notable_policy(plain_prefix=300, certified_overrun=True, use_bs_demote=True,
+                    name='K3p_notable')
