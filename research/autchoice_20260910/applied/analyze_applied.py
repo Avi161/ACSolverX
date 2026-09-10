@@ -155,6 +155,21 @@ def main():
             classes[r['name'].rsplit('_', 1)[1]].append(r)
     class_solved = sorted(k for k, rs in classes.items() if any(r['best_solve'] for r in rs))
     class_any_below = sum(1 for rs in classes.values() if any(r['n_below_start'] > 0 for r in rs))
+    # the best-known length of a class is the aca_best start length; did any image beat it?
+    best_len = {k: next(r['start_len'] for r in rs if r['form'] == 'aca_best') for k, rs in classes.items()
+                if any(r['form'] == 'aca_best' for r in rs)}
+    for r in per.values():
+        k = r['name'].rsplit('_', 1)[1] if r['form'].startswith('aca') else None
+        r['best_known_len'] = best_len.get(k)
+        r['ball_min_vs_best_known'] = None if (r['best_known_len'] is None or r['ball_min'] is None) else r['ball_min'] - r['best_known_len']
+    class_min = {k: min(r['ball_min'] for r in rs if r['ball_min'] is not None) for k, rs in classes.items()
+                 if any(r['ball_min'] is not None for r in rs)}
+    class_below_best = sorted(k for k, m in class_min.items() if k in best_len and m < best_len[k])
+    class_at_best = sum(1 for k, m in class_min.items() if k in best_len and m == best_len[k])
+    initial_reached_best = sum(1 for r in per.values() if r['form'] == 'aca_initial' and r['ball_min'] is not None
+                               and r['best_known_len'] is not None and r['ball_min'] <= r['best_known_len'])
+    initial_identity_reached_best = sum(1 for r in per.values() if r['form'] == 'aca_initial' and r['identity_min'] is not None
+                                        and r['best_known_len'] is not None and r['identity_min'] <= r['best_known_len'])
     solves = [r for r in per.values() if r['best_solve']]
 
     summary = OrderedDict(
@@ -165,7 +180,9 @@ def main():
         claimed_but_unverified=claimed_not_verified, rejected_by_image_replay=rejected,
         new_solves_per_form=OrderedDict((f, [r['name'] for r in solves if r['form'] == f]) for f in FORMS),
         classes=OrderedDict(total=len(classes), solved=len(class_solved), solved_names=class_solved,
-                            any_image_below_start=class_any_below),
+                            any_image_below_start=class_any_below, below_best_known=class_below_best,
+                            at_best_known=class_at_best, initial_ball_reached_best_known=initial_reached_best,
+                            initial_identity_reached_best_known=initial_identity_reached_best),
         per_form=per_form,
         leftovers=OrderedDict((r['name'], r) for r in per.values() if r['form'] == 'ac19_level9_leftover'),
         phase2_selection=sel2, phase2_ranking=rank2,
@@ -196,8 +213,19 @@ def main():
           + ").  The trick that turns 26/28 unsolvable-at-10M AC19 representatives into sub-20k solves does not "
           "touch the unsolved Miller-Schupp classes at these budgets, nor the two AC19 leftovers.\n")
     else:
+        ms_solved = per_form['aca_initial']['solved'] + per_form['aca_best']['solved']
+        n2a = sum(1 for d in p2 if d['phase'] == '2a' and d['form'].startswith('aca'))
+        n2b = sum(1 for d in p2 if d['phase'] == '2b' and d['form'].startswith('aca'))
         w(f"**{len(solves)} target(s) with at least one verified solving image** "
           + ', '.join(f"{per_form[f]['solved']} {f}" for f in FORMS) + '.\n')
+        if ms_solved == 0:
+            w(f"**On the 124 unsolved Miller-Schupp classes: zero new solves.**  Neither form solved from any of its "
+              f"{per_form['aca_initial']['images_total'] + per_form['aca_best']['images_total']:,} radius-2 images at "
+              f"{run1.get('budget', 20000):,} pops"
+              + (f", nor from the {n2a} depth-3 images at {run2.get('budget', 20000):,} or the {n2b} ranked images at "
+                 f"{run2.get('big_budget', 200000):,} pops on the 10 closest classes" if p2 else '')
+              + ".  The trick that turns 26/28 unsolvable-at-10M AC19 representatives into sub-20k solves does not touch "
+              "the MS residue at these budgets; what it did reach is below.\n")
         w('| target | form | image | depth | seq (AUTOS) | phi | image r1, r2 | pops | AC moves | budget |')
         w('|---|---|---:|---:|---|---|---|---:|---:|---:|')
         for r in solves:
@@ -212,7 +240,13 @@ def main():
         w(f"| {f} | {a['targets']} | {a['run']} | {a['solved']} | {a['any_image_below_start']} | {a['ball_min_below_identity_min']} | "
           f"{a['identity_below_start']} | {a['images_total']} | {a['images_below_start']} | {a['images_at_or_below_start']} | {a['targets_all_images_back_to_start']} |")
     w(f"\nPer class (`aca_N` and `acabest_N` together): {summary['classes']['solved']}/{summary['classes']['total']} classes "
-      f"solved, {class_any_below}/{summary['classes']['total']} with any image below the start length in either form.\n")
+      f"solved, {class_any_below}/{summary['classes']['total']} with any image below the start length in either form.  "
+      f"Against the class's **best-known length** (the `acabest_N` start length): {len(class_below_best)} classes where any "
+      f"image's search found a state shorter than the best-known form"
+      + (f" ({', '.join(class_below_best)})" if class_below_best else '')
+      + f"; {class_at_best} where the ball's minimum equals it.  On the un-reduced `aca_initial` rows the ball reaches the "
+      f"best-known length on {initial_reached_best}/124 (the identity alone on {initial_identity_reached_best}/124), i.e. "
+      f"a drop below the `aca_initial` start is the known mu-reduction rediscovered, not new ground.\n")
     if claimed_not_verified or rejected:
         w(f"**Claims that failed verification (reported as failures, not solves):** {len(claimed_not_verified)} "
           f"claimed solves not verified: {claimed_not_verified}; {len(rejected)} rejected by the image replay: {rejected}.\n")
@@ -234,17 +268,40 @@ def main():
         w(f"| {f} | {a['run']} | {a['drop_min']} / {a['drop_median']} / {a['drop_max']} | {hist} |")
     w('')
     w('### Per target (sorted by ball_min, then drop)\n')
-    w('| target | form | start len | identity min | identity max exp | ball min | drop | at image (idx, depth, seq, len) | images below start | images back to start | images longer / shorter than row | r3 min | 200k min |')
-    w('|---|---|---:|---:|---:|---:|---:|---|---:|---:|---|---:|---:|')
+    w('| target | form | start len | best-known len | identity min | identity max exp | ball min | drop | vs best-known | at image (idx, depth, seq, len) | images below start | images back to start | images longer / shorter than row | r3 min | 200k min |')
+    w('|---|---|---:|---:|---:|---:|---:|---:|---:|---|---:|---:|---|---:|---:|')
     for r in sorted((r for r in per.values() if r['images_r2'] > 0),
                     key=lambda r: (r['ball_min'], r['ball_min'] - r['start_len'], r['name'])):
         bi = r['ball_min_image']
         at = f"{bi['image_index']}, d{bi['depth']}, {seq_str(bi['seq'])}, {bi['image_len']}" if bi else '-'
-        w(f"| {r['name']} | {r['form']} | {r['start_len']} | {r['identity_min']} | {r['identity_max_expanded']} | {r['ball_min']} | "
-          f"{r['ball_min'] - r['start_len']} | {at} | {r['n_below_start']}/{r['images_r2']} | {r['n_at_or_below_start']}/{r['images_r2']} | {r['n_images_longer']} / {r['n_images_shorter']} | "
+        w(f"| {r['name']} | {r['form']} | {r['start_len']} | {'-' if r['best_known_len'] is None else r['best_known_len']} | "
+          f"{r['identity_min']} | {r['identity_max_expanded']} | {r['ball_min']} | "
+          f"{r['ball_min'] - r['start_len']} | {'-' if r['ball_min_vs_best_known'] is None else r['ball_min_vs_best_known']} | {at} | {r['n_below_start']}/{r['images_r2']} | {r['n_at_or_below_start']}/{r['images_r2']} | {r['n_images_longer']} / {r['n_images_shorter']} | "
           f"{'-' if r['ball_min_r3'] is None else r['ball_min_r3']} | {'-' if r['min_200k'] is None else r['min_200k']} |")
     w('')
 
+    ss = load_json('short_states.json', {'certified': [], 'failed': []})
+    w('## States shorter than a class\'s best-known form\n')
+    if not ss['certified'] and not ss['failed']:
+        w('None found: no image\'s search discovered a state shorter than the `acabest_N` form of its class '
+          '(`certify_short_states.py` had nothing to certify).\n')
+    else:
+        w(f"`certify_short_states.py` re-ran every search whose `min_total_length_seen` is below the class's best-known "
+          f"length, walked the solver's parent chain to the minimum, and replayed the AC moves with `words.replay_move` "
+          f"from the image (and the automorphism sequence from the row): {len(ss['certified'])} certified, "
+          f"{len(ss['failed'])} failed (`short_states.json` has the moves).\n")
+        w('| class | best-known len | new state | len | from row / image (seq) | image len | AC moves | peak len on the path |')
+        w('|---|---:|---|---:|---|---:|---:|---:|')
+        for e in ss['certified']:
+            for r in e['carried_by']:
+                w(f"| {e['cls']} | {e['best_known_len']} | `{e['state'][0]}`, `{e['state'][1]}` | {e['state_len']} | "
+                  f"{r['row']} / {r['image_index']} ({seq_str(r['seq'])}) | {e['image_len']} | {e['n_moves']} | {e['peak_len']} |")
+        w('')
+        cls_new = sorted({e['cls'] for e in ss['certified']})
+        w(f"So {len(cls_new)} of the 124 classes ({', '.join(cls_new)}) now has a representative strictly shorter than "
+          f"`data/ms_unsolved_reps/aca_124_best.csv`'s -- found from the **un-reduced** form (the mu-reduced one, a "
+          f"local minimum, never discovers it), over a hump the strict descent cannot cross.  It is a shorter start, not a solve.\n")
+    summary['short_states'] = ss
     w('## The two AC19 level-9 leftovers\n')
     for name, r in summary['leftovers'].items():
         out = 'SOLVED' if r['best_solve'] else 'not solved'
@@ -308,6 +365,9 @@ def main():
       'so an image\'s cost is that of one representative of its relabel class.')
     with open(HERE / 'APPLIED.md', 'w') as f:
         f.write('\n'.join(L) + '\n')
+    with open(HERE / 'applied_summary.json', 'w') as f:
+        json.dump(summary, f, indent=1)
+        f.write('\n')
     print(f"APPLIED.md: {n_targets_run} targets run, {len(solves)} with a solving image; "
           f"verification {ver.get('checked', 0)} checked / {ver.get('ok', 0)} ok / {ver.get('failed', 0)} failed")
 

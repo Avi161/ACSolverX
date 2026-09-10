@@ -6,9 +6,15 @@
 solved: the 124 unsolved Miller-Schupp classes (both forms), and the two level-9 AC19
 orbits the atlas ball missed?  The answer is in `APPLIED.md`; this file is the how.
 
-Git head: `460904f9850ee20e3fe7772704a17db36f44f707` on `claude/ac19-theorem-strength-8v1wp6`
-(working tree; nothing committed).  Everything lives in this directory; B1's files
-(`orbit.py`, `engine.py`, `features.py`, `atlas.jsonl`) are only read; nothing outside
+Git head when the targets were built and phase 1 started:
+`460904f9850ee20e3fe7772704a17db36f44f707` on `claude/ac19-theorem-strength-8v1wp6`
+(`targets_manifest.json`).  This session made no commits; an outside orchestrator committed
+the campaign directory as `7fa813ae` and the phase-1 records as `85b5d079` at 21:44-21:45 UTC,
+so the phase-2 outputs, `APPLIED.md`, `applied_summary.json`, `certify_short_states.py`,
+`short_states.json`, `verify_applied.json` and the final edits to this file and
+`analyze_applied.py` are in the working tree on top of `85b5d079`.  Everything lives in this
+directory; B1's files (`orbit.py`, `engine.py`, `features.py`, `atlas.jsonl`) and B2's
+`predictor/rank_images.py` are only read; nothing outside
 `research/autchoice_20260910/applied/` was written.
 
 ## Files
@@ -20,6 +26,7 @@ Git head: `460904f9850ee20e3fe7772704a17db36f44f707` on `claude/ac19-theorem-str
 | `run_phase1.py` -> `phase1.jsonl`, `phase1_run.json`, `phase1_run.log`, `phase1_rejects.log` | radius-2 ball x `S20_MK2` @ 20,000 on every target; resumable |
 | `run_phase2.py` -> `phase2.jsonl`, `phase2_selection.json`, `phase2_ranking.json`, `phase2_run.json`, `phase2_run.log` | radius-3 depth-3 images @ 20,000 and the top-3 images @ 200,000 on the 2 leftovers + the 10 closest aca targets; resumable |
 | `verify_applied.py` -> `verify_applied.json` | fresh-process re-check of every claimed solve from the JSONL alone (no engine import) |
+| `certify_short_states.py` -> `short_states.json` | for every record whose `min_total_length_seen` is below its class's best-known length: re-run the search, walk the solver's parent chain to the minimum, replay the AC moves with `words.replay_move` -- a certified path to a shorter representative |
 | `analyze_applied.py` -> `APPLIED.md`, `applied_summary.json` | every number in the report, computed from the JSONL |
 
 ## Targets (`targets.csv`: `name, r1, r2, source, form, note`)
@@ -52,7 +59,23 @@ start (B1's atlas run had finished); B2's predictor work ran concurrently on the
 
 ## Timings
 
-__TIMINGS__
+All on the 4-core / 15 GB box, `OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1`, B2 on one core throughout,
+an unrelated `run_ladder --workers 2` job on two cores from 21:45 UTC.
+
+| step | workers | searches | budget | wall | started - finished (UTC) |
+|---|---:|---:|---:|---:|---|
+| `build_targets.py` | 1 | - | - | seconds | 20:22 |
+| phase 1: radius-2 ball, 250 targets, 3,238 images | 3 | 2,100 distinct | 20,000 | 80.6 min | 20:24:28 - 21:45:07 |
+| phase 2 stage A: depth-3 images of 12 targets | 2 | 184 | 20,000 | 7.1 min | 21:45:13 - 21:52 |
+| phase 2 stage B: top-3 images of 12 targets | 2 | 36 | 200,000 | 13.1 min | 21:52 - 22:05:25 |
+| `certify_short_states.py` (5 re-runs at 20,000) | 1 | 5 | 20,000 | ~0.5 min | 21:51 |
+| `verify_applied.py`, `analyze_applied.py` | 1 | - | - | seconds each | 22:06 |
+
+Search wall 1.68 h of the brief's 3 h (phase 1 within its 2.5 h budget; phase 2 within its 1 h
+cap).  Projection printed after the first 30 phase-1 searches: 0.87 h for 2,100, so
+`aca_best` was kept.  A censored 20,000-pop run takes 3.4-5 s on this box (B1 measured
+5.5 s with two ladder workers alive); a censored 200,000-pop run 64 s and 2.6 GB peak
+(measured once before phase 1), which is why stage B is 2-3 workers, never 4.
 
 ## Inputs and their hashes
 
@@ -78,7 +101,42 @@ __TIMINGS__
    shortened sequence) fail.
 4. `analyze_applied.py` counts a solve only if `s20.verified` is true and the record is not
    in `verify_applied.json`'s failures.
+5. A *shorter state* (not a solve) is reported only if `certify_short_states.py` replayed a
+   move-by-move AC path from the image to exactly the recorded state (`replay_ok`) and the
+   automorphism sequence from the row lands on the image (`aut_ok`).
 
 ## Deviations from the brief
 
-__DEVIATIONS__
+- **Identical pairs searched once.** 88 classes have `aca_N == acabest_N`, so 1,138 of the
+  3,238 phase-1 (row, image) records are copies of another record's search (`s20.shared`);
+  2,100 distinct searches were run.  The engine is deterministic (3 random records re-run
+  bit-for-bit: `nodes`, `min_total_length_seen`, `max_expanded`, `min_relator`), so the
+  copies are the runs they would have been.
+- **A concurrent resume of phase 1 was launched from outside this session** at 21:38 UTC
+  (`--workers 3`, same budget and cap; its log is `b3_phase1_resume.log` in the session
+  scratchpad).  It re-ran 338 not-yet-written searches in parallel with the original run
+  and appended 209 duplicate (row, image) records before it was stopped; the same outside
+  chain de-duplicated `phase1.jsonl` when the original run finished (3,447 -> 3,238 lines,
+  one record per (row, image), 250 rows).  Every kept record carries budget 20,000 / cap 48,
+  and the engine's determinism (above) makes the duplicates identical to the kept lines.
+  The 80.6 min phase-1 wall in `phase1_run.json` is the original run's; the resume cost the
+  box about 12 extra core-minutes of the same searches.  The verification counts in
+  `verify_applied.json` are from the final standalone run over the de-duplicated file.
+- **Phase 2 was started by that same outside chain**, with the shipped `run_phase2.py`
+  defaults but `--workers 2`, right when phase 1 ended; a `benchmark.ladder.run_ladder
+  --workers 2` job unrelated to this brief was started on the box at the same minute, so 2
+  workers was the right count (4 cores, B2 on one).  Nothing about the phase-2 protocol
+  differs from this README's command except the worker count.
+- `min_total_length_seen` was added to the record (the brief's record shape lists
+  `solved, nodes, path_moves, max_expanded, verified`); the analysis needs it, and it is the
+  engine's own `min_relator_length`, not a new computation.  The record also carries
+  `orig_r1, orig_r2, start_len, phase, radius, min_relator, wall, shared`.
+- Phase-2 selection uses `ball_min` (absolute) first, then the count of images below the
+  start, then the count of images whose search got back down to the row's own length, then
+  the drop, then the name; with `drop = 0` on 110/124 `aca_initial` and 124/124 `aca_best`
+  rows the brief's two criteria alone would have left the choice to the name.
+- `certify_short_states.py` is an addition: the analysis found one class whose search
+  reached below its best-known length, and a state without a path is not a result.
+- The predictor's `rank(pair, radius=3)` (B2's `pairwise_logistic` weights) existed when
+  stage B ran and matched all 29 radius-3 images; the `h_s20mk2` fallback was not needed.
+  `phase2_ranking.json` records the ranker per target.

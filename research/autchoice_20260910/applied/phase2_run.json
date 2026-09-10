@@ -1,0 +1,44 @@
+{
+ "budget": 20000,
+ "big_budget": 200000,
+ "cap": 48,
+ "radius": 3,
+ "top": 3,
+ "n_aca": 10,
+ "workers": 2,
+ "selected": [
+  "ac19_27254",
+  "ac19_7284",
+  "aca_115",
+  "aca_116",
+  "aca_117",
+  "aca_8",
+  "aca_118",
+  "aca_1",
+  "aca_10",
+  "aca_9",
+  "aca_11",
+  "aca_12"
+ ],
+ "stages": {
+  "A": {
+   "records": 184,
+   "searches": 184,
+   "solved": 1,
+   "workers": 2
+  },
+  "B": {
+   "records": 36,
+   "searches": 36,
+   "solved": 1,
+   "workers": 2
+  }
+ },
+ "stage_wall_seconds": {
+  "A": 425.4,
+  "B": 784.9
+ },
+ "wall_seconds": 1212.3,
+ "started_utc": "2026-09-10T21:45:13Z",
+ "finished_utc": "2026-09-10T22:05:25Z"
+}
