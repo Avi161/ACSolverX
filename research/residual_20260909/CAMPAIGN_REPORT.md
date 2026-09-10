@@ -12,8 +12,21 @@ published census.** Bundle: `results/heuristic_search/ac19_ball14_cascade_full_1
 | census (1,000 units, all 72,779 rows) | solved | charged units | search wall | certificate wall | census wall (4 workers) |
 |---|---:|---:|---:|---:|---:|
 | published `final_policy` (98f719e2) | 72,052 | 6,621,411 | 389.2 s | 109.4 s | serial, 1,976 s incl. 1,471 s cooldown |
+| control: the same cascade, **no table** (`K3p_notable`) | 72,562 | 5,871,522 | 840.1 s | 213.3 s | 279 s |
 | round 1: cascade + cap-12 aut table (`K3p_c12aut`) | 72,738 | 2,829,457 | 172.4 s | 203.1 s | 108 s |
 | **round 2: cascade + cap-14 aut table (`K3p_c14aut`)** | **72,779** | **949,521** | **46.7 s** | 186.2 s | **70 s** |
+
+**How to read the units.** The cap-14 table is precomputed search (BFS
+outward from the trivial pair, 12.8M states, 27 min to build once, no census
+input) and its lookups are uncharged, so the "1,000 units" of `K3p_c14aut` is
+the forward search *on top of* that ball. 66,151 of the 72,779 roots (91%) lie
+inside it and cost 0 units. The no-table control row separates the two
+ingredients: the new rules alone take the census from 72,052 to 72,562 (567
+gained, 57 lost) at 11% fewer units than the published policy; the table
+accounts for exactly the last 217 rows and for the drop from 5.87M to 0.95M
+units. Every table hit still yields a genuine AC path, replayed independently.
+Details: `results/heuristic_search/ac19_K3p_notable_full_1k/README.md` and
+NOTES.md, "What the table does, stated plainly".
 
 Worst single row: 0.456 s search wall (published 0.454 s). No row is charged
 more under `K3p_c14aut` than it was under the published policy. The one cost

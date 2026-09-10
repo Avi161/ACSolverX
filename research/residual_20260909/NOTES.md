@@ -344,3 +344,40 @@ can name a panel; both default to the settled AC19 census hash and 72,779, so th
 bundle is certified by exactly the same two checks as before (re-verified PASS).
 
 Results: results/heuristic_search/ms640_K3p_c14aut_1k/ and ms640_frozen_1k/.
+
+## What the table does, stated plainly (no-table controls)
+
+The cap-14 backward ball is precomputed search: BFS outward from the trivial pair over
+every AC move (and 4 Nielsen edges) that keeps both relators <= 14 letters — 12,803,449
+states, max depth 100, 1,612 s to build once, no census input (`backward_table.py` reads
+no census file). Its lookups are uncharged, so "<= 1,000 units" under `K3p_c14aut` is the
+forward search on top of the ball, not the whole computation. The honest split, from the
+new no-table control `K3p_notable` (same cascade, `table=None`):
+
+| panel | frozen | K3p_notable (rules, no table) | K3p_c14aut (rules + table) | rows inside the ball |
+|---|---|---|---|---|
+| AC19, 72,779 rows | 72,052 | **72,562** (+567 / -57) | **72,779** | 66,151 (91%) |
+| MS-640 | 602 | **627** (+26 / -1) | **640** | 550 (86%) |
+
+So on AC19 the new rules are worth +510 net and the table exactly the last 217; on
+MS-640 the rules +25 and the table the last 13. The table's cap is a resource knob
+(cap 12 left 41 unsolved, cap 14 left 0). Every table hit still yields a genuine AC path
+(the stored tail), and every certificate in both bundles is independently replayed.
+
+MS-640 has an older no-table policy that solves all 640 at 1,000 units: the MS-640
+cascade `experiments/search/cascade_heuristics.search` (BS rewrite -> L+40S with
+generator moves, cap 48 -> S20_MK2 fallback), re-run here in
+`results/heuristic_search/ms640_cascade_heuristics_1k_rerun/` and matching
+`goal_frontiers/MS640_RESULTS.md` exactly: 22,075 units, max 404, rewrite 254 / s40_gen
+386 / fallback 0; search wall 6.2 s on one core in this container (2.36 s on the machine
+of record). The 13 rows `K3p_notable` misses are all `Y^n X y^(n-1) x` with a 7-8 letter
+companion; that cascade's s40_gen arm takes them in 41-331 units, and the 24 rows
+`K3p_c14aut` closes by BS-DEMOTE at 250-267 units cost it 10-46.
+
+Timing of `K3p_c14aut` on MS-640, one core, warm: 4.1 s for the 640 rows (search 1.9 s,
+certificate decode + replay 2.2 s). The S20 kernel is numba; the BS-DEMOTE and
+consecutive-BS collapse compilers are pure Python (`words.canon_pair` / `replay_move` /
+`cyc_reduce`) and account for 1.25 s of the 1.9 s on 24 rows. Fixed process startup is
+~7 s (table load + sha256 1.7 s, numba cache load 2.3 s, provenance hashing of
+`tables/` ~2 s). Results: results/heuristic_search/ac19_K3p_notable_full_1k/,
+ms640_K3p_notable_1k/, ms640_cascade_heuristics_1k_rerun/.

@@ -1,0 +1,18 @@
+{"rows": 50, "solved": 50, "search_wall_seconds": 0.01453121599968199}
+{"rows": 100, "solved": 100, "search_wall_seconds": 0.03673778699999275}
+{"rows": 150, "solved": 150, "search_wall_seconds": 0.0580230670001356}
+{"rows": 200, "solved": 200, "search_wall_seconds": 0.19441148199996405}
+{"rows": 250, "solved": 250, "search_wall_seconds": 0.35551766000014595}
+{"rows": 300, "solved": 300, "search_wall_seconds": 0.5451766660000885}
+{"rows": 350, "solved": 350, "search_wall_seconds": 0.6963212350005961}
+{"rows": 400, "solved": 400, "search_wall_seconds": 0.8862076130006926}
+{"rows": 450, "solved": 450, "search_wall_seconds": 1.1360113170010209}
+{"rows": 500, "solved": 500, "search_wall_seconds": 1.327729665000561}
+{"rows": 550, "solved": 550, "search_wall_seconds": 2.5528551650004374}
+{"rows": 600, "solved": 600, "search_wall_seconds": 4.4482756550012255}
+{"rows": 640, "solved": 640, "search_wall_seconds": 6.1794209650012135}
+{"rows": 640, "solved": 640, "failed": 0, "hybrid": {"charged_nodes": {"total": 22075, "mean": 34.4921875, "median": 13.0, "minimum": 4, "maximum": 404}, "path_length": {"total": 13686, "mean": 21.384375, "median": 10.0, "minimum": 2, "maximum": 260}, "search_wall_seconds": 6.1794209650012135, "search_cpu_seconds": 6.112399719999998, "winners": {"terminal": 0, "rewrite": 254, "s40_gen": 386, "s20_mk2": 0, "null": 0}}, "saved_greedy": {"solved": 640, "nodes": {"total": 3176297, "mean": 4962.9640625, "median": 11.0, "minimum": 3, "maximum": 574959}, "path_length": {"total": 23533, "mean": 36.7703125, "median": 9.0, "minimum": 2, "maximum": 708}, "historical_time_seconds": {"total": 2554.674, "mean": 3.991678125, "median": 0.00455, "minimum": 0.0006, "maximum": 375.2362}, "timing_comparability": "historical run; not same-machine matched timing"}, "batch_elapsed_including_verification_output_and_cooldown_seconds": 11.33143574199994}
+
+real	0m12.059s
+user	0m8.714s
+sys	0m0.326s

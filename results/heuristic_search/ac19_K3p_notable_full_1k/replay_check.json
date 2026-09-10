@@ -1,0 +1,12 @@
+{
+  "shards": 73,
+  "rows": 72779,
+  "solved": 72562,
+  "replayed_ok": 72562,
+  "elementary_moves": 39976689,
+  "failures": [],
+  "replay_wall": 53.16164388300001,
+  "replay_cpu_sum": 208.15194075500017,
+  "workers": 4,
+  "result_dir": "results/heuristic_search/ac19_K3p_notable_full_1k"
+}
