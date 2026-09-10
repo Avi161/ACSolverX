@@ -1,0 +1,5035 @@
+{
+ "runs": {
+  "greedy10k": {
+   "engine": "greedy",
+   "policy": null,
+   "budget": 10000,
+   "cap": 48,
+   "units": "pops",
+   "rows": 200,
+   "checkpoints": [
+    100,
+    1000,
+    10000
+   ],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 53.5,
+     "mean_pops_solved": 340.1,
+     "solved_at": {
+      "100": 11,
+      "1000": 20,
+      "10000": 20
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 2059.0,
+     "mean_pops_solved": 3567.7,
+     "solved_at": {
+      "100": 0,
+      "1000": 1,
+      "10000": 20
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved": 40,
+     "verified": 40,
+     "errors": 0,
+     "median_pops_solved": 999.5,
+     "mean_pops_solved": 1953.9,
+     "solved_at": {
+      "100": 11,
+      "1000": 21,
+      "10000": 40
+     }
+    }
+   }
+  },
+  "greedy100k": {
+   "engine": "greedy",
+   "policy": null,
+   "budget": 100000,
+   "cap": 48,
+   "units": "pops",
+   "rows": 200,
+   "checkpoints": [
+    100,
+    1000,
+    10000,
+    100000
+   ],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 53.5,
+     "mean_pops_solved": 340.1,
+     "solved_at": {
+      "100": 11,
+      "1000": 20,
+      "10000": 20,
+      "100000": 20
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 2059.0,
+     "mean_pops_solved": 3567.7,
+     "solved_at": {
+      "100": 0,
+      "1000": 1,
+      "10000": 20,
+      "100000": 20
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 15992.0,
+     "mean_pops_solved": 18190.5,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 20
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 46486.0,
+     "mean_pops_solved": 51180.2,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 20
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved": 80,
+     "verified": 80,
+     "errors": 0,
+     "median_pops_solved": 9975.5,
+     "mean_pops_solved": 18319.6,
+     "solved_at": {
+      "100": 11,
+      "1000": 21,
+      "10000": 40,
+      "100000": 80
+     }
+    }
+   }
+  },
+  "s20mk2_10k": {
+   "engine": "s20_mk2",
+   "policy": null,
+   "budget": 10000,
+   "cap": 48,
+   "units": "pops",
+   "rows": 200,
+   "checkpoints": [
+    100,
+    1000,
+    10000
+   ],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 17.0,
+     "mean_pops_solved": 255.8,
+     "solved_at": {
+      "100": 11,
+      "1000": 20,
+      "10000": 20
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 936.0,
+     "mean_pops_solved": 1368.3,
+     "solved_at": {
+      "100": 0,
+      "1000": 10,
+      "10000": 20
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 13,
+     "verified": 13,
+     "errors": 0,
+     "median_pops_solved": 3177,
+     "mean_pops_solved": 4212.8,
+     "solved_at": {
+      "100": 0,
+      "1000": 1,
+      "10000": 13
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 16,
+     "verified": 16,
+     "errors": 0,
+     "median_pops_solved": 4915.5,
+     "mean_pops_solved": 4311.0,
+     "solved_at": {
+      "100": 0,
+      "1000": 3,
+      "10000": 16
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 12,
+     "verified": 12,
+     "errors": 0,
+     "median_pops_solved": 610.0,
+     "mean_pops_solved": 1684.4,
+     "solved_at": {
+      "100": 0,
+      "1000": 7,
+      "10000": 12
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 18,
+     "verified": 18,
+     "errors": 0,
+     "median_pops_solved": 3151.0,
+     "mean_pops_solved": 3271.9,
+     "solved_at": {
+      "100": 0,
+      "1000": 3,
+      "10000": 18
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 7,
+     "verified": 7,
+     "errors": 0,
+     "median_pops_solved": 6852,
+     "mean_pops_solved": 6244.4,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 7
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 6,
+     "verified": 6,
+     "errors": 0,
+     "median_pops_solved": 7175.0,
+     "mean_pops_solved": 7154.8,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 6
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 6,
+     "verified": 6,
+     "errors": 0,
+     "median_pops_solved": 5594.5,
+     "mean_pops_solved": 5544.5,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 6
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved": 118,
+     "verified": 118,
+     "errors": 0,
+     "median_pops_solved": 2368.0,
+     "mean_pops_solved": 3010.5,
+     "solved_at": {
+      "100": 11,
+      "1000": 44,
+      "10000": 118
+     }
+    }
+   }
+  },
+  "s20mk2_100k": {
+   "engine": "s20_mk2",
+   "policy": null,
+   "budget": 100000,
+   "cap": 48,
+   "units": "pops",
+   "rows": 200,
+   "checkpoints": [
+    100,
+    1000,
+    10000,
+    100000
+   ],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 17.0,
+     "mean_pops_solved": 255.8,
+     "solved_at": {
+      "100": 11,
+      "1000": 20,
+      "10000": 20,
+      "100000": 20
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 936.0,
+     "mean_pops_solved": 1368.3,
+     "solved_at": {
+      "100": 0,
+      "1000": 10,
+      "10000": 20,
+      "100000": 20
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 7155.0,
+     "mean_pops_solved": 9416.1,
+     "solved_at": {
+      "100": 0,
+      "1000": 1,
+      "10000": 13,
+      "100000": 20
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 5602.0,
+     "mean_pops_solved": 7719.9,
+     "solved_at": {
+      "100": 0,
+      "1000": 3,
+      "10000": 16,
+      "100000": 20
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 3086.0,
+     "mean_pops_solved": 11244.9,
+     "solved_at": {
+      "100": 0,
+      "1000": 7,
+      "10000": 12,
+      "100000": 20
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_pops_solved": 3167.0,
+     "mean_pops_solved": 8720.5,
+     "solved_at": {
+      "100": 0,
+      "1000": 3,
+      "10000": 18,
+      "100000": 20
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 14,
+     "verified": 14,
+     "errors": 0,
+     "median_pops_solved": 14267.5,
+     "mean_pops_solved": 16646.1,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 7,
+      "100000": 14
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 14,
+     "verified": 14,
+     "errors": 0,
+     "median_pops_solved": 16482.0,
+     "mean_pops_solved": 30702.6,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 6,
+      "100000": 14
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 8,
+     "verified": 8,
+     "errors": 0,
+     "median_pops_solved": 5978.0,
+     "mean_pops_solved": 9678.2,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 6,
+      "100000": 8
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_pops_solved": null,
+     "mean_pops_solved": null,
+     "solved_at": {
+      "100": 0,
+      "1000": 0,
+      "10000": 0,
+      "100000": 0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved": 156,
+     "verified": 156,
+     "errors": 0,
+     "median_pops_solved": 3663.5,
+     "mean_pops_solved": 9710.4,
+     "solved_at": {
+      "100": 11,
+      "1000": 44,
+      "10000": 118,
+      "100000": 156
+     }
+    }
+   }
+  },
+  "K3p_notable_1k": {
+   "engine": "policy",
+   "policy": "K3p_notable",
+   "budget": 1000,
+   "cap": null,
+   "units": "charged units (table lookups free)",
+   "rows": 200,
+   "checkpoints": [],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 67.5,
+     "routes": {
+      "plain_s20": 7,
+      "incumbent_restart": 6,
+      "strict_donor": 6,
+      "bs_demote": 1
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 17,
+     "verified": 17,
+     "errors": 0,
+     "median_charged_solved": 216,
+     "routes": {
+      "incumbent_restart": 7,
+      "strict_donor": 4,
+      "bs_demote": 4,
+      "plain_s20": 2
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 16,
+     "verified": 16,
+     "errors": 0,
+     "median_charged_solved": 482.5,
+     "routes": {
+      "incumbent_restart": 10,
+      "bs_demote": 3,
+      "strict_donor": 3
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 17,
+     "verified": 17,
+     "errors": 0,
+     "median_charged_solved": 519,
+     "routes": {
+      "incumbent_restart": 11,
+      "bs_demote": 6
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 359.5,
+     "routes": {
+      "incumbent_restart": 14,
+      "bs_demote": 4,
+      "strict_donor": 2
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 19,
+     "verified": 19,
+     "errors": 0,
+     "median_charged_solved": 465,
+     "routes": {
+      "incumbent_restart": 19
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 18,
+     "verified": 18,
+     "errors": 0,
+     "median_charged_solved": 379.5,
+     "routes": {
+      "incumbent_restart": 17,
+      "strict_donor": 1
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 18,
+     "verified": 18,
+     "errors": 0,
+     "median_charged_solved": 404.0,
+     "routes": {
+      "incumbent_restart": 18
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 13,
+     "verified": 13,
+     "errors": 0,
+     "median_charged_solved": 633,
+     "routes": {
+      "incumbent_restart": 13
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_charged_solved": null,
+     "routes": {}
+    },
+    "all": {
+     "rows": 200,
+     "solved": 158,
+     "verified": 158,
+     "errors": 0,
+     "median_charged_solved": 398.5,
+     "routes": {
+      "incumbent_restart": 115,
+      "bs_demote": 18,
+      "strict_donor": 16,
+      "plain_s20": 9
+     }
+    }
+   }
+  },
+  "K3p_c14aut_1k": {
+   "engine": "policy",
+   "policy": "K3p_c14aut",
+   "budget": 1000,
+   "cap": null,
+   "units": "charged units (table lookups free)",
+   "rows": 200,
+   "checkpoints": [],
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 19,
+      "plain_s20": 1
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 14,
+      "strict_donor": 4,
+      "plain_s20": 2
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 12,
+      "strict_donor": 4,
+      "bs_demote": 2,
+      "plain_s20": 2
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 11,
+      "bs_demote": 6,
+      "plain_s20": 2,
+      "strict_donor": 1
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 11,
+      "bs_demote": 4,
+      "plain_s20": 3,
+      "strict_donor": 2
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 18,
+      "plain_s20": 2
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 18,
+      "strict_donor": 2
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 18,
+      "plain_s20": 2
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved": 20,
+     "verified": 20,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 16,
+      "plain_s20": 3,
+      "strict_donor": 1
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved": 0,
+     "verified": 0,
+     "errors": 0,
+     "median_charged_solved": null,
+     "routes": {}
+    },
+    "all": {
+     "rows": 200,
+     "solved": 180,
+     "verified": 180,
+     "errors": 0,
+     "median_charged_solved": 0.0,
+     "routes": {
+      "ball_root": 137,
+      "plain_s20": 17,
+      "strict_donor": 14,
+      "bs_demote": 12
+     }
+    }
+   }
+  }
+ },
+ "pairs": [
+  {
+   "a": "greedy10k",
+   "b": "greedy100k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_41313",
+      "ac19_58079",
+      "ms_624",
+      "ac19x_74462",
+      "ac19_13642",
+      "ms_613",
+      "ac19x_79238",
+      "ac19_39344",
+      "ms_622",
+      "ac19x_151459",
+      "ac19_54212",
+      "ms_604",
+      "ac19x_31848",
+      "ac19_70845",
+      "ms_610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 40,
+     "solved_b": 80,
+     "both": 40,
+     "gained": 40,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 40,
+      "statistic": 38.025,
+      "p_value": 6.984393061522158e-10
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy10k",
+   "b": "s20mk2_10k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 13,
+     "both": 0,
+     "gained": 13,
+     "lost": 0,
+     "gained_names": [
+      "ac19_20653",
+      "ac19_28227",
+      "ms_630",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ac19_41610",
+      "ms_578",
+      "ac19_39368",
+      "ms_573"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 16,
+     "both": 0,
+     "gained": 16,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_41313",
+      "ac19_58079",
+      "ac19x_74462",
+      "ac19_13642",
+      "ms_613",
+      "ac19_39344",
+      "ac19x_151459",
+      "ac19_54212",
+      "ms_604",
+      "ac19x_31848",
+      "ac19_70845",
+      "ms_610",
+      "ac19x_90721",
+      "ac19_58768",
+      "ac19x_19903"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 16,
+      "statistic": 14.0625,
+      "p_value": 0.00017683457040160766
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 12,
+     "both": 0,
+     "gained": 12,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ac19_31653",
+      "ac19_5879",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_18844",
+      "ac19_27082",
+      "ac19_24446"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439",
+      "ac19_5339"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 7,
+     "both": 0,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_20832",
+      "ac19_24642",
+      "ac19_31687",
+      "ac19_18581",
+      "ac19_64974",
+      "ac19_32717"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 6,
+     "both": 0,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55987",
+      "ac19_52553",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196",
+      "ac19_45389"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 6,
+     "both": 0,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15507",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 40,
+     "solved_b": 118,
+     "both": 40,
+     "gained": 78,
+     "lost": 0,
+     "gained_names": [
+      "ac19_20653",
+      "ac19_28227",
+      "ms_630",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ac19_41610",
+      "ms_578",
+      "ac19_39368",
+      "ms_573",
+      "ac19x_41313",
+      "ac19_58079"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 78,
+      "statistic": 76.01282051282051,
+      "p_value": 2.818290065783996e-18
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy10k",
+   "b": "s20mk2_100k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_41313",
+      "ac19_58079",
+      "ms_624",
+      "ac19x_74462",
+      "ac19_13642",
+      "ms_613",
+      "ac19x_79238",
+      "ac19_39344",
+      "ms_622",
+      "ac19x_151459",
+      "ac19_54212",
+      "ms_604",
+      "ac19x_31848",
+      "ac19_70845",
+      "ms_610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 14,
+     "both": 0,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_31763",
+      "ac19_18581",
+      "ac19_64974",
+      "ac19_41136",
+      "ac19_32717",
+      "ac19_66724",
+      "ac19_56581"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 14,
+     "both": 0,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_420",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196",
+      "ac19_31991",
+      "ac19_40625",
+      "ac19_45389"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 8,
+     "both": 0,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15507",
+      "ac19_50892",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_27187",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 40,
+     "solved_b": 156,
+     "both": 40,
+     "gained": 116,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 116,
+      "statistic": 114.00862068965517,
+      "p_value": 1.2974319916756646e-26
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy10k",
+   "b": "K3p_notable_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 16,
+     "both": 0,
+     "gained": 16,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 16,
+      "statistic": 14.0625,
+      "p_value": 0.00017683457040160766
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 17,
+     "both": 0,
+     "gained": 17,
+     "lost": 0,
+     "gained_names": [
+      "ac19_58079",
+      "ms_624",
+      "ac19x_74462",
+      "ac19_13642",
+      "ms_613",
+      "ac19x_79238",
+      "ac19_39344",
+      "ms_622",
+      "ac19x_151459",
+      "ac19_54212",
+      "ms_604",
+      "ac19x_31848",
+      "ms_610",
+      "ac19x_90721",
+      "ac19_58768"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 17,
+      "statistic": 15.058823529411764,
+      "p_value": 0.00010421194515808897
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 19,
+     "both": 0,
+     "gained": 19,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439",
+      "ac19_5339"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_28930",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_18581",
+      "ac19_41136"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 13,
+     "both": 0,
+     "gained": 13,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_27187",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 40,
+     "solved_b": 158,
+     "both": 37,
+     "gained": 121,
+     "lost": 3,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 121,
+      "statistic": 110.39516129032258,
+      "p_value": 8.028080168260717e-26
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy10k",
+   "b": "K3p_c14aut_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_41313",
+      "ac19_58079",
+      "ms_624",
+      "ac19x_74462",
+      "ac19_13642",
+      "ms_613",
+      "ac19x_79238",
+      "ac19_39344",
+      "ms_622",
+      "ac19x_151459",
+      "ac19_54212",
+      "ms_604",
+      "ac19x_31848",
+      "ac19_70845",
+      "ms_610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_28930",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_18581",
+      "ac19_64974"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_54765",
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_39288",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_20172"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_15507",
+      "ac19_51034",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_56970",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_27187"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 40,
+     "solved_b": 180,
+     "both": 40,
+     "gained": 140,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ac19_20653",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_28227",
+      "ms_630",
+      "ac19_39855",
+      "ms_633",
+      "ac19_16660",
+      "ms_588",
+      "ac19_46939",
+      "ms_583",
+      "ac19_28889",
+      "ms_620",
+      "ac19_41610"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 140,
+      "statistic": 138.00714285714287,
+      "p_value": 7.261513428684345e-32
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy100k",
+   "b": "s20mk2_10k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 13,
+     "both": 13,
+     "gained": 0,
+     "lost": 7,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "mcnemar": {
+      "b": 7,
+      "c": 0,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 16,
+     "both": 16,
+     "gained": 0,
+     "lost": 4,
+     "gained_names": [],
+     "lost_names": [
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623"
+     ],
+     "mcnemar": {
+      "b": 4,
+      "c": 0,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 12,
+     "both": 0,
+     "gained": 12,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ac19_31653",
+      "ac19_5879",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_18844",
+      "ac19_27082",
+      "ac19_24446"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439",
+      "ac19_5339"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 7,
+     "both": 0,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_20832",
+      "ac19_24642",
+      "ac19_31687",
+      "ac19_18581",
+      "ac19_64974",
+      "ac19_32717"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 6,
+     "both": 0,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55987",
+      "ac19_52553",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196",
+      "ac19_45389"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 6,
+     "both": 0,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15507",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 80,
+     "solved_b": 118,
+     "both": 69,
+     "gained": 49,
+     "lost": 11,
+     "gained_names": [
+      "ac19_30155",
+      "ac19_31653",
+      "ac19_5879",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_18844",
+      "ac19_27082",
+      "ac19_24446",
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081"
+     ],
+     "lost_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616",
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623"
+     ],
+     "mcnemar": {
+      "b": 11,
+      "c": 49,
+      "statistic": 22.816666666666666,
+      "p_value": 1.7821350895068986e-06
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy100k",
+   "b": "s20mk2_100k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 14,
+     "both": 0,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_31763",
+      "ac19_18581",
+      "ac19_64974",
+      "ac19_41136",
+      "ac19_32717",
+      "ac19_66724",
+      "ac19_56581"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 14,
+     "both": 0,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_420",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196",
+      "ac19_31991",
+      "ac19_40625",
+      "ac19_45389"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 8,
+     "both": 0,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15507",
+      "ac19_50892",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_27187",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 80,
+     "solved_b": 156,
+     "both": 80,
+     "gained": 76,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 76,
+      "statistic": 74.01315789473684,
+      "p_value": 7.759806482738948e-18
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy100k",
+   "b": "K3p_notable_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 16,
+     "both": 16,
+     "gained": 0,
+     "lost": 4,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573"
+     ],
+     "mcnemar": {
+      "b": 4,
+      "c": 0,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 19,
+     "both": 0,
+     "gained": 19,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439",
+      "ac19_5339"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_28930",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_18581",
+      "ac19_41136"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 18,
+     "both": 0,
+     "gained": 18,
+     "lost": 0,
+     "gained_names": [
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_20172",
+      "ac19_42516",
+      "ac19_68196"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 18,
+      "statistic": 16.055555555555557,
+      "p_value": 6.151089035272801e-05
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 13,
+     "both": 0,
+     "gained": 13,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_27187",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 80,
+     "solved_b": 158,
+     "both": 70,
+     "gained": 88,
+     "lost": 10,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893",
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573",
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903"
+     ],
+     "mcnemar": {
+      "b": 10,
+      "c": 88,
+      "statistic": 60.5,
+      "p_value": 7.357847917974398e-15
+     }
+    }
+   }
+  },
+  {
+   "a": "greedy100k",
+   "b": "K3p_c14aut_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24379",
+      "ms_634",
+      "ac19_69081",
+      "ms_635",
+      "ac19_30096",
+      "ac19_67077",
+      "ac19_24836",
+      "ac19_69027",
+      "ac19_3782",
+      "ac19_50043",
+      "ac19_51878",
+      "ac19_43148",
+      "ac19_12112",
+      "ac19_44162",
+      "ac19_60439"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50910",
+      "ac19_28930",
+      "ac19_20832",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_24642",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_31687",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_18581",
+      "ac19_64974"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_54765",
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_39288",
+      "ac19_55987",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_52553",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_20172"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 20,
+     "both": 0,
+     "gained": 20,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_15507",
+      "ac19_51034",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_56970",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_27187"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 20,
+      "statistic": 18.05,
+      "p_value": 2.151786437812016e-05
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 80,
+     "solved_b": 180,
+     "both": 80,
+     "gained": 100,
+     "lost": 0,
+     "gained_names": [
+      "ac19_30155",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ac19_31653",
+      "ms_639",
+      "ac19_5879",
+      "ms_637",
+      "ac19_14888",
+      "ac19_1062",
+      "ac19_58411",
+      "ac19_61807",
+      "ac19_50154",
+      "ac19_66560",
+      "ac19_71847"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 100,
+      "statistic": 98.01,
+      "p_value": 4.1627504389864034e-23
+     }
+    }
+   }
+  },
+  {
+   "a": "s20mk2_10k",
+   "b": "s20mk2_100k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 13,
+     "solved_b": 20,
+     "both": 13,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 16,
+     "solved_b": 20,
+     "both": 16,
+     "gained": 4,
+     "lost": 0,
+     "gained_names": [
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 4,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 12,
+     "solved_b": 20,
+     "both": 12,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639",
+      "ms_637",
+      "ac19_71847",
+      "ac19_26044",
+      "ac19_69707"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 18,
+     "solved_b": 20,
+     "both": 18,
+     "gained": 2,
+     "lost": 0,
+     "gained_names": [
+      "ac19_69027",
+      "ac19_17204"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 7,
+     "solved_b": 14,
+     "both": 7,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_13290",
+      "ac19_31763",
+      "ac19_41136",
+      "ac19_66724",
+      "ac19_56581"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 14,
+     "both": 6,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_420",
+      "ac19_31991",
+      "ac19_40625"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 8,
+     "both": 6,
+     "gained": 2,
+     "lost": 0,
+     "gained_names": [
+      "ac19_50892",
+      "ac19_27187"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 118,
+     "solved_b": 156,
+     "both": 118,
+     "gained": 38,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616",
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 38,
+      "statistic": 36.026315789473685,
+      "p_value": 1.946706060180683e-09
+     }
+    }
+   }
+  },
+  {
+   "a": "s20mk2_10k",
+   "b": "K3p_notable_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 13,
+     "solved_b": 16,
+     "both": 9,
+     "gained": 7,
+     "lost": 4,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "lost_names": [
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573"
+     ],
+     "mcnemar": {
+      "b": 4,
+      "c": 7,
+      "statistic": 0.36363636363636365,
+      "p_value": 0.546493595406582
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 16,
+     "solved_b": 17,
+     "both": 13,
+     "gained": 4,
+     "lost": 3,
+     "gained_names": [
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623"
+     ],
+     "lost_names": [
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 4,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 12,
+     "solved_b": 20,
+     "both": 12,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639",
+      "ms_637",
+      "ac19_71847",
+      "ac19_26044",
+      "ac19_69707"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 18,
+     "solved_b": 19,
+     "both": 17,
+     "gained": 2,
+     "lost": 1,
+     "gained_names": [
+      "ac19_69027",
+      "ac19_17204"
+     ],
+     "lost_names": [
+      "ac19_24836"
+     ],
+     "mcnemar": {
+      "b": 1,
+      "c": 2,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 7,
+     "solved_b": 18,
+     "both": 6,
+     "gained": 12,
+     "lost": 1,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_41136",
+      "ac19_72328",
+      "ac19_56581"
+     ],
+     "lost_names": [
+      "ac19_64974"
+     ],
+     "mcnemar": {
+      "b": 1,
+      "c": 12,
+      "statistic": 7.6923076923076925,
+      "p_value": 0.0055456673152440555
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 18,
+     "both": 6,
+     "gained": 12,
+     "lost": 0,
+     "gained_names": [
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_31991",
+      "ac19_40625"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 13,
+     "both": 0,
+     "gained": 13,
+     "lost": 6,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_27187",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [
+      "ac19_15507",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "mcnemar": {
+      "b": 6,
+      "c": 13,
+      "statistic": 1.894736842105263,
+      "p_value": 0.1686686188878151
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 118,
+     "solved_b": 158,
+     "both": 100,
+     "gained": 58,
+     "lost": 18,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616",
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639"
+     ],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893",
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573",
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903",
+      "ac19_24836",
+      "ac19_64974",
+      "ac19_15507",
+      "ac19_56970",
+      "ac19_61253"
+     ],
+     "mcnemar": {
+      "b": 18,
+      "c": 58,
+      "statistic": 20.013157894736842,
+      "p_value": 7.691111175193009e-06
+     }
+    }
+   }
+  },
+  {
+   "a": "s20mk2_10k",
+   "b": "K3p_c14aut_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 13,
+     "solved_b": 20,
+     "both": 13,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 16,
+     "solved_b": 20,
+     "both": 16,
+     "gained": 4,
+     "lost": 0,
+     "gained_names": [
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 4,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 12,
+     "solved_b": 20,
+     "both": 12,
+     "gained": 8,
+     "lost": 0,
+     "gained_names": [
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639",
+      "ms_637",
+      "ac19_71847",
+      "ac19_26044",
+      "ac19_69707"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 18,
+     "solved_b": 20,
+     "both": 18,
+     "gained": 2,
+     "lost": 0,
+     "gained_names": [
+      "ac19_69027",
+      "ac19_17204"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 7,
+     "solved_b": 20,
+     "both": 7,
+     "gained": 13,
+     "lost": 0,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_57517",
+      "ac19_26841",
+      "ac19_27683",
+      "ac19_13290",
+      "ac19_68854",
+      "ac19_31763",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_41136",
+      "ac19_72328",
+      "ac19_66724",
+      "ac19_56581"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 20,
+     "both": 6,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_54765",
+      "ac19_45978",
+      "ac19_15866",
+      "ac19_33435",
+      "ac19_10775",
+      "ac19_39288",
+      "ac19_20744",
+      "ac19_555",
+      "ac19_26211",
+      "ac19_420",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_31991",
+      "ac19_40625"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 6,
+     "solved_b": 20,
+     "both": 6,
+     "gained": 14,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_51034",
+      "ac19_50892",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_27187",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 118,
+     "solved_b": 180,
+     "both": 118,
+     "gained": 62,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_101025",
+      "ms_618",
+      "ac19x_8769",
+      "ac19_39855",
+      "ms_620",
+      "ac19_7436",
+      "ms_616",
+      "ms_624",
+      "ac19x_79238",
+      "ms_622",
+      "ms_623",
+      "ms_636",
+      "ac19_55217",
+      "ms_638",
+      "ms_639"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 62,
+      "statistic": 60.016129032258064,
+      "p_value": 9.40832185429767e-15
+     }
+    }
+   }
+  },
+  {
+   "a": "s20mk2_100k",
+   "b": "K3p_notable_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 16,
+     "both": 16,
+     "gained": 0,
+     "lost": 4,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573"
+     ],
+     "mcnemar": {
+      "b": 4,
+      "c": 0,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 17,
+     "both": 17,
+     "gained": 0,
+     "lost": 3,
+     "gained_names": [],
+     "lost_names": [
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903"
+     ],
+     "mcnemar": {
+      "b": 3,
+      "c": 0,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 19,
+     "both": 19,
+     "gained": 0,
+     "lost": 1,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_24836"
+     ],
+     "mcnemar": {
+      "b": 1,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 14,
+     "solved_b": 18,
+     "both": 12,
+     "gained": 6,
+     "lost": 2,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_27683",
+      "ac19_68854",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_72328"
+     ],
+     "lost_names": [
+      "ac19_64974",
+      "ac19_66724"
+     ],
+     "mcnemar": {
+      "b": 2,
+      "c": 6,
+      "statistic": 1.125,
+      "p_value": 0.28884436634648486
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 14,
+     "solved_b": 18,
+     "both": 14,
+     "gained": 4,
+     "lost": 0,
+     "gained_names": [
+      "ac19_45978",
+      "ac19_26211",
+      "ac19_45019",
+      "ac19_14060"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 4,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 8,
+     "solved_b": 13,
+     "both": 2,
+     "gained": 11,
+     "lost": 6,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [
+      "ac19_15507",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "mcnemar": {
+      "b": 6,
+      "c": 11,
+      "statistic": 0.9411764705882353,
+      "p_value": 0.33197546708273695
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 156,
+     "solved_b": 158,
+     "both": 137,
+     "gained": 21,
+     "lost": 19,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_27683",
+      "ac19_68854",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_72328",
+      "ac19_45978",
+      "ac19_26211",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_55019",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254"
+     ],
+     "lost_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893",
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573",
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903",
+      "ac19_24836",
+      "ac19_64974",
+      "ac19_66724",
+      "ac19_15507",
+      "ac19_56970"
+     ],
+     "mcnemar": {
+      "b": 19,
+      "c": 21,
+      "statistic": 0.025,
+      "p_value": 0.8743670611628919
+     }
+    }
+   }
+  },
+  {
+   "a": "s20mk2_100k",
+   "b": "K3p_c14aut_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 14,
+     "solved_b": 20,
+     "both": 14,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_27683",
+      "ac19_68854",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_72328"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 14,
+     "solved_b": 20,
+     "both": 14,
+     "gained": 6,
+     "lost": 0,
+     "gained_names": [
+      "ac19_54765",
+      "ac19_45978",
+      "ac19_39288",
+      "ac19_26211",
+      "ac19_45019",
+      "ac19_14060"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 8,
+     "solved_b": 20,
+     "both": 8,
+     "gained": 12,
+     "lost": 0,
+     "gained_names": [
+      "ac19_55019",
+      "ac19_51034",
+      "ac19_16286",
+      "ac19_20270",
+      "ac19_54835",
+      "ac19_27254",
+      "ac19_36350",
+      "ac19_31298",
+      "ac19_44381",
+      "ac19_67055",
+      "ac19_59576",
+      "ac19_65206"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 156,
+     "solved_b": 180,
+     "both": 156,
+     "gained": 24,
+     "lost": 0,
+     "gained_names": [
+      "ac19_28930",
+      "ac19_27683",
+      "ac19_68854",
+      "ac19_42768",
+      "ac19_10584",
+      "ac19_72328",
+      "ac19_54765",
+      "ac19_45978",
+      "ac19_39288",
+      "ac19_26211",
+      "ac19_45019",
+      "ac19_14060",
+      "ac19_55019",
+      "ac19_51034",
+      "ac19_16286"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 24,
+      "statistic": 22.041666666666668,
+      "p_value": 2.667954593624791e-06
+     }
+    }
+   }
+  },
+  {
+   "a": "K3p_notable_1k",
+   "b": "K3p_c14aut_1k",
+   "common_rows": 200,
+   "per_level": {
+    "1": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "2": {
+     "rows": 20,
+     "solved_a": 17,
+     "solved_b": 20,
+     "both": 17,
+     "gained": 3,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 3,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "3": {
+     "rows": 20,
+     "solved_a": 16,
+     "solved_b": 20,
+     "both": 16,
+     "gained": 4,
+     "lost": 0,
+     "gained_names": [
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 4,
+      "statistic": 2.25,
+      "p_value": 0.13361440253771617
+     }
+    },
+    "4": {
+     "rows": 20,
+     "solved_a": 17,
+     "solved_b": 20,
+     "both": 17,
+     "gained": 3,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 3,
+      "statistic": 1.3333333333333333,
+      "p_value": 0.24821307898992362
+     }
+    },
+    "5": {
+     "rows": 20,
+     "solved_a": 20,
+     "solved_b": 20,
+     "both": 20,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "6": {
+     "rows": 20,
+     "solved_a": 19,
+     "solved_b": 20,
+     "both": 19,
+     "gained": 1,
+     "lost": 0,
+     "gained_names": [
+      "ac19_24836"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 1,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "7": {
+     "rows": 20,
+     "solved_a": 18,
+     "solved_b": 20,
+     "both": 18,
+     "gained": 2,
+     "lost": 0,
+     "gained_names": [
+      "ac19_64974",
+      "ac19_66724"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
+    "8": {
+     "rows": 20,
+     "solved_a": 18,
+     "solved_b": 20,
+     "both": 18,
+     "gained": 2,
+     "lost": 0,
+     "gained_names": [
+      "ac19_54765",
+      "ac19_39288"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
+    "9": {
+     "rows": 20,
+     "solved_a": 13,
+     "solved_b": 20,
+     "both": 13,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_15507",
+      "ac19_51034",
+      "ac19_56970",
+      "ac19_61253",
+      "ac19_67987",
+      "ac19_28510",
+      "ac19_23156"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
+     }
+    },
+    "10": {
+     "rows": 20,
+     "solved_a": 0,
+     "solved_b": 0,
+     "both": 0,
+     "gained": 0,
+     "lost": 0,
+     "gained_names": [],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 0,
+      "statistic": 0.0,
+      "p_value": 1.0
+     }
+    },
+    "all": {
+     "rows": 200,
+     "solved_a": 158,
+     "solved_b": 180,
+     "both": 158,
+     "gained": 22,
+     "lost": 0,
+     "gained_names": [
+      "ac19x_62834",
+      "ms_602",
+      "ac19x_133893",
+      "ac19_46939",
+      "ms_583",
+      "ms_578",
+      "ms_573",
+      "ac19x_41313",
+      "ac19_70845",
+      "ac19x_19903",
+      "ac19_24836",
+      "ac19_64974",
+      "ac19_66724",
+      "ac19_54765",
+      "ac19_39288"
+     ],
+     "lost_names": [],
+     "mcnemar": {
+      "b": 0,
+      "c": 22,
+      "statistic": 20.045454545454547,
+      "p_value": 7.562306614504702e-06
+     }
+    }
+   }
+  }
+ ]
+}

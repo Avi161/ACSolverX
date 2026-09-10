@@ -1,0 +1,144 @@
+{
+ "panel": "benchmark/ladder/ladder_200.csv",
+ "panel_sha256": "3e68646c927475ca291094a1cce41b059f9318a1ea70586a834768956524a34c",
+ "engine": "policy",
+ "policy": "K3p_c14aut",
+ "budget": 1000,
+ "cap": null,
+ "units": "charged (table lookups free)",
+ "levels_filter": null,
+ "workers": 2,
+ "tag": "ladder_200_K3p_c14aut_b1000",
+ "rows": 200,
+ "solved": 180,
+ "verified": 180,
+ "errors": 0,
+ "unsolved_names": [
+  "aca_54",
+  "aca_115",
+  "aca_99",
+  "aca_28",
+  "aca_82",
+  "aca_38",
+  "aca_65",
+  "aca_98",
+  "aca_2",
+  "aca_46",
+  "aca_75",
+  "aca_107",
+  "aca_12",
+  "aca_20",
+  "aca_0",
+  "aca_59",
+  "aca_89",
+  "aca_119",
+  "aca_24",
+  "aca_36"
+ ],
+ "total_nodes": 24084,
+ "median_nodes_solved": 0.0,
+ "search_wall": 22.45,
+ "certificate_wall": 1.791,
+ "run_wall": 15.419,
+ "by_level": {
+  "1": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 14,
+   "search_wall": 0.036
+  },
+  "2": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 262,
+   "search_wall": 0.067
+  },
+  "3": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 1019,
+   "search_wall": 0.223
+  },
+  "4": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 1284,
+   "search_wall": 0.469
+  },
+  "5": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 1263,
+   "search_wall": 0.467
+  },
+  "6": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 18,
+   "search_wall": 0.012
+  },
+  "7": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 166,
+   "search_wall": 0.02
+  },
+  "8": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 18,
+   "search_wall": 0.007
+  },
+  "9": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 0.0,
+   "total_nodes": 40,
+   "search_wall": 0.009
+  },
+  "10": {
+   "rows": 20,
+   "solved": 0,
+   "verified": 0,
+   "errors": 0,
+   "median_nodes_solved": null,
+   "total_nodes": 20000,
+   "search_wall": 21.14
+  }
+ },
+ "routes": {
+  "ball_root": 137,
+  "bs_demote": 12,
+  "incumbent_restart": 20,
+  "plain_s20": 17,
+  "strict_donor": 14
+ },
+ "git_head": "460904f9850ee20e3fe7772704a17db36f44f707",
+ "created_unix": 1789067109
+}

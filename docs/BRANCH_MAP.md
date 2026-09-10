@@ -27,6 +27,7 @@ everything else is findable below.
 | `claude/abelianized-exponents-verify-1i6muh` | AC19 aut-min pipeline + abel top-3 CoV (PR #14) | docs-only by decision | [`results/benchmarks.md`](results/benchmarks.md) has the retrieval table |
 | `claude/summer-results-docs-scoring-u6klsb` | 640-row GS-Sub baseline doc + per-row CSV (PR #15) | numbers recorded; CSV excluded by the md-only rule | [`results/benchmarks.md`](results/benchmarks.md) |
 | `claude/auto-cov-algorithm-progress-mko887` | withdraw-`RECOMMENDED`-only (PR #16) | superseded by e1f9l8 (withdraw **and** replace) | — |
+| `claude/ac19-leftover-solver-notebook-6yan6d` | the AC19 greedy/S20 escalation ladder (10k → 100k → 1M → 5M → 10M per orbit), the originals-at-10M screen, `ac19x_`/`ac19_` naming | mined by pinned SHA `dab82a84` | `benchmark/ladder/` reads its rungs with `git show`; hashes in `ladder_manifest.json`. `benchmark/difficulty_bins.csv` is read the same way from `9033f13e` (`summer-results-docs-scoring-u6klsb`) |
 | `claude/ac-stable-ac-conjecture-ijfzgz` | AK(3) sphere-decision / spike-calculus program | closed with a refutation | [`results/stable-ac-learnings.md`](results/stable-ac-learnings.md) |
 | `claude/stable-ac-conjecture-stabilization-rwo9as` | the S-line; S24 AC2-from-γ₁ null | closed, uninformative null | same |
 | `research/w5/stable-ac-escape` | CoV-pool economy; abelianized ranking key | mined | same |

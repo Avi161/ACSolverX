@@ -1,0 +1,60 @@
+{
+ "inputs": {
+  "ladder_200.csv": "3e68646c927475ca291094a1cce41b059f9318a1ea70586a834768956524a34c",
+  "ladder_all.csv": "c8db8a749d1cd17e25a7deff247a2f807637f98e63274317bf514d0601d2d032"
+ },
+ "rows": 124,
+ "per_level": {
+  "1": 6,
+  "2": 24,
+  "3": 20,
+  "4": 26,
+  "5": 20,
+  "9": 28
+ },
+ "per_form": {
+  "autmin": 60,
+  "ms_raw": 19,
+  "original": 45
+ },
+ "pair_rows": 73,
+ "dup_dropped": 9,
+ "multi_reason": {
+  "ac19x_101025": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_8769": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_41313": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_74462": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_79238": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_151459": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_31848": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_90721": [
+   "ladder_200_L345",
+   "original"
+  ],
+  "ac19x_19903": [
+   "ladder_200_L345",
+   "original"
+  ]
+ }
+}

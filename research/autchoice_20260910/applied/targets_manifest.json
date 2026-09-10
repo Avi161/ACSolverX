@@ -1,0 +1,18 @@
+{
+ "git_head": "460904f9850ee20e3fe7772704a17db36f44f707",
+ "rows": 250,
+ "per_form": {
+  "aca_initial": 124,
+  "ac19_level9_leftover": 2,
+  "aca_best": 124
+ },
+ "leftovers": [
+  "ac19_27254",
+  "ac19_7284"
+ ],
+ "inputs": {
+  "benchmark/ladder/ladder_all.csv": "c8db8a749d1cd17e25a7deff247a2f807637f98e63274317bf514d0601d2d032",
+  "research/autchoice_20260910/atlas.jsonl": "e162298fbeb4a4aedfebdfa072b9517715c2bfd6cddb383464a7953264687165"
+ },
+ "targets_csv_sha256": "c325b0a9111c835a7c5de13d080aca4f2dfe22062c9b3ddd77d97eb593eb98ab"
+}
