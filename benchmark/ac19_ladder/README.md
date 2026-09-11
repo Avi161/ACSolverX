@@ -8,7 +8,7 @@ with six nested panels that keep, per level, the rows **S20_MK2 finds hardest**.
 |---|---|
 | `pool.csv` | every row: the 72,779 aut-min orbit representatives + the 131,905 distinct dataset originals |
 | `ladder_{10,20,40,60,100,200}.csv` (+ `.json`) | the panels: 1 / 2 / 4 / 6 / 10 / 20 rows per level, hardest for S20_MK2 first |
-| `ungraded.csv` | originals plain greedy leaves unsolved at 1,000,000 pops (no level, off the panels) |
+| `ungraded.csv` | originals plain greedy left unsolved at the last rung — **empty**: greedy solved all of them |
 | `sources/originals_panel.csv` | the run panel: which lines of `data/AC19_extended.txt` are the 131,905 originals |
 | `sources/runs/orig_<engine>_b<budget>_c48.jsonl.gz` (+ `.summary.json`) | the grading runs, one file per escalation rung, paths stripped |
 | `manifest.json` | populations, level rules, `E`, hashes of every input |
@@ -34,10 +34,10 @@ The remaining **131,905** are `ac19x_<line>` and were graded here:
   all 131,905**, so every original has an exact greedy grade and none is above level 4;
 - every solve replayed independently (`words.replay_move` over the recorded moves); the
   shipped run files keep `nodes`, `path_length`, `verified` and drop the move lists;
-- the S20_MK2 escalation stops at 100k on this box (a 1M-pop search peaks at 11.8 GB);
-  the rows it leaves unsolved there are ranked as costing "more than 100,000" until the
-  1M rung below is run elsewhere. (`ungraded.csv` exists for originals greedy cannot
-  solve at the last rung walked; with greedy complete it is empty.)
+- S20_MK2 needs no more either: **124,398 at 1k, 7,184 at 10k, 323 at 100k — all
+  131,905**, the most expensive original costing it 34,228 pops. So both engines grade
+  every original exactly, and nothing was escalated to 1M (`ungraded.csv` is empty; the
+  1M rung, 11.8 GB and 4–5 min per row on this box, was never needed).
 
 `pool.csv` columns: `name, r1, r2, level, form (autmin | original), orbit,
 greedy_solved, greedy_nodes, greedy_budget, greedy_run, greedy_path_length,
@@ -61,34 +61,29 @@ the row S20_MK2 found most expensive. Rows solved at the root pop are never pick
 Nested by construction: `ladder_10 ⊂ ladder_20 ⊂ … ⊂ ladder_200`. A level shorter than
 `k` gives what it has (`per_level_actual` in the JSON).
 
-## The 1M rungs (run elsewhere)
+## Populations and panels
 
-Plain greedy finished at 100k. S20_MK2 did not: the rows it leaves unsolved at 100k are
-`sources/unsolved_at_100k_s20_mk2.csv` (count in `manifest.json`), and a single 1M-pop
-search peaks at **11.8 GB** and takes 4–5 minutes on this box, so that rung runs on a
-bigger machine. Only `numpy`, `numba` and `PyYAML` are needed. From a clone of this
-branch:
+| level | rule (`g` = plain greedy pops) | aut-min | originals | in `ladder_60` (6 / level) |
+|---|---|---:|---:|---|
+| 1 | `g < 1,000` | 66,082 | 119,985 | S20_MK2 7,550–7,674 pops on rows greedy does in ~390 |
+| 2 | `1,000 ≤ g < 10,000` | 5,854 | 10,002 | 15,780–15,791 |
+| 3 | `10,000 ≤ g < 31,623` | 394 | 1,440 | 32,919–33,834, five of the six are originals |
+| 4 | `31,623 ≤ g < 100,000` | 226 | 478 | 34,221–38,131 |
+| 5 | `100,000 ≤ g < 316,228` | 98 | | 53,670–89,261 |
+| 6 | `316,228 ≤ g < 1,000,000` | 37 | | 20,234–95,944 |
+| 7 | `1,000,000 ≤ g < E` | 30 | | 156,376–1,383,279 |
+| 8 | `E ≤ g ≤ 10,000,000` | 30 | | 161,384–323,525 |
+| 9 | greedy unsolved at 10M; S20_MK2 solves it | 19 | | 770,382–1,299,594 |
+| 10 | both unsolved at 10M; only the cascades solve it | 9 | | S20_MK2 unsolved (10,000,001) |
 
-```bash
-pip install numpy==2.1.3 numba==0.63.1 PyYAML==6.0.2
-export PYTHONPATH=.
-# W = floor((RAM_GB - 2) / 12): each 1M-pop worker holds ~12 GB
-python3 -m benchmark.ladder.run_ladder --engine s20_mk2 --budget 1000000 --cap 48 --workers W --big-workers \
-    --panel benchmark/ac19_ladder/sources/unsolved_at_100k_s20_mk2.csv \
-    --out benchmark/ac19_ladder/sources/runs --tag orig_s20_mk2_b1000000_c48
-```
-
-The run resumes by row name if interrupted (re-run the same command). It writes
-`<tag>.jsonl` (every solve replayed; `verified` per row) and `<tag>.summary.json`.
-Then, back here, with that file in `sources/runs/` (`.jsonl` or `.jsonl.gz`):
-
-```bash
-PYTHONPATH=. python3 -m benchmark.ac19_ladder.build_ac19_ladder --force        # max budget 1M, the default
-PYTHONPATH=. python3 -m pytest tests/test_ac19_ladder.py -q
-```
-
-which re-ranks every level by the new S20_MK2 costs (levels do not move: they are greedy
-bands, and greedy is complete).
+The originals stop at level 4 — the dataset forms are easy for plain greedy (max 90,644
+pops), which is the `ORIGINALS_AT_10M` finding at full scale: only the aut-min forms
+reach levels 5–10. Panel sizes: `ladder_10/20/40/60` exact, `ladder_100` has 99 rows
+(level 10 holds 9), `ladder_200` has 188 (levels 9 / 10 hold 19 / 9). In `ladder_200` the
+originals are 10 / 6 / 14 / 2 of the 20 picks at levels 1–4. Levels 1–2's picks are the
+rows where the S20 ordering is *worse* than plain length order (7.6k S20 pops against
+~390 greedy), exactly as in the old ladder's S20-hard family; level 10 is the nine rows
+nothing but the cascades solve.
 
 ## Running the tester
 

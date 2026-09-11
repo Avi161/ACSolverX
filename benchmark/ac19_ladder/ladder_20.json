@@ -1,0 +1,89 @@
+{
+ "size": 20,
+ "requested_size": 20,
+ "per_level": 2,
+ "per_level_actual": {
+  "1": 2,
+  "2": 2,
+  "3": 2,
+  "4": 2,
+  "5": 2,
+  "6": 2,
+  "7": 2,
+  "8": 2,
+  "9": 2,
+  "10": 2
+ },
+ "n_levels": 10,
+ "nested": true,
+ "E": 2253802,
+ "levels": [
+  {
+   "level": 1,
+   "rule": "0 <= g < 1,000"
+  },
+  {
+   "level": 2,
+   "rule": "1,000 <= g < 10,000"
+  },
+  {
+   "level": 3,
+   "rule": "10,000 <= g < 31,623"
+  },
+  {
+   "level": 4,
+   "rule": "31,623 <= g < 100,000"
+  },
+  {
+   "level": 5,
+   "rule": "100,000 <= g < 316,228"
+  },
+  {
+   "level": 6,
+   "rule": "316,228 <= g < 1,000,000"
+  },
+  {
+   "level": 7,
+   "rule": "1,000,000 <= g < 2,253,802"
+  },
+  {
+   "level": 8,
+   "rule": "2,253,802 <= g <= 10,000,000"
+  },
+  {
+   "level": 9,
+   "rule": "plain greedy unsolved at 10,000,000 pops; S20_MK2 solves it"
+  },
+  {
+   "level": 10,
+   "rule": "plain greedy and S20_MK2 both unsolved at 10,000,000 pops"
+  }
+ ],
+ "difficulty_variable": "level: plain greedy pops g on record; order inside a level: S20_MK2 pops, largest first (unsolved rows count as their censoring budget + 1; ties by greedy pops, then name)",
+ "forms": [
+  "autmin",
+  "original"
+ ],
+ "subset": [
+  "ac19_65392",
+  "ac19_13795",
+  "ac19x_47216",
+  "ac19_31704",
+  "ac19x_618",
+  "ac19x_621",
+  "ac19_21595",
+  "ac19_67821",
+  "ac19_65219",
+  "ac19_55036",
+  "ac19_17204",
+  "ac19_31511",
+  "ac19_27683",
+  "ac19_28930",
+  "ac19_26211",
+  "ac19_14060",
+  "ac19_31298",
+  "ac19_12445",
+  "ac19_16286",
+  "ac19_27254"
+ ]
+}
