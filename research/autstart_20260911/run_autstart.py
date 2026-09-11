@@ -207,7 +207,7 @@ def verify():
     recs = load_results()
     init = {t['cls']: t for t in targets()}
     checked = ok = 0
-    failures = []
+    failures, cap_risk = [], []
     for (cls, k), r in sorted(recs.items()):
         checked += 1
         problems = []
@@ -224,6 +224,10 @@ def verify():
             problems.append('min_len disagrees with the replayed state')
         if r['min_len'] > r['start_len']:
             problems.append('min_len above the start length')
+        # the cap never bound: a child relator is at most as long as its parent's total
+        # length, so no child can exceed CAP unless a popped state was longer than CAP
+        if r['max_len_expanded'] > CAP:
+            cap_risk.append(dict(cls=cls, k=k, max_len_expanded=r['max_len_expanded']))
         if r['solved']:
             s = canon_pair(r['r1'], r['r2'])
             for m in r.get('solved_path_moves', []):
@@ -235,9 +239,12 @@ def verify():
         else:
             ok += 1
     out = OrderedDict(records=checked, ok=ok, failures=failures,
+                      cap=CAP, longest_state_expanded=max(r['max_len_expanded'] for r in recs.values()),
+                      cap_could_have_bound=cap_risk,
                       starts_sha256=sha256(HERE / 'starts.csv'), results_sha256=sha256(HERE / 'results.jsonl'))
     (HERE / 'verify.json').write_text(json.dumps(out, indent=1) + '\n')
-    print(f'verify: {checked} records, {ok} ok, {len(failures)} failures')
+    print(f'verify: {checked} records, {ok} ok, {len(failures)} failures; longest state expanded '
+          f'{out["longest_state_expanded"]} (cap {CAP}), records where the cap could have bound: {len(cap_risk)}')
     return not failures
 
 
