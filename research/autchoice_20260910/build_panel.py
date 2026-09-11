@@ -2,6 +2,7 @@
 
     level 3, 4, 5 rows of benchmark/ladder/ladder_200.csv        20 each
     all level-9 rows of benchmark/ladder/ladder_all.csv          28 (form=autmin)
+        (levels 9 + 10 since the 2026-09-11 split; panel.csv is frozen)
     all form=original rows of benchmark/ladder/ladder_all.csv    45
 
 Rows are deduplicated by name (some of the level-3/4 picks of ladder_200 are themselves

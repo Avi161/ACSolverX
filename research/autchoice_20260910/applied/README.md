@@ -35,6 +35,8 @@ directory; B1's files (`orbit.py`, `engine.py`, `features.py`, `atlas.jsonl`) an
 |---|---:|---|
 | `aca_initial` | 124 | `aca_N`: the unsolved MS classes as first found (level 10 of `ladder_all.csv`) |
 | `ac19_level9_leftover` | 2 | `ac19_27254`, `ac19_7284`: level-9 rows with no solved radius-2 image in `atlas.jsonl` (computed, asserted against `ATLAS.md`) |
+
+(2026-09-11: the `aca_*` rows are read from `benchmark/ladder/unsolved_all_forms.csv` — the unsolved classes left the ladder pool — and the two leftovers are ladder level 10 since the level-9 split; `targets.csv` content is unchanged, only its `source` column.)
 | `aca_best` | 124 | `acabest_N`: the same classes, mu-reduced (the u124 probes' form) |
 
 88 of the 124 classes have the identical pair in both forms (`canon_pair` equal), so those

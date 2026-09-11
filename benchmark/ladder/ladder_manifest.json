@@ -1,7 +1,7 @@
 {
- "built_unix": 1789076353,
- "git_head": "460904f9850ee20e3fe7772704a17db36f44f707",
- "rows": 74523,
+ "built_unix": 1789089970,
+ "git_head": "4edd6f8b43006faeb66a25b919d86ce10571d84a",
+ "rows": 73464,
  "E": 2253802,
  "levels": [
   {
@@ -56,13 +56,13 @@
    "level": 9,
    "lo_nodes": null,
    "hi_nodes": null,
-   "rule": "plain greedy unsolved at 10,000,000 nodes"
+   "rule": "plain greedy unsolved at 10,000,000 nodes; S20_MK2 solves it"
   },
   {
    "level": 10,
    "lo_nodes": null,
    "hi_nodes": null,
-   "rule": "unsolved by every run on record"
+   "rule": "plain greedy and S20_MK2 both unsolved at 10,000,000 nodes; only the cascades solve it"
   }
  ],
  "populations": {
@@ -133,20 +133,17 @@
    }
   },
   "9": {
-   "total": 28,
-   "eligible": 28,
+   "total": 19,
+   "eligible": 19,
    "by_source_form": {
-    "ac19/autmin": 28
+    "ac19/autmin": 19
    }
   },
   "10": {
-   "total": 1059,
-   "eligible": 124,
+   "total": 9,
+   "eligible": 9,
    "by_source_form": {
-    "ms_unsolved/aca_best": 124,
-    "ms_unsolved/aca_initial": 124,
-    "ms_unsolved/ms_raw": 550,
-    "ms_unsolved/ms_rep261": 261
+    "ac19/autmin": 9
    }
   }
  },
@@ -159,9 +156,22 @@
   "greedy@extra100k": 11,
   "greedy@open8_100k": 5,
   "greedy@orig10M": 40,
-  "none": 73797
+  "none": 72738
  },
  "pairs": 45,
+ "unsolved": {
+  "rows": 1059,
+  "files": [
+   "unsolved_124.csv",
+   "unsolved_all_forms.csv"
+  ],
+  "by_form": {
+   "aca_best": 124,
+   "aca_initial": 124,
+   "ms_raw": 550,
+   "ms_rep261": 261
+  }
+ },
  "sizes": [
   20,
   40,

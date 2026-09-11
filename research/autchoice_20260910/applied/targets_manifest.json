@@ -1,5 +1,5 @@
 {
- "git_head": "460904f9850ee20e3fe7772704a17db36f44f707",
+ "git_head": "4edd6f8b43006faeb66a25b919d86ce10571d84a",
  "rows": 250,
  "per_form": {
   "aca_initial": 124,
@@ -11,8 +11,9 @@
   "ac19_7284"
  ],
  "inputs": {
-  "benchmark/ladder/ladder_all.csv": "c8db8a749d1cd17e25a7deff247a2f807637f98e63274317bf514d0601d2d032",
+  "benchmark/ladder/ladder_all.csv": "c27c70ccd172dbb143926339e0ffc075139c85206ae5ad2266b5ff1d0e28a3ac",
+  "benchmark/ladder/unsolved_all_forms.csv": "3d690f194bce2f70f3a34d7960df3b0709ebd8631f07a91b764fcd669ab6a5c0",
   "research/autchoice_20260910/atlas.jsonl": "e162298fbeb4a4aedfebdfa072b9517715c2bfd6cddb383464a7953264687165"
  },
- "targets_csv_sha256": "c325b0a9111c835a7c5de13d080aca4f2dfe22062c9b3ddd77d97eb593eb98ab"
+ "targets_csv_sha256": "3b0006f258cbde57c13539472c1b9e3cfa7f610ad7eec97f1a8ab3384c479299"
 }

@@ -1,6 +1,6 @@
 {
  "variant": "s20hard",
- "size": 100,
+ "size": 99,
  "requested_size": 100,
  "per_level": 10,
  "per_level_actual": {
@@ -13,7 +13,7 @@
   "7": 10,
   "8": 10,
   "9": 10,
-  "10": 10
+  "10": 9
  },
  "n_levels": 10,
  "difficulty_variable": "levels: plain greedy node count g on record (as ladder_N); within a level: S20_MK2 pops on record (s20_nodes; unsolved rows count as 10M+1)",
@@ -70,13 +70,13 @@
    "level": 9,
    "lo_nodes": null,
    "hi_nodes": null,
-   "rule": "plain greedy unsolved at 10,000,000 nodes"
+   "rule": "plain greedy unsolved at 10,000,000 nodes; S20_MK2 solves it"
   },
   {
    "level": 10,
    "lo_nodes": null,
    "hi_nodes": null,
-   "rule": "unsolved by every run on record"
+   "rule": "plain greedy and S20_MK2 both unsolved at 10,000,000 nodes; only the cascades solve it"
   }
  ],
  "E": 2253802,
@@ -327,25 +327,24 @@
   "ac19_39288",
   "ac19_49095",
   "ac19_54765",
-  "ac19_16286",
-  "ac19_27254",
-  "ac19_28131",
-  "ac19_44381",
-  "ac19_50841",
-  "ac19_51034",
-  "ac19_59576",
-  "ac19_65753",
-  "ac19_7284",
   "ac19_31298",
-  "aca_54",
-  "aca_115",
-  "aca_99",
-  "aca_28",
-  "aca_82",
-  "aca_38",
-  "aca_65",
-  "aca_98",
-  "aca_2",
-  "aca_46"
+  "ac19_12445",
+  "ac19_54835",
+  "ac19_40312",
+  "ac19_67055",
+  "ac19_55019",
+  "ac19_46363",
+  "ac19_36350",
+  "ac19_57992",
+  "ac19_20270",
+  "ac19_28131",
+  "ac19_65753",
+  "ac19_44381",
+  "ac19_59576",
+  "ac19_51034",
+  "ac19_16286",
+  "ac19_7284",
+  "ac19_50841",
+  "ac19_27254"
  ]
 }

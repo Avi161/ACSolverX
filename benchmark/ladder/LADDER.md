@@ -1,12 +1,16 @@
 # The AC difficulty ladder
 
 Ten levels of Andrews–Curtis presentations, from "solved in a few heap pops" to
-"nothing on record solves it", with nested subsets of 20 / 40 / 60 / 100 / 200 / 300 /
+"only the cascades solve it", with nested subsets of 20 / 40 / 60 / 100 / 200 / 300 /
 500 rows and a tester that runs any arm or policy over them and reports per level.
+**Every row on the ladder is solved by something on record**; the 124 unsolved
+Miller–Schupp classes are kept apart in [`unsolved_124.csv`](unsolved_124.csv) (below).
 **Subsets 60, 100 and 200 are the main testers.**
 
-Built 2026-09-10 by [`build_ladder.py`](build_ladder.py); nothing in it was searched
-for this ladder except the 21 rows of [`grade_extra.py`](grade_extra.py) (below).
+Built 2026-09-10 by [`build_ladder.py`](build_ladder.py) (levels 9/10 split and the
+unsolved rows moved off the ladder on 2026-09-11); nothing in it was searched for this
+ladder except the 21 rows of [`grade_extra.py`](grade_extra.py) and the S20_MK2 grading
+of the originals and MS-640 rows (below).
 
 ## Difficulty = plain greedy node count on record
 
@@ -35,18 +39,18 @@ not re-derivable on a 15 GB box. Everything at or below 1M can be re-run
 
 ## The levels
 
-| level | rule (`g` = plain greedy pops) | AC19 orbits | originals | MS-640 | MS-unsolved |
-|---|---|---:|---:|---:|---:|
-| 1 | `g < 1,000` | 66,082 | 6 | 554 | |
-| 2 | `1,000 ≤ g < 10,000` | 5,854 | 24 | 52 | |
-| 3 | `10,000 ≤ g < 31,623` | 394 | 2 | 20 | |
-| 4 | `31,623 ≤ g < 100,000` | 226 | 13 | 8 | |
-| 5 | `100,000 ≤ g < 316,228` | 98 | | 4 | |
-| 6 | `316,228 ≤ g < 1,000,000` | 37 | | 2 | |
-| 7 | `1,000,000 ≤ g < E` | 30 | | | |
-| 8 | `E ≤ g ≤ 10,000,000` | 30 | | | |
-| 9 | plain greedy **unsolved at 10,000,000** | 28 | | | |
-| 10 | unsolved by every run on record | | | | 124 (+935 variants) |
+| level | rule (`g` = plain greedy pops) | AC19 orbits | originals | MS-640 |
+|---|---|---:|---:|---:|
+| 1 | `g < 1,000` | 66,082 | 6 | 554 |
+| 2 | `1,000 ≤ g < 10,000` | 5,854 | 24 | 52 |
+| 3 | `10,000 ≤ g < 31,623` | 394 | 2 | 20 |
+| 4 | `31,623 ≤ g < 100,000` | 226 | 13 | 8 |
+| 5 | `100,000 ≤ g < 316,228` | 98 | | 4 |
+| 6 | `316,228 ≤ g < 1,000,000` | 37 | | 2 |
+| 7 | `1,000,000 ≤ g < E` | 30 | | |
+| 8 | `E ≤ g ≤ 10,000,000` | 30 | | |
+| 9 | plain greedy **unsolved at 10,000,000**; S20_MK2 solves it | 19 | | |
+| 10 | plain greedy **and** S20_MK2 unsolved at 10,000,000; only the cascades solve it | 9 | | |
 
 `E = 2,253,802` is the log-median of the 60 AC19 rows in [1M, 10M], so levels 7 and 8
 hold 30 each (a fixed half-decade edge at 3.16M would leave level 8 with 15). It is
@@ -56,28 +60,40 @@ own.
 Levels 1–2 together are the "< 10k" band; the split at 1k is so the easy end is graded
 too (subset-60's bins 0–6 all sit below 15k).
 
-**Level 9** is the residue of the whole greedy escalation: 28 orbits. Every one of them
-is solved by something else, and `solved_by` says what: `s20_mk2@10k` 6, `@100k` 2,
-`@1M` 8, `@5M` 3, `K3p_notable@1k` 7 (the table-free cascade), `K3p_c14aut@1k` 2 (only
-with the cap-14 backward table).
+**Levels 9 and 10** are the residue of the whole greedy escalation, 28 orbits, split by
+whether S20_MK2 gets them. **Level 9** (19): S20_MK2 solves them — `s20_mk2@10k` 6,
+`@100k` 2, `@1M` 8, `@5M` 3. **Level 10** (9): S20_MK2 fails at 10M too, only the cascades
+solve them — `K3p_notable@1k` 7 (the table-free cascade), `K3p_c14aut@1k` 2 (only with
+the cap-14 backward table): `ac19_16286, 27254, 28131, 44381, 50841, 51034, 59576,
+65753, 7284`. `solved_by` says which on every row.
 
-**Level 10** is the 124 unsolved Miller–Schupp classes, **in the form they were first
-found, before any μ-ladder reduction** (`data/ms_unsolved_reps/aca_124_initial.csv`,
-names `aca_0..aca_123`). That is the form the subsets draw. The pool also carries the
-same classes as `aca_best` (the μ-reduced pairs the u124 probes ran on, `acabest_N`),
-the 261 A-equivalent reps (`msrep_<name>`) and the 550 raw unsolved MS cells
-(`msraw_<line>`), all at level 10 with `form` set, for anyone who wants a different
-starting representation. The evidence for "unsolved by everything": 0/261 reps at 1M
-greedy (cap 48), 0/124 at 10M S20_MK2 (cap 64, `research/residual_20260909/u124/`),
-0/124 by every cascade probe at 10,000 units.
+### The unsolved set (not on the ladder)
+
+The 124 unsolved Miller–Schupp classes are **not ladder rows**: a benchmark row has to
+be a problem somebody has solved, so a failure on it means something. They ship next
+to the ladder, same columns, `level = unsolved`, `solved_by = none`:
+
+- [`unsolved_124.csv`](unsolved_124.csv) — the 124 classes **in the form they were first
+  found, before any μ-ladder reduction** (`data/ms_unsolved_reps/aca_124_initial.csv`,
+  names `aca_0..aca_123`). This is "the u124".
+- [`unsolved_all_forms.csv`](unsolved_all_forms.csv) — the same classes as `aca_best`
+  (the μ-reduced pairs the u124 probes ran on, `acabest_N`), the 261 A-equivalent reps
+  (`msrep_<name>`) and the 550 raw unsolved MS cells (`msraw_<line>`), 1,059 rows with
+  `form` set, for anyone who wants a different starting representation.
+
+The evidence for "unsolved by everything": 0/261 reps at 1M greedy (cap 48), 0/124 at
+10M S20_MK2 (cap 64, `research/residual_20260909/u124/`), 0/124 by every cascade probe
+at 10,000 units, and 0/124 from any automorphic image within two Whitehead moves at 20k
+(`research/autchoice_20260910/applied/`). The tester runs on them like on any panel:
+`run_ladder --subset unsolved124 …` (or `--panel benchmark/ladder/unsolved_all_forms.csv`).
 
 ## The originals: same orbit, different start
 
 45 rows have `form = original`: the pre-Aut-min dataset presentations
 (`ac19x_<row>` = line of `data/AC19_extended.txt`) of hard orbits. They are graded by
 **their own** greedy cost and land in levels 1–4 (509–52,143 pops), while their
-aut-min representatives sit in level 9 (40 of them, unsolved at 10M) or level 8 (the
-5 open-8 reps, 2.3M–5M pops). That split is the finding
+aut-min representatives sit in levels 9–10 (40 of them, greedy-unsolved at 10M) or
+level 8 (the 5 open-8 reps, 2.3M–5M pops). That split is the finding
 of `ORIGINALS_AT_10M.md` on the leftover branch — Aut-minimising a presentation can
 make it dramatically harder to search — and the reason the second campaign
 (`research/autchoice_20260910/`) exists. [`ladder_pairs.csv`](ladder_pairs.csv) lists
@@ -88,10 +104,10 @@ every pair side by side; `pair_id` links the rows in every CSV. Three of the
 
 | column | meaning |
 |---|---|
-| `name` | `ac19_N` (aut-min orbit), `ac19x_N` (original), `ms_NNN` (MS-640 line), `aca_N` / `acabest_N` / `msrep_*` / `msraw_N` (level 10) |
+| `name` | `ac19_N` (aut-min orbit), `ac19x_N` (original), `ms_NNN` (MS-640 line); in the unsolved files `aca_N` / `acabest_N` / `msrep_*` / `msraw_N` |
 | `r1, r2` | the relators, over `xXyY` (uppercase = inverse) |
-| `level` | 1–10 as above |
-| `source, form` | `ac19/autmin`, `ac19/original`, `ms640/ms_raw`, `ms_unsolved/{aca_initial,aca_best,ms_rep261,ms_raw}` |
+| `level` | 1–10 as above (`unsolved` in the two unsolved files) |
+| `source, form` | `ac19/autmin`, `ac19/original`, `ms640/ms_raw`; unsolved files: `ms_unsolved/{aca_initial,aca_best,ms_rep261,ms_raw}` |
 | `orbit, pair_id` | the aut-min orbit an original belongs to; `pair_id` links original ↔ representative |
 | `greedy_solved, greedy_nodes, greedy_budget, greedy_cap, greedy_run` | the grading number and where it came from (`10k`, `100k`, `1M`, `5M`, `10M`, `extra100k`, `orig10M`, `open8_100k`, `ms640_1M`; `unsolved@10M` for level 9) |
 | `s20_solved, s20_nodes, s20_run` | the S20_MK2 cost: the AC19 escalation on record (`10k`, `100k`, `1M`, `5M`, `extra100k`; `unsolved@10M` for the 9 level-9 rows nothing but the cascades solve) and, for the 45 originals and the 640 MS-640 rows, `ladder100k` — `run_ladder.py` at 100,000 pops, cap 48, run for this ladder (`sources/s20_ms640_originals_b100000_c48.jsonl`, 685/685 solved and replayed) |
@@ -101,7 +117,7 @@ every pair side by side; `pair_id` links the rows in every CSV. Three of the
 | `solved_by` | cheapest solver on record: `greedy@…`, `s20_mk2@…`, `K3p_notable@1k`, `K3p_c14aut@1k`, `none` |
 | `aut_class` | dedup key: the orbit for AC19, `ms_aut_<k>` (the 113 Whitehead classes) for MS-640 |
 
-`ladder_all.csv` is the full pool (74,523 rows). Levels 1–2 of it are the census; the
+`ladder_all.csv` is the full pool (73,464 rows, all solvable). Levels 1–2 of it are the census; the
 subsets are where the ladder is meant to be used.
 
 ## The nested subsets
@@ -115,18 +131,18 @@ subset takes the first `k` of one fixed ranked list per level. Ranking inside a 
    presentations are two different search problems with different costs (the whole
    point of the original/representative pairs), so both are legitimate test rows;
    `aut_class` stays in the CSV as information;
-3. round-robin over the strata `ac19/original`, `ac19/autmin`, `ms640/ms_raw`,
-   `ms_unsolved/aca_initial` — so every source is present from k = 2 up, and the
-   paired originals come first;
+3. round-robin over the strata `ac19/original`, `ac19/autmin`, `ms640/ms_raw` — so
+   every source is present from k = 2 up, and the paired originals come first;
 4. inside a stratum, **farthest-point order** over the rows sorted by
    `(log10 g, climb, name)`: the median first, then both endpoints, then the midpoint
    of the largest remaining gap. Every prefix is a near-uniform grid over the level's
    difficulty range, which is what lets one list serve k = 2 and k = 50.
-   Level 9 sorts by S20_MK2 cost, level 10 by start length.
+   Level 9 sorts by S20_MK2 cost; level 10 (no pop cost at all) by `climb`, then start length.
 
-Deterministic, no seed. Populations cap the top: subsets up to 200 are exact; 300 has
-298 rows (level 9 holds 28); 500 has 427 (levels 6–9 hold 39 / 30 / 30 / 28) — the
-JSON's `per_level_actual` says so, the old ladder's "no subset-80" convention.
+Deterministic, no seed. Populations cap the top: levels 6 / 7 / 8 / 9 / 10 hold
+39 / 30 / 30 / 19 / 9 rows, so subsets up to 60 are exact, 100 has 99 rows, 200 has
+188, 300 has 268 and 500 has 377 — the JSON's `per_level_actual` says so, the old
+ladder's "no subset-80" convention.
 
 ### The S20-hard variant: `ladder_{20,40,60,100,200,300}_s20hard`
 
@@ -135,11 +151,11 @@ the ones **S20_MK2 finds hardest** (largest `s20_nodes`; the 9 level-9 rows S20_
 cannot solve at 10M first; ties by plain greedy cost, then name) — no round-robin
 over strata, so a level's picks come from whichever source holds its hardest rows
 (level 3's top four are MS-640 rows; level 4 has two; everything else is AC19).
-Levels stay the greedy bands: a row S20_MK2 never solves would go to level 9 unless
-greedy solved it, and on record every S20-unsolved row is greedy-unsolved too, so all
-nine sit at level 9 (`build_ladder.py` asserts it). Level 10 has no S20 cost and keeps
-the spread ladder's rows. Nested: `ladder_20_s20hard ⊂ … ⊂ ladder_300_s20hard` (300
-has 298 rows, level 9 holding 28). The JSON's `variant: "s20hard"` tells the two
+Levels stay the greedy bands; the nine rows S20_MK2 never solves are level 10 by
+definition (`build_ladder.py` asserts every S20-unsolved row is greedy-unsolved too),
+and level 10 has no S20 cost, so it keeps the spread ladder's rows. Nested:
+`ladder_20_s20hard ⊂ … ⊂ ladder_300_s20hard`, with the same shortfalls as the spread
+family (100 → 99, 200 → 188, 300 → 268). The JSON's `variant: "s20hard"` tells the two
 families apart.
 
 This is the tester for a technique that already beats S20_MK2: on the spread ladder
@@ -157,8 +173,8 @@ from it. S20_MK2 pops on the S20-hard picks, mean (cheapest pick), per level and
 | 6 | 95,928 (95,912) | 77,217 (43,912) | 60,348 (20,234) | 41,564 (6,132) | 23,135 (3,192) | 16,467 (3,092) |
 | 7 | 1,383,279 (1,383,279) | 796,277 (158,725) | 583,316 (156,376) | 383,348 (30,933) | 202,113 (7,353) | 136,888 (2,378) |
 | 8 | 252,412 (181,300) | 211,037 (169,589) | 195,853 (161,384) | 178,895 (149,792) | 119,954 (16,681) | 83,294 (6,988) |
-| 9 | 2 unsolved | 4 unsolved | 6 unsolved | 9 unsolved + 1 solved, mean 1,299,594 (min 1,299,594) | 9 unsolved + 11 solved, mean 722,667 (min 228,598) | 9 unsolved + 19 solved, mean 422,461 (min 4,944) |
-| 10 | — | — | — | — | — | — |
+| 9 | 1,298,683 (1,297,772) | 1,177,878 (816,736) | 1,045,835 (770,382) | 772,074 (229,165) | 422,461 (4,944), all 19 | 422,461 (4,944), all 19 |
+| 10 | 2 rows | 4 rows | 6 rows | all 9 | all 9 | all 9 |
 
 Levels 1–2 are still "greedy under 10k": the S20-hard rows there are the ones where
 the ordering is *worse* than plain length order (greedy a few hundred pops, S20_MK2
@@ -222,19 +238,22 @@ comparable (see `runs/README.md`).
 ## Checks
 
 - `tests/test_ladder.py`: words over `xXyY`, levels follow the bands, 7/8 split at
-  `E`, level 9 is the 28-orbit residue, level 10's forms and names, pairs link
-  original ↔ representative (originals ≤ level 4, reps at level 9), subsets nest and
-  match `per_level_actual`, rows are pool rows verbatim, only the four strata and no
-  trivial root, prefixes are spread, manifest hashes match the tree.
+  `E`, every pool row is solvable, levels 9 (19, S20-solved) and 10 (the 9 named rows,
+  cascade-only) are the greedy residue, the unsolved files hold exactly the 124 classes
+  (four forms, 1,059 rows) and none of their names is in the pool, pairs link original ↔
+  representative (originals ≤ level 4, reps at level ≥ 7), subsets nest and match
+  `per_level_actual` (20/40/60/99/188/268/377), rows are pool rows verbatim, only the
+  three strata and no trivial root, prefixes are spread, manifest hashes match the tree.
 - Grading regression: `run_ladder --subset 60 --engine greedy --budget 10000` at
   `--cap 24` on the MS rows and `--cap 48` on the AC19 rows reproduces every recorded
   `greedy_nodes ≤ 10k` exactly and solves none of the rows recorded above 10k.
 - A rebuild is byte-identical (`ladder_manifest.json` modulo timestamp and git head).
 - S20-hard: every eligible row below level 10 carries an S20 grade; in each level of
   every `ladder_N_s20hard` no eligible row left behind has a larger S20 cost than the
-  cheapest pick; level 9's picks are the 9-row S20 residue first; the six sizes nest;
-  level 10 equals the spread ladder's; every S20-unsolved row is at level 9. The tester's S20_MK2 run at 100k on `ladder_200`
-  reproduces every recorded `s20_nodes ≤ 100k` exactly (155/155).
+  cheapest pick; level 9's picks are sorted by S20 cost; the six sizes nest; level 10
+  equals the spread ladder's; every S20-unsolved row is at level 10. The tester's
+  S20_MK2 runs at 100k on both 200-row panels reproduce every recorded
+  `s20_nodes ≤ 100k` exactly.
 
 ## Provenance
 

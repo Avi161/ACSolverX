@@ -40,6 +40,7 @@ if str(ROOT) not in sys.path:
 HERE = Path(__file__).resolve().parent            # research/autchoice_20260910/applied
 CAMPAIGN = HERE.parent                            # research/autchoice_20260910
 LADDER_ALL = ROOT / 'benchmark' / 'ladder' / 'ladder_all.csv'
+UNSOLVED_ALL = LADDER_ALL.parent / 'unsolved_all_forms.csv'   # the 124 classes, off the ladder since 2026-09-11
 ATLAS = CAMPAIGN / 'atlas.jsonl'
 TARGETS_CSV = HERE / 'targets.csv'
 PHASE1 = HERE / 'phase1.jsonl'

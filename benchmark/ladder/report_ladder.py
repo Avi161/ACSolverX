@@ -43,7 +43,16 @@ def _label(spec):
 
 def _level(rec):
     lvl = rec.get('level')
-    return int(lvl) if lvl not in (None, '') else 0   # 0 = no level column ("all")
+    if lvl in (None, ''):
+        return 0            # no level column ("all")
+    try:
+        return int(lvl)
+    except ValueError:
+        return str(lvl)     # e.g. 'unsolved' (the unsolved_*.csv panels)
+
+
+def _level_order(lvl):
+    return (isinstance(lvl, str), lvl)
 
 
 def _med(xs):
@@ -55,7 +64,7 @@ def describe(records):
     engine = recs[0].get('engine') if recs else None
     budget = recs[0].get('budget') if recs else None
     pop = engine in POP_ENGINES
-    levels = sorted({_level(r) for r in recs})
+    levels = sorted({_level(r) for r in recs}, key=_level_order)
     checkpoints = [b for b in CHECKPOINTS if budget and b <= budget] if pop else []
     per_level = OrderedDict()
     for lvl in levels + ['all']:
@@ -90,7 +99,7 @@ def _count(items):
 
 def ab(label_a, a, label_b, b):
     common = [n for n in a if n in b]
-    levels = sorted({_level(a[n]) for n in common})
+    levels = sorted({_level(a[n]) for n in common}, key=_level_order)
     per_level = OrderedDict()
     for lvl in levels + ['all']:
         names = common if lvl == 'all' else [n for n in common if _level(a[n]) == lvl]

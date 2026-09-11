@@ -5,7 +5,7 @@
 Rows, in the order they are run (the form that may be dropped on a time overrun is last):
 
     aca_initial            the 124 unsolved Miller-Schupp classes in the form they were first
-                           found (``aca_N``, level 10 of ``benchmark/ladder/ladder_all.csv``)
+                           found (``aca_N``, ``benchmark/ladder/unsolved_all_forms.csv``; level 10 of ``ladder_all.csv`` until 2026-09-11)
     ac19_level9_leftover   the two level-9 AC19 orbits whose radius-2 ball did NOT solve at
                            20,000 pops in B1's atlas -- computed from ``atlas.jsonl`` (level-9
                            rows with no solved S20 image) and asserted against ``ATLAS.md``'s
@@ -20,7 +20,7 @@ import json
 from collections import OrderedDict
 
 from research.autchoice_20260910.applied.common import (
-    ATLAS, HERE, LADDER_ALL, TARGET_COLS, TARGETS_CSV, git_head, read_jsonl, sha256,
+    ATLAS, HERE, LADDER_ALL, TARGET_COLS, TARGETS_CSV, UNSOLVED_ALL, git_head, read_jsonl, sha256,
 )
 
 EXPECTED_LEFTOVERS = {'ac19_27254', 'ac19_7284'}
@@ -41,6 +41,9 @@ def leftovers_from_atlas():
 
 def main():
     ladder = {r['name']: r for r in csv.DictReader(open(LADDER_ALL))}
+    # the unsolved classes left the ladder pool on 2026-09-11 (benchmark/ladder/LADDER.md):
+    # they now live in unsolved_all_forms.csv, same columns, level 'unsolved'
+    ladder.update({r['name']: r for r in csv.DictReader(open(UNSOLVED_ALL))})
     out = []
     for form in ('aca_initial', 'aca_best'):
         rows = sorted((r for r in ladder.values() if r['form'] == form),
@@ -53,11 +56,11 @@ def main():
                     'unsolved MS class %s, mu-reduced best-known form (the u124 probes ran on it)'
                     % r['aut_class'])
             out.append(OrderedDict(name=r['name'], r1=r['r1'], r2=r['r2'],
-                                   source='benchmark/ladder/ladder_all.csv', form=form, note=note))
+                                   source='benchmark/ladder/unsolved_all_forms.csv', form=form, note=note))
     left = leftovers_from_atlas()
     for name in left:
         r = ladder[name]
-        assert r['level'] == '9' and r['form'] == 'autmin', r
+        assert r['level'] in ('9', '10') and r['form'] == 'autmin', r   # level 10 since the 2026-09-11 split
         out.insert(124 + left.index(name), OrderedDict(
             name=name, r1=r['r1'], r2=r['r2'],
             source='benchmark/ladder/ladder_all.csv + research/autchoice_20260910/atlas.jsonl',
@@ -75,6 +78,7 @@ def main():
                              for f in ('aca_initial', 'ac19_level9_leftover', 'aca_best')),
         leftovers=left,
         inputs=OrderedDict([(str(LADDER_ALL.relative_to(HERE.parents[2])), sha256(LADDER_ALL)),
+                            (str(UNSOLVED_ALL.relative_to(HERE.parents[2])), sha256(UNSOLVED_ALL)),
                             (str(ATLAS.relative_to(HERE.parents[2])), sha256(ATLAS))]),
         targets_csv_sha256=sha256(TARGETS_CSV))
     with open(HERE / 'targets_manifest.json', 'w') as f:

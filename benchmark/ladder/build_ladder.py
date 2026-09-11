@@ -2,9 +2,11 @@
 
 Difficulty is the plain length-ordered greedy search's node count ``g`` on record
 (``benchmark/ladder/LADDER.md`` says where every number comes from).  Levels 1-8 are
-bands of ``g``; level 9 is "greedy fails at 10,000,000 nodes" (28 AC19 orbits, every
-one solved by something else); level 10 is "nothing on record solves it" (the 124
-Miller-Schupp classes, in the un-reduced form they were first found in).
+bands of ``g``; level 9 is "greedy fails at 10,000,000 nodes but S20_MK2 solves it"
+(19 AC19 orbits); level 10 is "greedy and S20_MK2 both fail at 10,000,000, only the
+cascades solve it" (9 orbits).  Every ladder row is solved by something on record.
+The 124 unsolved Miller-Schupp classes are NOT on the ladder: they go to
+``unsolved_124.csv`` (as first found) and ``unsolved_all_forms.csv`` (all four forms).
 
     level 1   g <      1,000            level 5   100,000 <= g <   316,228
     level 2   1,000   <= g <    10,000  level 6   316,228 <= g < 1,000,000
@@ -23,6 +25,8 @@ Outputs (all under benchmark/ladder/):
     ladder_all.csv                 every graded row (the pool)
     ladder_pairs.csv               the original/representative pairs side by side
     ladder_{20,40,60,100,200,300,500}.csv + .json   nested subsets, size/10 per level
+    ladder_{20,...,300}_s20hard.csv + .json         the S20-hard family (LADDER.md)
+    unsolved_124.csv, unsolved_all_forms.csv         the unsolved MS classes, off the ladder
     ladder_manifest.json           sources, hashes, populations, E, notes
 
     PYTHONPATH=. python3 -m benchmark.ladder.build_ladder [--force]
@@ -104,7 +108,7 @@ SIZES = (20, 40, 60, 100, 200, 300, 500)
 S20HARD_SIZES = (20, 40, 60, 100, 200, 300)   # the variant that keeps, per level, the rows hardest for S20_MK2
 N_LEVELS = 10
 # strata that feed the subsets, in round-robin order; everything else stays in the pool
-STRATA = [('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw'), ('ms_unsolved', 'aca_initial')]
+STRATA = [('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')]
 
 FIELDS = ['name', 'r1', 'r2', 'level', 'source', 'form', 'orbit', 'pair_id',
           'greedy_solved', 'greedy_nodes', 'greedy_budget', 'greedy_cap', 'greedy_run',
@@ -335,7 +339,7 @@ def build_rows(src, notes):
             solved_by = 'K3p_notable@1k'
         else:
             solved_by = 'K3p_c14aut@1k'
-        level = level_of(gn, E) if gs else 9
+        level = level_of(gn, E) if gs else (9 if ss else 10)   # 9: S20_MK2 solves it; 10: only the cascades do
         rows.append(dict(
             name=name, r1=r1, r2=r2, level=level, source='ac19', form='autmin', orbit=name,
             pair_id=name if name in pair_orbits else '',
@@ -419,9 +423,11 @@ def build_rows(src, notes):
             graded += 1
     assert graded == len(s20x) == 685, (graded, len(s20x))
 
-    # --- MS unsolved: level 10 in four forms ---
+    # --- MS unsolved: NOT on the ladder; their own files, in four forms ---
+    unsolved = []
+
     def unsolved_row(name, r1, r2, form, aut_class):
-        return dict(name=name, r1=r1, r2=r2, level=10, source='ms_unsolved', form=form, orbit='', pair_id='',
+        return dict(name=name, r1=r1, r2=r2, level='unsolved', source='ms_unsolved', form=form, orbit='', pair_id='',
                     greedy_solved=0, greedy_nodes='', greedy_budget='', greedy_cap='', greedy_run='',
                     s20_solved=0, s20_nodes='', s20_run='',
                     start_len=len(r1) + len(r2), hump='', hump_source='none', climb='',
@@ -432,28 +438,30 @@ def build_rows(src, notes):
     assert [r['name'] for r in aca_initial] == [f'aca_{i}' for i in range(124)]
     assert [r['name'] for r in aca_best] == [r['name'] for r in aca_initial]
     for r in aca_initial:
-        rows.append(unsolved_row(r['name'], r['r1'], r['r2'], 'aca_initial', r['name']))
+        unsolved.append(unsolved_row(r['name'], r['r1'], r['r2'], 'aca_initial', r['name']))
     for r in aca_best:
-        rows.append(unsolved_row('acabest_' + r['name'][4:], r['r1'], r['r2'], 'aca_best', r['name']))
+        unsolved.append(unsolved_row('acabest_' + r['name'][4:], r['r1'], r['r2'], 'aca_best', r['name']))
     reps = src.csv('ms_reps261')
     assert len(reps) == 261
     for r in reps:
-        rows.append(unsolved_row('msrep_' + r['name'], r['r1'], r['r2'], 'ms_rep261', 'msrep_' + r['name']))
+        unsolved.append(unsolved_row('msrep_' + r['name'], r['r1'], r['r2'], 'ms_rep261', 'msrep_' + r['name']))
     solved_set = set(ms_txt)
     raw = [(i, decode_padded(line)) for i, line in enumerate(src.text('ms1190_txt').splitlines()) if line.strip()]
     assert len(raw) == 1190
     unsolved_raw = [(i, pr) for i, pr in raw if pr not in solved_set]
     assert len(unsolved_raw) == 550, len(unsolved_raw)
     for i, (r1, r2) in unsolved_raw:
-        rows.append(unsolved_row(f'msraw_{i}', r1, r2, 'ms_raw', f'msraw_{i}'))
+        unsolved.append(unsolved_row(f'msraw_{i}', r1, r2, 'ms_raw', f'msraw_{i}'))
 
-    # sanity: names unique, words over xXyY
+    # sanity: names unique, words over xXyY, every ladder row solved by something on record
     seen = set()
-    for row in rows:
+    for row in rows + unsolved:
         assert row['name'] not in seen, row['name']
         seen.add(row['name'])
         assert row['r1'] and row['r2'] and set(row['r1'] + row['r2']) <= set('xXyY'), row['name']
-    return rows, E
+    assert all(row['solved_by'] != 'none' for row in rows)
+    assert all(row['solved_by'] == 'none' for row in unsolved) and len(unsolved) == 1_059
+    return rows, E, unsolved
 
 
 # --- nested ranking ------------------------------------------------------------
@@ -492,8 +500,8 @@ def farthest_point_order(n, limit):
 
 def sort_key(row):
     lvl = row['level']
-    if lvl == 10:
-        return (row['start_len'], row['name'])
+    if lvl == 10:   # nothing but the cascades solves these; no pop cost to spread over
+        return (row['climb'], row['start_len'], row['name'])
     if lvl == 9:
         s = row['s20_nodes'] if row['s20_solved'] == 1 else TOP
         return (s, row['climb'], row['name'])
@@ -552,8 +560,8 @@ def s20hard_key(row):
 def rank_level_s20hard(rows, spread_ranked):
     """The S20-hard list for a level: the eligible rows (same strata, no root pop,
     no Aut dedup) in order of decreasing S20_MK2 cost, no round-robin over strata --
-    the hardest rows win whatever their source.  Level 10 has no S20 cost (nothing
-    solves it), so it keeps the spread order."""
+    the hardest rows win whatever their source.  Level 10 has no S20 cost (S20_MK2
+    never solves it; only the cascades do), so it keeps the spread order."""
     if rows and rows[0]['level'] == 10:
         return spread_ranked
     eligible = [row for row in rows
@@ -578,8 +586,10 @@ def level_table(E):
     for lvl in range(1, 9):
         table.append(OrderedDict(level=lvl, lo_nodes=edges[lvl - 1], hi_nodes=edges[lvl],
                                  rule=f'{edges[lvl-1]:,} <= g < {edges[lvl]:,}' if lvl < 8 else f'{E:,} <= g <= {TOP:,}'))
-    table.append(OrderedDict(level=9, lo_nodes=None, hi_nodes=None, rule='plain greedy unsolved at 10,000,000 nodes'))
-    table.append(OrderedDict(level=10, lo_nodes=None, hi_nodes=None, rule='unsolved by every run on record'))
+    table.append(OrderedDict(level=9, lo_nodes=None, hi_nodes=None,
+                             rule='plain greedy unsolved at 10,000,000 nodes; S20_MK2 solves it'))
+    table.append(OrderedDict(level=10, lo_nodes=None, hi_nodes=None,
+                             rule='plain greedy and S20_MK2 both unsolved at 10,000,000 nodes; only the cascades solve it'))
     return table
 
 
@@ -590,7 +600,8 @@ def main():
     args = ap.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
-    targets = [out / 'ladder_all.csv', out / 'ladder_pairs.csv', out / 'ladder_manifest.json'] + \
+    targets = [out / 'ladder_all.csv', out / 'ladder_pairs.csv', out / 'ladder_manifest.json',
+               out / 'unsolved_124.csv', out / 'unsolved_all_forms.csv'] + \
               [out / f'ladder_{n}.{ext}' for n in SIZES for ext in ('csv', 'json')] + \
               [out / f'ladder_{n}_s20hard.{ext}' for n in S20HARD_SIZES for ext in ('csv', 'json')]
     existing = [t for t in targets if t.exists()]
@@ -600,9 +611,11 @@ def main():
     t0 = time.time()
     src = Sources()
     notes = []
-    rows, E = build_rows(src, notes)
+    rows, E, unsolved = build_rows(src, notes)
     rows.sort(key=lambda r: (r['level'], r['source'], r['form'], sort_key(r)))
     write_csv(out / 'ladder_all.csv', rows)
+    write_csv(out / 'unsolved_124.csv', [r for r in unsolved if r['form'] == 'aca_initial'])
+    write_csv(out / 'unsolved_all_forms.csv', unsolved)
 
     # pairs table
     reps = {r['name']: r for r in rows if r['form'] == 'autmin'}
@@ -645,17 +658,16 @@ def main():
                                    '(automorphic presentations are different search problems); '
                                    'round-robin over strata; farthest-point order (median, endpoints, '
                                    'then bisect the largest gap) over (log10 g, climb, name) inside a '
-                                   'stratum (level 9: s20 nodes; level 10: start length)',
+                                   'stratum (level 9: S20_MK2 pops; level 10: climb, then start length)',
             sources=src.manifest, subset=[r['name'] for r in chosen])
         (out / f'ladder_{size}.json').write_text(json.dumps(meta, indent=1) + '\n')
 
     # the S20-hard variant: same levels, same strata, the rows S20_MK2 finds hardest.
-    # Levels stay the greedy bands; a row S20_MK2 never solves belongs to level 9 unless
-    # greedy solved it (then it keeps its greedy level) -- on record no such row exists:
-    # every S20-unsolved row is greedy-unsolved too, so all of them sit at level 9.
+    # Levels stay the greedy bands; a row S20_MK2 never solves is level 10 (only the
+    # cascades solve it) -- on record every such row is greedy-unsolved too.
     for row in rows:
-        if row['level'] < 10 and row['s20_solved'] == 0:
-            assert row['greedy_solved'] == 0 and row['level'] == 9, row['name']
+        if row['s20_solved'] == 0:
+            assert row['greedy_solved'] == 0 and row['level'] == 10, row['name']
     ranked_s20 = {lvl: rank_level_s20hard(by_level[lvl], ranked[lvl]) for lvl in range(1, N_LEVELS + 1)}
     for size in S20HARD_SIZES:
         k = size // N_LEVELS
@@ -685,6 +697,8 @@ def main():
         hump_available=sum(1 for r in rows if r['hump'] != ''),
         hump_sources=OrderedDict(sorted(Counter(r['hump_source'] for r in rows).items())),
         pairs=sum(1 for r in rows if r['form'] == 'original'),
+        unsolved=OrderedDict(rows=len(unsolved), files=['unsolved_124.csv', 'unsolved_all_forms.csv'],
+                             by_form=OrderedDict(sorted(Counter(r['form'] for r in unsolved).items()))),
         sizes=list(SIZES), s20hard_sizes=list(S20HARD_SIZES), sources=src.manifest, notes=notes)
     (out / 'ladder_manifest.json').write_text(json.dumps(manifest, indent=1) + '\n')
 
@@ -692,6 +706,8 @@ def main():
     for lvl in range(1, N_LEVELS + 1):
         p = populations[str(lvl)]
         print(f"  level {lvl:2}: {p['total']:6,} rows  ({', '.join(f'{k} {v}' for k, v in p['by_source_form'].items())})")
+    print(f"  unsolved (not on the ladder): {len(unsolved):,} rows in unsolved_all_forms.csv, "
+          f"{sum(1 for r in unsolved if r['form'] == 'aca_initial')} in unsolved_124.csv")
     for n in notes:
         print('  note:', n)
 

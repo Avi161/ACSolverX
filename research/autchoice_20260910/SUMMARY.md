@@ -85,6 +85,13 @@ solved: their balls sit at the start length whatever the image. The next lever
 for those is not the automorphism but the AC path length itself (the `aca_111`
 path needs peak 41, beyond every cap the census used).
 
+## Ladder note (2026-09-11)
+
+After this study the ladder was reshaped: the 124 unsolved classes moved off it into
+`benchmark/ladder/unsolved_124.csv` / `unsolved_all_forms.csv`, and the 28 "level 9"
+representatives above are now level 9 (19, S20_MK2 solves them) and level 10 (9, only
+the cascades do). `panel.csv` and `applied/targets.csv` are unchanged in content.
+
 ## Provenance
 
 Git head at run time `460904f9` (B1, B2) and `7fa813ae`–`85b5d079` (B3's final

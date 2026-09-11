@@ -15,6 +15,8 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LADDER = os.path.join(ROOT, 'benchmark', 'ladder')
 SIZES = (20, 40, 60, 100, 200, 300, 500)
+# level populations cap the top: levels 6/7/8/9/10 hold 39/30/30/19/9 rows
+EXPECTED_SIZE = {20: 20, 40: 40, 60: 60, 100: 99, 200: 188, 300: 268, 500: 377}
 LEVELS = range(1, 11)
 EDGES = [1_000, 10_000, 31_623, 100_000, 316_228, 1_000_000]
 TOP = 10_000_000
@@ -60,12 +62,10 @@ def test_levels_follow_the_greedy_bands(pool, manifest):
     assert 1_000_000 < E < TOP
     for r in pool:
         lvl = int(r['level'])
-        if r['form'] in ('aca_initial', 'aca_best', 'ms_rep261') or r['source'] == 'ms_unsolved':
-            assert lvl == 10 and r['solved_by'] == 'none', r['name']
-            continue
+        assert r['source'] != 'ms_unsolved' and r['solved_by'] != 'none', r['name']   # only solvable rows
         if r['greedy_solved'] == '0':
-            assert lvl == 9 and r['greedy_run'] == 'unsolved@10M' and int(r['greedy_nodes']) == TOP, r['name']
-            assert r['solved_by'] != 'none', r['name']   # every level-9 row is solved by something
+            assert r['greedy_run'] == 'unsolved@10M' and int(r['greedy_nodes']) == TOP, r['name']
+            assert lvl == (9 if r['s20_solved'] == '1' else 10), r['name']
             continue
         g = int(r['greedy_nodes'])
         edges = [0] + EDGES + [E, TOP + 1]
@@ -81,18 +81,29 @@ def test_levels_seven_and_eight_split_at_E(pool, manifest):
     assert len(seven) == 30
 
 
-def test_level_nine_is_the_28_greedy_residue(pool):
-    nine = sorted(r['name'] for r in pool if r['level'] == '9')
-    assert len(nine) == 28
-    assert {'ac19_7284', 'ac19_16286', 'ac19_50841', 'ac19_51034'} <= set(nine)
+LEVEL_TEN = {'ac19_65753', 'ac19_16286', 'ac19_59576', 'ac19_7284', 'ac19_27254',
+             'ac19_28131', 'ac19_44381', 'ac19_50841', 'ac19_51034'}
 
 
-def test_level_ten_forms(pool):
+def test_levels_nine_and_ten_are_the_28_greedy_residue(pool):
+    nine = [r for r in pool if r['level'] == '9']
     ten = [r for r in pool if r['level'] == '10']
-    forms = Counter(r['form'] for r in ten)
-    assert forms == {'aca_initial': 124, 'aca_best': 124, 'ms_rep261': 261, 'ms_raw': 550}
-    initial = [r['name'] for r in ten if r['form'] == 'aca_initial']
-    assert sorted(initial, key=lambda n: int(n[4:])) == [f'aca_{i}' for i in range(124)]
+    assert len(nine) == 19 and all(r['s20_solved'] == '1' for r in nine)
+    assert {r['name'] for r in ten} == LEVEL_TEN and all(r['s20_solved'] == '0' for r in ten)
+    assert all(r['solved_by'].startswith('K3p_') for r in ten)   # only the cascades solve level 10
+
+
+def test_unsolved_classes_are_off_the_ladder(pool):
+    u124 = _rows('unsolved_124.csv')
+    every = _rows('unsolved_all_forms.csv')
+    assert [r['name'] for r in u124] == [f'aca_{i}' for i in range(124)]
+    assert Counter(r['form'] for r in every) == {'aca_initial': 124, 'aca_best': 124, 'ms_rep261': 261, 'ms_raw': 550}
+    assert [r for r in every if r['form'] == 'aca_initial'] == u124
+    names = {r['name'] for r in pool}
+    for r in every:
+        assert r['level'] == 'unsolved' and r['solved_by'] == 'none' and r['source'] == 'ms_unsolved', r['name']
+        assert r['name'] not in names, r['name']
+        assert r['r1'] and r['r2'] and set(r['r1'] + r['r2']) <= ALPHABET, r['name']
 
 
 def test_pairs_link_originals_to_their_representatives(pool):
@@ -104,7 +115,7 @@ def test_pairs_link_originals_to_their_representatives(pool):
         assert rep['form'] == 'autmin' and rep['pair_id'] == rep['name'] == o['pair_id'], o['name']
         assert int(rep['level']) >= 7, o['name']       # the pairs are hard orbits (>= 1M greedy)
         assert int(o['level']) <= 4, o['name']         # their originals are easy for greedy
-    assert sum(1 for o in originals if by_name[o['orbit']]['level'] == '9') >= 40
+    assert sum(1 for o in originals if by_name[o['orbit']]['level'] in ('9', '10')) >= 40
     pairs = _rows('ladder_pairs.csv')
     assert {p['orig_name'] for p in pairs} == {o['name'] for o in originals}
     for p in pairs:
@@ -121,8 +132,8 @@ def test_subsets_are_nested_and_sized(subsets):
         per_level = Counter(int(r['level']) for r in rows)
         for lvl in LEVELS:
             assert per_level[lvl] == meta['per_level_actual'][str(lvl)] <= n // 10, (n, lvl)
-        if n <= 200:
-            assert meta['size'] == n and all(per_level[lvl] == n // 10 for lvl in LEVELS)
+        assert meta['size'] == sum(meta['per_level_actual'].values()) == EXPECTED_SIZE[n]
+        assert per_level[10] == min(n // 10, 9) and per_level[9] == min(n // 10, 19)
         if prev is not None:
             assert set(prev) <= set(names), n
         prev = names
@@ -136,7 +147,7 @@ def test_subsets_carry_the_pool_rows_verbatim(pool, subsets):
 
 
 def test_subsets_take_only_the_four_strata_and_no_trivial_root(subsets):
-    allowed = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw'), ('ms_unsolved', 'aca_initial')}
+    allowed = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')}
     for n in SIZES:
         for r in subsets[n][0]:
             assert (r['source'], r['form']) in allowed, (n, r['name'])
@@ -180,7 +191,7 @@ def test_subset_json_is_self_describing(subsets, manifest):
 
 # --- the S20-hard variant (ladder_60_s20hard, ladder_100_s20hard) --------------
 S20HARD_SIZES = (20, 40, 60, 100, 200, 300)
-STRATA = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw'), ('ms_unsolved', 'aca_initial')}
+STRATA = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')}
 
 
 def _s20_cost(r):
@@ -199,7 +210,7 @@ def test_every_eligible_row_below_level_ten_has_an_s20_grade(pool):
             if r['s20_solved'] == '1':
                 assert int(r['s20_nodes']) >= 1, r['name']
             else:
-                assert r['s20_run'] == 'unsolved@10M' and int(r['level']) == 9, r['name']
+                assert r['s20_run'] == 'unsolved@10M' and int(r['level']) == 10, r['name']
     ms_and_originals = [r for r in pool if r['form'] in ('ms_raw', 'original') and r['source'] != 'ms_unsolved']
     assert len(ms_and_originals) == 685
     assert all(r['s20_run'] == 'ladder100k' and r['s20_solved'] == '1' for r in ms_and_originals)
@@ -216,7 +227,7 @@ def test_s20hard_keeps_the_rows_hardest_for_s20_in_each_level(pool, s20hard, sub
         k = n // 10
         assert meta['variant'] == 's20hard' and meta['per_level'] == k and meta['nested'] is True
         assert meta['size'] == len(rows) == sum(meta['per_level_actual'].values())
-        assert meta['size'] == (n if n <= 200 else 298), n     # level 9 holds 28 rows
+        assert meta['size'] == EXPECTED_SIZE[n], n
         assert meta['subset'] == [r['name'] for r in rows]
         by_name = {r['name']: r for r in pool}
         for r in rows:
@@ -227,23 +238,20 @@ def test_s20hard_keeps_the_rows_hardest_for_s20_in_each_level(pool, s20hard, sub
             worst_pick = min(_s20_cost(r) for r in picks)
             rest = [r for r in by_level[lvl] if r['name'] not in {p['name'] for p in picks}]
             assert all(_s20_cost(r) <= worst_pick for r in rest), (n, lvl)   # nothing harder was left behind
-        # level 10 has no S20 cost: the same rows as the spread ladder of that size
+        # level 10 has no S20 cost (S20_MK2 never solves it): the spread ladder's rows
         ten = [r['name'] for r in rows if int(r['level']) == 10]
-        assert ten == [r['name'] for r in subsets[n][0] if int(r['level']) == 10]
+        assert ten == [r['name'] for r in subsets[n][0] if int(r['level']) == 10] and set(ten) <= LEVEL_TEN
         if prev is not None:
             assert set(prev) <= {r['name'] for r in rows}
         prev = [r['name'] for r in rows]
 
 
-def test_s20hard_level_nine_is_the_s20_residue_first(s20hard, pool):
-    residue = sorted(r['name'] for r in pool if r['level'] == '9' and r['s20_solved'] == '0')
-    assert len(residue) == 9
+def test_s20hard_level_nine_is_sorted_by_s20_cost(s20hard, pool):
+    nine = {r['name']: int(r['s20_nodes']) for r in pool if r['level'] == '9'}
+    assert len(nine) == 19
     for n in S20HARD_SIZES:
-        picks = {r['name'] for r in s20hard[n][0] if r['level'] == '9'}
-        if n // 10 <= len(residue):
-            assert picks <= set(residue), n          # small subsets: only S20-unsolved rows
-        else:
-            assert set(residue) <= picks, n          # larger ones: the whole residue, then the solved
-    # every S20-unsolved row on record is greedy-unsolved too, hence at level 9 (the user's rule)
-    assert all(r['level'] == '9' and r['greedy_solved'] == '0'
-               for r in pool if r['s20_solved'] == '0' and int(r['level']) < 10)
+        picks = [r for r in s20hard[n][0] if r['level'] == '9']
+        costs = [int(r['s20_nodes']) for r in picks]
+        assert costs == sorted(costs, reverse=True) and len(picks) == min(n // 10, 19), n
+    # every S20-unsolved row on record is greedy-unsolved too, hence at level 10
+    assert all(r['level'] == '10' and r['greedy_solved'] == '0' for r in pool if r['s20_solved'] == '0')
