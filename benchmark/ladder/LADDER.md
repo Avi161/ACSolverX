@@ -214,8 +214,10 @@ PYTHONPATH=. python3 -m benchmark.ladder.report_ladder --runs greedy=runs/ladder
 
 ## Reference runs
 
-`runs/` ships baselines on `ladder_200` so a new technique has something to stand
-next to (`runs/README.md` has the files, commands and the reading guide):
+`runs/` ships baselines on `ladder_200` (188 rows) and on `ladder_200_s20hard` so a new
+technique has something to stand next to (`runs/README.md` has the files, commands, the
+S20-hard tables and the reading guide). Solved of 20 per level, of 19 at level 9 and of 9
+at level 10:
 
 | level | greedy @10k | greedy @100k | S20_MK2 @10k | S20_MK2 @100k | K3p_notable @1k units | K3p_c14aut @1k units |
 |---|---:|---:|---:|---:|---:|---:|
@@ -227,9 +229,9 @@ next to (`runs/README.md` has the files, commands and the reading guide):
 | 6 | 0 | 0 | 18 | 20 | 19 | 20 |
 | 7 | 0 | 0 | 7 | 14 | 18 | 20 |
 | 8 | 0 | 0 | 6 | 14 | 18 | 20 |
-| 9 | 0 | 0 | 6 | 8 | 13 | 20 |
-| 10 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **all** | **40** | **80** | **118** | **156** | **158** | **180** |
+| 9 | 0 | 0 | 6 | 8 | 12 | 19 |
+| 10 | 0 | 0 | 0 | 0 | 7 | 9 |
+| **all** | **40** | **80** | **118** | **156** | **164** | **188** |
 
 Greedy solving exactly levels 1–2 at 10k and 1–4 at 100k is the grading's sanity
 check, not a result. Pops (first four columns) and charged units (last two) are not

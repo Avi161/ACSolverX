@@ -6,7 +6,7 @@
    "budget": 10000,
    "cap": 48,
    "units": "pops",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [
     100,
     1000,
@@ -118,7 +118,7 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -131,7 +131,7 @@
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -144,7 +144,7 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved": 40,
      "verified": 40,
      "errors": 0,
@@ -164,7 +164,7 @@
    "budget": 100000,
    "cap": 48,
    "units": "pops",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [
     100,
     1000,
@@ -285,7 +285,7 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -299,7 +299,7 @@
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -313,7 +313,7 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved": 80,
      "verified": 80,
      "errors": 0,
@@ -334,7 +334,7 @@
    "budget": 10000,
    "cap": 48,
    "units": "pops",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [
     100,
     1000,
@@ -446,20 +446,20 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 19,
+     "solved": 6,
+     "verified": 6,
      "errors": 0,
-     "median_pops_solved": null,
-     "mean_pops_solved": null,
+     "median_pops_solved": 5594.5,
+     "mean_pops_solved": 5544.5,
      "solved_at": {
       "100": 0,
       "1000": 0,
-      "10000": 0
+      "10000": 6
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -472,16 +472,16 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved": 34,
-     "verified": 34,
+     "rows": 188,
+     "solved": 40,
+     "verified": 40,
      "errors": 0,
-     "median_pops_solved": 6124.5,
-     "mean_pops_solved": 5654.1,
+     "median_pops_solved": 5978.0,
+     "mean_pops_solved": 5637.6,
      "solved_at": {
       "100": 0,
       "1000": 0,
-      "10000": 34
+      "10000": 40
      }
     }
    }
@@ -492,7 +492,7 @@
    "budget": 100000,
    "cap": 48,
    "units": "pops",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [
     100,
     1000,
@@ -613,21 +613,21 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 19,
+     "solved": 8,
+     "verified": 8,
      "errors": 0,
-     "median_pops_solved": null,
-     "mean_pops_solved": null,
+     "median_pops_solved": 5978.0,
+     "mean_pops_solved": 9678.2,
      "solved_at": {
       "100": 0,
       "1000": 0,
-      "10000": 0,
-      "100000": 0
+      "10000": 6,
+      "100000": 8
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved": 0,
      "verified": 0,
      "errors": 0,
@@ -641,17 +641,17 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved": 141,
-     "verified": 141,
+     "rows": 188,
+     "solved": 149,
+     "verified": 149,
      "errors": 0,
-     "median_pops_solved": 21637,
-     "mean_pops_solved": 26334.2,
+     "median_pops_solved": 21559,
+     "mean_pops_solved": 25439.9,
      "solved_at": {
       "100": 0,
       "1000": 0,
-      "10000": 34,
-      "100000": 141
+      "10000": 40,
+      "100000": 149
      }
     }
    }
@@ -662,7 +662,7 @@
    "budget": 1000,
    "cap": null,
    "units": "charged units (table lookups free)",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [],
    "per_level": {
     "1": {
@@ -755,31 +755,33 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 17,
-     "verified": 17,
+     "rows": 19,
+     "solved": 12,
+     "verified": 12,
      "errors": 0,
-     "median_charged_solved": 633,
+     "median_charged_solved": 626.0,
      "routes": {
-      "incumbent_restart": 17
+      "incumbent_restart": 12
      }
     },
     "10": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 9,
+     "solved": 7,
+     "verified": 7,
      "errors": 0,
-     "median_charged_solved": null,
-     "routes": {}
+     "median_charged_solved": 633,
+     "routes": {
+      "incumbent_restart": 7
+     }
     },
     "all": {
-     "rows": 200,
-     "solved": 162,
-     "verified": 162,
+     "rows": 188,
+     "solved": 164,
+     "verified": 164,
      "errors": 0,
-     "median_charged_solved": 394.0,
+     "median_charged_solved": 395.0,
      "routes": {
-      "incumbent_restart": 110,
+      "incumbent_restart": 112,
       "strict_donor": 43,
       "bs_demote": 9
      }
@@ -792,7 +794,7 @@
    "budget": 1000,
    "cap": null,
    "units": "charged units (table lookups free)",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [],
    "per_level": {
     "1": {
@@ -888,34 +890,37 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 20,
-     "verified": 20,
+     "rows": 19,
+     "solved": 19,
+     "verified": 19,
      "errors": 0,
-     "median_charged_solved": 0.0,
+     "median_charged_solved": 0,
      "routes": {
-      "ball_root": 19,
-      "plain_s20": 1
+      "ball_root": 15,
+      "plain_s20": 3,
+      "strict_donor": 1
      }
     },
     "10": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 9,
+     "solved": 9,
+     "verified": 9,
      "errors": 0,
-     "median_charged_solved": null,
-     "routes": {}
+     "median_charged_solved": 0,
+     "routes": {
+      "ball_root": 9
+     }
     },
     "all": {
-     "rows": 200,
-     "solved": 180,
-     "verified": 180,
+     "rows": 188,
+     "solved": 188,
+     "verified": 188,
      "errors": 0,
      "median_charged_solved": 0.0,
      "routes": {
-      "ball_root": 115,
-      "strict_donor": 39,
-      "plain_s20": 14,
+      "ball_root": 120,
+      "strict_donor": 40,
+      "plain_s20": 16,
       "bs_demote": 9,
       "incumbent_restart": 3
      }
@@ -928,7 +933,7 @@
    "budget": 1000,
    "cap": null,
    "units": "charged units (table lookups free)",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [],
    "per_level": {
     "1": {
@@ -1012,31 +1017,33 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 18,
-     "verified": 18,
+     "rows": 19,
+     "solved": 19,
+     "verified": 19,
      "errors": 0,
-     "median_charged_solved": 326.5,
+     "median_charged_solved": 420,
      "routes": {
-      "aut_edges_s20": 18
+      "aut_edges_s20": 19
      }
     },
     "10": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 9,
+     "solved": 7,
+     "verified": 7,
      "errors": 0,
-     "median_charged_solved": null,
-     "routes": {}
+     "median_charged_solved": 325,
+     "routes": {
+      "aut_edges_s20": 7
+     }
     },
     "all": {
-     "rows": 200,
-     "solved": 170,
-     "verified": 170,
+     "rows": 188,
+     "solved": 178,
+     "verified": 178,
      "errors": 0,
-     "median_charged_solved": 134.5,
+     "median_charged_solved": 143.5,
      "routes": {
-      "aut_edges_s20": 170
+      "aut_edges_s20": 178
      }
     }
    }
@@ -1047,7 +1054,7 @@
    "budget": 1000,
    "cap": null,
    "units": "charged units (table lookups free)",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [],
    "per_level": {
     "1": {
@@ -1137,31 +1144,33 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 18,
-     "verified": 18,
+     "rows": 19,
+     "solved": 19,
+     "verified": 19,
      "errors": 0,
-     "median_charged_solved": 335.5,
+     "median_charged_solved": 433,
      "routes": {
-      "incumbent_restart": 18
+      "incumbent_restart": 19
      }
     },
     "10": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 9,
+     "solved": 7,
+     "verified": 7,
      "errors": 0,
-     "median_charged_solved": null,
-     "routes": {}
+     "median_charged_solved": 333,
+     "routes": {
+      "incumbent_restart": 7
+     }
     },
     "all": {
-     "rows": 200,
-     "solved": 161,
-     "verified": 161,
+     "rows": 188,
+     "solved": 169,
+     "verified": 169,
      "errors": 0,
-     "median_charged_solved": 138,
+     "median_charged_solved": 143,
      "routes": {
-      "incumbent_restart": 121,
+      "incumbent_restart": 129,
       "strict_donor": 40
      }
     }
@@ -1173,7 +1182,7 @@
    "budget": 1000,
    "cap": null,
    "units": "charged units (table lookups free)",
-   "rows": 200,
+   "rows": 188,
    "checkpoints": [],
    "per_level": {
     "1": {
@@ -1258,31 +1267,33 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved": 18,
-     "verified": 18,
+     "rows": 19,
+     "solved": 19,
+     "verified": 19,
      "errors": 0,
-     "median_charged_solved": 326.5,
+     "median_charged_solved": 420,
      "routes": {
-      "s20_generator": 18
+      "s20_generator": 19
      }
     },
     "10": {
-     "rows": 20,
-     "solved": 0,
-     "verified": 0,
+     "rows": 9,
+     "solved": 7,
+     "verified": 7,
      "errors": 0,
-     "median_charged_solved": null,
-     "routes": {}
+     "median_charged_solved": 325,
+     "routes": {
+      "s20_generator": 7
+     }
     },
     "all": {
-     "rows": 200,
-     "solved": 161,
-     "verified": 161,
+     "rows": 188,
+     "solved": 169,
+     "verified": 169,
      "errors": 0,
-     "median_charged_solved": 127,
+     "median_charged_solved": 134,
      "routes": {
-      "s20_generator": 158,
+      "s20_generator": 166,
       "ordinary_bs_escape": 3
      }
     }
@@ -1293,7 +1304,7 @@
   {
    "a": "greedy10k",
    "b": "greedy100k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -1456,7 +1467,7 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -1472,7 +1483,7 @@
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -1488,7 +1499,7 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
      "solved_b": 80,
      "both": 40,
@@ -1524,7 +1535,7 @@
   {
    "a": "greedy10k",
    "b": "s20mk2_10k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -1687,23 +1698,30 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 6,
      "both": 0,
-     "gained": 0,
+     "gained": 6,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -1719,11 +1737,11 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 34,
+     "solved_b": 40,
      "both": 20,
-     "gained": 14,
+     "gained": 20,
      "lost": 20,
      "gained_names": [
       "ac19_9822",
@@ -1739,7 +1757,8 @@
       "ac19_3797",
       "ac19_24379",
       "ac19_35172",
-      "ac19_25941"
+      "ac19_25941",
+      "ac19_23156"
      ],
      "lost_names": [
       "ac19_31704",
@@ -1760,9 +1779,9 @@
      ],
      "mcnemar": {
       "b": 20,
-      "c": 14,
-      "statistic": 0.7352941176470589,
-      "p_value": 0.3911725228101394
+      "c": 20,
+      "statistic": 0.025,
+      "p_value": 0.8743670611628919
      }
     }
    }
@@ -1770,7 +1789,7 @@
   {
    "a": "greedy10k",
    "b": "s20mk2_100k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -1988,23 +2007,32 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 8,
      "both": 0,
-     "gained": 0,
+     "gained": 8,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -2020,11 +2048,11 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 141,
+     "solved_b": 149,
      "both": 40,
-     "gained": 101,
+     "gained": 109,
      "lost": 0,
      "gained_names": [
       "ms_618",
@@ -2046,9 +2074,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 101,
-      "statistic": 99.00990099009901,
-      "p_value": 2.5124252526053165e-23
+      "c": 109,
+      "statistic": 107.0091743119266,
+      "p_value": 4.4311334741389835e-25
      }
     }
    }
@@ -2056,7 +2084,7 @@
   {
    "a": "greedy10k",
    "b": "K3p_notable_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -2286,20 +2314,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 17,
+     "solved_b": 12,
      "both": 0,
-     "gained": 17,
+     "gained": 12,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -2307,38 +2328,50 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_36350",
-      "ac19_57992"
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 17,
-      "statistic": 15.058823529411764,
-      "p_value": 0.00010421194515808897
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 162,
+     "solved_b": 164,
      "both": 37,
-     "gained": 125,
+     "gained": 127,
      "lost": 3,
      "gained_names": [
       "ms_618",
@@ -2364,9 +2397,9 @@
      ],
      "mcnemar": {
       "b": 3,
-      "c": 125,
-      "statistic": 114.3828125,
-      "p_value": 1.0743116672548867e-26
+      "c": 127,
+      "statistic": 116.37692307692308,
+      "p_value": 3.930284956288284e-27
      }
     }
    }
@@ -2374,7 +2407,7 @@
   {
    "a": "greedy10k",
    "b": "K3p_c14aut_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -2601,59 +2634,69 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 20,
+     "solved_b": 19,
      "both": 0,
-     "gained": 20,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_51034",
-      "ac19_59576",
-      "ac19_65753",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
       "ac19_40312",
       "ac19_67055",
-      "ac19_55019"
+      "ac19_55019",
+      "ac19_46363",
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 20,
-      "statistic": 18.05,
-      "p_value": 2.151786437812016e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 9,
      "both": 0,
-     "gained": 0,
+     "gained": 9,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_65753",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_51034",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 9,
+      "statistic": 7.111111111111111,
+      "p_value": 0.007660761135179472
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 180,
+     "solved_b": 188,
      "both": 40,
-     "gained": 140,
+     "gained": 148,
      "lost": 0,
      "gained_names": [
       "ms_618",
@@ -2675,9 +2718,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 140,
-      "statistic": 138.00714285714287,
-      "p_value": 7.261513428684345e-32
+      "c": 148,
+      "statistic": 146.00675675675674,
+      "p_value": 1.293790629583655e-33
      }
     }
    }
@@ -2685,7 +2728,7 @@
   {
    "a": "greedy10k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -2911,20 +2954,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -2932,38 +2968,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 170,
+     "solved_b": 178,
      "both": 40,
-     "gained": 130,
+     "gained": 138,
      "lost": 0,
      "gained_names": [
       "ms_618",
@@ -2985,9 +3036,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 130,
-      "statistic": 128.0076923076923,
-      "p_value": 1.1180878809273512e-29
+      "c": 138,
+      "statistic": 136.0072463768116,
+      "p_value": 1.988035963804334e-31
      }
     }
    }
@@ -2995,7 +3046,7 @@
   {
    "a": "greedy10k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -3221,20 +3272,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -3242,38 +3286,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 161,
+     "solved_b": 169,
      "both": 40,
-     "gained": 121,
+     "gained": 129,
      "lost": 0,
      "gained_names": [
       "ms_617",
@@ -3295,9 +3354,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 121,
-      "statistic": 119.00826446280992,
-      "p_value": 1.0429406665704499e-27
+      "c": 129,
+      "statistic": 127.0077519379845,
+      "p_value": 1.8504929373502094e-29
      }
     }
    }
@@ -3305,7 +3364,7 @@
   {
    "a": "greedy10k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -3531,20 +3590,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -3552,38 +3604,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 40,
-     "solved_b": 161,
+     "solved_b": 169,
      "both": 40,
-     "gained": 121,
+     "gained": 129,
      "lost": 0,
      "gained_names": [
       "ms_617",
@@ -3605,9 +3672,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 121,
-      "statistic": 119.00826446280992,
-      "p_value": 1.0429406665704499e-27
+      "c": 129,
+      "statistic": 127.0077519379845,
+      "p_value": 1.8504929373502094e-29
      }
     }
    }
@@ -3615,7 +3682,7 @@
   {
    "a": "greedy100k",
    "b": "s20mk2_10k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -3810,23 +3877,30 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 6,
      "both": 0,
-     "gained": 0,
+     "gained": 6,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 6,
+      "statistic": 4.166666666666667,
+      "p_value": 0.041226833337163676
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -3842,11 +3916,11 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 34,
+     "solved_b": 40,
      "both": 20,
-     "gained": 14,
+     "gained": 20,
      "lost": 60,
      "gained_names": [
       "ac19_9822",
@@ -3862,7 +3936,8 @@
       "ac19_3797",
       "ac19_24379",
       "ac19_35172",
-      "ac19_25941"
+      "ac19_25941",
+      "ac19_23156"
      ],
      "lost_names": [
       "ac19_31704",
@@ -3883,9 +3958,9 @@
      ],
      "mcnemar": {
       "b": 60,
-      "c": 14,
-      "statistic": 27.364864864864863,
-      "p_value": 1.6846444459037557e-07
+      "c": 20,
+      "statistic": 19.0125,
+      "p_value": 1.2986492541972957e-05
      }
     }
    }
@@ -3893,7 +3968,7 @@
   {
    "a": "greedy100k",
    "b": "s20mk2_100k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -4079,23 +4154,32 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 8,
      "both": 0,
-     "gained": 0,
+     "gained": 8,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 8,
+      "statistic": 6.125,
+      "p_value": 0.013328328780817555
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -4111,11 +4195,11 @@
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 141,
+     "solved_b": 149,
      "both": 80,
-     "gained": 61,
+     "gained": 69,
      "lost": 0,
      "gained_names": [
       "ac19_65219",
@@ -4137,9 +4221,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 61,
-      "statistic": 59.01639344262295,
-      "p_value": 1.563638145784153e-14
+      "c": 69,
+      "statistic": 67.01449275362319,
+      "p_value": 2.695184636965591e-16
      }
     }
    }
@@ -4147,7 +4231,7 @@
   {
    "a": "greedy100k",
    "b": "K3p_notable_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -4350,20 +4434,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 17,
+     "solved_b": 12,
      "both": 0,
-     "gained": 17,
+     "gained": 12,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -4371,38 +4448,50 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_36350",
-      "ac19_57992"
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 17,
-      "statistic": 15.058823529411764,
-      "p_value": 0.00010421194515808897
+      "c": 12,
+      "statistic": 10.083333333333334,
+      "p_value": 0.0014961642897455497
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 162,
+     "solved_b": 164,
      "both": 73,
-     "gained": 89,
+     "gained": 91,
      "lost": 7,
      "gained_names": [
       "ac19_65219",
@@ -4432,9 +4521,9 @@
      ],
      "mcnemar": {
       "b": 7,
-      "c": 89,
-      "statistic": 68.34375,
-      "p_value": 1.3733985083377873e-16
+      "c": 91,
+      "statistic": 70.29591836734694,
+      "p_value": 5.104319870345709e-17
      }
     }
    }
@@ -4442,7 +4531,7 @@
   {
    "a": "greedy100k",
    "b": "K3p_c14aut_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -4637,59 +4726,69 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 20,
+     "solved_b": 19,
      "both": 0,
-     "gained": 20,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_51034",
-      "ac19_59576",
-      "ac19_65753",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
       "ac19_40312",
       "ac19_67055",
-      "ac19_55019"
+      "ac19_55019",
+      "ac19_46363",
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 20,
-      "statistic": 18.05,
-      "p_value": 2.151786437812016e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 9,
      "both": 0,
-     "gained": 0,
+     "gained": 9,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_65753",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_51034",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 9,
+      "statistic": 7.111111111111111,
+      "p_value": 0.007660761135179472
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 180,
+     "solved_b": 188,
      "both": 80,
-     "gained": 100,
+     "gained": 108,
      "lost": 0,
      "gained_names": [
       "ac19_65219",
@@ -4711,9 +4810,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 100,
-      "statistic": 98.01,
-      "p_value": 4.1627504389864034e-23
+      "c": 108,
+      "statistic": 106.00925925925925,
+      "p_value": 7.3391478169291275e-25
      }
     }
    }
@@ -4721,7 +4820,7 @@
   {
    "a": "greedy100k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -4915,20 +5014,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -4936,38 +5028,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 170,
+     "solved_b": 178,
      "both": 80,
-     "gained": 90,
+     "gained": 98,
      "lost": 0,
      "gained_names": [
       "ac19_65219",
@@ -4989,9 +5096,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 90,
-      "statistic": 88.0111111111111,
-      "p_value": 6.5087817252719876e-21
+      "c": 98,
+      "statistic": 96.01020408163265,
+      "p_value": 1.142928783903489e-22
      }
     }
    }
@@ -4999,7 +5106,7 @@
   {
    "a": "greedy100k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -5200,20 +5307,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -5221,38 +5321,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 161,
+     "solved_b": 169,
      "both": 75,
-     "gained": 86,
+     "gained": 94,
      "lost": 5,
      "gained_names": [
       "ac19_65219",
@@ -5280,9 +5395,9 @@
      ],
      "mcnemar": {
       "b": 5,
-      "c": 86,
-      "statistic": 70.32967032967034,
-      "p_value": 5.017729834107224e-17
+      "c": 94,
+      "statistic": 78.22222222222223,
+      "p_value": 9.207683049686058e-19
      }
     }
    }
@@ -5290,7 +5405,7 @@
   {
    "a": "greedy100k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -5491,20 +5606,13 @@
      }
     },
     "9": {
-     "rows": 20,
+     "rows": 19,
      "solved_a": 0,
-     "solved_b": 18,
+     "solved_b": 19,
      "both": 0,
-     "gained": 18,
+     "gained": 19,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -5512,38 +5620,53 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892",
+      "ac19_23156",
+      "ac19_67987"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 19,
+      "statistic": 17.05263157894737,
+      "p_value": 3.635795520299531e-05
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
+     "rows": 188,
      "solved_a": 80,
-     "solved_b": 161,
+     "solved_b": 169,
      "both": 75,
-     "gained": 86,
+     "gained": 94,
      "lost": 5,
      "gained_names": [
       "ac19_65219",
@@ -5571,9 +5694,9 @@
      ],
      "mcnemar": {
       "b": 5,
-      "c": 86,
-      "statistic": 70.32967032967034,
-      "p_value": 5.017729834107224e-17
+      "c": 94,
+      "statistic": 78.22222222222223,
+      "p_value": 9.207683049686058e-19
      }
     }
    }
@@ -5581,7 +5704,7 @@
   {
    "a": "s20mk2_10k",
    "b": "s20mk2_100k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -5806,23 +5929,26 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
-     "gained": 0,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 8,
+     "both": 6,
+     "gained": 2,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_27187",
+      "ac19_50892"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
      "solved_b": 0,
      "both": 0,
@@ -5838,11 +5964,11 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 141,
-     "both": 34,
-     "gained": 107,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 149,
+     "both": 40,
+     "gained": 109,
      "lost": 0,
      "gained_names": [
       "ac19_31704",
@@ -5864,9 +5990,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 107,
-      "statistic": 105.00934579439253,
-      "p_value": 1.2156112990298245e-24
+      "c": 109,
+      "statistic": 107.0091743119266,
+      "p_value": 4.4311334741389835e-25
      }
     }
    }
@@ -5874,7 +6000,7 @@
   {
    "a": "s20mk2_10k",
    "b": "K3p_notable_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -6113,20 +6239,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 17,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 12,
      "both": 0,
-     "gained": 17,
-     "lost": 0,
+     "gained": 12,
+     "lost": 6,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -6134,39 +6253,58 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_36350",
-      "ac19_57992"
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
+     ],
+     "lost_names": [
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
+     "mcnemar": {
+      "b": 6,
+      "c": 12,
+      "statistic": 1.3888888888888888,
+      "p_value": 0.23859282931643544
+     }
+    },
+    "10": {
+     "rows": 9,
+     "solved_a": 0,
+     "solved_b": 7,
+     "both": 0,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 17,
-      "statistic": 15.058823529411764,
-      "p_value": 0.00010421194515808897
-     }
-    },
-    "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
-     "gained": 0,
-     "lost": 0,
-     "gained_names": [],
-     "lost_names": [],
-     "mcnemar": {
-      "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 162,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 164,
      "both": 31,
-     "gained": 131,
-     "lost": 3,
+     "gained": 133,
+     "lost": 9,
      "gained_names": [
       "ac19_31704",
       "ac19_32603",
@@ -6187,13 +6325,19 @@
      "lost_names": [
       "ac19_99",
       "ms_527",
-      "ms_529"
+      "ms_529",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "mcnemar": {
-      "b": 3,
-      "c": 131,
-      "statistic": 120.36567164179104,
-      "p_value": 5.261131424922876e-28
+      "b": 9,
+      "c": 133,
+      "statistic": 106.54225352112677,
+      "p_value": 5.608386746070508e-25
      }
     }
    }
@@ -6201,7 +6345,7 @@
   {
    "a": "s20mk2_10k",
    "b": "K3p_c14aut_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -6437,59 +6581,67 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 20,
-     "both": 0,
-     "gained": 20,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 19,
+     "both": 6,
+     "gained": 13,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_51034",
-      "ac19_59576",
-      "ac19_65753",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
       "ac19_40312",
       "ac19_67055",
-      "ac19_55019"
+      "ac19_55019",
+      "ac19_46363",
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 20,
-      "statistic": 18.05,
-      "p_value": 2.151786437812016e-05
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 9,
      "both": 0,
-     "gained": 0,
+     "gained": 9,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_65753",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_51034",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 9,
+      "statistic": 7.111111111111111,
+      "p_value": 0.007660761135179472
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 180,
-     "both": 34,
-     "gained": 146,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 188,
+     "both": 40,
+     "gained": 148,
      "lost": 0,
      "gained_names": [
       "ac19_31704",
@@ -6511,9 +6663,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 146,
-      "statistic": 144.0068493150685,
-      "p_value": 3.540734274675884e-33
+      "c": 148,
+      "statistic": 146.00675675675674,
+      "p_value": 1.293790629583655e-33
      }
     }
    }
@@ -6521,7 +6673,7 @@
   {
    "a": "s20mk2_10k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -6756,20 +6908,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 19,
+     "both": 6,
+     "gained": 13,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -6777,38 +6922,51 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 170,
-     "both": 34,
-     "gained": 136,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 178,
+     "both": 40,
+     "gained": 138,
      "lost": 0,
      "gained_names": [
       "ac19_31704",
@@ -6830,9 +6988,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 136,
-      "statistic": 134.00735294117646,
-      "p_value": 5.443350609192864e-31
+      "c": 138,
+      "statistic": 136.0072463768116,
+      "p_value": 1.988035963804334e-31
      }
     }
    }
@@ -6840,7 +6998,7 @@
   {
    "a": "s20mk2_10k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -7075,20 +7233,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 19,
+     "both": 6,
+     "gained": 13,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -7096,38 +7247,51 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 161,
-     "both": 34,
-     "gained": 127,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 169,
+     "both": 40,
+     "gained": 129,
      "lost": 0,
      "gained_names": [
       "ac19_31704",
@@ -7149,9 +7313,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 127,
-      "statistic": 125.00787401574803,
-      "p_value": 5.069313883207428e-29
+      "c": 129,
+      "statistic": 127.0077519379845,
+      "p_value": 1.8504929373502094e-29
      }
     }
    }
@@ -7159,7 +7323,7 @@
   {
    "a": "s20mk2_10k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -7394,20 +7558,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 6,
+     "solved_b": 19,
+     "both": 6,
+     "gained": 13,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -7415,38 +7572,51 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206",
+      "ac19_27187",
+      "ac19_50892"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 13,
+      "statistic": 11.076923076923077,
+      "p_value": 0.0008740872112984741
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 34,
-     "solved_b": 161,
-     "both": 34,
-     "gained": 127,
+     "rows": 188,
+     "solved_a": 40,
+     "solved_b": 169,
+     "both": 40,
+     "gained": 129,
      "lost": 0,
      "gained_names": [
       "ac19_31704",
@@ -7468,9 +7638,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 127,
-      "statistic": 125.00787401574803,
-      "p_value": 5.069313883207428e-29
+      "c": 129,
+      "statistic": 127.0077519379845,
+      "p_value": 1.8504929373502094e-29
      }
     }
    }
@@ -7478,7 +7648,7 @@
   {
    "a": "s20mk2_100k",
    "b": "K3p_notable_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -7637,20 +7807,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 17,
-     "both": 0,
-     "gained": 17,
-     "lost": 0,
+     "rows": 19,
+     "solved_a": 8,
+     "solved_b": 12,
+     "both": 2,
+     "gained": 10,
+     "lost": 6,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -7658,39 +7821,56 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_36350",
-      "ac19_57992"
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206"
+     ],
+     "lost_names": [
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
+     ],
+     "mcnemar": {
+      "b": 6,
+      "c": 10,
+      "statistic": 0.5625,
+      "p_value": 0.4532547047537364
+     }
+    },
+    "10": {
+     "rows": 9,
+     "solved_a": 0,
+     "solved_b": 7,
+     "both": 0,
+     "gained": 7,
+     "lost": 0,
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 17,
-      "statistic": 15.058823529411764,
-      "p_value": 0.00010421194515808897
-     }
-    },
-    "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
-     "gained": 0,
-     "lost": 0,
-     "gained_names": [],
-     "lost_names": [],
-     "mcnemar": {
-      "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 141,
-     "solved_b": 162,
-     "both": 132,
+     "rows": 188,
+     "solved_a": 149,
+     "solved_b": 164,
+     "both": 134,
      "gained": 30,
-     "lost": 9,
+     "lost": 15,
      "gained_names": [
       "ac19_27683",
       "ac19_28930",
@@ -7705,8 +7885,8 @@
       "ac19_45019",
       "ac19_72113",
       "ac19_45978",
-      "ac19_16286",
-      "ac19_27254"
+      "ac19_31298",
+      "ac19_12445"
      ],
      "lost_names": [
       "ac19_99",
@@ -7717,13 +7897,19 @@
       "ac19_32559",
       "ac19_353",
       "ac19_65737",
-      "ac19_66724"
+      "ac19_66724",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "mcnemar": {
-      "b": 9,
+      "b": 15,
       "c": 30,
-      "statistic": 10.256410256410257,
-      "p_value": 0.001362104671584203
+      "statistic": 4.355555555555555,
+      "p_value": 0.03688842570704985
      }
     }
    }
@@ -7731,7 +7917,7 @@
   {
    "a": "s20mk2_100k",
    "b": "K3p_c14aut_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -7883,58 +8069,64 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 20,
-     "both": 0,
-     "gained": 20,
+     "rows": 19,
+     "solved_a": 8,
+     "solved_b": 19,
+     "both": 8,
+     "gained": 11,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_51034",
-      "ac19_59576",
-      "ac19_65753",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
       "ac19_40312",
       "ac19_67055",
-      "ac19_55019"
+      "ac19_55019",
+      "ac19_46363",
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 20,
-      "statistic": 18.05,
-      "p_value": 2.151786437812016e-05
+      "c": 11,
+      "statistic": 9.090909090909092,
+      "p_value": 0.002568831527022717
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 9,
      "both": 0,
-     "gained": 0,
+     "gained": 9,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_65753",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_51034",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 9,
+      "statistic": 7.111111111111111,
+      "p_value": 0.007660761135179472
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 141,
-     "solved_b": 180,
-     "both": 141,
+     "rows": 188,
+     "solved_a": 149,
+     "solved_b": 188,
+     "both": 149,
      "gained": 39,
      "lost": 0,
      "gained_names": [
@@ -7967,7 +8159,7 @@
   {
    "a": "s20mk2_100k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -8117,20 +8309,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 8,
+     "solved_b": 19,
+     "both": 8,
+     "gained": 11,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -8138,37 +8323,48 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 11,
+      "statistic": 9.090909090909092,
+      "p_value": 0.002568831527022717
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 141,
-     "solved_b": 170,
-     "both": 139,
+     "rows": 188,
+     "solved_a": 149,
+     "solved_b": 178,
+     "both": 147,
      "gained": 31,
      "lost": 2,
      "gained_names": [
@@ -8185,8 +8381,8 @@
       "ac19_45019",
       "ac19_72113",
       "ac19_45978",
-      "ac19_16286",
-      "ac19_27254"
+      "ac19_31298",
+      "ac19_12445"
      ],
      "lost_names": [
       "ac19_65737",
@@ -8204,7 +8400,7 @@
   {
    "a": "s20mk2_100k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -8365,20 +8561,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 8,
+     "solved_b": 19,
+     "both": 8,
+     "gained": 11,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -8386,37 +8575,48 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 11,
+      "statistic": 9.090909090909092,
+      "p_value": 0.002568831527022717
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 141,
-     "solved_b": 161,
-     "both": 130,
+     "rows": 188,
+     "solved_a": 149,
+     "solved_b": 169,
+     "both": 138,
      "gained": 31,
      "lost": 11,
      "gained_names": [
@@ -8433,8 +8633,8 @@
       "ac19_45019",
       "ac19_72113",
       "ac19_45978",
-      "ac19_16286",
-      "ac19_27254"
+      "ac19_31298",
+      "ac19_12445"
      ],
      "lost_names": [
       "ms_618",
@@ -8461,7 +8661,7 @@
   {
    "a": "s20mk2_100k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -8622,20 +8822,13 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 18,
-     "both": 0,
-     "gained": 18,
+     "rows": 19,
+     "solved_a": 8,
+     "solved_b": 19,
+     "both": 8,
+     "gained": 11,
      "lost": 0,
      "gained_names": [
-      "ac19_16286",
-      "ac19_27254",
-      "ac19_28131",
-      "ac19_44381",
-      "ac19_50841",
-      "ac19_59576",
-      "ac19_7284",
       "ac19_31298",
       "ac19_12445",
       "ac19_54835",
@@ -8643,37 +8836,48 @@
       "ac19_67055",
       "ac19_55019",
       "ac19_46363",
-      "ac19_36350"
+      "ac19_36350",
+      "ac19_57992",
+      "ac19_20270",
+      "ac19_65206"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 11,
+      "statistic": 9.090909090909092,
+      "p_value": 0.002568831527022717
      }
     },
     "10": {
-     "rows": 20,
+     "rows": 9,
      "solved_a": 0,
-     "solved_b": 0,
+     "solved_b": 7,
      "both": 0,
-     "gained": 0,
+     "gained": 7,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_28131",
+      "ac19_44381",
+      "ac19_59576",
+      "ac19_16286",
+      "ac19_7284",
+      "ac19_50841",
+      "ac19_27254"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 141,
-     "solved_b": 161,
-     "both": 130,
+     "rows": 188,
+     "solved_a": 149,
+     "solved_b": 169,
+     "both": 138,
      "gained": 31,
      "lost": 11,
      "gained_names": [
@@ -8690,8 +8894,8 @@
       "ac19_45019",
       "ac19_72113",
       "ac19_45978",
-      "ac19_16286",
-      "ac19_27254"
+      "ac19_31298",
+      "ac19_12445"
      ],
      "lost_names": [
       "ms_618",
@@ -8718,7 +8922,7 @@
   {
    "a": "K3p_notable_1k",
    "b": "K3p_c14aut_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -8869,47 +9073,54 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 17,
-     "solved_b": 20,
-     "both": 17,
-     "gained": 3,
+     "rows": 19,
+     "solved_a": 12,
+     "solved_b": 19,
+     "both": 12,
+     "gained": 7,
      "lost": 0,
      "gained_names": [
-      "ac19_51034",
-      "ac19_65753",
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 3,
-      "statistic": 1.3333333333333333,
-      "p_value": 0.24821307898992362
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
-     "gained": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 9,
+     "both": 7,
+     "gained": 2,
      "lost": 0,
-     "gained_names": [],
+     "gained_names": [
+      "ac19_65753",
+      "ac19_51034"
+     ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 0,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 2,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 162,
-     "solved_b": 180,
-     "both": 162,
-     "gained": 18,
+     "rows": 188,
+     "solved_a": 164,
+     "solved_b": 188,
+     "both": 164,
+     "gained": 24,
      "lost": 0,
      "gained_names": [
       "ac19_99",
@@ -8931,9 +9142,9 @@
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 18,
-      "statistic": 16.055555555555557,
-      "p_value": 6.151089035272801e-05
+      "c": 24,
+      "statistic": 22.041666666666668,
+      "p_value": 2.667954593624791e-06
      }
     }
    }
@@ -8941,7 +9152,7 @@
   {
    "a": "K3p_notable_1k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -9081,28 +9292,34 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 17,
-     "solved_b": 18,
-     "both": 17,
-     "gained": 1,
+     "rows": 19,
+     "solved_a": 12,
+     "solved_b": 19,
+     "both": 12,
+     "gained": 7,
      "lost": 0,
      "gained_names": [
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 1,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -9115,11 +9332,11 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 162,
-     "solved_b": 170,
-     "both": 162,
-     "gained": 8,
+     "rows": 188,
+     "solved_a": 164,
+     "solved_b": 178,
+     "both": 164,
+     "gained": 14,
      "lost": 0,
      "gained_names": [
       "ac19_99",
@@ -9129,14 +9346,20 @@
       "ac19_67821",
       "ac19_32559",
       "ac19_353",
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 8,
-      "statistic": 6.125,
-      "p_value": 0.013328328780817555
+      "c": 14,
+      "statistic": 12.071428571428571,
+      "p_value": 0.0005120045221899043
      }
     }
    }
@@ -9144,7 +9367,7 @@
   {
    "a": "K3p_notable_1k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -9296,28 +9519,34 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 17,
-     "solved_b": 18,
-     "both": 17,
-     "gained": 1,
+     "rows": 19,
+     "solved_a": 12,
+     "solved_b": 19,
+     "both": 12,
+     "gained": 7,
      "lost": 0,
      "gained_names": [
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 1,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -9330,11 +9559,11 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 162,
-     "solved_b": 161,
-     "both": 153,
-     "gained": 8,
+     "rows": 188,
+     "solved_a": 164,
+     "solved_b": 169,
+     "both": 155,
+     "gained": 14,
      "lost": 9,
      "gained_names": [
       "ac19_99",
@@ -9344,7 +9573,13 @@
       "ac19_67821",
       "ac19_32559",
       "ac19_353",
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [
       "ms_618",
@@ -9359,9 +9594,9 @@
      ],
      "mcnemar": {
       "b": 9,
-      "c": 8,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 14,
+      "statistic": 0.6956521739130435,
+      "p_value": 0.404248494739471
      }
     }
    }
@@ -9369,7 +9604,7 @@
   {
    "a": "K3p_notable_1k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -9521,28 +9756,34 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 17,
-     "solved_b": 18,
-     "both": 17,
-     "gained": 1,
+     "rows": 19,
+     "solved_a": 12,
+     "solved_b": 19,
+     "both": 12,
+     "gained": 7,
      "lost": 0,
      "gained_names": [
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [],
      "mcnemar": {
       "b": 0,
-      "c": 1,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 7,
+      "statistic": 5.142857142857143,
+      "p_value": 0.02334220201289082
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -9555,11 +9796,11 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 162,
-     "solved_b": 161,
-     "both": 153,
-     "gained": 8,
+     "rows": 188,
+     "solved_a": 164,
+     "solved_b": 169,
+     "both": 155,
+     "gained": 14,
      "lost": 9,
      "gained_names": [
       "ac19_99",
@@ -9569,7 +9810,13 @@
       "ac19_67821",
       "ac19_32559",
       "ac19_353",
-      "ac19_46363"
+      "ac19_46363",
+      "ac19_23156",
+      "ac19_67987",
+      "ac19_56970",
+      "ac19_28510",
+      "ac19_61253",
+      "ac19_15507"
      ],
      "lost_names": [
       "ms_618",
@@ -9584,9 +9831,9 @@
      ],
      "mcnemar": {
       "b": 9,
-      "c": 8,
-      "statistic": 0.0,
-      "p_value": 1.0
+      "c": 14,
+      "statistic": 0.6956521739130435,
+      "p_value": 0.404248494739471
      }
     }
    }
@@ -9594,7 +9841,7 @@
   {
    "a": "K3p_c14aut_1k",
    "b": "aut_edges_s20_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -9736,29 +9983,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 20,
-     "solved_b": 18,
-     "both": 18,
-     "gained": 0,
-     "lost": 2,
-     "gained_names": [],
-     "lost_names": [
-      "ac19_51034",
-      "ac19_65753"
-     ],
-     "mcnemar": {
-      "b": 2,
-      "c": 0,
-      "statistic": 0.5,
-      "p_value": 0.4795001221869535
-     }
-    },
-    "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -9770,11 +9998,30 @@
       "p_value": 1.0
      }
     },
+    "10": {
+     "rows": 9,
+     "solved_a": 9,
+     "solved_b": 7,
+     "both": 7,
+     "gained": 0,
+     "lost": 2,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_65753",
+      "ac19_51034"
+     ],
+     "mcnemar": {
+      "b": 2,
+      "c": 0,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
     "all": {
-     "rows": 200,
-     "solved_a": 180,
-     "solved_b": 170,
-     "both": 170,
+     "rows": 188,
+     "solved_a": 188,
+     "solved_b": 178,
+     "both": 178,
      "gained": 0,
      "lost": 10,
      "gained_names": [],
@@ -9787,8 +10034,8 @@
       "ac19_49095",
       "ac19_54765",
       "ac19_54616",
-      "ac19_51034",
-      "ac19_65753"
+      "ac19_65753",
+      "ac19_51034"
      ],
      "mcnemar": {
       "b": 10,
@@ -9802,7 +10049,7 @@
   {
    "a": "K3p_c14aut_1k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -9955,29 +10202,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 20,
-     "solved_b": 18,
-     "both": 18,
-     "gained": 0,
-     "lost": 2,
-     "gained_names": [],
-     "lost_names": [
-      "ac19_51034",
-      "ac19_65753"
-     ],
-     "mcnemar": {
-      "b": 2,
-      "c": 0,
-      "statistic": 0.5,
-      "p_value": 0.4795001221869535
-     }
-    },
-    "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -9989,11 +10217,30 @@
       "p_value": 1.0
      }
     },
+    "10": {
+     "rows": 9,
+     "solved_a": 9,
+     "solved_b": 7,
+     "both": 7,
+     "gained": 0,
+     "lost": 2,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_65753",
+      "ac19_51034"
+     ],
+     "mcnemar": {
+      "b": 2,
+      "c": 0,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
     "all": {
-     "rows": 200,
-     "solved_a": 180,
-     "solved_b": 161,
-     "both": 161,
+     "rows": 188,
+     "solved_a": 188,
+     "solved_b": 169,
+     "both": 169,
      "gained": 0,
      "lost": 19,
      "gained_names": [],
@@ -10026,7 +10273,7 @@
   {
    "a": "K3p_c14aut_1k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -10179,29 +10426,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 20,
-     "solved_b": 18,
-     "both": 18,
-     "gained": 0,
-     "lost": 2,
-     "gained_names": [],
-     "lost_names": [
-      "ac19_51034",
-      "ac19_65753"
-     ],
-     "mcnemar": {
-      "b": 2,
-      "c": 0,
-      "statistic": 0.5,
-      "p_value": 0.4795001221869535
-     }
-    },
-    "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10213,11 +10441,30 @@
       "p_value": 1.0
      }
     },
+    "10": {
+     "rows": 9,
+     "solved_a": 9,
+     "solved_b": 7,
+     "both": 7,
+     "gained": 0,
+     "lost": 2,
+     "gained_names": [],
+     "lost_names": [
+      "ac19_65753",
+      "ac19_51034"
+     ],
+     "mcnemar": {
+      "b": 2,
+      "c": 0,
+      "statistic": 0.5,
+      "p_value": 0.4795001221869535
+     }
+    },
     "all": {
-     "rows": 200,
-     "solved_a": 180,
-     "solved_b": 161,
-     "both": 161,
+     "rows": 188,
+     "solved_a": 188,
+     "solved_b": 169,
+     "both": 169,
      "gained": 0,
      "lost": 19,
      "gained_names": [],
@@ -10250,7 +10497,7 @@
   {
    "a": "aut_edges_s20_1k",
    "b": "frozen_reallocated_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -10393,10 +10640,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 18,
-     "solved_b": 18,
-     "both": 18,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10409,10 +10656,10 @@
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10425,10 +10672,10 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 170,
-     "solved_b": 161,
-     "both": 161,
+     "rows": 188,
+     "solved_a": 178,
+     "solved_b": 169,
+     "both": 169,
      "gained": 0,
      "lost": 9,
      "gained_names": [],
@@ -10455,7 +10702,7 @@
   {
    "a": "aut_edges_s20_1k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -10598,10 +10845,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 18,
-     "solved_b": 18,
-     "both": 18,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10614,10 +10861,10 @@
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10630,10 +10877,10 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 170,
-     "solved_b": 161,
-     "both": 161,
+     "rows": 188,
+     "solved_a": 178,
+     "solved_b": 169,
+     "both": 169,
      "gained": 0,
      "lost": 9,
      "gained_names": [],
@@ -10660,7 +10907,7 @@
   {
    "a": "frozen_reallocated_1k",
    "b": "incumbent_1k",
-   "common_rows": 200,
+   "common_rows": 188,
    "per_level": {
     "1": {
      "rows": 20,
@@ -10791,10 +11038,10 @@
      }
     },
     "9": {
-     "rows": 20,
-     "solved_a": 18,
-     "solved_b": 18,
-     "both": 18,
+     "rows": 19,
+     "solved_a": 19,
+     "solved_b": 19,
+     "both": 19,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10807,10 +11054,10 @@
      }
     },
     "10": {
-     "rows": 20,
-     "solved_a": 0,
-     "solved_b": 0,
-     "both": 0,
+     "rows": 9,
+     "solved_a": 7,
+     "solved_b": 7,
+     "both": 7,
      "gained": 0,
      "lost": 0,
      "gained_names": [],
@@ -10823,10 +11070,10 @@
      }
     },
     "all": {
-     "rows": 200,
-     "solved_a": 161,
-     "solved_b": 161,
-     "both": 161,
+     "rows": 188,
+     "solved_a": 169,
+     "solved_b": 169,
+     "both": 169,
      "gained": 0,
      "lost": 0,
      "gained_names": [],

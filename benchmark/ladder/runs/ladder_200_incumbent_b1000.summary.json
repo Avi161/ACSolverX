@@ -1,6 +1,6 @@
 {
  "panel": "benchmark/ladder/ladder_200.csv",
- "panel_sha256": "3e68646c927475ca291094a1cce41b059f9318a1ea70586a834768956524a34c",
+ "panel_sha256": "a159312c4a64cc93992b817a6e44c1911936720902c5c23fe6d06224ae71ca67",
  "engine": "policy",
  "policy": "incumbent",
  "budget": 1000,
@@ -9,9 +9,9 @@
  "levels_filter": null,
  "workers": 1,
  "tag": "ladder_200_incumbent_b1000",
- "rows": 200,
- "solved": 154,
- "verified": 154,
+ "rows": 188,
+ "solved": 161,
+ "verified": 161,
  "errors": 0,
  "unsolved_names": [
   "ms_581",
@@ -39,33 +39,14 @@
   "ac19_66724",
   "ac19_54765",
   "ac19_39288",
-  "ac19_51034",
-  "aca_54",
-  "aca_115",
-  "aca_99",
-  "aca_28",
-  "aca_82",
-  "aca_38",
-  "aca_65",
-  "aca_98",
-  "aca_2",
-  "aca_46",
-  "aca_75",
-  "aca_107",
-  "aca_12",
-  "aca_20",
-  "aca_0",
-  "aca_59",
-  "aca_89",
-  "aca_119",
-  "aca_24",
-  "aca_36"
+  "ac19_65753",
+  "ac19_51034"
  ],
- "total_nodes": 81813,
- "median_nodes_solved": 149.0,
- "search_wall": 71.533,
- "certificate_wall": 1.186,
- "run_wall": 72.914,
+ "total_nodes": 65271,
+ "median_nodes_solved": 156,
+ "search_wall": 50.222,
+ "certificate_wall": 1.256,
+ "run_wall": 3.724,
  "by_level": {
   "1": {
    "rows": 20,
@@ -140,28 +121,28 @@
    "search_wall": 3.695
   },
   "9": {
-   "rows": 20,
+   "rows": 19,
    "solved": 19,
    "verified": 19,
    "errors": 0,
-   "median_nodes_solved": 346,
-   "total_nodes": 9893,
-   "search_wall": 8.003
+   "median_nodes_solved": 420,
+   "total_nodes": 9157,
+   "search_wall": 7.688
   },
   "10": {
-   "rows": 20,
-   "solved": 0,
-   "verified": 0,
+   "rows": 9,
+   "solved": 7,
+   "verified": 7,
    "errors": 0,
-   "median_nodes_solved": null,
-   "total_nodes": 20000,
-   "search_wall": 24.805
+   "median_nodes_solved": 325,
+   "total_nodes": 4194,
+   "search_wall": 3.809
   }
  },
  "routes": {
-  "ordinary_bs_escape": 40,
-  "s20_generator": 160
+  "ordinary_bs_escape": 30,
+  "s20_generator": 158
  },
- "git_head": "460904f9850ee20e3fe7772704a17db36f44f707",
- "created_unix": 1789074985
+ "git_head": "f20382e17bc2e6206a06b1ee656bef0f6386f38c",
+ "created_unix": 1789090463
 }
