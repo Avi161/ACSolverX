@@ -1,0 +1,265 @@
+{
+ "rechecked": 16,
+ "identical": 16,
+ "mismatches": [],
+ "cap": 128,
+ "recheck_cap": 255,
+ "rows": [
+  {
+   "cls": "aca_105",
+   "k": 47,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 52,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 52,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_105",
+   "k": 50,
+   "start_len": 135,
+   "cap128": {
+    "min_len": 57,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "cap255": {
+    "min_len": 57,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_106",
+   "k": 47,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 60,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 60,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_106",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 50,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 50,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_107",
+   "k": 47,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 87,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 87,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_108",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 44,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 44,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_109",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 46,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 46,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_110",
+   "k": 47,
+   "start_len": 135,
+   "cap128": {
+    "min_len": 98,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "cap255": {
+    "min_len": 98,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_110",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 81,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 81,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_111",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 44,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 44,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_112",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 46,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 46,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_113",
+   "k": 47,
+   "start_len": 135,
+   "cap128": {
+    "min_len": 99,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "cap255": {
+    "min_len": 99,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_113",
+   "k": 50,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 81,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 81,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_114",
+   "k": 47,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 89,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 89,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_99",
+   "k": 47,
+   "start_len": 129,
+   "cap128": {
+    "min_len": 52,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "cap255": {
+    "min_len": 52,
+    "pops": 10000,
+    "max_len_expanded": 129
+   },
+   "identical": true
+  },
+  {
+   "cls": "aca_99",
+   "k": 50,
+   "start_len": 135,
+   "cap128": {
+    "min_len": 57,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "cap255": {
+    "min_len": 57,
+    "pops": 10000,
+    "max_len_expanded": 135
+   },
+   "identical": true
+  }
+ ]
+}

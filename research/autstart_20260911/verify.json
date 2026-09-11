@@ -1,0 +1,91 @@
+{
+ "records": 1836,
+ "ok": 1836,
+ "failures": [],
+ "cap": 128,
+ "longest_state_expanded": 135,
+ "cap_could_have_bound": [
+  {
+   "cls": "aca_105",
+   "k": 47,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_105",
+   "k": 50,
+   "max_len_expanded": 135
+  },
+  {
+   "cls": "aca_106",
+   "k": 47,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_106",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_107",
+   "k": 47,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_108",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_109",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_110",
+   "k": 47,
+   "max_len_expanded": 135
+  },
+  {
+   "cls": "aca_110",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_111",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_112",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_113",
+   "k": 47,
+   "max_len_expanded": 135
+  },
+  {
+   "cls": "aca_113",
+   "k": 50,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_114",
+   "k": 47,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_99",
+   "k": 47,
+   "max_len_expanded": 129
+  },
+  {
+   "cls": "aca_99",
+   "k": 50,
+   "max_len_expanded": 135
+  }
+ ],
+ "starts_sha256": "dacc4db64ef05ebf436365c2f76babd8ba4b5b0e9a02b1416e58d5a7978a624e",
+ "results_sha256": "9abb6fdb3a0bf9b0d641b36f7d872dcc2282dc0854b07280e0598ba085266e55"
+}

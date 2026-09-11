@@ -297,11 +297,31 @@ def report():
         by_cls[cls][k] = r
     tg = {t['cls']: t for t in targets()}
     lines = ['# Automorphic starts as reduction finders: the 36 reducible u124 classes', '']
+    depths = Counter(r['depth'] for (cls, k), r in recs.items() if k > 0)
     lines.append(f'Plain greedy, {BUDGET:,} pops, cap {CAP}, from the initial form (k = 0) and {N_AUT} '
                  'relabel-distinct automorphic images of it (compositions of the 12 length-changing Whitehead '
-                 'automorphisms, depth 1 then 2, applied once at the start). `min` = smallest total length of '
-                 'any state the search discovered; every `min` state is replayed from its start '
-                 '(`verify.json`).', '')
+                 'automorphisms, from depth 1 up; starts per depth: '
+                 + ', '.join(f'{d}: {c}' for d, c in sorted(depths.items())) +
+                 '), applied once at the start and never during the search. The queue holds pure AC '
+                 'moves; nothing is Whitehead-reduced on the way. `min` = smallest total length of any '
+                 'state the search discovered; every `min` state is replayed from its start '
+                 '(`verify.json`).')
+    lines.append('')
+    ver = json.loads((HERE / 'verify.json').read_text())
+    rc_path = HERE / 'recheck.json'
+    rc = json.loads(rc_path.read_text()) if rc_path.exists() else None
+    lines.append(f'Verification: {ver["ok"]} / {ver["records"]} records replay; longest state expanded '
+                 f'{ver["longest_state_expanded"]} letters against cap {CAP}. '
+                 f'{len(ver["cap_could_have_bound"])} starts (all of them longer than {CAP} themselves) popped '
+                 'a state above the cap' +
+                 (f'; re-run at cap {rc["recheck_cap"]}: {rc["identical"]} / {rc["rechecked"]} identical '
+                  '(min length, pops, solved), so the cap never changed a result (`recheck.json`).'
+                  if rc else '.'))
+    lines.append('')
+    lines.append('Columns: `best known` is the length of the aca_best form (our aca_reduced); `identity start min` '
+                 'and `best aut start min` are what the same 10k-pop budget reaches from the initial form and from '
+                 'the best of the 50 automorphic images.')
+    lines.append('')
     lines.append('| class | initial | best known | identity start min | best aut start min | k | depth | phi | '
                  'start len | at depth | < initial | <= best | < best |')
     lines.append('|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|---|---|')
@@ -330,8 +350,14 @@ def report():
             n_aut_better_than_id += 1
             wins[(best_aut['phi_x'], best_aut['phi_y'])] += 1
         flag = lambda b: 'yes' if b else '-'
-        lines.append(f"| {cls} | {li} | {lb} | {id_min} | {a_min} | {best_aut['k']} | {best_aut['depth']} | "
-                     f"x->{best_aut['phi_x']}, y->{best_aut['phi_y']} | {best_aut['start_len']} | {best_aut['min_depth']} | "
+        # name the winning start only where an automorphic start actually beat the identity start;
+        # otherwise the 'best' one is just the first of a tie
+        if best_aut is not None and id_min is not None and a_min < id_min:
+            who = (f"{best_aut['k']} | {best_aut['depth']} | x->{best_aut['phi_x']}, y->{best_aut['phi_y']} | "
+                   f"{best_aut['start_len']} | {best_aut['min_depth']}")
+        else:
+            who = '- | - | - | - | -'
+        lines.append(f"| {cls} | {li} | {lb} | {id_min} | {a_min} | {who} | "
                      f"{flag(any_min < li)} | {flag(any_min <= lb)} | {flag(any_min < lb)} |")
     n = len(by_cls)
     lines += ['', '## Totals', '',
