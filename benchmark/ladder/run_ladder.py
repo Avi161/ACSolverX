@@ -267,6 +267,8 @@ def main(argv=None):
     ap.add_argument('--cap', type=int, default=48, help='max relator length for the pop engines (default 48; '
                                                          '24 reproduces the ms640 grading)')
     ap.add_argument('--workers', type=int, default=1)
+    ap.add_argument('--big-workers', action='store_true',
+                    help=f'keep --workers above {ONE_WORKER_ABOVE:,} pops (each 1M-pop worker holds a few GB)')
     ap.add_argument('--out', type=Path, default=HERE / 'runs')
     ap.add_argument('--tag', default=None)
     ap.add_argument('--force', action='store_true', help='discard an existing <tag>.jsonl instead of resuming')
@@ -289,8 +291,9 @@ def main(argv=None):
         if args.budget > BIG_BUDGET and os.environ.get('LADDER_ALLOW_BIG') != '1':
             sys.exit(f'--budget {args.budget:,} > {BIG_BUDGET:,}: the compact engine reserves ~6 GB per '
                      f'1,000,000 pops; set LADDER_ALLOW_BIG=1 to run anyway')
-        if args.budget > ONE_WORKER_ABOVE and args.workers != 1:
-            print(f'[run_ladder] budget {args.budget:,} > {ONE_WORKER_ABOVE:,}: forcing --workers 1 (memory)')
+        if args.budget > ONE_WORKER_ABOVE and args.workers != 1 and not args.big_workers:
+            print(f'[run_ladder] budget {args.budget:,} > {ONE_WORKER_ABOVE:,}: forcing --workers 1 (memory; '
+                  f'--big-workers keeps them)')
             args.workers = 1
 
     panel_path, rows = load_rows(args)
