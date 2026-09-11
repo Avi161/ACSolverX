@@ -1,0 +1,56 @@
+{
+  "seed": 20260909,
+  "script": "research/residual_20260909/panels/build_panels.py",
+  "inputs": {
+    "unsolved_csv": "results/heuristic_search/ac19_final_policy_full_1k/unsolved.csv",
+    "shards_glob": "results/heuristic_search/ac19_final_policy_full_1k/rows_*.jsonl",
+    "members_csv": "data/AC19_extended_aut_min.csv"
+  },
+  "counts": {
+    "residual_total": 727,
+    "dev": 102,
+    "val": 102,
+    "test": 101,
+    "rest": 422,
+    "near_limit_900_pool": 612,
+    "near_limit_900_by_route": {
+      "incumbent_restart": 612
+    },
+    "near_limit_950_pool": 301,
+    "regression60": 60
+  },
+  "files": {
+    "features_727.csv": {
+      "sha256": "39c32a5249cb01fad0884ebf2efc64fcbc46ce95c22a613742ac1b17447e7310",
+      "rows": 727
+    },
+    "clusters.csv": {
+      "sha256": "a70847e5ef0d5550d90ad90177ad10edae0e5bf32f363ab0df7560ac2a0910bd",
+      "rows": 727
+    },
+    "dev.csv": {
+      "sha256": "fe7512415e32039437c6856909f3e28fcf278a331002cc726be2f4e01efe7a03",
+      "rows": 102
+    },
+    "val.csv": {
+      "sha256": "47c17384ffb3ab925023def34f6a421ad5ab55a9927a270fc014f779a084b67c",
+      "rows": 102
+    },
+    "test.csv": {
+      "sha256": "4daf7a5aa76705b029d5f68cc0fdeb4b682c6765c5d19645bf1822c97bcb9205",
+      "rows": 101
+    },
+    "rest.csv": {
+      "sha256": "69bbd05684afce951ca03d0d816f44abbca9d1379982651be2f3e9fc8286838a",
+      "rows": 422
+    },
+    "regression60.csv": {
+      "sha256": "8abe9188e3ca27d0a749d1cb4272e5223421396c9d77f7e68794ede588a8c37f",
+      "rows": 60
+    },
+    "regression_all_near_limit.csv": {
+      "sha256": "a206bc9bb5b718213486de5e71bafc6dce8ca318786cc58d03d1fa87ac4a0c67",
+      "rows": 301
+    }
+  }
+}

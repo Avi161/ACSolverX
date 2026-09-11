@@ -1,0 +1,21 @@
+{
+ "checked": 2,
+ "ok": 2,
+ "failed": 0,
+ "records": 3458,
+ "per_file": {
+  "phase1.jsonl": {
+   "records": 3238,
+   "checked": 0,
+   "ok": 0,
+   "failed": 0
+  },
+  "phase2.jsonl": {
+   "records": 220,
+   "checked": 2,
+   "ok": 2,
+   "failed": 0
+  }
+ },
+ "failures": []
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.partial
+# Tables with cap >= 12 are regenerable in minutes (python -m research.residual_20260909.backward_table --cap 12);
+# their manifests (hashes, sizes, depth histograms) are committed, the pickles are not.
+tables/ball_cap12*.pkl
+tables/ball_cap1[3-9]*.pkl
+# Compact tables likewise: cap-12 aut is 32 MB and cap-14 aut is 269 MB (python -m research.residual_20260909.backward_table --cap 14 --aut-edges --compact); only the .npz.manifest.json files are committed.
+tables/ball_cap1[2-9]*.npz
+census_scratch/

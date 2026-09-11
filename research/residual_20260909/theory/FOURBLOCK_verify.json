@@ -1,0 +1,1250 @@
+{
+ "classification": {
+  "tuples": 10000,
+  "predicted_primitive": 64,
+  "mismatches": 0,
+  "limit": 5
+ },
+ "planted_F1": [
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    2
+   ],
+   "pair": [
+    "YXYXX",
+    "YYYXXXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 143,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 93
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    2
+   ],
+   "pair": [
+    "YXYXX",
+    "YYYXXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 110,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 63
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    2
+   ],
+   "pair": [
+    "YXX",
+    "YXYXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    2
+   ],
+   "pair": [
+    "YX",
+    "YXYXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 33,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "pair": [
+    "YXXX",
+    "YXXYXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    2,
+    1,
+    3
+   ],
+   "pair": [
+    "YXX",
+    "YXXYXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -2,
+    -1,
+    -3
+   ],
+   "pair": [
+    "YXXX",
+    "YXXYXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -2,
+    -1,
+    -3
+   ],
+   "pair": [
+    "YXX",
+    "YXXYXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -2,
+    1,
+    -1
+   ],
+   "pair": [
+    "YxYxx",
+    "YYYxxxxx"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 139,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 89
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -2,
+    1,
+    -1
+   ],
+   "pair": [
+    "YxYxx",
+    "YYYxxxx"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 108,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 61
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -2,
+    1,
+    -1
+   ],
+   "pair": [
+    "Yxx",
+    "YxYxx"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 36,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 5
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -2,
+    1,
+    -1
+   ],
+   "pair": [
+    "Yx",
+    "YxYxx"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 33,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    3,
+    1,
+    2
+   ],
+   "pair": [
+    "YXXX",
+    "YXXYXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    3,
+    1,
+    2
+   ],
+   "pair": [
+    "YXX",
+    "YXXYXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    4,
+    -1,
+    3
+   ],
+   "pair": [
+    "Yxxxx",
+    "YxxxYxxxx"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 38,
+   "reason": null,
+   "nielsen_steps": 3,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 5
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    4,
+    -1,
+    3
+   ],
+   "pair": [
+    "Yxxx",
+    "YxxxYxxxx"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 3,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    2,
+    1,
+    3,
+    1
+   ],
+   "pair": [
+    "YYYX",
+    "YYYXYYX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    2,
+    1,
+    3,
+    1
+   ],
+   "pair": [
+    "YYX",
+    "YYYXYYX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -3,
+    -1,
+    -2,
+    -1
+   ],
+   "pair": [
+    "YYYX",
+    "YYYXYYX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -3,
+    -1,
+    -2,
+    -1
+   ],
+   "pair": [
+    "YYX",
+    "YYYXYYX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 2,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    5,
+    1,
+    4
+   ],
+   "pair": [
+    "YXXXXX",
+    "YXXXXYXXXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 37,
+   "reason": null,
+   "nielsen_steps": 4,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    5,
+    1,
+    4
+   ],
+   "pair": [
+    "YXXXX",
+    "YXXXXYXXXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 36,
+   "reason": null,
+   "nielsen_steps": 4,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -1,
+    -1,
+    -2
+   ],
+   "pair": [
+    "YXYXX",
+    "YYYXXXXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 143,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 93
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -1,
+    -1,
+    -2
+   ],
+   "pair": [
+    "YXYXX",
+    "YYYXXXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 110,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 63
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -1,
+    -1,
+    -2
+   ],
+   "pair": [
+    "YXX",
+    "YXYXX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 34,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    -1,
+    -1,
+    -1,
+    -2
+   ],
+   "pair": [
+    "YX",
+    "YXYXX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 33,
+   "reason": null,
+   "nielsen_steps": 1,
+   "map": "y->yX",
+   "merged": "YYX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -3,
+    1,
+    -4
+   ],
+   "pair": [
+    "Yxxxx",
+    "YxxxYxxxx"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 38,
+   "reason": null,
+   "nielsen_steps": 3,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 5
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    1,
+    -3,
+    1,
+    -4
+   ],
+   "pair": [
+    "Yxxx",
+    "YxxxYxxxx"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 35,
+   "reason": null,
+   "nielsen_steps": 3,
+   "map": "y->yx",
+   "merged": "YYx",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    4,
+    1,
+    5,
+    1
+   ],
+   "pair": [
+    "YYYYYX",
+    "YYYYYXYYYYX"
+   ],
+   "det": -1,
+   "solved": true,
+   "replayed": true,
+   "work": 37,
+   "reason": null,
+   "nielsen_steps": 4,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "planted_F1",
+   "tuple": [
+    4,
+    1,
+    5,
+    1
+   ],
+   "pair": [
+    "YYYYX",
+    "YYYYYXYYYYX"
+   ],
+   "det": 1,
+   "solved": true,
+   "replayed": true,
+   "work": 36,
+   "reason": null,
+   "nielsen_steps": 4,
+   "map": "x->xY",
+   "merged": "YXX",
+   "elementary_moves": 3
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    3
+   ],
+   "donor": "YXYXXX",
+   "why": "|b-d| = 2: merged word is y^2 x^2, never unimodular",
+   "companions_tested": 0,
+   "recognized": 0,
+   "merge_data": {
+    "gen": "y",
+    "k": -1,
+    "exponent": -2,
+    "map_index": 3,
+    "merged": "YYXX",
+    "primitive": false,
+    "tuple": [
+     -1,
+     -1,
+     -1,
+     -3
+    ]
+   }
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    4
+   ],
+   "donor": "YXYXXXX",
+   "why": "|b-d| = 3: merged word is the torus relator y^2 x^3",
+   "companions_tested": 2,
+   "recognized": 0,
+   "merge_data": {
+    "gen": "y",
+    "k": -1,
+    "exponent": -3,
+    "map_index": 3,
+    "merged": "YYXXX",
+    "primitive": false,
+    "tuple": [
+     -1,
+     -1,
+     -1,
+     -4
+    ]
+   }
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    2,
+    1,
+    5
+   ],
+   "donor": "YXXYXXXXX",
+   "why": "|b-d| = 3: torus (2,3) again",
+   "companions_tested": 2,
+   "recognized": 0,
+   "merge_data": {
+    "gen": "y",
+    "k": -2,
+    "exponent": -3,
+    "map_index": 3,
+    "merged": "YYXXX",
+    "primitive": false,
+    "tuple": [
+     -1,
+     -2,
+     -1,
+     -5
+    ]
+   }
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    2,
+    -1,
+    3
+   ],
+   "donor": "YXXXyXX",
+   "why": "a = -c: a Baumslag-Solitar relator, not mergeable",
+   "companions_tested": 0,
+   "recognized": 0,
+   "merge_data": null
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    2,
+    1,
+    2,
+    2
+   ],
+   "donor": "YYXYYXX",
+   "why": "|a| = |c| = 2: no Nielsen map merges the y-blocks",
+   "companions_tested": 3,
+   "recognized": 0,
+   "merge_data": null
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    2,
+    1,
+    3,
+    2
+   ],
+   "donor": "YYYXYYXX",
+   "why": "no matching pair of blocks of absolute value 1",
+   "companions_tested": 2,
+   "recognized": 0,
+   "merge_data": null
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    1,
+    -1,
+    2
+   ],
+   "donor": "YXXyX",
+   "why": "a = -c again (stable run 1)",
+   "companions_tested": 0,
+   "recognized": 0,
+   "merge_data": null
+  },
+  {
+   "kind": "adversarial_F1",
+   "tuple": [
+    1,
+    1,
+    1,
+    6
+   ],
+   "donor": "YXYXXXXXX",
+   "why": "|b-d| = 5: torus (2,5)",
+   "companions_tested": 2,
+   "recognized": 0,
+   "merge_data": {
+    "gen": "y",
+    "k": -1,
+    "exponent": -5,
+    "map_index": 3,
+    "merged": "YYXXXXX",
+    "primitive": false,
+    "tuple": [
+     -1,
+     -1,
+     -1,
+     -6
+    ]
+   }
+  }
+ ],
+ "planted_F3": [
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -2,
+    -1,
+    1,
+    -1
+   ],
+   "pair": [
+    "YYXyX",
+    "YYXXyx"
+   ],
+   "det": 1,
+   "recognized": true,
+   "branch": "bs",
+   "difference": "YXyxx",
+   "solved": true,
+   "replayed": true,
+   "work": 9,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -2,
+    -3,
+    1,
+    1
+   ],
+   "pair": [
+    "YYXXyx",
+    "YYXXXyx"
+   ],
+   "det": -1,
+   "recognized": true,
+   "branch": "terminal",
+   "difference": "X",
+   "solved": true,
+   "replayed": true,
+   "work": 22,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -3,
+    1,
+    2
+   ],
+   "t2": [
+    -2,
+    -3,
+    1,
+    1
+   ],
+   "pair": [
+    "YYXXXyx",
+    "YYXXXyxx"
+   ],
+   "det": 1,
+   "recognized": true,
+   "branch": "terminal",
+   "difference": "X",
+   "solved": true,
+   "replayed": true,
+   "work": 33,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    2
+   ],
+   "t2": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "pair": [
+    "YYXyxx",
+    "YYXXyxx"
+   ],
+   "det": -1,
+   "recognized": true,
+   "branch": "terminal",
+   "difference": "X",
+   "solved": true,
+   "replayed": true,
+   "work": 18,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -4,
+    1,
+    3
+   ],
+   "t2": [
+    -2,
+    -3,
+    1,
+    3
+   ],
+   "pair": [
+    "YYXXXyxxx",
+    "YYXXXXyxxx"
+   ],
+   "det": -1,
+   "recognized": true,
+   "branch": "terminal",
+   "difference": "X",
+   "solved": true,
+   "replayed": true,
+   "work": 53,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -2,
+    -4,
+    1,
+    2
+   ],
+   "pair": [
+    "YYXXyx",
+    "YYXXXXyxx"
+   ],
+   "det": -1,
+   "recognized": true,
+   "branch": "bs",
+   "difference": "YXXyx",
+   "solved": true,
+   "replayed": true,
+   "work": 6,
+   "reason": null
+  },
+  {
+   "kind": "planted_F3",
+   "t1": [
+    1,
+    2,
+    -2,
+    1
+   ],
+   "t2": [
+    1,
+    1,
+    -2,
+    3
+   ],
+   "pair": [
+    "YYxyxx",
+    "YYxxxyx"
+   ],
+   "det": 1,
+   "recognized": true,
+   "branch": "bs",
+   "difference": "YXXyx",
+   "solved": true,
+   "replayed": true,
+   "work": 12,
+   "reason": null
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -1,
+    -2,
+    1,
+    1
+   ],
+   "pair": [
+    "YXXyx",
+    "YYXXyx"
+   ],
+   "det": 1,
+   "why": "y-blocks differ (a = -2 vs -1)",
+   "recognized": false,
+   "branch": null,
+   "solved": false,
+   "reason": "not_recognized"
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -3,
+    -2,
+    2,
+    1
+   ],
+   "t2": [
+    -3,
+    -1,
+    2,
+    2
+   ],
+   "pair": [
+    "YYYXyyxx",
+    "YYYXXyyx"
+   ],
+   "det": -2,
+   "why": "min(|a|,|c|) = 2 and |det| = 2: rejected at the determinant",
+   "recognized": false,
+   "branch": null,
+   "solved": false,
+   "reason": "not_recognized"
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -3,
+    -1,
+    2,
+    -1
+   ],
+   "t2": [
+    -3,
+    -2,
+    2,
+    1
+   ],
+   "pair": [
+    "YYYXyyX",
+    "YYYXXyyx"
+   ],
+   "det": 1,
+   "why": "|det| = 1 but min(|a|,|c|) = 2: dead stable power (N1)",
+   "recognized": true,
+   "branch": "dead_stable_power",
+   "solved": false,
+   "reason": "dead_stable_power"
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "pair": [
+    "YYXXyx",
+    "YYXXyx"
+   ],
+   "det": 0,
+   "why": "identical relators",
+   "recognized": false,
+   "branch": null,
+   "solved": false,
+   "reason": "not_recognized"
+  },
+  {
+   "kind": "adversarial_F3",
+   "t1": [
+    -2,
+    -2,
+    1,
+    1
+   ],
+   "t2": [
+    -2,
+    -3,
+    1,
+    2
+   ],
+   "pair": [
+    "YYXXyx",
+    "YYXXXyxx"
+   ],
+   "det": 0,
+   "why": "|det| != 1: block difference is 0",
+   "recognized": false,
+   "branch": null,
+   "solved": false,
+   "reason": "not_recognized"
+  }
+ ],
+ "dev": {
+  "rows": 102,
+  "four_block": 49,
+  "F1": 0,
+  "F1_solved": 0,
+  "F3": 0,
+  "F3_solved": 0,
+  "hits": [],
+  "lemma_counters": {
+   "vanishing_expsum_relators": 17,
+   "stable_run_1": 6,
+   "L1_tested": 17,
+   "L1_holds": 17,
+   "N1_tested": 17,
+   "N1_s1_companion_in_subgroup": 6,
+   "stable_run_2": 9,
+   "N1_holds_companion_outside_HNN_subgroup": 11,
+   "stable_run_4": 1,
+   "stable_run_3": 1
+  }
+ },
+ "residual": {
+  "rows": 727,
+  "four_block": 293,
+  "both_four_block": 28,
+  "vanishing_expsum_relators": 91,
+  "stable_run_2": 59,
+  "L1_tested": 91,
+  "L1_holds": 91,
+  "N1_tested": 91,
+  "N1_holds_companion_outside_HNN_subgroup": 71,
+  "stable_run_1": 20,
+  "N1_s1_companion_in_subgroup": 20,
+  "mergeable_relators": 13,
+  "merge_torus_2_5": 10,
+  "stable_run_4": 7,
+  "stable_run_3": 5,
+  "merge_torus_2_3": 2,
+  "merge_torus_2_7": 1
+ },
+ "planted_failures": [],
+ "census": {
+  "stats": {
+   "rows": 72779,
+   "solved": 72052,
+   "four_block": 44039,
+   "four_block_solved": 43746,
+   "vanishing_expsum_relators": 21565,
+   "stable_run_1": 19827,
+   "L1_tested": 21565,
+   "L1_holds": 21565,
+   "N1_tested": 21565,
+   "N1_s1_companion_in_subgroup": 19827,
+   "stable_run_2": 1541,
+   "N1_holds_companion_outside_HNN_subgroup": 1738,
+   "F1": 2725,
+   "F1_solved_row": 2725,
+   "F1_compiled": 400,
+   "F1_compiled_ok": 400,
+   "stable_run_5": 6,
+   "stable_run_4": 42,
+   "F3": 91,
+   "F3_terminal": 25,
+   "F3_solved_row": 91,
+   "F3_compiled_ok": 63,
+   "stable_run_3": 149,
+   "F3_bs": 65,
+   "F3_fail_preflight_reject": 27,
+   "F3_dead_stable_power": 1,
+   "F3_fail_dead_stable_power": 1
+  },
+  "F1_compiler_work": {
+   "n": 400,
+   "min": 191,
+   "median": 369,
+   "mean": 392.1,
+   "max": 1002
+  },
+  "F1_elementary_tail": {
+   "n": 400,
+   "min": 134,
+   "median": 299,
+   "mean": 321.9,
+   "max": 906
+  },
+  "F3_compiler_work": {
+   "n": 63,
+   "min": 6,
+   "median": 21,
+   "mean": 27.1,
+   "max": 63
+  },
+  "census_nodes_on_F1_rows": {
+   "n": 2725,
+   "min": 255,
+   "median": 263,
+   "mean": 264.2,
+   "max": 358
+  }
+ }
+}

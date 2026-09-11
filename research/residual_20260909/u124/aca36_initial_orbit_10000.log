@@ -1,0 +1,14 @@
+{
+  "rows": 36,
+  "solved": 0,
+  "mu_reduced": 12,
+  "mu_letters_saved": 19,
+  "replay_failures": 0,
+  "nodes": 100076,
+  "canon_evals": 737219,
+  "max_depth": 21,
+  "wall": 368.82214316800037,
+  "wall_total": 369.6942980470003,
+  "budget": 10000,
+  "slack": 8
+}

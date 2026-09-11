@@ -1,0 +1,144 @@
+{
+ "panel": "benchmark/ladder/ladder_200.csv",
+ "panel_sha256": "9c41f3a8899bb4c36a17bd732187c0003d0fc8f158fada8968d43f610bd39bac",
+ "engine": "policy",
+ "policy": "frozen_reallocated",
+ "budget": 1000,
+ "cap": null,
+ "units": "charged (table lookups free)",
+ "levels_filter": null,
+ "workers": 1,
+ "tag": "ladder_200_frozen_reallocated_b1000",
+ "rows": 188,
+ "solved": 165,
+ "verified": 165,
+ "errors": 0,
+ "unsolved_names": [
+  "ms_581",
+  "ms_618",
+  "ac19_46939",
+  "ms_583",
+  "ms_620",
+  "ms_578",
+  "ms_573",
+  "ac19_58570",
+  "ms_619",
+  "ms_624",
+  "ms_622",
+  "ac19_70845",
+  "ms_623",
+  "ms_625",
+  "ms_636",
+  "ms_638",
+  "ms_639",
+  "ms_637",
+  "ac19_66724",
+  "ac19_54765",
+  "ac19_39288",
+  "ac19_65753",
+  "ac19_51034"
+ ],
+ "total_nodes": 61027,
+ "median_nodes_solved": 147,
+ "search_wall": 41.699,
+ "certificate_wall": 1.425,
+ "run_wall": 4.168,
+ "by_level": {
+  "1": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 47.0,
+   "total_nodes": 1526,
+   "search_wall": 0.222
+  },
+  "2": {
+   "rows": 20,
+   "solved": 19,
+   "verified": 19,
+   "errors": 0,
+   "median_nodes_solved": 79,
+   "total_nodes": 5300,
+   "search_wall": 2.995
+  },
+  "3": {
+   "rows": 20,
+   "solved": 12,
+   "verified": 12,
+   "errors": 0,
+   "median_nodes_solved": 203.0,
+   "total_nodes": 11578,
+   "search_wall": 8.205
+  },
+  "4": {
+   "rows": 20,
+   "solved": 15,
+   "verified": 15,
+   "errors": 0,
+   "median_nodes_solved": 230,
+   "total_nodes": 9650,
+   "search_wall": 6.373
+  },
+  "5": {
+   "rows": 20,
+   "solved": 16,
+   "verified": 16,
+   "errors": 0,
+   "median_nodes_solved": 94.0,
+   "total_nodes": 5516,
+   "search_wall": 3.319
+  },
+  "6": {
+   "rows": 20,
+   "solved": 20,
+   "verified": 20,
+   "errors": 0,
+   "median_nodes_solved": 166.0,
+   "total_nodes": 4751,
+   "search_wall": 2.997
+  },
+  "7": {
+   "rows": 20,
+   "solved": 19,
+   "verified": 19,
+   "errors": 0,
+   "median_nodes_solved": 95,
+   "total_nodes": 3842,
+   "search_wall": 2.554
+  },
+  "8": {
+   "rows": 20,
+   "solved": 18,
+   "verified": 18,
+   "errors": 0,
+   "median_nodes_solved": 104.0,
+   "total_nodes": 5150,
+   "search_wall": 3.772
+  },
+  "9": {
+   "rows": 19,
+   "solved": 19,
+   "verified": 19,
+   "errors": 0,
+   "median_nodes_solved": 433,
+   "total_nodes": 9414,
+   "search_wall": 7.623
+  },
+  "10": {
+   "rows": 9,
+   "solved": 7,
+   "verified": 7,
+   "errors": 0,
+   "median_nodes_solved": 333,
+   "total_nodes": 4300,
+   "search_wall": 3.639
+  }
+ },
+ "routes": {
+  "incumbent_restart": 158,
+  "strict_donor": 30
+ },
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
+ "created_unix": 1789096191
+}

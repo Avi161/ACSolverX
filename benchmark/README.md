@@ -2,7 +2,13 @@
 
 Fixed row lists for scoring a search technique, so two techniques are compared on the same presentations rather than on whichever ones each happened to run.
 
-All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem. The recommended heap ordering for searching these rows is `S20_MK2` — see [`experiments/search/HEURISTICS.md`](../experiments/search/HEURISTICS.md).
+Two row families live here:
+
+- **`subsets/`** — the original efficiency ladder. All of its rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem. Its four subsets are **not** nested.
+- **`ladder/`** — the difficulty ladder (2026-09-10): ten levels from "solved in a few pops" to "only the cascades solve it", drawn from two strata, the AC19 aut-min orbits and MS-640 — every row is solved by something on record; the 124 unsolved Miller–Schupp classes are kept apart in `ladder/unsolved_124.csv` (un-reduced form) and `ladder/unsolved_all_forms.csv`, and the 45 pre-Aut-min dataset originals in `ladder/originals_45.csv` (in the pool and in `ladder/ladder_pairs.csv`, never on a panel) — with **nested** subsets of 20/40/60/100/200/300/500 rows and a tester that runs any arm or policy over them; plus the nested `ladder_{20,40,60,100,200,300}_s20hard` family, the same levels but keeping per level the rows S20_MK2 finds hardest, for techniques that already beat S20_MK2. See [`ladder/LADDER.md`](ladder/LADDER.md).
+- **`ac19_ladder/`** — the AC19 ladder (2026-09-11): every AC19 presentation in both forms — the 72,779 aut-min representatives and the 131,905 distinct dataset originals — graded by plain greedy and by S20_MK2 (originals: 1k → 10k → 100k → 1M pops, every solve replayed), sorted into the same ten levels, with six nested panels `ladder_{10,20,40,60,100,200}` that keep per level the 1 / 2 / 4 / 6 / 10 / 20 rows S20_MK2 finds hardest, stored hardest-first. See [`ac19_ladder/README.md`](ac19_ladder/README.md).
+
+The recommended heap ordering for searching any of these rows is `S20_MK2` — see [`experiments/search/HEURISTICS.md`](../experiments/search/HEURISTICS.md).
 
 ## The census these rows sit inside
 
@@ -42,7 +48,7 @@ Within a bin, picks first **minimise `Aut(F₂)`-equivalent pairs**: two present
 
 Search cost is **not** an orbit invariant even so — `pres_id` 623 and 636 are the same class and cost 59,710 vs 213,882 nodes — so a forced duplicate is still a genuinely different search instance.
 
-**The four subsets are not nested** (`nested: false`). Subset-20 is not subset-10 plus ten; each is independently balanced. Never assume a result on the smaller one carries.
+**The four subsets are not nested** (`nested: false`). Subset-20 is not subset-10 plus ten; each is independently balanced. Never assume a result on the smaller one carries. (The `ladder/` subsets are the opposite: `ladder_20 ⊂ ladder_40 ⊂ … ⊂ ladder_500` by construction, `nested: true`.)
 
 ## Who reads them
 

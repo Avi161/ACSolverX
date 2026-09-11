@@ -1,0 +1,28 @@
+{
+  "rows": 124,
+  "solved": 0,
+  "rows_with_any_hit": 29,
+  "counters": {
+    "states_tested": 1240000,
+    "BSD_hits": 7659,
+    "F3_hits": 126,
+    "F3_branch_bs": 115,
+    "F3_compiles": 126,
+    "F3_branch_dead_stable_power": 11
+  },
+  "reasons": {
+    "BSD:label_3_1_1": 1232,
+    "BSD:label_4_1_1": 643,
+    "BSD:label_5_2_2": 524,
+    "BSD:label_5_1_2": 503,
+    "BSD:label_5_1_3": 425,
+    "BSD:label_5_1_1": 416,
+    "BSD:label_6_2_2": 384,
+    "BSD:label_4_2_1": 317,
+    "BSD:label_7_2_2": 298,
+    "BSD:label_7_3_2": 285,
+    "BSD:label_7_3_5": 276,
+    "BSD:label_7_2_4": 276
+  },
+  "wall": 949.6227089339982
+}

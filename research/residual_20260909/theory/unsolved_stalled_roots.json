@@ -1,0 +1,12 @@
+{
+ "note": "Aggregate only. Row identities are withheld because the val/test panels are hidden.",
+ "stalled_bs_roots_unsolved_by_the_frozen_1k_policy": 18,
+ "by_s3_class_label": {
+  "(5, 1, 4)": 4,
+  "(5, 2, 4)": 6,
+  "(7, 2, 5)": 1
+ },
+ "by_wide_necklace": {
+  "m=2, s_red=7, necklace=(1, 1, -1, 1, -1, 1, -1)": 7
+ }
+}

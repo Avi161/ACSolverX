@@ -1,0 +1,1650 @@
+{
+ "workers": 2,
+ "sample": [
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.558
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.113
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 16651,
+   "seconds": 2.006
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 16651,
+   "seconds": 2.151
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 3177,
+   "seconds": 0.36
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 3177,
+   "seconds": 0.361
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 3177,
+   "seconds": 0.355
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 3177,
+   "seconds": 0.41
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.225
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.211
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 5.375
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 11.059
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.092
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.747
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 5.552
+  },
+  {
+   "name": "ac19_20653",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 10.671
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.751
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.605
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.838
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 7.16
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.764
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.464
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.074
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 34544,
+   "seconds": 4.615
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.596
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.18
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 15371,
+   "seconds": 1.713
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 15371,
+   "seconds": 1.852
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.729
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.509
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 2.913
+  },
+  {
+   "name": "ms_636",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 33834,
+   "seconds": 4.773
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.716
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.593
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.4
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 7.36
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.745
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 6876,
+   "seconds": 1.129
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 6876,
+   "seconds": 1.145
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 6876,
+   "seconds": 1.355
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.76
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.616
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 19718,
+   "seconds": 3.489
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 19718,
+   "seconds": 3.356
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 3318,
+   "seconds": 0.478
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 3318,
+   "seconds": 0.486
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 3318,
+   "seconds": 0.479
+  },
+  {
+   "name": "ac19_58079",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 3318,
+   "seconds": 0.482
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.498
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 0.76
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 1.742
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 3.816
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 501,
+   "seconds": 0.038
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 501,
+   "seconds": 0.039
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 501,
+   "seconds": 0.039
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 501,
+   "seconds": 0.043
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 15,
+   "seconds": 0.005
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 15,
+   "seconds": 0.004
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 15,
+   "seconds": 0.004
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 15,
+   "seconds": 0.006
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 14,
+   "seconds": 0.003
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 14,
+   "seconds": 0.003
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 14,
+   "seconds": 0.003
+  },
+  {
+   "name": "ac19_30155",
+   "level": "5",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 14,
+   "seconds": 0.004
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.605
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.33
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 2.894
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 6.818
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 4944,
+   "seconds": 0.801
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 4944,
+   "seconds": 0.814
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 4944,
+   "seconds": 0.798
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 4944,
+   "seconds": 0.81
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.632
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.357
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.159
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 7.059
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 467,
+   "seconds": 0.063
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 467,
+   "seconds": 0.064
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 467,
+   "seconds": 0.065
+  },
+  {
+   "name": "ac19_15507",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 467,
+   "seconds": 0.069
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.818
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.296
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 4.787
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 9.849
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.959
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.467
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 5.475
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 11.97
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.925
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 3.745
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 7.961
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 17.071
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.865
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 4.255
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 8.266
+  },
+  {
+   "name": "ac19_55019",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 18.826
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.751
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.916
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.935
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 7.973
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 461,
+   "seconds": 0.067
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 461,
+   "seconds": 0.066
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 461,
+   "seconds": 0.065
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 461,
+   "seconds": 0.068
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.343
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 3.403
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 7.16
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 15.844
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.429
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 3.428
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 6.952
+  },
+  {
+   "name": "ac19x_19903",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 16.869
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.758
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.716
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 4.794
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 28012,
+   "seconds": 5.335
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.923
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.625
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 10227,
+   "seconds": 2.07
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 10227,
+   "seconds": 2.26
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.156
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.254
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 5.488
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 11.745
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.322
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.892
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 5.819
+  },
+  {
+   "name": "ac19x_101025",
+   "level": "3",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 10.715
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.711
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.543
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.473
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 7.82
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": true,
+   "nodes": 468,
+   "seconds": 0.063
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": true,
+   "nodes": 468,
+   "seconds": 0.065
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": true,
+   "nodes": 468,
+   "seconds": 0.065
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": true,
+   "nodes": 468,
+   "seconds": 0.067
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.471
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 3.359
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 6.799
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 14.381
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 1.311
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 3.117
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 7.914
+  },
+  {
+   "name": "ac19x_41313",
+   "level": "4",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 15.91
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.709
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 1.595
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 3.545
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 9.225
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 0.948
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 2.384
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 4.732
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 0,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 10.249
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 2.266
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 6.393
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 12.455
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "greedy",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 26.83
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 5000,
+   "solved": false,
+   "nodes": 5000,
+   "seconds": 2.546
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 10000,
+   "solved": false,
+   "nodes": 10000,
+   "seconds": 5.645
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 20000,
+   "solved": false,
+   "nodes": 20000,
+   "seconds": 12.483
+  },
+  {
+   "name": "ac19_16286",
+   "level": "9",
+   "depth": 2,
+   "arm": "s20",
+   "budget": 40000,
+   "solved": false,
+   "nodes": 40000,
+   "seconds": 27.894
+  }
+ ],
+ "projection": {
+  "5000": {
+   "runs": 2561,
+   "sample_runs": 40,
+   "sample_censored": 31,
+   "s_per_run_censored": 1.0607096774193547,
+   "pops_per_s_censored": 4713.825193114774,
+   "s_per_run_all": 0.8689999999999998,
+   "worst_case_hours": 0.37728853942652324,
+   "sample_rate_hours": 0.30909847222222214
+  },
+  "10000": {
+   "runs": 2561,
+   "sample_runs": 40,
+   "sample_censored": 30,
+   "s_per_run_censored": 2.4505999999999997,
+   "pops_per_s_censored": 4080.6333142903786,
+   "s_per_run_all": 1.913725,
+   "worst_case_hours": 0.8716648055555555,
+   "sample_rate_hours": 0.6807013506944444
+  },
+  "20000": {
+   "runs": 2561,
+   "sample_runs": 40,
+   "sample_censored": 26,
+   "s_per_run_censored": 5.537884615384616,
+   "pops_per_s_censored": 3611.4873077056636,
+   "s_per_run_all": 3.907025,
+   "worst_case_hours": 1.9697947916666672,
+   "sample_rate_hours": 1.3897070868055557
+  },
+  "40000": {
+   "runs": 2561,
+   "sample_runs": 40,
+   "sample_censored": 23,
+   "s_per_run_censored": 12.483217391304347,
+   "pops_per_s_censored": 3204.3021238950387,
+   "s_per_run_all": 7.869249999999999,
+   "worst_case_hours": 4.440211074879227,
+   "sample_rate_hours": 2.799048506944444
+  }
+ },
+ "panel_rows": 124,
+ "images": 1612,
+ "pair_images": 949
+}

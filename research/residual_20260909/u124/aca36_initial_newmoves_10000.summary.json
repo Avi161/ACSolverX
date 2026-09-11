@@ -1,0 +1,20 @@
+{
+  "rows": 36,
+  "solved": 0,
+  "rows_with_any_hit": 4,
+  "counters": {
+    "states_tested": 360000,
+    "F3_hits": 15,
+    "F3_branch_bs": 15,
+    "F3_compiles": 15,
+    "BSD_hits": 807
+  },
+  "reasons": {
+    "BSD:label_7_2_3": 288,
+    "BSD:label_6_3_2": 236,
+    "BSD:label_7_3_1": 156,
+    "BSD:label_7_1_5": 127,
+    "F3:preflight_reject": 15
+  },
+  "wall": 338.20996521500183
+}

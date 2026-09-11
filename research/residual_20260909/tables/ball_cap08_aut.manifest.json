@@ -1,0 +1,193 @@
+{
+  "format_version": 1,
+  "pickle": "ball_cap08_aut.pkl",
+  "cap": 8,
+  "size": 7613,
+  "max_relator_length": 8,
+  "depth_histogram": {
+    "0": 1,
+    "1": 4,
+    "2": 8,
+    "3": 40,
+    "4": 592,
+    "5": 1304,
+    "6": 1644,
+    "7": 1028,
+    "8": 728,
+    "9": 500,
+    "10": 432,
+    "11": 460,
+    "12": 456,
+    "13": 200,
+    "14": 136,
+    "15": 64,
+    "16": 16
+  },
+  "max_depth": 16,
+  "build_wall_seconds": 2.308628255000258,
+  "candidates_enumerated": 169932,
+  "forward_verifications": 5903,
+  "forward_verified": true,
+  "aut_edges": true,
+  "automorphism_entries": 1741,
+  "sha256": "7a6be1c376d796ed8819f4a7c71b3477e3916d1f8f9ebe60ee37780d340f1135",
+  "bytes": 296636,
+  "git_head": "76a1ce62eb03e7ae271356aa9424fd6caa9e2506",
+  "kernel_source_sha256": {
+    "experiments/heuristic_search/core/hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "experiments/heuristic_search/core/hfast.py": "3eb8183ce1522df68d0b0e8b7b48dad8501e6d0805640538d542e31825728bc5",
+    "experiments/equivalence_classes/lib/words.py": "131cbc3f991e5e9862c2774c2e72b78f4d04aa531ff3f6e1aae8b2ecac9cc26b",
+    "experiments/search/greedy_baseline.py": "553626798fe802f4bcc95d41102df1e3330f88f0773b19c3c17b52fd56a6b57f",
+    "experiments/search/heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "research/residual_20260909/backward_table.py": "37576e2a0556e236775c853c2c40f5da7cd18fc8e136bff358469cba7b2e5cdb"
+  },
+  "checks": {
+    "replay_all_entries": {
+      "entries": 7613,
+      "checked": 7612,
+      "failures": [],
+      "failure_count": 0,
+      "ok": true,
+      "wall_seconds": 0.1350526099995477
+    }
+  },
+  "built_at": "2026-09-09T15:18:38Z",
+  "levels": [
+    {
+      "depth": 1,
+      "new": 4,
+      "total": 5,
+      "candidates": 20,
+      "verifications": 4,
+      "wall": 0.0004654640006265254
+    },
+    {
+      "depth": 2,
+      "new": 8,
+      "total": 13,
+      "candidates": 96,
+      "verifications": 6,
+      "wall": 0.0014630120003857883
+    },
+    {
+      "depth": 3,
+      "new": 40,
+      "total": 53,
+      "candidates": 272,
+      "verifications": 34,
+      "wall": 0.004261329000655678
+    },
+    {
+      "depth": 4,
+      "new": 592,
+      "total": 645,
+      "candidates": 2496,
+      "verifications": 535,
+      "wall": 0.03457804700065026
+    },
+    {
+      "depth": 5,
+      "new": 1304,
+      "total": 1949,
+      "candidates": 20264,
+      "verifications": 1100,
+      "wall": 0.2377433830006339
+    },
+    {
+      "depth": 6,
+      "new": 1644,
+      "total": 3593,
+      "candidates": 35800,
+      "verifications": 1400,
+      "wall": 0.6744213720003245
+    },
+    {
+      "depth": 7,
+      "new": 1028,
+      "total": 4621,
+      "candidates": 37720,
+      "verifications": 776,
+      "wall": 1.1338427270002285
+    },
+    {
+      "depth": 8,
+      "new": 728,
+      "total": 5349,
+      "candidates": 21776,
+      "verifications": 490,
+      "wall": 1.4596144700008153
+    },
+    {
+      "depth": 9,
+      "new": 500,
+      "total": 5849,
+      "candidates": 13584,
+      "verifications": 334,
+      "wall": 1.6853787860000011
+    },
+    {
+      "depth": 10,
+      "new": 432,
+      "total": 6281,
+      "candidates": 9840,
+      "verifications": 286,
+      "wall": 1.8311409780008034
+    },
+    {
+      "depth": 11,
+      "new": 460,
+      "total": 6741,
+      "candidates": 7968,
+      "verifications": 325,
+      "wall": 1.9591384010000183
+    },
+    {
+      "depth": 12,
+      "new": 456,
+      "total": 7197,
+      "candidates": 7760,
+      "verifications": 345,
+      "wall": 2.0865240960001756
+    },
+    {
+      "depth": 13,
+      "new": 200,
+      "total": 7397,
+      "candidates": 6464,
+      "verifications": 122,
+      "wall": 2.196675652000522
+    },
+    {
+      "depth": 14,
+      "new": 136,
+      "total": 7533,
+      "candidates": 3008,
+      "verifications": 103,
+      "wall": 2.254505961000177
+    },
+    {
+      "depth": 15,
+      "new": 64,
+      "total": 7597,
+      "candidates": 1792,
+      "verifications": 33,
+      "wall": 2.2904813029999787
+    },
+    {
+      "depth": 16,
+      "new": 16,
+      "total": 7613,
+      "candidates": 864,
+      "verifications": 10,
+      "wall": 2.304971088000457
+    },
+    {
+      "depth": 17,
+      "new": 0,
+      "total": 7613,
+      "candidates": 208,
+      "verifications": 0,
+      "wall": 2.3086244969999825
+    }
+  ]
+}

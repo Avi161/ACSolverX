@@ -1,0 +1,14 @@
+{
+  "s20": {
+    "rows": 36,
+    "solved": 0,
+    "reduced": 5,
+    "replay_failures": 0,
+    "total_length_before": 789,
+    "total_length_after": 778,
+    "max_relator_reduced": 8,
+    "nodes": 360000,
+    "wall": 377.5817306310055
+  },
+  "wall_total": 190.24534880900137
+}

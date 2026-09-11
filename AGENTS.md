@@ -68,3 +68,15 @@ not proven converged), and the exact `Aut(F₂)` step between 261 and 124 is
 **168** — no change of variables does better than 168. Derivation and the
 machine-checked merges are in `results/equivalence_classes/EQUIVALENCE_FINDING.md`
 on the research branches; `docs/BRANCH_MAP.md` says which branch holds what.
+
+## 5. The AC19 Aut-minimal census at 1,000 units is closed
+
+All **72,779** rows of `data/AC19_extended_aut_min.csv` are solved and
+independently verified at 1,000 charged units by `K3p_c14aut`
+(`research/residual_20260909/final_policy_ball.py` with the cap-14
+automorphism-closed backward table), 0 lost against the previous 72,052; the
+bundle is `results/heuristic_search/ac19_ball14_cascade_full_1k/`. Read
+`research/residual_20260909/CAMPAIGN_REPORT.md` before changing the cascade:
+the decisive component is the exact backward table (a terminal, not a
+heuristic), and "charged units" under it count only search work outside the
+table, so per-row unit counts are no longer a difficulty measure.

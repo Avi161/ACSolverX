@@ -1,0 +1,23 @@
+{
+  "s20": {
+    "rows": 36,
+    "solved": 0,
+    "mu_reduced": 3,
+    "mu_letters_saved": 6,
+    "replay_failures": 0,
+    "mu_evals": 252737,
+    "nodes": 360000,
+    "wall": 260.8461057700006
+  },
+  "aut_edges": {
+    "rows": 36,
+    "solved": 0,
+    "mu_reduced": 5,
+    "mu_letters_saved": 9,
+    "replay_failures": 0,
+    "mu_evals": 293668,
+    "nodes": 360000,
+    "wall": 336.13646921299915
+  },
+  "wall_total": 599.1577292559996
+}

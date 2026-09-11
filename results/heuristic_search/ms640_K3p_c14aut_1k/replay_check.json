@@ -1,0 +1,12 @@
+{
+  "shards": 8,
+  "rows": 640,
+  "solved": 640,
+  "replayed_ok": 640,
+  "elementary_moves": 653656,
+  "failures": [],
+  "replay_wall": 1.8142676689999462,
+  "replay_cpu_sum": 2.410307568999997,
+  "workers": 4,
+  "result_dir": "results/heuristic_search/ms640_K3p_c14aut_1k"
+}

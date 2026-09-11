@@ -1,0 +1,19 @@
+{
+ "budget": 20000,
+ "cap": 48,
+ "radius": 2,
+ "workers": 3,
+ "forms": [
+  "aca_initial",
+  "ac19_level9_leftover",
+  "aca_best"
+ ],
+ "targets": 250,
+ "images": 3238,
+ "searches_this_run": 2100,
+ "records_this_run": 3238,
+ "solved_this_run": 0,
+ "wall_seconds": 4838.8,
+ "started_utc": "2026-09-10T20:24:28Z",
+ "finished_utc": "2026-09-10T21:45:07Z"
+}

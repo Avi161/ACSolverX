@@ -1,0 +1,25 @@
+{
+  "s20": {
+    "rows": 124,
+    "solved": 0,
+    "reduced": 0,
+    "replay_failures": 0,
+    "total_length_before": 2356,
+    "total_length_after": 2356,
+    "max_relator_reduced": 8,
+    "nodes": 1240000,
+    "wall": 1026.9101235240005
+  },
+  "aut_edges": {
+    "rows": 124,
+    "solved": 0,
+    "reduced": 0,
+    "replay_failures": 0,
+    "total_length_before": 2356,
+    "total_length_after": 2356,
+    "max_relator_reduced": 9,
+    "nodes": 1240000,
+    "wall": 1584.1597991200133
+  },
+  "wall_total": 1308.3608023670004
+}

@@ -1,0 +1,11 @@
+{
+  "rows": 124,
+  "solved": 0,
+  "verified": 0,
+  "errors": 0,
+  "route_counts": {
+    "incumbent_restart": 124
+  },
+  "out": "research/residual_20260909/u124/aca124_K3p_c14aut_10000.jsonl",
+  "summary": "research/residual_20260909/u124/aca124_K3p_c14aut_10000.summary.json"
+}
