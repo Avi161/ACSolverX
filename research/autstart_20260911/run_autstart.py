@@ -248,6 +248,47 @@ def verify():
     return not failures
 
 
+# --- recheck: the starts where the cap could have bound ------------------------------
+RECHECK_CAP = 255
+
+
+def _search_uncapped(row):
+    """Same search, cap 255 (the engine's maximum) and no path capture, so the cap can
+    only bind on a popped state longer than 255 -- none exists at these start lengths."""
+    from experiments.heuristic_search.core.hcompact import HCompactSolver
+    solver = HCompactSolver(row['r1'], row['r2'], max_nodes=BUDGET, max_relator_length=RECHECK_CAP,
+                            cyclic_reduce=True, config=None, track_path=False)
+    solved, pops = solver.solve(None)
+    return OrderedDict(cls=row['cls'], k=int(row['k']), cap=RECHECK_CAP, solved=bool(solved), pops=int(pops),
+                       min_len=int(solver.min_total), max_len_expanded=int(solver.max_expanded_total))
+
+
+def recheck(workers):
+    """Re-run every record verify() flagged (a popped state longer than CAP) at cap 255 and
+    require the same min_len; a cap that never bound leaves the search pop-identical."""
+    recs = load_results()
+    flagged = json.loads((HERE / 'verify.json').read_text())['cap_could_have_bound']
+    rows = [recs[(f['cls'], f['k'])] for f in flagged]
+    ctx = mp.get_context('spawn')
+    with ctx.Pool(workers) as pool:
+        redo = pool.map(_search_uncapped, rows)
+    rows_out, mismatches = [], []
+    for r, u in zip(rows, redo):
+        same = (u['min_len'] == r['min_len'] and u['pops'] == r['pops'] and u['solved'] == r['solved'])
+        rows_out.append(OrderedDict(cls=r['cls'], k=r['k'], start_len=r['start_len'],
+                                    cap128=dict(min_len=r['min_len'], pops=r['pops'], max_len_expanded=r['max_len_expanded']),
+                                    cap255=dict(min_len=u['min_len'], pops=u['pops'], max_len_expanded=u['max_len_expanded']),
+                                    identical=same))
+        if not same:
+            mismatches.append(dict(cls=r['cls'], k=r['k']))
+    out = OrderedDict(rechecked=len(rows_out), identical=sum(x['identical'] for x in rows_out),
+                      mismatches=mismatches, cap=CAP, recheck_cap=RECHECK_CAP, rows=rows_out)
+    (HERE / 'recheck.json').write_text(json.dumps(out, indent=1) + '\n')
+    print(f'recheck: {len(rows_out)} flagged starts re-run at cap {RECHECK_CAP}: {out["identical"]} identical '
+          f'(min_len, pops, solved), {len(mismatches)} differ')
+    return not mismatches
+
+
 # --- report --------------------------------------------------------------------------
 def report():
     recs = load_results()
@@ -320,7 +361,7 @@ def report():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('cmd', choices=['build', 'run', 'verify', 'report'])
+    ap.add_argument('cmd', choices=['build', 'run', 'verify', 'recheck', 'report'])
     ap.add_argument('--workers', type=int, default=4)
     a = ap.parse_args()
     if a.cmd == 'build':
@@ -329,6 +370,8 @@ def main():
         run(a.workers)
     elif a.cmd == 'verify':
         sys.exit(0 if verify() else 1)
+    elif a.cmd == 'recheck':
+        sys.exit(0 if recheck(a.workers) else 1)
     else:
         report()
 
