@@ -5,7 +5,9 @@ Ten levels of Andrews–Curtis presentations, from "solved in a few heap pops" t
 500 rows and a tester that runs any arm or policy over them and reports per level.
 **Every row on the ladder is solved by something on record**; the 124 unsolved
 Miller–Schupp classes are kept apart in [`unsolved_124.csv`](unsolved_124.csv) (below).
-**Subsets 60, 100 and 200 are the main testers.**
+Panels are drawn from two strata — **aut-min AC19 orbits and MS-640 rows**; the 45
+dataset originals stay in the pool and ship as [`originals_45.csv`](originals_45.csv)
+(below), off every panel. **Subsets 60, 100 and 200 are the main testers.**
 
 Built 2026-09-10 by [`build_ladder.py`](build_ladder.py) (levels 9/10 split and the
 unsolved rows moved off the ladder on 2026-09-11); nothing in it was searched for this
@@ -39,18 +41,22 @@ not re-derivable on a 15 GB box. Everything at or below 1M can be re-run
 
 ## The levels
 
-| level | rule (`g` = plain greedy pops) | AC19 orbits | originals | MS-640 |
+| level | rule (`g` = plain greedy pops) | AC19 orbits | MS-640 | originals (pool only) |
 |---|---|---:|---:|---:|
-| 1 | `g < 1,000` | 66,082 | 6 | 554 |
-| 2 | `1,000 ≤ g < 10,000` | 5,854 | 24 | 52 |
-| 3 | `10,000 ≤ g < 31,623` | 394 | 2 | 20 |
-| 4 | `31,623 ≤ g < 100,000` | 226 | 13 | 8 |
-| 5 | `100,000 ≤ g < 316,228` | 98 | | 4 |
-| 6 | `316,228 ≤ g < 1,000,000` | 37 | | 2 |
+| 1 | `g < 1,000` | 66,082 | 554 | 6 |
+| 2 | `1,000 ≤ g < 10,000` | 5,854 | 52 | 24 |
+| 3 | `10,000 ≤ g < 31,623` | 394 | 20 | 2 |
+| 4 | `31,623 ≤ g < 100,000` | 226 | 8 | 13 |
+| 5 | `100,000 ≤ g < 316,228` | 98 | 4 | |
+| 6 | `316,228 ≤ g < 1,000,000` | 37 | 2 | |
 | 7 | `1,000,000 ≤ g < E` | 30 | | |
 | 8 | `E ≤ g ≤ 10,000,000` | 30 | | |
 | 9 | plain greedy **unsolved at 10,000,000**; S20_MK2 solves it | 19 | | |
 | 10 | plain greedy **and** S20_MK2 unsolved at 10,000,000; only the cascades solve it | 9 | | |
+
+The last column is in `ladder_all.csv` but **never on a panel** (see "The originals"
+below), so the rows a run is scored on are the first two columns: 72,779 aut-min
+orbits + 640 MS-640 rows = 73,419 panel-eligible of the pool's 73,464.
 
 `E = 2,253,802` is the log-median of the 60 AC19 rows in [1M, 10M], so levels 7 and 8
 hold 30 each (a fixed half-decade edge at 3.16M would leave level 8 with 15). It is
@@ -87,11 +93,11 @@ at 10,000 units, and 0/124 from any automorphic image within two Whitehead moves
 (`research/autchoice_20260910/applied/`). The tester runs on them like on any panel:
 `run_ladder --subset unsolved124 …` (or `--panel benchmark/ladder/unsolved_all_forms.csv`).
 
-## The originals: same orbit, different start
+## The originals: same orbit, different start (in the pool, off the panels)
 
 45 rows have `form = original`: the pre-Aut-min dataset presentations
-(`ac19x_<row>` = line of `data/AC19_extended.txt`) of hard orbits. They are graded by
-**their own** greedy cost and land in levels 1–4 (509–52,143 pops), while their
+(`ac19x_<row>` = line of `data/AC19_extended.txt`). They are graded by **their own**
+greedy cost and land in levels 1–4 (509–52,143 pops, median 5,084), while their
 aut-min representatives sit in levels 9–10 (40 of them, greedy-unsolved at 10M) or
 level 8 (the 5 open-8 reps, 2.3M–5M pops). That split is the finding
 of `ORIGINALS_AT_10M.md` on the leftover branch — Aut-minimising a presentation can
@@ -100,6 +106,27 @@ make it dramatically harder to search — and the reason the second campaign
 every pair side by side; `pair_id` links the rows in every CSV. Three of the
 `ac19_orig_cascade` originals are also among the 40 and are graded by the 10M run.
 
+**How they were obtained, and why they are not a stratum.** They are not a sample of
+`data/AC19_extended.txt`: that file holds 156,762 presentations, of which these 45 are
+graded (0.03%), selected by a property of their *partner* — `build_ladder.py` asserts
+`assert p['orbit'] in greedy and not greedy[p['orbit']][0]`, i.e. "the orbit this line
+aut-minimises into is one plain greedy cannot solve at 10M". 40 come from the
+`ac19_orig_10m` run, 5 more from `open8_greedy_mrl64`, and they cover only **33
+distinct orbits**. Until 2026-09-11 they were a third stratum in the round-robin, which
+gave a 45-row family 20% of `ladder_20` and 12% of `ladder_200`, and made 21 of the 22
+originals in `ladder_200` share a panel with their own aut-min partner — the same orbit
+scored twice. They are now pool rows only:
+
+- [`originals_45.csv`](originals_45.csv) — the 45 rows, same columns, ordered by
+  `(orbit, name)`; run them with `run_ladder --subset originals`.
+- they keep their `s20_run = ladder100k` grade and their `pair_id`, so the pair study
+  is unchanged; only panel membership changed.
+
+Dropping the stratum did not move the subset sizes (the remaining per-level
+populations still cover every quota) and left levels 5–10 of every panel untouched —
+no original was ever above level 4. The S20-hard panels are **identical** to what they
+were: `s20hard_key` never picked an original, since S20_MK2 finds them cheap.
+
 ## Row schema (every CSV, identical columns)
 
 | column | meaning |
@@ -107,7 +134,7 @@ every pair side by side; `pair_id` links the rows in every CSV. Three of the
 | `name` | `ac19_N` (aut-min orbit), `ac19x_N` (original), `ms_NNN` (MS-640 line); in the unsolved files `aca_N` / `acabest_N` / `msrep_*` / `msraw_N` |
 | `r1, r2` | the relators, over `xXyY` (uppercase = inverse) |
 | `level` | 1–10 as above (`unsolved` in the two unsolved files) |
-| `source, form` | `ac19/autmin`, `ac19/original`, `ms640/ms_raw`; unsolved files: `ms_unsolved/{aca_initial,aca_best,ms_rep261,ms_raw}` |
+| `source, form` | panels: `ac19/autmin`, `ms640/ms_raw`; pool-only: `ac19/original` (also `originals_45.csv`); unsolved files: `ms_unsolved/{aca_initial,aca_best,ms_rep261,ms_raw}` |
 | `orbit, pair_id` | the aut-min orbit an original belongs to; `pair_id` links original ↔ representative |
 | `greedy_solved, greedy_nodes, greedy_budget, greedy_cap, greedy_run` | the grading number and where it came from (`10k`, `100k`, `1M`, `5M`, `10M`, `extra100k`, `orig10M`, `open8_100k`, `ms640_1M`; `unsolved@10M` for level 9) |
 | `s20_solved, s20_nodes, s20_run` | the S20_MK2 cost: the AC19 escalation on record (`10k`, `100k`, `1M`, `5M`, `extra100k`; `unsolved@10M` for the 9 level-9 rows nothing but the cascades solve) and, for the 45 originals and the 640 MS-640 rows, `ladder100k` — `run_ladder.py` at 100,000 pops, cap 48, run for this ladder (`sources/s20_ms640_originals_b100000_c48.jsonl`, 685/685 solved and replayed) |
@@ -117,7 +144,8 @@ every pair side by side; `pair_id` links the rows in every CSV. Three of the
 | `solved_by` | cheapest solver on record: `greedy@…`, `s20_mk2@…`, `K3p_notable@1k`, `K3p_c14aut@1k`, `none` |
 | `aut_class` | dedup key: the orbit for AC19, `ms_aut_<k>` (the 113 Whitehead classes) for MS-640 |
 
-`ladder_all.csv` is the full pool (73,464 rows, all solvable). Levels 1–2 of it are the census; the
+`ladder_all.csv` is the full pool (73,464 rows, all solvable; 73,419 of them
+panel-eligible — the 45 originals are not). Levels 1–2 of it are the census; the
 subsets are where the ladder is meant to be used.
 
 ## The nested subsets
@@ -131,8 +159,8 @@ subset takes the first `k` of one fixed ranked list per level. Ranking inside a 
    presentations are two different search problems with different costs (the whole
    point of the original/representative pairs), so both are legitimate test rows;
    `aut_class` stays in the CSV as information;
-3. round-robin over the strata `ac19/original`, `ac19/autmin`, `ms640/ms_raw` — so
-   every source is present from k = 2 up, and the paired originals come first;
+3. round-robin over the strata `ac19/autmin`, `ms640/ms_raw` — so both sources are
+   present from k = 2 up. The 45 `ac19/original` rows are **not** a stratum (above);
 4. inside a stratum, **farthest-point order** over the rows sorted by
    `(log10 g, climb, name)`: the median first, then both endpoints, then the midpoint
    of the largest remaining gap. Every prefix is a near-uniform grid over the level's
@@ -142,7 +170,9 @@ subset takes the first `k` of one fixed ranked list per level. Ranking inside a 
 Deterministic, no seed. Populations cap the top: levels 6 / 7 / 8 / 9 / 10 hold
 39 / 30 / 30 / 19 / 9 rows, so subsets up to 60 are exact, 100 has 99 rows, 200 has
 188, 300 has 268 and 500 has 377 — the JSON's `per_level_actual` says so, the old
-ladder's "no subset-80" convention.
+ladder's "no subset-80" convention. (Those are the same sizes the three-stratum ladder
+had: the levels the originals could reach have thousands of rows to spare, so dropping
+them changed membership in levels 1–4 and nothing else.)
 
 ### The S20-hard variant: `ladder_{20,40,60,100,200,300}_s20hard`
 
@@ -186,6 +216,7 @@ are the whole pool. Reference runs on `ladder_200_s20hard` are in `runs/README.m
 
 ```bash
 PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 60  --engine greedy  --budget 10000
+PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset originals --engine greedy --budget 100000
 PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 200 --engine s20_mk2 --budget 100000 --workers 4
 PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 200 --engine policy --policy K3p_notable --budget 1000 --workers 4
 PYTHONPATH=. python3 -m benchmark.ladder.report_ladder --runs greedy=runs/ladder_60_greedy_b10000_c48.jsonl \
@@ -222,16 +253,16 @@ at level 10:
 | level | greedy @10k | greedy @100k | S20_MK2 @10k | S20_MK2 @100k | K3p_notable @1k units | K3p_c14aut @1k units |
 |---|---:|---:|---:|---:|---:|---:|
 | 1 | 20 | 20 | 20 | 20 | 20 | 20 |
-| 2 | 20 | 20 | 20 | 20 | 17 | 20 |
-| 3 | 0 | 20 | 13 | 20 | 16 | 20 |
-| 4 | 0 | 20 | 16 | 20 | 17 | 20 |
+| 2 | 20 | 20 | 20 | 20 | 19 | 20 |
+| 3 | 0 | 20 | 13 | 20 | 15 | 20 |
+| 4 | 0 | 20 | 14 | 20 | 19 | 20 |
 | 5 | 0 | 0 | 12 | 20 | 20 | 20 |
 | 6 | 0 | 0 | 18 | 20 | 19 | 20 |
 | 7 | 0 | 0 | 7 | 14 | 18 | 20 |
 | 8 | 0 | 0 | 6 | 14 | 18 | 20 |
 | 9 | 0 | 0 | 6 | 8 | 12 | 19 |
 | 10 | 0 | 0 | 0 | 0 | 7 | 9 |
-| **all** | **40** | **80** | **118** | **156** | **164** | **188** |
+| **all** | **40** | **80** | **116** | **156** | **167** | **188** |
 
 Greedy solving exactly levels 1–2 at 10k and 1–4 at 100k is the grading's sanity
 check, not a result. Pops (first four columns) and charged units (last two) are not
@@ -245,7 +276,10 @@ comparable (see `runs/README.md`).
   (four forms, 1,059 rows) and none of their names is in the pool, pairs link original ↔
   representative (originals ≤ level 4, reps at level ≥ 7), subsets nest and match
   `per_level_actual` (20/40/60/99/188/268/377), rows are pool rows verbatim, only the
-  three strata and no trivial root, prefixes are spread, manifest hashes match the tree.
+  two strata and no trivial root, **no panel in either family carries a
+  `form = original` row**, `originals_45.csv` is the 45 pool rows from 33 orbits
+  verbatim and matches `ladder_pairs.csv`, prefixes are spread, manifest hashes match
+  the tree.
 - Grading regression: `run_ladder --subset 60 --engine greedy --budget 10000` at
   `--cap 24` on the MS rows and `--cap 48` on the AC19 rows reproduces every recorded
   `greedy_nodes ≤ 10k` exactly and solves none of the rows recorded above 10k.

@@ -24,6 +24,7 @@ Nothing is searched here: ``grade_open8.py`` is the one fresh run, kept as a run
 Outputs (all under benchmark/ladder/):
     ladder_all.csv                 every graded row (the pool)
     ladder_pairs.csv               the original/representative pairs side by side
+    originals_45.csv               the 45 dataset originals, off the panels, runnable on their own
     ladder_{20,40,60,100,200,300,500}.csv + .json   nested subsets, size/10 per level
     ladder_{20,...,300}_s20hard.csv + .json         the S20-hard family (LADDER.md)
     unsolved_124.csv, unsolved_all_forms.csv         the unsolved MS classes, off the ladder
@@ -107,8 +108,14 @@ TRIVIAL_POPS = 1        # a root that is already (x, y): solved on the first pop
 SIZES = (20, 40, 60, 100, 200, 300, 500)
 S20HARD_SIZES = (20, 40, 60, 100, 200, 300)   # the variant that keeps, per level, the rows hardest for S20_MK2
 N_LEVELS = 10
-# strata that feed the subsets, in round-robin order; everything else stays in the pool
-STRATA = [('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')]
+# strata that feed the subsets, in round-robin order; everything else stays in the pool.
+# The 45 dataset originals are deliberately NOT a stratum: they are not a sample of the
+# 156,762 lines of AC19_extended.txt but the originals of the 33 orbits plain greedy
+# cannot solve at 10M, they are cheap (509-52,143 pops, so levels 1-4 only), and giving
+# them a third of those levels would put 12-20% of a panel on one narrow family and
+# score 21 of 22 orbits twice (once as the original, once as its aut-min partner).
+# They stay in the pool, in ladder_pairs.csv and in originals_45.csv -- see LADDER.md.
+STRATA = [('ac19', 'autmin'), ('ms640', 'ms_raw')]
 
 FIELDS = ['name', 'r1', 'r2', 'level', 'source', 'form', 'orbit', 'pair_id',
           'greedy_solved', 'greedy_nodes', 'greedy_budget', 'greedy_cap', 'greedy_run',
@@ -601,7 +608,7 @@ def main():
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
     targets = [out / 'ladder_all.csv', out / 'ladder_pairs.csv', out / 'ladder_manifest.json',
-               out / 'unsolved_124.csv', out / 'unsolved_all_forms.csv'] + \
+               out / 'unsolved_124.csv', out / 'unsolved_all_forms.csv', out / 'originals_45.csv'] + \
               [out / f'ladder_{n}.{ext}' for n in SIZES for ext in ('csv', 'json')] + \
               [out / f'ladder_{n}_s20hard.{ext}' for n in S20HARD_SIZES for ext in ('csv', 'json')]
     existing = [t for t in targets if t.exists()]
@@ -617,13 +624,17 @@ def main():
     write_csv(out / 'unsolved_124.csv', [r for r in unsolved if r['form'] == 'aca_initial'])
     write_csv(out / 'unsolved_all_forms.csv', unsolved)
 
+    # the 45 dataset originals: in the pool, off every panel, runnable as their own panel
+    originals = sorted((r for r in rows if r['form'] == 'original'), key=lambda r: (r['orbit'], r['name']))
+    write_csv(out / 'originals_45.csv', originals)
+
     # pairs table
     reps = {r['name']: r for r in rows if r['form'] == 'autmin'}
     with open(out / 'ladder_pairs.csv', 'w', newline='') as fh:
         w = csv.writer(fh, lineterminator='\n')
         w.writerow(['pair_id', 'orig_name', 'orig_r1', 'orig_r2', 'orig_level', 'orig_greedy_nodes', 'orig_hump',
                     'rep_name', 'rep_r1', 'rep_r2', 'rep_level', 'rep_greedy_run', 'rep_s20_nodes', 'rep_solved_by'])
-        for o in sorted((r for r in rows if r['form'] == 'original'), key=lambda r: (r['orbit'], r['name'])):
+        for o in originals:
             rep = reps[o['orbit']]
             w.writerow([o['pair_id'], o['name'], o['r1'], o['r2'], o['level'], o['greedy_nodes'], o['hump'],
                         rep['name'], rep['r1'], rep['r2'], rep['level'], rep['greedy_run'], rep['s20_nodes'],
@@ -648,6 +659,7 @@ def main():
             take = ranked[lvl][:k]
             chosen.extend(take)
             actual[str(lvl)] = len(take)
+        assert not any(r['form'] == 'original' for r in chosen), f'ladder_{size}: originals are off the panels'
         write_csv(out / f'ladder_{size}.csv', chosen)
         meta = OrderedDict(
             size=len(chosen), requested_size=size, per_level=k, per_level_actual=actual, n_levels=N_LEVELS,
@@ -676,6 +688,7 @@ def main():
             take = ranked_s20[lvl][:k]
             chosen.extend(take)
             actual[str(lvl)] = len(take)
+        assert not any(r['form'] == 'original' for r in chosen), f'ladder_{size}_s20hard: originals are off the panels'
         write_csv(out / f'ladder_{size}_s20hard.csv', chosen)
         meta = OrderedDict(
             variant='s20hard', size=len(chosen), requested_size=size, per_level=k, per_level_actual=actual,
@@ -696,7 +709,16 @@ def main():
         rows=len(rows), E=E, levels=level_table(E), populations=populations,
         hump_available=sum(1 for r in rows if r['hump'] != ''),
         hump_sources=OrderedDict(sorted(Counter(r['hump_source'] for r in rows).items())),
-        pairs=sum(1 for r in rows if r['form'] == 'original'),
+        pairs=len(originals),
+        strata=[f'{s_}/{f_}' for s_, f_ in STRATA],
+        originals=OrderedDict(
+            rows=len(originals), orbits=len({r['orbit'] for r in originals}), file='originals_45.csv',
+            by_level=OrderedDict(sorted((str(k), v) for k, v in
+                                        Counter(r['level'] for r in originals).items())),
+            greedy_nodes=OrderedDict(lo=min(r['greedy_nodes'] for r in originals),
+                                     hi=max(r['greedy_nodes'] for r in originals)),
+            rule='the AC19_extended.txt lines of the orbits plain greedy cannot solve at 10,000,000; '
+                 'in the pool and in ladder_pairs.csv, never a panel row (not a sample of the dataset)'),
         unsolved=OrderedDict(rows=len(unsolved), files=['unsolved_124.csv', 'unsolved_all_forms.csv'],
                              by_form=OrderedDict(sorted(Counter(r['form'] for r in unsolved).items()))),
         sizes=list(SIZES), s20hard_sizes=list(S20HARD_SIZES), sources=src.manifest, notes=notes)
@@ -708,6 +730,8 @@ def main():
         print(f"  level {lvl:2}: {p['total']:6,} rows  ({', '.join(f'{k} {v}' for k, v in p['by_source_form'].items())})")
     print(f"  unsolved (not on the ladder): {len(unsolved):,} rows in unsolved_all_forms.csv, "
           f"{sum(1 for r in unsolved if r['form'] == 'aca_initial')} in unsolved_124.csv")
+    print(f"  originals (in the pool, off the panels): {len(originals)} rows from "
+          f"{len({r['orbit'] for r in originals})} orbits in originals_45.csv")
     for n in notes:
         print('  note:', n)
 

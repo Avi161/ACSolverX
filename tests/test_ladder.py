@@ -15,6 +15,9 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LADDER = os.path.join(ROOT, 'benchmark', 'ladder')
 SIZES = (20, 40, 60, 100, 200, 300, 500)
+S20HARD_SIZES = (20, 40, 60, 100, 200, 300)
+# the strata that feed the panels; ('ac19', 'original') is in the pool but not a stratum
+STRATA = {('ac19', 'autmin'), ('ms640', 'ms_raw')}
 # level populations cap the top: levels 6/7/8/9/10 hold 39/30/30/19/9 rows
 EXPECTED_SIZE = {20: 20, 40: 40, 60: 60, 100: 99, 200: 188, 300: 268, 500: 377}
 LEVELS = range(1, 11)
@@ -146,13 +149,36 @@ def test_subsets_carry_the_pool_rows_verbatim(pool, subsets):
             assert r == by_name[r['name']], (n, r['name'])
 
 
-def test_subsets_take_only_the_four_strata_and_no_trivial_root(subsets):
-    allowed = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')}
+def test_subsets_take_only_the_two_strata_and_no_trivial_root(subsets):
     for n in SIZES:
         for r in subsets[n][0]:
-            assert (r['source'], r['form']) in allowed, (n, r['name'])
+            assert (r['source'], r['form']) in STRATA, (n, r['name'])
             if r['greedy_solved'] == '1':
                 assert int(r['greedy_nodes']) > 1, (n, r['name'])
+
+
+def test_no_panel_carries_a_dataset_original(subsets, s20hard):
+    """The 45 ``form == 'original'`` rows are in the pool and in originals_45.csv but
+    never on a panel: they are the originals of the 33 orbits greedy cannot solve at
+    10M, not a sample of AC19_extended.txt, and round-robin would give them 12-20% of
+    a panel while scoring their orbits twice (LADDER.md)."""
+    for n in SIZES:
+        assert not [r for r in subsets[n][0] if r['form'] == 'original'], n
+    for n in S20HARD_SIZES:
+        assert not [r for r in s20hard[n][0] if r['form'] == 'original'], n
+
+
+def test_originals_ship_as_their_own_panel(pool, manifest):
+    originals = _rows('originals_45.csv')
+    in_pool = [r for r in pool if r['form'] == 'original']
+    by_name = {r['name']: r for r in pool}
+    assert len(originals) == 45 == manifest['originals']['rows']
+    assert {r['name'] for r in originals} == {r['name'] for r in in_pool}
+    assert len({r['orbit'] for r in originals}) == 33 == manifest['originals']['orbits']
+    for r in originals:
+        assert r == by_name[r['name']], r['name']          # pool rows verbatim
+        assert r['source'] == 'ac19' and int(r['level']) <= 4, r['name']
+    assert {p['orig_name'] for p in _rows('ladder_pairs.csv')} == {r['name'] for r in originals}
 
 
 def test_subset_prefixes_are_spread_over_each_level(subsets):
@@ -190,8 +216,6 @@ def test_subset_json_is_self_describing(subsets, manifest):
 
 
 # --- the S20-hard variant (ladder_60_s20hard, ladder_100_s20hard) --------------
-S20HARD_SIZES = (20, 40, 60, 100, 200, 300)
-STRATA = {('ac19', 'original'), ('ac19', 'autmin'), ('ms640', 'ms_raw')}
 
 
 def _s20_cost(r):
@@ -214,6 +238,9 @@ def test_every_eligible_row_below_level_ten_has_an_s20_grade(pool):
     ms_and_originals = [r for r in pool if r['form'] in ('ms_raw', 'original') and r['source'] != 'ms_unsolved']
     assert len(ms_and_originals) == 685
     assert all(r['s20_run'] == 'ladder100k' and r['s20_solved'] == '1' for r in ms_and_originals)
+    for r in pool:   # the originals keep their S20 grade even though they are off the panels
+        if r['form'] == 'original':
+            assert r['s20_run'] == 'ladder100k' and r['s20_solved'] == '1', r['name']
 
 
 def test_s20hard_keeps_the_rows_hardest_for_s20_in_each_level(pool, s20hard, subsets):

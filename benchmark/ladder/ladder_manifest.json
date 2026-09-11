@@ -1,6 +1,6 @@
 {
- "built_unix": 1789089970,
- "git_head": "4edd6f8b43006faeb66a25b919d86ce10571d84a",
+ "built_unix": 1789095860,
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
  "rows": 73464,
  "E": 2253802,
  "levels": [
@@ -68,7 +68,7 @@
  "populations": {
   "1": {
    "total": 66642,
-   "eligible": 66641,
+   "eligible": 66635,
    "by_source_form": {
     "ac19/autmin": 66082,
     "ac19/original": 6,
@@ -77,7 +77,7 @@
   },
   "2": {
    "total": 5930,
-   "eligible": 5930,
+   "eligible": 5906,
    "by_source_form": {
     "ac19/autmin": 5854,
     "ac19/original": 24,
@@ -86,7 +86,7 @@
   },
   "3": {
    "total": 416,
-   "eligible": 416,
+   "eligible": 414,
    "by_source_form": {
     "ac19/autmin": 394,
     "ac19/original": 2,
@@ -95,7 +95,7 @@
   },
   "4": {
    "total": 247,
-   "eligible": 247,
+   "eligible": 234,
    "by_source_form": {
     "ac19/autmin": 226,
     "ac19/original": 13,
@@ -159,6 +159,26 @@
   "none": 72738
  },
  "pairs": 45,
+ "strata": [
+  "ac19/autmin",
+  "ms640/ms_raw"
+ ],
+ "originals": {
+  "rows": 45,
+  "orbits": 33,
+  "file": "originals_45.csv",
+  "by_level": {
+   "1": 6,
+   "2": 24,
+   "3": 2,
+   "4": 13
+  },
+  "greedy_nodes": {
+   "lo": 509,
+   "hi": 52143
+  },
+  "rule": "the AC19_extended.txt lines of the orbits plain greedy cannot solve at 10,000,000; in the pool and in ladder_pairs.csv, never a panel row (not a sample of the dataset)"
+ },
  "unsolved": {
   "rows": 1059,
   "files": [

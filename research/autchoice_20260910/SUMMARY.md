@@ -92,6 +92,18 @@ After this study the ladder was reshaped: the 124 unsolved classes moved off it 
 representatives above are now level 9 (19, S20_MK2 solves them) and level 10 (9, only
 the cascades do). `panel.csv` and `applied/targets.csv` are unchanged in content.
 
+A second reshape on the same day took the 45 `form = original` rows out of the ladder's
+panel strata: they are the originals of only 33 orbits, selected because their aut-min
+partner is greedy-unsolved at 10M, so they are not a sample of `AC19_extended.txt` and
+round-robin was giving them 12–20% of a panel (and scoring 21 of 22 orbits twice, once
+as the original and once as its partner). They stay in `ladder_all.csv` — which is
+byte-identical, so every hash recorded here still resolves — in `ladder_pairs.csv` and
+in the new `benchmark/ladder/originals_45.csv`. `ladder_200.csv` did change in levels
+1–4; `panel.csv` is frozen against the 2026-09-10 copy (sha in `panel_manifest.json`)
+and is not rebuilt, so `build_panel.py` no longer reproduces it from the current ladder.
+Nothing in this study's numbers depends on panel membership: it reads the originals and
+the level-9/10 rows from the pool.
+
 ## Provenance
 
 Git head at run time `460904f9` (B1, B2) and `7fa813ae`–`85b5d079` (B3's final

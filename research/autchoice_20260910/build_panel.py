@@ -5,6 +5,12 @@
         (levels 9 + 10 since the 2026-09-11 split; panel.csv is frozen)
     all form=original rows of benchmark/ladder/ladder_all.csv    45
 
+``panel.csv`` is frozen against the 2026-09-10 ladder (both input hashes are in
+``panel_manifest.json``).  ``ladder_200.csv`` was rebuilt on 2026-09-11 when the 45
+originals left the panel strata, so levels 1-4 of it differ and this script no longer
+reproduces the committed panel; ``ladder_all.csv`` is unchanged and still holds every
+row the panel needs.  Do not rebuild ``panel.csv`` -- the atlas was run against it.
+
 Rows are deduplicated by name (some of the level-3/4 picks of ladder_200 are themselves
 originals; the brief's count of 133 counts those twice) and sorted by
 ``(level, form, name)``.  Columns are the ladder's own:

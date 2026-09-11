@@ -159,6 +159,8 @@ def load_rows(args):
         path = HERE / 'ladder_all.csv'
     elif args.subset == 'unsolved124':
         path = HERE / 'unsolved_124.csv'
+    elif args.subset == 'originals':
+        path = HERE / 'originals_45.csv'
     else:
         path = HERE / f'ladder_{args.subset}.csv'
     if not path.exists():
@@ -253,7 +255,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0],
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     src = ap.add_mutually_exclusive_group()
-    src.add_argument('--subset', default='60', help='20|40|60|100|200|300|500|all|unsolved124 (default 60)')
+    src.add_argument('--subset', default='60',
+                     help='20|40|60|100|200|300|500|all|unsolved124|originals (default 60)')
     src.add_argument('--panel', help='any CSV with columns name,r1,r2 (level optional)')
     ap.add_argument('--levels', default=None, help='filter by level, e.g. 3-9 or 1,5,10')
     ap.add_argument('--names', default=None, help='comma-separated row names, in that order')
