@@ -1,6 +1,6 @@
 {
  "panel": "benchmark/ladder/ladder_200.csv",
- "panel_sha256": "a159312c4a64cc93992b817a6e44c1911936720902c5c23fe6d06224ae71ca67",
+ "panel_sha256": "9c41f3a8899bb4c36a17bd732187c0003d0fc8f158fada8968d43f610bd39bac",
  "engine": "greedy",
  "policy": null,
  "budget": 100000,
@@ -123,47 +123,47 @@
   "ac19_50841",
   "ac19_27254"
  ],
- "total_nodes": 12265567,
+ "total_nodes": 12321927,
  "median_nodes_solved": 9975.5,
- "search_wall": 2113.223,
- "certificate_wall": 0.217,
- "run_wall": 97.908,
+ "search_wall": 2111.091,
+ "certificate_wall": 0.252,
+ "run_wall": 32.474,
  "by_level": {
   "1": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 53.5,
-   "total_nodes": 6801,
-   "search_wall": 1.615
+   "median_nodes_solved": 11.0,
+   "total_nodes": 2841,
+   "search_wall": 1.336
   },
   "2": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 2059.0,
-   "total_nodes": 71354,
-   "search_wall": 8.02
+   "median_nodes_solved": 2181.5,
+   "total_nodes": 68355,
+   "search_wall": 6.711
   },
   "3": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 15992.0,
-   "total_nodes": 363809,
-   "search_wall": 53.825
+   "median_nodes_solved": 15631.0,
+   "total_nodes": 351673,
+   "search_wall": 48.034
   },
   "4": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 46486.0,
-   "total_nodes": 1023603,
-   "search_wall": 159.942
+   "median_nodes_solved": 53502.5,
+   "total_nodes": 1099058,
+   "search_wall": 165.189
   },
   "5": {
    "rows": 20,
@@ -221,6 +221,6 @@
   }
  },
  "routes": {},
- "git_head": "f20382e17bc2e6206a06b1ee656bef0f6386f38c",
- "created_unix": 1789090280
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
+ "created_unix": 1789096148
 }

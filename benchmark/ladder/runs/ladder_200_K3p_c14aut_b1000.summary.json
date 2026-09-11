@@ -1,6 +1,6 @@
 {
  "panel": "benchmark/ladder/ladder_200.csv",
- "panel_sha256": "a159312c4a64cc93992b817a6e44c1911936720902c5c23fe6d06224ae71ca67",
+ "panel_sha256": "9c41f3a8899bb4c36a17bd732187c0003d0fc8f158fada8968d43f610bd39bac",
  "engine": "policy",
  "policy": "K3p_c14aut",
  "budget": 1000,
@@ -14,11 +14,11 @@
  "verified": 188,
  "errors": 0,
  "unsolved_names": [],
- "total_nodes": 4084,
+ "total_nodes": 4894,
  "median_nodes_solved": 0.0,
- "search_wall": 1.312,
- "certificate_wall": 1.865,
- "run_wall": 15.544,
+ "search_wall": 1.584,
+ "certificate_wall": 2.036,
+ "run_wall": 13.492,
  "by_level": {
   "1": {
    "rows": 20,
@@ -35,8 +35,8 @@
    "verified": 20,
    "errors": 0,
    "median_nodes_solved": 0.0,
-   "total_nodes": 262,
-   "search_wall": 0.067
+   "total_nodes": 318,
+   "search_wall": 0.071
   },
   "3": {
    "rows": 20,
@@ -44,17 +44,17 @@
    "verified": 20,
    "errors": 0,
    "median_nodes_solved": 0.0,
-   "total_nodes": 1019,
-   "search_wall": 0.223
+   "total_nodes": 1262,
+   "search_wall": 0.283
   },
   "4": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 0.0,
-   "total_nodes": 1284,
-   "search_wall": 0.469
+   "median_nodes_solved": 13.0,
+   "total_nodes": 1795,
+   "search_wall": 0.677
   },
   "5": {
    "rows": 20,
@@ -112,11 +112,11 @@
   }
  },
  "routes": {
-  "ball_root": 145,
-  "bs_demote": 12,
-  "plain_s20": 17,
-  "strict_donor": 14
+  "ball_root": 144,
+  "bs_demote": 15,
+  "plain_s20": 16,
+  "strict_donor": 13
  },
- "git_head": "f20382e17bc2e6206a06b1ee656bef0f6386f38c",
- "created_unix": 1789090450
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
+ "created_unix": 1789096182
 }

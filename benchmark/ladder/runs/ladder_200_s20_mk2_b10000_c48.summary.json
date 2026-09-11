@@ -1,6 +1,6 @@
 {
  "panel": "benchmark/ladder/ladder_200.csv",
- "panel_sha256": "a159312c4a64cc93992b817a6e44c1911936720902c5c23fe6d06224ae71ca67",
+ "panel_sha256": "9c41f3a8899bb4c36a17bd732187c0003d0fc8f158fada8968d43f610bd39bac",
  "engine": "s20_mk2",
  "policy": null,
  "budget": 10000,
@@ -10,21 +10,23 @@
  "workers": 2,
  "tag": "ladder_200_s20_mk2_b10000_c48",
  "rows": 188,
- "solved": 118,
- "verified": 118,
+ "solved": 116,
+ "verified": 116,
  "errors": 0,
  "unsolved_names": [
-  "ac19x_101025",
   "ms_618",
-  "ac19x_8769",
   "ac19_39855",
   "ms_620",
   "ac19_7436",
   "ms_616",
+  "ac19_58570",
+  "ms_619",
   "ms_624",
-  "ac19x_79238",
   "ms_622",
   "ms_623",
+  "ac19_66939",
+  "ms_625",
+  "ac19_26942",
   "ms_636",
   "ac19_55217",
   "ms_638",
@@ -85,29 +87,29 @@
   "ac19_50841",
   "ac19_27254"
  ],
- "total_nodes": 1055238,
- "median_nodes_solved": 2368.0,
- "search_wall": 169.779,
- "certificate_wall": 0.172,
- "run_wall": 9.463,
+ "total_nodes": 1064106,
+ "median_nodes_solved": 2376.5,
+ "search_wall": 168.223,
+ "certificate_wall": 0.183,
+ "run_wall": 5.593,
  "by_level": {
   "1": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 17.0,
-   "total_nodes": 5115,
-   "search_wall": 0.538
+   "median_nodes_solved": 10.0,
+   "total_nodes": 1643,
+   "search_wall": 0.164
   },
   "2": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 936.0,
-   "total_nodes": 27366,
-   "search_wall": 3.33
+   "median_nodes_solved": 550.5,
+   "total_nodes": 22134,
+   "search_wall": 2.2
   },
   "3": {
    "rows": 20,
@@ -116,16 +118,16 @@
    "errors": 0,
    "median_nodes_solved": 3177,
    "total_nodes": 124767,
-   "search_wall": 18.489
+   "search_wall": 16.231
   },
   "4": {
    "rows": 20,
-   "solved": 16,
-   "verified": 16,
+   "solved": 14,
+   "verified": 14,
    "errors": 0,
    "median_nodes_solved": 4915.5,
-   "total_nodes": 108976,
-   "search_wall": 13.659
+   "total_nodes": 126548,
+   "search_wall": 15.867
   },
   "5": {
    "rows": 20,
@@ -183,6 +185,6 @@
   }
  },
  "routes": {},
- "git_head": "4edd6f8b43006faeb66a25b919d86ce10571d84a",
- "created_unix": 1789090182
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
+ "created_unix": 1789096153
 }

@@ -1,6 +1,6 @@
 {
  "panel": "benchmark/ladder/ladder_200.csv",
- "panel_sha256": "a159312c4a64cc93992b817a6e44c1911936720902c5c23fe6d06224ae71ca67",
+ "panel_sha256": "9c41f3a8899bb4c36a17bd732187c0003d0fc8f158fada8968d43f610bd39bac",
  "engine": "policy",
  "policy": "K3p_notable",
  "budget": 1000,
@@ -10,20 +10,17 @@
  "workers": 1,
  "tag": "ladder_200_K3p_notable_b1000",
  "rows": 188,
- "solved": 164,
- "verified": 164,
+ "solved": 167,
+ "verified": 167,
  "errors": 0,
  "unsolved_names": [
-  "ac19x_62834",
   "ms_602",
-  "ac19x_133893",
   "ac19_46939",
   "ms_583",
   "ms_578",
   "ms_573",
-  "ac19x_41313",
+  "ac19_58570",
   "ac19_70845",
-  "ac19x_19903",
   "ac19_24836",
   "ac19_64974",
   "ac19_66724",
@@ -39,47 +36,47 @@
   "ac19_65753",
   "ac19_51034"
  ],
- "total_nodes": 94424,
- "median_nodes_solved": 404.0,
- "search_wall": 76.097,
- "certificate_wall": 2.002,
- "run_wall": 31.367,
+ "total_nodes": 85982,
+ "median_nodes_solved": 378,
+ "search_wall": 70.332,
+ "certificate_wall": 2.118,
+ "run_wall": 3.454,
  "by_level": {
   "1": {
    "rows": 20,
    "solved": 20,
    "verified": 20,
    "errors": 0,
-   "median_nodes_solved": 67.5,
-   "total_nodes": 4571,
-   "search_wall": 2.182
+   "median_nodes_solved": 38.0,
+   "total_nodes": 1489,
+   "search_wall": 0.471
   },
   "2": {
    "rows": 20,
-   "solved": 17,
-   "verified": 17,
+   "solved": 19,
+   "verified": 19,
    "errors": 0,
-   "median_nodes_solved": 216,
-   "total_nodes": 8125,
-   "search_wall": 4.734
+   "median_nodes_solved": 78,
+   "total_nodes": 5065,
+   "search_wall": 2.18
   },
   "3": {
    "rows": 20,
-   "solved": 16,
-   "verified": 16,
+   "solved": 15,
+   "verified": 15,
    "errors": 0,
-   "median_nodes_solved": 482.5,
-   "total_nodes": 11530,
-   "search_wall": 6.096
+   "median_nodes_solved": 438,
+   "total_nodes": 11502,
+   "search_wall": 6.199
   },
   "4": {
    "rows": 20,
-   "solved": 17,
-   "verified": 17,
+   "solved": 19,
+   "verified": 19,
    "errors": 0,
-   "median_nodes_solved": 519,
-   "total_nodes": 11941,
-   "search_wall": 6.626
+   "median_nodes_solved": 406,
+   "total_nodes": 9669,
+   "search_wall": 5.023
   },
   "5": {
    "rows": 20,
@@ -137,11 +134,11 @@
   }
  },
  "routes": {
-  "bs_demote": 18,
-  "incumbent_restart": 145,
-  "plain_s20": 9,
-  "strict_donor": 16
+  "bs_demote": 24,
+  "incumbent_restart": 130,
+  "plain_s20": 12,
+  "strict_donor": 22
  },
- "git_head": "f20382e17bc2e6206a06b1ee656bef0f6386f38c",
- "created_unix": 1789090433
+ "git_head": "8485ad54cde167a953c15e428a1ea3c2f993b717",
+ "created_unix": 1789096169
 }
