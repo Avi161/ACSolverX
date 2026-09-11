@@ -69,14 +69,19 @@ def test_pool_is_every_ac19_presentation_once(pool, manifest):
         assert r['name'].startswith('ac19_' if r['form'] == 'autmin' else 'ac19x_'), r['name']
 
 
+def _label(budget):
+    return f'{budget // 1000}k' if budget < 1_000_000 else f'{budget // 1_000_000}M'
+
+
 def test_levels_follow_the_greedy_bands(pool, manifest):
     E = manifest['E']
     assert 1_000_000 < E < TOP
     edges = [0] + EDGES + [E, TOP + 1]
+    ceiling = manifest['max_budget']            # the last rung the originals were escalated to
     for r in pool:
         if r['level'] == 'ungraded':
             assert r['form'] == 'original' and r['greedy_solved'] == '0'
-            assert int(r['greedy_budget']) == 1_000_000 and r['greedy_run'] == 'unsolved@1M', r['name']
+            assert int(r['greedy_budget']) == ceiling and r['greedy_run'] == f'unsolved@{_label(ceiling)}', r['name']
             continue
         lvl = int(r['level'])
         assert lvl in LEVELS, r['name']
@@ -88,11 +93,12 @@ def test_levels_follow_the_greedy_bands(pool, manifest):
         assert edges[lvl - 1] <= g < edges[lvl], (r['name'], g, lvl)
         assert g <= int(r['greedy_budget']), r['name']
         if r['form'] == 'original':
-            assert lvl <= 6 and int(r['greedy_budget']) <= 1_000_000, r['name']
+            assert lvl <= 6 and int(r['greedy_budget']) <= ceiling, r['name']
             assert r['greedy_path_length'] != '' and int(r['greedy_path_length']) >= 1, r['name']
 
 
-def test_every_solve_has_a_solver_and_the_originals_carry_both_grades(pool):
+def test_every_solve_has_a_solver_and_the_originals_carry_both_grades(pool, manifest):
+    ceiling = manifest['max_budget']
     for r in pool:
         if r['form'] == 'original':
             assert r['greedy_run'] and r['s20_run'], r['name']
@@ -101,7 +107,7 @@ def test_every_solve_has_a_solver_and_the_originals_carry_both_grades(pool):
                     assert int(r[f'{eng}_nodes']) <= int(r[f'{eng}_budget']), r['name']
                     assert int(r[f'{eng}_path_length']) >= 1, r['name']
                 else:
-                    assert int(r[f'{eng}_nodes']) == int(r[f'{eng}_budget']) == 1_000_000, r['name']
+                    assert int(r[f'{eng}_nodes']) == int(r[f'{eng}_budget']) == ceiling, r['name']
         if r['level'] != 'ungraded':
             assert r['solved_by'] != 'none', r['name']
         else:

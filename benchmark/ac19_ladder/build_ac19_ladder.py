@@ -68,13 +68,16 @@ def label(budget):
     return f'{budget // 1000}k' if budget < 1_000_000 else f'{budget // 1_000_000}M'
 
 
-def grade_originals(panel, runs_dir, engine, manifest):
-    """Walk the escalation for one engine: {name: (solved, nodes, budget, run_label, path_length)}."""
+def grade_originals(panel, runs_dir, engine, manifest, max_budget=BUDGETS[-1]):
+    """Walk the escalation for one engine: {name: (solved, nodes, budget, run_label, path_length)}.
+    Rows still unsolved after the ``max_budget`` rung are censored there."""
     out = {}
     expected = {r['name'] for r in panel}
+    last = BUDGETS[0]
     for budget in BUDGETS:
-        if not expected:
+        if not expected or budget > max_budget:
             break
+        last = budget
         path = runs_dir / f'orig_{engine}_b{budget}_c{CAP}.jsonl.gz'
         if not path.exists():
             path = path.with_suffix('')      # a plain .jsonl is accepted too
@@ -94,12 +97,12 @@ def grade_originals(panel, runs_dir, engine, manifest):
                 assert int(r['nodes']) == budget, (path.name, r['name'], r['nodes'])
                 nxt.add(r['name'])
         expected = nxt
-    for name in expected:      # censored at the last budget run
-        out[name] = (False, BUDGETS[-1], BUDGETS[-1], f'unsolved@{label(BUDGETS[-1])}', '')
+    for name in expected:      # censored at the last rung walked
+        out[name] = (False, last, last, f'unsolved@{label(last)}', '')
     return out
 
 
-def build(runs_dir):
+def build(runs_dir, max_budget):
     manifest = OrderedDict()
     E = json.load(open(LADDER / 'ladder_manifest.json'))['E']
     rows = []
@@ -140,8 +143,8 @@ def build(runs_dir):
     rep_pairs = {(r['r1'], r['r2']) for r in rows}
     assert not any((p['r1'], p['r2']) in rep_pairs for p in panel), 'an original equals a representative'
     manifest['runs'] = OrderedDict()
-    g = grade_originals(panel, runs_dir, 'greedy', manifest['runs'])
-    s = grade_originals(panel, runs_dir, 's20_mk2', manifest['runs'])
+    g = grade_originals(panel, runs_dir, 'greedy', manifest['runs'], max_budget)
+    s = grade_originals(panel, runs_dir, 's20_mk2', manifest['runs'], max_budget)
     for p in panel:
         gs, gn, gb, gl, gpl = g[p['name']]
         ss, sn, sb, sl, spl = s[p['name']]
@@ -212,6 +215,8 @@ def main():
     ap.add_argument('--runs-dir', type=Path, default=HERE / 'sources' / 'runs')
     ap.add_argument('--out', type=Path, default=HERE)
     ap.add_argument('--force', action='store_true')
+    ap.add_argument('--max-budget', type=int, default=BUDGETS[-1], choices=BUDGETS,
+                    help='stop the escalation here (rows unsolved at this rung are censored at it)')
     args = ap.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
@@ -222,7 +227,7 @@ def main():
         sys.exit(f'{len(existing)} output files exist (e.g. {existing[0]}); pass --force to overwrite')
 
     t0 = time.time()
-    rows, E, sources = build(args.runs_dir)
+    rows, E, sources = build(args.runs_dir, args.max_budget)
     names = [r['name'] for r in rows]
     assert len(names) == len(set(names))
     pairs = [(r['r1'], r['r2']) for r in rows]
@@ -270,8 +275,9 @@ def main():
                                 check=True).stdout.strip(),
         rows=len(rows), by_form=OrderedDict(sorted(Counter(r['form'] for r in rows).items())),
         E=E, levels=level_table(E), populations=populations,
-        ungraded=OrderedDict(rows=len(ungraded), rule='original, plain greedy unsolved at 1,000,000 pops',
+        ungraded=OrderedDict(rows=len(ungraded), rule=f'original, plain greedy unsolved at {args.max_budget:,} pops',
                              s20_solved=sum(1 for r in ungraded if r['s20_solved'])),
+        max_budget=args.max_budget,
         solved_by=OrderedDict(sorted(Counter(r['solved_by'] for r in rows).items())),
         sizes=[10 * k for k in PER_LEVEL], per_level=list(PER_LEVEL), cap=CAP, budgets=list(BUDGETS),
         sources=sources)
