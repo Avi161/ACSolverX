@@ -58,6 +58,38 @@ the row S20_MK2 found most expensive. Rows solved at the root pop are never pick
 Nested by construction: `ladder_10 ⊂ ladder_20 ⊂ … ⊂ ladder_200`. A level shorter than
 `k` gives what it has (`per_level_actual` in the JSON).
 
+## The 1M rungs (run elsewhere)
+
+The originals are graded here to 100k. A single 1M-pop search peaks at **11.8 GB** and
+takes 4–5 minutes on this box, so the 1M rungs run on a bigger machine, on the two
+panels of rows still unsolved at 100k (`sources/unsolved_at_100k_greedy.csv`,
+`sources/unsolved_at_100k_s20_mk2.csv`; counts in `manifest.json`). Only `numpy`,
+`numba` and `PyYAML` are needed. From a clone of this branch:
+
+```bash
+pip install numpy==2.1.3 numba==0.63.1 PyYAML==6.0.2
+export PYTHONPATH=.
+# W = floor((RAM_GB - 2) / 12): each 1M-pop worker holds ~12 GB
+python3 -m benchmark.ladder.run_ladder --engine greedy  --budget 1000000 --cap 48 --workers W --big-workers \
+    --panel benchmark/ac19_ladder/sources/unsolved_at_100k_greedy.csv \
+    --out benchmark/ac19_ladder/sources/runs --tag orig_greedy_b1000000_c48
+python3 -m benchmark.ladder.run_ladder --engine s20_mk2 --budget 1000000 --cap 48 --workers W --big-workers \
+    --panel benchmark/ac19_ladder/sources/unsolved_at_100k_s20_mk2.csv \
+    --out benchmark/ac19_ladder/sources/runs --tag orig_s20_mk2_b1000000_c48
+```
+
+Both runs resume by row name if interrupted (re-run the same command). Each writes
+`<tag>.jsonl` (every solve replayed; `verified` per row) and `<tag>.summary.json`.
+Then, back here, with those two files in `sources/runs/` (`.jsonl` or `.jsonl.gz`):
+
+```bash
+PYTHONPATH=. python3 -m benchmark.ac19_ladder.build_ac19_ladder --force        # max budget 1M, the default
+PYTHONPATH=. python3 -m pytest tests/test_ac19_ladder.py -q
+```
+
+which re-grades the rows those rungs solve into levels 5–6, shrinks `ungraded.csv` to the
+rows greedy leaves unsolved at 1M, and re-ranks every level by the new S20_MK2 costs.
+
 ## Running the tester
 
 ```bash
