@@ -493,3 +493,33 @@ def test_c26_exact_l1_identities_and_n3():
         assert artifact["controls"]["cancel_empty_fold_hit_found"]
         assert artifact["controls"]["cartesian_mitm_agree_tiny_m2"]
         assert artifact["controls"]["independent_checker"] is False
+
+
+def test_c27_archival_k4_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c27_archival_k4 as c27  # type: ignore
+    import ms_template_identities as ms  # type: ignore
+
+    assert c27.c26.y_combo(3, -1) == (1, -1, 2)
+    seqs = c27.type_sequences({"Rp": 2, "Rm": 1, "Sm": 1})
+    assert len(seqs) == 12
+    assert c27.ac2_planted()["ok"]
+    assert c27.k4_planted()["ok"]
+    rec = c27.scan_ac2_pair("P[2,-1]", *ms.parametric_p(2, -1))
+    assert rec["drop"] == 0
+    assert not rec["found"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c27_archival_k4.json"
+    if json_path.exists():
+        artifact = json.loads(json_path.read_text())
+        summary = artifact["summary"]
+        assert summary["ac2_planted_ok"]
+        assert not summary["parametric_any_hit"]
+        assert not summary["initial_any_hit"]
+        assert summary["initial_n_rows"] == 124
+        assert summary["initial_n_changed_from_best"] == 36
+        assert not summary["k4_found"]
+        assert summary["k4_products_equal_typed"]
+        assert summary["independent_checker"] is False
+        assert summary["solved_u124"] == 0
+
