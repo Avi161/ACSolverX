@@ -1,0 +1,74 @@
+{
+  "ac3_ypower_hits": [],
+  "cyclic_orientation_hits": [],
+  "donor": "YXXXyxYx",
+  "n_ac3_ypower_hits": 0,
+  "n_cyclic_orientation_hits": 0,
+  "n_rows": 10,
+  "n_whitehead_hits": 0,
+  "note": "Hits mean every y-run length is a multiple of m after the named move class. Zero hits rule out that exact orientation/Aut list, not every Britton-clearing construction.",
+  "status": "divisibility_probe_not_a_solve",
+  "whitehead_hits": [],
+  "ypower_identity": [
+    {
+      "all_divisible_by_m": false,
+      "conjugated": "YYYXXXyxYxyy",
+      "k": 2,
+      "m": 3,
+      "y_runs": [
+        3,
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "all_divisible_by_m": false,
+      "conjugated": "YYYYXXXyxYxyyy",
+      "k": 3,
+      "m": 4,
+      "y_runs": [
+        4,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "all_divisible_by_m": false,
+      "conjugated": "YYYYYXXXyxYxyyyy",
+      "k": 4,
+      "m": 5,
+      "y_runs": [
+        5,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "all_divisible_by_m": false,
+      "conjugated": "YYYYYYXXXyxYxyyyyy",
+      "k": 5,
+      "m": 6,
+      "y_runs": [
+        6,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "all_divisible_by_m": false,
+      "conjugated": "YYYYYYYXXXyxYxyyyyyy",
+      "k": 6,
+      "m": 7,
+      "y_runs": [
+        7,
+        1,
+        1,
+        6
+      ]
+    }
+  ]
+}

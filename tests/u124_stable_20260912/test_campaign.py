@@ -77,6 +77,10 @@ def test_primitive_controls_and_ms_donors_not_primitive():
     assert not is_primitive_word(red("xxxYYYY"))
     assert not is_primitive_word(red("YXXyxYx"))
     assert not is_primitive_word(red("YXyXYxx"))
+    assert red("YXyXYxx").minimum_total == 5
+    assert red("YXXyxYx").minimum_total == 6
+
+
 def test_c12_generator_deletion_signs_and_unimodular_finish():
     sys.path.insert(0, str(CODE))
     import c12_generator_deletion as d  # type: ignore
@@ -92,3 +96,13 @@ def test_c12_generator_deletion_signs_and_unimodular_finish():
     commutator = d.delete_all_x("xyXY")
     assert commutator["leftover"] == ""
     assert commutator["det_if_paired_with_x"] == 0
+
+
+def test_c15_leading_y_conjugate_keeps_interior_runs():
+    sys.path.insert(0, str(CODE))
+    import c15_divisibility_scan as c15  # type: ignore
+
+    word = c15.conjugate_by_ypower(c15.DONOR, 2)
+    assert word == "YYYXXXyxYxyy"
+    assert c15.y_run_lengths(word) == [3, 1, 1, 2]
+    assert not c15.all_divisible(word, 3)

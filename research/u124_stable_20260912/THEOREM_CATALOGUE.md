@@ -400,7 +400,15 @@ BS-donor states on the best table, including these rows
 exactly the recorded caution: exponent ±1 is not enough for general
 `BS(m,m+1)`; divisibility can stall.
 
-**Not claimed.** These nine rows are not ordinary-AC trivial by C5.
+**Divisibility probes (this campaign).** AC3 by `y^k`, cyclic orientation of
+the donor, and all 20 Whitehead automorphisms never make every y-run length
+a multiple of `m` on these ten rows (`tables/c15_divisibility_scan.json`).
+The explicit conjugate `y^{-(m-1)} W y^{m-1}` starts with a legal leading
+run and keeps interior runs `(…,1,1,m-1)` (for `m=3`: `YYYXXXyxYxyy`,
+runs `3,1,1,2`). Depth-1 AC2 from that `m=3` pair has 432 children and no
+divisibility/terminal hit. Exact for those lists, not a Britton obstruction.
+
+**Not claimed.** These ten rows are not ordinary-AC trivial by C5.
 Reciprocal BS(3,2) symmetry is not used. A new theorem that replaces
 Britton for this specific companion `YXXXyxYx` (for example a power–Bézout
 corridor against the `x^{-3}` block, or a stable defining word that makes
