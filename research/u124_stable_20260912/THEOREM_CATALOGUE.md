@@ -1468,8 +1468,8 @@ Same-code deterministic replay plus planted nine-config control with a
 persisted factor/conjugator witness. `independent_checker=false`.
 Tests independently check the algebra, the planted witness schema, and
 rerun only aca_117; they do not independently enumerate the census.
-Plan advisor REVISE applied (`ingest/advisor_c35_plan.md`). Census
-advisor audit pending.
+Plan advisor REVISE applied (`ingest/advisor_c35_plan.md`).
+`ingest/advisor_wave20.md` **APPROVE**.
 
 
 

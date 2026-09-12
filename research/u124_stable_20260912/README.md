@@ -137,7 +137,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     C35: last unused length-7 donor in the listed shared-donor
     inventory, `YXXXyxx` (`x ≡ D^{-1}`, `L1=1`); k=3 nine-config
     misses (`579,870` products, observed min length 7). Plan advisor
-    REVISE applied. Still 0/124.
+    REVISE applied. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

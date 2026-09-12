@@ -337,8 +337,8 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   replay; unused because there was no hit. Observed min 7 is a C35
   census statistic, not a comparison with C29/C33/C34. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`. Plan advisor
-  REVISE applied (`ingest/advisor_c35_plan.md`). Census advisor audit
-  pending.
+  REVISE applied (`ingest/advisor_c35_plan.md`). Advisor APPROVE
+  (`ingest/advisor_wave20.md`).
 
 
 
