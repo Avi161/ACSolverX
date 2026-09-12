@@ -837,3 +837,59 @@ def test_c33_len7_donors_identities():
         "aca_99": 193500,
     }
 
+
+def test_c34_x_exact_l1_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c30_x_exact_l1 as c30  # type: ignore
+    import c34_x_exact_l1 as c34  # type: ignore
+
+    rec = c34.scan_row("aca_8", "YXyXYxx", "YYXYXyyx")
+    assert rec["L1"] == 2
+    assert rec["method"] == "typed_cartesian"
+    assert rec["n_products"] == 1012
+    assert rec["min_len"] == 9
+    assert not rec["found"]
+    rec72 = c34.scan_row("aca_72", "YYXXyxx", "YYxyXyxyXyX")
+    assert rec72["L1"] == 3
+    assert rec72["n_products"] == 56448
+    assert rec72["min_len"] == 17
+    assert not rec72["found"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c34_x_exact_l1.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 8
+    assert summary["n_cartesian_cells"] == 4
+    assert summary["n_mitm_cells"] == 4
+    assert summary["n_cartesian_products_enumerated"] == 59884
+    assert summary["n_typed_tuples_cartesian"] == 59884
+    assert summary["n_typed_tuples_mitm"] == 69_587_713_197
+    assert summary["n_typed_tuples_total"] == 69_587_773_081
+    assert summary["cartesian_observed_min_len"] == 9
+    assert summary["cartesian_min_lens"] == [9, 11, 17, 15]
+    assert not summary["any_hit"]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    assert summary["uses_c30_combo_formula"]
+    assert summary["equality_is_free_reduce_literal"]
+    assert summary["l1_range_is_window_rows"]
+    assert summary["mitm_counts_are_search_space_not_enumerated_products"]
+    assert summary["cartesian_ids"] == ["aca_8", "aca_1", "aca_72", "aca_99"]
+    assert summary["mitm_ids"] == ["aca_121", "aca_122", "aca_7", "aca_31"]
+    assert summary["skipped_l1_1"] == [{"id": "aca_43", "donor": "YYXXyxx", "L1": 1}]
+    assert {row["id"] for row in summary["skipped_l1_ge_8"]} == {
+        "aca_85",
+        "aca_98",
+        "aca_123",
+    }
+    assert c30.x_class_exponents()["one_letter_class_complete"]
+    a43, b43, l43 = c30.x_combo_from_c_exp(-1, 0)
+    assert (a43, b43, l43) == (0, -1, 1)
+    for row in artifact["scans"]:
+        p, q = c22.exp_on(row["companion"], "xy")
+        a, b, l1 = c30.x_combo_from_c_exp(p, q)
+        assert (a, b, l1) == (row["combo_a"], row["combo_b"], row["L1"])
+        assert abs(row["combo_b"]) == 1
+
+

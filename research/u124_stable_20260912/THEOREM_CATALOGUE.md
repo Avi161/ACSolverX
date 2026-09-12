@@ -1353,8 +1353,8 @@ against C29.
 be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
-including `u`. Defining word `x` (L1 varies; aca_43 has `x` with
-`L1=1`). Depth ≥ 3 AC2. Lemma 11.
+including `u`. Defining word `x` is C34 in the `2≤L1≤7` window;
+aca_43 (`L1=1`) and L1≥8 remain. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Twelve best-table rows listed above. **Not a solve.** Bounded
 negative for this typed k=3 pool.
@@ -1364,6 +1364,58 @@ Same-code deterministic replay plus planted nine-config control.
 `independent_checker=false`. Tests spot-check identities and stored
 JSON; they do not independently enumerate the census.
 `ingest/advisor_wave18.md` **APPROVE**.
+
+---
+
+## C34. Exact-L1 typed products for `x` on the C33 rows — IDENTITY-CHECKED NEGATIVE
+
+**C34.1 (combination).** Both C33 donors abelianize to `(0,-1)`, so
+C30's formula applies: unimodular `C_ab=(p,q)` has `p=±1` and unique
+x-combination `(a,b)=(pq,p)`; hence `|b|=1` for every such companion.
+On the twelve listed rows `L1` runs from 1 to 10. The census window
+`2≤L1≤7` is the eight listed rows below, not every conceivable
+unimodular companion. Exact-L1 products are `|a|` conjugates of
+`D^{\mathrm{sign}(a)}` and one of `C^{\mathrm{sign}(b)}`. Even `k` is
+abelian-legal on even-L1 window rows; there is no C24-style even-k
+block in the window.
+
+**C34.2 (prefix/one-letter census, `2≤L1≤7`).** Unique conjugates per
+signed type; counts are typed Cartesian sizes `k\,|A|^{k-1}|B|`, not
+`|F|^k`. Distinguish three numbers:
+
+- Four Cartesian cells (aca_8, 1, 72, 99): `59,884` enumerated typed
+  tuples, observed minima 9, 11, 17, 15 (every enumerated word has
+  length at least 9).
+- Four MITM cells (aca_121, 122, 7, 31): typed search-space
+  `69,587,713,197`, not enumerated products.
+- All-window typed total `69,587,773,081`.
+
+Targets `{x, Yxy, yxY}` (`Yxy` is C22’s `ξ`). Inverse class by
+reversing and inverting factors. No hit. Equality is free-reduce
+literal match. No cyclic-reduction or conjugacy quotient, ambient
+`Aut(F_2)`, or Tietze identification. `independent_checker=false`.
+
+Skipped: aca_43 (`L1=1`; combo `(0,-1)`, so `x ≡ C^{-1}`; k=1 blocked
+by `|C|=11`; even k impossible); aca_123, 85, 98 (`L1≥8`).
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
+conjugators, including `u`. Equality was tested after free reduction
+only against `{x, Yxy, yxY}`; freely reduced longer conjugates of `x`
+not among these three targets remain untested. aca_43 k=3 for `x`.
+`L1≥8`. C33 leftover `k=5,7,…` for `y`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Eight of the twelve C33 rows. **Not a solve.** Bounded
+negative for this typed exact-L1 pool.
+
+**Audit.** `code/c34_x_exact_l1.py`, `tables/c34_x_exact_l1.json`.
+Same-code replay plus C26 planted controls. Observed Cartesian minimum
+9 is a census fact. MITM typed sizes are search-space, not enumerated
+products. Tests independently check the algebra and rerun only
+aca_8/aca_72; they do not independently replay MITM.
+`independent_checker=false`. Advisor audit pending.
 
 
 

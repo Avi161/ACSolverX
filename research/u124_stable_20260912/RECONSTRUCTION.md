@@ -313,5 +313,17 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   No certificate JSONL rows. `independent_checker=false`.
   Advisor APPROVE (`ingest/advisor_wave18.md`).
 
+## Wave 20 (C34 exact-L1 x on C33 rows, 2026-09-12)
+
+- Defining word `x` on C33 donors, window `2≤L1≤7` (eight listed
+  rows, not every unimodular companion). C30's combo `(a,b)=(pq,p)`
+  applies, so `|b|=1`. Four Cartesian cells enumerate 59,884 typed
+  tuples (observed minima 9, 11, 17, 15). Four MITM cells have typed
+  search-space 69,587,713,197 (not enumerated products). No hit on
+  `{x, Yxy, yxY}`. Equality was tested after free reduction only
+  against those three words. Skipped aca_43 (`L1=1`, `x ≡ C^{-1}`) and
+  three `L1≥8` rows. Still **0/124**. No certificate JSONL rows.
+  `independent_checker=false`. Advisor audit pending.
+
 
 
