@@ -135,3 +135,15 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `ingest/advisor_wave5.md` REVISE applied.
 - Still **0/124**. No certificate JSONL rows.
 
+## Wave 7 (C21 depth-2 and Gate 2 AC5, 2026-09-12)
+
+- C20’s ten no-pinch children are a uniform family: companion
+  lengths `2n+6` (four) and `2n+8` (six).
+- Depth-2 AC2 on those children, `n=2..7`: 0 cyclic totals below
+  C19’s `2n+10`; Britton leftovers length ≥ 9. All-edge parent
+  drops: ten returns to `⟨D,B⟩` per `n`; `n=2` has two extra edges
+  into a length-16 class.
+- C16 Gate 2 cannot destablize by bare AC5: `u² x^{nδ} y⁻¹` is never
+  `y^{±1}`. `ingest/advisor_wave6.md` REVISE applied.
+- Still **0/124**. No certificate JSONL rows.
+

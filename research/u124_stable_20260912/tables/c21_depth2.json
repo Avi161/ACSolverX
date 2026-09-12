@@ -1,0 +1,1557 @@
+{
+  "summary": {
+    "n_checked": 6,
+    "uniform_B_len_minus_2n": true,
+    "B_len_minus_2n_sorted": [
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    ],
+    "any_drop_vs_c19": false,
+    "any_drop_vs_parent": true,
+    "any_one_occ": false,
+    "any_two_block": false,
+    "any_other_shorter_than_D": false,
+    "min_other_after_len": {
+      "2": 9,
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 10,
+      "7": 10
+    },
+    "n_return_to_c19_length": {
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1
+    },
+    "n_return_to_DB_edges": {
+      "2": 10,
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 10,
+      "7": 10
+    },
+    "n_parent_drop": {
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1
+    },
+    "n_parent_drop_edges": {
+      "2": 12,
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 10,
+      "7": 10
+    },
+    "interesting_counts": {
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1
+    },
+    "grandchild_unique": {
+      "2": 1580,
+      "3": 1980,
+      "4": 2380,
+      "5": 2780,
+      "6": 3180,
+      "7": 3580
+    },
+    "gate2_bare_ac5": false,
+    "solved_u124": 0
+  },
+  "alignment": {
+    "B_len_minus_n_sorted": [
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        6,
+        6,
+        6,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    ],
+    "uniform_offset_multiset": true,
+    "n_family_slots": 10
+  },
+  "gate2_destab": {
+    "n_checked": 12,
+    "any_bare_ac5": false,
+    "rows": [
+      {
+        "n": 2,
+        "delta": -1,
+        "isolator": "uuXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 4
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "isolator": "uuxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 4
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "isolator": "uuXXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 5
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "isolator": "uuxxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 5
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "isolator": "uuXXXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 6
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "isolator": "uuxxxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 6
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "isolator": "uuXXXXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 7
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "isolator": "uuxxxxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 7
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "isolator": "uuXXXXXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 8
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "isolator": "uuxxxxxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 8
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "isolator": "uuXXXXXXXY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 9
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "isolator": "uuxxxxxxxY",
+        "is_generator": false,
+        "any_orientation_generator": false,
+        "e_len": 9
+      }
+    ],
+    "note": "Bare AC5 needs a relator that is the generator y. I_S = u^2 x^{n\u03b4} y^{-1} is never that generator for n=2..7."
+  },
+  "scans": [
+    {
+      "n": 2,
+      "c19_base_len": 14,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "10": 4,
+        "12": 6
+      },
+      "family": [
+        {
+          "B": "XXXUxuuuXU",
+          "B_len": 10,
+          "len": 17,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 17
+          },
+          "B_cyc": "XXXUxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXUxxUXuuuX",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 19
+          },
+          "B_cyc": "XXXUxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xuXXXuuXUU",
+          "B_len": 10,
+          "len": 17,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 0,
+            "new_len": 17
+          },
+          "B_cyc": "xuXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxuXXXXUUXuu",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 4,
+            "new_len": 19
+          },
+          "B_cyc": "xxuXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxuXXXuXUUXu",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 5,
+            "new_len": 19
+          },
+          "B_cyc": "xxuXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXUxxUUxuu",
+          "B_len": 10,
+          "len": 17,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 17
+          },
+          "B_cyc": "XXUxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXUxxxuuxUU",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 19
+          },
+          "B_cyc": "XXXUxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXUxxUxuuxU",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 19
+          },
+          "B_cyc": "XXXUxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxuXXXuxUUUx",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 4,
+            "k2": 0,
+            "new_len": 19
+          },
+          "B_cyc": "xxuXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxuXXUUUxu",
+          "B_len": 10,
+          "len": 17,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 4,
+            "k2": 6,
+            "new_len": 17
+          },
+          "B_cyc": "xxuXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 3136,
+      "n_grandchildren_unique": 1580,
+      "n_interesting": 2,
+      "n_other_pinch_children": 275,
+      "n_parent_drop": 2,
+      "n_parent_drop_edges": 12,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 9,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -4,
+          "after_cyc": "XXXuuXuXU",
+          "after_len": 9
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "uXUXXXuuX",
+          "new_len": 16,
+          "drop_vs_c19": -2,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": false,
+          "bs_m": null,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 1,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 2,
+            "new_len": 16
+          },
+          "parent_B": "XXXUxuuuXU",
+          "parent_len": 17
+        },
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXUxxu",
+          "new_len": 14,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 2,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 14
+          },
+          "parent_B": "XXXUxuuuXU",
+          "parent_len": 17
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    },
+    {
+      "n": 3,
+      "c19_base_len": 16,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "12": 4,
+        "14": 6
+      },
+      "family": [
+        {
+          "B": "XXXXUxxuuuXU",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 19
+          },
+          "B_cyc": "XXXXUxxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXUxxxUXuuuX",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 21
+          },
+          "B_cyc": "XXXXUxxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxuXXXXuuXUU",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 0,
+            "new_len": 19
+          },
+          "B_cyc": "xxuXXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxuXXXXXUUXuu",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 4,
+            "new_len": 21
+          },
+          "B_cyc": "xxxuXXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxuXXXXuXUUXu",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 5,
+            "new_len": 21
+          },
+          "B_cyc": "xxxuXXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXUxxxUUxuu",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 19
+          },
+          "B_cyc": "XXXUxxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXUxxxxuuxUU",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 21
+          },
+          "B_cyc": "XXXXUxxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXUxxxUxuuxU",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 21
+          },
+          "B_cyc": "XXXXUxxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxuXXXXuxUUUx",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 5,
+            "k2": 0,
+            "new_len": 21
+          },
+          "B_cyc": "xxxuXXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxuXXXUUUxu",
+          "B_len": 12,
+          "len": 19,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 5,
+            "k2": 6,
+            "new_len": 19
+          },
+          "B_cyc": "xxxuXXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 3696,
+      "n_grandchildren_unique": 1980,
+      "n_interesting": 1,
+      "n_other_pinch_children": 244,
+      "n_parent_drop": 1,
+      "n_parent_drop_edges": 10,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 10,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -4,
+          "after_cyc": "XuuuXXUUXu",
+          "after_len": 10
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXUxxxu",
+          "new_len": 16,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 3,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 16
+          },
+          "parent_B": "XXXXUxxuuuXU",
+          "parent_len": 19
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    },
+    {
+      "n": 4,
+      "c19_base_len": 18,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "14": 4,
+        "16": 6
+      },
+      "family": [
+        {
+          "B": "XXXXXUxxxuuuXU",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 21
+          },
+          "B_cyc": "XXXXXUxxxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXUxxxxUXuuuX",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 23
+          },
+          "B_cyc": "XXXXXUxxxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxuXXXXXuuXUU",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 0,
+            "new_len": 21
+          },
+          "B_cyc": "xxxuXXXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxuXXXXXXUUXuu",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 4,
+            "new_len": 23
+          },
+          "B_cyc": "xxxxuXXXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxuXXXXXuXUUXu",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 5,
+            "new_len": 23
+          },
+          "B_cyc": "xxxxuXXXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXUxxxxUUxuu",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 21
+          },
+          "B_cyc": "XXXXUxxxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXUxxxxxuuxUU",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 23
+          },
+          "B_cyc": "XXXXXUxxxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXUxxxxUxuuxU",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 23
+          },
+          "B_cyc": "XXXXXUxxxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxuXXXXXuxUUUx",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 6,
+            "k2": 0,
+            "new_len": 23
+          },
+          "B_cyc": "xxxxuXXXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxuXXXXUUUxu",
+          "B_len": 14,
+          "len": 21,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 6,
+            "k2": 6,
+            "new_len": 21
+          },
+          "B_cyc": "xxxxuXXXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 4256,
+      "n_grandchildren_unique": 2380,
+      "n_interesting": 1,
+      "n_other_pinch_children": 244,
+      "n_parent_drop": 1,
+      "n_parent_drop_edges": 10,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 10,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -5,
+          "after_cyc": "XuuuXXUUXu",
+          "after_len": 10
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXUxxxxu",
+          "new_len": 18,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 4,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 18
+          },
+          "parent_B": "XXXXXUxxxuuuXU",
+          "parent_len": 21
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    },
+    {
+      "n": 5,
+      "c19_base_len": 20,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "16": 4,
+        "18": 6
+      },
+      "family": [
+        {
+          "B": "XXXXXXUxxxxuuuXU",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 23
+          },
+          "B_cyc": "XXXXXXUxxxxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXUxxxxxUXuuuX",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 25
+          },
+          "B_cyc": "XXXXXXUxxxxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxuXXXXXXuuXUU",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 0,
+            "new_len": 23
+          },
+          "B_cyc": "xxxxuXXXXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxuXXXXXXXUUXuu",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 4,
+            "new_len": 25
+          },
+          "B_cyc": "xxxxxuXXXXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxuXXXXXXuXUUXu",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 5,
+            "new_len": 25
+          },
+          "B_cyc": "xxxxxuXXXXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXUxxxxxUUxuu",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 23
+          },
+          "B_cyc": "XXXXXUxxxxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXUxxxxxxuuxUU",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 25
+          },
+          "B_cyc": "XXXXXXUxxxxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXUxxxxxUxuuxU",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 25
+          },
+          "B_cyc": "XXXXXXUxxxxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxuXXXXXXuxUUUx",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 7,
+            "k2": 0,
+            "new_len": 25
+          },
+          "B_cyc": "xxxxxuXXXXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxuXXXXXUUUxu",
+          "B_len": 16,
+          "len": 23,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 7,
+            "k2": 6,
+            "new_len": 23
+          },
+          "B_cyc": "xxxxxuXXXXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 4816,
+      "n_grandchildren_unique": 2780,
+      "n_interesting": 1,
+      "n_other_pinch_children": 244,
+      "n_parent_drop": 1,
+      "n_parent_drop_edges": 10,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 10,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -6,
+          "after_cyc": "XuuuXXUUXu",
+          "after_len": 10
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXXUxxxxxu",
+          "new_len": 20,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 5,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 20
+          },
+          "parent_B": "XXXXXXUxxxxuuuXU",
+          "parent_len": 23
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    },
+    {
+      "n": 6,
+      "c19_base_len": 22,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "18": 4,
+        "20": 6
+      },
+      "family": [
+        {
+          "B": "XXXXXXXUxxxxxuuuXU",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 25
+          },
+          "B_cyc": "XXXXXXXUxxxxxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXUxxxxxxUXuuuX",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 27
+          },
+          "B_cyc": "XXXXXXXUxxxxxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxuXXXXXXXuuXUU",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 0,
+            "new_len": 25
+          },
+          "B_cyc": "xxxxxuXXXXXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxuXXXXXXXXUUXuu",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 4,
+            "new_len": 27
+          },
+          "B_cyc": "xxxxxxuXXXXXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxuXXXXXXXuXUUXu",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 5,
+            "new_len": 27
+          },
+          "B_cyc": "xxxxxxuXXXXXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXUxxxxxxUUxuu",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 25
+          },
+          "B_cyc": "XXXXXXUxxxxxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXUxxxxxxxuuxUU",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 27
+          },
+          "B_cyc": "XXXXXXXUxxxxxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXUxxxxxxUxuuxU",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 27
+          },
+          "B_cyc": "XXXXXXXUxxxxxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxuXXXXXXXuxUUUx",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 8,
+            "k2": 0,
+            "new_len": 27
+          },
+          "B_cyc": "xxxxxxuXXXXXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxuXXXXXXUUUxu",
+          "B_len": 18,
+          "len": 25,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 8,
+            "k2": 6,
+            "new_len": 25
+          },
+          "B_cyc": "xxxxxxuXXXXXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 5376,
+      "n_grandchildren_unique": 3180,
+      "n_interesting": 1,
+      "n_other_pinch_children": 244,
+      "n_parent_drop": 1,
+      "n_parent_drop_edges": 10,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 10,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -7,
+          "after_cyc": "XuuuXXUUXu",
+          "after_len": 10
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXXXUxxxxxxu",
+          "new_len": 22,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 6,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 22
+          },
+          "parent_B": "XXXXXXXUxxxxxuuuXU",
+          "parent_len": 25
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    },
+    {
+      "n": 7,
+      "c19_base_len": 24,
+      "n_no_pinch": 10,
+      "B_len_histogram": {
+        "20": 4,
+        "22": 6
+      },
+      "family": [
+        {
+          "B": "XXXXXXXXUxxxxxxuuuXU",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 27
+          },
+          "B_cyc": "XXXXXXXXUxxxxxxuuuXU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXXUxxxxxxxUXuuuX",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 29
+          },
+          "B_cyc": "XXXXXXXXUxxxxxxxUXuuuX",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxuXXXXXXXXuuXUU",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 0,
+            "new_len": 27
+          },
+          "B_cyc": "xxxxxxuXXXXXXXXuuXUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxxuXXXXXXXXXUUXuu",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 9,
+            "k2": 4,
+            "new_len": 29
+          },
+          "B_cyc": "xxxxxxxuXXXXXXXXXUUXuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxxuXXXXXXXXuXUUXu",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 9,
+            "k2": 5,
+            "new_len": 29
+          },
+          "B_cyc": "xxxxxxxuXXXXXXXXuXUUXu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXUxxxxxxxUUxuu",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 27
+          },
+          "B_cyc": "XXXXXXXUxxxxxxxUUxuu",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXXUxxxxxxxxuuxUU",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 29
+          },
+          "B_cyc": "XXXXXXXXUxxxxxxxxuuxUU",
+          "bs_mm1": false
+        },
+        {
+          "B": "XXXXXXXXUxxxxxxxUxuuxU",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 29
+          },
+          "B_cyc": "XXXXXXXXUxxxxxxxUxuuxU",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxxuXXXXXXXXuxUUUx",
+          "B_len": 22,
+          "len": 29,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 9,
+            "k2": 0,
+            "new_len": 29
+          },
+          "B_cyc": "xxxxxxxuXXXXXXXXuxUUUx",
+          "bs_mm1": false
+        },
+        {
+          "B": "xxxxxxxuXXXXXXXUUUxu",
+          "B_len": 20,
+          "len": 27,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 9,
+            "k2": 6,
+            "new_len": 27
+          },
+          "B_cyc": "xxxxxxxuXXXXXXXUUUxu",
+          "bs_mm1": false
+        }
+      ],
+      "n_grandchildren_raw": 5936,
+      "n_grandchildren_unique": 3580,
+      "n_interesting": 1,
+      "n_other_pinch_children": 244,
+      "n_parent_drop": 1,
+      "n_parent_drop_edges": 10,
+      "n_return_to_c19_length": 1,
+      "n_return_to_DB_edges": 10,
+      "min_other_after_len": 10,
+      "shortest_other_after": [
+        {
+          "slot": "r1",
+          "k": -8,
+          "after_cyc": "XuuuXXUUXu",
+          "after_len": 10
+        }
+      ],
+      "interesting": [
+        {
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXXXXUxxxxxxxu",
+          "new_len": 24,
+          "drop_vs_c19": 0,
+          "one_occurrence": false,
+          "two_block_both": false,
+          "bs_mm1_either": true,
+          "bs_m": 7,
+          "n_disallowed_pinches": 0,
+          "n_other_after": 0,
+          "min_other_after_len": null,
+          "other_after": [],
+          "pinch_hits": [],
+          "drop_vs_parent": 3,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 24
+          },
+          "parent_B": "XXXXXXXXUxxxxxxuuuXU",
+          "parent_len": 27
+        }
+      ],
+      "any_drop_vs_c19": false,
+      "any_drop_vs_parent": true,
+      "any_one_occ": false,
+      "any_two_block": false,
+      "any_other_shorter_than_D": false
+    }
+  ],
+  "notes": [
+    "Depth-2 is one extra AC2 from each of the ten C20 no-pinch children.",
+    "Uniqueness is canon_pair. A miss is not an obstruction to depth \u2265 3.",
+    "Bare AC5 of I_S is a negative for making C16 Gate 2 elementary.",
+    "Incoming C16 still has two Lemma-11 uses. Not a U124 solve."
+  ]
+}

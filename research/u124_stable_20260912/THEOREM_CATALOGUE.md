@@ -664,3 +664,54 @@ uses. **Not a solve, not a best-table shortening.**
 **Audit.** Coordinator replay `code/c20_roundtrip.py`. Continuation
 scan `code/c19_continuation.py`. `ingest/advisor_wave5.md` **REVISE**
 applied.
+
+---
+
+## C21. Depth-2 AC2 from C20 no-pinch children; Gate 2 is not bare AC5 — IDENTITY-CHECKED NEGATIVE
+
+**Statement.** Let `n ∈ {2,…,7}`, `D = x⁻¹ u³ x⁻¹ u⁻²`, and `B` the
+C19 companion `u⁻¹ xⁿ u x⁻(n+1)`. C20 leaves exactly ten
+`canon_pair`-unique depth-1 children with no valid BS(`n`,`n+1`)
+pinch. All ten keep `D`. Companion lengths are uniformly
+`2n+6` (four children) and `2n+8` (six children). Then:
+
+1. One further ordinary AC2, over every globally `canon_pair`-unique
+   grandchild of those ten (cyclic/inverse of each relator and slot
+   order; 1580 unique at `n=2`, 3580 at `n=7`), never produces cyclic
+   total below the C19 length `2n+10`.
+2. All-edge parent-drop census (each of the ten parents, unique
+   children of that parent, including grandchildren already seen from
+   another parent): for `n≥3` there are exactly ten parent-length-drop
+   edges, and each is `canon_pair`-equal to `⟨D,B⟩`. For `n=2` there
+   are twelve such edges: the same ten returns plus two edges into a
+   length-16 class still two above the C19 total 14. These drops are
+   not a descent on the C19 length.
+3. Single valid associated-subgroup rewrites on the scanned
+   representatives, when the leftover is not cyclic `D`/`D⁻¹`/`B`/`B⁻¹`
+   or empty, have leftover cyclic length at least 9 (`n=2`) or 10
+   (`n≥3`), never strictly shorter than `D`. These are Britton
+   preflights, not AC moves.
+4. No globally unique grandchild is one-occurrence or two-block–both.
+
+**C21.1 (Gate 2 destablization).** After C16 substitutions the
+isolator is `I_S = u² x^{nδ} y⁻¹`. For `n=2..7` and `δ ∈ {±1}`, no
+rotation or inversion of `I_S` is the generator `y^{±1}`. Bare AC5
+therefore cannot remove `y` from Gate 2 as written. This does not
+replace Gate 2’s C0 expansion. It is the inventor’s suggested
+improvement of C16 (“try bare AC5”); it fails on the U124 instance
+and on the sign-reversed twin.
+
+**Expansion.** Depth-2 is two ordinary AC2 maps (with AC1/AC3
+orientations already in `children`). C21.1 is a cyclic-word check,
+no C0.
+
+**What this does not rule out.** Depth ≥ 3; AC2 from C20’s
+valid-pinch children (those are C20 round trips at depth 1);
+donors other than `B`; a Lemma-11 expansion of Gate 2; rank-3
+corridors that keep `y`.
+
+**U124.** Same C19 pair as C20, still behind C16’s two C0 uses.
+**Not a solve.**
+
+**Audit.** `code/c21_depth2.py`, `tables/c21_depth2.json`.
+`ingest/advisor_wave6.md` **REVISE** applied.

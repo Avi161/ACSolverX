@@ -181,3 +181,25 @@ def test_c20_pinch_is_round_trip():
     assert not donor["primitive"]
     assert not donor["first_kind_primitive"]
     assert donor["minimum_total"] == 7
+
+
+def test_c21_no_pinch_family_and_gate2():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c21_depth2 as c21  # type: ignore
+
+    destab = c21.gate2_destab_probe()
+    assert not destab["any_bare_ac5"]
+    for n in (2, 3, 7):
+        kids = c21.no_pinch_children(n)
+        offsets = sorted(row["r2_len"] - 2 * n for row in kids)
+        assert offsets == [6, 6, 6, 6, 8, 8, 8, 8, 8, 8], (n, offsets)
+    scan = c21.scan_n(2)
+    assert not scan["any_drop_vs_c19"]
+    assert not scan["any_one_occ"]
+    assert not scan["any_two_block"]
+    assert not scan["any_other_shorter_than_D"]
+    assert scan["n_return_to_c19_length"] == 1
+    assert scan["n_return_to_DB_edges"] == 10
+    assert scan["n_parent_drop_edges"] == 12
+    assert scan["min_other_after_len"] >= 7
