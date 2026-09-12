@@ -106,3 +106,25 @@ def test_c15_leading_y_conjugate_keeps_interior_runs():
     assert word == "YYYXXXyxYxyy"
     assert c15.y_run_lengths(word) == [3, 1, 1, 2]
     assert not c15.all_divisible(word, 3)
+
+
+def test_c16_c17_c18_identities_fast():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import theory_wave1_replay as tw  # type: ignore
+
+    q = tw.check_q_to_q_prime()
+    assert q["all_freely_equal"]
+    c16 = tw.check_c16_u124_instance()
+    assert c16["all_H2_H3"] and c16["all_faithful"] and c16["all_c_free"]
+    assert c16["all_plus_loops"]
+    assert c16["all_minus_rotation_absent"]
+    assert c16["minus_row1_x_exponent"] == [-2]
+    c17 = tw.check_c17()
+    assert c17["orbit_u124_flank_never_drops"]
+    assert c17["S_plus_is_BS32_and_E"]
+    assert c17["S_minus_not_BS"]
+    assert c17["S_plus_H3_fails"]
+    c18 = tw.check_c18()
+    assert c18["euclid_ok"]
+    assert c18["h1_raw_rotations_matching_inventor"] == {"tested": 1764, "hits": 0}
