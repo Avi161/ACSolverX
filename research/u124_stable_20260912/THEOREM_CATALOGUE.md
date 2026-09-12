@@ -1101,19 +1101,23 @@ most the stored best length is compared by `canon_pair` to the
 best-table spelling.
 
 On `aca_124_initial.csv` (124 rows, 36 different from best): 36,312
-unique depth-1 children, 19,066,394 unique grandchildren, 30,630,336
-raw grandchild edges. 0 unique length drops at depth 1 or 2, 0 new
+row-local exact-spelling-unique depth-1 children, 19,066,394 row-local
+exact-spelling-unique grandchildren, 30,630,336 raw second-step edges
+from those deduplicated depth-1 parents (move-tuple multiplicity
+retained). 0 unique length drops at depth 1 or 2, 0 new
 one-occurrence, 0 new two-block–both, 0 `canon_pair` hits on the stored
 best spelling. Parametric `P_{n,δ}`, `Q_{n,δ}` (`n=2..7`, both signs)
-and Family A `P(n)`, `Q(n)` (`n=2..7`): 36 pairs, 7,166,262 unique
-grandchildren, 0 drops, 0 new one-occurrence, 0 new two-block.
+and Family A `P(n)`, `Q(n)` (`n=2..7`): 36 pairs, 7,166,262 row-local
+exact-spelling-unique grandchildren, 0 drops, 0 new one-occurrence,
+0 new two-block.
 Planted control: `⟨x, xy⟩` drops at depth 1; `⟨x, y⟩` has no length
 drop (lengthening two-block grandchildren of `⟨x, y⟩` are expected at
 depth 2 and are not a miss failure).
 
-**Expansion.** At most two ordinary AC2 steps; rotations are AC3 by a
-prefix. No Aut, no C0. A length drop would have been a two-move
-AC1–AC3 path.
+**Expansion.** Depth counts AC2 multiplications. Each macro-edge uses
+one AC2 plus any required AC1/AC3 orientation, restoration, and final
+cyclic-reduction moves; this is not a two-elementary-move certificate.
+No Aut, no C0.
 
 **What this does not rule out.** Depth ≥ 3. Heap search. `k=L1+2t`
 for `t≥2`. `L1≥8`. Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Lemma 11.
@@ -1124,8 +1128,11 @@ counterexample to stable triviality.
 
 **Audit.** `code/c28_depth2_ac2.py`, `tables/c28_depth2_ac2.json`.
 `children_fast` is junction cyclic reduction, checked equal to
-`elementary_ac2_scan.children` including move triples. Same-code
-replay plus planted `⟨x,xy⟩` / `⟨x,y⟩`. `independent_checker=false`.
-The census was resumed in 50s slices under the 60s process guard.
+`elementary_ac2_scan.children` including move triples on sampled pairs.
+JSON is a single resumed deterministic census plus sampled
+same-implementation checks, not a second implementation or a fresh
+full replay of every row. `independent_checker=false`.
+`ingest/advisor_wave13.md` **REVISE** applied. The census was resumed
+in 50s slices under the 60s process guard.
 
 

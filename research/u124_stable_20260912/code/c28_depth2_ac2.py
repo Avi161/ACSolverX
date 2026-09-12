@@ -336,6 +336,7 @@ def aggregate_initial(rows: list[dict | None], n_expected: int) -> dict:
         "n_changed_from_best": sum(1 for row in done if row["changed_from_best"]),
         "n_interesting_rows": len(interesting),
         "n_d2_raw": sum(row["n_d2_raw"] for row in done),
+        "n_d1_unique_sum": sum(row["n_d1_unique"] for row in done),
         "n_d2_unique_sum": sum(row["n_d2_unique"] for row in done),
         "n_d1_drop_unique_total": sum(row["n_d1_drop_unique"] for row in done),
         "n_drop_unique_total": sum(row["n_drop_unique"] for row in done),
@@ -376,15 +377,17 @@ def summarize(ctrl: dict, parametric: list[dict | None], initial: dict) -> dict:
         "initial_n_new_two_block_total": initial["n_new_two_block_total"],
         "initial_n_hit_best_total": initial["n_hit_best_total"],
         "initial_n_d2_raw": initial["n_d2_raw"],
+        "initial_n_d1_unique_sum": initial["n_d1_unique_sum"],
         "initial_n_d2_unique_sum": initial["n_d2_unique_sum"],
         "census_complete": bool(
             initial["complete"]
             and len(para_done) == len(parametric)
             and para_done
         ),
-        "d2_counts_are_unique_presentations": True,
+        "d2_counts_are_row_local_exact_spellings": True,
         "d2_raw_is_enumerated_edges": True,
         "same_code_replay": True,
+        "replay_kind": "single_resumed_census_plus_sampled_same_implementation_checks",
         "independent_checker": False,
         "solved_u124": 0,
     }
@@ -394,11 +397,11 @@ def notes_from_summary(summary: dict) -> list[str]:
     return [
         "Depth ≤ 2: unique depth-1 children are scored against the input, then each is expanded once. Depth-2 is a second C13/C27.1 neighbourhood, not a longer AC3–AC2 composite.",
         "children_fast is junction cyclic reduction; tested equal to elementary_ac2_scan.children including move triples.",
-        "Unique depth-1 parents are expanded once. Unique grandchildren are (r1, r2) spellings, not canon_pair classes.",
-        "Raw grandchild counts include (k1, k2) multiplicity and are not the unique-presentation counts.",
-        "A length drop would be an ordinary AC1–AC3 path of two AC2 steps (rotations as AC3). No Aut, no C0.",
-        "Matching the stored best table is checked only on changed rows, and only when grandchild length is at most the best length.",
-        "JSON is same-code deterministic replay. No U124 row is solved.",
+        "Unique depth-1 parents are expanded once. Unique counts are sums of row-local exact-spelling (r1, r2) states, not canon_pair classes.",
+        "Raw grandchild counts are second-step edges from those deduplicated depth-1 parents and retain (k1, k2) move-tuple multiplicity.",
+        "Depth counts AC2 multiplications. Each macro-edge uses one AC2 plus any required AC1/AC3 orientation, restoration, and final cyclic-reduction moves; this is not a two-elementary-move certificate. No Aut, no C0.",
+        "Matching the stored best table is checked only on changed rows, and only when a child or grandchild length is at most the best length.",
+        "JSON is a single resumed deterministic census plus sampled same-implementation checks, not a second implementation or a fresh full replay of every row. No U124 row is solved.",
         "The full census exceeds one 60s guard; main() resumes for BUDGET_SECONDS and must be re-run until census_complete.",
     ]
 

@@ -239,7 +239,8 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   0 new one-occurrence, 0 new two-block, 0 `canon_pair` matches to the
   stored best spelling. Parametric `P`/`Q`/Family A (`n=2..7`): 36
   pairs, 7,166,262 unique grandchildren, 0 drops. Bounded negative,
-  not a solve. Still **0/124**. No certificate JSONL rows.
+  not a solve. Advisor REVISE applied (`ingest/advisor_wave13.md`).
+  Still **0/124**. No certificate JSONL rows.
 
 
 

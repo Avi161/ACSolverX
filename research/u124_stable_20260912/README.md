@@ -103,7 +103,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     11). Advisor APPROVE. C28: depth ≤ 2 ordinary AC2 misses on all
     124 archival initial rows (36 μ-floor spellings included; 19,066,394
     unique grandchildren, 0 length drops) and on parametric P/Q/Family A
-    (36 pairs). Still 0/124.
+    (36 pairs). Advisor REVISE applied. Still 0/124.
 
 ## File ownership
 

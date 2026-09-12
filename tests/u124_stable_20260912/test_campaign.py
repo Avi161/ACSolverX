@@ -567,9 +567,15 @@ def test_c28_depth2_ac2_identities():
             assert summary["initial_n_d1_drop_unique_total"] == 0
             assert summary["initial_n_drop_unique_total"] == 0
             assert summary["initial_n_d2_raw"] == 30_630_336
+            assert summary["initial_n_d1_unique_sum"] == 36_312
             assert summary["initial_n_d2_unique_sum"] == 19_066_394
+            assert summary["parametric_n_d2_unique_sum"] == 7_166_262
             assert summary["independent_checker"] is False
             assert summary["solved_u124"] == 0
-            assert summary["d2_counts_are_unique_presentations"]
+            assert summary["d2_counts_are_row_local_exact_spellings"]
             assert summary["d2_raw_is_enumerated_edges"]
+            assert (
+                summary["replay_kind"]
+                == "single_resumed_census_plus_sampled_same_implementation_checks"
+            )
 
