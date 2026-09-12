@@ -1,0 +1,3560 @@
+{
+  "status": "candidate_endpoints_no_stable_certificate_yet",
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "orientation": {
+          "source": 0,
+          "a": "x",
+          "t": "y",
+          "sign": -1,
+          "cut": 2,
+          "m": 2,
+          "companion": "YYYXXyyX"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 3,
+            "exponent": -2,
+            "quotient": -1,
+            "remainder": 0,
+            "side": 0,
+            "replacement": "X"
+          },
+          {
+            "offset": 7,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "YYYXyyxyXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYYYXyyxy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "orientation": {
+          "source": 0,
+          "a": "X",
+          "t": "y",
+          "sign": 1,
+          "cut": 0,
+          "m": 2,
+          "companion": "YYxYxyyx"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 2,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 7,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "YxYYXyyyxYX"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYYxyyXyxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "input_length": 15,
+      "best": {
+        "orientation": {
+          "source": 0,
+          "a": "X",
+          "t": "y",
+          "sign": 1,
+          "cut": 0,
+          "m": 2,
+          "companion": "YYYxyXyX"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 7,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "YYxYXyxyyXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "orientation": {
+          "source": 0,
+          "a": "X",
+          "t": "y",
+          "sign": 1,
+          "cut": 0,
+          "m": 2,
+          "companion": "YYxYXyyx"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 2,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 7,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "YxYXYxyXyyxYX"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYxYXyxyXyxy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 4,
+          "m": 3,
+          "companion": "XYYxYxyy"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 5,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "xyXYYxYYXyy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxYYXyyxy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xyyyxYxY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXyyyyxYYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYYYxyyy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 4,
+          "m": 3,
+          "companion": "XYYYxyXy"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "xyXYYYxYXyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xyXyxYYY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 2,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXyxyXyxYXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxYXyxyXyxY"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xyyyXYxY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXyyyxyXYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYYxyyXyxY"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xYYxyyXY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXYxYXyyxyXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxyXyxyXyxY"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xYYxyyXy"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXYxYXyyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxyXyxyXYxY"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 4,
+          "m": 3,
+          "companion": "XyyXYYxY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "xyXyxyXYYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxYXYxyXyxy"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 4,
+          "m": 3,
+          "companion": "XyyXYYxy"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "xyXyxyXYYxYXy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxYXyxyXyxy"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 4,
+          "m": 3,
+          "companion": "XYYXyXyy"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "xyXYYYxyyXy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYYxyyXyxy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xyyXyXYY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXyyxyyXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYxYXyyxyy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 8,
+          "m": 3,
+          "companion": "xyyxYxYY"
+        },
+        "power": 3,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 5,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYX",
+          "yxYXyyyxYYXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxY",
+          "XYYYxyXyxyy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 5,
+          "m": 4,
+          "companion": "XXyyyXYY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -2,
+            "quotient": 0,
+            "remainder": -2,
+            "side": 0,
+            "replacement": "xyXYxyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "xyXYxyXyyxyXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYxyXYxyXyyxy"
+        ],
+        "best_length": 32,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 5,
+          "m": 4,
+          "companion": "XXyyyxYY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -2,
+            "quotient": 0,
+            "remainder": -2,
+            "side": 0,
+            "replacement": "xyXYxyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "xyXYxyXyyyxYXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYxYXyxYXyyxy"
+        ],
+        "best_length": 32,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xyyyxYxY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXyyyyxYYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYYxyyy"
+        ],
+        "best_length": 26,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 5,
+          "m": 4,
+          "companion": "XYYYxyXy"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "xyXYYYxYXyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 28,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xyXyxYYY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 2,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXyxyXyxYXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxY"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xyyyXYxY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXyyyxyXYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYxyyXyxY"
+        ],
+        "best_length": 28,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 5,
+          "m": 4,
+          "companion": "XyyXYYxY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxYXYxyXyxy"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xYYxyyXY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXYxYXyyxyXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxyXyxyXyxY"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xYYxyyXy"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXYxYXyyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxyXyxyXYxY"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 5,
+          "m": 4,
+          "companion": "XyyXYYxy"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxy"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xyyxYxYY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 5,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXyyyxYYXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYYxyXyxyy"
+        ],
+        "best_length": 28,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 10,
+          "m": 4,
+          "companion": "xyyXyXYY"
+        },
+        "power": 4,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYX",
+          "yxYXyyxyyXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxY",
+          "XYYxYXyyxyy"
+        ],
+        "best_length": 28,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xyyyxYxY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyyxYYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYYYxyyy"
+        ],
+        "best_length": 30,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 6,
+          "m": 5,
+          "companion": "XYYYxyXy"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "xyXYYYxYXyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 32,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xyXyxYYY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 2,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyxyXyxYXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxY"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xyyyXYxY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyxyXYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxyyXyxY"
+        ],
+        "best_length": 32,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 6,
+          "m": 5,
+          "companion": "XyyXYYxY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXYxyXyxy"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xYYxyyXY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXYxYXyyxyXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxyXyxyXyxY"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "x",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xYYxyyXy"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXYxYXyyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxyXyxyXYxY"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 6,
+          "m": 5,
+          "companion": "XyyXYYxy"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxy"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 12,
+          "m": 5,
+          "companion": "xyyXyXYY"
+        },
+        "power": 5,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 5,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyxyyXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyyxyy"
+        ],
+        "best_length": 32,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_length": 18,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 7,
+          "m": 6,
+          "companion": "XyyXYYxY"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXYxyXyxy"
+        ],
+        "best_length": 38,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 14,
+          "m": 6,
+          "companion": "xyyyXYxY"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyxyXYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxyyXyxY"
+        ],
+        "best_length": 36,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 14,
+          "m": 6,
+          "companion": "xyXyxYYY"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 2,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyxyXyxYXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxY"
+        ],
+        "best_length": 38,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 7,
+          "m": 6,
+          "companion": "XYYYxyXy"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "xyXYYYxYXyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 36,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 14,
+          "m": 6,
+          "companion": "xyyyxYxY"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyyxYYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYYxyyy"
+        ],
+        "best_length": 34,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 7,
+          "m": 6,
+          "companion": "XyyXYYxy"
+        },
+        "power": 6,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYX",
+          "xyXyxyXYYxYXy"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxy"
+        ],
+        "best_length": 38,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "input_length": 19,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 20,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 16,
+          "m": 7,
+          "companion": "xyyyxYxY"
+        },
+        "power": 7,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyyxYYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYYxyyy"
+        ],
+        "best_length": 38,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "input_length": 25,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "y",
+          "t": "x",
+          "sign": -1,
+          "cut": 8,
+          "m": 7,
+          "companion": "XYYYxyXy"
+        },
+        "power": 7,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+          "xyXYYYxYXyxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxYXyxyy"
+        ],
+        "best_length": 40,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 16,
+          "m": 7,
+          "companion": "xyXyxYYY"
+        },
+        "power": 7,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 2,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyxyXyxYXYYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYxYXyxyXyxY"
+        ],
+        "best_length": 42,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "Y",
+          "t": "X",
+          "sign": 1,
+          "cut": 16,
+          "m": 7,
+          "companion": "xyyyXYxY"
+        },
+        "power": 7,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          },
+          {
+            "offset": 4,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+          "yxYXyyyxyXYxYXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxYXyxYXyxYXyxYXyxYXyxY",
+          "XYYYxyyXyxY"
+        ],
+        "best_length": 40,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "input_length": 24,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "input_length": 24,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "input_length": 23,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "orientation": {
+          "source": 1,
+          "a": "x",
+          "t": "y",
+          "sign": -1,
+          "cut": 2,
+          "m": 2,
+          "companion": "YYYXyyX"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 3,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 6,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "YYYxyXyxyXY"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYYYxyXyxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": []
+      },
+      "candidate_count": 4
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "orientation": {
+          "source": 0,
+          "a": "y",
+          "t": "X",
+          "sign": -1,
+          "cut": 3,
+          "m": 2,
+          "companion": "XyyyxYY"
+        },
+        "power": 2,
+        "recovered_a": "yxYX",
+        "block_choices": [
+          {
+            "offset": 0,
+            "exponent": -1,
+            "quotient": 0,
+            "remainder": -1,
+            "side": 0,
+            "replacement": "xyXY"
+          },
+          {
+            "offset": 4,
+            "exponent": 1,
+            "quotient": 0,
+            "remainder": 1,
+            "side": 0,
+            "replacement": "yxYX"
+          }
+        ],
+        "raw_endpoint": [
+          "XyxYXyxYX",
+          "xyXyyyxYXYY"
+        ],
+        "best_pair": [
+          "XXyxYXyxY",
+          "XYYYxYXyyxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": []
+      },
+      "candidate_count": 8
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_length": 15,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_length": 16,
+      "best": null,
+      "candidate_count": 0
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_length": 17,
+      "best": null,
+      "candidate_count": 0
+    }
+  ],
+  "wall_seconds": 0.10336458403617144,
+  "source_path": "data/ms_unsolved_reps/aca_124_best.csv",
+  "source_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3"
+}

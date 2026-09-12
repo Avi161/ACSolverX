@@ -1,0 +1,1305 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "complete_cartesian_combinations": 6,
+    "catalog_sizes": [
+      2,
+      3
+    ],
+    "scores": [
+      {
+        "indices": [
+          0,
+          0
+        ],
+        "dictionary_length": 12,
+        "one_step_length": 10
+      },
+      {
+        "indices": [
+          0,
+          1
+        ],
+        "dictionary_length": 15,
+        "one_step_length": 13
+      },
+      {
+        "indices": [
+          1,
+          0
+        ],
+        "dictionary_length": 12,
+        "one_step_length": 12
+      },
+      {
+        "indices": [
+          0,
+          2
+        ],
+        "dictionary_length": 19,
+        "one_step_length": 15
+      },
+      {
+        "indices": [
+          1,
+          1
+        ],
+        "dictionary_length": 15,
+        "one_step_length": 14
+      },
+      {
+        "indices": [
+          1,
+          2
+        ],
+        "dictionary_length": 19,
+        "one_step_length": 16
+      }
+    ],
+    "exhaustive_signed_Whitehead_sides": 96,
+    "rejected_corruptions": 4,
+    "gapped_rank4_to5_score_signed_cuts": 10,
+    "census_searches": 0
+  },
+  "saved_gain_validation": {
+    "status": "PASS",
+    "rows": [
+      {
+        "name": "aca_1",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_2",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_3",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_4",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_5",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 1,
+        "source_key": "saved_rank2",
+        "boundary_lengths": [
+          19,
+          22,
+          19,
+          17
+        ],
+        "boundary_ranks": [
+          2,
+          3,
+          3,
+          3
+        ],
+        "independently_checked_coupled_score": {
+          "complete": true,
+          "signed_multipliers": [
+            {
+              "multiplier": -3,
+              "side": [
+                -3
+              ],
+              "capacity": 5,
+              "degree": 5,
+              "delta": 0
+            },
+            {
+              "multiplier": -2,
+              "side": [
+                -2,
+                1,
+                3
+              ],
+              "capacity": 6,
+              "degree": 8,
+              "delta": -2
+            },
+            {
+              "multiplier": -1,
+              "side": [
+                -3,
+                -1
+              ],
+              "capacity": 6,
+              "degree": 9,
+              "delta": -3
+            },
+            {
+              "multiplier": 1,
+              "side": [
+                -2,
+                1,
+                3
+              ],
+              "capacity": 6,
+              "degree": 9,
+              "delta": -3
+            },
+            {
+              "multiplier": 2,
+              "side": [
+                -3,
+                -1,
+                2
+              ],
+              "capacity": 6,
+              "degree": 8,
+              "delta": -2
+            },
+            {
+              "multiplier": 3,
+              "side": [
+                3
+              ],
+              "capacity": 5,
+              "degree": 5,
+              "delta": 0
+            }
+          ],
+          "raw_length": 22,
+          "one_step_length": 19
+        }
+      },
+      {
+        "name": "aca_6",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_8",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_9",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_10",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_11",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_12",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_13",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_14",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_15",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_16",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_17",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_18",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_19",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_20",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_21",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_22",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_23",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_24",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_25",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_26",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_27",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_28",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_29",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_30",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_31",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_32",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_33",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_34",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_35",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_36",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_37",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_38",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_39",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_40",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_41",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_42",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_45",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_46",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_47",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_48",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_49",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_50",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_51",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_52",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_53",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_54",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_55",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_57",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_58",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_59",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_60",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_61",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_62",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_63",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_64",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_65",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_66",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_68",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_69",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_70",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_71",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_72",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_73",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_74",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_76",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_77",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_78",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_80",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_81",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_82",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_85",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_86",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_89",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_90",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_91",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_92",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_93",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_94",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_96",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_97",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_98",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_99",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_100",
+        "status": "PASS",
+        "preprobe_best_length": 18,
+        "endpoint_length": 18,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_102",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_103",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_104",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_105",
+        "status": "PASS",
+        "preprobe_best_length": 19,
+        "endpoint_length": 19,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_107",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_109",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_110",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_112",
+        "status": "PASS",
+        "preprobe_best_length": 21,
+        "endpoint_length": 21,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_113",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_114",
+        "status": "PASS",
+        "preprobe_best_length": 20,
+        "endpoint_length": 20,
+        "endpoint_rank": 3,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_115",
+        "status": "PASS",
+        "preprobe_best_length": 13,
+        "endpoint_length": 13,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_116",
+        "status": "PASS",
+        "preprobe_best_length": 14,
+        "endpoint_length": 14,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_117",
+        "status": "PASS",
+        "preprobe_best_length": 14,
+        "endpoint_length": 14,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_118",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_119",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_120",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_121",
+        "status": "PASS",
+        "preprobe_best_length": 15,
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_122",
+        "status": "PASS",
+        "preprobe_best_length": 16,
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      },
+      {
+        "name": "aca_123",
+        "status": "PASS",
+        "preprobe_best_length": 17,
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "new_gain_beyond_seeds": 0
+      }
+    ],
+    "new_gain": {
+      "name": "aca_5",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "source_key": "saved_rank2",
+      "boundary_lengths": [
+        19,
+        22,
+        19,
+        17
+      ],
+      "boundary_ranks": [
+        2,
+        3,
+        3,
+        3
+      ],
+      "independently_checked_coupled_score": {
+        "complete": true,
+        "signed_multipliers": [
+          {
+            "multiplier": -3,
+            "side": [
+              -3
+            ],
+            "capacity": 5,
+            "degree": 5,
+            "delta": 0
+          },
+          {
+            "multiplier": -2,
+            "side": [
+              -2,
+              1,
+              3
+            ],
+            "capacity": 6,
+            "degree": 8,
+            "delta": -2
+          },
+          {
+            "multiplier": -1,
+            "side": [
+              -3,
+              -1
+            ],
+            "capacity": 6,
+            "degree": 9,
+            "delta": -3
+          },
+          {
+            "multiplier": 1,
+            "side": [
+              -2,
+              1,
+              3
+            ],
+            "capacity": 6,
+            "degree": 9,
+            "delta": -3
+          },
+          {
+            "multiplier": 2,
+            "side": [
+              -3,
+              -1,
+              2
+            ],
+            "capacity": 6,
+            "degree": 8,
+            "delta": -2
+          },
+          {
+            "multiplier": 3,
+            "side": [
+              3
+            ],
+            "capacity": 5,
+            "degree": 5,
+            "delta": 0
+          }
+        ],
+        "raw_length": 22,
+        "one_step_length": 19
+      }
+    },
+    "pilot": {
+      "status": "PASS",
+      "file": "collector_aliases_pilot17.json",
+      "sha256": "99adb21bc0befcce8e55a1e867f191871bbd7fa021d23097d8baa03ebd883b94",
+      "rows": [
+        {
+          "name": "aca_43",
+          "status": "PASS",
+          "length": 16,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 16,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_44",
+          "status": "PASS",
+          "length": 16,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 16,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_56",
+          "status": "PASS",
+          "length": 17,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 17,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_67",
+          "status": "PASS",
+          "length": 18,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 18,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_75",
+          "status": "PASS",
+          "length": 18,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 18,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_79",
+          "status": "PASS",
+          "length": 17,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 17,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_83",
+          "status": "PASS",
+          "length": 19,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 19,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_84",
+          "status": "PASS",
+          "length": 19,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 19,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_87",
+          "status": "PASS",
+          "length": 18,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 18,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_88",
+          "status": "PASS",
+          "length": 17,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 17,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_95",
+          "status": "PASS",
+          "length": 17,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 17,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_101",
+          "status": "PASS",
+          "length": 20,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 20,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_106",
+          "status": "PASS",
+          "length": 19,
+          "rank": 3,
+          "gain_vs2180_baseline": 1,
+          "preprobe_best_length_including_seeds": 19,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_0",
+          "status": "PASS",
+          "length": 18,
+          "rank": 2,
+          "gain_vs2180_baseline": 0,
+          "preprobe_best_length_including_seeds": 18,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_7",
+          "status": "PASS",
+          "length": 15,
+          "rank": 3,
+          "gain_vs2180_baseline": 0,
+          "preprobe_best_length_including_seeds": 15,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_108",
+          "status": "PASS",
+          "length": 21,
+          "rank": 3,
+          "gain_vs2180_baseline": 0,
+          "preprobe_best_length_including_seeds": 21,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        },
+        {
+          "name": "aca_111",
+          "status": "PASS",
+          "length": 21,
+          "rank": 3,
+          "gain_vs2180_baseline": 0,
+          "preprobe_best_length_including_seeds": 21,
+          "new_gain_beyond_seeds": 0,
+          "new_probe_units": 1000,
+          "retained_path_identical_to_imported_seed": true
+        }
+      ],
+      "new_probe_work_units": 17000,
+      "full_seed_files_historical_discovery_units": 135000,
+      "seed_work_included_in_new_probe_budget": false,
+      "new_strict_gains_beyond_available_seeds": 0,
+      "historical_verifier_provenance": {
+        "executed_sha256": "723e2e59a1b1fabbe71bc9a7a84abfae3659bc4106d8a476fd8e54c62cb54125",
+        "current_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0",
+        "matches_current": false,
+        "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+      }
+    },
+    "exact17_plus107_partition": true,
+    "new_probe_units": 107000,
+    "file_sha256": "e321df0bc3c9b01e7d16f8d3477e454b8948b1eaf5eff7595d078126b52eb988"
+  },
+  "source_sha256": "9d3beb6bcb313163e1e29246df3a3320632b94bc65e8995b26b968358a7077ea",
+  "verifier_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0"
+}

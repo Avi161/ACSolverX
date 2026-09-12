@@ -1,0 +1,6717 @@
+{
+  "status": "PASS",
+  "audit_kind": "independent stable-composite witness audit",
+  "independence": "Saved-witness reduction, cyclic canonicalization, signed expansion, inverse checks, graph capacity and determinant use only audit.py implementations. Subject modules are called only to exercise planted controls and compare mincuts with exhaustive tiny partitions.",
+  "saved_paths": {
+    "status": "PASS",
+    "rows_checked": 124,
+    "gain_rows": [
+      {
+        "name": "aca_36",
+        "path_source": "saved_best",
+        "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+        "input_length": 16,
+        "path_start_length": 16,
+        "best_length": 15,
+        "boundaries": [
+          {
+            "rank": 2,
+            "length": 16
+          },
+          {
+            "rank": 3,
+            "length": 16
+          },
+          {
+            "rank": 3,
+            "length": 15
+          }
+        ],
+        "endpoint": [
+          [
+            -3,
+            -3,
+            2,
+            -1,
+            2,
+            2
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            -2
+          ],
+          [
+            -3,
+            -1,
+            -1,
+            -2,
+            1
+          ]
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "aca_57",
+        "path_source": "saved_rank2",
+        "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57",
+        "input_length": 18,
+        "path_start_length": 19,
+        "best_length": 17,
+        "boundaries": [
+          {
+            "rank": 2,
+            "length": 19
+          },
+          {
+            "rank": 3,
+            "length": 18
+          },
+          {
+            "rank": 3,
+            "length": 17
+          }
+        ],
+        "endpoint": [
+          [
+            -3,
+            -3,
+            -1,
+            2,
+            2,
+            1,
+            2
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            3,
+            2
+          ],
+          [
+            -3,
+            2,
+            -1,
+            2,
+            -1
+          ]
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "aca_80",
+        "path_source": "saved_rank2",
+        "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80",
+        "input_length": 18,
+        "path_start_length": 19,
+        "best_length": 17,
+        "boundaries": [
+          {
+            "rank": 2,
+            "length": 19
+          },
+          {
+            "rank": 3,
+            "length": 19
+          },
+          {
+            "rank": 4,
+            "length": 19
+          },
+          {
+            "rank": 4,
+            "length": 17
+          }
+        ],
+        "endpoint": [
+          [
+            -4,
+            -3,
+            -4,
+            1,
+            3,
+            2
+          ],
+          [
+            -4,
+            2,
+            -1,
+            -2
+          ],
+          [
+            -4,
+            3,
+            -1
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            2
+          ]
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "aca_82",
+        "path_source": "saved_rank2",
+        "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_82",
+        "input_length": 20,
+        "path_start_length": 22,
+        "best_length": 19,
+        "boundaries": [
+          {
+            "rank": 2,
+            "length": 22
+          },
+          {
+            "rank": 3,
+            "length": 21
+          },
+          {
+            "rank": 3,
+            "length": 20
+          },
+          {
+            "rank": 3,
+            "length": 19
+          }
+        ],
+        "endpoint": [
+          [
+            -3,
+            -2,
+            1,
+            3,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -3,
+            -2,
+            3,
+            2,
+            1
+          ],
+          [
+            -3,
+            -1,
+            -2,
+            -2,
+            -1
+          ]
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "aca_86",
+        "path_source": "saved_rank2",
+        "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_86",
+        "input_length": 20,
+        "path_start_length": 22,
+        "best_length": 19,
+        "boundaries": [
+          {
+            "rank": 2,
+            "length": 22
+          },
+          {
+            "rank": 3,
+            "length": 21
+          },
+          {
+            "rank": 3,
+            "length": 19
+          }
+        ],
+        "endpoint": [
+          [
+            -3,
+            -2,
+            -1,
+            3,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -3,
+            -2,
+            3,
+            2,
+            1
+          ],
+          [
+            -3,
+            1,
+            -2,
+            -2,
+            -1
+          ]
+        ],
+        "status": "PASS"
+      }
+    ],
+    "events": {
+      "defining_compression": 6,
+      "ambient_whitehead": 6
+    },
+    "input_total": 2191,
+    "best_total": 2186,
+    "archive_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+    "source_table_sha256": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+    "search_frontier_not_reexecuted": true
+  },
+  "mixed_reports": [
+    {
+      "status": "PASS",
+      "file": "mixed_all124.json",
+      "file_sha256": "fb7a5d02a22764c528627f7eeada0c670318dc1eefbe4003a1b06659c9847925",
+      "rows_checked": 124,
+      "gain_rows": [
+        {
+          "name": "aca_7",
+          "path_source": "saved_best",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_7",
+          "input_length": 16,
+          "path_start_length": 16,
+          "best_length": 15,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 16
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 16
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 2,
+              "length": 17
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 15
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -3,
+              4,
+              -2,
+              3
+            ],
+            [
+              -4,
+              -2,
+              -3,
+              -2
+            ],
+            [
+              -4,
+              2,
+              2,
+              2,
+              -3,
+              -3
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_30",
+          "path_source": "saved_best",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_30",
+          "input_length": 17,
+          "path_start_length": 17,
+          "best_length": 16,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 17
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 17
+            },
+            {
+              "kind": "ordinary_ac_substitution",
+              "rank": 3,
+              "length": 16
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -3,
+              1,
+              1,
+              3,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -2,
+              1,
+              1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_31",
+          "path_source": "saved_best",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_31",
+          "input_length": 17,
+          "path_start_length": 17,
+          "best_length": 16,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 17
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 17
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 2,
+              "length": 17
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 16
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -4,
+              1,
+              4,
+              -1,
+              -3,
+              -3
+            ],
+            [
+              -4,
+              -3,
+              -1
+            ],
+            [
+              -4,
+              3,
+              -1,
+              -1,
+              -3,
+              1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_36",
+          "path_source": "saved_best",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+          "input_length": 16,
+          "path_start_length": 16,
+          "best_length": 15,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 16
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 16
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 3,
+              "length": 15
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_57",
+          "path_source": "saved_rank2",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57",
+          "input_length": 18,
+          "path_start_length": 19,
+          "best_length": 17,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 19
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 18
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 3,
+              "length": 17
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -3,
+              -1,
+              2,
+              2,
+              1,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              3,
+              2
+            ],
+            [
+              -3,
+              2,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_80",
+          "path_source": "saved_rank2",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80",
+          "input_length": 18,
+          "path_start_length": 19,
+          "best_length": 17,
+          "best_rank": 4,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 19
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 19
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 19
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 4,
+              "length": 17
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -3,
+              -4,
+              1,
+              3,
+              2
+            ],
+            [
+              -4,
+              2,
+              -1,
+              -2
+            ],
+            [
+              -4,
+              3,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_82",
+          "path_source": "saved_best",
+          "actual_source_pointer": "primitive_compression_report.json#/rows/8/attempts/0/boundaries/2",
+          "input_length": 20,
+          "path_start_length": 20,
+          "best_length": 19,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 3,
+              "length": 20
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 4,
+              "length": 20
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 3,
+              "length": 19
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -2,
+              1,
+              3,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              3,
+              2,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -2,
+              -2,
+              -1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_86",
+          "path_source": "saved_best",
+          "actual_source_pointer": "primitive_compression_report.json#/rows/15/attempts/0/boundaries/2",
+          "input_length": 20,
+          "path_start_length": 20,
+          "best_length": 19,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 3,
+              "length": 20
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 4,
+              "length": 20
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 3,
+              "length": 19
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -2,
+              -1,
+              3,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              3,
+              2,
+              1
+            ],
+            [
+              -3,
+              1,
+              -2,
+              -2,
+              -1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_102",
+          "path_source": "saved_best",
+          "actual_source_pointer": "stable_dictionary_compression_report.json#/rows/102/best",
+          "input_length": 21,
+          "path_start_length": 21,
+          "best_length": 20,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "ordinary_ac_substitution",
+              "rank": 3,
+              "length": 20
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -4,
+              1,
+              4,
+              -2,
+              4,
+              -1
+            ],
+            [
+              -4,
+              2,
+              2,
+              2,
+              2
+            ],
+            [
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              1,
+              -2,
+              1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_103",
+          "path_source": "saved_best",
+          "actual_source_pointer": "stable_dictionary_compression_report.json#/rows/103/best",
+          "input_length": 21,
+          "path_start_length": 21,
+          "best_length": 20,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "ordinary_ac_substitution",
+              "rank": 3,
+              "length": 20
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -4,
+              -1,
+              4,
+              -2,
+              4,
+              1
+            ],
+            [
+              -4,
+              2,
+              2,
+              2,
+              2
+            ],
+            [
+              -2,
+              -1,
+              2,
+              -1,
+              -2,
+              1,
+              1,
+              1
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "name": "aca_104",
+          "path_source": "saved_best",
+          "actual_source_pointer": "stable_dictionary_compression_report.json#/rows/104/best",
+          "input_length": 21,
+          "path_start_length": 21,
+          "best_length": 20,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "kind": "lemma11_removal",
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "kind": "ordinary_ac_substitution",
+              "rank": 3,
+              "length": 20
+            }
+          ],
+          "endpoint": [
+            [
+              -4,
+              -4,
+              -1,
+              4,
+              -2,
+              4,
+              1
+            ],
+            [
+              -4,
+              2,
+              2,
+              2,
+              2
+            ],
+            [
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              1,
+              -2,
+              1
+            ]
+          ],
+          "status": "PASS"
+        }
+      ],
+      "events": {
+        "defining_compression": 14,
+        "lemma11_removal": 7,
+        "ordinary_ac_substitution": 4,
+        "ambient_whitehead": 5
+      },
+      "input_total": 2191,
+      "best_total": 2180,
+      "retained_prefix_improvements_beyond_report": [],
+      "limitation": "Only stored winning paths and their boundaries are replayed. Unretained candidate/intermediate boundaries, visited-rank maxima, frontier coverage and global minima are not independently established."
+    },
+    {
+      "status": "PASS",
+      "file": "ladder_all124.json",
+      "file_sha256": "2b8181344483399ac6b9eafae14ef2330243ea915e7b8c59d2b9f66311514f3a",
+      "rows_checked": 124,
+      "gain_rows": [
+        {
+          "name": "aca_36",
+          "path_source": "saved_best",
+          "actual_source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+          "input_length": 16,
+          "path_start_length": 16,
+          "best_length": 15,
+          "best_rank": 3,
+          "boundaries": [
+            {
+              "kind": "source",
+              "rank": 2,
+              "length": 16
+            },
+            {
+              "kind": "defining_compression",
+              "rank": 3,
+              "length": 16
+            },
+            {
+              "kind": "ambient_whitehead",
+              "rank": 3,
+              "length": 15
+            }
+          ],
+          "endpoint": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "status": "PASS"
+        }
+      ],
+      "events": {
+        "defining_compression": 1,
+        "ambient_whitehead": 1
+      },
+      "input_total": 2191,
+      "best_total": 2190,
+      "retained_prefix_improvements_beyond_report": [],
+      "limitation": "Only stored winning paths and their boundaries are replayed. Unretained candidate/intermediate boundaries, visited-rank maxima, frontier coverage and global minima are not independently established."
+    }
+  ],
+  "unit_controls": {
+    "status": "PASS",
+    "weighted_rank2_graph_minimum_cuts": 2544,
+    "exhaustive_signed_word_partition_formulas": 17616,
+    "high_rank_planted_trivial_tuples": [
+      {
+        "start_rank": 7,
+        "after_two_definitions_rank": 9,
+        "largest_signed_generator_tested": 9,
+        "status": "PASS"
+      },
+      {
+        "start_rank": 8,
+        "after_two_definitions_rank": 10,
+        "largest_signed_generator_tested": 10,
+        "status": "PASS"
+      },
+      {
+        "start_rank": 12,
+        "after_two_definitions_rank": 14,
+        "largest_signed_generator_tested": 14,
+        "status": "PASS"
+      }
+    ],
+    "scope": "finite unit controls, not census searches; high-rank triviality follows by the displayed triangular substitutions"
+  },
+  "observer_reports": {
+    "status": "PASS",
+    "reports": [
+      {
+        "file": "observed_pilot.json",
+        "file_sha256": "6ea01faf926001c6094fbdfd737102507e09708fdc2d07133005bf6d8eb88977",
+        "status": "PASS",
+        "rows": 2,
+        "events_replayed_including_shared_prefixes": {
+          "defining_compression": 10,
+          "lemma11_removal": 3,
+          "ambient_whitehead": 2
+        },
+        "physical_replayed_work_units": 2000,
+        "witnesses": [
+          {
+            "name": "aca_7",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_80",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "file": "observed_remainder.json",
+        "file_sha256": "74dcb439fdc02c613318dab897a20841ff6487baab32109ea939aceaa21856e1",
+        "status": "PASS",
+        "rows": 122,
+        "events_replayed_including_shared_prefixes": {
+          "defining_compression": 397,
+          "lemma11_removal": 140,
+          "ambient_whitehead": 19,
+          "ordinary_ac_substitution": 3
+        },
+        "physical_replayed_work_units": 122000,
+        "witnesses": [
+          {
+            "name": "aca_0",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_1",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_2",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_3",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_4",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_5",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_6",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_8",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 15
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_9",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_10",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_11",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_12",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_13",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_14",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_15",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_16",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                },
+                {
+                  "rank": 5,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_17",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_18",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_19",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_20",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_21",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_22",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_23",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_24",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                },
+                {
+                  "rank": 5,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_25",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_26",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_27",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_28",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_29",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_30",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_31",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_32",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_33",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_34",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_35",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_36",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_37",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_38",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_39",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_40",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_41",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_42",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_43",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_44",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_45",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_46",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_47",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_48",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_49",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_50",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_51",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_52",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_53",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_54",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_55",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_56",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_57",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_58",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_59",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_60",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_61",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_62",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_63",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_64",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_65",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_66",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_67",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_68",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_69",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_70",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_71",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_72",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_73",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_74",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_75",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_76",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_77",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_78",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_79",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 18
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_81",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_82",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_83",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_84",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_85",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_86",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_87",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_88",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_89",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_90",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_91",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_92",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_93",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_94",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_95",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_96",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_97",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_98",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 18
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_99",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_100",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 18,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 18
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 18
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_101",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_102",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_103",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 22,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_104",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 22,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_105",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 19
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 19
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_106",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 20
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_107",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_108",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 23
+                },
+                {
+                  "rank": 4,
+                  "length": 22
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 22,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 23
+                },
+                {
+                  "rank": 4,
+                  "length": 22
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_109",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 4,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_110",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_111",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 4,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 6,
+              "total_length": 24,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                },
+                {
+                  "rank": 6,
+                  "length": 24
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_112",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 23
+                },
+                {
+                  "rank": 4,
+                  "length": 22
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 22,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 3,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 23
+                },
+                {
+                  "rank": 4,
+                  "length": 22
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_113",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_114",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 3,
+              "total_length": 20,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 21
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 3,
+                  "length": 20
+                },
+                {
+                  "rank": 4,
+                  "length": 20
+                },
+                {
+                  "rank": 5,
+                  "length": 21
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_115",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 13,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 13
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 13
+                },
+                {
+                  "rank": 3,
+                  "length": 14
+                },
+                {
+                  "rank": 4,
+                  "length": 15
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_116",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 14,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 14
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 14
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_117",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 14,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 14
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 14
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_118",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_119",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_120",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_121",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 15,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 2,
+                  "length": 15
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 15
+                },
+                {
+                  "rank": 3,
+                  "length": 15
+                },
+                {
+                  "rank": 4,
+                  "length": 16
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_122",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 16,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 2,
+                  "length": 16
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 4,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 16
+                },
+                {
+                  "rank": 3,
+                  "length": 16
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                }
+              ]
+            }
+          },
+          {
+            "name": "aca_123",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 2,
+              "total_length": 17,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 5,
+              "total_length": 19,
+              "boundaries": [
+                {
+                  "rank": 2,
+                  "length": 17
+                },
+                {
+                  "rank": 3,
+                  "length": 17
+                },
+                {
+                  "rank": 4,
+                  "length": 17
+                },
+                {
+                  "rank": 5,
+                  "length": 19
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "file": "observed_rank16.json",
+        "file_sha256": "bc80830f47cdd76824f48902c179ed83ae9e2d10296c4fb3c4a37b5392e118b6",
+        "status": "PASS",
+        "rows": 1,
+        "events_replayed_including_shared_prefixes": {
+          "defining_compression": 13,
+          "lemma11_removal": 1
+        },
+        "physical_replayed_work_units": 1000,
+        "witnesses": [
+          {
+            "name": "aca_108",
+            "status": "PASS",
+            "best_witness": {
+              "rank": 4,
+              "total_length": 21,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                },
+                {
+                  "rank": 4,
+                  "length": 21
+                }
+              ]
+            },
+            "maximum_rank_witness": {
+              "rank": 16,
+              "total_length": 44,
+              "boundaries": [
+                {
+                  "rank": 4,
+                  "length": 21
+                },
+                {
+                  "rank": 5,
+                  "length": 22
+                },
+                {
+                  "rank": 6,
+                  "length": 24
+                },
+                {
+                  "rank": 7,
+                  "length": 26
+                },
+                {
+                  "rank": 8,
+                  "length": 28
+                },
+                {
+                  "rank": 9,
+                  "length": 30
+                },
+                {
+                  "rank": 10,
+                  "length": 32
+                },
+                {
+                  "rank": 11,
+                  "length": 34
+                },
+                {
+                  "rank": 12,
+                  "length": 36
+                },
+                {
+                  "rank": 13,
+                  "length": 38
+                },
+                {
+                  "rank": 14,
+                  "length": 40
+                },
+                {
+                  "rank": 15,
+                  "length": 42
+                },
+                {
+                  "rank": 16,
+                  "length": 44
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "frontier_joint_distinct_ids": 124,
+    "frontier_physical_replayed_units": 124000,
+    "separate_ladder_replay_units": 1000,
+    "total_extra_physical_replayed_units": 125000,
+    "rank16_witness": {
+      "name": "aca_108",
+      "rank": 16,
+      "total_length": 44,
+      "boundaries": [
+        {
+          "rank": 4,
+          "length": 21
+        },
+        {
+          "rank": 5,
+          "length": 22
+        },
+        {
+          "rank": 6,
+          "length": 24
+        },
+        {
+          "rank": 7,
+          "length": 26
+        },
+        {
+          "rank": 8,
+          "length": 28
+        },
+        {
+          "rank": 9,
+          "length": 30
+        },
+        {
+          "rank": 10,
+          "length": 32
+        },
+        {
+          "rank": 11,
+          "length": 34
+        },
+        {
+          "rank": 12,
+          "length": 36
+        },
+        {
+          "rank": 13,
+          "length": 38
+        },
+        {
+          "rank": 14,
+          "length": 40
+        },
+        {
+          "rank": 15,
+          "length": 42
+        },
+        {
+          "rank": 16,
+          "length": 44
+        }
+      ]
+    },
+    "scope": "Every stored best and maximum-rank chain independently replayed. Observer extrema outside these chains rely on the pinned instrumentation record; no census search rerun by audit.py."
+  },
+  "lemma11_controls": {
+    "status": "PASS",
+    "signed_high_rank_removals": 4,
+    "initial_ranks": [
+      8,
+      13
+    ],
+    "nonconsecutive_survivor_labels_verified": true,
+    "triviality_proof": "Lower generators are singleton relators; the defining row then kills the isolated generator, and the final row kills the last generator."
+  },
+  "reporting_fix": {
+    "status": "PASS",
+    "executed_snapshot_sha256": "a59af3b688438307de2bfb6f22262467a4cc24de07df05dea7b2b05afe4ab60a",
+    "corrected_sha256": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+    "only_reporting_dataflow_changed": true,
+    "basis_search_never_reads_aut_minimal": true,
+    "reproducer": {
+      "tuple": [
+        [
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "cut_budget": 7,
+      "old_complete": true,
+      "new_complete": false,
+      "endpoint_path_and_charged_cuts_identical": true
+    }
+  },
+  "certificate_conventions_sha256": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54",
+  "theorem_review": {
+    "status": "PASS_WITH_SCOPE",
+    "two_step_bypass": "Valid at freely and cyclically reduced literal boundaries, with no intervening operations beyond rotations. It asserts existence and gain of a direct compression, not equal endpoints or necessity of a first step.",
+    "stable_realizability": "Uses the known-trivial-group hypothesis of Lemma 11 and its reverse; unimodularity alone is insufficient. No elementary normal-product expansion was generated.",
+    "rank_bounds": "Valid under the stated strict-gain/full-rank and singleton-free hypotheses. Neither arbitrary input lengths nor accepted neutral/uphill moves have a universal fixed rank bound."
+  },
+  "verified_file_sha256": {
+    "audit.py": "97e9f4f8e5163d00328b2c79339d77aba5f3f64040826fc169c234da8b1506c2",
+    "AUDIT.md": "6833a4dda6f3a7316771987dcdf10d4793a4f945afbe2b0b47584937107dc420",
+    "basis_all124.json": "d5c48a15948f6e44c8e5c5d171f06e0506a2c927434969179dab32900c117d15",
+    "basis_search.py": "ad643ba3a279849ba52f2a5590f39e227c3f34045783f075bc376e7f8b2e0faf",
+    "search.py": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+    "whitehead.py": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+    "whitehead_first_screen.py": "a59af3b688438307de2bfb6f22262467a4cc24de07df05dea7b2b05afe4ab60a",
+    "THEOREM_NOTE.md": "505226b7ebd5a19f1fc42872cb0298c80f44252bd461db60151573bba6b9cbec",
+    "mixed_search.py": "93e854ff3909e131353da0e5d721f46131e1f12355b5d861571a9bce9540c5cc",
+    "mixed_all124.json": "fb7a5d02a22764c528627f7eeada0c670318dc1eefbe4003a1b06659c9847925",
+    "ladder_all124.json": "2b8181344483399ac6b9eafae14ef2330243ea915e7b8c59d2b9f66311514f3a",
+    "lemma11.py": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f",
+    "observed_search.py": "e7776513906869f99dc6409bb370cb01442fb3584f6e4d96ed9d118925ec0479",
+    "observed_pilot.json": "6ea01faf926001c6094fbdfd737102507e09708fdc2d07133005bf6d8eb88977",
+    "observed_remainder.json": "74dcb439fdc02c613318dab897a20841ff6487baab32109ea939aceaa21856e1",
+    "observed_rank16.json": "bc80830f47cdd76824f48902c179ed83ae9e2d10296c4fb3c4a37b5392e118b6"
+  },
+  "audit_cpu_seconds": 0.253762,
+  "final_delivery_validation": {
+    "status": "PASS",
+    "table_rows": 124,
+    "resolved_witness_pointers": 124,
+    "exported_witnesses": [
+      {
+        "name": "aca_7",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_7"
+      },
+      {
+        "name": "aca_30",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_30"
+      },
+      {
+        "name": "aca_31",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_31"
+      },
+      {
+        "name": "aca_36",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36"
+      },
+      {
+        "name": "aca_57",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "source_kind": "saved_rank2",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57"
+      },
+      {
+        "name": "aca_80",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "source_kind": "saved_rank2",
+        "source_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80"
+      },
+      {
+        "name": "aca_82",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "primitive_compression_report.json#/rows/8/attempts/0/boundaries/2"
+      },
+      {
+        "name": "aca_86",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "primitive_compression_report.json#/rows/15/attempts/0/boundaries/2"
+      },
+      {
+        "name": "aca_102",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "stable_dictionary_compression_report.json#/rows/102/best"
+      },
+      {
+        "name": "aca_103",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "stable_dictionary_compression_report.json#/rows/103/best"
+      },
+      {
+        "name": "aca_104",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "stable_dictionary_compression_report.json#/rows/104/best"
+      },
+      {
+        "name": "aca_108",
+        "status": "PASS",
+        "length": 21,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "recursive_stable_compression_report.json#/records/78"
+      },
+      {
+        "name": "aca_112",
+        "status": "PASS",
+        "length": 21,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "recursive_stable_compression_report.json#/records/82"
+      },
+      {
+        "name": "aca_113",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "recursive_stable_compression_report.json#/records/83"
+      },
+      {
+        "name": "aca_114",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "source_kind": "saved_best",
+        "source_pointer": "recursive_stable_compression_report.json#/records/84"
+      }
+    ],
+    "exported_event_counts": {
+      "defining_compression": 20,
+      "lemma11_removal": 18,
+      "ambient_whitehead": 10,
+      "ordinary_ac_substitution": 3
+    },
+    "summary": {
+      "rows": 124,
+      "new_gain_ids": [
+        "aca_7",
+        "aca_30",
+        "aca_31",
+        "aca_36",
+        "aca_57",
+        "aca_80",
+        "aca_82",
+        "aca_86",
+        "aca_102",
+        "aca_103",
+        "aca_104"
+      ],
+      "same_length_rank_reduction_ids": [
+        "aca_108",
+        "aca_112",
+        "aca_113",
+        "aca_114"
+      ],
+      "previous_total": 2191,
+      "new_total": 2180,
+      "saved_rank2_total": 2356,
+      "shorter_than_saved_rank2": 89,
+      "solved": 0,
+      "best_rank_counts": {
+        "2": 35,
+        "3": 87,
+        "4": 2
+      }
+    },
+    "all_output_words_and_ranks_match_witnesses": true,
+    "CSV_JSON_Markdown_agree": true,
+    "file_sha256": {
+      "README.md": "546567974daabfb106b323d8813c89a3e7c08c274f8672f1f7039a50792275c0",
+      "ALL124.md": "4e0e3e7dc9f9661114d20658b63e5ea8c42f21975797a80cb11bbbb787222206",
+      "all124.json": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "all124.csv": "fe379e62fb19963862732e7917314e8bd587e00e2099dfb22f9e0a446cb6726e",
+      "shortening_witnesses.jsonl": "138c0385aa062914424d0db81e7aa6e3e012b46e67863e9a9622fc3ba8a505cc",
+      "summarize.py": "ec6e0c91b47d85b504e20d2004f554bab1356cc9d4f3b0f2b357bed0b701e6ae"
+    }
+  },
+  "partial_panel_validation": {
+    "status": "PASS",
+    "rows": 17,
+    "candidates_replayed": 158,
+    "event_counts": {
+      "lemma11_removal": 185,
+      "ambient_whitehead": 456,
+      "relator_normalization": 90
+    },
+    "additional_gains": 0,
+    "total_units": 5380,
+    "file_sha256": "2e3104870952f7ca269429e55fb1e7358c8450e832de9e8842cc4282cbc766bd"
+  },
+  "final_review_script_sha256": "6c95d91e34c4e710350575202ef343477d66eb56de32860e46f105ba8ac20c8f",
+  "final_review_report_sha256": "b3db97d2c33f58c2c5202bfc6bcf26244f89808ffe23b37b2a6a7a4ecb91cc53",
+  "final_review_repeats_exhaustive_controls": false
+}

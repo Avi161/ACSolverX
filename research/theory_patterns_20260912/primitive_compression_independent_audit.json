@@ -1,0 +1,772 @@
+{
+  "status": "pass",
+  "source_report_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+  "source_report": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/primitive_compression_report.json",
+  "audit_script_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+  "original_panel_inventory_sha256": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a",
+  "source_hash_checks": [
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/primitive_compression.py",
+      "sha256": "14341a1cff7354e8dc048d50577ca4cea7043d4da21ff435bd0ff973443f009f",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/primitive_compression_checks.py",
+      "sha256": "740eff052d2bf2a8a3e32383c5272f630898e07a0e2c6804566658f87f329c04",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/coupled_power_word_compression.py",
+      "sha256": "fc50b382b2770725bd98e520d589f9991185d3fa3892e87c3a854937a04ed419",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/u124_inventory.json",
+      "sha256": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.claude/worktrees/codex-proofs/experiments/stable_ac/rank3_compression/rank3_whitehead.py",
+      "sha256": "126f6123451f482680b6dac86465bce371d4d4a4cfa08b4c0bc680c78c3c13fd",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.claude/worktrees/codex-proofs/literature/proofs/AK3_PRIMITIVE_SINGLE.md",
+      "sha256": "c37d9d86b632784f1e626cf0aeb9761aa8d7df5fb1b4cf6c6d2113fb10246cb1",
+      "verified": true
+    },
+    {
+      "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/STABLE_CERTIFICATE_CONVENTIONS.md",
+      "sha256": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54",
+      "verified": true
+    }
+  ],
+  "counts": {
+    "attempts_independently_replayed": 74,
+    "positive_quotient_witnesses": 15,
+    "whole_rank3_map_steps": 98,
+    "rank2_nielsen_steps": 30,
+    "all_rank_boundaries_verified": 522,
+    "rows_verified": 19,
+    "rank3_gain_rows": 12,
+    "rank2_endpoint_gain_rows": 0,
+    "shared_word_image_evaluations": 14244
+  },
+  "rows": [
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "attempts_verified": 0,
+      "image_evaluations": 0,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 14,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "attempts_verified": 2,
+      "image_evaluations": 180,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxx",
+          "YYZyz",
+          "YYYxyXyX"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          5,
+          8
+        ],
+        "total_length": 16,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/1/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "attempts_verified": 5,
+      "image_evaluations": 969,
+      "minimum_rank3_total_length": 15,
+      "minimum_rank3_witness": {
+        "label": "canonical_rank3_image",
+        "relators": [
+          "XYXYz",
+          "XZxzy",
+          "Xyzyy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          5,
+          5
+        ],
+        "total_length": 15,
+        "boundary_index": 5,
+        "independently_verified": true,
+        "attempt_index": 3,
+        "json_pointer": "/rows/2/attempts/3/boundaries/5",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_minimum_pair": [
+        "XXYxyXXYxyy",
+        "XXyyxY"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "attempts_verified": 5,
+      "image_evaluations": 915,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZXy",
+          "YYYYZyXzX",
+          "YYXzx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          9,
+          5
+        ],
+        "total_length": 17,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/3/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "attempts_verified": 2,
+      "image_evaluations": 917,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxy",
+          "YZXXyzx",
+          "YYxZXyyX"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/4/attempts/0/boundaries/2",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 27,
+      "rank2_endpoint_minimum_pair": [
+        "XXyyXYXyXY",
+        "XYXyXYxyyXYXyxYXy"
+      ],
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "attempts_verified": 5,
+      "image_evaluations": 918,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZXYYY",
+          "XyzxyXz",
+          "YYXXyx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          7,
+          6
+        ],
+        "total_length": 18,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/5/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "attempts_verified": 6,
+      "image_evaluations": 912,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxx",
+          "YZYzyz",
+          "YYYYxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/6/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "attempts_verified": 6,
+      "image_evaluations": 912,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxx",
+          "YXXXZyzYz",
+          "YYXZyyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          9,
+          7
+        ],
+        "total_length": 19,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 2,
+        "json_pointer": "/rows/7/attempts/2/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "attempts_verified": 3,
+      "image_evaluations": 917,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZXYY",
+          "XyxxZYz",
+          "YYYXXXXXZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          9
+        ],
+        "total_length": 20,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/8/attempts/0/boundaries/2",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 37,
+      "rank2_endpoint_minimum_pair": [
+        "XYXyXYxyy",
+        "XXXyXYxyXYxyXYxyXYxyXYxyXYxy"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "attempts_verified": 3,
+      "image_evaluations": 933,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZYxx",
+          "YYZxzyX",
+          "YYYYYYXXXz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          10
+        ],
+        "total_length": 21,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/9/attempts/0/boundaries/2",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 41,
+      "rank2_endpoint_minimum_pair": [
+        "XXYxyXyyxY",
+        "XYxyXYxyXYxyXYxyXYxyXYxyXYxyXyy"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "attempts_verified": 6,
+      "image_evaluations": 966,
+      "minimum_rank3_total_length": 22,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZXYx",
+          "YXYZyzx",
+          "YYYYYYYxYYz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          11
+        ],
+        "total_length": 22,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/10/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": 45,
+      "rank2_endpoint_minimum_pair": [
+        "XXYxYXyyxY",
+        "XYYxyXYxyyXYxyXYxyXYxyXYxyXYxyXYxyy"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 22,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "attempts_verified": 3,
+      "image_evaluations": 933,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "label": "canonical_rank3_image",
+        "relators": [
+          "YYYYYYYz",
+          "XZxzy",
+          "XXXYxYxY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          8,
+          5,
+          8
+        ],
+        "total_length": 21,
+        "boundary_index": 5,
+        "independently_verified": true,
+        "attempt_index": 1,
+        "json_pointer": "/rows/11/attempts/1/boundaries/5",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 38,
+      "rank2_endpoint_minimum_pair": [
+        "XYxyXYxyXYxyXYxyXYxyXYxyXYxyy",
+        "XXXXYxxxy"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "attempts_verified": 0,
+      "image_evaluations": 0,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 14,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "attempts_verified": 0,
+      "image_evaluations": 0,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "attempts_verified": 4,
+      "image_evaluations": 972,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZXXX",
+          "YYzyz",
+          "YYXyxYXyxyX"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          11
+        ],
+        "total_length": 20,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/14/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": 30,
+      "rank2_endpoint_minimum_pair": [
+        "XXYYYXXYYYXXYxY",
+        "XXYXXYxxyXXYxxY"
+      ],
+      "rank3_strict_gain": false,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": false
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "attempts_verified": 3,
+      "image_evaluations": 933,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "ZxYY",
+          "XyxxZYz",
+          "YYYXXXXXZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          9
+        ],
+        "total_length": 20,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/15/attempts/0/boundaries/2",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 37,
+      "rank2_endpoint_minimum_pair": [
+        "XXYxyyXyxY",
+        "XYxYYxyXYxyXYxyXYxyXYxyXYxy"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "attempts_verified": 3,
+      "image_evaluations": 965,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "label": "canonical_rank3_image",
+        "relators": [
+          "XYxyZ",
+          "XYZyz",
+          "XXXXyXXXYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          5,
+          10
+        ],
+        "total_length": 20,
+        "boundary_index": 5,
+        "independently_verified": true,
+        "attempt_index": 1,
+        "json_pointer": "/rows/16/attempts/1/boundaries/5",
+        "attempt_status": "primitive_with_replayed_rank2_macro_endpoint"
+      },
+      "rank2_endpoint_minimum_length": 26,
+      "rank2_endpoint_minimum_pair": [
+        "XXYxyyxYY",
+        "XXYYYYYYYYxYYYYYY"
+      ],
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "attempts_verified": 11,
+      "image_evaluations": 990,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxx",
+          "YYZZyz",
+          "YYzyXZZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          7
+        ],
+        "total_length": 16,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/17/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": true
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "attempts_verified": 7,
+      "image_evaluations": 912,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "label": "compressed_rank3",
+        "relators": [
+          "Zxy",
+          "YYYzXyzzx",
+          "YZXXyX"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          9,
+          6
+        ],
+        "total_length": 18,
+        "boundary_index": 2,
+        "independently_verified": true,
+        "attempt_index": 0,
+        "json_pointer": "/rows/18/attempts/0/boundaries/2",
+        "attempt_status": "nonprimitive_whitehead_minimum"
+      },
+      "rank2_endpoint_minimum_length": null,
+      "rank2_endpoint_minimum_pair": null,
+      "rank3_strict_gain": true,
+      "rank2_endpoint_strict_gain": false,
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true
+    }
+  ],
+  "rank3_gain_ids": [
+    "aca_13",
+    "aca_80",
+    "aca_59",
+    "aca_79",
+    "aca_82",
+    "aca_109",
+    "aca_108",
+    "aca_101",
+    "aca_86",
+    "aca_106",
+    "aca_54",
+    "aca_5"
+  ],
+  "rank2_endpoint_gain_ids": [],
+  "certificate_kind": "independently_replayed_theorem_backed_stable_macro_boundaries_not_expanded_ordinary_streams",
+  "important_correction": "Zero rank2 endpoint gains does not mean zero admissible rank3 boundary gains:12/19 exact panel rows have shorter complete rank3 tuples.",
+  "scope_audit": {
+    "status": "saved_witnesses_and_joins_pass",
+    "source_report_sha256": {
+      "ms_census_scope": "8ba0979ec07d541ea1bddd4e0290964be79cf9719dc2388195ce78094cafd047",
+      "ms_residue_class_probe": "0249fd0bf358748ad9c5b66b15bdb7ce5604354b0cdd1c483b51c7fd97da1a33",
+      "ms_residue_orbits": "88346aa5e420d009c08c39db4367df92daeeb5a4ba68100a97addcd569a898e3"
+    },
+    "census_counts": {
+      "matched_rows": 842,
+      "terminal_rows": 366,
+      "terminal_already_in_solved640": 366,
+      "terminal_outside_solved640": 0
+    },
+    "ms_signed_parameter_matches_verified": 1688,
+    "original_unsolved_cells_verified": 338,
+    "class_label_components": 31,
+    "residue_targets_verified": 64,
+    "saved_orbit_signed_permutation_maps_verified": 64,
+    "distinct_saved_orbit_representatives": 32,
+    "new_gains_or_merges": 0,
+    "limits": "Read-only replay of saved recognitions, normalizations and orbit witnesses. No recognizer, Nielsen descent or full orbit search rerun; absent matches and global orbit completeness are not independently reproved. Old grid/member labels certify only data joins, not AC bridges.",
+    "charge_units": "The residue probe counts 512 map-pair evaluations, equivalent to 1024 individual word images; these differ from the primitive screen individual-word-image budget."
+  },
+  "wall_seconds": 0.16714849998243153,
+  "cpu_seconds": 0.164233
+}

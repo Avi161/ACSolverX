@@ -1,0 +1,354 @@
+{
+  "schema": "u124_retained_triangle_fixed_rank_ordinary_ac_search_v1",
+  "source_sha256": "2fd822502d119a4a434c535ede08131eda2266b3392afd195eefef84963c6530",
+  "script_sha256": "071790b6c0e49826d4588635044eb9781db84f609a726e2cf03b353ae96923e8",
+  "parameters": {
+    "pop_budget": 20,
+    "relator_cap": 4,
+    "beam": 128
+  },
+  "summary": {
+    "rows": 1,
+    "solved_to_length_at_most_two": 0,
+    "fixed_rank_structural_improvements": 0,
+    "heap_pops": 2,
+    "discovered_states": 2,
+    "generated_rotation_products": 28224,
+    "cpu_seconds": 0.18881699999999998,
+    "wall_seconds": 0.18897395906969905
+  },
+  "certificate_scope": "fixed-rank ordinary AC normal-product composites only; independently replayed by verify.py; no generator removal or destabilization",
+  "rows": [
+    {
+      "endpoint": [
+        [
+          -9,
+          -5,
+          1
+        ],
+        [
+          -9,
+          4,
+          -2
+        ],
+        [
+          -8,
+          -7,
+          1
+        ],
+        [
+          -8,
+          5,
+          2
+        ],
+        [
+          -7,
+          -6,
+          3
+        ],
+        [
+          -6,
+          -3,
+          -3
+        ],
+        [
+          -5,
+          -4,
+          1
+        ],
+        [
+          -4,
+          -2,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -2
+        ]
+      ],
+      "events": [],
+      "solved_to_length_at_most_two": false,
+      "best_fixed_endpoint": [
+        [
+          -9,
+          -5,
+          1
+        ],
+        [
+          -9,
+          4,
+          -2
+        ],
+        [
+          -8,
+          -7,
+          1
+        ],
+        [
+          -8,
+          5,
+          2
+        ],
+        [
+          -7,
+          -6,
+          3
+        ],
+        [
+          -6,
+          -3,
+          -3
+        ],
+        [
+          -5,
+          -4,
+          1
+        ],
+        [
+          -4,
+          -2,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -2
+        ]
+      ],
+      "best_fixed_events": [],
+      "initial_score": [
+        1,
+        9,
+        3,
+        9,
+        0,
+        0,
+        0,
+        2,
+        2,
+        27,
+        9
+      ],
+      "endpoint_score": [
+        1,
+        9,
+        3,
+        9,
+        0,
+        0,
+        0,
+        2,
+        2,
+        27,
+        9
+      ],
+      "best_fixed_score": [
+        1,
+        9,
+        3,
+        9,
+        0,
+        0,
+        0,
+        2,
+        2,
+        27,
+        9
+      ],
+      "heap_pops": 2,
+      "pop_budget": 20,
+      "relator_cap": 4,
+      "neighborhood": "direct_cap3_plus_two_step_single_quartic_macros",
+      "beam": 128,
+      "discovered_states": 2,
+      "generated_rotation_products": 28224,
+      "emitted_unique_states": 1,
+      "name": "aca_0",
+      "source_sha256": "2fd822502d119a4a434c535ede08131eda2266b3392afd195eefef84963c6530",
+      "source_endpoint": [
+        [
+          -9,
+          -5,
+          1
+        ],
+        [
+          -9,
+          4,
+          -2
+        ],
+        [
+          -8,
+          -7,
+          1
+        ],
+        [
+          -8,
+          5,
+          2
+        ],
+        [
+          -7,
+          -6,
+          3
+        ],
+        [
+          -6,
+          -3,
+          -3
+        ],
+        [
+          -5,
+          -4,
+          1
+        ],
+        [
+          -4,
+          -2,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -2
+        ]
+      ],
+      "cpu_seconds": 0.18881699999999998,
+      "wall_seconds": 0.18897395906969905,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_0",
+        "source_key": "current_best",
+        "baseline_length": 18,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -9,
+            -5,
+            1
+          ],
+          [
+            -9,
+            4,
+            -2
+          ],
+          [
+            -8,
+            -7,
+            1
+          ],
+          [
+            -8,
+            5,
+            2
+          ],
+          [
+            -7,
+            -6,
+            3
+          ],
+          [
+            -6,
+            -3,
+            -3
+          ],
+          [
+            -5,
+            -4,
+            1
+          ],
+          [
+            -4,
+            -2,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -2
+          ]
+        ],
+        "endpoint_length": 27,
+        "endpoint_rank": 9,
+        "endpoint_gain": -9,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 18
+          },
+          {
+            "events": 1,
+            "rank": 3,
+            "length": 18
+          },
+          {
+            "events": 2,
+            "rank": 4,
+            "length": 18
+          },
+          {
+            "events": 3,
+            "rank": 5,
+            "length": 19
+          },
+          {
+            "events": 4,
+            "rank": 6,
+            "length": 21
+          },
+          {
+            "events": 5,
+            "rank": 7,
+            "length": 23
+          },
+          {
+            "events": 6,
+            "rank": 8,
+            "length": 25
+          },
+          {
+            "events": 7,
+            "rank": 9,
+            "length": 27
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 18,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": false,
+        "endpoint_misses_better_prefix": true,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "theorem_backed_stable_composite",
+        "fully_expanded_elementary_path": false
+      }
+    }
+  ]
+}

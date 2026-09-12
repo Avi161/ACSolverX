@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "name": "aca_95",
+  "source_key": "saved_rank2",
+  "baseline_length": 18,
+  "baseline_rank": 3,
+  "endpoint": [
+    [
+      -3,
+      -3,
+      -1,
+      -1,
+      2,
+      1
+    ],
+    [
+      -3,
+      -2,
+      -1,
+      2,
+      2,
+      -3,
+      2
+    ],
+    [
+      -3,
+      1,
+      2,
+      -1
+    ]
+  ],
+  "endpoint_length": 17,
+  "endpoint_rank": 3,
+  "endpoint_gain": 1,
+  "boundaries": [
+    {
+      "events": 0,
+      "rank": 2,
+      "length": 19
+    },
+    {
+      "events": 1,
+      "rank": 3,
+      "length": 18
+    },
+    {
+      "events": 2,
+      "rank": 3,
+      "length": 17
+    }
+  ],
+  "best_certified": [
+    [
+      -3,
+      -3,
+      -1,
+      -1,
+      2,
+      1
+    ],
+    [
+      -3,
+      -2,
+      -1,
+      2,
+      2,
+      -3,
+      2
+    ],
+    [
+      -3,
+      1,
+      2,
+      -1
+    ]
+  ],
+  "best_prefix_event_count": 2,
+  "best_prefix_length": 17,
+  "best_prefix_rank": 3,
+  "best_prefix_gain": 1,
+  "strict_length_improvement": true,
+  "same_length_rank_improvement": false,
+  "canonical_endpoint_equals_baseline": false,
+  "endpoint_misses_better_prefix": false,
+  "solved_at_certified_prefix": false,
+  "certificate_scope": "theorem_backed_stable_composite",
+  "fully_expanded_elementary_path": false,
+  "source_file": "templates_remainder.json",
+  "source_sha256": "e28bab9db9e0658973e14fa8a5f8babc7d9d399e5341c1cb540cb37e59ba3a62",
+  "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+  "event_kinds": [
+    "defining_template_compression",
+    "ambient_whitehead"
+  ],
+  "verifier_sha256": "0058c3eb09858e242769b147a1882a0b1765422f8965014163364c1ba91cad53",
+  "script_sha256": "9a529b65ba130de4272b5c0757f91b581f7d8893b804413f454148b4eaece4c3",
+  "census_searches": 0,
+  "comparison_with_literal_definition_selection": "Not performed; parent owns this independent comparison."
+}

@@ -1,0 +1,1600 @@
+{
+  "status": "PASS",
+  "scope": "soundness and bounded counterexample controls; not a proof of necessity",
+  "rows": [
+    {
+      "name": "full_basis",
+      "input": [
+        "x",
+        "y"
+      ],
+      "status": "stable_criterion_candidate",
+      "theorem_hypotheses": true,
+      "attachment_count": 1,
+      "tested_attachments": 1,
+      "pairs_checked": 0,
+      "complete": true,
+      "positive": {
+        "claim": "stable_criterion_candidate_not_automatic_solve",
+        "conjugator": "",
+        "complement": "",
+        "conjugated_pair": [
+          "x",
+          "y"
+        ],
+        "prefix_moves": [],
+        "full_rose_checked_by_two_folders": true,
+        "conjugator_length_bound": 0
+      },
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "x",
+            "y"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "already_generates",
+          "complement": "",
+          "pairs_checked": 0,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "fa027b3ddd0cb1623e641f14d48d0147a75b2a777510e813b50d56d35cc407c5"
+        }
+      ],
+      "cpu_seconds": 8.89999999999988e-05,
+      "wall_seconds": 8.725002408027649e-05,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "x",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "X",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "y",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "Y",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "xx",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "xy",
+          "status": "cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "xY",
+          "status": "cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "XX",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "Xy",
+          "status": "cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "XY",
+          "status": "cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "yx",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "yX",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "yy",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "Yx",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "YX",
+          "status": "already_generates",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "YY",
+          "status": "already_generates",
+          "pairs_checked": 0
+        }
+      ]
+    },
+    {
+      "name": "separate_powers",
+      "input": [
+        "xx",
+        "yyy"
+      ],
+      "status": "no_conjugated_cyclic_complement_by_finite_theorem",
+      "theorem_hypotheses": true,
+      "attachment_count": 1,
+      "tested_attachments": 1,
+      "pairs_checked": 6,
+      "complete": true,
+      "positive": null,
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xx",
+            "yyy"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "d268bfce4ee122f098b97cd6bb0045c8270e325ac6e017dc7cd41bf651607500"
+        }
+      ],
+      "cpu_seconds": 7.299999999999668e-05,
+      "wall_seconds": 7.30000901967287e-05,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "xx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "XX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "Xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "XY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "yX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "yy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "Yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "YX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        },
+        {
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 6
+        }
+      ]
+    },
+    {
+      "name": "nonprimitive_positive",
+      "input": [
+        "xyxY",
+        "xxYYY"
+      ],
+      "status": "stable_criterion_candidate",
+      "theorem_hypotheses": true,
+      "attachment_count": 20,
+      "tested_attachments": 1,
+      "pairs_checked": 7,
+      "complete": true,
+      "positive": {
+        "claim": "stable_criterion_candidate_not_automatic_solve",
+        "conjugator": "",
+        "complement": "YX",
+        "conjugated_pair": [
+          "xyxY",
+          "xxYYY"
+        ],
+        "prefix_moves": [],
+        "full_rose_checked_by_two_folders": true,
+        "conjugator_length_bound": 4
+      },
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xyxY",
+            "xxYYY"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "cyclic_complement",
+          "complement": "YX",
+          "identified": [
+            0,
+            4
+          ],
+          "pairs_checked": 7,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "4ed4bab84a64f288cc082c25bf8c56e72fd1e46ad74b030d428fc3036e6c3b15"
+        }
+      ],
+      "cpu_seconds": 0.0003150000000000028,
+      "wall_seconds": 0.0003143330104649067,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "cyclic_complement",
+          "pairs_checked": 4
+        },
+        {
+          "conjugator": "x",
+          "status": "cyclic_complement",
+          "pairs_checked": 4
+        },
+        {
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21
+        },
+        {
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21
+        },
+        {
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "xx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "xy",
+          "status": "cyclic_complement",
+          "pairs_checked": 4
+        },
+        {
+          "conjugator": "xY",
+          "status": "cyclic_complement",
+          "pairs_checked": 3
+        },
+        {
+          "conjugator": "XX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "Xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 45
+        },
+        {
+          "conjugator": "XY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "yX",
+          "status": "cyclic_complement",
+          "pairs_checked": 3
+        },
+        {
+          "conjugator": "yy",
+          "status": "cyclic_complement",
+          "pairs_checked": 4
+        },
+        {
+          "conjugator": "Yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 45
+        },
+        {
+          "conjugator": "YX",
+          "status": "cyclic_complement",
+          "pairs_checked": 3
+        },
+        {
+          "conjugator": "YY",
+          "status": "cyclic_complement",
+          "pairs_checked": 3
+        }
+      ],
+      "metadata_correction": "Original control label incorrectly included unimodular; determinant is -6. Input, results and physical checks unchanged."
+    },
+    {
+      "name": "commutator_and_even_word",
+      "input": [
+        "xyXY",
+        "xxyy"
+      ],
+      "status": "no_conjugated_cyclic_complement_by_finite_theorem",
+      "theorem_hypotheses": true,
+      "attachment_count": 16,
+      "tested_attachments": 16,
+      "pairs_checked": 222,
+      "complete": true,
+      "positive": null,
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xyXY",
+            "xxyy"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "614ef56d898db8276969e8958ccb881e2e1607181635c92555692d2465ac8896"
+        },
+        {
+          "cuts": [
+            1,
+            1
+          ],
+          "pair": [
+            "yXYx",
+            "xyyx"
+          ],
+          "p": "x",
+          "q": "x",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "286c0cf472b2c6e29f8c8b1bbd9cff2e1f3a0815573db73c52a318faab501601"
+        },
+        {
+          "cuts": [
+            0,
+            1
+          ],
+          "pair": [
+            "xyXY",
+            "xyyx"
+          ],
+          "p": "",
+          "q": "x",
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "536df7d66f0090b60bcbaaf8cb60cb5913da3a1ef9571413ce90f96a4e953b16"
+        },
+        {
+          "cuts": [
+            0,
+            3
+          ],
+          "pair": [
+            "xyXY",
+            "yxxy"
+          ],
+          "p": "",
+          "q": "Y",
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "fcc23e3d025a948dbd509bb86bd58c02c7fe7fc184f515ed033a3d940af4cafb"
+        },
+        {
+          "cuts": [
+            1,
+            0
+          ],
+          "pair": [
+            "yXYx",
+            "xxyy"
+          ],
+          "p": "x",
+          "q": "",
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "892ec9f9de635a32543d2569f51c266f2b8e98202ff2aa297cfa98a96f15cc3a"
+        },
+        {
+          "cuts": [
+            3,
+            0
+          ],
+          "pair": [
+            "YxyX",
+            "xxyy"
+          ],
+          "p": "y",
+          "q": "",
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "eca2651768cdc2b16cbf0a09ee8b5f8755144c3a2c479f462b7fab47d9290aa8"
+        },
+        {
+          "cuts": [
+            0,
+            2
+          ],
+          "pair": [
+            "xyXY",
+            "yyxx"
+          ],
+          "p": "",
+          "q": "YY",
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "5ec89a5c4e9ef01319699dc95611c4079c9629ec6f9cbd7989a98687d1c27470"
+        },
+        {
+          "cuts": [
+            1,
+            3
+          ],
+          "pair": [
+            "yXYx",
+            "yxxy"
+          ],
+          "p": "x",
+          "q": "Y",
+          "conjugator": "YX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "1060e0bb25d900966eb14b1bb6a187633b0b6a3fa83e39f3c37504cc3a6c00e7"
+        },
+        {
+          "cuts": [
+            2,
+            0
+          ],
+          "pair": [
+            "XYxy",
+            "xxyy"
+          ],
+          "p": "xy",
+          "q": "",
+          "conjugator": "YX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "7dbcf651a4ae52e1046f58080cf62f6e54312c7c84f688625c463ae1815f0279"
+        },
+        {
+          "cuts": [
+            3,
+            1
+          ],
+          "pair": [
+            "YxyX",
+            "xyyx"
+          ],
+          "p": "y",
+          "q": "x",
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "9c359298e3a55ebb06bed6b7e5eea2b910ed7f67a8284766f1ed6a9cec02521e"
+        },
+        {
+          "cuts": [
+            3,
+            3
+          ],
+          "pair": [
+            "YxyX",
+            "yxxy"
+          ],
+          "p": "y",
+          "q": "Y",
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "b8a7606ebd6fad425bf8ce487d5085b8dd397174a129baa4203adcb50345d87b"
+        },
+        {
+          "cuts": [
+            1,
+            2
+          ],
+          "pair": [
+            "yXYx",
+            "yyxx"
+          ],
+          "p": "x",
+          "q": "YY",
+          "conjugator": "YYX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "263161f90de5681c7634fb46afccb7765ef29a2129888c821f9371321d58709d"
+        },
+        {
+          "cuts": [
+            2,
+            1
+          ],
+          "pair": [
+            "XYxy",
+            "xyyx"
+          ],
+          "p": "xy",
+          "q": "x",
+          "conjugator": "xYX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "0ce439dbfa84918f2365dd5f17b6f1debe62a0860c71dc8e63626186934a3146"
+        },
+        {
+          "cuts": [
+            2,
+            3
+          ],
+          "pair": [
+            "XYxy",
+            "yxxy"
+          ],
+          "p": "xy",
+          "q": "Y",
+          "conjugator": "YYX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "3047b58f73f7c4cca92f60914eef18b92a695ecd19e9e7701778c6766c232a14"
+        },
+        {
+          "cuts": [
+            3,
+            2
+          ],
+          "pair": [
+            "YxyX",
+            "yyxx"
+          ],
+          "p": "y",
+          "q": "YY",
+          "conjugator": "YYY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "77832ddc1b5327b8e1d83c8ad1b00fe77d46420eafd5371a5e8999baec70951c"
+        },
+        {
+          "cuts": [
+            2,
+            2
+          ],
+          "pair": [
+            "XYxy",
+            "yyxx"
+          ],
+          "p": "xy",
+          "q": "YY",
+          "conjugator": "YYYX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "6aa22abf3aeae0c91b28353bd729c1d3fd6bb51e83943d7e2eab5c7ce753906d"
+        }
+      ],
+      "cpu_seconds": 0.0023980000000000043,
+      "wall_seconds": 0.0024065421894192696,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10
+        },
+        {
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21
+        },
+        {
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 10
+        },
+        {
+          "conjugator": "xx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "XX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "Xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "XY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "yX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "yy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36
+        },
+        {
+          "conjugator": "Yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28
+        },
+        {
+          "conjugator": "YX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        }
+      ]
+    },
+    {
+      "name": "shared_power_axis_outside_scope",
+      "input": [
+        "xx",
+        "xxx"
+      ],
+      "status": "stable_criterion_candidate",
+      "theorem_hypotheses": false,
+      "attachment_count": 1,
+      "tested_attachments": 1,
+      "pairs_checked": 0,
+      "complete": true,
+      "positive": {
+        "claim": "stable_criterion_candidate_not_automatic_solve",
+        "conjugator": "",
+        "complement": "y",
+        "conjugated_pair": [
+          "xx",
+          "xxx"
+        ],
+        "prefix_moves": [],
+        "full_rose_checked_by_two_folders": true,
+        "conjugator_length_bound": 2
+      },
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xx",
+            "xxx"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "cyclic_complement",
+          "complement": "y",
+          "pairs_checked": 0,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "4e5ca53c866cdfe36e277a133973aecd95ec196660e5d898e351935a646deaf1"
+        }
+      ],
+      "cpu_seconds": 9.10000000000008e-05,
+      "wall_seconds": 9.10409726202488e-05,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "cyclic_complement",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "x",
+          "status": "cyclic_complement",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "X",
+          "status": "cyclic_complement",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "y",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "Y",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "xx",
+          "status": "cyclic_complement",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "xy",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "xY",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "XX",
+          "status": "cyclic_complement",
+          "pairs_checked": 0
+        },
+        {
+          "conjugator": "Xy",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "XY",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "yx",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "yX",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "yy",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "Yx",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "YX",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        },
+        {
+          "conjugator": "YY",
+          "status": "cyclic_complement",
+          "pairs_checked": 2
+        }
+      ]
+    },
+    {
+      "name": "shared_power_axis_negative_outside_scope",
+      "input": [
+        "xx",
+        "xxxx"
+      ],
+      "status": "no_complement_in_declared_attachments_outside_theorem_scope",
+      "theorem_hypotheses": false,
+      "attachment_count": 1,
+      "tested_attachments": 1,
+      "pairs_checked": 1,
+      "complete": true,
+      "positive": null,
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xx",
+            "xxxx"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "233dfce59d726e568f63300ab6871bb575724dc9b26028feb9c838259b28d577"
+        }
+      ],
+      "cpu_seconds": 3.999999999999837e-05,
+      "wall_seconds": 4.0041981264948845e-05,
+      "direct_short_conjugator_checks": [
+        {
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "xx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "XX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 1
+        },
+        {
+          "conjugator": "Xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "XY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "yX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "yy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21
+        },
+        {
+          "conjugator": "Yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "YX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 15
+        },
+        {
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 21
+        }
+      ]
+    },
+    {
+      "name": "AK2",
+      "input": [
+        "xxYYY",
+        "xyxYXY"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 30,
+      "tested_attachments": 29,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "records": [
+        {
+          "cuts": [
+            0,
+            0
+          ],
+          "pair": [
+            "xxYYY",
+            "xyxYXY"
+          ],
+          "p": "",
+          "q": "",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "b032d55446ae30e7fd50390c33bb209800fcc0665f0c836d147787c9808fa869"
+        },
+        {
+          "cuts": [
+            1,
+            1
+          ],
+          "pair": [
+            "xYYYx",
+            "yxYXYx"
+          ],
+          "p": "x",
+          "q": "x",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "82b239dd7ec95a377bd1758190f91362fa30b11c2637b1167556a253445b1127"
+        },
+        {
+          "cuts": [
+            4,
+            5
+          ],
+          "pair": [
+            "YxxYY",
+            "YxyxYX"
+          ],
+          "p": "y",
+          "q": "y",
+          "conjugator": "",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "7747556916b3213b405036b42a62ebc74503d8d69a30f25c98088f0f99abb2c8"
+        },
+        {
+          "cuts": [
+            0,
+            1
+          ],
+          "pair": [
+            "xxYYY",
+            "yxYXYx"
+          ],
+          "p": "",
+          "q": "x",
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "7dec54f46d94dd37c0065a8ddd7eda59c35e7478f6b4f3a7047dc85b8f7c393d"
+        },
+        {
+          "cuts": [
+            0,
+            5
+          ],
+          "pair": [
+            "xxYYY",
+            "YxyxYX"
+          ],
+          "p": "",
+          "q": "y",
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "c937bcf583b68d8e56b50f5db8ce52eccf19d8089eb2bf3f9fcef34108b1c999"
+        },
+        {
+          "cuts": [
+            1,
+            0
+          ],
+          "pair": [
+            "xYYYx",
+            "xyxYXY"
+          ],
+          "p": "x",
+          "q": "",
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "de48cf833e9b4c7bf30ebee84d4e78c6b6849550832e23d7aabe8213c0cfcf01"
+        },
+        {
+          "cuts": [
+            1,
+            4
+          ],
+          "pair": [
+            "xYYYx",
+            "XYxyxY"
+          ],
+          "p": "x",
+          "q": "yx",
+          "conjugator": "y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "bbbb95ab4efa32f742d6f1c8ba76c8e6815e0f6bd622734a64516ac6bae52a34"
+        },
+        {
+          "cuts": [
+            2,
+            1
+          ],
+          "pair": [
+            "YYYxx",
+            "yxYXYx"
+          ],
+          "p": "xx",
+          "q": "x",
+          "conjugator": "X",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "ecb47dc30751ae19d4e6020affdbebb1ef23369164f1091c74488c8719453b79"
+        },
+        {
+          "cuts": [
+            3,
+            5
+          ],
+          "pair": [
+            "YYxxY",
+            "YxyxYX"
+          ],
+          "p": "yy",
+          "q": "y",
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "fe7d3da73e42da444aba6794507b5c5a5835be635b369d8ac548107cd6bcdb4a"
+        },
+        {
+          "cuts": [
+            4,
+            0
+          ],
+          "pair": [
+            "YxxYY",
+            "xyxYXY"
+          ],
+          "p": "y",
+          "q": "",
+          "conjugator": "Y",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "d2742f43af2e56ddaf3e01005b011ba169929374e094ed4d32b8f0023fd346b5"
+        },
+        {
+          "cuts": [
+            4,
+            2
+          ],
+          "pair": [
+            "YxxYY",
+            "xYXYxy"
+          ],
+          "p": "y",
+          "q": "xy",
+          "conjugator": "x",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "42f2eba7cfe611e41b2f0ef7c68b04b4c08a8dc79a673432c68b456c82706d28"
+        },
+        {
+          "cuts": [
+            0,
+            2
+          ],
+          "pair": [
+            "xxYYY",
+            "xYXYxy"
+          ],
+          "p": "",
+          "q": "xy",
+          "conjugator": "xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "39e3beab5a176ac03ee2ed4e9e800d9d9915a21377b80c588d855f81bb7bc31d"
+        },
+        {
+          "cuts": [
+            0,
+            4
+          ],
+          "pair": [
+            "xxYYY",
+            "XYxyxY"
+          ],
+          "p": "",
+          "q": "yx",
+          "conjugator": "yx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "1a0d7a252b81c24a6ee58e50182aaa5425bed1bfb00542d892f97dc13ae8bb80"
+        },
+        {
+          "cuts": [
+            1,
+            3
+          ],
+          "pair": [
+            "xYYYx",
+            "YXYxyx"
+          ],
+          "p": "x",
+          "q": "xyx",
+          "conjugator": "xy",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "ab11abc68e3926250159e3f58eceacff08fe4ba110fa731f4706ca11152011fe"
+        },
+        {
+          "cuts": [
+            1,
+            5
+          ],
+          "pair": [
+            "xYYYx",
+            "YxyxYX"
+          ],
+          "p": "x",
+          "q": "y",
+          "conjugator": "yX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "7db3c0f914a7609cf0b1552c789ab5032fb7e822a866e22ea6769d69037d9408"
+        },
+        {
+          "cuts": [
+            2,
+            0
+          ],
+          "pair": [
+            "YYYxx",
+            "xyxYXY"
+          ],
+          "p": "xx",
+          "q": "",
+          "conjugator": "XX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 45,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "e83f18cd1cbd25b447052ae9f548499ed913000745a10e9cfd77886a4db9d903"
+        },
+        {
+          "cuts": [
+            2,
+            4
+          ],
+          "pair": [
+            "YYYxx",
+            "XYxyxY"
+          ],
+          "p": "xx",
+          "q": "yx",
+          "conjugator": "yX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "572698061ea908b3134102c614dce6096b5c7603b57f5a104375049d2d7dea60"
+        },
+        {
+          "cuts": [
+            3,
+            0
+          ],
+          "pair": [
+            "YYxxY",
+            "xyxYXY"
+          ],
+          "p": "yy",
+          "q": "",
+          "conjugator": "YY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "921782bcf74379716b457d2abdc4ee659ac422044bc8d99142b8667e459dcf7f"
+        },
+        {
+          "cuts": [
+            3,
+            2
+          ],
+          "pair": [
+            "YYxxY",
+            "xYXYxy"
+          ],
+          "p": "yy",
+          "q": "xy",
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "b56ca38b8c18e77e0f94b67bffffc9803d53dcae157ab7dfcd76116792d801f4"
+        },
+        {
+          "cuts": [
+            4,
+            1
+          ],
+          "pair": [
+            "YxxYY",
+            "yxYXYx"
+          ],
+          "p": "y",
+          "q": "x",
+          "conjugator": "xY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "1308f920ffdb2a48967accd1dbf38dc653340757cc01f3c080c5d0ace4127fa6"
+        },
+        {
+          "cuts": [
+            0,
+            3
+          ],
+          "pair": [
+            "xxYYY",
+            "YXYxyx"
+          ],
+          "p": "",
+          "q": "xyx",
+          "conjugator": "xyx",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 45,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "4515435dcd7833ed766afb1a7e1e747808d921444dec003e32f7f44250df80e4"
+        },
+        {
+          "cuts": [
+            1,
+            2
+          ],
+          "pair": [
+            "xYYYx",
+            "xYXYxy"
+          ],
+          "p": "x",
+          "q": "xy",
+          "conjugator": "xyX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "7abb9e46db69831dc811b27a24f6d2cd94d37a151ccb51550c6f0f9ca54d4252"
+        },
+        {
+          "cuts": [
+            2,
+            3
+          ],
+          "pair": [
+            "YYYxx",
+            "YXYxyx"
+          ],
+          "p": "xx",
+          "q": "xyx",
+          "conjugator": "xyX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "ca4da5687d351d75a8b757ec11139e42955fbf851bf9846c1142447d750c1be0"
+        },
+        {
+          "cuts": [
+            2,
+            5
+          ],
+          "pair": [
+            "YYYxx",
+            "YxyxYX"
+          ],
+          "p": "xx",
+          "q": "y",
+          "conjugator": "yXX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "74c59691cd9a0baefd431602cba7ec60ed3d276cd28592983adbc5b75a2a9de9"
+        },
+        {
+          "cuts": [
+            3,
+            1
+          ],
+          "pair": [
+            "YYxxY",
+            "yxYXYx"
+          ],
+          "p": "yy",
+          "q": "x",
+          "conjugator": "xYY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "387b0139b3957baf22f880413ee6e5ea033c5d75fc768ea4599588251114aebb"
+        },
+        {
+          "cuts": [
+            4,
+            4
+          ],
+          "pair": [
+            "YxxYY",
+            "XYxyxY"
+          ],
+          "p": "y",
+          "q": "yx",
+          "conjugator": "yxY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "41e181704a6c6532b588fd60c45c644ef56c8f12dd82b51b7148e4d219f4b2c2"
+        },
+        {
+          "cuts": [
+            2,
+            2
+          ],
+          "pair": [
+            "YYYxx",
+            "xYXYxy"
+          ],
+          "p": "xx",
+          "q": "xy",
+          "conjugator": "xyXX",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 36,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "1e1ebfbe9ad445e705ed751d4ab347e8ed813663d830bba2aaf6a2b686a02ba1"
+        },
+        {
+          "cuts": [
+            3,
+            4
+          ],
+          "pair": [
+            "YYxxY",
+            "XYxyxY"
+          ],
+          "p": "yy",
+          "q": "yx",
+          "conjugator": "yxYY",
+          "status": "no_cyclic_complement",
+          "pairs_checked": 28,
+          "complete": true,
+          "reused_exact_graph": false,
+          "graph_sha256": "ee2a2260135340d8abd6020927999c444463da59d4ba5ce25febf2c6a7b8c7c5"
+        },
+        {
+          "cuts": [
+            4,
+            3
+          ],
+          "pair": [
+            "YxxYY",
+            "YXYxyx"
+          ],
+          "p": "y",
+          "q": "xyx",
+          "conjugator": "xyxY",
+          "status": "unknown_pair_cap",
+          "pairs_checked": 22,
+          "complete": false,
+          "reused_exact_graph": false,
+          "graph_sha256": "44cce3020976191318d3eda1e637ef34ce4aba50eb56d54efe833676fd8ea01a"
+        }
+      ],
+      "cpu_seconds": 0.011703000000000005,
+      "wall_seconds": 0.011778749991208315,
+      "direct_short_conjugator_checks": []
+    }
+  ],
+  "physical_attachment_identifications": 1236,
+  "physical_direct_identifications": 1066,
+  "run_source_sha256": "f9d03e56be25849bcfb6a78dcf650ec6fb66602a99381ac0a43a9c135de55ed0",
+  "run_source_snapshot": "conjugated_complement_probe_run_snapshot.py"
+}

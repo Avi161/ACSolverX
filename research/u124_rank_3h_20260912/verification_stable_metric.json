@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "cyclic_bit_patterns": 160,
+    "exhaustive_bit_optima": 32,
+    "missing_prefix_compensation_counterexamples": 60,
+    "signed_high_label_chains": 16,
+    "chain_events": 64,
+    "exact_cost_balls": 12,
+    "exact_parameter_pairs": 424,
+    "truncated_cost_balls": 21,
+    "zero_cost_planted_probes": [
+      {
+        "module": "theory_stable_metric",
+        "charged": 647,
+        "strict_candidates_replayed": 68,
+        "Gaussian_rational_solutions_checked": 68
+      },
+      {
+        "module": "theory_stable_metric_v2",
+        "charged": 468,
+        "strict_candidates_replayed": 68,
+        "Gaussian_rational_solutions_checked": 68
+      }
+    ],
+    "census_searches": 0,
+    "known_triviality": "The target x*y^11 (or x) and the BS(4,5) donor imply y=1, x=1; the root and stable helper definitions then imply all helpers are trivial."
+  },
+  "source_sha256": {
+    "theory_stable_metric.py": "65b5b4bc5b8dc42f2bfc3c6b1f1a5e891f44829a112592cddbc8c9b20d9f5974",
+    "theory_stable_metric_v2.py": "5e10badaf47732cdba6a0c51148f5eedc91822789596756306c1eed9c03f9310"
+  },
+  "script_sha256": "e5f3b38e9e7152d0b59464189da23d5f73972076b856fa386674d1c160b1a1cf",
+  "verifier_sha256": "1e0ab48522e295162153a2bee832fb582cfc9d343025651f37992908fb4d55db",
+  "scope": "Exact two-sided retained-spelling family for normalized rank-3 root/BS inputs without a cyclic Britton pinch; completed finite parameters and flows do not prove global AC minimality."
+}

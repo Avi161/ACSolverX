@@ -1,0 +1,41 @@
+{
+  "status": "proof_valid",
+  "theorem": "For n>=1, a balanced n-tuple with unimodular exponent matrix that admits one cyclic complement in F_n is stably AC-trivial with maximum rank n+1.",
+  "proof_source": "/Users/avigyapaudel/Documents/surf/ACSolverX/.claude/worktrees/codex-proofs/literature/proofs/AK3_PARAFREE_STABLE_SELF_EMBEDDING.md",
+  "proof_source_sha256": "9e7b62563182881bc291bd801051a2dd3949d000c1d636513ce508434619c46c",
+  "audit_markdown_sha256": "c80eef55d806c300a7859631589291ae9c33f2cb263ddf5cb1f84b99636ed394",
+  "reviewed_steps": [
+    "Nielsen basis with one primitive normal kernel generator",
+    "integral kernel generator has tag exponent exactly +/-1",
+    "restored-donor construction h=x1^-1 W",
+    "transport of an actual basis-started AC path",
+    "Nielsen rows reach the transported initial free basis",
+    "literal tag clearing and deletion",
+    "exact survivors A2,...,An,A1^-1",
+    "maximum rank n+1"
+  ],
+  "additional_triviality_assumption_needed": false,
+  "triviality_reason": "The quotient is cyclic by the complement hypothesis and has zero abelianization by unimodularity.",
+  "two_complement_extension": "conditional_only",
+  "precise_failure": "The two projected kernel words have unimodular abelianization, but their full nonabelian pair need not be a free basis or supplied with an AC certificate.",
+  "explicit_no_simplification_example": "With complement images a1,a2, Wi=xi Ai(t1,t2)^-1 are part of a domain basis and project to the original relators inverted.",
+  "useful_conditional_gates": [
+    "A verified ordinary AC certificate for the projected tag pair gives maximum rank n+2 for n>=2.",
+    "A primitive projected row plus unimodular exponent matrix gives such an ordinary tag certificate.",
+    "A stable tag certificate with s extra generators lifts at maximum rank n+2+s; these stabilizations must be counted."
+  ],
+  "graph_report": {
+    "path": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/rank3_complement_report.json",
+    "sha256": "fe799946799d8c644fcdf95affb40cff632a97d82fd5dd361ceed0878ba739a9",
+    "script_sha256": "a4530f0724b716b8c1fef9c5252cb94fc7e9d6d25e604677a0243f683f2a86ce",
+    "dictionary_source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+    "rows": 84,
+    "reported_complete_negative_rows": 84,
+    "reported_vertex_pair_checks": 7672,
+    "candidate_ids": [],
+    "independent_graph_replay": false
+  },
+  "new_solve_ids": [],
+  "scope": "Independent mathematical proof audit plus saved report/hash consistency only. No graph search, AC search, theorem discovery or certificate expansion.",
+  "proper_two_complement_feasibility": "Conditionally valid existing transfer route; must verify join, marked Nielsen basis/inverses, and tag-pair AC certificate. Proper complement subgroup alone does not rule out an exact return to the input. No search run."
+}

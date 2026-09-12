@@ -1,0 +1,896 @@
+{
+  "status": "PASS",
+  "rows": 124,
+  "saved_rank2_total": 2356,
+  "retained_total": 3444,
+  "maximum_individual_relator_length": 3,
+  "retained_rank_range": [
+    7,
+    12
+  ],
+  "new_charged_units": 12234,
+  "full_composite_events": 1164,
+  "new_definitions": 811,
+  "automatic_destabilization": false,
+  "certificate_file": "all124_retained_high_rank.jsonl",
+  "certificate_sha256": "9875b8e1b7281c097433a430f7d462f474e6b124581a515828beedc5f951dbe0",
+  "retained_source_sha256": "2fd822502d119a4a434c535ede08131eda2266b3392afd195eefef84963c6530",
+  "minimum_total_export_sha256": "7b9bd8367ba61b56794ec96ebdce8f2c60b59fcd2a2402fe0bbf9bc4fb644ad8",
+  "minimum_total_manifest_sha256": "ca1bb21c46702798840748dc53ad4f2aa324f1bcb9da4d593fabdf48913f8639",
+  "verifier_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0",
+  "script_sha256": "50ddf7eed7fc3f6222f07691acdd3d63daebd26e610cd06205c18191d27ccdb3",
+  "fully_expanded_elementary_stable_AC": false,
+  "unresolved_lineage_segments": 0,
+  "scope": "All124 full saved-rank2 chains are embedded. The retained suffix consists only of exact definitions, with every original and defining row kept. This is a separate short-relator objective, not a solve or proximity claim. Earlier minimum-total prefix histories may contain removals; the new high-rank suffix does not.",
+  "searches_performed": 0,
+  "checked_rows": [
+    {
+      "name": "aca_0",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_1",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_2",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_3",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_4",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_5",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_6",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_7",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_8",
+      "rank": 7,
+      "total": 21,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_9",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_10",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_11",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_12",
+      "rank": 7,
+      "total": 21,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_13",
+      "rank": 7,
+      "total": 21,
+      "maximum_relator": 3,
+      "new_definitions": 4
+    },
+    {
+      "name": "aca_14",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_15",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_16",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_17",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_18",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_19",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_20",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_21",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_22",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_23",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_24",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_25",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_26",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_27",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_28",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_29",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_30",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_31",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_32",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_33",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_34",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_35",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_36",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_37",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_38",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_39",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_40",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_41",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_42",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_43",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_44",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_45",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_46",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_47",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_48",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_49",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_50",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_51",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_52",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_53",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_54",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_55",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_56",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_57",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_58",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_59",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_60",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_61",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_62",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_63",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_64",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_65",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_66",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_67",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_68",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_69",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_70",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_71",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_72",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_73",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_74",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_75",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_76",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_77",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_78",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_79",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_80",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_81",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_82",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_83",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_84",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_85",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_86",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_87",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_88",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_89",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_90",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_91",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_92",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_93",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_94",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_95",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_96",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_97",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_98",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_99",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_100",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_101",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_102",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_103",
+      "rank": 12,
+      "total": 36,
+      "maximum_relator": 3,
+      "new_definitions": 9
+    },
+    {
+      "name": "aca_104",
+      "rank": 12,
+      "total": 36,
+      "maximum_relator": 3,
+      "new_definitions": 9
+    },
+    {
+      "name": "aca_105",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_106",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_107",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_108",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_109",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_110",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_111",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_112",
+      "rank": 11,
+      "total": 33,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    },
+    {
+      "name": "aca_113",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_114",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_115",
+      "rank": 7,
+      "total": 21,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_116",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_117",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_118",
+      "rank": 7,
+      "total": 21,
+      "maximum_relator": 3,
+      "new_definitions": 5
+    },
+    {
+      "name": "aca_119",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_120",
+      "rank": 8,
+      "total": 24,
+      "maximum_relator": 3,
+      "new_definitions": 6
+    },
+    {
+      "name": "aca_121",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_122",
+      "rank": 9,
+      "total": 27,
+      "maximum_relator": 3,
+      "new_definitions": 7
+    },
+    {
+      "name": "aca_123",
+      "rank": 10,
+      "total": 30,
+      "maximum_relator": 3,
+      "new_definitions": 8
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "started_at_utc": "2026-09-12T03:28:52+00:00",
+  "deadline_utc": "2026-09-12T06:28:52+00:00",
+  "goal": "General elementary-AC theorem patterns, with certified U124 applications if possible",
+  "local_search_limit_pending_answer": 1000,
+  "status": "complete",
+  "artifacts_finalized_at_utc": "2026-09-12T06:26:25.677012+00:00",
+  "final_table_sha256": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+  "final_table_rows": 124,
+  "ordinary_solves": 0,
+  "stable_solves": 0,
+  "rank2_gain_rows": 0,
+  "stable_gain_rows": 85,
+  "best_any_rank_length_sum": 2191,
+  "scope": "Final artifacts complete. All research workers and owned search processes finished; no scheduled follow-up created. The final response is due before the recorded three-hour cutoff."
+}

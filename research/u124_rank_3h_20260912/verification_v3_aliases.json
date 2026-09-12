@@ -1,0 +1,527 @@
+{
+  "status": "PASS",
+  "exact_queries_against_exhaustive_tokens": 17,
+  "neutral_alias_template": [
+    9,
+    2
+  ],
+  "neutral_alias_cost": [
+    2,
+    1
+  ],
+  "planted_events": [
+    {
+      "budget": 40,
+      "charged": 40,
+      "complete": false,
+      "event": {
+        "kind": "defining_template_compression",
+        "before": [
+          [
+            -5,
+            -5,
+            -2,
+            5,
+            2
+          ],
+          [
+            -5,
+            -2,
+            -2,
+            5,
+            2
+          ]
+        ],
+        "certificate_kind": "theorem_backed_stable_composite",
+        "required_hypothesis": "known balanced presentation of the trivial group",
+        "helpers": [
+          6
+        ],
+        "defining_words": [
+          [
+            2,
+            5,
+            -2,
+            -5
+          ]
+        ],
+        "defining_relators": [
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ]
+        ],
+        "rows": [
+          {
+            "input_index": 0,
+            "before": [
+              -5,
+              -5,
+              -2,
+              5,
+              2
+            ],
+            "sign": 1,
+            "conjugator": [
+              -5,
+              -5,
+              -2
+            ],
+            "oriented": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "template": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "expanded": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "complete_geodesic": false,
+            "template_cost": [
+              5,
+              5
+            ]
+          },
+          {
+            "input_index": 1,
+            "before": [
+              -5,
+              -2,
+              -2,
+              5,
+              2
+            ],
+            "sign": -1,
+            "conjugator": [
+              -2,
+              -5,
+              2
+            ],
+            "oriented": [
+              2,
+              5,
+              -2,
+              -5,
+              2
+            ],
+            "template": [
+              6,
+              2
+            ],
+            "expanded": [
+              2,
+              5,
+              -2,
+              -5,
+              2
+            ],
+            "complete_geodesic": false,
+            "template_cost": [
+              2,
+              1
+            ]
+          }
+        ],
+        "templates": [
+          [
+            5,
+            2,
+            -5,
+            -5,
+            -2
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "raw_after": [
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ],
+          [
+            5,
+            2,
+            -5,
+            -5,
+            -2
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "normalization": [
+          {
+            "input_index": 2,
+            "before": [
+              6,
+              2
+            ],
+            "after": [
+              -6,
+              -2
+            ],
+            "sign": -1,
+            "conjugator": [
+              -2
+            ]
+          },
+          {
+            "input_index": 0,
+            "before": [
+              -6,
+              2,
+              5,
+              -2,
+              -5
+            ],
+            "after": [
+              -6,
+              2,
+              5,
+              -2,
+              -5
+            ],
+            "sign": 1,
+            "conjugator": []
+          },
+          {
+            "input_index": 1,
+            "before": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "after": [
+              -5,
+              -5,
+              -2,
+              5,
+              2
+            ],
+            "sign": 1,
+            "conjugator": [
+              5,
+              2
+            ]
+          }
+        ],
+        "after": [
+          [
+            -6,
+            -2
+          ],
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ],
+          [
+            -5,
+            -5,
+            -2,
+            5,
+            2
+          ]
+        ],
+        "helper_uses": {
+          "6": 1
+        },
+        "length_change": 2,
+        "method": "weighted_neutral_alias_preference",
+        "objective": "token_length_then_old_token_count",
+        "orientation_selection": "literal_score_then_dictionary_prefix_overlap",
+        "saturation_complete": false,
+        "complete_all_exact_word_geodesics": false,
+        "work_counts": {
+          "epsilon_cancellation_pairs": 11,
+          "epsilon_concatenations": 1,
+          "query_epsilon_paths": 15,
+          "query_letter_edges": 10,
+          "definitions": 1,
+          "template_expansions": 2
+        },
+        "charged_units": 40,
+        "fully_expanded_elementary_certificate": false
+      }
+    },
+    {
+      "budget": 1000,
+      "charged": 310,
+      "complete": true,
+      "event": {
+        "kind": "defining_template_compression",
+        "before": [
+          [
+            -5,
+            -5,
+            -2,
+            5,
+            2
+          ],
+          [
+            -5,
+            -2,
+            -2,
+            5,
+            2
+          ]
+        ],
+        "certificate_kind": "theorem_backed_stable_composite",
+        "required_hypothesis": "known balanced presentation of the trivial group",
+        "helpers": [
+          6
+        ],
+        "defining_words": [
+          [
+            2,
+            5,
+            -2,
+            -5
+          ]
+        ],
+        "defining_relators": [
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ]
+        ],
+        "rows": [
+          {
+            "input_index": 0,
+            "before": [
+              -5,
+              -5,
+              -2,
+              5,
+              2
+            ],
+            "sign": 1,
+            "conjugator": [
+              -5,
+              -5,
+              -2
+            ],
+            "oriented": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "template": [
+              -6,
+              -5,
+              -6
+            ],
+            "expanded": [
+              5,
+              2,
+              -5,
+              -5,
+              -2
+            ],
+            "complete_geodesic": true,
+            "template_cost": [
+              3,
+              1
+            ]
+          },
+          {
+            "input_index": 1,
+            "before": [
+              -5,
+              -2,
+              -2,
+              5,
+              2
+            ],
+            "sign": -1,
+            "conjugator": [
+              -2,
+              -5,
+              2
+            ],
+            "oriented": [
+              2,
+              5,
+              -2,
+              -5,
+              2
+            ],
+            "template": [
+              6,
+              2
+            ],
+            "expanded": [
+              2,
+              5,
+              -2,
+              -5,
+              2
+            ],
+            "complete_geodesic": true,
+            "template_cost": [
+              2,
+              1
+            ]
+          }
+        ],
+        "templates": [
+          [
+            -6,
+            -5,
+            -6
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "raw_after": [
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ],
+          [
+            -6,
+            -5,
+            -6
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "normalization": [
+          {
+            "input_index": 1,
+            "before": [
+              -6,
+              -5,
+              -6
+            ],
+            "after": [
+              -6,
+              -6,
+              -5
+            ],
+            "sign": 1,
+            "conjugator": [
+              -6,
+              -5
+            ]
+          },
+          {
+            "input_index": 2,
+            "before": [
+              6,
+              2
+            ],
+            "after": [
+              -6,
+              -2
+            ],
+            "sign": -1,
+            "conjugator": [
+              -2
+            ]
+          },
+          {
+            "input_index": 0,
+            "before": [
+              -6,
+              2,
+              5,
+              -2,
+              -5
+            ],
+            "after": [
+              -6,
+              2,
+              5,
+              -2,
+              -5
+            ],
+            "sign": 1,
+            "conjugator": []
+          }
+        ],
+        "after": [
+          [
+            -6,
+            -6,
+            -5
+          ],
+          [
+            -6,
+            -2
+          ],
+          [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ]
+        ],
+        "helper_uses": {
+          "6": 3
+        },
+        "length_change": 0,
+        "method": "weighted_neutral_alias_preference",
+        "objective": "token_length_then_old_token_count",
+        "orientation_selection": "literal_score_then_dictionary_prefix_overlap",
+        "saturation_complete": true,
+        "complete_all_exact_word_geodesics": true,
+        "work_counts": {
+          "epsilon_cancellation_pairs": 18,
+          "epsilon_concatenations": 70,
+          "query_epsilon_paths": 189,
+          "query_letter_edges": 30,
+          "definitions": 1,
+          "template_expansions": 2
+        },
+        "charged_units": 310,
+        "fully_expanded_elementary_certificate": false
+      }
+    }
+  ],
+  "resaturation_completion_reset": true,
+  "known_triviality_proof": "The commutator plant is the independently established (abbAB,aabAB) trivial pair.",
+  "source_sha256": "392e65df239161e643f2002c38a83341537ee0819c48aabc1110d261f4795c35",
+  "engine_sha256": "6cd3f0f3ccf21b45f28b2d3b9e8ae08541d59f00504527f2869c0df444209898",
+  "verifier_sha256": "e4ca872314c9f5386ceedd8bb4f45f778ec1f92a0eea67f6ee55e70d76b0f1fa",
+  "script_sha256": "dedc22e43ae43dba777f90b32872e772d5b0095c2897d19bab99bf0250679ba6",
+  "census_searches": 0
+}

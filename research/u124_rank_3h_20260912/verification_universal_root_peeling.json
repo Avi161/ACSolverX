@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "known_triviality": "All plants contain a base singleton, then helper/base definitions clear their partners; extra old generators are singletons. Peeling chains end in a singleton and clear backward.",
+  "universal_signed_chains": [
+    {
+      "rank": 3,
+      "old_exponent": -4,
+      "new_exponent": -3,
+      "length": 8
+    },
+    {
+      "rank": 11,
+      "old_exponent": -4,
+      "new_exponent": -3,
+      "length": 16
+    },
+    {
+      "rank": 3,
+      "old_exponent": -4,
+      "new_exponent": 3,
+      "length": 8
+    },
+    {
+      "rank": 11,
+      "old_exponent": -4,
+      "new_exponent": 3,
+      "length": 16
+    },
+    {
+      "rank": 3,
+      "old_exponent": 4,
+      "new_exponent": -3,
+      "length": 8
+    },
+    {
+      "rank": 11,
+      "old_exponent": 4,
+      "new_exponent": -3,
+      "length": 16
+    },
+    {
+      "rank": 3,
+      "old_exponent": 4,
+      "new_exponent": 3,
+      "length": 8
+    },
+    {
+      "rank": 11,
+      "old_exponent": 4,
+      "new_exponent": 3,
+      "length": 16
+    }
+  ],
+  "universal_budget_controls": [
+    {
+      "budget": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "budget": 1,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "budget": 4,
+      "charged": 3,
+      "candidates": 0
+    },
+    {
+      "budget": 100,
+      "charged": 31,
+      "candidates": 4
+    },
+    {
+      "budget": 1000,
+      "charged": 31,
+      "candidates": 4
+    }
+  ],
+  "saved_peeling_chains": [
+    {
+      "rank": 1,
+      "charged": 1,
+      "status": "PASS"
+    },
+    {
+      "rank": 2,
+      "charged": 2,
+      "status": "PASS"
+    },
+    {
+      "rank": 6,
+      "charged": 6,
+      "status": "PASS"
+    },
+    {
+      "rank": 11,
+      "charged": 11,
+      "status": "PASS"
+    }
+  ],
+  "peeling_truncated_controls": 3,
+  "empty_peeling_complete": true,
+  "source_sha256": {
+    "universal_root_metric.py": "f6a1a0a230abc1250db0c48cae74cf7968a37e49d541ff765a2ec7bed7bcf943",
+    "rank_peeling.py": "c6f64de35590f19c566df88090923d5495a4a91c740296a7458c4f60d9e179c9"
+  },
+  "verifier_sha256": "c33da50700b55f54a27c23d1338228a0316c6cfa7d487bbc5a2e41a4d77dc17b",
+  "script_sha256": "6653239a5eb49b4157520db32c2eddddefc0476fee9003bc248500734c2755c1",
+  "census_searches": 0
+}

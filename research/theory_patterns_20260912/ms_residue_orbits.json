@@ -1,0 +1,1230 @@
+{
+  "status": "completed_bounded_orbit_screen",
+  "source_sha256": "0249fd0bf358748ad9c5b66b15bdb7ce5604354b0cdd1c483b51c7fd97da1a33",
+  "script_sha256": "35c820c4a8fa39fb39d651621337c741550e373859d2d6ebaa9346e1f31c3137",
+  "rows": [
+    {
+      "input": [
+        "XXYYYxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_5"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXYYYxYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_80"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXYYYxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_4"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXYYYxyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_57"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyxx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXYYxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_6"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "Y"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXYYxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_7"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "Y"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXYYxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_29"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "Y"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXYYxYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_59"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXYYxYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_54"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXYYxYY",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_13"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 20
+    },
+    {
+      "input": [
+        "XXYYxYYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_79"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXYYxYYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_36"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXYYxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_78"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXYYxy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_14"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXYYxy",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_30"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "x"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXYYxyyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_56"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyxx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXYxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_0"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXYxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_3"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 20
+    },
+    {
+      "input": [
+        "XXYxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_119"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 18
+    },
+    {
+      "input": [
+        "XXYxY",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_118"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYXyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 16
+    },
+    {
+      "input": [
+        "XXYxY",
+        "XYYYxyyyy"
+      ],
+      "classes": [
+        "aca_115"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYXyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 14
+    },
+    {
+      "input": [
+        "XXYxYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_1"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXYxYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_31"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXYxYY",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_116"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXYxYY",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_8"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYXyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "y"
+      },
+      "length": 17
+    },
+    {
+      "input": [
+        "XXYxYYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_55"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXYxYYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_32"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXYxyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_2"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXYxyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_53"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXYxyy",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_116"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXyxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 17
+    },
+    {
+      "input": [
+        "XXYxyyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_35"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXYxyyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_33"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXyxYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_2"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXyxYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_53"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXyxYY",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_116"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXyxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 17
+    },
+    {
+      "input": [
+        "XXyxYYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_35"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXyxYYY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_33"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXyxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_0"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXyxy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_3"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 20
+    },
+    {
+      "input": [
+        "XXyxy",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_119"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 18
+    },
+    {
+      "input": [
+        "XXyxy",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_118"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYYXyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 16
+    },
+    {
+      "input": [
+        "XXyxy",
+        "XYYYxyyyy"
+      ],
+      "classes": [
+        "aca_115"
+      ],
+      "status": "complete",
+      "representative": [
+        "YXXYx",
+        "YYYYXyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 14
+    },
+    {
+      "input": [
+        "XXyxyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_1"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXyxyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_31"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXyxyy",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_116"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXyxyy",
+        "XYYYYxyyyyy"
+      ],
+      "classes": [
+        "aca_8"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYXyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 17
+    },
+    {
+      "input": [
+        "XXyxyyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_55"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXyxyyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_32"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXyyxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_78"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXyyxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_14"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXyyxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_30"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXyx",
+        "YXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXyyxYYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_56"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyxx",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "X"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXyyxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_6"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "y"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXyyxy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_7"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "y"
+      },
+      "length": 21
+    },
+    {
+      "input": [
+        "XXyyxy",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_29"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "images": {
+        "x": "X",
+        "y": "y"
+      },
+      "length": 19
+    },
+    {
+      "input": [
+        "XXyyxyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_59"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXyyxyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_54"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 22
+    },
+    {
+      "input": [
+        "XXyyxyy",
+        "XYYYYYxyyyyyy"
+      ],
+      "classes": [
+        "aca_13"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXYYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "images": {
+        "x": "x",
+        "y": "Y"
+      },
+      "length": 20
+    },
+    {
+      "input": [
+        "XXyyxyyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_79"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXXyxxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXyyxyyy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "classes": [
+        "aca_36"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXyxxxxxx"
+      ],
+      "images": {
+        "x": "Y",
+        "y": "x"
+      },
+      "length": 23
+    },
+    {
+      "input": [
+        "XXyyyxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_4"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXyyyxYY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_57"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyxx",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 25
+    },
+    {
+      "input": [
+        "XXyyyxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_5"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyX",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 24
+    },
+    {
+      "input": [
+        "XXyyyxyy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "classes": [
+        "aca_80"
+      ],
+      "status": "complete",
+      "representative": [
+        "YYXXXyXX",
+        "YXXXXXXXyxxxxxxxx"
+      ],
+      "images": {
+        "x": "y",
+        "y": "X"
+      },
+      "length": 25
+    }
+  ],
+  "targets": 64,
+  "complete_orbits": 32,
+  "capped_targets": 0,
+  "potential_class_merges": [],
+  "cpu_seconds": 0.29484699999999997,
+  "wall_seconds_including_cooling": 3.9538867080118507,
+  "scope": "1000 minimal-level Aut states maximum per distinct target; all witnessing maps verified. Cross-U124 matches, if any, remain candidates until older cell-to-class bridges and new normalization certificates are verified."
+}

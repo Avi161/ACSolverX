@@ -1,0 +1,5040 @@
+{
+  "hashes": {
+    "u124_rank_3h_20260912/frontier.py": "0642a2300730851aae70b35bdcaef39e967564c0644459d57b3047c3e84b1ba3",
+    "u124_rank_3h_20260912/exchange_conjugacy.py": "47b3cc6f9afdcbb89b01d8484346de6622d76e2515d721ef97b031bb03c8c38b",
+    "u124_rank_3h_20260912/verify.py": "224395a2529392370cece9f1bbd385bbaa18a3d4bc3c86a80da9b715054ea39c",
+    "rank_unbounded_20260912/search.py": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+    "rank_unbounded_20260912/whitehead.py": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+    "rank_unbounded_20260912/lemma11.py": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f"
+  },
+  "seed_hashes": {},
+  "module": "exchange_conjugacy",
+  "rows": [
+    {
+      "name": "aca_0",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 18,
+      "best_length": 18,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0008349999999999747,
+      "wall_seconds": 0.0008362089283764362,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_0",
+        "source_key": "current_best",
+        "baseline_length": 18,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 18,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 18
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 18,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_1",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0008970000000000367,
+      "wall_seconds": 0.000895082950592041,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_1",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_2",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 16,
+      "best_length": 16,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010380000000000389,
+      "wall_seconds": 0.0010413748677819967,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_2",
+        "source_key": "current_best",
+        "baseline_length": 16,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 16
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 16,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_3",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011810000000000431,
+      "wall_seconds": 0.001176874851807952,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_3",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_8",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.001040000000000041,
+      "wall_seconds": 0.0010361659806221724,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_8",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            -1,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            -1,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_9",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.001371000000000011,
+      "wall_seconds": 0.0013676669914275408,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_9",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_10",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0012349999999999861,
+      "wall_seconds": 0.001230832887813449,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_10",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_11",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011420000000000319,
+      "wall_seconds": 0.0011391669977456331,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_11",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_12",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 40,
+        "lemma11_checks": 13,
+        "macro_probe_units": 947
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 5,
+      "discovered_states": 17,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.006047999999999998,
+      "wall_seconds": 0.006065167021006346,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_12",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_14",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.001371000000000011,
+      "wall_seconds": 0.0013690830674022436,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_14",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_15",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0012190000000000256,
+      "wall_seconds": 0.001215416006743908,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_15",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_17",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010029999999999761,
+      "wall_seconds": 0.0009970408864319324,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_17",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_18",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0013920000000000043,
+      "wall_seconds": 0.0013863330241292715,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_18",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_19",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010060000000000069,
+      "wall_seconds": 0.0010334169492125511,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_19",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_20",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0012490000000000001,
+      "wall_seconds": 0.0012491669040173292,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_20",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_21",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 44,
+        "lemma11_checks": 10,
+        "macro_probe_units": 946
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 5,
+      "discovered_states": 13,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.007155999999999996,
+      "wall_seconds": 0.007169707911089063,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_21",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_22",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 44,
+        "lemma11_checks": 10,
+        "macro_probe_units": 946
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 5,
+      "discovered_states": 12,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.005938999999999972,
+      "wall_seconds": 0.0059652498457580805,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_22",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_23",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 44,
+        "lemma11_checks": 10,
+        "macro_probe_units": 946
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 5,
+      "discovered_states": 12,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.005915000000000004,
+      "wall_seconds": 0.005982124945148826,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_23",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_25",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 44,
+        "lemma11_checks": 10,
+        "macro_probe_units": 946
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 5,
+      "discovered_states": 13,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.0063389999999999835,
+      "wall_seconds": 0.006340040825307369,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_25",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_26",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010939999999999839,
+      "wall_seconds": 0.001087290933355689,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_26",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_27",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010020000000000029,
+      "wall_seconds": 0.0010192501358687878,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_27",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_28",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0010789999999999966,
+      "wall_seconds": 0.0010794580448418856,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_28",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_29",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011249999999999871,
+      "wall_seconds": 0.0011208339128643274,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_29",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -2,
+            1,
+            1,
+            2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -2,
+            1,
+            1,
+            2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_34",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 16,
+      "best_length": 16,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011319999999999664,
+      "wall_seconds": 0.0012004999443888664,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_34",
+        "source_key": "current_best",
+        "baseline_length": 16,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 16
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 16,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_35",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          -1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 18,
+      "best_length": 18,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0007840000000000069,
+      "wall_seconds": 0.0007837919984012842,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_35",
+        "source_key": "current_best",
+        "baseline_length": 18,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            1,
+            1,
+            2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 18,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 18
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            1,
+            1,
+            2,
+            1,
+            2,
+            -1,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 18,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_58",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0008589999999999987,
+      "wall_seconds": 0.0008652079850435257,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_58",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_115",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "input_length": 13,
+      "best_length": 13,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 30,
+        "lemma11_checks": 5,
+        "macro_probe_units": 965
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 7,
+      "discovered_states": 18,
+      "maximum_rank": 3,
+      "cpu_seconds": 0.006420000000000037,
+      "wall_seconds": 0.006503333104774356,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_115",
+        "source_key": "current_best",
+        "baseline_length": 13,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 13,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 13
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 13,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_116",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 14,
+      "best_length": 14,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0008770000000000167,
+      "wall_seconds": 0.0008750001434236765,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_116",
+        "source_key": "current_best",
+        "baseline_length": 14,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 14,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 14
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 14,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_117",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 14,
+      "best_length": 14,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0009190000000000031,
+      "wall_seconds": 0.0009097920265048742,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_117",
+        "source_key": "current_best",
+        "baseline_length": 14,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 14,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 14
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 14,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_118",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0015279999999999738,
+      "wall_seconds": 0.0015872919466346502,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_118",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_119",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 16,
+      "best_length": 16,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0012690000000000201,
+      "wall_seconds": 0.0012676669284701347,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_119",
+        "source_key": "current_best",
+        "baseline_length": 16,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 16
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 16,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_120",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0009669999999999956,
+      "wall_seconds": 0.000963208032771945,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_120",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_121",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 15,
+      "best_length": 15,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011670000000000291,
+      "wall_seconds": 0.001156457932665944,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_121",
+        "source_key": "current_best",
+        "baseline_length": 15,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 15,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 15
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 15,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_122",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 16,
+      "best_length": 16,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0012230000000000296,
+      "wall_seconds": 0.0012272079475224018,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_122",
+        "source_key": "current_best",
+        "baseline_length": 16,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 16,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 16
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 16,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    },
+    {
+      "name": "aca_123",
+      "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "source_key": "current_best",
+      "initial": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "events": [],
+      "endpoint": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "input_length": 17,
+      "best_length": 17,
+      "best_rank": 2,
+      "gain": 0,
+      "costs": {
+        "minimum_cuts": 4,
+        "lemma11_checks": 0,
+        "macro_probe_units": 300
+      },
+      "total_units": 304,
+      "budget": 1000,
+      "probe_allowance": 900,
+      "rank_limit": null,
+      "length_limit": null,
+      "expanded_states": 1,
+      "discovered_states": 1,
+      "maximum_rank": 2,
+      "cpu_seconds": 0.0011970000000000036,
+      "wall_seconds": 0.0011924579739570618,
+      "certificate_kind": "theorem_backed_stable_composite",
+      "fully_expanded_stable_certificate": false,
+      "verification": {
+        "status": "PASS",
+        "name": "aca_123",
+        "source_key": "current_best",
+        "baseline_length": 17,
+        "baseline_rank": 2,
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "endpoint_length": 17,
+        "endpoint_rank": 2,
+        "endpoint_gain": 0,
+        "boundaries": [
+          {
+            "events": 0,
+            "rank": 2,
+            "length": 17
+          }
+        ],
+        "best_certified": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            2,
+            -1,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "best_prefix_event_count": 0,
+        "best_prefix_length": 17,
+        "best_prefix_rank": 2,
+        "best_prefix_gain": 0,
+        "strict_length_improvement": false,
+        "same_length_rank_improvement": false,
+        "canonical_endpoint_equals_baseline": true,
+        "endpoint_misses_better_prefix": false,
+        "solved_at_certified_prefix": false,
+        "certificate_scope": "explicit_ordinary_AC_composite_from_selected_source",
+        "fully_expanded_elementary_path": false
+      }
+    }
+  ],
+  "summary": {
+    "rows": 35,
+    "gains": [],
+    "input_total": 563,
+    "best_total": 563,
+    "cpu_seconds": 0.07001800000000019,
+    "wall_seconds": 0.07033487083390355,
+    "total_units": 14816
+  }
+}

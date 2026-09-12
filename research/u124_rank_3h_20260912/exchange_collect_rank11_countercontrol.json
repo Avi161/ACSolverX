@@ -1,0 +1,35 @@
+{
+  "scope": "One bounded planted mechanism check, no census; full path was not serialized or independently audited",
+  "input_definition": {
+    "c": "[x^5,y]",
+    "S": "x c",
+    "R": "c y c",
+    "presentation": "(S,R S^6)",
+    "known_triviality": "Replace the second row by R using S. Then x=c^-1 and y=c^-2, so c=[c^-5,c^-2]=1."
+  },
+  "configuration": {
+    "axis": 1,
+    "direction": "left",
+    "postprocess_reserve": 300,
+    "budget": 1000
+  },
+  "observed": {
+    "input_rank": 2,
+    "input_length": 104,
+    "positive_chain_depth": 5,
+    "negative_chain_depth": 5,
+    "helper_count": 10,
+    "collection_swap_steps": 207,
+    "dictionary_rank": 12,
+    "dictionary_length": 265,
+    "dictionary_charged_units": 597,
+    "rank_after_axis_removal": 11,
+    "length_after_axis_removal": 949,
+    "final_rank": 6,
+    "final_length": 108,
+    "whitehead_min_cuts": 357,
+    "peeling_attempts": 44,
+    "total_probe_charged_units": 1000
+  },
+  "conclusion": "The rank-two route supports an actual rank-eleven intermediate but does not improve this planted input within the tested budget."
+}

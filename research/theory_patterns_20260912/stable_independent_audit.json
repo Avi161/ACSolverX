@@ -1,0 +1,8464 @@
+{
+  "status": "PASS",
+  "certificate_scope": "theorem_backed_stable_composites_not_expanded_elementary",
+  "source_sha256": {
+    "STABLE_CERTIFICATE_CONVENTIONS.md": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54",
+    "coupled_power_theory.md": "70dcbebfe7345d0c138f53145a7802323ee4eec07d994e4d845cd4a1258ead0b",
+    "coupled_power_stable_probe.py": "94aa38b4ace8d94cc308d2d218ffdae6bf27ecdfc4b28342f2e9dbd5bbd104e4",
+    "coupled_power_stable_probe.json": "6b5f704c08939b26f643e1c9647beb3cd067020178d4d851726caf0a30db44df",
+    "coupled_power_general_compression.py": "8fbb28c369ab838f500638e462783a2eb353040ca28e1e03d2d26e5a3ce0bd16",
+    "coupled_power_general_compression.json": "9ad7b027267c63c023663bf152cd036e7aea662ca78b2ee33f86a363179f01e1",
+    "coupled_power_word_compression.py": "fc50b382b2770725bd98e520d589f9991185d3fa3892e87c3a854937a04ed419",
+    "coupled_power_word_compression_all124.json": "73c1028ea1eef4194a3c7af17473b2e1323f5f10ebf33529e729a74804fec990",
+    "coupled_power_probe.py": "15fd91689b8458fc757488fba4f5268d00baa8bd6b9a5df2a931fd72c0163c06",
+    "coupled_power_checks.json": "76159e9be84e306931c2a94aac2514bc4a40bb500c6e7f788e17dc5d826c1ead",
+    "check_stable_independent.py": "5e9c4cba7a0a3bcc0e831b62ba9c17f6ed06312846488f4f63b668d81f9d0832"
+  },
+  "input_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+  "heap_search_nodes": 0,
+  "jit": false,
+  "special_stored_witnesses": [
+    {
+      "name": "aca_9",
+      "rank3_boundary_lengths": [
+        18,
+        15,
+        24
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "YYYXyyxyXY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_10",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        25
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "YxYYXyyyxYX"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_11",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        25
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "YYxYXyxyyXY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_12",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        27
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "YxYXYxyXyyxYX"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_15",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        29
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXYYxYYXyy"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_17",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXyyyyxYYXY"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_18",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_19",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXyxyXyxYXYYY"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_20",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXyyyxyXYxYXY"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_21",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXYxYXyyxyXYY"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_22",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXYxYXyyxyX"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_23",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXyxyXYYxYXY"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_25",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXyxyXYYxYXy"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_26",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        29
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXYYYxyyXy"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_27",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXyyxyyXYYY"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_28",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "yxYXyyyxYYXYY"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_37",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "xyXYxyXyyxyXYYY"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_38",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "xyXYxyXyyyxYXYY"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_39",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXyyyyxYYXY"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_40",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_41",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXyxyXyxYXYYY"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_42",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXyyyxyXYxYXY"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_46",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXY"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_47",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXYxYXyyxyXYY"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_49",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXYxYXyyxyX"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_50",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXy"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_51",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXyyyxYYXYY"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_52",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        35
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYX",
+        "yxYXyyxyyXYYY"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_62",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyyxYYXY"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_63",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_64",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        41
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyxyXyxYXYYY"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_65",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        41
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyxyXYxYXY"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_68",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXY"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_69",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        41
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXYxYXyyxyXYY"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_70",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXYxYXyyxyX"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_73",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXy"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_74",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyxyyXYYY"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_89",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        43
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXY"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_91",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        45
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyxyXYxYXY"
+      ],
+      "final_length": 36
+    },
+    {
+      "name": "aca_92",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        45
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyxyXyxYXYYY"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_93",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        43
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 36
+    },
+    {
+      "name": "aca_94",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        43
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyyxYYXY"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_96",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        43
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYX",
+        "xyXyxyXYYxYXy"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_101",
+      "rank3_boundary_lengths": [
+        33,
+        21,
+        47
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyyxYYXY"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_102",
+      "rank3_boundary_lengths": [
+        33,
+        21,
+        47
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 40
+    },
+    {
+      "name": "aca_103",
+      "rank3_boundary_lengths": [
+        33,
+        21,
+        49
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyxyXyxYXYYY"
+      ],
+      "final_length": 42
+    },
+    {
+      "name": "aca_104",
+      "rank3_boundary_lengths": [
+        33,
+        21,
+        49
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYXyxYXyxYXyxYXyxYX",
+        "yxYXyyyxyXYxYXY"
+      ],
+      "final_length": 40
+    },
+    {
+      "name": "aca_116",
+      "rank3_boundary_lengths": [
+        17,
+        15,
+        25
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "YYYxyXyxyXY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_117",
+      "rank3_boundary_lengths": [
+        17,
+        15,
+        25
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYX",
+        "xyXyyyxYXYY"
+      ],
+      "final_length": 20
+    }
+  ],
+  "all_special_endpoint_checks": [
+    {
+      "name": "aca_0",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_1",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_2",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_3",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_4",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_5",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_6",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_7",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_8",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_9",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_10",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_11",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_12",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_13",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_14",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_15",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_16",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_17",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_18",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_19",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_20",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_21",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_22",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_23",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_24",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_25",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_26",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_27",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_28",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_29",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_30",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_31",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_32",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_33",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_34",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_35",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_36",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_37",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_38",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_39",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_40",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_41",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_42",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_43",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_44",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_45",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_46",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_47",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_48",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_49",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_50",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_51",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_52",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_53",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_54",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_55",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_56",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_57",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_58",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_59",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_60",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_61",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_62",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_63",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_64",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_65",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_66",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_67",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_68",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_69",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_70",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_71",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_72",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_73",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_74",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_75",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_76",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_77",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_78",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_79",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_80",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_81",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_82",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_83",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_84",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_85",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_86",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_87",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_88",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_89",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_90",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_91",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 36
+    },
+    {
+      "name": "aca_92",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_93",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 36
+    },
+    {
+      "name": "aca_94",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_95",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_96",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_97",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_98",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_99",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_100",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_101",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_102",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 40
+    },
+    {
+      "name": "aca_103",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 42
+    },
+    {
+      "name": "aca_104",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 40
+    },
+    {
+      "name": "aca_105",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_106",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_107",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_108",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_109",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_110",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_111",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_112",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_113",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_114",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_115",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_116",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_117",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_118",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_119",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_120",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_121",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_122",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_123",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    }
+  ],
+  "general_stored_witnesses": [
+    {
+      "name": "aca_1",
+      "rank3_boundary_lengths": [
+        18,
+        20,
+        29
+      ],
+      "raw_endpoint": [
+        "yyXYYxyyXYY",
+        "XyyXyxYxYYY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_2",
+      "rank3_boundary_lengths": [
+        19,
+        17,
+        29
+      ],
+      "raw_endpoint": [
+        "XyyyxxYYY",
+        "YXyyyyXyxYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_4",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        28
+      ],
+      "raw_endpoint": [
+        "XYxyxyxyy",
+        "YYYxyyxyXXYYXy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_5",
+      "rank3_boundary_lengths": [
+        23,
+        21,
+        27
+      ],
+      "raw_endpoint": [
+        "XYYXYXYXy",
+        "YYYYYXyxyXXXy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_6",
+      "rank3_boundary_lengths": [
+        22,
+        22,
+        38
+      ],
+      "raw_endpoint": [
+        "XYYXyxyxYYXyxyx",
+        "YYYXyxyXXXYYxyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_7",
+      "rank3_boundary_lengths": [
+        19,
+        19,
+        31
+      ],
+      "raw_endpoint": [
+        "XyyXYYxyyXYYx",
+        "XXyyyXYXYYY"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_8",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        32
+      ],
+      "raw_endpoint": [
+        "XYxyXYYxyXY",
+        "yxYXYxyXYxYXyyy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_9",
+      "rank3_boundary_lengths": [
+        18,
+        15,
+        26
+      ],
+      "raw_endpoint": [
+        "XYYYXYXyy",
+        "YXYYxyyyyx"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_10",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        25
+      ],
+      "raw_endpoint": [
+        "XXyxYXyxY",
+        "YXYYxyyyXYx"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_11",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        25
+      ],
+      "raw_endpoint": [
+        "XXyxYXyxY",
+        "YYXYxyXyyxY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_12",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        24
+      ],
+      "raw_endpoint": [
+        "XyxYYXY",
+        "yxyXYYYxYXy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_13",
+      "rank3_boundary_lengths": [
+        19,
+        19,
+        33
+      ],
+      "raw_endpoint": [
+        "XYYXYYxYYXYYx",
+        "YYYXYYXyxyxyy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_14",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        28
+      ],
+      "raw_endpoint": [
+        "XyyxYxYYY",
+        "YXyyyyXyxYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_15",
+      "rank3_boundary_lengths": [
+        20,
+        18,
+        30
+      ],
+      "raw_endpoint": [
+        "XyxYXyyxYXy",
+        "YYYxYXyyyxyXY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_16",
+      "rank3_boundary_lengths": [
+        20,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "yyXYxyyyxYXYY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_17",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XXYxyXYxyXYxy",
+        "YXyxYYYYXyyxy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_18",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        31
+      ],
+      "raw_endpoint": [
+        "XyxYXyxYXyxYX",
+        "xyXYYYxYXyxyX"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_19",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XXYxyXYxyXYxy",
+        "YXyxYXYxYXyxyyy"
+      ],
+      "final_length": 26
+    },
+    {
+      "name": "aca_20",
+      "rank3_boundary_lengths": [
+        21,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XXYxyXYxyXYxy",
+        "YXyxYYYXYxyXyxy"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_21",
+      "rank3_boundary_lengths": [
+        20,
+        18,
+        28
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYXYxyyyXyxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_22",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        35
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYXyxyyyXYxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_23",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        35
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYXYxyyyXyxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_24",
+      "rank3_boundary_lengths": [
+        20,
+        22,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyyxYYxyyyxYYx",
+        "yyyxYYXyxxY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_25",
+      "rank3_boundary_lengths": [
+        20,
+        18,
+        28
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYXyxyyyXYxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_26",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        33
+      ],
+      "raw_endpoint": [
+        "XYxYXYxYxYXYx",
+        "YYYxyXyyyxYXY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_27",
+      "rank3_boundary_lengths": [
+        20,
+        18,
+        32
+      ],
+      "raw_endpoint": [
+        "XyxYXyyxYXy",
+        "YYYYYxyXyyyxYXy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_28",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        35
+      ],
+      "raw_endpoint": [
+        "XYxYXYxYxYXYx",
+        "YYYYYxYXyyyxyXy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_29",
+      "rank3_boundary_lengths": [
+        21,
+        19,
+        26
+      ],
+      "raw_endpoint": [
+        "XYxyxyxyy",
+        "YYYYXyxxyXXy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_30",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        31
+      ],
+      "raw_endpoint": [
+        "XYYXyxYYXyx",
+        "YYYYYYxyyyXYXy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_31",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        32
+      ],
+      "raw_endpoint": [
+        "XyyXYYxyyXYYx",
+        "yyXYYXXyxYxY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_32",
+      "rank3_boundary_lengths": [
+        20,
+        22,
+        37
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYXYxyXyxyXyxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_34",
+      "rank3_boundary_lengths": [
+        19,
+        17,
+        33
+      ],
+      "raw_endpoint": [
+        "XyyxYYxYYYY",
+        "YXyyyxYYYxYYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_35",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        27
+      ],
+      "raw_endpoint": [
+        "XYxyxyxyy",
+        "YYYYYXyxxyXXy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_37",
+      "rank3_boundary_lengths": [
+        22,
+        17,
+        28
+      ],
+      "raw_endpoint": [
+        "XyyXYXYYY",
+        "XXyyyxYYYxxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_38",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        35
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "yyXYYYXXYxxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_39",
+      "rank3_boundary_lengths": [
+        22,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XXXYxxyXXYxxy",
+        "YXXyxxYYYYXXyyxxy"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_40",
+      "rank3_boundary_lengths": [
+        22,
+        18,
+        39
+      ],
+      "raw_endpoint": [
+        "XyxxYXXyxxYXX",
+        "xxyXXYYYxxYXXyxxyXX"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_41",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        37
+      ],
+      "raw_endpoint": [
+        "XXYxyXYxyXYxyXYxy",
+        "YXyxYXYxYXyxyyy"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_42",
+      "rank3_boundary_lengths": [
+        22,
+        18,
+        41
+      ],
+      "raw_endpoint": [
+        "XXXYxxyXXYxxy",
+        "YXXyxxYYYXXYxxyXXyxxy"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_43",
+      "rank3_boundary_lengths": [
+        21,
+        24,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyXYYxyyXYYx",
+        "XyyyxYXyxYxYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_44",
+      "rank3_boundary_lengths": [
+        21,
+        24,
+        40
+      ],
+      "raw_endpoint": [
+        "XYYXYYxYYXYYx",
+        "YYYXYYYXYYYxYYYXyxyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_45",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        30
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYYY",
+        "yyyxYYXYxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_46",
+      "rank3_boundary_lengths": [
+        22,
+        23,
+        37
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYYXYxyyyyXyxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_47",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        30
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYYXYxyyyyXyxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_48",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        30
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYYY",
+        "yyyXYYYxyX"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_49",
+      "rank3_boundary_lengths": [
+        22,
+        23,
+        37
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYYXyxyyyyXYxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_50",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        30
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYYXyxyyyyXYxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_51",
+      "rank3_boundary_lengths": [
+        22,
+        23,
+        37
+      ],
+      "raw_endpoint": [
+        "XYxYXYxYxYXYx",
+        "YYYYYYxYXyyyyxyXy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_52",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        34
+      ],
+      "raw_endpoint": [
+        "XyxYXyyxYXy",
+        "YYYYYYxyXyyyyxYXy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_54",
+      "rank3_boundary_lengths": [
+        22,
+        16,
+        26
+      ],
+      "raw_endpoint": [
+        "XYYxyXXYYxyXX",
+        "YYXXyx"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_55",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        30
+      ],
+      "raw_endpoint": [
+        "XYYxYXYxYXy",
+        "XYYYYYxYYXyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_56",
+      "rank3_boundary_lengths": [
+        22,
+        21,
+        37
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "XYXyyyyyxYYYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_57",
+      "rank3_boundary_lengths": [
+        22,
+        21,
+        37
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "XYXyyyyxYYYYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_58",
+      "rank3_boundary_lengths": [
+        20,
+        18,
+        38
+      ],
+      "raw_endpoint": [
+        "XyyxYYYxYYYYY",
+        "YXyyyxYYYYxYYYYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_59",
+      "rank3_boundary_lengths": [
+        27,
+        22,
+        70
+      ],
+      "raw_endpoint": [
+        "XXyyyyXyyyyXyyyyXyyyyXyyyyXyyyy",
+        "YYYYYxYYYYxYXyyyyXyyyyyXyyyyXyyyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_60",
+      "rank3_boundary_lengths": [
+        26,
+        22,
+        32
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYxYYY",
+        "yyyXYYYxyX"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_61",
+      "rank3_boundary_lengths": [
+        26,
+        22,
+        32
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYYY",
+        "yyyxYYXYxy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_62",
+      "rank3_boundary_lengths": [
+        25,
+        19,
+        41
+      ],
+      "raw_endpoint": [
+        "XyXXYxxyXXYxxyXXYxx",
+        "XXyxxYYYYXXyyxx"
+      ],
+      "final_length": 28
+    },
+    {
+      "name": "aca_63",
+      "rank3_boundary_lengths": [
+        25,
+        19,
+        45
+      ],
+      "raw_endpoint": [
+        "xYXXyxxYXXyxxYXXy",
+        "YxxyXXYYYxxYXXyxxyXXy"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_64",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        41
+      ],
+      "raw_endpoint": [
+        "XXYxyXYxyXYxyXYxyXYxy",
+        "YXyxYXYxYXyxyyy"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_65",
+      "rank3_boundary_lengths": [
+        25,
+        19,
+        45
+      ],
+      "raw_endpoint": [
+        "XyXXYxxyXXYxxyXXYxx",
+        "XXyxxYYYXXYxxyXXyxx"
+      ],
+      "final_length": 32
+    },
+    {
+      "name": "aca_66",
+      "rank3_boundary_lengths": [
+        23,
+        26,
+        38
+      ],
+      "raw_endpoint": [
+        "XyyyXYYYxyyyXYYYx",
+        "XyyxYxyXYxYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_67",
+      "rank3_boundary_lengths": [
+        23,
+        26,
+        44
+      ],
+      "raw_endpoint": [
+        "XYYYXYYYxYYYXYYYx",
+        "XyyxyXYxyyyyyyyxyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_68",
+      "rank3_boundary_lengths": [
+        24,
+        25,
+        39
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYYYXYxyyyyyXyxy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_69",
+      "rank3_boundary_lengths": [
+        24,
+        22,
+        32
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYYYXYxyyyyyXyxy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_70",
+      "rank3_boundary_lengths": [
+        24,
+        25,
+        39
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYYYXyxyyyyyXYxy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_71",
+      "rank3_boundary_lengths": [
+        22,
+        25,
+        37
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "XyyxyyxYXyxYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_72",
+      "rank3_boundary_lengths": [
+        21,
+        24,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyXYYxyyXYYx",
+        "XyyyxYxyxYxYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_73",
+      "rank3_boundary_lengths": [
+        24,
+        22,
+        32
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYYYXyxyyyyyXYxy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_74",
+      "rank3_boundary_lengths": [
+        24,
+        22,
+        36
+      ],
+      "raw_endpoint": [
+        "XyxYXyyxYXy",
+        "YYYYYYYxyXyyyyyxYXy"
+      ],
+      "final_length": 27
+    },
+    {
+      "name": "aca_75",
+      "rank3_boundary_lengths": [
+        28,
+        23,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYYY",
+        "yyyxYYYXyx"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_76",
+      "rank3_boundary_lengths": [
+        28,
+        23,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYxYxYYY",
+        "yyyXYYYxyX"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_77",
+      "rank3_boundary_lengths": [
+        28,
+        23,
+        34
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYYY",
+        "yyyxYYXYxy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_79",
+      "rank3_boundary_lengths": [
+        24,
+        18,
+        29
+      ],
+      "raw_endpoint": [
+        "XyyxYYXyyxYYX",
+        "YXyyXYxYx"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_80",
+      "rank3_boundary_lengths": [
+        22,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyXYYxyXYYx",
+        "yXYYXyxYXYYXyyyxYYY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_81",
+      "rank3_boundary_lengths": [
+        21,
+        19,
+        43
+      ],
+      "raw_endpoint": [
+        "XyyxYYYYxYYYYYY",
+        "YXyyyxYYYYYxYYYYYY"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_82",
+      "rank3_boundary_lengths": [
+        28,
+        24,
+        40
+      ],
+      "raw_endpoint": [
+        "XYYxyxyxyxyxyyy",
+        "YYYYYXyxyxyyyxYXyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_83",
+      "rank3_boundary_lengths": [
+        30,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYxYxYxYYY",
+        "yyyXYYxYXy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_84",
+      "rank3_boundary_lengths": [
+        30,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYXYYY",
+        "yyyxYYYXyx"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_85",
+      "rank3_boundary_lengths": [
+        21,
+        22,
+        52
+      ],
+      "raw_endpoint": [
+        "XYYYYYYXYYxYYYYYYXYYx",
+        "YYYYYYYXYYYYYYYXYYYx"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_86",
+      "rank3_boundary_lengths": [
+        28,
+        24,
+        38
+      ],
+      "raw_endpoint": [
+        "XYYYXYXYXYXYXyy",
+        "YYYYxyXYXyyxYXyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_87",
+      "rank3_boundary_lengths": [
+        23,
+        26,
+        46
+      ],
+      "raw_endpoint": [
+        "XYYYXYYYxYYYXYYYx",
+        "XyyxyXYxyyyyyyyxyyyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_88",
+      "rank3_boundary_lengths": [
+        22,
+        25,
+        41
+      ],
+      "raw_endpoint": [
+        "XYYXYYYxYYXYYYx",
+        "XyyyyxyyyyxyXYxyyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_89",
+      "rank3_boundary_lengths": [
+        26,
+        27,
+        41
+      ],
+      "raw_endpoint": [
+        "XYXYxyxYXYxyx",
+        "YYYYYYYYXYxyyyyyyXyxy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_90",
+      "rank3_boundary_lengths": [
+        23,
+        26,
+        40
+      ],
+      "raw_endpoint": [
+        "XyyyXYYYxyyyXYYYx",
+        "XyyxyXYxyxYYYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_91",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        47
+      ],
+      "raw_endpoint": [
+        "XXXYxxyXXYxxyXXYxxy",
+        "YXXyxxYYYXXYxxyXXyxxy"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_92",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        47
+      ],
+      "raw_endpoint": [
+        "XXXYxxyXXYxxyXXYxxy",
+        "YXXyxxYXXYxxYXXyxxyyy"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_93",
+      "rank3_boundary_lengths": [
+        27,
+        19,
+        45
+      ],
+      "raw_endpoint": [
+        "XyxxYXXyxxYXXyxxYXX",
+        "xxyXXYYYxxYXXyxxyXX"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_94",
+      "rank3_boundary_lengths": [
+        26,
+        20,
+        47
+      ],
+      "raw_endpoint": [
+        "XXXXYxxxyXXXYxxxy",
+        "YXXXyxxxYYYYXXXyyxxxy"
+      ],
+      "final_length": 30
+    },
+    {
+      "name": "aca_95",
+      "rank3_boundary_lengths": [
+        22,
+        25,
+        39
+      ],
+      "raw_endpoint": [
+        "XyyXYYYxyyXYYYx",
+        "XyyyyxyyxYXyxYYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_96",
+      "rank3_boundary_lengths": [
+        26,
+        24,
+        34
+      ],
+      "raw_endpoint": [
+        "XYXYYxy",
+        "YYYYYYYYXyxyyyyyyXYxy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_97",
+      "rank3_boundary_lengths": [
+        22,
+        20,
+        48
+      ],
+      "raw_endpoint": [
+        "XyyxYYYYYxYYYYYYY",
+        "YXyyyxYYYYYYxYYYYYYY"
+      ],
+      "final_length": 27
+    },
+    {
+      "name": "aca_98",
+      "rank3_boundary_lengths": [
+        22,
+        23,
+        57
+      ],
+      "raw_endpoint": [
+        "XYYYYYYYXYYxYYYYYYYXYYx",
+        "YYYYYYYYXYYYYYYYYXYYYx"
+      ],
+      "final_length": 27
+    },
+    {
+      "name": "aca_99",
+      "rank3_boundary_lengths": [
+        22,
+        26,
+        33
+      ],
+      "raw_endpoint": [
+        "yyXYYxyyXYY",
+        "XyyXyxYxyxYxYYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_100",
+      "rank3_boundary_lengths": [
+        23,
+        26,
+        42
+      ],
+      "raw_endpoint": [
+        "XyyXYYYYxyyXYYYYx",
+        "XyyyxyyyxYXyxYYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_101",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        47
+      ],
+      "raw_endpoint": [
+        "XyXXYxxyXXYxxyXXYxxyXXYxx",
+        "XXyxxYYYYXXyyxx"
+      ],
+      "final_length": 34
+    },
+    {
+      "name": "aca_102",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        51
+      ],
+      "raw_endpoint": [
+        "xYXXyxxYXXyxxYXXyxxYXXy",
+        "YxxyXXYYYxxYXXyxxyXXy"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_103",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        51
+      ],
+      "raw_endpoint": [
+        "XyXXYxxyXXYxxyXXYxxyXXYxx",
+        "XXyxxYXXYxxYXXyxxyy"
+      ],
+      "final_length": 42
+    },
+    {
+      "name": "aca_104",
+      "rank3_boundary_lengths": [
+        30,
+        20,
+        51
+      ],
+      "raw_endpoint": [
+        "XyXXYxxyXXYxxyXXYxxyXXYxx",
+        "XXyxxYYYXXYxxyXXyxx"
+      ],
+      "final_length": 38
+    },
+    {
+      "name": "aca_105",
+      "rank3_boundary_lengths": [
+        24,
+        27,
+        41
+      ],
+      "raw_endpoint": [
+        "XyyyXYYYYxyyyXYYYYx",
+        "XyyyxxyXYxYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_106",
+      "rank3_boundary_lengths": [
+        24,
+        27,
+        49
+      ],
+      "raw_endpoint": [
+        "XYYYXYYYYxYYYXYYYYx",
+        "XyyyxyyyyyyyyxYXyxyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_107",
+      "rank3_boundary_lengths": [
+        30,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYXYYY",
+        "yyyxYYXYxy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_109",
+      "rank3_boundary_lengths": [
+        30,
+        25,
+        42
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYYY",
+        "yyyxyxYYXyxyyXYYYY"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_110",
+      "rank3_boundary_lengths": [
+        30,
+        24,
+        36
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYxYxYxYYY",
+        "yyyXYYYxyX"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_113",
+      "rank3_boundary_lengths": [
+        32,
+        25,
+        38
+      ],
+      "raw_endpoint": [
+        "XyyXYXYXYXYXYXYXYXYYY",
+        "yyyxYYYXyx"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_114",
+      "rank3_boundary_lengths": [
+        32,
+        25,
+        38
+      ],
+      "raw_endpoint": [
+        "XyyxYxYxYxYxYxYxYxYYY",
+        "yyyXYYxYXy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_115",
+      "rank3_boundary_lengths": [
+        16,
+        19,
+        38
+      ],
+      "raw_endpoint": [
+        "XYYYYxxYYYYxx",
+        "YYYYYxYXyyyyyXyyyy"
+      ],
+      "final_length": 13
+    },
+    {
+      "name": "aca_116",
+      "rank3_boundary_lengths": [
+        17,
+        15,
+        25
+      ],
+      "raw_endpoint": [
+        "XYxYXYxYX",
+        "xyXYYYxYXyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_117",
+      "rank3_boundary_lengths": [
+        17,
+        15,
+        25
+      ],
+      "raw_endpoint": [
+        "XYxyXYxyX",
+        "xYXYYYxyXyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_118",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        24
+      ],
+      "raw_endpoint": [
+        "XyxYxYxYxYY",
+        "yyXYYxyX"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_119",
+      "rank3_boundary_lengths": [
+        22,
+        18,
+        26
+      ],
+      "raw_endpoint": [
+        "XyxYxYxYxYxYY",
+        "yyXYYxyX"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_120",
+      "rank3_boundary_lengths": [
+        18,
+        16,
+        28
+      ],
+      "raw_endpoint": [
+        "XyyxYxYYY",
+        "YXyyyxYYxYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_121",
+      "rank3_boundary_lengths": [
+        18,
+        19,
+        37
+      ],
+      "raw_endpoint": [
+        "XYYYXYYxYYYXYYx",
+        "YYYYXYYYYXYYYx"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_122",
+      "rank3_boundary_lengths": [
+        19,
+        20,
+        42
+      ],
+      "raw_endpoint": [
+        "XYYYYXYYxYYYYXYYx",
+        "YYYYYXYYYYYXYYYx"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_123",
+      "rank3_boundary_lengths": [
+        20,
+        21,
+        47
+      ],
+      "raw_endpoint": [
+        "XYYYYYXYYxYYYYYXYYx",
+        "YYYYYYXYYYYYYXYYYx"
+      ],
+      "final_length": 23
+    }
+  ],
+  "all_general_endpoint_checks": [
+    {
+      "name": "aca_0",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_1",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_2",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_3",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_4",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 18
+    },
+    {
+      "name": "aca_5",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_6",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_7",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 18
+    },
+    {
+      "name": "aca_8",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_9",
+      "checked_endpoints": 15,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_10",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_11",
+      "checked_endpoints": 6,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_12",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_13",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 16
+    },
+    {
+      "name": "aca_14",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_15",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_16",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_17",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_18",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_19",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 26
+    },
+    {
+      "name": "aca_20",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_21",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_22",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_23",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_24",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_25",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_26",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_27",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_28",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_29",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 18
+    },
+    {
+      "name": "aca_30",
+      "checked_endpoints": 6,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_31",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 17
+    },
+    {
+      "name": "aca_32",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_33",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_34",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_35",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_36",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_37",
+      "checked_endpoints": 17,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_38",
+      "checked_endpoints": 17,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_39",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 24
+    },
+    {
+      "name": "aca_40",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_41",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_42",
+      "checked_endpoints": 8,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_43",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_44",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_45",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_46",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_47",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_48",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_49",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_50",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_51",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_52",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_53",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_54",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_55",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_56",
+      "checked_endpoints": 12,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_57",
+      "checked_endpoints": 12,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_58",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_59",
+      "checked_endpoints": 16,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_60",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_61",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_62",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 28
+    },
+    {
+      "name": "aca_63",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_64",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_65",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 32
+    },
+    {
+      "name": "aca_66",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_67",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_68",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_69",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_70",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_71",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_72",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_73",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_74",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 27
+    },
+    {
+      "name": "aca_75",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_76",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_77",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_78",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_79",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_80",
+      "checked_endpoints": 6,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_81",
+      "checked_endpoints": 5,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_82",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_83",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_84",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_85",
+      "checked_endpoints": 5,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_86",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_87",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_88",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_89",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_90",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_91",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_92",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_93",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_94",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 30
+    },
+    {
+      "name": "aca_95",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_96",
+      "checked_endpoints": 13,
+      "strict_gains": 0,
+      "best_length": 25
+    },
+    {
+      "name": "aca_97",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 27
+    },
+    {
+      "name": "aca_98",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 27
+    },
+    {
+      "name": "aca_99",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_100",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_101",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 34
+    },
+    {
+      "name": "aca_102",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_103",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 42
+    },
+    {
+      "name": "aca_104",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 38
+    },
+    {
+      "name": "aca_105",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_106",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_107",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_108",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_109",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_110",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 22
+    },
+    {
+      "name": "aca_111",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_112",
+      "checked_endpoints": 0,
+      "strict_gains": 0,
+      "best_length": null
+    },
+    {
+      "name": "aca_113",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_114",
+      "checked_endpoints": 11,
+      "strict_gains": 0,
+      "best_length": 23
+    },
+    {
+      "name": "aca_115",
+      "checked_endpoints": 10,
+      "strict_gains": 0,
+      "best_length": 13
+    },
+    {
+      "name": "aca_116",
+      "checked_endpoints": 12,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_117",
+      "checked_endpoints": 12,
+      "strict_gains": 0,
+      "best_length": 20
+    },
+    {
+      "name": "aca_118",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 15
+    },
+    {
+      "name": "aca_119",
+      "checked_endpoints": 4,
+      "strict_gains": 0,
+      "best_length": 16
+    },
+    {
+      "name": "aca_120",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_121",
+      "checked_endpoints": 9,
+      "strict_gains": 0,
+      "best_length": 19
+    },
+    {
+      "name": "aca_122",
+      "checked_endpoints": 3,
+      "strict_gains": 0,
+      "best_length": 21
+    },
+    {
+      "name": "aca_123",
+      "checked_endpoints": 7,
+      "strict_gains": 0,
+      "best_length": 23
+    }
+  ],
+  "literal_stored_witnesses": [
+    {
+      "name": "aca_0",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        22
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYYXyxyX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYYXyxyX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZZXzxz",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXXYxyx"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_1",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        27
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYYxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYYxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZxzxzx",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXYYXyxyxy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_2",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        22
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyx",
+          "YYYXyyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "YYYXyyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "XZZZXzzzxxx",
+          "ZXXzXzx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYxy",
+        "YXXXYxxxyyy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_3",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        21
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYxyxyX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYxyxyX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZxzxz",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXyxyx"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_4",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyx",
+          "YYxyxyXyXYX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "YYxyxyXyXYX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "ZxxZxzXzXXXzXZx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "XyyXyxYxYYYxYXy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_5",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        33
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyX",
+          "YYYxyXyxyxyx",
+          "ZXYYX"
+        ],
+        [
+          "XXyz",
+          "YYYxyXyxyxyx",
+          "ZXYYX"
+        ],
+        [
+          "XXyz",
+          "zXXzXXzxZxZxxxZxxxZx",
+          "ZXzXXzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYYxYYY",
+        "xYYxYYxyXyXyyyXyyyXy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_6",
+      "rank3_boundary_lengths": [
+        25,
+        21,
+        27
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxxyx",
+          "YXXXXXyxYx",
+          "ZxyxYY"
+        ],
+        [
+          "XXyxz",
+          "YXXXXXyxYx",
+          "ZxyxYY"
+        ],
+        [
+          "XXyxz",
+          "xzXXXXXZxzX",
+          "ZxxxZxzXzXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyXyxYxYY",
+        "yxYYYYYXyxY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_7",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYYYxYXYX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYYYxYXYX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXZXXXZX",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXYYXYYXYXYYYXY"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_8",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        27
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYXYXyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYXYXyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXXZXzxxzxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYYXYxyyxyyy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_9",
+      "rank3_boundary_lengths": [
+        22,
+        17,
+        17
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxx",
+          "YYYXXyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYYXXyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYYZZyyZ",
+          "ZZZyzzY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XXXyxxY",
+        "YYYXXyyX"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_10",
+      "rank3_boundary_lengths": [
+        22,
+        17,
+        17
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxx",
+          "YYXYXyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYXYXyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYZYZyyZ",
+          "ZZZyzzY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XXXyxxY",
+        "YYXYXyyX"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_11",
+      "rank3_boundary_lengths": [
+        22,
+        17,
+        17
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxx",
+          "YYYXyxyx",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYYXyxyx",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYYZyzyz",
+          "ZZZyzzY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XXXyxxY",
+        "YYYXyxyx"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_12",
+      "rank3_boundary_lengths": [
+        22,
+        17,
+        17
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxx",
+          "YYXYxyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYXYxyyX",
+          "ZXXyxxY"
+        ],
+        [
+          "Xz",
+          "YYZYzyyZ",
+          "ZZZyzzY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XXXyxxY",
+        "YYXYxyyX"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_13",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXYYx",
+          "YXXXyxxYx",
+          "ZXXYY"
+        ],
+        [
+          "YYzx",
+          "YXXXyxxYx",
+          "ZXXYY"
+        ],
+        [
+          "YYzx",
+          "YYYzYYzYYzyZyyZyZyy",
+          "ZYYzYYzYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYYxYY",
+        "YYYxYYxYYxyXyyXyXyy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_14",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        21
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyx",
+          "YYYXyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "YYYXyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "XZZZXzzxxx",
+          "ZXXzXzx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYxy",
+        "YXXXYxxyyy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_15",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyxx",
+          "YYYYxyyyX",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "YYYYxyyyX",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZxzxzxzx",
+          "ZXXzzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxxyy",
+        "YYXYXYXYXyxyxyxy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_16",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        23
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YXyxxyXYx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YXyxxyXYx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzXZxZXz",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxYXyXYx"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_17",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXYxYx",
+          "YYYYXyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYXyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZXzXzXzxx",
+          "ZXXZxxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXyyXyy",
+        "YXyXyXyXYxYxYxyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_18",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYxyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYxyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxzXzXz",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyxYxYx"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_19",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxxx",
+          "YYYYXyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "YYYYXyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "XXXZXXXZXXXZXXXZXzxxxzxxxzxxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYYXYYYXYYYXYYYXYxyyyxyyyxyyyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_20",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYXyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYXyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZXzXzXzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXYxYxYxyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_21",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        26
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYxyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYxyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxZXZXZ",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyXYXYX"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_22",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYxyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYxyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxZXXXZXXXZXX",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyXYYYXYYYXYY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_23",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYXyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYXyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzXZXXXZXXXZ",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxYXYYYXYYYX"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_24",
+      "rank3_boundary_lengths": [
+        22,
+        16,
+        25
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXYxx",
+          "YYYXXYXYx",
+          "ZYYXX"
+        ],
+        [
+          "zXYxx",
+          "YzYXYx",
+          "ZYYXX"
+        ],
+        [
+          "zXYxx",
+          "xZXXzxZXXZX",
+          "ZxZXZXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyXYXYYYY",
+        "yXYYxyXYYXY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_25",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYXyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYXyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzXZXZXZxx",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxYXYXYXyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_26",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxYxx",
+          "YYYYxyyyX",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "YYYYxyyyX",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZxzxzxzx",
+          "ZXXXZZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYXXy",
+        "YYXYXYXYXyxyxyxy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_27",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyxx",
+          "YYYYXyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "YYYYXyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZXzxzxzxxx",
+          "ZXXzzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxxyy",
+        "YYXYXYXYXYxyxyxyyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_28",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxYxx",
+          "YYYYXyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "YYYYXyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZXzxzxzxxx",
+          "ZXXXZZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYXXy",
+        "YYXYXYXYXYxyxyxyyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_29",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        27
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyx",
+          "YYxxyxyXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "YYxxyxyXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "ZxxZxxzXzXXXzX",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "XyyXyyxYxYYYxY"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_30",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        23
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyx",
+          "YYYYYxyXXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXz",
+          "YYYYYxyXXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXz",
+          "YYYYYzyZyZyyZ",
+          "ZyZyzYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyXyxYY",
+        "YYYYYxyXyXyyX"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_31",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        35
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYYYYXyXyx",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYYYYXyXyx",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXXZXzxzxxx",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXYYXYYXYYXYxyxyyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_32",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        31
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYXyxyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYXyxyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzXZXXZ",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxYXYYX"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_33",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        26
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYXyXyxyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYXyXyxyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZXzXXzzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXYxYYxxyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_34",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        22
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZXzzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXYxxyyy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_35",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyx",
+          "YYYxxyxyXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "YYYxxyxyXyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXz",
+          "ZxxZxxZxxzXzXXXzX",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "XyyXyyXyyxYxYYYxY"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_36",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        20
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYxYYXYX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYxYYXYX",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZxZZXZ",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXyXXYX"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_37",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXYxx",
+          "YYYYYXyyyyx",
+          "ZYYXX"
+        ],
+        [
+          "zXYxx",
+          "YYYYYXyyyyx",
+          "ZYYXX"
+        ],
+        [
+          "zXYxx",
+          "xZXZXZXZXZXzxzxzxz",
+          "ZxZXZXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyXYXYYYY",
+        "yXYXYXYXYXYxyxyxyx"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_38",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YYYYYXyyyyx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YYYYYXyyyyx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzxzxzxzxzXZXZXZXZX",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxyxyxyxyxYXYXYXYXY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_39",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXYxYx",
+          "YYYYYXyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYXyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZXzXzXzXzxx",
+          "ZXXZxxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXyyXyy",
+        "YXyXyXyXyXYxYxYxYxyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_40",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYxyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYxyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxzXzXzXz",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyxYxYxYx"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_41",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        48
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxxx",
+          "YYYYYXyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "YYYYYXyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "XXXZXXXZXXXZXXXZXXXZXzxxxzxxxzxxxzxxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_42",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYXyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYXyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZXzXzXzXzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXYxYxYxYxyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_43",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        28
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYxyXYxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYxyXYxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZxzXZxzxzx",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXyxYXyxyxy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_44",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXYYx",
+          "YXyXYxxYXyx",
+          "ZXXYY"
+        ],
+        [
+          "YYzx",
+          "YXyXYxxYXyx",
+          "ZXXYY"
+        ],
+        [
+          "YYzx",
+          "YYYzYzYZyyZYzyZyy",
+          "ZYYzYYzYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYYxYY",
+        "YYYxYxYXyyXYxyXyy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_45",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        35
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXXXXZxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYYYYXyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_46",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        44
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYYXyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYYXyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxxxzXZXXXZXXXZXXXZ",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYX"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_47",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYYxyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYYxyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxzxZXZXZXZ",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyxyXYXYXYX"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_48",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        29
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZXXzxxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXYYxyyyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_49",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        46
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYYxyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYYxyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxxxzxZXXXZXXXZXXXZXX",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyyyxyXYYYXYYYXYYYXYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_50",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYYXyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYYXyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxzXZXZXZXZxx",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyxYXYXYXYXyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_51",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxYxx",
+          "YYYYYXyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "YYYYYXyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZXZXzxzxzxzxxx",
+          "ZXXXZZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYXXy",
+        "YYXYXYXYXYXYxyxyxyxyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_52",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyxx",
+          "YYYYYXyyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "YYYYYXyyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZXZXzxzxzxzxxx",
+          "ZXXzzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxxyy",
+        "YYXYXYXYXYXYxyxyxyxyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_53",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        24
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYXyyXyxyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYXyyXyxyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZXzzXzxzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXYxxYxyxyyy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_54",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        29
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXXyxx",
+          "YYxxyXXXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxx",
+          "YYxxyXXXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxx",
+          "xxzzxxZXXXXXXX",
+          "ZxxzzXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxxYYYY",
+        "yyxxyyXYYYYYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_55",
+      "rank3_boundary_lengths": [
+        24,
+        20,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxyx",
+          "YYxYXXyyX",
+          "ZxyxYY"
+        ],
+        [
+          "XXXyz",
+          "YYxYXXyyX",
+          "ZxyxYY"
+        ],
+        [
+          "XXXyz",
+          "zXXXzXXzXXZxxxZX",
+          "ZxxxxZxzXXXzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyyXyxYYYxYYY",
+        "xYYYxYYxYYXyyyXY"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_56",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YYXYYxxyXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YYXYYxxyXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzxzzxzxxZXXXXX",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxyxxyxyyXYYYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_57",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YYXYYxyXXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YYXYYxyXXXX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzxzzxzxZXXXXXX",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxyxxyxyXYYYYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_58",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        23
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZXzzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXYxxyyy"
+      ],
+      "final_length": 17
+    },
+    {
+      "name": "aca_59",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        42
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyxx",
+          "YYYYxxxxxxx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyxx",
+          "YYYYxxxxxxx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyxx",
+          "xxzxxxxzxxxxzxxxxzxxxxxxxxx",
+          "Zxxzxxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyyxyyxyy",
+        "yyxyyyyxyyyyxyyyyxyyyyyyyyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_60",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZXXzxxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXYYxyyyyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_61",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXZXXXXXZxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYXYYYYYXyyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_62",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXYxYx",
+          "YYYYYYXyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYXyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZXzXzXzXzXzxx",
+          "ZXXZxxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXyyXyy",
+        "YXyXyXyXyXyXYxYxYxYxYxyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_63",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYxyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYxyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxzXzXzXzXz",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXyxYxYxYxYx"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_64",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        56
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxxx",
+          "YYYYYYXyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "YYYYYYXyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "XXXZXXXZXXXZXXXZXXXZXXXZXzxxxzxxxzxxxzxxxzxxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_65",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYXyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYXyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZXzXzXzXzXzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXYxYxYxYxYxyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_66",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxxx",
+          "YYXyXyxYXyx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxxx",
+          "YYXyXyxYXyx",
+          "ZYYXX"
+        ],
+        [
+          "zXyxxx",
+          "xxxzxxzXZXXXZxzXZXX",
+          "ZxxxzxxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyxyyxYYY",
+        "yyyxyyxYXYYYXyxYXYY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_67",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyXXX",
+          "YYXyxYXyxyX",
+          "ZXXYY"
+        ],
+        [
+          "XXXyXz",
+          "YYXyxYXyxyX",
+          "ZXXYY"
+        ],
+        [
+          "XXXyXz",
+          "XzXXXXzXZxzXZxxxxxZ",
+          "ZXXXzXXXXzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxYYYYxYYY",
+        "YxYYYYxYXyxYXyyyyyX"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_68",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        52
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYYYXyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYYYXyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxxxzxxxzXZXXXZXXXZXXXZXXXZ",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYXYYYX"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_69",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        34
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYYYxyyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYYYxyyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxzxzxZXZXZXZXZ",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyxyxyXYXYXYXYX"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_70",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        54
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYYYxyyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYYYxyyyyyX",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxxxzxxxzxZXXXZXXXZXXXZXXXZXX",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyyyxyyyxyXYYYXYYYXYYYXYYYXYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_71",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        29
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YYXyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YYXyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzxzXZZXzxZXXX",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxyxYXXYxyXYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_72",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYxyXyxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYxyXyxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZxzxzxxxzxzx",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXyxyxyyyxyxy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_73",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYYYXyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYYYXyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxzxzXZXZXZXZXZxx",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyxyxYXYXYXYXYXyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_74",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        38
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyxx",
+          "YYYYYYXyyyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "YYYYYYXyyyyyx",
+          "ZXyXy"
+        ],
+        [
+          "YXzxx",
+          "XXZXZXZXZXZXZXzxzxzxzxzxxx",
+          "ZXXzzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxxyy",
+        "YYXYXYXYXYXYXYxyxyxyxyxyyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_75",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        31
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZZXXXZxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXXYYYXyyyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_76",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        31
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZZXXzxxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXXYYxyyyyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_77",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        41
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXZXXZXXXXXZxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYXYYXYYYYYXyyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_78",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        25
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXyx",
+          "YYYXYXyxyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "YYYXYXyxyyxx",
+          "ZXyXy"
+        ],
+        [
+          "YXzx",
+          "XZZZXZXzxzzxxx",
+          "ZXXzXzx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYxy",
+        "YXXXYXYxyxxyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_79",
+      "rank3_boundary_lengths": [
+        28,
+        23,
+        47
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyyxx",
+          "YXXXXXyxxYxx",
+          "ZXXXyyx"
+        ],
+        [
+          "YYzx",
+          "YXXXXXyxxYxx",
+          "ZXXXyyx"
+        ],
+        [
+          "YYzx",
+          "YYYzYYzYYzYYzYYzyZyyZyZyyZyy",
+          "ZYYzYYzYYzyyZyy"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYYxYYxyyXyy",
+        "YYYxYYxYYxYYxYYxyXyyXyXyyXyy"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_80",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        24
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyx",
+          "YYYXyXYYYxyXX",
+          "ZXyxY"
+        ],
+        [
+          "YXz",
+          "YYYXyXYYYxyXX",
+          "ZXyxY"
+        ],
+        [
+          "YXz",
+          "YYZyyZYYYzyZyZ",
+          "ZyZyzYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyXyxYY",
+        "YYXyyXYYYxyXyX"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_81",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        24
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZZXzzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXXYxxyyy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_82",
+      "rank3_boundary_lengths": [
+        29,
+        24,
+        50
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYYXXXXXyyx",
+          "YYXyxxyyxYX",
+          "ZXyyxYY"
+        ],
+        [
+          "YXXXXz",
+          "YYXyxxyyxYX",
+          "ZXyyxYY"
+        ],
+        [
+          "YXXXXz",
+          "ZxxxxZXzXXzXXXXzxZxxx",
+          "ZXXXXXzXXXXzxZxxxxZxxxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYYYxYYYYxyXyyyyXyyyy",
+        "XyyyyXYxYYxYYYYxyXyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_83",
+      "rank3_boundary_lengths": [
+        27,
+        24,
+        44
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYYYYXXyxxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYYYYXXyxxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXZXXZXXZXXzxxxxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYXYYXYYXYYxyyyyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_84",
+      "rank3_boundary_lengths": [
+        27,
+        24,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZZZXXXZxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXXXYYYXyyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_85",
+      "rank3_boundary_lengths": [
+        23,
+        20,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXXZXXZXXXXZXXZx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYXYYXYYXYYXYYYYXYYXy"
+      ],
+      "final_length": 18
+    },
+    {
+      "name": "aca_86",
+      "rank3_boundary_lengths": [
+        29,
+        24,
+        52
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYYXXXXXyyX",
+          "YYXyxxyyXYx",
+          "ZXyyXYY"
+        ],
+        [
+          "YXXXXz",
+          "YYXyxxyyXYx",
+          "ZXyyXYY"
+        ],
+        [
+          "YXXXXz",
+          "ZxxxxZXzXXzXXXXzXZxxxxx",
+          "ZXXXXXzXXXXzXZxxxxZxxxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYYYxYYYYxYXyyyyXyyyy",
+        "XyyyyXYxYYxYYYYxYXyyyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_87",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyXXX",
+          "YYXyxYXyxyx",
+          "ZXXYY"
+        ],
+        [
+          "XXXyXz",
+          "YYXyxYXyxyx",
+          "ZXXYY"
+        ],
+        [
+          "XXXyXz",
+          "XzXXXXzXZxzXZxxxxxZxx",
+          "ZXXXzXXXXzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxYYYYxYYY",
+        "YxYYYYxYXyxYXyyyyyXyy"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_88",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        31
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyXX",
+          "YYxyXyxYXyx",
+          "ZXXYY"
+        ],
+        [
+          "XXXyz",
+          "YYxyXyxYXyx",
+          "ZXXYY"
+        ],
+        [
+          "XXXyz",
+          "zXXXzxZxxZxzXZx",
+          "ZXXzXXXzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYYYxYYY",
+        "xYYYxyXyyXyxYXy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_89",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        60
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyx",
+          "YYYYYYYXyyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "YYYYYYYXyyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyx",
+          "xzxxxzxxxzxxxzxxxzxxxzxxxzXZXXXZXXXZXXXZXXXZXXXZ",
+          "Zxzxzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "Xyxyxyy",
+        "yxyyyxyyyxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYXYYYXYYYX"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_90",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        36
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxxx",
+          "YYXyxYXyxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxxx",
+          "YYXyxYXyxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxxx",
+          "xxxzxxzXZxzXZXZXXXX",
+          "ZxxxzxxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyxyyxYYY",
+        "yyyxyyxYXyxYXYXYYYY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_91",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        42
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYYXyyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYXyyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZXzXzXzXzXzXzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXyXYxYxYxYxYxYxyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_92",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        64
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxxx",
+          "YYYYYYYXyyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "YYYYYYYXyyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "XXXZXXXZXXXZXXXZXXXZXXXZXXXZXzxxxzxxxzxxxzxxxzxxxzxxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYYXYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxyyyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_93",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYYxyyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYxyyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZxzXzXzXzXzXz",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXyXyxYxYxYxYxYx"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_94",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        42
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXYxYx",
+          "YYYYYYYXyyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYXyyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZXzXzXzXzXzXzxx",
+          "ZXXZxxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXyyXyy",
+        "YXyXyXyXyXyXyXYxYxYxYxYxYxyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_95",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        29
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXyxx",
+          "YYxyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "YYxyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXyxx",
+          "xxzxzxZZXzxZXXX",
+          "ZxxzxzXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxyxYYY",
+        "yyxyxyXXYxyXYYY"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_96",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXYxxyX",
+          "YYYYYYYXyyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "YYYYYYYXyyyyyyx",
+          "ZYXXY"
+        ],
+        [
+          "zxxyX",
+          "XzxzxzxzxzxzxzXZXZXZXZXZXZxx",
+          "ZXzXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYxyy",
+        "YxyxyxyxyxyxyxYXYXYXYXYXYXyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_97",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        25
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZZZXzzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXXXYxxyyy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_98",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        39
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYYYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYYYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXXZXXZXXZXXXXZXXZx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYXYYXYYXYYXYYXYYYYXYYXy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_99",
+      "rank3_boundary_lengths": [
+        24,
+        21,
+        33
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxx",
+          "YYYxyXyxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "YYYxyXyxyXyX",
+          "ZYXXy"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZxzxzxxxzxzx",
+          "ZXXZXXzxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXYYxyy",
+        "YYXYYXYYXyxyxyyyxyxy"
+      ],
+      "final_length": 19
+    },
+    {
+      "name": "aca_100",
+      "rank3_boundary_lengths": [
+        25,
+        22,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXXyxx",
+          "YYXyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxx",
+          "YYXyxyXYxyX",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxx",
+          "xxzzXZxZXzxZXXX",
+          "ZxxzzXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxxYYYY",
+        "yyxxYXyXYxyXYYY"
+      ],
+      "final_length": 20
+    },
+    {
+      "name": "aca_101",
+      "rank3_boundary_lengths": [
+        30,
+        27,
+        46
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXYxYx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXYxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZxZXzXzXzXzXzXzXzxx",
+          "ZXXZxxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYXyyXyy",
+        "YXyXyXyXyXyXyXyXYxYxYxYxYxYxYxyy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_102",
+      "rank3_boundary_lengths": [
+        30,
+        27,
+        44
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYYYxyyyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYYxyyyyyyyX",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZxZxzXzXzXzXzXzXz",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_103",
+      "rank3_boundary_lengths": [
+        30,
+        27,
+        72
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxxx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxxx",
+          "XXXZXXXZXXXZXXXZXXXZXXXZXXXZXXXZXzxxxzxxxzxxxzxxxzxxxzxxxzxxxx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYYXYYYXYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxyyyxyyyy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_104",
+      "rank3_boundary_lengths": [
+        30,
+        27,
+        46
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "YYYYYYYYXyyyyyyyx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzx",
+          "XZxZxZxZxZxZxZxZXzXzXzXzXzXzXzxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YXyXyXyXyXyXyXyXYxYxYxYxYxYxYxyy"
+      ],
+      "final_length": 25
+    },
+    {
+      "name": "aca_105",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        35
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXXyxxx",
+          "YYXyXyxYXyx",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxxx",
+          "YYXyXyxYXyx",
+          "ZYYXX"
+        ],
+        [
+          "zXXyxxx",
+          "xxxzxzXZXXZxzXZXX",
+          "ZxxxzxzXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyxyxYYYY",
+        "yyyxyxYXYYXyxYXYY"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_106",
+      "rank3_boundary_lengths": [
+        26,
+        23,
+        43
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXXXyXXX",
+          "YYXyxyXYxyX",
+          "ZXXYY"
+        ],
+        [
+          "XXXXyXz",
+          "YYXyxyXYxyX",
+          "ZXXYY"
+        ],
+        [
+          "XXXXyXz",
+          "XzXXXXXzXZxxxxxxZXzxZ",
+          "ZXXXzXXXXXzXXXX"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxYYYYYxYYYY",
+        "YxYYYYYxYXyyyyyyXYxyX"
+      ],
+      "final_length": 21
+    },
+    {
+      "name": "aca_107",
+      "rank3_boundary_lengths": [
+        27,
+        24,
+        44
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYYYYXXXYxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXZXXZXXZXXXXXZxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYXYYXYYXYYYYYXyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_108",
+      "rank3_boundary_lengths": [
+        29,
+        26,
+        48
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXYXyxyXYxx",
+          "YYYYYYYxYYXYx",
+          "ZXYxY"
+        ],
+        [
+          "YYYYYYxYYz",
+          "YXYXyxyXYxx",
+          "ZXYxY"
+        ],
+        [
+          "YYYYYYxYYz",
+          "YYYzYYYYYYYYYzyZyzYZyyyyyyyyZyy",
+          "ZYYzYZy"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYxYYYYYYYYYxyXyxYXyyyyyyyyXyy"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_109",
+      "rank3_boundary_lengths": [
+        30,
+        25,
+        61
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYXXyxYxxyX",
+          "YYYYYYXXXYxx",
+          "ZXXYxxY"
+        ],
+        [
+          "YYYYYXz",
+          "YYXXyxYxxyX",
+          "ZXXYxxY"
+        ],
+        [
+          "YYYYYXz",
+          "yyyZyyyyyZyzYYYYYYzYYYYYzyZ",
+          "ZyyyyyZyyyyyZYzYYYYYzYYYYYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyyyyXyyyyyXYxYYYYYxYYYYYY",
+        "yyyXyyyyyXyxYYYYYYxYYYYYxyX"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_110",
+      "rank3_boundary_lengths": [
+        27,
+        24,
+        32
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYYYXXyxxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZZZXXzxxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXXXYYxyyyyy"
+      ],
+      "final_length": 22
+    },
+    {
+      "name": "aca_111",
+      "rank3_boundary_lengths": [
+        29,
+        26,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXYXYxxyXyx",
+          "YYYYYYYxyXyyx",
+          "ZXyyx"
+        ],
+        [
+          "YYYYYYYxyz",
+          "YXYXYxxyXyx",
+          "ZXyyx"
+        ],
+        [
+          "YYYYYYYxyz",
+          "zYYYYYYYzYZyyyyyyZyzyZY",
+          "ZyzyyZY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyxyyXY",
+        "xYYYYYYYxYXyyyyyyXyxyXY"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_112",
+      "rank3_boundary_lengths": [
+        29,
+        26,
+        40
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXYxxyXYXyx",
+          "YYYYYYYxyyXYx",
+          "ZXYxY"
+        ],
+        [
+          "YYYYYYxyyz",
+          "YXYxxyXYXyx",
+          "ZXYxY"
+        ],
+        [
+          "YYYYYYxyyz",
+          "yzYZyyyyZyzYYYYYzyZYY",
+          "ZyyzYZYYY"
+        ]
+      ],
+      "raw_endpoint": [
+        "XyyxYXYYY",
+        "yxYXyyyyXyxYYYYYxyXYY"
+      ],
+      "final_length": 24
+    },
+    {
+      "name": "aca_113",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        33
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXXyxYxx",
+          "YYYYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "YYYYYYYYXXXYxx",
+          "ZXyxY"
+        ],
+        [
+          "YXXzxx",
+          "XXZZZZZZZZXXXZxxxx",
+          "ZXXXzxZxx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYYxyXyy",
+        "YYXXXXXXXXYYYXyyyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_114",
+      "rank3_boundary_lengths": [
+        28,
+        25,
+        47
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyXYxxx",
+          "YYYYYYYYXXyxxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "YYYYYYYYXXyxxx",
+          "ZXyXY"
+        ],
+        [
+          "YXzxxx",
+          "XXXZXXZXXZXXZXXZXXZXXZXXZXXzxxxxxx",
+          "ZXXzXZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxYXy",
+        "YYYXYYXYYXYYXYYXYYXYYXYYXYYxyyyyyy"
+      ],
+      "final_length": 23
+    },
+    {
+      "name": "aca_115",
+      "rank3_boundary_lengths": [
+        18,
+        15,
+        20
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXYxyx",
+          "YYYYxxx",
+          "ZXYxy"
+        ],
+        [
+          "Yzx",
+          "YYYYxxx",
+          "ZXYxy"
+        ],
+        [
+          "Yzx",
+          "YYYYZyZyZy",
+          "ZYzYZyy"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYXyy",
+        "YYYYXyXyXy"
+      ],
+      "final_length": 13
+    },
+    {
+      "name": "aca_116",
+      "rank3_boundary_lengths": [
+        21,
+        16,
+        16
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYYXyyX",
+          "YXXXyxx",
+          "ZXYYYXy"
+        ],
+        [
+          "yz",
+          "YXXXyxx",
+          "ZXYYYXy"
+        ],
+        [
+          "yz",
+          "zXXXZxx",
+          "ZXzzzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxxxYX",
+        "xYYYXyy"
+      ],
+      "final_length": 14
+    },
+    {
+      "name": "aca_117",
+      "rank3_boundary_lengths": [
+        21,
+        16,
+        16
+      ],
+      "rank3_boundary_words": [
+        [
+          "YYYXyyx",
+          "YXXXyxx",
+          "ZXyyxYY"
+        ],
+        [
+          "Yz",
+          "YXXXyxx",
+          "ZXyyxYY"
+        ],
+        [
+          "Yz",
+          "ZXXXzxx",
+          "ZXzzxZZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxxyXX",
+        "XYYYxyy"
+      ],
+      "final_length": 14
+    },
+    {
+      "name": "aca_118",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        21
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYXyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYXyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZXzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXYxyyy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_119",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        22
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYYYXyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYYYXyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZZZXzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXXXYxyyy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_120",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        21
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXXyxYx",
+          "YYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "YYYXyyxx",
+          "ZXyxY"
+        ],
+        [
+          "YXzx",
+          "XZZZXzzxxx",
+          "ZXXzxZx"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYYxyXy",
+        "YXXXYxxyyy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_121",
+      "rank3_boundary_lengths": [
+        20,
+        17,
+        27
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXXXZXXZx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYXYYYYXYYXy"
+      ],
+      "final_length": 15
+    },
+    {
+      "name": "aca_122",
+      "rank3_boundary_lengths": [
+        21,
+        18,
+        30
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXXXXZXXZx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYXYYXYYYYXYYXy"
+      ],
+      "final_length": 16
+    },
+    {
+      "name": "aca_123",
+      "rank3_boundary_lengths": [
+        22,
+        19,
+        33
+      ],
+      "rank3_boundary_words": [
+        [
+          "YXyXYxx",
+          "YYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "YYYYYXXYYx",
+          "ZXyXY"
+        ],
+        [
+          "Yzxx",
+          "XXZXXZXXZXXZXXZXXXXZXXZx",
+          "ZXzXZ"
+        ]
+      ],
+      "raw_endpoint": [
+        "XYxYX",
+        "YYXYYXYYXYYXYYXYYYYXYYXy"
+      ],
+      "final_length": 17
+    }
+  ],
+  "all_literal_endpoint_checks": [
+    {
+      "name": "aca_0",
+      "checked_endpoints": 15,
+      "best_length": 18,
+      "endpoint_records_sha256": "f6a79cb53eed9640bbefd70e977c6bdf465b5355ee4a5865ad4c6d1a2a0647dd",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_1",
+      "checked_endpoints": 19,
+      "best_length": 15,
+      "endpoint_records_sha256": "ec1b4eab7eade842943b4c5c46fed11d69638b700e61bdffce0cc8fab9132e12",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_2",
+      "checked_endpoints": 17,
+      "best_length": 16,
+      "endpoint_records_sha256": "2361b07b6cbf4a226710aa2e834dbacfa8178efe3aae62f1e68ac89735e5f4d5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_3",
+      "checked_endpoints": 18,
+      "best_length": 17,
+      "endpoint_records_sha256": "5f3b59e2b76e0bd4e08b2d68259a0c6020224f9078c9f1ce1e2cfc3f7834ea08",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_4",
+      "checked_endpoints": 11,
+      "best_length": 18,
+      "endpoint_records_sha256": "c9d66d7e9d3866afd17afe536c7289ee629e6efe1a938ab50e3edc6da45f9c60",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_5",
+      "checked_endpoints": 9,
+      "best_length": 19,
+      "endpoint_records_sha256": "68accc3c8db224b08440d3f74bf2476c0883326f50202bb0544f02eb499efa29",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_6",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "aa4143e1f69c64cd0dbbe44cb58b7a489479e08a32f54d2d0423a599ba8a322c",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_7",
+      "checked_endpoints": 17,
+      "best_length": 16,
+      "endpoint_records_sha256": "fe97c01461d9ccfb04b98ec3b94bea880e0da17e84e741a844f05c7405f78d79",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_8",
+      "checked_endpoints": 18,
+      "best_length": 15,
+      "endpoint_records_sha256": "cfb711b364e918ded65378117c2ff7a47191a8ff2850573ad219e57774cddc1d",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_9",
+      "checked_endpoints": 9,
+      "best_length": 15,
+      "endpoint_records_sha256": "14b5d94912f89d738bae5f6b0e0e159c38f69bf9e27123d923c1a32edd019316",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_10",
+      "checked_endpoints": 8,
+      "best_length": 15,
+      "endpoint_records_sha256": "e2a674bb19d8fc4bc11a1ec9e463a8cc0ba0556eab9884d19deb95ea7b5661d9",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_11",
+      "checked_endpoints": 13,
+      "best_length": 15,
+      "endpoint_records_sha256": "2f25956921b25a01f290e8bec25edae5228a8f26674942b5f5cb0abfd19e906a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_12",
+      "checked_endpoints": 13,
+      "best_length": 15,
+      "endpoint_records_sha256": "ae634dd3a0a315984337328442af569b6d8e9c4b1a8f9720a7c47825f0092f3a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_13",
+      "checked_endpoints": 17,
+      "best_length": 16,
+      "endpoint_records_sha256": "fd4e4fa578bc901a2087a682405289d2ebcec8affbba2c00fbda553a4111e169",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_14",
+      "checked_endpoints": 18,
+      "best_length": 15,
+      "endpoint_records_sha256": "e7e783e86b34de378e6f01388d0a3ae96ce5252757226b69b06e1b6d0d898d8d",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_15",
+      "checked_endpoints": 13,
+      "best_length": 17,
+      "endpoint_records_sha256": "22fae5d9e09caa69b30d571fc6eff5610a3e1d70f701a0601b459a619d0cc494",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_16",
+      "checked_endpoints": 16,
+      "best_length": 17,
+      "endpoint_records_sha256": "e3368a79e738eb8521621e22813fc7c0a5223c0e7890df0c36750a6d090e3ccf",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_17",
+      "checked_endpoints": 7,
+      "best_length": 17,
+      "endpoint_records_sha256": "ad91a41295567365e0b4b8da71a1a7a876ed770208b9098498b28d3e85882529",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_18",
+      "checked_endpoints": 13,
+      "best_length": 17,
+      "endpoint_records_sha256": "a4cdaf5be68d917b5037e61fb2a4ce878523b0d572acedf68886c19eb9cb2421",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_19",
+      "checked_endpoints": 9,
+      "best_length": 17,
+      "endpoint_records_sha256": "816ea18ca265f9b2e5c02ee657adcf9d35cc5c809b88056c4ef2d670e24b9ba7",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_20",
+      "checked_endpoints": 13,
+      "best_length": 17,
+      "endpoint_records_sha256": "73be866faded391e979da81e12ab74112a4659979e3e7dcade3f50583ec16f63",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_21",
+      "checked_endpoints": 12,
+      "best_length": 17,
+      "endpoint_records_sha256": "7e0a860644e8913e075fec582a31fbf748541ab40914adda536bd952572a71e1",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_22",
+      "checked_endpoints": 11,
+      "best_length": 17,
+      "endpoint_records_sha256": "f55c23f370b5b8875e628b1100cc9f86ab9e1534efc2992791fbb94a00213d22",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_23",
+      "checked_endpoints": 11,
+      "best_length": 17,
+      "endpoint_records_sha256": "4c4a598a10affce2b55abcfa1daf60070f28e4829b85d8aeea6c7644a3baed95",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_24",
+      "checked_endpoints": 11,
+      "best_length": 17,
+      "endpoint_records_sha256": "aaaa81d8650c7aebfcdfb6893715f0f31ed80298aca1fb8c026b80ad5a3e694c",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_25",
+      "checked_endpoints": 12,
+      "best_length": 17,
+      "endpoint_records_sha256": "fe31507a3a0a906be86f4a4c5799a3320898d637721c639dcd4001877b2fcc80",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_26",
+      "checked_endpoints": 7,
+      "best_length": 17,
+      "endpoint_records_sha256": "28142a591c305cc032b1f77e6feabdcf3328866fa7989ccdc70c0b5b2ee7b718",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_27",
+      "checked_endpoints": 13,
+      "best_length": 17,
+      "endpoint_records_sha256": "f9a35a7bb72264d71468d00315bb7ab9160fd51481ca25f3d4a9a845a576be09",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_28",
+      "checked_endpoints": 7,
+      "best_length": 17,
+      "endpoint_records_sha256": "0842d073f38abf89bf0206e0ef4a0482c07dbdf79937939f60a9c0e6aa21fc35",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_29",
+      "checked_endpoints": 12,
+      "best_length": 17,
+      "endpoint_records_sha256": "b862059304772b933bcfdb0ace9ed9ad4b2bddd9e852f01a69192adc0ac088da",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_30",
+      "checked_endpoints": 15,
+      "best_length": 17,
+      "endpoint_records_sha256": "11401012a19f6777d0a96261dcee07eab4a32ca88a9dfa97e1019e1e2499766a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_31",
+      "checked_endpoints": 18,
+      "best_length": 17,
+      "endpoint_records_sha256": "2ab16087b665ac666eacf28190e22e796aa830b80233d77180eb09532585ab68",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_32",
+      "checked_endpoints": 18,
+      "best_length": 17,
+      "endpoint_records_sha256": "11c721a013fb74fb70cbff0996975d5332f5ebc6253601e6fa0e11e2b9c85915",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_33",
+      "checked_endpoints": 19,
+      "best_length": 17,
+      "endpoint_records_sha256": "62cdfe4cddf1545fc36224c8fb8fa60867c04e3cefbe7df6dad45b10da70cc8b",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_34",
+      "checked_endpoints": 19,
+      "best_length": 16,
+      "endpoint_records_sha256": "cab5917a6c04fec00a8bc0271085b8b16dcdf6a19ebf943b233a8df7ea09cddf",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_35",
+      "checked_endpoints": 12,
+      "best_length": 18,
+      "endpoint_records_sha256": "b35d6ba067ea0ba68137a840fefaf0fca3a43d8e25d8d6c8e13cf4a8cf948201",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_36",
+      "checked_endpoints": 16,
+      "best_length": 16,
+      "endpoint_records_sha256": "fcb2794ecf61735fdfcd42872d597e2137e70391901f04181dfeedc123a6b34b",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_37",
+      "checked_endpoints": 7,
+      "best_length": 19,
+      "endpoint_records_sha256": "d9167560a854514e45cdaa4bbbb15569bfc5f29d3d1236b525fa1fa6a42931b9",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_38",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "56e700e5054da09195ceef3a141760b866812af9b294e23ae52705f19744a43e",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_39",
+      "checked_endpoints": 7,
+      "best_length": 19,
+      "endpoint_records_sha256": "9a6529543e987c3d8da5e40b2d878ee7578ea19a76ee17ca712df99bbbb55945",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_40",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "d01f164a11f8846a3d276606f93ae30e5792a233f712598acfd43544e218f8b5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_41",
+      "checked_endpoints": 9,
+      "best_length": 19,
+      "endpoint_records_sha256": "d36852c514fa96d82c4cb4a87e5e4d6f01e2ea57c5b26159ab10cc84086f88cc",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_42",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "ca0f0c82e9fff10cce291a48e85e09bcf4a4263c92e2a6911b4d95c3af446809",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_43",
+      "checked_endpoints": 13,
+      "best_length": 18,
+      "endpoint_records_sha256": "7a6952648802d58377ec8ca492c46a8648050a086330ece4d4004015096f9054",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_44",
+      "checked_endpoints": 12,
+      "best_length": 18,
+      "endpoint_records_sha256": "1b84bb7b682a01abf72fba02a0aae50c6c841be6bfb9d5cd37574b0b722def05",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_45",
+      "checked_endpoints": 11,
+      "best_length": 19,
+      "endpoint_records_sha256": "9a0be553f23c1aba03ae1a69049a7ea37e4265c4cdc4d23de14eb5898b131e38",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_46",
+      "checked_endpoints": 11,
+      "best_length": 19,
+      "endpoint_records_sha256": "5f528091cb35db4c0d46040229dc310b54d30adc3d0a1577b1587720636200ca",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_47",
+      "checked_endpoints": 12,
+      "best_length": 19,
+      "endpoint_records_sha256": "fcd45e6a0ef5eeb7970b98063b76c361490593fe6c7f80b71345283bfb5e5cb4",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_48",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "e6310ce1391dfc88fec032a7a86e383f7d87dc102e30fe5003131580631f7575",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_49",
+      "checked_endpoints": 11,
+      "best_length": 19,
+      "endpoint_records_sha256": "fdd44fb12e3d71ea4149027fcb60a116a33b425a1cc27a0800d52c19237e6483",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_50",
+      "checked_endpoints": 12,
+      "best_length": 19,
+      "endpoint_records_sha256": "5004af9fa8c3913760774f6424eccc03d3a8a23680028dc2eea3cd6b428c6601",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_51",
+      "checked_endpoints": 7,
+      "best_length": 19,
+      "endpoint_records_sha256": "23fe476b74a4e9928f7ae53d05ca5690df70bcddb8650af5f94ae53826ff58fc",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_52",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "421796a598ad831116327c00868ec23ac833e9fa5b79dc0d2d682c4c8a8411a0",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_53",
+      "checked_endpoints": 11,
+      "best_length": 18,
+      "endpoint_records_sha256": "7030fa08652ea5600e64d094d7b7ee65b1641199f5673bf0df48ad6fbda46697",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_54",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "ea19d1ef7e182ef93fd85c52590dcf77055d213ca9453ccea2119dfb1b72e366",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_55",
+      "checked_endpoints": 14,
+      "best_length": 18,
+      "endpoint_records_sha256": "5cc9f52f152f78d5d8a31d7b26bf133380592cd47b654031e3963d07968f04ae",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_56",
+      "checked_endpoints": 15,
+      "best_length": 19,
+      "endpoint_records_sha256": "e402026d5faabff1c899e6807b37659f6a9187bdbffc656a41b2035521133bf5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_57",
+      "checked_endpoints": 16,
+      "best_length": 19,
+      "endpoint_records_sha256": "14d1095d955dac32fd904d1711cd732b46ac14c6b97268886577852ba227b40e",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_58",
+      "checked_endpoints": 18,
+      "best_length": 17,
+      "endpoint_records_sha256": "e20d646acde94e875a772b2a4adfd746ce64f212029b83a9493e9bd969fa7159",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_59",
+      "checked_endpoints": 10,
+      "best_length": 20,
+      "endpoint_records_sha256": "ce8e86de1c931f17b512dd1ad4215835cd512e76714afb48dd3eaac2607e25cb",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_60",
+      "checked_endpoints": 11,
+      "best_length": 20,
+      "endpoint_records_sha256": "a78340ee2115a78276feea1e5bc45156f0661a8c2975fc35567f341542a9898b",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_61",
+      "checked_endpoints": 10,
+      "best_length": 20,
+      "endpoint_records_sha256": "12fcdf24cf4533d64ba7d32812ca66d681878d8c824c7486f862df9f54837990",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_62",
+      "checked_endpoints": 7,
+      "best_length": 21,
+      "endpoint_records_sha256": "6a772abd79add52c17d9425135f6c299fd2a296384910c591657fffc6ba2ad74",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_63",
+      "checked_endpoints": 13,
+      "best_length": 21,
+      "endpoint_records_sha256": "9ed39bab6529cbcd06850333057e36b2b357532a9fa43ff31a6ff0e3f748c2e9",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_64",
+      "checked_endpoints": 9,
+      "best_length": 21,
+      "endpoint_records_sha256": "549e62c41029aefde352f84880618e7d3870ba50c9fe123f19b7212ca4f2c1cc",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_65",
+      "checked_endpoints": 13,
+      "best_length": 21,
+      "endpoint_records_sha256": "fb7d0f8bdf52226e4b8f8ce671bd9d9246c5c4f866676fc923226d0a501d0274",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_66",
+      "checked_endpoints": 10,
+      "best_length": 20,
+      "endpoint_records_sha256": "0023b3a7d2bb842526269ce5f3801f16755044a1307d00acfffab1b3fe0a69cc",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_67",
+      "checked_endpoints": 8,
+      "best_length": 20,
+      "endpoint_records_sha256": "b38d9220e886307239815f8301950376320d1f0cbedc110d66c4e747fdcb5a67",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_68",
+      "checked_endpoints": 11,
+      "best_length": 21,
+      "endpoint_records_sha256": "a485826e73a02ed4eac62ff97b78d6b53495def67faad0c4edfda0d51bdb7da5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_69",
+      "checked_endpoints": 12,
+      "best_length": 21,
+      "endpoint_records_sha256": "90804151df22579cbe6772f5a85618434ea9906565f87e5f6e7ab68a034777d7",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_70",
+      "checked_endpoints": 11,
+      "best_length": 21,
+      "endpoint_records_sha256": "181760587012b33b3ab3e29f8e4f95b66e1f2b061894da2a422ebe447c576d30",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_71",
+      "checked_endpoints": 16,
+      "best_length": 19,
+      "endpoint_records_sha256": "9f1914ab9a3f9c0d2e273a1556cc545f1ccbed60bea6ed350b39dbb8a8861612",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_72",
+      "checked_endpoints": 13,
+      "best_length": 18,
+      "endpoint_records_sha256": "600a0f4ff783c749a94ccf0530fa4322d62858853af01e9efecb65344b0a70c3",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_73",
+      "checked_endpoints": 12,
+      "best_length": 21,
+      "endpoint_records_sha256": "6ebc8955e7968d384716c2dd15415481a9957a0ff99b848d2bdbbd874098b1d5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_74",
+      "checked_endpoints": 13,
+      "best_length": 21,
+      "endpoint_records_sha256": "fcaf7b36519a7038b26862d082cd0c0fa48a37cbc34851ed2a71f022efdbe607",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_75",
+      "checked_endpoints": 11,
+      "best_length": 21,
+      "endpoint_records_sha256": "2124eee63b0c90447cea7abeaaa460824742af0fb6fe0a11b925bf356d9fa5e4",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_76",
+      "checked_endpoints": 11,
+      "best_length": 21,
+      "endpoint_records_sha256": "f4a22fa2a757b3efc5db1599e1e75a5a4fba56e2fe679eee2b6afe79a94aa6ec",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_77",
+      "checked_endpoints": 10,
+      "best_length": 21,
+      "endpoint_records_sha256": "f86d3bb7d4a7b9c0a819aa8b9b8e4cae724abd52e6dab7ba92ceae43b8da68e2",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_78",
+      "checked_endpoints": 9,
+      "best_length": 19,
+      "endpoint_records_sha256": "3f8c9a89ecbff74a96639f132b552ff2a21978f29e4321c9cf752b118c6f248b",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_79",
+      "checked_endpoints": 13,
+      "best_length": 21,
+      "endpoint_records_sha256": "2c429ef02d2d17ca2d80c49a09d00db37c477530238228a0becc860625477b06",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_80",
+      "checked_endpoints": 10,
+      "best_length": 19,
+      "endpoint_records_sha256": "ea176e880c0697c3db2aeb1cf86956a4d6e341223b9b2399826df7c668d95c49",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_81",
+      "checked_endpoints": 18,
+      "best_length": 18,
+      "endpoint_records_sha256": "2e4b3f7e7ba3de9eb655eec6bf5b190dc20e292a3b155278ab91d05aca66bb6a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_82",
+      "checked_endpoints": 4,
+      "best_length": 22,
+      "endpoint_records_sha256": "be9344b6c31aa7a2c09df41779f2cd99aad4c8158b628d89fc3769e415268b85",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_83",
+      "checked_endpoints": 11,
+      "best_length": 22,
+      "endpoint_records_sha256": "32d470a7b12e344d4ab159ed4099ee927dc67b1cb631446332bf6851fb1efa58",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_84",
+      "checked_endpoints": 11,
+      "best_length": 22,
+      "endpoint_records_sha256": "0e7736792add548788090e9c7d4f14ee33ea059974e83f915c54746e685d9afd",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_85",
+      "checked_endpoints": 15,
+      "best_length": 18,
+      "endpoint_records_sha256": "64ecf178bb075b36f693cccda8c5764db1fb2cecf522db58b146647daeefe4db",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_86",
+      "checked_endpoints": 4,
+      "best_length": 22,
+      "endpoint_records_sha256": "3c93c73e1c18076ebce3cdc4a41f32f7ab099b006ad4da8d9c50440cb83648bf",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_87",
+      "checked_endpoints": 6,
+      "best_length": 20,
+      "endpoint_records_sha256": "f5668579fbdbb153f292ec022a03ad4a716bed868d43ea473fc31a56532cdac6",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_88",
+      "checked_endpoints": 11,
+      "best_length": 19,
+      "endpoint_records_sha256": "da202e69c0649fb7432ab63877fb7952e6fb30c872d934dc46942eb577a284d3",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_89",
+      "checked_endpoints": 11,
+      "best_length": 23,
+      "endpoint_records_sha256": "0de0c3a57758392de6e21c2d59a24a0e113b153f5a9a22b8924ed8547d732f19",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_90",
+      "checked_endpoints": 12,
+      "best_length": 20,
+      "endpoint_records_sha256": "69d1bad033d1275d7f4ff5b96a690d1c17a62b948480d9978c1ee8e13aed4936",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_91",
+      "checked_endpoints": 13,
+      "best_length": 23,
+      "endpoint_records_sha256": "ac1a563bd1929fc8fb39d8087f41949635b1955f016025ed2da756e592753719",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_92",
+      "checked_endpoints": 9,
+      "best_length": 23,
+      "endpoint_records_sha256": "327af7f0be19544b39758adf81bb13c17b59e750c90f58bd31998c2acb616284",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_93",
+      "checked_endpoints": 13,
+      "best_length": 23,
+      "endpoint_records_sha256": "a77ad2ef4c5d82a9f438c2c8c1d6d7bfabfc65f7f641992246092b39818f4b83",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_94",
+      "checked_endpoints": 7,
+      "best_length": 23,
+      "endpoint_records_sha256": "2b55de9d016e55e68f45b09ddd41227597aba4d5fee40e2ea6505fb8cd910301",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_95",
+      "checked_endpoints": 14,
+      "best_length": 19,
+      "endpoint_records_sha256": "fd1a78084a865ada252e270404d979eb6e2878ed50d0c3df5db1ddd07bb98a16",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_96",
+      "checked_endpoints": 12,
+      "best_length": 23,
+      "endpoint_records_sha256": "9bb081f694e8d2211fc9e38fd291209a3900ebc97ef89509753a2365e3eadac5",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_97",
+      "checked_endpoints": 19,
+      "best_length": 19,
+      "endpoint_records_sha256": "c04e5a5631644f0686f96a365e63913f94b0947a4a7299ef79be226ac34bbe21",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_98",
+      "checked_endpoints": 15,
+      "best_length": 19,
+      "endpoint_records_sha256": "003debf852c3c316086cddd5359691e289003d945da7d84a5032ab1c689723c8",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_99",
+      "checked_endpoints": 13,
+      "best_length": 19,
+      "endpoint_records_sha256": "2899843d827e6aa5709318246c470d2161b30a947c5ce3a38531828468555aad",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_100",
+      "checked_endpoints": 12,
+      "best_length": 20,
+      "endpoint_records_sha256": "d0637e233abf1b26b5146bc681433e14f103b665767947b6b0c06cfcbaf1421c",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_101",
+      "checked_endpoints": 7,
+      "best_length": 25,
+      "endpoint_records_sha256": "d898a38b30e38ea694ef649ced176f6b5adb27df242687035e5f9f0cc107f75c",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_102",
+      "checked_endpoints": 13,
+      "best_length": 25,
+      "endpoint_records_sha256": "5c83d6fd65300130c156cec83873e9ae5e3976821dedf98a1291880541546d31",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_103",
+      "checked_endpoints": 9,
+      "best_length": 25,
+      "endpoint_records_sha256": "eac4546dd191ea6518f9796a9a1fd34c948fa4bed1cdfb67d01f8c2419529228",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_104",
+      "checked_endpoints": 13,
+      "best_length": 25,
+      "endpoint_records_sha256": "37a04bcffb7e3ba8d46a013b7917300ca80d63a9973b150d59dd9adf92959598",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_105",
+      "checked_endpoints": 10,
+      "best_length": 21,
+      "endpoint_records_sha256": "732064dd38eac1279d91415ed94c661ca35c1eca5f36657e38cb9942ac8a7073",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_106",
+      "checked_endpoints": 8,
+      "best_length": 21,
+      "endpoint_records_sha256": "83528e89c816923c92f712fadddd74741bd9900885b60b0950ab20b41c26c8dd",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_107",
+      "checked_endpoints": 10,
+      "best_length": 22,
+      "endpoint_records_sha256": "42896cc88c7d865f53daa78ae4cc7fea14da7bc321a61b187987e2b4e9ff6f7a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_108",
+      "checked_endpoints": 6,
+      "best_length": 24,
+      "endpoint_records_sha256": "10e2db2888220ca68d6df2f3c354c6d2959710be2c5a0a4addab43cf3ca89009",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_109",
+      "checked_endpoints": 4,
+      "best_length": 23,
+      "endpoint_records_sha256": "981258dc12ba392c5b47b28ca59692c3c210ca7d35943ed72cd2b16114eac6df",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_110",
+      "checked_endpoints": 11,
+      "best_length": 22,
+      "endpoint_records_sha256": "3a948ebc761d12e389aca8b334aa04327c48ea958e75638bcc5a02e6d85128ef",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_111",
+      "checked_endpoints": 7,
+      "best_length": 24,
+      "endpoint_records_sha256": "44b092be11750c90f59d6fef35af62dd2771e7a3f83b3c2e57784e237b72467e",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_112",
+      "checked_endpoints": 8,
+      "best_length": 24,
+      "endpoint_records_sha256": "44772b9d46640bce8bd6ea326b940d6e301931d211f73d6f1c19fac7d0893c26",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_113",
+      "checked_endpoints": 11,
+      "best_length": 23,
+      "endpoint_records_sha256": "81f6f1b60332f5529b5a97ef1e143df7e530248035d56e3184da693aae9447b1",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_114",
+      "checked_endpoints": 11,
+      "best_length": 23,
+      "endpoint_records_sha256": "8f96e8c3dcd6f1608cf72a7d36462902a73a4daf2a321f3c09083c5a5685f562",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_115",
+      "checked_endpoints": 11,
+      "best_length": 13,
+      "endpoint_records_sha256": "9eb938f9484faf86a505587f489c32801f1505526a96b489420b5b9493d50800",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_116",
+      "checked_endpoints": 4,
+      "best_length": 14,
+      "endpoint_records_sha256": "56faf219df77f66f4f942f67d93876db0a960eb576545b9f27b5c8bd0114f24d",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_117",
+      "checked_endpoints": 4,
+      "best_length": 14,
+      "endpoint_records_sha256": "351c26916666d015c9770ed3fadc0f42613c976589699c2a3329d2cc52247077",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_118",
+      "checked_endpoints": 18,
+      "best_length": 15,
+      "endpoint_records_sha256": "3a99e1b0084b4051c728a5e24c4ff22ad68c4b2dcd43cfa4c06d91b2ea52baef",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_119",
+      "checked_endpoints": 17,
+      "best_length": 16,
+      "endpoint_records_sha256": "e748eb9db12d420fab2286f44d179fe02e1d7b16b188d72318b35bc929b1f31a",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_120",
+      "checked_endpoints": 20,
+      "best_length": 15,
+      "endpoint_records_sha256": "fe752b199561e01f3c7465d3d9f546174bfa872ddf07e1359ba570b3fc5a481c",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_121",
+      "checked_endpoints": 15,
+      "best_length": 15,
+      "endpoint_records_sha256": "94ddce5dd1f09448024966d941a1d1b0f1cf92db6984ba37e3ea9ba5c52a0aa1",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_122",
+      "checked_endpoints": 15,
+      "best_length": 16,
+      "endpoint_records_sha256": "6039ad798a4a89ed2f627e7c82194f7439796c2d378ba0dfbbbd71d662e65aa6",
+      "strict_gains": 0
+    },
+    {
+      "name": "aca_123",
+      "checked_endpoints": 15,
+      "best_length": 17,
+      "endpoint_records_sha256": "1e7309132ddf7af218a347afa7c94b85a2a8f87a2a077ef9d98ee94fcabe2092",
+      "strict_gains": 0
+    }
+  ],
+  "torus_projection_checks": [
+    {
+      "m": 1,
+      "k": 1,
+      "projection_hit": true
+    },
+    {
+      "m": 1,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 1,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 1,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 1,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 1,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 2,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 3,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 4,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 5,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 6,
+      "k": 6,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 1,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 2,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 3,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 4,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 5,
+      "projection_hit": false
+    },
+    {
+      "m": 7,
+      "k": 6,
+      "projection_hit": false
+    }
+  ],
+  "summary": {
+    "special_stored_witnesses": 49,
+    "general_stored_witnesses": 115,
+    "literal_stored_witnesses": 124,
+    "all_special_endpoints": 200,
+    "all_general_endpoints": 969,
+    "all_literal_endpoints": 1483,
+    "strict_literal_gains": 0,
+    "torus_projection_cases": 42
+  },
+  "cpu_seconds": 2.4152199999999997,
+  "wall_seconds": 2.4238185409922153
+}

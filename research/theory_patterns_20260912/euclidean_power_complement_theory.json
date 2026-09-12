@@ -1,0 +1,460 @@
+{
+  "status": "independent_exact_word_checks_pass",
+  "input_name": "aca_59",
+  "original_pair": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+  ],
+  "working_pair": [
+    "XYYXyyxyy",
+    "YYYYYYYxxxx"
+  ],
+  "working_preparation": {
+    "invert_relator": 1,
+    "ambient_images": {
+      "x": "y",
+      "y": "x"
+    }
+  },
+  "d": 7,
+  "n": 4,
+  "q": 2,
+  "A": "sTTTT",
+  "H": "sTTTTuuu",
+  "T": "UUUttttS",
+  "K": "usTTTTuuusTTTTuuu",
+  "marked_basis": [
+    "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttSt",
+    "usTTTTuuusTTTTuuu",
+    "t",
+    "UUUttttS"
+  ],
+  "inverse_basis": [
+    "rTUUTuutuu",
+    "UUUSUUSUUStttt",
+    "t",
+    "suu"
+  ],
+  "basis_images": [
+    "",
+    "",
+    "x",
+    "y"
+  ],
+  "projection_map": {
+    "r": "",
+    "s": "",
+    "t": "x",
+    "u": "y"
+  },
+  "projected_pair": [
+    "XXXXXyyyXXXXyyyXYYYxxxxYYYxxxxxYYYxxxxYYYxxxx",
+    "yXXXXyyyXXXXyyy"
+  ],
+  "projected_first_row_inverted": true,
+  "projected_total_length": 60,
+  "stabilized_projected_total_length": 62,
+  "rank4_bridge": [
+    "r",
+    "s",
+    "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttSt",
+    "usTTTTuuusTTTTuuu"
+  ],
+  "rank4_bridge_total_length": 71,
+  "inverse_transformed_bridge": [
+    "rTUUTuutuu",
+    "UUUSUUSUUStttt",
+    "r",
+    "s"
+  ],
+  "inverse_transformed_bridge_total_length": 26,
+  "displayed_rank": 4,
+  "ambient_helper_rank_bound": 5,
+  "elementary_stable_expansion": "theorem-backed finite normal-product composites, not expanded; no elementary peak bound",
+  "search_performed": false,
+  "root_search_endpoint_aut_audit": {
+    "input": [
+      "YXXXyxYxxx",
+      "YYxyxYXYxyx"
+    ],
+    "steps": [
+      {
+        "input": [
+          "YXXXyxYxxx",
+          "YYxyxYXYxyx"
+        ],
+        "candidates": [
+          {
+            "map": {
+              "x": "xy",
+              "y": "y"
+            },
+            "raw": [
+              "YYXYXYXyxxyxyxy",
+              "YYxyyxYXYxyyxy"
+            ],
+            "cyclic_pair": [
+              "YXYXYXyxxyxyx",
+              "YxyyxYXYxyyx"
+            ],
+            "total": 25
+          },
+          {
+            "map": {
+              "x": "xY",
+              "y": "y"
+            },
+            "raw": [
+              "XyXyXyxYYxYxYxY",
+              "YYxxYXYxxY"
+            ],
+            "cyclic_pair": [
+              "XyXyXyxYYxYxYxY",
+              "YYxxYXYxxY"
+            ],
+            "total": 25
+          },
+          {
+            "map": {
+              "x": "yx",
+              "y": "y"
+            },
+            "raw": [
+              "YXYXYXyxxyxyx",
+              "YxyyxYXYxyyx"
+            ],
+            "cyclic_pair": [
+              "YXYXYXyxxyxyx",
+              "YxyyxYXYxyyx"
+            ],
+            "total": 25
+          },
+          {
+            "map": {
+              "x": "Yx",
+              "y": "y"
+            },
+            "raw": [
+              "YXyXyXyxYYxYxYx",
+              "YYYxxYXYxx"
+            ],
+            "cyclic_pair": [
+              "YXyXyXyxYYxYxYx",
+              "YYYxxYXYxx"
+            ],
+            "total": 25
+          },
+          {
+            "map": {
+              "x": "x",
+              "y": "yx"
+            },
+            "raw": [
+              "XYXXXyxYxxx",
+              "XYXYxyxYXXYxyxx"
+            ],
+            "cyclic_pair": [
+              "YXXXyxYxx",
+              "YXYxyxYXXYxyx"
+            ],
+            "total": 22
+          },
+          {
+            "map": {
+              "x": "x",
+              "y": "yX"
+            },
+            "raw": [
+              "xYXXXyxYxxx",
+              "xYxYxyxYYxy"
+            ],
+            "cyclic_pair": [
+              "xYXXXyxYxxx",
+              "xYxYxyxYYxy"
+            ],
+            "total": 22
+          },
+          {
+            "map": {
+              "x": "x",
+              "y": "xy"
+            },
+            "raw": [
+              "YXXXyxYxx",
+              "YXYxyxYXXYxyx"
+            ],
+            "cyclic_pair": [
+              "YXXXyxYxx",
+              "YXYxyxYXXYxyx"
+            ],
+            "total": 22
+          },
+          {
+            "map": {
+              "x": "x",
+              "y": "Xy"
+            },
+            "raw": [
+              "YXXXyxYxxxx",
+              "YxYxyxYYxyx"
+            ],
+            "cyclic_pair": [
+              "YXXXyxYxxxx",
+              "YxYxyxYYxyx"
+            ],
+            "total": 22
+          }
+        ]
+      }
+    ],
+    "final_pair": [
+      "YXXXyxYxxx",
+      "YYxyxYXYxyx"
+    ],
+    "final_total": 21,
+    "word_image_evaluations": 16,
+    "budget_scope": "additional post-search algebraic audit beyond root shared1000; no heap",
+    "source_report": "euclidean_power_complement_report.json",
+    "source_report_sha256": "3b72a227d4777a5d54554ae400502530eddc3f534ee9ed3cd1fdcaf81427b462"
+  },
+  "domain_basis_nielsen_operations": [
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 2,
+      "sign": -1,
+      "state": [
+        "r",
+        "sT",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 2,
+      "sign": -1,
+      "state": [
+        "r",
+        "sTT",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 2,
+      "sign": -1,
+      "state": [
+        "r",
+        "sTTT",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 2,
+      "sign": -1,
+      "state": [
+        "r",
+        "sTTTT",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 3,
+      "sign": 1,
+      "state": [
+        "r",
+        "sTTTTu",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 3,
+      "sign": 1,
+      "state": [
+        "r",
+        "sTTTTuu",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 1,
+      "donor": 3,
+      "sign": 1,
+      "state": [
+        "r",
+        "sTTTTuuu",
+        "t",
+        "u"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 3,
+      "donor": 1,
+      "sign": 1,
+      "state": [
+        "r",
+        "sTTTTuuu",
+        "t",
+        "usTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 3,
+      "donor": 1,
+      "sign": 1,
+      "state": [
+        "r",
+        "sTTTTuuu",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "invert",
+      "target": 1,
+      "state": [
+        "r",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": -1,
+      "state": [
+        "rsTTTTuuu",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": -1,
+      "state": [
+        "rsTTTTuuusTTTTuuu",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 2,
+      "sign": -1,
+      "state": [
+        "rsTTTTuuusTTTTuuuT",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": -1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuu",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": -1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuu",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 2,
+      "sign": 1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuut",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": 1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttS",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 1,
+      "sign": 1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttS",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "right_multiply",
+      "target": 0,
+      "donor": 2,
+      "sign": 1,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttSt",
+        "UUUttttS",
+        "t",
+        "usTTTTuuusTTTTuuu"
+      ]
+    },
+    {
+      "kind": "swap",
+      "first": 1,
+      "second": 3,
+      "state": [
+        "rsTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttSt",
+        "usTTTTuuusTTTTuuu",
+        "t",
+        "UUUttttS"
+      ]
+    }
+  ],
+  "domain_basis_nielsen_operation_count": 20
+}

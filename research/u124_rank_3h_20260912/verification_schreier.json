@@ -1,0 +1,462 @@
+{
+  "status": "PASS",
+  "saved_control_replays": [
+    {
+      "family": "power_commutator",
+      "index": 2,
+      "ranks": [
+        2,
+        4,
+        3
+      ],
+      "lengths": [
+        15,
+        16,
+        12
+      ],
+      "dictionary_units": 55,
+      "status": "PASS"
+    },
+    {
+      "family": "power_commutator",
+      "index": 3,
+      "ranks": [
+        2,
+        5,
+        4
+      ],
+      "lengths": [
+        21,
+        21,
+        15
+      ],
+      "dictionary_units": 78,
+      "status": "PASS"
+    },
+    {
+      "family": "power_commutator",
+      "index": 10,
+      "ranks": [
+        2,
+        12,
+        11
+      ],
+      "lengths": [
+        63,
+        56,
+        50
+      ],
+      "dictionary_units": 267,
+      "status": "PASS"
+    },
+    {
+      "family": "all_heights",
+      "index": 2,
+      "ranks": [
+        2,
+        4,
+        3
+      ],
+      "lengths": [
+        9,
+        14,
+        10
+      ],
+      "dictionary_units": 37,
+      "status": "PASS"
+    },
+    {
+      "family": "all_heights",
+      "index": 3,
+      "ranks": [
+        2,
+        5,
+        4
+      ],
+      "lengths": [
+        17,
+        21,
+        15
+      ],
+      "dictionary_units": 66,
+      "status": "PASS"
+    },
+    {
+      "family": "all_heights",
+      "index": 10,
+      "ranks": [
+        2,
+        12,
+        11
+      ],
+      "lengths": [
+        129,
+        70,
+        64
+      ],
+      "dictionary_units": 465,
+      "status": "PASS"
+    }
+  ],
+  "rejected_corruptions": 3,
+  "signed_residual_singletons_checked": 6,
+  "dense_index10_all_helpers_used": true,
+  "high_label_chain": {
+    "input_rank": 3,
+    "dictionary_rank": 8,
+    "dictionary_units": 46
+  },
+  "huge_index_preflight_units": 1,
+  "real_U124_detour": {
+    "status": "PASS",
+    "name": "aca_0",
+    "source_key": "current_best",
+    "baseline_length": 18,
+    "baseline_rank": 2,
+    "endpoint": [
+      [
+        -12,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        11,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -11,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        10,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -10,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        9,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -9,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        8,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -8,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        7,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -7,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        6,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -6,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        5,
+        -4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -5,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        -2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        -5,
+        2,
+        -4
+      ],
+      [
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        -3
+      ],
+      [
+        -4,
+        -2,
+        -4,
+        2,
+        4,
+        2
+      ]
+    ],
+    "endpoint_length": 214,
+    "endpoint_rank": 11,
+    "endpoint_gain": -196,
+    "boundaries": [
+      {
+        "events": 0,
+        "rank": 2,
+        "length": 18
+      },
+      {
+        "events": 1,
+        "rank": 3,
+        "length": 29
+      },
+      {
+        "events": 2,
+        "rank": 4,
+        "length": 29
+      },
+      {
+        "events": 3,
+        "rank": 5,
+        "length": 31
+      },
+      {
+        "events": 4,
+        "rank": 6,
+        "length": 35
+      },
+      {
+        "events": 5,
+        "rank": 7,
+        "length": 39
+      },
+      {
+        "events": 6,
+        "rank": 8,
+        "length": 43
+      },
+      {
+        "events": 7,
+        "rank": 9,
+        "length": 47
+      },
+      {
+        "events": 8,
+        "rank": 10,
+        "length": 51
+      },
+      {
+        "events": 9,
+        "rank": 11,
+        "length": 55
+      },
+      {
+        "events": 10,
+        "rank": 12,
+        "length": 59
+      },
+      {
+        "events": 11,
+        "rank": 11,
+        "length": 214
+      }
+    ],
+    "best_certified": [
+      [
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        -1,
+        2,
+        1,
+        2,
+        -1
+      ],
+      [
+        -2,
+        -1,
+        -1,
+        2,
+        1,
+        -2,
+        1
+      ]
+    ],
+    "best_prefix_event_count": 0,
+    "best_prefix_length": 18,
+    "best_prefix_rank": 2,
+    "best_prefix_gain": 0,
+    "strict_length_improvement": false,
+    "same_length_rank_improvement": false,
+    "canonical_endpoint_equals_baseline": false,
+    "endpoint_misses_better_prefix": true,
+    "solved_at_certified_prefix": false,
+    "certificate_scope": "theorem_backed_stable_composite",
+    "fully_expanded_elementary_path": false
+  },
+  "real_dictionary_units": 132,
+  "real_removal_units": 1,
+  "source_control_sha256": "dd39a25d82384f9e0fe760db2c545820d8ff0cd7289583ea5c8c345830fee7b6",
+  "source_sha256": "87f3983f83f748ffc50242c7a3f1f54e639e438d39d8be6d2c07a3c7300e229c",
+  "verifier_sha256": "33bf57a7cbc40044c92ab823b1f22a7d2c305b7bc1c1af11b055fb21a8399f4d",
+  "script_sha256": "c7ebb85af5635e0d41bb3f0b9c45684b11ba5e7d3f091dae7845a1d68a55f060",
+  "census_searches": 0
+}

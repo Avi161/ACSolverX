@@ -1,0 +1,5590 @@
+{
+  "status": "exact_bounded_AC_substitution_screen",
+  "rows": [
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          6
+        ],
+        "compressed_relators": [
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXZYY",
+            "XyzzYxZy"
+          ],
+          "after": [
+            "XYZ",
+            "XXXZYY",
+            "XyZZYxYz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXZYY",
+          "XyZZYxYz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 360,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXyzY",
+            "XZZZYYYxy"
+          ],
+          "after": [
+            "XYZ",
+            "XXXyzY",
+            "XZZZYYYxy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 396,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "source_witness": {
+        "defining_word": "YXX",
+        "cuts": [
+          0,
+          3
+        ],
+        "compressed_relators": [
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "relators": [
+          "ZYXX",
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYXX",
+            "YzyZx",
+            "XXXyxYxz"
+          ],
+          "after": [
+            "XXZY",
+            "XzYZy",
+            "XXXyxYxz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "ZY"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZY",
+          "XzYZy",
+          "XXXyxYxz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 368,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          0
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "rank": 3,
+        "total_length": 15,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXZxYY",
+            "YZxyz"
+          ],
+          "after": [
+            "XYxZ",
+            "XXZxYY",
+            "XzyZY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZY"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXZxYY",
+          "XzyZY"
+        ],
+        "rank": 3,
+        "total_length": 15,
+        "substitutions": 296,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "source_witness": {
+        "defining_word": "YYXX",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "relators": [
+          "ZYYXX",
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYXX",
+            "XYxxz",
+            "XYxYzY"
+          ],
+          "after": [
+            "XXZYY",
+            "XXyxZ",
+            "XYxYzY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "ZYY"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [
+          {
+            "before": [
+              "XXZYY",
+              "XXyxZ",
+              "XYxYzY"
+            ],
+            "target": 2,
+            "donor": 1,
+            "donor_sign": 1,
+            "target_cut": 0,
+            "donor_cut": 4,
+            "raw_product": "XYxYzYZXXyx",
+            "canonical_witness": {
+              "sign": 1,
+              "conjugator": "XYxYzYZ"
+            },
+            "after": [
+              "XXZYY",
+              "XXyxZ",
+              "XYzYZ"
+            ],
+            "rank": 3,
+            "total_length": 15
+          }
+        ],
+        "endpoint": [
+          "XXZYY",
+          "XXyxZ",
+          "XYzYZ"
+        ],
+        "rank": 3,
+        "total_length": 15,
+        "substitutions": 640,
+        "complete_sweeps": 2,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": true
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          4
+        ],
+        "compressed_relators": [
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "relators": [
+          "ZXY",
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XzxxZY",
+            "XZZYYYY"
+          ],
+          "after": [
+            "XYZ",
+            "XXZxyz",
+            "XZZYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXZxyz",
+          "XZZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "substitutions": 324,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "relators": [
+          "ZXy",
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XXzxZY",
+            "YYzzxyx"
+          ],
+          "after": [
+            "XyZ",
+            "XXzxZY",
+            "XYXZZyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXzxZY",
+          "XYXZZyy"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "substitutions": 324,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXYxxz",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXYxxz",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 364,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxxz",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxxz",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 364,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXYxYxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXYxYxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XYzzxZZ"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XYzzxZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          5
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XYxxxYXy",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxy",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XzxxYY",
+            "XYZyXZyz"
+          ],
+          "after": [
+            "XyZ",
+            "XXZxyy",
+            "XYZyXZyz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXZxyy",
+          "XYZyXZyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 360,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "relators": [
+          "ZXy",
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XXYZYY",
+            "XZxYzxYz"
+          ],
+          "after": [
+            "XyZ",
+            "XXYZYY",
+            "XZxYzxYz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 360,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          4
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "XXXZYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 368,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyXY",
+            "XYzzxZZ"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyXY",
+            "XYzzxZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "YYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZyyyy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 368,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyxY",
+            "XYzzxZZ"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyxY",
+            "XYzzxZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyXY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyXY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxYxxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxYxxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXyXyxxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxYxxy",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "y"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxYxxy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XzxZY",
+            "YYzyzxyxx"
+          ],
+          "after": [
+            "XyZ",
+            "XZxyz",
+            "XXYXZYZyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XZxyz",
+          "XXYXZYZyy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 348,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "source_witness": {
+        "defining_word": "XX",
+        "cuts": [
+          0,
+          9
+        ],
+        "compressed_relators": [
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "relators": [
+          "ZXX",
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXX",
+            "YYzzyZ",
+            "XYYZyzz"
+          ],
+          "after": [
+            "XXZ",
+            "YYzzyZ",
+            "XYYZyzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZ",
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "substitutions": 324,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "source_witness": {
+        "defining_word": "yxYY",
+        "cuts": [
+          2,
+          4
+        ],
+        "compressed_relators": [
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "relators": [
+          "ZyxYY",
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZyxYY",
+            "XXXyxz",
+            "XXZYxY"
+          ],
+          "after": [
+            "XYzyy",
+            "XXXyxz",
+            "XXZYxY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": -1,
+              "conjugator": "yy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYzyy",
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 384,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "source_witness": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          10
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXX",
+            "XyZYYz",
+            "XYYXYYZyz"
+          ],
+          "after": [
+            "XXZ",
+            "XyZYYz",
+            "XYYXYYZyz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZ",
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 396,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "source_witness": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          2
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXX",
+            "XyZYYz",
+            "XYYxyzzYY"
+          ],
+          "after": [
+            "XXZ",
+            "XyZYYz",
+            "XYYxyzzYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZ",
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 396,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "relators": [
+          "ZXX",
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXX",
+            "YZyZYz",
+            "YYYYZZZx"
+          ],
+          "after": [
+            "XXZ",
+            "YZyZYz",
+            "Xzzzyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZ",
+          "YZyZYz",
+          "Xzzzyyyy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 360,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "YYYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "XXXZYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXYxYxY",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXYxYxY",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXYxYxY",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XzzzxZZy"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XZZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yzz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XZZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XYxxxYXy",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxy",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxy",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXZxxYY",
+            "XyZYZYY"
+          ],
+          "after": [
+            "XYxZ",
+            "XXZxxYY",
+            "XyZYZYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 420,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXyXXzY",
+            "XZYXZyzY"
+          ],
+          "after": [
+            "XYZ",
+            "XXXyXXzY",
+            "XZYXZyzY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyxY",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyxY",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyxY",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyXY",
+            "XzzzxZZy"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyXY",
+            "XZZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yzz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyXY",
+          "XZZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyxY",
+            "XzzzxZZy"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyxY",
+            "XZZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yzz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyxY",
+          "XZZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXZxYY",
+            "XYYZyzy"
+          ],
+          "after": [
+            "XYxZ",
+            "XXZxYY",
+            "XYYZyzy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 376,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XzxxYY",
+            "XYZyzxyz"
+          ],
+          "after": [
+            "XyZ",
+            "XXZxyy",
+            "XYZyzxyz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXZxyy",
+          "XYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 360,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXYxxyXY",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxxyXY",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxxyXY",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXyXyxxY",
+            "XZZyxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXYxYxxy",
+            "XYzzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "y"
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXYxYxxy",
+          "XYzzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "XXXZYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 440,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "YYYYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZyyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZyyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 440,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "XXXZYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 440,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "relators": [
+          "ZXY",
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXyXZY",
+            "XZyZxYYYz"
+          ],
+          "after": [
+            "XYZ",
+            "XXyXZY",
+            "XZyZxYYYz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 396,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "relators": [
+          "ZXX",
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXX",
+            "XyyZYYz",
+            "XyZYZYzz"
+          ],
+          "after": [
+            "XXZ",
+            "XyyZYYz",
+            "XyZYZYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXZ",
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "source_witness": {
+        "defining_word": "XYYY",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "relators": [
+          "ZXYYY",
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYYY",
+            "XXyxYY",
+            "XyzxyXz"
+          ],
+          "after": [
+            "XYYYZ",
+            "XXyxYY",
+            "XZYxZxY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZxY"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYYYZ",
+          "XXyxYY",
+          "XZYxZxY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 428,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXyxYxY",
+            "XZxxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXyxYxY",
+            "XXzxZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXyxYxY",
+          "XXzxZZZ"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 364,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "source_witness": {
+        "defining_word": "XYY",
+        "cuts": [
+          3,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "relators": [
+          "ZXYY",
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYY",
+            "XXXXXZYYY",
+            "XyxxZYz"
+          ],
+          "after": [
+            "XYYZ",
+            "XXXXXZYYY",
+            "XXYxZyz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Zyz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYYZ",
+          "XXXXXZYYY",
+          "XXYxZyz"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 508,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "YYYYYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZyyyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZyyyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 476,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "XXXZYYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZYYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 476,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XYxxYXy",
+            "XXzxzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXyxYxy",
+            "XXzxzzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXyxYxy",
+          "XXzxzzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "substitutions": 364,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "source_witness": {
+        "defining_word": "YYX",
+        "cuts": [
+          4,
+          8
+        ],
+        "compressed_relators": [
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "relators": [
+          "ZYYX",
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYX",
+            "XXXXyyXYz",
+            "XYxzyxZ"
+          ],
+          "after": [
+            "XZYY",
+            "XXXXyyXYz",
+            "XYZXyxz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "ZYY"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "z"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XZYY",
+          "XXXXyyXYz",
+          "XYZXyxz"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 508,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXyXXzY",
+            "XZYXZZYY"
+          ],
+          "after": [
+            "XYZ",
+            "XXXyXXzY",
+            "XZYXZZYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 448,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "relators": [
+          "ZXy",
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XXYYXXz",
+            "YZyzxYzx"
+          ],
+          "after": [
+            "XyZ",
+            "XXYYXXz",
+            "XZYzyXZy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "XZy"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXYYXXz",
+          "XZYzyXZy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XXYxxyxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYYZ",
+            "XXYxxyxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXZxxYY",
+            "XYYZYZy"
+          ],
+          "after": [
+            "XYxZ",
+            "XXZxxYY",
+            "XYYZYZy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 420,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XXXyxYxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYYZ",
+            "XXXyxYxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XYxxxYXy",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYYZ",
+            "XXXyxYxy",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXXyxYxy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          14
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XXXyxYxY",
+            "XYzzxZZ"
+          ],
+          "after": [
+            "YYYZ",
+            "XXXyxYxY",
+            "XYzzxZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XXXYxYxY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYYZ",
+            "XXXYxYxY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          1
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXZxYY",
+            "YxZyzxyz"
+          ],
+          "after": [
+            "XYZ",
+            "XXXZxYY",
+            "XZYzXyZY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZY"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXZxYY",
+          "XZYzXyZY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYYY",
+            "XXYxxyXY",
+            "XZZxYzz"
+          ],
+          "after": [
+            "YYYZ",
+            "XXYxxyXY",
+            "XZZxYzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYYZ",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXyxYxY",
+            "XZxxYzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXyxYxY",
+            "XXzxZZZy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZy"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXyxYxY",
+          "XXzxZZZy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XYxxYXy",
+            "XXzxYzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXyxYxy",
+            "XXzxYzzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXyxYxy",
+          "XXzxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 404,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "source_witness": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          11
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXy",
+            "XzxxYY",
+            "XYYZyzxyz"
+          ],
+          "after": [
+            "XyZ",
+            "XXZxyy",
+            "XYYZyzxyz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yy"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XyZ",
+          "XXZxyy",
+          "XYYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 396,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXXZxYY",
+            "XYYZyzy"
+          ],
+          "after": [
+            "XYxZ",
+            "XXXZxYY",
+            "XYYZyzy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "substitutions": 420,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXYxYxY",
+            "XZZZyxzzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXYxYxY",
+            "XYzzzxZZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXYxYxY",
+          "XYzzzxZZZZ"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 536,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          16
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XzzzzxZZZy"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XZZZZxYzzz"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yzzz"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XZZZZxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 536,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          8
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XYxxxYXy",
+            "XZZZyxzzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxy",
+            "XYzzzxZZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "Yxy"
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxy",
+          "XYzzzxZZZZ"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 536,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "source_witness": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZYY",
+            "XXXyxYxY",
+            "XZZZyxzzzz"
+          ],
+          "after": [
+            "YYZ",
+            "XXXyxYxY",
+            "XYzzzxZZZZ"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZZZZ"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "YYZ",
+          "XXXyxYxY",
+          "XYzzzxZZZZ"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 536,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XXXZxxYY",
+            "XyZYZYY"
+          ],
+          "after": [
+            "XYxZ",
+            "XXXZxxYY",
+            "XyZYZYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "substitutions": 464,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "source_witness": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXY",
+            "XXXXyXXzY",
+            "XZyzxyzY"
+          ],
+          "after": [
+            "XYZ",
+            "XXXXyXXzY",
+            "XZYzxyZY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "yZY"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYZ",
+          "XXXXyXXzY",
+          "XZYzxyZY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 492,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          7
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "XXXZYYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZYYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 476,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XYZyzxY",
+            "YYYYYYYxYYz"
+          ],
+          "after": [
+            "XYxZ",
+            "XYZyzxY",
+            "XyyyyyyyZyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "Zyy"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XYZyzxY",
+          "XyyyyyyyZyy"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "substitutions": 596,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          10,
+          6
+        ],
+        "compressed_relators": [
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XYYzxZy",
+            "XXXZYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XYYzxZy",
+            "XXXZYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 552,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "YYYYYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZyyyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZyyyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "substitutions": 476,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "source_witness": {
+        "defining_word": "xYX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "relators": [
+          "ZxYX",
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZxYX",
+            "XYxZyzY",
+            "YYYYYYYZyyx"
+          ],
+          "after": [
+            "XZxY",
+            "XYxZyzY",
+            "XYYzyyyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "ZxY"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XZxY",
+          "XYxZyzY",
+          "XYYzyyyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "substitutions": 596,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "source_witness": {
+        "defining_word": "XYx",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXYx",
+            "XYZYzxy",
+            "YYYYYYYxyyz"
+          ],
+          "after": [
+            "XYxZ",
+            "XYZYzxy",
+            "XyyyyyyyZYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": "ZYY"
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XYxZ",
+          "XYZYzxy",
+          "XyyyyyyyZYY"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "substitutions": 596,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XzxZY",
+            "XXXZYYYYYYYY"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxyz",
+            "XXXZYYYYYYYY"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": -1,
+              "conjugator": "yz"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxyz",
+          "XXXZYYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 512,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "source_witness": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "result": {
+        "initial_normalization": {
+          "before": [
+            "ZXXy",
+            "XZxYz",
+            "YYYYYYYYzxxx"
+          ],
+          "after": [
+            "XXyZ",
+            "XZxYz",
+            "XXXZyyyyyyyy"
+          ],
+          "canonical_witnesses": [
+            {
+              "sign": 1,
+              "conjugator": "Z"
+            },
+            {
+              "sign": 1,
+              "conjugator": ""
+            },
+            {
+              "sign": -1,
+              "conjugator": ""
+            }
+          ]
+        },
+        "steps": [],
+        "endpoint": [
+          "XXyZ",
+          "XZxYz",
+          "XXXZyyyyyyyy"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "substitutions": 512,
+        "complete_sweeps": 1,
+        "stop": "no_strict_AC_substitution_descent"
+      },
+      "improves_prefix": false
+    }
+  ],
+  "source_report_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+  "script_sha256": "4bdd1841cf0257b55eaef70a8280fd3b7dea72506969f22bf568713f80ae0fdf",
+  "prefix_improvement_ids": [
+    "aca_24"
+  ],
+  "substitutions": 36328,
+  "maximum_substitutions_per_row": 640,
+  "strict_steps": 1,
+  "cpu_seconds": 1.173052,
+  "wall_seconds_including_cooling": 6.02687658299692,
+  "scope": "Every positive requires separate replay before final-table admission. First-sweep completeness tests one substitution from each retained state, not all AC paths or plateaus.",
+  "locally_minimal_endpoint_rows": 84,
+  "metadata_correction": {
+    "description": "Renamed complete_negative_rows to locally_minimal_endpoint_rows; all saved rows and timings unchanged. Original executed script_sha256 retained.",
+    "current_reporting_script_sha256": "c0d96d2fdf979d4d99b00990aeefb90263eed1e3fc60290048af09d2c071d665"
+  }
+}

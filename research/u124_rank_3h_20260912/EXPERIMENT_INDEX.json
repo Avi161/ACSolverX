@@ -1,0 +1,637 @@
+[
+  {
+    "file": "aliases_v3_pilot.json",
+    "sha256": "5640cee272263ec1f2485d56d12ffb4de2371c77e3215913b9270f9abfad97ba",
+    "module": "exchange_v3_aliases",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11000,
+    "cpu_seconds": 0.06997799999999996,
+    "wall_seconds": 0.07254066620953381,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "aliases_v3_rank2.json",
+    "sha256": "351e144445be3a14bdb5a029dd6c32703e0148a842849a4e39361aa0b6712a5c",
+    "module": "exchange_v3_aliases",
+    "rows": 35,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 35000,
+    "cpu_seconds": 0.11991299999999999,
+    "wall_seconds": 0.1214383312035352,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "aut_collect_pilot21.json",
+    "sha256": "6095af954bf268f0786d8f62d834d0c6eb15d547d6563d125e08594e1f9b0d25",
+    "module": "exchange_aut_collect",
+    "rows": 21,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 19032,
+    "cpu_seconds": 0.30324399999999974,
+    "wall_seconds": 0.30452316510491073,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "aut_collect_remaining103.json",
+    "sha256": "658903ad8413069de5cd76ba408374855299a9334a58cb05cc56d0b119639694",
+    "module": "exchange_aut_collect",
+    "rows": 103,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 50583,
+    "cpu_seconds": 1.1805229999999989,
+    "wall_seconds": 1.1988243800587952,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "central_exchange_all33.json",
+    "sha256": "9c8a39ccb3f081ede813d415ccb1273817db051f7f110c52f7a2878117015fdc",
+    "module": "theory_conjugate_exchange_central",
+    "rows": 33,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 33000,
+    "cpu_seconds": 1.0494189999999999,
+    "wall_seconds": 1.0569324996322393,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "collector_aliases_pilot17.json",
+    "sha256": "99adb21bc0befcce8e55a1e867f191871bbd7fa021d23097d8baa03ebd883b94",
+    "module": "exchange_collect_aliases",
+    "rows": 17,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 17000,
+    "cpu_seconds": 0.35447100000000004,
+    "wall_seconds": 0.3553807525895536,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "collector_aliases_remaining107.json",
+    "sha256": "e321df0bc3c9b01e7d16f8d3477e454b8948b1eaf5eff7595d078126b52eb988",
+    "module": "exchange_collect_aliases",
+    "rows": 107,
+    "new_gains_beyond_imported_seeds": {
+      "aca_5": 1
+    },
+    "charged_units": 107000,
+    "cpu_seconds": 2.2512050000000006,
+    "wall_seconds": 2.2646447911392897,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "collector_left_all124.json",
+    "sha256": "7a75315dc364a16c537a6107849db4db3e1daf4933b09779cd67a387ac4f57f6",
+    "module": "collector_left",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 124000,
+    "cpu_seconds": 2.3933629999999995,
+    "wall_seconds": 2.4083881699480116,
+    "maximum_generated_rank": 8
+  },
+  {
+    "file": "collector_pilot.json",
+    "sha256": "e86dc561b09b55f74aa8351d37e283037c019b64ac721004efccea9a84a93036",
+    "module": "exchange_collect",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11000,
+    "cpu_seconds": 0.16509900000000005,
+    "wall_seconds": 0.16552933398634195,
+    "maximum_generated_rank": 7
+  },
+  {
+    "file": "collector_prefix_pilot.json",
+    "sha256": "e27ef25c1c37d8e8c9a71346015d37aec3024a0a3cd9e1114d9b247a876f845b",
+    "module": "exchange_collect_prefix",
+    "rows": 15,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 15000,
+    "cpu_seconds": 0.3132619999999999,
+    "wall_seconds": 0.3143010011408478,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "collector_prefix_remaining109.json",
+    "sha256": "e9755de632e00bfdf4e8589ac0394cf783696601e089e19634d32fb49a7970b9",
+    "module": "exchange_collect_prefix",
+    "rows": 109,
+    "new_gains_beyond_imported_seeds": {
+      "aca_44": 1,
+      "aca_56": 1
+    },
+    "charged_units": 109000,
+    "cpu_seconds": 2.3710650000000006,
+    "wall_seconds": 2.383287788135931,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "collector_remaining113.json",
+    "sha256": "db876a613bec3b8b362e79f36b2c8dc8aa508953931ffad7007c84c8840dfc30",
+    "module": "exchange_collect",
+    "rows": 113,
+    "new_gains_beyond_imported_seeds": {
+      "aca_43": 1,
+      "aca_67": 1,
+      "aca_79": 1,
+      "aca_87": 1,
+      "aca_88": 1,
+      "aca_106": 1
+    },
+    "charged_units": 113000,
+    "cpu_seconds": 1.8427749999999998,
+    "wall_seconds": 1.8529577907174826,
+    "maximum_generated_rank": 7
+  },
+  {
+    "file": "collector_right_all124.json",
+    "sha256": "e3bcd5371ab5343541db9f1fb405447e1a5bcca61d0753e45cb9e858ed02e108",
+    "module": "collector_right",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 124000,
+    "cpu_seconds": 2.841913000000001,
+    "wall_seconds": 2.849343833979219,
+    "maximum_generated_rank": 14
+  },
+  {
+    "file": "collector_second_pass13.json",
+    "sha256": "2ee70e6c6cb0a351c42aa8c465a15dc1f5de73786e756d4b5cb10da376834e50",
+    "module": "exchange_collect",
+    "rows": 13,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 13000,
+    "cpu_seconds": 0.186033,
+    "wall_seconds": 0.18652045843191445,
+    "maximum_generated_rank": 7
+  },
+  {
+    "file": "commutators_pilot.json",
+    "sha256": "df804fa8089dede8211a0bffeeb366a8616a4cf4a6fc485d812c85d16bbd0a12",
+    "module": "donor_commutators",
+    "rows": 10,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 10000,
+    "cpu_seconds": 0.23283900000000005,
+    "wall_seconds": 0.2338080001063645,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "completion_pilot.json",
+    "sha256": "9b3eb6a8c676f838c4804aea26dff362eec931c79b32db64610e9ce35fc7898d",
+    "module": "completion",
+    "rows": 9,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 9000,
+    "cpu_seconds": 1.548367,
+    "wall_seconds": 1.5495157919358462,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "conjugacy_rank2.json",
+    "sha256": "f0f7d5822a1a3cda64120d4f64fd1b031b0e48b6ad475e0cbab922709aef109b",
+    "module": "exchange_conjugacy",
+    "rows": 35,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 14816,
+    "cpu_seconds": 0.07001800000000019,
+    "wall_seconds": 0.07033487083390355,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "conjugate_bridge_all33.json",
+    "sha256": "6b78cc51f2059483b5b552aa887b460f364ebd40d31ddae3ff8a5653d99af016",
+    "module": "theory_conjugate_bridge",
+    "rows": 33,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 33000,
+    "cpu_seconds": 0.9706030000000003,
+    "wall_seconds": 0.9727855445817113,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "conjugate_exchange_all33.json",
+    "sha256": "aedece6dc5587f01a133db351718d3f352064e10c3fa20a0593aabf0ff28a420",
+    "module": "theory_conjugate_exchange",
+    "rows": 33,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 33000,
+    "cpu_seconds": 1.1590390000000004,
+    "wall_seconds": 1.160847463645041,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "corridor_pilot.json",
+    "sha256": "13791be3331252f67302f6d8791df4cfb0f61ad0e81734620ff68950af14b80b",
+    "module": "theory_corridor",
+    "rows": 7,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 2709,
+    "cpu_seconds": 0.024389999999999967,
+    "wall_seconds": 0.024402166018262506,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "corridor_remaining_roots.json",
+    "sha256": "05e4dedffacd881f27ef54b015a3754d416ccaae7397396b973c4d02e490c8b3",
+    "module": "theory_corridor",
+    "rows": 36,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 14801,
+    "cpu_seconds": 0.20348700000000003,
+    "wall_seconds": 0.20506241894327104,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "dictionary_exchange_all124.json",
+    "sha256": "0ec5723af0965781d811b868180c8906480b4e0c401f4fb1135c8f25f40e6b90",
+    "module": "dictionary_exchange",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 87292,
+    "cpu_seconds": 3.610033999999999,
+    "wall_seconds": 3.6233782367780805,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "dictionary_exchange_pilot.json",
+    "sha256": "b1c4f02d86234884fae141b222babfffc0f6d5c725278b3f4668affc787ce0d2",
+    "module": "dictionary_exchange",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11000,
+    "cpu_seconds": 0.4198170000000001,
+    "wall_seconds": 0.4212392931804061,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "donor_relative_pilot.json",
+    "sha256": "705d4f598471d2e13eaa6b7dd0e3f1f8c63649e78e571eadbb0c8576c89f9160",
+    "module": "donor_relative",
+    "rows": 10,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 10000,
+    "cpu_seconds": 0.04744399999999996,
+    "wall_seconds": 0.05009716469794512,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "endpoint_closure_all124.json",
+    "sha256": "c7942ef3e92785570c25c96440dfcb6da784031daef6f85998ac36a47a78ce93",
+    "module": "endpoint_closure",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 946,
+    "cpu_seconds": 0.09583399999999981,
+    "wall_seconds": 0.0971759152598679,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "flow_exact_diagnostic.json",
+    "sha256": "cd72e23a64e2b9c88ca6afc72b4fb7a5bafff3be3102071997ea0144b5d1fbe3",
+    "module": "flow_diagnostic / theory_flow_exact",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11191,
+    "cpu_seconds": 0.06335799999999983,
+    "wall_seconds": 0.06465654680505395,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "flow_exact_pilot.json",
+    "sha256": "0d8380df892988b8898f0795ea78cbda300b0883127eb4d4c42083d60e9a1bf4",
+    "module": "theory_flow_exact",
+    "rows": 7,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 3027,
+    "cpu_seconds": 0.012210999999999944,
+    "wall_seconds": 0.012199667980894446,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "multi_metric_pilot.json",
+    "sha256": "2cc9715be7ecd96ac5f0ae3d1045ebd0209a5c1c35e5154138b5304eab1ca25d",
+    "module": "theory_multi_metric",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 1737,
+    "cpu_seconds": 0.034664999999999974,
+    "wall_seconds": 0.034873335156589746,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "neutral_after_collector.json",
+    "sha256": "e9d8d56e413385975fb21a47f2efa58574e28ba931eb5fce5ffec1ed8aa8c46f",
+    "module": "neutral_donor",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 7818,
+    "cpu_seconds": 0.528342,
+    "wall_seconds": 0.5301311239600182,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "neutral_aut_exchange_pilot17.json",
+    "sha256": "082827ee9b0035911ac2c47c0313d019e010c0f14aac4441e9c21d4f873d366f",
+    "module": "neutral_aut_exchange",
+    "rows": 17,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 15032,
+    "cpu_seconds": 0.31458099999999994,
+    "wall_seconds": 0.31530512566678226,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "neutral_aut_exchange_remaining107.json",
+    "sha256": "a0e03c093c73edf744d9254703f076c37fef0e20ba0d340bf0d54147580cca5e",
+    "module": "neutral_aut_exchange",
+    "rows": 107,
+    "new_gains_beyond_imported_seeds": {
+      "aca_99": 1
+    },
+    "charged_units": 54583,
+    "cpu_seconds": 1.278675000000001,
+    "wall_seconds": 1.2967040808871388,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "nonoverlap_products_all124.json",
+    "sha256": "0b0350bc219572b8ba1c7fd3fd2ccb71faf4164b977b7f9bdf0d176de3d7d3b5",
+    "module": "nonoverlap_products",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 124000,
+    "cpu_seconds": 3.0054250000000025,
+    "wall_seconds": 3.0309389610774815,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "peeling_all124.json",
+    "sha256": "b3b4dcc6cca054b5534480a238804e9e62af9e77344dfc074ef8296b79c8ff10",
+    "module": "rank_peeling",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 5182,
+    "cpu_seconds": 0.38997199999999976,
+    "wall_seconds": 0.39646825194358826,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "plateau_pilot.json",
+    "sha256": "4322b5597adeb04e545c73729ea2864c229edc2ee9c2342be544e45600581675",
+    "module": "plateau",
+    "rows": 6,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 3569,
+    "cpu_seconds": 0.2264440000000001,
+    "wall_seconds": 0.23134708288125694,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "plateau_remainder.json",
+    "sha256": "06157427e5324d5866c70fd924cb084123a96accb331a951fd4d97eccd26dbf2",
+    "module": "plateau",
+    "rows": 118,
+    "new_gains_beyond_imported_seeds": {
+      "aca_75": 1,
+      "aca_83": 1,
+      "aca_84": 1
+    },
+    "charged_units": 24738,
+    "cpu_seconds": 2.2745309999999983,
+    "wall_seconds": 2.2798621212132275,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "plateau_whitehead_pilot.json",
+    "sha256": "1fb0c8302f72c388bd1df85d95b61e3378ced7b20f850319694bcb8d7eab26f7",
+    "module": "plateau",
+    "rows": 6,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 6000,
+    "cpu_seconds": 0.13887599999999994,
+    "wall_seconds": 0.13941520801745355,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "plateau_whitehead_remainder.json",
+    "sha256": "6f0e3f3b7f00860d1be6b6309ee1cc5c2bad226676b6c643715fa8f927c4a6c5",
+    "module": "plateau",
+    "rows": 118,
+    "new_gains_beyond_imported_seeds": {
+      "aca_75": 1,
+      "aca_83": 1,
+      "aca_84": 1
+    },
+    "charged_units": 50835,
+    "cpu_seconds": 1.7483889999999995,
+    "wall_seconds": 1.7670879564248025,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "primitive_root_pilot.json",
+    "sha256": "afba38dfb9be49bab318cdd8874fe8085b0bf16da505cb72b1982395cb48cc18",
+    "module": "root_then_flow",
+    "rows": 9,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 570,
+    "cpu_seconds": 0.027699,
+    "wall_seconds": 0.028608499793335795,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "root_metric_pilot.json",
+    "sha256": "a5b59b1af7ac8b4a6ea28ddd564e928dcca403edacf934189c99a8ec7afc24c5",
+    "module": "theory_root_metric",
+    "rows": 9,
+    "new_gains_beyond_imported_seeds": {
+      "aca_101": 1
+    },
+    "charged_units": 4375,
+    "cpu_seconds": 0.033393000000000006,
+    "wall_seconds": 0.0335475814063102,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "root_metric_remaining.json",
+    "sha256": "00c10f70da9ef3f59fb8d2404535c520504581d39e6ef3815f284d23e2668c31",
+    "module": "theory_root_metric",
+    "rows": 32,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 17431,
+    "cpu_seconds": 0.09415800000000007,
+    "wall_seconds": 0.10442649852484465,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "root_templates_pilot.json",
+    "sha256": "299104e2ee04086bfe681993feb268197cbbdda3f909129cdd7739fbca57c46b",
+    "module": "exchange_root",
+    "rows": 10,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 9817,
+    "cpu_seconds": 0.0847,
+    "wall_seconds": 0.08515846030786633,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "schreier_descend_pilot.json",
+    "sha256": "cbb313ec4a324610a790d195125456be52a427d14d1c198736b006b2d8e3698a",
+    "module": "exchange_schreier_descend",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11000,
+    "cpu_seconds": 0.19093199999999994,
+    "wall_seconds": 0.19185283314436674,
+    "maximum_generated_rank": 8
+  },
+  {
+    "file": "schreier_pilot.json",
+    "sha256": "559a36215d44c5f2e0a4438c811e74568ac5c7ce68f543c6f8646ff27df560b1",
+    "module": "exchange_schreier",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 11000,
+    "cpu_seconds": 0.15633499999999995,
+    "wall_seconds": 0.15702837333083153,
+    "maximum_generated_rank": 22
+  },
+  {
+    "file": "stable_metric_pilot.json",
+    "sha256": "d141df2f941a70e8e6d5ac6ffadfb886712232fb7f69b199884db9f7270c874f",
+    "module": "theory_stable_metric",
+    "rows": 11,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 1737,
+    "cpu_seconds": 0.04707600000000001,
+    "wall_seconds": 0.0471060813870281,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "stable_metric_remaining32.json",
+    "sha256": "e8720d69aea3a7cf33f60d8b911faaa022640d8e8dd5894ccd38f9f0b596580e",
+    "module": "theory_stable_metric",
+    "rows": 32,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 21739,
+    "cpu_seconds": 0.29817899999999997,
+    "wall_seconds": 0.2986372457817197,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "stable_metric_v2_all33.json",
+    "sha256": "ebe5a2f05ffcb98834f159ad801e83ebf547ae8062f3bfa1a46487100bbc95dc",
+    "module": "theory_stable_metric_v2",
+    "rows": 33,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 13054,
+    "cpu_seconds": 0.29411200000000004,
+    "wall_seconds": 0.3010500408709049,
+    "maximum_generated_rank": 3
+  },
+  {
+    "file": "templates_pilot.json",
+    "sha256": "d3ee28f6e087f3f34e1f14a635667ecd177a57492c7b2b0ba7cfee8a8f717051",
+    "module": "exchange_templates",
+    "rows": 9,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 9000,
+    "cpu_seconds": 0.09560200000000008,
+    "wall_seconds": 0.10227991524152458,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "templates_remainder.json",
+    "sha256": "e28bab9db9e0658973e14fa8a5f8babc7d9d399e5341c1cb540cb37e59ba3a62",
+    "module": "exchange_templates",
+    "rows": 115,
+    "new_gains_beyond_imported_seeds": {
+      "aca_95": 1
+    },
+    "charged_units": 115000,
+    "cpu_seconds": 1.9496770000000003,
+    "wall_seconds": 1.9794479983393103,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "templates_v2_pilot.json",
+    "sha256": "24614208e6fb6e6f0dcf43f2bfb5fe729082e33724f0080ebdaaa925746b20eb",
+    "module": "exchange_v2_probe",
+    "rows": 9,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 9000,
+    "cpu_seconds": 0.08308399999999996,
+    "wall_seconds": 0.0834181655663997,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "templates_v2_remainder.json",
+    "sha256": "6f0b173655caece5442fa42098ec27ecb706a5de95b168a6b3a49aae1d1fc0ef",
+    "module": "exchange_v2_probe",
+    "rows": 115,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 115000,
+    "cpu_seconds": 1.1272940000000005,
+    "wall_seconds": 1.1396967514883727,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "torus_exchange_all33.json",
+    "sha256": "913fbeafcb87c06bb6bc70126f16a0a05c0741955dd867a1f7f73d819355a539",
+    "module": "theory_conjugate_exchange_torus",
+    "rows": 33,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 33000,
+    "cpu_seconds": 1.092598,
+    "wall_seconds": 1.1014677945058793,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "universal_metric_nonbs.json",
+    "sha256": "2dbd3b621b8dbeb366925bd8062d30e76095d98bc61030e6e4a5e036c91e6f86",
+    "module": "universal_root_metric",
+    "rows": 10,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 2415,
+    "cpu_seconds": 0.11588600000000002,
+    "wall_seconds": 0.11613291641697288,
+    "maximum_generated_rank": 4
+  },
+  {
+    "file": "uphill_score_all124.json",
+    "sha256": "e3b7e3b785f5e63da95a63cbd9c3291df9e44cb1d081b863caefa3e8501d5294",
+    "module": "uphill_score",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 124000,
+    "cpu_seconds": 3.1956719999999974,
+    "wall_seconds": 3.2177783742081374,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "uphill_whitehead_all124.json",
+    "sha256": "a3e7f5515bce27890e7aabf20f073302ef41ab3eaf32cbabbc67b5c856e8d294",
+    "module": "uphill_whitehead",
+    "rows": 124,
+    "new_gains_beyond_imported_seeds": {
+      "aca_72": 1,
+      "aca_80": 1,
+      "aca_111": 1
+    },
+    "charged_units": 124000,
+    "cpu_seconds": 3.869629999999998,
+    "wall_seconds": 3.9016572050750256,
+    "maximum_generated_rank": 5
+  },
+  {
+    "file": "uphill_whitehead_pilot.json",
+    "sha256": "c07d3cd1a96fe838787542f7e9c1e1848e524bb70e2425143e9e6c193a486c13",
+    "module": "uphill_whitehead",
+    "rows": 14,
+    "new_gains_beyond_imported_seeds": {},
+    "charged_units": 14000,
+    "cpu_seconds": 0.425602,
+    "wall_seconds": 0.4267711662687361,
+    "maximum_generated_rank": 3
+  }
+]

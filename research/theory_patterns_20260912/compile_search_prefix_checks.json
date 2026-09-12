@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "cut_sign_target_cases": 184,
+  "rejected_corruptions": 4,
+  "cpu_seconds": 0.010276,
+  "hashes": {
+    "check_compile_search_prefix.py": "cca84f0dc47b43955b5814f3b50a7c55ff766a841fd0feebbcab748d56230090",
+    "compile_search_prefix.py": "26d91bb4a82978d83655afa97037dd81a75c685240106e24d3f7beac3264621f",
+    "ac_words.py": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa"
+  },
+  "scope": "Different solver and research canonical alphabets bridged by explicit witnesses. Every generator-level stream is replayed by ac_words.replay and compared with the separate pure-Python substitution oracle."
+}

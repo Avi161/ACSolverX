@@ -1,0 +1,2979 @@
+{
+  "status": "all124_stable_prefixes_author_verified_pending_independent_audit",
+  "source_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+  "script_sha256": "89b4b58cecc542c4e657983999f654c91c679f0011272761da5e4aec1feea8c3",
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 109,
+      "best": null,
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 96,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          6
+        ],
+        "compressed_relators": [
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 130,
+      "best": {
+        "defining_word": "YXX",
+        "cuts": [
+          0,
+          3
+        ],
+        "compressed_relators": [
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "relators": [
+          "ZYXX",
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 93,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 80,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 92,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          0
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "rank": 3,
+        "total_length": 15,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "best": {
+        "defining_word": "YYXX",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "relators": [
+          "ZYYXX",
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 91,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 95,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          4
+        ],
+        "compressed_relators": [
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "relators": [
+          "ZXY",
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "relators": [
+          "ZXy",
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "best": null,
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 93,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          5
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 113,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "relators": [
+          "ZXy",
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 131,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          4
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 131,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 129,
+      "best": {
+        "defining_word": "XX",
+        "cuts": [
+          0,
+          9
+        ],
+        "compressed_relators": [
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "relators": [
+          "ZXX",
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "rank": 3,
+        "total_length": 16,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 126,
+      "best": {
+        "defining_word": "yxYY",
+        "cuts": [
+          2,
+          4
+        ],
+        "compressed_relators": [
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "relators": [
+          "ZyxYY",
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "best": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          10
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "best": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          2
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "best": null,
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 142,
+      "best": {
+        "defining_word": "XX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "relators": [
+          "ZXX",
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 114,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 146,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 150,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "relators": [
+          "ZXY",
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "best": {
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "relators": [
+          "ZXX",
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "best": {
+        "defining_word": "XYYY",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "relators": [
+          "ZXYYY",
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 192,
+      "best": {
+        "defining_word": "XYY",
+        "cuts": [
+          3,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "relators": [
+          "ZXYY",
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 167,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 167,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "rank": 3,
+        "total_length": 17,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 17
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 191,
+      "best": {
+        "defining_word": "YYX",
+        "cuts": [
+          4,
+          8
+        ],
+        "compressed_relators": [
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "relators": [
+          "ZYYX",
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 151,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "relators": [
+          "ZXy",
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          14
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 126,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          1
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "best": {
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "relators": [
+          "ZYYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "best": {
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          11
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "total_length": 18,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 18
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          16
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 192,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          8
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "best": {
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 164,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "relators": [
+          "ZXYx",
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "total_length": 19,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 19
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 163,
+      "best": {
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "relators": [
+          "ZXY",
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 169,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          7
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 215,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 22
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 197,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          10,
+          6
+        ],
+        "compressed_relators": [
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 169,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 20,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 20
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 217,
+      "best": {
+        "defining_word": "xYX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "relators": [
+          "ZxYX",
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 22
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 216,
+      "best": {
+        "defining_word": "XYx",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "relators": [
+          "ZXYx",
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "rank": 3,
+        "total_length": 22,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 22
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 171,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 171,
+      "best": {
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "total_length": 21,
+        "certificate_kind": "theorem_backed_stable_definition_and_literal_compression"
+      },
+      "best_length_including_start": 21
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "candidate_definitions": 57,
+      "best": null,
+      "best_length_including_start": 13
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "candidate_definitions": 76,
+      "best": null,
+      "best_length_including_start": 14
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "candidate_definitions": 76,
+      "best": null,
+      "best_length_including_start": 14
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 91,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "best": null,
+      "best_length_including_start": 15
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "best": null,
+      "best_length_including_start": 16
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "best": null,
+      "best_length_including_start": 17
+    }
+  ],
+  "strict_stable_gain_ids": [
+    "aca_4",
+    "aca_5",
+    "aca_6",
+    "aca_16",
+    "aca_24",
+    "aca_32",
+    "aca_33",
+    "aca_37",
+    "aca_38",
+    "aca_39",
+    "aca_40",
+    "aca_41",
+    "aca_42",
+    "aca_43",
+    "aca_44",
+    "aca_45",
+    "aca_46",
+    "aca_47",
+    "aca_48",
+    "aca_49",
+    "aca_50",
+    "aca_51",
+    "aca_52",
+    "aca_53",
+    "aca_54",
+    "aca_55",
+    "aca_56",
+    "aca_57",
+    "aca_59",
+    "aca_60",
+    "aca_61",
+    "aca_62",
+    "aca_63",
+    "aca_64",
+    "aca_65",
+    "aca_66",
+    "aca_67",
+    "aca_68",
+    "aca_69",
+    "aca_70",
+    "aca_71",
+    "aca_72",
+    "aca_73",
+    "aca_74",
+    "aca_75",
+    "aca_76",
+    "aca_77",
+    "aca_78",
+    "aca_79",
+    "aca_80",
+    "aca_81",
+    "aca_82",
+    "aca_83",
+    "aca_84",
+    "aca_85",
+    "aca_86",
+    "aca_87",
+    "aca_88",
+    "aca_89",
+    "aca_90",
+    "aca_91",
+    "aca_92",
+    "aca_93",
+    "aca_94",
+    "aca_95",
+    "aca_96",
+    "aca_97",
+    "aca_98",
+    "aca_99",
+    "aca_100",
+    "aca_101",
+    "aca_102",
+    "aca_103",
+    "aca_104",
+    "aca_105",
+    "aca_106",
+    "aca_107",
+    "aca_108",
+    "aca_109",
+    "aca_110",
+    "aca_111",
+    "aca_112",
+    "aca_113",
+    "aca_114"
+  ],
+  "rank2_gain_ids": [],
+  "solved_ids": [],
+  "starting_total": 2356,
+  "best_total_including_start": 2199,
+  "candidate_definitions": 15814,
+  "maximum_candidate_definitions_per_input": 217,
+  "cpu_seconds": 0.922531,
+  "wall_seconds_including_cooling": 8.064914332935587,
+  "scope": "One fresh generator z for one old literal word w, all cyclic cuts and shortest disjoint w/w^-1 tokenizations; length<=floor(inputtotal/2), since a longer definingword cannot occur twice and yield a strict token-count gain. No heap search. No claim of optimality under general stable AC or hidden-cancellation compression.",
+  "proof": "STABLE_CERTIFICATE_CONVENTIONS.md; known Miller-Schupp triviality guarantees finite normal-product realization of addingZ*w. Then exact ordinary donor-restored substitutions compress each displayed block. No normal-product expansion emitted; all three relators retained."
+}

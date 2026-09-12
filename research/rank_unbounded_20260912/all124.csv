@@ -1,0 +1,125 @@
+name,archival_initial_length,saved_rank2_length,previous_any_rank_length,best_any_rank_length,best_rank,new_gain,rank_reduction,solved,best_words,certificate_kind,witness_pointer
+aca_0,18,18,18,18,2,0,0,False,"(YXXyxYx, YYYYYYXyxyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/0
+aca_1,15,15,15,15,2,0,0,False,"(YYXXyxx, YYYxyXyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/1
+aca_2,16,16,16,16,2,0,0,False,"(YXXyXyx, YYYXyyyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/2
+aca_3,17,17,17,17,2,0,0,False,"(YXXyxYx, YYYYYxyxyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/3
+aca_4,18,18,17,17,3,0,0,False,"(ZXY, XXXZYY, XyzzYxZy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/4
+aca_5,19,19,18,18,3,0,0,False,"(Zxy, YYYzXyzzx, YZXXyX)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/5
+aca_6,19,19,17,17,3,0,0,False,"(ZYXX, YzyZx, XXXyxYxz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/6
+aca_7,16,16,16,15,3,1,0,False,"(UZuYz, UYZY, UyyyZZ)",theorem_backed_stable_composite,observed_pilot.json#/rows/0/best_witness
+aca_8,15,15,15,15,2,0,0,False,"(YXyXYxx, YYXYXyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/8
+aca_9,15,15,15,15,2,0,0,False,"(YXXXyxx, YYYXXyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/9
+aca_10,15,15,15,15,2,0,0,False,"(YXXXyxx, YYXYXyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/10
+aca_11,15,15,15,15,2,0,0,False,"(YXXXyxx, YYYXyxyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/11
+aca_12,15,15,15,15,2,0,0,False,"(YXXXyxx, YYXYxyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/12
+aca_13,16,16,15,15,3,0,0,False,"(XYXYz, XZxzy, Xyzyy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/13
+aca_14,15,15,15,15,2,0,0,False,"(YXXyXyx, YYYXyyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/14
+aca_15,17,17,17,17,2,0,0,False,"(YXXyXyxx, YYYYxyyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/15
+aca_16,17,17,15,15,3,0,0,False,"(ZXYx, XXZxYY, YZxyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/16
+aca_17,17,17,17,17,2,0,0,False,"(YXXXYxYx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/17
+aca_18,17,17,17,17,2,0,0,False,"(YXXXyxYx, YYYYxyyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/18
+aca_19,17,17,17,17,2,0,0,False,"(YXyXYxxx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/19
+aca_20,17,17,17,17,2,0,0,False,"(YXXXyxYx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/20
+aca_21,17,17,17,17,2,0,0,False,"(YXXYxxyX, YYYYxyyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/21
+aca_22,17,17,17,17,2,0,0,False,"(YXXYxxyx, YYYYxyyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/22
+aca_23,17,17,17,17,2,0,0,False,"(YXXYxxyx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/23
+aca_24,17,17,15,15,3,0,0,False,"(XXZYY, XXyxZ, XYzYZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/24
+aca_25,17,17,17,17,2,0,0,False,"(YXXYxxyX, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/25
+aca_26,17,17,17,17,2,0,0,False,"(YXXYxYxx, YYYYxyyyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/26
+aca_27,17,17,17,17,2,0,0,False,"(YXXyXyxx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/27
+aca_28,17,17,17,17,2,0,0,False,"(YXXYxYxx, YYYYXyyyx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/28
+aca_29,17,17,17,17,2,0,0,False,"(YYXXXyx, YYxxyxyXyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/29
+aca_30,17,17,17,16,3,1,0,False,"(UUZuXXz, UXZ, UxZxZX)",theorem_backed_stable_composite,observed_remainder.json#/rows/29/best_witness
+aca_31,17,17,17,16,3,1,0,False,"(UUZXuZx, UXZ, UxZZXX)",theorem_backed_stable_composite,observed_remainder.json#/rows/30/best_witness
+aca_32,17,17,16,16,3,0,0,False,"(ZXY, XzxxZY, XZZYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/32
+aca_33,17,17,16,16,3,0,0,False,"(ZXy, XXzxZY, YYzzxyx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/33
+aca_34,18,16,16,16,2,0,0,False,"(YXXyxYx, YYYYXyyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/34
+aca_35,18,18,18,18,2,0,0,False,"(YYXXXyx, YYYxxyxyXyX)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/35
+aca_36,18,16,16,15,3,1,0,False,"(ZZyXyy, ZYXY, ZXXYx)",theorem_backed_stable_composite,observed_remainder.json#/rows/35/best_witness
+aca_37,19,19,17,17,3,0,0,False,"(ZYY, XXXYxxz, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/37
+aca_38,19,19,17,17,3,0,0,False,"(ZYY, XXXyxxz, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/38
+aca_39,19,19,18,18,3,0,0,False,"(ZYY, XXXYxYxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/39
+aca_40,19,19,18,18,3,0,0,False,"(ZYY, XXXyxYxY, XYzzxZZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/40
+aca_41,19,19,18,18,3,0,0,False,"(ZYY, XYxxxYXy, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/41
+aca_42,19,19,18,18,3,0,0,False,"(ZYY, XXXyxYxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/42
+aca_43,19,18,17,17,3,0,0,False,"(ZXy, XzxxYY, XYZyXZyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/43
+aca_44,19,18,17,17,3,0,0,False,"(ZXy, XXYZYY, XZxYzxYz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/44
+aca_45,19,19,17,17,3,0,0,False,"(ZXXy, XZxYz, XXXZYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/45
+aca_46,19,19,18,18,3,0,0,False,"(ZYY, XXYxxyxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/46
+aca_47,19,19,18,18,3,0,0,False,"(ZYY, XXYxxyXY, XYzzxZZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/47
+aca_48,19,19,17,17,3,0,0,False,"(ZXXy, XzxZY, YYYYzxxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/48
+aca_49,19,19,18,18,3,0,0,False,"(ZYY, XXYxxyxY, XYzzxZZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/49
+aca_50,19,19,18,18,3,0,0,False,"(ZYY, XXYxxyXY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/50
+aca_51,19,19,18,18,3,0,0,False,"(ZYY, XXYxYxxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/51
+aca_52,19,19,18,18,3,0,0,False,"(ZYY, XXyXyxxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/52
+aca_53,18,18,17,17,3,0,0,False,"(ZXy, XzxZY, YYzyzxyxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/53
+aca_54,19,19,16,16,3,0,0,False,"(Zxx, YYZZyz, YYzyXZZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/54
+aca_55,19,18,17,17,3,0,0,False,"(ZyxYY, XXXyxz, XXZYxY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/55
+aca_56,19,19,18,18,3,0,0,False,"(ZXX, XyZYYz, XYYXYYZyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/56
+aca_57,19,19,18,17,3,1,0,False,"(ZZYzxx, ZZyXyyx, ZXzy)",theorem_backed_stable_composite,observed_remainder.json#/rows/56/best_witness
+aca_58,20,17,17,17,2,0,0,False,"(YXXyxYx, YYYYYXyyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/58
+aca_59,20,20,17,17,3,0,0,False,"(Zxx, YZYzyz, YYYYxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/59
+aca_60,20,20,18,18,3,0,0,False,"(ZXXy, XzxZY, YYYYYzxxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/60
+aca_61,20,20,18,18,3,0,0,False,"(ZXXy, XZxYz, XXXZYYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/61
+aca_62,21,21,19,19,3,0,0,False,"(ZYY, XXXYxYxY, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/62
+aca_63,21,21,19,19,3,0,0,False,"(ZYY, XXXyxYxY, XzzzxZZy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/63
+aca_64,21,21,19,19,3,0,0,False,"(ZYY, XYxxxYXy, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/64
+aca_65,21,21,19,19,3,0,0,False,"(ZYY, XXXyxYxY, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/65
+aca_66,21,20,18,18,3,0,0,False,"(ZXYx, XXZxxYY, XyZYZYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/66
+aca_67,21,20,19,19,3,0,0,False,"(ZXY, XXXyXXzY, XZYXZyzY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/67
+aca_68,21,21,19,19,3,0,0,False,"(ZYY, XXYxxyxY, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/68
+aca_69,21,21,19,19,3,0,0,False,"(ZYY, XXYxxyXY, XzzzxZZy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/69
+aca_70,21,21,19,19,3,0,0,False,"(ZYY, XXYxxyxY, XzzzxZZy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/70
+aca_71,20,19,17,17,3,0,0,False,"(ZXYx, XXZxYY, XYYZyzy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/71
+aca_72,20,18,17,17,3,0,0,False,"(ZXy, XzxxYY, XYZyzxyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/72
+aca_73,21,21,19,19,3,0,0,False,"(ZYY, XXYxxyXY, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/73
+aca_74,21,21,19,19,3,0,0,False,"(ZYY, XXyXyxxY, XZZyxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/74
+aca_75,21,21,19,19,3,0,0,False,"(ZXXy, XzxZY, XXXZYYYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/75
+aca_76,21,21,19,19,3,0,0,False,"(ZXXy, XzxZY, YYYYYYzxxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/76
+aca_77,21,21,19,19,3,0,0,False,"(ZXXy, XZxYz, XXXZYYYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/77
+aca_78,21,19,18,18,3,0,0,False,"(ZXY, XXyXZY, XZyZxYYYz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/78
+aca_79,21,21,18,18,3,0,0,False,"(ZXX, XyyZYYz, XyZYZYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/79
+aca_80,21,19,18,17,3,1,0,False,"(UUxuxyUX, UYXyX, UyXY)",theorem_backed_stable_composite,observed_pilot.json#/rows/1/best_witness
+aca_81,22,18,17,17,3,0,0,False,"(ZYY, XXyxYxY, XZxxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/81
+aca_82,22,22,20,19,3,1,0,False,"(UYxuXXXXX, UYuyx, UXYYX)",theorem_backed_stable_composite,observed_remainder.json#/rows/80/best_witness
+aca_83,22,22,20,20,3,0,0,False,"(ZXXy, XZxYz, YYYYYYYzxxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/83
+aca_84,22,22,20,20,3,0,0,False,"(ZXXy, XzxZY, XXXZYYYYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/84
+aca_85,22,18,17,17,3,0,0,False,"(ZYY, XYxxYXy, XXzxzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/85
+aca_86,22,22,20,19,3,1,0,False,"(UYxuy, UYuXXXXX, UxYxYX)",theorem_backed_stable_composite,observed_remainder.json#/rows/84/best_witness
+aca_87,23,20,19,19,3,0,0,False,"(ZXY, XXXyXXzY, XZYXZZYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/87
+aca_88,23,19,18,18,3,0,0,False,"(ZXy, XXYYXXz, YZyzxYzx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/88
+aca_89,23,23,19,19,3,0,0,False,"(ZYYY, XXYxxyxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/89
+aca_90,23,20,18,18,3,0,0,False,"(ZXYx, XXZxxYY, XYYZYZy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/90
+aca_91,23,23,19,19,3,0,0,False,"(ZYYY, XXXyxYxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/91
+aca_92,23,23,19,19,3,0,0,False,"(ZYYY, XYxxxYXy, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/92
+aca_93,23,23,19,19,3,0,0,False,"(ZYYY, XXXyxYxY, XYzzxZZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/93
+aca_94,23,23,19,19,3,0,0,False,"(ZYYY, XXXYxYxY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/94
+aca_95,21,19,18,18,3,0,0,False,"(ZXY, XXXZxYY, YxZyzxyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/95
+aca_96,23,23,19,19,3,0,0,False,"(ZYYY, XXYxxyXY, XZZxYzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/96
+aca_97,24,19,18,18,3,0,0,False,"(ZYY, XXyxYxY, XZxxYzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/97
+aca_98,24,19,18,18,3,0,0,False,"(ZYY, XYxxYXy, XXzxYzzz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/98
+aca_99,25,19,18,18,3,0,0,False,"(ZXy, XzxxYY, XYYZyzxyz)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/99
+aca_100,25,20,18,18,3,0,0,False,"(ZXYx, XXXZxYY, XYYZyzy)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/100
+aca_101,25,25,21,21,3,0,0,False,"(YYYYYYYz, XZxzy, XXXYxYxY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/101
+aca_102,25,25,21,20,3,1,0,False,"(UUXuuxy, Uyyyy, YXXXyxYx)",theorem_backed_stable_composite,observed_remainder.json#/rows/100/best_witness
+aca_103,25,25,21,20,3,1,0,False,"(UUXuYux, Uyyyy, YXyXYxxx)",theorem_backed_stable_composite,observed_remainder.json#/rows/101/best_witness
+aca_104,25,25,21,20,3,1,0,False,"(UUXuYux, Uyyyy, YXXXyxYx)",theorem_backed_stable_composite,observed_remainder.json#/rows/102/best_witness
+aca_105,25,21,19,19,3,0,0,False,"(ZXYx, XXXZxxYY, XyZYZYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/105
+aca_106,25,21,20,20,3,0,0,False,"(XYxyZ, XYZyz, XXXXyXXXYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/106
+aca_107,25,22,20,20,3,0,0,False,"(ZXXy, XZxYz, XXXZYYYYYYY)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/107
+aca_108,25,24,21,21,3,0,1,False,"(ZYXYx, ZYzxZX, ZyXyyyyyyy)",theorem_backed_stable_composite,observed_remainder.json#/rows/106/best_witness
+aca_109,25,23,20,20,4,0,0,False,"(UYY, YxxZ, XuZxzy, XXXzuuu)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/109
+aca_110,25,22,20,20,3,0,0,False,"(ZXXy, XzxZY, YYYYYYYzxxx)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/110
+aca_111,25,24,21,21,4,0,0,False,"(UYY, XZxY, XYxZyzY, UxYuuuZ)",theorem_backed_stable_prefix,../theory_patterns_20260912/u124_final_table.json#/rows/111
+aca_112,25,24,21,21,3,0,1,False,"(ZYXyyyyyyy, ZYzxzX, ZyXYx)",theorem_backed_stable_composite,observed_remainder.json#/rows/110/best_witness
+aca_113,25,23,20,20,3,0,1,False,"(UUYXuux, UUXXyxxx, UYYYY)",theorem_backed_stable_composite,observed_remainder.json#/rows/111/best_witness
+aca_114,25,23,20,20,3,0,1,False,"(UUXXXYxx, UUXuuxY, UYYYY)",theorem_backed_stable_composite,observed_remainder.json#/rows/112/best_witness
+aca_115,13,13,13,13,2,0,0,False,"(YXYxyx, YYYYxxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/115
+aca_116,14,14,14,14,2,0,0,False,"(YYYXyyX, YXXXyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/116
+aca_117,14,14,14,14,2,0,0,False,"(YYYXyyx, YXXXyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/117
+aca_118,15,15,15,15,2,0,0,False,"(YXXyxYx, YYYYXyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/118
+aca_119,16,16,16,16,2,0,0,False,"(YXXyxYx, YYYYYXyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/119
+aca_120,16,15,15,15,2,0,0,False,"(YXXyxYx, YYYXyyxx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/120
+aca_121,16,15,15,15,2,0,0,False,"(YXyXYxx, YYYXXYYx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/121
+aca_122,18,16,16,16,2,0,0,False,"(YXyXYxx, YYYYXXYYx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/122
+aca_123,20,17,17,17,2,0,0,False,"(YXyXYxx, YYYYYXXYYx)",identity_at_saved_start,../theory_patterns_20260912/u124_final_table.json#/rows/123

@@ -1,0 +1,10177 @@
+{
+  "status": "rigid_support_block_count_necessary_test",
+  "rows": [
+    {
+      "name": "aca_24",
+      "words": [
+        "ZYYXX",
+        "XYxxz",
+        "XYxYzY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Z",
+          "x",
+          "y",
+          "z",
+          "Y"
+        ],
+        "Y": [
+          "y",
+          "x",
+          "Z",
+          "X",
+          "z"
+        ],
+        "Z": [
+          "x",
+          "X",
+          "Y"
+        ],
+        "x": [
+          "Z",
+          "Y",
+          "y",
+          "X"
+        ],
+        "y": [
+          "X",
+          "x",
+          "Y",
+          "z"
+        ],
+        "z": [
+          "Y",
+          "X",
+          "y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 16,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 2
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "YZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_54",
+      "words": [
+        "Zxx",
+        "YYZZyz",
+        "YYzyXZZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 11,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Y",
+          "Z",
+          "x"
+        ],
+        "Y": [
+          "y",
+          "Z",
+          "X",
+          "z"
+        ],
+        "Z": [
+          "X",
+          "Y",
+          "y",
+          "z",
+          "x"
+        ],
+        "x": [
+          "z",
+          "X",
+          "Z"
+        ],
+        "y": [
+          "z",
+          "Z",
+          "Y"
+        ],
+        "z": [
+          "x",
+          "Z",
+          "y",
+          "Y"
+        ]
+      },
+      "phase_sets": {
+        "x": [
+          1
+        ],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "y",
+        "z"
+      ],
+      "phase_checks": 16,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Xx"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zz"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yz",
+              "Zy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_55",
+      "words": [
+        "ZyxYY",
+        "XXXyxz",
+        "XXZYxY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Y",
+          "x",
+          "Z",
+          "y",
+          "z"
+        ],
+        "Y": [
+          "x",
+          "X",
+          "z",
+          "y"
+        ],
+        "Z": [
+          "X",
+          "x",
+          "y"
+        ],
+        "x": [
+          "Y",
+          "y",
+          "Z",
+          "X"
+        ],
+        "y": [
+          "Z",
+          "x",
+          "Y",
+          "z",
+          "X"
+        ],
+        "z": [
+          "y",
+          "Y",
+          "X"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": [
+          1
+        ]
+      },
+      "blocking_generators": [
+        "x",
+        "y"
+      ],
+      "phase_checks": 17,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yx"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zy"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_57",
+      "words": [
+        "ZXX",
+        "XyZYYz",
+        "XYYxyzzYY"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Z",
+          "x",
+          "y",
+          "z"
+        ],
+        "Y": [
+          "y",
+          "x",
+          "Z",
+          "z"
+        ],
+        "Z": [
+          "x",
+          "X",
+          "z",
+          "Y"
+        ],
+        "x": [
+          "Z",
+          "Y",
+          "y",
+          "X"
+        ],
+        "y": [
+          "z",
+          "X",
+          "x",
+          "Y"
+        ],
+        "z": [
+          "X",
+          "y",
+          "Y",
+          "Z"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 18,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xy"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Zz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_59",
+      "words": [
+        "Zxx",
+        "YZYzyz",
+        "YYYYxzzz"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 11,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "z",
+          "x",
+          "Z"
+        ],
+        "Y": [
+          "y",
+          "z",
+          "Z"
+        ],
+        "Z": [
+          "X",
+          "y",
+          "Y",
+          "z"
+        ],
+        "x": [
+          "z",
+          "y",
+          "X"
+        ],
+        "y": [
+          "Z",
+          "x",
+          "z",
+          "Y"
+        ],
+        "z": [
+          "x",
+          "X",
+          "Z",
+          "Y",
+          "y"
+        ]
+      },
+      "phase_sets": {
+        "x": [
+          2
+        ],
+        "y": [],
+        "z": [
+          0
+        ]
+      },
+      "blocking_generators": [
+        "y"
+      ],
+      "phase_checks": 17,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Xx"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 2
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "Zz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zy"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "actual": 2,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_79",
+      "words": [
+        "ZXX",
+        "XyyZYYz",
+        "XyZYZYzz"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 11,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Z",
+          "x",
+          "z"
+        ],
+        "Y": [
+          "y",
+          "Z",
+          "z"
+        ],
+        "Z": [
+          "x",
+          "X",
+          "z",
+          "Y",
+          "y"
+        ],
+        "x": [
+          "Z",
+          "y",
+          "X"
+        ],
+        "y": [
+          "z",
+          "x",
+          "Z",
+          "Y"
+        ],
+        "z": [
+          "X",
+          "y",
+          "Y",
+          "Z"
+        ]
+      },
+      "phase_sets": {
+        "x": [
+          2
+        ],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "y",
+        "z"
+      ],
+      "phase_checks": 18,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 2
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 2
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zz"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_80",
+      "words": [
+        "ZXYYY",
+        "XyzxyXz",
+        "YYXXyx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Y",
+          "z",
+          "x",
+          "Z",
+          "y"
+        ],
+        "Y": [
+          "x",
+          "z",
+          "X",
+          "y"
+        ],
+        "Z": [
+          "X",
+          "x",
+          "y"
+        ],
+        "x": [
+          "Y",
+          "y",
+          "Z",
+          "X",
+          "z"
+        ],
+        "y": [
+          "Z",
+          "x",
+          "Y",
+          "X"
+        ],
+        "z": [
+          "X",
+          "Y",
+          "x"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": [
+          1
+        ]
+      },
+      "blocking_generators": [
+        "x",
+        "y"
+      ],
+      "phase_checks": 18,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_82",
+      "words": [
+        "ZXYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 11,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "y",
+          "Z",
+          "x",
+          "z"
+        ],
+        "Y": [
+          "x",
+          "y",
+          "z"
+        ],
+        "Z": [
+          "X",
+          "y",
+          "x"
+        ],
+        "x": [
+          "Y",
+          "X",
+          "Z",
+          "y"
+        ],
+        "y": [
+          "Y",
+          "x",
+          "Z",
+          "X",
+          "z"
+        ],
+        "z": [
+          "X",
+          "Y",
+          "y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 20,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 3
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 3,
+            "predicted": 4
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 3,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "actual": 1,
+            "predicted": 2
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_83",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 10,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "x",
+          "z",
+          "Y",
+          "Z"
+        ],
+        "Y": [
+          "y",
+          "Z",
+          "X"
+        ],
+        "Z": [
+          "Y",
+          "x",
+          "X"
+        ],
+        "x": [
+          "X",
+          "Z",
+          "y",
+          "z"
+        ],
+        "y": [
+          "z",
+          "x",
+          "Y"
+        ],
+        "z": [
+          "X",
+          "x",
+          "y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 20,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 5
+          },
+          {
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zx"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_86",
+      "words": [
+        "ZxYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "y",
+          "Z",
+          "x",
+          "Y"
+        ],
+        "Y": [
+          "X",
+          "x",
+          "z",
+          "y"
+        ],
+        "Z": [
+          "X",
+          "y",
+          "x"
+        ],
+        "x": [
+          "z",
+          "Y",
+          "X",
+          "Z",
+          "y"
+        ],
+        "y": [
+          "z",
+          "x",
+          "Z",
+          "X",
+          "Y"
+        ],
+        "z": [
+          "x",
+          "y",
+          "Y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": [
+          2
+        ]
+      },
+      "blocking_generators": [
+        "x",
+        "y"
+      ],
+      "phase_checks": 20,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 3
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 3,
+            "predicted": 4
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_101",
+      "words": [
+        "YYYYYYYz",
+        "XZxzy",
+        "XXXYxYxY"
+      ],
+      "simple_edges": [
+        "XY",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "y",
+          "z",
+          "x",
+          "Y"
+        ],
+        "Y": [
+          "X",
+          "x",
+          "Z",
+          "y"
+        ],
+        "Z": [
+          "x",
+          "y",
+          "Y"
+        ],
+        "x": [
+          "Z",
+          "Y",
+          "X",
+          "z",
+          "y"
+        ],
+        "y": [
+          "Z",
+          "x",
+          "z",
+          "X",
+          "Y"
+        ],
+        "z": [
+          "X",
+          "y",
+          "x"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 21,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XY"
+            ],
+            "count": 2
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Xz"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 5
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "YZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 10,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "Zx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_108",
+      "words": [
+        "ZXYx",
+        "YXYZyzx",
+        "YYYYYYYxYYz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Y",
+          "z",
+          "y",
+          "Z"
+        ],
+        "Y": [
+          "x",
+          "y",
+          "z",
+          "X",
+          "Z"
+        ],
+        "Z": [
+          "X",
+          "y",
+          "x",
+          "Y"
+        ],
+        "x": [
+          "Y",
+          "Z",
+          "y"
+        ],
+        "y": [
+          "Z",
+          "X",
+          "z",
+          "Y",
+          "x"
+        ],
+        "z": [
+          "y",
+          "X",
+          "Y"
+        ]
+      },
+      "phase_sets": {
+        "x": [
+          2
+        ],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "y",
+        "z"
+      ],
+      "phase_checks": 22,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Yx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 5
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zy"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 2
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 10,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 11,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 12,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_109",
+      "words": [
+        "ZYxx",
+        "YYZxzyX",
+        "YYYYYYXXXz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zy",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "y",
+          "x",
+          "z",
+          "Y",
+          "Z"
+        ],
+        "Y": [
+          "Z",
+          "X",
+          "z",
+          "x",
+          "y"
+        ],
+        "Z": [
+          "X",
+          "Y",
+          "y"
+        ],
+        "x": [
+          "y",
+          "Y",
+          "z",
+          "X"
+        ],
+        "y": [
+          "x",
+          "X",
+          "Z",
+          "Y"
+        ],
+        "z": [
+          "Y",
+          "X",
+          "x"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": [
+          0
+        ]
+      },
+      "blocking_generators": [
+        "x",
+        "y"
+      ],
+      "phase_checks": 21,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Xz"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 4
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zy"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xy",
+              "Yx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_111",
+      "words": [
+        "ZxYX",
+        "XYxZyzY",
+        "YYYYYYYZyyx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Z",
+          "y",
+          "Y"
+        ],
+        "Y": [
+          "X",
+          "y",
+          "z",
+          "x",
+          "Z"
+        ],
+        "Z": [
+          "x",
+          "y",
+          "X",
+          "Y"
+        ],
+        "x": [
+          "Z",
+          "Y",
+          "z",
+          "y"
+        ],
+        "y": [
+          "Y",
+          "X",
+          "Z",
+          "x",
+          "z"
+        ],
+        "z": [
+          "y",
+          "x",
+          "Y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": [
+          2
+        ]
+      },
+      "blocking_generators": [
+        "x",
+        "y"
+      ],
+      "phase_checks": 22,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 5
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zy"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Zx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "Yx"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 10,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 11,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 12,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_112",
+      "words": [
+        "ZXYx",
+        "XYZYzxy",
+        "YYYYYYYxyyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "Y",
+          "z",
+          "y",
+          "Z"
+        ],
+        "Y": [
+          "x",
+          "y",
+          "z",
+          "X",
+          "Z"
+        ],
+        "Z": [
+          "X",
+          "y",
+          "x",
+          "Y"
+        ],
+        "x": [
+          "Y",
+          "Z",
+          "y"
+        ],
+        "y": [
+          "Z",
+          "X",
+          "z",
+          "Y",
+          "x"
+        ],
+        "z": [
+          "y",
+          "X",
+          "Y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 22,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xy"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 5
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yz"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yz",
+              "Zy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zx"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xy",
+              "Yy"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 10,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 11,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 12,
+            "class_pair": [
+              "Xy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yz",
+              "Zx"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aca_114",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 10,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 22,
+      "macro_rotation": {
+        "X": [
+          "x",
+          "z",
+          "Y",
+          "Z"
+        ],
+        "Y": [
+          "y",
+          "Z",
+          "X"
+        ],
+        "Z": [
+          "Y",
+          "x",
+          "X"
+        ],
+        "x": [
+          "X",
+          "Z",
+          "y",
+          "z"
+        ],
+        "y": [
+          "z",
+          "x",
+          "Y"
+        ],
+        "z": [
+          "X",
+          "x",
+          "y"
+        ]
+      },
+      "phase_sets": {
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 21,
+      "observed_class_pair_counts": {
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yy"
+            ],
+            "count": 6
+          },
+          {
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XY"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Yy"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "Zx"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 7,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 8,
+            "class_pair": [
+              "Yy",
+              "XY"
+            ],
+            "actual": 1,
+            "predicted": 2
+          },
+          {
+            "phase": 9,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          }
+        ]
+      }
+    }
+  ],
+  "rank4_rows": [
+    {
+      "name": "aca_108",
+      "words": [
+        "UYY",
+        "XYxZ",
+        "XYZyzxY",
+        "Yuuuxuz"
+      ],
+      "simple_edges": [
+        "Uu",
+        "Ux",
+        "Uy",
+        "Uz",
+        "XY",
+        "XZ",
+        "Xu",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yu",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "uy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 19,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Ux",
+        "Uz",
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_109",
+      "words": [
+        "UYY",
+        "YxxZ",
+        "XuZxzy",
+        "XXXzuuu"
+      ],
+      "simple_edges": [
+        "UX",
+        "UZ",
+        "Uu",
+        "Uy",
+        "XY",
+        "XZ",
+        "Xx",
+        "Xz",
+        "Yu",
+        "Yy",
+        "Yz",
+        "Zu",
+        "Zy",
+        "ux",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 16,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "UX",
+        "Uy",
+        "Xz",
+        "XZ",
+        "Zy",
+        "Uu",
+        "Zu",
+        "ux",
+        "xz",
+        "Yy",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_111",
+      "words": [
+        "UYY",
+        "XZxY",
+        "XYxZyzY",
+        "UxYuuuZ"
+      ],
+      "simple_edges": [
+        "UZ",
+        "Uu",
+        "Uy",
+        "Uz",
+        "XY",
+        "XZ",
+        "Xy",
+        "YZ",
+        "Yu",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "ux",
+        "uy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 18,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "UZ",
+        "Uz",
+        "XY",
+        "XZ",
+        "Zx",
+        "Yx",
+        "xy",
+        "Xy",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_112",
+      "words": [
+        "UYY",
+        "XYxZ",
+        "XYZYzxy",
+        "UzYuuux"
+      ],
+      "simple_edges": [
+        "UX",
+        "Uu",
+        "Ux",
+        "Uy",
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yu",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "uy",
+        "uz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 19,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "UX",
+        "Ux",
+        "XZ",
+        "Xz",
+        "YZ",
+        "Yz",
+        "Yx",
+        "xy",
+        "Zy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_113",
+      "words": [
+        "UYY",
+        "XXyZ",
+        "XzxZY",
+        "XXXZuuuu"
+      ],
+      "simple_edges": [
+        "UX",
+        "Uu",
+        "Uy",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yu",
+        "Yy",
+        "Yz",
+        "Zx",
+        "uz",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 15,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_114",
+      "words": [
+        "UYY",
+        "XXyZ",
+        "XZxYz",
+        "uuuuzxxx"
+      ],
+      "simple_edges": [
+        "Uu",
+        "Uy",
+        "Uz",
+        "XY",
+        "XZ",
+        "Xu",
+        "Xx",
+        "Xz",
+        "YZ",
+        "Yu",
+        "Yy",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 15,
+      "loops": 0,
+      "status": "rigid_block_count_obstruction",
+      "complete": true,
+      "connectivity_deletion_checks": 37,
+      "macro_rotation": {
+        "U": [
+          "y",
+          "z",
+          "u"
+        ],
+        "X": [
+          "Y",
+          "u",
+          "z",
+          "x",
+          "Z"
+        ],
+        "Y": [
+          "u",
+          "X",
+          "Z",
+          "y"
+        ],
+        "Z": [
+          "x",
+          "Y",
+          "X"
+        ],
+        "u": [
+          "Y",
+          "U",
+          "X"
+        ],
+        "x": [
+          "X",
+          "z",
+          "y",
+          "Z"
+        ],
+        "y": [
+          "x",
+          "z",
+          "U",
+          "Y"
+        ],
+        "z": [
+          "U",
+          "y",
+          "x",
+          "X"
+        ]
+      },
+      "phase_sets": {
+        "u": [],
+        "x": [],
+        "y": [],
+        "z": []
+      },
+      "blocking_generators": [
+        "u",
+        "x",
+        "y",
+        "z"
+      ],
+      "phase_checks": 20,
+      "observed_class_pair_counts": {
+        "u": [
+          {
+            "class_pair": [
+              "Uu",
+              "Uu"
+            ],
+            "count": 2
+          },
+          {
+            "class_pair": [
+              "Uu",
+              "Uz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xu",
+              "Uu"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yu",
+              "Uy"
+            ],
+            "count": 1
+          }
+        ],
+        "x": [
+          {
+            "class_pair": [
+              "Xx",
+              "Xu"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xx",
+              "Xz"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Zx",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "Xx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "y": [
+          {
+            "class_pair": [
+              "Uy",
+              "Yy"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Yy",
+              "Yu"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xy",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XY"
+            ],
+            "count": 1
+          }
+        ],
+        "z": [
+          {
+            "class_pair": [
+              "Uz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "xz",
+              "Zx"
+            ],
+            "count": 1
+          },
+          {
+            "class_pair": [
+              "yz",
+              "XZ"
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "phase_mismatch_witnesses": {
+        "u": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Uu",
+              "Uu"
+            ],
+            "actual": 2,
+            "predicted": 3
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xu",
+              "Uu"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Uu",
+              "Uu"
+            ],
+            "actual": 2,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Uu",
+              "Uu"
+            ],
+            "actual": 2,
+            "predicted": 1
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Uu",
+              "Uy"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "x": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Xx",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Xx",
+              "Xu"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Xx",
+              "Xu"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 4,
+            "class_pair": [
+              "Zx",
+              "XZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 5,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 6,
+            "class_pair": [
+              "Xx",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "y": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Uy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Uy",
+              "XY"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Uy",
+              "Yu"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "Yy",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ],
+        "z": [
+          {
+            "phase": 0,
+            "class_pair": [
+              "Xz",
+              "YZ"
+            ],
+            "actual": 1,
+            "predicted": 0
+          },
+          {
+            "phase": 1,
+            "class_pair": [
+              "Uz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 2,
+            "class_pair": [
+              "Uz",
+              "YZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          },
+          {
+            "phase": 3,
+            "class_pair": [
+              "xz",
+              "XZ"
+            ],
+            "actual": 0,
+            "predicted": 1
+          }
+        ]
+      }
+    }
+  ],
+  "rank4_source_audit_sha256": "325d2297c500b44512f78a11c9051a285c7b4a81e2741fdfe40db72dd09445e0",
+  "newer_aca24": {
+    "words": [
+      "XXZYY",
+      "XXyxZ",
+      "XYzYZ"
+    ],
+    "simple_edges": [
+      "XZ",
+      "Xx",
+      "Xy",
+      "Xz",
+      "YZ",
+      "Yx",
+      "Yy",
+      "Yz",
+      "Zx",
+      "Zy",
+      "xy",
+      "yz"
+    ],
+    "simple_edge_count": 12,
+    "loops": 0,
+    "status": "nonplanar_support",
+    "complete": true,
+    "kuratowski_type": "K33_subdivision",
+    "kuratowski_edges": [
+      "XZ",
+      "Xz",
+      "YZ",
+      "Yz",
+      "Xx",
+      "Yx",
+      "xy",
+      "Zy",
+      "yz"
+    ]
+  },
+  "source_report_sha256": "71f193ca7937c9fbba82fda1464243d83007439ac8d1fb6dd6c73ed9e7ae383e",
+  "source_module_sha256": "de0734ec8e3ed2d1049e154270cb15174e201fdb7cbe3d966b39c6d2d52e7a78",
+  "source_corner_dictionaries_checked": 85,
+  "independently_reduced_kuratowski_certificates": [
+    {
+      "name": "aca_4",
+      "words": [
+        "ZXY",
+        "XXXZYY",
+        "XyzzYxZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Zy",
+        "Yz",
+        "Zz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_5",
+      "words": [
+        "Zxy",
+        "YYYzXyzzx",
+        "YZXXyX"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 15,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yz",
+        "Zz",
+        "Yy",
+        "Zy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_6",
+      "words": [
+        "ZYXX",
+        "YzyZx",
+        "XXXyxYxz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "Xz",
+        "YZ",
+        "Yz",
+        "Xx",
+        "Yx",
+        "xy",
+        "Zy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_13",
+      "words": [
+        "XYXYz",
+        "XZxzy",
+        "Xyzyy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_16",
+      "words": [
+        "ZXYx",
+        "XXZxYY",
+        "YZxyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_32",
+      "words": [
+        "ZXY",
+        "XzxxZY",
+        "XZZYYYY"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xz"
+      ],
+      "simple_edge_count": 11,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "Yy",
+        "Yz",
+        "Zy",
+        "Zz",
+        "Xx",
+        "Yx",
+        "Zx"
+      ]
+    },
+    {
+      "name": "aca_33",
+      "words": [
+        "ZXy",
+        "XXzxZY",
+        "YYzzxyx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "Xy",
+        "YZ",
+        "Yy",
+        "Xx",
+        "Yx",
+        "xz",
+        "Zz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_37",
+      "words": [
+        "ZYY",
+        "XXXYxxz",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_38",
+      "words": [
+        "ZYY",
+        "XXXyxxz",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_39",
+      "words": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_40",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_41",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "xy",
+        "xz",
+        "Yy",
+        "Zy",
+        "Yz",
+        "Zz"
+      ]
+    },
+    {
+      "name": "aca_42",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_43",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyXZyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_44",
+      "words": [
+        "ZXy",
+        "XXYZYY",
+        "XZxYzxYz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_45",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_46",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_47",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XYzzxZZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_48",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_49",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XYzzxZZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_50",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_51",
+      "words": [
+        "ZYY",
+        "XXYxYxxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_52",
+      "words": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_53",
+      "words": [
+        "ZXy",
+        "XzxZY",
+        "YYzyzxyxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_56",
+      "words": [
+        "ZXX",
+        "XyZYYz",
+        "XYYXYYZyz"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "Xz",
+        "YZ",
+        "Yz",
+        "Xx",
+        "Yx",
+        "xy",
+        "Zy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_60",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_61",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_62",
+      "words": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_63",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzxZZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_64",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_65",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_66",
+      "words": [
+        "ZXYx",
+        "XXZxxYY",
+        "XyZYZYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_67",
+      "words": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZyzY"
+      ],
+      "simple_edges": [
+        "XY",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "YZ",
+        "Zy",
+        "Xx",
+        "Zx",
+        "xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_68",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_69",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XzzzxZZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_70",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XzzzxZZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_71",
+      "words": [
+        "ZXYx",
+        "XXZxYY",
+        "XYYZyzy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_72",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyzxyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_73",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_74",
+      "words": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZyxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_75",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYY"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 10,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_76",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_77",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_78",
+      "words": [
+        "ZXY",
+        "XXyXZY",
+        "XZyZxYYYz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_81",
+      "words": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "Yy",
+        "Yz",
+        "Zy",
+        "Zz",
+        "Xx",
+        "Yx",
+        "Zx"
+      ]
+    },
+    {
+      "name": "aca_84",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYY"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 10,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_85",
+      "words": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "xy",
+        "xz",
+        "Yy",
+        "Zy",
+        "Yz",
+        "Zz"
+      ]
+    },
+    {
+      "name": "aca_87",
+      "words": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZZYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "YZ",
+        "Yx",
+        "xy",
+        "xz",
+        "Xy",
+        "Zy",
+        "Xz",
+        "Zz"
+      ]
+    },
+    {
+      "name": "aca_88",
+      "words": [
+        "ZXy",
+        "XXYYXXz",
+        "YZyzxYzx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_89",
+      "words": [
+        "ZYYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_90",
+      "words": [
+        "ZXYx",
+        "XXZxxYY",
+        "XYYZYZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_91",
+      "words": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_92",
+      "words": [
+        "ZYYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "xy",
+        "xz",
+        "Yy",
+        "Zy",
+        "Yz",
+        "Zz"
+      ]
+    },
+    {
+      "name": "aca_93",
+      "words": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_94",
+      "words": [
+        "ZYYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_95",
+      "words": [
+        "ZXY",
+        "XXXZxYY",
+        "YxZyzxyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_96",
+      "words": [
+        "ZYYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_97",
+      "words": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxYzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_98",
+      "words": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxYzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "xy",
+        "xz",
+        "Yy",
+        "Zy",
+        "Yz",
+        "Zz"
+      ]
+    },
+    {
+      "name": "aca_99",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYYZyzxyz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 14,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Xy",
+        "XZ",
+        "YZ",
+        "Zy",
+        "Zx",
+        "xz",
+        "Yy",
+        "Xz",
+        "Yz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_100",
+      "words": [
+        "ZXYx",
+        "XXXZxYY",
+        "XYYZyzy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yy",
+        "XZ",
+        "Zy",
+        "Yx",
+        "Zx",
+        "xz",
+        "Xz",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_102",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzzxZZZy"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XY",
+        "Yz",
+        "XZ",
+        "Zz",
+        "Yx",
+        "Zx",
+        "xy",
+        "Xy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_103",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZZyxzzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_104",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZZyxzzzz"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "Zz",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K5_subdivision",
+      "kuratowski_edges": [
+        "Xy",
+        "Xz",
+        "XY",
+        "Yy",
+        "Yz",
+        "XZ",
+        "Zy",
+        "Zz",
+        "Yx",
+        "Zx",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_105",
+      "words": [
+        "ZXYx",
+        "XXXZxxYY",
+        "XyZYZYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zx",
+        "Zy",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 13,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_106",
+      "words": [
+        "XYxyZ",
+        "XYZyz",
+        "XXXXyXXXYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yx",
+        "Yy",
+        "Yz",
+        "Zy",
+        "xy",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "Xz",
+        "YZ",
+        "Yz",
+        "Xx",
+        "Yx",
+        "xy",
+        "Zy",
+        "yz"
+      ]
+    },
+    {
+      "name": "aca_107",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYYY"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_110",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYYzxxx"
+      ],
+      "simple_edges": [
+        "XY",
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "simple_edge_count": 12,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    },
+    {
+      "name": "aca_113",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYYY"
+      ],
+      "simple_edges": [
+        "XZ",
+        "Xx",
+        "Xy",
+        "Xz",
+        "YZ",
+        "Yy",
+        "Yz",
+        "Zx",
+        "xy",
+        "xz"
+      ],
+      "simple_edge_count": 10,
+      "loops": 0,
+      "status": "nonplanar_support",
+      "complete": true,
+      "kuratowski_type": "K33_subdivision",
+      "kuratowski_edges": [
+        "XZ",
+        "YZ",
+        "Zx",
+        "xy",
+        "xz",
+        "Xy",
+        "Yy",
+        "Xz",
+        "Yz"
+      ]
+    }
+  ],
+  "positive_rigid_fixtures": [
+    [
+      "XYXy",
+      "XZxz",
+      "Yzyz"
+    ],
+    [
+      "XYXy",
+      "XZyZxzyz"
+    ],
+    [
+      "XYXy",
+      "XZXz",
+      "Yz",
+      "YZ"
+    ],
+    [
+      "XYXy",
+      "XZYZxzYz"
+    ],
+    [
+      "XYzy",
+      "XZxz",
+      "XyZY"
+    ],
+    [
+      "XYzxZYXyZxzy"
+    ],
+    [
+      "XYzYxyzy",
+      "XZXz"
+    ],
+    [
+      "XYzXZYXyZXzy"
+    ],
+    [
+      "XYxy",
+      "XZxz",
+      "YZyz"
+    ],
+    [
+      "XYxy",
+      "XZyz",
+      "XzYZ"
+    ],
+    [
+      "XYxy",
+      "XZXz",
+      "YZYz"
+    ],
+    [
+      "XYxy",
+      "XZYz",
+      "XzyZ"
+    ],
+    [
+      "XYZy",
+      "XZxz",
+      "XyzY"
+    ],
+    [
+      "XYZXzYXyzXZy"
+    ],
+    [
+      "XYZYxyZy",
+      "XZXz"
+    ],
+    [
+      "XYZxzYXyzxZy"
+    ],
+    [
+      "XZxyxzXy",
+      "Yzyz"
+    ],
+    [
+      "XZyZxyxzyzXy"
+    ],
+    [
+      "XZXYXzXy",
+      "Yz",
+      "YZ"
+    ],
+    [
+      "XZYZxyxzYzXy"
+    ],
+    [
+      "XZxyzYxZXYzy"
+    ],
+    [
+      "XZyxzy",
+      "XyZxyz"
+    ],
+    [
+      "XZXYzYxZxyzy"
+    ],
+    [
+      "XZYXzy",
+      "XyZXYz"
+    ],
+    [
+      "XZxy",
+      "Xyxz",
+      "YZyz"
+    ],
+    [
+      "XZyzXyxzyZxy"
+    ],
+    [
+      "XZXYxZxy",
+      "YZYz"
+    ],
+    [
+      "XZYzXyxzYZxy"
+    ],
+    [
+      "XZxyZYxZXYZy"
+    ],
+    [
+      "XZy",
+      "Xyz",
+      "XzY",
+      "XYZ"
+    ],
+    [
+      "XZXYZYxZxyZy"
+    ],
+    [
+      "XZYxZy",
+      "XzyxzY"
+    ],
+    [
+      "Xy",
+      "Xzxz",
+      "XY",
+      "Yzyz"
+    ],
+    [
+      "Xy",
+      "XzYzxzyz",
+      "XY"
+    ],
+    [
+      "Xy",
+      "Xz",
+      "XY",
+      "XZ",
+      "Yz",
+      "YZ"
+    ],
+    [
+      "Xy",
+      "XzyzxzYz",
+      "XY"
+    ],
+    [
+      "XyZYXYzy",
+      "Xzxz"
+    ],
+    [
+      "XyZxZYXYzxzy"
+    ],
+    [
+      "XyZyxyzy",
+      "Xz",
+      "XZ"
+    ],
+    [
+      "XyZXZYXYzXzy"
+    ],
+    [
+      "Xyxy",
+      "Xzxz",
+      "YZyz"
+    ],
+    [
+      "Xyxy",
+      "XzYZXZyz"
+    ],
+    [
+      "Xyxy",
+      "Xz",
+      "XZ",
+      "YZYz"
+    ],
+    [
+      "Xyxy",
+      "XzyZXZYz"
+    ],
+    [
+      "XyzYXYZy",
+      "Xzxz"
+    ],
+    [
+      "XyzXzYXYZXZy"
+    ],
+    [
+      "XyzyxyZy",
+      "Xz",
+      "XZ"
+    ],
+    [
+      "XyzxzYXYZxZy"
+    ],
+    [
+      "XzxyxZXy",
+      "Yzyz"
+    ],
+    [
+      "XzYzxyxZYZXy"
+    ],
+    [
+      "XzXYXZXy",
+      "Yz",
+      "YZ"
+    ],
+    [
+      "XzyzxyxZyZXy"
+    ],
+    [
+      "XzxyzYxzXYzy"
+    ],
+    [
+      "XzYxzy",
+      "XYzxyz"
+    ],
+    [
+      "XzXYzYxzxyzy"
+    ],
+    [
+      "Xzy",
+      "XYz",
+      "XZY",
+      "XyZ"
+    ],
+    [
+      "Xzxy",
+      "XYxz",
+      "YZyz"
+    ],
+    [
+      "XzYZXyxZYzxy"
+    ],
+    [
+      "XzXYxzxy",
+      "YZYz"
+    ],
+    [
+      "XzyZXyxZyzxy"
+    ],
+    [
+      "XzxyZYxzXYZy"
+    ],
+    [
+      "XzYXZy",
+      "XYZXyz"
+    ],
+    [
+      "XzXYZYxzxyZy"
+    ],
+    [
+      "XzyxZy",
+      "XZYxzY"
+    ]
+  ],
+  "positive_rigid_rank4_fixtures": [
+    [
+      "UZx",
+      "UyxyyZZU",
+      "X"
+    ],
+    [
+      "UyxyyZZUZx",
+      "U",
+      "X"
+    ],
+    [
+      "UUZx",
+      "UyxyyZZ",
+      "X"
+    ],
+    [
+      "UZZx",
+      "UyxyyZU",
+      "X"
+    ],
+    [
+      "UyxyyZUZZx",
+      "U",
+      "X"
+    ],
+    [
+      "UUZZx",
+      "UyxyyZ",
+      "X"
+    ],
+    [
+      "UZUUyxyyZx",
+      "X",
+      "Z"
+    ],
+    [
+      "UyxyyZx",
+      "U",
+      "UZ",
+      "X",
+      "Z"
+    ],
+    [
+      "UUZUyxyyZx",
+      "X",
+      "Z"
+    ],
+    [
+      "UZx",
+      "UyyxyZZU",
+      "X"
+    ],
+    [
+      "UyyxyZZUZx",
+      "U",
+      "X"
+    ],
+    [
+      "UUZx",
+      "UyyxyZZ",
+      "X"
+    ],
+    [
+      "UZZx",
+      "UyyxyZU",
+      "X"
+    ],
+    [
+      "UyyxyZUZZx",
+      "U",
+      "X"
+    ],
+    [
+      "UUZZx",
+      "UyyxyZ",
+      "X"
+    ],
+    [
+      "UZUUyyxyZx",
+      "X",
+      "Z"
+    ],
+    [
+      "UyyxyZx",
+      "U",
+      "UZ",
+      "X",
+      "Z"
+    ],
+    [
+      "UUZUyyxyZx",
+      "X",
+      "Z"
+    ],
+    [
+      "UZx",
+      "UyZZU",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UyZZUZx",
+      "U",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UUZx",
+      "UyZZ",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UZZx",
+      "UyZU",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UyZUZZx",
+      "U",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UUZZx",
+      "UyZ",
+      "X",
+      "XY",
+      "Y"
+    ],
+    [
+      "UZUUyZx",
+      "X",
+      "XY",
+      "Y",
+      "Z"
+    ],
+    [
+      "UyZx",
+      "U",
+      "UZ",
+      "X",
+      "XY",
+      "Y",
+      "Z"
+    ],
+    [
+      "UUZUyZx",
+      "X",
+      "XY",
+      "Y",
+      "Z"
+    ],
+    [
+      "UZxyyZZUUyxx"
+    ],
+    [
+      "Uyxx",
+      "U",
+      "UZxyyZZ"
+    ],
+    [
+      "UUZxyyZZUyxx"
+    ],
+    [
+      "UZZxyyZUUyxx"
+    ],
+    [
+      "Uyxx",
+      "U",
+      "UZZxyyZ"
+    ],
+    [
+      "UUZZxyyZUyxx"
+    ],
+    [
+      "UZUUyxx",
+      "XzYY",
+      "Z"
+    ],
+    [
+      "Uyxx",
+      "U",
+      "UZ",
+      "XzYY",
+      "Z"
+    ],
+    [
+      "UUZUyxx",
+      "XzYY",
+      "Z"
+    ],
+    [
+      "UZxyZZUUyyxx"
+    ],
+    [
+      "Uyyxx",
+      "U",
+      "UZxyZZ"
+    ],
+    [
+      "UUZxyZZUyyxx"
+    ],
+    [
+      "UZZxyZUUyyxx"
+    ],
+    [
+      "Uyyxx",
+      "U",
+      "UZZxyZ"
+    ],
+    [
+      "UUZZxyZUyyxx"
+    ],
+    [
+      "UZUUyyxx",
+      "XzY",
+      "Z"
+    ],
+    [
+      "Uyyxx",
+      "U",
+      "UZ",
+      "XzY",
+      "Z"
+    ],
+    [
+      "UUZUyyxx",
+      "XzY",
+      "Z"
+    ],
+    [
+      "UZxyxx",
+      "UyZZU",
+      "Y"
+    ],
+    [
+      "UyZZUZxyxx",
+      "U",
+      "Y"
+    ],
+    [
+      "UUZxyxx",
+      "UyZZ",
+      "Y"
+    ],
+    [
+      "UZZxyxx",
+      "UyZU",
+      "Y"
+    ],
+    [
+      "UyZUZZxyxx",
+      "U",
+      "Y"
+    ],
+    [
+      "UUZZxyxx",
+      "UyZ",
+      "Y"
+    ],
+    [
+      "UZUUyZxyxx",
+      "Y",
+      "Z"
+    ],
+    [
+      "UyZxyxx",
+      "U",
+      "UZ",
+      "Y",
+      "Z"
+    ],
+    [
+      "UUZUyZxyxx",
+      "Y",
+      "Z"
+    ],
+    [
+      "UZxxyyZZUUyx"
+    ],
+    [
+      "Uyx",
+      "U",
+      "UZxxyyZZ"
+    ],
+    [
+      "UUZxxyyZZUyx"
+    ],
+    [
+      "UZZxxyyZUUyx"
+    ],
+    [
+      "Uyx",
+      "U",
+      "UZZxxyyZ"
+    ],
+    [
+      "UUZZxxyyZUyx"
+    ],
+    [
+      "UZUUyx",
+      "XzYYX",
+      "Z"
+    ],
+    [
+      "Uyx",
+      "U",
+      "UZ",
+      "XzYYX",
+      "Z"
+    ],
+    [
+      "UUZUyx",
+      "XzYYX",
+      "Z"
+    ],
+    [
+      "UZxxyZZUUyyx"
+    ],
+    [
+      "Uyyx",
+      "U",
+      "UZxxyZZ"
+    ],
+    [
+      "UUZxxyZZUyyx"
+    ],
+    [
+      "UZZxxyZUUyyx"
+    ],
+    [
+      "Uyyx",
+      "U",
+      "UZZxxyZ"
+    ],
+    [
+      "UUZZxxyZUyyx"
+    ],
+    [
+      "UZUUyyx",
+      "XzYX",
+      "Z"
+    ],
+    [
+      "Uyyx",
+      "U",
+      "UZ",
+      "XzYX",
+      "Z"
+    ],
+    [
+      "UUZUyyx",
+      "XzYX",
+      "Z"
+    ],
+    [
+      "UZxxyx",
+      "UyZZU",
+      "Y"
+    ],
+    [
+      "UyZZUZxxyx",
+      "U",
+      "Y"
+    ],
+    [
+      "UUZxxyx",
+      "UyZZ",
+      "Y"
+    ],
+    [
+      "UZZxxyx",
+      "UyZU",
+      "Y"
+    ],
+    [
+      "UyZUZZxxyx",
+      "U",
+      "Y"
+    ],
+    [
+      "UUZZxxyx",
+      "UyZ",
+      "Y"
+    ],
+    [
+      "UZUUyZxxyx",
+      "Y",
+      "Z"
+    ],
+    [
+      "UyZxxyx",
+      "U",
+      "UZ",
+      "Y",
+      "Z"
+    ],
+    [
+      "UUZUyZxxyx",
+      "Y",
+      "Z"
+    ]
+  ],
+  "rank4_reflection_checks": 1,
+  "reflection_checks": 16,
+  "exact_obstruction_ids": [
+    "aca_24",
+    "aca_54",
+    "aca_55",
+    "aca_57",
+    "aca_59",
+    "aca_79",
+    "aca_80",
+    "aca_82",
+    "aca_83",
+    "aca_86",
+    "aca_101",
+    "aca_108",
+    "aca_109",
+    "aca_111",
+    "aca_112",
+    "aca_114"
+  ],
+  "unknown_ids": [],
+  "phase_checks": 309,
+  "cpu_seconds": 0.248299
+}

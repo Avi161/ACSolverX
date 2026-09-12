@@ -1,0 +1,395 @@
+{
+  "source": "exchange_aca5_worked_path.json",
+  "source_sha256": "e679ae5dbbfa99b5062d9ce562d4cdd6f863f8c17931384b8ef88b674294603d",
+  "name": "aca_5",
+  "initial": [
+    [
+      -3,
+      -3,
+      -3,
+      1
+    ],
+    [
+      -3,
+      -2,
+      -1,
+      2,
+      2
+    ],
+    [
+      -3,
+      -1,
+      2,
+      1,
+      1,
+      1,
+      -2,
+      -2
+    ]
+  ],
+  "after_one_shared_pair": [
+    [
+      -4,
+      -3,
+      -1,
+      2,
+      1,
+      1,
+      1
+    ],
+    [
+      -4,
+      1,
+      2,
+      3
+    ],
+    [
+      -4,
+      2,
+      2
+    ],
+    [
+      -3,
+      -3,
+      -3,
+      1
+    ]
+  ],
+  "events": [
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          2,
+          2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1,
+          -2,
+          -2
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        4
+      ],
+      "defining_words": [
+        [
+          2,
+          2
+        ]
+      ],
+      "defining_relators": [
+        [
+          -4,
+          2,
+          2
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          "template": [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          "expanded": [
+            -3,
+            -3,
+            -3,
+            1
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -3,
+            -2,
+            -1,
+            2,
+            2
+          ],
+          "sign": -1,
+          "conjugator": [],
+          "oriented": [
+            -2,
+            -2,
+            1,
+            2,
+            3
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            3
+          ],
+          "expanded": [
+            -2,
+            -2,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1,
+            -2,
+            -2
+          ],
+          "sign": 1,
+          "conjugator": [
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "oriented": [
+            -2,
+            -2,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -4,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -2,
+            -2,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          3
+        ],
+        [
+          -4,
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -4,
+          2,
+          2
+        ],
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          3
+        ],
+        [
+          -4,
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 3,
+          "before": [
+            -4,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -4,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -4,
+            1,
+            2,
+            3
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            3
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 0,
+          "before": [
+            -4,
+            2,
+            2
+          ],
+          "after": [
+            -4,
+            2,
+            2
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          "after": [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -4,
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          3
+        ],
+        [
+          -4,
+          2,
+          2
+        ],
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "4": 2
+      },
+      "length_change": 1,
+      "graph_vertices": 175,
+      "graph_macro_edges": 24,
+      "graph_macro_checks": 175,
+      "graph_complete": true,
+      "work_counts": {
+        "dictionary_macro_images": 175,
+        "template_expansions": 3,
+        "definitions": 1
+      },
+      "charged_units": 179,
+      "fully_expanded_elementary_certificate": false
+    }
+  ],
+  "charged_units": 179,
+  "before_excess": 8,
+  "after_excess": 6,
+  "shared_helpers_added": 1,
+  "independent_prefix_helpers_from_initial": 8,
+  "constructive_shared_then_prefix_helper_bound": 7,
+  "scope": "One exact fixed dictionary check on a saved row, not a census run. Finishing the six remaining excess letters by prefix definitions constructs at most seven helpers total."
+}

@@ -1,0 +1,9482 @@
+{
+  "name": "aca_0",
+  "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+  "source_key": "current_best",
+  "source_pointer": "../rank_unbounded_20260912/all124.json#/rows/0",
+  "initial": [
+    [
+      -2,
+      -2,
+      -2,
+      -2,
+      -2,
+      -2,
+      -1,
+      2,
+      1,
+      2,
+      -1
+    ],
+    [
+      -2,
+      -1,
+      -1,
+      2,
+      1,
+      -2,
+      1
+    ]
+  ],
+  "events": [
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        3
+      ],
+      "defining_words": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [],
+          "oriented": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "template": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "expanded": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [
+            -1,
+            2,
+            -1,
+            -2
+          ],
+          "oriented": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "template": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "expanded": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        }
+      ],
+      "templates": [
+        [
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          -2,
+          1,
+          -2,
+          -1,
+          -1
+        ]
+      ],
+      "raw_after": [
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          -2,
+          1,
+          -2,
+          -1,
+          -1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "after": [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "after": [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            1,
+            -2,
+            1
+          ]
+        }
+      ],
+      "after": [
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "3": 0
+      },
+      "length_change": 11,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 1,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 2,
+        "schreier_plan_checks": 1,
+        "schreier_letter_transitions": 18,
+        "schreier_orientation_letters": 36,
+        "schreier_complete_row_expansions": 2
+      },
+      "charged_units": 60,
+      "fully_expanded_elementary_certificate": false,
+      "schreier_rewrites": [
+        {
+          "before": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "axis": 1,
+          "index": 10,
+          "axis_exponent": 1,
+          "steps": [
+            {
+              "position": 0,
+              "letter": 1,
+              "coset_before": 0,
+              "coset_after": 1,
+              "emitted": []
+            },
+            {
+              "position": 1,
+              "letter": -2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                -4
+              ]
+            },
+            {
+              "position": 2,
+              "letter": -1,
+              "coset_before": 1,
+              "coset_after": 0,
+              "emitted": []
+            },
+            {
+              "position": 3,
+              "letter": -2,
+              "coset_before": 0,
+              "coset_after": 0,
+              "emitted": [
+                -2
+              ]
+            },
+            {
+              "position": 4,
+              "letter": 1,
+              "coset_before": 0,
+              "coset_after": 1,
+              "emitted": []
+            },
+            {
+              "position": 5,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            },
+            {
+              "position": 6,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            },
+            {
+              "position": 7,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            },
+            {
+              "position": 8,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            },
+            {
+              "position": 9,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            },
+            {
+              "position": 10,
+              "letter": 2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                4
+              ]
+            }
+          ],
+          "unsigned_residue": 1,
+          "signed_residue": 1,
+          "negative_residue_carry": false,
+          "subgroup_template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "input_before": [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          "orientation_sign": -1,
+          "orientation_conjugator": []
+        },
+        {
+          "before": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "axis": 1,
+          "index": 10,
+          "axis_exponent": 0,
+          "steps": [
+            {
+              "position": 0,
+              "letter": 2,
+              "coset_before": 0,
+              "coset_after": 0,
+              "emitted": [
+                2
+              ]
+            },
+            {
+              "position": 1,
+              "letter": 1,
+              "coset_before": 0,
+              "coset_after": 1,
+              "emitted": []
+            },
+            {
+              "position": 2,
+              "letter": -2,
+              "coset_before": 1,
+              "coset_after": 1,
+              "emitted": [
+                -4
+              ]
+            },
+            {
+              "position": 3,
+              "letter": 1,
+              "coset_before": 1,
+              "coset_after": 2,
+              "emitted": []
+            },
+            {
+              "position": 4,
+              "letter": -2,
+              "coset_before": 2,
+              "coset_after": 2,
+              "emitted": [
+                -5
+              ]
+            },
+            {
+              "position": 5,
+              "letter": -1,
+              "coset_before": 2,
+              "coset_after": 1,
+              "emitted": []
+            },
+            {
+              "position": 6,
+              "letter": -1,
+              "coset_before": 1,
+              "coset_after": 0,
+              "emitted": []
+            }
+          ],
+          "unsigned_residue": 0,
+          "signed_residue": 0,
+          "negative_residue_carry": false,
+          "subgroup_template": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "input_before": [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ],
+          "orientation_sign": 1,
+          "orientation_conjugator": [
+            -2,
+            -1,
+            -1
+          ]
+        }
+      ],
+      "schreier_full_images": {
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "4": [
+          1,
+          2,
+          -1
+        ],
+        "5": [
+          1,
+          1,
+          2,
+          -1,
+          -1
+        ],
+        "6": [
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1
+        ],
+        "7": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "8": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "9": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "10": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "11": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "12": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "schreier_triangular_definitions": [
+        [
+          3,
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        [
+          4,
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        [
+          5,
+          [
+            1,
+            4,
+            -1
+          ]
+        ],
+        [
+          6,
+          [
+            1,
+            5,
+            -1
+          ]
+        ],
+        [
+          7,
+          [
+            1,
+            6,
+            -1
+          ]
+        ],
+        [
+          8,
+          [
+            1,
+            7,
+            -1
+          ]
+        ],
+        [
+          9,
+          [
+            1,
+            8,
+            -1
+          ]
+        ],
+        [
+          10,
+          [
+            1,
+            9,
+            -1
+          ]
+        ],
+        [
+          11,
+          [
+            1,
+            10,
+            -1
+          ]
+        ],
+        [
+          12,
+          [
+            1,
+            11,
+            -1
+          ]
+        ]
+      ]
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        4
+      ],
+      "defining_words": [
+        [
+          1,
+          2,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -4,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [],
+          "oriented": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -2,
+            -1,
+            -1,
+            2,
+            1,
+            -2,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [
+            -1,
+            2,
+            -1,
+            -2
+          ],
+          "oriented": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "template": [
+            2,
+            -4,
+            1,
+            -4,
+            -1
+          ],
+          "expanded": [
+            2,
+            1,
+            -2,
+            1,
+            -2,
+            -1,
+            -1
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          -4,
+          1,
+          -4,
+          -1
+        ]
+      ],
+      "raw_after": [
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          -4,
+          1,
+          -4,
+          -1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 2,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            2,
+            -4,
+            1,
+            -4,
+            -1
+          ],
+          "after": [
+            -4,
+            -1,
+            2,
+            -4,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4,
+            1
+          ]
+        },
+        {
+          "input_index": 0,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          -1,
+          2,
+          -4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "4": 9
+      },
+      "length_change": 0,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 2,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 3
+      },
+      "charged_units": 4,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          -1,
+          2,
+          -4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        5
+      ],
+      "defining_words": [
+        [
+          1,
+          4,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -5,
+          1,
+          4,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -4,
+            -1,
+            2,
+            -4,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [
+            -1,
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            1,
+            -4,
+            -1
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            1,
+            -4,
+            -1
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "5": 1
+      },
+      "length_change": 2,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 3,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 4
+      },
+      "charged_units": 5,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        6
+      ],
+      "defining_words": [
+        [
+          1,
+          5,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -6,
+          1,
+          5,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "6": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 4,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 5
+      },
+      "charged_units": 6,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        7
+      ],
+      "defining_words": [
+        [
+          1,
+          6,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -7,
+          1,
+          6,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "7": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 5,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 6
+      },
+      "charged_units": 7,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        8
+      ],
+      "defining_words": [
+        [
+          1,
+          7,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -8,
+          1,
+          7,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "template": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "expanded": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            7
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "after": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "8": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 6,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 7
+      },
+      "charged_units": 8,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        9
+      ],
+      "defining_words": [
+        [
+          1,
+          8,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -9,
+          1,
+          8,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "template": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "expanded": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            8
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "template": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "expanded": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            7
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "after": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "after": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "9": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 7,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 8
+      },
+      "charged_units": 9,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        10
+      ],
+      "defining_words": [
+        [
+          1,
+          9,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -10,
+          1,
+          9,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "template": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "expanded": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            9
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "template": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "expanded": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            8
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "template": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "expanded": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            7
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "after": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "after": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "after": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 6,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "10": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 8,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 9
+      },
+      "charged_units": 10,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        11
+      ],
+      "defining_words": [
+        [
+          1,
+          10,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -11,
+          1,
+          10,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "template": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "expanded": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            10
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "template": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "expanded": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            9
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "template": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "expanded": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            8
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "template": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "expanded": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            7
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "after": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "after": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "after": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "after": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 7,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 10,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "11": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 9,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 10
+      },
+      "charged_units": 11,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        12
+      ],
+      "defining_words": [
+        [
+          1,
+          11,
+          -1
+        ]
+      ],
+      "defining_relators": [
+        [
+          -12,
+          1,
+          11,
+          -1
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "template": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "expanded": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            11
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "template": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "expanded": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            10
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "template": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "expanded": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            9
+          ]
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "template": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "expanded": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            8
+          ]
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "template": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "expanded": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            7
+          ]
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "template": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "expanded": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            6
+          ]
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "template": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "expanded": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            5
+          ]
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            4,
+            -2
+          ],
+          "oriented": [
+            2,
+            -4,
+            -5
+          ],
+          "template": [
+            2,
+            -4,
+            -5
+          ],
+          "expanded": [
+            2,
+            -4,
+            -5
+          ],
+          "schreier_row_label": [
+            "original",
+            1
+          ]
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            1
+          ],
+          "oriented": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "template": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "expanded": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "schreier_row_label": [
+            "original",
+            0
+          ]
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "template": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "expanded": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "schreier_row_label": [
+            "definition",
+            4
+          ]
+        },
+        {
+          "input_index": 10,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": [],
+          "oriented": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "template": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "schreier_row_label": [
+            "definition",
+            3
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "raw_after": [
+        [
+          -12,
+          1,
+          11,
+          -1
+        ],
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          2,
+          -4,
+          -5
+        ],
+        [
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -12,
+            1,
+            11,
+            -1
+          ],
+          "after": [
+            -12,
+            1,
+            11,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "after": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "after": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "after": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "after": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "after": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "after": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "after": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 8,
+          "before": [
+            2,
+            -4,
+            -5
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": [
+            2,
+            -4
+          ]
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            1
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -1
+          ],
+          "sign": -1,
+          "conjugator": [
+            -1
+          ]
+        },
+        {
+          "input_index": 10,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "after": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 11,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "after": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -12,
+          1,
+          11,
+          -1
+        ],
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "helper_uses": {
+        "12": 0
+      },
+      "length_change": 4,
+      "method": "triangular_schreier_dictionary_stage",
+      "schreier_axis": 1,
+      "schreier_index": 10,
+      "schreier_stage": 10,
+      "schreier_stages": 10,
+      "work_counts": {
+        "definitions": 1,
+        "template_expansions": 11
+      },
+      "charged_units": 12,
+      "fully_expanded_elementary_certificate": false
+    },
+    {
+      "kind": "lemma11_removal",
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "before": [
+        [
+          -12,
+          1,
+          11,
+          -1
+        ],
+        [
+          -11,
+          1,
+          10,
+          -1
+        ],
+        [
+          -10,
+          1,
+          9,
+          -1
+        ],
+        [
+          -9,
+          1,
+          8,
+          -1
+        ],
+        [
+          -8,
+          1,
+          7,
+          -1
+        ],
+        [
+          -7,
+          1,
+          6,
+          -1
+        ],
+        [
+          -6,
+          1,
+          5,
+          -1
+        ],
+        [
+          -5,
+          1,
+          4,
+          -1
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -1
+        ],
+        [
+          -4,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "defining_index": 9,
+      "defining_relator": [
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4,
+        -1
+      ],
+      "generator": 1,
+      "occurrence_position": 8,
+      "occurrence_sign": -1,
+      "isolating_word": [
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4
+      ],
+      "normal_form": [
+        -1,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        -4,
+        2,
+        4
+      ],
+      "normal_form_witness": {
+        "sign": 1,
+        "conjugator": [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4
+        ]
+      },
+      "substitutions": [
+        {
+          "input_index": 0,
+          "before": [
+            -12,
+            1,
+            11,
+            -1
+          ],
+          "raw_substitution": [
+            -12,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            11,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -12,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            11,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -11,
+            1,
+            10,
+            -1
+          ],
+          "raw_substitution": [
+            -11,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            10,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -11,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            10,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -10,
+            1,
+            9,
+            -1
+          ],
+          "raw_substitution": [
+            -10,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            9,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -10,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            9,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -9,
+            1,
+            8,
+            -1
+          ],
+          "raw_substitution": [
+            -9,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            8,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -9,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            8,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -8,
+            1,
+            7,
+            -1
+          ],
+          "raw_substitution": [
+            -8,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            7,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -8,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            7,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -7,
+            1,
+            6,
+            -1
+          ],
+          "raw_substitution": [
+            -7,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            6,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -7,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            6,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -6,
+            1,
+            5,
+            -1
+          ],
+          "raw_substitution": [
+            -6,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            5,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -6,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            5,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -5,
+            1,
+            4,
+            -1
+          ],
+          "raw_substitution": [
+            -5,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            4,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -5,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "raw_substitution": [
+            -5,
+            2,
+            -4
+          ],
+          "after_free_reduction": [
+            -5,
+            2,
+            -4
+          ],
+          "replaced_occurrences": 0
+        },
+        {
+          "input_index": 10,
+          "before": [
+            -4,
+            1,
+            2,
+            -1
+          ],
+          "raw_substitution": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            2,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after_free_reduction": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            2,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "replaced_occurrences": 2
+        },
+        {
+          "input_index": 11,
+          "before": [
+            -3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "raw_substitution": [
+            -3,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4
+          ],
+          "after_free_reduction": [
+            -3,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4
+          ],
+          "replaced_occurrences": 10
+        }
+      ],
+      "raw_after": [
+        [
+          -12,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          11,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -11,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          10,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -10,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          9,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -9,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          8,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -8,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          7,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -7,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          6,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -6,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          5,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -5,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          2,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -3,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 0,
+          "before": [
+            -12,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            11,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -12,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            11,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -11,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            10,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -11,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            10,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 2,
+          "before": [
+            -10,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            9,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -10,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            9,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 3,
+          "before": [
+            -9,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            8,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -9,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            8,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 4,
+          "before": [
+            -8,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            7,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -8,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            7,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 5,
+          "before": [
+            -7,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            6,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -7,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            6,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 6,
+          "before": [
+            -6,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            5,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -6,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            5,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 7,
+          "before": [
+            -5,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -5,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 8,
+          "before": [
+            -5,
+            2,
+            -4
+          ],
+          "after": [
+            -5,
+            2,
+            -4
+          ],
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "input_index": 10,
+          "before": [
+            -3,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4
+          ],
+          "after": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            -3
+          ],
+          "sign": 1,
+          "conjugator": [
+            -3
+          ]
+        },
+        {
+          "input_index": 9,
+          "before": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            2,
+            -4,
+            -2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "after": [
+            -4,
+            -2,
+            -4,
+            2,
+            4,
+            2
+          ],
+          "sign": 1,
+          "conjugator": [
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            -4,
+            2,
+            4,
+            2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -12,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          11,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -11,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          10,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -10,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          9,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -9,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          8,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -8,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          7,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -7,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          6,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -6,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          5,
+          -4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -5,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        [
+          -5,
+          2,
+          -4
+        ],
+        [
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          -4,
+          -4,
+          -4,
+          -4,
+          -4,
+          2,
+          4,
+          -3
+        ],
+        [
+          -4,
+          -2,
+          -4,
+          2,
+          4,
+          2
+        ]
+      ],
+      "before_generator_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "after_generator_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "generator_relabeling": "identity_on_survivors",
+      "literal_substitution_length": 246,
+      "final_length": 214,
+      "length_change": 155,
+      "charged_units": 1,
+      "fully_expanded_elementary_certificate": false
+    }
+  ],
+  "endpoint": [
+    [
+      -12,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      11,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -11,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      10,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -10,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      9,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -9,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      8,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -8,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      7,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -7,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      6,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -6,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      5,
+      -4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -5,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      -2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      -5,
+      2,
+      -4
+    ],
+    [
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      2,
+      4,
+      -3
+    ],
+    [
+      -4,
+      -2,
+      -4,
+      2,
+      4,
+      2
+    ]
+  ],
+  "dictionary_units": 132,
+  "removal_units": 1,
+  "work_scope": "One exact requested dictionary construction and removal; no presentation search."
+}

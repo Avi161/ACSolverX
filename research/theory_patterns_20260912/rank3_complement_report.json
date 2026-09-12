@@ -1,0 +1,1021 @@
+{
+  "status": "rank3_complement_screen",
+  "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+  "script_sha256": "a4530f0724b716b8c1fef9c5252cb94fc7e9d6d25e604677a0243f683f2a86ce",
+  "rows": [
+    {
+      "name": "aca_4",
+      "input_rank3": [
+        "ZXY",
+        "XXXZYY",
+        "XyzzYxZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_5",
+      "input_rank3": [
+        "ZXY",
+        "XXXyzY",
+        "XZZZYYYxy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_6",
+      "input_rank3": [
+        "ZYXX",
+        "YzyZx",
+        "XXXyxYxz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_16",
+      "input_rank3": [
+        "ZXYx",
+        "XXZxYY",
+        "YZxyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 55
+    },
+    {
+      "name": "aca_24",
+      "input_rank3": [
+        "ZYYXX",
+        "XYxxz",
+        "XYxYzY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 45
+    },
+    {
+      "name": "aca_32",
+      "input_rank3": [
+        "ZXY",
+        "XzxxZY",
+        "XZZYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 55
+    },
+    {
+      "name": "aca_33",
+      "input_rank3": [
+        "ZXy",
+        "XXzxZY",
+        "YYzzxyx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_37",
+      "input_rank3": [
+        "ZYY",
+        "XXXYxxz",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_38",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxxz",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_39",
+      "input_rank3": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_40",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_41",
+      "input_rank3": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_42",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_43",
+      "input_rank3": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyXZyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_44",
+      "input_rank3": [
+        "ZXy",
+        "XXYZYY",
+        "XZxYzxYz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_45",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_46",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_47",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyXY",
+        "XYzzxZZ"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_48",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_49",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyxY",
+        "XYzzxZZ"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_50",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_51",
+      "input_rank3": [
+        "ZYY",
+        "XXYxYxxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_52",
+      "input_rank3": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_53",
+      "input_rank3": [
+        "ZXy",
+        "XzxZY",
+        "YYzyzxyxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_54",
+      "input_rank3": [
+        "ZXX",
+        "YYzzyZ",
+        "XYYZyzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_55",
+      "input_rank3": [
+        "ZyxYY",
+        "XXXyxz",
+        "XXZYxY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 55
+    },
+    {
+      "name": "aca_56",
+      "input_rank3": [
+        "ZXX",
+        "XyZYYz",
+        "XYYXYYZyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_57",
+      "input_rank3": [
+        "ZXX",
+        "XyZYYz",
+        "XYYxyzzYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_59",
+      "input_rank3": [
+        "ZXX",
+        "YZyZYz",
+        "YYYYZZZx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_60",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_61",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_62",
+      "input_rank3": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_63",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzxZZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_64",
+      "input_rank3": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_65",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_66",
+      "input_rank3": [
+        "ZXYx",
+        "XXZxxYY",
+        "XyZYZYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 55
+    },
+    {
+      "name": "aca_67",
+      "input_rank3": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZyzY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_68",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_69",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyXY",
+        "XzzzxZZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_70",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyxY",
+        "XzzzxZZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_71",
+      "input_rank3": [
+        "ZXYx",
+        "XXZxYY",
+        "XYYZyzy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_72",
+      "input_rank3": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyzxyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_73",
+      "input_rank3": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_74",
+      "input_rank3": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZyxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_75",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_76",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_77",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_78",
+      "input_rank3": [
+        "ZXY",
+        "XXyXZY",
+        "XZyZxYYYz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_79",
+      "input_rank3": [
+        "ZXX",
+        "XyyZYYz",
+        "XyZYZYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_80",
+      "input_rank3": [
+        "ZXYYY",
+        "XXyxYY",
+        "XyzxyXz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_81",
+      "input_rank3": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_82",
+      "input_rank3": [
+        "ZXYY",
+        "XXXXXZYYY",
+        "XyxxZYz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_83",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_84",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_85",
+      "input_rank3": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_86",
+      "input_rank3": [
+        "ZYYX",
+        "XXXXyyXYz",
+        "XYxzyxZ"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_87",
+      "input_rank3": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZZYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_88",
+      "input_rank3": [
+        "ZXy",
+        "XXYYXXz",
+        "YZyzxYzx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_89",
+      "input_rank3": [
+        "ZYYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_90",
+      "input_rank3": [
+        "ZXYx",
+        "XXZxxYY",
+        "XYYZYZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_91",
+      "input_rank3": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_92",
+      "input_rank3": [
+        "ZYYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_93",
+      "input_rank3": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 105
+    },
+    {
+      "name": "aca_94",
+      "input_rank3": [
+        "ZYYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_95",
+      "input_rank3": [
+        "ZXY",
+        "XXXZxYY",
+        "YxZyzxyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_96",
+      "input_rank3": [
+        "ZYYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_97",
+      "input_rank3": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxYzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 78
+    },
+    {
+      "name": "aca_98",
+      "input_rank3": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxYzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_99",
+      "input_rank3": [
+        "ZXy",
+        "XzxxYY",
+        "XYYZyzxyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_100",
+      "input_rank3": [
+        "ZXYx",
+        "XXXZxYY",
+        "XYYZyzy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_101",
+      "input_rank3": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZZyxzzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_102",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzzxZZZy"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 136
+    },
+    {
+      "name": "aca_103",
+      "input_rank3": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZZyxzzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 136
+    },
+    {
+      "name": "aca_104",
+      "input_rank3": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZZyxzzzz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_105",
+      "input_rank3": [
+        "ZXYx",
+        "XXXZxxYY",
+        "XyZYZYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 66
+    },
+    {
+      "name": "aca_106",
+      "input_rank3": [
+        "ZXY",
+        "XXXXyXXzY",
+        "XZyzxyzY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 91
+    },
+    {
+      "name": "aca_107",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_108",
+      "input_rank3": [
+        "ZXYx",
+        "XYZyzxY",
+        "YYYYYYYxYYz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 153
+    },
+    {
+      "name": "aca_109",
+      "input_rank3": [
+        "ZXXy",
+        "XYYzxZy",
+        "XXXZYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 136
+    },
+    {
+      "name": "aca_110",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    },
+    {
+      "name": "aca_111",
+      "input_rank3": [
+        "ZxYX",
+        "XYxZyzY",
+        "YYYYYYYZyyx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 153
+    },
+    {
+      "name": "aca_112",
+      "input_rank3": [
+        "ZXYx",
+        "XYZYzxy",
+        "YYYYYYYxyyz"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 136
+    },
+    {
+      "name": "aca_113",
+      "input_rank3": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYYY"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 136
+    },
+    {
+      "name": "aca_114",
+      "input_rank3": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYYzxxx"
+      ],
+      "status": "no_cyclic_complement",
+      "complement": null,
+      "complete": true,
+      "checks": 120
+    }
+  ],
+  "criterion_candidate_ids": [],
+  "complete_rows": 84,
+  "checks": 7672,
+  "cpu_seconds": 0.379221,
+  "wall_seconds_including_cooling": 5.242414457956329,
+  "scope": "Exact cyclic-complement test of each saved shorter rank3 dictionary tuple, max1000identifications each. A positive requires independent graph and general-rank stable-criterion proof review before being admitted as a solve."
+}

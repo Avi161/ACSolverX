@@ -1,0 +1,634 @@
+{
+  "before": [
+    [
+      -2,
+      -1,
+      -2,
+      1,
+      2,
+      -1,
+      -2,
+      -1,
+      2,
+      1
+    ],
+    [
+      -2,
+      -1,
+      -1,
+      -2,
+      1,
+      2,
+      -1,
+      -2,
+      -1,
+      2,
+      1
+    ]
+  ],
+  "generation_units": 500,
+  "plan": {
+    "defining_word": [
+      1,
+      2,
+      -1,
+      -2
+    ],
+    "witnesses": [
+      {
+        "input_index": 0,
+        "before": [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1,
+          2,
+          1
+        ],
+        "oriented": [
+          2,
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "sign": 1,
+        "conjugator": [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "context_u": [
+          -2
+        ],
+        "context_v": [
+          -1
+        ],
+        "coset": {
+          "source": [
+            -2
+          ],
+          "target": [
+            2,
+            1,
+            -2,
+            -1,
+            -2,
+            1,
+            2,
+            -1,
+            -2
+          ],
+          "source_core": [
+            -2
+          ],
+          "target_core": [
+            -2
+          ],
+          "source_prefix": [],
+          "target_prefix": [
+            2,
+            1,
+            -2,
+            -1
+          ],
+          "rotation_cut": 0,
+          "base_conjugator": [
+            2,
+            1,
+            -2,
+            -1
+          ],
+          "centralizer_root": [
+            -2
+          ],
+          "centralizer_exponent": 1
+        },
+        "centralizer_shift": 0,
+        "raw_defining_word": [
+          2,
+          1,
+          -2,
+          -1
+        ],
+        "defining_word": [
+          1,
+          2,
+          -1,
+          -2
+        ],
+        "helper": 3,
+        "helper_sign": -1,
+        "template": [
+          -3,
+          -2,
+          3,
+          -1
+        ],
+        "isolatable_old_generators": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "compile_units": 200,
+  "after": [
+    [
+      -3,
+      -2,
+      3,
+      -1
+    ],
+    [
+      -3,
+      -1,
+      -2,
+      3,
+      -1
+    ],
+    [
+      -3,
+      1,
+      2,
+      -1,
+      -2
+    ]
+  ],
+  "event": {
+    "kind": "defining_template_compression",
+    "before": [
+      [
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        -2,
+        -1,
+        2,
+        1
+      ],
+      [
+        -2,
+        -1,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        -2,
+        -1,
+        2,
+        1
+      ]
+    ],
+    "certificate_kind": "theorem_backed_stable_composite",
+    "required_hypothesis": "known balanced presentation of the trivial group",
+    "helpers": [
+      3
+    ],
+    "defining_words": [
+      [
+        1,
+        2,
+        -1,
+        -2
+      ]
+    ],
+    "defining_relators": [
+      [
+        -3,
+        1,
+        2,
+        -1,
+        -2
+      ]
+    ],
+    "rows": [
+      {
+        "input_index": 0,
+        "before": [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1,
+          2,
+          1
+        ],
+        "sign": 1,
+        "conjugator": [
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "oriented": [
+          2,
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "template": [
+          -3,
+          -2,
+          3,
+          -1
+        ],
+        "expanded": [
+          2,
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ]
+      },
+      {
+        "input_index": 1,
+        "before": [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1,
+          2,
+          1
+        ],
+        "sign": 1,
+        "conjugator": [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "oriented": [
+          2,
+          1,
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ],
+        "template": [
+          -3,
+          -1,
+          -2,
+          3,
+          -1
+        ],
+        "expanded": [
+          2,
+          1,
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2,
+          -1
+        ]
+      }
+    ],
+    "templates": [
+      [
+        -3,
+        -2,
+        3,
+        -1
+      ],
+      [
+        -3,
+        -1,
+        -2,
+        3,
+        -1
+      ]
+    ],
+    "raw_after": [
+      [
+        -3,
+        1,
+        2,
+        -1,
+        -2
+      ],
+      [
+        -3,
+        -2,
+        3,
+        -1
+      ],
+      [
+        -3,
+        -1,
+        -2,
+        3,
+        -1
+      ]
+    ],
+    "normalization": [
+      {
+        "input_index": 1,
+        "before": [
+          -3,
+          -2,
+          3,
+          -1
+        ],
+        "after": [
+          -3,
+          -2,
+          3,
+          -1
+        ],
+        "sign": 1,
+        "conjugator": []
+      },
+      {
+        "input_index": 2,
+        "before": [
+          -3,
+          -1,
+          -2,
+          3,
+          -1
+        ],
+        "after": [
+          -3,
+          -1,
+          -2,
+          3,
+          -1
+        ],
+        "sign": 1,
+        "conjugator": []
+      },
+      {
+        "input_index": 0,
+        "before": [
+          -3,
+          1,
+          2,
+          -1,
+          -2
+        ],
+        "after": [
+          -3,
+          1,
+          2,
+          -1,
+          -2
+        ],
+        "sign": 1,
+        "conjugator": []
+      }
+    ],
+    "after": [
+      [
+        -3,
+        -2,
+        3,
+        -1
+      ],
+      [
+        -3,
+        -1,
+        -2,
+        3,
+        -1
+      ],
+      [
+        -3,
+        1,
+        2,
+        -1,
+        -2
+      ]
+    ],
+    "helper_uses": {
+      "3": 4
+    },
+    "length_change": -7,
+    "graph_vertices": 273,
+    "graph_macro_edges": 38,
+    "graph_macro_checks": 196,
+    "graph_complete": false,
+    "work_counts": {
+      "dictionary_macro_images": 196,
+      "template_expansions": 2,
+      "definitions": 1,
+      "forced_conjugacy_template_expansions": 1
+    },
+    "charged_units": 200,
+    "fully_expanded_elementary_certificate": false,
+    "method": "conjugacy_derived_forced_pivot",
+    "conjugacy_template_witness": {
+      "input_index": 0,
+      "before": [
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        -2,
+        -1,
+        2,
+        1
+      ],
+      "oriented": [
+        2,
+        1,
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        -2,
+        -1
+      ],
+      "sign": 1,
+      "conjugator": [
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        -2,
+        -1
+      ],
+      "context_u": [
+        -2
+      ],
+      "context_v": [
+        -1
+      ],
+      "coset": {
+        "source": [
+          -2
+        ],
+        "target": [
+          2,
+          1,
+          -2,
+          -1,
+          -2,
+          1,
+          2,
+          -1,
+          -2
+        ],
+        "source_core": [
+          -2
+        ],
+        "target_core": [
+          -2
+        ],
+        "source_prefix": [],
+        "target_prefix": [
+          2,
+          1,
+          -2,
+          -1
+        ],
+        "rotation_cut": 0,
+        "base_conjugator": [
+          2,
+          1,
+          -2,
+          -1
+        ],
+        "centralizer_root": [
+          -2
+        ],
+        "centralizer_exponent": 1
+      },
+      "centralizer_shift": 0,
+      "raw_defining_word": [
+        2,
+        1,
+        -2,
+        -1
+      ],
+      "defining_word": [
+        1,
+        2,
+        -1,
+        -2
+      ],
+      "helper": 3,
+      "helper_sign": -1,
+      "template": [
+        -3,
+        -2,
+        3,
+        -1
+      ],
+      "isolatable_old_generators": [
+        1,
+        2
+      ]
+    }
+  },
+  "noncyclic_source_coset": {
+    "source": [
+      11,
+      7,
+      7,
+      -11
+    ],
+    "target": [
+      13,
+      17,
+      -13,
+      11,
+      7,
+      7,
+      -11,
+      13,
+      -17,
+      -13
+    ],
+    "source_core": [
+      7,
+      7
+    ],
+    "target_core": [
+      7,
+      7
+    ],
+    "source_prefix": [
+      11
+    ],
+    "target_prefix": [
+      13,
+      17,
+      -13,
+      11
+    ],
+    "rotation_cut": 0,
+    "base_conjugator": [
+      13,
+      17,
+      -13
+    ],
+    "centralizer_root": [
+      11,
+      7,
+      -11
+    ],
+    "centralizer_exponent": 2
+  }
+}

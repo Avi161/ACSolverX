@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "rank": 4,
+  "initial_length": 16,
+  "determinant": 1,
+  "all_singleton_removals_checked": 4,
+  "every_removal_length": 17,
+  "escape_boundaries": [
+    [
+      4,
+      16
+    ],
+    [
+      4,
+      13
+    ],
+    [
+      3,
+      11
+    ],
+    [
+      2,
+      10
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "known_triviality_proof": "Put C=[g,h]. The last rows give u=C and v=C^-1; the first rows give g=u^-2 and h=u^2. Thus C=[u^-2,u^2]=1 and every generator is trivial.",
+  "ordinary_escape_identity": "For R=u C^-1 and donor D=v C, R (v^-1 D v)=u v.",
+  "extension": "Disjoint-basis copies give sharp examples at every positive rank divisible by4; all singleton removals act within one copy and increase total length by1.",
+  "scope": "Sharpness for irreducibility under nonincreasing singleton removal, not under ordinary AC and not an AC counterexample.",
+  "source_sha256": "5148e7250560f6019fd96a34b30c1c65e2bf1800c6aeb800d15239261b13ae76",
+  "census_searches": 0
+}

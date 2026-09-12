@@ -1,0 +1,2242 @@
+{
+  "name": "aca_59",
+  "input": [
+    "XXXXyyyXXXXyyyXXXXXyyyXXXXyyyxYYYxxxxYYYxxxxx",
+    "XXXXyyyXXXXyyyy"
+  ],
+  "endpoint": [
+    "YXXXyxYxxx",
+    "YYxyxYXYxyx"
+  ],
+  "moves": [
+    {
+      "op": "multiply",
+      "target": 1,
+      "source": 2
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 1,
+      "source": 2
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "multiply",
+      "target": 1,
+      "source": 2
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "invert",
+      "target": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "invert",
+      "target": 2
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "multiply",
+      "target": 2,
+      "source": 1
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 1,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "X"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "Y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "y"
+    },
+    {
+      "op": "conjugate",
+      "target": 2,
+      "by": "x"
+    }
+  ],
+  "elementary_move_count": 430,
+  "substitution_count": 13,
+  "boundaries": [
+    {
+      "move_count": 91,
+      "pair": [
+        "YYYYxxxxYYYxxxx",
+        "YYYXyyyXXXXyyyXYYYxxxxYYYxxxxxYYYxxxx"
+      ]
+    },
+    {
+      "move_count": 131,
+      "pair": [
+        "YYYYxxxxYYYxxxx",
+        "YYYXyyyXXXXyyyXyxYYYxxxx"
+      ]
+    },
+    {
+      "move_count": 170,
+      "pair": [
+        "YYYYxxxxYYYxxxx",
+        "YYYXYxxxyxYYYxxxx"
+      ]
+    },
+    {
+      "move_count": 180,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYXYxxxyxYYYxxxx"
+      ]
+    },
+    {
+      "move_count": 193,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYxyXYxxxYYXYxxxyx"
+      ]
+    },
+    {
+      "move_count": 233,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYxyXXYxxxYXYxxxyx"
+      ]
+    },
+    {
+      "move_count": 271,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYxyXXXYxxYxxxyx"
+      ]
+    },
+    {
+      "move_count": 289,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYxyXXXYxxxYxxxx"
+      ]
+    },
+    {
+      "move_count": 327,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYYxyXXXXYxxxxxxx"
+      ]
+    },
+    {
+      "move_count": 331,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYxyXXXXYxxxxyXYxxx"
+      ]
+    },
+    {
+      "move_count": 352,
+      "pair": [
+        "YXXXyxYxxx",
+        "YXyXXXyxxYXXXXyxxxx"
+      ]
+    },
+    {
+      "move_count": 384,
+      "pair": [
+        "YXXXyxYxxx",
+        "YXXXXyxxxYXXXXyxxxx"
+      ]
+    },
+    {
+      "move_count": 394,
+      "pair": [
+        "YXXXyxYxxx",
+        "YXYxxxxyXXXYxyx"
+      ]
+    },
+    {
+      "move_count": 430,
+      "pair": [
+        "YXXXyxYxxx",
+        "YYxyxYXYxyx"
+      ]
+    }
+  ],
+  "total_length": 21,
+  "certificate_kind": "independently_replayed_ordinary_elementary_prefix"
+}

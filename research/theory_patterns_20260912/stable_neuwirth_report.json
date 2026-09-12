@@ -1,0 +1,1241 @@
+{
+  "status": "bounded_thickenability_screen",
+  "rows": [
+    {
+      "name": "aca_4",
+      "words": [
+        "ZXY",
+        "XXXZYY",
+        "XyzzYxZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/4/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_5",
+      "words": [
+        "Zxy",
+        "YYYzXyzzx",
+        "YZXXyX"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/18/attempts/0/boundaries/2",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_6",
+      "words": [
+        "ZYXX",
+        "YzyZx",
+        "XXXyxYxz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/6/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_13",
+      "words": [
+        "XYXYz",
+        "XZxzy",
+        "Xyzyy"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/2/attempts/3/boundaries/5",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_16",
+      "words": [
+        "ZXYx",
+        "XXZxYY",
+        "YZxyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/16/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_24",
+      "words": [
+        "ZYYXX",
+        "XYxxz",
+        "XYxYzY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/24/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 172800,
+      "complete": false,
+      "minimum_observed_genus": 2,
+      "positive": null
+    },
+    {
+      "name": "aca_32",
+      "words": [
+        "ZXY",
+        "XzxxZY",
+        "XZZYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/32/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_33",
+      "words": [
+        "ZXy",
+        "XXzxZY",
+        "YYzzxyx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/33/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_37",
+      "words": [
+        "ZYY",
+        "XXXYxxz",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/37/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_38",
+      "words": [
+        "ZYY",
+        "XXXyxxz",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/38/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_39",
+      "words": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/39/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_40",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/40/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_41",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/41/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_42",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/42/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_43",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyXZyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/43/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_44",
+      "words": [
+        "ZXy",
+        "XXYZYY",
+        "XZxYzxYz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/44/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_45",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/45/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_46",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/46/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_47",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XYzzxZZ"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/47/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_48",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/48/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_49",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XYzzxZZ"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/49/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_50",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/50/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_51",
+      "words": [
+        "ZYY",
+        "XXYxYxxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/51/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_52",
+      "words": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/52/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_53",
+      "words": [
+        "ZXy",
+        "XzxZY",
+        "YYzyzxyxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/53/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_54",
+      "words": [
+        "Zxx",
+        "YYZZyz",
+        "YYzyXZZ"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/17/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 172800,
+      "complete": false,
+      "minimum_observed_genus": 2,
+      "positive": null
+    },
+    {
+      "name": "aca_55",
+      "words": [
+        "ZyxYY",
+        "XXXyxz",
+        "XXZYxY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/55/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 1209600,
+      "complete": false,
+      "minimum_observed_genus": 3,
+      "positive": null
+    },
+    {
+      "name": "aca_56",
+      "words": [
+        "ZXX",
+        "XyZYYz",
+        "XYYXYYZyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/56/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_57",
+      "words": [
+        "ZXX",
+        "XyZYYz",
+        "XYYxyzzYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/57/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 2903040,
+      "complete": false,
+      "minimum_observed_genus": 3,
+      "positive": null
+    },
+    {
+      "name": "aca_59",
+      "words": [
+        "Zxx",
+        "YZYzyz",
+        "YYYYxzzz"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/6/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 1036800,
+      "complete": false,
+      "minimum_observed_genus": 3,
+      "positive": null
+    },
+    {
+      "name": "aca_60",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/60/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_61",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/61/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_62",
+      "words": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/62/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_63",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzxZZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/63/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_64",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/64/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_65",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/65/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_66",
+      "words": [
+        "ZXYx",
+        "XXZxxYY",
+        "XyZYZYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/66/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_67",
+      "words": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZyzY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/67/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_68",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/68/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_69",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XzzzxZZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/69/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_70",
+      "words": [
+        "ZYY",
+        "XXYxxyxY",
+        "XzzzxZZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/70/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_71",
+      "words": [
+        "ZXYx",
+        "XXZxYY",
+        "XYYZyzy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/71/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_72",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyzxyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/72/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_73",
+      "words": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/73/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_74",
+      "words": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZyxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/74/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_75",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/75/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_76",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/76/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_77",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/77/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_78",
+      "words": [
+        "ZXY",
+        "XXyXZY",
+        "XZyZxYYYz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/78/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_79",
+      "words": [
+        "ZXX",
+        "XyyZYYz",
+        "XyZYZYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/79/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 3110400,
+      "complete": false,
+      "minimum_observed_genus": 3,
+      "positive": null
+    },
+    {
+      "name": "aca_80",
+      "words": [
+        "ZXYYY",
+        "XyzxyXz",
+        "YYXXyx"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/5/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 7257600,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_81",
+      "words": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/81/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_82",
+      "words": [
+        "ZXYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/8/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 174182400,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_83",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/83/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 174182400,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_84",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/84/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_85",
+      "words": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/85/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_86",
+      "words": [
+        "ZxYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/15/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 174182400,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_87",
+      "words": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZZYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/87/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_88",
+      "words": [
+        "ZXy",
+        "XXYYXXz",
+        "YZyzxYzx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/88/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_89",
+      "words": [
+        "ZYYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/89/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_90",
+      "words": [
+        "ZXYx",
+        "XXZxxYY",
+        "XYYZYZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/90/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_91",
+      "words": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/91/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_92",
+      "words": [
+        "ZYYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/92/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_93",
+      "words": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/93/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_94",
+      "words": [
+        "ZYYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/94/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_95",
+      "words": [
+        "ZXY",
+        "XXXZxYY",
+        "YxZyzxyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/95/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_96",
+      "words": [
+        "ZYYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/96/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_97",
+      "words": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxYzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/97/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_98",
+      "words": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxYzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/98/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_99",
+      "words": [
+        "ZXy",
+        "XzxxYY",
+        "XYYZyzxyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/99/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_100",
+      "words": [
+        "ZXYx",
+        "XXXZxYY",
+        "XYYZyzy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/100/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_101",
+      "words": [
+        "YYYYYYYz",
+        "XZxzy",
+        "XXXYxYxY"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/11/attempts/1/boundaries/5",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 5225472000,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_102",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzzxZZZy"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/102/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_103",
+      "words": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZZyxzzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/103/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_104",
+      "words": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZZyxzzzz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/104/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_105",
+      "words": [
+        "ZXYx",
+        "XXXZxxYY",
+        "XyZYZYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/105/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_106",
+      "words": [
+        "XYxyZ",
+        "XYZyz",
+        "XXXXyXXXYY"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/16/attempts/1/boundaries/5",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_107",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/107/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_108",
+      "words": [
+        "ZXYx",
+        "YXYZyzx",
+        "YYYYYYYxYYz"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/10/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 68976230400,
+      "complete": false,
+      "minimum_observed_genus": 5,
+      "positive": null
+    },
+    {
+      "name": "aca_109",
+      "words": [
+        "ZYxx",
+        "YYZxzyX",
+        "YYYYYYXXXz"
+      ],
+      "source_certificate_pointer": "primitive_compression_report.json#/rows/9/attempts/0/boundaries/2",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 1567641600,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_110",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/110/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_111",
+      "words": [
+        "ZxYX",
+        "XYxZyzY",
+        "YYYYYYYZyyx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/111/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 68976230400,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_112",
+      "words": [
+        "ZXYx",
+        "XYZYzxy",
+        "YYYYYYYxyyz"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/112/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 68976230400,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    },
+    {
+      "name": "aca_113",
+      "words": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYYY"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/113/best",
+      "status": "nonplanar_link",
+      "orders_tested": 0,
+      "complete": true,
+      "positive": null
+    },
+    {
+      "name": "aca_114",
+      "words": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYYzxxx"
+      ],
+      "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/114/best",
+      "status": "unknown_at_order_cap",
+      "orders_tested": 1000,
+      "order_space": 1567641600,
+      "complete": false,
+      "minimum_observed_genus": 4,
+      "positive": null
+    }
+  ],
+  "table_snapshot_sha256": "188c800d8bad97c257aee1b0d09f3f6330d59a98908d1142ee91acb4714bc8de",
+  "source_hashes": {
+    "stable_neuwirth_screen.py": "3c855f18f2df942e5d4dd5205aafcdca8bbaa7c75fdb9ac1233fe1731c6f1a7a",
+    "snapshot_neuwirth_permutation_certificate.py": "02c9ac34f1869740f3f8addd4a8d96192eaf691a7a03e74e8237ac9f86388bca"
+  },
+  "positive_ids": [],
+  "complete_negative_ids": [
+    "aca_4",
+    "aca_5",
+    "aca_6",
+    "aca_13",
+    "aca_16",
+    "aca_32",
+    "aca_33",
+    "aca_37",
+    "aca_38",
+    "aca_39",
+    "aca_40",
+    "aca_41",
+    "aca_42",
+    "aca_43",
+    "aca_44",
+    "aca_45",
+    "aca_46",
+    "aca_47",
+    "aca_48",
+    "aca_49",
+    "aca_50",
+    "aca_51",
+    "aca_52",
+    "aca_53",
+    "aca_56",
+    "aca_60",
+    "aca_61",
+    "aca_62",
+    "aca_63",
+    "aca_64",
+    "aca_65",
+    "aca_66",
+    "aca_67",
+    "aca_68",
+    "aca_69",
+    "aca_70",
+    "aca_71",
+    "aca_72",
+    "aca_73",
+    "aca_74",
+    "aca_75",
+    "aca_76",
+    "aca_77",
+    "aca_78",
+    "aca_81",
+    "aca_84",
+    "aca_85",
+    "aca_87",
+    "aca_88",
+    "aca_89",
+    "aca_90",
+    "aca_91",
+    "aca_92",
+    "aca_93",
+    "aca_94",
+    "aca_95",
+    "aca_96",
+    "aca_97",
+    "aca_98",
+    "aca_99",
+    "aca_100",
+    "aca_102",
+    "aca_103",
+    "aca_104",
+    "aca_105",
+    "aca_106",
+    "aca_107",
+    "aca_110",
+    "aca_113"
+  ],
+  "unknown_ids": [
+    "aca_24",
+    "aca_54",
+    "aca_55",
+    "aca_57",
+    "aca_59",
+    "aca_79",
+    "aca_80",
+    "aca_82",
+    "aca_83",
+    "aca_86",
+    "aca_101",
+    "aca_108",
+    "aca_109",
+    "aca_111",
+    "aca_112",
+    "aca_114"
+  ],
+  "orders_tested": 16000,
+  "cpu_seconds": 0.601279,
+  "wall_seconds_including_cooling": 9.718911458039656,
+  "scope": "Compatibility uses occurrence-pair reversal. Capped orders are evenly spaced mixed-radix permutation indices, without constructing factorial arrays. A positive is not admitted as a solved row until independent geometric replay and theorem-hypothesis review."
+}

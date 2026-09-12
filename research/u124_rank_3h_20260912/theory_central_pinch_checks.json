@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "module_sha256": "5f182ac2dba66300244157f128cbec7734e2c2a0017b24f76684798588a6e4a7",
+  "wrapper_sha256": "98cc0364da7d2be3e4893cff773a60c22176772dab3433d4762fc058f01948c5",
+  "signed_consequences": 48,
+  "signed_pinch_chains": 48,
+  "nontrivial_cyclic_frames": 36,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 5,
+      "candidates": 0
+    },
+    {
+      "allowance": 100,
+      "charged": 37,
+      "candidates": 1
+    },
+    {
+      "allowance": 1000,
+      "charged": 37,
+      "candidates": 1
+    }
+  ],
+  "arbitrary_rank_sparse_control": {
+    "input_rank": 4,
+    "maximum_input_generator": 10000000000000000000000000,
+    "charged": 39,
+    "candidates": 1
+  },
+  "wrapper_budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 5,
+      "candidates": 0
+    },
+    {
+      "allowance": 100,
+      "charged": 51,
+      "candidates": 7
+    },
+    {
+      "allowance": 1000,
+      "charged": 636,
+      "candidates": 26
+    }
+  ],
+  "positive_composition_control": {
+    "charged": 623,
+    "central_chains": 2,
+    "initial_length": 25,
+    "shortest_endpoint_length": 13
+  },
+  "known_triviality_proof": "After the certified central pinch the companion is x; h=Xzx then gives h=z, and D gives z=1.",
+  "scope": "Exact certificate and bounded accounting controls, with no census evaluation."
+}

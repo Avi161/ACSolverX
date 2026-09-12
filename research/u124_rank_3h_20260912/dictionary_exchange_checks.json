@@ -1,0 +1,36 @@
+{
+  "source_sha256": "27b7ec9ec86f0b5b349f256258af0103ea6d5e6a5b2ef8daad06ca45bebdacbf",
+  "rows": [
+    {
+      "budget": 0,
+      "charged": 0,
+      "candidates": 0,
+      "best_length": 13
+    },
+    {
+      "budget": 1,
+      "charged": 1,
+      "candidates": 1,
+      "best_length": 10
+    },
+    {
+      "budget": 10,
+      "charged": 10,
+      "candidates": 6,
+      "best_length": 9
+    },
+    {
+      "budget": 100,
+      "charged": 100,
+      "candidates": 8,
+      "best_length": 0
+    },
+    {
+      "budget": 1000,
+      "charged": 399,
+      "candidates": 9,
+      "best_length": 0
+    }
+  ],
+  "known_triviality": "Writing c=[x,y], the old rows are cyc and xc. Thus x=c^-1, y=c^-2, so c=[x,y]=1. The new row defines z=xy."
+}

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "rows": 124,
+  "saved_rank2_total": 2356,
+  "retained_total": 3444,
+  "maximum_individual_relator_length": 3,
+  "retained_rank_range": [
+    7,
+    12
+  ],
+  "new_charged_units": 12234,
+  "full_composite_events": 1164,
+  "new_definitions": 811,
+  "automatic_destabilization": false,
+  "certificate_file": "all124_retained_high_rank.jsonl",
+  "certificate_sha256": "9875b8e1b7281c097433a430f7d462f474e6b124581a515828beedc5f951dbe0",
+  "retained_source_sha256": "2fd822502d119a4a434c535ede08131eda2266b3392afd195eefef84963c6530",
+  "minimum_total_export_sha256": "7b9bd8367ba61b56794ec96ebdce8f2c60b59fcd2a2402fe0bbf9bc4fb644ad8",
+  "minimum_total_manifest_sha256": "ca1bb21c46702798840748dc53ad4f2aa324f1bcb9da4d593fabdf48913f8639",
+  "verifier_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0",
+  "script_sha256": "50ddf7eed7fc3f6222f07691acdd3d63daebd26e610cd06205c18191d27ccdb3",
+  "fully_expanded_elementary_stable_AC": false,
+  "unresolved_lineage_segments": 0,
+  "scope": "All124 full saved-rank2 chains are embedded. The retained suffix consists only of exact definitions, with every original and defining row kept. This is a separate short-relator objective, not a solve or proximity claim. Earlier minimum-total prefix histories may contain removals; the new high-rank suffix does not.",
+  "searches_performed": 0
+}

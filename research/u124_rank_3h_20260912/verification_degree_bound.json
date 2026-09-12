@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "normalized_unimodular_rank2_tuples_checked": 21,
+  "symbolic_eliminations_checked": 50,
+  "degree1_controls": 14,
+  "degree2_controls": 24,
+  "strictly_irreducible_in_control_set": 0,
+  "nonincreasing_irreducible_in_control_set": 0,
+  "rank1_singletons_checked": 2,
+  "unnormalized_counterexample": [
+    2,
+    2,
+    -2
+  ],
+  "empty_tuple": "Excluded from both positive-rank statements; its rank and length are0.",
+  "scope": "Algebraic substitution-length check only; unimodularity is not asserted to imply group triviality or stable-AC legality.",
+  "census_searches": 0,
+  "verifier_sha256": "33bf57a7cbc40044c92ab823b1f22a7d2c305b7bc1c1af11b055fb21a8399f4d",
+  "script_sha256": "9dd9f1d62b9d84b6b99f17572ff253ed18a70b3885431d5d34a70d4700d48173"
+}

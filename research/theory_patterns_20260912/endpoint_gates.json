@@ -1,0 +1,1139 @@
+{
+  "status": "recognition_screen_complete",
+  "source_sha256": "c0cb88847cd6d58b953e2da76fd308d3c2ae3197ab8858b908e2a9892dec86b9",
+  "script_sha256": "6d5f615f5d41751e53f2efc5a5bba8019edd694580c9878eb8a4045ad3dda415",
+  "rows": [
+    {
+      "name": "aca_0",
+      "distinct_pairs_checked": 17,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_1",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_2",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_3",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_4",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_5",
+      "distinct_pairs_checked": 28,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_6",
+      "distinct_pairs_checked": 16,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_7",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_8",
+      "distinct_pairs_checked": 15,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_9",
+      "distinct_pairs_checked": 21,
+      "bs_charges": 45,
+      "matches": []
+    },
+    {
+      "name": "aca_10",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 52,
+      "matches": []
+    },
+    {
+      "name": "aca_11",
+      "distinct_pairs_checked": 10,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_12",
+      "distinct_pairs_checked": 9,
+      "bs_charges": 4,
+      "matches": []
+    },
+    {
+      "name": "aca_13",
+      "distinct_pairs_checked": 25,
+      "bs_charges": 2,
+      "matches": [
+        {
+          "pair": [
+            "YYXXXyxx",
+            "YXXXXXyxxxxxx"
+          ],
+          "endpoint_state_index": 1,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "y",
+                "n": 5,
+                "k": 0,
+                "r": -3,
+                "s": 2,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "y",
+                "n": 5,
+                "k": 0,
+                "r": 3,
+                "s": -2,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYxxyXXXX",
+            "YXXXXXyxxxxxx"
+          ],
+          "endpoint_state_index": 2,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "y",
+                "n": 5,
+                "k": 0,
+                "r": 2,
+                "s": -4,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "y",
+                "n": 5,
+                "k": 0,
+                "r": -2,
+                "s": 4,
+                "terminal": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "aca_14",
+      "distinct_pairs_checked": 33,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_15",
+      "distinct_pairs_checked": 15,
+      "bs_charges": 9,
+      "matches": []
+    },
+    {
+      "name": "aca_16",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_17",
+      "distinct_pairs_checked": 26,
+      "bs_charges": 61,
+      "matches": []
+    },
+    {
+      "name": "aca_18",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_19",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_20",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_21",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 7,
+      "matches": []
+    },
+    {
+      "name": "aca_22",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_23",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_24",
+      "distinct_pairs_checked": 38,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_25",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 6,
+      "matches": []
+    },
+    {
+      "name": "aca_26",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 60,
+      "matches": []
+    },
+    {
+      "name": "aca_27",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 12,
+      "matches": []
+    },
+    {
+      "name": "aca_28",
+      "distinct_pairs_checked": 24,
+      "bs_charges": 56,
+      "matches": []
+    },
+    {
+      "name": "aca_29",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_30",
+      "distinct_pairs_checked": 37,
+      "bs_charges": 1,
+      "matches": [
+        {
+          "pair": [
+            "YYXXyx",
+            "YYYYYYxyyyyyX"
+          ],
+          "endpoint_state_index": 1,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "y",
+                "stable": "X",
+                "n": 5,
+                "k": 0,
+                "r": 2,
+                "s": -1,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "Y",
+                "stable": "X",
+                "n": 5,
+                "k": 0,
+                "r": -2,
+                "s": 1,
+                "terminal": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "aca_31",
+      "distinct_pairs_checked": 25,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_32",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_33",
+      "distinct_pairs_checked": 15,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_34",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_35",
+      "distinct_pairs_checked": 16,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_36",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_37",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 44,
+      "matches": []
+    },
+    {
+      "name": "aca_38",
+      "distinct_pairs_checked": 10,
+      "bs_charges": 3,
+      "matches": []
+    },
+    {
+      "name": "aca_39",
+      "distinct_pairs_checked": 26,
+      "bs_charges": 61,
+      "matches": []
+    },
+    {
+      "name": "aca_40",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_41",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_42",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_43",
+      "distinct_pairs_checked": 4,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_44",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_45",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_46",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_47",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 7,
+      "matches": []
+    },
+    {
+      "name": "aca_48",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_49",
+      "distinct_pairs_checked": 14,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_50",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 6,
+      "matches": []
+    },
+    {
+      "name": "aca_51",
+      "distinct_pairs_checked": 24,
+      "bs_charges": 56,
+      "matches": []
+    },
+    {
+      "name": "aca_52",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 12,
+      "matches": []
+    },
+    {
+      "name": "aca_53",
+      "distinct_pairs_checked": 14,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_54",
+      "distinct_pairs_checked": 27,
+      "bs_charges": 26,
+      "matches": [
+        {
+          "pair": [
+            "YYXXXXyxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          "endpoint_state_index": 0,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "y",
+                "n": 6,
+                "k": 0,
+                "r": -4,
+                "s": 2,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "y",
+                "n": 6,
+                "k": 0,
+                "r": 4,
+                "s": -2,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYxxyXXXXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          "endpoint_state_index": 1,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "y",
+                "n": 6,
+                "k": 0,
+                "r": 2,
+                "s": -5,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "y",
+                "n": 6,
+                "k": 0,
+                "r": -2,
+                "s": 5,
+                "terminal": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "aca_55",
+      "distinct_pairs_checked": 29,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_56",
+      "distinct_pairs_checked": 46,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_57",
+      "distinct_pairs_checked": 43,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_58",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_59",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 4,
+      "matches": [
+        {
+          "pair": [
+            "YYxxyxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          "endpoint_state_index": 2,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "Y",
+                "n": 7,
+                "k": 0,
+                "r": -2,
+                "s": -2,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "Y",
+                "n": 7,
+                "k": 0,
+                "r": 2,
+                "s": 2,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYXXXXXXyxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          "endpoint_state_index": 3,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "Y",
+                "n": 7,
+                "k": 0,
+                "r": -2,
+                "s": 6,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "Y",
+                "n": 7,
+                "k": 0,
+                "r": 2,
+                "s": -6,
+                "terminal": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "aca_60",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_61",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_62",
+      "distinct_pairs_checked": 26,
+      "bs_charges": 61,
+      "matches": []
+    },
+    {
+      "name": "aca_63",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_64",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_65",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_66",
+      "distinct_pairs_checked": 6,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_67",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_68",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_69",
+      "distinct_pairs_checked": 14,
+      "bs_charges": 7,
+      "matches": []
+    },
+    {
+      "name": "aca_70",
+      "distinct_pairs_checked": 14,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_71",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_72",
+      "distinct_pairs_checked": 14,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_73",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 6,
+      "matches": []
+    },
+    {
+      "name": "aca_74",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 12,
+      "matches": []
+    },
+    {
+      "name": "aca_75",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_76",
+      "distinct_pairs_checked": 17,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_77",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_78",
+      "distinct_pairs_checked": 32,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_79",
+      "distinct_pairs_checked": 11,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_80",
+      "distinct_pairs_checked": 39,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_81",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_82",
+      "distinct_pairs_checked": 17,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_83",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_84",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_85",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_86",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_87",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_88",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_89",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_90",
+      "distinct_pairs_checked": 5,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_91",
+      "distinct_pairs_checked": 12,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_92",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_93",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_94",
+      "distinct_pairs_checked": 26,
+      "bs_charges": 61,
+      "matches": []
+    },
+    {
+      "name": "aca_95",
+      "distinct_pairs_checked": 15,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_96",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 6,
+      "matches": []
+    },
+    {
+      "name": "aca_97",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_98",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_99",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_100",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_101",
+      "distinct_pairs_checked": 26,
+      "bs_charges": 61,
+      "matches": []
+    },
+    {
+      "name": "aca_102",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 8,
+      "matches": []
+    },
+    {
+      "name": "aca_103",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_104",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 5,
+      "matches": []
+    },
+    {
+      "name": "aca_105",
+      "distinct_pairs_checked": 9,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_106",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_107",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_108",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_109",
+      "distinct_pairs_checked": 25,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_110",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_111",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_112",
+      "distinct_pairs_checked": 20,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_113",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_114",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_115",
+      "distinct_pairs_checked": 25,
+      "bs_charges": 7,
+      "matches": [
+        {
+          "pair": [
+            "YYxyx",
+            "YXXXXyxxx"
+          ],
+          "endpoint_state_index": 0,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "Y",
+                "n": 3,
+                "k": 0,
+                "r": -1,
+                "s": -1,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "Y",
+                "n": 3,
+                "k": 0,
+                "r": 1,
+                "s": 1,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YXYxx",
+            "YYYYXyyyx"
+          ],
+          "endpoint_state_index": 1,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": 1,
+                "s": 1,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "Y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": -1,
+                "s": -1,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYXXXyx",
+            "YXXXXyxxx"
+          ],
+          "endpoint_state_index": 4,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "x",
+                "stable": "Y",
+                "n": 3,
+                "k": 0,
+                "r": -1,
+                "s": 3,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "X",
+                "stable": "Y",
+                "n": 3,
+                "k": 0,
+                "r": 1,
+                "s": -3,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYxyXX",
+            "YYYYXyyyx"
+          ],
+          "endpoint_state_index": 6,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 1,
+                "base": "y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": -2,
+                "s": 1,
+                "terminal": false
+              },
+              {
+                "donor_index": 1,
+                "base": "Y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": 2,
+                "s": -1,
+                "terminal": false
+              }
+            ]
+          }
+        },
+        {
+          "pair": [
+            "YYYYXyyyx",
+            "YYYYxxyyyX"
+          ],
+          "endpoint_state_index": 8,
+          "hits": {
+            "ms_residue": [
+              {
+                "donor_index": 0,
+                "base": "y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": 4,
+                "s": -3,
+                "terminal": false
+              },
+              {
+                "donor_index": 0,
+                "base": "Y",
+                "stable": "x",
+                "n": 3,
+                "k": 0,
+                "r": -4,
+                "s": 3,
+                "terminal": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "aca_116",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 38,
+      "matches": []
+    },
+    {
+      "name": "aca_117",
+      "distinct_pairs_checked": 1,
+      "bs_charges": 1,
+      "matches": []
+    },
+    {
+      "name": "aca_118",
+      "distinct_pairs_checked": 18,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_119",
+      "distinct_pairs_checked": 19,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_120",
+      "distinct_pairs_checked": 13,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_121",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_122",
+      "distinct_pairs_checked": 23,
+      "bs_charges": 0,
+      "matches": []
+    },
+    {
+      "name": "aca_123",
+      "distinct_pairs_checked": 22,
+      "bs_charges": 0,
+      "matches": []
+    }
+  ],
+  "counts": {
+    "endpoint_rows": 2280,
+    "bs_charges": 933,
+    "consecutive_bs_matches": 362,
+    "consecutive_bs_normal_form_stalled": 362
+  },
+  "globally_distinct_pairs": 2280,
+  "terminal_candidate_ids": [],
+  "scope": "Existing sufficient terminal gates plus new MS residue theorem, on saved strict-Nielsen endpoints. Gates alone are not counted as new certificates. Consecutive BS collapse has a shared 1000 rewrite-unit cap per input and cap512.",
+  "cpu_seconds": 1.658102,
+  "wall_seconds": 1.6786654579918832
+}

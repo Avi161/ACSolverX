@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "rows": 124,
+  "map_inverse_word_checks": 80,
+  "states": 2280,
+  "strict_descent_steps": 1392,
+  "image_evaluations": 29376,
+  "maximum_image_evaluations_per_input": 544,
+  "improved_ids": [],
+  "solved_ids": [],
+  "gate_ledger": {
+    "endpoint_rows": 2280,
+    "globally_distinct_pairs": 2280,
+    "bs_charges": 933,
+    "terminal_candidate_ids": [],
+    "recorded_bs_matches": 362,
+    "recorded_bs_stalled": 362,
+    "bs_match_count_verification": "Recorded summary values only; individual negative BS gate calls are not stored and were not rerun."
+  },
+  "source_hashes": {
+    "endpoint_nielsen.py": "d61ecafa69c9346aeffd3cb05d0e24888eba2d8f7d78f1dab4fb815e030647aa",
+    "endpoint_nielsen.json": "e60131d60b414b438b1ff4817f62a8e9aefaf74599f79b80592201749ba3b3b5",
+    "endpoint_nielsen.jsonl": "c0cb88847cd6d58b953e2da76fd308d3c2ae3197ab8858b908e2a9892dec86b9",
+    "endpoint_gates.json": "c0e787e66e0c2fcc982d2be5e4ff0717a0e59cafb5fc77b56ba2cbe3a3843ab5"
+  },
+  "cpu_seconds": 0.133006,
+  "wall_seconds": 0.13433470809832215,
+  "scope": "Independent word-image/canonicalization replay of every stored trace; inverse identities, strict descent and recorded budget arithmetic. No endpoint descent or terminal gate is rerun. The maximality of exhausted descents is not independently retested. Ambient maps are not ordinary AC certificates."
+}

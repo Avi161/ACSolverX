@@ -1,0 +1,599 @@
+{
+  "status": "pass",
+  "source_report_sha256": "2fcdcbc1368e508c6f85174488eb233b8740734cefee7e894935190833ade3f0",
+  "source_theory_sha256": "d646cc9b9927c49793664dbe5e430d5ec9f07f6f17b74698cee335babcfd7010",
+  "marked_prefixes_checked": 15,
+  "rows": [
+    {
+      "name": "aca_116",
+      "basis_and_inverse": true,
+      "kernel_marking": [
+        "",
+        "",
+        "x",
+        "y"
+      ],
+      "P": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "Q": [
+        "yyxYxyxYx",
+        "XyXYYxxyXYXX"
+      ],
+      "T": [
+        "r",
+        "s",
+        "uurtUturtUt",
+        "TuTRUUttuTRUsTT"
+      ],
+      "theta_T": [
+        "UrUUrTsuRuTs",
+        "UrTsTsTsutSt",
+        "r",
+        "s"
+      ],
+      "rank4_T_total_length": 28,
+      "theta_T_total_length": 26
+    },
+    {
+      "name": "aca_1",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_30",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_55",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_80",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_82",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_109",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_101",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_117",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_9",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_67",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_86",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_106",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_54",
+      "basis_and_inverse": true
+    },
+    {
+      "name": "aca_5",
+      "basis_and_inverse": true
+    }
+  ],
+  "deterministic_alternative_power_isolator_marking": {
+    "basis": [
+      "urtUturtUtu",
+      "sTTrtUtutttUTuTR",
+      "t",
+      "UTuTR"
+    ],
+    "lift_y": "UTuTR",
+    "projected_pair": [
+      "yxYxyxYxy",
+      "XYxyxxxYXyX"
+    ],
+    "projected_total_length": 20,
+    "scope": "deterministic identity only; no complement or projected-frame search; recovers known power-isolator route",
+    "nielsen_row_path": [
+      {
+        "op": "invert",
+        "target": 0
+      },
+      {
+        "op": "multiply",
+        "target": 0,
+        "donor": 2,
+        "sign": -1,
+        "side": "left"
+      },
+      {
+        "op": "multiply",
+        "target": 0,
+        "donor": 3,
+        "sign": 1,
+        "side": "left"
+      },
+      {
+        "op": "multiply",
+        "target": 0,
+        "donor": 2,
+        "sign": -1,
+        "side": "left"
+      },
+      {
+        "op": "multiply",
+        "target": 0,
+        "donor": 3,
+        "sign": -1,
+        "side": "left"
+      },
+      {
+        "op": "multiply",
+        "target": 3,
+        "donor": 0,
+        "sign": -1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 3,
+        "donor": 0,
+        "sign": -1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 2,
+        "sign": -1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 2,
+        "sign": -1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 0,
+        "sign": -1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 2,
+        "sign": 1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 2,
+        "sign": 1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 2,
+        "sign": 1,
+        "side": "right"
+      },
+      {
+        "op": "multiply",
+        "target": 1,
+        "donor": 0,
+        "sign": 1,
+        "side": "right"
+      },
+      {
+        "op": "permute",
+        "order": [
+          3,
+          1,
+          2,
+          0
+        ]
+      }
+    ],
+    "inverse_basis": [
+      "UUURTruuT",
+      "sUTTTutt",
+      "t",
+      "ruu"
+    ],
+    "both_inverse_compositions_verified": true
+  },
+  "proof_status": "general stable bridge and unit-lift completion independently reviewed; no ordinary equivalence claimed",
+  "direct_completion_independent_review": {
+    "status": "pass",
+    "source_report_sha256": "bec4e53329a749e04739f0e22eef1639fed0e22adf615fa92c0dc374c1411107",
+    "rows": [
+      {
+        "name": "aca_116",
+        "input_total": 14,
+        "projected_total": 21,
+        "compiler_operations": 0,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_1",
+        "input_total": 15,
+        "projected_total": 29,
+        "compiler_operations": 5,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_30",
+        "input_total": 17,
+        "projected_total": 27,
+        "compiler_operations": 4,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_55",
+        "input_total": 18,
+        "projected_total": 33,
+        "compiler_operations": 6,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_80",
+        "input_total": 19,
+        "projected_total": 39,
+        "compiler_operations": 8,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_82",
+        "input_total": 22,
+        "projected_total": 49,
+        "compiler_operations": 12,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_109",
+        "input_total": 23,
+        "projected_total": 30,
+        "compiler_operations": 11,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_101",
+        "input_total": 25,
+        "projected_total": 49,
+        "compiler_operations": 11,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_117",
+        "input_total": 14,
+        "projected_total": 20,
+        "compiler_operations": 4,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_9",
+        "input_total": 15,
+        "projected_total": 22,
+        "compiler_operations": 4,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_67",
+        "input_total": 20,
+        "projected_total": 33,
+        "compiler_operations": 11,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_86",
+        "input_total": 22,
+        "projected_total": 51,
+        "compiler_operations": 12,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_106",
+        "input_total": 21,
+        "projected_total": 37,
+        "compiler_operations": 11,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_54",
+        "input_total": 19,
+        "projected_total": 26,
+        "compiler_operations": 9,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      },
+      {
+        "name": "aca_5",
+        "input_total": 19,
+        "projected_total": 38,
+        "compiler_operations": 9,
+        "kernel_marking_and_inverse_verified": true,
+        "canonical_witnesses_verified": true
+      }
+    ],
+    "completed_bases": 15,
+    "compiler_operations": 117,
+    "projection_images": 30,
+    "canonicalization_operations": 225,
+    "no_projected_gain_over_original": true,
+    "scope": "All saved completed bases, full prefix chains, both inverse compositions, markings, and canonical witnesses replayed; no Nielsen or projected candidate search"
+  },
+  "aca1_rooted_bs_two_pinches": {
+    "source_pair": [
+      "XXYxxyy",
+      "XXXYxxyXXYxyxxYXXXyxxY"
+    ],
+    "source_total": 29,
+    "final_pair": [
+      "XXyxxYY",
+      "XYXXYxyxxYXy"
+    ],
+    "final_total": 19,
+    "stages": [
+      {
+        "pinch": "XXYxx",
+        "replacement": "YY",
+        "suffix": "yXXYxyxxYXXXyxxY",
+        "endpoint": [
+          "XXyxxYY",
+          "XYXXYxyxxYXXXyxxY"
+        ],
+        "total_length": 24
+      },
+      {
+        "pinch": "XXyxx",
+        "replacement": "yy",
+        "suffix": "Y",
+        "endpoint": [
+          "XXyxxYY",
+          "XYXXYxyxxYXy"
+        ],
+        "total_length": 19
+      }
+    ],
+    "elementary_moves": [
+      {
+        "op": "invert",
+        "target": 1
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "multiply",
+        "target": 2,
+        "source": 1
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "X"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "x"
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "invert",
+        "target": 1
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "y"
+      },
+      {
+        "op": "multiply",
+        "target": 2,
+        "source": 1
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "by": "Y"
+      },
+      {
+        "op": "invert",
+        "target": 1
+      }
+    ],
+    "elementary_move_count": 41,
+    "replay_pass": true,
+    "scope": "Exact two ordinary substitutions only; proper-power stable word x\u00b2 is not a free basis generator; no solve and original total15 remains shorter",
+    "maximum_all_relator_length": 59
+  }
+}

@@ -1,0 +1,2599 @@
+{
+  "status": "author_verified_pending_independent_audit",
+  "rows": [
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "complements": [
+        "x",
+        "yyy"
+      ],
+      "initial_image_tuple": [
+        "YXYxyx",
+        "YYYYxxx",
+        "x",
+        "yyy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "status": "marked_kernel_basis_found",
+      "search": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "usTTTTustSUtR",
+          "usTTTusTTTusTTTu",
+          "t",
+          "tttSU"
+        ],
+        "inverse_domain_basis": [
+          "RUTUtut",
+          "SUUUUttt",
+          "t",
+          "uuus"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 3,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 17,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 17,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 19,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "XXXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "XXXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "XXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "Xy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "YXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "Xyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "yxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "y",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Xyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 6,
+        "new_nielsen_move_count": 18,
+        "unit_goal_location": "child",
+        "unit_goal_image_tuple": [
+          "X",
+          "XXXy",
+          "XYXyxy",
+          "XXXyyyy"
+        ],
+        "unit_goal_recognition": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 17,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 19
+        },
+        "unit_completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 17,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 19,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "XXXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "XXXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "XXy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "Xy",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XYXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "YXyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "Xyxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "yxy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xy",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "y",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Xyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "work_before_completion": 46,
+        "reserved_completion_and_projection_units": 19,
+        "popped_states": 1,
+        "generated_candidates": 21,
+        "seen_image_tuples": 21,
+        "guards": {},
+        "unit_gate_counts": {
+          "unit_goal_checks_pop": 1,
+          "unit_goal_checks_child": 21,
+          "recognizable_unit_goals_child": 1
+        }
+      },
+      "projected": {
+        "pair": [
+          "yXXXXyxYx",
+          "yXXXyXXXyXXXy"
+        ],
+        "total_length": 22,
+        "determinant": 1,
+        "cyclic_inverse_permutation_match": false
+      },
+      "image_evaluations": 65,
+      "image_evaluation_counts": {
+        "row_inverse_images": 25,
+        "multiplication_candidate_images": 21,
+        "unit_completion_word_images": 17,
+        "kernel_projection_word_images": 2
+      },
+      "remaining_shared_budget": 935,
+      "solved": false,
+      "prefix_cpu_seconds": 0.0021680000000000033,
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "usTTTTustSUtR",
+          "usTTTusTTTusTTTu"
+        ],
+        "kernel_basis": [
+          "usTTTTustSUtR",
+          "usTTTusTTTusTTTu",
+          "t",
+          "tttSU"
+        ],
+        "inverse_basis": [
+          "RUTUtut",
+          "SUUUUttt",
+          "t",
+          "uuus"
+        ],
+        "Q": [
+          "yXXXXyxYx",
+          "yXXXyXXXyXXXy"
+        ],
+        "P": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "RYXYxyx",
+          "SYYYYxxx",
+          "x",
+          "yyys"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YXYxyx",
+          "YYYYxxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "search_cpu_seconds": 0.12954100000000002,
+      "search_wall_seconds": 0.12996724992990494,
+      "compile_cpu_seconds": 0.0005840000000000289,
+      "result": {
+        "solved": false,
+        "nodes_explored": 935,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXyXYxxxx",
+            "YYxxxYxxxYxxx"
+          ],
+          [
+            "YXyXYxxxx",
+            "YXyXyXXXyXXXyx"
+          ],
+          [
+            "YXyXYxxxx",
+            "YXXyXyXXXyx"
+          ],
+          [
+            "YXXXyXyx",
+            "YXyXYxxxx"
+          ],
+          [
+            "YXyXYxxxx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YYXyxx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YYxxxyX",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXyXYxxx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXYXyxx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXYxxxyX",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXyXYxx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXyxxYXX",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXXYxxxyX",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXyXYx",
+            "YXXXXyxxx"
+          ],
+          [
+            "YXyXYx",
+            "YXyxxYXXX"
+          ],
+          [
+            "YXyXYx",
+            "YYXyxYXXX"
+          ],
+          [
+            "YXyXYx",
+            "YYYXXXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_8_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_2_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_2_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_2_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_2_3"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_3"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_3_4"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXyXYx",
+          "YYYXXXX"
+        ],
+        "min_total_length_seen": 13,
+        "min_max_relator_length_seen": 7,
+        "max_relator_length_seen": 21
+      },
+      "best_pair": [
+        "YXyXYx",
+        "YYYXXXX"
+      ],
+      "best_length": 13,
+      "heap_pops": 935,
+      "combined_units": 1000,
+      "improves_original": false,
+      "elementary_move_count": 255
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "complements": [
+        "x",
+        "yyy"
+      ],
+      "initial_image_tuple": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx",
+        "x",
+        "yyy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "status": "marked_kernel_basis_found",
+      "search": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "usTTTTTTTTTusttSUttR",
+          "usTTTTTTTusTTTTTTTusTTTTTTTu",
+          "t",
+          "tttttttSU"
+        ],
+        "inverse_domain_basis": [
+          "RUTTUttutt",
+          "SUUUUttttttt",
+          "t",
+          "uuus"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 3,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 28,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 28,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 30,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "XXXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "Xy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "YXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "Xyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "yxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "y",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Xyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 6,
+        "new_nielsen_move_count": 29,
+        "unit_goal_location": "child",
+        "unit_goal_image_tuple": [
+          "X",
+          "XXXXXXXy",
+          "XXYXXyxxy",
+          "XXXXXXXyyyy"
+        ],
+        "unit_goal_recognition": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 28,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 30
+        },
+        "unit_completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 28,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 30,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "XXXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "XXy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "Xy",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XXYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XYXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "YXXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "XXyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "Xyxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "yxxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xxy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "xy",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "y",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Xyyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yy"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "work_before_completion": 46,
+        "reserved_completion_and_projection_units": 30,
+        "popped_states": 1,
+        "generated_candidates": 21,
+        "seen_image_tuples": 21,
+        "guards": {},
+        "unit_gate_counts": {
+          "unit_goal_checks_pop": 1,
+          "unit_goal_checks_child": 21,
+          "recognizable_unit_goals_child": 1
+        }
+      },
+      "projected": {
+        "pair": [
+          "yXXXXXXXXXyxxYxx",
+          "yXXXXXXXyXXXXXXXyXXXXXXXy"
+        ],
+        "total_length": 41,
+        "determinant": 1,
+        "cyclic_inverse_permutation_match": false
+      },
+      "image_evaluations": 76,
+      "image_evaluation_counts": {
+        "row_inverse_images": 25,
+        "multiplication_candidate_images": 21,
+        "unit_completion_word_images": 28,
+        "kernel_projection_word_images": 2
+      },
+      "remaining_shared_budget": 924,
+      "solved": false,
+      "prefix_cpu_seconds": 0.0006420000000000314,
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "usTTTTTTTTTusttSUttR",
+          "usTTTTTTTusTTTTTTTusTTTTTTTu"
+        ],
+        "kernel_basis": [
+          "usTTTTTTTTTusttSUttR",
+          "usTTTTTTTusTTTTTTTusTTTTTTTu",
+          "t",
+          "tttttttSU"
+        ],
+        "inverse_basis": [
+          "RUTTUttutt",
+          "SUUUUttttttt",
+          "t",
+          "uuus"
+        ],
+        "Q": [
+          "yXXXXXXXXXyxxYxx",
+          "yXXXXXXXyXXXXXXXyXXXXXXXy"
+        ],
+        "P": [
+          "YXXYxxyxx",
+          "YYYYxxxxxxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "RYXXYxxyxx",
+          "SYYYYxxxxxxx",
+          "x",
+          "yyys"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YXXYxxyxx",
+          "YYYYxxxxxxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "search_cpu_seconds": 0.36684300000000003,
+      "search_wall_seconds": 0.38468187488615513,
+      "compile_cpu_seconds": 0.0026760000000001227,
+      "result": {
+        "solved": false,
+        "nodes_explored": 924,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXXyXXYxxxxxxxxx",
+            "YYxxxxxxxYxxxxxxxYxxxxxxx"
+          ],
+          [
+            "YXXyXXYxxxxxxxxx",
+            "YXXyXXyXXXXXXXyXXXXXXXyxx"
+          ],
+          [
+            "YXXyXXYxxxxxxxxx",
+            "YXXXXyXXyXXXXXXXyxx"
+          ],
+          [
+            "YXXXXXXyXXyxx",
+            "YXXyXXYxxxxxxxxx"
+          ],
+          [
+            "YXXyXXXXyxxYxxx",
+            "YXXyXXYxxxxxxxxx"
+          ],
+          [
+            "YXXyxxxxxYx",
+            "YXXyXXYxxxxxxxxx"
+          ],
+          [
+            "YXXyxxxxxYx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXXXXXyXyxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXXXXXyXyxx",
+            "YXXyXXYxxxxxxxx"
+          ],
+          [
+            "YXXyXXXyxxYxx",
+            "YXXyXXYxxxxxxxx"
+          ],
+          [
+            "YYXXyxxxxx",
+            "YXXyXXYxxxxxxxx"
+          ],
+          [
+            "YYXXyxxxxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YYxxxxxxyXX",
+            "YXXyXXYxxxxxxx"
+          ],
+          [
+            "YXXyXXyxxYx",
+            "YXXyXXYxxxxxxx"
+          ],
+          [
+            "YXYXXyxxxxx",
+            "YXXyXXYxxxxxxx"
+          ],
+          [
+            "YXYXXyxxxxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXYxxxxxxyXX",
+            "YXXyXXYxxxxxx"
+          ],
+          [
+            "YYXXyXyxx",
+            "YXXyXXYxxxxxx"
+          ],
+          [
+            "YXXYXXyxxxxx",
+            "YXXyXXYxxxxxx"
+          ],
+          [
+            "YXXYXXyxxxxx",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXYxxxxx",
+            "YXXYxxxxxxyXX"
+          ],
+          [
+            "YYxxyxyXX",
+            "YXXyXXYxxxxx"
+          ],
+          [
+            "YXXyXXYxxxxx",
+            "YXXyxxxxxYXXX"
+          ],
+          [
+            "YXXyxxxxxYXXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXXYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXYxxxx",
+            "YXXXYxxxxxxyXX"
+          ],
+          [
+            "YXYxxyxxyXX",
+            "YXXyXXYxxxx"
+          ],
+          [
+            "YXXyXXYxxxx",
+            "YXXyxxxxxYXXXX"
+          ],
+          [
+            "YXXyxxxxxYXXXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXXXYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXYxxx",
+            "YXXXXYxxxxxxyXX"
+          ],
+          [
+            "YXXyXXYxxx",
+            "YXXYxxyxxxyXX"
+          ],
+          [
+            "YXXyXXYxxx",
+            "YXXyxxxxxYXXXXX"
+          ],
+          [
+            "YXXyxxxYXXXXXYx",
+            "YXXyxxxxxYXXXXX"
+          ],
+          [
+            "YXXyxxxxxYXXXXX",
+            "YXXXXXYxxxxxxyXX"
+          ],
+          [
+            "YXXXXXYxxxxxxyXX",
+            "YXXXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXYxx",
+            "YXXXXXYxxxxxxyXX"
+          ],
+          [
+            "YXXyXXYxx",
+            "YYXXXXXYxxxxyXX"
+          ],
+          [
+            "YXXyXXYxx",
+            "YYYXXXXXYxxyXX"
+          ],
+          [
+            "YXXyXXYxx",
+            "YYYYXXXXXXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_16_14"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_12"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_12"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_5_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_1_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_2_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_7_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_4_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_14"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_11_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_7_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_13"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_12"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_10_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_6_11"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_9_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_12"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_8_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_4_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_13"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_5_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_7_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_5_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_3_14"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_6_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_1_14"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_8_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_2_15"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_2"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_2"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_2"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXXyXXYxx",
+          "YYYYXXXXXXX"
+        ],
+        "min_total_length_seen": 20,
+        "min_max_relator_length_seen": 11,
+        "max_relator_length_seen": 39
+      },
+      "best_pair": [
+        "YXXyXXYxx",
+        "YYYYXXXXXXX"
+      ],
+      "best_length": 20,
+      "heap_pops": 924,
+      "combined_units": 1000,
+      "improves_original": false,
+      "elementary_move_count": 1182
+    }
+  ],
+  "selection": "Only the two prior q2 proper joins with explicit y^4 and x in their subgroup: gcd(3,4)=1 proves adding y^3 gives the full free group.",
+  "solved_ids": [],
+  "strict_original_gain_ids": [],
+  "relator_cap": null,
+  "certificate_file": "two_complement_q3_certificates.jsonl",
+  "certificate_sha256": "4bd99e75b54415d0f939d4d5687fa39484d182c08cf2b780121d76f71835ccc8",
+  "warmup_and_control_cpu_seconds": 0.146362,
+  "warmup_and_control_wall_seconds": 0.2510040409397334,
+  "source_hashes": {
+    "two_complement_q3_run.py": "d4c4ea8a009a48ebd8369a44fd2bc8301113f234bfc0d81dd820b296ba93b384",
+    "two_complement_unit_gate_report.json": "a87446e02b89c2fa10977eb11e0b81100d588577ccbc2f00b18f45ce143daa74",
+    "two_complement_unit_gate.py": "c264e1f21f3c5edd85ccad5ab4987db08fdd9395815bca6bbc12bbb7d6d1012e",
+    "captured_mixed_search.py": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f",
+    "heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "compile_search_prefix.py": "26d91bb4a82978d83655afa97037dd81a75c685240106e24d3f7beac3264621f"
+  },
+  "scope": "Two additional exploratory attempts, each at most1000 heterogeneous image/compiler/heap units; not cumulative1000 across all session experiments. Stable prefix theorem requires known trivial input; ordinary suffixes fully emitted and replayed. Negative outcomes are bounded, not obstruction proofs."
+}

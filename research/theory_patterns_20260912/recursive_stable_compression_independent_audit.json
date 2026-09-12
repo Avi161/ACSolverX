@@ -1,0 +1,1310 @@
+{
+  "status": "pass",
+  "source_report_sha256": "3e6a3d89e652b292051e58cd297abcbf8d29b9bfcceff166d72c8aadc9de0ce2",
+  "audit_script_sha256": "1d6d747ec35e21f41fa18d76572d790f7b8ade949ff72a53ee108e39f62662ff",
+  "source_table_sha256": "188c800d8bad97c257aee1b0d09f3f6330d59a98908d1142ee91acb4714bc8de",
+  "rows": [
+    {
+      "name": "aca_4",
+      "source_record_index": 0,
+      "json_pointer": "/records/0",
+      "minimum_relators": [
+        "ZXY",
+        "XXXZYY",
+        "XyzzYxZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_5",
+      "source_record_index": 1,
+      "json_pointer": "/records/1",
+      "minimum_relators": [
+        "Zxy",
+        "YYYzXyzzx",
+        "YZXXyX"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_6",
+      "source_record_index": 2,
+      "json_pointer": "/records/2",
+      "minimum_relators": [
+        "ZYXX",
+        "YzyZx",
+        "XXXyxYxz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_13",
+      "source_record_index": 3,
+      "json_pointer": "/records/3",
+      "minimum_relators": [
+        "XYXYz",
+        "XZxzy",
+        "Xyzyy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 15,
+      "input_total_length": 15,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_16",
+      "source_record_index": 4,
+      "json_pointer": "/records/4",
+      "minimum_relators": [
+        "ZXYx",
+        "XXZxYY",
+        "YZxyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 15,
+      "input_total_length": 15,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_24",
+      "source_record_index": 5,
+      "json_pointer": "/records/5",
+      "minimum_relators": [
+        "ZYYXX",
+        "XYxxz",
+        "XYxYzY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 16,
+      "input_total_length": 16,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_32",
+      "source_record_index": 6,
+      "json_pointer": "/records/6",
+      "minimum_relators": [
+        "ZXY",
+        "XzxxZY",
+        "XZZYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 16,
+      "input_total_length": 16,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_33",
+      "source_record_index": 7,
+      "json_pointer": "/records/7",
+      "minimum_relators": [
+        "ZXy",
+        "XXzxZY",
+        "YYzzxyx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 16,
+      "input_total_length": 16,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_37",
+      "source_record_index": 8,
+      "json_pointer": "/records/8",
+      "minimum_relators": [
+        "ZYY",
+        "XXXYxxz",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_38",
+      "source_record_index": 9,
+      "json_pointer": "/records/9",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxxz",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_39",
+      "source_record_index": 10,
+      "json_pointer": "/records/10",
+      "minimum_relators": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_40",
+      "source_record_index": 11,
+      "json_pointer": "/records/11",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_41",
+      "source_record_index": 12,
+      "json_pointer": "/records/12",
+      "minimum_relators": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_42",
+      "source_record_index": 13,
+      "json_pointer": "/records/13",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_43",
+      "source_record_index": 14,
+      "json_pointer": "/records/14",
+      "minimum_relators": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyXZyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_44",
+      "source_record_index": 15,
+      "json_pointer": "/records/15",
+      "minimum_relators": [
+        "ZXy",
+        "XXYZYY",
+        "XZxYzxYz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_45",
+      "source_record_index": 16,
+      "json_pointer": "/records/16",
+      "minimum_relators": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_46",
+      "source_record_index": 17,
+      "json_pointer": "/records/17",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_47",
+      "source_record_index": 18,
+      "json_pointer": "/records/18",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyXY",
+        "XYzzxZZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_48",
+      "source_record_index": 19,
+      "json_pointer": "/records/19",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYzxxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_49",
+      "source_record_index": 20,
+      "json_pointer": "/records/20",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyxY",
+        "XYzzxZZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_50",
+      "source_record_index": 21,
+      "json_pointer": "/records/21",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_51",
+      "source_record_index": 22,
+      "json_pointer": "/records/22",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxYxxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_52",
+      "source_record_index": 23,
+      "json_pointer": "/records/23",
+      "minimum_relators": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_53",
+      "source_record_index": 24,
+      "json_pointer": "/records/24",
+      "minimum_relators": [
+        "ZXy",
+        "XzxZY",
+        "YYzyzxyxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_54",
+      "source_record_index": 25,
+      "json_pointer": "/records/25",
+      "minimum_relators": [
+        "Zxx",
+        "YYZZyz",
+        "YYzyXZZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 16,
+      "input_total_length": 16,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_55",
+      "source_record_index": 26,
+      "json_pointer": "/records/26",
+      "minimum_relators": [
+        "ZyxYY",
+        "XXXyxz",
+        "XXZYxY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_56",
+      "source_record_index": 27,
+      "json_pointer": "/records/27",
+      "minimum_relators": [
+        "ZXX",
+        "XyZYYz",
+        "XYYXYYZyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_57",
+      "source_record_index": 28,
+      "json_pointer": "/records/28",
+      "minimum_relators": [
+        "ZXX",
+        "XyZYYz",
+        "XYYxyzzYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_59",
+      "source_record_index": 29,
+      "json_pointer": "/records/29",
+      "minimum_relators": [
+        "Zxx",
+        "YZYzyz",
+        "YYYYxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_60",
+      "source_record_index": 30,
+      "json_pointer": "/records/30",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYzxxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_61",
+      "source_record_index": 31,
+      "json_pointer": "/records/31",
+      "minimum_relators": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_62",
+      "source_record_index": 32,
+      "json_pointer": "/records/32",
+      "minimum_relators": [
+        "ZYY",
+        "XXXYxYxY",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_63",
+      "source_record_index": 33,
+      "json_pointer": "/records/33",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzxZZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_64",
+      "source_record_index": 34,
+      "json_pointer": "/records/34",
+      "minimum_relators": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_65",
+      "source_record_index": 35,
+      "json_pointer": "/records/35",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_66",
+      "source_record_index": 36,
+      "json_pointer": "/records/36",
+      "minimum_relators": [
+        "ZXYx",
+        "XXZxxYY",
+        "XyZYZYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_67",
+      "source_record_index": 37,
+      "json_pointer": "/records/37",
+      "minimum_relators": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZyzY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_68",
+      "source_record_index": 38,
+      "json_pointer": "/records/38",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyxY",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_69",
+      "source_record_index": 39,
+      "json_pointer": "/records/39",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyXY",
+        "XzzzxZZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_70",
+      "source_record_index": 40,
+      "json_pointer": "/records/40",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyxY",
+        "XzzzxZZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_71",
+      "source_record_index": 41,
+      "json_pointer": "/records/41",
+      "minimum_relators": [
+        "ZXYx",
+        "XXZxYY",
+        "XYYZyzy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_72",
+      "source_record_index": 42,
+      "json_pointer": "/records/42",
+      "minimum_relators": [
+        "ZXy",
+        "XzxxYY",
+        "XYZyzxyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_73",
+      "source_record_index": 43,
+      "json_pointer": "/records/43",
+      "minimum_relators": [
+        "ZYY",
+        "XXYxxyXY",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_74",
+      "source_record_index": 44,
+      "json_pointer": "/records/44",
+      "minimum_relators": [
+        "ZYY",
+        "XXyXyxxY",
+        "XZZyxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_75",
+      "source_record_index": 45,
+      "json_pointer": "/records/45",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_76",
+      "source_record_index": 46,
+      "json_pointer": "/records/46",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYzxxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_77",
+      "source_record_index": 47,
+      "json_pointer": "/records/47",
+      "minimum_relators": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_78",
+      "source_record_index": 48,
+      "json_pointer": "/records/48",
+      "minimum_relators": [
+        "ZXY",
+        "XXyXZY",
+        "XZyZxYYYz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_79",
+      "source_record_index": 49,
+      "json_pointer": "/records/49",
+      "minimum_relators": [
+        "ZXX",
+        "XyyZYYz",
+        "XyZYZYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_80",
+      "source_record_index": 50,
+      "json_pointer": "/records/50",
+      "minimum_relators": [
+        "ZXYYY",
+        "XyzxyXz",
+        "YYXXyx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_81",
+      "source_record_index": 51,
+      "json_pointer": "/records/51",
+      "minimum_relators": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_82",
+      "source_record_index": 52,
+      "json_pointer": "/records/52",
+      "minimum_relators": [
+        "ZXYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_83",
+      "source_record_index": 53,
+      "json_pointer": "/records/53",
+      "minimum_relators": [
+        "ZXXy",
+        "XZxYz",
+        "YYYYYYYzxxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_84",
+      "source_record_index": 54,
+      "json_pointer": "/records/54",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "XXXZYYYYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_85",
+      "source_record_index": 55,
+      "json_pointer": "/records/55",
+      "minimum_relators": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 17,
+      "input_total_length": 17,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_86",
+      "source_record_index": 56,
+      "json_pointer": "/records/56",
+      "minimum_relators": [
+        "ZxYY",
+        "XyxxZYz",
+        "YYYXXXXXZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_87",
+      "source_record_index": 57,
+      "json_pointer": "/records/57",
+      "minimum_relators": [
+        "ZXY",
+        "XXXyXXzY",
+        "XZYXZZYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_88",
+      "source_record_index": 58,
+      "json_pointer": "/records/58",
+      "minimum_relators": [
+        "ZXy",
+        "XXYYXXz",
+        "YZyzxYzx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_89",
+      "source_record_index": 59,
+      "json_pointer": "/records/59",
+      "minimum_relators": [
+        "ZYYY",
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_90",
+      "source_record_index": 60,
+      "json_pointer": "/records/60",
+      "minimum_relators": [
+        "ZXYx",
+        "XXZxxYY",
+        "XYYZYZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_91",
+      "source_record_index": 61,
+      "json_pointer": "/records/61",
+      "minimum_relators": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_92",
+      "source_record_index": 62,
+      "json_pointer": "/records/62",
+      "minimum_relators": [
+        "ZYYY",
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_93",
+      "source_record_index": 63,
+      "json_pointer": "/records/63",
+      "minimum_relators": [
+        "ZYYY",
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_94",
+      "source_record_index": 64,
+      "json_pointer": "/records/64",
+      "minimum_relators": [
+        "ZYYY",
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_95",
+      "source_record_index": 65,
+      "json_pointer": "/records/65",
+      "minimum_relators": [
+        "ZXY",
+        "XXXZxYY",
+        "YxZyzxyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_96",
+      "source_record_index": 66,
+      "json_pointer": "/records/66",
+      "minimum_relators": [
+        "ZYYY",
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_97",
+      "source_record_index": 67,
+      "json_pointer": "/records/67",
+      "minimum_relators": [
+        "ZYY",
+        "XXyxYxY",
+        "XZxxYzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_98",
+      "source_record_index": 68,
+      "json_pointer": "/records/68",
+      "minimum_relators": [
+        "ZYY",
+        "XYxxYXy",
+        "XXzxYzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_99",
+      "source_record_index": 69,
+      "json_pointer": "/records/69",
+      "minimum_relators": [
+        "ZXy",
+        "XzxxYY",
+        "XYYZyzxyz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_100",
+      "source_record_index": 70,
+      "json_pointer": "/records/70",
+      "minimum_relators": [
+        "ZXYx",
+        "XXXZxYY",
+        "XYYZyzy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 18,
+      "input_total_length": 18,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_101",
+      "source_record_index": 71,
+      "json_pointer": "/records/71",
+      "minimum_relators": [
+        "YYYYYYYz",
+        "XZxzy",
+        "XXXYxYxY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 21,
+      "input_total_length": 21,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_102",
+      "source_record_index": 72,
+      "json_pointer": "/records/72",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XzzzzxZZZy"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 21,
+      "input_total_length": 21,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_103",
+      "source_record_index": 73,
+      "json_pointer": "/records/73",
+      "minimum_relators": [
+        "ZYY",
+        "XYxxxYXy",
+        "XZZZyxzzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 21,
+      "input_total_length": 21,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_104",
+      "source_record_index": 74,
+      "json_pointer": "/records/74",
+      "minimum_relators": [
+        "ZYY",
+        "XXXyxYxY",
+        "XZZZyxzzzz"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 21,
+      "input_total_length": 21,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_105",
+      "source_record_index": 75,
+      "json_pointer": "/records/75",
+      "minimum_relators": [
+        "ZXYx",
+        "XXXZxxYY",
+        "XyZYZYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 19,
+      "input_total_length": 19,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_106",
+      "source_record_index": 76,
+      "json_pointer": "/records/76",
+      "minimum_relators": [
+        "XYxyZ",
+        "XYZyz",
+        "XXXXyXXXYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_107",
+      "source_record_index": 77,
+      "json_pointer": "/records/77",
+      "minimum_relators": [
+        "ZXXy",
+        "XZxYz",
+        "XXXZYYYYYYY"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_108",
+      "source_record_index": 78,
+      "json_pointer": "/records/78",
+      "minimum_relators": [
+        "UYY",
+        "XYxZ",
+        "XYZyzxY",
+        "Yuuuxuz"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 21,
+      "input_total_length": 22,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_109",
+      "source_record_index": 79,
+      "json_pointer": "/records/79",
+      "minimum_relators": [
+        "UYY",
+        "YxxZ",
+        "XuZxzy",
+        "XXXzuuu"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 20,
+      "input_total_length": 21,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_110",
+      "source_record_index": 80,
+      "json_pointer": "/records/80",
+      "minimum_relators": [
+        "ZXXy",
+        "XzxZY",
+        "YYYYYYYzxxx"
+      ],
+      "minimum_rank": 3,
+      "minimum_total_length": 20,
+      "input_total_length": 20,
+      "additional_gain": 0,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_111",
+      "source_record_index": 81,
+      "json_pointer": "/records/81",
+      "minimum_relators": [
+        "UYY",
+        "XZxY",
+        "XYxZyzY",
+        "UxYuuuZ"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 21,
+      "input_total_length": 22,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_112",
+      "source_record_index": 82,
+      "json_pointer": "/records/82",
+      "minimum_relators": [
+        "UYY",
+        "XYxZ",
+        "XYZYzxy",
+        "UzYuuux"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 21,
+      "input_total_length": 22,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_113",
+      "source_record_index": 83,
+      "json_pointer": "/records/83",
+      "minimum_relators": [
+        "UYY",
+        "XXyZ",
+        "XzxZY",
+        "XXXZuuuu"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 20,
+      "input_total_length": 21,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    },
+    {
+      "name": "aca_114",
+      "source_record_index": 84,
+      "json_pointer": "/records/84",
+      "minimum_relators": [
+        "UYY",
+        "XXyZ",
+        "XZxYz",
+        "uuuuzxxx"
+      ],
+      "minimum_rank": 4,
+      "minimum_total_length": 20,
+      "input_total_length": 21,
+      "additional_gain": 1,
+      "source_provenance_verified": true
+    }
+  ],
+  "continuations_checked": 1,
+  "additional_gain_ids": [
+    "aca_108",
+    "aca_109",
+    "aca_111",
+    "aca_112",
+    "aca_113",
+    "aca_114"
+  ],
+  "additional_total_reduction": 6,
+  "all_recursive_candidates": 9201,
+  "corruptions_rejected": [
+    "fresh_helper",
+    "compressed_word",
+    "cut",
+    "definition_retention",
+    "boundary_length",
+    "final_rank",
+    "provenance"
+  ],
+  "scope": "All85 prefixes and exact seed provenance replayed; six rank4 gains admitted as theorem-backed stable prefixes. Candidate completeness/optimality and normal-product expansion are not independently certified."
+}

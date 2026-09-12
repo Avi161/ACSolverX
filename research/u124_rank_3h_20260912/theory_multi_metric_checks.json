@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "module_sha256": "0cf4f9909f58e585999cdd6599380796e51d8cf0e58587ca19d4557267797b43",
+  "independent_coin_coefficients_tested": 686,
+  "metric_checks": 26,
+  "flow_optima_checks": 6,
+  "compiled_signed_chains": 18,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 1,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 2,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 10,
+      "strict_candidates": 1
+    },
+    {
+      "allowance": 100,
+      "charged": 100,
+      "strict_candidates": 1
+    },
+    {
+      "allowance": 1000,
+      "charged": 1000,
+      "strict_candidates": 7
+    }
+  ],
+  "known_triviality_proof": "The companion x y^11 forces x=y^-11; BS(4,5) then forces y=1, hence x=z=1.",
+  "scope": "Planted mechanism and budget controls only; no census campaign."
+}

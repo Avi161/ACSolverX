@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "signed_identity_cases": 216,
+  "seed_ordinary_moves": 35,
+  "seed_post_coordinate_moves": 18,
+  "ordinary_segment_peaks": [
+    27,
+    29
+  ],
+  "seed_final_total": 19,
+  "solved_ids": [],
+  "new_length_gain_ids": [],
+  "cpu_seconds": 0.004249000000000003,
+  "hashes": {
+    "stable_rank3_patterns_independent_audit.py": "c134a569eb3da15a3e134ad40a2174df09bb91c8a2892a63211ee38d619da493",
+    "stable_rank3_patterns_check.py": "01427863def7a55f8d7799d075c67904364a368b1d5f1c8714da109e8c5348c9",
+    "stable_rank3_patterns.md": "ffd118ad210ede317fdea14abd4c6731b3f31b22768d9848df4c777349abb549"
+  },
+  "proof_review": "General signed identities, necessary determinant, three unconditional ordinary soluble subfamilies, invertible stable coordinate, and extra-generator obstruction reviewed independently. The stable-coordinate elementary expansion is not emitted."
+}

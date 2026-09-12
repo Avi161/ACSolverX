@@ -1,0 +1,6884 @@
+{
+  "status": "pass",
+  "source_report_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+  "source_report": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/stable_dictionary_compression_report.json",
+  "source_csv_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+  "audit_script_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+  "author_script_sha256": "89b4b58cecc542c4e657983999f654c91c679f0011272761da5e4aec1feea8c3",
+  "conventions_sha256": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54",
+  "counts": {
+    "rows": 124,
+    "positive_prefixes_independently_verified": 84,
+    "strict_stable_gain_rows": 84,
+    "rank2_endpoint_gain_rows": 0,
+    "starting_total": 2356,
+    "best_total_including_start": 2199,
+    "strict_total_reduction": 157,
+    "corruption_cases_rejected": 6,
+    "logged_candidate_definitions": 15814,
+    "maximum_logged_candidate_definitions_per_input": 217
+  },
+  "strict_stable_gain_ids": [
+    "aca_4",
+    "aca_5",
+    "aca_6",
+    "aca_16",
+    "aca_24",
+    "aca_32",
+    "aca_33",
+    "aca_37",
+    "aca_38",
+    "aca_39",
+    "aca_40",
+    "aca_41",
+    "aca_42",
+    "aca_43",
+    "aca_44",
+    "aca_45",
+    "aca_46",
+    "aca_47",
+    "aca_48",
+    "aca_49",
+    "aca_50",
+    "aca_51",
+    "aca_52",
+    "aca_53",
+    "aca_54",
+    "aca_55",
+    "aca_56",
+    "aca_57",
+    "aca_59",
+    "aca_60",
+    "aca_61",
+    "aca_62",
+    "aca_63",
+    "aca_64",
+    "aca_65",
+    "aca_66",
+    "aca_67",
+    "aca_68",
+    "aca_69",
+    "aca_70",
+    "aca_71",
+    "aca_72",
+    "aca_73",
+    "aca_74",
+    "aca_75",
+    "aca_76",
+    "aca_77",
+    "aca_78",
+    "aca_79",
+    "aca_80",
+    "aca_81",
+    "aca_82",
+    "aca_83",
+    "aca_84",
+    "aca_85",
+    "aca_86",
+    "aca_87",
+    "aca_88",
+    "aca_89",
+    "aca_90",
+    "aca_91",
+    "aca_92",
+    "aca_93",
+    "aca_94",
+    "aca_95",
+    "aca_96",
+    "aca_97",
+    "aca_98",
+    "aca_99",
+    "aca_100",
+    "aca_101",
+    "aca_102",
+    "aca_103",
+    "aca_104",
+    "aca_105",
+    "aca_106",
+    "aca_107",
+    "aca_108",
+    "aca_109",
+    "aca_110",
+    "aca_111",
+    "aca_112",
+    "aca_113",
+    "aca_114"
+  ],
+  "rank2_gain_ids": [],
+  "solved_ids": [],
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 109,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 96,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          6
+        ],
+        "compressed_relators": [
+          "XXXZYY",
+          "XyzzYxZy"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/4/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyzY",
+          "XZZZYYYxy"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/5/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 130,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYXX",
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "YXX",
+        "cuts": [
+          0,
+          3
+        ],
+        "compressed_relators": [
+          "YzyZx",
+          "XXXyxYxz"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/6/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 93,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 80,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 92,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "minimum_rank3_total_length": 15,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          6,
+          5
+        ],
+        "total_length": 15,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          0
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "YZxyz"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 15,
+        "input_length": 17,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/16/best"
+      },
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 105,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYXX",
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          5,
+          6
+        ],
+        "total_length": 16,
+        "independently_verified": true,
+        "defining_word": "YYXX",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxz",
+          "XYxYzY"
+        ],
+        "token_counts": [
+          1,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 4,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 4,
+              "end": 8,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 2,
+        "formula_length": 16,
+        "input_length": 17,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/24/best"
+      },
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 106,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 91,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 95,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 102,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          7
+        ],
+        "total_length": 16,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          4
+        ],
+        "compressed_relators": [
+          "XzxxZY",
+          "XZZYYYY"
+        ],
+        "token_counts": [
+          2,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 16,
+        "input_length": 17,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/32/best"
+      },
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 104,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          7
+        ],
+        "total_length": 16,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XXzxZY",
+          "YYzzxyx"
+        ],
+        "token_counts": [
+          2,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 16,
+        "input_length": 17,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/33/best"
+      },
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 93,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          7
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxxz",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          1,
+          4
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/37/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          7
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          2,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxxz",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          1,
+          4
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/38/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/39/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/40/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          5
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/41/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/42/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 113,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyXZyz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/43/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXYZYY",
+          "XZxYzxYz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/44/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 131,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          4
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/45/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/46/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XYzzxZZ"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/47/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 131,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 4,
+              "end": 7,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/48/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          10
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XYzzxZZ"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/49/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/50/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXYxYxxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/51/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/52/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          5,
+          9
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYzyzxyxx"
+        ],
+        "token_counts": [
+          2,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/53/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 129,
+      "minimum_rank3_total_length": 16,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXX",
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          7
+        ],
+        "total_length": 16,
+        "independently_verified": true,
+        "defining_word": "XX",
+        "cuts": [
+          0,
+          9
+        ],
+        "compressed_relators": [
+          "YYzzyZ",
+          "XYYZyzz"
+        ],
+        "token_counts": [
+          3,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 6,
+        "formula_length": 16,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/54/best"
+      },
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 126,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZyxYY",
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          6,
+          6
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "yxYY",
+        "cuts": [
+          2,
+          4
+        ],
+        "compressed_relators": [
+          "XXXyxz",
+          "XXZYxY"
+        ],
+        "token_counts": [
+          1,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 5,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 2,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/55/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 124,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          10
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYXYYZyz"
+        ],
+        "token_counts": [
+          2,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/56/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXX",
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          2
+        ],
+        "compressed_relators": [
+          "XyZYYz",
+          "XYYxyzzYY"
+        ],
+        "token_counts": [
+          2,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/57/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 142,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXX",
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "XX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "YZyZYz",
+          "YYYYZZZx"
+        ],
+        "token_counts": [
+          3,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 4,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": -1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 6,
+        "formula_length": 17,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/59/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 5,
+              "end": 8,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 18,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/60/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 18,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/61/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/62/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzxZZy"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": -1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/63/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/64/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 145,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/65/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XyZYZYY"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 18,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/66/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 147,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZyzY"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/67/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/68/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XzzzxZZy"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": -1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/69/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          12
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XzzzxZZy"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": -1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/70/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 123,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          6,
+          7
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxYY",
+          "XYYZyzy"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 17,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/71/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 114,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          8
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYZyzxyz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/72/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 144,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/73/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 146,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyXyxxY",
+          "XZZyxzzz"
+        ],
+        "token_counts": [
+          0,
+          5
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 5,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/74/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 150,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          10
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/75/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          10
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/76/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          10
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          6
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/77/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          1,
+          5
+        ],
+        "compressed_relators": [
+          "XXyXZY",
+          "XZyZxYYYz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 4,
+              "end": 6,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/78/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 152,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXX",
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XX",
+        "cuts": [
+          4,
+          5
+        ],
+        "compressed_relators": [
+          "XyyZYYz",
+          "XyZYZYzz"
+        ],
+        "token_counts": [
+          2,
+          4
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 6,
+        "formula_length": 18,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/79/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYYY",
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          5,
+          6,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XYYY",
+        "cuts": [
+          2,
+          3
+        ],
+        "compressed_relators": [
+          "XXyxYY",
+          "XyzxyXz"
+        ],
+        "token_counts": [
+          0,
+          2
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 2,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/80/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          7
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          6
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxzzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/81/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 192,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYY",
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          9,
+          7
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XYY",
+        "cuts": [
+          3,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXXZYYY",
+          "XyxxZYz"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 8,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/82/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 167,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          11
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/83/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 167,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          11
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/84/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_length": 18,
+      "candidate_definitions": 112,
+      "minimum_rank3_total_length": 17,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          7
+        ],
+        "total_length": 17,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          6
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxzzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 17,
+        "input_length": 18,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/85/best"
+      },
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 18,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 191,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYX",
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          9,
+          7
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "YYX",
+        "cuts": [
+          4,
+          8
+        ],
+        "compressed_relators": [
+          "XXXXyyXYz",
+          "XYxzyxZ"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 8,
+              "end": 11,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 11,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/86/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 151,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          8
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXyXXzY",
+          "XZYXZZYY"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/87/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 125,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XXYYXXz",
+          "YZyzxYzx"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/88/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": 1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/89/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXZxxYY",
+          "XYYZYZy"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 18,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/90/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": 1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/91/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": 1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/92/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          14
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XYzzxZZ"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": -1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/93/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 168,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": 1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/94/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 126,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          1
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "YxZyzxyz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/95/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 167,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYYY",
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "YYY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXYxxyXY",
+          "XZZxYzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 12,
+              "sign": 1
+            },
+            {
+              "start": 12,
+              "end": 15,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 19,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/96/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          7
+        ],
+        "compressed_relators": [
+          "XXyxYxY",
+          "XZxxYzzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/97/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 115,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          7,
+          8
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          7
+        ],
+        "compressed_relators": [
+          "XYxxYXy",
+          "XXzxYzzz"
+        ],
+        "token_counts": [
+          0,
+          4
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 2,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/98/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "input_length": 19,
+      "candidate_definitions": 121,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXy",
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          6,
+          9
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "Xy",
+        "cuts": [
+          2,
+          11
+        ],
+        "compressed_relators": [
+          "XzxxYY",
+          "XYYZyzxyz"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 8,
+              "sign": 1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 18,
+        "input_length": 19,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/99/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 19,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 20,
+      "candidate_definitions": 148,
+      "minimum_rank3_total_length": 18,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          7
+        ],
+        "total_length": 18,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          10
+        ],
+        "compressed_relators": [
+          "XXXZxYY",
+          "XYYZyzy"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 18,
+        "input_length": 20,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/100/best"
+      },
+      "all_rank_minimum_total_length": 18,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 20,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          10
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXYxYxY",
+          "XZZZyxzzzz"
+        ],
+        "token_counts": [
+          0,
+          7
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            },
+            {
+              "start": 13,
+              "end": 15,
+              "sign": 1
+            },
+            {
+              "start": 15,
+              "end": 17,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 7,
+        "formula_length": 21,
+        "input_length": 25,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/101/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 25,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          10
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          16
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XzzzzxZZZy"
+        ],
+        "token_counts": [
+          0,
+          7
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": 1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            },
+            {
+              "start": 10,
+              "end": 12,
+              "sign": -1
+            },
+            {
+              "start": 12,
+              "end": 14,
+              "sign": -1
+            },
+            {
+              "start": 14,
+              "end": 16,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 7,
+        "formula_length": 21,
+        "input_length": 25,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/102/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 25,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 192,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          10
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          3,
+          8
+        ],
+        "compressed_relators": [
+          "XYxxxYXy",
+          "XZZZyxzzzz"
+        ],
+        "token_counts": [
+          0,
+          7
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            },
+            {
+              "start": 13,
+              "end": 15,
+              "sign": 1
+            },
+            {
+              "start": 15,
+              "end": 17,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 7,
+        "formula_length": 21,
+        "input_length": 25,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/103/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 25,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "candidate_definitions": 193,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZYY",
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          8,
+          10
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "YY",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XXXyxYxY",
+          "XZZZyxzzzz"
+        ],
+        "token_counts": [
+          0,
+          7
+        ],
+        "literal_occurrences": [
+          [],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "sign": -1
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "sign": 1
+            },
+            {
+              "start": 11,
+              "end": 13,
+              "sign": 1
+            },
+            {
+              "start": 13,
+              "end": 15,
+              "sign": 1
+            },
+            {
+              "start": 15,
+              "end": 17,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 7,
+        "formula_length": 21,
+        "input_length": 25,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/104/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 25,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 164,
+      "minimum_rank3_total_length": 19,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          8,
+          7
+        ],
+        "total_length": 19,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXZxxYY",
+          "XyZYZYY"
+        ],
+        "token_counts": [
+          1,
+          2
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 19,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/105/best"
+      },
+      "all_rank_minimum_total_length": 19,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "candidate_definitions": 163,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXY",
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          3,
+          9,
+          8
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XY",
+        "cuts": [
+          2,
+          2
+        ],
+        "compressed_relators": [
+          "XXXXyXXzY",
+          "XZyzxyzY"
+        ],
+        "token_counts": [
+          1,
+          3
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 7,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 1,
+              "end": 3,
+              "sign": -1
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 8,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 4,
+        "formula_length": 20,
+        "input_length": 21,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/106/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 21,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 169,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          11
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          7
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "XXXZYYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/107/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 215,
+      "minimum_rank3_total_length": 22,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          11
+        ],
+        "total_length": 22,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XYZyzxY",
+          "YYYYYYYxYYz"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 10,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 22,
+        "input_length": 24,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/108/best"
+      },
+      "all_rank_minimum_total_length": 22,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 24,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 197,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          10
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          10,
+          6
+        ],
+        "compressed_relators": [
+          "XYYzxZy",
+          "XXXZYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": 1
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 21,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/109/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "candidate_definitions": 169,
+      "minimum_rank3_total_length": 20,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          11
+        ],
+        "total_length": 20,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          0
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "YYYYYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 20,
+        "input_length": 22,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/110/best"
+      },
+      "all_rank_minimum_total_length": 20,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 22,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 217,
+      "minimum_rank3_total_length": 22,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZxYX",
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          11
+        ],
+        "total_length": 22,
+        "independently_verified": true,
+        "defining_word": "xYX",
+        "cuts": [
+          3,
+          0
+        ],
+        "compressed_relators": [
+          "XYxZyzY",
+          "YYYYYYYZyyx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 7,
+              "end": 10,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 22,
+        "input_length": 24,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/111/best"
+      },
+      "all_rank_minimum_total_length": 22,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 24,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "input_length": 24,
+      "candidate_definitions": 216,
+      "minimum_rank3_total_length": 22,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXYx",
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          7,
+          11
+        ],
+        "total_length": 22,
+        "independently_verified": true,
+        "defining_word": "XYx",
+        "cuts": [
+          6,
+          0
+        ],
+        "compressed_relators": [
+          "XYZYzxy",
+          "YYYYYYYxyyz"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 2,
+              "end": 5,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 10,
+              "end": 13,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 22,
+        "input_length": 24,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/112/best"
+      },
+      "all_rank_minimum_total_length": 22,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 24,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 171,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          12
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          1,
+          8
+        ],
+        "compressed_relators": [
+          "XzxZY",
+          "XXXZYYYYYYYY"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": 1
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "sign": -1
+            }
+          ],
+          [
+            {
+              "start": 3,
+              "end": 6,
+              "sign": -1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 21,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/113/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "input_length": 23,
+      "candidate_definitions": 171,
+      "minimum_rank3_total_length": 21,
+      "minimum_rank3_witness": {
+        "relators": [
+          "ZXXy",
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "rank": 3,
+        "relator_lengths": [
+          4,
+          5,
+          12
+        ],
+        "total_length": 21,
+        "independently_verified": true,
+        "defining_word": "XXy",
+        "cuts": [
+          4,
+          0
+        ],
+        "compressed_relators": [
+          "XZxYz",
+          "YYYYYYYYzxxx"
+        ],
+        "token_counts": [
+          2,
+          1
+        ],
+        "literal_occurrences": [
+          [
+            {
+              "start": 1,
+              "end": 4,
+              "sign": -1
+            },
+            {
+              "start": 6,
+              "end": 9,
+              "sign": 1
+            }
+          ],
+          [
+            {
+              "start": 8,
+              "end": 11,
+              "sign": 1
+            }
+          ]
+        ],
+        "total_tokens": 3,
+        "formula_length": 21,
+        "input_length": 23,
+        "strict_gain": true,
+        "certificate_kind": "independently_verified_theorem_backed_stable_literal_prefix",
+        "json_pointer": "/rows/114/best"
+      },
+      "all_rank_minimum_total_length": 21,
+      "all_rank_strict_gain": true,
+      "rank2_endpoint_minimum_length": 23,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "candidate_definitions": 57,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 13,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 13,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "candidate_definitions": 76,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 14,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 14,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "candidate_definitions": 76,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 14,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 14,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 79,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 91,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_length": 15,
+      "candidate_definitions": 81,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 15,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 15,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_length": 16,
+      "candidate_definitions": 94,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 16,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 16,
+      "rank2_endpoint_strict_gain": false
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_length": 17,
+      "candidate_definitions": 98,
+      "minimum_rank3_total_length": null,
+      "minimum_rank3_witness": null,
+      "all_rank_minimum_total_length": 17,
+      "all_rank_strict_gain": false,
+      "rank2_endpoint_minimum_length": 17,
+      "rank2_endpoint_strict_gain": false
+    }
+  ],
+  "replay_scope": "All 84 saved positive prefixes replayed as literal signed disjoint replacements; all three rank3 relators are counted. No author verifier or enumerator imported or run.",
+  "negative_scope": "Rows without saved gains were checked for provenance and accounting only. No claim that arbitrary stable AC or hidden-cancellation compression cannot improve them.",
+  "budget_scope": "Logged work units are defining-word candidates (each entails two cyclic compression optimizations). They are not elementary AC counts, individual word-image evaluations, or dynamic-program transitions. The finite normal-product definition expansion is not emitted or charged.",
+  "theorem_scope": "Stable prefix validity uses known triviality of the input group and the established stable-definition lemma. Compression thereafter is exact ordinary donor-restored replacement. No rank2 endpoint or solution is asserted.",
+  "cpu_seconds": 0.0027239999999999973,
+  "wall_seconds": 0.002855375176295638
+}

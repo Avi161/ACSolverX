@@ -1,0 +1,663 @@
+{
+  "status": "PASS",
+  "exact_signed_surgeries": 12,
+  "tiny_probe_units": 40,
+  "tiny_probe_endpoints": 10,
+  "signed_events": [
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        -5,
+        -2,
+        5,
+        2
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": [
+            2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -5,
+          -2,
+          5,
+          2
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        -5,
+        -2,
+        5,
+        2
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": [
+            -5
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -5,
+          -2,
+          5,
+          2
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        -5
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        -5,
+        2,
+        5,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": [
+            2,
+            5,
+            -2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -5,
+          2,
+          5,
+          -2
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        2,
+        5,
+        -2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        2,
+        5,
+        -2,
+        -5
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": [
+            2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -5,
+          2,
+          5,
+          -2
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        2,
+        5,
+        -2,
+        -5
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": [
+            -5
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -5,
+          2,
+          5,
+          -2
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        -5
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 0,
+      "raw_target_after": [
+        -5,
+        2,
+        5,
+        2,
+        -5,
+        -2,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": [
+            2,
+            5,
+            -2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5,
+          -2
+        ],
+        [
+          -5,
+          -2,
+          -2,
+          -5,
+          2,
+          5,
+          2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        2,
+        5,
+        -2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2,
+        -5,
+        -2,
+        5,
+        2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": [
+            2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2,
+          -5,
+          -2,
+          5,
+          2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": [
+            -5
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        -5
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2,
+        -5,
+        2,
+        -5,
+        -2,
+        5,
+        2,
+        5,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": [
+            2,
+            5,
+            -2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2,
+          -5,
+          2,
+          -5,
+          -2,
+          5,
+          2,
+          5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": -1,
+      "commutator_conjugator": [
+        2,
+        5,
+        -2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2,
+        5,
+        -2,
+        -5,
+        2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": [
+            2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2,
+          5,
+          -2,
+          -5,
+          2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        2
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": [
+            -5
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        -5
+      ]
+    },
+    {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2
+        ]
+      ],
+      "target": 1,
+      "raw_target_after": [
+        -5,
+        -2,
+        5,
+        2,
+        -5,
+        -2,
+        -5,
+        2,
+        5,
+        -2
+      ],
+      "factors": [
+        {
+          "donor_index": 0,
+          "sign": -1,
+          "conjugator": []
+        },
+        {
+          "donor_index": 0,
+          "sign": 1,
+          "conjugator": [
+            2,
+            5,
+            -2
+          ]
+        }
+      ],
+      "after": [
+        [
+          -5
+        ],
+        [
+          -5,
+          -2,
+          -5,
+          2,
+          5,
+          -2,
+          -5,
+          -2,
+          5,
+          2
+        ]
+      ],
+      "macro": "retained_donor_commutator",
+      "commutator_sign": 1,
+      "commutator_conjugator": [
+        2,
+        5,
+        -2
+      ]
+    }
+  ],
+  "known_triviality_proof": "The plant (ab,b) has b=1 and then a=1.",
+  "census_searches": 0,
+  "source_sha256": "e0fbb5b7794dacb03c65ed103250fcf93313130118031576aab6728f7831f59f",
+  "verifier_sha256": "07176061dd8930d0024758ff75ed673d3b8280652f3be61db82d8f1d0a737880",
+  "script_sha256": "f8118fa9d0e800c268316433b93e44f1dcabc9cb0107fed642c653c33c00be29"
+}

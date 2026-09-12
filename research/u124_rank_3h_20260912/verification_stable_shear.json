@@ -1,0 +1,283 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "signed_shear_controls": [
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": -3
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": 2
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": -3
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": 2
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": -3
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": 2
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": -3
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": 2
+      },
+      {
+        "m": 4,
+        "n": 5,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": 3
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": -2
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": 3
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": -2
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": 3
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": -2
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": 1,
+        "constant_flow": 3
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": -3,
+        "q": 1,
+        "constant_flow": -2
+      },
+      {
+        "m": 5,
+        "n": 4,
+        "signs": [
+          -1,
+          1,
+          -1
+        ],
+        "p": 2,
+        "q": -2,
+        "constant_flow": 0
+      }
+    ],
+    "nonconsecutive_countercondition": {
+      "m": 2,
+      "n": 5,
+      "p_plus_q": 1,
+      "constant_integer_flow_exists": false
+    }
+  },
+  "source_sha256": "0cf4f9909f58e585999cdd6599380796e51d8cf0e58587ca19d4557267797b43",
+  "proof_note_sha256": "a25020bb4b0754146e9ed2701dfc58cc42891c95d5fdde57f8c9a805953d3e4d",
+  "verifier_sha256": "224395a2529392370cece9f1bbd385bbaa18a3d4bc3c86a80da9b715054ea39c",
+  "script_sha256": "034cc9ae687e35367d5f092ee507b7ec43367998468aaead063f39e4d923031e",
+  "census_searches": 0
+}

@@ -1,0 +1,284 @@
+{
+  "before": [
+    [
+      101,
+      307,
+      307
+    ],
+    [
+      101,
+      100000000000000000000,
+      307,
+      -100000000000000000000
+    ],
+    [
+      101,
+      101,
+      101,
+      -307,
+      100000000000000000000
+    ]
+  ],
+  "determinant": -1,
+  "known_triviality": "g=h^-2; the second row gives k h K=h^2, and the third gives k=h^7. Then h=h^2, hence all generators are trivial.",
+  "all_singleton_removals": [
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          101,
+          100000000000000000000,
+          307,
+          -100000000000000000000
+        ],
+        [
+          101,
+          101,
+          101,
+          -307,
+          100000000000000000000
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 13,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality"
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          101,
+          100000000000000000000,
+          307,
+          -100000000000000000000
+        ],
+        [
+          101,
+          101,
+          101,
+          -307,
+          100000000000000000000
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality"
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          101,
+          100000000000000000000,
+          307,
+          -100000000000000000000
+        ],
+        [
+          101,
+          101,
+          101,
+          -307,
+          100000000000000000000
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -101,
+          -101,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          100000000000000000000,
+          101
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 307,
+      "isolating_word": [
+        -100000000000000000000,
+        -101,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality"
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          101,
+          100000000000000000000,
+          307,
+          -100000000000000000000
+        ],
+        [
+          101,
+          101,
+          101,
+          -307,
+          100000000000000000000
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -101,
+          -101,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          -101
+        ]
+      ],
+      "defining_index": 2,
+      "generator": 307,
+      "isolating_word": [
+        100000000000000000000,
+        101,
+        101,
+        101
+      ],
+      "before_length": 12,
+      "after_length": 16,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality"
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          101,
+          100000000000000000000,
+          307,
+          -100000000000000000000
+        ],
+        [
+          101,
+          101,
+          101,
+          -307,
+          100000000000000000000
+        ]
+      ],
+      "after": [
+        [
+          -307,
+          -307,
+          -101
+        ],
+        [
+          -307,
+          -101,
+          307,
+          -101,
+          -101,
+          -101,
+          -307,
+          101,
+          101,
+          101
+        ]
+      ],
+      "defining_index": 2,
+      "generator": 100000000000000000000,
+      "isolating_word": [
+        307,
+        -101,
+        -101,
+        -101
+      ],
+      "before_length": 12,
+      "after_length": 13,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality"
+    }
+  ],
+  "conclusion": "No strict singleton removal exists at length12, but two neutral removals do."
+}

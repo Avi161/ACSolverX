@@ -1,0 +1,50 @@
+[
+  {
+    "module": "collector_left",
+    "budget": 0,
+    "used": 0,
+    "candidates": 0
+  },
+  {
+    "module": "collector_left",
+    "budget": 1,
+    "used": 1,
+    "candidates": 0
+  },
+  {
+    "module": "collector_left",
+    "budget": 64,
+    "used": 2,
+    "candidates": 0
+  },
+  {
+    "module": "collector_left",
+    "budget": 950,
+    "used": 51,
+    "candidates": 1
+  },
+  {
+    "module": "collector_right",
+    "budget": 0,
+    "used": 0,
+    "candidates": 0
+  },
+  {
+    "module": "collector_right",
+    "budget": 1,
+    "used": 1,
+    "candidates": 0
+  },
+  {
+    "module": "collector_right",
+    "budget": 64,
+    "used": 2,
+    "candidates": 0
+  },
+  {
+    "module": "collector_right",
+    "budget": 950,
+    "used": 68,
+    "candidates": 1
+  }
+]

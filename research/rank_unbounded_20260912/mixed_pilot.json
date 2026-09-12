@@ -1,0 +1,1319 @@
+{
+  "hashes": {
+    "u124_final_table.json": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+    "mixed_search.py": "93e854ff3909e131353da0e5d721f46131e1f12355b5d861571a9bce9540c5cc",
+    "search.py": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+    "whitehead.py": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+    "lemma11.py": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f"
+  },
+  "mode": "frontier",
+  "rows": [
+    {
+      "name": "aca_36",
+      "mode": "frontier",
+      "saved_best": [
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+      "input_length": 16,
+      "best": [
+        [
+          -3,
+          -3,
+          2,
+          -1,
+          2,
+          2
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "best_length": 15,
+      "best_rank": 3,
+      "additional_gain": 1,
+      "path_source": "saved_best",
+      "events": [
+        {
+          "before": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              -2,
+              -1,
+              -2,
+              -1
+            ],
+            [
+              -2,
+              -1,
+              -1,
+              2,
+              1,
+              -2,
+              1
+            ]
+          ],
+          "defining": [
+            -2,
+            -1
+          ],
+          "helper": 3,
+          "cuts": [
+            0,
+            5
+          ],
+          "templates": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              3,
+              3
+            ],
+            [
+              -2,
+              1,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              3,
+              3
+            ],
+            [
+              -2,
+              1,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "uses": 3,
+          "literal_length": 16,
+          "final_length": 16,
+          "kind": "defining_compression"
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "multiplier": -2,
+          "side": [
+            -2,
+            -1
+          ],
+          "images": {
+            "1": [
+              2,
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              -2,
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "raw_after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "length_change": -1
+        }
+      ],
+      "costs": {
+        "minimum_cuts": 513,
+        "ac_products": 384,
+        "lemma11_and_primitive_units": 40,
+        "definitions": 63
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 4,
+      "rank_length_curve": {
+        "2": 16,
+        "3": 15,
+        "4": 16
+      },
+      "expanded_states": 6,
+      "discovered_states": 81,
+      "stop": "work_budget",
+      "cpu_seconds": 0.013342999999999994,
+      "wall_seconds": 0.013338624965399504,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_57",
+      "mode": "frontier",
+      "saved_best": [
+        [
+          -3,
+          -1,
+          -1
+        ],
+        [
+          -1,
+          2,
+          -3,
+          -2,
+          -2,
+          3
+        ],
+        [
+          -1,
+          -2,
+          -2,
+          1,
+          2,
+          3,
+          3,
+          -2,
+          -2
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "stable_dictionary_compression_report.json#/rows/57/best",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57",
+      "input_length": 18,
+      "best": [
+        [
+          -3,
+          -3,
+          -1,
+          2,
+          2,
+          1,
+          2
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          3,
+          2
+        ],
+        [
+          -3,
+          2,
+          -1,
+          2,
+          -1
+        ]
+      ],
+      "best_length": 17,
+      "best_rank": 3,
+      "additional_gain": 1,
+      "path_source": "saved_rank2",
+      "events": [
+        {
+          "before": [
+            [
+              -2,
+              -2,
+              -1,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              1,
+              1
+            ]
+          ],
+          "defining": [
+            -1,
+            -1
+          ],
+          "helper": 3,
+          "cuts": [
+            0,
+            6
+          ],
+          "templates": [
+            [
+              -2,
+              -2,
+              -1,
+              -2,
+              -2,
+              1,
+              2,
+              3,
+              3
+            ],
+            [
+              -3,
+              -2,
+              -2,
+              -1,
+              3,
+              2
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              -1,
+              -1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -2,
+              -2,
+              1,
+              2,
+              3,
+              3
+            ],
+            [
+              -3,
+              -2,
+              -2,
+              -1,
+              3,
+              2
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              -2,
+              -1,
+              2,
+              2,
+              1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -2,
+              -1,
+              3,
+              2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "uses": 4,
+          "literal_length": 18,
+          "final_length": 18,
+          "kind": "defining_compression"
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -3,
+              -3,
+              -2,
+              -1,
+              2,
+              2,
+              1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -2,
+              -1,
+              3,
+              2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "multiplier": -2,
+          "side": [
+            -2,
+            1
+          ],
+          "images": {
+            "1": [
+              1,
+              -2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              1,
+              2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "raw_after": [
+            [
+              -3,
+              -3,
+              -1,
+              2,
+              2,
+              1,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              3,
+              2
+            ],
+            [
+              -3,
+              2,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              -1,
+              2,
+              2,
+              1,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              3,
+              2
+            ],
+            [
+              -3,
+              2,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "length_change": -1
+        }
+      ],
+      "costs": {
+        "minimum_cuts": 534,
+        "ac_products": 360,
+        "lemma11_and_primitive_units": 46,
+        "definitions": 60
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 5,
+      "rank_length_curve": {
+        "3": 17,
+        "2": 19,
+        "4": 17,
+        "5": 19
+      },
+      "expanded_states": 6,
+      "discovered_states": 78,
+      "stop": "work_budget",
+      "cpu_seconds": 0.016047999999999993,
+      "wall_seconds": 0.016068083932623267,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_80",
+      "mode": "frontier",
+      "saved_best": [
+        [
+          -3,
+          -1,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          2,
+          3,
+          1,
+          2,
+          -1,
+          3
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "primitive_compression_report.json#/rows/5/attempts/0/boundaries/2",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80",
+      "input_length": 18,
+      "best": [
+        [
+          -4,
+          -3,
+          -4,
+          1,
+          3,
+          2
+        ],
+        [
+          -4,
+          2,
+          -1,
+          -2
+        ],
+        [
+          -4,
+          3,
+          -1
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          2
+        ]
+      ],
+      "best_length": 17,
+      "best_rank": 4,
+      "additional_gain": 1,
+      "path_source": "saved_rank2",
+      "events": [
+        {
+          "before": [
+            [
+              -2,
+              -2,
+              -2,
+              -1,
+              2,
+              -1,
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              -1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "defining": [
+            -2,
+            -1
+          ],
+          "helper": 3,
+          "cuts": [
+            9,
+            0
+          ],
+          "templates": [
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              -2,
+              3,
+              2,
+              -1,
+              -2,
+              -2,
+              -2
+            ],
+            [
+              -2,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              -2,
+              3,
+              2,
+              -1,
+              -2,
+              -2,
+              -2
+            ],
+            [
+              -2,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              -2,
+              3,
+              2,
+              -1,
+              -2,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "uses": 3,
+          "literal_length": 19,
+          "final_length": 19,
+          "kind": "defining_compression"
+        },
+        {
+          "before": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              -2,
+              3,
+              2,
+              -1,
+              -2,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "defining": [
+            -1,
+            -2
+          ],
+          "helper": 4,
+          "cuts": [
+            0,
+            0,
+            0
+          ],
+          "templates": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              4,
+              -2,
+              3,
+              2,
+              4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              2,
+              4,
+              1
+            ]
+          ],
+          "raw_after": [
+            [
+              -4,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              4,
+              -2,
+              3,
+              2,
+              4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              2,
+              4,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -4,
+              -2,
+              -3,
+              2,
+              -4,
+              1,
+              3,
+              2,
+              2
+            ],
+            [
+              -4,
+              -2,
+              3,
+              -1
+            ],
+            [
+              -4,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ]
+          ],
+          "uses": 3,
+          "literal_length": 19,
+          "final_length": 19,
+          "kind": "defining_compression"
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -4,
+              -2,
+              -3,
+              2,
+              -4,
+              1,
+              3,
+              2,
+              2
+            ],
+            [
+              -4,
+              -2,
+              3,
+              -1
+            ],
+            [
+              -4,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ]
+          ],
+          "multiplier": -2,
+          "side": [
+            -3,
+            -2,
+            1,
+            3
+          ],
+          "images": {
+            "1": [
+              1,
+              -2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              2,
+              3,
+              -2
+            ],
+            "4": [
+              4
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              1,
+              2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              -2,
+              3,
+              2
+            ],
+            "4": [
+              4
+            ]
+          },
+          "raw_after": [
+            [
+              -4,
+              -3,
+              -4,
+              1,
+              3,
+              2
+            ],
+            [
+              -4,
+              3,
+              -1
+            ],
+            [
+              -4,
+              2,
+              -1,
+              -2
+            ],
+            [
+              2,
+              -3,
+              -2,
+              -1
+            ]
+          ],
+          "after": [
+            [
+              -4,
+              -3,
+              -4,
+              1,
+              3,
+              2
+            ],
+            [
+              -4,
+              2,
+              -1,
+              -2
+            ],
+            [
+              -4,
+              3,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "length_change": -2
+        }
+      ],
+      "costs": {
+        "minimum_cuts": 518,
+        "ac_products": 356,
+        "lemma11_and_primitive_units": 66,
+        "definitions": 60
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 5,
+      "rank_length_curve": {
+        "3": 17,
+        "2": 19,
+        "4": 17,
+        "5": 19
+      },
+      "expanded_states": 6,
+      "discovered_states": 73,
+      "stop": "work_budget",
+      "cpu_seconds": 0.01622499999999999,
+      "wall_seconds": 0.016294500092044473,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_108",
+      "mode": "frontier",
+      "saved_best": [
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          -2,
+          1,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -3,
+          2,
+          3,
+          1,
+          -2
+        ],
+        [
+          -2,
+          4,
+          4,
+          4,
+          1,
+          4,
+          3
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3,
+        "u": 4
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "recursive_stable_compression_report.json#/records/78",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_108",
+      "input_length": 21,
+      "best": [
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          -2,
+          1,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -3,
+          2,
+          3,
+          1,
+          -2
+        ],
+        [
+          -2,
+          4,
+          4,
+          4,
+          1,
+          4,
+          3
+        ]
+      ],
+      "best_length": 21,
+      "best_rank": 4,
+      "additional_gain": 0,
+      "path_source": "saved_best",
+      "events": [],
+      "costs": {
+        "minimum_cuts": 568,
+        "ac_products": 320,
+        "lemma11_and_primitive_units": 55,
+        "definitions": 57
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 5,
+      "rank_length_curve": {
+        "4": 21,
+        "2": 24,
+        "3": 21,
+        "5": 22
+      },
+      "expanded_states": 5,
+      "discovered_states": 87,
+      "stop": "work_budget",
+      "cpu_seconds": 0.018583000000000002,
+      "wall_seconds": 0.018583291908726096,
+      "fully_expanded_stable_certificate": false
+    }
+  ],
+  "summary": {
+    "rows": 4,
+    "gain_ids": [
+      "aca_36",
+      "aca_57",
+      "aca_80"
+    ],
+    "input_total": 73,
+    "best_total": 70,
+    "cpu_seconds": 0.06419899999999998,
+    "wall_seconds": 0.06428450089879334,
+    "total_units": 4000,
+    "best_ranks": {
+      "3": 2,
+      "4": 2
+    },
+    "maximum_accepted_rank": 5
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "planted_checks": [
+    {
+      "m": 2,
+      "stable": "x",
+      "Phi_before": 4,
+      "Phi_after": 3,
+      "verified": true
+    },
+    {
+      "m": 2,
+      "stable": "y",
+      "Phi_before": 4,
+      "Phi_after": 3,
+      "verified": true
+    },
+    {
+      "m": 3,
+      "stable": "x",
+      "Phi_before": 6,
+      "Phi_after": 4,
+      "verified": true
+    },
+    {
+      "m": 3,
+      "stable": "y",
+      "Phi_before": 6,
+      "Phi_after": 4,
+      "verified": true
+    },
+    {
+      "m": 5,
+      "stable": "x",
+      "Phi_before": 10,
+      "Phi_after": 6,
+      "verified": true
+    },
+    {
+      "m": 5,
+      "stable": "y",
+      "Phi_before": 10,
+      "Phi_after": 6,
+      "verified": true
+    }
+  ],
+  "status": "finite_coupled_exchange_descent_probe",
+  "scope": "four roots and saved aca9 residue stall; no cohort search",
+  "records": [
+    {
+      "name": "aca_1",
+      "before": [
+        "YYYxyXyX",
+        "YYXXyxx"
+      ],
+      "stable": "x",
+      "Phi_before": 3,
+      "breakpoint_candidates": 7,
+      "wide_candidates_checked": 40,
+      "strict_descent_count": 0,
+      "best": {
+        "donor_sign": -1,
+        "q": 3,
+        "k": 0,
+        "after": [
+          "xxxYYXYXyyy",
+          "xYxxyyXXX"
+        ],
+        "source_span": 2,
+        "donor_span": 2,
+        "Phi": 4,
+        "elementary_count": 12,
+        "moves": [
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "I",
+            1,
+            ""
+          ],
+          [
+            "C",
+            1,
+            "X"
+          ],
+          [
+            "C",
+            1,
+            "X"
+          ],
+          [
+            "C",
+            1,
+            "X"
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            0,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ]
+        ]
+      }
+    },
+    {
+      "name": "aca_4",
+      "before": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "stable": "y",
+      "Phi_before": 4,
+      "breakpoint_candidates": 0,
+      "wide_candidates_checked": 78,
+      "strict_descent_count": 0,
+      "best": null
+    },
+    {
+      "name": "aca_9",
+      "before": [
+        "YYYXXyyX",
+        "YXXXyxx"
+      ],
+      "stable": "y",
+      "Phi_before": 3,
+      "breakpoint_candidates": 0,
+      "wide_candidates_checked": 44,
+      "strict_descent_count": 0,
+      "best": null
+    },
+    {
+      "name": "aca_117",
+      "before": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "stable": "y",
+      "Phi_before": 3,
+      "breakpoint_candidates": 6,
+      "wide_candidates_checked": 44,
+      "strict_descent_count": 0,
+      "best": {
+        "donor_sign": -1,
+        "q": 0,
+        "k": 0,
+        "after": [
+          "YXXXyxYYxyyy",
+          "XXYxxxy"
+        ],
+        "source_span": 2,
+        "donor_span": 1,
+        "Phi": 3,
+        "elementary_count": 9,
+        "moves": [
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "I",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            0,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ]
+        ]
+      }
+    },
+    {
+      "name": "aca_117",
+      "before": [
+        "YXXXyxx",
+        "YYYXyyx"
+      ],
+      "stable": "x",
+      "Phi_before": 4,
+      "breakpoint_candidates": 6,
+      "wide_candidates_checked": 90,
+      "strict_descent_count": 0,
+      "best": {
+        "donor_sign": -1,
+        "q": -1,
+        "k": 0,
+        "after": [
+          "XYYYXyxxxy",
+          "XXYYxyyyx"
+        ],
+        "source_span": 3,
+        "donor_span": 1,
+        "Phi": 4,
+        "elementary_count": 10,
+        "moves": [
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "I",
+            1,
+            ""
+          ],
+          [
+            "C",
+            1,
+            "x"
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            0,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ],
+          [
+            "M",
+            1,
+            ""
+          ],
+          [
+            "I",
+            0,
+            ""
+          ]
+        ]
+      }
+    },
+    {
+      "name": "aca_9_saved_residue_stall",
+      "before": [
+        "xYYXyxxyy",
+        "YXXXyxx"
+      ],
+      "stable": "y",
+      "Phi_before": 3,
+      "breakpoint_candidates": 0,
+      "wide_candidates_checked": 44,
+      "strict_descent_count": 0,
+      "best": null
+    }
+  ],
+  "wall_seconds": 0.009260334074497223
+}

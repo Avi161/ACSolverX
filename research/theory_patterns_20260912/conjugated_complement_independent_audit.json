@@ -1,0 +1,519 @@
+{
+  "status": "PASS",
+  "scope": "small counterexample and sign checks; unbounded claim is proof-reviewed",
+  "cases": [
+    {
+      "pair": [
+        "xxyXY",
+        "yyxYX"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xxyXY",
+        "xxYYY"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xxyXY",
+        "xyyXY"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xx",
+        "yyy"
+      ],
+      "finite_attachment_positive": false,
+      "direct_conjugator_checks": [
+        {
+          "c": "",
+          "cyclic_complement": false
+        },
+        {
+          "c": "x",
+          "cyclic_complement": false
+        },
+        {
+          "c": "X",
+          "cyclic_complement": false
+        },
+        {
+          "c": "y",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Y",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYY",
+          "cyclic_complement": false
+        }
+      ]
+    },
+    {
+      "pair": [
+        "xxyyy",
+        "xxxyy"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xyXY",
+        "xxyXY"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xxyy",
+        "xxxYYY"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xyXY",
+        "xxyy"
+      ],
+      "finite_attachment_positive": false,
+      "direct_conjugator_checks": [
+        {
+          "c": "",
+          "cyclic_complement": false
+        },
+        {
+          "c": "x",
+          "cyclic_complement": false
+        },
+        {
+          "c": "X",
+          "cyclic_complement": false
+        },
+        {
+          "c": "y",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Y",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "xYY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Xyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "XYY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "yyy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yxx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "Yxy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YxY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXy",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YXY",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYx",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYX",
+          "cyclic_complement": false
+        },
+        {
+          "c": "YYY",
+          "cyclic_complement": false
+        }
+      ]
+    },
+    {
+      "pair": [
+        "x",
+        "y"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    },
+    {
+      "pair": [
+        "xyXY",
+        "yxyxYX"
+      ],
+      "finite_attachment_positive": true,
+      "direct_conjugator_checks": []
+    }
+  ],
+  "attachment_vertex_pair_checks": 236,
+  "direct_vertex_pair_checks": 2161,
+  "signed_attachment_checks": 191,
+  "wall_seconds": 0.17327183298766613,
+  "proof_review_verdict": "PASS under stated nonempty cyclically reduced full-support hypotheses",
+  "reviewed_source_sha256": "0906354cfe8c06441b116ec33ec957b03efc58f2a4bda2571380bd4c572a96aa",
+  "checker_sha256": "3c60c665c544dee5783836f02a927ad50077ed4ec2f6ef9b8fb63c10a59c3b4e"
+}

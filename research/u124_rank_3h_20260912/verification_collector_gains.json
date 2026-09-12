@@ -1,0 +1,1405 @@
+{
+  "status": "PASS",
+  "file_sha256": "db876a613bec3b8b362e79f36b2c8dc8aa508953931ffad7007c84c8840dfc30",
+  "source_hash_validation": [
+    {
+      "path": "u124_rank_3h_20260912/frontier.py",
+      "executed_sha256": "0642a2300730851aae70b35bdcaef39e967564c0644459d57b3047c3e84b1ba3",
+      "current_sha256": "0642a2300730851aae70b35bdcaef39e967564c0644459d57b3047c3e84b1ba3"
+    },
+    {
+      "path": "u124_rank_3h_20260912/exchange_collect.py",
+      "executed_sha256": "6a3775f606f92913bf9460c234f5ccb10d6b521017eeb6a350a83795e5dcd71f",
+      "current_sha256": "6a3775f606f92913bf9460c234f5ccb10d6b521017eeb6a350a83795e5dcd71f"
+    },
+    {
+      "path": "u124_rank_3h_20260912/verify.py",
+      "executed_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155",
+      "current_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155"
+    },
+    {
+      "path": "rank_unbounded_20260912/search.py",
+      "executed_sha256": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+      "current_sha256": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e"
+    },
+    {
+      "path": "rank_unbounded_20260912/whitehead.py",
+      "executed_sha256": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+      "current_sha256": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928"
+    },
+    {
+      "path": "rank_unbounded_20260912/lemma11.py",
+      "executed_sha256": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f",
+      "current_sha256": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f"
+    }
+  ],
+  "rows": [
+    {
+      "name": "aca_2",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_3",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_4",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_5",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_6",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_7",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_8",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_10",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_11",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_12",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_14",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_15",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_16",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_17",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_18",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_19",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_20",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_21",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_22",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_23",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_25",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_26",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_27",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_28",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_29",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_30",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_31",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_33",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_34",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_35",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_36",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_37",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_38",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_39",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_40",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_41",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_42",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_43",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        17,
+        19,
+        18,
+        16
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 122,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_44",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_46",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_47",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_48",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_49",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_50",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_51",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_52",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_53",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_54",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_55",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_56",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_57",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_58",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_59",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_61",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_62",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_63",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_64",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_65",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_66",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_67",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        20,
+        20,
+        18
+      ],
+      "all_boundary_ranks": [
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 136,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right"
+      ],
+      "best_prefix_event_count": 2
+    },
+    {
+      "name": "aca_68",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_69",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_70",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_71",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_72",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_73",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_74",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_75",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_76",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_77",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_78",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_79",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        18,
+        22,
+        26,
+        37,
+        27,
+        24,
+        22,
+        21,
+        19,
+        20,
+        26,
+        20,
+        18,
+        17
+      ],
+      "all_boundary_ranks": [
+        3,
+        4,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "saved_collection_stages": 2,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 128,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right",
+        "right"
+      ],
+      "best_prefix_event_count": 13
+    },
+    {
+      "name": "aca_80",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_81",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_82",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_83",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_84",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_85",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_86",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_87",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        19,
+        21,
+        19,
+        18
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 145,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_88",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        18,
+        20,
+        19,
+        17
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 138,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_89",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_90",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_91",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_92",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_93",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_94",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_96",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_97",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_98",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_99",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_100",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_102",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_103",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_104",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_105",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_106",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        21,
+        21,
+        19
+      ],
+      "all_boundary_ranks": [
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 145,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right"
+      ],
+      "best_prefix_event_count": 2
+    },
+    {
+      "name": "aca_107",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_108",
+      "status": "PASS",
+      "preprobe_best_length": 21,
+      "endpoint_length": 21,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_109",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_110",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_111",
+      "status": "PASS",
+      "preprobe_best_length": 21,
+      "endpoint_length": 21,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_112",
+      "status": "PASS",
+      "preprobe_best_length": 21,
+      "endpoint_length": 21,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_113",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_114",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 20,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_116",
+      "status": "PASS",
+      "preprobe_best_length": 14,
+      "endpoint_length": 14,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_117",
+      "status": "PASS",
+      "preprobe_best_length": 14,
+      "endpoint_length": 14,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_118",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_119",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_120",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_121",
+      "status": "PASS",
+      "preprobe_best_length": 15,
+      "endpoint_length": 15,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_122",
+      "status": "PASS",
+      "preprobe_best_length": 16,
+      "endpoint_length": 16,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    },
+    {
+      "name": "aca_123",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 17,
+      "endpoint_rank": 2,
+      "new_gain_beyond_seeds": 0,
+      "charged_units": 1000
+    }
+  ],
+  "new_gains": [
+    {
+      "name": "aca_43",
+      "status": "PASS",
+      "preprobe_best_length": 17,
+      "endpoint_length": 16,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        17,
+        19,
+        18,
+        16
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 122,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_67",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        20,
+        20,
+        18
+      ],
+      "all_boundary_ranks": [
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 136,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right"
+      ],
+      "best_prefix_event_count": 2
+    },
+    {
+      "name": "aca_79",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        18,
+        22,
+        26,
+        37,
+        27,
+        24,
+        22,
+        21,
+        19,
+        20,
+        26,
+        20,
+        18,
+        17
+      ],
+      "all_boundary_ranks": [
+        3,
+        4,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "saved_collection_stages": 2,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 128,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right",
+        "right"
+      ],
+      "best_prefix_event_count": 13
+    },
+    {
+      "name": "aca_87",
+      "status": "PASS",
+      "preprobe_best_length": 19,
+      "endpoint_length": 18,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        19,
+        21,
+        19,
+        18
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 145,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_88",
+      "status": "PASS",
+      "preprobe_best_length": 18,
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        18,
+        20,
+        19,
+        17
+      ],
+      "all_boundary_ranks": [
+        3,
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 138,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "right",
+        "left"
+      ],
+      "best_prefix_event_count": 3
+    },
+    {
+      "name": "aca_106",
+      "status": "PASS",
+      "preprobe_best_length": 20,
+      "endpoint_length": 19,
+      "endpoint_rank": 3,
+      "new_gain_beyond_seeds": 1,
+      "charged_units": 1000,
+      "all_boundary_lengths": [
+        21,
+        21,
+        19
+      ],
+      "all_boundary_ranks": [
+        2,
+        3,
+        3
+      ],
+      "saved_collection_stages": 1,
+      "planned_collection_stages": 2,
+      "saved_collection_units_including_forecasts": 145,
+      "collection_direction_policy": "cheapest",
+      "collection_row_directions": [
+        "left",
+        "right"
+      ],
+      "best_prefix_event_count": 2
+    }
+  ],
+  "new_gain_count": 6,
+  "new_gain_total": 6,
+  "exact_11_plus113_partition_of124": true,
+  "new_probe_units": 113000,
+  "seed_discovery_work_included_in_probe_budget": false,
+  "verifier_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155",
+  "script_sha256": "775b974d8922c8e58cf9b25fab2a40af0b8334c5efa8c1d45ad0ed6da678d5fd",
+  "census_reruns": 0
+}

@@ -1,0 +1,2254 @@
+{
+  "status": "complete",
+  "source_hashes": {
+    "boundary_compiler_report.json": "064a537db159f09028c744c9806bb17c2ac4e2f4ced3b320ae994aba6adbce6c",
+    "prepared_frames_full124.jsonl": "cc94455b764e8183a8b606afdbe94d8940ca0944021a4a4d93e8b84b56ac7abe",
+    "endpoint_nielsen.py": "d61ecafa69c9346aeffd3cb05d0e24888eba2d8f7d78f1dab4fb815e030647aa"
+  },
+  "algorithm": "Eight signed left/right Nielsen maps; accept only strict total cyclic length descent. Exact canonical starting-state cache. Shortest saved endpoints first.",
+  "scope": "Additional endpoint screen capped at 1000 map evaluations per input; no heap nodes. This cost is additional to producing saved endpoints, not a combined 1k search claim.",
+  "certificate_kind": "ordinary saved prefix followed by explicitly invertible ambient maps; finite stable AC realizability on these known trivial-group inputs, expansion not emitted",
+  "improved": [],
+  "solved": [],
+  "image_evaluations": 29376,
+  "normalized_candidate_count": 2280,
+  "descent_steps": 1392,
+  "screen_cpu_seconds": 1.5069110000000006,
+  "screen_wall_seconds": 1.5141709127929062,
+  "elapsed_cpu_seconds": 3.2210919999999996,
+  "elapsed_wall_seconds_including_cooling": 9.958190792007372,
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXyxYxY",
+        "XYYYYYYXyxy"
+      ],
+      "best_length": 18,
+      "candidate_count": 24,
+      "normalized_candidate_count": 17,
+      "image_evaluations": 304,
+      "cpu_seconds": 0.011925000000000019,
+      "wall_seconds": 0.012003500014543533
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXYxxyy",
+        "XYYYxyXy"
+      ],
+      "best_length": 15,
+      "candidate_count": 32,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.003164,
+      "wall_seconds": 0.003162166103720665
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXYYYxyyy",
+        "XXyXyxY"
+      ],
+      "best_length": 16,
+      "candidate_count": 33,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 304,
+      "cpu_seconds": 0.007481999999999989,
+      "wall_seconds": 0.0075289588421583176
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXyxYxY",
+        "XYXyyyyyxY"
+      ],
+      "best_length": 17,
+      "candidate_count": 28,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 320,
+      "cpu_seconds": 0.010780999999999985,
+      "wall_seconds": 0.010807374957948923
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXXyxYY",
+        "XYXYYxyxyXy"
+      ],
+      "best_length": 18,
+      "candidate_count": 29,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 208,
+      "cpu_seconds": 0.007342000000000015,
+      "wall_seconds": 0.007339958101511002
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyXYY",
+        "XYXYXYxYXyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 50,
+      "normalized_candidate_count": 28,
+      "image_evaluations": 256,
+      "cpu_seconds": 0.026776999999999995,
+      "wall_seconds": 0.026863292092457414
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXXXyxYxY",
+        "XXYxxyyXY"
+      ],
+      "best_length": 19,
+      "candidate_count": 27,
+      "normalized_candidate_count": 16,
+      "image_evaluations": 144,
+      "cpu_seconds": 0.014693000000000012,
+      "wall_seconds": 0.01469149999320507
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXYxxyy",
+        "XYXYYYYxY"
+      ],
+      "best_length": 16,
+      "candidate_count": 29,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 200,
+      "cpu_seconds": 0.011016000000000026,
+      "wall_seconds": 0.01106308400630951
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXyxYxy",
+        "XYXyyxYY"
+      ],
+      "best_length": 15,
+      "candidate_count": 31,
+      "normalized_candidate_count": 15,
+      "image_evaluations": 240,
+      "cpu_seconds": 0.004628000000000021,
+      "wall_seconds": 0.0046739159151911736
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXXyxxY",
+        "XXyyXYYY"
+      ],
+      "best_length": 15,
+      "candidate_count": 32,
+      "normalized_candidate_count": 21,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.0045259999999999745,
+      "wall_seconds": 0.004523750161752105
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXXyxxY",
+        "XYXyyXYY"
+      ],
+      "best_length": 15,
+      "candidate_count": 31,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 208,
+      "cpu_seconds": 0.005261000000000016,
+      "wall_seconds": 0.005262957885861397
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXXyxxY",
+        "XYXYxyyy"
+      ],
+      "best_length": 15,
+      "candidate_count": 31,
+      "normalized_candidate_count": 10,
+      "image_evaluations": 120,
+      "cpu_seconds": 0.002426999999999957,
+      "wall_seconds": 0.002463625045493245
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXXyxxY",
+        "XYYXYxyy"
+      ],
+      "best_length": 15,
+      "candidate_count": 27,
+      "normalized_candidate_count": 9,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.002950000000000008,
+      "wall_seconds": 0.002949416870251298
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXXyxxYxY",
+        "XXYYxYY"
+      ],
+      "best_length": 16,
+      "candidate_count": 27,
+      "normalized_candidate_count": 25,
+      "image_evaluations": 360,
+      "cpu_seconds": 0.013666999999999985,
+      "wall_seconds": 0.013698958093300462
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXYYxyyy",
+        "XXyXyxY"
+      ],
+      "best_length": 15,
+      "candidate_count": 58,
+      "normalized_candidate_count": 33,
+      "image_evaluations": 416,
+      "cpu_seconds": 0.008562999999999987,
+      "wall_seconds": 0.008559457957744598
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxYxxy",
+        "XYYYYxyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 29,
+      "normalized_candidate_count": 15,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.005413000000000001,
+      "wall_seconds": 0.00541170802898705
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxxYY",
+        "XXYxyXyxY"
+      ],
+      "best_length": 17,
+      "candidate_count": 31,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 128,
+      "cpu_seconds": 0.0035860000000000336,
+      "wall_seconds": 0.003582540899515152
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXYxYxY",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 34,
+      "normalized_candidate_count": 26,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.006703999999999988,
+      "wall_seconds": 0.006742500001564622
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYxyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 26,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 144,
+      "cpu_seconds": 0.00509900000000002,
+      "wall_seconds": 0.0050972080789506435
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxYxy",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 27,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 216,
+      "cpu_seconds": 0.0062810000000000366,
+      "wall_seconds": 0.006316957995295525
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 31,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.0035029999999999784,
+      "wall_seconds": 0.0035035840701311827
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYxyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 30,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 184,
+      "cpu_seconds": 0.008773999999999949,
+      "wall_seconds": 0.00878958310931921
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYxyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 28,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 184,
+      "cpu_seconds": 0.008776000000000006,
+      "wall_seconds": 0.008800291921943426
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 27,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 176,
+      "cpu_seconds": 0.009124000000000021,
+      "wall_seconds": 0.009161042049527168
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXYxxYY",
+        "XXYXYxYYY"
+      ],
+      "best_length": 17,
+      "candidate_count": 48,
+      "normalized_candidate_count": 38,
+      "image_evaluations": 424,
+      "cpu_seconds": 0.013345000000000051,
+      "wall_seconds": 0.013390833977609873
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 29,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.009276000000000062,
+      "wall_seconds": 0.009281041100621223
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxYxxY",
+        "XYYYYxyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 32,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 176,
+      "cpu_seconds": 0.0069949999999999735,
+      "wall_seconds": 0.006994416005909443
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxYxxy",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 35,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.005408999999999997,
+      "wall_seconds": 0.005409874953329563
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxYxxY",
+        "XYYYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 31,
+      "normalized_candidate_count": 24,
+      "image_evaluations": 288,
+      "cpu_seconds": 0.007569999999999966,
+      "wall_seconds": 0.0075667500495910645
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxYY",
+        "XXyyxYxYXY"
+      ],
+      "best_length": 17,
+      "candidate_count": 58,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.0072149999999999714,
+      "wall_seconds": 0.007215375080704689
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXyXYYYYYxy",
+        "XXyxYY"
+      ],
+      "best_length": 17,
+      "candidate_count": 46,
+      "normalized_candidate_count": 37,
+      "image_evaluations": 392,
+      "cpu_seconds": 0.009963999999999973,
+      "wall_seconds": 0.010004874784499407
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyy",
+        "XYxYxyyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 33,
+      "normalized_candidate_count": 25,
+      "image_evaluations": 264,
+      "cpu_seconds": 0.005884999999999918,
+      "wall_seconds": 0.005940916948020458
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYXYxyyyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 41,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 360,
+      "cpu_seconds": 0.016464999999999952,
+      "wall_seconds": 0.016500124940648675
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYXYxYxyy"
+      ],
+      "best_length": 17,
+      "candidate_count": 33,
+      "normalized_candidate_count": 15,
+      "image_evaluations": 176,
+      "cpu_seconds": 0.0040080000000000116,
+      "wall_seconds": 0.0040060828905552626
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXYYxyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 16,
+      "candidate_count": 34,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 224,
+      "cpu_seconds": 0.005097999999999936,
+      "wall_seconds": 0.005097625078633428
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXXyxYY",
+        "XXyyyxYxYXY"
+      ],
+      "best_length": 18,
+      "candidate_count": 32,
+      "normalized_candidate_count": 16,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.005882999999999972,
+      "wall_seconds": 0.00588275003246963
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXyxYxY",
+        "XYXYYYxYY"
+      ],
+      "best_length": 16,
+      "candidate_count": 23,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 288,
+      "cpu_seconds": 0.015073000000000003,
+      "wall_seconds": 0.015123291872441769
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXYxxYY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 33,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 200,
+      "cpu_seconds": 0.005680000000000018,
+      "wall_seconds": 0.005700875073671341
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxxYY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 31,
+      "normalized_candidate_count": 10,
+      "image_evaluations": 80,
+      "cpu_seconds": 0.0020839999999999748,
+      "wall_seconds": 0.0020819578785449266
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXYxYxY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 34,
+      "normalized_candidate_count": 26,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.007716999999999974,
+      "wall_seconds": 0.007740542059764266
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYxyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 25,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.009670000000000067,
+      "wall_seconds": 0.009682833915576339
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxYxy",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 27,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 216,
+      "cpu_seconds": 0.012262000000000106,
+      "wall_seconds": 0.012323999777436256
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 31,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.0065149999999999375,
+      "wall_seconds": 0.006539915921166539
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYxxyy",
+        "XYYxyXYxyXy"
+      ],
+      "best_length": 18,
+      "candidate_count": 9,
+      "normalized_candidate_count": 4,
+      "image_evaluations": 40,
+      "cpu_seconds": 0.0007810000000000317,
+      "wall_seconds": 0.0007784999907016754
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYYxYY",
+        "XXyxYxyXYxy"
+      ],
+      "best_length": 18,
+      "candidate_count": 26,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 432,
+      "cpu_seconds": 0.027874999999999983,
+      "wall_seconds": 0.027993208030238748
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXYxxYYYY",
+        "XXXyxYxxy"
+      ],
+      "best_length": 19,
+      "candidate_count": 25,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 424,
+      "cpu_seconds": 0.022475000000000023,
+      "wall_seconds": 0.02255591587163508
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 27,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.009409,
+      "wall_seconds": 0.009489167015999556
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYYxyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 32,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.01139800000000002,
+      "wall_seconds": 0.011478082975372672
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXYxxyyyy",
+        "XXXyxYxxY"
+      ],
+      "best_length": 19,
+      "candidate_count": 30,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 312,
+      "cpu_seconds": 0.009453000000000045,
+      "wall_seconds": 0.009510708041489124
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYYxyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 30,
+      "normalized_candidate_count": 14,
+      "image_evaluations": 184,
+      "cpu_seconds": 0.012093000000000131,
+      "wall_seconds": 0.012159124948084354
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 29,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 152,
+      "cpu_seconds": 0.009435000000000082,
+      "wall_seconds": 0.009441375033929944
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxYxxY",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 31,
+      "normalized_candidate_count": 24,
+      "image_evaluations": 288,
+      "cpu_seconds": 0.009179000000000048,
+      "wall_seconds": 0.00921087502501905
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxYxxy",
+        "XYYYYxyyyyy"
+      ],
+      "best_length": 19,
+      "candidate_count": 35,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 208,
+      "cpu_seconds": 0.011220999999999925,
+      "wall_seconds": 0.011323167011141777
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYXYxYYxyy",
+        "XXyxYxY"
+      ],
+      "best_length": 18,
+      "candidate_count": 32,
+      "normalized_candidate_count": 14,
+      "image_evaluations": 176,
+      "cpu_seconds": 0.005819000000000019,
+      "wall_seconds": 0.005898459115996957
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXXXYYxxy",
+        "XXXXyxxYY"
+      ],
+      "best_length": 19,
+      "candidate_count": 51,
+      "normalized_candidate_count": 27,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.009282000000000012,
+      "wall_seconds": 0.009422250092029572
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXXyxyxYY",
+        "XXyyXYYxY"
+      ],
+      "best_length": 18,
+      "candidate_count": 32,
+      "normalized_candidate_count": 29,
+      "image_evaluations": 328,
+      "cpu_seconds": 0.009411999999999976,
+      "wall_seconds": 0.009505375055596232
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXYYXYYxxy",
+        "XXXyxxYY"
+      ],
+      "best_length": 19,
+      "candidate_count": 60,
+      "normalized_candidate_count": 46,
+      "image_evaluations": 376,
+      "cpu_seconds": 0.012558999999999987,
+      "wall_seconds": 0.012682541972026229
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXXYYXYYxy",
+        "XXXyxxYY"
+      ],
+      "best_length": 19,
+      "candidate_count": 52,
+      "normalized_candidate_count": 43,
+      "image_evaluations": 352,
+      "cpu_seconds": 0.015522000000000036,
+      "wall_seconds": 0.015905250096693635
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYYxyyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 17,
+      "candidate_count": 33,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 224,
+      "cpu_seconds": 0.007193000000000005,
+      "wall_seconds": 0.007220207946375012
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXXXXXyyyy",
+        "XXYXXyxxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 33,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 440,
+      "cpu_seconds": 0.023312,
+      "wall_seconds": 0.02348708314821124
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYxxyyyyy",
+        "XXXyxYxxY"
+      ],
+      "best_length": 20,
+      "candidate_count": 30,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 336,
+      "cpu_seconds": 0.01665400000000017,
+      "wall_seconds": 0.016798041993752122
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYxxYYYYY",
+        "XXXyxYxxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 24,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 368,
+      "cpu_seconds": 0.02369700000000008,
+      "wall_seconds": 0.02391975000500679
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXYxYxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 34,
+      "normalized_candidate_count": 26,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.008892000000000122,
+      "wall_seconds": 0.008975208038464189
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYYxyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 24,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.009956999999999994,
+      "wall_seconds": 0.010043707909062505
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXyxYxy",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 24,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.009897000000000045,
+      "wall_seconds": 0.00989591609686613
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 26,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 128,
+      "cpu_seconds": 0.007095999999999991,
+      "wall_seconds": 0.007094083121046424
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYxxxyy",
+        "XYxYxyyXYxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 9,
+      "normalized_candidate_count": 6,
+      "image_evaluations": 64,
+      "cpu_seconds": 0.0022680000000001588,
+      "wall_seconds": 0.0022684158757328987
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYYXXXy",
+        "XYYXyxYXyxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 27,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 416,
+      "cpu_seconds": 0.03952600000000017,
+      "wall_seconds": 0.03983950009569526
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 29,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.008664999999999923,
+      "wall_seconds": 0.008683917112648487
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYYYxyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 32,
+      "normalized_candidate_count": 14,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.01114000000000015,
+      "wall_seconds": 0.011156708002090454
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYYYxyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 29,
+      "normalized_candidate_count": 14,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.010961999999999916,
+      "wall_seconds": 0.010998832993209362
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxxYY",
+        "XYYXyxyXYxy"
+      ],
+      "best_length": 19,
+      "candidate_count": 29,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.005309999999999926,
+      "wall_seconds": 0.005323667079210281
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYxxyy",
+        "XYYxyXyxyXy"
+      ],
+      "best_length": 18,
+      "candidate_count": 32,
+      "normalized_candidate_count": 14,
+      "image_evaluations": 120,
+      "cpu_seconds": 0.0037959999999999106,
+      "wall_seconds": 0.0038134169299155474
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 31,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 152,
+      "cpu_seconds": 0.009338999999999986,
+      "wall_seconds": 0.00943608395755291
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXYxYxxy",
+        "XYYYYYxyyyyyy"
+      ],
+      "best_length": 21,
+      "candidate_count": 34,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.013789999999999969,
+      "wall_seconds": 0.013928333995863795
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXYxxYYYYYY",
+        "XXXyxYxxY"
+      ],
+      "best_length": 21,
+      "candidate_count": 24,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 344,
+      "cpu_seconds": 0.02390800000000004,
+      "wall_seconds": 0.02407795819453895
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXYxxyyyyyy",
+        "XXXyxYxxY"
+      ],
+      "best_length": 21,
+      "candidate_count": 27,
+      "normalized_candidate_count": 17,
+      "image_evaluations": 288,
+      "cpu_seconds": 0.015296999999999894,
+      "wall_seconds": 0.015410958090797067
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXYxxYYYYYY",
+        "XXXyxYxxy"
+      ],
+      "best_length": 21,
+      "candidate_count": 24,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 336,
+      "cpu_seconds": 0.02434399999999992,
+      "wall_seconds": 0.02444737497717142
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYYXYxyxyyy",
+        "XXyXyxY"
+      ],
+      "best_length": 19,
+      "candidate_count": 55,
+      "normalized_candidate_count": 32,
+      "image_evaluations": 424,
+      "cpu_seconds": 0.015687000000000006,
+      "wall_seconds": 0.015772457933053374
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXXXyxxYxxY",
+        "XXXyyxxYY"
+      ],
+      "best_length": 21,
+      "candidate_count": 33,
+      "normalized_candidate_count": 11,
+      "image_evaluations": 104,
+      "cpu_seconds": 0.003047000000000022,
+      "wall_seconds": 0.003046208992600441
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYYYXyXYYYxy",
+        "XXyxYY"
+      ],
+      "best_length": 19,
+      "candidate_count": 47,
+      "normalized_candidate_count": 39,
+      "image_evaluations": 320,
+      "cpu_seconds": 0.010483999999999938,
+      "wall_seconds": 0.010553832864388824
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYYxyyyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 18,
+      "candidate_count": 27,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 224,
+      "cpu_seconds": 0.010353999999999974,
+      "wall_seconds": 0.01044166600331664
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXXXyyxYYY",
+        "XXYxyyxyXYY"
+      ],
+      "best_length": 22,
+      "candidate_count": 27,
+      "normalized_candidate_count": 17,
+      "image_evaluations": 200,
+      "cpu_seconds": 0.015015999999999918,
+      "wall_seconds": 0.01508508319966495
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXYxxyyyyyyy",
+        "XXXyxYxxy"
+      ],
+      "best_length": 22,
+      "candidate_count": 27,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 312,
+      "cpu_seconds": 0.017219000000000095,
+      "wall_seconds": 0.0173376661259681
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXYxxYYYYYYY",
+        "XXXyxYxxY"
+      ],
+      "best_length": 22,
+      "candidate_count": 23,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 328,
+      "cpu_seconds": 0.02462999999999993,
+      "wall_seconds": 0.024763582972809672
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_length": 18,
+      "best_pair": [
+        "XXYYxYYYYYY",
+        "XXyxYxy"
+      ],
+      "best_length": 18,
+      "candidate_count": 25,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 376,
+      "cpu_seconds": 0.020143000000000022,
+      "wall_seconds": 0.020278333220630884
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXXXyyXYYY",
+        "XXYxyyXyxYY"
+      ],
+      "best_length": 22,
+      "candidate_count": 29,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 152,
+      "cpu_seconds": 0.022575000000000234,
+      "wall_seconds": 0.02293637511320412
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYYXXXy",
+        "XYXYxyXYxyy"
+      ],
+      "best_length": 20,
+      "candidate_count": 27,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 264,
+      "cpu_seconds": 0.032792000000000154,
+      "wall_seconds": 0.0330854170024395
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyXXYY",
+        "XYxYXyyXYxy"
+      ],
+      "best_length": 19,
+      "candidate_count": 27,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 312,
+      "cpu_seconds": 0.027871999999999897,
+      "wall_seconds": 0.02801637491211295
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXYxxyxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 29,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.00936400000000015,
+      "wall_seconds": 0.009361833799630404
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXYxxxyy",
+        "XYYXyxYXyxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 9,
+      "normalized_candidate_count": 5,
+      "image_evaluations": 72,
+      "cpu_seconds": 0.002937999999999885,
+      "wall_seconds": 0.0029360419139266014
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 26,
+      "normalized_candidate_count": 12,
+      "image_evaluations": 128,
+      "cpu_seconds": 0.007638000000000034,
+      "wall_seconds": 0.007653500186279416
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXyxYxy",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 22,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 208,
+      "cpu_seconds": 0.012722999999999818,
+      "wall_seconds": 0.012932082870975137
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYYYxyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 26,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 136,
+      "cpu_seconds": 0.009491000000000138,
+      "wall_seconds": 0.009491542121395469
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXYxYxY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 34,
+      "normalized_candidate_count": 26,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.0103629999999999,
+      "wall_seconds": 0.010429708985611796
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXXyxxYY",
+        "XYXyyxYXyxY"
+      ],
+      "best_length": 19,
+      "candidate_count": 29,
+      "normalized_candidate_count": 15,
+      "image_evaluations": 160,
+      "cpu_seconds": 0.006062000000000012,
+      "wall_seconds": 0.006063041044399142
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXYxxyXY",
+        "XYYYYYYxyyyyyyy"
+      ],
+      "best_length": 23,
+      "candidate_count": 30,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 152,
+      "cpu_seconds": 0.009603999999999946,
+      "wall_seconds": 0.009639832889661193
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYYxyyyyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 19,
+      "candidate_count": 24,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.008916000000000146,
+      "wall_seconds": 0.008953957818448544
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYYxYYYYYYY",
+        "XXyxYxy"
+      ],
+      "best_length": 19,
+      "candidate_count": 24,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 384,
+      "cpu_seconds": 0.022778000000000187,
+      "wall_seconds": 0.022824374958872795
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "input_length": 19,
+      "best_pair": [
+        "XXYxxyy",
+        "XYYYxyXyxyXy"
+      ],
+      "best_length": 19,
+      "candidate_count": 33,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 120,
+      "cpu_seconds": 0.004541999999999824,
+      "wall_seconds": 0.004541083006188273
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 20,
+      "best_pair": [
+        "XXXXyxxYY",
+        "XYYXyxyXYxy"
+      ],
+      "best_length": 20,
+      "candidate_count": 33,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 304,
+      "cpu_seconds": 0.019868999999999915,
+      "wall_seconds": 0.019908291986212134
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best_pair": [
+        "XXXYxYxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "best_length": 25,
+      "candidate_count": 34,
+      "normalized_candidate_count": 26,
+      "image_evaluations": 248,
+      "cpu_seconds": 0.011399000000000381,
+      "wall_seconds": 0.011470416793599725
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "input_length": 25,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYYYYxyyyyyyy"
+      ],
+      "best_length": 25,
+      "candidate_count": 26,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 128,
+      "cpu_seconds": 0.009155999999999942,
+      "wall_seconds": 0.00923587498255074
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best_pair": [
+        "XXXyxYxy",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "best_length": 25,
+      "candidate_count": 22,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 168,
+      "cpu_seconds": 0.009243999999999808,
+      "wall_seconds": 0.009244958171620965
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best_pair": [
+        "XXXyxYxY",
+        "XYYYYYYYxyyyyyyyy"
+      ],
+      "best_length": 25,
+      "candidate_count": 25,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 120,
+      "cpu_seconds": 0.006233999999999629,
+      "wall_seconds": 0.006233291933313012
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXXyxxxYY",
+        "XYxYxyyXYxy"
+      ],
+      "best_length": 21,
+      "candidate_count": 29,
+      "normalized_candidate_count": 9,
+      "image_evaluations": 112,
+      "cpu_seconds": 0.003932000000000269,
+      "wall_seconds": 0.0039302080404013395
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "best_pair": [
+        "XXXXyXXXYY",
+        "XYYXyxyXYxy"
+      ],
+      "best_length": 21,
+      "candidate_count": 29,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 392,
+      "cpu_seconds": 0.042478000000000016,
+      "wall_seconds": 0.042532999999821186
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXYxxYYYYYYY",
+        "XXXyxYxxy"
+      ],
+      "best_length": 22,
+      "candidate_count": 24,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 328,
+      "cpu_seconds": 0.024948999999999888,
+      "wall_seconds": 0.02500937506556511
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "best_pair": [
+        "XXyxYXYxyxy",
+        "XYxYYYYYYYxYY"
+      ],
+      "best_length": 24,
+      "candidate_count": 28,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 544,
+      "cpu_seconds": 0.050786999999999694,
+      "wall_seconds": 0.050967000192031264
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXYxxYYYYYY",
+        "XXyXYxxyyxY"
+      ],
+      "best_length": 23,
+      "candidate_count": 27,
+      "normalized_candidate_count": 25,
+      "image_evaluations": 232,
+      "cpu_seconds": 0.02803100000000036,
+      "wall_seconds": 0.028098792070522904
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best_pair": [
+        "XXXYxxyyyyyyy",
+        "XXXyxYxxY"
+      ],
+      "best_length": 22,
+      "candidate_count": 27,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 272,
+      "cpu_seconds": 0.014331000000000316,
+      "wall_seconds": 0.014381624991074204
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "input_length": 24,
+      "best_pair": [
+        "XXyxyxyXYxY",
+        "XYYxYXyyyyyyy"
+      ],
+      "best_length": 24,
+      "candidate_count": 31,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 312,
+      "cpu_seconds": 0.021268000000000065,
+      "wall_seconds": 0.021369541995227337
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "input_length": 24,
+      "best_pair": [
+        "XXyxyXYxyxY",
+        "XYxYYYYYYYxyy"
+      ],
+      "best_length": 24,
+      "candidate_count": 29,
+      "normalized_candidate_count": 20,
+      "image_evaluations": 336,
+      "cpu_seconds": 0.028916000000000164,
+      "wall_seconds": 0.02896758308634162
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXYxxYYYYYYYY",
+        "XXXyxYxxY"
+      ],
+      "best_length": 23,
+      "candidate_count": 23,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 328,
+      "cpu_seconds": 0.027359000000000133,
+      "wall_seconds": 0.02745237504132092
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "input_length": 23,
+      "best_pair": [
+        "XXXYxxyyyyyyyy",
+        "XXXyxYxxy"
+      ],
+      "best_length": 23,
+      "candidate_count": 27,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 288,
+      "cpu_seconds": 0.017821000000000087,
+      "wall_seconds": 0.017943832790479064
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "best_pair": [
+        "XXXyyyy",
+        "XYXyxy"
+      ],
+      "best_length": 13,
+      "candidate_count": 31,
+      "normalized_candidate_count": 25,
+      "image_evaluations": 384,
+      "cpu_seconds": 0.015114999999999768,
+      "wall_seconds": 0.015132041880860925
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best_pair": [
+        "XXXyxxY",
+        "XYYYXyy"
+      ],
+      "best_length": 14,
+      "candidate_count": 33,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 192,
+      "cpu_seconds": 0.0042599999999999305,
+      "wall_seconds": 0.004259208217263222
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best_pair": [
+        "XXXyxxY",
+        "XYYxyyy"
+      ],
+      "best_length": 14,
+      "candidate_count": 5,
+      "normalized_candidate_count": 1,
+      "image_evaluations": 8,
+      "cpu_seconds": 0.00011900000000020228,
+      "wall_seconds": 0.00011908402666449547
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXYxyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 15,
+      "candidate_count": 30,
+      "normalized_candidate_count": 18,
+      "image_evaluations": 216,
+      "cpu_seconds": 0.005291999999999852,
+      "wall_seconds": 0.005289458204060793
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXYxyyyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 16,
+      "candidate_count": 30,
+      "normalized_candidate_count": 19,
+      "image_evaluations": 232,
+      "cpu_seconds": 0.00941499999999973,
+      "wall_seconds": 0.009466750081628561
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXYYxyyy",
+        "XXyxYxY"
+      ],
+      "best_length": 15,
+      "candidate_count": 31,
+      "normalized_candidate_count": 13,
+      "image_evaluations": 144,
+      "cpu_seconds": 0.002750999999999948,
+      "wall_seconds": 0.0027494579553604126
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_length": 15,
+      "best_pair": [
+        "XXYYxYYY",
+        "XXyxYxy"
+      ],
+      "best_length": 15,
+      "candidate_count": 26,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 416,
+      "cpu_seconds": 0.014996999999999705,
+      "wall_seconds": 0.015053333947435021
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_length": 16,
+      "best_pair": [
+        "XXYYxYYYY",
+        "XXyxYxy"
+      ],
+      "best_length": 16,
+      "candidate_count": 25,
+      "normalized_candidate_count": 23,
+      "image_evaluations": 400,
+      "cpu_seconds": 0.01771400000000023,
+      "wall_seconds": 0.0178013329859823
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_length": 17,
+      "best_pair": [
+        "XXYYxYYYYY",
+        "XXyxYxy"
+      ],
+      "best_length": 17,
+      "candidate_count": 24,
+      "normalized_candidate_count": 22,
+      "image_evaluations": 368,
+      "cpu_seconds": 0.01770399999999972,
+      "wall_seconds": 0.01775550004094839
+    }
+  ]
+}

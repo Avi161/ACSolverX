@@ -1,0 +1,5022 @@
+[
+  {
+    "name": "aca_4",
+    "archival_initial_length": 18,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXXyx",
+      "YYxyxyXyXYX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyx",
+      "YYxyxyXyXYX"
+    ],
+    "best_words": [
+      "ZXY",
+      "XXXZYY",
+      "XyzzYxZy"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/4/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/4/best",
+      "defining_word": "XY",
+      "cuts": [
+        2,
+        6
+      ],
+      "compressed_relators": [
+        "XXXZYY",
+        "XyzzYxZy"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_4",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_5",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyX",
+      "YYYxyXyxyxyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyX",
+      "YYYxyXyxyxyx"
+    ],
+    "best_words": [
+      "Zxy",
+      "YYYzXyzzx",
+      "YZXXyX"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/18/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/18/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_5",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_6",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXyxxyx",
+      "YXXXXXyxYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyxxyx",
+      "YXXXXXyxYx"
+    ],
+    "best_words": [
+      "ZYXX",
+      "YzyZx",
+      "XXXyxYxz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/6/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/6/best",
+      "defining_word": "YXX",
+      "cuts": [
+        0,
+        3
+      ],
+      "compressed_relators": [
+        "YzyZx",
+        "XXXyxYxz"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_6",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_13",
+    "archival_initial_length": 16,
+    "starting_best_length": 16,
+    "best_certified_length": 15,
+    "best_rank2_length": 16,
+    "best_any_rank_length": 15,
+    "best_rank2_words": [
+      "YYXXYYx",
+      "YXXXyxxYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXYYx",
+      "YXXXyxxYx"
+    ],
+    "best_words": [
+      "XYXYz",
+      "XZxzy",
+      "Xyzyy"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/2/attempts/3/boundaries/5",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/2/attempts/3/boundaries/5",
+      "attempt_index": 3,
+      "boundary_index": 5,
+      "label": "canonical_rank3_image"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_13",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_16",
+    "archival_initial_length": 17,
+    "starting_best_length": 17,
+    "best_certified_length": 15,
+    "best_rank2_length": 17,
+    "best_any_rank_length": 15,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YXyxxyXYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YXyxxyXYx"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXZxYY",
+      "YZxyz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/16/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/16/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        0
+      ],
+      "compressed_relators": [
+        "XXZxYY",
+        "YZxyz"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        6,
+        5
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_16",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_24",
+    "archival_initial_length": 17,
+    "starting_best_length": 17,
+    "best_certified_length": 16,
+    "best_rank2_length": 17,
+    "best_any_rank_length": 16,
+    "best_rank2_words": [
+      "YYXXXYxx",
+      "YYYXXYXYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXYxx",
+      "YYYXXYXYx"
+    ],
+    "best_words": [
+      "ZYYXX",
+      "XYxxz",
+      "XYxYzY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/24/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/24/best",
+      "defining_word": "YYXX",
+      "cuts": [
+        4,
+        6
+      ],
+      "compressed_relators": [
+        "XYxxz",
+        "XYxYzY"
+      ],
+      "token_counts": [
+        1,
+        1
+      ],
+      "all_relator_lengths": [
+        5,
+        5,
+        6
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_24",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_32",
+    "archival_initial_length": 17,
+    "starting_best_length": 17,
+    "best_certified_length": 16,
+    "best_rank2_length": 17,
+    "best_any_rank_length": 16,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYXyxyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYXyxyx"
+    ],
+    "best_words": [
+      "ZXY",
+      "XzxxZY",
+      "XZZYYYY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/32/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/32/best",
+      "defining_word": "XY",
+      "cuts": [
+        1,
+        4
+      ],
+      "compressed_relators": [
+        "XzxxZY",
+        "XZZYYYY"
+      ],
+      "token_counts": [
+        2,
+        2
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_32",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_33",
+    "archival_initial_length": 17,
+    "starting_best_length": 17,
+    "best_certified_length": 16,
+    "best_rank2_length": 17,
+    "best_any_rank_length": 16,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYXyXyxyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYXyXyxyx"
+    ],
+    "best_words": [
+      "ZXy",
+      "XXzxZY",
+      "YYzzxyx"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/33/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/33/best",
+      "defining_word": "Xy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XXzxZY",
+        "YYzzxyx"
+      ],
+      "token_counts": [
+        2,
+        2
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_33",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_37",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXXYxx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXYxx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXYxxz",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/37/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/37/best",
+      "defining_word": "YY",
+      "cuts": [
+        2,
+        5
+      ],
+      "compressed_relators": [
+        "XXXYxxz",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        1,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_37",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_38",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxxz",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/38/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/38/best",
+      "defining_word": "YY",
+      "cuts": [
+        2,
+        5
+      ],
+      "compressed_relators": [
+        "XXXyxxz",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        1,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_38",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_39",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXXYxYx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXYxYx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXYxYxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/39/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/39/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_39",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_40",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYxyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYxyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XYzzxZZ"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/40/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/40/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        10
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_40",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_41",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXyXYxxx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxxx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XYxxxYXy",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/41/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/41/best",
+      "defining_word": "YY",
+      "cuts": [
+        3,
+        5
+      ],
+      "compressed_relators": [
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_41",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_42",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/42/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/42/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_42",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_43",
+    "archival_initial_length": 19,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXyxx",
+      "YYxyXYxyXyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyxx",
+      "YYxyXYxyXyX"
+    ],
+    "best_words": [
+      "ZXy",
+      "XzxxYY",
+      "XYZyXZyz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/43/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/43/best",
+      "defining_word": "Xy",
+      "cuts": [
+        2,
+        10
+      ],
+      "compressed_relators": [
+        "XzxxYY",
+        "XYZyXZyz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_43",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_44",
+    "archival_initial_length": 19,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXYYx",
+      "YXyXYxxYXyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXYYx",
+      "YXyXYxxYXyx"
+    ],
+    "best_words": [
+      "ZXy",
+      "XXYZYY",
+      "XZxYzxYz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/44/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/44/best",
+      "defining_word": "Xy",
+      "cuts": [
+        2,
+        3
+      ],
+      "compressed_relators": [
+        "XXYZYY",
+        "XZxYzxYz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_44",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_45",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "XXXZYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/45/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/45/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        4
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "XXXZYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_45",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_46",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/46/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/46/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_46",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_47",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXYxxyX",
+      "YYYYYxyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyX",
+      "YYYYYxyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyXY",
+      "XYzzxZZ"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/47/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/47/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        10
+      ],
+      "compressed_relators": [
+        "XXYxxyXY",
+        "XYzzxZZ"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_47",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_48",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "YYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/48/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/48/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "YYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_48",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_49",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYYxyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYYxyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyxY",
+      "XYzzxZZ"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/49/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/49/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        10
+      ],
+      "compressed_relators": [
+        "XXYxxyxY",
+        "XYzzxZZ"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_49",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_50",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXYxxyX",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyX",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyXY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/50/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/50/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_50",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_51",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXYxYxx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxYxx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxYxxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/51/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/51/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXYxYxxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_51",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_52",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXyXyxx",
+      "YYYYYXyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXyxx",
+      "YYYYYXyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXyXyxxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/52/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/52/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXyXyxxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_52",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_53",
+    "archival_initial_length": 18,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXXyxYx",
+      "YYXyyXyxyxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyxYx",
+      "YYXyyXyxyxx"
+    ],
+    "best_words": [
+      "ZXy",
+      "XzxZY",
+      "YYzyzxyxx"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/53/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/53/best",
+      "defining_word": "Xy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "YYzyzxyxx"
+      ],
+      "token_counts": [
+        2,
+        2
+      ],
+      "all_relator_lengths": [
+        3,
+        5,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_53",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_54",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 16,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 16,
+    "best_rank2_words": [
+      "YYXXXXyxx",
+      "YYxxyXXXXX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXXyxx",
+      "YYxxyXXXXX"
+    ],
+    "best_words": [
+      "Zxx",
+      "YYZZyz",
+      "YYzyXZZ"
+    ],
+    "gain_this_session": 3,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/17/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/17/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_54",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_55",
+    "archival_initial_length": 19,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXXyxyx",
+      "YYxYXXyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxyx",
+      "YYxYXXyyX"
+    ],
+    "best_words": [
+      "ZyxYY",
+      "XXXyxz",
+      "XXZYxY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/55/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/55/best",
+      "defining_word": "yxYY",
+      "cuts": [
+        2,
+        4
+      ],
+      "compressed_relators": [
+        "XXXyxz",
+        "XXZYxY"
+      ],
+      "token_counts": [
+        1,
+        1
+      ],
+      "all_relator_lengths": [
+        5,
+        6,
+        6
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_55",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_56",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YYXYYxxyXXX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YYXYYxxyXXX"
+    ],
+    "best_words": [
+      "ZXX",
+      "XyZYYz",
+      "XYYXYYZyz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/56/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/56/best",
+      "defining_word": "XX",
+      "cuts": [
+        4,
+        10
+      ],
+      "compressed_relators": [
+        "XyZYYz",
+        "XYYXYYZyz"
+      ],
+      "token_counts": [
+        2,
+        2
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_56",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_57",
+    "archival_initial_length": 19,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YYXYYxyXXXX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YYXYYxyXXXX"
+    ],
+    "best_words": [
+      "ZXX",
+      "XyZYYz",
+      "XYYxyzzYY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/57/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/57/best",
+      "defining_word": "XX",
+      "cuts": [
+        4,
+        2
+      ],
+      "compressed_relators": [
+        "XyZYYz",
+        "XYYxyzzYY"
+      ],
+      "token_counts": [
+        2,
+        2
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_59",
+    "archival_initial_length": 20,
+    "starting_best_length": 20,
+    "best_certified_length": 17,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXXYxxyxx",
+      "YYYYxxxxxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyxx",
+      "YYYYxxxxxxx"
+    ],
+    "best_words": [
+      "Zxx",
+      "YZYzyz",
+      "YYYYxzzz"
+    ],
+    "gain_this_session": 3,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/6/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/6/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_59",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_60",
+    "archival_initial_length": 20,
+    "starting_best_length": 20,
+    "best_certified_length": 18,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "YYYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/60/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/60/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "YYYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_60",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_61",
+    "archival_initial_length": 20,
+    "starting_best_length": 20,
+    "best_certified_length": 18,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "XXXZYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/61/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/61/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        5
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "XXXZYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_61",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_62",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXYxYx",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXYxYx",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXYxYxY",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/62/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/62/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXXYxYxY",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_62",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_63",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYxyyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYxyyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XzzzxZZy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/63/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/63/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        12
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XzzzxZZy"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_63",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_64",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXyXYxxx",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxxx",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XYxxxYXy",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/64/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/64/best",
+      "defining_word": "YY",
+      "cuts": [
+        3,
+        6
+      ],
+      "compressed_relators": [
+        "XYxxxYXy",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_64",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_65",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/65/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/65/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_65",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_66",
+    "archival_initial_length": 21,
+    "starting_best_length": 20,
+    "best_certified_length": 18,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyxxx",
+      "YYXyXyxYXyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxxx",
+      "YYXyXyxYXyx"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXZxxYY",
+      "XyZYZYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/66/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/66/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        2
+      ],
+      "compressed_relators": [
+        "XXZxxYY",
+        "XyZYZYY"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_66",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_67",
+    "archival_initial_length": 21,
+    "starting_best_length": 20,
+    "best_certified_length": 19,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YYXXXyXXX",
+      "YYXyxYXyxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyXXX",
+      "YYXyxYXyxyX"
+    ],
+    "best_words": [
+      "ZXY",
+      "XXXyXXzY",
+      "XZYXZyzY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/67/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/67/best",
+      "defining_word": "XY",
+      "cuts": [
+        2,
+        2
+      ],
+      "compressed_relators": [
+        "XXXyXXzY",
+        "XZYXZyzY"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_67",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_68",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyxY",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/68/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/68/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXYxxyxY",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_68",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_69",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyX",
+      "YYYYYYxyyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyX",
+      "YYYYYYxyyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyXY",
+      "XzzzxZZy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/69/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/69/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        12
+      ],
+      "compressed_relators": [
+        "XXYxxyXY",
+        "XzzzxZZy"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_69",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_70",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYYYxyyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYYYxyyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyxY",
+      "XzzzxZZy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/70/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/70/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        12
+      ],
+      "compressed_relators": [
+        "XXYxxyxY",
+        "XzzzxZZy"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_70",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_71",
+    "archival_initial_length": 20,
+    "starting_best_length": 19,
+    "best_certified_length": 17,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YYXyxyXYxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YYXyxyXYxyX"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXZxYY",
+      "XYYZyzy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/71/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/71/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        10
+      ],
+      "compressed_relators": [
+        "XXZxYY",
+        "XYYZyzy"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        6,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_71",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_72",
+    "archival_initial_length": 20,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YYXXyxx",
+      "YYxyXyxyXyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyxx",
+      "YYxyXyxyXyX"
+    ],
+    "best_words": [
+      "ZXy",
+      "XzxxYY",
+      "XYZyzxyz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/72/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/72/best",
+      "defining_word": "Xy",
+      "cuts": [
+        2,
+        10
+      ],
+      "compressed_relators": [
+        "XzxxYY",
+        "XYZyzxyz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_72",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_73",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyX",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyX",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXYxxyXY",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/73/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/73/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXYxxyXY",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_73",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_74",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXyXyxx",
+      "YYYYYYXyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXyxx",
+      "YYYYYYXyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXyXyxxY",
+      "XZZyxzzz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/74/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/74/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXyXyxxY",
+        "XZZyxzzz"
+      ],
+      "token_counts": [
+        0,
+        5
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_74",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_75",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "XXXZYYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/75/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/75/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "XXXZYYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_75",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_76",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "YYYYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/76/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/76/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "YYYYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_76",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_77",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "XXXZYYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/77/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/77/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        6
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "XXXZYYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_77",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_78",
+    "archival_initial_length": 21,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXyXyx",
+      "YYYXYXyxyyxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXyx",
+      "YYYXYXyxyyxx"
+    ],
+    "best_words": [
+      "ZXY",
+      "XXyXZY",
+      "XZyZxYYYz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/78/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/78/best",
+      "defining_word": "XY",
+      "cuts": [
+        1,
+        5
+      ],
+      "compressed_relators": [
+        "XXyXZY",
+        "XZyZxYYYz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_78",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_79",
+    "archival_initial_length": 21,
+    "starting_best_length": 21,
+    "best_certified_length": 18,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyyxx",
+      "YXXXXXyxxYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyyxx",
+      "YXXXXXyxxYxx"
+    ],
+    "best_words": [
+      "ZXX",
+      "XyyZYYz",
+      "XyZYZYzz"
+    ],
+    "gain_this_session": 3,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/79/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/79/best",
+      "defining_word": "XX",
+      "cuts": [
+        4,
+        5
+      ],
+      "compressed_relators": [
+        "XyyZYYz",
+        "XyZYZYzz"
+      ],
+      "token_counts": [
+        2,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_79",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_80",
+    "archival_initial_length": 21,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXyx",
+      "YYYXyXYYYxyXX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyx",
+      "YYYXyXYYYxyXX"
+    ],
+    "best_words": [
+      "ZXYYY",
+      "XyzxyXz",
+      "YYXXyx"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/5/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/5/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_81",
+    "archival_initial_length": 22,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXXyxYx",
+      "YYYYYYXyyxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyxYx",
+      "YYYYYYXyyxx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXyxYxY",
+      "XZxxzzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/81/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/81/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        6
+      ],
+      "compressed_relators": [
+        "XXyxYxY",
+        "XZxxzzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_81",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_82",
+    "archival_initial_length": 22,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YYYXXXXXyyx",
+      "YYXyxxyyxYX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYYXXXXXyyx",
+      "YYXyxxyyxYX"
+    ],
+    "best_words": [
+      "ZXYY",
+      "XyxxZYz",
+      "YYYXXXXXZ"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/8/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/8/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_82",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_83",
+    "archival_initial_length": 22,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "YYYYYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/83/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/83/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        0
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "YYYYYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_83",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_84",
+    "archival_initial_length": 22,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "XXXZYYYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/84/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/84/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "XXXZYYYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_84",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_85",
+    "archival_initial_length": 22,
+    "starting_best_length": 18,
+    "best_certified_length": 17,
+    "best_rank2_length": 18,
+    "best_any_rank_length": 17,
+    "best_rank2_words": [
+      "YXyXYxx",
+      "YYYYYYXXYYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxx",
+      "YYYYYYXXYYx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XYxxYXy",
+      "XXzxzzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/85/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/85/best",
+      "defining_word": "YY",
+      "cuts": [
+        3,
+        6
+      ],
+      "compressed_relators": [
+        "XYxxYXy",
+        "XXzxzzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_85",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_86",
+    "archival_initial_length": 22,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YYYXXXXXyyX",
+      "YYXyxxyyXYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYYXXXXXyyX",
+      "YYXyxxyyXYx"
+    ],
+    "best_words": [
+      "ZxYY",
+      "XyxxZYz",
+      "YYYXXXXXZ"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/15/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/15/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_86",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_87",
+    "archival_initial_length": 23,
+    "starting_best_length": 20,
+    "best_certified_length": 19,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YYXXXyXXX",
+      "YYXyxYXyxyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyXXX",
+      "YYXyxYXyxyx"
+    ],
+    "best_words": [
+      "ZXY",
+      "XXXyXXzY",
+      "XZYXZZYY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/87/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/87/best",
+      "defining_word": "XY",
+      "cuts": [
+        2,
+        2
+      ],
+      "compressed_relators": [
+        "XXXyXXzY",
+        "XZYXZZYY"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_87",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_88",
+    "archival_initial_length": 23,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyXX",
+      "YYxyXyxYXyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyXX",
+      "YYxyXyxYXyx"
+    ],
+    "best_words": [
+      "ZXy",
+      "XXYYXXz",
+      "YZyzxYzx"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/88/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/88/best",
+      "defining_word": "Xy",
+      "cuts": [
+        6,
+        0
+      ],
+      "compressed_relators": [
+        "XXYYXXz",
+        "YZyzxYzx"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_88",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_89",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XXYxxyxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/89/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/89/best",
+      "defining_word": "YYY",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XXYxxyxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_89",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_90",
+    "archival_initial_length": 23,
+    "starting_best_length": 20,
+    "best_certified_length": 18,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyxxx",
+      "YYXyxYXyxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxxx",
+      "YYXyxYXyxyX"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXZxxYY",
+      "XYYZYZy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/90/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/90/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        10
+      ],
+      "compressed_relators": [
+        "XXZxxYY",
+        "XYYZYZy"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_90",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_91",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XXXyxYxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/91/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/91/best",
+      "defining_word": "YYY",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_91",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_92",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXyXYxxx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxxx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XYxxxYXy",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/92/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/92/best",
+      "defining_word": "YYY",
+      "cuts": [
+        3,
+        7
+      ],
+      "compressed_relators": [
+        "XYxxxYXy",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_92",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_93",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYYxyyyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYYxyyyyyyX"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XXXyxYxY",
+      "XYzzxZZ"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/93/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/93/best",
+      "defining_word": "YYY",
+      "cuts": [
+        1,
+        14
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XYzzxZZ"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_93",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_94",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXXYxYx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXYxYx",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XXXYxYxY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/94/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/94/best",
+      "defining_word": "YYY",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XXXYxYxY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_94",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_95",
+    "archival_initial_length": 21,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXyxx",
+      "YYxyxyXYxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXyxx",
+      "YYxyxyXYxyX"
+    ],
+    "best_words": [
+      "ZXY",
+      "XXXZxYY",
+      "YxZyzxyz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/95/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/95/best",
+      "defining_word": "XY",
+      "cuts": [
+        2,
+        1
+      ],
+      "compressed_relators": [
+        "XXXZxYY",
+        "YxZyzxyz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_95",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_96",
+    "archival_initial_length": 23,
+    "starting_best_length": 23,
+    "best_certified_length": 19,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YXXYxxyX",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXYxxyX",
+      "YYYYYYYXyyyyyyx"
+    ],
+    "best_words": [
+      "ZYYY",
+      "XXYxxyXY",
+      "XZZxYzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/96/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/96/best",
+      "defining_word": "YYY",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XXYxxyXY",
+        "XZZxYzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_96",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_97",
+    "archival_initial_length": 24,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXXyxYx",
+      "YYYYYYYXyyxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyxYx",
+      "YYYYYYYXyyxx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXyxYxY",
+      "XZxxYzzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/97/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/97/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        7
+      ],
+      "compressed_relators": [
+        "XXyxYxY",
+        "XZxxYzzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_97",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_98",
+    "archival_initial_length": 24,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YXyXYxx",
+      "YYYYYYYXXYYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxx",
+      "YYYYYYYXXYYx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XYxxYXy",
+      "XXzxYzzz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/98/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/98/best",
+      "defining_word": "YY",
+      "cuts": [
+        3,
+        7
+      ],
+      "compressed_relators": [
+        "XYxxYXy",
+        "XXzxYzzz"
+      ],
+      "token_counts": [
+        0,
+        4
+      ],
+      "all_relator_lengths": [
+        3,
+        7,
+        8
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_98",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_99",
+    "archival_initial_length": 25,
+    "starting_best_length": 19,
+    "best_certified_length": 18,
+    "best_rank2_length": 19,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXyxx",
+      "YYYxyXyxyXyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyxx",
+      "YYYxyXyxyXyX"
+    ],
+    "best_words": [
+      "ZXy",
+      "XzxxYY",
+      "XYYZyzxyz"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/99/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/99/best",
+      "defining_word": "Xy",
+      "cuts": [
+        2,
+        11
+      ],
+      "compressed_relators": [
+        "XzxxYY",
+        "XYYZyzxyz"
+      ],
+      "token_counts": [
+        1,
+        3
+      ],
+      "all_relator_lengths": [
+        3,
+        6,
+        9
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_99",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_100",
+    "archival_initial_length": 25,
+    "starting_best_length": 20,
+    "best_certified_length": 18,
+    "best_rank2_length": 20,
+    "best_any_rank_length": 18,
+    "best_rank2_words": [
+      "YYXXXXyxx",
+      "YYXyxyXYxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXXyxx",
+      "YYXyxyXYxyX"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXXZxYY",
+      "XYYZyzy"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/100/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/100/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        10
+      ],
+      "compressed_relators": [
+        "XXXZxYY",
+        "XYYZyzy"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        7,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_100",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_101",
+    "archival_initial_length": 25,
+    "starting_best_length": 25,
+    "best_certified_length": 21,
+    "best_rank2_length": 25,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXXXYxYx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXYxYx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "best_words": [
+      "YYYYYYYz",
+      "XZxzy",
+      "XXXYxYxY"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/11/attempts/1/boundaries/5",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/11/attempts/1/boundaries/5",
+      "attempt_index": 1,
+      "boundary_index": 5,
+      "label": "canonical_rank3_image"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_101",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_102",
+    "archival_initial_length": 25,
+    "starting_best_length": 25,
+    "best_certified_length": 21,
+    "best_rank2_length": 25,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYYYxyyyyyyyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYYYxyyyyyyyX"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XzzzzxZZZy"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/102/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/102/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        16
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XzzzzxZZZy"
+      ],
+      "token_counts": [
+        0,
+        7
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_102",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_103",
+    "archival_initial_length": 25,
+    "starting_best_length": 25,
+    "best_certified_length": 21,
+    "best_rank2_length": 25,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXyXYxxx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXyXYxxx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XYxxxYXy",
+      "XZZZyxzzzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/103/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/103/best",
+      "defining_word": "YY",
+      "cuts": [
+        3,
+        8
+      ],
+      "compressed_relators": [
+        "XYxxxYXy",
+        "XZZZyxzzzz"
+      ],
+      "token_counts": [
+        0,
+        7
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_103",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_104",
+    "archival_initial_length": 25,
+    "starting_best_length": 25,
+    "best_certified_length": 21,
+    "best_rank2_length": 25,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXXXyxYx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYx",
+      "YYYYYYYYXyyyyyyyx"
+    ],
+    "best_words": [
+      "ZYY",
+      "XXXyxYxY",
+      "XZZZyxzzzz"
+    ],
+    "gain_this_session": 4,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/104/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/104/best",
+      "defining_word": "YY",
+      "cuts": [
+        1,
+        8
+      ],
+      "compressed_relators": [
+        "XXXyxYxY",
+        "XZZZyxzzzz"
+      ],
+      "token_counts": [
+        0,
+        7
+      ],
+      "all_relator_lengths": [
+        3,
+        8,
+        10
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_104",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_105",
+    "archival_initial_length": 25,
+    "starting_best_length": 21,
+    "best_certified_length": 19,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 19,
+    "best_rank2_words": [
+      "YYXXXXyxxx",
+      "YYXyXyxYXyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXXyxxx",
+      "YYXyXyxYXyx"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XXXZxxYY",
+      "XyZYZYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/105/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/105/best",
+      "defining_word": "XYx",
+      "cuts": [
+        2,
+        2
+      ],
+      "compressed_relators": [
+        "XXXZxxYY",
+        "XyZYZYY"
+      ],
+      "token_counts": [
+        1,
+        2
+      ],
+      "all_relator_lengths": [
+        4,
+        8,
+        7
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_105",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_106",
+    "archival_initial_length": 25,
+    "starting_best_length": 21,
+    "best_certified_length": 20,
+    "best_rank2_length": 21,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YYXXXXyXXX",
+      "YYXyxyXYxyX"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXXXyXXX",
+      "YYXyxyXYxyX"
+    ],
+    "best_words": [
+      "XYxyZ",
+      "XYZyz",
+      "XXXXyXXXYY"
+    ],
+    "gain_this_session": 1,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/16/attempts/1/boundaries/5",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/16/attempts/1/boundaries/5",
+      "attempt_index": 1,
+      "boundary_index": 5,
+      "label": "canonical_rank3_image"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_106",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_107",
+    "archival_initial_length": 25,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "XXXZYYYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/107/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/107/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        7
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "XXXZYYYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_107",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_108",
+    "archival_initial_length": 25,
+    "starting_best_length": 24,
+    "best_certified_length": 22,
+    "best_rank2_length": 24,
+    "best_any_rank_length": 22,
+    "best_rank2_words": [
+      "YXYXyxyXYxx",
+      "YYYYYYYxYYXYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXYXyxyXYxx",
+      "YYYYYYYxYYXYx"
+    ],
+    "best_words": [
+      "ZXYx",
+      "YXYZyzx",
+      "YYYYYYYxYYz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/10/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/10/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_108",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_109",
+    "archival_initial_length": 25,
+    "starting_best_length": 23,
+    "best_certified_length": 21,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YYXXyxYxxyX",
+      "YYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YYXXyxYxxyX",
+      "YYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZYxx",
+      "YYZxzyX",
+      "YYYYYYXXXz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "primitive_compression_report.json#/rows/9/attempts/0/boundaries/2",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "primitive_compression_independent_audit.json",
+      "audit_sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "source_file": "primitive_compression_report.json",
+      "source_sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "auditor_file": "check_primitive_compression_independent.py",
+      "auditor_sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/9/attempts/0/boundaries/2",
+      "attempt_index": 0,
+      "boundary_index": 2,
+      "label": "compressed_rank3"
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_109",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_110",
+    "archival_initial_length": 25,
+    "starting_best_length": 22,
+    "best_certified_length": 20,
+    "best_rank2_length": 22,
+    "best_any_rank_length": 20,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "YYYYYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/110/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/110/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        0
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "YYYYYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_110",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_111",
+    "archival_initial_length": 25,
+    "starting_best_length": 24,
+    "best_certified_length": 22,
+    "best_rank2_length": 24,
+    "best_any_rank_length": 22,
+    "best_rank2_words": [
+      "YXYXYxxyXyx",
+      "YYYYYYYxyXyyx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXYXYxxyXyx",
+      "YYYYYYYxyXyyx"
+    ],
+    "best_words": [
+      "ZxYX",
+      "XYxZyzY",
+      "YYYYYYYZyyx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/111/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/111/best",
+      "defining_word": "xYX",
+      "cuts": [
+        3,
+        0
+      ],
+      "compressed_relators": [
+        "XYxZyzY",
+        "YYYYYYYZyyx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        7,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_111",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_112",
+    "archival_initial_length": 25,
+    "starting_best_length": 24,
+    "best_certified_length": 22,
+    "best_rank2_length": 24,
+    "best_any_rank_length": 22,
+    "best_rank2_words": [
+      "YXYxxyXYXyx",
+      "YYYYYYYxyyXYx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXYxxyXYXyx",
+      "YYYYYYYxyyXYx"
+    ],
+    "best_words": [
+      "ZXYx",
+      "XYZYzxy",
+      "YYYYYYYxyyz"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/112/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/112/best",
+      "defining_word": "XYx",
+      "cuts": [
+        6,
+        0
+      ],
+      "compressed_relators": [
+        "XYZYzxy",
+        "YYYYYYYxyyz"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        7,
+        11
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_112",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_113",
+    "archival_initial_length": 25,
+    "starting_best_length": 23,
+    "best_certified_length": 21,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXXXyxYxx",
+      "YYYYYYYYXXXYxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXXyxYxx",
+      "YYYYYYYYXXXYxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XzxZY",
+      "XXXZYYYYYYYY"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/113/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/113/best",
+      "defining_word": "XXy",
+      "cuts": [
+        1,
+        8
+      ],
+      "compressed_relators": [
+        "XzxZY",
+        "XXXZYYYYYYYY"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        12
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_113",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  },
+  {
+    "name": "aca_114",
+    "archival_initial_length": 25,
+    "starting_best_length": 23,
+    "best_certified_length": 21,
+    "best_rank2_length": 23,
+    "best_any_rank_length": 21,
+    "best_rank2_words": [
+      "YXXyXYxxx",
+      "YYYYYYYYXXyxxx"
+    ],
+    "status": "unsolved",
+    "best_rank": 3,
+    "starting_words": [
+      "YXXyXYxxx",
+      "YYYYYYYYXXyxxx"
+    ],
+    "best_words": [
+      "ZXXy",
+      "XZxYz",
+      "YYYYYYYYzxxx"
+    ],
+    "gain_this_session": 2,
+    "certificate_kind": "theorem_backed_stable_prefix",
+    "source_certificate_pointer": "stable_dictionary_compression_report.json#/rows/114/best",
+    "certificate_moves": null,
+    "certificate_witness": {
+      "audit_file": "stable_dictionary_independent_audit.json",
+      "audit_sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "source_file": "stable_dictionary_compression_report.json",
+      "source_sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "auditor_file": "stable_dictionary_independent_audit.py",
+      "auditor_sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "proof": "STABLE_CERTIFICATE_CONVENTIONS.md",
+      "certificate_kind": "independently_verified_theorem_backed_stable_prefix",
+      "expanded_normal_products": false,
+      "json_pointer": "/rows/114/best",
+      "defining_word": "XXy",
+      "cuts": [
+        4,
+        0
+      ],
+      "compressed_relators": [
+        "XZxYz",
+        "YYYYYYYYzxxx"
+      ],
+      "token_counts": [
+        2,
+        1
+      ],
+      "all_relator_lengths": [
+        4,
+        5,
+        12
+      ]
+    },
+    "best_rank2_certificate_kind": "identity_at_saved_start",
+    "best_rank2_source_certificate_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_114",
+    "best_rank2_certificate_moves": [],
+    "best_rank2_witness": null
+  }
+]

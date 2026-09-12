@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "known_triviality_proof": "After the helper definition, the BS(1,2) donor and target reduce to y=a; then a=a\u00b2 forces a=1, y=1, and the helper dies. Root sign does not alter this quotient.",
+    "root_exponents_tested": [
+      -2,
+      2
+    ],
+    "signed_helper_expansion_cases": 6,
+    "power_lengths_compared_with_exhaustive_coefficients": 50,
+    "derived_BS_models_checked": 2,
+    "simultaneous_flows_compiled": 54,
+    "finite_cyclic_DP_exhaustive_comparisons": 2,
+    "incomplete_DP_controls": 6,
+    "census_searches": 0
+  },
+  "pilot": {
+    "status": "PASS",
+    "file": "corridor_pilot.json",
+    "sha256": "13791be3331252f67302f6d8791df4cfb0f61ad0e81734620ff68950af14b80b",
+    "rows": [
+      {
+        "name": "aca_37",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 455,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_54",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 16,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 20,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_62",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 445,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_89",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 445,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_101",
+        "status": "PASS",
+        "length": 21,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 21,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 445,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_102",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 445,
+        "retained_path_identical_to_imported_seed": false
+      },
+      {
+        "name": "aca_113",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 454,
+        "retained_path_identical_to_imported_seed": false
+      }
+    ],
+    "new_probe_work_units": 2709,
+    "full_seed_files_historical_discovery_units": 0,
+    "seed_work_included_in_new_probe_budget": false,
+    "new_strict_gains_beyond_available_seeds": 0,
+    "historical_verifier_provenance": {
+      "executed_sha256": "2e314f5c2edbc050370ab37cc615cfd333937c6b7fab485cb5667edf352e176b",
+      "current_sha256": "2e314f5c2edbc050370ab37cc615cfd333937c6b7fab485cb5667edf352e176b",
+      "matches_current": true,
+      "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+    }
+  },
+  "proof_scope": "Independent exact normal-product replay for helper expansion, derived BS relations and all tested cyclic-flow choices; DP checked only for its finite separable exponent-packing objective.",
+  "source_sha256": "a1de8de3ff33eb29349e03adcf4b03d5abe3275ca8d271f98b643bb946d192aa",
+  "audit_script_sha256": "8846f462f061491576930b55f316e15928f295302143e186248ad52780abccd7"
+}

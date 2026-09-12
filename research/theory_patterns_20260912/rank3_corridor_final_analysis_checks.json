@@ -1,0 +1,6763 @@
+{
+  "status": "pass",
+  "scope": "14 exact signed fixtures of the infinite ordinary theorem m=-1, abs(k-n)=1; no census search or new U124 solve claimed. Every move is zero-based AC1, AC2 or one-letter AC3.",
+  "rows": [
+    {
+      "parameters": {
+        "m": -1,
+        "k": -4,
+        "n": -3
+      },
+      "initial": [
+        "zXYYY",
+        "Zxyx",
+        "zYYYYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 9,
+          "relators": [
+            "xYY",
+            "Zxyx",
+            "zYYYYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 28,
+          "relators": [
+            "xYY",
+            "Zyyyyy",
+            "zYYYYZyyy"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 62,
+          "relators": [
+            "xYY",
+            "zYYYYY",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 98,
+      "all_relator_peak": 26,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": -2,
+        "n": -3
+      },
+      "initial": [
+        "zXYYY",
+        "Zxyx",
+        "zYYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 9,
+          "relators": [
+            "xYY",
+            "Zxyx",
+            "zYYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 28,
+          "relators": [
+            "xYY",
+            "Zyyyyy",
+            "zYYZyyy"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 58,
+          "relators": [
+            "xYY",
+            "zYYYYY",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 93,
+      "all_relator_peak": 24,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": -3,
+        "n": -2
+      },
+      "initial": [
+        "zXYY",
+        "Zxyx",
+        "zYYYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 7,
+          "relators": [
+            "xY",
+            "Zxyx",
+            "zYYYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 26,
+          "relators": [
+            "xY",
+            "Zyyy",
+            "zYYYZyy"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 52,
+          "relators": [
+            "xY",
+            "zYYY",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 69,
+      "all_relator_peak": 19,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": -1,
+        "n": -2
+      },
+      "initial": [
+        "zXYY",
+        "Zxyx",
+        "zYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 7,
+          "relators": [
+            "xY",
+            "Zxyx",
+            "zYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 26,
+          "relators": [
+            "xY",
+            "Zyyy",
+            "zYZyy"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 48,
+          "relators": [
+            "xY",
+            "zYYY",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 64,
+      "all_relator_peak": 17,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": -2,
+        "n": -1
+      },
+      "initial": [
+        "zXY",
+        "Zxyx",
+        "zYYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 5,
+          "relators": [
+            "x",
+            "Zxyx",
+            "zYYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 24,
+          "relators": [
+            "x",
+            "Zy",
+            "zYYZy"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 42,
+          "relators": [
+            "x",
+            "zY",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 50,
+      "all_relator_peak": 15,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 0,
+        "n": -1
+      },
+      "initial": [
+        "zXY",
+        "Zxyx",
+        "yx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 5,
+          "relators": [
+            "x",
+            "Zxyx",
+            "yx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 24,
+          "relators": [
+            "x",
+            "Zy",
+            "y"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 26,
+          "relators": [
+            "x",
+            "zY",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 33,
+      "all_relator_peak": 11,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": -1,
+        "n": 0
+      },
+      "initial": [
+        "zX",
+        "Zxyx",
+        "zYZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 3,
+          "relators": [
+            "xy",
+            "Zxyx",
+            "zYZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 22,
+          "relators": [
+            "xy",
+            "ZY",
+            "zYZ"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 34,
+          "relators": [
+            "xy",
+            "zy",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 51,
+      "all_relator_peak": 11,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 1,
+        "n": 0
+      },
+      "initial": [
+        "zX",
+        "Zxyx",
+        "zyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 3,
+          "relators": [
+            "xy",
+            "Zxyx",
+            "zyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 22,
+          "relators": [
+            "xy",
+            "ZY",
+            "zyZ"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 34,
+          "relators": [
+            "xy",
+            "zy",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 50,
+      "all_relator_peak": 11,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 0,
+        "n": 1
+      },
+      "initial": [
+        "zXy",
+        "Zxyx",
+        "yx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 5,
+          "relators": [
+            "xyy",
+            "Zxyx",
+            "yx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 24,
+          "relators": [
+            "xyy",
+            "ZYYY",
+            "Y"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 28,
+          "relators": [
+            "xyy",
+            "zyyy",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 68,
+      "all_relator_peak": 11,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 2,
+        "n": 1
+      },
+      "initial": [
+        "zXy",
+        "Zxyx",
+        "zyyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 5,
+          "relators": [
+            "xyy",
+            "Zxyx",
+            "zyyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 24,
+          "relators": [
+            "xyy",
+            "ZYYY",
+            "zyyZY"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 44,
+          "relators": [
+            "xyy",
+            "zyyy",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 83,
+      "all_relator_peak": 16,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 1,
+        "n": 2
+      },
+      "initial": [
+        "zXyy",
+        "Zxyx",
+        "zyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 7,
+          "relators": [
+            "xyyy",
+            "Zxyx",
+            "zyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 26,
+          "relators": [
+            "xyyy",
+            "ZYYYYY",
+            "zyZYY"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 50,
+          "relators": [
+            "xyyy",
+            "zyyyyy",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 123,
+      "all_relator_peak": 23,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 3,
+        "n": 2
+      },
+      "initial": [
+        "zXyy",
+        "Zxyx",
+        "zyyyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 7,
+          "relators": [
+            "xyyy",
+            "Zxyx",
+            "zyyyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 26,
+          "relators": [
+            "xyyy",
+            "ZYYYYY",
+            "zyyyZYY"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 54,
+          "relators": [
+            "xyyy",
+            "zyyyyy",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 126,
+      "all_relator_peak": 23,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 2,
+        "n": 3
+      },
+      "initial": [
+        "zXyyy",
+        "Zxyx",
+        "zyyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 9,
+          "relators": [
+            "xyyyy",
+            "Zxyx",
+            "zyyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 28,
+          "relators": [
+            "xyyyy",
+            "ZYYYYYYY",
+            "zyyZYYY"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 60,
+          "relators": [
+            "xyyyy",
+            "zyyyyyyy",
+            "Y"
+          ]
+        }
+      ],
+      "elementary_move_count": 176,
+      "all_relator_peak": 30,
+      "independent_integer_and_string_replay": true
+    },
+    {
+      "parameters": {
+        "m": -1,
+        "k": 4,
+        "n": 3
+      },
+      "initial": [
+        "zXyyy",
+        "Zxyx",
+        "zyyyyZyx"
+      ],
+      "moves": [
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "x"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "x"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 0
+        },
+        {
+          "op": "AC3",
+          "target": 0,
+          "by": "X"
+        },
+        {
+          "op": "AC1",
+          "target": 0
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "z"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Z"
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "Y"
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 1,
+          "by": "y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 0,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "y"
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC3",
+          "target": 2,
+          "by": "Y"
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        },
+        {
+          "op": "AC2",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "AC1",
+          "target": 2
+        },
+        {
+          "op": "AC2",
+          "target": 1,
+          "donor": 2
+        },
+        {
+          "op": "AC1",
+          "target": 1
+        }
+      ],
+      "endpoint": [
+        "x",
+        "y",
+        "z"
+      ],
+      "checkpoints": [
+        {
+          "name": "unit_x",
+          "move_count": 9,
+          "relators": [
+            "xyyyy",
+            "Zxyx",
+            "zyyyyZyx"
+          ]
+        },
+        {
+          "name": "x_cleared",
+          "move_count": 28,
+          "relators": [
+            "xyyyy",
+            "ZYYYYYYY",
+            "zyyyyZYYY"
+          ]
+        },
+        {
+          "name": "unit_y",
+          "move_count": 64,
+          "relators": [
+            "xyyyy",
+            "zyyyyyyy",
+            "y"
+          ]
+        }
+      ],
+      "elementary_move_count": 179,
+      "all_relator_peak": 30,
+      "independent_integer_and_string_replay": true
+    }
+  ],
+  "cpu_seconds": 0.005024000000000001,
+  "independent_checker": "stable_rank3_ac_independent_audit.py",
+  "independent_checker_sha256": "fb35cbed1f29ea1c1e7caaefff86c69a3af7f489e3870e9cb5e8380561ebf6aa"
+}

@@ -1,0 +1,838 @@
+{
+  "status": "author_verified_pending_independent_audit",
+  "rows": [
+    {
+      "name": "aca_59",
+      "input": [
+        "XYYXyyxyy",
+        "YYYYYYYxxxx"
+      ],
+      "input_length": 20,
+      "original_input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "original_input_length": 20,
+      "input_bridge": {
+        "ordinary_invert_relator": 2,
+        "ambient_images": {
+          "x": "y",
+          "y": "x"
+        },
+        "inverse_ambient_images": {
+          "x": "y",
+          "y": "x"
+        }
+      },
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "XYYXyyxyy",
+        "YYYYYYYxxxx",
+        "x",
+        "yy"
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "search": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "sTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttStr",
+          "sTTTTuuusTTTTuuuu",
+          "t",
+          "UUUttttS"
+        ],
+        "inverse_domain_basis": [
+          "TUUTuutuur",
+          "USUUSUUSUUtttt",
+          "t",
+          "uus"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 3,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 3,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 3,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              2,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 12,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 2,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": 1,
+          "other_lift_sign": -1,
+          "word_operations": 12,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 14,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                2,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "XYYXyyxyy",
+              "Y",
+              "x",
+              "yy"
+            ],
+            [
+              "XYYXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "YYXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "YXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "Xyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "xyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "y",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              "y"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 7,
+        "new_nielsen_move_count": 13,
+        "unit_goal_location": "direct",
+        "unit_goal_image_tuple": [
+          "XYYXyyxyy",
+          "Y",
+          "x",
+          "yy"
+        ],
+        "unit_goal_recognition": {
+          "known_axis": "x",
+          "known_unit_row": 2,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": 1,
+          "other_lift_sign": -1,
+          "word_operations": 12,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 14
+        },
+        "unit_completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 2,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": 1,
+          "other_lift_sign": -1,
+          "word_operations": 12,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 14,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 2,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 0,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                2,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "XYYXyyxyy",
+              "Y",
+              "x",
+              "yy"
+            ],
+            [
+              "XYYXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "YYXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "YXyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "Xyyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yyxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yxyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "xyy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "yy",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "y",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              "yy"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              "y"
+            ],
+            [
+              "",
+              "y",
+              "x",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "work_before_completion": 14,
+        "reserved_completion_and_projection_units": 14
+      },
+      "status": "marked_kernel_basis_found",
+      "projected": {
+        "pair": [
+          "XXXXyyyXXXXyyyXXXXXyyyXXXXyyyxYYYxxxxYYYxxxxx",
+          "XXXXyyyXXXXyyyy"
+        ],
+        "total_length": 60,
+        "determinant": -1,
+        "cyclic_inverse_permutation_match": false
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "sTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttStr",
+          "sTTTTuuusTTTTuuuu"
+        ],
+        "kernel_basis": [
+          "sTTTTuuusTTTTuuuTsTTTTuuusTTTTuuutUUUttttSUUUttttStr",
+          "sTTTTuuusTTTTuuuu",
+          "t",
+          "UUUttttS"
+        ],
+        "inverse_basis": [
+          "TUUTuutuur",
+          "USUUSUUSUUtttt",
+          "t",
+          "uus"
+        ],
+        "Q": [
+          "XXXXyyyXXXXyyyXXXXXyyyXXXXyyyxYYYxxxxYYYxxxxx",
+          "XXXXyyyXXXXyyyy"
+        ],
+        "P": [
+          "XYYXyyxyy",
+          "YYYYYYYxxxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "XYYXyyxyyr",
+          "YSYYSYYSYYxxxx",
+          "x",
+          "yys"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "XYYXyyxyy",
+          "YYYYYYYxxxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "image_evaluations": 28,
+      "image_evaluation_counts": {
+        "input_inversion_and_two_ambient_word_images": 3,
+        "initial_image_words": 4,
+        "direct_Euclidean_image_updates": 7,
+        "unit_completion_word_images": 12,
+        "kernel_projection_word_images": 2
+      },
+      "remaining_shared_budget": 972,
+      "prefix_cpu_seconds": 0.0021059999999999968,
+      "search_cpu_seconds": 0.44414000000000003,
+      "search_wall_seconds": 0.4462391249835491,
+      "compile_cpu_seconds": 0.0010099999999999554,
+      "result": {
+        "solved": false,
+        "nodes_explored": 972,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYYYxxxxYYYxxxx",
+            "YYYXyyyXXXXyyyXYYYxxxxYYYxxxxxYYYxxxx"
+          ],
+          [
+            "YYYYxxxxYYYxxxx",
+            "YYYXyyyXXXXyyyXyxYYYxxxx"
+          ],
+          [
+            "YYYYxxxxYYYxxxx",
+            "YYYXYxxxyxYYYxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYXYxxxyxYYYxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYxyXYxxxYYXYxxxyx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYxyXXYxxxYXYxxxyx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYxyXXXYxxYxxxyx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYxyXXXYxxxYxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYYxyXXXXYxxxxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYxyXXXXYxxxxyXYxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YXyXXXyxxYXXXXyxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YXXXXyxxxYXXXXyxxxx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YXYxxxxyXXXYxyx"
+          ],
+          [
+            "YXXXyxYxxx",
+            "YYxyxYXYxyx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_8_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_9_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_8_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_6_2"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_1_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_4_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_12_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_3"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXXXyxYxxx",
+          "YYxyxYXYxyx"
+        ],
+        "min_total_length_seen": 21,
+        "min_max_relator_length_seen": 11,
+        "max_relator_length_seen": 50
+      },
+      "solved": false,
+      "best_pair": [
+        "YXXXyxYxxx",
+        "YYxyxYXYxyx"
+      ],
+      "best_length": 21,
+      "improves_original": false,
+      "heap_pops": 972,
+      "combined_units": 1000,
+      "elementary_move_count": 430
+    }
+  ],
+  "solved_ids": [],
+  "strict_original_gain_ids": [],
+  "relator_cap": null,
+  "certificate_file": "euclidean_power_complement_certificate.json",
+  "certificate_sha256": "4801d7699aed7fcbb17996ea0c5a291c5ea249e170a02df411f866e461712871",
+  "warmup_and_control_cpu_seconds": 0.14957000000000004,
+  "warmup_and_control_wall_seconds": 0.282353209098801,
+  "source_hashes": {
+    "euclidean_power_complement_run.py": "3d751598425b8466a9c19c8ccb5d52bcc4e7e867ff224be86d60ad3d11e3e5b4",
+    "two_complement_unit_gate_report.json": "a87446e02b89c2fa10977eb11e0b81100d588577ccbc2f00b18f45ce143daa74",
+    "two_complement_unit_gate.py": "c264e1f21f3c5edd85ccad5ab4987db08fdd9395815bca6bbc12bbb7d6d1012e",
+    "captured_mixed_search.py": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f",
+    "heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "compile_search_prefix.py": "26d91bb4a82978d83655afa97037dd81a75c685240106e24d3f7beac3264621f"
+  },
+  "scope": "One fresh independently budgeted1000-unit attempt on aca59. Input inversion and ambient axis swap are explicit; a direct Euclidean free-basis construction replaces Nielsen search. Prefix image/compiler operations and heap pops are heterogeneous units, not equal compute or a cumulative limit over earlier attempts. Stable prefix finite-realizability is theorem-backed; ordinary search suffix fully emitted."
+}

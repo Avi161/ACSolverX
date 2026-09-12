@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "module_sha256": "2383d376b09a90296409bdfec12d55832eff6a32e1741120afc6acf868ecb38d",
+  "signed_plants": 6,
+  "replayed_direct_chains": 136,
+  "chains_with_forced_base_removal": 130,
+  "chains_with_uphill_base_removal": 119,
+  "chains_with_recompression_after_removal": 118,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 2,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 10,
+      "candidates": 4
+    },
+    {
+      "allowance": 100,
+      "charged": 100,
+      "candidates": 10
+    },
+    {
+      "allowance": 1000,
+      "charged": 1000,
+      "candidates": 54
+    }
+  ],
+  "sparse_control": {
+    "maximum_input_generator": 10000000000000000000000000,
+    "charged": 250,
+    "candidates": 14
+  },
+  "unnormalized_input_control": {
+    "charged": 100,
+    "candidates": 10
+  },
+  "known_triviality_proof": "x y^11=1 makes the consecutive BS donor imply y=1, then x=z=1.",
+  "scope": "Certificate and accounting controls only; no census evaluation."
+}
