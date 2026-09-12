@@ -109,6 +109,11 @@ Code: `experiments/stable_ac/rank3_compression/corridors.py`.
 **U124.** Not yet scanned in this campaign (bounded census pending; keep
 `max_word_length` small).
 
+A first bounded census (`code/q_residue_scan.py`, word ≤ 2, template ≤ 4,
+`minimum_z_occurrences=2`) accepted **0** corridors on all 12 `Q_{n,δ}`
+(`n=2..7`) and the 10 matching U124 best floors (0.6 s wall). This is a
+**recognizer-bound negative**, not a mathematical obstruction.
+
 ---
 
 ## C7. MS two-hop template `P_{n,δ} → Q_{n,δ}` — IDENTITY-CHECKED this campaign (14/14 exact)
@@ -143,6 +148,31 @@ classes to a single power-block family. It does **not** trivialize them:
 **Negative.** Iterating the template cannot re-fire on `Q` (off the MS shape).
 Induction `n → n+1` via a defining relator `z⁻¹ x^n` is obstructed for `δ=+1`
 and experimentally non-uniform for `δ=-1` (`LISITSA_TRANSFER.md`).
+
+---
+
+## C7b. Family A two-hop template — IDENTITY-CHECKED (Aut-minimal, 6/6)
+
+**Statement.** For `n ≥ 2`,
+
+`P(n) = ⟨x,y | y⁻¹x⁻²y⁻¹xy⁻¹x³, y⁻ⁿx⁻¹yⁿx⁻²yx²⟩`
+
+is carried by CoVs `z=yx⁻²` (`iso_gen=x`, `n_subs=3`) then `z=yx²y⁻¹`
+(`iso_gen=y`, `n_subs=2`) to a pair whose Aut-minimal representative is that
+of
+
+`Q(n) = ⟨x,y | y⁻²x⁻ⁿyx², y⁻²xyxyx⁻¹y⁻¹xyx⁻¹⟩`.
+
+Measured: `μ(P)=2n+15`, `μ(Q)=n+16` exactly for `n=2..7`. The hop-2 spelling
+is not literal `Q`; `aut_canon` agrees. The intermediate hop raises μ
+(n=2: 19→21→18).
+
+**U124.** Archival `aca_43` is `P(2)`, `aca_95` is `P(3)`. Best-table
+representatives match `aut_canon(Q(n))`. Not a solve (floors 18 and 19).
+
+**Audit.** `code/family_a_identities.py`. Because the match uses Aut-minimals,
+citing C1 (stable ambient automorphism) is required before calling this a
+stable reduction of those two rows.
 
 ---
 

@@ -1,0 +1,275 @@
+{
+  "summary": {
+    "n_checked": 6,
+    "n_ok": 6,
+    "n_fail": 0,
+    "status": "PASS",
+    "u124_initial_hits": [
+      {
+        "name": "aca_43",
+        "n": 2,
+        "initial": [
+          "YXXYxYxxx",
+          "YYXyyXXyxx"
+        ]
+      },
+      {
+        "name": "aca_95",
+        "n": 3,
+        "initial": [
+          "YXXYxYxxx",
+          "YYYXyyyXXyxx"
+        ]
+      }
+    ],
+    "caveat": "CoV identities, not elementary certificates or solves."
+  },
+  "rows": [
+    {
+      "n": 2,
+      "P": [
+        "YXXYxYxxx",
+        "YYXyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 19,
+      "mu_Q": 18,
+      "claimed_mu_P_2n_plus_15": 19,
+      "claimed_mu_Q_n_plus_16": 18,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxyXXYXyxYXyxYX",
+            "YxxyXXYX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xyXYxYxyXYxyXXX",
+            "YxxYxxyXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    },
+    {
+      "n": 3,
+      "P": [
+        "YXXYxYxxx",
+        "YYYXyyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 21,
+      "mu_Q": 19,
+      "claimed_mu_P_2n_plus_15": 21,
+      "claimed_mu_Q_n_plus_16": 19,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxxyXXYXyxYXyxYXX",
+            "YxxxyXXYXX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xxyXYxxYxyXYxyXXXXX",
+            "YxxxYxxyXXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    },
+    {
+      "n": 4,
+      "P": [
+        "YXXYxYxxx",
+        "YYYYXyyyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 23,
+      "mu_Q": 20,
+      "claimed_mu_P_2n_plus_15": 23,
+      "claimed_mu_Q_n_plus_16": 20,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxxxyXXYXyxYXyxYXXX",
+            "YxxxxyXXYXXX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xxxyXYxxxYxyXYxyXXXXXXX",
+            "YxxxxYxxyXXXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    },
+    {
+      "n": 5,
+      "P": [
+        "YXXYxYxxx",
+        "YYYYYXyyyyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 25,
+      "mu_Q": 21,
+      "claimed_mu_P_2n_plus_15": 25,
+      "claimed_mu_Q_n_plus_16": 21,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxxxxyXXYXyxYXyxYXXXX",
+            "YxxxxxyXXYXXXX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xxxxyXYxxxxYxyXYxyXXXXXXXXX",
+            "YxxxxxYxxyXXXXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    },
+    {
+      "n": 6,
+      "P": [
+        "YXXYxYxxx",
+        "YYYYYYXyyyyyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXXXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 27,
+      "mu_Q": 22,
+      "claimed_mu_P_2n_plus_15": 27,
+      "claimed_mu_Q_n_plus_16": 22,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxxxxxyXXYXyxYXyxYXXXXX",
+            "YxxxxxxyXXYXXXXX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xxxxxyXYxxxxxYxyXYxyXXXXXXXXXXX",
+            "YxxxxxxYxxyXXXXXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    },
+    {
+      "n": 7,
+      "P": [
+        "YXXYxYxxx",
+        "YYYYYYYXyyyyyyyXXyxx"
+      ],
+      "Q_claim": [
+        "YYXXXXXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "matched": true,
+      "exact_spelling": false,
+      "aut_min_match": true,
+      "mu_P": 29,
+      "mu_Q": 23,
+      "claimed_mu_P_2n_plus_15": 29,
+      "claimed_mu_Q_n_plus_16": 23,
+      "path": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 3,
+          "pair": [
+            "YxxxxxxyXXYXyxYXyxYXXXXXX",
+            "YxxxxxxxyXXYXXXXXX"
+          ],
+          "z": "yXX"
+        },
+        {
+          "iso_index": 1,
+          "iso_gen": "y",
+          "n_subs": 2,
+          "pair": [
+            "xxxxxxyXYxxxxxxYxyXYxyXXXXXXXXXXXXX",
+            "YxxxxxxxYxxyXXXXXXX"
+          ],
+          "z": "yxxY"
+        }
+      ],
+      "identities_ok": true
+    }
+  ]
+}
