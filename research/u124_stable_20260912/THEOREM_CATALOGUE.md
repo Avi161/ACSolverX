@@ -492,8 +492,9 @@ This is not a U124 descent.
 **Audit.** Independent coordinator replay:
 `code/theory_wave1_replay.py`, `tables/theory_wave1_replay.json`.
 Inventor draft: `ingest/theory_wave1.md`. Cyclic-complement and
-overgroup numbers in that draft were **not** re-run here. Sol audit of
-C16–C18 pending.
+overgroup numbers in that draft were **not** re-run here.
+`ingest/advisor_wave3.md`: C16 and C16.1 **APPROVE**; C17 and C18
+**REVISE** (wording above is the revision).
 
 ---
 
@@ -508,7 +509,9 @@ u^e ↦ x u^{Ne/M} x⁻¹   (needs M|e)  ⇒  E(c,e) ↦ E(c−1, Ne/M)
 u^e ↦ x⁻¹ u^{Me/N} x    (needs N|e)  ⇒  E(c,e) ↦ E(c+1, Me/N)
 ```
 
-are ordinary AC1–AC3 displayed-block substitutions (Lemma-11-free).
+are finite ordinary AC1–AC3 displayed-block substitutions
+(Lemma-11-free); a block `u^{±e}` requires `|e|/M` donor multiplications for
+shear-down, or `|e|/N` for shear-up.
 Progress `|c|`. Terminal `E(0,e)` is one-occurrence in `x` and becomes a
 **C4 obligation**. The one-occurrence flag is not a solve.
 
@@ -519,31 +522,38 @@ reaches `(0,4)`; `E(0,4)` has exactly one `x`.
 
 **U124.** `S_{n,+1}` is exactly `(D_{BS(3,2)}, E(n,2))`. H3 asks
 `3^{|n|} | 2`, which fails (`3 ∤ 2`). Complete shear orbit of `(c,2)`:
-`{(c,2),(c+1,3)}` — the flank never drops. Offered as the algebraic
-reason the residual 10k sweep saw 122,842 Britton-rejected BS-donor
-states; that remains an explanation, not a proof that every BS-like
-rewrite is impossible. `S_{n,−1}` row 1 has x-exponent `−2` and is not
+`{(c,2),(c+1,3)}` — the flank never drops. For each displayed `S_{n,+1}`
+state, the two-shear orbit explains why this recognizer cannot lower the
+flank. It neither classifies nor explains all 122,842 Britton rejects
+and is not an obstruction to other BS-like moves. `S_{n,−1}` row 1 has x-exponent `−2` and is not
 BS, so H1 fails. The five extra C16 endpoints above are likewise not
 this BS(3,2) donor.
 
-**Certificate growth.** Shear: `≤ 2|c|` AC2, effective. C4 tail:
-uncertified Nielsen descent.
+**Certificate growth.** If `e_j` is the inner exponent before step `j` and
+`d_j = M` for shear-down or `N` for shear-up, the shear uses
+`2 ∑_j |e_j|/d_j` AC2 moves, plus explicit AC1/AC3 orientations; this is
+finite and effective. The C4 tail remains uncertified.
 
 ---
 
 ## C18. Coprime Bézout + radix — IDENTITY-CHECKED; U124 H1 absent on Q/Q'/S
 
 **Statement.** At rank `≥ 3`: H1 a two-block power `c₀ x^m` with `c₀`
-x-free; H2 a defining power `t⁻¹ x^k`; H3 `gcd(k,m)=1`. Euclid by AC2
-against `x^{-m} c₀^{-1}` is a **cyclic** identity and isolates `x` iff
-H3. Necessity of H3 is the abelian lattice, not a search. Generalizes
-C9 off the AK3 root (C9 tested only `v = y⁻¹ x⁻²` on `Q`’s first
-relator).
+x-free; H2 a defining power `t⁻¹ x^k`; H3 `gcd(k,m)=1`. Each displayed
+subtraction against an AC1/AC3 orientation of `c₀ x^m` is a cyclic, not
+literal, identity. The replay proves isolation for the tested `k = qm+1`
+chains. No full elementary Euclidean expansion for every coprime `(k,m)`
+is supplied, so `gcd(k,m)=1` is presently a lattice prerequisite for
+this two-row route, not an audited sufficient criterion in that
+generality. Generalizes C9 off the AK3 root (C9 tested only
+`v = y⁻¹ x⁻²` on `Q`’s first relator).
 
 **Radix corollary.** A displayed `x^m` compresses to length `O(log m)`
 by adjoining `t_{i+1}⁻¹ t_i²`. Move count stays `Θ(m)` (994 AC2 for
-`m=1000`). This does **not** beat the `Θ(n)` certificate barrier. Two
-C0 uses unbounded.
+`m=1000`). This does **not** beat the `Θ(n)` certificate barrier. A
+one-auxiliary defining-power round trip has two non-effective C0 uses;
+a radix chain has a C0-based installation and removal for each auxiliary
+defining row, in addition to its `Θ(m)` elementary multiplications.
 
 **U124.** Every rotation and inversion of every row of `Q`, `Q'`, and
 `S`, `n=2..8`, both signs, both power letters: **1764 spellings, 0 H1
@@ -553,4 +563,6 @@ spellings in the AC orbit. The five extra C16 stored hits were not part
 of this 1764-spelling census.
 
 **Audit.** Euclid, radix, and H1 census independently replayed in
-`code/theory_wave1_replay.py`.
+`code/theory_wave1_replay.py`. `ingest/advisor_wave3.md` **REVISE**
+applied: `gcd=1` is a lattice prerequisite, not a fully audited
+sufficient Euclid expansion for every coprime pair.

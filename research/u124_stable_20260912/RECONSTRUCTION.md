@@ -102,4 +102,7 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   Aut-canonical form of `S` matches the claimed tag family (10/10).
 - Still **0/124** stably trivialized. No certificate JSONL rows.
 - Inventor cyclic-complement / overgroup counts were **not** re-run.
+- `ingest/advisor_wave3.md`: C16 and C16.1 APPROVE; C17/C18 REVISE applied
+  (shear cost is `2 ∑ |e_j|/d_j` AC2, not `≤ 2|c|`; Euclid sufficiency
+  only for the replayed `k=qm+1` chains). Still **0/124**.
 
