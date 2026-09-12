@@ -107,12 +107,19 @@ balanced trivial pair, a word `w`, and an isolator `I` with exactly one
 Code: `experiments/stable_ac/rank3_compression/corridors.py`.
 
 **U124.** Bounded census on Q and the matching floors: 0 accepted corridors
-(see below). Not a mathematical obstruction.
+at the original `|w|≤2` bound (see below). Not a mathematical obstruction.
 
 A first bounded census (`code/q_residue_scan.py`, word ≤ 2, template ≤ 4,
 `minimum_z_occurrences=2`) accepted **0** corridors on all 12 `Q_{n,δ}`
 (`n=2..7`) and the 10 matching U124 best floors (0.6 s wall). This is a
 **recognizer-bound negative**, not a mathematical obstruction.
+
+C22.5: the C16 isolator template `I = z² x^{nδ} y⁻¹` with `w = ξ = y⁻¹ x y`
+(`|w|=3`, `|I|=n+3`) **does** satisfy Theorem 3.1 on all 12 `Q'_{n,δ}`.
+The output is **not** the C16 pair: C6 letter-substitutes `y` in the
+companion, which expands the displayed `ξ`-block instead of replacing it
+by `z`. Cyclic totals are `4n+15` (`δ=−1`) or `4n+17` (`δ=+1`), versus
+C16’s `2n+13`. Still two C0 uses. Not a solve.
 
 ---
 
@@ -715,3 +722,72 @@ corridors that keep `y`.
 
 **Audit.** `code/c21_depth2.py`, `tables/c21_depth2.json`.
 `ingest/advisor_wave6.md` **REVISE** applied.
+
+---
+
+## C22. C16 Gate 1/2 as bounded ncl; C6 template ≠ C16; C15 bridge — IDENTITY-CHECKED NEGATIVE
+
+**C22.1 (Gate 1 abelian, uniform in `n≥2`).** Write `Q'_{n,δ} = ⟨x,y | R,S⟩`
+as in C16, and `ξ = y⁻¹ x y`. Then `R` is independent of `n`, cyclically
+reduced of length 7, with exponent vector `(δ, 0)`. `S` has y-exponent
+`−1`. `ξ` has exponent vector `(1, 0)`. The unique integer combination is
+`ξ ≡ R^δ` in abelianization (`S`-coefficient `0`). In particular `ξ` is
+not a product of two conjugates of `{R^{±1}, S^{±1}}`: every such product
+has y-exponent in `{0, ±1, ±2}`, and the y-exponent-`0` cases are
+`R^{±1} R^{±1}` or `S^{ε} S^{-ε}`, none of which has x-exponent `1`
+except the one-factor class `R^δ`. Every freely reduced conjugate
+`g⁻¹ R^δ g` has length at least the cyclic length 7. Since `|ξ| = 3 < 7`,
+`ξ` is not a product of one or two conjugates of the Q' relators.
+
+**C22.2 (Gate 1 depth-1 restore, uniform).** After AC4 the third relator is
+the letter `u`. A restore-preserving AC2 against `R` or `S` (both `u`-free)
+produces a word of free length `1+|R| = 8` or `1+|S| = n+6 ≥ 8`. `D = u⁻¹ξ`
+has length 4 (`UYxy`). No such depth-1 product is `D`.
+
+**C22.3 (machine check).** Exhaustive enumeration of products of one or two
+prefix- or one-letter conjugates of `{R,S}` for `(n,δ) ∈ {2,3}×{±1}`: no
+free equality with `ξ` or `ξ⁻¹`; shortest abelian match has length 7.
+This is a sanity check of C22.1 on that conjugator set, not a restriction
+of C22.1. A further best-first layer (not exhaustive; cap 800 extra
+states, at most four factors, conjugator length ≤ 2) did not hit `ξ`.
+
+**C22.4 (Gate 2).** On the C16 endpoint `⟨Â, B̂⟩`, write `e = u² x^{nδ}`.
+The exponent matrix is unimodular. The unique combination `e ≡ a Â + b B̂`
+is recorded in `tables/c22_gate_witness.json`; the unconjugated power
+product `Â^a B̂^b` is never freely equal to `e` for `n=2..7`, both signs.
+For `(n,δ)=(2,−1)` one has `(a,b)=(0,−2)`, so two factors are necessary;
+products of two prefix- or one-letter conjugates have shortest abelian
+match of length 12 `> |e|=4`. Sampled extra search (same cap as C22.3):
+no hit. Stored endpoints aca_16 and aca_43 are unimodular; the same
+bounded prefix/one-letter two-factor enumeration does not hit `e`.
+
+**C22.5 (C16 isolator is a C6 corridor, not a C16 output).** On each of
+the 12 `Q'_{n,δ}`, `w=ξ` and `I=z² x^{nδ} y⁻¹` satisfy Theorem 3.1
+(`code` `corridor_output`). The second output row is the C16 `B̂` (tag
+`y`). The first row is not C16’s `Â`: C6 substitutes the letter `y` in
+the companion, so the displayed `ξ = y⁻¹ x y` becomes `e⁻¹ x e` rather
+than the letter `z`. Not a solve.
+
+**C22.6 (C15 bridge).** Freely, `YXXXyxYx · (x⁻¹ y x) = YXXXyxx = P_{m,+1}`
+row 1, and the inverse identity restores the C15 donor. The conjugator
+`x⁻¹ y x` is a conjugate of `y`, not an AC donor. The ten C15 rows have
+4160 raw depth-1 cyclic-AC2 children (rotations and donor inversion);
+2440 of those are source-row-local `canon_pair` classes. None is
+`canon_pair`-equal to `P_{m,±1}`. C13 could not have seen this: the
+totals are the same length.
+
+**Expansion.** C22.1–C22.2 are abelian/length identities, no C0. C22.5
+is C6, hence two C0 uses. C22.6 is a free-group identity; the missing
+conjugator is not AC.
+
+**What this does not rule out.** Three or more conjugate factors; Gate 1
+conjugators that involve the new letter `u`; a different defining word
+than `ξ`; a C15 theorem that produces `x⁻¹ y x` by a route other than
+depth-1 AC2 with the BS companion.
+
+**U124.** Applies to the C16 Q' family (eleven MS initial rows after C7/C1,
+five stored C16 hits, ten C15 rows). Incoming C16 remains two
+non-effective C0 uses. **Not a solve.**
+
+**Audit.** `code/c22_gate_witness.py`, `tables/c22_gate_witness.json`.
+`ingest/advisor_wave7.md` **REVISE** applied.

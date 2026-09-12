@@ -203,3 +203,41 @@ def test_c21_no_pinch_family_and_gate2():
     assert scan["n_return_to_DB_edges"] == 10
     assert scan["n_parent_drop_edges"] == 12
     assert scan["min_other_after_len"] >= 7
+
+
+def test_c22_gate1_abelian_and_c15_bridge():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+
+    bridge = c22.c15_bridge_identities()
+    assert bridge["donor_times_Xyx_equals_P1"]
+    assert bridge["P1_times_xyX_equals_donor"]
+    for delta in (-1, 1):
+        rec = c22.gate1_abelian(2, delta)
+        assert rec["combo"]["ok"]
+        assert rec["combo"]["a"] == delta
+        assert rec["combo"]["b"] == 0
+        assert rec["D_len"] == 4
+        assert rec["D_len"] not in (rec["depth1_restore_len_R"], rec["depth1_restore_len_S"])
+        c6 = c22.c16_as_c6(2, delta)
+        assert c6["hypotheses_ok"]
+        assert not c6["canon_match_S"]
+    artifact = json.loads(
+        (ROOT / "research/u124_stable_20260912/tables/c22_gate_witness.json").read_text()
+    )
+    summary = artifact["summary"]
+    assert summary["gate1_S_coeff_always_0"]
+    assert summary["gate1_R_coeff_equals_delta"]
+    assert summary["gate1_depth1_restore_impossible"]
+    assert not summary["c16_as_c6_same_as_c16"]
+    assert not summary["c15_depth1_reaches_P"]
+    assert not summary["gate1_search_any_hit"]
+    assert len(artifact["gate1_search"]) == 4
+    assert {(row["n"], row["delta"]) for row in artifact["gate1_search"]} == {
+        (2, -1),
+        (2, 1),
+        (3, -1),
+        (3, 1),
+    }
+    assert summary["solved_u124"] == 0

@@ -147,3 +147,16 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `y^{±1}`. `ingest/advisor_wave6.md` REVISE applied.
 - Still **0/124**. No certificate JSONL rows.
 
+## Wave 8 (C22 Gate 1/2 ncl, C6 ≠ C16, C15 bridge, 2026-09-12)
+
+- Gate 1: `ξ ≡ R^δ` in abelianization, `S`-coefficient 0. No product of
+  one or two conjugates of the Q' relators equals `ξ` (`|R|=7`, `|ξ|=3`).
+  Depth-1 restore-preserving AC2 after AC4 cannot produce `D`.
+- The C16 isolator template satisfies C6/Thm 3.1 on all 12 `Q'_{n,δ}`
+  and produces a longer pair than C16 (letter substitution of `y` in the
+  companion). C16 is not C6.
+- C15 donor times `x⁻¹ y x` is `P_{m,+1}` row 1, but that conjugator is
+  not an AC donor; 4160 raw depth-1 children yield 2440 local
+  `canon_pair` classes, none of which is `P_{m,±1}`.
+- Still **0/124**. No certificate JSONL rows.
+
