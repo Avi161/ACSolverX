@@ -780,10 +780,11 @@ totals are the same length.
 is C6, hence two C0 uses. C22.6 is a free-group identity; the missing
 conjugator is not AC.
 
-**What this does not rule out.** Three or more conjugate factors; Gate 1
-conjugators that involve the new letter `u`; a different defining word
-than `ξ`; a C15 theorem that produces `x⁻¹ y x` by a route other than
-depth-1 AC2 with the BS companion.
+**What this does not rule out.** Four or more conjugate factors; Gate 1
+conjugators longer than prefixes/one letter, or involving the new letter
+`u` at depth ≥ 3; a different defining word than `ξ`; a C15 theorem that
+produces `x⁻¹ y x` by a route other than depth-1 AC2 with the BS companion.
+Three-factor prefix/one-letter products are C23.
 
 **U124.** Applies to the C16 Q' family (eleven MS initial rows after C7/C1,
 five stored C16 hits, ten C15 rows). Incoming C16 remains two
@@ -791,3 +792,51 @@ non-effective C0 uses. **Not a solve.**
 
 **Audit.** `code/c22_gate_witness.py`, `tables/c22_gate_witness.json`.
 `ingest/advisor_wave7.md` **REVISE** applied.
+
+---
+
+## C23. Three-factor Gate 1 ncl; F3 depth-2 after AC4 — IDENTITY-CHECKED NEGATIVE
+
+**C23.1 (abelian shapes, uniform in `n≥2`).** A product of three conjugates
+of `{R^{±1}, S^{±1}}` abelianizes to `ξ` iff it is one of:
+
+- **A.** two conjugates of `R^δ` and one of `R^{-δ}` (any order);
+- **B.** one conjugate of `R^δ` and a pair of opposite-sign conjugates of
+  `S` (any order).
+
+No other signed type pattern of length 3 has exponent vector `(1, 0)`:
+y-exponent is the signed S-count, hence even, so there are 0 or 2 factors
+of type `S`; three `R` factors need net `R^δ`; one `R` and two `S` need
+that `R` to be `R^δ` and the `S` pair to cancel. Checked for `n=2..7`,
+both signs: 9 legal signed-typed patterns, 3 of shape A and 6 of shape B,
+0 others.
+
+**C23.2 (complete three-factor enumeration).** Over the C22 prefix/one-letter
+conjugator set (prefixes of both spellings `R^{±1}`, `S^{±1}`, and
+one-letter conjugators), every shape-A/B product for `n=2..7` and
+`δ ∈ {±1}` (`1,529,400` products) has free length at least 7 and is not
+`ξ` or `ξ⁻¹`. Products that contain a mutually inverse factor pair freely
+reduce to a conjugate of `R^δ` (length ≥ 7). Nondegenerate products in
+this conjugator class never cancel below 7. `R^{-δ} ξ` is independent of
+`n` and has length 10.
+
+**C23.3 (AC4 third relator, F3 conjugators, depth ≤ 2).** After AC4 the
+third relator is `u` (or `U` by AC1). Restore-preserving products of one
+or two conjugates of `{R^{±1}, S^{±1}}` with conjugators reduced of
+length ≤ 2 in `{x,y,u}` together with prefixes of both spellings
+`R^{±1}` and `S^{±1}`, for all 12 `Q'_{n,δ}` (`1,076,088` products):
+none is freely or cyclically equal to `D^{±1}` (`D = UYxy`). Products other than a return to `u`/`U`
+have length at least 8 `> |D|=4`.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0 in the
+enumerated moves. No witness under this predicate was found.
+
+**What this does not rule out.** C23.2: four or more factors. C23.3:
+three or more factors (depth ≥ 3). Conjugators outside the stated sets;
+Gate 2 three-factor products; a defining word other than `ξ`.
+
+**U124.** Same C16 Q' family as C22. Incoming C16 remains two
+non-effective C0 uses. **Not a solve.**
+
+**Audit.** `code/c23_three_factor.py`, `tables/c23_three_factor.json`.
+`ingest/advisor_wave8.md` **REVISE** applied.

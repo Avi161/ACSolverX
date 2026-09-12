@@ -241,3 +241,32 @@ def test_c22_gate1_abelian_and_c15_bridge():
         (3, 1),
     }
     assert summary["solved_u124"] == 0
+
+
+def test_c23_three_factor_shapes_and_n2():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c23_three_factor as c23  # type: ignore
+
+    shapes = c23.abelian_three_factor_shapes()
+    assert shapes["all_only_A_or_B"]
+    for delta in (-1, 1):
+        rec = c23.scan_three_factor(2, delta)
+        assert not rec["found"]
+        assert rec["min_len"] == 7
+        assert rec["W_len"] == 10
+        assert rec["xi_len"] == 3
+    artifact = json.loads(
+        (ROOT / "research/u124_stable_20260912/tables/c23_three_factor.json").read_text()
+    )
+    summary = artifact["summary"]
+    assert summary["abelian_only_shapes_A_and_B"]
+    assert not summary["three_factor_any_hit"]
+    assert summary["three_factor_all_min_len_ge_7"]
+    assert summary["three_factor_n_checked"] == 12
+    assert summary["three_factor_n_products"] == 1_529_400
+    assert not summary["f3_any_hit"]
+    assert summary["f3_n_checked"] == 12
+    assert summary["f3_all_min_len_non_gen_ge_8"]
+    assert summary["D_len"] == 4
+    assert summary["solved_u124"] == 0

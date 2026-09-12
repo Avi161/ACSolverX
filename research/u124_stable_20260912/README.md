@@ -63,6 +63,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    `.../code/c20_roundtrip.py`.
    C21: `.../code/c21_depth2.py`.
    C22: `.../code/c22_gate_witness.py`.
+   C23: `.../code/c23_three_factor.py`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -74,14 +75,17 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    bare AC5. C22: Gate 1 cannot be a product of one or two conjugates
    of the Q' relators (`ξ ≡ R^δ`, length 7 vs 3); the C16 isolator
    template is a C6 corridor whose output is not C16; C15’s free
-   bridge to `P_{m,+1}` is not a depth-1 AC2. Still 0/124.
+   bridge to `P_{m,+1}` is not a depth-1 AC2. C23: no three-factor
+   prefix/one-letter conjugate product equals `ξ` (min length 7 on
+   1,529,400 products); after AC4, F3 depth-2 never produces `D`.
+   Still 0/124.
 
 ## File ownership
 
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py`, `code/c23_three_factor.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |

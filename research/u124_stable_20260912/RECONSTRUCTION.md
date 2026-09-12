@@ -160,3 +160,13 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `canon_pair` classes, none of which is `P_{m,±1}`.
 - Still **0/124**. No certificate JSONL rows.
 
+## Wave 9 (C23 three-factor Gate 1, 2026-09-12)
+
+- Abelian 3-factor products equal to `ξ` are only shapes A (two `R^δ`,
+  one `R^{-δ}`) and B (`R^δ` and opposite `S` pair).
+- Complete prefix/one-letter enumeration, `n=2..7` both signs:
+  1,529,400 products, min length 7, 0 equal to `ξ`.
+- After AC4, F3 depth-2 (1,076,088 products, all 12 `Q'`): never `D`;
+  non-generator length ≥ 8.
+- Still **0/124**. No certificate JSONL rows.
+
