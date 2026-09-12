@@ -82,3 +82,24 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Product aggregate: 0 primitive of 248 stored-orientation products (dedicated counter, not inferred from `primitive_hits`).
 - Depth-1 unique new relators: 11,686 Whitehead tests, 0 primitive, minima starting at 5 (7.5 s). Bounded report only.
 
+## Wave 4 (theory C16–C18, independent replay, 2026-09-12)
+
+- Inventor draft: `ingest/theory_wave1.md`. Coordinator replay:
+  `code/theory_wave1_replay.py` (guarded, 0.5 s),
+  `tables/theory_wave1_replay.json`.
+- `Q_{n,δ}` under `y ↦ x⁻² y` is freely equal to claimed `Q'` (14/14).
+- C16 U124 instance and 1080-tuple parameter sweep: identities hold.
+  C16.1 loop holds exactly on `δ=+1` and is absent on `δ=−1` (illegal
+  `ρ` would drop `n=2` cyclic total 17→12).
+- C17 shears are literal; U124 `S_{n,+1}` fails `3 ∤ 2`; orbit of
+  `(c,2)` is `{(c,2),(c+1,3)}`; `S_{n,−1}` is not BS.
+- C18 Euclid/radix identities hold; H1 census 1764/0 on `Q`/`Q'`/`S`.
+- Extra: five **stored** best-table pairs already satisfy C16 H2+H3 on
+  some AC1/AC3 orientation, with Gate 1/2 substitutions verified:
+  aca_16, 43, 67, 87, 90. None admit the C16.1 `ρ`-rotation. Initial
+  table: only aca_16. Not a solve (length rises; two C0 uses).
+- `μ(P)=2n+10`, `μ(Q')=n+12`, `μ(S)=2n+13`; three distinct Aut orbits;
+  Aut-canonical form of `S` matches the claimed tag family (10/10).
+- Still **0/124** stably trivialized. No certificate JSONL rows.
+- Inventor cyclic-complement / overgroup counts were **not** re-run.
+

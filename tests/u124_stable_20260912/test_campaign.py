@@ -128,3 +128,9 @@ def test_c16_c17_c18_identities_fast():
     c18 = tw.check_c18()
     assert c18["euclid_ok"]
     assert c18["h1_raw_rotations_matching_inventor"] == {"tested": 1764, "hits": 0}
+    rec = tw.check_u124_c16_recognizer()
+    best = rec["tables"]["aca_124_best.csv"]
+    assert best["pairs_firing_C16"] == 5
+    assert best["all_hits_instance_ok"]
+    assert {h["name"] for h in best["hits"]} == {"aca_16", "aca_43", "aca_67", "aca_87", "aca_90"}
+    assert all(not h["verified"]["C16_1_rho_legal"] for h in best["hits"])

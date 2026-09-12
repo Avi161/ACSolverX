@@ -598,6 +598,75 @@ def c16_shape_on_pair(r1: str, r2: str) -> dict:
     }
 
 
+def u_word_from_magnus_blocks(blocks: list[tuple[int, int]]) -> str:
+    """Translate Magnus blocks in {ξ_0=x, ξ_1=u} into a rank-3 spelling."""
+    parts = []
+    for index, exponent in blocks:
+        if index == 0:
+            parts.append(pw("x", exponent))
+        elif index == 1:
+            parts.append(pw("u", exponent))
+        else:
+            raise ValueError(f"block index {index} is not a word in x,ξ")
+    return free_reduce("".join(parts))
+
+
+def verify_c16_spellings(companion: str, isolator: str) -> dict:
+    """Replay Gate 1/2 substitutions on a candidate (H3, H2) spelling pair."""
+    b_r, h_r = magnus(companion)
+    b_s, h_s = magnus(isolator)
+    idx = next(i for i, (index, _) in enumerate(b_r) if index == -1)
+    a_blocks = b_r[:idx]
+    _, b = b_r[idx]
+    b_blocks = b_r[idx + 1 :]
+    p, c = b_s[0][1], b_s[1][1]
+    a_u = u_word_from_magnus_blocks(a_blocks)
+    b_u = u_word_from_magnus_blocks(b_blocks)
+    i_r = free_reduce(a_u + "y" + pw("x", b) + "Y" + b_u)
+    i_s = free_reduce(pw("u", p) + pw("x", c) + "Y")
+    e = free_reduce(pw("u", p) + pw("x", c))
+    a_hat = subst(i_r, {"y": e})
+    b_hat = subst(free_reduce("U" + XI), {"y": e})
+    claimed_a = free_reduce(a_u + pw("u", p) + pw("x", b) + pw("u", -p) + b_u)
+    claimed_b = free_reduce("U" + pw("x", -c) + pw("u", -p) + "x" + pw("u", p) + pw("x", c))
+    rho = free_reduce("X" + pw("u", -3) + "xuu")
+    out = {
+        "rebuild_ok": rebuild_magnus(b_r, h_r) == companion and rebuild_magnus(b_s, h_s) == isolator,
+        "H2": h2_isolator(b_s, h_s),
+        "H3": h3_companion(b_r, h_r),
+        "p": p,
+        "b": b,
+        "c": c,
+        "A_u": a_u,
+        "B_u": b_u,
+        "faithful": subst(i_r, {"u": XI}) == companion and subst(i_s, {"u": XI}) == isolator,
+        "isolator_one_y": sum(ch in "yY" for ch in i_s) == 1,
+        "Ahat": a_hat,
+        "Bhat": b_hat,
+        "Ahat_ok": a_hat == claimed_a,
+        "Bhat_ok": b_hat == claimed_b,
+        "c_free": subst(i_r, {"y": free_reduce(pw("u", p) + pw("x", c + 11))}) == a_hat,
+        "Ahat_x_exp": exp_sums(a_hat)[0],
+        "in_cyc_total": len(cyc_reduce(companion)) + len(cyc_reduce(isolator)),
+        "out_cyc_total": len(cyc_reduce(a_hat)) + len(cyc_reduce(b_hat)),
+        "C16_1_rho_legal": same_cyclic(rho, inv(a_hat)),
+    }
+    ok = all(
+        [
+            out["rebuild_ok"],
+            out["H2"],
+            out["H3"],
+            out["faithful"],
+            out["isolator_one_y"],
+            out["Ahat_ok"],
+            out["Bhat_ok"],
+            out["c_free"],
+        ]
+    )
+    out["instance_ok"] = ok
+    return out
+
+
 def check_u124_c16_recognizer() -> dict:
     tables = {}
     for fname in ("aca_124_best.csv", "aca_124_initial.csv"):
@@ -610,12 +679,16 @@ def check_u124_c16_recognizer() -> dict:
             if info["n_h3"]:
                 n_h3 += 1
             if info["fires"]:
-                hits.append({"name": row["name"], **info})
+                h2 = info["h2_sample"][0]
+                h3 = info["h3_sample"][0]
+                verified = verify_c16_spellings(h3["spelling"], h2["spelling"])
+                hits.append({"name": row["name"], **info, "verified": verified})
         tables[fname] = {
             "n_pairs": 124,
             "pairs_with_H2_orientation": n_h2,
             "pairs_with_H3_orientation": n_h3,
             "pairs_firing_C16": len(hits),
+            "all_hits_instance_ok": all(h["verified"]["instance_ok"] for h in hits),
             "hits": hits,
         }
     controls = []
@@ -736,7 +809,14 @@ def main() -> dict:
         "C18_radix": c18["radix_ok"],
         "C18_H1_raw": c18["h1_raw_rotations_matching_inventor"],
         "U124_best_C16_fires": rec["tables"]["aca_124_best.csv"]["pairs_firing_C16"],
+        "U124_best_C16_verified": rec["tables"]["aca_124_best.csv"]["all_hits_instance_ok"],
         "U124_initial_C16_fires": rec["tables"]["aca_124_initial.csv"]["pairs_firing_C16"],
+        "U124_initial_C16_verified": rec["tables"]["aca_124_initial.csv"]["all_hits_instance_ok"],
+        "U124_best_C16_ids": [h["name"] for h in rec["tables"]["aca_124_best.csv"]["hits"]],
+        "U124_best_C16_1_rho": [
+            {"name": h["name"], "rho_legal": h["verified"]["C16_1_rho_legal"]}
+            for h in rec["tables"]["aca_124_best.csv"]["hits"]
+        ],
         "mu_ok": mu["all_mu_ok"],
         "three_orbits": mu["all_three_orbits_distinct"],
         "aut_S_form": mu["claimed_aut_S_matches"],

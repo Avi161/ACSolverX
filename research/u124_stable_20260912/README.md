@@ -60,8 +60,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    Theory wave 1 (C16–C18): `.../code/theory_wave1_replay.py`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
-   `ingest/theory_*.md` until they pass the eight-step gate in the goal.
-   Coordinator synthesis: `ingest/wave2_synthesis.md`.
+   `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
+   is coordinator-replayed in `code/theory_wave1_replay.py`. Still 0/124.
 
 ## File ownership
 

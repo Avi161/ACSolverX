@@ -417,3 +417,140 @@ rows.
 
 **Recognizer.** Donor equals `YXXXyxYx` (or its rotation/inverse class)
 and companion `bs_mm1_shape` with m≥3. `tables/shared_donor_families.json`.
+
+---
+
+## C16. Conjugate-tag exchange corridor — IDENTITY-CHECKED (independent replay), non-effective
+
+**Statement.** Let `ξ = y⁻¹ x y`. For words `A,B` in `{x,ξ}`, `p ≠ 0`, and
+`b,c ∈ ℤ`,
+
+```
+⟨x,y | A(x,ξ)· y xᵇ y⁻¹ ·B(x,ξ) , ξᵖ xᶜ y⁻¹⟩
+  ~_st
+⟨x,u | A(x,u)· uᵖ xᵇ u⁻ᵖ ·B(x,u) , u⁻¹ x⁻ᶜ u⁻ᵖ x uᵖ xᶜ⟩
+```
+
+by two gated CoVs (C2/C0) plus a bounded elementary core. The first output
+row is **c-free**; every remaining `c` in the second row is a conjugating
+flank. Hypotheses are decided by a Magnus scan: isolator height `h = −1`
+with blocks `[(1,p),(0,c)]`; companion height `0`, support in `{0,1,−1}`,
+exactly one block at index `−1`. The rank-2 isolator is **not** “one
+`y`-letter”: `ξ₁² = Yxxy` has three. The single-`y` property is a
+consequence of Gate 1. The campaign `|w|≤2` isolator census could not
+represent the tag `ξ = Yxy` (length 3) and is not evidence against C16.
+
+**U124 Q' instance.** `(A,B,p,b,c) = (x⁻¹ξ, 1, 2, δ, nδ)` **is** the
+image of `Q_{n,δ}` under `y ↦ x⁻² y` (14/14 freely equal, repo
+`apply_hom`). Output `S_{n,δ} = (x⁻¹ u³ xᵟ u⁻², u⁻¹ x^{-nδ} u⁻² x u² x^{nδ})`.
+Checked `n=2..7`, both signs: Magnus H2/H3, Gate-1 faithfulness, one `y`
+after Gate 1, and `Â` independent of `c`. Length/μ rise `n+12 → 2n+13`.
+
+**Corollary C16.1 (δ=+1 loop) — IDENTITY-CHECKED NEGATIVE.** `ρ = x⁻¹ u⁻³ x u²`
+is a cyclic rotation of `Â⁻¹` iff `δ = +1`. One further AC2 then sends
+`S_{n,+1}` to `P_{n,+1}` up to the generator relabel `(x,y) ↦ (u,x)`
+(Nielsen; stable transport is C1), same `n`. The corridor is a closed loop
+on that branch. For `δ = −1` the rotation is absent; the endpoint donor
+`x⁻¹ u³ x⁻¹ u⁻²` has x-exponent `−2` and is not BS/HNN. Multiplying by `ρ`
+anyway is **illegal** and silently shortens (`n=2`: cyclic total 17→12).
+
+**General identities.** Parameter sweep
+`A ∈ {x⁻¹ξ, ξ², x, 1, x⁻¹ξ², ξ x⁻¹}`, `B ∈ {1, x, ξ x⁻¹}`,
+`p ∈ {1,2,3,−2}`, `b ∈ {−1,1,2}`, `c ∈ {−5,−2,0,3,7}`: **1080/1080**
+faithful, isolator, c-free.
+
+**Stored U124 spellings that already match H2+H3.** Independent Magnus
+census of all rotations/inversions of both rows:
+
+| table | pairs with H2 | pairs with H3 | both (C16 fires) | substitutions verified |
+|---|---:|---:|---:|---|
+| best | 27 | 14 | 5 | 5/5 |
+| initial | 20 | 15 | 1 | 1/1 |
+
+Best hits, none of which admit the C16.1 `ρ`-rotation:
+
+| id | `(A,B,p,b,c)` in `{x,u}` | endpoint x-exp of `Â` |
+|---|---|---:|
+| aca_16 | `(u⁻¹ x², x, −3, −1, 2)` | 2 |
+| aca_43 | `(u x⁻¹ u x⁻¹, 1, −2, −1, 2)` | −3 |
+| aca_67 | `(u⁻¹ x u⁻¹ x, 1, −3, −1, −3)` | 1 |
+| aca_87 | `(u⁻¹ x u⁻¹ x, 1, −3, +1, −3)` | 3 |
+| aca_90 | `(u⁻¹ x u⁻¹ x, 1, −3, −1, 3)` | 1 |
+
+These five are extra to the MS `Q'` family. Aut-minimal spellings of `Q'`
+generally **do not** fire C16 (only `Q'_{2,−1}` among `n=2,3` both signs),
+so the eleven MS initial rows still need C7 then the C1 automorphism
+`y ↦ x⁻² y` to reach the `Q'` spelling. C16.1’s loop is **not** claimed
+for these five: they escape. Length still rises. **Not a solve.**
+
+**Expansion.** Gate 1 and Gate 2 each use **C0 (Lemma 11)** once.
+Elementary core: 7 AC2 with accompanying AC1/AC3, independent of `n`.
+Certificate growth **unbounded**. Termination measure on the corridor:
+`ν = (# displayed ξ-blocks, # y-letters other than the isolator)`, lex.
+This is not a U124 descent.
+
+**Audit.** Independent coordinator replay:
+`code/theory_wave1_replay.py`, `tables/theory_wave1_replay.json`.
+Inventor draft: `ingest/theory_wave1.md`. Cyclic-complement and
+overgroup numbers in that draft were **not** re-run here. Sol audit of
+C16–C18 pending.
+
+---
+
+## C17. Flank shear over a BS(M,N) donor — IDENTITY-CHECKED shear; C4 tail uncertified
+
+**Statement.** Donor `D = x⁻¹ u^M x u^{-N}` with `|M−N|=1`, companion
+`E(c,e) = u⁻¹ x^{-c} u^{-e} x u^e x^c`. If `c>0` and `M^{|c|} | e`, or
+`c<0` and `N^{|c|} | e`, then displayed shears
+
+```
+u^e ↦ x u^{Ne/M} x⁻¹   (needs M|e)  ⇒  E(c,e) ↦ E(c−1, Ne/M)
+u^e ↦ x⁻¹ u^{Me/N} x    (needs N|e)  ⇒  E(c,e) ↦ E(c+1, Me/N)
+```
+
+are ordinary AC1–AC3 displayed-block substitutions (Lemma-11-free).
+Progress `|c|`. Terminal `E(0,e)` is one-occurrence in `x` and becomes a
+**C4 obligation**. The one-occurrence flag is not a solve.
+
+**Identities.** Literal free-word shears for
+`(M,N) ∈ {(2,1),(3,2),(4,3),(5,4)}`, `c ∈ {−3,0,2,5}`,
+`e ∈ {N, 2N, MN, M²N}`. Positive control `(c,e)=(2,9)` with `(3,2)`
+reaches `(0,4)`; `E(0,4)` has exactly one `x`.
+
+**U124.** `S_{n,+1}` is exactly `(D_{BS(3,2)}, E(n,2))`. H3 asks
+`3^{|n|} | 2`, which fails (`3 ∤ 2`). Complete shear orbit of `(c,2)`:
+`{(c,2),(c+1,3)}` — the flank never drops. Offered as the algebraic
+reason the residual 10k sweep saw 122,842 Britton-rejected BS-donor
+states; that remains an explanation, not a proof that every BS-like
+rewrite is impossible. `S_{n,−1}` row 1 has x-exponent `−2` and is not
+BS, so H1 fails. The five extra C16 endpoints above are likewise not
+this BS(3,2) donor.
+
+**Certificate growth.** Shear: `≤ 2|c|` AC2, effective. C4 tail:
+uncertified Nielsen descent.
+
+---
+
+## C18. Coprime Bézout + radix — IDENTITY-CHECKED; U124 H1 absent on Q/Q'/S
+
+**Statement.** At rank `≥ 3`: H1 a two-block power `c₀ x^m` with `c₀`
+x-free; H2 a defining power `t⁻¹ x^k`; H3 `gcd(k,m)=1`. Euclid by AC2
+against `x^{-m} c₀^{-1}` is a **cyclic** identity and isolates `x` iff
+H3. Necessity of H3 is the abelian lattice, not a search. Generalizes
+C9 off the AK3 root (C9 tested only `v = y⁻¹ x⁻²` on `Q`’s first
+relator).
+
+**Radix corollary.** A displayed `x^m` compresses to length `O(log m)`
+by adjoining `t_{i+1}⁻¹ t_i²`. Move count stays `Θ(m)` (994 AC2 for
+`m=1000`). This does **not** beat the `Θ(n)` certificate barrier. Two
+C0 uses unbounded.
+
+**U124.** Every rotation and inversion of every row of `Q`, `Q'`, and
+`S`, `n=2..8`, both signs, both power letters: **1764 spellings, 0 H1
+hits**. Adjoining a fresh `t⁻¹ x^k` then destablizing is a round trip;
+H2 must be found, not manufactured. Not an obstruction to other
+spellings in the AC orbit. The five extra C16 stored hits were not part
+of this 1764-spelling census.
+
+**Audit.** Euclid, radix, and H1 census independently replayed in
+`code/theory_wave1_replay.py`.
