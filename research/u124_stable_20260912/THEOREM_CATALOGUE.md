@@ -1796,10 +1796,11 @@ be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
 including `u`. Exact-L1 for `y` on this row (`L1=2`). Remaining
-`YYXXXyxx` rows: aca_38 (`y \equiv C^{-1}` in abelianization, C31
-orientation), aca_56 and aca_57 (`L1\ge 3`). C40 leftover exact-L1 `y`
-on aca_16/95. aca_43 k=3 for `x`. C35 leftover `y`. C36 leftover
-`k=5,7,…` for `y`. C38/C39 leftover `x`. Depth ≥ 3 AC2. Lemma 11.
+`YYXXXyxx` rows: aca_38 is C42; leftover `x` on aca_38 (`L1=2`); leftover
+`y` on aca_71 (`L1=2`); aca_56 and aca_57 (`L1\ge 3`). C40 leftover
+exact-L1 `y` on aca_16/95. aca_43 k=3 for `x`. C35 leftover `y`. C36
+leftover `k=5,7,…` for `y`. C38/C39 leftover `x`. Depth ≥ 3 AC2.
+Lemma 11.
 
 **U124.** One best-table row listed above. **Not a solve.** Bounded
 negative for this typed k=3 pool.
@@ -1810,6 +1811,62 @@ persisted factor/conjugator witness replayed outside the scanner.
 `independent_checker=false`. Tests independently check the algebra and
 rerun the single row. Plan advisor APPROVE (`ingest/advisor_c41_plan.md`).
 `ingest/advisor_wave26.md` **APPROVE**.
+
+---
+
+## C42. One `YYXXXyxx` row with `y ≡ C^{-1}` in abelianization, then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+**C42.1 (abelian, listed row).** Donor `D = YYXXXyxx` abelianizes to
+`(-1,-1)`. C42 is **only** aca_38, companion `YYYYYXyyyyx`,
+`C_{\mathrm{ab}}=(0,-1)`, pair det `1`, cyclic length 11. The companion
+is consecutive `BS(4,5)`; that is classification, not a C15/C31 rerun.
+Solving `a D_{\mathrm{ab}} + b C_{\mathrm{ab}}=(0,1)` gives uniquely
+`(a,b)=(0,-1)`, so `L1=1` and `y \equiv C^{-1}` **in abelianization**
+(not free equality). The same combination holds for `{y, Xyx, xyX}`.
+This is **not** a claim about every companion of `D`, **not** a six-row
+`YYXXXyxx` census, and **not** lumped with C40 or C41. Even `k` is
+abelian-impossible. `k=1` is blocked by `|C|=11`. Leftover `x` has
+combo `(-1,1)`, `L1=2`, and is not part of C42.
+
+**C42.2 (k=3 nine-config).** Same signed-type Cartesian products as
+C23/C25.3, with `R^+ = C^{-1}` and `S = D` (C31 orientation, asserted;
+not C35, not C40). Prefix/one-letter conjugators, per-type unique
+conjugates. Targets `{y, Xyx, xyX}`. Inverse class by reversing and
+inverting factors. Typed Cartesian enumeration: `183,924` products,
+equal to the typed size, unique-conjugate counts `(26,26,29,29)`,
+observed free-length minimum 11, none equal to a target. Completeness
+is all `183,924` typed tuples in this bounded pool, not `|F|^3`.
+Observed minimum 11 is a C42 census fact, not a length theorem and not
+a comparative control against C31/C36/C40/C41. Equal typed size
+`183,924` does not identify C40 aca_95.
+
+A hit would persist ordered signed types, three factor words,
+conjugators, and a free-reduce replay **outside** the scanner loop; no
+hit occurred. The JSON capability flag is not a census hit.
+
+Disjointness is relative to prior typed donor-family censuses. C28
+previously touched this row under a different depth-2 AC2 predicate.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators,
+including `u`. Exact-L1 for `x` on this row (`L1=2`). Remaining
+`YYXXXyxx` rows aca_56 and aca_57 (`L1\ge 3`). C40 leftover exact-L1 `y`
+on aca_16/95. C41 leftover exact-L1 `y` on aca_71. aca_43 k=3 for `x`.
+C35 leftover `y`. C36 leftover `k=5,7,…` for `y`. C38/C39 leftover `x`.
+Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** One best-table row listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool.
+
+**Audit.** `code/c42_yyxxxyxx_y_eq_cinv.py`, `tables/c42_yyxxxyxx_y_eq_cinv.json`.
+Same-code deterministic replay plus planted nine-config control with a
+persisted factor/conjugator witness replayed outside the scanner.
+`independent_checker=false`. Identity checks are a new file
+`tests/u124_stable_20260912/test_c42_yyxxxyxx_y_eq_cinv.py` (they load the
+CSV) plus runtime assertions in the census script. Plan advisor REVISE
+applied (`ingest/advisor_c42_plan.md`). Census advisor audit pending.
 
 
 
