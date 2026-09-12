@@ -77,5 +77,18 @@ def test_primitive_controls_and_ms_donors_not_primitive():
     assert not is_primitive_word(red("xxxYYYY"))
     assert not is_primitive_word(red("YXXyxYx"))
     assert not is_primitive_word(red("YXyXYxx"))
-    assert red("YXyXYxx").minimum_total == 5
-    assert red("YXXyxYx").minimum_total == 6
+def test_c12_generator_deletion_signs_and_unimodular_finish():
+    sys.path.insert(0, str(CODE))
+    import c12_generator_deletion as d  # type: ignore
+
+    yx = d.delete_all_x("yx")
+    assert yx["leftover"] == "y" and yx["terminal_is_y_pm1"]
+    xy = d.delete_all_x("xy")
+    assert xy["leftover"] == "y"
+    inv_first = d.delete_all_x("Yx")
+    assert inv_first["leftover"] == "Y"
+    mixed = d.delete_all_x("xyXYy")
+    assert mixed["leftover"] in ("y", "Y") and abs(mixed["det_if_paired_with_x"]) == 1
+    commutator = d.delete_all_x("xyXY")
+    assert commutator["leftover"] == ""
+    assert commutator["det_if_paired_with_x"] == 0

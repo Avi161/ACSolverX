@@ -264,59 +264,74 @@ is unnecessary once the elementary multiply is written.
 **U124.** Applies to the eleven MS-template rows once they are at `Q_{n,δ}`.
 Not a solve.
 
-**Audit.** Identities machine-checked. Advisor review pending for the
-“n-fold peel would finish” counterfactual and the μ-increase of the n=2
-second peel.
+**Audit.** Identities machine-checked. `ingest/advisor_wave2.md` **APPROVE**.
+The n-fold peel remains counterfactual; the μ-increase of the `Q_{2,±1}`
+second peel is independently checked.
 
 ---
 
-## C12. Primitive relator ⇒ stable AC triviality — CONDITIONAL on C1
+## C12. Primitive relator ⇒ stable AC triviality — CONDITIONAL on C1, currently non-effective
 
 **Statement.** Let `⟨x,y | r, s⟩` be a balanced presentation of the trivial
 group with abelian determinant `±1`. If `r` is primitive in `F(x,y)`, then
-the pair is stably AC-trivial.
+the pair is **stably** AC-trivial, **conditional on C1**. This is not an
+ordinary-AC theorem. C1’s cited `PROOFS.tex` is absent, so the Aut step is
+an existence argument with unbounded unmaterialized Lemma-11 cost, not a
+replayable elementary certificate.
 
 **Proof.**
 1. Whitehead’s algorithm supplies `φ ∈ Aut(F₂)` with `φ(r)` cyclically
-   `x^{±1}`. AC1/AC3 make the first relator the generator `x`.
-2. By C1 (stable ambient automorphism), `(r,s) ~_st (x, s')` with
-   `s' = φ(s)`. Each Whitehead second-kind factor is a Nielsen map;
-   C1 realizes those maps stably (Lemma 11 generator exchanges plus AC3
-   for inner automorphisms). This step is currently **non-effective** in
-   move count because C1’s source `PROOFS.tex` is absent.
-3. The exponent matrix of `(x, s')` is `[1 0 ; a b]` with `b = ±1`, so
-   the total `y`-exponent of `s'` is `±1`.
-4. Relator `x` is an isolator of the generator. Every displayed `x^{±1}`
-   in `s'` is removed by AC2+AC3 against `x` or `x⁻¹`. After at most
-   `|s'|` substitutions, `s'` is a word in `y` alone, hence `y^k` with
-   `k = ±1` by abelianization.
+   equal to `x^{±1}`.
+2. C1 transports the pair simultaneously: `(r,s) ~_st (φ(r), φ(s))`. Each
+   Whitehead second-kind factor is a Nielsen map; C1 realizes those maps
+   stably. This step is **non-effective**.
+3. AC1/AC3, acting only on the first relator, normalize `φ(r)` to the
+   generator `x`. Write `s'` for the companion (still `φ(s)`). The exponent
+   matrix of `(x, s')` is `[1 0 ; a b]` with `b = ±1`, so the total
+   `y`-exponent of `s'` is `±1`.
+4. Displayed generator deletion (elementary, finite). If `s' = p x^ε q`,
+   change the first relator `x` by AC1/AC3 to the donor `q⁻¹ x^{-ε} q`,
+   replace `s' ← s' · (q⁻¹ x^{-ε} q) = pq` by AC2, then restore the first
+   relator by the inverse AC3/AC1. Repeat for every remaining displayed
+   `x^{±1}`. This is not a free substitution and not Lemma 11. After at
+   most `|s'|` such cycles, `s'` is a word in `⟨y⟩`. Deletion multiplies
+   by conjugates of `x^{±1}`, so the `y`-exponent is unchanged and the
+   freely reduced leftover is exactly `y^{±1}`. Replay:
+   `code/c12_generator_deletion.py`.
 5. The pair `(x, y^{±1})` is the standard trivial pair.
 
-No Lemma-11 unbounded product is required in step 4: the defining word is
-the generator itself. Pair-length μ-minimization can miss this route,
-because a `φ` that shortens `r` to length 1 may lengthen `s`.
+Pair-length μ-minimization can miss this route, because a `φ` that
+shortens `r` to length 1 may lengthen `s`.
 
 **Recognizer.** `reduce_word(w, generators=("x","y"))` with
 `is_primitive_word`; abelian `gcd` of exponent sums ≠ 1 is an immediate
-negative. Code: `code/primitive_relator_census.py`. Independent replay of
-each Whitehead witness via `check_word_reduction`.
+negative. Code: `code/primitive_relator_census.py`, aggregates in
+`code/primitive_aggregates.py`. Independent replay of each Whitehead
+witness via `check_word_reduction`.
 
 **Positive examples.** Generator `x`; cyclic conjugate `xyX` (minimum `Y`).
-**Negative examples.** Commutator `xyXY` (minimum 4); AK(3) relators
-`xxxYYYY`, `xyxYXY`; MS donors `YXXyxYx` (minimum 6), `YXyXYxx` (minimum 5).
+Step 4 also replays on mixed unimodular companions `yx`, `xy`, `xyXYy`.
+**Negative examples.** Commutator `xyXY` (minimum 4; leftover empty, det 0);
+AK(3) relators; MS donors `YXXyxYx` (minimum 6), `YXyXYxx` (minimum 5).
 
-**U124 applicability.** All 248 best-table relators have abelian gcd 1, so
-the cheap filter does not fire. Whitehead minima: none of length 1.
-Histogram of minima: 5 (13 words), then 6–17. Closest words are the MS
-lower donor `YXyXYxx` (6 rows) and `YXyXYxxx` (5 rows), both minimum 5;
-`aca_115` is AK(3) (`YXYxyx`, minimum 5). Cyclic products `r1 r2` and
-`r1 r2⁻¹` are also **not** primitive (0/248). This route does not
-trivialize any U124 row. Failure of the recognizer is not an obstruction
-to other constructions.
+**U124 applicability (implemented recognizer only).** The 248 displayed
+best-table relators: 0 primitive. Histogram of Whitehead minima starts at
+5 (13 words). Closest words are the MS lower donor `YXyXYxx` (6 rows) and
+`YXyXYxxx` (5 rows); `aca_115` is AK(3). A Whitehead minimum of 5 is a
+negative for length-1 primitivity, not a partial hit. Guarded aggregates
+(`tables/primitive_aggregates.json`): cyclic stored-orientation products
+`r1 r2` and `r1 r2⁻¹` are 0 primitive of 248; unique new relators among
+depth-1 AC2 children, after discarding rotation/inverse copies of the
+stored 248, are 11,686 words, 0 primitive, minima starting at 5. Those
+counts are bounded recognizer reports. They do not exclude a primitive
+relator after other AC or stable moves, and they do not trivialize any
+U124 row.
 
-**Certificate-growth.** O(Whitehead steps) stable Nielsen factors plus
-O(`|s'|`) elementary substitutions, times the (currently unexpanded) C1
-cost.
+**Certificate-growth.** Non-effective C1 Aut realization, then O(`|s'|`)
+elementary AC1+AC2+AC3 deletions.
+
+**Audit.** `ingest/advisor_wave2.md`: C11 APPROVE; C12 REVISE (this text
+is the revision).
 
 ---
 

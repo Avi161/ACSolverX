@@ -75,3 +75,10 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Depth-1 AC2 on the best table: 44,016 children, 0 cyclic-length drops, 0 new one-occurrence, 0 new two-block–both.
 - Still **0/124** stably trivialized. No certificate JSONL rows.
 
+## Wave 3 (Sol C12 REVISE, guarded 60 s)
+
+- `ingest/advisor_wave2.md`: C11 APPROVE; C12 REVISE. Catalogue C12 now applies C1 first, expands generator deletion into AC1+AC3 donor / AC2 / restore, and labels the Aut step non-effective.
+- Step-4 replay: `tables/c12_generator_deletion.json`. Unimodular mixed companions finish at `y^{±1}`; commutator leftover is empty.
+- Product aggregate: 0 primitive of 248 stored-orientation products (dedicated counter, not inferred from `primitive_hits`).
+- Depth-1 unique new relators: 11,686 Whitehead tests, 0 primitive, minima starting at 5 (7.5 s). Bounded report only.
+

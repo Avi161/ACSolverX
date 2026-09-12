@@ -1,0 +1,479 @@
+{
+  "n_cases": 10,
+  "note": "This replays only C12 step 4, after the pair is already (x, s). The Aut that produces that pair is C1 and is not expanded here.",
+  "rows": [
+    {
+      "det_if_paired_with_x": 1,
+      "id": "already_y",
+      "input": "y",
+      "leftover": "y",
+      "moves": [],
+      "n_moves": 0,
+      "steps": 0,
+      "terminal_is_y_pm1": true,
+      "y_exponent": 1
+    },
+    {
+      "det_if_paired_with_x": 1,
+      "id": "yx",
+      "input": "yx",
+      "leftover": "y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "y"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 3,
+      "steps": 1,
+      "terminal_is_y_pm1": true,
+      "y_exponent": 1
+    },
+    {
+      "det_if_paired_with_x": 1,
+      "id": "xy",
+      "input": "xy",
+      "leftover": "y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "y",
+          "on": "r1",
+          "to": "YXy"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "y"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Y",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 5,
+      "steps": 1,
+      "terminal_is_y_pm1": true,
+      "y_exponent": 1
+    },
+    {
+      "det_if_paired_with_x": -1,
+      "id": "Yx",
+      "input": "Yx",
+      "leftover": "Y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "Y"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 3,
+      "steps": 1,
+      "terminal_is_y_pm1": true,
+      "y_exponent": -1
+    },
+    {
+      "det_if_paired_with_x": -1,
+      "id": "xY",
+      "input": "xY",
+      "leftover": "Y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Y",
+          "on": "r1",
+          "to": "yXY"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "Y"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "y",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 5,
+      "steps": 1,
+      "terminal_is_y_pm1": true,
+      "y_exponent": -1
+    },
+    {
+      "det_if_paired_with_x": 1,
+      "id": "yxYxy",
+      "input": "yxYxy",
+      "leftover": "y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Yxy",
+          "on": "r1",
+          "to": "YXyXYxy"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "xy"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "YXy",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "y",
+          "on": "r1",
+          "to": "YXy"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "y"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Y",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 10,
+      "steps": 2,
+      "terminal_is_y_pm1": true,
+      "y_exponent": 1
+    },
+    {
+      "det_if_paired_with_x": 1,
+      "id": "xyXYy",
+      "input": "xyX",
+      "leftover": "y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "yX",
+          "on": "r1",
+          "to": "xYXyX"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "yX"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "xY",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "y"
+        }
+      ],
+      "n_moves": 6,
+      "steps": 2,
+      "terminal_is_y_pm1": true,
+      "y_exponent": 1
+    },
+    {
+      "det_if_paired_with_x": -1,
+      "id": "YxyXY",
+      "input": "YxyXY",
+      "leftover": "Y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "yXY",
+          "on": "r1",
+          "to": "yxYXyXY"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "XY"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "yxY",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Y",
+          "on": "r1",
+          "to": "yxY"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "Y"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "y",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 8,
+      "steps": 2,
+      "terminal_is_y_pm1": true,
+      "y_exponent": -1
+    },
+    {
+      "det_if_paired_with_x": -1,
+      "id": "xxYx",
+      "input": "xxYx",
+      "leftover": "Y",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "xYx",
+          "on": "r1",
+          "to": "XyXYx"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "xYx"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "XyX",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Yx",
+          "on": "r1",
+          "to": "XyXYx"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "Yx"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Xy",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "Y"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 13,
+      "steps": 3,
+      "terminal_is_y_pm1": true,
+      "y_exponent": -1
+    },
+    {
+      "det_if_paired_with_x": 0,
+      "id": "commutator_xyXY",
+      "input": "xyXY",
+      "leftover": "",
+      "moves": [
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "yXY",
+          "on": "r1",
+          "to": "yxYXyXY"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": "yXY"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "yxY",
+          "on": "r1",
+          "to": "X"
+        },
+        {
+          "ac": "AC1",
+          "on": "r1",
+          "to": "x"
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "Y",
+          "on": "r1",
+          "to": "yxY"
+        },
+        {
+          "ac": "AC2",
+          "on": "r2",
+          "times": "r1",
+          "to": ""
+        },
+        {
+          "ac": "AC3",
+          "conjugator": "y",
+          "on": "r1",
+          "to": "x"
+        }
+      ],
+      "n_moves": 8,
+      "steps": 2,
+      "terminal_is_y_pm1": false,
+      "y_exponent": 0
+    }
+  ],
+  "status": "elementary_replay_not_a_u124_solve",
+  "unimodular_finish_at_y_pm1": [
+    "already_y",
+    "yx",
+    "xy",
+    "Yx",
+    "xY",
+    "yxYxy",
+    "xyXYy",
+    "YxyXY",
+    "xxYx"
+  ]
+}
