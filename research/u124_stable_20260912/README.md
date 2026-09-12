@@ -97,8 +97,9 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    Do not re-run the 164,475 nine-config census. C42:
    `.../code/c42_yyxxxyxx_y_eq_cinv.py` (full census) or `--annotate-existing`.
    Do not re-run the 183,924 nine-config census. C43:
-   `.../code/c43_yyxxyxx_x_eq_cinv.py` (aca_43 leftover ncl; census
-   not yet run — do not lump with C44). C44:
+   `.../code/c43_yyxxyxx_x_eq_cinv.py` (full census) or
+   `--annotate-existing`. Do not re-run the 154,368 nine-config census
+   (do not lump with C33 or C44). C44:
    `.../code/c44_best_length_descent.py` (full census) or
    `--annotate-existing`. Do not re-run the 5,521,175 unique
    depth-2 plus 116,608 row-local unique corridor-child census.
@@ -176,7 +177,9 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     `YYXXXyxx` row aca_38 with `C_ab=(0,-1)` (`y ≡ C^{-1}` in
     abelianization, `L1=1`); k=3 nine-config misses (`183,924` products,
     observed min 11). Plan advisor REVISE applied. Advisor APPROVE. C43:
-    leftover aca_43 ncl scanner is committed, census not yet run. C44:
+    leftover aca_43 ncl: 154,368 typed products, observed product-word
+    min 11 (not a pair total; BEST total 18), no hit. Plan advisor
+    APPROVE. Advisor APPROVE. C44:
     cyclic pair-length descent on 47 BEST pairs: 0 replayed drops
     (5,521,175 unique d2, 819 equal-total d2 states, 116,608 row-local
     unique corridor children). Plan advisor REVISE applied. Census

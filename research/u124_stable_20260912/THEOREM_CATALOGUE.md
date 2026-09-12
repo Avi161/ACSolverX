@@ -1871,6 +1871,53 @@ applied (`ingest/advisor_c42_plan.md`). `ingest/advisor_wave27.md`
 
 ---
 
+## C43. aca_43 `YYXXyxx`: `x ≡ C^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+On the single listed row aca_43, \(D_{\mathrm{ab}}=(0,-1)\),
+\(C_{\mathrm{ab}}=(-1,0)\), \(|D|=7\), \(|C|=11\), and the unique
+x-combination is `(0,-1)`, \(L1=1\). So \(x \equiv C^{-1}\) **in
+abelianization** (not free equality); the same combination holds for
+`{x, Yxy, yxY}`. This is not every companion of `D` and not a six-row
+`YYXXyxx` census. Even \(k\) is abelian-impossible (C24.1). \(k=1\) is
+blocked by \(|C|=11\). Leftover \(y\) (`L1=1`, \(y \equiv D^{-1}\)) was
+C33 and is not re-run.
+
+In C31 orientation \(R^+=C^{-1}\), \(S=D\) (asserted; not C35, not C40),
+unique-conjugate counts `(24,24,28,28)` give 154,368 typed Cartesian
+\(k=3\) products; all were enumerated and none freely equals
+`{x, Yxy, yxY}`. Completeness is all 154,368 typed tuples in this
+bounded prefix/one-letter pool, not distinct reduced words and not
+\(|F|^3\). Observed product-word free-length minimum 11 is a C43 census
+statistic: **it is not a presentation-pair total, not a drop from
+aca_43’s BEST total 18, and not a C10 finish**. Equal typed size
+154,368 does not identify C33’s 162,624 on this row (C35 orientation,
+y-targets).
+
+aca_43 C16 / Family A floor (archival `P(2)`) is a disclosure, not a
+C16 re-proof. C28 and C44 touched this row under different predicates.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators.
+C35 leftover `y` on aca_117. aca_56/57. C40 leftover exact-L1 `y`.
+C41 leftover exact-L1 `y`. C42 leftover exact-L1 `x`. Full depth-3 AC2
+off the C44 corridor. Lemma 11.
+
+**U124.** One best-table row listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool. Score remains `0/124`.
+
+**Audit.** `code/c43_yyxxyxx_x_eq_cinv.py`,
+`tables/c43_yyxxyxx_x_eq_cinv.json`. Same-code deterministic replay plus
+planted nine-config control with a persisted factor/conjugator witness
+replayed outside the scanner. Actual census hit replay is `null`.
+`independent_checker=false`. Identity checks are a new file
+`tests/u124_stable_20260912/test_c43_yyxxyxx_x_eq_cinv.py`. Plan advisor
+APPROVE (`ingest/advisor_c43_k3_plan.md`). `ingest/advisor_wave29.md`
+**APPROVE**.
+
+---
+
 ## C44. BEST-pair cyclic-length descent — IDENTITY-CHECKED NEGATIVE
 
 **C44.1.** Depth ≤ 2 in the C13 neighbourhood on the **36 μ-floor BEST**
@@ -1916,11 +1963,11 @@ validated.
 **C10.** No listed BEST input or C44-enumerated state reached cyclic
 total ≤ 12. μ = 13 is never a removal. `aca_115` μ ≤ 12 would be an
 AK(3) tripwire. Order-120 is an integrity check, not a C10 exception.
-C26–C42 ncl product-word “min 11” is not a pair total.
+C26–C43 ncl product-word “min 11” is not a pair total.
 
 **What this does not rule out.** Full depth-3 (off-corridor). Depth
 ≥ 4. Heap search. Leftover 10M paths. Lemma 11 / further CoV hops.
-Aut with C1. C43 leftover ncl on aca_43.
+Aut with C1.
 
 **U124.** The 47 listed BEST pairs. **Not a solve.** Bounded negative
 for this exact-spelling corridor. Score remains `0/124`. No listed

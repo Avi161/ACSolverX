@@ -456,7 +456,7 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 ## Wave 29 (C44 BEST-pair cyclic-length descent, 2026-09-12)
 
 - No listed BEST input has total length ≤ 12. Shortest: `aca_115` at 13
-  (AK(3)), `aca_116`/`aca_117` at 14, ten rows at 15. C26–C42 ncl
+  (AK(3)), `aca_116`/`aca_117` at 14, ten rows at 15. C26–C43 ncl
   product-word “min 11” is not a pair total. Leftover 10M never
   recorded a certified pair total of 11. C44 starts from `aca_111`’s
   μ-floor BEST pair of total 24 and finds no drop; the pathless 10M
@@ -474,8 +474,21 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `independent_checker=false` for the negative. Drop witnesses would
   use `greedy_tests.spec`, unused. Plan advisor REVISE applied
   (`ingest/advisor_c44_plan.md`). Census advisor REVISE applied
-  (`ingest/advisor_wave28.md`). C43 remains the leftover aca_43 ncl
-  scanner (census not run).
+  (`ingest/advisor_wave28.md`).
+
+## Wave 30 (C43 leftover aca_43 x ≡ C^{-1} k=3 ncl, 2026-09-12)
+
+- Numbered C43; completed after C44. Single row aca_43, donor
+  `YYXXyxx`, companion `YYxyXYxyXyX`. `x ≡ C^{-1}` in abelianization,
+  `L1=1`. C31 orientation. C33’s y-census on this row was not re-run.
+- k=3 nine-config: 154,368 typed Cartesian products, equal to typed
+  size, counts `(24,24,28,28)`, observed product-word min length 11, no
+  hit on `{x, Yxy, yxY}`. That minimum is not a pair total, not a drop
+  from BEST total 18, and not a C10 finish. Completeness is all 154,368
+  typed tuples in this bounded pool. Still **0/124**. No certificate
+  JSONL rows. `independent_checker=false`. Plan advisor APPROVE
+  (`ingest/advisor_c43_k3_plan.md`). Advisor APPROVE
+  (`ingest/advisor_wave29.md`).
 
 
 
