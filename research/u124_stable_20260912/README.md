@@ -126,7 +126,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     Cartesian products, observed min length 11). Advisor REVISE applied.
     C33: remaining length-7 donors `YXyXYxx` and `YYXXyxx` (`y ≡ D^{-1}`,
     `L1=1`); k=3 nine-config misses (`1,737,522` products, observed min
-    length 7). Still 0/124.
+    length 7). Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

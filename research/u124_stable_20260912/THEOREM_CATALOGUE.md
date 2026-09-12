@@ -1333,7 +1333,8 @@ all eight cells. `independent_checker=false`.
 exponent `(0,-1)` and a unimodular companion has unique `y`-combination
 `(-1,0)`, so `L1=1`. Even `k` is abelian-impossible. `k=1` is blocked
 by cyclic length 7. This census covers the two unused such donors on
-the best table, not a re-run of C29's `YXXyxYx`:
+the best table. The donor/row pool is disjoint from C29's `YXXyxYx`;
+C33 imports C29/C25 machinery and is not independent code:
 
 - `YXyXYxx`: aca_8, 85, 98, 121, 122, 123
 - `YYXXyxx`: aca_1, 7, 31, 43, 72, 99
@@ -1360,7 +1361,9 @@ negative for this typed k=3 pool.
 
 **Audit.** `code/c33_len7_donors.py`, `tables/c33_len7_donors.json`.
 Same-code deterministic replay plus planted nine-config control.
-`independent_checker=false`. Advisor audit pending.
+`independent_checker=false`. Tests spot-check identities and stored
+JSON; they do not independently enumerate the census.
+`ingest/advisor_wave18.md` **APPROVE**.
 
 
 

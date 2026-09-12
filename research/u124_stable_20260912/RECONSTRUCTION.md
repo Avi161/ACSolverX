@@ -307,10 +307,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   have the same abelian type as C29: exponent `(0,-1)`, cyclic length
   7, `y ≡ D^{-1}`, `L1=1`. Not a re-run of C29. k=3 nine-config:
   `1,737,522` typed Cartesian products, equal to typed size, observed
-  min length 7, no hit on `{y, Xyx, xyX}`. A hit would have been a
+  min length 7, no hit on `{y, Xyx, xyX}`. Disjoint donor/row pool from
+  C29; same C29/C25 machinery. A hit would have been a
   normal-closure candidate, not a C12 primitive. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`.
-  Advisor audit pending.
+  Advisor APPROVE (`ingest/advisor_wave18.md`).
 
 
 
