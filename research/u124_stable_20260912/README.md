@@ -165,7 +165,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     Plan advisor REVISE applied. Advisor APPROVE. C41: one listed
     `YYXXXyxx` row aca_71 with `C_ab=(-1,0)` (`x ≡ C^{-1}` in
     abelianization, `L1=1`); k=3 nine-config misses (`164,475` products,
-    observed min 11). Plan advisor APPROVE. Still 0/124.
+    observed min 11). Plan advisor APPROVE. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

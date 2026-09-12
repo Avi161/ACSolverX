@@ -1809,7 +1809,7 @@ Same-code deterministic replay plus planted nine-config control with a
 persisted factor/conjugator witness replayed outside the scanner.
 `independent_checker=false`. Tests independently check the algebra and
 rerun the single row. Plan advisor APPROVE (`ingest/advisor_c41_plan.md`).
-Census advisor audit pending.
+`ingest/advisor_wave26.md` **APPROVE**.
 
 
 
