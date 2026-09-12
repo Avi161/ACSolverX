@@ -385,6 +385,23 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_c38_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave23.md`).
 
+## Wave 25 (C39 YXXyXYxxx family, 2026-09-12)
+
+- Six best-table rows with donor `YXXyXYxxx`. All listed companions
+  have `|p|=1`, so on those rows `y ≡ D^{-1}`, `L1=1`. Not every
+  companion. No last-unused claim. C35 orientation `R^+ = D^{-1}`.
+  Disjoint donor/row presentation pairs from C38; companion words
+  overlap C38. Equal typed sizes to some C38 rows do not identify
+  those censuses.
+- k=3 nine-config: `1,563,690` typed Cartesian products, equal to typed
+  size, observed min length 9 on every row, no hit on `{y, Xyx, xyX}`.
+  Hit witnesses would be replayed outside the scanner; unused because
+  there was no hit. Observed min 9 is a C39 census statistic, not a
+  comparison with C38/C29/C33. Still **0/124**. No certificate JSONL
+  rows. `independent_checker=false`. Plan advisor APPROVE
+  (`ingest/advisor_c39_plan.md`). Census advisor audit pending.
+
+
 
 
 
