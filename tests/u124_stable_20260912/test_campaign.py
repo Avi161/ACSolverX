@@ -579,3 +579,33 @@ def test_c28_depth2_ac2_identities():
                 == "single_resumed_census_plus_sampled_same_implementation_checks"
             )
 
+
+def test_c29_yxx_family_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c29_yxx_family as c29  # type: ignore
+    import c22_gate_witness as c22  # type: ignore
+
+    assert c29.DONOR == "YXXyxYx"
+    assert c22.exp_on(c29.DONOR, "xy") == (0, -1)
+    assert c29.typed_nine_size(1, 1, 1, 1) == 9
+    assert c29.planted()["ok"]
+    bridge = c29.free_bridge()
+    assert bridge["product_is_YXXyxx"]
+    assert bridge["not_an_ac2"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c29_yxx_family.json"
+    if json_path.exists():
+        artifact = json.loads(json_path.read_text())
+        summary = artifact["summary"]
+        assert summary["n_rows"] == 11
+        assert summary["all_y_L1_1"]
+        assert summary["all_y_combo_minus_one_zero"]
+        assert summary["planted_ok"]
+        assert summary["independent_checker"] is False
+        assert summary["solved_u124"] == 0
+        if "three_n_products" in summary and summary["three_n_products"]:
+            assert not summary["three_any_hit"]
+            assert summary["three_products_equal_typed"]
+            assert summary["three_all_min_len_ge_7"]
+            assert summary["n_p_floor_companions"] == 5
+

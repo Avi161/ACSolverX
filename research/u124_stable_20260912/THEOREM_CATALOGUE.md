@@ -1135,4 +1135,35 @@ full replay of every row. `independent_checker=false`.
 `ingest/advisor_wave13.md` **REVISE** applied. The census was resumed
 in 50s slices under the 60s process guard.
 
+---
+
+## C29. `YXXyxYx` family: `y ≡ D^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE (census pending)
+
+**C29.1 (abelian).** Compact donor `D = YXXyxYx` has exponent `(0,-1)`
+and cyclic length 7. On every unimodular companion the unique
+combination of `y` (and of `{Xyx, xyX}`) against `(D, C)` is
+`(α,β)=(-1,0)`, so `L1=1`. Even `k` is abelian-impossible. `k=1` is
+blocked by `|D|=7`. Five companions are the C7 Aut-minimal floors
+`Y^n X y^2 x^2` (`n=3..7`); that Aut-orbit is not a solve.
+
+**C29.2 (k=3 nine-config).** Same signed-type Cartesian products as
+C23/C25.3, with `R^+ = D^{-1}` and `S = C`, prefix/one-letter
+conjugators, per-type unique conjugates. Targets `{y, Xyx, xyX}`.
+Inverse class by reversing and inverting factors. Census not yet run.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive. The free
+identity `D · x^{-1}yx = YXXyxx` is not an AC2.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators.
+Defining word `x` (L1 varies by companion). Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
+**Not a solve.**
+
+**Audit.** `code/c29_yxx_family.py`, `tables/c29_yxx_family.json`.
+Same-code replay plus planted nine-config control.
+`independent_checker=false`. Census not yet run.
+
+
 

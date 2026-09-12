@@ -242,5 +242,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   not a solve. Advisor REVISE applied (`ingest/advisor_wave13.md`).
   Still **0/124**. No certificate JSONL rows.
 
+## Wave 15 (C29 YXXyxYx family, 2026-09-12)
+
+- Eleven best-table rows with donor `YXXyxYx`: `y ≡ D^{-1}`, `L1=1`,
+  even `k` impossible, `k=1` blocked by `|D|=7`. k=3 nine-config census
+  not yet run. Still **0/124**. No certificate JSONL rows.
+
 
 
