@@ -325,5 +325,20 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   three `L1≥8` rows. Still **0/124**. No certificate JSONL rows.
   `independent_checker=false`. Advisor audit pending.
 
+## Wave 21 (C35 YXXXyxx family, 2026-09-12)
+
+- Last unused length-7 donor in the listed shared-donor inventory:
+  `D = YXXXyxx`, exponent `(-1,0)`. Pair matrix unimodular ⇒ unique
+  x-combo `(-1,0)`, `L1=1`, `R^+ = D^{-1}`. Six rows. The spelling
+  already appears in C22.6; that free identity is not an AC2.
+- k=3 nine-config: `579,870` typed Cartesian products, equal to typed
+  size, observed min length 7, no hit on `{x, Yxy, yxY}`. Hit witness
+  schema records signed types, factors, conjugators, and a free-reduce
+  replay; unused because there was no hit. Observed min 7 is a C35
+  census statistic, not a comparison with C29/C33/C34. Still **0/124**.
+  No certificate JSONL rows. `independent_checker=false`. Plan advisor
+  REVISE applied (`ingest/advisor_c35_plan.md`). Census advisor audit
+  pending.
+
 
 

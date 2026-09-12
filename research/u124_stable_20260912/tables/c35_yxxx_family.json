@@ -1,0 +1,873 @@
+{
+  "summary": {
+    "n_rows": 6,
+    "donor": "YXXXyxx",
+    "all_D_exp_minus_one_zero": true,
+    "all_D_cyc_len_7": true,
+    "all_pair_exponent_matrix_unimodular": true,
+    "all_pair_det_equals_minus_C_y": true,
+    "all_C_y_exp_minus_one": true,
+    "all_x_L1_1": true,
+    "all_x_combo_minus_one_zero": true,
+    "all_Yxy_same_as_x": true,
+    "all_yxY_same_as_x": true,
+    "all_k1_len_block": true,
+    "all_even_k_forbidden": true,
+    "three_any_hit": false,
+    "three_n_products": 579870,
+    "three_n_typed_tuples": 579870,
+    "three_products_equal_typed": true,
+    "three_min_len": 7,
+    "three_all_min_len_ge_7": true,
+    "counts_are_nine_config_cartesian": true,
+    "last_unused_len7_in_listed_shared_donor_inventory": true,
+    "yxxx_appears_in_c22_6": true,
+    "c22_6_is_free_identity_not_ac2": true,
+    "not_a_c29_or_c33_rerun": true,
+    "not_a_c30_or_c34_rerun": true,
+    "pair_unimodularity_is_of_DC_matrix": true,
+    "hit_witness_records_factors_and_conjugators": true,
+    "planted_ok": true,
+    "same_code_replay": true,
+    "independent_checker": false,
+    "solved_u124": 0
+  },
+  "planted": {
+    "n_products_hit": 9,
+    "n_typed": 9,
+    "hit": {
+      "word": "x",
+      "len": 1,
+      "signed_types": [
+        "R-",
+        "R+",
+        "R+"
+      ],
+      "shape": "A",
+      "factors": [
+        "X",
+        "x",
+        "x"
+      ],
+      "conjugators": [
+        "",
+        "",
+        ""
+      ],
+      "replay_free_reduce_equals_target": true
+    },
+    "miss_found": false,
+    "witness_ok": true,
+    "ok": true,
+    "independent_checker": false,
+    "same_code_as_census": true
+  },
+  "c22_6": {
+    "identity": "YXXXyxYx \u00b7 Xyx = YXXXyxx = P_{m,+1} row 1",
+    "product": "YXXXyxx",
+    "product_is_donor": true,
+    "Xyx_is_not_a_relator": true,
+    "not_an_ac2": true,
+    "c35_donor_is_that_word": true,
+    "note": "C22.6 is a free-group identity on the C15 donor. C35 treats the same spelling as a stored best-table donor on six other rows."
+  },
+  "abelian": [
+    {
+      "id": "aca_9",
+      "donor": "YXXXyxx",
+      "companion": "YYYXXyyX",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        -3,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 3,
+        "b": -1
+      },
+      "y_L1": 4,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 3,
+            "b": -1
+          },
+          "L1": 4
+        }
+      }
+    },
+    {
+      "id": "aca_10",
+      "donor": "YXXXyxx",
+      "companion": "YYXYXyyX",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        -3,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 3,
+        "b": -1
+      },
+      "y_L1": 4,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 3,
+            "b": -1
+          },
+          "L1": 4
+        }
+      }
+    },
+    {
+      "id": "aca_11",
+      "donor": "YXXXyxx",
+      "companion": "YYYXyxyx",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        1,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": -1
+      },
+      "y_L1": 2,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": -1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_12",
+      "donor": "YXXXyxx",
+      "companion": "YYXYxyyX",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        -1,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 1,
+        "b": -1
+      },
+      "y_L1": 2,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 1,
+            "b": -1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_116",
+      "donor": "YXXXyxx",
+      "companion": "YYYXyyX",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        -2,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 2,
+        "b": -1
+      },
+      "y_L1": 3,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 2,
+            "b": -1
+          },
+          "L1": 3
+        }
+      }
+    },
+    {
+      "id": "aca_117",
+      "donor": "YXXXyxx",
+      "companion": "YYYXyyx",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        0,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_det_equals_minus_C_y": true,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "Yxy_same_as_x": true,
+      "yxY_same_as_x": true,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_L1": 1,
+      "k1_len_obstruction": true,
+      "even_k_forbidden": true,
+      "targets": {
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "yxY": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        },
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        }
+      }
+    }
+  ],
+  "three_factor": [
+    {
+      "n_conjugators": 31,
+      "n_Rplus": 23,
+      "n_Rminus": 23,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 103293,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_9",
+      "companion": "YYYXXyyX",
+      "n_typed_tuples": 103293,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    },
+    {
+      "n_conjugators": 31,
+      "n_Rplus": 23,
+      "n_Rminus": 23,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 103293,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_10",
+      "companion": "YYXYXyyX",
+      "n_typed_tuples": 103293,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    },
+    {
+      "n_conjugators": 31,
+      "n_Rplus": 23,
+      "n_Rminus": 23,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 103293,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_11",
+      "companion": "YYYXyxyx",
+      "n_typed_tuples": 103293,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    },
+    {
+      "n_conjugators": 31,
+      "n_Rplus": 23,
+      "n_Rminus": 23,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 103293,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_12",
+      "companion": "YYXYxyyX",
+      "n_typed_tuples": 103293,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    },
+    {
+      "n_conjugators": 29,
+      "n_Rplus": 21,
+      "n_Rminus": 21,
+      "n_Splus": 21,
+      "n_Sminus": 21,
+      "n_products": 83349,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_116",
+      "companion": "YYYXyyX",
+      "n_typed_tuples": 83349,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    },
+    {
+      "n_conjugators": 29,
+      "n_Rplus": 21,
+      "n_Rminus": 21,
+      "n_Splus": 21,
+      "n_Sminus": 21,
+      "n_products": 83349,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "D^{-1}",
+        "Rminus": "D",
+        "Splus": "C",
+        "Sminus": "C^{-1}"
+      },
+      "id": "aca_117",
+      "companion": "YYYXyyx",
+      "n_typed_tuples": 83349,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "targets": [
+        "x",
+        "Yxy",
+        "yxY"
+      ]
+    }
+  ],
+  "notes": [
+    "D = YXXXyxx has exponent (\u22121,0). Pair det(D,C)=\u2212q; unimodular pair matrix forces q=\u00b11 and unique x-combo (\u22121, 0), L1=1.",
+    "Even k is abelian-impossible. k=1 is blocked by |D|=7. k=3 is the nine signed-type configs of C23/C25 with R^+=D^{-1}, S=C.",
+    "Counts are typed Cartesian sizes after per-type unique conjugates, not |F|^3.",
+    "Last unused length-7 donor in the listed shared-donor inventory. The spelling already appears in C22.6; that free identity is not an AC2.",
+    "A hit would be a normal-closure candidate, not a C12 primitive. Hit witnesses persist signed types, factors, conjugators, and a free-reduce replay.",
+    "Observed minimum length is a C35 census statistic, not a theorem and not a comparison with C29/C33/C34.",
+    "JSON is same-code deterministic replay. No U124 row is solved."
+  ]
+}

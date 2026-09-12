@@ -1405,7 +1405,8 @@ be a **normal-closure candidate**, not a C12 primitive.
 conjugators, including `u`. Equality was tested after free reduction
 only against `{x, Yxy, yxY}`; freely reduced longer conjugates of `x`
 not among these three targets remain untested. aca_43 k=3 for `x`.
-`L1≥8`. C33 leftover `k=5,7,…` for `y`. Depth ≥ 3 AC2. Lemma 11.
+`L1≥8`. C33 leftover `k=5,7,…` for `y`. The remaining listed
+length-7 donor `YXXXyxx` is C35. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Eight of the twelve C33 rows. **Not a solve.** Bounded
 negative for this typed exact-L1 pool.
@@ -1416,6 +1417,59 @@ Same-code replay plus C26 planted controls. Observed Cartesian minimum
 products. Tests independently check the algebra and rerun only
 aca_8/aca_72; they do not independently replay MITM.
 `independent_checker=false`. Advisor audit pending.
+
+---
+
+## C35. Last listed length-7 donor `YXXXyxx`: `x ≡ D^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+**C35.1 (abelian).** Donor `D = YXXXyxx` abelianizes to `(-1,0)`. Write
+`C_{\mathrm{ab}}=(p,q)`. The pair exponent matrix has
+`\det(D,C)=-q`. If that matrix is unimodular, then `q=\pm1`, and
+solving `a D_{\mathrm{ab}} + b C_{\mathrm{ab}}=(1,0)` gives uniquely
+`(a,b)=(-1,0)`. The same combination holds for `{x, Yxy, yxY}`. Thus
+`L1=1`. Even `k` is abelian-impossible. `k=1` is blocked by cyclic
+length 7. This is the last unused length-7 donor **in the listed
+shared-donor inventory**. The same spelling already appears in C22.6
+as the free identity `YXXXyxYx · (x^{-1} y x) = YXXXyxx = P_{m,+1}`
+row 1; that identity is not an AC2 and is not this census. Six
+best-table rows, all with `q=-1` so `\det=+1`:
+
+- aca_9, 10, 11, 12, 116, 117
+
+**C35.2 (k=3 nine-config).** Same signed-type Cartesian products as
+C23/C25.3/C29.2, with `R^+ = D^{-1}` and `S = C`, prefix/one-letter
+conjugators, per-type unique conjugates. Targets `{x, Yxy, yxY}`.
+Inverse class by reversing and inverting factors. Typed Cartesian
+enumeration: `579,870` products, equal to the typed size on every
+row, observed minimum free length 7 on every row, none equal to a
+target. Counts are nine-config typed sizes, not `|F|^3`. Observed
+minimum 7 is a C35 census fact for this pool, not a length theorem
+and not a comparative control against C29/C33/C34. A hit would persist
+ordered signed types, three factor words, conjugators, and a
+free-reduce replay; no hit occurred.
+
+Per-row products: aca_9, 10, 11, 12 each 103293; aca_116, 117 each
+83349.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators,
+including `u`. Defining word `y` on these rows (L1 is 4, 4, 2, 2, 3, 1
+respectively; aca_117 has `y ≡ C^{-1}`). aca_43 k=3 for `x`. C34
+`L1≥8`. Unused listed donors `YYXXXyxx`, `YXXyXYxxx`, `YXXXyxYxx`,
+`YXXYxxyX`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Six best-table rows listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool.
+
+**Audit.** `code/c35_yxxx_family.py`, `tables/c35_yxxx_family.json`.
+Same-code deterministic replay plus planted nine-config control with a
+persisted factor/conjugator witness. `independent_checker=false`.
+Tests independently check the algebra, the planted witness schema, and
+rerun only aca_117; they do not independently enumerate the census.
+Plan advisor REVISE applied (`ingest/advisor_c35_plan.md`). Census
+advisor audit pending.
 
 
 

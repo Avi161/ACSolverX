@@ -893,3 +893,70 @@ def test_c34_x_exact_l1_identities():
         assert abs(row["combo_b"]) == 1
 
 
+def test_c35_yxxx_family_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c35_yxxx_family as c35  # type: ignore
+    from experiments.equivalence_classes.lib.words import free_reduce  # type: ignore
+
+    assert c22.exp_on(c35.DONOR, "xy") == (-1, 0)
+    assert c35.x_combo_from_c_exp(-3, -1) == (-1, 0, 1)
+    assert c35.x_combo_from_c_exp(0, 1) == (-1, 0, 1)
+    try:
+        c35.x_combo_from_c_exp(1, 0)
+        assert False, "expected non-unimodular pair to fail"
+    except ValueError:
+        pass
+    ab = c35.abelian_row("aca_9", "YYYXXyyX")
+    assert ab["x_L1"] == 1
+    assert ab["x_combo"]["a"] == -1 and ab["x_combo"]["b"] == 0
+    assert ab["pair_det"] == 1
+    assert ab["pair_det_equals_minus_C_y"]
+    assert ab["pair_exponent_matrix_unimodular"]
+    assert ab["Yxy_same_as_x"] and ab["yxY_same_as_x"]
+    rec = c35.three_factor_row("aca_117", "YYYXyyx")
+    assert rec["n_products"] == 83349
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 7
+    assert not rec["found"]
+    assert rec["hit"] is None
+    planted = c35.planted()
+    assert planted["ok"]
+    assert planted["independent_checker"] is False
+    witness = planted["hit"]
+    assert witness["word"] == "x"
+    assert witness["replay_free_reduce_equals_target"]
+    assert free_reduce("".join(witness["factors"])) == "x"
+    assert len(witness["factors"]) == 3
+    assert len(witness["conjugators"]) == 3
+    bridge = c35.c22_6_note()
+    assert bridge["product_is_donor"] and bridge["not_an_ac2"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c35_yxxx_family.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 6
+    assert summary["all_D_exp_minus_one_zero"]
+    assert summary["all_x_combo_minus_one_zero"]
+    assert summary["all_pair_exponent_matrix_unimodular"]
+    assert summary["pair_unimodularity_is_of_DC_matrix"]
+    assert summary["last_unused_len7_in_listed_shared_donor_inventory"]
+    assert summary["yxxx_appears_in_c22_6"]
+    assert summary["not_a_c29_or_c33_rerun"]
+    assert not summary["three_any_hit"]
+    assert summary["three_n_products"] == 579_870
+    assert summary["three_products_equal_typed"]
+    assert summary["three_min_len"] == 7
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == {
+        "aca_9": 103293,
+        "aca_10": 103293,
+        "aca_11": 103293,
+        "aca_12": 103293,
+        "aca_116": 83349,
+        "aca_117": 83349,
+    }
+
+
