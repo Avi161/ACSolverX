@@ -68,7 +68,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C25: `.../code/c25_alt_words.py` (full census) or `--annotate-existing`.
    C26: `.../code/c26_y_exact_l1.py` (full census) or `--annotate-existing`.
    C27: `.../code/c27_archival_k4.py`. C28:
-   `.../code/c28_depth2_ac2.py`.
+   `.../code/c28_depth2_ac2.py` (re-run under the 60s guard until
+   `census_complete`; each invocation resumes for 50s).
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18

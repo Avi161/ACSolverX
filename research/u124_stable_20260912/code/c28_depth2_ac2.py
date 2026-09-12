@@ -15,6 +15,7 @@ from __future__ import annotations
 import csv
 import json
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -302,80 +303,65 @@ def parametric_pairs() -> list[tuple[str, str, str]]:
     return rows
 
 
-def scan_parametric() -> list[dict]:
-    return [scan_depth2(tag, r1, r2) for tag, r1, r2 in parametric_pairs()]
+BUDGET_SECONDS = 50.0
 
 
-def scan_initial_table() -> dict:
+def load_initial_csv() -> tuple[list[dict], dict[str, dict]]:
     with DATA_INITIAL.open(newline="", encoding="utf-8") as handle:
         initial = list(csv.DictReader(handle))
     with DATA_BEST.open(newline="", encoding="utf-8") as handle:
         best = {row["name"]: row for row in csv.DictReader(handle)}
-    rows = []
-    n_changed = 0
-    n_drop_d1 = 0
-    n_drop = 0
-    n_one = 0
-    n_tb = 0
-    n_hit_best = 0
-    n_d2_raw = 0
-    n_d2_unique = 0
-    interesting = []
-    for row in initial:
-        name = row["name"]
-        b = best[name]
-        changed = (row["r1"], row["r2"]) != (b["r1"], b["r2"])
-        if changed:
-            n_changed += 1
-        rec = scan_depth2(
-            name,
-            row["r1"],
-            row["r2"],
-            best=(b["r1"], b["r2"]) if changed else None,
-        )
-        rec["id"] = name
-        rec["changed_from_best"] = changed
-        n_drop_d1 += rec["n_d1_drop_unique"]
-        n_drop += rec["n_drop_unique"]
-        n_one += rec["n_new_one_occ"]
-        n_tb += rec["n_new_two_block"]
-        n_hit_best += rec["n_hit_best"]
-        n_d2_raw += rec["n_d2_raw"]
-        n_d2_unique += rec["n_d2_unique"]
-        rows.append(rec)
-        if rec["found"] or rec["n_hit_best"]:
-            interesting.append(rec)
-        print(
-            f"c28 {name} d1={rec['n_d1_unique']} d2u={rec['n_d2_unique']} "
-            f"d1drop={rec['n_d1_drop_unique']} d2drop={rec['n_drop_unique']} "
-            f"found={rec['found']}",
-            flush=True,
-        )
+    return initial, best
+
+
+def scan_one_initial(row: dict, best_row: dict) -> dict:
+    changed = (row["r1"], row["r2"]) != (best_row["r1"], best_row["r2"])
+    rec = scan_depth2(
+        row["name"],
+        row["r1"],
+        row["r2"],
+        best=(best_row["r1"], best_row["r2"]) if changed else None,
+    )
+    rec["id"] = row["name"]
+    rec["changed_from_best"] = changed
+    return rec
+
+
+def aggregate_initial(rows: list[dict | None], n_expected: int) -> dict:
+    done = [row for row in rows if row is not None]
+    interesting = [row for row in done if row["found"] or row["n_hit_best"]]
     return {
-        "n_rows": len(initial),
-        "n_changed_from_best": n_changed,
+        "n_rows": n_expected,
+        "n_done": len(done),
+        "n_changed_from_best": sum(1 for row in done if row["changed_from_best"]),
         "n_interesting_rows": len(interesting),
-        "n_d2_raw": n_d2_raw,
-        "n_d2_unique_sum": n_d2_unique,
-        "n_d1_drop_unique_total": n_drop_d1,
-        "n_drop_unique_total": n_drop,
-        "n_new_one_occ_total": n_one,
-        "n_new_two_block_total": n_tb,
-        "n_hit_best_total": n_hit_best,
+        "n_d2_raw": sum(row["n_d2_raw"] for row in done),
+        "n_d2_unique_sum": sum(row["n_d2_unique"] for row in done),
+        "n_d1_drop_unique_total": sum(row["n_d1_drop_unique"] for row in done),
+        "n_drop_unique_total": sum(row["n_drop_unique"] for row in done),
+        "n_new_one_occ_total": sum(row["n_new_one_occ"] for row in done),
+        "n_new_two_block_total": sum(row["n_new_two_block"] for row in done),
+        "n_hit_best_total": sum(row["n_hit_best"] for row in done),
+        "complete": len(done) == n_expected and all(row is not None for row in rows),
         "interesting": interesting,
         "rows": rows,
     }
 
 
-def summarize(ctrl: dict, parametric: list[dict], initial: dict) -> dict:
+def summarize(ctrl: dict, parametric: list[dict | None], initial: dict) -> dict:
+    para_done = [row for row in parametric if row is not None]
     return {
         "planted_ok": ctrl["ok"],
         "children_fast_agrees": ctrl["children_fast_agrees"],
         "parametric_n": len(parametric),
-        "parametric_any_hit": any(row["found"] for row in parametric),
-        "parametric_any_drop": any(row["drop"] > 0 for row in parametric),
-        "parametric_any_d1_drop": any(row["n_d1_drop_unique"] > 0 for row in parametric),
+        "parametric_n_done": len(para_done),
+        "parametric_complete": len(para_done) == len(parametric) and bool(para_done),
+        "parametric_any_hit": any(row["found"] for row in para_done),
+        "parametric_any_drop": any(row["drop"] > 0 for row in para_done),
+        "parametric_any_d1_drop": any(row["n_d1_drop_unique"] > 0 for row in para_done),
         "initial_n_rows": initial["n_rows"],
+        "initial_n_done": initial["n_done"],
+        "initial_complete": initial["complete"],
         "initial_n_changed_from_best": initial["n_changed_from_best"],
         "initial_any_hit": initial["n_interesting_rows"] > 0,
         "initial_any_length_drop": (
@@ -388,6 +374,11 @@ def summarize(ctrl: dict, parametric: list[dict], initial: dict) -> dict:
         "initial_n_new_two_block_total": initial["n_new_two_block_total"],
         "initial_n_hit_best_total": initial["n_hit_best_total"],
         "initial_n_d2_raw": initial["n_d2_raw"],
+        "census_complete": bool(
+            initial["complete"]
+            and len(para_done) == len(parametric)
+            and para_done
+        ),
         "d2_counts_are_unique_presentations": True,
         "d2_raw_is_enumerated_edges": True,
         "same_code_replay": True,
@@ -405,49 +396,117 @@ def notes_from_summary(summary: dict) -> list[str]:
         "A length drop would be an ordinary AC1–AC3 path of two AC2 steps (rotations as AC3). No Aut, no C0.",
         "Matching the stored best table is checked only on changed rows, and only when grandchild length is at most the best length.",
         "JSON is same-code deterministic replay. No U124 row is solved.",
+        "The full census exceeds one 60s guard; main() resumes for BUDGET_SECONDS and must be re-run until census_complete.",
     ]
 
 
-def main() -> dict:
-    OUT.mkdir(parents=True, exist_ok=True)
-    ctrl = planted()
-    print("c28 planted", ctrl["ok"], flush=True)
-    parametric = scan_parametric()
-    print(
-        f"c28 parametric n={len(parametric)} any={any(r['found'] for r in parametric)}",
-        flush=True,
-    )
-    initial = scan_initial_table()
-    print(
-        f"c28 initial rows={initial['n_rows']} changed={initial['n_changed_from_best']} "
-        f"interesting={initial['n_interesting_rows']}",
-        flush=True,
-    )
-    summary = summarize(ctrl, parametric, initial)
-    report = {
-        "summary": summary,
+def write_report(report: dict) -> None:
+    JSON_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
+
+def empty_report(n_param: int, n_initial: int) -> dict:
+    parametric: list[dict | None] = [None] * n_param
+    rows: list[dict | None] = [None] * n_initial
+    initial = aggregate_initial(rows, n_initial)
+    ctrl = {
+        "ok": False,
+        "children_fast_agrees": False,
+        "independent_checker": False,
+    }
+    return {
+        "summary": summarize(ctrl, parametric, initial),
         "planted": ctrl,
         "parametric": parametric,
         "initial": initial,
-        "notes": notes_from_summary(summary),
+        "notes": [],
     }
-    JSON_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print("c28 depth-2 archival AC2")
-    print(json.dumps(summary, indent=2))
+
+
+def load_report(n_param: int, n_initial: int) -> dict:
+    if not JSON_PATH.exists():
+        return empty_report(n_param, n_initial)
+    report = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    parametric = list(report.get("parametric") or [])
+    while len(parametric) < n_param:
+        parametric.append(None)
+    rows = list((report.get("initial") or {}).get("rows") or [])
+    while len(rows) < n_initial:
+        rows.append(None)
+    report["parametric"] = parametric[:n_param]
+    report["initial"] = aggregate_initial(rows[:n_initial], n_initial)
+    return report
+
+
+def main(budget: float = BUDGET_SECONDS) -> dict:
+    OUT.mkdir(parents=True, exist_ok=True)
+    deadline = time.perf_counter() + budget
+    pairs = parametric_pairs()
+    csv_rows, best = load_initial_csv()
+    report = load_report(len(pairs), len(csv_rows))
+    ctrl = planted()
+    report["planted"] = ctrl
+    print("c28 planted", ctrl["ok"], flush=True)
+
+    paused = False
+    for i, (tag, r1, r2) in enumerate(pairs):
+        if report["parametric"][i] is not None:
+            continue
+        if time.perf_counter() >= deadline:
+            paused = True
+            break
+        rec = scan_depth2(tag, r1, r2)
+        report["parametric"][i] = rec
+        print(
+            f"c28 parametric {tag} d1={rec['n_d1_unique']} "
+            f"d2u={rec['n_d2_unique']} drop={rec['drop']} found={rec['found']}",
+            flush=True,
+        )
+        report["initial"] = aggregate_initial(report["initial"]["rows"], len(csv_rows))
+        report["summary"] = summarize(ctrl, report["parametric"], report["initial"])
+        write_report(report)
+
+    if not paused:
+        rows = report["initial"]["rows"]
+        for i, row in enumerate(csv_rows):
+            if rows[i] is not None:
+                continue
+            if time.perf_counter() >= deadline:
+                paused = True
+                break
+            rec = scan_one_initial(row, best[row["name"]])
+            rows[i] = rec
+            print(
+                f"c28 {rec['id']} d1={rec['n_d1_unique']} d2u={rec['n_d2_unique']} "
+                f"d1drop={rec['n_d1_drop_unique']} d2drop={rec['n_drop_unique']} "
+                f"found={rec['found']}",
+                flush=True,
+            )
+            report["initial"] = aggregate_initial(rows, len(csv_rows))
+            report["summary"] = summarize(ctrl, report["parametric"], report["initial"])
+            write_report(report)
+
+    report["initial"] = aggregate_initial(report["initial"]["rows"], len(csv_rows))
+    report["summary"] = summarize(ctrl, report["parametric"], report["initial"])
+    report["notes"] = notes_from_summary(report["summary"])
+    write_report(report)
+    print("c28 depth-2 archival AC2", "complete" if report["summary"]["census_complete"] else "paused")
+    print(json.dumps(report["summary"], indent=2))
     print(f"wrote {JSON_PATH}")
     return report
 
 
 def annotate_existing() -> dict:
-    report = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    pairs = parametric_pairs()
+    csv_rows, _best = load_initial_csv()
+    report = load_report(len(pairs), len(csv_rows))
     ctrl = planted()
-    summary = summarize(ctrl, report["parametric"], report["initial"])
-    report["summary"] = summary
     report["planted"] = ctrl
-    report["notes"] = notes_from_summary(summary)
-    JSON_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    report["initial"] = aggregate_initial(report["initial"]["rows"], len(csv_rows))
+    report["summary"] = summarize(ctrl, report["parametric"], report["initial"])
+    report["notes"] = notes_from_summary(report["summary"])
+    write_report(report)
     print("c28 annotate-existing")
-    print(json.dumps(summary, indent=2))
+    print(json.dumps(report["summary"], indent=2))
     print(f"wrote {JSON_PATH}")
     return report
 

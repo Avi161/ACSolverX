@@ -235,7 +235,8 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 
 - Depth-2 ordinary AC2 (two successive C13/C27.1 neighbourhoods) on
   `aca_124_initial.csv` and parametric `P`/`Q`/Family A (`n=2..7`).
-  Census not yet run. Still **0/124**. No certificate JSONL rows.
+  Census resumes in 50s guard slices until complete. Still **0/124**.
+  No certificate JSONL rows.
 
 
 

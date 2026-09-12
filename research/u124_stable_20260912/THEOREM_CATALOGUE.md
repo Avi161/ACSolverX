@@ -1113,6 +1113,7 @@ for `t≥2`. `L1≥8`. Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Lemma 11.
 `children_fast` is junction cyclic reduction, checked equal to
 `elementary_ac2_scan.children` including move triples. Same-code
 replay plus planted `⟨x,xy⟩` / `⟨x,y⟩`. `independent_checker=false`.
-Census not yet run.
+Census not yet complete; `code/c28_depth2_ac2.py` resumes in 50s
+slices under the process guard.
 
 
