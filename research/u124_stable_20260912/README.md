@@ -170,7 +170,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     observed min 11). Plan advisor APPROVE. Advisor APPROVE. C42: one listed
     `YYXXXyxx` row aca_38 with `C_ab=(0,-1)` (`y ≡ C^{-1}` in
     abelianization, `L1=1`); k=3 nine-config misses (`183,924` products,
-    observed min 11). Plan advisor REVISE applied. Still 0/124.
+    observed min 11). Plan advisor REVISE applied. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

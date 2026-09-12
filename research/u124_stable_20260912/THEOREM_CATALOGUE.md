@@ -1866,7 +1866,8 @@ persisted factor/conjugator witness replayed outside the scanner.
 `independent_checker=false`. Identity checks are a new file
 `tests/u124_stable_20260912/test_c42_yyxxxyxx_y_eq_cinv.py` (they load the
 CSV) plus runtime assertions in the census script. Plan advisor REVISE
-applied (`ingest/advisor_c42_plan.md`). Census advisor audit pending.
+applied (`ingest/advisor_c42_plan.md`). `ingest/advisor_wave27.md`
+**APPROVE**.
 
 
 
