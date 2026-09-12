@@ -560,6 +560,14 @@ def test_c28_depth2_ac2_identities():
         assert summary["initial_n_rows"] == 124
         if summary.get("census_complete"):
             assert summary["initial_n_changed_from_best"] == 36
+            assert not summary["initial_any_hit"]
+            assert not summary["initial_any_length_drop"]
+            assert not summary["parametric_any_hit"]
+            assert not summary["parametric_any_drop"]
+            assert summary["initial_n_d1_drop_unique_total"] == 0
+            assert summary["initial_n_drop_unique_total"] == 0
+            assert summary["initial_n_d2_raw"] == 30_630_336
+            assert summary["initial_n_d2_unique_sum"] == 19_066_394
             assert summary["independent_checker"] is False
             assert summary["solved_u124"] == 0
             assert summary["d2_counts_are_unique_presentations"]

@@ -100,8 +100,10 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     six MITM cells miss. C27: archival initial depth-1 AC2 misses
     (36 μ-floor spellings included); `k=4` extra-pair products for
     `y` on `Q'_{3,-1}` miss (5,128,200 products, observed min length
-    11). Advisor APPROVE. C28: depth-2 ordinary AC2 on archival
-    initial and parametric P/Q/Family A (census pending). Still 0/124.
+    11). Advisor APPROVE. C28: depth ≤ 2 ordinary AC2 misses on all
+    124 archival initial rows (36 μ-floor spellings included; 19,066,394
+    unique grandchildren, 0 length drops) and on parametric P/Q/Family A
+    (36 pairs). Still 0/124.
 
 ## File ownership
 

@@ -359,6 +359,8 @@ def summarize(ctrl: dict, parametric: list[dict | None], initial: dict) -> dict:
         "parametric_any_hit": any(row["found"] for row in para_done),
         "parametric_any_drop": any(row["drop"] > 0 for row in para_done),
         "parametric_any_d1_drop": any(row["n_d1_drop_unique"] > 0 for row in para_done),
+        "parametric_n_d2_raw": sum(row["n_d2_raw"] for row in para_done),
+        "parametric_n_d2_unique_sum": sum(row["n_d2_unique"] for row in para_done),
         "initial_n_rows": initial["n_rows"],
         "initial_n_done": initial["n_done"],
         "initial_complete": initial["complete"],
@@ -374,6 +376,7 @@ def summarize(ctrl: dict, parametric: list[dict | None], initial: dict) -> dict:
         "initial_n_new_two_block_total": initial["n_new_two_block_total"],
         "initial_n_hit_best_total": initial["n_hit_best_total"],
         "initial_n_d2_raw": initial["n_d2_raw"],
+        "initial_n_d2_unique_sum": initial["n_d2_unique_sum"],
         "census_complete": bool(
             initial["complete"]
             and len(para_done) == len(parametric)

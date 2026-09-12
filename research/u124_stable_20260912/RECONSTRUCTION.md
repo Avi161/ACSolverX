@@ -233,10 +233,13 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 
 ## Wave 14 (C28 depth-2 archival AC2, 2026-09-12)
 
-- Depth-2 ordinary AC2 (two successive C13/C27.1 neighbourhoods) on
-  `aca_124_initial.csv` and parametric `P`/`Q`/Family A (`n=2..7`).
-  Census resumes in 50s guard slices until complete. Still **0/124**.
-  No certificate JSONL rows.
+- Depth ≤ 2 ordinary AC2 (two successive C13/C27.1 neighbourhoods) on
+  `aca_124_initial.csv`: 124 rows, 36 μ-floor spellings, 36,312 unique
+  depth-1 children, 19,066,394 unique grandchildren, 0 length drops,
+  0 new one-occurrence, 0 new two-block, 0 `canon_pair` matches to the
+  stored best spelling. Parametric `P`/`Q`/Family A (`n=2..7`): 36
+  pairs, 7,166,262 unique grandchildren, 0 drops. Bounded negative,
+  not a solve. Still **0/124**. No certificate JSONL rows.
 
 
 

@@ -1088,7 +1088,7 @@ Same-code replay plus planted AC2 and typed-4-tuple controls.
 
 ---
 
-## C28. Depth-2 ordinary AC2 on archival initial and parametric families — IDENTITY-CHECKED NEGATIVE (census pending)
+## C28. Depth ≤ 2 ordinary AC2 on archival initial and parametric families — IDENTITY-CHECKED NEGATIVE
 
 **C28.1.** Depth ≤ 2 in the C13/C27.1 neighbourhood: each step is
 **one AC2**, with cyclic orientations of both factors realized as AC3
@@ -1100,20 +1100,32 @@ the 36 μ-floor rows, a child or grandchild whose cyclic length is at
 most the stored best length is compared by `canon_pair` to the
 best-table spelling.
 
-**Expansion.** Two ordinary AC2 steps; rotations are AC3 by a prefix.
-No Aut, no C0. A length drop would be a two-move AC1–AC3 path.
+On `aca_124_initial.csv` (124 rows, 36 different from best): 36,312
+unique depth-1 children, 19,066,394 unique grandchildren, 30,630,336
+raw grandchild edges. 0 unique length drops at depth 1 or 2, 0 new
+one-occurrence, 0 new two-block–both, 0 `canon_pair` hits on the stored
+best spelling. Parametric `P_{n,δ}`, `Q_{n,δ}` (`n=2..7`, both signs)
+and Family A `P(n)`, `Q(n)` (`n=2..7`): 36 pairs, 7,166,262 unique
+grandchildren, 0 drops, 0 new one-occurrence, 0 new two-block.
+Planted control: `⟨x, xy⟩` drops at depth 1; `⟨x, y⟩` has no length
+drop (lengthening two-block grandchildren of `⟨x, y⟩` are expected at
+depth 2 and are not a miss failure).
+
+**Expansion.** At most two ordinary AC2 steps; rotations are AC3 by a
+prefix. No Aut, no C0. A length drop would have been a two-move
+AC1–AC3 path.
 
 **What this does not rule out.** Depth ≥ 3. Heap search. `k=L1+2t`
 for `t≥2`. `L1≥8`. Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Lemma 11.
 
 **U124.** All 124 archival initial rows and parametric `P`/`Q`/Family A
-(`n=2..7`). **Not a solve** unless a drop is found and expanded.
+(`n=2..7`). **Not a solve.** This is a bounded negative, not a
+counterexample to stable triviality.
 
 **Audit.** `code/c28_depth2_ac2.py`, `tables/c28_depth2_ac2.json`.
 `children_fast` is junction cyclic reduction, checked equal to
 `elementary_ac2_scan.children` including move triples. Same-code
 replay plus planted `⟨x,xy⟩` / `⟨x,y⟩`. `independent_checker=false`.
-Census not yet complete; `code/c28_depth2_ac2.py` resumes in 50s
-slices under the process guard.
+The census was resumed in 50s slices under the 60s process guard.
 
 
