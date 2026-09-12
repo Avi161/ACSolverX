@@ -1049,6 +1049,8 @@ controls. `independent_checker=false`. `ingest/advisor_wave11.md`
 **C27.1 (archival initial table and parametric families).** C13
 enumerated the depth-1 ordinary AC2 neighbourhood of the **best**
 table (0 length drops, 0 new one-occurrence, 0 new two-block).
+“Depth-1” here means **one AC2**, with cyclic orientations of both
+factors realized as AC3 by a prefix (not a longer AC3–AC2 composite).
 Thirty-six μ-floor rows have a different archival initial spelling.
 The same neighbourhood on `aca_124_initial.csv` (124 rows, 36
 changed) has 0 unique strict length drops, 0 new one-occurrence
@@ -1068,8 +1070,9 @@ minimum free length 11, none equal to `{y, Xyx, xyX}`. Inverse class
 by reversing and inverting factors. A hit would be a **normal-closure
 candidate**, not a C12 primitive.
 
-**Expansion.** C27.1 is ordinary AC1–AC3 (rotations are AC3 by a
-prefix). C27.2 is restore-preserving AC3+AC2 as in C22. No C0.
+**Expansion.** C27.1 is one ordinary AC2, with rotations as AC3 by a
+prefix of the displayed factor. C27.2 is restore-preserving AC3+AC2
+as in C22. No C0.
 
 **What this does not rule out.** Depth ≥ 2 AC2 on archival or best
 spellings. `k=L1+2t` for `t≥2` or for cells with `L1≠2`. `L1≥8`.
@@ -1081,6 +1084,6 @@ Lemma 11.
 
 **Audit.** `code/c27_archival_k4.py`, `tables/c27_archival_k4.json`.
 Same-code replay plus planted AC2 and typed-4-tuple controls.
-`independent_checker=false`. Advisor ingest pending.
+`independent_checker=false`. `ingest/advisor_wave12.md` **APPROVE**.
 
 

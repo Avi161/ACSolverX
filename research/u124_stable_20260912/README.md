@@ -97,8 +97,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     window: two Cartesian cells miss (observed minima 11 and 13);
     six MITM cells miss. C27: archival initial depth-1 AC2 misses
     (36 μ-floor spellings included); `k=4` extra-pair products for
-    `y` on `Q'_{3,-1}` miss (5,128,200 products, min length 11).
-    Still 0/124.
+    `y` on `Q'_{3,-1}` miss (5,128,200 products, observed min length
+    11). Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

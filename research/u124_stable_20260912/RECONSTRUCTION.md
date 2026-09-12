@@ -228,7 +228,8 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - `k=4` typed extra-pair products for `y` on `Q'_{3,-1}`: 5,128,200
   Cartesian tuples, observed min length 11, no hit on `{y, Xyx, xyX}`.
   A hit would have been a normal-closure candidate, not a C12 path.
-  Still **0/124**. No certificate JSONL rows.
+  Advisor APPROVE (`ingest/advisor_wave12.md`). Still **0/124**.
+  No certificate JSONL rows.
 
 
 
