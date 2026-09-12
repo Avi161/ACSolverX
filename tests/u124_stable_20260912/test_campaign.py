@@ -153,3 +153,28 @@ def test_c19_minus_endpoint_becomes_bs():
         assert not rec["donor_valid_bs_pinch"]
     fact = esc.factorization_identities()
     assert fact["equals_inner_xinv2"] and fact["equals_xinv2_conjugate"]
+
+
+def test_c20_pinch_is_round_trip():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c20_roundtrip as c20  # type: ignore
+
+    for n in (2, 3, 7):
+        rec = c20.round_trip_row(n)
+        assert rec["round_trip"], rec
+        assert rec["D*B"]["equals_D"]
+        assert rec["B*D"]["equals_D"]
+        assert rec["D*Binv"]["cyclic_of_D"]
+        assert rec["B*Dinv"]["cyclic_of_Dinv"]
+    depth = c20.depth1_pinch_roundtrips(2)
+    counts = depth["counts"]
+    assert counts["all_round_trip"]
+    assert counts["other"] == 0
+    assert counts["empty_on_D_slot"] == 0
+    assert counts["empty_on_B_slot"] == 10
+    assert counts["unique"] - counts["valid_pinch_children"] == 10
+    donor = c20.serialize_whitehead(c20.D)
+    assert not donor["primitive"]
+    assert not donor["first_kind_primitive"]
+    assert donor["minimum_total"] == 7

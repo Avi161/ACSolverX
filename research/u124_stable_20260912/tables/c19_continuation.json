@@ -1,0 +1,3613 @@
+{
+  "summary": {
+    "n_checked": 6,
+    "any_ac2_length_drop": false,
+    "any_ac2_valid_pinch": true,
+    "any_ac2_one_occ": false,
+    "ac2_hit_counts": {
+      "2": 106,
+      "3": 146,
+      "4": 186,
+      "5": 226,
+      "6": 266,
+      "7": 306
+    },
+    "any_conjugate_valid_pinch": false,
+    "any_conjugate_new_exponent": false,
+    "displayed_any_valid_pinch": true,
+    "solved_u124": 0
+  },
+  "scans": [
+    {
+      "n": 2,
+      "pair": [
+        "XuuuXUU",
+        "XXUxxuX"
+      ],
+      "base_len": 14,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 196,
+      "n_ac2_unique": 116,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXUxxuX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXUxxu",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXUx",
+          "new_r2": "XXUxxuX",
+          "new_len": 17,
+          "drop": -3,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 17
+          }
+        },
+        {
+          "new_r1": "uuXUUxuXXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 17,
+          "drop": -3,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 17
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxuXXXU",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxuXXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxuXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXUxxuX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXUxx",
+          "new_r2": "XXUxxuX",
+          "new_len": 19,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 19
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXUx",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxuXXXU",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 4,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXUxxuXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -2,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 6,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UUXuuuXXXUxxuX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 0,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UUXuuuXuXXXUxx",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 2,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "UUXuuuuXXXUx",
+          "new_r2": "XXUxxuX",
+          "new_len": 19,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 3,
+            "new_len": 19
+          }
+        },
+        {
+          "new_r1": "UUXuuuxuXXXU",
+          "new_r2": "XXUxxuX",
+          "new_len": 19,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 4,
+            "new_len": 19
+          }
+        },
+        {
+          "new_r1": "UUXuuuXXUxxuXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -2,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 6,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XUUXuuuxxuXXXU",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 4,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XUUXuuxxuXXX",
+          "new_r2": "XXUxxuX",
+          "new_len": 19,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 5,
+            "new_len": 19
+          }
+        },
+        {
+          "new_r1": "uXUUXuuXXUxxuX",
+          "new_r2": "XXUxxuX",
+          "new_len": 21,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -2,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -3,
+            2
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 0,
+            "new_len": 21
+          }
+        }
+      ],
+      "n_ac2_hits": 106,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    },
+    {
+      "n": 3,
+      "pair": [
+        "XuuuXUU",
+        "XXXUxxxuX"
+      ],
+      "base_len": 16,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 252,
+      "n_ac2_unique": 156,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXXUxxxuX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXUxxxu",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXXUxx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 21,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "uuuXUUxuXXXXUx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 23,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 23
+          }
+        },
+        {
+          "new_r1": "uuXUUxxuXXXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 21,
+          "drop": -5,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 21
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxxuXXXXU",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxxuXXXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxxuXXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXUxxxuXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXUxxxuX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXXUxxx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 23,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 23
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXXUxx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxuXXXXUx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 4,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxuXXXXU",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 5,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXUxxxuXXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 7,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXUxxxuXX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -2,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 8,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UUXuuuXXXXUxxxuX",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 0,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UUXuuuXuXXXXUxxx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 25,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 2,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "UUXuuuuXXXXUxx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 23,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 3,
+            "new_len": 23
+          }
+        },
+        {
+          "new_r1": "UUXuuuxuXXXXUx",
+          "new_r2": "XXXUxxxuX",
+          "new_len": 23,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1
+          ],
+          "r2_exponents": [
+            -4,
+            3
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 4,
+            "new_len": 23
+          }
+        }
+      ],
+      "n_ac2_hits": 146,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    },
+    {
+      "n": 4,
+      "pair": [
+        "XuuuXUU",
+        "XXXXUxxxxuX"
+      ],
+      "base_len": 18,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 308,
+      "n_ac2_unique": 196,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXXXUxxxxuX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXUxxxxu",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXXXUxxx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 25,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "uuuXUUxuXXXXXUxx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 27,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            1,
+            2
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 27
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxuXXXXXUx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 27,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            1,
+            2
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 27
+          }
+        },
+        {
+          "new_r1": "uuXUUxxxuXXXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 25,
+          "drop": -7,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 25
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxxxuXXXXXU",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxxxuXXXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxxxuXXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXUxxxxuXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 9,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXUxxxxuXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 10,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXXUxxxxuX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXXXUxxxx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 27,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 27
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXXXUxxx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxuXXXXXUxx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 4,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxuXXXXXUx",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 5,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxxuXXXXXU",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -5,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 6,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXUxxxxuXXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -4,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 8,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXUxxxxuXXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -3,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 9,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXUxxxxuXX",
+          "new_r2": "XXXXUxxxxuX",
+          "new_len": 29,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -2,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -5,
+            4
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 10,
+            "new_len": 29
+          }
+        }
+      ],
+      "n_ac2_hits": 186,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    },
+    {
+      "n": 5,
+      "pair": [
+        "XuuuXUU",
+        "XXXXXUxxxxxuX"
+      ],
+      "base_len": 20,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 364,
+      "n_ac2_unique": 236,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXXXXUxxxxxuX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXXUxxxxxu",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXXXXUxxxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 29,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "uuuXUUxuXXXXXXUxxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 31,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            1,
+            3
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 31
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxuXXXXXXUxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 31,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 31
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxuXXXXXXUx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 31,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            1,
+            3
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 31
+          }
+        },
+        {
+          "new_r1": "uuXUUxxxxuXXXXXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 29,
+          "drop": -9,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 29
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxxxxuXXXXXXU",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxxxxuXXXXXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxxxxuXXXXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 9,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXUxxxxxuXXXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 10,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXUxxxxxuXXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 11,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXUxxxxxuXX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 12,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXXXUxxxxxuX",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXXXXUxxxxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 31,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 31
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXXXXUxxxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxuXXXXXXUxxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 4,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxuXXXXXXUxx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 5,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxxuXXXXXXUx",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            4
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 6,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxxxuXXXXXXU",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_len": 33,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -6,
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -6,
+            5
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 7,
+            "new_len": 33
+          }
+        }
+      ],
+      "n_ac2_hits": 226,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    },
+    {
+      "n": 6,
+      "pair": [
+        "XuuuXUU",
+        "XXXXXXUxxxxxxuX"
+      ],
+      "base_len": 22,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 420,
+      "n_ac2_unique": 276,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXXXXXUxxxxxxuX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXXXUxxxxxxu",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXXXXXUxxxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 33,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "uuuXUUxuXXXXXXXUxxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 35,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            1,
+            4
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 35
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxuXXXXXXXUxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 35,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            2,
+            3
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 35
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxuXXXXXXXUxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 35,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            2,
+            3
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 35
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxxuXXXXXXXUx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 35,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            1,
+            4
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 35
+          }
+        },
+        {
+          "new_r1": "uuXUUxxxxxuXXXXXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 33,
+          "drop": -11,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            5
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 33
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxxxxxuXXXXXXXU",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxxxxxuXXXXXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 9,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxxxxxuXXXXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 10,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXUxxxxxxuXXXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 11,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXUxxxxxxuXXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 12,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXUxxxxxxuXXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 13,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXUxxxxxxuXX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 14,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXXXXUxxxxxxuX",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXXXXXUxxxxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 35,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 35
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXXXXXUxxxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxuXXXXXXXUxxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            2
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 4,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxxxuXXXXXXXUxxx",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_len": 37,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -7,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -7,
+            6
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 5,
+            "new_len": 37
+          }
+        }
+      ],
+      "n_ac2_hits": 266,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    },
+    {
+      "n": 7,
+      "pair": [
+        "XuuuXUU",
+        "XXXXXXXUxxxxxxxuX"
+      ],
+      "base_len": 24,
+      "base_D_pinches": {
+        "word": "XuuuXUU",
+        "cyc_len": 7,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -1,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": false,
+        "exponents": [
+          -1
+        ],
+        "one_occ": false
+      },
+      "n_ac2_raw": 476,
+      "n_ac2_unique": 316,
+      "ac2_hits": [
+        {
+          "new_r1": "XuuuXUUXXXXXXXUxxxxxxxuX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 0,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXXXXUxxxxxxxu",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 1,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "uuuXUXXXXXXXXUxxxxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 37,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 2,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "uuuXUUxuXXXXXXXXUxxxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            1,
+            5
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 3,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxuXXXXXXXXUxxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            2,
+            4
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxuXXXXXXXXUxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            3
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxxuXXXXXXXXUxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            2,
+            4
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "uuuXUUxxxxxuXXXXXXXXUx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            1,
+            5
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "uuXUUxxxxxxuXXXXXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 37,
+          "drop": -13,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            6
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 37
+          }
+        },
+        {
+          "new_r1": "XuuuXUUxxxxxxxuXXXXXXXXU",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 9,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUUxxxxxxxuXXXXXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 10,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXUxxxxxxxuXXXXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 11,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXUxxxxxxxuXXXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 12,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXUxxxxxxxuXXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 13,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXUxxxxxxxuXXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 14,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXUxxxxxxxuXXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 15,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "XuuuXUUXXXXXXUxxxxxxxuXX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 16,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "UXuuuXUXXXXXXXUxxxxxxxuX",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -1,
+            7
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 0,
+            "new_len": 41
+          }
+        },
+        {
+          "new_r1": "UXuuuXXXXXXXXXUxxxxxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 39,
+          "drop": -15,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -9,
+            -1
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 39
+          }
+        },
+        {
+          "new_r1": "UXuuuXUxuXXXXXXXXUxxxxxx",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_len": 41,
+          "drop": -17,
+          "new_valid_pinch": true,
+          "new_one_occ": false,
+          "r1_exponents": [
+            -8,
+            -1,
+            1
+          ],
+          "r2_exponents": [
+            -8,
+            7
+          ],
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 41
+          }
+        }
+      ],
+      "n_ac2_hits": 306,
+      "conjugate_hits": [],
+      "n_conjugate_hits": 0
+    }
+  ],
+  "displayed_multiplies": [
+    {
+      "n": 2,
+      "D_times_B": {
+        "word": "XuuuXUUXXUxxuX",
+        "cyc_len": 14,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 2,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          2
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXux",
+        "cyc_len": 12,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -2,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -2,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXUxxuXXuuuXUU",
+        "cyc_len": 14,
+        "pinches": [
+          {
+            "k": 2,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          2
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XUxxuXuuxUUU",
+        "cyc_len": 12,
+        "pinches": [
+          {
+            "k": 2,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          2
+        ],
+        "one_occ": false
+      }
+    },
+    {
+      "n": 3,
+      "D_times_B": {
+        "word": "XuuuXUUXXXUxxxuX",
+        "cyc_len": 16,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 3,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          3
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXXuxx",
+        "cyc_len": 14,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -3,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -3,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXXUxxxuXXuuuXUU",
+        "cyc_len": 16,
+        "pinches": [
+          {
+            "k": 3,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          3
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XXUxxxuXuuxUUU",
+        "cyc_len": 14,
+        "pinches": [
+          {
+            "k": 3,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          3
+        ],
+        "one_occ": false
+      }
+    },
+    {
+      "n": 4,
+      "D_times_B": {
+        "word": "XuuuXUUXXXXUxxxxuX",
+        "cyc_len": 18,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 4,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          4
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXXXuxxx",
+        "cyc_len": 16,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -4,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -4,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXXXUxxxxuXXuuuXUU",
+        "cyc_len": 18,
+        "pinches": [
+          {
+            "k": 4,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          4
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XXXUxxxxuXuuxUUU",
+        "cyc_len": 16,
+        "pinches": [
+          {
+            "k": 4,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          4
+        ],
+        "one_occ": false
+      }
+    },
+    {
+      "n": 5,
+      "D_times_B": {
+        "word": "XuuuXUUXXXXXUxxxxxuX",
+        "cyc_len": 20,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 5,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          5
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXXXXuxxxx",
+        "cyc_len": 18,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -5,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -5,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXXXXUxxxxxuXXuuuXUU",
+        "cyc_len": 20,
+        "pinches": [
+          {
+            "k": 5,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          5
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XXXXUxxxxxuXuuxUUU",
+        "cyc_len": 18,
+        "pinches": [
+          {
+            "k": 5,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          5
+        ],
+        "one_occ": false
+      }
+    },
+    {
+      "n": 6,
+      "D_times_B": {
+        "word": "XuuuXUUXXXXXXUxxxxxxuX",
+        "cyc_len": 22,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 6,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          6
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXXXXXuxxxxx",
+        "cyc_len": 20,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -6,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -6,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXXXXXUxxxxxxuXXuuuXUU",
+        "cyc_len": 22,
+        "pinches": [
+          {
+            "k": 6,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          6
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XXXXXUxxxxxxuXuuxUUU",
+        "cyc_len": 20,
+        "pinches": [
+          {
+            "k": 6,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          6
+        ],
+        "one_occ": false
+      }
+    },
+    {
+      "n": 7,
+      "D_times_B": {
+        "word": "XuuuXUUXXXXXXXUxxxxxxxuX",
+        "cyc_len": 24,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": 7,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          7
+        ],
+        "one_occ": false
+      },
+      "D_times_Binv": {
+        "word": "uuuXUUxUXXXXXXXuxxxxxx",
+        "cyc_len": 22,
+        "pinches": [
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          },
+          {
+            "k": -7,
+            "left": "U",
+            "right": "u"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -7,
+          -1
+        ],
+        "one_occ": false
+      },
+      "B_times_D": {
+        "word": "XXXXXXXUxxxxxxxuXXuuuXUU",
+        "cyc_len": 24,
+        "pinches": [
+          {
+            "k": 7,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": -1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          -1,
+          7
+        ],
+        "one_occ": false
+      },
+      "B_times_Dinv": {
+        "word": "XXXXXXUxxxxxxxuXuuxUUU",
+        "cyc_len": 22,
+        "pinches": [
+          {
+            "k": 7,
+            "left": "U",
+            "right": "u"
+          },
+          {
+            "k": 1,
+            "left": "u",
+            "right": "U"
+          }
+        ],
+        "valid": true,
+        "exponents": [
+          1,
+          7
+        ],
+        "one_occ": false
+      }
+    }
+  ],
+  "notes": [
+    "Depth-1 AC2 plus AC3 by u^k and x^k on D, k in [-(n+2), n+2].",
+    "A miss is not an obstruction to longer products.",
+    "C19 pair is not a stored U124 spelling; C16 incoming is non-effective.",
+    "No U124 row is solved."
+  ]
+}

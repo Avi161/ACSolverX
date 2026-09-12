@@ -598,6 +598,69 @@ boundary is a valid BS(n,n+1) Britton pinch and C5 does not fire.
 **Control.** The same depth-1 neighbourhood on `S_{n,+1}` contains the
 C16.1 loop onto relabeled `P_{n,+1}` and no analogous new BS family.
 
+**Continuation.** Depth-1 AC2 and AC3 of `D` by `u^k`/`x^k` for
+`k ∈ [-(n+2), n+2]` never change `D`’s pinch exponents off `{−1}`
+(`code/c19_continuation.py`). Apparent `valid` pinches on AC2 children
+are classified by C20 as round trips, not C5 progress.
+
 **Audit.** `code/c16_escape_scan.py`, `tables/c16_escape_scan.json`.
 `ingest/advisor_wave4.md` **REVISE** applied. Coordinator recovery:
 `ingest/theory_wave3.md`.
+
+---
+
+## C20. One associated-subgroup pinch after AC2 of `D` by `B` is a round trip — IDENTITY-CHECKED NEGATIVE
+
+**Statement.** Let `n ≥ 2`, `D = x⁻¹ u³ x⁻¹ u⁻²`, and `B` any cyclic
+conjugate of `u⁻¹ xⁿ u x⁻(n+1)` (consecutive BS(`n`,`n+1`) with stable
+letter `u`). Write `pinch` for the first valid associated-subgroup
+rewrite on a freely reduced word: replace a boundary
+`u⁻¹ x^{qn} u` by `x^{q(n+1)}` or `u x^{q(n+1)} u⁻¹` by `x^{qn}`,
+`q ≠ 0`. Then:
+
+1. On each displayed product `D·B`, `B·D`, `D·B⁻¹`, `B·D⁻¹`, one
+   `pinch` returns a word cyclically equal to `D` or `D⁻¹`.
+2. On the entire unique depth-1 ordinary AC2 neighbourhood of `⟨D,B⟩`
+   (all rotations and donor signs; `code/elementary_ac2_scan.py`
+   `children`), every child that has a valid BS(`n`,`n+1`) pinch
+   satisfies: one `pinch` on that newly valid row returns cyclic `D`,
+   cyclic `D⁻¹`, or the empty word. The empty word occurs only when the
+   pinched row is the `B` slot (`B` reducing by its own defining
+   relation). The `D` slot never pinches to empty.
+3. For each `n=2..7` there are exactly ten unique children with no
+   valid pinch. They keep `D` and lengthen `B` (at `n=2`: cyclic totals
+   17 or 19 versus base 14).
+
+**Identities.** Machine-checked `n=2..7` in `code/c20_roundtrip.py`,
+`tables/c20_roundtrip.json`. Depth-1 counts are uniform:
+`unique = 40n+36`, `valid_pinch = unique−10`, `empty_on_B_slot = 10`,
+`other = 0`, `empty_on_D_slot = 0`. Displayed four-product round trip
+holds in all six parameters.
+
+**Expansion.** The four displayed identities are free-group equalities
+after one HNN rewrite; they explain why `any_ac2_valid_pinch` in
+`tables/c19_continuation.json` is not C5 progress. The rewrite on
+`D·B` is `B`’s own pinch sitting in the product, i.e. the inverse of
+the AC2 that formed the product. Empty-on-`B` is not a C5 finish on
+`D`. No C0. No new elementary AC certificate.
+
+**What this does not rule out.** Products of length ≥ 2 in mixed
+conjugates of `D` and `B` that are not a single depth-1 AC2 child;
+donors other than `B`; AC3 of `D` by a word that is not a generator
+power in the scanned range; a Britton sequence that uses an
+intermediate spelling not in this neighbourhood.
+
+**C12 probe (same artifact, not a fire).** `D` has abelian gcd 1 but is
+**not** primitive relative to the Whitehead generating set used by C12
+(second-kind maps plus signed permutations): cyclic length stays 7, so
+the Aut-orbit minimum is not 1. A capped Nielsen search (8000 states)
+is consistent with that and is not an independent proof. C12 therefore
+does not apply to `⟨D,B⟩` or to `S_{n,−1}`. `Q'` relators and the five
+stored C16 endpoints likewise fail the same recognizer.
+
+**U124.** Applies only to the C19 pair, itself the C16 image of the
+`δ=−1` MS-template rows. Incoming C16 remains two non-effective C0
+uses. **Not a solve, not a best-table shortening.**
+
+**Audit.** Coordinator replay `code/c20_roundtrip.py`. Continuation
+scan `code/c19_continuation.py`. Advisor on C20 pending.

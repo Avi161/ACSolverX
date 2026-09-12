@@ -1,0 +1,1666 @@
+{
+  "summary": {
+    "round_trip_ok": true,
+    "n_checked": 6,
+    "D_primitive": false,
+    "D_whitehead_min": 7,
+    "D_first_kind_primitive": false,
+    "D_first_kind_min": 7,
+    "D_nielsen_found": false,
+    "D_nielsen_states": 8001,
+    "depth1_all_round_trip": true,
+    "depth1_other_residues": 0,
+    "depth1_counts": {
+      "2": {
+        "unique": 116,
+        "valid_pinch_children": 106,
+        "cyclic_D": 72,
+        "cyclic_Dinv": 24,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "3": {
+        "unique": 156,
+        "valid_pinch_children": 146,
+        "cyclic_D": 102,
+        "cyclic_Dinv": 34,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "4": {
+        "unique": 196,
+        "valid_pinch_children": 186,
+        "cyclic_D": 132,
+        "cyclic_Dinv": 44,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "5": {
+        "unique": 236,
+        "valid_pinch_children": 226,
+        "cyclic_D": 162,
+        "cyclic_Dinv": 54,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "6": {
+        "unique": 276,
+        "valid_pinch_children": 266,
+        "cyclic_D": 192,
+        "cyclic_Dinv": 64,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "7": {
+        "unique": 316,
+        "valid_pinch_children": 306,
+        "cyclic_D": 222,
+        "cyclic_Dinv": 74,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      }
+    },
+    "any_S_c12_finish": false,
+    "any_C19_c12_finish": false,
+    "any_Qprime_r1_primitive": false,
+    "any_Qprime_r2_primitive": false,
+    "any_stored_primitive": false,
+    "solved_u124": 0
+  },
+  "statement": "For n=2..7, the first valid associated-subgroup pinch on each of the freely reduced products D\u00b7B, B\u00b7D, D\u00b7B^{-1}, B\u00b7D^{-1} returns a cyclic conjugate of D or D^{-1}. This is an AC2 round trip, not Britton progress on D.",
+  "identities": [
+    {
+      "n": 2,
+      "B": "UxxuXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxuXXX",
+        "product_cyc": "XuuuXUUUxxuXXX",
+        "ok": true,
+        "k": 2,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxuXXXXuuuXUU",
+        "product_cyc": "UxxuXXXXuuuXUU",
+        "ok": true,
+        "k": 2,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxUXXu",
+        "product_cyc": "XuuuXUUxxxUXXu",
+        "ok": true,
+        "k": -2,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxuXXXuuxUUUx",
+        "product_cyc": "UxxuXXXuuxUUUx",
+        "ok": true,
+        "k": 2,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    },
+    {
+      "n": 3,
+      "B": "UxxxuXXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxxuXXXX",
+        "product_cyc": "XuuuXUUUxxxuXXXX",
+        "ok": true,
+        "k": 3,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxxuXXXXXuuuXUU",
+        "product_cyc": "UxxxuXXXXXuuuXUU",
+        "ok": true,
+        "k": 3,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxxUXXXu",
+        "product_cyc": "XuuuXUUxxxxUXXXu",
+        "ok": true,
+        "k": -3,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxxuXXXXuuxUUUx",
+        "product_cyc": "UxxxuXXXXuuxUUUx",
+        "ok": true,
+        "k": 3,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    },
+    {
+      "n": 4,
+      "B": "UxxxxuXXXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxxxuXXXXX",
+        "product_cyc": "XuuuXUUUxxxxuXXXXX",
+        "ok": true,
+        "k": 4,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxxxuXXXXXXuuuXUU",
+        "product_cyc": "UxxxxuXXXXXXuuuXUU",
+        "ok": true,
+        "k": 4,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxxxUXXXXu",
+        "product_cyc": "XuuuXUUxxxxxUXXXXu",
+        "ok": true,
+        "k": -4,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxxxuXXXXXuuxUUUx",
+        "product_cyc": "UxxxxuXXXXXuuxUUUx",
+        "ok": true,
+        "k": 4,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    },
+    {
+      "n": 5,
+      "B": "UxxxxxuXXXXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxxxxuXXXXXX",
+        "product_cyc": "XuuuXUUUxxxxxuXXXXXX",
+        "ok": true,
+        "k": 5,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxxxxuXXXXXXXuuuXUU",
+        "product_cyc": "UxxxxxuXXXXXXXuuuXUU",
+        "ok": true,
+        "k": 5,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxxxxUXXXXXu",
+        "product_cyc": "XuuuXUUxxxxxxUXXXXXu",
+        "ok": true,
+        "k": -5,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxxxxuXXXXXXuuxUUUx",
+        "product_cyc": "UxxxxxuXXXXXXuuxUUUx",
+        "ok": true,
+        "k": 5,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    },
+    {
+      "n": 6,
+      "B": "UxxxxxxuXXXXXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxxxxxuXXXXXXX",
+        "product_cyc": "XuuuXUUUxxxxxxuXXXXXXX",
+        "ok": true,
+        "k": 6,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxxxxxuXXXXXXXXuuuXUU",
+        "product_cyc": "UxxxxxxuXXXXXXXXuuuXUU",
+        "ok": true,
+        "k": 6,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxxxxxUXXXXXXu",
+        "product_cyc": "XuuuXUUxxxxxxxUXXXXXXu",
+        "ok": true,
+        "k": -6,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxxxxxuXXXXXXXuuxUUUx",
+        "product_cyc": "UxxxxxxuXXXXXXXuuxUUUx",
+        "ok": true,
+        "k": 6,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    },
+    {
+      "n": 7,
+      "B": "UxxxxxxxuXXXXXXXX",
+      "D*B": {
+        "product": "XuuuXUUUxxxxxxxuXXXXXXXX",
+        "product_cyc": "XuuuXUUUxxxxxxxuXXXXXXXX",
+        "ok": true,
+        "k": 7,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*D": {
+        "product": "UxxxxxxxuXXXXXXXXXuuuXUU",
+        "product_cyc": "UxxxxxxxuXXXXXXXXXuuuXUU",
+        "ok": true,
+        "k": 7,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "D*Binv": {
+        "product": "XuuuXUUxxxxxxxxUXXXXXXXu",
+        "product_cyc": "XuuuXUUxxxxxxxxUXXXXXXXu",
+        "ok": true,
+        "k": -7,
+        "after_cyc": "XuuuXUU",
+        "equals_D": true,
+        "equals_Dinv": false,
+        "cyclic_of_D": true,
+        "cyclic_of_Dinv": false
+      },
+      "B*Dinv": {
+        "product": "UxxxxxxxuXXXXXXXXuuxUUUx",
+        "product_cyc": "UxxxxxxxuXXXXXXXXuuxUUUx",
+        "ok": true,
+        "k": 7,
+        "after_cyc": "uuxUUUx",
+        "equals_D": false,
+        "equals_Dinv": true,
+        "cyclic_of_D": false,
+        "cyclic_of_Dinv": true
+      },
+      "round_trip": true
+    }
+  ],
+  "depth1_pinches": [
+    {
+      "n": 2,
+      "counts": {
+        "unique": 116,
+        "valid_pinch_children": 106,
+        "cyclic_D": 72,
+        "cyclic_Dinv": 24,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    },
+    {
+      "n": 3,
+      "counts": {
+        "unique": 156,
+        "valid_pinch_children": 146,
+        "cyclic_D": 102,
+        "cyclic_Dinv": 34,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    },
+    {
+      "n": 4,
+      "counts": {
+        "unique": 196,
+        "valid_pinch_children": 186,
+        "cyclic_D": 132,
+        "cyclic_Dinv": 44,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    },
+    {
+      "n": 5,
+      "counts": {
+        "unique": 236,
+        "valid_pinch_children": 226,
+        "cyclic_D": 162,
+        "cyclic_Dinv": 54,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    },
+    {
+      "n": 6,
+      "counts": {
+        "unique": 276,
+        "valid_pinch_children": 266,
+        "cyclic_D": 192,
+        "cyclic_Dinv": 64,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    },
+    {
+      "n": 7,
+      "counts": {
+        "unique": 316,
+        "valid_pinch_children": 306,
+        "cyclic_D": 222,
+        "cyclic_Dinv": 74,
+        "cyclic_B": 0,
+        "cyclic_Binv": 0,
+        "empty": 10,
+        "empty_on_D_slot": 0,
+        "empty_on_B_slot": 10,
+        "other": 0,
+        "pinch_failed": 0,
+        "all_round_trip": true
+      },
+      "residues": []
+    }
+  ],
+  "probes": {
+    "D_whitehead": {
+      "word": "XuuuXUU",
+      "labeled": "XyyyXYY",
+      "minimum": "XYYXyyy",
+      "minimum_total": 7,
+      "primitive": false,
+      "n_steps": 0,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "phi_image": "XyyyXYY",
+      "conjugator": "",
+      "core": "XyyyXYY",
+      "exp": [
+        -2,
+        1
+      ],
+      "abelian_gcd": 1,
+      "first_kind_minimum": "XyyyXYY",
+      "first_kind_minimum_total": 7,
+      "first_kind_primitive": false,
+      "first_kind_n_steps": 0,
+      "first_kind_phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "nielsen": {
+        "found": false,
+        "states": 8001,
+        "max_states": 8000
+      },
+      "nielsen_primitive": false
+    },
+    "family": [
+      {
+        "n": 2,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXY",
+          "labeled": "YxxyXXY",
+          "minimum": "XXYYxxy",
+          "minimum_total": 7,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXY",
+          "conjugator": "",
+          "core": "YxxyXXY",
+          "exp": [
+            0,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXY",
+          "first_kind_minimum_total": 7,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxUUxuuXX",
+          "labeled": "YxxYYxyyXX",
+          "minimum": "XXYxxYYxyy",
+          "minimum_total": 10,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxYYxyyXX",
+          "conjugator": "",
+          "core": "YxxYYxyyXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxYYxyyXX",
+          "first_kind_minimum_total": 10,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXUxxuX",
+          "labeled": "XXYxxyX",
+          "minimum": "XXXYxxy",
+          "minimum_total": 7,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXYxxyX",
+          "conjugator": "",
+          "core": "XXYxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXYxxyX",
+          "first_kind_minimum_total": 7,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      },
+      {
+        "n": 3,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXXY",
+          "labeled": "YxxyXXXY",
+          "minimum": "XXXYYxxy",
+          "minimum_total": 8,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXXY",
+          "conjugator": "",
+          "core": "YxxyXXXY",
+          "exp": [
+            -1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXXY",
+          "first_kind_minimum_total": 8,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxxUUxuuXXX",
+          "labeled": "YxxxYYxyyXXX",
+          "minimum": "XXXYxxxYYxyy",
+          "minimum_total": 12,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxYYxyyXXX",
+          "conjugator": "",
+          "core": "YxxxYYxyyXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxYYxyyXXX",
+          "first_kind_minimum_total": 12,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXXUxxxuX",
+          "labeled": "XXXYxxxyX",
+          "minimum": "XXXXYxxxy",
+          "minimum_total": 9,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXXYxxxyX",
+          "conjugator": "",
+          "core": "XXXYxxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXXYxxxyX",
+          "first_kind_minimum_total": 9,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      },
+      {
+        "n": 4,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXXXY",
+          "labeled": "YxxyXXXXY",
+          "minimum": "XXXXYYxxy",
+          "minimum_total": 9,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXXXY",
+          "conjugator": "",
+          "core": "YxxyXXXXY",
+          "exp": [
+            -2,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXXXY",
+          "first_kind_minimum_total": 9,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxxxUUxuuXXXX",
+          "labeled": "YxxxxYYxyyXXXX",
+          "minimum": "XXXXYxxxxYYxyy",
+          "minimum_total": 14,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxxYYxyyXXXX",
+          "conjugator": "",
+          "core": "YxxxxYYxyyXXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxxYYxyyXXXX",
+          "first_kind_minimum_total": 14,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXXXUxxxxuX",
+          "labeled": "XXXXYxxxxyX",
+          "minimum": "XXXXXYxxxxy",
+          "minimum_total": 11,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXXXYxxxxyX",
+          "conjugator": "",
+          "core": "XXXXYxxxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXXXYxxxxyX",
+          "first_kind_minimum_total": 11,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      },
+      {
+        "n": 5,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXXXXY",
+          "labeled": "YxxyXXXXXY",
+          "minimum": "XXXXXYYxxy",
+          "minimum_total": 10,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXXXXY",
+          "conjugator": "",
+          "core": "YxxyXXXXXY",
+          "exp": [
+            -3,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXXXXY",
+          "first_kind_minimum_total": 10,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxxxxUUxuuXXXXX",
+          "labeled": "YxxxxxYYxyyXXXXX",
+          "minimum": "XXXXXYxxxxxYYxyy",
+          "minimum_total": 16,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxxxYYxyyXXXXX",
+          "conjugator": "",
+          "core": "YxxxxxYYxyyXXXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxxxYYxyyXXXXX",
+          "first_kind_minimum_total": 16,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXXXXUxxxxxuX",
+          "labeled": "XXXXXYxxxxxyX",
+          "minimum": "XXXXXXYxxxxxy",
+          "minimum_total": 13,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXXXXYxxxxxyX",
+          "conjugator": "",
+          "core": "XXXXXYxxxxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXXXXYxxxxxyX",
+          "first_kind_minimum_total": 13,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      },
+      {
+        "n": 6,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXXXXXY",
+          "labeled": "YxxyXXXXXXY",
+          "minimum": "XXXXXXYYxxy",
+          "minimum_total": 11,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXXXXXY",
+          "conjugator": "",
+          "core": "YxxyXXXXXXY",
+          "exp": [
+            -4,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXXXXXY",
+          "first_kind_minimum_total": 11,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxxxxxUUxuuXXXXXX",
+          "labeled": "YxxxxxxYYxyyXXXXXX",
+          "minimum": "XXXXXXYxxxxxxYYxyy",
+          "minimum_total": 18,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxxxxYYxyyXXXXXX",
+          "conjugator": "",
+          "core": "YxxxxxxYYxyyXXXXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxxxxYYxyyXXXXXX",
+          "first_kind_minimum_total": 18,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXXXXXUxxxxxxuX",
+          "labeled": "XXXXXXYxxxxxxyX",
+          "minimum": "XXXXXXXYxxxxxxy",
+          "minimum_total": 15,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXXXXXYxxxxxxyX",
+          "conjugator": "",
+          "core": "XXXXXXYxxxxxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXXXXXYxxxxxxyX",
+          "first_kind_minimum_total": 15,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      },
+      {
+        "n": 7,
+        "det_S": 1,
+        "det_C19": 1,
+        "det_Qprime": 1,
+        "S_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "C19_c12": {
+          "fired": false,
+          "reason": "donor_not_primitive",
+          "stock_min": 7,
+          "first_kind_min": 7,
+          "nielsen_found": false
+        },
+        "Qprime_r1_whitehead": {
+          "word": "XYxyyXY",
+          "labeled": "XYxyyXY",
+          "minimum": "XXYxyy",
+          "minimum_total": 6,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "Yx",
+            "y": "y"
+          },
+          "phi_image": "XYxyyX",
+          "conjugator": "",
+          "core": "XYxyyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XYxyyX",
+          "first_kind_minimum_total": 6,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Yx",
+            "y": "y"
+          }
+        },
+        "Qprime_r2_whitehead": {
+          "word": "YxxyXXXXXXXY",
+          "labeled": "YxxyXXXXXXXY",
+          "minimum": "XXXXXXXYYxxy",
+          "minimum_total": 12,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxyXXXXXXXY",
+          "conjugator": "",
+          "core": "YxxyXXXXXXXY",
+          "exp": [
+            -5,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxyXXXXXXXY",
+          "first_kind_minimum_total": 12,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "S_companion_whitehead": {
+          "word": "UxxxxxxxUUxuuXXXXXXX",
+          "labeled": "YxxxxxxxYYxyyXXXXXXX",
+          "minimum": "XXXXXXXYxxxxxxxYYxyy",
+          "minimum_total": 20,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxxxxxYYxyyXXXXXXX",
+          "conjugator": "",
+          "core": "YxxxxxxxYYxyyXXXXXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxxxxxYYxyyXXXXXXX",
+          "first_kind_minimum_total": 20,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "C19_B_whitehead": {
+          "word": "XXXXXXXUxxxxxxxuX",
+          "labeled": "XXXXXXXYxxxxxxxyX",
+          "minimum": "XXXXXXXXYxxxxxxxy",
+          "minimum_total": 17,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "XXXXXXXYxxxxxxxyX",
+          "conjugator": "",
+          "core": "XXXXXXXYxxxxxxxyX",
+          "exp": [
+            -1,
+            0
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXXXXXXYxxxxxxxyX",
+          "first_kind_minimum_total": 17,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        }
+      }
+    ],
+    "stored_c16": [
+      {
+        "id": "aca_16",
+        "r1": "UxxUUUXuuux",
+        "r2": "UXXuuuxUUUxx",
+        "r1_whitehead": {
+          "word": "UxxUUUXuuux",
+          "labeled": "YxxYYYXyyyx",
+          "minimum": "XXyXYYYxyyy",
+          "minimum_total": 11,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxYYYXyyyx",
+          "conjugator": "",
+          "core": "YxxYYYXyyyx",
+          "exp": [
+            2,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxYYYXyyyx",
+          "first_kind_minimum_total": 11,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "r2_whitehead": {
+          "word": "UXXuuuxUUUxx",
+          "labeled": "YXXyyyxYYYxx",
+          "minimum": "XXyyyXYYYxxy",
+          "minimum_total": 12,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YXXyyyxYYYxx",
+          "conjugator": "",
+          "core": "YXXyyyxYYYxx",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YXXyyyxYYYxx",
+          "first_kind_minimum_total": 12,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "det": -1
+      },
+      {
+        "id": "aca_43",
+        "r1": "uXuXUUXuu",
+        "r2": "UXXuuxUUxx",
+        "r1_whitehead": {
+          "word": "uXuXUUXuu",
+          "labeled": "yXyXYYXyy",
+          "minimum": "XXYYYXyy",
+          "minimum_total": 8,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          },
+          "phi_image": "XXYYYXyy",
+          "conjugator": "",
+          "core": "XXYYYXyy",
+          "exp": [
+            -3,
+            2
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXYYYXyy",
+          "first_kind_minimum_total": 8,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "xy",
+            "y": "y"
+          }
+        },
+        "r2_whitehead": {
+          "word": "UXXuuxUUxx",
+          "labeled": "YXXyyxYYxx",
+          "minimum": "XXyyXYYxxy",
+          "minimum_total": 10,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YXXyyxYYxx",
+          "conjugator": "",
+          "core": "YXXyyxYYxx",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YXXyyxYYxx",
+          "first_kind_minimum_total": 10,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "det": 1
+      },
+      {
+        "id": "aca_67",
+        "r1": "UxUxUUUXuuu",
+        "r2": "UxxxuuuxUUUXXX",
+        "r1_whitehead": {
+          "word": "UxUxUUUXuuu",
+          "labeled": "YxYxYYYXyyy",
+          "minimum": "XXYYxyyy",
+          "minimum_total": 8,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          },
+          "phi_image": "YxxYYYXyyy",
+          "conjugator": "Y",
+          "core": "xxYYYXyy",
+          "exp": [
+            1,
+            -2
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXYYYxyy",
+          "first_kind_minimum_total": 8,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Xy",
+            "y": "y"
+          }
+        },
+        "r2_whitehead": {
+          "word": "UxxxuuuxUUUXXX",
+          "labeled": "YxxxyyyxYYYXXX",
+          "minimum": "XXXYxxxyyyxYYY",
+          "minimum_total": 14,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxyyyxYYYXXX",
+          "conjugator": "",
+          "core": "YxxxyyyxYYYXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxyyyxYYYXXX",
+          "first_kind_minimum_total": 14,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "det": 1
+      },
+      {
+        "id": "aca_87",
+        "r1": "UxUxUUUxuuu",
+        "r2": "UxxxuuuxUUUXXX",
+        "r1_whitehead": {
+          "word": "UxUxUUUxuuu",
+          "labeled": "YxYxYYYxyyy",
+          "minimum": "XXYYYXyy",
+          "minimum_total": 8,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          },
+          "phi_image": "YxxYYxyyyy",
+          "conjugator": "Y",
+          "core": "xxYYxyyy",
+          "exp": [
+            3,
+            -2
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXYYXyyy",
+          "first_kind_minimum_total": 8,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Xy",
+            "y": "y"
+          }
+        },
+        "r2_whitehead": {
+          "word": "UxxxuuuxUUUXXX",
+          "labeled": "YxxxyyyxYYYXXX",
+          "minimum": "XXXYxxxyyyxYYY",
+          "minimum_total": 14,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YxxxyyyxYYYXXX",
+          "conjugator": "",
+          "core": "YxxxyyyxYYYXXX",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YxxxyyyxYYYXXX",
+          "first_kind_minimum_total": 14,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "det": -1
+      },
+      {
+        "id": "aca_90",
+        "r1": "UxUxUUUXuuu",
+        "r2": "UXXXuuuxUUUxxx",
+        "r1_whitehead": {
+          "word": "UxUxUUUXuuu",
+          "labeled": "YxYxYYYXyyy",
+          "minimum": "XXYYxyyy",
+          "minimum_total": 8,
+          "primitive": false,
+          "n_steps": 1,
+          "phi": {
+            "x": "xy",
+            "y": "y"
+          },
+          "phi_image": "YxxYYYXyyy",
+          "conjugator": "Y",
+          "core": "xxYYYXyy",
+          "exp": [
+            1,
+            -2
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "XXYYYxyy",
+          "first_kind_minimum_total": 8,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 1,
+          "first_kind_phi": {
+            "x": "Xy",
+            "y": "y"
+          }
+        },
+        "r2_whitehead": {
+          "word": "UXXXuuuxUUUxxx",
+          "labeled": "YXXXyyyxYYYxxx",
+          "minimum": "XXXyyyXYYYxxxy",
+          "minimum_total": 14,
+          "primitive": false,
+          "n_steps": 0,
+          "phi": {
+            "x": "x",
+            "y": "y"
+          },
+          "phi_image": "YXXXyyyxYYYxxx",
+          "conjugator": "",
+          "core": "YXXXyyyxYYYxxx",
+          "exp": [
+            1,
+            -1
+          ],
+          "abelian_gcd": 1,
+          "first_kind_minimum": "YXXXyyyxYYYxxx",
+          "first_kind_minimum_total": 14,
+          "first_kind_primitive": false,
+          "first_kind_n_steps": 0,
+          "first_kind_phi": {
+            "x": "x",
+            "y": "y"
+          }
+        },
+        "det": 1
+      }
+    ],
+    "any_S_c12_finish": false,
+    "any_C19_c12_finish": false,
+    "any_Qprime_r1_primitive": false,
+    "any_Qprime_r2_primitive": false,
+    "any_stored_primitive": false
+  },
+  "notes": [
+    "A valid pinch on D\u00b7B that is B's own BS pinch is not a C5 finish.",
+    "Depth-1 AC2 valid pinches are classified after one rewrite; residues listed if any after_cyc is not cyclic of D/D^{-1}/B/B^{-1}.",
+    "Whitehead Aut / generator swap are C1 and are not expanded.",
+    "Incoming C16 still has two Lemma-11 uses. Not a U124 solve."
+  ]
+}

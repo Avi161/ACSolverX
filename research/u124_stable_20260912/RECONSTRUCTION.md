@@ -121,3 +121,17 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   are not BS donors.
 - Still **0/124**.
 
+## Wave 6 (C20 round-trip negative, 2026-09-12)
+
+- `code/c19_continuation.py`: AC3 of `D` by `u^k`/`x^k` never leaves
+  pinch exponent `{−1}`; depth-1 AC2 reports valid pinches that C20
+  shows are not progress.
+- **C20**: one associated-subgroup pinch after displayed `D·B^{±1}`
+  returns cyclic `D` or `D⁻¹`. The whole unique depth-1 AC2
+  neighbourhood is the same: every valid-pinch child pinches back to
+  `D`/`D⁻¹`, or the `B` row pinches to empty. Ten remaining children
+  keep `D` and lengthen `B`. Uniform on `n=2..7`.
+- C12 does not fire: `D` has Whitehead minimum 7 even with first-kind
+  permutations. Not a U124 solve.
+- Still **0/124**. No certificate JSONL rows.
+
