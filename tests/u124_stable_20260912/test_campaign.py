@@ -686,3 +686,52 @@ def test_c30_x_exact_l1_identities():
         assert summary["mitm_counts_are_search_space_not_enumerated_products"]
         assert summary["n_p_floor_companions"] == 5
 
+
+def test_c31_yxxy_family_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c31_yxxy_family as c31  # type: ignore
+
+    assert c31.DONOR == "YXXYxxyx"
+    assert c22.exp_on(c31.DONOR, "xy") == (1, -1)
+    ab = c31.abelian_row("aca_22", "YYYYxyyyX")
+    assert ab["y_L1"] == 1
+    assert ab["y_combo"]["a"] == 0 and ab["y_combo"]["b"] == -1
+    assert ab["companion_bs_mm1"] and ab["companion_bs_m"] == 3
+    assert ab["Xyx_same_as_y"] and ab["xyX_same_as_y"]
+    assert ab["k1_len_obstruction"] and ab["even_k_forbidden"]
+    ex = c31.abelian_row("aca_32", "YYYYXyxyx")
+    assert ex["y_L1"] == 2
+    assert not ex["companion_bs_mm1"]
+    assert ex["y_combo"]["a"] == 1 and ex["y_combo"]["b"] == -1
+    json_path = ROOT / "research/u124_stable_20260912/tables/c31_yxxy_family.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 8
+    assert summary["n_l1_1"] == 7
+    assert summary["all_l1_1_combo_zero_minus_one"]
+    assert summary["all_l1_1_bs_mm1"]
+    assert summary["exceptional_id"] == "aca_32"
+    assert summary["exceptional_y_L1"] == 2
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    assert not summary["three_any_hit"]
+    assert not summary["exact_found"]
+    assert summary["three_products_equal_typed"]
+    assert summary["three_n_products"] == 1_519_059
+    assert summary["three_n_typed_tuples"] == 1_519_059
+    assert summary["three_min_len"] == 9
+    assert summary["exact_n_products"] == 1104
+    assert summary["exact_min_len"] == 9
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == {
+        "aca_22": 148275,
+        "aca_23": 131472,
+        "aca_46": 183924,
+        "aca_49": 204849,
+        "aca_68": 248808,
+        "aca_70": 274311,
+        "aca_89": 327420,
+    }
+

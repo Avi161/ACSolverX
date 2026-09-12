@@ -1215,8 +1215,8 @@ are C7 Aut-minimal P floors; that Aut-orbit is not a solve.
 
 **What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
 conjugators, including conjugators involving `u`. C29 leftover
-`k=5,7,…` for defining word `y`. The unused eight-row donor
-`YXXYxxyx`. Depth ≥ 3 AC2. Lemma 11.
+`k=5,7,…` for defining word `y`. The eight-row donor `YXXYxxyx` is
+C31. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
 **Not a solve.** Bounded negative for this exact-L1 typed pool.
@@ -1225,6 +1225,49 @@ conjugators, including conjugators involving `u`. C29 leftover
 Same-code replay plus C26 planted controls. Cartesian observed minima
 11 and 15 are census facts, not a length theorem. MITM typed sizes are
 search-space, not enumerated products. Advisor audit pending.
+
+---
+
+## C31. `YXXYxxyx` family: `y ≡ C^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+**C31.1 (abelian).** Compact donor `D = YXXYxxyx` has exponent `(1,-1)`
+and cyclic length 8. Seven of the eight best-table companions are
+consecutive `BS(m,m+1)` (`m=3..6`) with exponent `(0,-1)`: aca_22, 23,
+46, 49, 68, 70, 89. On those rows the unique combination of `y` (and
+of `{Xyx, xyX}`) against `(D, C)` is `(0,-1)`, so `L1=1` and
+`y ≡ C^{-1}`. Even `k` is abelian-impossible. `k=1` is blocked by
+`|C|≥9`. This is a parallel stall family to C15, not the same donor.
+
+The remaining row aca_32 has companion `YYYYXyxyx`, not BS;
+combination `(1,-1)`, `L1=2`.
+
+**C31.2 (k=3 nine-config, seven BS rows).** Same signed-type Cartesian
+products as C23/C25.3, with `R^+ = C^{-1}` and `S = D`, prefix/one-letter
+conjugators, per-type unique conjugates. Targets `{y, Xyx, xyX}`.
+Inverse class by reversing and inverting factors. Typed Cartesian
+enumeration: `1,519,059` products, equal to the typed size, observed
+minimum free length 9, none equal to a target. Per-row products:
+aca_22 148275; aca_23 131472; aca_46 183924; aca_49 204849; aca_68
+248808; aca_70 274311; aca_89 327420. Counts are nine-config typed
+sizes, not `|F|^3`. Observed minimum 9 is a census fact, not a length
+theorem.
+
+**C31.3 (exact L1=2, aca_32).** One conjugate of `D` and one of
+`C^{-1}`: `1,104` Cartesian products, observed minimum 9, no hit.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…` on the seven BS rows.
+Longer conjugators, including `u`. Defining word `x` (L1=2 on the
+seven BS rows; L1=3 on aca_32). Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Eight best-table rows aca_22, 23, 32, 46, 49, 68, 70, 89.
+**Not a solve.** Bounded negative for this typed pool.
+
+**Audit.** `code/c31_yxxy_family.py`, `tables/c31_yxxy_family.json`.
+Same-code deterministic replay plus planted nine-config control.
+`independent_checker=false`. Advisor audit pending.
 
 
 

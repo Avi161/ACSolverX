@@ -269,5 +269,18 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   Still **0/124**. No certificate JSONL rows.
   `independent_checker=false`. Advisor audit pending.
 
+## Wave 17 (C31 YXXYxxyx family, 2026-09-12)
+
+- Eight best-table rows with donor `YXXYxxyx`. Seven companions are
+  consecutive `BS(m,m+1)` (`m=3..6`) with `y ≡ C^{-1}`, `L1=1`, even
+  `k` impossible, `k=1` blocked by `|C|≥9`. k=3 nine-config census:
+  `1,519,059` typed Cartesian products, equal to typed size, observed
+  min length 9, no hit on `{y, Xyx, xyX}`. aca_32 is not BS: exact
+  L1=2 two-factor Cartesian 1,104 products, min length 9, no hit.
+  A hit would have been a normal-closure candidate, not a C12
+  primitive. Parallel to C15, different donor. Still **0/124**.
+  No certificate JSONL rows. `independent_checker=false`.
+  Advisor audit pending.
+
 
 
