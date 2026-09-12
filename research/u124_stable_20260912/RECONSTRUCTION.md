@@ -293,10 +293,13 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   and L1=3 on aca_32 (those eight rows, not every conceivable
   companion). Exact-L1 typed Cartesian products: 51,412, equal to
   typed size, observed min length 11, no hit on `{x, Yxy, yxY}`.
-  Equality is free-reduce literal. A hit would have been a
-  normal-closure candidate, not a C12 path. Still **0/124**.
+  Equality was tested after free reduction only against `{x, Yxy, yxY}`.
+  No cyclic-reduction or conjugacy quotient, ambient `Aut(F_2)`, or
+  Tietze identification was used; freely reduced longer conjugates of
+  `x` not among these three targets remain untested. A hit would have
+  been a normal-closure candidate, not a C12 path. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`.
-  Advisor audit pending.
+  Advisor REVISE applied (`ingest/advisor_wave17.md`).
 
 
 

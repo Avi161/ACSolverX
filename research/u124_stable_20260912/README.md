@@ -121,7 +121,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     nine-config misses (`1,519,059` products, observed min length 9);
     aca_32 exact L1=2 misses (1,104 products). Advisor APPROVE. C32:
     exact-L1 for defining word `x` on those eight rows misses (`51,412`
-    Cartesian products, observed min length 11). Still 0/124.
+    Cartesian products, observed min length 11). Advisor REVISE applied. Still 0/124.
 
 ## File ownership
 

@@ -1308,15 +1308,22 @@ inverting factors. No hit. Equality is free-reduce literal match.
 be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
-conjugators, including `u`. C31 leftover `k=5,7,…` for `y`. Unused
-donors `YXyXYxx` / `YYXXyxx`. Depth ≥ 3 AC2. Lemma 11.
+conjugators, including `u`. Equality was tested after free reduction
+only against `{x, Yxy, yxY}`. No cyclic-reduction or conjugacy
+quotient, ambient `Aut(F_2)`, or Tietze identification was used;
+freely reduced longer conjugates of `x` not among these three targets
+remain untested. C31 leftover `k=5,7,…` for `y`. Unused donors
+`YXyXYxx` / `YYXXyxx`. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Eight best-table rows aca_22, 23, 32, 46, 49, 68, 70, 89.
 **Not a solve.** Bounded negative for this exact-L1 typed pool.
 
 **Audit.** `code/c32_x_exact_l1.py`, `tables/c32_x_exact_l1.json`.
 Same-code replay plus C26 planted controls. Observed minimum 11 is a
-census fact, not a length theorem. Advisor audit pending.
+census fact, not a length theorem. Tests independently check the
+algebra and rerun only aca_23/aca_32; they do not independently replay
+all eight cells. `independent_checker=false`.
+`ingest/advisor_wave17.md` **REVISE** applied.
 
 
 
