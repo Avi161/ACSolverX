@@ -747,3 +747,47 @@ def test_c31_yxxy_family_identities():
         "aca_89": 327420,
     }
 
+
+def test_c32_x_exact_l1_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c30_x_exact_l1 as c30  # type: ignore
+    import c32_x_exact_l1 as c32  # type: ignore
+    import theory_wave1_replay as tw  # type: ignore
+
+    assert c32.x_combo_from_c_exp(0, -1) == (1, -1, 2)
+    assert c32.x_combo_from_c_exp(1, -2) == (2, -1, 3)
+    assert c32.POSITIVE_X[1] == tw.XI
+    rec = c32.scan_row("aca_23", "YYYYXyyyx")
+    assert rec["L1"] == 2
+    assert rec["n_products"] == 1200
+    assert rec["min_len"] == 11
+    assert not rec["found"]
+    rec32 = c32.scan_row("aca_32", "YYYYXyxyx")
+    assert rec32["L1"] == 3
+    assert rec32["n_products"] == 39744
+    assert rec32["min_len"] == 13
+    assert not rec32["found"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c32_x_exact_l1.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 8
+    assert summary["n_bs_l1_2"] == 7
+    assert summary["n_aca_32_l1_3"] == 1
+    assert summary["n_cartesian_products_enumerated"] == 51412
+    assert summary["n_typed_tuples_total"] == 51412
+    assert summary["n_mitm_cells"] == 0
+    assert summary["cartesian_observed_min_len"] == 11
+    assert summary["cartesian_min_lens"] == [13, 11, 13, 13, 15, 15, 17, 17]
+    assert not summary["any_hit"]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    assert summary["l1_range_is_eight_listed_rows"]
+    assert summary["equality_is_free_reduce_literal"]
+    for row in artifact["scans"]:
+        p, q = c22.exp_on(row["companion"], "xy")
+        a, b, l1 = c32.x_combo_from_c_exp(p, q)
+        assert (a, b, l1) == (row["combo_a"], row["combo_b"], row["L1"])
+    assert c30.x_class_exponents()["one_letter_class_complete"]
+

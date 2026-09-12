@@ -286,5 +286,17 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   No certificate JSONL rows. `independent_checker=false`.
   Advisor APPROVE (`ingest/advisor_wave16.md`).
 
+## Wave 18 (C32 exact-L1 x on YXXYxxyx, 2026-09-12)
+
+- Defining word `x` on the eight C31 rows: unique combo has `|b|=1`
+  from unimodularity with `D_ab=(1,-1)`. L1=2 on seven BS companions
+  and L1=3 on aca_32 (those eight rows, not every conceivable
+  companion). Exact-L1 typed Cartesian products: 51,412, equal to
+  typed size, observed min length 11, no hit on `{x, Yxy, yxY}`.
+  Equality is free-reduce literal. A hit would have been a
+  normal-closure candidate, not a C12 path. Still **0/124**.
+  No certificate JSONL rows. `independent_checker=false`.
+  Advisor audit pending.
+
 
 

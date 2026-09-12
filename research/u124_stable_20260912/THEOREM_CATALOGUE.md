@@ -1270,8 +1270,8 @@ minimum 7.
 be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…` on the seven BS rows.
-Longer conjugators, including `u`. Defining word `x` (L1=2 on the
-seven BS rows; L1=3 on aca_32). Depth ≥ 3 AC2. Lemma 11.
+Longer conjugators, including `u`. Defining word `x` is C32 (exact
+L1 closed on these eight rows). Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Eight best-table rows aca_22, 23, 32, 46, 49, 68, 70, 89.
 **Not a solve.** Bounded negative for this typed pool.
@@ -1281,6 +1281,42 @@ Same-code deterministic replay plus planted nine-config control.
 `independent_checker=false`. Tests spot-check identities and stored
 JSON; they do not independently replay the census.
 `ingest/advisor_wave16.md` **APPROVE**.
+
+---
+
+## C32. Exact-L1 typed products for `x` on the `YXXYxxyx` family — IDENTITY-CHECKED NEGATIVE
+
+**C32.1 (combination).** Donor `D = YXXYxxyx` abelianizes to `(1,-1)`.
+Any unimodular companion `C` abelianizes to `(p,q)` with `|p+q|=1`, and
+the unique solution of `a D_{\mathrm{ab}} + b C_{\mathrm{ab}} = (1,0)`
+is `b=p+q`, `a=(p+q)q`; hence `|b|=1`. On the eight listed rows,
+`L1=2` on the seven consecutive BS companions and `L1=3` on aca_32
+(not a claim about every conceivable unimodular companion). Exact-L1
+products are `|a|` conjugates of `D^{\mathrm{sign}(a)}` and one
+conjugate of `C^{\mathrm{sign}(b)}` (`t_D=t_C=0`).
+
+**C32.2 (prefix/one-letter census, all eight rows).** Unique conjugates
+per signed type; counts are typed Cartesian sizes `k\,|A|^{k-1}|B|`,
+not `|F|^k`. All eight cells are within the Cartesian cap: `51,412`
+products, equal to the typed size, observed free-length minima 13, 11,
+13, 13, 15, 15, 17, 17 (every enumerated word has length at least 11).
+No MITM cells. Targets `{x, Yxy, yxY}`; inverse class by reversing and
+inverting factors. No hit. Equality is free-reduce literal match.
+`independent_checker=false`.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
+conjugators, including `u`. C31 leftover `k=5,7,…` for `y`. Unused
+donors `YXyXYxx` / `YYXXyxx`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Eight best-table rows aca_22, 23, 32, 46, 49, 68, 70, 89.
+**Not a solve.** Bounded negative for this exact-L1 typed pool.
+
+**Audit.** `code/c32_x_exact_l1.py`, `tables/c32_x_exact_l1.json`.
+Same-code replay plus C26 planted controls. Observed minimum 11 is a
+census fact, not a length theorem. Advisor audit pending.
 
 
 
