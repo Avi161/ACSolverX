@@ -1,0 +1,1485 @@
+{
+  "summary": {
+    "factorizations_hold": true,
+    "c19_all_equal": true,
+    "c19_bs_m": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "c19_donor_u_exp": [
+      1
+    ],
+    "c19_donor_pinch": false,
+    "c19_product_pinch": true,
+    "S_minus_row1_x_exp": [
+      -2
+    ],
+    "S_plus_row1_bs_mn": true,
+    "S_minus_row1_not_bs": true,
+    "S_swapped_c16_fires": false,
+    "S_interesting_total": 18,
+    "S_minus_interesting": 12,
+    "S_plus_interesting": 6,
+    "S_plus_matches_P": true,
+    "stored_row1_x_exps": {
+      "aca_16": 2,
+      "aca_43": -3,
+      "aca_67": 1,
+      "aca_87": 3,
+      "aca_90": 1
+    },
+    "stored_bs_mn": {
+      "aca_16": null,
+      "aca_43": null,
+      "aca_67": null,
+      "aca_87": null,
+      "aca_90": null
+    },
+    "stored_swapped_c16": {
+      "aca_16": false,
+      "aca_43": false,
+      "aca_67": false,
+      "aca_87": false,
+      "aca_90": false
+    },
+    "stored_interesting_total": 2,
+    "tag_family_P_to_S": false,
+    "tag_family_S_to_P": false,
+    "solved_u124": 0
+  },
+  "factorizations": {
+    "D": "XuuuXUU",
+    "equals_inner_xinv2": true,
+    "equals_xinv2_conjugate": true,
+    "inner_conjugate": "Xuuux",
+    "xinv2_upow": "XXUU",
+    "missing_bs32_inner": true
+  },
+  "c19": [
+    {
+      "n": 2,
+      "donor": "XuuuXUU",
+      "companion": "UxxUUxuuXX",
+      "product": "XXUxxuX",
+      "equals_claimed": true,
+      "claimed": "XXUxxuX",
+      "bs_mm1": true,
+      "bs_m": 2,
+      "cyclically_bs_n_n1": true,
+      "in_len": 17,
+      "out_len": 14,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    },
+    {
+      "n": 3,
+      "donor": "XuuuXUU",
+      "companion": "UxxxUUxuuXXX",
+      "product": "XXXUxxxuX",
+      "equals_claimed": true,
+      "claimed": "XXXUxxxuX",
+      "bs_mm1": true,
+      "bs_m": 3,
+      "cyclically_bs_n_n1": true,
+      "in_len": 19,
+      "out_len": 16,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    },
+    {
+      "n": 4,
+      "donor": "XuuuXUU",
+      "companion": "UxxxxUUxuuXXXX",
+      "product": "XXXXUxxxxuX",
+      "equals_claimed": true,
+      "claimed": "XXXXUxxxxuX",
+      "bs_mm1": true,
+      "bs_m": 4,
+      "cyclically_bs_n_n1": true,
+      "in_len": 21,
+      "out_len": 18,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    },
+    {
+      "n": 5,
+      "donor": "XuuuXUU",
+      "companion": "UxxxxxUUxuuXXXXX",
+      "product": "XXXXXUxxxxxuX",
+      "equals_claimed": true,
+      "claimed": "XXXXXUxxxxxuX",
+      "bs_mm1": true,
+      "bs_m": 5,
+      "cyclically_bs_n_n1": true,
+      "in_len": 23,
+      "out_len": 20,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    },
+    {
+      "n": 6,
+      "donor": "XuuuXUU",
+      "companion": "UxxxxxxUUxuuXXXXXX",
+      "product": "XXXXXXUxxxxxxuX",
+      "equals_claimed": true,
+      "claimed": "XXXXXXUxxxxxxuX",
+      "bs_mm1": true,
+      "bs_m": 6,
+      "cyclically_bs_n_n1": true,
+      "in_len": 25,
+      "out_len": 22,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    },
+    {
+      "n": 7,
+      "donor": "XuuuXUU",
+      "companion": "UxxxxxxxUUxuuXXXXXXX",
+      "product": "XXXXXXXUxxxxxxxuX",
+      "equals_claimed": true,
+      "claimed": "XXXXXXXUxxxxxxxuX",
+      "bs_mm1": true,
+      "bs_m": 7,
+      "cyclically_bs_n_n1": true,
+      "in_len": 27,
+      "out_len": 24,
+      "drop": 3,
+      "donor_u_exp": 1,
+      "donor_has_u_pinch": false,
+      "product_has_u_pinch": true
+    }
+  ],
+  "S_scans": [
+    {
+      "tag": "S_2_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxUUxuuXX"
+      ],
+      "n": 2,
+      "delta": -1,
+      "cyc_total": 17,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 280,
+      "n_unique_children": 140,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXUxx",
+          "new_r2": "UxxUUxuuXX",
+          "new_length": 17,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 4,
+            "new_len": 17
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 2,
+            "N": 3,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXUxxuX",
+          "new_length": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 2,
+            "new_len": 14
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_3_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxxUUxuuXXX"
+      ],
+      "n": 3,
+      "delta": -1,
+      "cyc_total": 19,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 336,
+      "n_unique_children": 180,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 4,
+            "N": 3,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXXUxxx",
+          "new_r2": "UxxxUUxuuXXX",
+          "new_length": 21,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 21
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 3,
+            "N": 4,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXUxxxuX",
+          "new_length": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 2,
+            "new_len": 16
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_4_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxxxUUxuuXXXX"
+      ],
+      "n": 4,
+      "delta": -1,
+      "cyc_total": 21,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 392,
+      "n_unique_children": 220,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 5,
+            "N": 4,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXXXUxxxx",
+          "new_r2": "UxxxxUUxuuXXXX",
+          "new_length": 25,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 6,
+            "new_len": 25
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 4,
+            "N": 5,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXUxxxxuX",
+          "new_length": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 2,
+            "new_len": 18
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_5_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxxxxUUxuuXXXXX"
+      ],
+      "n": 5,
+      "delta": -1,
+      "cyc_total": 23,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 448,
+      "n_unique_children": 260,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 6,
+            "N": 5,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXXXXUxxxxx",
+          "new_r2": "UxxxxxUUxuuXXXXX",
+          "new_length": 29,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 7,
+            "new_len": 29
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 5,
+            "N": 6,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXUxxxxxuX",
+          "new_length": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 2,
+            "new_len": 20
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_6_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxxxxxUUxuuXXXXXX"
+      ],
+      "n": 6,
+      "delta": -1,
+      "cyc_total": 25,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 504,
+      "n_unique_children": 300,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 7,
+            "N": 6,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXXXXXUxxxxxx",
+          "new_r2": "UxxxxxxUUxuuXXXXXX",
+          "new_length": 33,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 8,
+            "new_len": 33
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 6,
+            "N": 7,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXXUxxxxxxuX",
+          "new_length": 22,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 2,
+            "new_len": 22
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_7_-1",
+      "pair": [
+        "XuuuXUU",
+        "UxxxxxxxUUxuuXXXXXXX"
+      ],
+      "n": 7,
+      "delta": -1,
+      "cyc_total": 27,
+      "row1_x_exp": -2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 560,
+      "n_unique_children": 340,
+      "n_interesting": 2,
+      "interesting": [
+        {
+          "length_drop": false,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 8,
+            "N": 7,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "uXXXXXXXXUxxxxxxx",
+          "new_r2": "UxxxxxxxUUxuuXXXXXXX",
+          "new_length": 37,
+          "move": {
+            "target": 1,
+            "jsign": 1,
+            "k1": 0,
+            "k2": 9,
+            "new_len": 37
+          }
+        },
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": true,
+          "bs_mn": {
+            "stable": "u",
+            "M": 7,
+            "N": 8,
+            "consecutive": true
+          },
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuXUU",
+          "new_r2": "XXXXXXXUxxxxxxxuX",
+          "new_length": 24,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 2,
+            "new_len": 24
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false
+    },
+    {
+      "tag": "S_2_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXUUxuuxx"
+      ],
+      "n": 2,
+      "delta": 1,
+      "cyc_total": 17,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 280,
+      "n_unique_children": 140,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxUXXux",
+          "new_length": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 2,
+            "k2": 2,
+            "new_len": 14
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    },
+    {
+      "tag": "S_3_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXXUUxuuxxx"
+      ],
+      "n": 3,
+      "delta": 1,
+      "cyc_total": 19,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 336,
+      "n_unique_children": 180,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxxUXXXux",
+          "new_length": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 2,
+            "new_len": 16
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    },
+    {
+      "tag": "S_4_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXXXUUxuuxxxx"
+      ],
+      "n": 4,
+      "delta": 1,
+      "cyc_total": 21,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 392,
+      "n_unique_children": 220,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxxxUXXXXux",
+          "new_length": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 2,
+            "new_len": 18
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    },
+    {
+      "tag": "S_5_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXXXXUUxuuxxxxx"
+      ],
+      "n": 5,
+      "delta": 1,
+      "cyc_total": 23,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 448,
+      "n_unique_children": 260,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxxxxUXXXXXux",
+          "new_length": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 2,
+            "new_len": 20
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    },
+    {
+      "tag": "S_6_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXXXXXUUxuuxxxxxx"
+      ],
+      "n": 6,
+      "delta": 1,
+      "cyc_total": 25,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 504,
+      "n_unique_children": 300,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxxxxxUXXXXXXux",
+          "new_length": 22,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 2,
+            "new_len": 22
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    },
+    {
+      "tag": "S_7_+1",
+      "pair": [
+        "XuuuxUU",
+        "UXXXXXXXUUxuuxxxxxxx"
+      ],
+      "n": 7,
+      "delta": 1,
+      "cyc_total": 27,
+      "row1_x_exp": 0,
+      "row1_bs_mn": {
+        "stable": "x",
+        "M": 3,
+        "N": 2,
+        "consecutive": true
+      },
+      "row1_bs_mm1": true,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 560,
+      "n_unique_children": 340,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": {
+            "stable": "x",
+            "M": 3,
+            "N": 2,
+            "consecutive": true
+          },
+          "matches_relabeled_P": true,
+          "swapped_c16_fires": false,
+          "new_r1": "XuuuxUU",
+          "new_r2": "xxxxxxxUXXXXXXXux",
+          "new_length": 24,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 2,
+            "new_len": 24
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": true
+    }
+  ],
+  "stored_hits": [
+    {
+      "tag": "aca_16",
+      "pair": [
+        "UxxUUUXuuux",
+        "UXXuuuxUUUxx"
+      ],
+      "n": null,
+      "delta": null,
+      "cyc_total": 23,
+      "row1_x_exp": 2,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 528,
+      "n_unique_children": 252,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": null,
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "UxxUUUXuuux",
+          "new_r2": "UUxxUXuuuXX",
+          "new_length": 22,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 4,
+            "k2": 1,
+            "new_len": 22
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false,
+      "params": {
+        "A_u": "Uxx",
+        "B_u": "x",
+        "p": -3,
+        "b": -1,
+        "c": 2
+      }
+    },
+    {
+      "tag": "aca_43",
+      "pair": [
+        "uXuXUUXuu",
+        "UXXuuxUUxx"
+      ],
+      "n": null,
+      "delta": null,
+      "cyc_total": 19,
+      "row1_x_exp": -3,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 360,
+      "n_unique_children": 180,
+      "n_interesting": 0,
+      "interesting": [],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false,
+      "params": {
+        "A_u": "uXuX",
+        "B_u": "",
+        "p": -2,
+        "b": -1,
+        "c": 2
+      }
+    },
+    {
+      "tag": "aca_67",
+      "pair": [
+        "UxUxUUUXuuu",
+        "UxxxuuuxUUUXXX"
+      ],
+      "n": null,
+      "delta": null,
+      "cyc_total": 23,
+      "row1_x_exp": 1,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 616,
+      "n_unique_children": 280,
+      "n_interesting": 1,
+      "interesting": [
+        {
+          "length_drop": true,
+          "new_one_occurrence": false,
+          "new_two_block_both": false,
+          "new_bs_mm1": false,
+          "bs_mn": null,
+          "matches_relabeled_P": false,
+          "swapped_c16_fires": false,
+          "new_r1": "UxUxUUUXuuu",
+          "new_r2": "XXUxxxuuuuXUU",
+          "new_length": 22,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 2,
+            "k2": 8,
+            "new_len": 24
+          }
+        }
+      ],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false,
+      "params": {
+        "A_u": "UxUx",
+        "B_u": "",
+        "p": -3,
+        "b": -1,
+        "c": -3
+      }
+    },
+    {
+      "tag": "aca_87",
+      "pair": [
+        "UxUxUUUxuuu",
+        "UxxxuuuxUUUXXX"
+      ],
+      "n": null,
+      "delta": null,
+      "cyc_total": 23,
+      "row1_x_exp": 3,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 616,
+      "n_unique_children": 280,
+      "n_interesting": 0,
+      "interesting": [],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false,
+      "params": {
+        "A_u": "UxUx",
+        "B_u": "",
+        "p": -3,
+        "b": 1,
+        "c": -3
+      }
+    },
+    {
+      "tag": "aca_90",
+      "pair": [
+        "UxUxUUUXuuu",
+        "UXXXuuuxUUUxxx"
+      ],
+      "n": null,
+      "delta": null,
+      "cyc_total": 23,
+      "row1_x_exp": 1,
+      "row1_bs_mn": null,
+      "row1_bs_mm1": false,
+      "swapped_magnus_ux": {
+        "height": "u",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "native_magnus_yx": {
+        "height": "y",
+        "content": "x",
+        "H2": false,
+        "H3": false,
+        "fires": false
+      },
+      "n_children_raw": 616,
+      "n_unique_children": 280,
+      "n_interesting": 0,
+      "interesting": [],
+      "base_one_occurrence": false,
+      "base_two_block_both": false,
+      "base_bs_mm1": false,
+      "params": {
+        "A_u": "UxUx",
+        "B_u": "",
+        "p": -3,
+        "b": -1,
+        "c": 3
+      }
+    }
+  ],
+  "tag_family": [
+    {
+      "n": 2,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYXyyx",
+      "claimed_S_companion": "YYXXYxxyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxYYxyyXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYYXyyyx",
+      "claimed_S_companion": "YYYXXYxxyyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxxYYxyyXXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYYYXyyyyx",
+      "claimed_S_companion": "YYYYXXYxxyyyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxxxYYxyyXXXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYYYYXyyyyyx",
+      "claimed_S_companion": "YYYYYXXYxxyyyyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxxxxYYxyyXXXXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYYYYYXyyyyyyx",
+      "claimed_S_companion": "YYYYYYXXYxxyyyyyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxxxxxYYxyyXXXXXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "ms": "YXXXYxx",
+      "P_companion": "YYYYYYYYXyyyyyyyx",
+      "claimed_S_companion": "YYYYYYYXXYxxyyyyyyyX",
+      "raw_S_pair": [
+        "XyyyXYY",
+        "YxxxxxxxYYxyyXXXXXXX"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYXyyx",
+      "claimed_S_companion": "YYXXYxxyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXYYxyyxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYYXyyyx",
+      "claimed_S_companion": "YYYXXYxxyyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXXYYxyyxxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYYYXyyyyx",
+      "claimed_S_companion": "YYYYXXYxxyyyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXXXYYxyyxxxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYYYYXyyyyyx",
+      "claimed_S_companion": "YYYYYXXYxxyyyyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXXXXYYxyyxxxxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYYYYYXyyyyyyx",
+      "claimed_S_companion": "YYYYYYXXYxxyyyyyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXXXXXYYxyyxxxxxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "ms": "YXXXyxx",
+      "P_companion": "YYYYYYYYXyyyyyyyx",
+      "claimed_S_companion": "YYYYYYYXXYxxyyyyyyyx",
+      "raw_S_pair": [
+        "XyyyxYY",
+        "YXXXXXXXYYxyyxxxxxxx"
+      ],
+      "n_donor_rotations": 14,
+      "P_tag_to_S_tag_depth1": false,
+      "S_tag_to_P_tag_depth1": false,
+      "same_cyclic_already": false
+    }
+  ],
+  "notes": [
+    "Depth-1 AC2 only; a miss is not an obstruction.",
+    "Swapped Magnus treats u as the conjugating letter.",
+    "Tag-family check holds the MS relator fixed and multiplies the tag.",
+    "No U124 row is solved."
+  ]
+}

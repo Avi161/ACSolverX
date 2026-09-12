@@ -566,3 +566,33 @@ of this 1764-spelling census.
 `code/theory_wave1_replay.py`. `ingest/advisor_wave3.md` **REVISE**
 applied: `gcd=1` is a lattice prerequisite, not a fully audited
 sufficient Euclid expansion for every coprime pair.
+
+---
+
+## C19. δ=−1 endpoint AC2 → consecutive BS(n,n+1) — IDENTITY-CHECKED (elementary)
+
+**Statement.** For `n ≥ 2` let `S_{n,−1}` be the C16 endpoint
+`⟨ x⁻¹ u³ x⁻¹ u⁻² , u⁻¹ xⁿ u⁻² x u² x⁻ⁿ ⟩`. Rotating the second row
+by `n` and the first by 2, then replacing the second row by the
+product, yields a word cyclically equal to `u⁻¹ xⁿ u x⁻(n+1)`,
+consecutive BS(n,n+1) with stable letter `u`. Compact product:
+`x⁻ⁿ u⁻¹ xⁿ u x⁻¹`.
+
+**Expansion.** Two AC3 (the stated rotations) and one AC2. No C0, no C1.
+
+**Length.** Cyclic total drops by 3: `2n+13 → 2n+10`. Uniform on `n=2..7`.
+
+**U124.** Applies to the C16 image of the δ=−1 MS-template rows
+(aca_120, 34, 58, 81, 97 for `n=3..7`). Reaching that image from the
+archival spelling still uses C7, C1, and C16’s two Lemma-11 steps, so
+this does **not** certify a shorter best-table representative and is
+**not a solve**. After C19, C5’s exponent-±1 hypothesis holds if the
+new BS is read as donor (`D` has u-exponent `+1`), but Britton fails:
+no orientation of `D` has a pinch `u^{±1} x^k u^{∓1}`.
+
+**Control.** The same depth-1 neighbourhood on `S_{n,+1}` contains the
+C16.1 loop onto relabeled `P_{n,+1}` and no analogous new BS family.
+
+**Audit.** `code/c16_escape_scan.py`, `tables/c16_escape_scan.json`.
+Inventor file for this wave timed out empty;
+`ingest/theory_wave3.md` is the coordinator recovery. Sol audit pending.

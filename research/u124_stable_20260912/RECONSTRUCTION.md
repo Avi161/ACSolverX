@@ -106,3 +106,16 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (shear cost is `2 ∑ |e_j|/d_j` AC2, not `≤ 2|c|`; Euclid sufficiency
   only for the replayed `k=qm+1` chains). Still **0/124**.
 
+## Wave 5 (C16-escape timeout recovery, C19, 2026-09-12)
+
+- Theory agent on C16 escapes timed out with an empty transcript. Coordinator
+  scan: `code/c16_escape_scan.py`.
+- **C19**: on `S_{n,−1}`, one AC2 makes the companion consecutive BS(n,n+1)
+  and drops cyclic total by 3 (`2n+13 → 2n+10`), `n=2..7`. Britton still
+  fails on the leftover donor `XuuuXUU` (no `u^{±1} x^k u^{∓1}` pinch).
+  Not a best-table update (C16 to reach the endpoint is non-effective).
+- Swapped-letter C16 does not fire on `S` or the five stored hits. Tag
+  family is not depth-1 AC2 with the MS relator. Five stored endpoints
+  are not BS donors.
+- Still **0/124**.
+

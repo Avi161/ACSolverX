@@ -58,17 +58,19 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    and `.../code/q_peel_orientations.py`.
    Wave 3: `.../code/wave3_structural.py` (C12 step-4 replay + primitive aggregates).
    Theory wave 1 (C16–C18): `.../code/theory_wave1_replay.py`.
+   C16 escapes / C19: `.../code/c16_escape_scan.py`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
-   is coordinator-replayed in `code/theory_wave1_replay.py`. Still 0/124.
+   is coordinator-replayed in `code/theory_wave1_replay.py`. C19 is an
+   elementary length-3 drop on the δ=−1 C16 endpoint, not a U124 solve. Still 0/124.
 
 ## File ownership
 
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |

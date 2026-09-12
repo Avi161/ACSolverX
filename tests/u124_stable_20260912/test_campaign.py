@@ -134,3 +134,20 @@ def test_c16_c17_c18_identities_fast():
     assert best["all_hits_instance_ok"]
     assert {h["name"] for h in best["hits"]} == {"aca_16", "aca_43", "aca_67", "aca_87", "aca_90"}
     assert all(not h["verified"]["C16_1_rho_legal"] for h in best["hits"])
+
+
+def test_c19_minus_endpoint_becomes_bs():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c16_escape_scan as esc  # type: ignore
+
+    for n in (2, 3, 7):
+        rec = esc.c19_identity(n)
+        assert rec["equals_claimed"]
+        assert rec["cyclically_bs_n_n1"]
+        assert rec["drop"] == 3
+        assert rec["bs_m"] == n
+        assert rec["donor_u_exp"] == 1
+        assert not rec["donor_has_u_pinch"]
+    fact = esc.factorization_identities()
+    assert fact["equals_inner_xinv2"] and fact["equals_xinv2_conjugate"]
