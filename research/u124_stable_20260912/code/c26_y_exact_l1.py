@@ -45,7 +45,7 @@ OUT = ROOT / "research" / "u124_stable_20260912" / "tables"
 
 ALPHABET = "xXyY"
 POSITIVE_Y = ("y", "Xyx", "xyX")
-MATERIALIZE_MAX_ARITY = 4
+MATERIALIZE_MAX_ARITY = 3
 MATERIALIZE_MAX_TUPLES = 1_000_000
 CARTESIAN_MAX_TUPLES = 500_000
 
@@ -87,12 +87,33 @@ def fold_set(factors: tuple[str, ...], arity: int) -> set[str]:
     return out
 
 
+def fold_set_ext(factors: tuple[str, ...], arity: int) -> set[str]:
+    """Unique reduced n-folds, using 2+2 for arity 4."""
+    if arity <= MATERIALIZE_MAX_ARITY:
+        return fold_set(factors, arity)
+    if arity != 4:
+        raise ValueError(f"fold_set_ext arity {arity}")
+    key = (factors, 4)
+    cached = _FOLD_CACHE.get(key)
+    if cached is not None:
+        return cached
+    lefts = fold_set(factors, 2)
+    rights = fold_set(factors, 2)
+    out = {free_reduce(a + b) for a in lefts for b in rights}
+    _FOLD_CACHE[key] = out
+    return out
+
+
 def is_fold(factors: tuple[str, ...], arity: int, word: str) -> bool:
     """Whether word is a freely reduced product of `arity` factors."""
     if arity < 0:
         raise ValueError("arity")
     if arity <= MATERIALIZE_MAX_ARITY:
         return word in fold_set(factors, arity)
+    if arity == 4:
+        lefts = fold_set(factors, 2)
+        rights = fold_set(factors, 2)
+        return any(free_reduce(inv(left) + word) in rights for left in lefts)
     if arity == 5:
         lefts = fold_set(factors, 2)
         rights = fold_set(factors, 3)
@@ -156,9 +177,9 @@ def mitm_m_plus_one(
     for pos in range(k):
         left_arity = pos
         right_arity = m - pos
-        if left_arity <= MATERIALIZE_MAX_ARITY and right_arity <= MATERIALIZE_MAX_ARITY:
-            lefts = fold_set(a_t, left_arity)
-            rights = fold_set(a_t, right_arity)
+        if left_arity <= 4 and right_arity <= 4:
+            lefts = fold_set_ext(a_t, left_arity)
+            rights = fold_set_ext(a_t, right_arity)
             for left in lefts:
                 for b_word in b_factors:
                     lb = free_reduce(left + b_word)
@@ -176,7 +197,7 @@ def mitm_m_plus_one(
                                 }
             continue
         if right_arity > MATERIALIZE_MAX_ARITY:
-            lefts = fold_set(a_t, left_arity)
+            lefts = fold_set_ext(a_t, left_arity)
             for left in lefts:
                 for b_word in b_factors:
                     lb = free_reduce(left + b_word)
@@ -193,7 +214,7 @@ def mitm_m_plus_one(
                                     "need": need,
                                 }
             continue
-        rights = fold_set(a_t, right_arity)
+        rights = fold_set_ext(a_t, right_arity)
         for right in rights:
             for b_word in b_factors:
                 br = free_reduce(b_word + right)
