@@ -111,9 +111,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Theory agent on C16 escapes timed out with an empty transcript. Coordinator
   scan: `code/c16_escape_scan.py`.
 - **C19**: on `S_{n,−1}`, one AC2 makes the companion consecutive BS(n,n+1)
-  and drops cyclic total by 3 (`2n+13 → 2n+10`), `n=2..7`. Britton still
-  fails on the leftover donor `XuuuXUU` (no `u^{±1} x^k u^{∓1}` pinch).
-  Not a best-table update (C16 to reach the endpoint is non-effective).
+  and drops cyclic total by 3 (`2n+13 → 2n+10`), `n=2..7`. C5 still
+  fails: `D` has `u x^{-1} u^{-1}` boundaries, but the intervening
+  exponent −1 is not a multiple of `n` or `n+1`. Not a best-table update
+  (C16 to reach the endpoint is non-effective).
+  `ingest/advisor_wave4.md` REVISE applied.
 - Swapped-letter C16 does not fire on `S` or the five stored hits. Tag
   family is not depth-1 AC2 with the MS relator. Five stored endpoints
   are not BS donors.

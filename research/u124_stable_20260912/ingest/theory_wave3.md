@@ -16,8 +16,9 @@ E = u⁻¹ xⁿ u⁻² x u² x⁻ⁿ      compact U xⁿ UU x uu x⁻ⁿ
 
 i.e. `S_{n,−1}`.
 
-**Identity.** One AC3 on each row (rotate `E` by `n`, rotate `D` by 2)
-followed by AC2 replacing `E` by the product:
+**Identity.** AC3 rotate `E` by `n`, AC3 rotate `D` by 2, AC2 replace
+`E` by the product, then one restoring AC3 so the first row is the
+original `D` (else the first row is `rot(D,2)`, the same cyclic class):
 
 ```
 cyc( rot(E, n) · rot(D, 2) )  =  x⁻ⁿ u⁻¹ xⁿ u x⁻¹
@@ -31,11 +32,13 @@ ordinary elementary length drop **on the C16 endpoint**, not on a stored
 U124 spelling. Reaching `S_{n,−1}` from an archival `P_{n,−1}` still uses
 C7 then C1 then C16 (two C0 uses). Do not update `aca_124_best.csv`.
 
-**C5 does not finish.** After C19 the pair is `⟨ D, BS(n,n+1)_u ⟩`. The
-u-exponent of `D` is `+1`, so C5’s exponent hypothesis holds if `BS` is
-read as the donor. Britton still fails: no orientation of `D` contains a
-pinch `u^{±1} x^k u^{∓1}` (`c19_donor_pinch = false`). Same stall shape
-as C15, different donor.
+**C5 does not finish.** After C19 the pair is `⟨ D, BS(n,n+1)_u ⟩` with
+`D` up to cyclic conjugacy. The u-exponent of `D` is `+1`, so C5’s
+exponent hypothesis holds if `BS` is read as the donor. `D` has
+opposite-sign stable-letter boundary subwords, but their intervening
+x-exponent is −1. For `n≥2` it is divisible by neither `n` nor `n+1`,
+so neither boundary is a valid BS(n,n+1) Britton pinch and C5 does not
+fire. Do not cite the old maximal-run helper `britton_pinch` for this.
 
 **Second depth-1 child (same length).** Replacing `D` instead yields a
 consecutive BS(n+1,n) with stable `u`, companion `E` unchanged, cyclic

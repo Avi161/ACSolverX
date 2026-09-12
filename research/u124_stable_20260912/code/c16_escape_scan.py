@@ -108,6 +108,48 @@ def britton_pinch(word: str, stable: str = "u") -> bool:
     return False
 
 
+def split_stable_pinches(word: str, stable: str = "u") -> list[dict]:
+    """Opposite-sign stable letters with only x-letters between, including
+    pinches obtained by splitting a longer stable run."""
+    reduced = cyc_reduce(word)
+    n = len(reduced)
+    doubled = reduced + reduced
+    out = []
+    seen = set()
+    for i in range(n):
+        left = doubled[i]
+        if left.lower() != stable:
+            continue
+        xexp = 0
+        only_x = True
+        for step in range(1, n):
+            right = doubled[i + step]
+            if right.lower() == stable:
+                if only_x and right == left.swapcase():
+                    key = (i, xexp, left, right)
+                    if key not in seen:
+                        seen.add(key)
+                        out.append({"k": xexp, "left": left, "right": right})
+                break
+            if right.lower() == "x":
+                xexp += 1 if right == "x" else -1
+            else:
+                only_x = False
+                break
+    return out
+
+
+def associated_bs_pinch(k: int, left: str, right: str, n: int) -> bool:
+    """u^{-1} x^{q n} u or u x^{q(n+1)} u^{-1} for integer q ≠ 0."""
+    if n < 1:
+        return False
+    if left == "U" and right == "u":
+        return k != 0 and k % n == 0
+    if left == "u" and right == "U":
+        return k != 0 and k % (n + 1) == 0
+    return False
+
+
 def c19_identity(n: int) -> dict:
     """Elementary AC2 on S_{n,-1}: companion becomes consecutive BS(n,n+1)."""
     donor, companion = tw.s_pair(n, -1)
@@ -131,8 +173,13 @@ def c19_identity(n: int) -> dict:
         "drop": (len(cyc_reduce(donor)) + len(cyc_reduce(companion)))
         - (len(cyc_reduce(donor)) + len(cyc_reduce(piece))),
         "donor_u_exp": tw.exp_sums(tw.subst(donor, {"u": "y"}))[1],
-        "donor_has_u_pinch": britton_pinch(donor, "u"),
-        "product_has_u_pinch": britton_pinch(piece, "u"),
+        "donor_maximal_run_pinch": britton_pinch(donor, "u"),
+        "product_maximal_run_pinch": britton_pinch(piece, "u"),
+        "donor_split_pinches": split_stable_pinches(donor, "u"),
+        "donor_valid_bs_pinch": any(
+            associated_bs_pinch(p["k"], p["left"], p["right"], n)
+            for p in split_stable_pinches(donor, "u")
+        ),
     }
 
 
@@ -296,8 +343,11 @@ def main() -> dict:
         "c19_all_equal": all(r["equals_claimed"] and r["cyclically_bs_n_n1"] and r["drop"] == 3 for r in c19),
         "c19_bs_m": [r["bs_m"] for r in c19],
         "c19_donor_u_exp": sorted({r["donor_u_exp"] for r in c19}),
-        "c19_donor_pinch": any(r["donor_has_u_pinch"] for r in c19),
-        "c19_product_pinch": all(r["product_has_u_pinch"] for r in c19),
+        "c19_maximal_run_pinch_on_D": any(r["donor_maximal_run_pinch"] for r in c19),
+        "c19_split_pinch_exponents_on_D": sorted(
+            {p["k"] for r in c19 for p in r["donor_split_pinches"]}
+        ),
+        "c19_valid_bs_pinch_on_D": any(r["donor_valid_bs_pinch"] for r in c19),
         "S_minus_row1_x_exp": sorted({r["row1_x_exp"] for r in minus}),
         "S_plus_row1_bs_mn": all(r["row1_bs_mn"] is not None for r in plus),
         "S_minus_row1_not_bs": all(r["row1_bs_mn"] is None for r in minus),

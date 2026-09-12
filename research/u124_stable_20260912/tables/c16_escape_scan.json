@@ -13,8 +13,11 @@
     "c19_donor_u_exp": [
       1
     ],
-    "c19_donor_pinch": false,
-    "c19_product_pinch": true,
+    "c19_maximal_run_pinch_on_D": false,
+    "c19_split_pinch_exponents_on_D": [
+      -1
+    ],
+    "c19_valid_bs_pinch_on_D": false,
     "S_minus_row1_x_exp": [
       -2
     ],
@@ -74,8 +77,21 @@
       "out_len": 14,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     },
     {
       "n": 3,
@@ -91,8 +107,21 @@
       "out_len": 16,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     },
     {
       "n": 4,
@@ -108,8 +137,21 @@
       "out_len": 18,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     },
     {
       "n": 5,
@@ -125,8 +167,21 @@
       "out_len": 20,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     },
     {
       "n": 6,
@@ -142,8 +197,21 @@
       "out_len": 22,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     },
     {
       "n": 7,
@@ -159,8 +227,21 @@
       "out_len": 24,
       "drop": 3,
       "donor_u_exp": 1,
-      "donor_has_u_pinch": false,
-      "product_has_u_pinch": true
+      "donor_maximal_run_pinch": false,
+      "product_maximal_run_pinch": true,
+      "donor_split_pinches": [
+        {
+          "k": -1,
+          "left": "u",
+          "right": "U"
+        },
+        {
+          "k": -1,
+          "left": "U",
+          "right": "u"
+        }
+      ],
+      "donor_valid_bs_pinch": false
     }
   ],
   "S_scans": [

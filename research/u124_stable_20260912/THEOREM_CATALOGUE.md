@@ -578,7 +578,10 @@ product, yields a word cyclically equal to `u⁻¹ xⁿ u x⁻(n+1)`,
 consecutive BS(n,n+1) with stable letter `u`. Compact product:
 `x⁻ⁿ u⁻¹ xⁿ u x⁻¹`.
 
-**Expansion.** Two AC3 (the stated rotations) and one AC2. No C0, no C1.
+**Expansion.** AC3 rotate `E` by `n`; AC3 rotate `D` by 2; AC2 replace
+`E` by the product; one restoring AC3 so the first row is the original
+`D` (otherwise the displayed first row is `rot(D,2)`, the same cyclic
+class). No C0, no C1.
 
 **Length.** Cyclic total drops by 3: `2n+13 → 2n+10`. Uniform on `n=2..7`.
 
@@ -587,12 +590,14 @@ consecutive BS(n,n+1) with stable letter `u`. Compact product:
 archival spelling still uses C7, C1, and C16’s two Lemma-11 steps, so
 this does **not** certify a shorter best-table representative and is
 **not a solve**. After C19, C5’s exponent-±1 hypothesis holds if the
-new BS is read as donor (`D` has u-exponent `+1`), but Britton fails:
-no orientation of `D` has a pinch `u^{±1} x^k u^{∓1}`.
+new BS is read as donor (`D` has u-exponent `+1`). `D` has opposite-sign
+stable-letter boundary subwords, but their intervening x-exponent is
+−1. For `n≥2` it is divisible by neither `n` nor `n+1`, so neither
+boundary is a valid BS(n,n+1) Britton pinch and C5 does not fire.
 
 **Control.** The same depth-1 neighbourhood on `S_{n,+1}` contains the
 C16.1 loop onto relabeled `P_{n,+1}` and no analogous new BS family.
 
 **Audit.** `code/c16_escape_scan.py`, `tables/c16_escape_scan.json`.
-Inventor file for this wave timed out empty;
-`ingest/theory_wave3.md` is the coordinator recovery. Sol audit pending.
+`ingest/advisor_wave4.md` **REVISE** applied. Coordinator recovery:
+`ingest/theory_wave3.md`.

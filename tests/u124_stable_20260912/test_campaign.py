@@ -148,6 +148,8 @@ def test_c19_minus_endpoint_becomes_bs():
         assert rec["drop"] == 3
         assert rec["bs_m"] == n
         assert rec["donor_u_exp"] == 1
-        assert not rec["donor_has_u_pinch"]
+        assert rec["donor_split_pinches"]
+        assert all(p["k"] == -1 for p in rec["donor_split_pinches"])
+        assert not rec["donor_valid_bs_pinch"]
     fact = esc.factorization_identities()
     assert fact["equals_inner_xinv2"] and fact["equals_xinv2_conjugate"]
