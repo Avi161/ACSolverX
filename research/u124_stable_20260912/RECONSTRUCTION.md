@@ -252,7 +252,7 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   C7 Aut-minimal P floors; that Aut-orbit is not a solve. The free
   identity `D · Xyx = YXXyxx` is not an AC2. Defining word `x` is C30. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`.
-  Advisor audit pending.
+  Advisor APPROVE (`ingest/advisor_wave15.md`).
 
 ## Wave 16 (C30 exact-L1 x on YXXyxYx, 2026-09-12)
 
@@ -281,9 +281,10 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   min length 9, no hit on `{y, Xyx, xyX}`. aca_32 is not BS: exact
   L1=2 two-factor Cartesian 1,104 products, min length 9, no hit.
   A hit would have been a normal-closure candidate, not a C12
-  primitive. Parallel to C15, different donor. Still **0/124**.
+  primitive. Parallel to C15, different donor. Observed min 9 is not a
+  comparative control against C29. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`.
-  Advisor audit pending.
+  Advisor APPROVE (`ingest/advisor_wave16.md`).
 
 
 

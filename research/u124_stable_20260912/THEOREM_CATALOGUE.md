@@ -1175,7 +1175,7 @@ AC1–AC5 path from a future ncl hit.
 
 **Audit.** `code/c29_yxx_family.py`, `tables/c29_yxx_family.json`.
 Same-code deterministic replay plus planted nine-config control.
-`independent_checker=false`. Advisor audit pending.
+`independent_checker=false`. `ingest/advisor_wave15.md` **APPROVE**.
 
 ---
 
@@ -1259,8 +1259,9 @@ enumeration: `1,519,059` products, equal to the typed size, observed
 minimum free length 9, none equal to a target. Per-row products:
 aca_22 148275; aca_23 131472; aca_46 183924; aca_49 204849; aca_68
 248808; aca_70 274311; aca_89 327420. Counts are nine-config typed
-sizes, not `|F|^3`. Observed minimum 9 is a census fact, not a length
-theorem.
+sizes, not `|F|^3`. Observed minimum 9 is a census fact for this pool,
+not a length theorem and not a comparative control against C29's
+minimum 7.
 
 **C31.3 (exact L1=2, aca_32).** One conjugate of `D` and one of
 `C^{-1}`: `1,104` Cartesian products, observed minimum 9, no hit.
@@ -1277,7 +1278,9 @@ seven BS rows; L1=3 on aca_32). Depth ≥ 3 AC2. Lemma 11.
 
 **Audit.** `code/c31_yxxy_family.py`, `tables/c31_yxxy_family.json`.
 Same-code deterministic replay plus planted nine-config control.
-`independent_checker=false`. Advisor audit pending.
+`independent_checker=false`. Tests spot-check identities and stored
+JSON; they do not independently replay the census.
+`ingest/advisor_wave16.md` **APPROVE**.
 
 
 
