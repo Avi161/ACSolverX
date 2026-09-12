@@ -43,6 +43,20 @@ def q_pair(n: int, delta: int) -> tuple[str, str]:
     return "XYxyxxy" + xd + "YXX", "Yxxy" + xd * n + "YXX"
 
 
+def floor_pair(n: int, delta: int) -> tuple[str, str]:
+    if delta == -1:
+        return "YXXyxYx", "Y" * n + "Xyyxx"
+    return "YXyXYxx", "Y" * n + "XXYYx"
+
+
+def auto_q(n: int, delta: int) -> tuple[str, str]:
+    from experiments.equivalence_classes.lib.words import apply_hom
+
+    r1, r2 = q_pair(n, delta)
+    img = {"x": "x", "y": "XXy"}
+    return apply_hom(r1, img), apply_hom(r2, img)
+
+
 def vertices(graph) -> list[int]:
     return sorted({0} | {vertex for source, _, target in graph for vertex in (source, target)})
 
@@ -89,14 +103,34 @@ def main() -> None:
                     (compact_to_tuple(r1), compact_to_tuple(r2)),
                 )
             )
+            a1, a2 = auto_q(n, delta)
+            rows.append(
+                probe_words(
+                    f"Qauto_n{n}_d{delta:+d}",
+                    (compact_to_tuple(a1), compact_to_tuple(a2)),
+                )
+            )
+            f1, f2 = floor_pair(n, delta)
+            rows.append(
+                probe_words(
+                    f"floor_n{n}_d{delta:+d}",
+                    (compact_to_tuple(f1), compact_to_tuple(f2)),
+                )
+            )
     wall = time.perf_counter() - t0
     n_q = [row for row in rows if row["tag"].startswith("Q_")]
+    n_auto = [row for row in rows if row["tag"].startswith("Qauto_")]
+    n_floor = [row for row in rows if row["tag"].startswith("floor_")]
     summary = {
         "wall_time_seconds": wall,
         "control_x_y2_join_corank_one": rows[0]["join_corank_one"],
         "control_ak3_rose_hits": len(rows[1]["rose_hits"]),
         "q_rows": len(n_q),
         "q_join_corank_one": sum(row["join_corank_one"] for row in n_q),
+        "qauto_rows": len(n_auto),
+        "qauto_join_corank_one": sum(row["join_corank_one"] for row in n_auto),
+        "floor_rows": len(n_floor),
+        "floor_join_corank_one": sum(row["join_corank_one"] for row in n_floor),
         "caveat": (
             "Join corank 1 would give a cyclic-complement stable trivialization. "
             "Zero rose hits means join corank ≥ 2 for these exact Q pairs, not an "

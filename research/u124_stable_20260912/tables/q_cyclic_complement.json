@@ -1,10 +1,14 @@
 {
   "summary": {
-    "wall_time_seconds": 0.09296023300021261,
+    "wall_time_seconds": 0.2979237329998341,
     "control_x_y2_join_corank_one": true,
     "control_ak3_rose_hits": 0,
     "q_rows": 12,
     "q_join_corank_one": 0,
+    "qauto_rows": 12,
+    "qauto_join_corank_one": 0,
+    "floor_rows": 12,
+    "floor_join_corank_one": 0,
     "caveat": "Join corank 1 would give a cyclic-complement stable trivialization. Zero rose hits means join corank \u2265 2 for these exact Q pairs, not an AC obstruction and not a certificate."
   },
   "rows": [
@@ -44,12 +48,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n2_d-1",
+      "n_vertices": 11,
+      "n_undirected_edges": 12,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 55,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n2_d-1",
+      "n_vertices": 11,
+      "n_undirected_edges": 12,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 55,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n3_d-1",
       "n_vertices": 16,
       "n_undirected_edges": 17,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 120,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n3_d-1",
+      "n_vertices": 12,
+      "n_undirected_edges": 13,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 66,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n3_d-1",
+      "n_vertices": 12,
+      "n_undirected_edges": 13,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 66,
       "rose_hits": [],
       "join_corank_one": false
     },
@@ -64,12 +108,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n4_d-1",
+      "n_vertices": 13,
+      "n_undirected_edges": 14,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 78,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n4_d-1",
+      "n_vertices": 13,
+      "n_undirected_edges": 14,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 78,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n5_d-1",
       "n_vertices": 18,
       "n_undirected_edges": 19,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 153,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n5_d-1",
+      "n_vertices": 14,
+      "n_undirected_edges": 15,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 91,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n5_d-1",
+      "n_vertices": 14,
+      "n_undirected_edges": 15,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 91,
       "rose_hits": [],
       "join_corank_one": false
     },
@@ -84,12 +168,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n6_d-1",
+      "n_vertices": 15,
+      "n_undirected_edges": 16,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 105,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n6_d-1",
+      "n_vertices": 15,
+      "n_undirected_edges": 16,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 105,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n7_d-1",
       "n_vertices": 20,
       "n_undirected_edges": 21,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 190,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n7_d-1",
+      "n_vertices": 16,
+      "n_undirected_edges": 17,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 120,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n7_d-1",
+      "n_vertices": 16,
+      "n_undirected_edges": 17,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 120,
       "rose_hits": [],
       "join_corank_one": false
     },
@@ -104,12 +228,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n2_d+1",
+      "n_vertices": 11,
+      "n_undirected_edges": 12,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 55,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n2_d+1",
+      "n_vertices": 11,
+      "n_undirected_edges": 12,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 55,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n3_d+1",
       "n_vertices": 16,
       "n_undirected_edges": 17,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 120,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n3_d+1",
+      "n_vertices": 12,
+      "n_undirected_edges": 13,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 66,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n3_d+1",
+      "n_vertices": 12,
+      "n_undirected_edges": 13,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 66,
       "rose_hits": [],
       "join_corank_one": false
     },
@@ -124,12 +288,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n4_d+1",
+      "n_vertices": 13,
+      "n_undirected_edges": 14,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 78,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n4_d+1",
+      "n_vertices": 13,
+      "n_undirected_edges": 14,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 78,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n5_d+1",
       "n_vertices": 18,
       "n_undirected_edges": 19,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 153,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n5_d+1",
+      "n_vertices": 14,
+      "n_undirected_edges": 15,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 91,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n5_d+1",
+      "n_vertices": 14,
+      "n_undirected_edges": 15,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 91,
       "rose_hits": [],
       "join_corank_one": false
     },
@@ -144,12 +348,52 @@
       "join_corank_one": false
     },
     {
+      "tag": "Qauto_n6_d+1",
+      "n_vertices": 15,
+      "n_undirected_edges": 16,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 105,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n6_d+1",
+      "n_vertices": 15,
+      "n_undirected_edges": 16,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 105,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
       "tag": "Q_n7_d+1",
       "n_vertices": 20,
       "n_undirected_edges": 21,
       "rank": 2,
       "already_full_rose": false,
       "pair_folds": 190,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "Qauto_n7_d+1",
+      "n_vertices": 16,
+      "n_undirected_edges": 17,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 120,
+      "rose_hits": [],
+      "join_corank_one": false
+    },
+    {
+      "tag": "floor_n7_d+1",
+      "n_vertices": 16,
+      "n_undirected_edges": 17,
+      "rank": 2,
+      "already_full_rose": false,
+      "pair_folds": 120,
       "rose_hits": [],
       "join_corank_one": false
     }

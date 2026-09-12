@@ -182,11 +182,14 @@ Unimodular `(A,B)` plus `c` with `⟨A,B,c⟩ = F(a,b)` ⇒ stable triviality at
 rank 3. AK(3) fails the criterion. AK(2) also fails and is still ordinary-AC
 trivial. **Do not treat a failed complement search as an obstruction.**
 
-**U124.** Scan of exact `Q_{n,δ}` for `n=2..7`, both signs:
+**U124.** Scan of exact `Q_{n,δ}`, the image under `y↦x^{-2}y`, and the
+Aut-minimal floor shapes, for `n=2..7` both signs:
 `code/q_cyclic_complement.py`. Positive control `⟨x,y²⟩` has one rose hit;
-AK3 has 0/45 as previously recorded. All 12 Q cores have **0 rose hits**, so
-join corank ≥ 2. The cyclic-complement criterion therefore **does not fire**
-on these exact residues. That is not an AC obstruction (AK2 control).
+AK3 has 0 rose hits. All 36 family cores have **0 rose hits**, so join
+corank ≥ 2 in each of these three coordinates. The cyclic-complement
+criterion therefore **does not fire**. That is not an AC obstruction (AK2
+control). Join corank is still not an invariant: other AC-equivalent
+spellings are not classified.
 
 ---
 
