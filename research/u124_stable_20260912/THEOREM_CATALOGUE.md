@@ -983,11 +983,50 @@ second implementation.
 
 **What this does not rule out.** C15: `k=5,7,…`; conjugators outside
 the prefix/one-letter set. Q' defining word `y` at `k=L1` when
-`L1≥2`. Gate 1 `ξ` at `k≥7`. Longer conjugators. Materializing
-Lemma 11. An explicit AC1–AC5 path from a future ncl hit.
+`L1≥2` is C26 for the `2≤L1≤7` window. Gate 1 `ξ` at `k≥7`.
+Longer conjugators. Materializing Lemma 11. An explicit AC1–AC5
+path from a future ncl hit.
 
 **U124.** Ten C15 best-table rows (aca_18,20,40,42,63,65,91,93,102,104)
 and the C16 Q' family. **Not a solve.**
 
 **Audit.** `code/c25_alt_words.py`, `tables/c25_alt_words.json`. Same-code
 deterministic replay. `ingest/advisor_wave10.md` **REVISE** applied.
+
+---
+
+## C26. Exact-L1 typed products for `y` on `Q'` — IDENTITY-CHECKED NEGATIVE
+
+**C26.1 (combination, all `n≥2`).** Same identity as C25.2:
+`(a,b)=(n+2δ,-1)`, `L1=|n+2δ|+1`. Exact-L1 products are `|a|`
+conjugates of `R^{\mathrm{sign}(a)}` and one conjugate of `S^{-1}`,
+in some order (`t_R=t_S=0`). For `n≥2` in this campaign's window,
+`a≥0` except the excluded `L1=1` cell `(n,δ)=(2,-1)`.
+
+**C26.2 (prefix/one-letter census, `n=2..7`, `2≤L1≤7`).** Unique
+conjugates per signed type; counts are typed Cartesian sizes
+`k\,|A|^{k-1}|B|`, not `|F|^k`. Cells with at most 500,000 typed
+tuples are enumerated as products; larger cells are an existence
+MITM on unique freely reduced folds of the same typed slots.
+Targets are the exponent-`(0,1)` one-letter class `{y, Xyx, xyX}`.
+The inverse class follows by reversing and inverting factors.
+No cell hits. Cartesian cells have free length at least 7.
+
+Window: `(n,δ) = (3,-1),(4,-1),(5,-1),(6,-1),(7,-1),(2,+1),(3,+1),(4,+1)`.
+Excluded: `(2,-1)` (`L1=1`, C25.2 length block); `δ=+1` and `n≥5`
+(`L1≥8`).
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0 in the
+enumerated products. A hit would be a **normal-closure candidate**,
+not an AC-reachable primitive (C12, which also needs C1).
+
+**What this does not rule out.** `k=L1+2t` for `t≥1`. `L1≥8`.
+Conjugators outside the prefix/one-letter set, or involving `u`.
+Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Materializing Lemma 11.
+
+**U124.** C16 Q' family. **Not a solve.**
+
+**Audit.** `code/c26_y_exact_l1.py`, `tables/c26_y_exact_l1.json`.
+Same-code replay plus planted Cartesian/MITM controls.
+`independent_checker=false`. Advisor ingest pending.
+

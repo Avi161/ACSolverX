@@ -204,3 +204,15 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Advisor REVISE applied (`ingest/advisor_wave10.md`). Still **0/124**.
   No certificate JSONL rows.
 
+## Wave 12 (C26 exact-L1 y on Q', 2026-09-12)
+
+- Exact-L1 typed products for defining word `y`: `|a|` conjugates of
+  `R^{\mathrm{sign}(a)}` and one `S^{-1}`. Prefix/one-letter, per-type
+  unique conjugates, typed Cartesian counts (not `|F|^k`).
+- Window `n=2..7`, `2≤L1≤7` (eight cells). Cartesian cells min length
+  7; larger cells existence-MITM. No hit on `{y, Xyx, xyX}`.
+- A hit would have been a normal-closure candidate, not a C12 path.
+  `L1=1` remains C25.2; `L1≥8` is open. Still **0/124**.
+  No certificate JSONL rows.
+
+

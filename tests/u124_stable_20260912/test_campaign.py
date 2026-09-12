@@ -431,3 +431,45 @@ def test_c25_alt_words_identities_and_n2():
     assert artifact["q_prime_x_three_factor"][0]["pool"] == (
         "nine_signed_type_configs_per_type_dedup"
     )
+
+
+def test_c26_exact_l1_identities_and_n3():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c26_y_exact_l1 as c26  # type: ignore
+
+    cells = c26.window()
+    assert (3, -1, 2) in cells
+    assert (2, 1, 5) in cells
+    assert (4, 1, 7) in cells
+    assert (2, -1, 1) not in cells
+    assert all(2 <= l1 <= 7 for _, _, l1 in cells)
+    assert c26.y_combo(3, -1) == (1, -1, 2)
+    assert c26.y_combo(2, 1) == (4, -1, 5)
+    assert c26.y_combo(4, 1) == (6, -1, 7)
+    controls = c26.planted_controls()
+    assert controls["ok"]
+    assert controls["independent_checker"] is False
+    rec = c26.scan_exact_l1(3, -1)
+    assert not rec["found"]
+    assert rec["method"] == "typed_cartesian"
+    assert rec["min_len"] >= 7
+    assert rec["L1"] == 2
+    assert rec["combo_a"] == 1
+    assert rec["combo_b"] == -1
+    assert rec["n_typed_tuples"] == rec["k"] * rec["n_A"] ** rec["m_R"] * rec["n_B"]
+    assert rec["counts_are_typed_cartesian"]
+    invc = c26.inversion_closure()
+    assert invc["negative_targets_hit_iff_positive_inverse_factors"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c26_y_exact_l1.json"
+    if json_path.exists():
+        artifact = json.loads(json_path.read_text())
+        summary = artifact["summary"]
+        assert not summary["any_hit"]
+        assert summary["n_cells"] == 8
+        assert summary["controls_ok"]
+        assert summary["independent_checker"] is False
+        assert summary["solved_u124"] == 0
+        assert summary["counts_are_typed_cartesian"]
+        assert summary["skipped_l1_1"]["n"] == 2
+        assert [row["n"] for row in summary["skipped_l1_ge_8"]] == [5, 6, 7]
