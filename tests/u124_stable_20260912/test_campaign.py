@@ -520,6 +520,9 @@ def test_c27_archival_k4_identities():
         assert summary["initial_n_changed_from_best"] == 36
         assert not summary["k4_found"]
         assert summary["k4_products_equal_typed"]
+        assert summary["k4_n_typed_tuples"] == 5_128_200
+        assert summary["k4_n_products"] == 5_128_200
+        assert summary["k4_min_len"] == 11
         assert summary["independent_checker"] is False
         assert summary["solved_u124"] == 0
 

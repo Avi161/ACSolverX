@@ -1030,9 +1030,10 @@ Excluded: `(2,-1)` (`L1=1`, C25.2 length block); `δ=+1` and `n≥5`
 enumerated products. A hit would be a **normal-closure candidate**,
 not an AC-reachable primitive (C12, which also needs C1).
 
-**What this does not rule out.** `k=L1+2t` for `t≥1`. `L1≥8`.
-Conjugators outside the prefix/one-letter set, or involving `u`.
-Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Materializing Lemma 11.
+**What this does not rule out.** `k=L1+2t` for `t≥1` except the unique
+`L1=2` cell at `k=4`, which is C27.2. `L1≥8`. Conjugators outside the
+prefix/one-letter set, or involving `u`. Gate 1 `ξ` at `k≥7`. C15
+`k≥5`. Materializing Lemma 11.
 
 **U124.** C16 Q' family. **Not a solve.**
 
@@ -1040,4 +1041,46 @@ Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Materializing Lemma 11.
 Same-code replay plus branch-complete planted Cartesian/MITM
 controls. `independent_checker=false`. `ingest/advisor_wave11.md`
 **REVISE** applied.
+
+---
+
+## C27. Archival depth-1 AC2; `k=L1+2` for `y` on `Q'_{3,-1}` — IDENTITY-CHECKED NEGATIVE
+
+**C27.1 (archival initial table and parametric families).** C13
+enumerated the depth-1 ordinary AC2 neighbourhood of the **best**
+table (0 length drops, 0 new one-occurrence, 0 new two-block).
+Thirty-six μ-floor rows have a different archival initial spelling.
+The same neighbourhood on `aca_124_initial.csv` (124 rows, 36
+changed) has 0 unique strict length drops, 0 new one-occurrence
+children, and 0 new two-block children. The same holds for the
+parametric families `P_{n,δ}`, `Q_{n,δ}` (`n=2..7`, both signs) and
+Family A `P(n)`, `Q(n)` (`n=2..7`): 36 pairs, 0 drops. Unique
+children of those parametric pairs are all strictly longer than the
+input. Planted control: `⟨x, xy⟩` drops to `⟨x, y⟩` by AC2.
+
+**C27.2 (`k=4` extra pair for `y` on `Q'_{3,-1}`).** Unique L1=2
+cell: combination `(1,-1)`. Exact `k=L1+2` products are one extra
+cancelling pair on top of one `R^+` and one `S^-`, i.e. the two
+multinomial types `(R^+)^2 R^- S^-` and `R^+ S^+ (S^-)^2` (12
+sequences each after per-type unique conjugates). Typed Cartesian
+enumeration: `5,128,200` products, equal to the typed size, observed
+minimum free length 11, none equal to `{y, Xyx, xyX}`. Inverse class
+by reversing and inverting factors. A hit would be a **normal-closure
+candidate**, not a C12 primitive.
+
+**Expansion.** C27.1 is ordinary AC1–AC3 (rotations are AC3 by a
+prefix). C27.2 is restore-preserving AC3+AC2 as in C22. No C0.
+
+**What this does not rule out.** Depth ≥ 2 AC2 on archival or best
+spellings. `k=L1+2t` for `t≥2` or for cells with `L1≠2`. `L1≥8`.
+Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Longer conjugators. Materializing
+Lemma 11.
+
+**U124.** All 124 archival initial rows plus the C16 `Q'` family
+(C27.2 is one cell). **Not a solve.**
+
+**Audit.** `code/c27_archival_k4.py`, `tables/c27_archival_k4.json`.
+Same-code replay plus planted AC2 and typed-4-tuple controls.
+`independent_checker=false`. Advisor ingest pending.
+
 

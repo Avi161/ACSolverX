@@ -219,4 +219,16 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_wave11.md`). Still **0/124**.
   No certificate JSONL rows.
 
+## Wave 13 (C27 archival AC2 and k=4 extra pair, 2026-09-12)
+
+- Depth-1 ordinary AC2 on `aca_124_initial.csv`: 124 rows, 36 μ-floor
+  spellings different from best, 0 unique length drops, 0 new
+  one-occurrence, 0 new two-block. Parametric `P`/`Q`/Family A
+  (`n=2..7`): 36 pairs, 0 drops.
+- `k=4` typed extra-pair products for `y` on `Q'_{3,-1}`: 5,128,200
+  Cartesian tuples, observed min length 11, no hit on `{y, Xyx, xyX}`.
+  A hit would have been a normal-closure candidate, not a C12 path.
+  Still **0/124**. No certificate JSONL rows.
+
+
 
