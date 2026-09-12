@@ -355,6 +355,21 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `independent_checker=false`. Plan advisor REVISE applied
   (`ingest/advisor_c36_plan.md`). Advisor APPROVE (`ingest/advisor_wave21.md`).
 
+## Wave 23 (C37 exact-L1 x on YXXYxxyX, 2026-09-12)
+
+- Defining word `x` on the seven C36 rows: listed combo `(-1,1)`,
+  `L1=2`, not every unimodular companion. Exact-L1 is one `D^{-1}`
+  conjugate and one `C` conjugate, both orders.
+- All Cartesian: `11,804` typed tuples, equal to typed size, observed
+  minima 11, 13, 13, 15, 15, 17, 19, no hit on `{x, Yxy, yxY}`. Equality
+  is free-reduce literal. Hit witnesses would be replayed outside the
+  scanner; unused because there was no hit. Observed min 11 is a C37
+  census statistic, not a comparison with C32. Still **0/124**. No
+  certificate JSONL rows. `independent_checker=false`. Plan advisor
+  REVISE applied (`ingest/advisor_c37_plan.md`). Census advisor audit
+  pending.
+
+
 
 
 

@@ -1512,7 +1512,7 @@ these rows under a different depth-2 AC2 predicate.
 be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
-including `u`. Exact-L1 for `x` (`L1=2`) on these rows. Other unused
+including `u`. Exact-L1 for `x` (`L1=2`) on these rows is C37. Other unused
 listed donors `YYXXXyxx`, `YXXyXYxxx`, `YXXXyxYxx`. aca_43 k=3 for
 `x`. C35 leftover `y`. Depth ≥ 3 AC2. Lemma 11.
 
@@ -1526,6 +1526,55 @@ persisted factor/conjugator witness replayed outside the scanner.
 orientation, planted outside-replay, and rerun only aca_21; they do
 not independently enumerate the census. Plan advisor REVISE applied
 (`ingest/advisor_c36_plan.md`). `ingest/advisor_wave21.md` **APPROVE**.
+
+---
+
+## C37. Exact-L1 typed products for `x` on the C36 rows — IDENTITY-CHECKED NEGATIVE
+
+**C37.1 (combination, listed rows).** On the seven listed `YXXYxxyX`
+companions with `C_{\mathrm{ab}}=(0,-1)`, solving
+`a D_{\mathrm{ab}} + b C_{\mathrm{ab}}=(1,0)` gives uniquely
+`(a,b)=(-1,1)`, so `L1=2`. Exact-L1 products are one conjugate of
+`D^{-1}` and one conjugate of `C`, in either order. This is **not** a
+claim about every unimodular companion of `D`.
+
+**C37.2 (prefix/one-letter census, all seven rows).** Unique conjugates
+per signed type; counts are typed Cartesian sizes `2\,|A|\,|B|`, not
+`|F|^k`. All seven cells are Cartesian: `11,804` enumerated typed
+tuples, equal to the typed size, observed free-length minima 11, 13,
+13, 15, 15, 17, 19 (census minimum 11). No MITM. Targets `{x, Yxy, yxY}`;
+inverse class by reversing and inverting factors. No hit. Equality is
+free-reduce literal match. `independent_checker=false`.
+
+Per-row products: aca_21 1200; aca_25 1300; aca_47 1508; aca_50 1620;
+aca_69 1848; aca_73 1972; aca_96 2356.
+
+A hit would persist ordered signed types, two factor words, conjugators,
+and a free-reduce replay **outside** the scanner loop; no hit occurred.
+Observed minima are C37 census facts, not a length theorem and not a
+comparative control against C32.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
+conjugators, including `u`. Equality was tested after free reduction
+only against `{x, Yxy, yxY}`; freely reduced longer conjugates of `x`
+not among these three targets remain untested. C36 leftover `k=5,7,…`
+for `y`. Unused listed donors `YYXXXyxx`, `YXXyXYxxx`, `YXXXyxYxx`.
+aca_43 k=3 for `x`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Seven best-table rows listed in C36. **Not a solve.** Bounded
+negative for this typed exact-L1 pool.
+
+**Audit.** `code/c37_x_exact_l1.py`, `tables/c37_x_exact_l1.json`.
+Same-code replay plus planted two-factor control with outside-scanner
+replay. Observed Cartesian minimum 11 is a census fact. Tests
+independently check the algebra and rerun only aca_21; they do not
+independently replay all seven cells. `independent_checker=false`.
+Plan advisor REVISE applied (`ingest/advisor_c37_plan.md`). Census
+advisor audit pending.
+
 
 
 

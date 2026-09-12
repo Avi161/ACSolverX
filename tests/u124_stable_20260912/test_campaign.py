@@ -1029,3 +1029,54 @@ def test_c36_yxxyx_family_identities():
     }
 
 
+def test_c37_x_exact_l1_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c30_x_exact_l1 as c30  # type: ignore
+    import c37_x_exact_l1 as c37  # type: ignore
+    from experiments.equivalence_classes.lib.words import free_reduce  # type: ignore
+
+    assert c22.exp_on(c37.DONOR, "xy") == (-1, -1)
+    assert c37.x_combo_from_listed_c_exp(0, -1) == (-1, 1, 2)
+    try:
+        c37.x_combo_from_listed_c_exp(1, 0)
+        assert False, "combo must stay restricted to listed C_ab=(0,-1)"
+    except ValueError:
+        pass
+    rec = c37.scan_row("aca_21", "YYYYxyyyX")
+    assert rec["L1"] == 2
+    assert rec["combo_a"] == -1 and rec["combo_b"] == 1
+    assert rec["n_products"] == 1200
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 11
+    assert not rec["found"]
+    assert rec["hit_replay_outside_scanner"] is None
+    planted = c37.planted()
+    assert planted["ok"]
+    assert planted["independent_checker"] is False
+    assert planted["hit"]["word"] == "x"
+    assert planted["hit_replay_outside_scanner"]["ok"]
+    assert free_reduce("".join(planted["hit"]["factors"])) == "x"
+    json_path = ROOT / "research/u124_stable_20260912/tables/c37_x_exact_l1.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 7
+    assert summary["all_L1_2"]
+    assert summary["combo_restricted_to_listed_C_ab"]
+    assert summary["n_cartesian_products_enumerated"] == 11804
+    assert summary["n_typed_tuples_total"] == 11804
+    assert summary["n_mitm_cells"] == 0
+    assert summary["cartesian_observed_min_len"] == 11
+    assert summary["cartesian_min_lens"] == [11, 13, 13, 15, 15, 17, 19]
+    assert not summary["any_hit"]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    assert summary["equality_is_free_reduce_literal"]
+    assert summary["matches_c36_predicted_typed"]
+    assert c30.x_class_exponents()["one_letter_class_complete"]
+    per_row = {row["id"]: row["n_products"] for row in artifact["scans"]}
+    assert per_row == c37.EXPECTED_TYPED
+    assert sum(per_row.values()) == c37.EXPECTED_TYPED_TOTAL
+
+
