@@ -1080,3 +1080,72 @@ def test_c37_x_exact_l1_identities():
     assert sum(per_row.values()) == c37.EXPECTED_TYPED_TOTAL
 
 
+def test_c38_yxxxyx_family_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c30_x_exact_l1 as c30  # type: ignore
+    import c35_yxxx_family as c35  # type: ignore
+    import c38_yxxxyx_family as c38  # type: ignore
+    from experiments.equivalence_classes.lib.words import free_reduce  # type: ignore
+
+    assert c22.exp_on(c38.DONOR, "xy") == (0, -1)
+    assert c38.y_combo_from_listed_c_exp(1, -3) == (-1, 0, 1)
+    assert c38.y_combo_from_listed_c_exp(-1, -7) == (-1, 0, 1)
+    try:
+        c38.y_combo_from_listed_c_exp(0, -1)
+        assert False, "combo must stay restricted to listed |p|=1 companions"
+    except ValueError:
+        pass
+    assert c38.ORIENTATION == c35.C35_ORIENTATION
+    assert c38.ORIENTATION != c35.C31_ORIENTATION
+    ab = c38.abelian_row("aca_48", "YYYYXXyxxx")
+    assert ab["y_L1"] == 1
+    assert ab["y_combo"]["a"] == -1 and ab["y_combo"]["b"] == 0
+    assert ab["D_exp"] == [0, -1]
+    assert ab["C_exp"] == [1, -3]
+    assert ab["pair_exponent_matrix_unimodular"]
+    assert ab["x_L1"] == 4
+    assert ab["x_combo"]["a"] == -3 and ab["x_combo"]["b"] == 1
+    assert c30.x_combo_from_c_exp(1, -3) == (-3, 1, 4)
+    rec = c38.three_factor_row("aca_48", "YYYYXXyxxx")
+    assert rec["n_products"] == 188328
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 9
+    assert not rec["found"]
+    assert rec["orientation"] == c38.ORIENTATION
+    assert rec["hit_replay_outside_scanner"] is None
+    planted = c38.planted()
+    assert planted["ok"]
+    assert planted["orientation"] == c38.ORIENTATION
+    assert planted["independent_checker"] is False
+    witness = planted["hit"]
+    assert witness["word"] == "y"
+    assert planted["hit_replay_outside_scanner"]["ok"]
+    assert free_reduce("".join(witness["factors"])) == "y"
+    json_path = ROOT / "research/u124_stable_20260912/tables/c38_yxxxyx_family.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 7
+    assert summary["all_y_combo_minus_one_zero"]
+    assert summary["combo_restricted_to_listed_rows"]
+    assert summary["disjoint_donor_row_presentation_pairs"]
+    assert summary["not_disjoint_companion_word_set"]
+    assert summary["not_last_unused_listed_donor"]
+    assert summary["three_all_orientation_c35"]
+    assert summary["three_none_orientation_c31"]
+    assert summary["x_exact_l1_not_part_of_c38"]
+    assert not summary["three_any_hit"]
+    assert summary["three_n_products"] == 1_798_887
+    assert summary["three_n_typed_tuples"] == c38.EXPECTED_TYPED_TOTAL
+    assert summary["three_products_equal_typed"]
+    assert summary["three_min_len"] == 9
+    assert summary["three_min_lens"] == [9, 9, 9, 9, 9, 9, 9]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == c38.EXPECTED_TYPED
+    assert sum(per_row.values()) == c38.EXPECTED_TYPED_TOTAL
+
+
+
