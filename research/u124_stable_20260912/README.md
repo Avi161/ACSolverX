@@ -82,8 +82,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C24: even `k` is an abelian obstruction for Gate 1 (`L1=1`);
    103,765,444,800 five-factor prefix/one-letter products never equal
    `ξ`; Gate 2 on `Q'` has even `L1`, so odd `k` is impossible, and
-   four-factor hits only the `δ=−1`, `n=2..5` window (no hit).
-   Still 0/124.
+    four-factor hits only the `δ=−1`, `n=2..5` window (no hit).
+    Advisor REVISE applied. Still 0/124.
 
 ## File ownership
 

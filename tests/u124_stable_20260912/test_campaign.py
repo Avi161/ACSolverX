@@ -283,7 +283,19 @@ def test_c24_even_k_and_n2_five_factor():
     ktable = c24.abelian_k_table(6)
     assert ktable["even_k_all_zero"]
     assert ktable["uniform_gate1_counts"]
+    assert ktable["closed_matches_enumeration"]
     assert ktable["k5_always_100"]
+    assert c24.signed_type_count_closed(1) == 1
+    assert c24.signed_type_count_closed(3) == 9
+    assert c24.signed_type_count_closed(5) == 100
+    assert c24.signed_type_count_closed(2) == 0
+    rot = c24.xi_rotation_free_targets()
+    assert rot["equals_xi_xiinv_x_xinv"]
+    assert set(rot["extra_beyond_xi"]) == {"x", "X"}
+    controls = c24.mitm_controls()
+    assert controls["ok"]
+    assert controls["same_code_as_census"]
+    assert not controls["independent_checker"]
     g2 = c24.gate2_parity_row(2, 1)
     assert g2["combo_matches_closed_form"]
     assert g2["L1"] == 6
@@ -306,6 +318,7 @@ def test_c24_even_k_and_n2_five_factor():
     assert set(searched) == {"aca_16", "aca_43", "aca_90"}
     assert searched["aca_16"]["k"] == 5
     assert searched["aca_43"]["k"] == 4
+    assert searched["aca_43"]["reason"] and "C22.4" in searched["aca_43"]["reason"]
     assert searched["aca_90"]["k"] == 3
     assert all(not row["found"] for row in stored_search)
     artifact = json.loads(
@@ -315,6 +328,11 @@ def test_c24_even_k_and_n2_five_factor():
     assert summary["gate1_hypotheses_n_le_20"]
     assert summary["gate2_L1_always_even_n_le_20"]
     assert summary["even_k_all_zero"]
+    assert summary["closed_matches_enumeration"]
+    assert summary["mitm_control_ok"]
+    assert summary["same_code_replay"]
+    assert not summary["independent_checker"]
+    assert summary["xi_rotation_equals_xi_xiinv_x_xinv"]
     assert not summary["five_factor_any_hit"]
     assert not summary["five_factor_rotation_any_hit"]
     assert summary["five_factor_n_checked"] == 12

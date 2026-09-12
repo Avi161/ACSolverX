@@ -17,6 +17,7 @@ Not a heap search. Not a U124 solve unless a witness is found and replayed.
 from __future__ import annotations
 
 import json
+import math
 import sys
 from itertools import product
 from pathlib import Path
@@ -68,6 +69,62 @@ def donor_factors(relators: list[str], alphabet: str) -> list[str]:
                     seen.add(word)
                     out.append(word)
     return out
+
+
+def signed_type_count_closed(k: int) -> int:
+    """Signed-type patterns with σ_R = ±1 and σ_S = 0.
+
+    N_k = ∑_{r odd, r≤k} C(k,r) C(r,(r+1)/2) C(k-r,(k-r)/2).
+    Independent of n and of S's x-exponent. Even k gives 0.
+    """
+    total = 0
+    for r in range(1, k + 1, 2):
+        s_count = k - r
+        if s_count % 2:
+            continue
+        total += (
+            math.comb(k, r)
+            * math.comb(r, (r + 1) // 2)
+            * math.comb(s_count, s_count // 2)
+        )
+    return total
+
+
+def xi_rotation_free_targets() -> dict:
+    """Raw cyclic permutations of ξ^{±1} freely reduce to four words."""
+    raw = []
+    reduced = []
+    for word in (XI, inv(XI)):
+        for rot in rotations(word):
+            raw.append(rot)
+            reduced.append(free_reduce(rot))
+    free_targets = sorted(set(reduced))
+    return {
+        "raw_rotations": raw,
+        "free_targets": free_targets,
+        "n_raw": len(raw),
+        "n_free": len(free_targets),
+        "equals_xi_xiinv_x_xinv": set(free_targets) == {XI, inv(XI), "x", "X"},
+        "extra_beyond_xi": sorted(set(free_targets) - {XI, inv(XI)}),
+    }
+
+
+def mitm_controls() -> dict:
+    """Same-code positive/negative control for mitm_product, not the Q' census."""
+    factors = ["x", "y", "Y", "xx"]
+    planted = ["x", "y", "Y", "xx", "y"]
+    target = free_reduce("".join(planted))
+    hit = mitm_product(factors, [target], 2, 3)
+    miss = mitm_product(factors, ["u"], 2, 3)
+    return {
+        "planted": "".join(planted),
+        "target": target,
+        "hit_found": hit["found"],
+        "miss_found": miss["found"],
+        "ok": hit["found"] is True and miss["found"] is False,
+        "independent_checker": False,
+        "same_code_as_census": True,
+    }
 
 
 def signed_type_legal_count(k: int, er: tuple[int, ...], es: tuple[int, ...], want: tuple[int, int]) -> int:
@@ -133,14 +190,31 @@ def abelian_k_table(max_k: int = 6) -> dict:
                 "k5": counts["5"],
             }
             rows.append(rec)
-            if not (even_zero and odd_pos and counts["1"] == 1 and counts["3"] == 9 and counts["5"] == 100):
+            if not (
+                even_zero
+                and odd_pos
+                and counts["1"] == signed_type_count_closed(1)
+                and counts["3"] == signed_type_count_closed(3)
+                and counts["5"] == signed_type_count_closed(5)
+                and all(
+                    counts[str(k)] == signed_type_count_closed(k)
+                    for k in range(1, max_k + 1)
+                )
+            ):
                 uniform = False
+    closed = {str(k): signed_type_count_closed(k) for k in range(1, max_k + 1)}
     return {
         "uniform_gate1_counts": uniform,
         "even_k_all_zero": all(row["even_k_zero"] for row in rows),
         "k1_always_1": all(row["k1"] == 1 for row in rows),
         "k3_always_9": all(row["k3"] == 9 for row in rows),
         "k5_always_100": all(row["k5"] == 100 for row in rows),
+        "closed_form": closed,
+        "closed_matches_enumeration": all(
+            row["counts"][str(k)] == closed[str(k)]
+            for row in rows
+            for k in range(1, max_k + 1)
+        ),
         "rows": rows,
     }
 
@@ -152,7 +226,11 @@ def mitm_product(
     right_arity: int,
     extra_targets: list[str] | None = None,
 ) -> dict:
-    """All concatenations of left_arity then right_arity factors; free equality."""
+    """Concatenations from a globally deduplicated factor-word pool.
+
+    Counts |F|^{left+right} ordered tuples, not typed/conjugator tuples
+    and not the abelian-legal subset. Free equality only.
+    """
     primary_set = {free_reduce(t) for t in primary_targets}
     extra_set = {free_reduce(t) for t in (extra_targets or [])} - primary_set
     right: set[str] = set()
@@ -190,6 +268,7 @@ def mitm_product(
         "n_right_tuples": n_right,
         "n_right_unique": len(right),
         "n_k_tuples": n_factors ** (left_arity + right_arity) if n_factors else 0,
+        "n_k_tuples_is_dedup_pool_power": True,
         "n_target_hits": n_primary_hits,
         "hit": hit,
         "found": hit is not None,
@@ -211,12 +290,15 @@ def gate1_five_factor(n: int, delta: int) -> dict:
                 seen.add(rot)
                 extra.append(rot)
     rec = mitm_product(factors, primary, 2, 3, extra_targets=extra)
+    rot = xi_rotation_free_targets()
     return {
         "n": n,
         "delta": delta,
         "xi": XI,
         "xi_len": len(XI),
         "n_conjugators": len(c22.short_conjugators([r, s], G1_ALPHABET, 1)),
+        "pool": "globally_deduplicated_factor_words",
+        "extra_free_targets": rot["extra_beyond_xi"],
         **rec,
     }
 
@@ -303,12 +385,19 @@ def stored_small_k_search() -> list[dict]:
             out.append(rec)
             continue
         factors = donor_factors([a_hat, b_hat], G2_ALPHABET)
+        reason = None
+        if name == "aca_43" and k == 4:
+            reason = (
+                "C22.4 already searched k=2 prefix/one-letter on this L1=2 "
+                "stored endpoint; k=4 is the next even value"
+            )
         if k == 1:
             hit = next((w for w in factors if w in (e, inv(e))), None)
             rec.update(
                 {
                     "searched": True,
                     "k": 1,
+                    "reason": reason,
                     "n_factors": len(factors),
                     "n_k_tuples": len(factors),
                     "found": hit is not None,
@@ -322,6 +411,7 @@ def stored_small_k_search() -> list[dict]:
                 {
                     "searched": True,
                     "k": k,
+                    "reason": reason,
                     "n_factors": search["n_factors"],
                     "n_k_tuples": search["n_k_tuples"],
                     "found": search["found"],
@@ -414,16 +504,26 @@ def main() -> dict:
     ]
     stored = stored_gate2_parity()
     stored_search = stored_small_k_search()
+    rot = xi_rotation_free_targets()
+    controls = mitm_controls()
     summary = {
         "gate1_hypotheses_n_le_20": family["gate1_hypotheses_hold"],
         "gate2_L1_always_even_n_le_20": family["gate2_L1_always_even"],
         "even_k_all_zero": ktable["even_k_all_zero"],
         "uniform_gate1_counts": ktable["uniform_gate1_counts"],
+        "closed_matches_enumeration": ktable["closed_matches_enumeration"],
         "k5_always_100": ktable["k5_always_100"],
+        "signed_type_closed": ktable["closed_form"],
         "five_factor_any_hit": any(row["found"] for row in five),
         "five_factor_rotation_any_hit": any(row["rotation_found"] for row in five),
         "five_factor_n_checked": len(five),
         "five_factor_n_k_tuples": sum(row["n_k_tuples"] for row in five),
+        "n_k_tuples_is_dedup_pool_power": True,
+        "xi_rotation_free_targets": rot["free_targets"],
+        "xi_rotation_equals_xi_xiinv_x_xinv": rot["equals_xi_xiinv_x_xinv"],
+        "mitm_control_ok": controls["ok"],
+        "same_code_replay": True,
+        "independent_checker": False,
         "gate2_odd_k_all_forbidden": all(row["odd_k_forbidden"] for row in g2_parity),
         "gate2_four_n_checked": len(g2_four),
         "gate2_four_any_hit": any(row["found"] for row in g2_four),
@@ -441,14 +541,17 @@ def main() -> dict:
         "gate2_four_factor": g2_four,
         "stored_gate2_parity": stored,
         "stored_small_k": stored_search,
+        "xi_rotation_free_targets": rot,
+        "mitm_controls": controls,
         "notes": [
             "Even k is an abelian obstruction for Gate 1, independent of conjugators.",
-            "Five-factor conjugators are prefix/one-letter, same set as C22.3/C23.2.",
-            "Meet-in-the-middle split is 2+3, covering every 5-tuple of that factor pool.",
-            "Rotation targets are recorded separately; they are not extra factors in the pool.",
-            "Gate 2 odd k is abelian-impossible on every Q'_{n,δ} with n=2..20.",
+            "Signed-type counts 1/9/100 are the closed N_k formula, checked against n=2..7 enumeration.",
+            "MITM counts |F|^k tuples from a globally deduplicated factor-word pool, not typed or abelian-legal tuples.",
+            "Raw cyclic permutations of ξ^{±1} freely reduce to {ξ, ξ^{-1}, x, x^{-1}}; extras x^{±1} are not Gate 1 witnesses.",
+            "JSON is same-code deterministic replay; mitm_controls is a planted hit/miss, not a second implementation.",
+            "Gate 2 odd k is abelian-impossible on every Q'_{n,δ} (closed form, all n≥2).",
             "Four-factor Gate 2 is searched only where L1 ≤ 4 (δ=−1, n=2..5).",
-            "Stored C16 endpoints: k=4 on L1≤4 even, k=L1 on odd L1≤5; L1>5 unsearched.",
+            "aca_43 k=4 is next after C22.4's k=2 search; aca_67/aca_87 L1>5 unsearched.",
             "No U124 row is solved.",
         ],
     }
@@ -460,5 +563,78 @@ def main() -> dict:
     return report
 
 
+def annotate_existing() -> dict:
+    """Refresh cheap C24 fields without re-enumerating the five-factor census."""
+    path = OUT / "c24_even_k.json"
+    report = json.loads(path.read_text(encoding="utf-8"))
+    family = infinite_family_check(20)
+    ktable = abelian_k_table(6)
+    rot = xi_rotation_free_targets()
+    controls = mitm_controls()
+    stored = stored_gate2_parity()
+    stored_search = stored_small_k_search()
+    five = report["gate1_five_factor"]
+    for row in five:
+        row["pool"] = "globally_deduplicated_factor_words"
+        row["extra_free_targets"] = rot["extra_beyond_xi"]
+        row["n_k_tuples_is_dedup_pool_power"] = True
+    for row in report.get("gate2_four_factor", []):
+        row["n_k_tuples_is_dedup_pool_power"] = True
+    g2_parity = report["gate2_parity"]
+    g2_four = report["gate2_four_factor"]
+    summary = {
+        "gate1_hypotheses_n_le_20": family["gate1_hypotheses_hold"],
+        "gate2_L1_always_even_n_le_20": family["gate2_L1_always_even"],
+        "even_k_all_zero": ktable["even_k_all_zero"],
+        "uniform_gate1_counts": ktable["uniform_gate1_counts"],
+        "closed_matches_enumeration": ktable["closed_matches_enumeration"],
+        "k5_always_100": ktable["k5_always_100"],
+        "signed_type_closed": ktable["closed_form"],
+        "five_factor_any_hit": any(row["found"] for row in five),
+        "five_factor_rotation_any_hit": any(row["rotation_found"] for row in five),
+        "five_factor_n_checked": len(five),
+        "five_factor_n_k_tuples": sum(row["n_k_tuples"] for row in five),
+        "n_k_tuples_is_dedup_pool_power": True,
+        "xi_rotation_free_targets": rot["free_targets"],
+        "xi_rotation_equals_xi_xiinv_x_xinv": rot["equals_xi_xiinv_x_xinv"],
+        "mitm_control_ok": controls["ok"],
+        "same_code_replay": True,
+        "independent_checker": False,
+        "gate2_odd_k_all_forbidden": all(row["odd_k_forbidden"] for row in g2_parity),
+        "gate2_four_n_checked": len(g2_four),
+        "gate2_four_any_hit": any(row["found"] for row in g2_four),
+        "stored_n": len(stored),
+        "stored_small_k_n_searched": sum(1 for row in stored_search if row["searched"]),
+        "stored_small_k_any_hit": any(row["found"] for row in stored_search),
+        "solved_u124": 0,
+    }
+    report["summary"] = summary
+    report["family"] = family
+    report["abelian_k"] = ktable
+    report["stored_gate2_parity"] = stored
+    report["stored_small_k"] = stored_search
+    report["xi_rotation_free_targets"] = rot
+    report["mitm_controls"] = controls
+    report["notes"] = [
+        "Even k is an abelian obstruction for Gate 1, independent of conjugators.",
+        "Signed-type counts 1/9/100 are the closed N_k formula, checked against n=2..7 enumeration.",
+        "MITM counts |F|^k tuples from a globally deduplicated factor-word pool, not typed or abelian-legal tuples.",
+        "Raw cyclic permutations of ξ^{±1} freely reduce to {ξ, ξ^{-1}, x, x^{-1}}; extras x^{±1} are not Gate 1 witnesses.",
+        "JSON is same-code deterministic replay; mitm_controls is a planted hit/miss, not a second implementation.",
+        "Gate 2 odd k is abelian-impossible on every Q'_{n,δ} (closed form, all n≥2).",
+        "Four-factor Gate 2 is searched only where L1 ≤ 4 (δ=−1, n=2..5).",
+        "aca_43 k=4 is next after C22.4's k=2 search; aca_67/aca_87 L1>5 unsearched.",
+        "No U124 row is solved.",
+    ]
+    path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    print("c24 annotate-existing")
+    print(json.dumps(summary, indent=2))
+    print(f"wrote {path}")
+    return report
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--annotate-existing"]:
+        annotate_existing()
+    else:
+        main()

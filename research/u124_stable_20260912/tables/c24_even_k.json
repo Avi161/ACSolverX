@@ -4,11 +4,31 @@
     "gate2_L1_always_even_n_le_20": true,
     "even_k_all_zero": true,
     "uniform_gate1_counts": true,
+    "closed_matches_enumeration": true,
     "k5_always_100": true,
+    "signed_type_closed": {
+      "1": 1,
+      "2": 0,
+      "3": 9,
+      "4": 0,
+      "5": 100,
+      "6": 0
+    },
     "five_factor_any_hit": false,
     "five_factor_rotation_any_hit": false,
     "five_factor_n_checked": 12,
     "five_factor_n_k_tuples": 103765444800,
+    "n_k_tuples_is_dedup_pool_power": true,
+    "xi_rotation_free_targets": [
+      "X",
+      "YXy",
+      "Yxy",
+      "x"
+    ],
+    "xi_rotation_equals_xi_xiinv_x_xinv": true,
+    "mitm_control_ok": true,
+    "same_code_replay": true,
+    "independent_checker": false,
     "gate2_odd_k_all_forbidden": true,
     "gate2_four_n_checked": 4,
     "gate2_four_any_hit": false,
@@ -138,6 +158,15 @@
     "k1_always_1": true,
     "k3_always_9": true,
     "k5_always_100": true,
+    "closed_form": {
+      "1": 1,
+      "2": 0,
+      "3": 9,
+      "4": 0,
+      "5": 100,
+      "6": 0
+    },
+    "closed_matches_enumeration": true,
     "rows": [
       {
         "n": 2,
@@ -364,7 +393,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 3,
@@ -384,7 +419,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 4,
@@ -404,7 +445,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 5,
@@ -424,7 +471,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 6,
@@ -444,7 +497,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 7,
@@ -464,7 +523,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 2,
@@ -484,7 +549,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 3,
@@ -504,7 +575,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 4,
@@ -524,7 +601,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 5,
@@ -544,7 +627,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 6,
@@ -564,7 +653,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 7,
@@ -584,7 +679,13 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "pool": "globally_deduplicated_factor_words",
+      "extra_free_targets": [
+        "X",
+        "x"
+      ],
+      "n_k_tuples_is_dedup_pool_power": true
     }
   ],
   "gate2_parity": [
@@ -908,7 +1009,8 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 3,
@@ -928,7 +1030,8 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 4,
@@ -948,7 +1051,8 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "n_k_tuples_is_dedup_pool_power": true
     },
     {
       "n": 5,
@@ -968,7 +1072,8 @@
       "found": false,
       "rotation_n_target_hits": 0,
       "rotation_hit": null,
-      "rotation_found": false
+      "rotation_found": false,
+      "n_k_tuples_is_dedup_pool_power": true
     }
   ],
   "stored_gate2_parity": [
@@ -1074,6 +1179,7 @@
       "k": 5,
       "found": false,
       "hit": null,
+      "reason": null,
       "n_factors": 138,
       "n_k_tuples": 50049003168
     },
@@ -1092,6 +1198,7 @@
       "k": 4,
       "found": false,
       "hit": null,
+      "reason": "C22.4 already searched k=2 prefix/one-letter on this L1=2 stored endpoint; k=4 is the next even value",
       "n_factors": 114,
       "n_k_tuples": 168896016
     },
@@ -1142,18 +1249,52 @@
       "k": 3,
       "found": false,
       "hit": null,
+      "reason": null,
       "n_factors": 150,
       "n_k_tuples": 3375000
     }
   ],
   "notes": [
     "Even k is an abelian obstruction for Gate 1, independent of conjugators.",
-    "Five-factor conjugators are prefix/one-letter, same set as C22.3/C23.2.",
-    "Meet-in-the-middle split is 2+3, covering every 5-tuple of that factor pool.",
-    "Rotation targets are recorded separately; they are not extra factors in the pool.",
-    "Gate 2 odd k is abelian-impossible on every Q'_{n,\u03b4} with n=2..20.",
+    "Signed-type counts 1/9/100 are the closed N_k formula, checked against n=2..7 enumeration.",
+    "MITM counts |F|^k tuples from a globally deduplicated factor-word pool, not typed or abelian-legal tuples.",
+    "Raw cyclic permutations of \u03be^{\u00b11} freely reduce to {\u03be, \u03be^{-1}, x, x^{-1}}; extras x^{\u00b11} are not Gate 1 witnesses.",
+    "JSON is same-code deterministic replay; mitm_controls is a planted hit/miss, not a second implementation.",
+    "Gate 2 odd k is abelian-impossible on every Q'_{n,\u03b4} (closed form, all n\u22652).",
     "Four-factor Gate 2 is searched only where L1 \u2264 4 (\u03b4=\u22121, n=2..5).",
-    "Stored C16 endpoints: k=4 on L1\u22644 even, k=L1 on odd L1\u22645; L1>5 unsearched.",
+    "aca_43 k=4 is next after C22.4's k=2 search; aca_67/aca_87 L1>5 unsearched.",
     "No U124 row is solved."
-  ]
+  ],
+  "xi_rotation_free_targets": {
+    "raw_rotations": [
+      "Yxy",
+      "xyY",
+      "yYx",
+      "YXy",
+      "XyY",
+      "yYX"
+    ],
+    "free_targets": [
+      "X",
+      "YXy",
+      "Yxy",
+      "x"
+    ],
+    "n_raw": 6,
+    "n_free": 4,
+    "equals_xi_xiinv_x_xinv": true,
+    "extra_beyond_xi": [
+      "X",
+      "x"
+    ]
+  },
+  "mitm_controls": {
+    "planted": "xyYxxy",
+    "target": "xxxy",
+    "hit_found": true,
+    "miss_found": false,
+    "ok": true,
+    "independent_checker": false,
+    "same_code_as_census": true
+  }
 }
