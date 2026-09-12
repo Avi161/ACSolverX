@@ -1679,9 +1679,9 @@ be a **normal-closure candidate**, not a C12 primitive.
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
 including `u`. Exact-L1 for `x` on these rows (C30 leftover combo
 `(a,b)=(pq,p)`; L1 is 6, 7, 8, 7, 9, 8 respectively). Unused listed
-donor `YYXXXyxx` (mixed `C_ab`). aca_43 k=3 for `x`. C35 leftover `y`.
-C36 leftover `k=5,7,…` for `y`. C38 leftover `x` and `k≥5`. Depth ≥ 3
-AC2. Lemma 11.
+donor `YYXXXyxx` (mixed `C_ab`; C40 covers only the two `C_ab=(1,0)`
+rows). aca_43 k=3 for `x`. C35 leftover `y`. C36 leftover `k=5,7,…`
+for `y`. C38 leftover `x` and `k≥5`. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Six best-table rows listed above. **Not a solve.** Bounded
 negative for this typed k=3 pool.
@@ -1693,6 +1693,66 @@ persisted factor/conjugator witness replayed outside the scanner.
 orientation, planted outside-replay, and rerun only aca_45; they do
 not independently enumerate the census. Plan advisor APPROVE
 (`ingest/advisor_c39_plan.md`). `ingest/advisor_wave24.md` **APPROVE**.
+
+---
+
+## C40. Two `YYXXXyxx` rows with `x ≡ C` in abelianization, then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+**C40.1 (abelian, listed rows).** Donor `D = YYXXXyxx` abelianizes to
+`(-1,-1)`. The six-row family is mixed; C40 is **only** the two
+companions with `C_{\mathrm{ab}}=(1,0)`:
+
+- aca_16 companion `YXyxxyXYx`, cyclic length 9
+- aca_95 companion `YYxyxyXYxyX`, cyclic length 11
+
+Solving `a D_{\mathrm{ab}} + b C_{\mathrm{ab}}=(1,0)` gives uniquely
+`(a,b)=(0,1)`, so `L1=1` and `x \equiv C` **in abelianization** (not
+free equality). The same combination holds for `{x, Yxy, yxY}`. This
+is **not** a claim about every companion of `D`. Even `k` is
+abelian-impossible. `k=1` is blocked by `|C|\ge 9`. aca_16 instantiates
+C16 and escapes C16.1; that is a disclosure, not a C16 re-proof.
+
+**C40.2 (k=3 nine-config).** Same signed-type Cartesian products as
+C23/C25.3, with `R^+ = C` and `S = D` (C40 orientation, asserted; not
+C35, not C31). Prefix/one-letter conjugators, per-type unique
+conjugates. Targets `{x, Yxy, yxY}`. Inverse class by reversing and
+inverting factors. Typed Cartesian enumeration: `332,199` products,
+equal to the typed size on every row, observed free-length minima 9
+and 11, none equal to a target. Counts are nine-config typed sizes,
+not `|F|^3`. Observed minima are C40 census facts, not a length
+theorem and not a comparative control against C35/C36/C38.
+
+Per-row products: aca_16 148275; aca_95 183924.
+
+A hit would persist ordered signed types, three factor words,
+conjugators, and a free-reduce replay **outside** the scanner loop; no
+hit occurred.
+
+Disjointness is relative to prior typed donor-family censuses. C28
+previously touched these rows under a different depth-2 AC2
+predicate. This is **not** a six-row `YYXXXyxx` census.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators,
+including `u`. Exact-L1 for `y` on these rows (`L1=2`). Remaining
+`YYXXXyxx` rows: aca_71 (`x \equiv C^{-1}` in abelianization, C31
+orientation), aca_38 (`y \equiv C^{-1}`, C31 orientation), aca_56 and
+aca_57 (`L1\ge 3`). aca_43 k=3 for `x`. C35 leftover `y`. C36 leftover
+`k=5,7,…` for `y`. C38/C39 leftover `x`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Two best-table rows listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool.
+
+**Audit.** `code/c40_yyxxxyxx_x_eq_c.py`, `tables/c40_yyxxxyxx_x_eq_c.json`.
+Same-code deterministic replay plus planted nine-config control with a
+persisted factor/conjugator witness replayed outside the scanner.
+`independent_checker=false`. Tests independently check the algebra of
+both rows and rerun only aca_16; they do not independently enumerate
+aca_95. Plan advisor REVISE applied (`ingest/advisor_c40_plan.md`).
+Census advisor audit pending.
+
 
 
 

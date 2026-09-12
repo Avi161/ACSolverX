@@ -402,6 +402,21 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_c39_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave24.md`).
 
+## Wave 26 (C40 two YYXXXyxx rows with x ≡ C abelianly, 2026-09-12)
+
+- Only aca_16 and aca_95, companions with `C_ab=(1,0)`. On those rows
+  `x ≡ C` in abelianization, `L1=1`. Not free equality, not a six-row
+  family census. C40 orientation `R^+ = C`. `k=1` blocked by `|C|≥9`
+  (lengths 9 and 11). aca_16 C16 status is a disclosure, not a solve.
+- k=3 nine-config: `332,199` typed Cartesian products, equal to typed
+  size, observed minima 9 and 11, no hit on `{x, Yxy, yxY}`. Hit
+  witnesses would be replayed outside the scanner; unused because
+  there was no hit. Observed minima are C40 census statistics, not a
+  comparison with C35/C36/C38. Still **0/124**. No certificate JSONL
+  rows. `independent_checker=false`. Plan advisor REVISE applied
+  (`ingest/advisor_c40_plan.md`). Census advisor audit pending.
+
+
 
 
 

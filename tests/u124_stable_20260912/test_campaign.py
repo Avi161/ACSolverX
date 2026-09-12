@@ -1218,5 +1218,83 @@ def test_c39_yxxyxyxxx_family_identities():
     assert sum(per_row.values()) == c39.EXPECTED_TYPED_TOTAL
 
 
+def test_c40_yyxxxyxx_x_eq_c_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c35_yxxx_family as c35  # type: ignore
+    import c40_yyxxxyxx_x_eq_c as c40  # type: ignore
+    from experiments.equivalence_classes.lib.words import free_reduce  # type: ignore
+
+    assert c22.exp_on(c40.DONOR, "xy") == (-1, -1)
+    assert c40.x_combo_from_listed_c_exp(1, 0) == (0, 1, 1)
+    try:
+        c40.x_combo_from_listed_c_exp(0, -1)
+        assert False, "combo must stay restricted to listed C_ab=(1,0)"
+    except ValueError:
+        pass
+    assert c40.ORIENTATION == c40.C40_ORIENTATION
+    assert c40.ORIENTATION != c35.C35_ORIENTATION
+    assert c40.ORIENTATION != c35.C31_ORIENTATION
+    ab16 = c40.abelian_row("aca_16", "YXyxxyXYx")
+    assert ab16["x_L1"] == 1
+    assert ab16["x_combo"]["a"] == 0 and ab16["x_combo"]["b"] == 1
+    assert ab16["C_cyc_len"] == 9
+    assert ab16["x_equiv_C_in_abelianization"]
+    assert ab16["instantiates_c16"]
+    assert ab16["y_L1"] == 2
+    ab95 = c40.abelian_row("aca_95", "YYxyxyXYxyX")
+    assert ab95["x_L1"] == 1
+    assert ab95["C_exp"] == [1, 0]
+    assert ab95["C_cyc_len"] == 11
+    assert not ab95["instantiates_c16"]
+    rec = c40.three_factor_row("aca_16", "YXyxxyXYx")
+    assert rec["n_products"] == 148275
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 9
+    assert not rec["found"]
+    assert rec["orientation"] == c40.C40_ORIENTATION
+    assert rec["hit_replay_outside_scanner"] is None
+    planted = c40.planted()
+    assert planted["ok"]
+    assert planted["orientation"] == c40.C40_ORIENTATION
+    assert planted["independent_checker"] is False
+    witness = planted["hit"]
+    assert witness["word"] == "x"
+    assert planted["hit_replay_outside_scanner"]["ok"]
+    assert free_reduce("".join(witness["factors"])) == "x"
+    json_path = ROOT / "research/u124_stable_20260912/tables/c40_yyxxxyxx_x_eq_c.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 2
+    assert summary["all_x_combo_zero_one"]
+    assert summary["all_x_equiv_C_in_abelianization"]
+    assert summary["combo_restricted_to_listed_C_ab"]
+    assert summary["not_six_row_yyxxxyxx_census"]
+    assert summary["C_cyc_lens"] == [9, 11]
+    assert summary["all_k1_blocked_by_C_cyc_len_ge_9"]
+    assert summary["three_all_orientation_c40"]
+    assert summary["three_none_orientation_c35_or_c31"]
+    assert summary["disjointness_relative_to_prior_typed_donor_family_censuses"]
+    assert summary["c28_touched_rows_under_different_predicate"]
+    assert summary["aca_16_instantiates_c16"]
+    assert summary["c16_is_disclosure_not_a_solve"]
+    assert not summary["three_any_hit"]
+    assert summary["three_n_products"] == 332199
+    assert summary["three_n_typed_tuples"] == c40.EXPECTED_TYPED_TOTAL
+    assert summary["three_products_equal_typed"]
+    assert summary["three_min_len"] == 9
+    assert summary["three_min_lens"] == [9, 11]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == c40.EXPECTED_TYPED
+    assert per_row["aca_95"] == 183924
+    assert sum(per_row.values()) == c40.EXPECTED_TYPED_TOTAL
+    abelian_ids = [row["id"] for row in artifact["abelian"]]
+    assert abelian_ids == ["aca_16", "aca_95"]
+
+
+
 
 

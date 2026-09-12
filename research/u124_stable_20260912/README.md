@@ -90,7 +90,9 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    `.../code/c38_yxxxyx_family.py` (full census) or `--annotate-existing`.
    Do not re-run the 1.80M nine-config census. C39:
    `.../code/c39_yxxyxyxxx_family.py` (full census) or `--annotate-existing`.
-   Do not re-run the 1.56M nine-config census.
+   Do not re-run the 1.56M nine-config census. C40:
+   `.../code/c40_yyxxxyxx_x_eq_c.py` (full census) or `--annotate-existing`.
+   Do not re-run the 332,199 nine-config census.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -155,14 +157,17 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     (`1,798,887` products, observed min length 9). Plan advisor APPROVE.
     Advisor APPROVE. C39: listed `YXXyXYxxx` rows (`y ≡ D^{-1}`, `L1=1`);
     k=3 nine-config misses (`1,563,690` products, observed min length 9).
-    Plan advisor APPROVE. Advisor APPROVE. Still 0/124.
+    Plan advisor APPROVE. Advisor APPROVE. C40: two listed `YYXXXyxx`
+    rows with `C_ab=(1,0)` (`x ≡ C` in abelianization, `L1=1`); k=3
+    nine-config misses (`332,199` products, observed minima 9 and 11).
+    Plan advisor REVISE applied. Still 0/124.
 
 ## File ownership
 
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py`, `code/c23_three_factor.py`, `code/c24_even_k.py`, `code/c25_alt_words.py`, `code/c26_y_exact_l1.py`, `code/c27_archival_k4.py`, `code/c28_depth2_ac2.py`, `code/c29_yxx_family.py`, `code/c30_x_exact_l1.py`, `code/c31_yxxy_family.py`, `code/c32_x_exact_l1.py`, `code/c33_len7_donors.py`, `code/c34_x_exact_l1.py`, `code/c35_yxxx_family.py`, `code/c36_yxxyx_family.py`, `code/c37_x_exact_l1.py`, `code/c38_yxxxyx_family.py`, `code/c39_yxxyxyxxx_family.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py`, `code/c23_three_factor.py`, `code/c24_even_k.py`, `code/c25_alt_words.py`, `code/c26_y_exact_l1.py`, `code/c27_archival_k4.py`, `code/c28_depth2_ac2.py`, `code/c29_yxx_family.py`, `code/c30_x_exact_l1.py`, `code/c31_yxxy_family.py`, `code/c32_x_exact_l1.py`, `code/c33_len7_donors.py`, `code/c34_x_exact_l1.py`, `code/c35_yxxx_family.py`, `code/c36_yxxyx_family.py`, `code/c37_x_exact_l1.py`, `code/c38_yxxxyx_family.py`, `code/c39_yxxyxyxxx_family.py`, `code/c40_yyxxxyxx_x_eq_c.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |
