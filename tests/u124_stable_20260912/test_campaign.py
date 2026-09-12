@@ -40,3 +40,42 @@ def test_census_hashes_and_counts():
         summary["hashes"]["aca_124_initial.csv"]["sha256"]
         == summary["hashes"]["aca_124.csv"]["sha256"]
     )
+
+
+def test_q_peel_identities_and_commutator_factor():
+    sys.path.insert(0, str(CODE))
+    import q_peel as peel  # type: ignore
+
+    q_rows = peel.check_q_identities()
+    assert len(q_rows) == 14
+    assert all(row["peel_matches_claimed"] for row in q_rows)
+    assert all(row["peel_is_u_xpow_v_commutator"] for row in q_rows)
+    assert peel.free_reduce(peel.inv(peel.G)) == peel.free_reduce(peel.V + peel.COMM)
+    # Unconjugated second peel is not a descent on n and does not restore R2.
+    assert all(not row["second_peel_equals_original_r2"] for row in q_rows)
+    a_rows = peel.check_family_a_prefix()
+    assert len(a_rows) == 6
+    assert all(row["matches_conjugate"] for row in a_rows)
+
+
+def test_primitive_controls_and_ms_donors_not_primitive():
+    sys.path.insert(0, str(ROOT))
+    from experiments.stable_ac.rank3_compression.rank3_whitehead import (
+        check_word_reduction,
+        is_primitive_word,
+        reduce_word,
+    )
+
+    def red(word: str):
+        result = reduce_word(word, generators=("x", "y"))
+        check_word_reduction(word, result)
+        return result
+
+    assert is_primitive_word(red("x"))
+    assert is_primitive_word(red("xyX"))
+    assert not is_primitive_word(red("xyXY"))
+    assert not is_primitive_word(red("xxxYYYY"))
+    assert not is_primitive_word(red("YXXyxYx"))
+    assert not is_primitive_word(red("YXyXYxx"))
+    assert red("YXyXYxx").minimum_total == 5
+    assert red("YXXyxYx").minimum_total == 6

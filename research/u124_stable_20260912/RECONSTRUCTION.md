@@ -67,3 +67,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - MS template identities: `tables/ms_template_identities.json`, **14/14 PASS** for `n=2..8`, both signs. Literal `Q_{n,δ}` after two CoVs; `aut_min_len` after `y↦x^{-2}y` equals `n+12`. Eleven U124 initial rows are exactly `P_{n,δ}`. **Not a solve.**
 - Scripts: `python3 research/u124_stable_20260912/code/u124_census.py` and `.../ms_template_identities.py`. Direct tests in `tests/u124_stable_20260912/test_campaign.py` (pytest is not installed in this image; the same functions were executed directly).
 
+## Wave 2 (guarded 60 s, 2026-09-12)
+
+- Q common-suffix peel: 14/14 identities; 0 length drops; commutator factorization `g⁻¹ = v[y⁻¹,x⁻¹]`; second unconjugated peel is not a descent. Family A prefix identity holds and **raises** μ.
+- After the displayed peel, some AC1/AC3 orientation peels drop raw length or `x`-run. On `Q_{2,±1}` the remainder `YXyxYYXyx` is ordinary-AC legal and **raises** `aut_min_len` 14→18; it is not primitive.
+- Primitive-relator census: **0/248** best relators primitive, **0/248** cyclic products primitive. All 248 have abelian gcd 1. Whitehead-min histogram starts at 5 (13 words). Shared donors include `YXXyxYx` (11 rows) and `YXXXyxYx` (11 rows).
+- Depth-1 AC2 on the best table: 44,016 children, 0 cyclic-length drops, 0 new one-occurrence, 0 new two-block–both.
+- Still **0/124** stably trivialized. No certificate JSONL rows.
+

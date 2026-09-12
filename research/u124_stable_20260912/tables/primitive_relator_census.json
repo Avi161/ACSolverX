@@ -1,0 +1,8636 @@
+{
+  "abelian_gcd_blocked_relators": 0,
+  "controls": {
+    "ak3_r1": {
+      "minimum": "XXXyyyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false
+    },
+    "ak3_r2": {
+      "minimum": "XXyxy",
+      "minimum_total": 5,
+      "n_steps": 1,
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false
+    },
+    "commutator": {
+      "minimum": "XYxy",
+      "minimum_total": 4,
+      "n_steps": 0,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false
+    },
+    "conjugate_xyx": {
+      "minimum": "Y",
+      "minimum_total": 1,
+      "n_steps": 0,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": true
+    },
+    "generator_x": {
+      "minimum": "X",
+      "minimum_total": 1,
+      "n_steps": 0,
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": true
+    },
+    "ms_lower_donor": {
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false
+    },
+    "ms_upper_donor": {
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false
+    }
+  },
+  "elapsed_seconds": 0.277,
+  "n_relators": 248,
+  "n_rows": 124,
+  "note": "A primitive relator is a sufficient stable-AC finish line only after an explicit stable realization of the witnessing automorphism and elementary elimination of the resulting generator. Zero hits here do not obstruct other routes.",
+  "primitive_hits": [],
+  "primitive_relators": 0,
+  "records": [
+    {
+      "abelian_gcd": 1,
+      "id": "aca_0:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_0",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_0:r2",
+      "length": 11,
+      "minimum": "XXyxy",
+      "minimum_total": 5,
+      "n_steps": 6,
+      "name": "aca_0",
+      "phi": {
+        "x": "YYYYYYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_0:r1_r2",
+      "length": 18,
+      "minimum": "XXyxYxYYYYYYXyxyXY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_0",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_0:r1_r2inv",
+      "length": 16,
+      "minimum": "XXyXYxxYYYYYXyxy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_0",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYxxYXYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_1:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_1",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_1:r2",
+      "length": 8,
+      "minimum": "XXYYYxy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_1",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_1:r1_r2",
+      "length": 15,
+      "minimum": "XXYxxyyxYxYXyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_1",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYYxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_1:r1_r2inv",
+      "length": 11,
+      "minimum": "XXXYxYxyy",
+      "minimum_total": 9,
+      "n_steps": 1,
+      "name": "aca_1",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYxYXy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_2:r1",
+      "length": 7,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_2",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_2:r2",
+      "length": 9,
+      "minimum": "XXYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_2",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXyyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_2:r1_r2",
+      "length": 16,
+      "minimum": "XXYYYxyyyXYxYxxy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_2",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxYYYXyyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_2:r1_r2inv",
+      "length": 12,
+      "minimum": "XXXYYYxyyXY",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_2",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyXYYYxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_3:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_3",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_3:r2",
+      "length": 10,
+      "minimum": "XXyyyyyxY",
+      "minimum_total": 9,
+      "n_steps": 1,
+      "name": "aca_3",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYxyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_3:r1_r2",
+      "length": 17,
+      "minimum": "XXyxYxYYYYYxyxyXY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_3",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYxyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_3:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyXYxxYYYYxyxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_3",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYxxYXYXyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_4:r1",
+      "length": 7,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_4",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_4:r2",
+      "length": 11,
+      "minimum": "XXYYxxyXyy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_4",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxyxyXyXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_4:r1_r2",
+      "length": 18,
+      "minimum": "XXXyxYYxyxyXyXYXYY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_4",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxYYxyxyXyXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_4:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXyxyxYxxYY",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_4",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxyxYxYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_5:r1",
+      "length": 7,
+      "minimum": "XXXyXYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_5",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_5:r2",
+      "length": 12,
+      "minimum": "XXXYxYXyyyy",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_5",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYxyXyxyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_5:r1_r2",
+      "length": 19,
+      "minimum": "XXXyXYYYxyXyxyxyxYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_5",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyXYYYxyXyxyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_5:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXyXXYXYXYxYXy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_5",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyXXYXYXYxYXy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_6:r1",
+      "length": 9,
+      "minimum": "XXYxxyyXY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_6",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_6:r2",
+      "length": 10,
+      "minimum": "XXXXXyxYY",
+      "minimum_total": 9,
+      "n_steps": 1,
+      "name": "aca_6",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXXXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_6:r1_r2",
+      "length": 19,
+      "minimum": "XXXXXyxYxYYXXyxxyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_6",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxyxYXXXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_6:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXXyxYYXXYxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_6",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXyxxyyXYxxxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_7:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_7",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_7:r2",
+      "length": 9,
+      "minimum": "XXYYYYxY",
+      "minimum_total": 8,
+      "n_steps": 1,
+      "name": "aca_7",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_7:r1_r2",
+      "length": 16,
+      "minimum": "XXYxxyyxyxyXyyyy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_7",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYYYxYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_7:r1_r2inv",
+      "length": 12,
+      "minimum": "XXXYxxYYxYXY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_7",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxyxyXyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_8:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_8",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_8:r2",
+      "length": 8,
+      "minimum": "XXyyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_8",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXYXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_8:r1_r2",
+      "length": 15,
+      "minimum": "XXyxYxyXYYxyxyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_8",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYXYXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_8:r1_r2inv",
+      "length": 11,
+      "minimum": "XXYxYxyyxy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_8",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxYYxyxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_9:r1",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_9",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_9:r2",
+      "length": 8,
+      "minimum": "XXyyXYYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_9",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_9:r1_r2",
+      "length": 15,
+      "minimum": "XXXyxxYYYXXyyXY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_9",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxxYYYXXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_9:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxxxYYXXyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_9",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxYYxxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_10:r1",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_10",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_10:r2",
+      "length": 8,
+      "minimum": "XXyyyXY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_10",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXYXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_10:r1_r2",
+      "length": 15,
+      "minimum": "XXXyxxYYXYXyyXY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_10",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxxYYXYXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_10:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxxxYXYXyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_10",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxYYxyxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_11:r1",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_11",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_11:r2",
+      "length": 8,
+      "minimum": "XXYxyyy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_11",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_11:r1_r2",
+      "length": 15,
+      "minimum": "XXXyxxYYYXyxyxY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_11",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxxYYYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_11:r1_r2inv",
+      "length": 11,
+      "minimum": "XXXyxYXYxyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_11",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYXYxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_12:r1",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_12",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_12:r2",
+      "length": 8,
+      "minimum": "XXYxyy",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_12",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXYxyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_12:r1_r2",
+      "length": 15,
+      "minimum": "XXXyxxYYXYxyyXY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_12",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxxYYXYxyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_12:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxxxYXYxyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_12",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxYYXyxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_13:r1",
+      "length": 7,
+      "minimum": "XXYYxYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_13",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_13:r2",
+      "length": 9,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 1,
+      "name": "aca_13",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXXXyxxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_13:r1_r2",
+      "length": 16,
+      "minimum": "XXXyxxYxYYXXYYxY",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_13",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXYYxYXXXyxxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_13:r1_r2inv",
+      "length": 10,
+      "minimum": "XXXXXyyy",
+      "minimum_total": 8,
+      "n_steps": 2,
+      "name": "aca_13",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXYXXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_14:r1",
+      "length": 7,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_14",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_14:r2",
+      "length": 8,
+      "minimum": "XXYYxyyy",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_14",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_14:r1_r2",
+      "length": 15,
+      "minimum": "XXYYxyyyXYxYxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_14",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_14:r1_r2inv",
+      "length": 11,
+      "minimum": "XXXYYxyyXY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_14",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyXYYxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_15:r1",
+      "length": 8,
+      "minimum": "XXYYxxy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_15",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_15:r2",
+      "length": 9,
+      "minimum": "XYYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_15",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_15:r1_r2",
+      "length": 17,
+      "minimum": "XXYxYxxyxYYYXyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_15",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxxYYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_15:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXYxYxxYYYxyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_15",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyxxxYYYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_16:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_16",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_16:r2",
+      "length": 9,
+      "minimum": "XXYxyXyxY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_16",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXyxxyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_16:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxxYXyxxyXYxYY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_16",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYXyxxyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_16:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyyxYXYxxY",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_16",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXXyxyxYXXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_17:r1",
+      "length": 8,
+      "minimum": "XXXXYYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_17",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXYxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_17:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_17",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_17:r1_r2",
+      "length": 17,
+      "minimum": "XXXYxYxYYYYXyyyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_17",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXYxYxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_17:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxYYYYxyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_17",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_18:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_18",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_18:r2",
+      "length": 9,
+      "minimum": "XYYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_18",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_18:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxYxYYYYxyyyXY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_18",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_18:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXyxYxxYYYXyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_18",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYxxYYYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_19:r1",
+      "length": 8,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 3,
+      "name": "aca_19",
+      "phi": {
+        "x": "xy",
+        "y": "xyxyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_19:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_19",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_19:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxYxyXYYYxyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_19",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_19:r1_r2inv",
+      "length": 13,
+      "minimum": "XXYxyxYYxyyy",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_19",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxxYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_20:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_20",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_20:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_20",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_20:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxYxYYYYXyyyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_20",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_20:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyxYYYYxyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_20",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_21:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_21",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_21:r2",
+      "length": 9,
+      "minimum": "XYYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_21",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_21:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyXYYYYxyyyXY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_21",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_21:r1_r2inv",
+      "length": 11,
+      "minimum": "XXYxxYYXyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_21",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_22:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_22",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_22:r2",
+      "length": 9,
+      "minimum": "XYYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_22",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_22:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyxYYYYxyyyXY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_22",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_22:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYXXyxxYYYxyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_22",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyxxYYYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_23:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_23",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_23:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_23",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_23:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyxYYYYXyyyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_23",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_23:r1_r2inv",
+      "length": 11,
+      "minimum": "XXYxxYYxyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_23",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_24:r1",
+      "length": 8,
+      "minimum": "XXXYxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_24",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_24:r2",
+      "length": 9,
+      "minimum": "XXYXYxYYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_24",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXXYXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_24:r1_r2",
+      "length": 17,
+      "minimum": "XXXYxxYYYXXYXYxYY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_24",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXYxxYYYXXYXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_24:r1_r2inv",
+      "length": 11,
+      "minimum": "XXXYxyyxy",
+      "minimum_total": 9,
+      "n_steps": 1,
+      "name": "aca_24",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxyxyxxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_25:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_25",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_25:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_25",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_25:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyXYYYYXyyyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_25",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_25:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYYYxyyyXXYxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_25",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyXXYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_26:r1",
+      "length": 8,
+      "minimum": "XXXYYxY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_26",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_26:r2",
+      "length": 9,
+      "minimum": "XYYYYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_26",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_26:r1_r2",
+      "length": 17,
+      "minimum": "XXYxYxxYYYYxyyyXY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_26",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxYxxYYYYxyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_26:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXyXyxxYYYxyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_26",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxYxxxYYYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_27:r1",
+      "length": 8,
+      "minimum": "XXYYxxy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_27",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_27:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_27",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_27:r1_r2",
+      "length": 17,
+      "minimum": "XXYxYxxyXYYYxyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_27",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_27:r1_r2inv",
+      "length": 13,
+      "minimum": "XXyxYYxyyyXY",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_27",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyxYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_28:r1",
+      "length": 8,
+      "minimum": "XXXYYxY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_28",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_28:r2",
+      "length": 9,
+      "minimum": "XYYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_28",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_28:r1_r2",
+      "length": 17,
+      "minimum": "XXYxYxxYYYYXyyyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_28",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxYxxYYYYXyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_28:r1_r2inv",
+      "length": 13,
+      "minimum": "XXyxyxYYYXyy",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_28",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxYxYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_29:r1",
+      "length": 7,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_29",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_29:r2",
+      "length": 10,
+      "minimum": "XXyyxYxYXY",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_29",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxxyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_29:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxYYxxyxyXyXYY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_29",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxYYxxyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_29:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXXXyxxYxYXY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_29",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxYxYXYXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_30:r1",
+      "length": 6,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 0,
+      "name": "aca_30",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_30:r2",
+      "length": 11,
+      "minimum": "XXyXYYYYYxy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_30",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYxyXXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_30:r1_r2",
+      "length": 17,
+      "minimum": "XXyXYYXXyxYYYYYxy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_30",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxYYYYYxyXXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_30:r1_r2inv",
+      "length": 13,
+      "minimum": "XXYxxYYYxyXXy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_30",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxYxxYXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_31:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_31",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_31:r2",
+      "length": 10,
+      "minimum": "XXyxYYYYY",
+      "minimum_total": 9,
+      "n_steps": 1,
+      "name": "aca_31",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_31:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyyXYxYxyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_31",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYYYYXyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_31:r1_r2inv",
+      "length": 11,
+      "minimum": "XXXYxyxYYY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_31",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYxYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_32:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_32",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_32:r2",
+      "length": 9,
+      "minimum": "XXYxyyyy",
+      "minimum_total": 8,
+      "n_steps": 1,
+      "name": "aca_32",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_32:r1_r2",
+      "length": 17,
+      "minimum": "XXYxxyxYYYYXyxyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_32",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_32:r1_r2inv",
+      "length": 9,
+      "minimum": "XXYxYxyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_32",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_33:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_33",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_33:r2",
+      "length": 9,
+      "minimum": "XYXYxYxyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_33",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_33:r1_r2",
+      "length": 17,
+      "minimum": "XXXyxYxYYXyXyxyxY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_33",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYXyXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_33:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyxYYXYxYxy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_33",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYXYxYxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_34:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_34",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_34:r2",
+      "length": 9,
+      "minimum": "XXYYxyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_34",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_34:r1_r2",
+      "length": 16,
+      "minimum": "XXYYxyyyyXyXYxxy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_34",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_34:r1_r2inv",
+      "length": 12,
+      "minimum": "XXyxYXYYxyyy",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_34",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_35:r1",
+      "length": 7,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_35",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_35:r2",
+      "length": 11,
+      "minimum": "XXyyyxYxYXY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_35",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYxxyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_35:r1_r2",
+      "length": 18,
+      "minimum": "XXXyxYYYxxyxyXyXYY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_35",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxYYYxxyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_35:r1_r2inv",
+      "length": 14,
+      "minimum": "XXYXXyXXyxxYY",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_35",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxYxYXYXXy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_36:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_36",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_36:r2",
+      "length": 9,
+      "minimum": "XXYYYxYY",
+      "minimum_total": 8,
+      "n_steps": 1,
+      "name": "aca_36",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYxYYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_36:r1_r2",
+      "length": 16,
+      "minimum": "XXyxYxYYYxYYXYXY",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_36",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYxYYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_36:r1_r2inv",
+      "length": 14,
+      "minimum": "XXyXYxxYYxYYXY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_36",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYxxyxyyXyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_37:r1",
+      "length": 8,
+      "minimum": "XXXYxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_37",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_37:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_37",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_37:r1_r2",
+      "length": 19,
+      "minimum": "XXXYxxYYYYYXyyyyxYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_37",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXYxxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_37:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxYYYYxyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_37",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_38:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_38",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_38:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_38",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_38:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxxYYYYYXyyyyxYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_38",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_38:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyxYYYYxyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_38",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_39:r1",
+      "length": 8,
+      "minimum": "XXXXYYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_39",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXYxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_39:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_39",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_39:r1_r2",
+      "length": 19,
+      "minimum": "XXXYxYxYYYYYXyyyyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_39",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXYxYxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_39:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXYxYYYYYxyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_39",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_40:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_40",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_40:r2",
+      "length": 11,
+      "minimum": "XYYYYYxyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_40",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_40:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxYxYYYYYxyyyyXY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_40",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_40:r1_r2inv",
+      "length": 17,
+      "minimum": "XXXyxYxxYYYYXyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_40",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYxxYYYYXyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_41:r1",
+      "length": 8,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 3,
+      "name": "aca_41",
+      "phi": {
+        "x": "xy",
+        "y": "xyxyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_41:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_41",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_41:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxYxyXYYYYxyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_41",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_41:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYxyxYYYxyyyy",
+      "minimum_total": 14,
+      "n_steps": 1,
+      "name": "aca_41",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxxYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_42:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_42",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_42:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_42",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_42:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxYxYYYYYXyyyyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_42",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_42:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXyxYYYYYxyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_42",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_43:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_43",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_43:r2",
+      "length": 11,
+      "minimum": "XXYYxyXYxy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_43",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxyXYxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_43:r1_r2",
+      "length": 18,
+      "minimum": "XXYxxyyxYxYXyxYXyy",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_43",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYxyXYxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_43:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXYxxxyXYxyy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_43",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYxYXyxYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_44:r1",
+      "length": 7,
+      "minimum": "XXYYxYY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_44",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_44:r2",
+      "length": 11,
+      "minimum": "XXYxYXyxY",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_44",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXyXYxxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_44:r1_r2",
+      "length": 18,
+      "minimum": "XXYYxYXyXYxxYXyxYY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_44",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXYYxYXyXYxxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_44:r1_r2inv",
+      "length": 14,
+      "minimum": "XXYYYxyXXyxYxY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_44",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXYYYxyXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_45:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_45",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_45:r2",
+      "length": 10,
+      "minimum": "XXXYxxYYYY",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_45",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_45:r1_r2",
+      "length": 19,
+      "minimum": "XXXYxxYXXyXYxxxYYYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_45",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_45:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYXyxYxxYYY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_45",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYxyxxxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_46:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_46",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_46:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_46",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_46:r1_r2",
+      "length": 19,
+      "minimum": "XXYxxyxYYYYYXyyyyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_46",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_46:r1_r2inv",
+      "length": 13,
+      "minimum": "XXYxxYYYxyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_46",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_47:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_47",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_47:r2",
+      "length": 11,
+      "minimum": "XYYYYYxyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_47",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_47:r1_r2",
+      "length": 19,
+      "minimum": "XXYxxyXYYYYYxyyyyXY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_47",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_47:r1_r2inv",
+      "length": 13,
+      "minimum": "XXYxxYYYXyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_47",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYYXyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_48:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_48",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_48:r2",
+      "length": 10,
+      "minimum": "XXXYxxyyyy",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_48",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_48:r1_r2",
+      "length": 19,
+      "minimum": "XXXYxxyyyyXXyXYxxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_48",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_48:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyxYXYxxyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_48",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYXYxxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_49:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_49",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_49:r2",
+      "length": 11,
+      "minimum": "XYYYYYxyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_49",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_49:r1_r2",
+      "length": 19,
+      "minimum": "XXYxxyxYYYYYxyyyyXY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_49",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYYxyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_49:r1_r2inv",
+      "length": 17,
+      "minimum": "XXYXXyxxYYYYxyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_49",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyxxYYYYXyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_50:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_50",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_50:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_50",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_50:r1_r2",
+      "length": 19,
+      "minimum": "XXYxxyXYYYYYXyyyyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_50",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_50:r1_r2inv",
+      "length": 17,
+      "minimum": "XXYYYYxyyyyXXYxxy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_50",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyXXYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_51:r1",
+      "length": 8,
+      "minimum": "XXXYYxY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_51",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_51:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_51",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_51:r1_r2",
+      "length": 19,
+      "minimum": "XXYxYxxYYYYYXyyyyxY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_51",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxYxxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_51:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyxyxYYYYXyyy",
+      "minimum_total": 14,
+      "n_steps": 1,
+      "name": "aca_51",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxYxYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_52:r1",
+      "length": 8,
+      "minimum": "XXYYxxy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_52",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_52:r2",
+      "length": 11,
+      "minimum": "XYYYYxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_52",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_52:r1_r2",
+      "length": 19,
+      "minimum": "XXYxYxxyXYYYYxyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_52",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxxYYYYYXyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_52:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyxYYYxyyyyXY",
+      "minimum_total": 14,
+      "n_steps": 1,
+      "name": "aca_52",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyxYYYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_53:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_53",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_53:r2",
+      "length": 11,
+      "minimum": "XXYXYxYYxyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_53",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyyXyxyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_53:r1_r2",
+      "length": 18,
+      "minimum": "XXYXYxYYxyyXyXYxxy",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_53",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYXyyXyxyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_53:r1_r2inv",
+      "length": 14,
+      "minimum": "XXyxYXYXYxYYxy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_53",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYXYxYYxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_54:r1",
+      "length": 9,
+      "minimum": "XXXXyxxYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_54",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_54:r2",
+      "length": 10,
+      "minimum": "XXXXXYYxxy",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_54",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxxyXXXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_54:r1_r2",
+      "length": 19,
+      "minimum": "XXXXXYYXXXXyxxYYxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_54",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXXyxxYYxxyXXXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_54:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXXXXYxxxxxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_54",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXXyxxxxxxxYXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_55:r1",
+      "length": 9,
+      "minimum": "XXXyxyxYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_55",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_55:r2",
+      "length": 9,
+      "minimum": "XXyyXYYxY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_55",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxYXXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_55:r1_r2",
+      "length": 18,
+      "minimum": "XXXyxyxYYxYXXyyXYY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_55",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxyxYYxYXXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_55:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXyxyxxYYxxy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_55",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxyxxYYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_56:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_56",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_56:r2",
+      "length": 11,
+      "minimum": "XXXYYXYYxxy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_56",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXYYxxyXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_56:r1_r2",
+      "length": 19,
+      "minimum": "XXXYYXXXyxxYYXYYxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_56",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYYXYYxxyXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_56:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXXXYxxYYxxy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_56",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxxxYXXyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_57:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_57",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_57:r2",
+      "length": 11,
+      "minimum": "XXXXYYXYYxy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_57",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXYYxyXXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_57:r1_r2",
+      "length": 19,
+      "minimum": "XXXXYYXXXyxxYYXYYxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_57",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYYXYYxyXXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_57:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXXXXYxxYYxy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_57",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxxxxYXyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_58:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_58",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_58:r2",
+      "length": 10,
+      "minimum": "XXYYxyyyyy",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_58",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_58:r1_r2",
+      "length": 17,
+      "minimum": "XXYYxyyyyyXyXYxxy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_58",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_58:r1_r2inv",
+      "length": 13,
+      "minimum": "XXyxYXYYxyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_58",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_59:r1",
+      "length": 9,
+      "minimum": "XXYXXyy",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_59",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_59:r2",
+      "length": 11,
+      "minimum": "XXXXXXXyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_59",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxxxxxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_59:r1_r2",
+      "length": 20,
+      "minimum": "XXXXXXXyyyyXXYXXyxxy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_59",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxxYYYYxxxxxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_59:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXXyyyXXYxxy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_59",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyXXXXXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_60:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_60",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_60:r2",
+      "length": 11,
+      "minimum": "XXXYxxyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_60",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_60:r1_r2",
+      "length": 20,
+      "minimum": "XXXYxxyyyyyXXyXYxxxy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_60",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_60:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXyxYXYxxyyyy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_60",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYXYxxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_61:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_61",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_61:r2",
+      "length": 11,
+      "minimum": "XXXYxxYYYYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_61",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_61:r1_r2",
+      "length": 20,
+      "minimum": "XXXYxxYXXyXYxxxYYYYY",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_61",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_61:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXYXyxYxxYYYY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_61",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYxyxxxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_62:r1",
+      "length": 8,
+      "minimum": "XXXXYYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_62",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXYxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_62:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_62",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_62:r1_r2",
+      "length": 21,
+      "minimum": "XXXYxYxYYYYYYXyyyyyxY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_62",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXYxYxYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_62:r1_r2inv",
+      "length": 17,
+      "minimum": "XXXYxYYYYYYxyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_62",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_63:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_63",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_63:r2",
+      "length": 13,
+      "minimum": "XYYYYYYxyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_63",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_63:r1_r2",
+      "length": 21,
+      "minimum": "XXXyxYxYYYYYYxyyyyyXY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_63",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_63:r1_r2inv",
+      "length": 19,
+      "minimum": "XXXyxYxxYYYYYXyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_63",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYxxYYYYYXyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_64:r1",
+      "length": 8,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 3,
+      "name": "aca_64",
+      "phi": {
+        "x": "xy",
+        "y": "xyxyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_64:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_64",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_64:r1_r2",
+      "length": 21,
+      "minimum": "XXXyxYxyXYYYYYxyyyyyy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_64",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxxYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_64:r1_r2inv",
+      "length": 17,
+      "minimum": "XXYxyxYYYYxyyyyy",
+      "minimum_total": 16,
+      "n_steps": 1,
+      "name": "aca_64",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxxYYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_65:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_65",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_65:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_65",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_65:r1_r2",
+      "length": 21,
+      "minimum": "XXXyxYxYYYYYYXyyyyyxY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_65",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_65:r1_r2inv",
+      "length": 17,
+      "minimum": "XXXyxYYYYYYxyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_65",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_66:r1",
+      "length": 9,
+      "minimum": "XXXYxxxyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_66",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_66:r2",
+      "length": 11,
+      "minimum": "XXyxYXyxYY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_66",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_66:r1_r2",
+      "length": 20,
+      "minimum": "XXXYxxxyyXYxyXYxYxyy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_66",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxxYYXyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_66:r1_r2inv",
+      "length": 12,
+      "minimum": "XXYxxyyxYXy",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_66",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxYxyXYxY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_67:r1",
+      "length": 9,
+      "minimum": "XXXYYXXXy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_67",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_67:r2",
+      "length": 11,
+      "minimum": "XXyxYXyxy",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_67",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_67:r1_r2",
+      "length": 20,
+      "minimum": "XXXYYXyxYXyxyXYYXXXy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_67",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyXXXYYXyxYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_67:r1_r2inv",
+      "length": 12,
+      "minimum": "XXYYxyXYXXy",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_67",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXXYXYxyXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_68:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_68",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_68:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_68",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_68:r1_r2",
+      "length": 21,
+      "minimum": "XXYxxyxYYYYYYXyyyyyxY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_68",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_68:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYxxYYYYxyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_68",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_69:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_69",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_69:r2",
+      "length": 13,
+      "minimum": "XYYYYYYxyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_69",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_69:r1_r2",
+      "length": 21,
+      "minimum": "XXYxxyXYYYYYYxyyyyyXY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_69",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_69:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYxxYYYYXyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_69",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYYYXyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_70:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_70",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_70:r2",
+      "length": 13,
+      "minimum": "XYYYYYYxyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_70",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_70:r1_r2",
+      "length": 21,
+      "minimum": "XXYxxyxYYYYYYxyyyyyXY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_70",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYYYxyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_70:r1_r2inv",
+      "length": 19,
+      "minimum": "XXYXXyxxYYYYYxyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_70",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyxxYYYYYXyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_71:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_71",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_71:r2",
+      "length": 11,
+      "minimum": "XXyxyXYxy",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_71",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_71:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxxYYXyxyXYxyXYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_71",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_71:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXYxxyyXYxy",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_71",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYXyxYXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_72:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_72",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_72:r2",
+      "length": 11,
+      "minimum": "XXYYxyXyxy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_72",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxyXyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_72:r1_r2",
+      "length": 18,
+      "minimum": "XXYxxyyxYxYXYxYXyy",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_72",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYxyXyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_72:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXYxxxyyxxyy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_72",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYxYXYxYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_73:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_73",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_73:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_73",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_73:r1_r2",
+      "length": 21,
+      "minimum": "XXYxxyXYYYYYYXyyyyyxY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_73",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_73:r1_r2inv",
+      "length": 19,
+      "minimum": "XXYYYYYxyyyyyXXYxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_73",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyXXYYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_74:r1",
+      "length": 8,
+      "minimum": "XXYYxxy",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_74",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_74:r2",
+      "length": 13,
+      "minimum": "XYYYYYxyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_74",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_74:r1_r2",
+      "length": 21,
+      "minimum": "XXYxYxxyXYYYYYxyyyyyy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_74",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxxYYYYYYXyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_74:r1_r2inv",
+      "length": 17,
+      "minimum": "XXyxYYYYxyyyyyXY",
+      "minimum_total": 16,
+      "n_steps": 1,
+      "name": "aca_74",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyxYYYYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_75:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_75",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_75:r2",
+      "length": 12,
+      "minimum": "XXXYxxYYYYYY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_75",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_75:r1_r2",
+      "length": 21,
+      "minimum": "XXXYxxYXXXyxYxxYYYYYY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_75",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_75:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXXYxxxYYYYY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_75",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_76:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_76",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_76:r2",
+      "length": 12,
+      "minimum": "XXXYxxyyyyyy",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_76",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_76:r1_r2",
+      "length": 21,
+      "minimum": "XXXYxxyyyyyyXXyXYxxxy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_76",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_76:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXyxYXYxxyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_76",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYXYxxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_77:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_77",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_77:r2",
+      "length": 12,
+      "minimum": "XXXYxxYYYYYY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_77",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_77:r1_r2",
+      "length": 21,
+      "minimum": "XXXYxxYXXyXYxxxYYYYYY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_77",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_77:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXYXyxYxxYYYYY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_77",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYxyxxxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_78:r1",
+      "length": 7,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_78",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_78:r2",
+      "length": 12,
+      "minimum": "XXyxyxYxYYY",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_78",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXYXyxyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_78:r1_r2",
+      "length": 19,
+      "minimum": "XXYYXYxyxyyyXYxYxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_78",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXyxYYYXYXyxyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_78:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyXyXYYXYxyxyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_78",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXyXYYXYxyxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_79:r1",
+      "length": 9,
+      "minimum": "XXXyyxxYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_79",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_79:r2",
+      "length": 12,
+      "minimum": "XXXXXyxxYY",
+      "minimum_total": 10,
+      "n_steps": 2,
+      "name": "aca_79",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXXXXXyxxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_79:r1_r2",
+      "length": 21,
+      "minimum": "XXXXXyxxYxxYYXXXyyxxY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_79",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyyxxYXXXXXyxxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_79:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXXyxxYYYxxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_79",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXXyyyXXYxxxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_80:r1",
+      "length": 6,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 0,
+      "name": "aca_80",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_80:r2",
+      "length": 13,
+      "minimum": "XXYYYXyXYYYxy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_80",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXyXYYYxyXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_80:r1_r2",
+      "length": 19,
+      "minimum": "XXYYXXyxYYYXyXYYYxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_80",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxYYYXyXYYYxyXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_80:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXYxxYXyXYYYxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_80",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYXyyyxYxy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_81:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_81",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_81:r2",
+      "length": 11,
+      "minimum": "XXYYxyyyyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_81",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_81:r1_r2",
+      "length": 18,
+      "minimum": "XXYYxyyyyyyXyXYxxy",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_81",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_81:r1_r2inv",
+      "length": 14,
+      "minimum": "XXyxYXYYxyyyyy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_81",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYYxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_82:r1",
+      "length": 11,
+      "minimum": "XXXXXyyxYYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_82",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYYXXXXXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_82:r2",
+      "length": 11,
+      "minimum": "XXyxYYxxY",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_82",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxxyyxYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_82:r1_r2",
+      "length": 22,
+      "minimum": "XXXXXyyxYYXyxxyyxYXYYY",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_82",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYYXXXXXyyxYYXyxxyyxYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_82:r1_r2inv",
+      "length": 18,
+      "minimum": "XXXXXyyxxyXYYXXYxY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_82",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXXXXyyxxyXYYXXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_83:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_83",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_83:r2",
+      "length": 13,
+      "minimum": "XXXYxxyyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_83",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_83:r1_r2",
+      "length": 22,
+      "minimum": "XXXYxxyyyyyyyXXXyxYxxy",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_83",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_83:r1_r2inv",
+      "length": 14,
+      "minimum": "XXyXYYxxyyyyyy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_83",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYYxxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_84:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_84",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_84:r2",
+      "length": 13,
+      "minimum": "XXXYxxYYYYYYY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_84",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_84:r1_r2",
+      "length": 22,
+      "minimum": "XXXYxxYXXXyxYxxYYYYYYY",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_84",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_84:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXYxxxYYYYYY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_84",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_85:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_85",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_85:r2",
+      "length": 11,
+      "minimum": "XXYYxYYYYYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_85",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_85:r1_r2",
+      "length": 18,
+      "minimum": "XXYYxYXyXYxxYYYYYY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_85",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_85:r1_r2inv",
+      "length": 14,
+      "minimum": "XXYYXyxYxYYYYY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_85",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxyyxxyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_86:r1",
+      "length": 11,
+      "minimum": "XXXXXyyXYYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_86",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYYXXXXXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_86:r2",
+      "length": 11,
+      "minimum": "XXYxyyXyxYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_86",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxxyyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_86:r1_r2",
+      "length": 22,
+      "minimum": "XXXXXyyXYYXyxxyyXYxYYY",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_86",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYYXXXXXyyXYYXyxxyyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_86:r1_r2inv",
+      "length": 18,
+      "minimum": "XXXXXyyXXyxYYXXYxY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_86",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YXXXXXyyXXyxYYXXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_87:r1",
+      "length": 9,
+      "minimum": "XXXYYXXXy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_87",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_87:r2",
+      "length": 11,
+      "minimum": "XXYxyXYxyy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_87",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_87:r1_r2",
+      "length": 20,
+      "minimum": "XXXYYXyxYXyxyxYYXXXy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_87",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyXXXYYXyxYXyxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_87:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXYYxyXYXXy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_87",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXXXXYXYxyXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_88:r1",
+      "length": 8,
+      "minimum": "XXXyXXYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_88",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_88:r2",
+      "length": 11,
+      "minimum": "XXYxyXYxY",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_88",
+      "phi": {
+        "x": "xyy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_88:r1_r2",
+      "length": 19,
+      "minimum": "XXXyXXYYxyXyxYXyxYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_88",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyXXYYxyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_88:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXyXXXYxyXYY",
+      "minimum_total": 14,
+      "n_steps": 1,
+      "name": "aca_88",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyXXXYxyXYxYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_89:r1",
+      "length": 8,
+      "minimum": "XXyyXY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_89",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_89:r2",
+      "length": 15,
+      "minimum": "XYYYYYYxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_89",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_89:r1_r2",
+      "length": 23,
+      "minimum": "XXYxxyxYYYYYYYXyyyyyyxY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_89",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyxYYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_89:r1_r2inv",
+      "length": 17,
+      "minimum": "XXYxxYYYYYxyyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_89",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxYYYYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_90:r1",
+      "length": 9,
+      "minimum": "XXXYxxxyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_90",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_90:r2",
+      "length": 11,
+      "minimum": "XXyxYXyxy",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_90",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_90:r1_r2",
+      "length": 20,
+      "minimum": "XXXYxxxyyxYXYxyXYxyy",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_90",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxxYYXyxYXyxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_90:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXXYxxyxYXyy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_90",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxxYXYxyXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_91:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_91",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_91:r2",
+      "length": 15,
+      "minimum": "XYYYYYYxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_91",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_91:r1_r2",
+      "length": 23,
+      "minimum": "XXXyxYxYYYYYYYXyyyyyyxY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_91",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_91:r1_r2inv",
+      "length": 19,
+      "minimum": "XXXyxYYYYYYYxyyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_91",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYYYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_92:r1",
+      "length": 8,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 3,
+      "name": "aca_92",
+      "phi": {
+        "x": "xy",
+        "y": "xyxyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_92:r2",
+      "length": 15,
+      "minimum": "XYYYYYYxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_92",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_92:r1_r2",
+      "length": 23,
+      "minimum": "XXXyxYxyXYYYYYYxyyyyyyy",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_92",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxxYYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_92:r1_r2inv",
+      "length": 19,
+      "minimum": "XXYxyxYYYYYxyyyyyy",
+      "minimum_total": 18,
+      "n_steps": 1,
+      "name": "aca_92",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxxYYYYYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_93:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_93",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_93:r2",
+      "length": 15,
+      "minimum": "XYYYYYYYxyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_93",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYxyyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_93:r1_r2",
+      "length": 23,
+      "minimum": "XXXyxYxYYYYYYYxyyyyyyXY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_93",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYYxyyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_93:r1_r2inv",
+      "length": 21,
+      "minimum": "XXXyxYxxYYYYYYXyyyyyy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_93",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYxxYYYYYYXyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_94:r1",
+      "length": 8,
+      "minimum": "XXXXYYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_94",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXYxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_94:r2",
+      "length": 15,
+      "minimum": "XYYYYYYxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_94",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_94:r1_r2",
+      "length": 23,
+      "minimum": "XXXYxYxYYYYYYYXyyyyyyxY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_94",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXYxYxYYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_94:r1_r2inv",
+      "length": 19,
+      "minimum": "XXXYxYYYYYYYxyyyyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_94",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYYYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_95:r1",
+      "length": 8,
+      "minimum": "XXXyxxYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_95",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_95:r2",
+      "length": 11,
+      "minimum": "XXyyxYXyxY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_95",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYxyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_95:r1_r2",
+      "length": 19,
+      "minimum": "XXXyxxYYxyxyXYxyXYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_95",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXyxxYYxyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_95:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXyxxxYXyxYY",
+      "minimum_total": 14,
+      "n_steps": 1,
+      "name": "aca_95",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxYXyxYXYX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_96:r1",
+      "length": 8,
+      "minimum": "XXyyxY",
+      "minimum_total": 6,
+      "n_steps": 2,
+      "name": "aca_96",
+      "phi": {
+        "x": "x",
+        "y": "XXy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_96:r2",
+      "length": 15,
+      "minimum": "XYYYYYYxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_96",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_96:r1_r2",
+      "length": 23,
+      "minimum": "XXYxxyXYYYYYYYXyyyyyyxY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_96",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXYxxyXYYYYYYYXyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_96:r1_r2inv",
+      "length": 21,
+      "minimum": "XXYYYYYYxyyyyyyXXYxxy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_96",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXYxxyXXYYYYYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_97:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_97",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_97:r2",
+      "length": 12,
+      "minimum": "XXYYxyyyyyyy",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_97",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_97:r1_r2",
+      "length": 19,
+      "minimum": "XXYYxyyyyyyyXyXYxxy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_97",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_97:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyxYXYYxyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_97",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYYxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_98:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_98",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_98:r2",
+      "length": 12,
+      "minimum": "XXYYxYYYYYYY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_98",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_98:r1_r2",
+      "length": 19,
+      "minimum": "XXYYxYXyXYxxYYYYYYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_98",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYYYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_98:r1_r2inv",
+      "length": 15,
+      "minimum": "XXYYXyxYxYYYYYY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_98",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxyyxxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_99:r1",
+      "length": 7,
+      "minimum": "XXYxxyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_99",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_99:r2",
+      "length": 12,
+      "minimum": "XXYYYxyXyxy",
+      "minimum_total": 11,
+      "n_steps": 1,
+      "name": "aca_99",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYxyXyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_99:r1_r2",
+      "length": 19,
+      "minimum": "XXYxxyyxYxYXYxYXyyy",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_99",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxxYYYxyXyxyXyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_99:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXYxYxyyxxyy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_99",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxxxYxYXYxYXy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_100:r1",
+      "length": 9,
+      "minimum": "XXXXyxxYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_100",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_100:r2",
+      "length": 11,
+      "minimum": "XXyxyXYxy",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_100",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_100:r1_r2",
+      "length": 20,
+      "minimum": "XXXXyxxYYXyxyXYxyXYY",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_100",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXXyxxYYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_100:r1_r2inv",
+      "length": 14,
+      "minimum": "XXXYxxxyyXYxy",
+      "minimum_total": 13,
+      "n_steps": 1,
+      "name": "aca_100",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxYXyxYXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_101:r1",
+      "length": 8,
+      "minimum": "XXXXYYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_101",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXYxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_101:r2",
+      "length": 17,
+      "minimum": "XYYYYYYYxyyyyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_101",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_101:r1_r2",
+      "length": 25,
+      "minimum": "XXXYxYxYYYYYYYYXyyyyyyyxY",
+      "minimum_total": 25,
+      "n_steps": 0,
+      "name": "aca_101",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXYxYxYYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_101:r1_r2inv",
+      "length": 21,
+      "minimum": "XXXYxYYYYYYYYxyyyyyyy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_101",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXYxYYYYYYYYxyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_102:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_102",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_102:r2",
+      "length": 17,
+      "minimum": "XYYYYYYYYxyyyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_102",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYxyyyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_102:r1_r2",
+      "length": 25,
+      "minimum": "XXXyxYxYYYYYYYYxyyyyyyyXY",
+      "minimum_total": 25,
+      "n_steps": 0,
+      "name": "aca_102",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYYYxyyyyyyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_102:r1_r2inv",
+      "length": 23,
+      "minimum": "XXXyxYxxYYYYYYYXyyyyyyy",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_102",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYxxYYYYYYYXyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_103:r1",
+      "length": 8,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 3,
+      "name": "aca_103",
+      "phi": {
+        "x": "xy",
+        "y": "xyxyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_103:r2",
+      "length": 17,
+      "minimum": "XYYYYYYYxyyyyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_103",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_103:r1_r2",
+      "length": 25,
+      "minimum": "XXXyxYxyXYYYYYYYxyyyyyyyy",
+      "minimum_total": 25,
+      "n_steps": 0,
+      "name": "aca_103",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxxYYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_103:r1_r2inv",
+      "length": 21,
+      "minimum": "XXYxyxYYYYYYxyyyyyyy",
+      "minimum_total": 20,
+      "n_steps": 1,
+      "name": "aca_103",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxxYYYYYYYxyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_104:r1",
+      "length": 8,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 1,
+      "name": "aca_104",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_104:r2",
+      "length": 17,
+      "minimum": "XYYYYYYYxyyyyyyyy",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_104",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_104:r1_r2",
+      "length": 25,
+      "minimum": "XXXyxYxYYYYYYYYXyyyyyyyxY",
+      "minimum_total": 25,
+      "n_steps": 0,
+      "name": "aca_104",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxYYYYYYYYXyyyyyyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_104:r1_r2inv",
+      "length": 21,
+      "minimum": "XXXyxYYYYYYYYxyyyyyyy",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_104",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYYYYYYYYxyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_105:r1",
+      "length": 10,
+      "minimum": "XXXXyxxxYY",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_105",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_105:r2",
+      "length": 11,
+      "minimum": "XXyxYXyxYY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_105",
+      "phi": {
+        "x": "xy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_105:r1_r2",
+      "length": 21,
+      "minimum": "XXXXyxxxYYXyXyxYXyxYY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_105",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXXyxxxYYXyXyxYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_105:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyxxYxyXYY",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_105",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxYxyXYxY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_106:r1",
+      "length": 10,
+      "minimum": "XXXXyXXXYY",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_106",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXXXyXXX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_106:r2",
+      "length": 11,
+      "minimum": "XXyxyXYxy",
+      "minimum_total": 9,
+      "n_steps": 2,
+      "name": "aca_106",
+      "phi": {
+        "x": "YYx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_106:r1_r2",
+      "length": 21,
+      "minimum": "XXXXyXXXYYXyxyXYxyXYY",
+      "minimum_total": 21,
+      "n_steps": 0,
+      "name": "aca_106",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXXXyXXXYYXyxyXYxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_106:r1_r2inv",
+      "length": 13,
+      "minimum": "XXXyXXYXyxYY",
+      "minimum_total": 12,
+      "n_steps": 1,
+      "name": "aca_106",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyXXYXyxYXY"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_107:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_107",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_107:r2",
+      "length": 13,
+      "minimum": "XXXYxxYYYYYYY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_107",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_107:r1_r2",
+      "length": 22,
+      "minimum": "XXXYxxYXXyXYxxxYYYYYYY",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_107",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_107:r1_r2inv",
+      "length": 16,
+      "minimum": "XXXYXyxYxxYYYYYY",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_107",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYxyxxxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_108:r1",
+      "length": 11,
+      "minimum": "XXXyxYYxyy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_108",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXYXyxyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_108:r2",
+      "length": 13,
+      "minimum": "XXyxyy",
+      "minimum_total": 6,
+      "n_steps": 7,
+      "name": "aca_108",
+      "phi": {
+        "x": "xyyyyyyy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYxYYXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_108:r1_r2",
+      "length": 24,
+      "minimum": "XXyxYXYxyxyXyxyyXyyyyyyy",
+      "minimum_total": 24,
+      "n_steps": 0,
+      "name": "aca_108",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXYXyxyXYxxYYYYYYYxYYXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_108:r1_r2inv",
+      "length": 20,
+      "minimum": "XXyxYXYxxYYYYYYYxYY",
+      "minimum_total": 19,
+      "n_steps": 1,
+      "name": "aca_108",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XYXyxyXYxyxyyXyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_109:r1",
+      "length": 11,
+      "minimum": "XXyXYxxyyxY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_109",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYXXyxYxxyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_109:r2",
+      "length": 12,
+      "minimum": "XXXYxxYYYYYY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_109",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_109:r1_r2",
+      "length": 23,
+      "minimum": "XXXYxxYYXXyxYxxyXYYYYYY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_109",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYXXyxYxxyXYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_109:r1_r2inv",
+      "length": 19,
+      "minimum": "XXXYxxxYXXyXYxxYYYY",
+      "minimum_total": 19,
+      "n_steps": 0,
+      "name": "aca_109",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYxxyXXXyxxxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_110:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_110",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_110:r2",
+      "length": 13,
+      "minimum": "XXXYxxyyyyyyy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_110",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_110:r1_r2",
+      "length": 22,
+      "minimum": "XXXYxxyyyyyyyXXyXYxxxy",
+      "minimum_total": 22,
+      "n_steps": 0,
+      "name": "aca_110",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_110:r1_r2inv",
+      "length": 16,
+      "minimum": "XXXyxYXYxxyyyyyy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_110",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxYXYxxyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_111:r1",
+      "length": 11,
+      "minimum": "XXyxYYYxxy",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_111",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXYXYxxyXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_111:r2",
+      "length": 13,
+      "minimum": "XXYYxY",
+      "minimum_total": 6,
+      "n_steps": 7,
+      "name": "aca_111",
+      "phi": {
+        "x": "xyyyyyyy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYxyXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_111:r1_r2",
+      "length": 24,
+      "minimum": "XXyxyxyXYYxYXyyyyyyyXYxY",
+      "minimum_total": 24,
+      "n_steps": 0,
+      "name": "aca_111",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXYXYxxyXyxYYYYYYYxyXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_111:r1_r2inv",
+      "length": 18,
+      "minimum": "XXyxyxYYYYYYxyXyxY",
+      "minimum_total": 18,
+      "n_steps": 0,
+      "name": "aca_111",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XYXYxxyXYxYXyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_112:r1",
+      "length": 11,
+      "minimum": "XXyyXYxyxY",
+      "minimum_total": 10,
+      "n_steps": 1,
+      "name": "aca_112",
+      "phi": {
+        "x": "x",
+        "y": "Xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXYxxyXYXyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_112:r2",
+      "length": 13,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 7,
+      "name": "aca_112",
+      "phi": {
+        "x": "xyyyyyyy",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYxyyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_112:r1_r2",
+      "length": 24,
+      "minimum": "XXyxyXyxYYXyyyyyyyXYxyxY",
+      "minimum_total": 24,
+      "n_steps": 0,
+      "name": "aca_112",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXYxxyXYXyxYYYYYYYxyyXYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_112:r1_r2inv",
+      "length": 20,
+      "minimum": "XXyxYYYYYYxyyXYYxyxY",
+      "minimum_total": 20,
+      "n_steps": 0,
+      "name": "aca_112",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XYxxyXYXyyxYYXyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_113:r1",
+      "length": 9,
+      "minimum": "XXXyxYY",
+      "minimum_total": 7,
+      "n_steps": 2,
+      "name": "aca_113",
+      "phi": {
+        "x": "x",
+        "y": "xxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXXyxYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_113:r2",
+      "length": 14,
+      "minimum": "XXXYxxYYYYYYYY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_113",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_113:r1_r2",
+      "length": 23,
+      "minimum": "XXXYxxYXXXyxYxxYYYYYYYY",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_113",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXXyxYxxYYYYYYYYXXXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_113:r1_r2inv",
+      "length": 15,
+      "minimum": "XXXXYxxxYYYYYYY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_113",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXXyxxxxyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_114:r1",
+      "length": 9,
+      "minimum": "XXyXYY",
+      "minimum_total": 6,
+      "n_steps": 3,
+      "name": "aca_114",
+      "phi": {
+        "x": "x",
+        "y": "xxxy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_114:r2",
+      "length": 14,
+      "minimum": "XXXYxxyyyyyyyy",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_114",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_114:r1_r2",
+      "length": 23,
+      "minimum": "XXXYxxyyyyyyyyXXXyxYxxy",
+      "minimum_total": 23,
+      "n_steps": 0,
+      "name": "aca_114",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyXYxxxYYYYYYYYXXyxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_114:r1_r2inv",
+      "length": 15,
+      "minimum": "XXyXYYxxyyyyyyy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_114",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyXYYxxyyyyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_115:r1",
+      "length": 6,
+      "minimum": "XXyxy",
+      "minimum_total": 5,
+      "n_steps": 1,
+      "name": "aca_115",
+      "phi": {
+        "x": "Yx",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXYxyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_115:r2",
+      "length": 7,
+      "minimum": "XXXyyyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_115",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_115:r1_r2",
+      "length": 13,
+      "minimum": "XXXyyyyXYXyxy",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_115",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXYxyxYYYYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_115:r1_r2inv",
+      "length": 9,
+      "minimum": "XXyyyXYxy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_115",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XYxyXXyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_116:r1",
+      "length": 7,
+      "minimum": "XYYYXyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_116",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYYXyyX"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_116:r2",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_116",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_116:r1_r2",
+      "length": 14,
+      "minimum": "XXXyxxYYYXyyXY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_116",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYYXyyXYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_116:r1_r2inv",
+      "length": 12,
+      "minimum": "XXXYxxxYYXyy",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_116",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YYXyyXXXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_117:r1",
+      "length": 7,
+      "minimum": "XYYxyyy",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_117",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YYYXyyx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_117:r2",
+      "length": 7,
+      "minimum": "XXXyxxY",
+      "minimum_total": 7,
+      "n_steps": 0,
+      "name": "aca_117",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_117:r1_r2",
+      "length": 14,
+      "minimum": "XXXyxxYYYXyyxY",
+      "minimum_total": 14,
+      "n_steps": 0,
+      "name": "aca_117",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YYYXyyxYXXXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_117:r1_r2inv",
+      "length": 10,
+      "minimum": "XXXyxYYxyy",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_117",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "YYXyyXYxxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_118:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_118",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_118:r2",
+      "length": 8,
+      "minimum": "XXYxyyyy",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_118",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_118:r1_r2",
+      "length": 15,
+      "minimum": "XXYxyyyyXyXYxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_118",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_118:r1_r2inv",
+      "length": 11,
+      "minimum": "XXyxYXYxyyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_118",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_119:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_119",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_119:r2",
+      "length": 9,
+      "minimum": "XXYxyyyyy",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_119",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_119:r1_r2",
+      "length": 16,
+      "minimum": "XXYxyyyyyXyXYxxy",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_119",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYYYXyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_119:r1_r2inv",
+      "length": 12,
+      "minimum": "XXyxYXYxyyyy",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_119",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYxyyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_120:r1",
+      "length": 7,
+      "minimum": "XXyxYY",
+      "minimum_total": 6,
+      "n_steps": 1,
+      "name": "aca_120",
+      "phi": {
+        "x": "x",
+        "y": "xy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXXyxYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_120:r2",
+      "length": 8,
+      "minimum": "XXYYxyyy",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_120",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_120:r1_r2",
+      "length": 15,
+      "minimum": "XXYYxyyyXyXYxxy",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_120",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXXyxYxYYYXyyxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_120:r1_r2inv",
+      "length": 11,
+      "minimum": "XXyxYXYYxyy",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_120",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XXyxYXYYxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_121:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_121",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_121:r2",
+      "length": 8,
+      "minimum": "XXYYxYYY",
+      "minimum_total": 8,
+      "n_steps": 0,
+      "name": "aca_121",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_121:r1_r2",
+      "length": 15,
+      "minimum": "XXYYxYXyXYxxYYY",
+      "minimum_total": 15,
+      "n_steps": 0,
+      "name": "aca_121",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_121:r1_r2inv",
+      "length": 11,
+      "minimum": "XXYYXyxYxYY",
+      "minimum_total": 11,
+      "n_steps": 0,
+      "name": "aca_121",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxyyxxyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_122:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_122",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_122:r2",
+      "length": 9,
+      "minimum": "XXYYxYYYY",
+      "minimum_total": 9,
+      "n_steps": 0,
+      "name": "aca_122",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_122:r1_r2",
+      "length": 16,
+      "minimum": "XXYYxYXyXYxxYYYY",
+      "minimum_total": 16,
+      "n_steps": 0,
+      "name": "aca_122",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_122:r1_r2inv",
+      "length": 12,
+      "minimum": "XXYYXyxYxYYY",
+      "minimum_total": 12,
+      "n_steps": 0,
+      "name": "aca_122",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxyyxxyyy"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_123:r1",
+      "length": 7,
+      "minimum": "XXYxY",
+      "minimum_total": 5,
+      "n_steps": 2,
+      "name": "aca_123",
+      "phi": {
+        "x": "xy",
+        "y": "xyy"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1",
+      "word": "YXyXYxx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_123:r2",
+      "length": 10,
+      "minimum": "XXYYxYYYYY",
+      "minimum_total": 10,
+      "n_steps": 0,
+      "name": "aca_123",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r2",
+      "word": "YYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_123:r1_r2",
+      "length": 17,
+      "minimum": "XXYYxYXyXYxxYYYYY",
+      "minimum_total": 17,
+      "n_steps": 0,
+      "name": "aca_123",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2",
+      "word": "YXyXYxxYYYYYXXYYx"
+    },
+    {
+      "abelian_gcd": 1,
+      "id": "aca_123:r1_r2inv",
+      "length": 13,
+      "minimum": "XXYYXyxYxYYYY",
+      "minimum_total": 13,
+      "n_steps": 0,
+      "name": "aca_123",
+      "phi": {
+        "x": "x",
+        "y": "y"
+      },
+      "primitive": false,
+      "skipped": "",
+      "which": "r1_r2inv",
+      "word": "XyXYxyyxxyyyy"
+    }
+  ],
+  "relator_min_length_histogram": {
+    "10": 19,
+    "11": 29,
+    "12": 6,
+    "13": 14,
+    "14": 2,
+    "15": 6,
+    "17": 4,
+    "5": 13,
+    "6": 41,
+    "7": 56,
+    "8": 18,
+    "9": 40
+  },
+  "shared_relators_count_ge_3": [
+    {
+      "count": 11,
+      "word": "YXXyxYx"
+    },
+    {
+      "count": 11,
+      "word": "YXXXyxYx"
+    },
+    {
+      "count": 9,
+      "word": "YYYYYXyyyyx"
+    },
+    {
+      "count": 8,
+      "word": "YXXYxxyx"
+    },
+    {
+      "count": 7,
+      "word": "YYYYXyyyx"
+    },
+    {
+      "count": 7,
+      "word": "YXXYxxyX"
+    },
+    {
+      "count": 7,
+      "word": "YXXXyxYxx"
+    },
+    {
+      "count": 6,
+      "word": "YYXXyxx"
+    },
+    {
+      "count": 6,
+      "word": "YXyXYxx"
+    },
+    {
+      "count": 6,
+      "word": "YXXXyxx"
+    },
+    {
+      "count": 6,
+      "word": "YYXXXyxx"
+    },
+    {
+      "count": 6,
+      "word": "YXXyXYxxx"
+    },
+    {
+      "count": 6,
+      "word": "YYYYYYXyyyyyx"
+    },
+    {
+      "count": 5,
+      "word": "YYYYxyyyX"
+    },
+    {
+      "count": 5,
+      "word": "YXXXYxYx"
+    },
+    {
+      "count": 5,
+      "word": "YXyXYxxx"
+    },
+    {
+      "count": 5,
+      "word": "YYYYYYYXyyyyyyx"
+    },
+    {
+      "count": 4,
+      "word": "YXXyXyxx"
+    },
+    {
+      "count": 3,
+      "word": "YXXyXyx"
+    },
+    {
+      "count": 3,
+      "word": "YYXXXyx"
+    },
+    {
+      "count": 3,
+      "word": "YXXYxYxx"
+    },
+    {
+      "count": 3,
+      "word": "YYYYYxyyyyX"
+    },
+    {
+      "count": 3,
+      "word": "YYYYYYxyyyyyX"
+    },
+    {
+      "count": 3,
+      "word": "YYXyxyXYxyX"
+    },
+    {
+      "count": 3,
+      "word": "YYYYYYXXXYxx"
+    },
+    {
+      "count": 3,
+      "word": "YYYYYYYYXyyyyyyyx"
+    }
+  ],
+  "status": "recognizer_census_not_a_solve"
+}

@@ -200,6 +200,12 @@ when `gcd(k,m)=1`. Portable **mechanism**; current write-up is at the AK(3)
 root. Candidate for a U124 theorem if a pair has a power block and a coprime
 defining exponent.
 
+**Q diagnostic (this campaign).** No cyclic conjugate of `Q_{n,δ}`'s first
+relator is `v^{±m}` times a `v`-free word for `v = y⁻¹x⁻²` (`n=2..8`, both
+signs; `tables/q_peel.json` `q_r1_v_power_shape_hits = 0`). The AK3 shape
+`A = a v^{-m}` is therefore not visible on that spelling. This is not an
+obstruction to a different defining word.
+
 ---
 
 ## C10. MM03 length ≤ 12 — LITERATURE
@@ -207,3 +213,146 @@ defining exponent.
 Every balanced 2-generator trivial-group presentation of total length ≤ 12 is
 AC-trivial (computer-assisted). Used only after a **legal** stable reduction
 to such a pair, with the degenerate/order-120 caveats in `MU_CRITERION.md`.
+
+---
+
+## C11. Common-suffix peel — IDENTITY-CHECKED (elementary AC1+AC2)
+
+**Statement.** If freely reduced relators satisfy `R1 = g v` and `R2 = u v`
+with the same nonempty suffix `v`, then the AC2 replacement
+`R2 ← R2 · R1⁻¹` (donor sign −1, displayed spelling) yields
+`R2' = u g⁻¹` after free cancellation of `v`. Cyclic permutation of either
+relator first is AC3 by a prefix of that relator.
+
+**Q specialization.** For `Q_{n,δ}` one has `g = x⁻¹y⁻¹xy x² y`,
+`u = y⁻¹x²y`, `v = y⁻¹x⁻²`, and the extra `x^δ` / `x^{nδ}` blocks sit
+immediately before `v`. The displayed peel is
+
+`R2' = u x^{(n-1)δ} g⁻¹ = u x^{(n-1)δ} v [y⁻¹,x⁻¹]`.
+
+Compact: `g = XYxyxxy`, `u = Yxxy`, `v = YXX`, commutator `YXyx`.
+Checked `n=2..8`, both signs, 14/14 (`code/q_peel.py`).
+
+**If the form `u x^{kδ} v` could be restored after each peel,** then `k = n`
+descends to `0` and `u v = y⁻¹x²y·y⁻¹x⁻²` freely reduces to `y⁻¹`. The pair
+`(R1, y⁻¹)` then eliminates `y` from `R1` by displayed substitutions and
+leaves a generator. That restoration is **not** given by repeating the same
+unconjugated multiply: the second displayed peel neither restores `R2` nor
+keeps a common suffix `v`.
+
+**Orientation search.** After the displayed peel, all AC1/AC3 orientations
+with suffix length ≥ 2 were enumerated (`code/q_peel_orientations.py`). Some
+second peels strictly drop raw pair length relative to the inflated
+post-peel pair, or drop the longest `x`-run. Independently checked on
+`Q_{2,±1}`: the length-9 remainder `YXyxYYXyx` is ordinary-AC reachable in
+two multiplies/rotations, but `aut_min_len` rises **14 → 18**, and the
+remainder is not primitive (Whitehead minimum 9). Other length-9/7
+remainders are either the original `R2` (undo) or Aut-equivalent to the
+input floor. So this is **not** a well-founded descent on μ, and an
+`x`-run drop is not by itself a progress measure.
+
+**Family A analogue.** Claimed `Q(n)` spellings share prefix `y⁻²`. Then
+`R2 R1⁻¹` is the conjugate `y⁻² (B A⁻¹) y²`. After AC3 the core `B A⁻¹`
+is a relator. For `n=2..7` this **raises** μ (18→21 at `n=2`, and the gap
+grows). Not a descent.
+
+**Length.** Displayed Q peel never drops total length (`q_length_drops = 0`).
+Adjoining `t⁻¹ v` and isolating `t` from the substituted first relator
+reproduces the peeled pair; it is not a return to the original pair, and it
+is unnecessary once the elementary multiply is written.
+
+**U124.** Applies to the eleven MS-template rows once they are at `Q_{n,δ}`.
+Not a solve.
+
+**Audit.** Identities machine-checked. Advisor review pending for the
+“n-fold peel would finish” counterfactual and the μ-increase of the n=2
+second peel.
+
+---
+
+## C12. Primitive relator ⇒ stable AC triviality — CONDITIONAL on C1
+
+**Statement.** Let `⟨x,y | r, s⟩` be a balanced presentation of the trivial
+group with abelian determinant `±1`. If `r` is primitive in `F(x,y)`, then
+the pair is stably AC-trivial.
+
+**Proof.**
+1. Whitehead’s algorithm supplies `φ ∈ Aut(F₂)` with `φ(r)` cyclically
+   `x^{±1}`. AC1/AC3 make the first relator the generator `x`.
+2. By C1 (stable ambient automorphism), `(r,s) ~_st (x, s')` with
+   `s' = φ(s)`. Each Whitehead second-kind factor is a Nielsen map;
+   C1 realizes those maps stably (Lemma 11 generator exchanges plus AC3
+   for inner automorphisms). This step is currently **non-effective** in
+   move count because C1’s source `PROOFS.tex` is absent.
+3. The exponent matrix of `(x, s')` is `[1 0 ; a b]` with `b = ±1`, so
+   the total `y`-exponent of `s'` is `±1`.
+4. Relator `x` is an isolator of the generator. Every displayed `x^{±1}`
+   in `s'` is removed by AC2+AC3 against `x` or `x⁻¹`. After at most
+   `|s'|` substitutions, `s'` is a word in `y` alone, hence `y^k` with
+   `k = ±1` by abelianization.
+5. The pair `(x, y^{±1})` is the standard trivial pair.
+
+No Lemma-11 unbounded product is required in step 4: the defining word is
+the generator itself. Pair-length μ-minimization can miss this route,
+because a `φ` that shortens `r` to length 1 may lengthen `s`.
+
+**Recognizer.** `reduce_word(w, generators=("x","y"))` with
+`is_primitive_word`; abelian `gcd` of exponent sums ≠ 1 is an immediate
+negative. Code: `code/primitive_relator_census.py`. Independent replay of
+each Whitehead witness via `check_word_reduction`.
+
+**Positive examples.** Generator `x`; cyclic conjugate `xyX` (minimum `Y`).
+**Negative examples.** Commutator `xyXY` (minimum 4); AK(3) relators
+`xxxYYYY`, `xyxYXY`; MS donors `YXXyxYx` (minimum 6), `YXyXYxx` (minimum 5).
+
+**U124 applicability.** All 248 best-table relators have abelian gcd 1, so
+the cheap filter does not fire. Whitehead minima: none of length 1.
+Histogram of minima: 5 (13 words), then 6–17. Closest words are the MS
+lower donor `YXyXYxx` (6 rows) and `YXyXYxxx` (5 rows), both minimum 5;
+`aca_115` is AK(3) (`YXYxyx`, minimum 5). Cyclic products `r1 r2` and
+`r1 r2⁻¹` are also **not** primitive (0/248). This route does not
+trivialize any U124 row. Failure of the recognizer is not an obstruction
+to other constructions.
+
+**Certificate-growth.** O(Whitehead steps) stable Nielsen factors plus
+O(`|s'|`) elementary substitutions, times the (currently unexpanded) C1
+cost.
+
+---
+
+## C13. Depth-1 ordinary AC2 neighbourhood of the best table — NEGATIVE (exact, bounded)
+
+**Statement.** For every one of the 124 best-table pairs, every AC2 child
+obtained by multiplying one cyclically rotated relator by a cyclic
+rotation of the other or its inverse, then freely and cyclically reducing,
+has cyclic total length at least the input length, and none of those
+children is a new one-occurrence pair or a two-block–both pair.
+
+**Evidence.** `code/elementary_ac2_scan.py`: 44,016 children, 0 strict
+length drops, 0 new one-occurrence, 0 new two-block–both (15.8 s, guarded).
+AC1 and AC3 do not change cyclic length, so this is the complete
+length-reducing depth-1 neighbourhood of `{AC1,AC2,AC3}`.
+
+**Not an obstruction** to longer ordinary products, stable moves, or
+length-increasing routes with a different well-founded measure.
+
+---
+
+## C14. Shared-relator inventory — DATA (not a theorem)
+
+Best-table relators that occur at least six times as a row:
+
+| count | word | sample rows |
+|---:|---|---|
+| 11 | `YXXyxYx` | aca_0,3,34,36,53,58,81,97,118,119,120 |
+| 11 | `YXXXyxYx` | aca_18,20,33,40,42,63,65,91,93,102,104 |
+| 9 | `YYYYYXyyyyx` | (power companions) |
+| 8 | `YXXYxxyx` | |
+| 6 | `YYXXyxx` | includes Family A floor aca_43 |
+| 6 | `YXyXYxx` | MS lower family aca_8,85,98,121–123 |
+
+A theorem that stably trivializes every unimodular companion of one of
+these donors would clear a whole block. C12 shows the donors themselves
+are not primitive, so “make the shared donor a generator by Aut” is
+exactly C12 and does not fire. Full list:
+`tables/primitive_relator_census.json` `shared_relators_count_ge_3`.

@@ -52,18 +52,21 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
 ## How to resume
 
 1. Read `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/u124_status.csv`.
-2. Re-run `python3 -m research.u124_stable_20260912.code.u124_census` from repo root.
-3. Re-run `python3 -m research.u124_stable_20260912.code.ms_template_identities`.
-4. Treat only independently replayed certificates as progress.
-5. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
+2. Re-run `python3 research/u124_stable_20260912/code/u124_census.py` from repo root.
+3. Re-run `python3 research/u124_stable_20260912/code/ms_template_identities.py`.
+4. Wave 2 (guarded, 60 s): `python3 scripts/run_proof_guarded.py --timeout-seconds 60 -- python3 research/u124_stable_20260912/code/wave2_structural.py`
+   and `.../code/q_peel_orientations.py`.
+5. Treat only independently replayed certificates as progress.
+6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass the eight-step gate in the goal.
+   Coordinator synthesis: `ingest/wave2_synthesis.md`.
 
 ## File ownership
 
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |
