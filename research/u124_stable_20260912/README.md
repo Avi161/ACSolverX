@@ -1,0 +1,77 @@
+# U124 stable Andrews–Curtis campaign (2026-09-12)
+
+Living campaign to prove **constructive stable-AC triviality** for as many of
+the 124 retained unresolved Miller–Schupp ACA components as possible.
+
+This directory is the resume surface. Another agent should start here.
+
+## Objective (do not shrink)
+
+Prove rigorous stable-AC trivializations of the U124 presentations, preferably
+by **infinite-family theorems**. Elementary moves are only:
+
+- AC1 invert a relator
+- AC2 multiply one relator by another
+- AC3 conjugate a relator
+- AC4/AC5 stabilize/destabilize by a generator–relator pair
+
+Ambient automorphisms are allowed only when their **stable realization** is
+cited or constructed. A quotient equality, Tietze transformation, or silent
+substitution is not a certificate.
+
+## Authoritative inputs (hashed this campaign)
+
+Copied onto `codex/proofs` from `claude/ac19-theorem-strength-8v1wp6`:
+
+| file | sha256 (prefix) | role |
+|---|---|---|
+| `data/ms_unsolved_reps/aca_124_initial.csv` | `614bce2d3250a1acca81ec9de0fc0deb` | archival starts; **identical** to `aca_124.csv` on this branch |
+| `data/ms_unsolved_reps/aca_124_best.csv` | `8df25b3fc585553f80886934707b147c` | 36 μ-floor substitutions applied; total length 2446 → 2356 |
+| `data/ms_unsolved_reps/aca_124_reduced.csv` | `5be80a918b2b970e9bba7557a168908d` | ledger for those 36 |
+| `data/ms_unsolved_reps/README_aca_124.md` | `8458cac9bef803d99d78f4fb4cb59644` | schema and caveats |
+
+U124 is an **upper bound** from bounded equivalence search, not 124 proven
+distinct exact AC classes. The 124 `n_members` sum to 261 Aut-minimal reps of
+550 unsolved MS cells.
+
+## Missing sources (do not invent them)
+
+- Branch `codex/theory-patterns-3h` and directory `research/theory_patterns_20260912/` **are not on origin**.
+- Named supermoves notes (`FINAL_START_HERE.md`, `SHORTCUT_CATALOGUE.md`,
+  `bs_theorems.md`, `ONE_SIDED_MAGNUS.md`, `AXIS_FACTOR_THEOREM.md`, …) **are
+  not in git**. Closest audit:
+  `research/residual_20260909/THEOREMS_PROOFS_AND_FREQUENCY.md` on
+  `claude/ac19-theorem-strength-8v1wp6`.
+- `literature/proofs/PROOFS.tex` is **cited everywhere and absent** from every
+  fetched branch. Lemma 11 is reconstructed from
+  `results/equivalence_classes/LEMMA_11_AND_THE_126_CLASSES.md` and
+  arXiv:2408.15332.
+
+Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fable}`.
+
+## How to resume
+
+1. Read `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/u124_status.csv`.
+2. Re-run `python3 -m research.u124_stable_20260912.code.u124_census` from repo root.
+3. Re-run `python3 -m research.u124_stable_20260912.code.ms_template_identities`.
+4. Treat only independently replayed certificates as progress.
+5. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
+   `ingest/theory_*.md` until they pass the eight-step gate in the goal.
+
+## File ownership
+
+| path | owner |
+|---|---|
+| `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py` | coordinator / Terra |
+| `ingest/advisor_*.md` | Sol advisor |
+| `ingest/theory_*.md` | theory agent |
+| `ingest/proofs_machinery.md` | proofs-extract agent |
+| `ingest/leftover_pipeline.md` | leftover-extract agent |
+| `certs/` | certificate compilers only; atomic JSONL |
+
+## Computation policy
+
+No heap search above 1,000 charged units per presentation in this environment.
+Structural/symbolic checks first. Development rows stay off the frozen holdout
+panel recorded in `tables/panels.json`.

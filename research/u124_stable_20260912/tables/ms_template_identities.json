@@ -1,0 +1,868 @@
+{
+  "summary": {
+    "n_checked": 14,
+    "n_ok": 14,
+    "n_fail": 0,
+    "status": "PASS",
+    "u124_initial_exact_P_hits": [
+      {
+        "name": "aca_120",
+        "n": 3,
+        "delta": -1,
+        "initial": [
+          "YXXXYxx",
+          "YYYYXyyyx"
+        ]
+      },
+      {
+        "name": "aca_34",
+        "n": 4,
+        "delta": -1,
+        "initial": [
+          "YXXXYxx",
+          "YYYYYXyyyyx"
+        ]
+      },
+      {
+        "name": "aca_58",
+        "n": 5,
+        "delta": -1,
+        "initial": [
+          "YXXXYxx",
+          "YYYYYYXyyyyyx"
+        ]
+      },
+      {
+        "name": "aca_81",
+        "n": 6,
+        "delta": -1,
+        "initial": [
+          "YXXXYxx",
+          "YYYYYYYXyyyyyyx"
+        ]
+      },
+      {
+        "name": "aca_97",
+        "n": 7,
+        "delta": -1,
+        "initial": [
+          "YXXXYxx",
+          "YYYYYYYYXyyyyyyyx"
+        ]
+      },
+      {
+        "name": "aca_117",
+        "n": 2,
+        "delta": 1,
+        "initial": [
+          "YYYXyyx",
+          "YXXXyxx"
+        ]
+      },
+      {
+        "name": "aca_121",
+        "n": 3,
+        "delta": 1,
+        "initial": [
+          "YXXXyxx",
+          "YYYYXyyyx"
+        ]
+      },
+      {
+        "name": "aca_122",
+        "n": 4,
+        "delta": 1,
+        "initial": [
+          "YXXXyxx",
+          "YYYYYXyyyyx"
+        ]
+      },
+      {
+        "name": "aca_123",
+        "n": 5,
+        "delta": 1,
+        "initial": [
+          "YXXXyxx",
+          "YYYYYYXyyyyyx"
+        ]
+      },
+      {
+        "name": "aca_85",
+        "n": 6,
+        "delta": 1,
+        "initial": [
+          "YXXXyxx",
+          "YYYYYYYXyyyyyyx"
+        ]
+      },
+      {
+        "name": "aca_98",
+        "n": 7,
+        "delta": 1,
+        "initial": [
+          "YXXXyxx",
+          "YYYYYYYYXyyyyyyyx"
+        ]
+      }
+    ],
+    "caveat": "cov_branches implements gated subword CoV, which is a Lemma-11 composite on a trivial-group presentation, not an elementary certificate. Matching Q does not trivialize U124."
+  },
+  "rows": [
+    {
+      "n": 2,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYXyyx"
+      ],
+      "P_length": 14,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXYYXyyxx",
+            "YXXyxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXYXX"
+      ],
+      "Q_claim_length": 20,
+      "Q_after_y_to_XXy_cyclic_total": 14,
+      "Q_after_y_to_XXy_aut_min_len": 14,
+      "claimed_mu_bound_n_plus_12": 14,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXYYXyyxx",
+          "YXXyxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXYXX"
+        ],
+        "z": "xx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYXyyyx"
+      ],
+      "P_length": 16,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXYYXyyxxx",
+            "YXXXyxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXYXX"
+      ],
+      "Q_claim_length": 21,
+      "Q_after_y_to_XXy_cyclic_total": 15,
+      "Q_after_y_to_XXy_aut_min_len": 15,
+      "claimed_mu_bound_n_plus_12": 15,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXYYXyyxxx",
+          "YXXXyxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXYXX"
+        ],
+        "z": "xxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "P_length": 18,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXYYXyyxxxx",
+            "YXXXXyxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXYXX"
+      ],
+      "Q_claim_length": 22,
+      "Q_after_y_to_XXy_cyclic_total": 16,
+      "Q_after_y_to_XXy_aut_min_len": 16,
+      "claimed_mu_bound_n_plus_12": 16,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXYYXyyxxxx",
+          "YXXXXyxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXYXX"
+        ],
+        "z": "xxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "P_length": 20,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXYYXyyxxxxx",
+            "YXXXXXyxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXYXX"
+      ],
+      "Q_claim_length": 23,
+      "Q_after_y_to_XXy_cyclic_total": 17,
+      "Q_after_y_to_XXy_aut_min_len": 17,
+      "claimed_mu_bound_n_plus_12": 17,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXYYXyyxxxxx",
+          "YXXXXXyxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXYXX"
+        ],
+        "z": "xxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "P_length": 22,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXYYXyyxxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXYXX"
+      ],
+      "Q_claim_length": 24,
+      "Q_after_y_to_XXy_cyclic_total": 18,
+      "Q_after_y_to_XXy_aut_min_len": 18,
+      "claimed_mu_bound_n_plus_12": 18,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXYYXyyxxxxxx",
+          "YXXXXXXyxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXYXX"
+        ],
+        "z": "xxxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "P_length": 24,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXXYYXyyxxxxxxx",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXXYXX"
+      ],
+      "Q_claim_length": 25,
+      "Q_after_y_to_XXy_cyclic_total": 19,
+      "Q_after_y_to_XXy_aut_min_len": 19,
+      "claimed_mu_bound_n_plus_12": 19,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXXYYXyyxxxxxxx",
+          "YXXXXXXXyxxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXXYXX"
+        ],
+        "z": "xxxxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 8,
+      "delta": -1,
+      "P": [
+        "YXXXYxx",
+        "YYYYYYYYYXyyyyyyyyx"
+      ],
+      "P_length": 26,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXXXYYXyyxxxxxxxx",
+            "YXXXXXXXXyxxxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXXXYXX"
+      ],
+      "Q_claim_length": 26,
+      "Q_after_y_to_XXy_cyclic_total": 20,
+      "Q_after_y_to_XXy_aut_min_len": 20,
+      "claimed_mu_bound_n_plus_12": 20,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXXXYYXyyxxxxxxxx",
+          "YXXXXXXXXyxxxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXXXYXX"
+        ],
+        "z": "xxxxxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYXyyx"
+      ],
+      "P_length": 14,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXYYxyyxx",
+            "YXXyxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxYXX"
+      ],
+      "Q_claim_length": 20,
+      "Q_after_y_to_XXy_cyclic_total": 14,
+      "Q_after_y_to_XXy_aut_min_len": 14,
+      "claimed_mu_bound_n_plus_12": 14,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXYYxyyxx",
+          "YXXyxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxYXX"
+        ],
+        "z": "xx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYXyyyx"
+      ],
+      "P_length": 16,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXYYxyyxxx",
+            "YXXXyxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxYXX"
+      ],
+      "Q_claim_length": 21,
+      "Q_after_y_to_XXy_cyclic_total": 15,
+      "Q_after_y_to_XXy_aut_min_len": 15,
+      "claimed_mu_bound_n_plus_12": 15,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXYYxyyxxx",
+          "YXXXyxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxYXX"
+        ],
+        "z": "xxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "P_length": 18,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXYYxyyxxxx",
+            "YXXXXyxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxYXX"
+      ],
+      "Q_claim_length": 22,
+      "Q_after_y_to_XXy_cyclic_total": 16,
+      "Q_after_y_to_XXy_aut_min_len": 16,
+      "claimed_mu_bound_n_plus_12": 16,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXYYxyyxxxx",
+          "YXXXXyxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxYXX"
+        ],
+        "z": "xxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "P_length": 20,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXYYxyyxxxxx",
+            "YXXXXXyxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxYXX"
+      ],
+      "Q_claim_length": 23,
+      "Q_after_y_to_XXy_cyclic_total": 17,
+      "Q_after_y_to_XXy_aut_min_len": 17,
+      "claimed_mu_bound_n_plus_12": 17,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXYYxyyxxxxx",
+          "YXXXXXyxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxYXX"
+        ],
+        "z": "xxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "P_length": 22,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXYYxyyxxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxYXX"
+      ],
+      "Q_claim_length": 24,
+      "Q_after_y_to_XXy_cyclic_total": 18,
+      "Q_after_y_to_XXy_aut_min_len": 18,
+      "claimed_mu_bound_n_plus_12": 18,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXYYxyyxxxxxx",
+          "YXXXXXXyxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxYXX"
+        ],
+        "z": "xxxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "P_length": 24,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXXYYxyyxxxxxxx",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxxYXX"
+      ],
+      "Q_claim_length": 25,
+      "Q_after_y_to_XXy_cyclic_total": 19,
+      "Q_after_y_to_XXy_aut_min_len": 19,
+      "claimed_mu_bound_n_plus_12": 19,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXXYYxyyxxxxxxx",
+          "YXXXXXXXyxxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxxYXX"
+        ],
+        "z": "xxxxxxx"
+      },
+      "identities_ok": true
+    },
+    {
+      "n": 8,
+      "delta": 1,
+      "P": [
+        "YXXXyxx",
+        "YYYYYYYYYXyyyyyyyyx"
+      ],
+      "P_length": 26,
+      "hop1_branches_nsubs_ge2": [
+        {
+          "iso_index": 1,
+          "iso_gen": "x",
+          "n_subs": 2,
+          "pair": [
+            "YXXXXXXXXYYxyyxxxxxxxx",
+            "YXXXXXXXXyxxxxxxxxx"
+          ],
+          "z": "xy"
+        }
+      ],
+      "matched_Q_exactly": true,
+      "matched_Q_up_to_rotation_inversion": true,
+      "Q_claim": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxxxYXX"
+      ],
+      "Q_claim_length": 26,
+      "Q_after_y_to_XXy_cyclic_total": 20,
+      "Q_after_y_to_XXy_aut_min_len": 20,
+      "claimed_mu_bound_n_plus_12": 20,
+      "auto_len_le_n_plus_12": true,
+      "mu_auto_le_n_plus_12": true,
+      "hop1_iso": {
+        "iso_index": 1,
+        "iso_gen": "x",
+        "n_subs": 2,
+        "pair": [
+          "YXXXXXXXXYYxyyxxxxxxxx",
+          "YXXXXXXXXyxxxxxxxxx"
+        ],
+        "z": "xy"
+      },
+      "hop2_iso": {
+        "iso_index": 0,
+        "iso_gen": "x",
+        "n_subs": 4,
+        "pair": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxxxYXX"
+        ],
+        "z": "xxxxxxxx"
+      },
+      "identities_ok": true
+    }
+  ]
+}
