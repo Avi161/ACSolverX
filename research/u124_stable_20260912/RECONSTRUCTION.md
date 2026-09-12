@@ -417,6 +417,23 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_c40_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave25.md`).
 
+## Wave 27 (C41 one YYXXXyxx row with x ≡ C^{-1} abelianly, 2026-09-12)
+
+- Only aca_71, companion with `C_ab=(-1,0)`. On that row `x ≡ C^{-1}`
+  in abelianization, `L1=1`. Not free equality, not a six-row family
+  census, not lumped with aca_38. C31 orientation `R^+ = C^{-1}`.
+  `k=1` blocked by `|C|=11`. `mu_floor_r8` pending orbit replay is a
+  disclosure, not a solve.
+- k=3 nine-config: `164,475` typed Cartesian products, equal to typed
+  size, counts `(25,25,28,28)`, observed min length 11, no hit on
+  `{x, Yxy, yxY}`. Completeness is all 164,475 typed tuples in this
+  bounded pool. Equal typed sizes do not identify other censuses.
+  Hit witnesses would be replayed outside the scanner; unused because
+  there was no hit. Observed min 11 is a C41 census statistic, not a
+  comparison with C31/C36/C40. Still **0/124**. No certificate JSONL
+  rows. `independent_checker=false`. Plan advisor APPROVE
+  (`ingest/advisor_c41_plan.md`). Census advisor audit pending.
+
 
 
 
