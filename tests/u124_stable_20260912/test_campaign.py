@@ -342,3 +342,48 @@ def test_c24_even_k_and_n2_five_factor():
     assert summary["stored_small_k_n_searched"] == 3
     assert not summary["stored_small_k_any_hit"]
     assert summary["solved_u124"] == 0
+
+
+def test_c25_alt_words_identities_and_n2():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c25_alt_words as c25  # type: ignore
+
+    yclass = c25.y_class_free_targets()
+    assert yclass["class_covers_one_letter"]
+    x = c25.q_prime_x_l1(2, -1)
+    assert x["same_abelian_class_as_xi"]
+    assert x["L1"] == 1
+    assert c25.y_l1_closed(2, -1) == 1
+    assert c25.y_l1_closed(2, 1) == 5
+    assert c25.y_l1_closed(3, -1) == 2
+    y = c25.q_prime_y_l1(4, -1)
+    assert y["matches_closed"]
+    assert y["L1"] == 3
+    rec_x = c25.q_prime_x_three_factor(2, -1)
+    assert not rec_x["found"]
+    assert rec_x["min_len"] >= 7
+    c15_ab = c25.c15_row_abelian("aca_18", "YYYYxyyyX", 3)
+    assert c15_ab["B_len_is_2m3"]
+    assert c15_ab["y_same_class_as_Xyx"]
+    assert c15_ab["y_L1"] == 1
+    rec15 = c25.c15_three_factor("aca_18", "YYYYxyyyX", 3)
+    assert not rec15["found"]
+    assert rec15["min_len"] >= 7
+    artifact = json.loads(
+        (ROOT / "research/u124_stable_20260912/tables/c25_alt_words.json").read_text()
+    )
+    summary = artifact["summary"]
+    assert summary["x_same_class_as_xi_all_Q"]
+    assert not summary["x_three_any_hit"]
+    assert summary["x_three_n_products"] == 1_529_400
+    assert summary["x_three_all_min_len_ge_7"]
+    assert summary["y_L1_closed_n_le_20"]
+    assert summary["c15_n_rows"] == 10
+    assert summary["c15_B_len_always_2m3"]
+    assert summary["c15_y_Xyx_same_class"]
+    assert not summary["c15_three_any_hit"]
+    assert summary["c15_three_n_checked"] == 10
+    assert summary["c15_three_n_products"] == 2_884_950
+    assert summary["c15_three_all_min_len_ge_7"]
+    assert summary["solved_u124"] == 0

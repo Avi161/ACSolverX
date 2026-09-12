@@ -187,3 +187,14 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Advisor REVISE applied (`ingest/advisor_wave9.md`). Still **0/124**.
   No certificate JSONL rows.
 
+## Wave 11 (C25 alternative defining words and C15 conjugator, 2026-09-12)
+
+- On `Q'`, `x ≡ ξ` abelianly; 1,529,400 three-factor A/B products
+  never equal `x^{±1}` (min length 7).
+- `y` on `Q'` has closed `L1=|n+2δ|+1` for `n=2..20`; `k=1` blocked
+  by `|S|≥7`.
+- On C15, `y` and `x^{-1}yx` both `≡ B^{-1}`, `L1=1`, `|B|=2m+3`.
+  Ten-row three-factor census: 2,884,950 products, min length 7, no
+  hit on the one-letter conjugacy class of `y^{±1}`.
+- Still **0/124**. No certificate JSONL rows.
+

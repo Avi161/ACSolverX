@@ -1,0 +1,1953 @@
+{
+  "summary": {
+    "x_same_class_as_xi_all_Q": true,
+    "x_L1_always_1": true,
+    "x_three_any_hit": false,
+    "x_three_n_checked": 12,
+    "x_three_n_products": 1529400,
+    "x_three_all_min_len_ge_7": true,
+    "y_L1_closed_n_le_20": true,
+    "y_L1_formula": "|n+2\u03b4|+1",
+    "c15_n_rows": 10,
+    "c15_B_len_always_2m3": true,
+    "c15_y_Xyx_same_class": true,
+    "c15_y_L1_always_1": true,
+    "c15_Xyx_L1_always_1": true,
+    "c15_k1_len_all": true,
+    "c15_three_any_hit": false,
+    "c15_three_n_checked": 10,
+    "c15_three_n_products": 2884950,
+    "c15_three_all_min_len_ge_7": true,
+    "y_class_covers_one_letter": true,
+    "same_code_replay": true,
+    "independent_checker": false,
+    "solved_u124": 0
+  },
+  "q_prime_x_l1": [
+    {
+      "n": 2,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "x_exp": [
+        1,
+        0
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "same_abelian_class_as_xi": true,
+      "L1": 1,
+      "R_cyc_len": 7,
+      "k1_len_obstruction": true
+    }
+  ],
+  "q_prime_y_l1": [
+    {
+      "n": 2,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "L1": 1,
+      "expected_L1": 1,
+      "matches_closed": true,
+      "S_cyc_len": 7,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 1
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 1,
+        "b": -1
+      },
+      "L1": 2,
+      "expected_L1": 2,
+      "matches_closed": true,
+      "S_cyc_len": 8,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 2
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 2,
+        "b": -1
+      },
+      "L1": 3,
+      "expected_L1": 3,
+      "matches_closed": true,
+      "S_cyc_len": 9,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 3
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 3,
+        "b": -1
+      },
+      "L1": 4,
+      "expected_L1": 4,
+      "matches_closed": true,
+      "S_cyc_len": 10,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 4
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 4,
+        "b": -1
+      },
+      "L1": 5,
+      "expected_L1": 5,
+      "matches_closed": true,
+      "S_cyc_len": 11,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 5
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 5,
+        "b": -1
+      },
+      "L1": 6,
+      "expected_L1": 6,
+      "matches_closed": true,
+      "S_cyc_len": 12,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 6
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 4,
+        "b": -1
+      },
+      "L1": 5,
+      "expected_L1": 5,
+      "matches_closed": true,
+      "S_cyc_len": 7,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 5
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 5,
+        "b": -1
+      },
+      "L1": 6,
+      "expected_L1": 6,
+      "matches_closed": true,
+      "S_cyc_len": 8,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 6
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 6,
+        "b": -1
+      },
+      "L1": 7,
+      "expected_L1": 7,
+      "matches_closed": true,
+      "S_cyc_len": 9,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 7
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 7,
+        "b": -1
+      },
+      "L1": 8,
+      "expected_L1": 8,
+      "matches_closed": true,
+      "S_cyc_len": 10,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 8
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 8,
+        "b": -1
+      },
+      "L1": 9,
+      "expected_L1": 9,
+      "matches_closed": true,
+      "S_cyc_len": 11,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 9
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 9,
+        "b": -1
+      },
+      "L1": 10,
+      "expected_L1": 10,
+      "matches_closed": true,
+      "S_cyc_len": 12,
+      "k1_len_obstruction": true,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 10
+    }
+  ],
+  "q_prime_x_three_factor": [
+    {
+      "n_conjugators": 28,
+      "n_Rplus": 20,
+      "n_Rminus": 20,
+      "n_Splus": 20,
+      "n_Sminus": 20,
+      "n_products": 72000,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 2,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 30,
+      "n_Rplus": 22,
+      "n_Rminus": 22,
+      "n_Splus": 21,
+      "n_Sminus": 21,
+      "n_products": 90156,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 3,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 32,
+      "n_Rplus": 24,
+      "n_Rminus": 24,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 111168,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 4,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 34,
+      "n_Rplus": 26,
+      "n_Rminus": 26,
+      "n_Splus": 23,
+      "n_Sminus": 23,
+      "n_products": 135252,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 5,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 36,
+      "n_Rplus": 28,
+      "n_Rminus": 28,
+      "n_Splus": 24,
+      "n_Sminus": 24,
+      "n_products": 162624,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 6,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 38,
+      "n_Rplus": 30,
+      "n_Rminus": 30,
+      "n_Splus": 25,
+      "n_Sminus": 25,
+      "n_products": 193500,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 7,
+      "delta": -1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 28,
+      "n_Rplus": 20,
+      "n_Rminus": 20,
+      "n_Splus": 20,
+      "n_Sminus": 20,
+      "n_products": 72000,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 2,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 30,
+      "n_Rplus": 22,
+      "n_Rminus": 22,
+      "n_Splus": 21,
+      "n_Sminus": 21,
+      "n_products": 90156,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 3,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 32,
+      "n_Rplus": 24,
+      "n_Rminus": 24,
+      "n_Splus": 22,
+      "n_Sminus": 22,
+      "n_products": 111168,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 4,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 34,
+      "n_Rplus": 26,
+      "n_Rminus": 26,
+      "n_Splus": 23,
+      "n_Sminus": 23,
+      "n_products": 135252,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 5,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 36,
+      "n_Rplus": 28,
+      "n_Rminus": 28,
+      "n_Splus": 24,
+      "n_Sminus": 24,
+      "n_products": 162624,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 6,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    },
+    {
+      "n_conjugators": 38,
+      "n_Rplus": 30,
+      "n_Rminus": 30,
+      "n_Splus": 25,
+      "n_Sminus": 25,
+      "n_products": 193500,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "n": 7,
+      "delta": 1,
+      "targets": [
+        "x",
+        "X"
+      ]
+    }
+  ],
+  "c15_abelian": [
+    {
+      "id": "aca_18",
+      "m": 3,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYxyyyX",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 9,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_20",
+      "m": 3,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYXyyyx",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 9,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_40",
+      "m": 4,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYxyyyyX",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 11,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_42",
+      "m": 4,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYXyyyyx",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 11,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_63",
+      "m": 5,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYxyyyyyX",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 13,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_65",
+      "m": 5,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYXyyyyyx",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 13,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_91",
+      "m": 6,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYYXyyyyyyx",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 15,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_93",
+      "m": 6,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYYxyyyyyyX",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 15,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_102",
+      "m": 7,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYYYxyyyyyyyX",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 17,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    },
+    {
+      "id": "aca_104",
+      "m": 7,
+      "donor": "YXXXyxYx",
+      "companion": "YYYYYYYYXyyyyyyyx",
+      "D_exp": [
+        -1,
+        -1
+      ],
+      "B_exp": [
+        0,
+        -1
+      ],
+      "B_cyc_len": 17,
+      "B_len_is_2m3": true,
+      "y_L1": 1,
+      "Xyx_L1": 1,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "Xyx_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_same_class_as_Xyx": true,
+      "k1_len_obstruction": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        },
+        "Yxy": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 1
+          },
+          "L1": 2
+        }
+      }
+    }
+  ],
+  "c15_three_factor": [
+    {
+      "n_conjugators": 35,
+      "n_Rplus": 25,
+      "n_Rminus": 25,
+      "n_Splus": 26,
+      "n_Sminus": 26,
+      "n_products": 148275,
+      "min_len": 9,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_18",
+      "m": 3,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 9,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 35,
+      "n_Rplus": 25,
+      "n_Rminus": 25,
+      "n_Splus": 26,
+      "n_Sminus": 26,
+      "n_products": 148275,
+      "min_len": 9,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_20",
+      "m": 3,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 9,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 39,
+      "n_Rplus": 27,
+      "n_Rminus": 27,
+      "n_Splus": 30,
+      "n_Sminus": 30,
+      "n_products": 204849,
+      "min_len": 11,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_40",
+      "m": 4,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 11,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 39,
+      "n_Rplus": 27,
+      "n_Rminus": 27,
+      "n_Splus": 30,
+      "n_Sminus": 30,
+      "n_products": 204849,
+      "min_len": 11,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_42",
+      "m": 4,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 11,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 43,
+      "n_Rplus": 29,
+      "n_Rminus": 29,
+      "n_Splus": 34,
+      "n_Sminus": 34,
+      "n_products": 274311,
+      "min_len": 13,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_63",
+      "m": 5,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 13,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 43,
+      "n_Rplus": 29,
+      "n_Rminus": 29,
+      "n_Splus": 34,
+      "n_Sminus": 34,
+      "n_products": 274311,
+      "min_len": 13,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_65",
+      "m": 5,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 13,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 47,
+      "n_Rplus": 31,
+      "n_Rminus": 31,
+      "n_Splus": 38,
+      "n_Sminus": 38,
+      "n_products": 357957,
+      "min_len": 15,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_91",
+      "m": 6,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 15,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 47,
+      "n_Rplus": 31,
+      "n_Rminus": 31,
+      "n_Splus": 38,
+      "n_Sminus": 38,
+      "n_products": 357957,
+      "min_len": 15,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_93",
+      "m": 6,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 15,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 51,
+      "n_Rplus": 33,
+      "n_Rminus": 33,
+      "n_Splus": 42,
+      "n_Sminus": 42,
+      "n_products": 457083,
+      "min_len": 17,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_102",
+      "m": 7,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 17,
+      "D_cyc_len": 8
+    },
+    {
+      "n_conjugators": 51,
+      "n_Rplus": 33,
+      "n_Rminus": 33,
+      "n_Splus": 42,
+      "n_Sminus": 42,
+      "n_products": 457083,
+      "min_len": 17,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "globally_deduplicated_per_type_then_configs",
+      "id": "aca_104",
+      "m": 7,
+      "targets": [
+        "y",
+        "Y",
+        "Xyx",
+        "XYx",
+        "xyX",
+        "xYX"
+      ],
+      "B_cyc_len": 17,
+      "D_cyc_len": 8
+    }
+  ],
+  "y_class": {
+    "one_letter_conjugates_of_y": [
+      "XYx",
+      "Xyx",
+      "Y",
+      "xYX",
+      "xyX",
+      "y"
+    ],
+    "stated_class": [
+      "y",
+      "Y",
+      "Xyx",
+      "XYx",
+      "xyX",
+      "xYX"
+    ],
+    "class_covers_one_letter": true
+  },
+  "notes": [
+    "x \u2261 \u03be in abelianization on every Q'_{n,\u03b4}; C24.1 even-k obstruction applies.",
+    "C23 3-factor A/B products are the abelian-legal 3-factor set for x as well; this scan checks x^{\u00b11}.",
+    "y on Q' has L1=|n+2\u03b4|+1 for all n\u22652; k=1 is |S|\u22657>1. Not enumerated here except the identity.",
+    "C15: y and Xyx both \u2261 B^{-1}, L1=1, |B|=2m+3\u22659. Three-factor prefix/one-letter on all 10 rows.",
+    "Y_CLASS is the one-letter conjugacy class of y^{\u00b11}. A hit would be a C12 or C22.6 route.",
+    "JSON is same-code deterministic replay. No U124 row is solved."
+  ]
+}

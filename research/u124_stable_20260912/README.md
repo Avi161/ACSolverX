@@ -65,6 +65,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C22: `.../code/c22_gate_witness.py`.
    C23: `.../code/c23_three_factor.py`.
    C24: `.../code/c24_even_k.py`.
+   C25: `.../code/c25_alt_words.py`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -83,14 +84,18 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    103,765,444,800 five-factor prefix/one-letter products never equal
    `ξ`; Gate 2 on `Q'` has even `L1`, so odd `k` is impossible, and
     four-factor hits only the `δ=−1`, `n=2..5` window (no hit).
-    Advisor REVISE applied. Still 0/124.
+    Advisor REVISE applied. C25: `x` is abelian-equivalent to `ξ` on
+    `Q'` (3-factor vs `x^{±1}` misses); `y` has `L1=|n+2δ|+1`; on C15,
+    `y` and `x^{-1}yx` are abelian-equivalent to `B^{-1}` (`L1=1`,
+    `|B|=2m+3`), and 2,884,950 three-factor products never hit that
+    class. Still 0/124.
 
 ## File ownership
 
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py`, `code/c23_three_factor.py`, `code/c24_even_k.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py`, `code/c12_generator_deletion.py`, `code/primitive_aggregates.py`, `code/wave3_structural.py`, `code/c15_divisibility_scan.py`, `code/theory_wave1_replay.py`, `code/c16_escape_scan.py`, `code/c19_continuation.py`, `code/c20_roundtrip.py`, `code/c21_depth2.py`, `code/c22_gate_witness.py`, `code/c23_three_factor.py`, `code/c24_even_k.py`, `code/c25_alt_words.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |

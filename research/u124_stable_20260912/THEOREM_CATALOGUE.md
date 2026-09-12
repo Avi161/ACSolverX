@@ -913,11 +913,11 @@ enumerated products. C24.1 is an abelian identity and does not expand
 Lemma 11. No witness under these predicates was found.
 
 **What this does not rule out.** Gate 1: `k=7,9,…`; conjugators outside
-the prefix/one-letter set, or involving the new letter `u`; a defining
-word other than `ξ`. Gate 2 on `Q'`: `k=L1+2m` for `m≥0` when `L1≥6`
-(`δ=+1` all `n`, and `δ=−1` with `n≥6`); conjugators outside the stated
-set. Stored `aca_67` / `aca_87`. F3 depth ≥ 3 after AC4. Materializing
-Lemma 11 for either gate.
+the prefix/one-letter set, or involving the new letter `u`; defining
+word `y` (C25.2 identity; not a 3-factor census). Gate 2 on `Q'`:
+`k=L1+2m` for `m≥0` when `L1≥6`. Stored `aca_67` / `aca_87`. F3 depth
+≥ 3 after AC4. Materializing Lemma 11. The generator `x` as a 3-factor
+product is C25.1.
 
 **U124.** Same C16 Q' family as C22/C23, plus the five stored C16
 endpoints. Incoming C16 remains two non-effective C0 uses. **Not a
@@ -927,3 +927,54 @@ solve.**
 deterministic replay (not a second implementation); planted MITM
 hit/miss control in `mitm_controls`. `ingest/advisor_wave9.md`
 **REVISE** applied.
+
+---
+
+## C25. Alternative defining words; C15 conjugator class — IDENTITY-CHECKED NEGATIVE
+
+**C25.1 (generator `x` on `Q'`, all `n≥2`).** `x` has exponent
+`(1,0)`, the same abelian class as `ξ`. C24.1 therefore applies
+verbatim: even `k` is impossible; `k=1` is the length obstruction
+`|R|=7 > 1`. The C23 abelian-legal 3-factor shapes A/B are exactly
+the 3-factor patterns for `x`. Prefix/one-letter enumeration on all
+12 `Q'_{n,δ}` (`1,529,400` products, same census as C23.2) never
+freely equals `x` or `x^{-1}`; every product has free length at
+least 7. Five-factor products against `x^{±1}` were already C24.2’s
+extra targets (no hit).
+
+**C25.2 (`y` on `Q'`, closed L1, all `n≥2`).** The unique combination
+is `(a,b)=(n+2δ,\,-1)`, so `L1=|n+2δ|+1`. Checked for `n=2..20`.
+`k=1` is impossible: `|S|=n+5 ≥ 7 > 1`. Parity follows C24.1.
+No 3-factor census for `y` is claimed here. Smallest legal `k` is
+`1` only for `(n,δ)=(2,-1)` (still blocked by length); otherwise
+`k ≥ L1 ≥ 2`.
+
+**C25.3 (C15 conjugator class, `m≥3`).** On
+`⟨ YXXXyxYx , B ⟩` with `B` a consecutive BS(`m`,`m+1`) of cyclic
+length `2m+3`, both `y` and `x^{-1}yx` have exponent `(0,1)` and
+unique combination `(0,-1)` against `(D,B)`: they are abelian-
+equivalent to `B^{-1}`, `L1=1`, uniformly in `m` and both inner
+signs. `k=1` is impossible (`2m+3 ≥ 9 > 3`). Even `k` is impossible.
+The one-letter conjugacy class of `y^{±1}` is exactly
+`{y, Y, Xyx, xyX, XYx, xYX}`.
+Prefix/one-letter 3-factor products of the nine abelian-legal
+signed-type patterns, all ten C15 rows (`2,884,950` products): none
+equals a word in that class; every product has free length at
+least 7. A hit on `y` would have been a C12 primitive-relator
+route; a hit on `x^{-1}yx` would have been the C22.6 bridge to
+`P_{m,+1}`. Neither fired.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22/C23. No C0 in the
+enumerated products. C25.1–C25.2 are abelian identities plus the
+stated censuses. No witness was found.
+
+**What this does not rule out.** C15: `k=5,7,…`; conjugators outside
+the prefix/one-letter set. Q' defining word `y` at `k=L1` when
+`L1≥2`. Gate 1 `ξ` at `k≥7`. Longer conjugators. Materializing
+Lemma 11.
+
+**U124.** Ten C15 best-table rows (aca_18,20,40,42,63,65,91,93,102,104)
+and the C16 Q' family. **Not a solve.**
+
+**Audit.** `code/c25_alt_words.py`, `tables/c25_alt_words.json`. Same-code
+deterministic replay. Advisor audit pending (`ingest/advisor_wave10.md`).
