@@ -1,0 +1,3358 @@
+{
+  "families": [
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYXyyXyxyxx",
+          "ids": [
+            "aca_53"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXyyxx",
+          "ids": [
+            "aca_120"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYXyxx",
+          "ids": [
+            "aca_118"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYXyyxx",
+          "ids": [
+            "aca_34"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyxx",
+          "ids": [
+            "aca_119"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyyxx",
+          "ids": [
+            "aca_58"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXyxyX",
+          "ids": [
+            "aca_0"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXyyxx",
+          "ids": [
+            "aca_81"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXyyxx",
+          "ids": [
+            "aca_97"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYxyxyX",
+          "ids": [
+            "aca_3"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYxYYXYX",
+          "ids": [
+            "aca_36"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 11,
+      "donor": "YXXyxYx",
+      "donor_exp": [
+        0,
+        -1
+      ],
+      "donor_len": 7,
+      "members": [
+        {
+          "companion": "YYYYYYXyxyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXyxyX",
+          "companion_exp": [
+            -1,
+            -4
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_0",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYxyxyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYxyxyX",
+          "companion_exp": [
+            1,
+            -3
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_3",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXyyxx",
+          "companion_exp": [
+            1,
+            -2
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_34",
+          "pair_len": 16,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYxYYXYX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYxYYXYX",
+          "companion_exp": [
+            -1,
+            -6
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_36",
+          "pair_len": 16,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXyyXyxyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXyyXyxyxx",
+          "companion_exp": [
+            1,
+            2
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_53",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXyyxx",
+          "companion_exp": [
+            1,
+            -3
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_58",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXyyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXyyxx",
+          "companion_exp": [
+            1,
+            -4
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_81",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXyyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXyyxx",
+          "companion_exp": [
+            1,
+            -5
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_97",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXyxx",
+          "companion_exp": [
+            1,
+            -3
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_118",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXyxx",
+          "companion_exp": [
+            1,
+            -4
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_119",
+          "pair_len": 16,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYXyyxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYXyyxx",
+          "companion_exp": [
+            1,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_120",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 11
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYXyXyxyx",
+          "ids": [
+            "aca_33"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYXyyyx",
+          "ids": [
+            "aca_20"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyyyyx",
+          "ids": [
+            "aca_42"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXyyyyyx",
+          "ids": [
+            "aca_65"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXyyyyyyx",
+          "ids": [
+            "aca_91"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYYXyyyyyyyx",
+          "ids": [
+            "aca_104"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYYxyyyyyyyX",
+          "ids": [
+            "aca_102"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYxyyyyyyX",
+          "ids": [
+            "aca_93"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYxyyyyyX",
+          "ids": [
+            "aca_63"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYxyyyyX",
+          "ids": [
+            "aca_40"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYxyyyX",
+          "ids": [
+            "aca_18"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 11,
+      "donor": "YXXXyxYx",
+      "donor_exp": [
+        -1,
+        -1
+      ],
+      "donor_len": 8,
+      "members": [
+        {
+          "companion": "YYYYxyyyX",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYxyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_18",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyyyx",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYXyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_20",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXyXyxyx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXyXyxyx",
+          "companion_exp": [
+            0,
+            1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_33",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYxyyyyX",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYxyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_40",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyyyyx",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYXyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_42",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYxyyyyyX",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYxyyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_63",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXyyyyyx",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYXyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_65",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXyyyyyyx",
+          "companion_bs_m": 6,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYXyyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 15,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              6
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_91",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYxyyyyyyX",
+          "companion_bs_m": 6,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYxyyyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 15,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              6
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_93",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYYxyyyyyyyX",
+          "companion_bs_m": 7,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYYxyyyyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 17,
+          "companion_syllables": [
+            [
+              "y",
+              -8
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              7
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_102",
+          "pair_len": 25,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYYXyyyyyyyx",
+          "companion_bs_m": 7,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYYXyyyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 17,
+          "companion_syllables": [
+            [
+              "y",
+              -8
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              7
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_104",
+          "pair_len": 25,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 11
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYXYXyyx",
+          "ids": [
+            "aca_8"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXXYYx",
+          "ids": [
+            "aca_121"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYXXYYx",
+          "ids": [
+            "aca_122"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXXYYx",
+          "ids": [
+            "aca_123"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXXYYx",
+          "ids": [
+            "aca_85"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXXYYx",
+          "ids": [
+            "aca_98"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 6,
+      "donor": "YXyXYxx",
+      "donor_exp": [
+        0,
+        -1
+      ],
+      "donor_len": 7,
+      "members": [
+        {
+          "companion": "YYXYXyyx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXYXyyx",
+          "companion_exp": [
+            -1,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_8",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXXYYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXXYYx",
+          "companion_exp": [
+            -1,
+            -8
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_85",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXXYYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXXYYx",
+          "companion_exp": [
+            -1,
+            -9
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_98",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYXXYYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYXXYYx",
+          "companion_exp": [
+            -1,
+            -5
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_121",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXXYYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXXYYx",
+          "companion_exp": [
+            -1,
+            -6
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_122",
+          "pair_len": 16,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXXYYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXXYYx",
+          "companion_exp": [
+            -1,
+            -7
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_123",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 6
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYYYYXyXyx",
+          "ids": [
+            "aca_31"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYxYXYX",
+          "ids": [
+            "aca_7"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYxyXyX",
+          "ids": [
+            "aca_1"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYxyXyxyXyX",
+          "ids": [
+            "aca_99"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYxyXYxyXyX",
+          "ids": [
+            "aca_43"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYxyXyxyXyX",
+          "ids": [
+            "aca_72"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 6,
+      "donor": "YYXXyxx",
+      "donor_exp": [
+        0,
+        -1
+      ],
+      "donor_len": 7,
+      "members": [
+        {
+          "companion": "YYYxyXyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYxyXyX",
+          "companion_exp": [
+            -1,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_1",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYxYXYX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYxYXYX",
+          "companion_exp": [
+            -1,
+            -6
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_7",
+          "pair_len": 16,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyXyx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXyXyx",
+          "companion_exp": [
+            -1,
+            -3
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_31",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYxyXYxyXyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYxyXYxyXyX",
+          "companion_exp": [
+            -1,
+            0
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_43",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYxyXyxyXyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYxyXyxyXyX",
+          "companion_exp": [
+            -1,
+            2
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_72",
+          "pair_len": 18,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYxyXyxyXyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYxyXyxyXyX",
+          "companion_exp": [
+            -1,
+            1
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_99",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 6
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYXYXyyX",
+          "ids": [
+            "aca_10"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYXYxyyX",
+          "ids": [
+            "aca_12"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXXyyX",
+          "ids": [
+            "aca_9"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXyxyx",
+          "ids": [
+            "aca_11"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXyyX",
+          "ids": [
+            "aca_116"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYXyyx",
+          "ids": [
+            "aca_117"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 6,
+      "donor": "YXXXyxx",
+      "donor_exp": [
+        -1,
+        0
+      ],
+      "donor_len": 7,
+      "members": [
+        {
+          "companion": "YYYXXyyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYXXyyX",
+          "companion_exp": [
+            -3,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_9",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXYXyyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXYXyyX",
+          "companion_exp": [
+            -3,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_10",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYXyxyx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYXyxyx",
+          "companion_exp": [
+            1,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_11",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXYxyyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXYxyyX",
+          "companion_exp": [
+            -1,
+            -1
+          ],
+          "companion_len": 8,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_12",
+          "pair_len": 15,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYXyyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYXyyX",
+          "companion_exp": [
+            -2,
+            -1
+          ],
+          "companion_len": 7,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_116",
+          "pair_len": 14,
+          "side": "r2_is_donor"
+        },
+        {
+          "companion": "YYYXyyx",
+          "companion_bs_m": 2,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYXyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 7,
+          "companion_syllables": [
+            [
+              "y",
+              -3
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              2
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_117",
+          "pair_len": 14,
+          "side": "r2_is_donor"
+        }
+      ],
+      "n_rows": 6
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YXyxxyXYx",
+          "ids": [
+            "aca_16"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYXYYxxyXXX",
+          "ids": [
+            "aca_56"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYXYYxyXXXX",
+          "ids": [
+            "aca_57"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYXyxyXYxyX",
+          "ids": [
+            "aca_71"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyyyyx",
+          "ids": [
+            "aca_38"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYxyxyXYxyX",
+          "ids": [
+            "aca_95"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 6,
+      "donor": "YYXXXyxx",
+      "donor_exp": [
+        -1,
+        -1
+      ],
+      "donor_len": 8,
+      "members": [
+        {
+          "companion": "YXyxxyXYx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YXyxxyXYx",
+          "companion_exp": [
+            1,
+            0
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_16",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyyyyx",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYXyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_38",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXYYxxyXXX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXYYxxyXXX",
+          "companion_exp": [
+            -2,
+            -3
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -3
+            ]
+          ],
+          "id": "aca_56",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXYYxyXXXX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXYYxyXXXX",
+          "companion_exp": [
+            -4,
+            -3
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -4
+            ]
+          ],
+          "id": "aca_57",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYXyxyXYxyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYXyxyXYxyX",
+          "companion_exp": [
+            -1,
+            0
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_71",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYxyxyXYxyX",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYxyxyXYxyX",
+          "companion_exp": [
+            1,
+            0
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -2
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_95",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 6
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYYYXXXYxx",
+          "ids": [
+            "aca_45"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXXXYxx",
+          "ids": [
+            "aca_61"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXXXYxx",
+          "ids": [
+            "aca_77"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXXXYxx",
+          "ids": [
+            "aca_107"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXXyxxx",
+          "ids": [
+            "aca_83"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYYXXyxxx",
+          "ids": [
+            "aca_114"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 6,
+      "donor": "YXXyXYxxx",
+      "donor_exp": [
+        0,
+        -1
+      ],
+      "donor_len": 9,
+      "members": [
+        {
+          "companion": "YYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -5
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_45",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -6
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_61",
+          "pair_len": 20,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -7
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_77",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -6
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_83",
+          "pair_len": 22,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -8
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_107",
+          "pair_len": 22,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -7
+          ],
+          "companion_len": 14,
+          "companion_syllables": [
+            [
+              "y",
+              -8
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_114",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 6
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYYYXyxyx",
+          "ids": [
+            "aca_32"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYXyyyx",
+          "ids": [
+            "aca_23"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyyyyx",
+          "ids": [
+            "aca_46"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXyyyyyx",
+          "ids": [
+            "aca_68"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXyyyyyyx",
+          "ids": [
+            "aca_89"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYxyyyyyX",
+          "ids": [
+            "aca_70"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYxyyyyX",
+          "ids": [
+            "aca_49"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYxyyyX",
+          "ids": [
+            "aca_22"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 8,
+      "donor": "YXXYxxyx",
+      "donor_exp": [
+        1,
+        -1
+      ],
+      "donor_len": 8,
+      "members": [
+        {
+          "companion": "YYYYxyyyX",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYxyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_22",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyyyx",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYXyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_23",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyxyx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXyxyx",
+          "companion_exp": [
+            1,
+            -2
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_32",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyyyyx",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYXyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_46",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYxyyyyX",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYxyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_49",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXyyyyyx",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYXyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_68",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYxyyyyyX",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYxyyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_70",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXyyyyyyx",
+          "companion_bs_m": 6,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYXyyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 15,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              6
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_89",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 8
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYYYXXyxxx",
+          "ids": [
+            "aca_48"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXXyxxx",
+          "ids": [
+            "aca_60"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXXXYxx",
+          "ids": [
+            "aca_75"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXXyxxx",
+          "ids": [
+            "aca_76"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXXXYxx",
+          "ids": [
+            "aca_84"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXXyxxx",
+          "ids": [
+            "aca_110"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYYXXXYxx",
+          "ids": [
+            "aca_113"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 7,
+      "donor": "YXXXyxYxx",
+      "donor_exp": [
+        0,
+        -1
+      ],
+      "donor_len": 9,
+      "members": [
+        {
+          "companion": "YYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -3
+          ],
+          "companion_len": 10,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_48",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -4
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_60",
+          "pair_len": 20,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -7
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_75",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -5
+          ],
+          "companion_len": 12,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_76",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -8
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_84",
+          "pair_len": 22,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXXyxxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYXXyxxx",
+          "companion_exp": [
+            1,
+            -6
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -2
+            ],
+            [
+              "y",
+              1
+            ],
+            [
+              "x",
+              3
+            ]
+          ],
+          "id": "aca_110",
+          "pair_len": 22,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYYXXXYxx",
+          "companion_bs_m": null,
+          "companion_bs_mm1": false,
+          "companion_canon": "YYYYYYYYXXXYxx",
+          "companion_exp": [
+            -1,
+            -9
+          ],
+          "companion_len": 14,
+          "companion_syllables": [
+            [
+              "y",
+              -8
+            ],
+            [
+              "x",
+              -3
+            ],
+            [
+              "y",
+              -1
+            ],
+            [
+              "x",
+              2
+            ]
+          ],
+          "id": "aca_113",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 7
+    },
+    {
+      "companion_canon_groups": [
+        {
+          "canon": "YYYYXyyyx",
+          "ids": [
+            "aca_25"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYXyyyyx",
+          "ids": [
+            "aca_50"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYXyyyyyx",
+          "ids": [
+            "aca_73"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYYXyyyyyyx",
+          "ids": [
+            "aca_96"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYYxyyyyyX",
+          "ids": [
+            "aca_69"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYYxyyyyX",
+          "ids": [
+            "aca_47"
+          ],
+          "n": 1
+        },
+        {
+          "canon": "YYYYxyyyX",
+          "ids": [
+            "aca_21"
+          ],
+          "n": 1
+        }
+      ],
+      "distinct_companion_canons": 7,
+      "donor": "YXXYxxyX",
+      "donor_exp": [
+        -1,
+        -1
+      ],
+      "donor_len": 8,
+      "members": [
+        {
+          "companion": "YYYYxyyyX",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYxyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_21",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYXyyyx",
+          "companion_bs_m": 3,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYXyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 9,
+          "companion_syllables": [
+            [
+              "y",
+              -4
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              3
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_25",
+          "pair_len": 17,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYxyyyyX",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYxyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_47",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYXyyyyx",
+          "companion_bs_m": 4,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYXyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 11,
+          "companion_syllables": [
+            [
+              "y",
+              -5
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              4
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_50",
+          "pair_len": 19,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYxyyyyyX",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYxyyyyyX",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              -1
+            ]
+          ],
+          "id": "aca_69",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYXyyyyyx",
+          "companion_bs_m": 5,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYXyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 13,
+          "companion_syllables": [
+            [
+              "y",
+              -6
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              5
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_73",
+          "pair_len": 21,
+          "side": "r1_is_donor"
+        },
+        {
+          "companion": "YYYYYYYXyyyyyyx",
+          "companion_bs_m": 6,
+          "companion_bs_mm1": true,
+          "companion_canon": "YYYYYYYXyyyyyyx",
+          "companion_exp": [
+            0,
+            -1
+          ],
+          "companion_len": 15,
+          "companion_syllables": [
+            [
+              "y",
+              -7
+            ],
+            [
+              "x",
+              -1
+            ],
+            [
+              "y",
+              6
+            ],
+            [
+              "x",
+              1
+            ]
+          ],
+          "id": "aca_96",
+          "pair_len": 23,
+          "side": "r1_is_donor"
+        }
+      ],
+      "n_rows": 7
+    }
+  ],
+  "n_listed_donors": 10,
+  "n_rows_covered": 74,
+  "n_rows_uncovered": 50,
+  "status": "inventory_not_a_solve",
+  "uncovered": [
+    "aca_2",
+    "aca_4",
+    "aca_5",
+    "aca_6",
+    "aca_13",
+    "aca_14",
+    "aca_15",
+    "aca_17",
+    "aca_19",
+    "aca_24",
+    "aca_26",
+    "aca_27",
+    "aca_28",
+    "aca_29",
+    "aca_30",
+    "aca_35",
+    "aca_37",
+    "aca_39",
+    "aca_41",
+    "aca_44",
+    "aca_51",
+    "aca_52",
+    "aca_54",
+    "aca_55",
+    "aca_59",
+    "aca_62",
+    "aca_64",
+    "aca_66",
+    "aca_67",
+    "aca_74",
+    "aca_78",
+    "aca_79",
+    "aca_80",
+    "aca_82",
+    "aca_86",
+    "aca_87",
+    "aca_88",
+    "aca_90",
+    "aca_92",
+    "aca_94",
+    "aca_100",
+    "aca_101",
+    "aca_103",
+    "aca_105",
+    "aca_106",
+    "aca_108",
+    "aca_109",
+    "aca_111",
+    "aca_112",
+    "aca_115"
+  ]
+}

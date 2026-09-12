@@ -66,7 +66,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
 | path | owner |
 |---|---|
 | `README.md`, `RECONSTRUCTION.md`, `THEOREM_CATALOGUE.md`, `tables/` | coordinator |
-| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py` | coordinator / Terra |
+| `code/u124_census.py`, `code/ms_template_identities.py`, `code/jsonl_atomic.py`, `code/q_peel.py`, `code/primitive_relator_census.py`, `code/elementary_ac2_scan.py`, `code/wave2_structural.py`, `code/q_peel_orientations.py`, `code/shared_donor_families.py` | coordinator / Terra |
 | `ingest/advisor_*.md` | Sol advisor |
 | `ingest/theory_*.md` | theory agent |
 | `ingest/proofs_machinery.md` | proofs-extract agent |

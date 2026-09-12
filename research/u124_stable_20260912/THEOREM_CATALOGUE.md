@@ -356,3 +356,41 @@ these donors would clear a whole block. C12 shows the donors themselves
 are not primitive, so “make the shared donor a generator by Aut” is
 exactly C12 and does not fire. Full list:
 `tables/primitive_relator_census.json` `shared_relators_count_ge_3`.
+Inventory with syllable/BS flags: `tables/shared_donor_families.json`
+(74/124 rows sit in the ten listed donor families; each companion is a
+distinct rotation class, so these are parameterized families, not
+duplicate spellings).
+
+---
+
+## C15. `YXXXyxYx` + consecutive BS(m,m+1) stall family — NAMED NEGATIVE
+
+**Statement (classifier, not a new obstruction).** Ten best-table rows
+are the pair
+
+`⟨ y⁻¹ x⁻³ y x y⁻¹ x ,  y^{-(m+1)} x^{±1} y^m x^{∓1} ⟩`
+
+up to swapping and the cyclic orientation that exhibits the second
+relator as consecutive BS(m,m+1). Compact donor: `YXXXyxYx`. Companions
+checked: aca_18,20 (m=3); aca_40,42 (m=4); aca_63,65 (m=5); aca_91,93
+(m=6); aca_102,104 (m=7) — ten of the eleven `YXXXyxYx` rows; aca_33 is
+the exception (not BS-shaped).
+
+The second relator is BS(m,m+1) after rotation (`bs_mm1_shape`). The
+donor’s x-exponent sum is −1. C5’s first two hypotheses therefore hold.
+C5’s third hypothesis (cyclic Britton reduction of the companion to a
+single stable letter) is the one that failed for **all** 122,842
+BS-donor states on the best table, including these rows
+(`aca124_supermoves_10000.summary.json` on theorem-strength). This is
+exactly the recorded caution: exponent ±1 is not enough for general
+`BS(m,m+1)`; divisibility can stall.
+
+**Not claimed.** These nine rows are not ordinary-AC trivial by C5.
+Reciprocal BS(3,2) symmetry is not used. A new theorem that replaces
+Britton for this specific companion `YXXXyxYx` (for example a power–Bézout
+corridor against the `x^{-3}` block, or a stable defining word that makes
+Britton fire) would clear an infinite family covering those ten U124
+rows.
+
+**Recognizer.** Donor equals `YXXXyxYx` (or its rotation/inverse class)
+and companion `bs_mm1_shape` with m≥3. `tables/shared_donor_families.json`.
