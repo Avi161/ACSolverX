@@ -414,7 +414,8 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   there was no hit. Observed minima are C40 census statistics, not a
   comparison with C35/C36/C38. Still **0/124**. No certificate JSONL
   rows. `independent_checker=false`. Plan advisor REVISE applied
-  (`ingest/advisor_c40_plan.md`). Census advisor audit pending.
+  (`ingest/advisor_c40_plan.md`). Advisor APPROVE
+  (`ingest/advisor_wave25.md`).
 
 
 

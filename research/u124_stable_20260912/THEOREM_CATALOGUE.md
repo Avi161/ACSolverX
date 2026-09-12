@@ -1751,7 +1751,7 @@ persisted factor/conjugator witness replayed outside the scanner.
 `independent_checker=false`. Tests independently check the algebra of
 both rows and rerun only aca_16; they do not independently enumerate
 aca_95. Plan advisor REVISE applied (`ingest/advisor_c40_plan.md`).
-Census advisor audit pending.
+`ingest/advisor_wave25.md` **APPROVE**.
 
 
 
