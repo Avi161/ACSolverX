@@ -1006,11 +1006,13 @@ in some order (`t_R=t_S=0`). For `n≥2` in this campaign's window,
 **C26.2 (prefix/one-letter census, `n=2..7`, `2≤L1≤7`).** Unique
 conjugates per signed type; counts are typed Cartesian sizes
 `k\,|A|^{k-1}|B|`, not `|F|^k`. Cells with at most 500,000 typed
-tuples are enumerated as products; larger cells are an existence
-MITM on unique freely reduced folds of the same typed slots.
-Targets are the exponent-`(0,1)` one-letter class `{y, Xyx, xyX}`.
-The inverse class follows by reversing and inverting factors.
-No cell hits. Cartesian cells have free length at least 7.
+tuples are enumerated as products (two cells, 38,940 products, min
+length 7). Larger cells are an existence MITM on unique freely
+reduced folds of the same typed slots (six cells; typed search-space
+cardinality 33,815,591,648). Targets are the exponent-`(0,1)`
+one-letter class `{y, Xyx, xyX}`. The inverse class follows by
+reversing and inverting factors. No cell hits. Same-code planted
+Cartesian/MITM controls pass. `independent_checker=false`.
 
 Window: `(n,δ) = (3,-1),(4,-1),(5,-1),(6,-1),(7,-1),(2,+1),(3,+1),(4,+1)`.
 Excluded: `(2,-1)` (`L1=1`, C25.2 length block); `δ=+1` and `n≥5`

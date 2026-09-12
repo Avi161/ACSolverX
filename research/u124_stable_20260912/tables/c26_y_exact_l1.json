@@ -1,0 +1,344 @@
+{
+  "summary": {
+    "n_cells": 8,
+    "window": [
+      {
+        "n": 3,
+        "delta": -1,
+        "L1": 2
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "L1": 3
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "L1": 4
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "L1": 5
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "L1": 6
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "L1": 5
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "L1": 6
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "L1": 7
+      }
+    ],
+    "any_hit": false,
+    "n_typed_tuples_total": 33815630588,
+    "n_cartesian_cells": 2,
+    "n_mitm_cells": 6,
+    "cartesian_all_min_len_ge_7": true,
+    "controls_ok": true,
+    "skipped_l1_1": {
+      "n": 2,
+      "delta": -1,
+      "L1": 1,
+      "reason": "C25.2 length block |S|=7"
+    },
+    "skipped_l1_ge_8": [
+      {
+        "n": 5,
+        "delta": 1,
+        "L1": 8
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "L1": 9
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "L1": 10
+      }
+    ],
+    "counts_are_typed_cartesian": true,
+    "same_code_replay": true,
+    "independent_checker": false,
+    "solved_u124": 0
+  },
+  "scans": [
+    {
+      "method": "typed_cartesian",
+      "n_products": 924,
+      "min_len": 11,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 3,
+      "delta": -1,
+      "combo_a": 1,
+      "combo_b": -1,
+      "L1": 2,
+      "k": 2,
+      "m_R": 1,
+      "n_conjugators": 30,
+      "n_A": 22,
+      "n_B": 21,
+      "n_typed_tuples": 924,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 8,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_cartesian",
+      "n_products": 38016,
+      "min_len": 13,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 4,
+      "delta": -1,
+      "combo_a": 2,
+      "combo_b": -1,
+      "L1": 3,
+      "k": 3,
+      "m_R": 2,
+      "n_conjugators": 32,
+      "n_A": 24,
+      "n_B": 22,
+      "n_typed_tuples": 38016,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 9,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 5,
+      "delta": -1,
+      "combo_a": 3,
+      "combo_b": -1,
+      "L1": 4,
+      "k": 4,
+      "m_R": 3,
+      "n_conjugators": 34,
+      "n_A": 26,
+      "n_B": 23,
+      "n_typed_tuples": 1616992,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 10,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 6,
+      "delta": -1,
+      "combo_a": 4,
+      "combo_b": -1,
+      "L1": 5,
+      "k": 5,
+      "m_R": 4,
+      "n_conjugators": 36,
+      "n_A": 28,
+      "n_B": 24,
+      "n_typed_tuples": 73758720,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 11,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 7,
+      "delta": -1,
+      "combo_a": 5,
+      "combo_b": -1,
+      "L1": 6,
+      "k": 6,
+      "m_R": 5,
+      "n_conjugators": 38,
+      "n_A": 30,
+      "n_B": 25,
+      "n_typed_tuples": 3645000000,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 12,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 2,
+      "delta": 1,
+      "combo_a": 4,
+      "combo_b": -1,
+      "L1": 5,
+      "k": 5,
+      "m_R": 4,
+      "n_conjugators": 28,
+      "n_A": 20,
+      "n_B": 20,
+      "n_typed_tuples": 16000000,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 7,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 3,
+      "delta": 1,
+      "combo_a": 5,
+      "combo_b": -1,
+      "L1": 6,
+      "k": 6,
+      "m_R": 5,
+      "n_conjugators": 30,
+      "n_A": 22,
+      "n_B": 21,
+      "n_typed_tuples": 649357632,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 8,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "n": 4,
+      "delta": 1,
+      "combo_a": 6,
+      "combo_b": -1,
+      "L1": 7,
+      "k": 7,
+      "m_R": 6,
+      "n_conjugators": 32,
+      "n_A": 24,
+      "n_B": 22,
+      "n_typed_tuples": 29429858304,
+      "counts_are_typed_cartesian": true,
+      "not_F_to_the_k": true,
+      "R_cyc_len": 7,
+      "S_cyc_len": 9,
+      "targets": [
+        "Xyx",
+        "xyX",
+        "y"
+      ],
+      "negative_targets_via_inversion": true
+    }
+  ],
+  "controls": {
+    "cartesian_hit_found": true,
+    "cartesian_miss_found": false,
+    "mitm_hit_found": true,
+    "mitm_miss_found": false,
+    "ok": true,
+    "independent_checker": false,
+    "same_code_as_census": true
+  },
+  "inversion_closure": {
+    "map": "(f1,...,fk) -> (fk^{-1}, ..., f1^{-1})",
+    "enumerated_class": "(0,1); checks y, Xyx, xyX; Y-class follows",
+    "negative_targets_hit_iff_positive_inverse_factors": true
+  },
+  "notes": [
+    "Exact L1 for y on Q' is |a| copies of R^{sign(a)} and one S^{-1}.",
+    "Counts are typed Cartesian sizes after per-type unique conjugates, not |F|^k.",
+    "MITM cells test existence via unique reduced folds; they do not list min_len.",
+    "A hit would be a normal-closure candidate, not a C12/C22.6 path.",
+    "Window is n=2..7 with 2\u2264L1\u22647. L1=1 is C25.2; L1\u22658 is open.",
+    "JSON is same-code deterministic replay. No U124 row is solved."
+  ]
+}

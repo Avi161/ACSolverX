@@ -473,3 +473,7 @@ def test_c26_exact_l1_identities_and_n3():
         assert summary["counts_are_typed_cartesian"]
         assert summary["skipped_l1_1"]["n"] == 2
         assert [row["n"] for row in summary["skipped_l1_ge_8"]] == [5, 6, 7]
+        assert summary["n_cartesian_cells"] == 2
+        assert summary["n_mitm_cells"] == 6
+        assert summary["cartesian_all_min_len_ge_7"]
+        assert summary["n_typed_tuples_total"] == 33_815_630_588

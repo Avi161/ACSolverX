@@ -93,7 +93,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     and 2,884,950 products miss the positive one-letter class of `y`.
     A hit would be a normal-closure candidate, not a C12/C22.6 path.
     C26: exact-L1 typed products for `y` on `Q'` in the `2≤L1≤7`
-    window (prefix/one-letter; Cartesian or MITM). Still 0/124.
+    window: two Cartesian cells miss (min length 7); six MITM cells
+    miss. Still 0/124.
 
 ## File ownership
 

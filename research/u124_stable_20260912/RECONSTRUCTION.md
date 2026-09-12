@@ -209,8 +209,10 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 - Exact-L1 typed products for defining word `y`: `|a|` conjugates of
   `R^{\mathrm{sign}(a)}` and one `S^{-1}`. Prefix/one-letter, per-type
   unique conjugates, typed Cartesian counts (not `|F|^k`).
-- Window `n=2..7`, `2≤L1≤7` (eight cells). Cartesian cells min length
-  7; larger cells existence-MITM. No hit on `{y, Xyx, xyX}`.
+- Window `n=2..7`, `2≤L1≤7` (eight cells). Two Cartesian cells
+  (38,940 products, min length 7); six existence-MITM cells. No hit
+  on `{y, Xyx, xyX}`. Typed search-space cardinality is not a product
+  enumeration.
 - A hit would have been a normal-closure candidate, not a C12 path.
   `L1=1` remains C25.2; `L1≥8` is open. Still **0/124**.
   No certificate JSONL rows.
