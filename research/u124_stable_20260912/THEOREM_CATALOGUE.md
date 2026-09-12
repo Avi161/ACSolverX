@@ -1456,8 +1456,8 @@ be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
 including `u`. Defining word `y` on these rows (L1 is 4, 4, 2, 2, 3, 1
-respectively; aca_117 has `y ≡ C^{-1}`). aca_43 k=3 for `x`. C34
-`L1≥8`. Unused listed donors `YYXXXyxx`, `YXXyXYxxx`, `YXXXyxYxx`.
+respectively; aca_117 `y ≡ C^{-1}` is C45). aca_43 k=3 for `x` is C43.
+C34 `L1≥8`. Unused listed donors `YYXXXyxx`, `YXXyXYxxx`, `YXXXyxYxx`.
 The listed donor `YXXYxxyX` is C36. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Six best-table rows listed above. **Not a solve.** Bounded
@@ -1900,9 +1900,9 @@ C16 re-proof. C28 and C44 touched this row under different predicates.
 be a **normal-closure candidate**, not a C12 primitive.
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators.
-C35 leftover `y` on aca_117. aca_56/57. C40 leftover exact-L1 `y`.
-C41 leftover exact-L1 `y`. C42 leftover exact-L1 `x`. Full depth-3 AC2
-off the C44 corridor. Lemma 11.
+C35 leftover `y` on aca_9/10/11/12/116 (`L1∈{2,3,4}`). aca_56/57.
+C40 leftover exact-L1 `y`. C41 leftover exact-L1 `y`. C42 leftover
+exact-L1 `x`. Full depth-3 AC2 off the C44 corridor. Lemma 11.
 
 **U124.** One best-table row listed above. **Not a solve.** Bounded
 negative for this typed k=3 pool. Score remains `0/124`.
@@ -1982,6 +1982,58 @@ unused because there was no drop. Planted: `⟨x, xy⟩` d1 drop;
 new file `tests/u124_stable_20260912/test_c44_best_length_descent.py`.
 Plan advisor REVISE applied (`ingest/advisor_c44_plan.md`). Census
 advisor REVISE applied (`ingest/advisor_wave28.md`).
+
+---
+
+## C45. aca_117 `YXXXyxx`: `y ≡ C^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+On the single listed row aca_117, \(D_{\mathrm{ab}}=(-1,0)\),
+\(C_{\mathrm{ab}}=(0,-1)\), \(|D|=7\), \(|C|=7\), pair det `+1`, and
+the unique y-combination is `(0,-1)`, \(L1=1\). So \(y \equiv C^{-1}\)
+**in abelianization** (not free equality); the same combination holds
+for `{y, Xyx, xyX}`. This is not every companion of `D` and not a
+six-row `YXXXyxx` census. The other five C35 rows have y with
+`L1∈{2,3,4}` and are not C45. Even \(k\) is abelian-impossible
+(C24.1). \(k=1\) is blocked by \(|C|=7\). Leftover \(x\) (`L1=1`,
+\(x \equiv D^{-1}\)) was C35 and is not re-run.
+
+In C31 orientation \(R^+=C^{-1}\), \(S=D\) (asserted; not C35, not C40),
+unique-conjugate counts `(21,21,21,21)` give 83,349 typed Cartesian
+\(k=3\) products; all 83,349 ordered typed factor-word tuples in the
+nine abelian-legal configurations were enumerated, after per-signed-type
+deduplication of conjugate words from the bounded prefix/one-letter
+conjugator pool, and none freely equals `{y, Xyx, xyX}` (inverse class
+by inversion). Completeness is that bounded pool, not distinct reduced
+words, not all conjugators, and not `|F|^3`. Observed freely reduced
+product-word minimum 7 is a C45 census statistic: **it is not a
+presentation-pair total, not a drop from aca_117’s BEST total 14, not
+a C10 finish, and not a comparison theorem against C35’s minimum 7**.
+Equal typed size 83,349 does not identify C35’s aca_117 x-census.
+
+aca_117 development-panel / n=2-wall status is a disclosure, not a C16
+re-proof. C28, C35, and C44 touched this row under different predicates.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators.
+C35 leftover `y` on aca_9/10/11/12/116. aca_56/57. C40 leftover
+exact-L1 `y`. C41 leftover exact-L1 `y`. C42 leftover exact-L1 `x`.
+Full depth-3 AC2 off the C44 corridor. Lemma 11.
+
+**U124.** One best-table row listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool. Score remains `0/124`.
+
+**Audit.** `code/c45_yxxx_y_eq_cinv.py`,
+`tables/c45_yxxx_y_eq_cinv.json`. Same-code deterministic replay plus
+planted nine-config control with a persisted factor/conjugator witness
+replayed outside the scanner. Actual census hit replay is `null`;
+`hit_replay_outside_scanner_capability` is capability only.
+`independent_checker=false`. Identity checks are a new file
+`tests/u124_stable_20260912/test_c45_yxxx_y_eq_cinv.py`; they rerun the
+complete single-row census through the same implementation, not an
+independent checker. Plan advisor APPROVE
+(`ingest/advisor_c45_plan.md`). `ingest/advisor_wave30.md` **APPROVE**.
 
 ---
 

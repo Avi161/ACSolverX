@@ -103,8 +103,9 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    `.../code/c44_best_length_descent.py` (full census) or
    `--annotate-existing`. Do not re-run the 5,521,175 unique
    depth-2 plus 116,608 row-local unique corridor-child census. C45:
-   `.../code/c45_yxxx_y_eq_cinv.py` (aca_117 leftover y; census not
-   yet run — do not lump with C35 or C44).
+   `.../code/c45_yxxx_y_eq_cinv.py` (full census) or
+   `--annotate-existing`. Do not re-run the 83,349 nine-config census
+   (do not lump with C35 or C44).
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -185,8 +186,10 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     cyclic pair-length descent on 47 BEST pairs: 0 replayed drops
     (5,521,175 unique d2, 819 equal-total d2 states, 116,608 row-local
     unique corridor children). Plan advisor REVISE applied. Census
-    advisor REVISE applied. C45: leftover aca_117 y scanner, census not
-    yet run. Still 0/124.
+    advisor REVISE applied. C45: leftover aca_117 y: 83,349 typed products, observed product-word
+    min 7 (not a pair total; BEST total 14), no hit. Equal typed size
+    does not identify C35. Plan advisor APPROVE. Advisor APPROVE.
+    Still 0/124.
 
 ## File ownership
 

@@ -490,6 +490,21 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_c43_k3_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave29.md`).
 
+## Wave 31 (C45 leftover aca_117 y ≡ C^{-1} k=3 ncl, 2026-09-12)
+
+- Single row aca_117, donor `YXXXyxx`, companion `YYYXyyx`.
+  `y ≡ C^{-1}` in abelianization, `L1=1`. C31 orientation. C35’s
+  x-census on this row was not re-run.
+- k=3 nine-config: 83,349 typed Cartesian products, equal to typed
+  size, counts `(21,21,21,21)`, observed product-word min length 7, no
+  hit on `{y, Xyx, xyX}`. That minimum is not a pair total, not a drop
+  from BEST total 14, not a C10 finish, and not a comparison with C35.
+  Equal typed size 83,349 does not identify C35’s aca_117 x-census.
+  Completeness is all 83,349 typed tuples in this bounded pool. Still
+  **0/124**. No certificate JSONL rows. `independent_checker=false`.
+  Plan advisor APPROVE (`ingest/advisor_c45_plan.md`). Advisor APPROVE
+  (`ingest/advisor_wave30.md`).
+
 
 
 
