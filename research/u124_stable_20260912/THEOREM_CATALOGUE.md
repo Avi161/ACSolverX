@@ -106,8 +106,8 @@ balanced trivial pair, a word `w`, and an isolator `I` with exactly one
 `b^{±1}` and at least one `z^{±1}` whose `z↦w` expansion is a source relator.
 Code: `experiments/stable_ac/rank3_compression/corridors.py`.
 
-**U124.** Not yet scanned in this campaign (bounded census pending; keep
-`max_word_length` small).
+**U124.** Bounded census on Q and the matching floors: 0 accepted corridors
+(see below). Not a mathematical obstruction.
 
 A first bounded census (`code/q_residue_scan.py`, word ≤ 2, template ≤ 4,
 `minimum_z_occurrences=2`) accepted **0** corridors on all 12 `Q_{n,δ}`
