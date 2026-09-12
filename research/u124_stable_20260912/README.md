@@ -145,7 +145,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     (`1,549,596` products, observed min length 9). Plan advisor REVISE
     applied. Advisor APPROVE. C37: exact-L1 for defining word `x` on
     those seven rows misses (`11,804` Cartesian products, observed min
-    length 11). Plan advisor REVISE applied. Still 0/124.
+    length 11). Plan advisor REVISE applied. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 

@@ -1572,8 +1572,8 @@ Same-code replay plus planted two-factor control with outside-scanner
 replay. Observed Cartesian minimum 11 is a census fact. Tests
 independently check the algebra and rerun only aca_21; they do not
 independently replay all seven cells. `independent_checker=false`.
-Plan advisor REVISE applied (`ingest/advisor_c37_plan.md`). Census
-advisor audit pending.
+Plan advisor REVISE applied (`ingest/advisor_c37_plan.md`).
+`ingest/advisor_wave22.md` **APPROVE**.
 
 
 
