@@ -1166,8 +1166,8 @@ AC-reachable generator. The free identity `D · x^{-1}yx = YXXyxx` is
 not an AC2 (`Xyx` is not a donor; same caveat as C22.6).
 
 **What this does not rule out.** `k=5,7,…`. Longer conjugators,
-including conjugators involving `u`. Defining word `x` (companion
-L1 ∈ {2,…,7}; leftover C30). Depth ≥ 3 AC2. Lemma 11. An explicit
+including conjugators involving `u`. Defining word `x` is C30 (exact
+L1 closed). Depth ≥ 3 AC2. Lemma 11. An explicit
 AC1–AC5 path from a future ncl hit.
 
 **U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
@@ -1176,6 +1176,55 @@ AC1–AC5 path from a future ncl hit.
 **Audit.** `code/c29_yxx_family.py`, `tables/c29_yxx_family.json`.
 Same-code deterministic replay plus planted nine-config control.
 `independent_checker=false`. Advisor audit pending.
+
+---
+
+## C30. Exact-L1 typed products for `x` on the `YXXyxYx` family — IDENTITY-CHECKED NEGATIVE
+
+**C30.1 (combination).** On every unimodular companion of `D = YXXyxYx`,
+defining word `x` has unique combination `(a,b)` with `|b|=1` and
+`L1=|a|+1 ∈ {2,…,7}`. Exact-L1 products are `|a|` conjugates of
+`D^{\mathrm{sign}(a)}` and one conjugate of `C^{\mathrm{sign}(b)}`, in
+some order (`t_D=t_C=0`). Even `k` is abelian-legal on even-L1 rows;
+there is no C24-style even-k block. `k=1` never arises (`min L1=2`).
+
+**C30.2 (prefix/one-letter census, all eleven rows).** Unique conjugates
+per signed type; counts are typed Cartesian sizes `k\,|A|^{k-1}|B|`,
+not `|F|^k`. Distinguish three numbers:
+
+- All eleven rows, typed search-space total: `43,999,487,350`.
+- Three Cartesian cells (aca_34, aca_53, aca_120), actually enumerated
+  products: `107,212` (observed free-length minima 15, 15, and 11;
+  every enumerated word has length at least 11).
+- Eight MITM cells, typed search-space only (not enumerated products):
+  `43,999,380,138`. Existence MITM on unique freely reduced folds of
+  the same typed slots (C26 `mitm_m_plus_one`).
+
+Targets are the exponent-`(1,0)` one-letter class `{x, Yxy, yxY}`
+(`Yxy` is C22’s `ξ`). The inverse class `{X, YXy, yXY}` follows by
+reversing and inverting factors. No row hits.
+`independent_checker=false`.
+
+Cells: L1=2 aca_120 Cartesian; L1=3 aca_34 and aca_53 Cartesian;
+L1=4 aca_3, 58, 118 MITM; L1=5 aca_0, 81, 119 MITM; L1=6 aca_97 MITM;
+L1=7 aca_36 MITM.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive. Five companions
+are C7 Aut-minimal P floors; that Aut-orbit is not a solve.
+
+**What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
+conjugators, including conjugators involving `u`. C29 leftover
+`k=5,7,…` for defining word `y`. The unused eight-row donor
+`YXXYxxyx`. Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
+**Not a solve.** Bounded negative for this exact-L1 typed pool.
+
+**Audit.** `code/c30_x_exact_l1.py`, `tables/c30_x_exact_l1.json`.
+Same-code replay plus C26 planted controls. Cartesian observed minima
+11 and 15 are census facts, not a length theorem. MITM typed sizes are
+search-space, not enumerated products. Advisor audit pending.
 
 
 

@@ -632,3 +632,57 @@ def test_c29_yxx_family_identities():
         "aca_120": 103293,
     }
 
+
+def test_c30_x_exact_l1_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c26_y_exact_l1 as c26  # type: ignore
+    import c29_yxx_family as c29  # type: ignore
+    import c30_x_exact_l1 as c30  # type: ignore
+    import theory_wave1_replay as tw  # type: ignore
+
+    xclass = c30.x_class_exponents()
+    assert xclass["all_exp_one_zero"]
+    assert xclass["inverse_all_exp_minus_one_zero"]
+    assert c30.POSITIVE_X[1] == tw.XI
+    rec = c30.scan_row("aca_120", "YYYXyyxx")
+    assert rec["L1"] == 2
+    assert rec["combo_a"] == -1 and rec["combo_b"] == 1
+    assert rec["method"] == "typed_cartesian"
+    assert rec["n_typed_tuples"] == 1012
+    assert rec["n_products"] == 1012
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 11
+    assert not rec["found"]
+    rec3 = c30.scan_row("aca_34", "YYYYXyyxx")
+    assert rec3["L1"] == 3
+    assert rec3["n_typed_tuples"] == 43125
+    assert rec3["method"] == "typed_cartesian"
+    assert not rec3["found"]
+    assert rec3["min_len"] == 15
+    controls = c26.planted_controls()
+    assert controls["ok"]
+    json_path = ROOT / "research/u124_stable_20260912/tables/c30_x_exact_l1.json"
+    if json_path.exists():
+        artifact = json.loads(json_path.read_text())
+        summary = artifact["summary"]
+        assert summary["n_rows"] == 11
+        assert summary["all_abs_b_1"]
+        assert summary["all_k_equals_L1"]
+        assert summary["independent_checker"] is False
+        assert summary["solved_u124"] == 0
+        assert not summary["any_hit"]
+        assert summary["n_cartesian_cells"] == 3
+        assert summary["n_mitm_cells"] == 8
+        assert summary["n_cartesian_products_enumerated"] == 107212
+        assert summary["n_typed_tuples_cartesian"] == 107212
+        assert summary["n_typed_tuples_mitm"] == 43_999_380_138
+        assert summary["n_typed_tuples_total"] == 43_999_487_350
+        assert summary["cartesian_products_equal_typed"]
+        assert summary["cartesian_all_min_len_ge_7"]
+        assert summary["cartesian_observed_min_len"] == 11
+        assert summary["cartesian_min_lens"] == [15, 15, 11]
+        assert summary["cartesian_ids"] == ["aca_34", "aca_53", "aca_120"]
+        assert summary["mitm_counts_are_search_space_not_enumerated_products"]
+        assert summary["n_p_floor_companions"] == 5
+

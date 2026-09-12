@@ -250,10 +250,24 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   min length 7, no hit on `{y, Xyx, xyX}`. A hit would have been a
   normal-closure candidate, not a C12 primitive. Five companions are
   C7 Aut-minimal P floors; that Aut-orbit is not a solve. The free
-  identity `D · Xyx = YXXyxx` is not an AC2. Defining word `x` has
-  companion-dependent L1 ∈ {2,…,7} and is leftover. Still **0/124**.
+  identity `D · Xyx = YXXyxx` is not an AC2. Defining word `x` is C30. Still **0/124**.
   No certificate JSONL rows. `independent_checker=false`.
   Advisor audit pending.
+
+## Wave 16 (C30 exact-L1 x on YXXyxYx, 2026-09-12)
+
+- Defining word `x` on the eleven C29 rows: unique combo has `|b|=1`,
+  `L1 ∈ {2,…,7}`. Exact-L1 typed products of `|a|` conjugates of
+  `D^{sign(a)}` and one `C^{sign(b)}`. Prefix/one-letter, per-type
+  unique conjugates, typed Cartesian counts (not `|F|^k`).
+- Three Cartesian cells enumerate 107,212 products (observed minima
+  15, 15, and 11). Eight MITM cells have typed search-space size
+  43,999,380,138 and do not enumerate that many products. All-row
+  typed total 43,999,487,350. No hit on `{x, Yxy, yxY}`.
+- A hit would have been a normal-closure candidate, not a C12 path.
+  Five companions are C7 Aut-minimal P floors; that is not a solve.
+  Still **0/124**. No certificate JSONL rows.
+  `independent_checker=false`. Advisor audit pending.
 
 
 
