@@ -369,7 +369,7 @@ def notes_from_summary(summary: dict) -> list[str]:
         f"Typed Cartesian total {summary['three_n_typed_tuples']} is nine-config 3|R+|²|R−|+6|R+||S+||S−|, not |F|^3.",
         f"Enumerated {summary['three_n_products']} tuple evaluations (observed min lengths {mins}, census min {observed}).",
         "Completeness is all 154,368 typed tuples in this bounded pool.",
-        "Disjointness is relative to prior typed donor-family censuses. C28 touched this row under a different predicate.",
+        "Disjointness is relative to prior typed donor-family censuses. C28 and C44 touched this row under different predicates.",
         "Equal typed size 154,368 does not identify C33's 162,624 on this row (different orientation and targets).",
         "aca_43 C16 / Family A floor status is a disclosure, not a C16 re-proof.",
         "A hit would be a normal-closure candidate, not a C12 primitive. Hit witnesses persist factors and are replayed outside the scanner.",
