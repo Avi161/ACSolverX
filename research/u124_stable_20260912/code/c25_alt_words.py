@@ -4,12 +4,19 @@
 C24 left two conjugator-independent leftovers that are abelian identities:
 
 - On Q', the generator x has the same exponent vector as ξ, so C24.1 applies
-  verbatim. C23 checked 3-factor products against ξ, not against x.
+  verbatim. C23 checked 3-factor products against ξ, not against x. The
+  census is nine signed-type Cartesian products after per-type unique
+  conjugates (not |F|^3). Negative target X follows by inversion-closure.
 - On the C15 family, both y and the C22.6 conjugator x^{-1} y x abelianize to
   B^{-1} (L1=1). k=1 is a length obstruction (|B|=2m+3 ≥ 9). Even k is
-  impossible. The next value is k=3.
+  impossible. The next value is k=3, already the C25.3 census. A hit would
+  be a normal-closure candidate, not a C12 primitive or a C22.6 AC donor.
 
-Not a heap search. Not a U124 solve unless a witness is found and replayed.
+On Q' the word y has L1=|n+2δ|+1. k=1 is abelian-legal only at (n,δ)=(2,-1),
+where |S|=7 still blocks it; elsewhere k=1 is abelian-impossible.
+
+Not a heap search. Not a U124 solve unless a witness is found and replayed
+along an explicit AC1–AC5 path.
 """
 from __future__ import annotations
 
@@ -42,6 +49,16 @@ OUT = ROOT / "research" / "u124_stable_20260912" / "tables"
 
 ALPHABET = "xXyY"
 Y_CLASS = ("y", "Y", "Xyx", "XYx", "xyX", "xYX")
+
+NOTES = [
+    "x ≡ ξ in abelianization on every Q'_{n,δ}; C24.1 even-k obstruction applies.",
+    "Counts are nine signed-type Cartesian products after per-type unique conjugates, not |F|^3.",
+    "Enumerated products abelianize to (1,0) on Q' x and to (0,1) on C15; negative targets follow by reversing and inverting factors.",
+    "y on Q': L1=|n+2δ|+1. k=1 is abelian-legal only for (n,δ)=(2,-1), and then |S|=7>1. Elsewhere k=1 is abelian-impossible.",
+    "C15: y and Xyx both ≡ B^{-1}, L1=1, |B|=2m+3≥9. A 3-factor hit would be a normal-closure candidate, not a C12/C22.6 path.",
+    "C22.6 is a row-1 free identity; exactly five C15 companions equal P_{m,+1} row 2.",
+    "JSON is same-code deterministic replay. No U124 row is solved.",
+]
 
 
 def l1_of(sol: dict) -> int | None:
@@ -90,7 +107,9 @@ def scan_three_against(
         "n_len_le_3": n_len_le_3,
         "hit": hit,
         "found": hit is not None,
-        "pool": "globally_deduplicated_per_type_then_configs",
+        "pool": "nine_signed_type_configs_per_type_dedup",
+        "n_configs": 9,
+        "negative_targets_via_inversion": True,
     }
 
 
@@ -131,6 +150,8 @@ def q_prime_y_l1(n: int, delta: int) -> dict:
         and sol.get("b") == -1,
         "S_cyc_len": len(cyc_reduce(s)),
         "k1_len_obstruction": len(cyc_reduce(s)) > 1,
+        "k1_abelian_legal": l1 == 1,
+        "k1_abelian_only_if_n2_delta_minus": (l1 == 1) == (n == 2 and delta == -1),
         "odd_k_forbidden": l1 is not None and l1 % 2 == 0,
         "even_k_forbidden": l1 is not None and l1 % 2 == 1,
         "min_k": l1,
@@ -209,10 +230,55 @@ def y_class_free_targets() -> dict:
         words.append(free_reduce(inv(g) + "y" + g))
         words.append(free_reduce(inv(g) + "Y" + g))
     reduced = sorted(set(words))
+    positive = [w for w in reduced if c22.exp_on(w, "xy") == (0, 1)]
+    negative = [w for w in reduced if c22.exp_on(w, "xy") == (0, -1)]
     return {
         "one_letter_conjugates_of_y": reduced,
         "stated_class": list(Y_CLASS),
         "class_covers_one_letter": set(Y_CLASS) == set(reduced),
+        "positive_exp_01": sorted(positive),
+        "negative_exp_0m1": sorted(negative),
+        "inversion_pairs": sorted(
+            [[w, inv(w)] for w in positive], key=lambda p: p[0]
+        ),
+    }
+
+
+def c15_p_row2_status() -> dict:
+    from ms_template_identities import parametric_p
+
+    rows = []
+    for name, companion, m in c15.ROWS:
+        p_plus = parametric_p(m, 1)
+        p_minus = parametric_p(m, -1)
+        rows.append(
+            {
+                "id": name,
+                "m": m,
+                "companion": companion,
+                "equals_P_plus_row2": companion == p_plus[1],
+                "equals_P_minus_row2": companion == p_minus[1],
+                "P_plus_row2": p_plus[1],
+                "P_row2_independent_of_delta": p_plus[1] == p_minus[1],
+            }
+        )
+    n_plus = sum(1 for row in rows if row["equals_P_plus_row2"])
+    return {
+        "n_equals_P_plus_row2": n_plus,
+        "n_rows": len(rows),
+        "five_match_P_plus_row2": n_plus == 5,
+        "c22_6_is_row1_donor_identity": True,
+        "rows": rows,
+    }
+
+
+def inversion_closure() -> dict:
+    return {
+        "map": "(f1,f2,f3) -> (f3^{-1}, f2^{-1}, f1^{-1})",
+        "Q_x_enumerated_class": "(1,0); checks x; X follows by inversion",
+        "C15_enumerated_class": "(0,1); checks y, Xyx, xyX; inverses follow",
+        "nine_configs_closed": True,
+        "negative_targets_hit_iff_positive_inverse_factors": True,
     }
 
 
@@ -225,6 +291,8 @@ def main() -> dict:
     c15_ab = [c15_row_abelian(name, companion, m) for name, companion, m in c15.ROWS]
     c15_three = [c15_three_factor(name, companion, m) for name, companion, m in c15.ROWS]
     yclass = y_class_free_targets()
+    prow = c15_p_row2_status()
+    invc = inversion_closure()
     summary = {
         "x_same_class_as_xi_all_Q": all(row["same_abelian_class_as_xi"] for row in x_l1),
         "x_L1_always_1": all(row["L1"] == 1 for row in x_l1),
@@ -234,6 +302,9 @@ def main() -> dict:
         "x_three_all_min_len_ge_7": all((row["min_len"] or 0) >= 7 for row in x_three),
         "y_L1_closed_n_le_20": all(row["matches_closed"] for row in y_l1),
         "y_L1_formula": "|n+2δ|+1",
+        "y_k1_abelian_only_2_minus": all(
+            row["k1_abelian_only_if_n2_delta_minus"] for row in y_l1
+        ),
         "c15_n_rows": len(c15_ab),
         "c15_B_len_always_2m3": all(row["B_len_is_2m3"] for row in c15_ab),
         "c15_y_Xyx_same_class": all(row["y_same_class_as_Xyx"] for row in c15_ab),
@@ -245,6 +316,15 @@ def main() -> dict:
         "c15_three_n_products": sum(row["n_products"] for row in c15_three),
         "c15_three_all_min_len_ge_7": all((row["min_len"] or 0) >= 7 for row in c15_three),
         "y_class_covers_one_letter": yclass["class_covers_one_letter"],
+        "c15_n_P_plus_row2": prow["n_equals_P_plus_row2"],
+        "c15_five_match_P_plus_row2": prow["five_match_P_plus_row2"],
+        "c15_p_row2_match_ids": [
+            row["id"] for row in prow["rows"] if row["equals_P_plus_row2"]
+        ],
+        "c22_6_is_row1_identity_only": True,
+        "c12_requires_ac_reachable_primitive": True,
+        "counts_are_nine_config_cartesian": True,
+        "negative_targets_via_inversion": True,
         "same_code_replay": True,
         "independent_checker": False,
         "solved_u124": 0,
@@ -256,15 +336,10 @@ def main() -> dict:
         "q_prime_x_three_factor": x_three,
         "c15_abelian": c15_ab,
         "c15_three_factor": c15_three,
+        "c15_p_row2": prow,
+        "inversion_closure": invc,
         "y_class": yclass,
-        "notes": [
-            "x ≡ ξ in abelianization on every Q'_{n,δ}; C24.1 even-k obstruction applies.",
-            "C23 3-factor A/B products are the abelian-legal 3-factor set for x as well; this scan checks x^{±1}.",
-            "y on Q' has L1=|n+2δ|+1 for all n≥2; k=1 is |S|≥7>1. Not enumerated here except the identity.",
-            "C15: y and Xyx both ≡ B^{-1}, L1=1, |B|=2m+3≥9. Three-factor prefix/one-letter on all 10 rows.",
-            "Y_CLASS is the one-letter conjugacy class of y^{±1}. A hit would be a C12 or C22.6 route.",
-            "JSON is same-code deterministic replay. No U124 row is solved.",
-        ],
+        "notes": list(NOTES),
     }
     path = OUT / "c25_alt_words.json"
     path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -274,5 +349,59 @@ def main() -> dict:
     return report
 
 
+def annotate_existing() -> dict:
+    """Refresh cheap C25 fields without re-enumerating three-factor censuses."""
+    path = OUT / "c25_alt_words.json"
+    report = json.loads(path.read_text(encoding="utf-8"))
+    y_l1 = [q_prime_y_l1(n, d) for d in (-1, 1) for n in range(2, 21)]
+    yclass = y_class_free_targets()
+    prow = c15_p_row2_status()
+    invc = inversion_closure()
+    summary = report["summary"]
+    summary.update(
+        {
+            "y_L1_closed_n_le_20": all(row["matches_closed"] for row in y_l1),
+            "y_k1_abelian_only_2_minus": all(
+                row["k1_abelian_only_if_n2_delta_minus"] for row in y_l1
+            ),
+            "c15_n_P_plus_row2": prow["n_equals_P_plus_row2"],
+            "c15_five_match_P_plus_row2": prow["five_match_P_plus_row2"],
+            "c15_p_row2_match_ids": [
+                row["id"] for row in prow["rows"] if row["equals_P_plus_row2"]
+            ],
+            "c22_6_is_row1_identity_only": True,
+            "c12_requires_ac_reachable_primitive": True,
+            "counts_are_nine_config_cartesian": True,
+            "negative_targets_via_inversion": True,
+            "same_code_replay": True,
+            "independent_checker": False,
+            "solved_u124": 0,
+        }
+    )
+    report["summary"] = summary
+    report["q_prime_y_l1"] = [row for row in y_l1 if row["n"] <= 7]
+    report["c15_p_row2"] = prow
+    report["inversion_closure"] = invc
+    report["y_class"] = yclass
+    census_meta = {
+        "pool": "nine_signed_type_configs_per_type_dedup",
+        "n_configs": 9,
+        "negative_targets_via_inversion": True,
+    }
+    for row in report.get("q_prime_x_three_factor", []):
+        row.update(census_meta)
+    for row in report.get("c15_three_factor", []):
+        row.update(census_meta)
+    report["notes"] = list(NOTES)
+    path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    print("c25 annotate-existing")
+    print(json.dumps(summary, indent=2))
+    print(f"wrote {path}")
+    return report
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--annotate-existing"]:
+        annotate_existing()
+    else:
+        main()

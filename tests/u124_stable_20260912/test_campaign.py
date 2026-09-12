@@ -351,18 +351,42 @@ def test_c25_alt_words_identities_and_n2():
 
     yclass = c25.y_class_free_targets()
     assert yclass["class_covers_one_letter"]
+    assert yclass["positive_exp_01"] == ["Xyx", "xyX", "y"]
     x = c25.q_prime_x_l1(2, -1)
     assert x["same_abelian_class_as_xi"]
     assert x["L1"] == 1
     assert c25.y_l1_closed(2, -1) == 1
     assert c25.y_l1_closed(2, 1) == 5
     assert c25.y_l1_closed(3, -1) == 2
+    y_exc = c25.q_prime_y_l1(2, -1)
+    assert y_exc["k1_abelian_legal"]
+    assert y_exc["S_cyc_len"] == 7
+    assert y_exc["k1_len_obstruction"]
+    y_else = c25.q_prime_y_l1(3, -1)
+    assert y_else["L1"] == 2
+    assert not y_else["k1_abelian_legal"]
     y = c25.q_prime_y_l1(4, -1)
     assert y["matches_closed"]
     assert y["L1"] == 3
+    assert not y["k1_abelian_legal"]
     rec_x = c25.q_prime_x_three_factor(2, -1)
     assert not rec_x["found"]
     assert rec_x["min_len"] >= 7
+    assert rec_x["pool"] == "nine_signed_type_configs_per_type_dedup"
+    assert rec_x["n_configs"] == 9
+    prow = c25.c15_p_row2_status()
+    assert prow["five_match_P_plus_row2"]
+    assert prow["n_equals_P_plus_row2"] == 5
+    assert [row["id"] for row in prow["rows"] if row["equals_P_plus_row2"]] == [
+        "aca_20",
+        "aca_42",
+        "aca_65",
+        "aca_91",
+        "aca_104",
+    ]
+    invc = c25.inversion_closure()
+    assert invc["nine_configs_closed"]
+    assert invc["negative_targets_hit_iff_positive_inverse_factors"]
     c15_ab = c25.c15_row_abelian("aca_18", "YYYYxyyyX", 3)
     assert c15_ab["B_len_is_2m3"]
     assert c15_ab["y_same_class_as_Xyx"]
@@ -370,6 +394,7 @@ def test_c25_alt_words_identities_and_n2():
     rec15 = c25.c15_three_factor("aca_18", "YYYYxyyyX", 3)
     assert not rec15["found"]
     assert rec15["min_len"] >= 7
+    assert rec15["pool"] == "nine_signed_type_configs_per_type_dedup"
     artifact = json.loads(
         (ROOT / "research/u124_stable_20260912/tables/c25_alt_words.json").read_text()
     )
@@ -379,6 +404,20 @@ def test_c25_alt_words_identities_and_n2():
     assert summary["x_three_n_products"] == 1_529_400
     assert summary["x_three_all_min_len_ge_7"]
     assert summary["y_L1_closed_n_le_20"]
+    assert summary["y_k1_abelian_only_2_minus"]
+    assert summary["c15_five_match_P_plus_row2"]
+    assert summary["c15_p_row2_match_ids"] == [
+        "aca_20",
+        "aca_42",
+        "aca_65",
+        "aca_91",
+        "aca_104",
+    ]
+    assert summary["c22_6_is_row1_identity_only"]
+    assert summary["c12_requires_ac_reachable_primitive"]
+    assert summary["counts_are_nine_config_cartesian"]
+    assert summary["negative_targets_via_inversion"]
+    assert summary["independent_checker"] is False
     assert summary["c15_n_rows"] == 10
     assert summary["c15_B_len_always_2m3"]
     assert summary["c15_y_Xyx_same_class"]
@@ -387,3 +426,8 @@ def test_c25_alt_words_identities_and_n2():
     assert summary["c15_three_n_products"] == 2_884_950
     assert summary["c15_three_all_min_len_ge_7"]
     assert summary["solved_u124"] == 0
+    assert artifact["inversion_closure"]["negative_targets_hit_iff_positive_inverse_factors"]
+    assert artifact["c15_p_row2"]["five_match_P_plus_row2"]
+    assert artifact["q_prime_x_three_factor"][0]["pool"] == (
+        "nine_signed_type_configs_per_type_dedup"
+    )

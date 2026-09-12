@@ -936,18 +936,24 @@ hit/miss control in `mitm_controls`. `ingest/advisor_wave9.md`
 `(1,0)`, the same abelian class as `ξ`. C24.1 therefore applies
 verbatim: even `k` is impossible; `k=1` is the length obstruction
 `|R|=7 > 1`. The C23 abelian-legal 3-factor shapes A/B are exactly
-the 3-factor patterns for `x`. Prefix/one-letter enumeration on all
-12 `Q'_{n,δ}` (`1,529,400` products, same census as C23.2) never
-freely equals `x` or `x^{-1}`; every product has free length at
-least 7. Five-factor products against `x^{±1}` were already C24.2’s
-extra targets (no hit).
+the 3-factor patterns for exponent `(1,0)`. The census is nine
+signed-type Cartesian products after per-type unique conjugates
+(not `|F|^3`). Prefix/one-letter enumeration on all 12 `Q'_{n,δ}`
+(`1,529,400` products) never freely equals `x`. Products in this
+census abelianize to `(1,0)`, so they cannot equal `x^{-1}`; that
+negative target is ruled out by reversing and inverting the three
+factors, a bijection on the nine configs. Every enumerated product
+has free length at least 7. Five-factor products against `x^{±1}`
+were already C24.2’s extra targets (no hit).
 
 **C25.2 (`y` on `Q'`, closed L1, all `n≥2`).** The unique combination
-is `(a,b)=(n+2δ,\,-1)`, so `L1=|n+2δ|+1`. Checked for `n=2..20`.
-`k=1` is impossible: `|S|=n+5 ≥ 7 > 1`. Parity follows C24.1.
-No 3-factor census for `y` is claimed here. Smallest legal `k` is
-`1` only for `(n,δ)=(2,-1)` (still blocked by length); otherwise
-`k ≥ L1 ≥ 2`.
+is `(a,b)=(n+2δ,\,-1)`, so `L1=|n+2δ|+1` (closed form from
+`R_{\mathrm{ab}}=(δ,0)` and `S_{\mathrm{ab}}=(2+nδ,-1)`; `n=2..20`
+is a sanity check). `k=1` is **abelian-legal only** for
+`(n,δ)=(2,-1)`, where the combination is `(0,-1)` i.e. `S^{-1}`;
+that case is still blocked by `|S|=7>1`. For every other `n≥2` and
+both signs, `L1≥2`, so `k=1` is abelian-impossible. Parity follows
+C24.1. No 3-factor census for `y` is claimed here.
 
 **C25.3 (C15 conjugator class, `m≥3`).** On
 `⟨ YXXXyxYx , B ⟩` with `B` a consecutive BS(`m`,`m+1`) of cyclic
@@ -956,25 +962,32 @@ unique combination `(0,-1)` against `(D,B)`: they are abelian-
 equivalent to `B^{-1}`, `L1=1`, uniformly in `m` and both inner
 signs. `k=1` is impossible (`2m+3 ≥ 9 > 3`). Even `k` is impossible.
 The one-letter conjugacy class of `y^{±1}` is exactly
-`{y, Y, Xyx, xyX, XYx, xYX}`.
+`{y, Y, Xyx, xyX, XYx, xYX}`; the three words of exponent `(0,1)`
+are `{y, Xyx, xyX}`, and the other three are their inverses.
 Prefix/one-letter 3-factor products of the nine abelian-legal
-signed-type patterns, all ten C15 rows (`2,884,950` products): none
-equals a word in that class; every product has free length at
-least 7. A hit on `y` would have been a C12 primitive-relator
-route; a hit on `x^{-1}yx` would have been the C22.6 bridge to
-`P_{m,+1}`. Neither fired.
+signed-type patterns, all ten C15 rows (`2,884,950` Cartesian
+tuples): none equals a positive-class word. Negative-class words
+follow by inversion as in C25.1. Every product has free length at
+least 7. A hit would be a **normal-closure candidate** for that
+word, not an AC-reachable primitive relator (C12, which also
+needs C1) and not a legal C22.6 multiplication: C22.6 is only the
+free identity `D · Xyx = P_{m,+1}` **row 1**, and `Xyx` is not an
+AC donor. Exactly five of the ten C15 companions are literally
+`P_{m,+1}` row 2 (`YYYYX y^m x`); the other five have the opposite
+inner sign.
 
 **Expansion.** Restore-preserving AC3+AC2 as in C22/C23. No C0 in the
 enumerated products. C25.1–C25.2 are abelian identities plus the
-stated censuses. No witness was found.
+stated censuses. No witness was found. Same-code replay, not a
+second implementation.
 
 **What this does not rule out.** C15: `k=5,7,…`; conjugators outside
 the prefix/one-letter set. Q' defining word `y` at `k=L1` when
 `L1≥2`. Gate 1 `ξ` at `k≥7`. Longer conjugators. Materializing
-Lemma 11.
+Lemma 11. An explicit AC1–AC5 path from a future ncl hit.
 
 **U124.** Ten C15 best-table rows (aca_18,20,40,42,63,65,91,93,102,104)
 and the C16 Q' family. **Not a solve.**
 
 **Audit.** `code/c25_alt_words.py`, `tables/c25_alt_words.json`. Same-code
-deterministic replay. Advisor audit pending (`ingest/advisor_wave10.md`).
+deterministic replay. `ingest/advisor_wave10.md` **REVISE** applied.

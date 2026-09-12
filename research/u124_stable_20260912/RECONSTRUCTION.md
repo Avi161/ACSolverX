@@ -189,12 +189,18 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 
 ## Wave 11 (C25 alternative defining words and C15 conjugator, 2026-09-12)
 
-- On `Q'`, `x ≡ ξ` abelianly; 1,529,400 three-factor A/B products
-  never equal `x^{±1}` (min length 7).
-- `y` on `Q'` has closed `L1=|n+2δ|+1` for `n=2..20`; `k=1` blocked
-  by `|S|≥7`.
+- On `Q'`, `x ≡ ξ` abelianly; 1,529,400 nine-config Cartesian
+  three-factor products never equal `x` (min length 7). `X` is the
+  inversion-closure of the same tuples, not a same-class free hit.
+- `y` on `Q'` has closed `L1=|n+2δ|+1` for `n=2..20`. `k=1` is
+  abelian-legal only at `(n,δ)=(2,-1)`, where `|S|=7>1` still blocks
+  it; elsewhere `k=1` is abelian-impossible.
 - On C15, `y` and `x^{-1}yx` both `≡ B^{-1}`, `L1=1`, `|B|=2m+3`.
-  Ten-row three-factor census: 2,884,950 products, min length 7, no
-  hit on the one-letter conjugacy class of `y^{±1}`.
-- Still **0/124**. No certificate JSONL rows.
+  Ten-row three-factor census: 2,884,950 nine-config Cartesian
+  tuples, min length 7, no hit on the positive one-letter class of
+  `y`. A hit would have been a normal-closure candidate, not a C12
+  primitive or a C22.6 AC donor. C22.6 is a row-1 identity; exactly
+  five companions equal `P_{m,+1}` row 2.
+- Advisor REVISE applied (`ingest/advisor_wave10.md`). Still **0/124**.
+  No certificate JSONL rows.
 

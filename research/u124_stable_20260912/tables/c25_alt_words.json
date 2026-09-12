@@ -21,7 +21,21 @@
     "y_class_covers_one_letter": true,
     "same_code_replay": true,
     "independent_checker": false,
-    "solved_u124": 0
+    "solved_u124": 0,
+    "y_k1_abelian_only_2_minus": true,
+    "c15_n_P_plus_row2": 5,
+    "c15_five_match_P_plus_row2": true,
+    "c15_p_row2_match_ids": [
+      "aca_20",
+      "aca_42",
+      "aca_65",
+      "aca_91",
+      "aca_104"
+    ],
+    "c22_6_is_row1_identity_only": true,
+    "c12_requires_ac_reachable_primitive": true,
+    "counts_are_nine_config_cartesian": true,
+    "negative_targets_via_inversion": true
   },
   "q_prime_x_l1": [
     {
@@ -376,6 +390,8 @@
       "matches_closed": true,
       "S_cyc_len": 7,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": true,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 1
@@ -394,6 +410,8 @@
       "matches_closed": true,
       "S_cyc_len": 8,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 2
@@ -412,6 +430,8 @@
       "matches_closed": true,
       "S_cyc_len": 9,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 3
@@ -430,6 +450,8 @@
       "matches_closed": true,
       "S_cyc_len": 10,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 4
@@ -448,6 +470,8 @@
       "matches_closed": true,
       "S_cyc_len": 11,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 5
@@ -466,6 +490,8 @@
       "matches_closed": true,
       "S_cyc_len": 12,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 6
@@ -484,6 +510,8 @@
       "matches_closed": true,
       "S_cyc_len": 7,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 5
@@ -502,6 +530,8 @@
       "matches_closed": true,
       "S_cyc_len": 8,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 6
@@ -520,6 +550,8 @@
       "matches_closed": true,
       "S_cyc_len": 9,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 7
@@ -538,6 +570,8 @@
       "matches_closed": true,
       "S_cyc_len": 10,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 8
@@ -556,6 +590,8 @@
       "matches_closed": true,
       "S_cyc_len": 11,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": false,
       "even_k_forbidden": true,
       "min_k": 9
@@ -574,6 +610,8 @@
       "matches_closed": true,
       "S_cyc_len": 12,
       "k1_len_obstruction": true,
+      "k1_abelian_legal": false,
+      "k1_abelian_only_if_n2_delta_minus": true,
       "odd_k_forbidden": true,
       "even_k_forbidden": false,
       "min_k": 10
@@ -591,13 +629,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 2,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 30,
@@ -610,13 +650,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 3,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 32,
@@ -629,13 +671,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 4,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 34,
@@ -648,13 +692,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 5,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 36,
@@ -667,13 +713,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 6,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 38,
@@ -686,13 +734,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 7,
       "delta": -1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 28,
@@ -705,13 +755,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 2,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 30,
@@ -724,13 +776,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 3,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 32,
@@ -743,13 +797,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 4,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 34,
@@ -762,13 +818,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 5,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 36,
@@ -781,13 +839,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 6,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 38,
@@ -800,13 +860,15 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "n": 7,
       "delta": 1,
       "targets": [
         "x",
         "X"
-      ]
+      ],
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     }
   ],
   "c15_abelian": [
@@ -1683,7 +1745,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_18",
       "m": 3,
       "targets": [
@@ -1695,7 +1757,9 @@
         "xYX"
       ],
       "B_cyc_len": 9,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 35,
@@ -1708,7 +1772,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_20",
       "m": 3,
       "targets": [
@@ -1720,7 +1784,9 @@
         "xYX"
       ],
       "B_cyc_len": 9,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 39,
@@ -1733,7 +1799,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_40",
       "m": 4,
       "targets": [
@@ -1745,7 +1811,9 @@
         "xYX"
       ],
       "B_cyc_len": 11,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 39,
@@ -1758,7 +1826,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_42",
       "m": 4,
       "targets": [
@@ -1770,7 +1838,9 @@
         "xYX"
       ],
       "B_cyc_len": 11,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 43,
@@ -1783,7 +1853,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_63",
       "m": 5,
       "targets": [
@@ -1795,7 +1865,9 @@
         "xYX"
       ],
       "B_cyc_len": 13,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 43,
@@ -1808,7 +1880,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_65",
       "m": 5,
       "targets": [
@@ -1820,7 +1892,9 @@
         "xYX"
       ],
       "B_cyc_len": 13,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 47,
@@ -1833,7 +1907,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_91",
       "m": 6,
       "targets": [
@@ -1845,7 +1919,9 @@
         "xYX"
       ],
       "B_cyc_len": 15,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 47,
@@ -1858,7 +1934,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_93",
       "m": 6,
       "targets": [
@@ -1870,7 +1946,9 @@
         "xYX"
       ],
       "B_cyc_len": 15,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 51,
@@ -1883,7 +1961,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_102",
       "m": 7,
       "targets": [
@@ -1895,7 +1973,9 @@
         "xYX"
       ],
       "B_cyc_len": 17,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     },
     {
       "n_conjugators": 51,
@@ -1908,7 +1988,7 @@
       "n_len_le_3": 0,
       "hit": null,
       "found": false,
-      "pool": "globally_deduplicated_per_type_then_configs",
+      "pool": "nine_signed_type_configs_per_type_dedup",
       "id": "aca_104",
       "m": 7,
       "targets": [
@@ -1920,7 +2000,9 @@
         "xYX"
       ],
       "B_cyc_len": 17,
-      "D_cyc_len": 8
+      "D_cyc_len": 8,
+      "n_configs": 9,
+      "negative_targets_via_inversion": true
     }
   ],
   "y_class": {
@@ -1940,14 +2022,144 @@
       "xyX",
       "xYX"
     ],
-    "class_covers_one_letter": true
+    "class_covers_one_letter": true,
+    "positive_exp_01": [
+      "Xyx",
+      "xyX",
+      "y"
+    ],
+    "negative_exp_0m1": [
+      "XYx",
+      "Y",
+      "xYX"
+    ],
+    "inversion_pairs": [
+      [
+        "Xyx",
+        "XYx"
+      ],
+      [
+        "xyX",
+        "xYX"
+      ],
+      [
+        "y",
+        "Y"
+      ]
+    ]
   },
   "notes": [
     "x \u2261 \u03be in abelianization on every Q'_{n,\u03b4}; C24.1 even-k obstruction applies.",
-    "C23 3-factor A/B products are the abelian-legal 3-factor set for x as well; this scan checks x^{\u00b11}.",
-    "y on Q' has L1=|n+2\u03b4|+1 for all n\u22652; k=1 is |S|\u22657>1. Not enumerated here except the identity.",
-    "C15: y and Xyx both \u2261 B^{-1}, L1=1, |B|=2m+3\u22659. Three-factor prefix/one-letter on all 10 rows.",
-    "Y_CLASS is the one-letter conjugacy class of y^{\u00b11}. A hit would be a C12 or C22.6 route.",
+    "Counts are nine signed-type Cartesian products after per-type unique conjugates, not |F|^3.",
+    "Enumerated products abelianize to (1,0) on Q' x and to (0,1) on C15; negative targets follow by reversing and inverting factors.",
+    "y on Q': L1=|n+2\u03b4|+1. k=1 is abelian-legal only for (n,\u03b4)=(2,-1), and then |S|=7>1. Elsewhere k=1 is abelian-impossible.",
+    "C15: y and Xyx both \u2261 B^{-1}, L1=1, |B|=2m+3\u22659. A 3-factor hit would be a normal-closure candidate, not a C12/C22.6 path.",
+    "C22.6 is a row-1 free identity; exactly five C15 companions equal P_{m,+1} row 2.",
     "JSON is same-code deterministic replay. No U124 row is solved."
-  ]
+  ],
+  "c15_p_row2": {
+    "n_equals_P_plus_row2": 5,
+    "n_rows": 10,
+    "five_match_P_plus_row2": true,
+    "c22_6_is_row1_donor_identity": true,
+    "rows": [
+      {
+        "id": "aca_18",
+        "m": 3,
+        "companion": "YYYYxyyyX",
+        "equals_P_plus_row2": false,
+        "equals_P_minus_row2": false,
+        "P_plus_row2": "YYYYXyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_20",
+        "m": 3,
+        "companion": "YYYYXyyyx",
+        "equals_P_plus_row2": true,
+        "equals_P_minus_row2": true,
+        "P_plus_row2": "YYYYXyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_40",
+        "m": 4,
+        "companion": "YYYYYxyyyyX",
+        "equals_P_plus_row2": false,
+        "equals_P_minus_row2": false,
+        "P_plus_row2": "YYYYYXyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_42",
+        "m": 4,
+        "companion": "YYYYYXyyyyx",
+        "equals_P_plus_row2": true,
+        "equals_P_minus_row2": true,
+        "P_plus_row2": "YYYYYXyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_63",
+        "m": 5,
+        "companion": "YYYYYYxyyyyyX",
+        "equals_P_plus_row2": false,
+        "equals_P_minus_row2": false,
+        "P_plus_row2": "YYYYYYXyyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_65",
+        "m": 5,
+        "companion": "YYYYYYXyyyyyx",
+        "equals_P_plus_row2": true,
+        "equals_P_minus_row2": true,
+        "P_plus_row2": "YYYYYYXyyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_91",
+        "m": 6,
+        "companion": "YYYYYYYXyyyyyyx",
+        "equals_P_plus_row2": true,
+        "equals_P_minus_row2": true,
+        "P_plus_row2": "YYYYYYYXyyyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_93",
+        "m": 6,
+        "companion": "YYYYYYYxyyyyyyX",
+        "equals_P_plus_row2": false,
+        "equals_P_minus_row2": false,
+        "P_plus_row2": "YYYYYYYXyyyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_102",
+        "m": 7,
+        "companion": "YYYYYYYYxyyyyyyyX",
+        "equals_P_plus_row2": false,
+        "equals_P_minus_row2": false,
+        "P_plus_row2": "YYYYYYYYXyyyyyyyx",
+        "P_row2_independent_of_delta": true
+      },
+      {
+        "id": "aca_104",
+        "m": 7,
+        "companion": "YYYYYYYYXyyyyyyyx",
+        "equals_P_plus_row2": true,
+        "equals_P_minus_row2": true,
+        "P_plus_row2": "YYYYYYYYXyyyyyyyx",
+        "P_row2_independent_of_delta": true
+      }
+    ]
+  },
+  "inversion_closure": {
+    "map": "(f1,f2,f3) -> (f3^{-1}, f2^{-1}, f1^{-1})",
+    "Q_x_enumerated_class": "(1,0); checks x; X follows by inversion",
+    "C15_enumerated_class": "(0,1); checks y, Xyx, xyX; inverses follow",
+    "nine_configs_closed": true,
+    "negative_targets_hit_iff_positive_inverse_factors": true
+  }
 }

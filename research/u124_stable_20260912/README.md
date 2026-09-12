@@ -65,7 +65,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C22: `.../code/c22_gate_witness.py`.
    C23: `.../code/c23_three_factor.py`.
    C24: `.../code/c24_even_k.py`.
-   C25: `.../code/c25_alt_words.py`.
+   C25: `.../code/c25_alt_words.py` (full census) or `--annotate-existing`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -85,10 +85,13 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    `ξ`; Gate 2 on `Q'` has even `L1`, so odd `k` is impossible, and
     four-factor hits only the `δ=−1`, `n=2..5` window (no hit).
     Advisor REVISE applied. C25: `x` is abelian-equivalent to `ξ` on
-    `Q'` (3-factor vs `x^{±1}` misses); `y` has `L1=|n+2δ|+1`; on C15,
-    `y` and `x^{-1}yx` are abelian-equivalent to `B^{-1}` (`L1=1`,
-    `|B|=2m+3`), and 2,884,950 three-factor products never hit that
-    class. Still 0/124.
+    `Q'` (nine-config Cartesian 3-factor products miss `x`; `X` by
+    inversion); `y` has `L1=|n+2δ|+1`, with `k=1` abelian-legal only
+    at `(n,δ)=(2,-1)` and then blocked by `|S|=7`; on C15, `y` and
+    `x^{-1}yx` are abelian-equivalent to `B^{-1}` (`L1=1`, `|B|=2m+3`),
+    and 2,884,950 products miss the positive one-letter class of `y`.
+    A hit would be a normal-closure candidate, not a C12/C22.6 path.
+    Still 0/124.
 
 ## File ownership
 
