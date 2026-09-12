@@ -142,7 +142,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     REVISE applied. Advisor APPROVE. C36: listed `YXXYxxyX` BS
     companions (`y ≡ C^{-1}`, `L1=1`); k=3 nine-config misses
     (`1,549,596` products, observed min length 9). Plan advisor REVISE
-    applied. Still 0/124.
+    applied. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 
