@@ -118,6 +118,40 @@ def labeled_three_factor_configs(
     return labeled
 
 
+C35_ORIENTATION = {
+    "Rplus": "D^{-1}",
+    "Rminus": "D",
+    "Splus": "C",
+    "Sminus": "C^{-1}",
+}
+C31_ORIENTATION = {
+    "Rplus": "C^{-1}",
+    "Rminus": "C",
+    "Splus": "D",
+    "Sminus": "D^{-1}",
+}
+
+
+def reconstruct_hit(hit: dict, bases: dict[str, str]) -> dict:
+    """Replay a hit outside the scanner loop: rebuild each conjugate, then the product."""
+    rebuilt = []
+    consistent = True
+    for typ, factor, g in zip(hit["signed_types"], hit["factors"], hit["conjugators"]):
+        word = c22.conjugate(bases[typ], g)
+        rebuilt.append(word)
+        if word != factor:
+            consistent = False
+    replay = free_reduce("".join(rebuilt))
+    return {
+        "rebuilt_factors": rebuilt,
+        "factor_conjugator_consistent": consistent,
+        "replay_outside_scanner": replay,
+        "replay_equals_hit_word": replay == hit["word"],
+        "ok": consistent and replay == hit["word"],
+        "independent_checker": False,
+    }
+
+
 def scan_three_against_witness(
     r_plus_word: str,
     r_minus_word: str,
@@ -125,6 +159,7 @@ def scan_three_against_witness(
     s_minus_word: str,
     conjugators: list[str],
     targets: set[str],
+    orientation: dict[str, str] | None = None,
 ) -> dict:
     r_plus = c23.unique_conjugates(r_plus_word, conjugators)
     r_minus = c23.unique_conjugates(r_minus_word, conjugators)
@@ -180,12 +215,7 @@ def scan_three_against_witness(
         "n_configs": 9,
         "negative_targets_via_inversion": True,
         "hit_witness_keys": list(HIT_WITNESS_KEYS),
-        "orientation": {
-            "Rplus": "D^{-1}",
-            "Rminus": "D",
-            "Splus": "C",
-            "Sminus": "C^{-1}",
-        },
+        "orientation": dict(orientation or C35_ORIENTATION),
     }
 
 

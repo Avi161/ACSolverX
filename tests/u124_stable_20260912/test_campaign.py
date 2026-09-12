@@ -960,3 +960,72 @@ def test_c35_yxxx_family_identities():
     }
 
 
+def test_c36_yxxyx_family_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c35_yxxx_family as c35  # type: ignore
+    import c36_yxxyx_family as c36  # type: ignore
+    from experiments.equivalence_classes.lib.words import free_reduce  # type: ignore
+
+    assert c22.exp_on(c36.DONOR, "xy") == (-1, -1)
+    assert c36.y_combo_from_listed_c_exp(0, -1) == (0, -1, 1)
+    try:
+        c36.y_combo_from_listed_c_exp(1, 0)
+        assert False, "combo must stay restricted to listed C_ab=(0,-1)"
+    except ValueError:
+        pass
+    assert c36.ORIENTATION == c35.C31_ORIENTATION
+    assert c36.ORIENTATION != c35.C35_ORIENTATION
+    ab = c36.abelian_row("aca_21", "YYYYxyyyX")
+    assert ab["y_L1"] == 1
+    assert ab["y_combo"]["a"] == 0 and ab["y_combo"]["b"] == -1
+    assert ab["companion_bs_mm1"]
+    assert ab["x_L1"] == 2
+    assert ab["x_combo"]["a"] == -1 and ab["x_combo"]["b"] == 1
+    rec = c36.three_factor_row("aca_21", "YYYYxyyyX")
+    assert rec["n_products"] == 131472
+    assert rec["n_products_equals_typed"]
+    assert rec["min_len"] == 9
+    assert not rec["found"]
+    assert rec["orientation"] == c36.ORIENTATION
+    assert rec["hit_replay_outside_scanner"] is None
+    planted = c36.planted()
+    assert planted["ok"]
+    assert planted["orientation"] == c36.ORIENTATION
+    assert planted["independent_checker"] is False
+    witness = planted["hit"]
+    assert witness["word"] == "y"
+    assert planted["hit_replay_outside_scanner"]["ok"]
+    assert free_reduce("".join(witness["factors"])) == "y"
+    json_path = ROOT / "research/u124_stable_20260912/tables/c36_yxxyx_family.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 7
+    assert summary["n_exceptional_rows"] == 0
+    assert summary["all_y_combo_zero_minus_one"]
+    assert summary["all_companion_bs_mm1"]
+    assert summary["combo_restricted_to_listed_C_ab"]
+    assert summary["all_x_L1_2"]
+    assert summary["disjoint_donor_row_presentation_pairs"]
+    assert summary["not_disjoint_companion_word_set"]
+    assert summary["not_a_c31_rerun"]
+    assert summary["three_all_orientation_c31"]
+    assert not summary["three_any_hit"]
+    assert summary["three_n_products"] == 1_549_596
+    assert summary["three_products_equal_typed"]
+    assert summary["three_min_len"] == 9
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == {
+        "aca_21": 131472,
+        "aca_25": 148275,
+        "aca_47": 183924,
+        "aca_50": 204849,
+        "aca_69": 248808,
+        "aca_73": 274311,
+        "aca_96": 357957,
+    }
+
+

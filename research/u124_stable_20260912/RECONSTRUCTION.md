@@ -340,5 +340,21 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   REVISE applied (`ingest/advisor_c35_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave20.md`).
 
+## Wave 22 (C36 YXXYxxyX BS family, 2026-09-12)
+
+- Seven best-table rows with donor `YXXYxxyX`. All companions are
+  consecutive `BS(m,m+1)` with `C_ab=(0,-1)`, so on those listed rows
+  `y ≡ C^{-1}`, `L1=1`. Not every unimodular companion. No exceptional
+  row. C31 orientation `R^+ = C^{-1}`. Disjoint donor/row presentation
+  pairs from C31, not a disjoint companion-word pool.
+- k=3 nine-config: `1,549,596` typed Cartesian products, equal to typed
+  size, observed min length 9, no hit on `{y, Xyx, xyX}`. Hit witnesses
+  would be replayed outside the scanner; unused because there was no
+  hit. Observed min 9 is a C36 census statistic, not a comparison with
+  C31. Still **0/124**. No certificate JSONL rows.
+  `independent_checker=false`. Plan advisor REVISE applied
+  (`ingest/advisor_c36_plan.md`). Census advisor audit pending.
+
+
 
 
