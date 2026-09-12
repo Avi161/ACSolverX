@@ -301,5 +301,16 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   No certificate JSONL rows. `independent_checker=false`.
   Advisor REVISE applied (`ingest/advisor_wave17.md`).
 
+## Wave 19 (C33 remaining length-7 D_ab=(0,-1) donors, 2026-09-12)
+
+- Unused compact donors `YXyXYxx` (six rows) and `YYXXyxx` (six rows)
+  have the same abelian type as C29: exponent `(0,-1)`, cyclic length
+  7, `y ≡ D^{-1}`, `L1=1`. Not a re-run of C29. k=3 nine-config:
+  `1,737,522` typed Cartesian products, equal to typed size, observed
+  min length 7, no hit on `{y, Xyx, xyX}`. A hit would have been a
+  normal-closure candidate, not a C12 primitive. Still **0/124**.
+  No certificate JSONL rows. `independent_checker=false`.
+  Advisor audit pending.
+
 
 

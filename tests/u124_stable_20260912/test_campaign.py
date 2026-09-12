@@ -791,3 +791,49 @@ def test_c32_x_exact_l1_identities():
         assert (a, b, l1) == (row["combo_a"], row["combo_b"], row["L1"])
     assert c30.x_class_exponents()["one_letter_class_complete"]
 
+
+def test_c33_len7_donors_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
+    import c33_len7_donors as c33  # type: ignore
+
+    assert c22.exp_on("YXyXYxx", "xy") == (0, -1)
+    assert c22.exp_on("YYXXyxx", "xy") == (0, -1)
+    ab = c33.abelian_row("aca_8", "YXyXYxx", "YYXYXyyx")
+    assert ab["y_L1"] == 1
+    assert ab["y_combo"]["a"] == -1 and ab["y_combo"]["b"] == 0
+    assert ab["D_cyc_len"] == 7
+    ab43 = c33.abelian_row("aca_43", "YYXXyxx", "YYxyXYxyXyX")
+    assert ab43["y_L1"] == 1
+    assert ab43["x_L1"] == 1
+    json_path = ROOT / "research/u124_stable_20260912/tables/c33_len7_donors.json"
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 12
+    assert summary["n_donors"] == 2
+    assert summary["all_D_exp_zero_minus_one"]
+    assert summary["all_y_combo_minus_one_zero"]
+    assert summary["not_a_c29_rerun"]
+    assert not summary["three_any_hit"]
+    assert summary["three_n_products"] == 1_737_522
+    assert summary["three_products_equal_typed"]
+    assert summary["three_min_len"] == 7
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == {
+        "aca_8": 103293,
+        "aca_85": 181917,
+        "aca_98": 215109,
+        "aca_121": 103293,
+        "aca_122": 126225,
+        "aca_123": 152361,
+        "aca_1": 90156,
+        "aca_7": 111168,
+        "aca_31": 135252,
+        "aca_43": 162624,
+        "aca_72": 162624,
+        "aca_99": 193500,
+    }
+

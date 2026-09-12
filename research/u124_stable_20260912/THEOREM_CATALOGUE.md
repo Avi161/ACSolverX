@@ -1312,8 +1312,8 @@ conjugators, including `u`. Equality was tested after free reduction
 only against `{x, Yxy, yxY}`. No cyclic-reduction or conjugacy
 quotient, ambient `Aut(F_2)`, or Tietze identification was used;
 freely reduced longer conjugates of `x` not among these three targets
-remain untested. C31 leftover `k=5,7,…` for `y`. Unused donors
-`YXyXYxx` / `YYXXyxx`. Depth ≥ 3 AC2. Lemma 11.
+remain untested. C31 leftover `k=5,7,…` for `y`. Remaining length-7
+donors with `D_ab=(0,-1)` are C33. Depth ≥ 3 AC2. Lemma 11.
 
 **U124.** Eight best-table rows aca_22, 23, 32, 46, 49, 68, 70, 89.
 **Not a solve.** Bounded negative for this exact-L1 typed pool.
@@ -1324,6 +1324,43 @@ census fact, not a length theorem. Tests independently check the
 algebra and rerun only aca_23/aca_32; they do not independently replay
 all eight cells. `independent_checker=false`.
 `ingest/advisor_wave17.md` **REVISE** applied.
+
+---
+
+## C33. Remaining length-7 donors with `D_ab=(0,-1)`: `y ≡ D^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
+
+**C33.1 (abelian).** Same identity as C29.1: any compact donor with
+exponent `(0,-1)` and a unimodular companion has unique `y`-combination
+`(-1,0)`, so `L1=1`. Even `k` is abelian-impossible. `k=1` is blocked
+by cyclic length 7. This census covers the two unused such donors on
+the best table, not a re-run of C29's `YXXyxYx`:
+
+- `YXyXYxx`: aca_8, 85, 98, 121, 122, 123
+- `YYXXyxx`: aca_1, 7, 31, 43, 72, 99
+
+**C33.2 (k=3 nine-config).** Same signed-type Cartesian products as
+C23/C25.3/C29.2, with `R^+ = D^{-1}` and `S = C`, prefix/one-letter
+conjugators, per-type unique conjugates. Targets `{y, Xyx, xyX}`.
+Inverse class by reversing and inverting factors. Typed Cartesian
+enumeration: `1,737,522` products, equal to the typed size, observed
+minimum free length 7 on every row, none equal to a target. Counts are
+nine-config typed sizes, not `|F|^3`. Observed minimum 7 is a census
+fact for this pool, not a length theorem and not a comparative control
+against C29.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
+be a **normal-closure candidate**, not a C12 primitive.
+
+**What this does not rule out.** `k=5,7,…`. Longer conjugators,
+including `u`. Defining word `x` (L1 varies; aca_43 has `x` with
+`L1=1`). Depth ≥ 3 AC2. Lemma 11.
+
+**U124.** Twelve best-table rows listed above. **Not a solve.** Bounded
+negative for this typed k=3 pool.
+
+**Audit.** `code/c33_len7_donors.py`, `tables/c33_len7_donors.json`.
+Same-code deterministic replay plus planted nine-config control.
+`independent_checker=false`. Advisor audit pending.
 
 
 
