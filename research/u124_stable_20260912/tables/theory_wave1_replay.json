@@ -1,0 +1,3104 @@
+{
+  "q_to_q_prime": {
+    "n_checked": 14,
+    "all_freely_equal": true,
+    "all_cyclically_equal": true,
+    "rows": [
+      {
+        "n": 2,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 14
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 15
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 16
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 17
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 18
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXXXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 19
+      },
+      {
+        "n": 8,
+        "delta": -1,
+        "Q": [
+          "XYxyxxyXYXX",
+          "YxxyXXXXXXXXYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyXY",
+          "YxxyXXXXXXXXY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXXXXY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 20
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 14
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 15
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 16
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 17
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 18
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxxxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 19
+      },
+      {
+        "n": 8,
+        "delta": 1,
+        "Q": [
+          "XYxyxxyxYXX",
+          "YxxyxxxxxxxxYXX"
+        ],
+        "apply_hom_y_to_xinv2_y": [
+          "XYxyyxY",
+          "YxxyxxxxxxxxY"
+        ],
+        "claimed_Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxxxxY"
+        ],
+        "freely_equal": true,
+        "cyclically_equal": true,
+        "cyc_total_Q_prime": 20
+      }
+    ]
+  },
+  "c16_u124": {
+    "n_checked": 12,
+    "all_H2_H3": true,
+    "all_faithful": true,
+    "all_c_free": true,
+    "all_plus_loops": true,
+    "all_minus_rotation_absent": true,
+    "minus_row1_x_exponent": [
+      -2
+    ],
+    "plus_row1_x_exponent": [
+      0
+    ],
+    "records": [
+      {
+        "n": 2,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -2
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxUUxuuXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxuX",
+          "illegal_cyc_total": 12,
+          "legal_S_cyc_total": 17
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -3
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxxUUxuuXXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxxuXX",
+          "illegal_cyc_total": 14,
+          "legal_S_cyc_total": 19
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -4
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxxxUUxuuXXXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxxxuXXX",
+          "illegal_cyc_total": 16,
+          "legal_S_cyc_total": 21
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -5
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxxxxUUxuuXXXXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxxxxuXXXX",
+          "illegal_cyc_total": 18,
+          "legal_S_cyc_total": 23
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -6
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxxxxxUUxuuXXXXXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxxxxxuXXXXX",
+          "illegal_cyc_total": 20,
+          "legal_S_cyc_total": 25
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "Q_prime": [
+          "XYxyyXY",
+          "YxxyXXXXXXXY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              -7
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuXUU",
+        "Bhat": "UxxxxxxxUUxuuXXXXXXX",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": false,
+        "C16_1_loop": null,
+        "illegal_rho_on_minus": {
+          "rho_is_rotation_of_Ahat_inv": false,
+          "illegal_product": "UxxxxxxxuXXXXXX",
+          "illegal_cyc_total": 22,
+          "legal_S_cyc_total": 27
+        },
+        "S_x_exponent_row1": -2
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXUUxuuxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXXUUxuuxxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXXXUUxuuxxxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXXXXUUxuuxxxxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXXXXXUUxuuxxxxxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "Q_prime": [
+          "XYxyyxY",
+          "YxxyxxxxxxxY"
+        ],
+        "magnus_R": {
+          "blocks": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "height": 0
+        },
+        "magnus_S": {
+          "blocks": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "height": -1
+        },
+        "H2": true,
+        "H3": true,
+        "H2_exact_U124": true,
+        "H3_exact_U124": true,
+        "faithful_R": true,
+        "faithful_S": true,
+        "isolator_one_y_after_gate1": true,
+        "Ahat": "XuuuxUU",
+        "Bhat": "UXXXXXXXUUxuuxxxxxxx",
+        "Ahat_matches_S_row1": true,
+        "Bhat_matches_S_row2": true,
+        "Ahat_c_free": true,
+        "C16_1_rotation_legal": true,
+        "C16_1_loop": true,
+        "illegal_rho_on_minus": null,
+        "S_x_exponent_row1": 0
+      }
+    ]
+  },
+  "c16_parameter_sweep": {
+    "n_checked": 1080,
+    "n_ok": 1080,
+    "n_fail": 0,
+    "failures": []
+  },
+  "c17": {
+    "identity_rows": 64,
+    "identity_ok_count": 100,
+    "all_defined_shears_literal": true,
+    "positive_control_2_9_to_0_4": true,
+    "terminal_one_x": true,
+    "terminal": "UUUUUxuuuu",
+    "orbits": {
+      "u124_c7_e2": [
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "no_div_c1_e4": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "positive_c2_e9": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "smallest_c1_e3": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "orbit_u124_flank_never_drops": true,
+    "S_plus_is_BS32_and_E": true,
+    "S_minus_not_BS": true,
+    "S_plus_H3_fails": true,
+    "instances": [
+      {
+        "n": 2,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxUUxuuXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxUUxuuXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxxUUxuuXXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxxxUUxuuXXXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxxxxUUxuuXXXXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxxxxxUUxuuXXXXXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 8,
+        "delta": -1,
+        "S_row1": "XuuuXUU",
+        "S_row2": "UxxxxxxxxUUxuuXXXXXXXX",
+        "row1_is_BS32": false,
+        "row2_is_E": true,
+        "row1_x_exp": -2,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXUUxuuxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXUUxuuxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXXUUxuuxxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXXXUUxuuxxxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXXXXUUxuuxxxxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXXXXXUUxuuxxxxxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      },
+      {
+        "n": 8,
+        "delta": 1,
+        "S_row1": "XuuuxUU",
+        "S_row2": "UXXXXXXXXUUxuuxxxxxxxx",
+        "row1_is_BS32": true,
+        "row2_is_E": true,
+        "row1_x_exp": 0,
+        "H3_3_pow_n_divides_2": false,
+        "H3": false
+      }
+    ],
+    "identities": [
+      {
+        "M": 2,
+        "N": 1,
+        "c": -3,
+        "e": 1,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": -3,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": -3,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": -3,
+        "e": 4,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 0,
+        "e": 1,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 0,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 0,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 0,
+        "e": 4,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 2,
+        "e": 1,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 2,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 2,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 2,
+        "e": 4,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 5,
+        "e": 1,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 5,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 5,
+        "e": 2,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 2,
+        "N": 1,
+        "c": 5,
+        "e": 4,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": -3,
+        "e": 2,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": -3,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": -3,
+        "e": 6,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": -3,
+        "e": 18,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 0,
+        "e": 2,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 0,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 0,
+        "e": 6,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 0,
+        "e": 18,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 2,
+        "e": 2,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 2,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 2,
+        "e": 6,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 2,
+        "e": 18,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 5,
+        "e": 2,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 5,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 5,
+        "e": 6,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 3,
+        "N": 2,
+        "c": 5,
+        "e": 18,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": -3,
+        "e": 3,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": -3,
+        "e": 6,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": -3,
+        "e": 12,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": -3,
+        "e": 48,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 0,
+        "e": 3,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 0,
+        "e": 6,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 0,
+        "e": 12,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 0,
+        "e": 48,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 2,
+        "e": 3,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 2,
+        "e": 6,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 2,
+        "e": 12,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 2,
+        "e": 48,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 5,
+        "e": 3,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 5,
+        "e": 6,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 5,
+        "e": 12,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 4,
+        "N": 3,
+        "c": 5,
+        "e": 48,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": -3,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": -3,
+        "e": 8,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": -3,
+        "e": 20,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": -3,
+        "e": 100,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 0,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 0,
+        "e": 8,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 0,
+        "e": 20,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 0,
+        "e": 100,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 2,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 2,
+        "e": 8,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 2,
+        "e": 20,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 2,
+        "e": 100,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 5,
+        "e": 4,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 5,
+        "e": 8,
+        "down_ok": null,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 5,
+        "e": 20,
+        "down_ok": true,
+        "up_ok": true
+      },
+      {
+        "M": 5,
+        "N": 4,
+        "c": 5,
+        "e": 100,
+        "down_ok": true,
+        "up_ok": true
+      }
+    ]
+  },
+  "c18": {
+    "euclid_ok": true,
+    "euclid_rows": [
+      {
+        "m": 2,
+        "k": 3,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 2,
+        "k": 5,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 2,
+        "k": 7,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 3,
+        "k": 4,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 3,
+        "k": 7,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 3,
+        "k": 10,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 5,
+        "k": 6,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 5,
+        "k": 11,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 5,
+        "k": 16,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 7,
+        "k": 8,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 7,
+        "k": 15,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      },
+      {
+        "m": 7,
+        "k": 22,
+        "gcd": 1,
+        "isolator": true,
+        "back_sub_empty": true
+      }
+    ],
+    "gcd_negatives": [
+      {
+        "k": 6,
+        "m": 4,
+        "gcd": 2,
+        "x_not_recoverable": true
+      },
+      {
+        "k": 4,
+        "m": 2,
+        "gcd": 2,
+        "x_not_recoverable": true
+      },
+      {
+        "k": 9,
+        "m": 6,
+        "gcd": 3,
+        "x_not_recoverable": true
+      }
+    ],
+    "radix_ok": true,
+    "radix": [
+      {
+        "m": 1,
+        "compressed": "x",
+        "n_extra_rows": 0,
+        "moves_theta_m": 0,
+        "ok": true
+      },
+      {
+        "m": 2,
+        "compressed": "a",
+        "n_extra_rows": 1,
+        "moves_theta_m": 1,
+        "ok": true
+      },
+      {
+        "m": 3,
+        "compressed": "xa",
+        "n_extra_rows": 1,
+        "moves_theta_m": 1,
+        "ok": true
+      },
+      {
+        "m": 4,
+        "compressed": "b",
+        "n_extra_rows": 2,
+        "moves_theta_m": 3,
+        "ok": true
+      },
+      {
+        "m": 5,
+        "compressed": "xb",
+        "n_extra_rows": 2,
+        "moves_theta_m": 3,
+        "ok": true
+      },
+      {
+        "m": 7,
+        "compressed": "xab",
+        "n_extra_rows": 2,
+        "moves_theta_m": 4,
+        "ok": true
+      },
+      {
+        "m": 8,
+        "compressed": "c",
+        "n_extra_rows": 3,
+        "moves_theta_m": 7,
+        "ok": true
+      },
+      {
+        "m": 12,
+        "compressed": "bc",
+        "n_extra_rows": 3,
+        "moves_theta_m": 10,
+        "ok": true
+      },
+      {
+        "m": 15,
+        "compressed": "xabc",
+        "n_extra_rows": 3,
+        "moves_theta_m": 11,
+        "ok": true
+      },
+      {
+        "m": 16,
+        "compressed": "d",
+        "n_extra_rows": 4,
+        "moves_theta_m": 15,
+        "ok": true
+      },
+      {
+        "m": 31,
+        "compressed": "xabcd",
+        "n_extra_rows": 4,
+        "moves_theta_m": 26,
+        "ok": true
+      },
+      {
+        "m": 64,
+        "compressed": "f",
+        "n_extra_rows": 6,
+        "moves_theta_m": 63,
+        "ok": true
+      },
+      {
+        "m": 100,
+        "compressed": "bef",
+        "n_extra_rows": 6,
+        "moves_theta_m": 97,
+        "ok": true
+      },
+      {
+        "m": 255,
+        "compressed": "xabcdefg",
+        "n_extra_rows": 7,
+        "moves_theta_m": 247,
+        "ok": true
+      },
+      {
+        "m": 1000,
+        "compressed": "cefghi",
+        "n_extra_rows": 9,
+        "moves_theta_m": 994,
+        "ok": true
+      },
+      {
+        "m": 4096,
+        "compressed": "l",
+        "n_extra_rows": 12,
+        "moves_theta_m": 4095,
+        "ok": true
+      }
+    ],
+    "radix_m1000_moves": 994,
+    "h1_unique_orientations": {
+      "tested": 1764,
+      "hits": 0
+    },
+    "h1_raw_rotations_matching_inventor": {
+      "tested": 1764,
+      "hits": 0
+    }
+  },
+  "u124_c16_recognizer": {
+    "tables": {
+      "aca_124_best.csv": {
+        "n_pairs": 124,
+        "pairs_with_H2_orientation": 27,
+        "pairs_with_H3_orientation": 14,
+        "pairs_firing_C16": 5,
+        "all_hits_instance_ok": true,
+        "hits": [
+          {
+            "name": "aca_16",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXXyxxY",
+                "blocks": [
+                  [
+                    1,
+                    -3
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YXyxxyXYx",
+                "blocks": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "xxyXYxYXy",
+                "blocks": [
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -3,
+              "b": -1,
+              "c": 2,
+              "A_u": "Uxx",
+              "B_u": "x",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "UxxUUUXuuux",
+              "Bhat": "UXXuuuxUUUxx",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": 2,
+              "in_cyc_total": 17,
+              "out_cyc_total": 23,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          },
+          {
+            "name": "aca_43",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXyxxY",
+                "blocks": [
+                  [
+                    1,
+                    -2
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YxyXYxyXyXY",
+                "blocks": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "XYxyXyXYYxy",
+                "blocks": [
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -2,
+              "b": -1,
+              "c": 2,
+              "A_u": "uXuX",
+              "B_u": "",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "uXuXUUXuu",
+              "Bhat": "UXXuuxUUxx",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": -3,
+              "in_cyc_total": 18,
+              "out_cyc_total": 19,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          },
+          {
+            "name": "aca_67",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXXyXXXY",
+                "blocks": [
+                  [
+                    1,
+                    -3
+                  ],
+                  [
+                    0,
+                    -3
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YXyxYXyxyXY",
+                "blocks": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "xYXyxyXYYXy",
+                "blocks": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -3,
+              "b": -1,
+              "c": -3,
+              "A_u": "UxUx",
+              "B_u": "",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "UxUxUUUXuuu",
+              "Bhat": "UxxxuuuxUUUXXX",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": 1,
+              "in_cyc_total": 20,
+              "out_cyc_total": 23,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          },
+          {
+            "name": "aca_87",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXXyXXXY",
+                "blocks": [
+                  [
+                    1,
+                    -3
+                  ],
+                  [
+                    0,
+                    -3
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YXyxYXyxyxY",
+                "blocks": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "xYXyxyxYYXy",
+                "blocks": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -3,
+              "b": 1,
+              "c": -3,
+              "A_u": "UxUx",
+              "B_u": "",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "UxUxUUUxuuu",
+              "Bhat": "UxxxuuuxUUUXXX",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": 3,
+              "in_cyc_total": 20,
+              "out_cyc_total": 23,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          },
+          {
+            "name": "aca_90",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXXyxxxY",
+                "blocks": [
+                  [
+                    1,
+                    -3
+                  ],
+                  [
+                    0,
+                    3
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YXyxYXyxyXY",
+                "blocks": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "xYXyxyXYYXy",
+                "blocks": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -3,
+              "b": -1,
+              "c": 3,
+              "A_u": "UxUx",
+              "B_u": "",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "UxUxUUUXuuu",
+              "Bhat": "UXXXuuuxUUUxxx",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": 1,
+              "in_cyc_total": 20,
+              "out_cyc_total": 23,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          }
+        ]
+      },
+      "aca_124_initial.csv": {
+        "n_pairs": 124,
+        "pairs_with_H2_orientation": 20,
+        "pairs_with_H3_orientation": 15,
+        "pairs_firing_C16": 1,
+        "all_hits_instance_ok": true,
+        "hits": [
+          {
+            "name": "aca_16",
+            "fires": true,
+            "n_h2": 1,
+            "n_h3": 10,
+            "h2_sample": [
+              {
+                "row": "r1",
+                "spelling": "YXXXyxxY",
+                "blocks": [
+                  [
+                    1,
+                    -3
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "height": -1
+              }
+            ],
+            "h3_sample": [
+              {
+                "row": "r2",
+                "spelling": "YXyxxyXYx",
+                "blocks": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "height": 0
+              },
+              {
+                "row": "r2",
+                "spelling": "xxyXYxYXy",
+                "blocks": [
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ]
+                ],
+                "height": 0
+              }
+            ],
+            "verified": {
+              "rebuild_ok": true,
+              "H2": true,
+              "H3": true,
+              "p": -3,
+              "b": -1,
+              "c": 2,
+              "A_u": "Uxx",
+              "B_u": "x",
+              "faithful": true,
+              "isolator_one_y": true,
+              "Ahat": "UxxUUUXuuux",
+              "Bhat": "UXXuuuxUUUxx",
+              "Ahat_ok": true,
+              "Bhat_ok": true,
+              "c_free": true,
+              "Ahat_x_exp": 2,
+              "in_cyc_total": 17,
+              "out_cyc_total": 23,
+              "C16_1_rho_legal": false,
+              "instance_ok": true
+            }
+          }
+        ]
+      }
+    },
+    "controls": [
+      {
+        "n": 2,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": true,
+        "aut_min_len": 14,
+        "aut_min_rep": [
+          "YYXXyxx",
+          "YYxyXyX"
+        ],
+        "aut_min_check": true
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": false,
+        "aut_min_len": 15,
+        "aut_min_rep": [
+          "YXXyxYx",
+          "YYYXyyxx"
+        ],
+        "aut_min_check": true
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": false,
+        "aut_min_len": 14,
+        "aut_min_rep": [
+          "YYXXYYx",
+          "YXyXYxx"
+        ],
+        "aut_min_check": true
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": false,
+        "aut_min_len": 15,
+        "aut_min_rep": [
+          "YXyXYxx",
+          "YYYXXYYx"
+        ],
+        "aut_min_check": true
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "Q_prime_fires": true,
+        "S_fires": false,
+        "P_fires": false,
+        "aut_min_Q_prime_fires": null
+      }
+    ],
+    "aut_min_Q_prime_fires_n2_n3": 1
+  },
+  "mu_orbits": {
+    "n_rows": 30,
+    "all_mu_ok": true,
+    "all_three_orbits_distinct": true,
+    "claimed_aut_S_matches": 10,
+    "claimed_aut_S_n_checked": 10,
+    "rows": [
+      {
+        "label": "P",
+        "n": 2,
+        "delta": -1,
+        "mu": 14,
+        "want": 14,
+        "ok": true,
+        "rep": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 2,
+        "delta": -1,
+        "mu": 14,
+        "want": 14,
+        "ok": true,
+        "rep": [
+          "YYXXyxx",
+          "YYxyXyX"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 2,
+        "delta": -1,
+        "mu": 17,
+        "want": 17,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYXXYxxyyX"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 3,
+        "delta": -1,
+        "mu": 16,
+        "want": 16,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYXyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 3,
+        "delta": -1,
+        "mu": 15,
+        "want": 15,
+        "ok": true,
+        "rep": [
+          "YXXyxYx",
+          "YYYXyyxx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 3,
+        "delta": -1,
+        "mu": 19,
+        "want": 19,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYXXYxxyyyX"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 4,
+        "delta": -1,
+        "mu": 18,
+        "want": 18,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYYXyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 4,
+        "delta": -1,
+        "mu": 16,
+        "want": 16,
+        "ok": true,
+        "rep": [
+          "YXXyxYx",
+          "YYYYXyyxx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 4,
+        "delta": -1,
+        "mu": 21,
+        "want": 21,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYXXYxxyyyyX"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 5,
+        "delta": -1,
+        "mu": 20,
+        "want": 20,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYYYXyyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 5,
+        "delta": -1,
+        "mu": 17,
+        "want": 17,
+        "ok": true,
+        "rep": [
+          "YXXyxYx",
+          "YYYYYXyyxx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 5,
+        "delta": -1,
+        "mu": 23,
+        "want": 23,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYYXXYxxyyyyyX"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 6,
+        "delta": -1,
+        "mu": 22,
+        "want": 22,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYYYYXyyyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 6,
+        "delta": -1,
+        "mu": 18,
+        "want": 18,
+        "ok": true,
+        "rep": [
+          "YXXyxYx",
+          "YYYYYYXyyxx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 6,
+        "delta": -1,
+        "mu": 25,
+        "want": 25,
+        "ok": true,
+        "rep": [
+          "YXXXYxx",
+          "YYYYYYXXYxxyyyyyyX"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 2,
+        "delta": 1,
+        "mu": 14,
+        "want": 14,
+        "ok": true,
+        "rep": [
+          "YYYXyyx",
+          "YXXXyxx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 2,
+        "delta": 1,
+        "mu": 14,
+        "want": 14,
+        "ok": true,
+        "rep": [
+          "YYXXYYx",
+          "YXyXYxx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 2,
+        "delta": 1,
+        "mu": 17,
+        "want": 17,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYXXYxxyyx"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 3,
+        "delta": 1,
+        "mu": 16,
+        "want": 16,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYXyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 3,
+        "delta": 1,
+        "mu": 15,
+        "want": 15,
+        "ok": true,
+        "rep": [
+          "YXyXYxx",
+          "YYYXXYYx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 3,
+        "delta": 1,
+        "mu": 19,
+        "want": 19,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYXXYxxyyyx"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 4,
+        "delta": 1,
+        "mu": 18,
+        "want": 18,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYYXyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 4,
+        "delta": 1,
+        "mu": 16,
+        "want": 16,
+        "ok": true,
+        "rep": [
+          "YXyXYxx",
+          "YYYYXXYYx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 4,
+        "delta": 1,
+        "mu": 21,
+        "want": 21,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYXXYxxyyyyx"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 5,
+        "delta": 1,
+        "mu": 20,
+        "want": 20,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYYYXyyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 5,
+        "delta": 1,
+        "mu": 17,
+        "want": 17,
+        "ok": true,
+        "rep": [
+          "YXyXYxx",
+          "YYYYYXXYYx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 5,
+        "delta": 1,
+        "mu": 23,
+        "want": 23,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYYXXYxxyyyyyx"
+        ]
+      },
+      {
+        "label": "P",
+        "n": 6,
+        "delta": 1,
+        "mu": 22,
+        "want": 22,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYYYYXyyyyyyx"
+        ]
+      },
+      {
+        "label": "Qp",
+        "n": 6,
+        "delta": 1,
+        "mu": 18,
+        "want": 18,
+        "ok": true,
+        "rep": [
+          "YXyXYxx",
+          "YYYYYYXXYYx"
+        ]
+      },
+      {
+        "label": "S",
+        "n": 6,
+        "delta": 1,
+        "mu": 25,
+        "want": 25,
+        "ok": true,
+        "rep": [
+          "YXXXyxx",
+          "YYYYYYXXYxxyyyyyyx"
+        ]
+      }
+    ]
+  },
+  "solved_u124": 0,
+  "notes": [
+    "C16/C18 use C0 twice; identities here are not elementary certificates.",
+    "C16.1 generator shift (x,y)->(u,x) is a relabel (Nielsen); stable transport is C1.",
+    "C17 shear is Lemma-11-free; the C4 tail is not certified.",
+    "C18 radix compresses state length, not move count.",
+    "No U124 row is solved."
+  ],
+  "summary": {
+    "Q_to_Q_prime_free": true,
+    "C16_U124_identities": true,
+    "C16_1_plus_loop": true,
+    "C16_1_minus_no_rotation": true,
+    "C16_parameter_sweep_fail": 0,
+    "C17_shears_literal": true,
+    "C17_U124_H3_fails": true,
+    "C17_minus_not_BS": true,
+    "C18_euclid": true,
+    "C18_radix": true,
+    "C18_H1_raw": {
+      "tested": 1764,
+      "hits": 0
+    },
+    "U124_best_C16_fires": 5,
+    "U124_best_C16_verified": true,
+    "U124_initial_C16_fires": 1,
+    "U124_initial_C16_verified": true,
+    "U124_best_C16_ids": [
+      "aca_16",
+      "aca_43",
+      "aca_67",
+      "aca_87",
+      "aca_90"
+    ],
+    "U124_best_C16_1_rho": [
+      {
+        "name": "aca_16",
+        "rho_legal": false
+      },
+      {
+        "name": "aca_43",
+        "rho_legal": false
+      },
+      {
+        "name": "aca_67",
+        "rho_legal": false
+      },
+      {
+        "name": "aca_87",
+        "rho_legal": false
+      },
+      {
+        "name": "aca_90",
+        "rho_legal": false
+      }
+    ],
+    "mu_ok": true,
+    "three_orbits": true,
+    "aut_S_form": 10
+  }
+}

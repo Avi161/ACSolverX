@@ -1,0 +1,38 @@
+# Wave 30 stable-AC legality audit (C45)
+
+Source: ac-advisor `bc-32e476bd-8566-561c-8a60-8facc47c087f`, 2026-09-12.
+Coordinator recorded APPROVE. The 83,349-product census was not
+re-enumerated.
+
+## BLOCKERS
+
+None.
+
+## WARNINGS
+
+- `independent_checker=false`; same-code replay. Identity checks rerun
+  the complete single-row census; they are not a second implementation.
+- “Products” are typed Cartesian tuple evaluations, not distinct
+  freely reduced product words.
+- Combo `(0,-1)` and `y ≡ C^{-1}` are abelianization facts on listed
+  `C_ab=(0,-1)` row aca_117, not free equality and not every companion
+  of `D`.
+- `k=1` is blocked by cyclic length 7 (`|C|=7`), not `|C|≥9`.
+- C31 orientation `R^+=C^{-1}`, `S=D` is asserted. C35 and C40
+  orientations are not used. C35 (x, C35 orientation) was not re-run.
+- Observed product-word free-length minimum 7 is a C45 census
+  statistic: not a pair total, not a drop from BEST total 14, not a
+  C10 finish, and not a comparison with C35.
+- Completeness is all 83,349 typed tuples in this bounded pool.
+- Equal typed size 83,349 does not identify C35’s aca_117 x-census.
+- JSON `hit_replay_outside_scanner_capability` is capability, not a
+  census hit. Actual hit replay is `null`. Not a U124 solve. `0/124`.
+- C44 is a different predicate.
+
+## ALLOWED CLAIMS
+
+- Unique listed-row y-combo `(0,-1)`, `L1=1`, `y ≡ C^{-1}` in abelianization.
+- 83,349 typed Cartesian products, equal to typed size, no hit.
+- Score remains `0/124`. Bounded negative, not a counterexample.
+
+## VERDICT: APPROVE

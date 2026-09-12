@@ -1,0 +1,140 @@
+{
+  "best_total_length": 2356,
+  "feature_counts_on_best": {
+    "bs_mm1_donor_best": 49,
+    "ms_floor_shape_best": 10,
+    "unimodular_best": 124
+  },
+  "hashes": {
+    "README_aca_124.md": {
+      "bytes": 3325,
+      "exists": true,
+      "role": "schema_notes",
+      "sha256": "8458cac9bef803d99d78f4fb4cb596448d36c2f5cacf99edccab049450519e57"
+    },
+    "aca_124.csv": {
+      "bytes": 5447,
+      "exists": true,
+      "role": "archival_on_proofs_branch",
+      "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+    },
+    "aca_124_best.csv": {
+      "bytes": 5357,
+      "exists": true,
+      "role": "best_known_input",
+      "sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3"
+    },
+    "aca_124_initial.csv": {
+      "bytes": 5447,
+      "exists": true,
+      "role": "archival_initial",
+      "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+    },
+    "aca_124_reduced.csv": {
+      "bytes": 11517,
+      "exists": true,
+      "role": "reduction_ledger",
+      "sha256": "5be80a918b2b970e9bba7557a168908d8225ee8f781cc884cf0df6a845bbb72a"
+    }
+  },
+  "initial_total_length": 2446,
+  "leftover_10m_observed_shorter_uncertified": 14,
+  "leftover_10m_solved": 0,
+  "leftover_10m_table": "initial/archival, not best",
+  "missing_sources": [
+    "codex/theory-patterns-3h",
+    "research/theory_patterns_20260912",
+    "literature/proofs/PROOFS.tex",
+    "research/supermoves_20260908/FINAL_START_HERE.md"
+  ],
+  "ms_floor_hits": [
+    {
+      "delta": -1,
+      "n": 4,
+      "name": "aca_34",
+      "r1": "YXXyxYx",
+      "r2": "YYYYXyyxx",
+      "shape": "upper"
+    },
+    {
+      "delta": -1,
+      "n": 5,
+      "name": "aca_58",
+      "r1": "YXXyxYx",
+      "r2": "YYYYYXyyxx",
+      "shape": "upper"
+    },
+    {
+      "delta": -1,
+      "n": 6,
+      "name": "aca_81",
+      "r1": "YXXyxYx",
+      "r2": "YYYYYYXyyxx",
+      "shape": "upper"
+    },
+    {
+      "delta": 1,
+      "n": 6,
+      "name": "aca_85",
+      "r1": "YXyXYxx",
+      "r2": "YYYYYYXXYYx",
+      "shape": "lower"
+    },
+    {
+      "delta": -1,
+      "n": 7,
+      "name": "aca_97",
+      "r1": "YXXyxYx",
+      "r2": "YYYYYYYXyyxx",
+      "shape": "upper"
+    },
+    {
+      "delta": 1,
+      "n": 7,
+      "name": "aca_98",
+      "r1": "YXyXYxx",
+      "r2": "YYYYYYYXXYYx",
+      "shape": "lower"
+    },
+    {
+      "delta": -1,
+      "n": 3,
+      "name": "aca_120",
+      "r1": "YXXyxYx",
+      "r2": "YYYXyyxx",
+      "shape": "upper"
+    },
+    {
+      "delta": 1,
+      "n": 3,
+      "name": "aca_121",
+      "r1": "YXyXYxx",
+      "r2": "YYYXXYYx",
+      "shape": "lower"
+    },
+    {
+      "delta": 1,
+      "n": 4,
+      "name": "aca_122",
+      "r1": "YXyXYxx",
+      "r2": "YYYYXXYYx",
+      "shape": "lower"
+    },
+    {
+      "delta": 1,
+      "n": 5,
+      "name": "aca_123",
+      "r1": "YXyXYxx",
+      "r2": "YYYYYXXYYx",
+      "shape": "lower"
+    }
+  ],
+  "n_mu_floor_best": 36,
+  "n_rows": 124,
+  "proofs_aca_124_equals_initial": true,
+  "solved": 0,
+  "theorem_strength_supermoves_10k_on_best": {
+    "shorter": 0,
+    "solved": 0
+  }
+}

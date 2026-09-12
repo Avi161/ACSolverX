@@ -1,0 +1,269 @@
+{
+  "summary": {
+    "n_rows": 1,
+    "donor": "YXXXyxx",
+    "all_D_exp_minus_one_zero": true,
+    "all_C_exp_zero_minus_one": true,
+    "all_pair_det_plus_one": true,
+    "all_pair_exponent_matrix_unimodular": true,
+    "D_cyc_lens": [
+      7
+    ],
+    "C_cyc_lens": [
+      7
+    ],
+    "all_k1_blocked_by_C_cyc_len_7": true,
+    "all_y_L1_1": true,
+    "all_y_combo_zero_minus_one": true,
+    "all_y_equiv_Cinv_in_abelianization": true,
+    "all_Xyx_same_as_y": true,
+    "all_xyX_same_as_y": true,
+    "all_x_L1_1": true,
+    "all_x_k3_was_c35_not_part_of_c45": true,
+    "do_not_rerun_c35": true,
+    "all_even_k_forbidden": true,
+    "combo_restricted_to_listed_C_ab": true,
+    "not_six_row_yxxx_census": true,
+    "not_lumped_with_c35_or_other_y_l1": true,
+    "development_panel_n2_wall_is_disclosure_not_a_solve": true,
+    "not_a_c16_reproof": true,
+    "three_any_hit": false,
+    "three_n_products": 83349,
+    "three_n_typed_tuples": 83349,
+    "three_products_equal_typed": true,
+    "three_min_len": 7,
+    "three_min_lens": [
+      7
+    ],
+    "three_min_len_is_product_word_not_pair_total": true,
+    "three_all_orientation_c31": true,
+    "three_none_orientation_c35_or_c40": true,
+    "counts_are_nine_config_cartesian": true,
+    "completeness_is_all_typed_tuples_in_this_bounded_pool": true,
+    "cartesian_cap_is_per_cell": true,
+    "disjointness_relative_to_prior_typed_donor_family_censuses": true,
+    "c28_touched_rows_under_different_predicate": true,
+    "c35_used_c35_orientation_on_this_row_for_x": true,
+    "c44_touched_this_row_under_length_descent": true,
+    "equal_typed_sizes_do_not_identify_censuses": true,
+    "equal_typed_size_83349_does_not_identify_c35_aca117": true,
+    "x_k3_was_c35_not_part_of_c45": true,
+    "hit_witness_records_factors_and_conjugators": true,
+    "hit_replay_outside_scanner_capability": true,
+    "planted_ok": true,
+    "same_code_replay": true,
+    "independent_checker": false,
+    "solved_u124": 0
+  },
+  "planted": {
+    "n_products_hit": 9,
+    "n_typed": 9,
+    "hit": {
+      "word": "y",
+      "len": 1,
+      "signed_types": [
+        "R-",
+        "R+",
+        "R+"
+      ],
+      "shape": "A",
+      "factors": [
+        "Y",
+        "y",
+        "y"
+      ],
+      "conjugators": [
+        "",
+        "",
+        ""
+      ],
+      "replay_free_reduce_equals_target": true
+    },
+    "hit_replay_outside_scanner": {
+      "rebuilt_factors": [
+        "Y",
+        "y",
+        "y"
+      ],
+      "factor_conjugator_consistent": true,
+      "replay_outside_scanner": "y",
+      "replay_equals_hit_word": true,
+      "ok": true,
+      "independent_checker": false
+    },
+    "miss_found": false,
+    "orientation": {
+      "Rplus": "C^{-1}",
+      "Rminus": "C",
+      "Splus": "D",
+      "Sminus": "D^{-1}"
+    },
+    "witness_ok": true,
+    "ok": true,
+    "independent_checker": false,
+    "same_code_as_census": true
+  },
+  "abelian": [
+    {
+      "id": "aca_117",
+      "donor": "YXXXyxx",
+      "companion": "YYYXyyx",
+      "D_exp": [
+        -1,
+        0
+      ],
+      "C_exp": [
+        0,
+        -1
+      ],
+      "pair_det": 1,
+      "pair_exponent_matrix_unimodular": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "y_combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -1
+      },
+      "y_L1": 1,
+      "y_equiv_Cinv_in_abelianization": true,
+      "not_free_equality_y_equals_Cinv": true,
+      "Xyx_same_as_y": true,
+      "xyX_same_as_y": true,
+      "x_combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "x_L1": 1,
+      "x_equiv_Dinv_in_abelianization": true,
+      "x_k3_was_c35_not_part_of_c45": true,
+      "do_not_rerun_c35": true,
+      "k1_len_obstruction": true,
+      "k1_blocked_by_C_cyc_len_7": true,
+      "even_k_forbidden": true,
+      "combo_restricted_to_listed_C_ab": true,
+      "development_panel_n2_wall_is_disclosure_not_a_solve": true,
+      "not_a_c16_reproof": true,
+      "equal_typed_size_does_not_identify_c35_aca117": true,
+      "targets": {
+        "y": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "Xyx": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "xyX": {
+          "exp": [
+            0,
+            1
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": 0,
+            "b": -1
+          },
+          "L1": 1
+        },
+        "x": {
+          "exp": [
+            1,
+            0
+          ],
+          "combo": {
+            "det": 1,
+            "ok": true,
+            "a": -1,
+            "b": 0
+          },
+          "L1": 1
+        }
+      }
+    }
+  ],
+  "three_factor": [
+    {
+      "n_conjugators": 29,
+      "n_Rplus": 21,
+      "n_Rminus": 21,
+      "n_Splus": 21,
+      "n_Sminus": 21,
+      "n_products": 83349,
+      "min_len": 7,
+      "n_len_le_3": 0,
+      "hit": null,
+      "found": false,
+      "pool": "nine_signed_type_configs_per_type_dedup",
+      "n_configs": 9,
+      "negative_targets_via_inversion": true,
+      "hit_witness_keys": [
+        "word",
+        "len",
+        "signed_types",
+        "shape",
+        "factors",
+        "conjugators",
+        "replay_free_reduce_equals_target"
+      ],
+      "orientation": {
+        "Rplus": "C^{-1}",
+        "Rminus": "C",
+        "Splus": "D",
+        "Sminus": "D^{-1}"
+      },
+      "id": "aca_117",
+      "companion": "YYYXyyx",
+      "n_typed_tuples": 83349,
+      "n_products_equals_typed": true,
+      "matches_predicted_typed": true,
+      "equal_typed_size_does_not_identify_c35_aca117": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 7,
+      "targets": [
+        "y",
+        "Xyx",
+        "xyX"
+      ],
+      "hit_replay_outside_scanner": null
+    }
+  ],
+  "notes": [
+    "D = YXXXyxx has exponent (\u22121,0). On listed C_ab=(0,-1) row aca_117, y has unique combination (0,-1), L1=1, and y \u2261 C^{-1} in abelianization.",
+    "That is not free equality y=C^{-1}, not every companion of D, not a six-row YXXXyxx census, and not a re-run of C35.",
+    "C35 already did x \u2261 D^{-1} k=3 on this donor/row with C35 orientation. C45 does not re-run C35.",
+    "Even k is abelian-impossible. k=1 is blocked by |C|=7. k=3 uses C31 orientation R^+=C^{-1}, S=D.",
+    "Typed Cartesian total 83349 is nine-config 3|R+|\u00b2|R\u2212|+6|R+||S+||S\u2212|, not |F|^3.",
+    "Enumerated 83349 tuple evaluations (observed min lengths [7], census min 7).",
+    "Observed minimum is freely reduced product-word length, not a pair total, not a drop from BEST total 14, and not a C10 finish.",
+    "Completeness is all 83,349 typed tuples in this bounded pool.",
+    "Equal typed size 83,349 does not identify C35's aca_117 x-census (different orientation and targets).",
+    "Disjointness is relative to prior typed donor-family censuses. C28 and C44 touched this row under different predicates.",
+    "aca_117 development-panel / n=2-wall status is a disclosure, not a C16 re-proof.",
+    "A hit would be a normal-closure candidate, not a C12 primitive. Hit witnesses persist factors and are replayed outside the scanner.",
+    "JSON hit_replay_outside_scanner_capability is capability, not a census hit.",
+    "JSON is same-code deterministic replay. No U124 row is solved."
+  ]
+}

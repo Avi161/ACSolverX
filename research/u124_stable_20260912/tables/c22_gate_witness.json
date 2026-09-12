@@ -1,0 +1,1432 @@
+{
+  "summary": {
+    "c16_as_c6_hypotheses": true,
+    "c16_as_c6_same_as_c16": false,
+    "c16_as_c6_n_checked": 12,
+    "gate1_S_coeff_always_0": true,
+    "gate1_R_coeff_equals_delta": true,
+    "gate1_depth1_restore_impossible": true,
+    "gate1_search_any_hit": false,
+    "gate2_search_any_hit": false,
+    "stored_search_any_hit": false,
+    "gate2_literal_power_equals_e": false,
+    "c15_bridge_identity": true,
+    "c15_depth1_reaches_P": false,
+    "stored_gate2_unimodular": true,
+    "solved_u124": 0
+  },
+  "c16_as_c6": [
+    {
+      "n": 2,
+      "delta": -1,
+      "template": "zzXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xYYxyyXXyyXYY",
+        "YxxYYxyyXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxYYxyyXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 23,
+      "claimed_cyc_total": 17
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "template": "zzXXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xxYYxyyXXXyyXYY",
+        "YxxxYYxyyXXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxxYYxyyXXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 27,
+      "claimed_cyc_total": 19
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "template": "zzXXXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xxxYYxyyXXXXyyXYY",
+        "YxxxxYYxyyXXXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxxxYYxyyXXXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 31,
+      "claimed_cyc_total": 21
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "template": "zzXXXXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xxxxYYxyyXXXXXyyXYY",
+        "YxxxxxYYxyyXXXXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxxxxYYxyyXXXXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 35,
+      "claimed_cyc_total": 23
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "template": "zzXXXXXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xxxxxYYxyyXXXXXXyyXYY",
+        "YxxxxxxYYxyyXXXXXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxxxxxYYxyyXXXXXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 39,
+      "claimed_cyc_total": 25
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "template": "zzXXXXXXXY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "xxxxxxYYxyyXXXXXXXyyXYY",
+        "YxxxxxxxYYxyyXXXXXXX"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyXYY",
+        "YxxxxxxxYYxyyXXXXXXX"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 43,
+      "claimed_cyc_total": 27
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "template": "zzxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXYYxyyxxyyxYY",
+        "YXXYYxyyxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXYYxyyxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 25,
+      "claimed_cyc_total": 17
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "template": "zzxxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXXYYxyyxxxyyxYY",
+        "YXXXYYxyyxxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXXYYxyyxxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 29,
+      "claimed_cyc_total": 19
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "template": "zzxxxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXXXYYxyyxxxxyyxYY",
+        "YXXXXYYxyyxxxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXXXYYxyyxxxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 33,
+      "claimed_cyc_total": 21
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "template": "zzxxxxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXXXXYYxyyxxxxxyyxYY",
+        "YXXXXXYYxyyxxxxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXXXXYYxyyxxxxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 37,
+      "claimed_cyc_total": 23
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "template": "zzxxxxxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXXXXXYYxyyxxxxxxyyxYY",
+        "YXXXXXXYYxyyxxxxxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXXXXXYYxyyxxxxxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 41,
+      "claimed_cyc_total": 25
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "template": "zzxxxxxxxY",
+      "word": "Yxy",
+      "hypotheses_ok": true,
+      "error": null,
+      "output": [
+        "XXXXXXXXYYxyyxxxxxxxyyxYY",
+        "YXXXXXXXYYxyyxxxxxxx"
+      ],
+      "claimed_S_tag_y": [
+        "XyyyxYY",
+        "YXXXXXXXYYxyyxxxxxxx"
+      ],
+      "canon_match_S": false,
+      "out_cyc_total": 45,
+      "claimed_cyc_total": 27
+    }
+  ],
+  "gate1_abelian": [
+    {
+      "n": 2,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXY",
+      "R_len": 7,
+      "S_len": 7,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        0,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 8
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXXY",
+      "R_len": 7,
+      "S_len": 8,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        -1,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 9
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXXXY",
+      "R_len": 7,
+      "S_len": 9,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        -2,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 10
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXXXXY",
+      "R_len": 7,
+      "S_len": 10,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        -3,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 11
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXXXXXY",
+      "R_len": 7,
+      "S_len": 11,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        -4,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 12
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "R": "XYxyyXY",
+      "S": "YxxyXXXXXXXY",
+      "R_len": 7,
+      "S_len": 12,
+      "R_exp": [
+        -1,
+        0
+      ],
+      "S_exp": [
+        -5,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": -1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 13
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxY",
+      "R_len": 7,
+      "S_len": 7,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        4,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 8
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxxY",
+      "R_len": 7,
+      "S_len": 8,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        5,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 9
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxxxY",
+      "R_len": 7,
+      "S_len": 9,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        6,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 10
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxxxxY",
+      "R_len": 7,
+      "S_len": 10,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        7,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 11
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxxxxxY",
+      "R_len": 7,
+      "S_len": 11,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        8,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 12
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "R": "XYxyyxY",
+      "S": "YxxyxxxxxxxY",
+      "R_len": 7,
+      "S_len": 12,
+      "R_exp": [
+        1,
+        0
+      ],
+      "S_exp": [
+        9,
+        -1
+      ],
+      "xi_exp": [
+        1,
+        0
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 1,
+        "b": 0
+      },
+      "xi_cyclic_of_R": false,
+      "xi_cyclic_of_S": false,
+      "D": "UYxy",
+      "D_len": 4,
+      "depth1_restore_len_R": 8,
+      "depth1_restore_len_S": 13
+    }
+  ],
+  "gate2_abelian": [
+    {
+      "n": 2,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxUUxuuXX",
+      "e": "uuXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -2,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -2
+      },
+      "literal_product": "xxUUXuuXXuxxUUXuuXXu",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXY"
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxxUUxuuXXX",
+      "e": "uuXXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -3,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 1,
+        "b": -1
+      },
+      "literal_product": "XuuuXUUxxxUUXuuXXXu",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXXY"
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxxxUUxuuXXXX",
+      "e": "uuXXXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -4,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 2,
+        "b": 0
+      },
+      "literal_product": "XuuuXUUXuuuXUU",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXXXY"
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxxxxUUxuuXXXXX",
+      "e": "uuXXXXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -5,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 3,
+        "b": 1
+      },
+      "literal_product": "XuuuXUUXuuuXUUXuuuXUUUxxxxxUUxuuXXXXX",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXXXXY"
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxxxxxUUxuuXXXXXX",
+      "e": "uuXXXXXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -6,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 4,
+        "b": 2
+      },
+      "literal_product": "XuuuXUUXuuuXUUXuuuXUUXuuuXUUUxxxxxxUUxuuXXXXXXUxxxxxxUUxuuXXXXXX",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXXXXXY"
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "Ahat": "XuuuXUU",
+      "Bhat": "UxxxxxxxUUxuuXXXXXXX",
+      "e": "uuXXXXXXX",
+      "A_exp": [
+        -2,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -7,
+        2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 5,
+        "b": 3
+      },
+      "literal_product": "XuuuXUUXuuuXUUXuuuXUUXuuuXUUXuuuXUUUxxxxxxxUUxuuXXXXXXXUxxxxxxxUUxuuXXXXXXXUxxxxxxxUUxuuXXXXXXX",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuXXXXXXXY"
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXUUxuuxx",
+      "e": "uuxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        2,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 4,
+        "b": 2
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXUUxuuxxUXXUUxuuxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxY"
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXXUUxuuxxx",
+      "e": "uuxxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        3,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 5,
+        "b": 3
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXXUUxuuxxxUXXXUUxuuxxxUXXXUUxuuxxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxxY"
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXXXUUxuuxxxx",
+      "e": "uuxxxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        4,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 6,
+        "b": 4
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXXXUUxuuxxxxUXXXXUUxuuxxxxUXXXXUUxuuxxxxUXXXXUUxuuxxxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxxxY"
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXXXXUUxuuxxxxx",
+      "e": "uuxxxxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        5,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 7,
+        "b": 5
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXXXXUUxuuxxxxxUXXXXXUUxuuxxxxxUXXXXXUUxuuxxxxxUXXXXXUUxuuxxxxxUXXXXXUUxuuxxxxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxxxxY"
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXXXXXUUxuuxxxxxx",
+      "e": "uuxxxxxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        6,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 8,
+        "b": 6
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXXXXXUUxuuxxxxxxUXXXXXXUUxuuxxxxxxUXXXXXXUUxuuxxxxxxUXXXXXXUUxuuxxxxxxUXXXXXXUUxuuxxxxxxUXXXXXXUUxuuxxxxxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxxxxxY"
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "Ahat": "XuuuxUU",
+      "Bhat": "UXXXXXXXUUxuuxxxxxxx",
+      "e": "uuxxxxxxx",
+      "A_exp": [
+        0,
+        1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        7,
+        2
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 9,
+        "b": 7
+      },
+      "literal_product": "XuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUXuuuxUUUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxxUXXXXXXXUUxuuxxxxxxx",
+      "literal_equals_e": false,
+      "literal_cyclic_e": false,
+      "I_S": "uuxxxxxxxY"
+    }
+  ],
+  "gate1_search": [
+    {
+      "n": 2,
+      "delta": -1,
+      "target": "Yxy",
+      "target_len": 3,
+      "target_exp": [
+        1,
+        0
+      ],
+      "gens": "xy",
+      "n_exhaustive_factors": 80,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 7124,
+      "n_products": 7125,
+      "extra_visited": 22,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 7,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "target": "Yxy",
+      "target_len": 3,
+      "target_exp": [
+        1,
+        0
+      ],
+      "gens": "xy",
+      "n_exhaustive_factors": 80,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 7124,
+      "n_products": 7125,
+      "extra_visited": 22,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 7,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "target": "Yxy",
+      "target_len": 3,
+      "target_exp": [
+        1,
+        0
+      ],
+      "gens": "xy",
+      "n_exhaustive_factors": 86,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 8116,
+      "n_products": 8117,
+      "extra_visited": 23,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 7,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "target": "Yxy",
+      "target_len": 3,
+      "target_exp": [
+        1,
+        0
+      ],
+      "gens": "xy",
+      "n_exhaustive_factors": 86,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 8116,
+      "n_products": 8117,
+      "extra_visited": 23,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 7,
+      "exhaustive_layer_complete": true
+    }
+  ],
+  "gate2_search": [
+    {
+      "n": 2,
+      "delta": -1,
+      "target": "uuXX",
+      "target_len": 4,
+      "target_exp": [
+        -2,
+        2
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 102,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 10976,
+      "n_products": 10977,
+      "extra_visited": 7,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 12,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "target": "uuxx",
+      "target_len": 4,
+      "target_exp": [
+        2,
+        2
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 102,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 11054,
+      "n_products": 11055,
+      "extra_visited": 7,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 2,
+      "min_len_abelian_match": null,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "target": "uuXXX",
+      "target_len": 5,
+      "target_exp": [
+        -3,
+        2
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 114,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 12840,
+      "n_products": 12841,
+      "extra_visited": 6,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 13,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "target": "uuxxx",
+      "target_len": 5,
+      "target_exp": [
+        3,
+        2
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 114,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 13126,
+      "n_products": 13127,
+      "extra_visited": 6,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 3,
+      "min_len_abelian_match": null,
+      "exhaustive_layer_complete": true
+    }
+  ],
+  "stored_gate2_abelian": [
+    {
+      "id": "aca_16",
+      "p": -3,
+      "c": 2,
+      "e": "UUUxx",
+      "A_exp": [
+        2,
+        -1
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        2,
+        -3
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -1,
+        "b": 4
+      }
+    },
+    {
+      "id": "aca_43",
+      "p": -2,
+      "c": 2,
+      "e": "UUxx",
+      "A_exp": [
+        -3,
+        2
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        2,
+        -2
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 2
+      }
+    },
+    {
+      "id": "aca_67",
+      "p": -3,
+      "c": -3,
+      "e": "UUUXXX",
+      "A_exp": [
+        1,
+        -2
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -3,
+        -3
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 6,
+        "b": -9
+      }
+    },
+    {
+      "id": "aca_87",
+      "p": -3,
+      "c": -3,
+      "e": "UUUXXX",
+      "A_exp": [
+        3,
+        -2
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        -3,
+        -3
+      ],
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -6,
+        "b": 15
+      }
+    },
+    {
+      "id": "aca_90",
+      "p": -3,
+      "c": 3,
+      "e": "UUUxxx",
+      "A_exp": [
+        1,
+        -2
+      ],
+      "B_exp": [
+        1,
+        -1
+      ],
+      "e_exp": [
+        3,
+        -3
+      ],
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 3
+      }
+    }
+  ],
+  "stored_gate2_search": [
+    {
+      "id": "aca_16",
+      "target": "UUUxx",
+      "target_len": 5,
+      "target_exp": [
+        2,
+        -3
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 138,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 17276,
+      "n_products": 17277,
+      "extra_visited": 5,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 1,
+      "min_len_abelian_match": null,
+      "exhaustive_layer_complete": true
+    },
+    {
+      "id": "aca_43",
+      "target": "UUxx",
+      "target_len": 4,
+      "target_exp": [
+        2,
+        -2
+      ],
+      "gens": "xu",
+      "n_exhaustive_factors": 114,
+      "exhaustive_factor_bound": 2,
+      "exhaustive_conj_len": 1,
+      "enumerated_exhaustive_products": 13190,
+      "n_products": 13191,
+      "extra_visited": 6,
+      "extra_unique": 800,
+      "hit": null,
+      "found": false,
+      "min_l1_to_target": 0,
+      "min_len_abelian_match": 12,
+      "exhaustive_layer_complete": true
+    }
+  ],
+  "c15_bridge": {
+    "donor": "YXXXyxYx",
+    "conjugator": "Xyx",
+    "P1_plus": "YXXXyxx",
+    "donor_times_Xyx_equals_P1": true,
+    "P1_times_xyX_equals_donor": true,
+    "note": "Xyx is conjugate of y, not an AC donor unless y is already a relator."
+  },
+  "c15_depth1_to_P": {
+    "n_rows": 10,
+    "n_children_raw": 4160,
+    "n_unique": 2440,
+    "any_hit": false,
+    "rows": [
+      {
+        "id": "aca_18",
+        "m": 3,
+        "companion": "YYYYxyyyX",
+        "n_unique": 164,
+        "hits": []
+      },
+      {
+        "id": "aca_20",
+        "m": 3,
+        "companion": "YYYYXyyyx",
+        "n_unique": 164,
+        "hits": []
+      },
+      {
+        "id": "aca_40",
+        "m": 4,
+        "companion": "YYYYYxyyyyX",
+        "n_unique": 204,
+        "hits": []
+      },
+      {
+        "id": "aca_42",
+        "m": 4,
+        "companion": "YYYYYXyyyyx",
+        "n_unique": 204,
+        "hits": []
+      },
+      {
+        "id": "aca_63",
+        "m": 5,
+        "companion": "YYYYYYxyyyyyX",
+        "n_unique": 244,
+        "hits": []
+      },
+      {
+        "id": "aca_65",
+        "m": 5,
+        "companion": "YYYYYYXyyyyyx",
+        "n_unique": 244,
+        "hits": []
+      },
+      {
+        "id": "aca_91",
+        "m": 6,
+        "companion": "YYYYYYYXyyyyyyx",
+        "n_unique": 284,
+        "hits": []
+      },
+      {
+        "id": "aca_93",
+        "m": 6,
+        "companion": "YYYYYYYxyyyyyyX",
+        "n_unique": 284,
+        "hits": []
+      },
+      {
+        "id": "aca_102",
+        "m": 7,
+        "companion": "YYYYYYYYxyyyyyyyX",
+        "n_unique": 324,
+        "hits": []
+      },
+      {
+        "id": "aca_104",
+        "m": 7,
+        "companion": "YYYYYYYYXyyyyyyyx",
+        "n_unique": 324,
+        "hits": []
+      }
+    ]
+  },
+  "notes": [
+    "A missed bounded ncl search is not an obstruction to a longer witness.",
+    "C6 hypotheses hold for the C16 isolator template; the output is not C16 because C6 letter-substitutes y in the companion.",
+    "C15 donor times x^{-1} y x equals P1_{\u03b4=+1}; that conjugator is not an AC donor.",
+    "No U124 row is solved."
+  ]
+}

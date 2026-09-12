@@ -1,0 +1,51 @@
+{
+  "depth1": {
+    "min_length_histogram": {
+      "10": 35,
+      "11": 118,
+      "12": 103,
+      "13": 302,
+      "14": 408,
+      "15": 963,
+      "16": 701,
+      "17": 1578,
+      "18": 951,
+      "19": 1947,
+      "20": 887,
+      "21": 1293,
+      "22": 783,
+      "23": 935,
+      "24": 316,
+      "25": 340,
+      "5": 3,
+      "6": 2,
+      "7": 1,
+      "8": 4,
+      "9": 16
+    },
+    "n_abelian_gcd_blocked": 0,
+    "n_children_enumerated": 44016,
+    "n_primitive": 0,
+    "n_unique_new_relators": 11686,
+    "n_whitehead_tested": 11686,
+    "note": "Unique freely/cyclically reduced relators that appear as an AC2 child and are not one of the 248 stored best-table relators. A zero here is a bounded recognizer report.",
+    "primitive_hits": []
+  },
+  "elapsed_seconds": 7.525,
+  "products": {
+    "n_product_primitive": 0,
+    "n_product_records": 248,
+    "n_records_by_which": {
+      "r1": 124,
+      "r1_r2": 124,
+      "r1_r2inv": 124,
+      "r2": 124
+    },
+    "n_relator_primitive": 0,
+    "note": "Product rows are the cyclically reduced stored-orientation words r1 r2 and r1 r2^{-1}, not Aut-orbit representatives.",
+    "primitive_by_which": {},
+    "primitive_hits": [],
+    "skipped_by_which": {}
+  },
+  "status": "recognizer_aggregates_not_a_solve"
+}

@@ -1,0 +1,403 @@
+{
+  "summary": {
+    "n_rows": 8,
+    "all_abs_b_1": true,
+    "all_k_equals_L1": true,
+    "L1_values": [
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "any_hit": false,
+    "n_typed_tuples_total": 69587773081,
+    "n_typed_tuples_cartesian": 59884,
+    "n_typed_tuples_mitm": 69587713197,
+    "n_cartesian_products_enumerated": 59884,
+    "n_cartesian_cells": 4,
+    "n_mitm_cells": 4,
+    "cartesian_ids": [
+      "aca_8",
+      "aca_1",
+      "aca_72",
+      "aca_99"
+    ],
+    "mitm_ids": [
+      "aca_121",
+      "aca_122",
+      "aca_7",
+      "aca_31"
+    ],
+    "cartesian_min_lens": [
+      9,
+      11,
+      17,
+      15
+    ],
+    "cartesian_observed_min_len": 9,
+    "cartesian_products_equal_typed": true,
+    "skipped_l1_1": [
+      {
+        "id": "aca_43",
+        "donor": "YYXXyxx",
+        "L1": 1
+      }
+    ],
+    "skipped_l1_ge_8": [
+      {
+        "id": "aca_85",
+        "donor": "YXyXYxx",
+        "L1": 9
+      },
+      {
+        "id": "aca_98",
+        "donor": "YXyXYxx",
+        "L1": 10
+      },
+      {
+        "id": "aca_123",
+        "donor": "YXyXYxx",
+        "L1": 8
+      }
+    ],
+    "uses_c30_combo_formula": true,
+    "l1_range_is_window_rows": true,
+    "equality_is_free_reduce_literal": true,
+    "one_letter_class_complete": true,
+    "controls_ok": true,
+    "counts_are_typed_cartesian": true,
+    "mitm_counts_are_search_space_not_enumerated_products": true,
+    "same_code_replay": true,
+    "independent_checker": false,
+    "solved_u124": 0
+  },
+  "x_class": {
+    "positive": {
+      "x": [
+        1,
+        0
+      ],
+      "Yxy": [
+        1,
+        0
+      ],
+      "yxY": [
+        1,
+        0
+      ]
+    },
+    "all_exp_one_zero": true,
+    "inverse_class": [
+      "X",
+      "YXy",
+      "yXY"
+    ],
+    "inverse_all_exp_minus_one_zero": true,
+    "Yxy_is_C22_xi": true,
+    "one_letter_conjugates": {
+      "words": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equals_positive_class": true,
+      "note": "freely reduced conjugates of x by words of length at most one"
+    },
+    "one_letter_class_complete": true,
+    "equality_is_free_reduce_literal": true
+  },
+  "scans": [
+    {
+      "method": "typed_cartesian",
+      "n_products": 1012,
+      "min_len": 9,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_8",
+      "donor": "YXyXYxx",
+      "companion": "YYXYXyyx",
+      "combo_a": 1,
+      "combo_b": -1,
+      "L1": 2,
+      "k": 2,
+      "n_A": 23,
+      "n_B": 22,
+      "n_typed_tuples": 1012,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_121",
+      "donor": "YXyXYxx",
+      "companion": "YYYXXYYx",
+      "combo_a": 5,
+      "combo_b": -1,
+      "L1": 6,
+      "k": 6,
+      "n_A": 23,
+      "n_B": 22,
+      "n_typed_tuples": 849597276,
+      "n_products_equals_typed": null,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_122",
+      "donor": "YXyXYxx",
+      "companion": "YYYYXXYYx",
+      "combo_a": 6,
+      "combo_b": -1,
+      "L1": 7,
+      "k": 7,
+      "n_A": 25,
+      "n_B": 23,
+      "n_typed_tuples": 39306640625,
+      "n_products_equals_typed": null,
+      "D_cyc_len": 7,
+      "C_cyc_len": 9,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_cartesian",
+      "n_products": 924,
+      "min_len": 11,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_1",
+      "donor": "YYXXyxx",
+      "companion": "YYYxyXyX",
+      "combo_a": 1,
+      "combo_b": -1,
+      "L1": 2,
+      "k": 2,
+      "n_A": 22,
+      "n_B": 21,
+      "n_typed_tuples": 924,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 8,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_7",
+      "donor": "YYXXyxx",
+      "companion": "YYYYxYXYX",
+      "combo_a": 6,
+      "combo_b": -1,
+      "L1": 7,
+      "k": 7,
+      "n_A": 24,
+      "n_B": 22,
+      "n_typed_tuples": 29429858304,
+      "n_products_equals_typed": null,
+      "D_cyc_len": 7,
+      "C_cyc_len": 9,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_mitm_unique_folds",
+      "n_products": null,
+      "min_len": null,
+      "n_len_le_3": null,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_31",
+      "donor": "YYXXyxx",
+      "companion": "YYYYYXyXyx",
+      "combo_a": 3,
+      "combo_b": -1,
+      "L1": 4,
+      "k": 4,
+      "n_A": 26,
+      "n_B": 23,
+      "n_typed_tuples": 1616992,
+      "n_products_equals_typed": null,
+      "D_cyc_len": 7,
+      "C_cyc_len": 10,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_cartesian",
+      "n_products": 56448,
+      "min_len": 17,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_72",
+      "donor": "YYXXyxx",
+      "companion": "YYxyXyxyXyX",
+      "combo_a": -2,
+      "combo_b": -1,
+      "L1": 3,
+      "k": 3,
+      "n_A": 28,
+      "n_B": 24,
+      "n_typed_tuples": 56448,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 11,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    },
+    {
+      "method": "typed_cartesian",
+      "n_products": 1500,
+      "min_len": 15,
+      "n_len_le_3": 0,
+      "n_hits": 0,
+      "hit": null,
+      "found": false,
+      "id": "aca_99",
+      "donor": "YYXXyxx",
+      "companion": "YYYxyXyxyXyX",
+      "combo_a": -1,
+      "combo_b": -1,
+      "L1": 2,
+      "k": 2,
+      "n_A": 30,
+      "n_B": 25,
+      "n_typed_tuples": 1500,
+      "n_products_equals_typed": true,
+      "D_cyc_len": 7,
+      "C_cyc_len": 12,
+      "targets": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equality_is_free_reduce_literal": true
+    }
+  ],
+  "skipped": {
+    "l1_1": [
+      {
+        "id": "aca_43",
+        "donor": "YYXXyxx",
+        "L1": 1
+      }
+    ],
+    "l1_ge_8": [
+      {
+        "id": "aca_85",
+        "donor": "YXyXYxx",
+        "L1": 9
+      },
+      {
+        "id": "aca_98",
+        "donor": "YXyXYxx",
+        "L1": 10
+      },
+      {
+        "id": "aca_123",
+        "donor": "YXyXYxx",
+        "L1": 8
+      }
+    ]
+  },
+  "controls": {
+    "cartesian_hit_found": true,
+    "cartesian_miss_found": false,
+    "mitm4_hit_found": true,
+    "mitm4_miss_found": false,
+    "mitm5_hit_found": true,
+    "mitm5_miss_found": false,
+    "mitm6_end_hit_found": true,
+    "mitm6_mid_hit_found": true,
+    "mitm6_miss_found": false,
+    "cancel_empty_fold_hit_found": true,
+    "cancel_empty_fold_miss_found": false,
+    "cartesian_mitm_agree_tiny_m2": true,
+    "branches_exercised": [
+      "cartesian_k2",
+      "mitm_arity4_2plus2",
+      "mitm_arity5_2plus3",
+      "mitm_arity6_3plus3_end",
+      "mitm_recursive_L3_R3",
+      "mitm_cancel_empty_5fold",
+      "cartesian_vs_mitm_m2"
+    ],
+    "ok": true,
+    "independent_checker": false,
+    "same_code_as_census": true
+  },
+  "inversion_closure": {
+    "map": "(f1,...,fk) -> (fk^{-1}, ..., f1^{-1})",
+    "enumerated_class": "(1,0); checks x, Yxy, yxY; inverse class follows",
+    "negative_targets_hit_iff_positive_inverse_factors": true,
+    "xi_is_in_positive_class": true
+  },
+  "notes": [
+    "Exact L1 for x on C33 donors is |a| copies of D^{sign(a)} and one C^{sign(b)}.",
+    "Both donors have D_ab=(0,-1), so C30's (a,b)=(pq,p) applies. L1 in {2,\u2026,7} is the listed window rows.",
+    "All-window typed size 69587773081 is k|A|^{k-1}|B|, not |F|^k.",
+    "Cartesian cells enumerate 59884 products (observed min lengths [9, 11, 17, 15], all \u22659).",
+    "MITM cells have typed search-space size 69587713197 and do not enumerate that many products.",
+    "Equality is free-reduce literal against {x, Yxy, yxY}. A hit would be a normal-closure candidate, not C12.",
+    "JSON is same-code replay plus C26 planted controls. No U124 row is solved."
+  ]
+}

@@ -1,0 +1,1455 @@
+{
+  "method": {
+    "aut_canon_level_set_search": "disabled during corridor enumeration",
+    "aut_minimum": "experiments.equivalence_classes.lib.autcanon.aut_min_len",
+    "corridor_enumerator": "experiments.stable_ac.rank3_compression.corridors.enumerate_short_corridors",
+    "cyclic_complement_heuristic": "not implemented",
+    "fallback_bounds": {
+      "max_template_length": 3,
+      "max_word_length": 1
+    },
+    "primary_bounds": {
+      "max_template_length": 4,
+      "max_word_length": 2
+    },
+    "scope": "finite structural scan only; no AC heap search and no budgeted nodes",
+    "soft_total_scan_limit_seconds": 110.0
+  },
+  "pair_count": 22,
+  "pairs": [
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.04329897600007371
+      },
+      "delta": -1,
+      "id": "Q_2_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXYXX"
+      ],
+      "input_total_length": 20,
+      "kind": "Q",
+      "n": 2,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.03768048200004159
+      },
+      "delta": 1,
+      "id": "Q_2_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxYXX"
+      ],
+      "input_total_length": 20,
+      "kind": "Q",
+      "n": 2,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.0317770939999491
+      },
+      "delta": -1,
+      "id": "Q_3_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXYXX"
+      ],
+      "input_total_length": 21,
+      "kind": "Q",
+      "n": 3,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.028476104999981544
+      },
+      "delta": 1,
+      "id": "Q_3_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxYXX"
+      ],
+      "input_total_length": 21,
+      "kind": "Q",
+      "n": 3,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.029665711999996347
+      },
+      "delta": -1,
+      "id": "Q_4_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXYXX"
+      ],
+      "input_total_length": 22,
+      "kind": "Q",
+      "n": 4,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.027306972000019414
+      },
+      "delta": 1,
+      "id": "Q_4_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxYXX"
+      ],
+      "input_total_length": 22,
+      "kind": "Q",
+      "n": 4,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02498836399990978
+      },
+      "delta": -1,
+      "id": "Q_5_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXYXX"
+      ],
+      "input_total_length": 23,
+      "kind": "Q",
+      "n": 5,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02481323400002111
+      },
+      "delta": 1,
+      "id": "Q_5_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxYXX"
+      ],
+      "input_total_length": 23,
+      "kind": "Q",
+      "n": 5,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02497167299998182
+      },
+      "delta": -1,
+      "id": "Q_6_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXYXX"
+      ],
+      "input_total_length": 24,
+      "kind": "Q",
+      "n": 6,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02506933300003311
+      },
+      "delta": 1,
+      "id": "Q_6_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxYXX"
+      ],
+      "input_total_length": 24,
+      "kind": "Q",
+      "n": 6,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yX"
+        },
+        {
+          "length": 3,
+          "word": "XYX"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyX"
+        },
+        {
+          "length": 4,
+          "word": "XYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyX"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.025019078000013906
+      },
+      "delta": -1,
+      "id": "Q_7_-1",
+      "input_pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXXYXX"
+      ],
+      "input_total_length": 25,
+      "kind": "Q",
+      "n": 7,
+      "pair": [
+        "XYxyxxyXYXX",
+        "YxxyXXXXXXXYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XX"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        },
+        {
+          "length": 2,
+          "word": "xY"
+        },
+        {
+          "length": 2,
+          "word": "xx"
+        },
+        {
+          "length": 2,
+          "word": "xy"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        },
+        {
+          "length": 3,
+          "word": "YXX"
+        },
+        {
+          "length": 3,
+          "word": "xYX"
+        },
+        {
+          "length": 3,
+          "word": "xxy"
+        },
+        {
+          "length": 3,
+          "word": "xyx"
+        },
+        {
+          "length": 3,
+          "word": "yxx"
+        },
+        {
+          "length": 4,
+          "word": "xYXX"
+        },
+        {
+          "length": 4,
+          "word": "xxyx"
+        },
+        {
+          "length": 4,
+          "word": "xyxx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.0250802030000159
+      },
+      "delta": 1,
+      "id": "Q_7_+1",
+      "input_pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxxYXX"
+      ],
+      "input_total_length": 25,
+      "kind": "Q",
+      "n": 7,
+      "pair": [
+        "XYxyxxyxYXX",
+        "YxxyxxxxxxxYXX"
+      ]
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "Xy"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02474842499998431
+      },
+      "delta": -1,
+      "id": "aca_120",
+      "input_pair": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_total_length": 15,
+      "kind": "U124_best_floor",
+      "n": 3,
+      "pair": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "shape": "upper"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "Xy"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.024766209999938837
+      },
+      "delta": -1,
+      "id": "aca_34",
+      "input_pair": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_total_length": 16,
+      "kind": "U124_best_floor",
+      "n": 4,
+      "pair": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "shape": "upper"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "Xy"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.0250869110000167
+      },
+      "delta": -1,
+      "id": "aca_58",
+      "input_pair": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_total_length": 17,
+      "kind": "U124_best_floor",
+      "n": 5,
+      "pair": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "shape": "upper"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "Xy"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02463979100002689
+      },
+      "delta": -1,
+      "id": "aca_81",
+      "input_pair": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_total_length": 18,
+      "kind": "U124_best_floor",
+      "n": 6,
+      "pair": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "shape": "upper"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "Xy"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.025056661000007807
+      },
+      "delta": -1,
+      "id": "aca_97",
+      "input_pair": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_total_length": 19,
+      "kind": "U124_best_floor",
+      "n": 7,
+      "pair": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "shape": "upper"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.024928110000018933
+      },
+      "delta": 1,
+      "id": "aca_121",
+      "input_pair": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_total_length": 15,
+      "kind": "U124_best_floor",
+      "n": 3,
+      "pair": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "shape": "lower"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.024882312000045204
+      },
+      "delta": 1,
+      "id": "aca_122",
+      "input_pair": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_total_length": 16,
+      "kind": "U124_best_floor",
+      "n": 4,
+      "pair": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "shape": "lower"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.025017633000061323
+      },
+      "delta": 1,
+      "id": "aca_123",
+      "input_pair": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_total_length": 17,
+      "kind": "U124_best_floor",
+      "n": 5,
+      "pair": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "shape": "lower"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02523833600002945
+      },
+      "delta": 1,
+      "id": "aca_85",
+      "input_pair": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_total_length": 18,
+      "kind": "U124_best_floor",
+      "n": 6,
+      "pair": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "shape": "lower"
+    },
+    {
+      "common_freely_reduced_subwords_length_2_to_4": [
+        {
+          "length": 2,
+          "word": "XY"
+        },
+        {
+          "length": 2,
+          "word": "YX"
+        },
+        {
+          "length": 2,
+          "word": "Yx"
+        }
+      ],
+      "corridor_scan": {
+        "accepted": [],
+        "accepted_count": 0,
+        "bounds_used": {
+          "max_template_length": 4,
+          "max_word_length": 2
+        },
+        "enumerated_templates": 9984,
+        "trace_sha256": "c4cad5b8bc4e308935ffe2ed766a0dd17758e5af08433d4f351eee53c5f28683",
+        "wall_time_seconds": 0.02490590400009296
+      },
+      "delta": 1,
+      "id": "aca_98",
+      "input_pair": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_total_length": 19,
+      "kind": "U124_best_floor",
+      "n": 7,
+      "pair": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "shape": "lower"
+    }
+  ],
+  "source": {
+    "u124_best_table": "data/ms_unsolved_reps/aca_124_best.csv",
+    "u124_names": [
+      "aca_120",
+      "aca_34",
+      "aca_58",
+      "aca_81",
+      "aca_97",
+      "aca_121",
+      "aca_122",
+      "aca_123",
+      "aca_85",
+      "aca_98"
+    ]
+  },
+  "wall_time_seconds": 0.5983378409999887
+}
