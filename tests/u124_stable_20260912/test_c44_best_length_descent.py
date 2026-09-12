@@ -71,6 +71,18 @@ def test_c44_best_length_descent_identities():
             assert summary["c44_1_complete"]
             assert summary["c44_2_complete"]
             assert summary["n_done"] == 47
+            assert summary["n_d2_unique_sum"] == 5_521_175
+            assert summary["n_d3_unique_from_eq_sum"] == 116_608
+            assert summary["n_d2_eq_total"] == 819
+            assert summary["n_d1_drop_total"] == 0
+            assert summary["n_d2_drop_total"] == 0
+            assert summary["n_d3_drop_total"] == 0
+            assert summary["n_rows_with_replayed_drop"] == 0
+            assert summary["any_leq_12"] is False
+            rows = {row["id"]: row for row in artifact["listed"]["rows"]}
+            assert rows["aca_115"]["n_d2_eq_unique"] == 12
+            assert rows["aca_115"]["n_d3_unique_from_eq"] == 819
+            assert rows["aca_111"]["provenance"] == "mu_floor_best_relative"
 
 
 if __name__ == "__main__":

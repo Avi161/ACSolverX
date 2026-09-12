@@ -453,6 +453,30 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   (`ingest/advisor_c42_plan.md`). Advisor APPROVE
   (`ingest/advisor_wave27.md`).
 
+## Wave 29 (C44 BEST-pair cyclic-length descent, 2026-09-12)
+
+- No listed BEST input has total length ≤ 12. Shortest: `aca_115` at 13
+  (AK(3)), `aca_116`/`aca_117` at 14, ten rows at 15. C26–C42 ncl
+  product-word “min 11” is not a pair total. Leftover 10M never
+  recorded a certified pair total of 11. C44 starts from `aca_111`’s
+  μ-floor BEST pair of total 24 and finds no drop; the pathless 10M
+  INITIAL-table observed total 23 is neither a C44 state nor a
+  certified reduction.
+- C44.1: depth ≤ 2 C13 neighbourhood on the 36 μ-floor BEST pairs
+  (C28 used INITIAL). C44.2: 47 listed BEST pairs; every unique
+  exact-spelling depth-2 state of cyclic total equal to the input was
+  expanded once. Depth counts AC2 macro-steps. Not full depth-3.
+- Census: 5,521,175 unique d2, 819 equal-total depth-2 states, 116,608
+  row-local unique corridor children, 0 cyclic-total drops, 0 new
+  one-occurrence, 0 new two-block. `c44_1_complete` and
+  `c44_2_complete`. Input SHA-256 of `aca_124_best.csv` checked.
+  Still **0/124**. No certificate JSONL rows.
+  `independent_checker=false` for the negative. Drop witnesses would
+  use `greedy_tests.spec`, unused. Plan advisor REVISE applied
+  (`ingest/advisor_c44_plan.md`). Census advisor REVISE applied
+  (`ingest/advisor_wave28.md`). C43 remains the leftover aca_43 ncl
+  scanner (census not run).
+
 
 
 

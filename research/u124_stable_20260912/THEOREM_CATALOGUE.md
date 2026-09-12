@@ -1869,7 +1869,74 @@ CSV) plus runtime assertions in the census script. Plan advisor REVISE
 applied (`ingest/advisor_c42_plan.md`). `ingest/advisor_wave27.md`
 **APPROVE**.
 
+---
 
+## C44. BEST-pair cyclic-length descent — IDENTITY-CHECKED NEGATIVE
+
+**C44.1.** Depth ≤ 2 in the C13 neighbourhood on the **36 μ-floor BEST**
+pairs. C28 scanned archival INITIAL; those 36 shorter spellings were
+not a C28 input. Unique exact-spelling children and grandchildren.
+Depth counts **AC2 macro-steps**, not elementary moves. Scoring: strict
+cyclic-total drop versus that displayed BEST pair, new one-occurrence,
+new two-block–both.
+
+**C44.2.** Restricted extra AC2 macro-step on the **47-row union** of
+those 36 and the 13 shortest BEST pairs (total ≤ 15, including
+`aca_115`). Completeness: all row-local exact-spelling depth-2 states
+of cyclic total **equal to the input total** were expanded once
+(819 such states). **Not** full depth-3. Off-corridor unique d2
+states (strictly longer than the input) are excluded.
+
+Listed ids, numeric order: `aca_1, 8, 9, 10, 11, 12, 14, 34, 36, 43,
+44, 55, 58, 66, 67, 71, 72, 78, 80, 81, 85, 87, 88, 90, 95, 97, 98,
+99, 100, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+117, 118, 120, 121, 122, 123`.
+
+On the 47 displayed BEST pairs: 5,521,175 row-local unique d2
+spellings, 819 equal-total depth-2 states, 116,608 row-local unique
+corridor children. 0 unique cyclic-total drops at one, two, or
+corridor-three AC2 macro-steps. 0 new one-occurrence. 0 new
+two-block–both. No independently replayed length witness.
+`aca_115` (AK(3), total 13): 12 equal-total depth-2 states, 819
+row-local unique corridor children, 0 drops. C44 starts from the
+μ-floor BEST pair of `aca_111` of total 24 and finds no drop.
+Separately, the pathless 10M INITIAL-table run recorded an observed
+total 23; this is neither a C44 state nor a certified reduction.
+
+Provenance: 11 of the 13 shortest are `ordinary_displayed_initial`;
+the 36 floor rows (including overlap `aca_120, aca_121`) are
+`mu_floor_best_relative`. A miss does not update any length field.
+
+**Expansion.** Each macro-step is one AC2 plus AC1/AC3 orientation,
+restoration, and cyclic reduction. No Aut, no C0. A drop on a
+BEST=INITIAL row would be ordinary; a drop on a μ-floor BEST pair
+would be BEST-relative only unless the CoV prefix is separately
+validated.
+
+**C10.** No listed BEST input or C44-enumerated state reached cyclic
+total ≤ 12. μ = 13 is never a removal. `aca_115` μ ≤ 12 would be an
+AK(3) tripwire. Order-120 is an integrity check, not a C10 exception.
+C26–C42 ncl product-word “min 11” is not a pair total.
+
+**What this does not rule out.** Full depth-3 (off-corridor). Depth
+≥ 4. Heap search. Leftover 10M paths. Lemma 11 / further CoV hops.
+Aut with C1. C43 leftover ncl on aca_43.
+
+**U124.** The 47 listed BEST pairs. **Not a solve.** Bounded negative
+for this exact-spelling corridor. Score remains `0/124`. No listed
+BEST input or C44-enumerated state reached cyclic total ≤ 12.
+
+**Audit.** `code/c44_best_length_descent.py`,
+`tables/c44_best_length_descent.json`. Length-drop witnesses would be
+replayed with `greedy_tests.spec.apply_move`, not `children_fast`;
+unused because there was no drop. Planted: `⟨x, xy⟩` d1 drop;
+`⟨x, y⟩` no d1/d2 drop; corridor positive `⟨xxy, xYxY⟩`.
+`independent_checker=false` for the negative. Identity checks are a
+new file `tests/u124_stable_20260912/test_c44_best_length_descent.py`.
+Plan advisor REVISE applied (`ingest/advisor_c44_plan.md`). Census
+advisor REVISE applied (`ingest/advisor_wave28.md`).
+
+---
 
 
 

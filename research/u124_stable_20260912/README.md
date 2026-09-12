@@ -99,8 +99,9 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    Do not re-run the 183,924 nine-config census. C43:
    `.../code/c43_yyxxyxx_x_eq_cinv.py` (aca_43 leftover ncl; census
    not yet run — do not lump with C44). C44:
-   `.../code/c44_best_length_descent.py` (BEST-pair cyclic-length
-   descent; census not yet run) or `--annotate-existing`.
+   `.../code/c44_best_length_descent.py` (full census) or
+   `--annotate-existing`. Do not re-run the 5,521,175 unique
+   depth-2 plus 116,608 row-local unique corridor-child census.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -176,8 +177,10 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     abelianization, `L1=1`); k=3 nine-config misses (`183,924` products,
     observed min 11). Plan advisor REVISE applied. Advisor APPROVE. C43:
     leftover aca_43 ncl scanner is committed, census not yet run. C44:
-    cyclic pair-length descent on 47 BEST pairs, plan REVISE applied,
-    census not yet run. Still 0/124.
+    cyclic pair-length descent on 47 BEST pairs: 0 replayed drops
+    (5,521,175 unique d2, 819 equal-total d2 states, 116,608 row-local
+    unique corridor children). Plan advisor REVISE applied. Census
+    advisor REVISE applied. Still 0/124.
 
 ## File ownership
 
