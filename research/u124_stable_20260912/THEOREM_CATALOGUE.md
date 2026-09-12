@@ -1631,7 +1631,7 @@ persisted factor/conjugator witness replayed outside the scanner.
 `independent_checker=false`. Tests independently check the algebra,
 orientation, planted outside-replay, and rerun only aca_48; they do
 not independently enumerate the census. Plan advisor APPROVE
-(`ingest/advisor_c38_plan.md`). Census advisor audit pending.
+(`ingest/advisor_c38_plan.md`). `ingest/advisor_wave23.md` **APPROVE**.
 
 
 
