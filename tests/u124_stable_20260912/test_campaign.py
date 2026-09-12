@@ -270,3 +270,57 @@ def test_c23_three_factor_shapes_and_n2():
     assert summary["f3_all_min_len_non_gen_ge_8"]
     assert summary["D_len"] == 4
     assert summary["solved_u124"] == 0
+
+
+def test_c24_even_k_and_n2_five_factor():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c24_even_k as c24  # type: ignore
+
+    family = c24.infinite_family_check(20)
+    assert family["gate1_hypotheses_hold"]
+    assert family["gate2_L1_always_even"]
+    ktable = c24.abelian_k_table(6)
+    assert ktable["even_k_all_zero"]
+    assert ktable["uniform_gate1_counts"]
+    assert ktable["k5_always_100"]
+    g2 = c24.gate2_parity_row(2, 1)
+    assert g2["combo_matches_closed_form"]
+    assert g2["L1"] == 6
+    assert g2["odd_k_forbidden"]
+    assert not g2["k4_abelian_legal"]
+    g2m = c24.gate2_parity_row(2, -1)
+    assert g2m["L1"] == 2
+    assert g2m["k4_abelian_legal"]
+    for delta in (-1, 1):
+        rec = c24.gate1_five_factor(2, delta)
+        assert not rec["found"]
+        assert not rec["rotation_found"]
+        assert rec["xi_len"] == 3
+        assert rec["n_factors"] == 80
+        assert rec["n_k_tuples"] == 80 ** 5
+    four = c24.gate2_four_factor(2, -1)
+    assert not four["found"]
+    stored_search = c24.stored_small_k_search()
+    searched = {row["id"]: row for row in stored_search if row["searched"]}
+    assert set(searched) == {"aca_16", "aca_43", "aca_90"}
+    assert searched["aca_16"]["k"] == 5
+    assert searched["aca_43"]["k"] == 4
+    assert searched["aca_90"]["k"] == 3
+    assert all(not row["found"] for row in stored_search)
+    artifact = json.loads(
+        (ROOT / "research/u124_stable_20260912/tables/c24_even_k.json").read_text()
+    )
+    summary = artifact["summary"]
+    assert summary["gate1_hypotheses_n_le_20"]
+    assert summary["gate2_L1_always_even_n_le_20"]
+    assert summary["even_k_all_zero"]
+    assert not summary["five_factor_any_hit"]
+    assert not summary["five_factor_rotation_any_hit"]
+    assert summary["five_factor_n_checked"] == 12
+    assert summary["gate2_odd_k_all_forbidden"]
+    assert summary["gate2_four_n_checked"] == 4
+    assert not summary["gate2_four_any_hit"]
+    assert summary["stored_small_k_n_searched"] == 3
+    assert not summary["stored_small_k_any_hit"]
+    assert summary["solved_u124"] == 0

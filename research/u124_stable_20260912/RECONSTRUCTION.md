@@ -170,3 +170,18 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   non-generator length ≥ 8.
 - Still **0/124**. No certificate JSONL rows.
 
+## Wave 10 (C24 factor-parity, five-factor Gate 1, 2026-09-12)
+
+- Gate 1: `ξ ≡ R^δ`, `L1=1`. Any conjugate product has odd `k`. Even
+  `k` is impossible independently of conjugators. Signed-type counts
+  `1/9/100` for `k=1,3,5`; `0` for even `k≤6`.
+- Five-factor prefix/one-letter MITM `2+3`, all 12 `Q'_{n,δ}`:
+  `103,765,444,800` tuples, no free equality with `ξ^{±1}` or a
+  cyclic permutation of those words.
+- Gate 2 on `Q'`: closed form `L1=2n+2` (`δ=+1`) and
+  `|n−2|+|n−4|` (`δ=−1`), always even. Odd `k` is impossible.
+  Four-factor is legal only for `δ=−1`, `n=2..5`; `891,860,544`
+  tuples, no hit. Stored C16 small-`k` searches on aca_16/43/90:
+  no hit.
+- Still **0/124**. No certificate JSONL rows.
+

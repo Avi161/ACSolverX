@@ -780,7 +780,8 @@ totals are the same length.
 is C6, hence two C0 uses. C22.6 is a free-group identity; the missing
 conjugator is not AC.
 
-**What this does not rule out.** Four or more conjugate factors; Gate 1
+**What this does not rule out.** Even `k` and odd `k≥5` are C24
+(conjugator-independent parity; five-factor prefix/one-letter). Gate 1
 conjugators longer than prefixes/one letter, or involving the new letter
 `u` at depth ≥ 3; a different defining word than `ξ`; a C15 theorem that
 produces `x⁻¹ y x` by a route other than depth-1 AC2 with the BS companion.
@@ -831,12 +832,90 @@ have length at least 8 `> |D|=4`.
 **Expansion.** Restore-preserving AC3+AC2 as in C22. No C0 in the
 enumerated moves. No witness under this predicate was found.
 
-**What this does not rule out.** C23.2: four or more factors. C23.3:
+**What this does not rule out.** C23.2: five or more *odd* factors
+(even `k` is C24.1; five-factor prefix/one-letter is C24.2). C23.3:
 three or more factors (depth ≥ 3). Conjugators outside the stated sets;
-Gate 2 three-factor products; a defining word other than `ξ`.
+a defining word other than `ξ`. Gate 2 three-factor products are
+abelian-impossible on every `Q'_{n,δ}` (C24.3).
 
 **U124.** Same C16 Q' family as C22. Incoming C16 remains two
 non-effective C0 uses. **Not a solve.**
 
 **Audit.** `code/c23_three_factor.py`, `tables/c23_three_factor.json`.
 `ingest/advisor_wave8.md` **REVISE** applied.
+
+---
+
+## C24. Abelian factor-parity; five-factor Gate 1; four-factor Gate 2 — IDENTITY-CHECKED NEGATIVE
+
+**C24.1 (factor-parity, all `n≥2`).** Let `U,V` be cyclically reduced
+relators whose exponent matrix is unimodular, and let `w` be a word with
+unique combination `w ≡ U^α V^β` in abelianization. Write
+`σ_U = n_{U+} − n_{U−}` for a product of `k` conjugates of
+`{U^{±1},V^{±1}}`. Abelianization forces `σ_U=α` and `σ_V=β`, hence
+`n_U ≥ |α|`, `n_U ≡ |α| (mod 2)`, and the same for `V`. Therefore
+`k ≥ |α|+|β|` and `k ≡ |α|+|β| (mod 2)`. Extra factors that preserve
+`(σ_U,σ_V)` add equally many `U` and `U^{-1}` and equally many `V` and
+`V^{-1}`, so they change `k` by an even integer.
+
+On Gate 1, `w=ξ=y^{-1}xy`, `U=R`, `V=S`. The identities
+`R = x^{-1}y^{-1}xyy\, x^δ y^{-1}` (independent of `n`, cyclic length 7,
+exponent `(δ,0)`), `S` of y-exponent `−1`, and `ξ` of exponent `(1,0)`
+give the unique combination `(α,β)=(δ,0)` and `L1=1`. Even `k` is
+impossible, uniformly in `n≥2` and both signs. The x-exponent of `S`
+does not enter: once the signed S-count is 0, the S-contribution to
+x-exponent is 0. Signed-type counts: `k=1` has 1 legal pattern,
+`k=3` has 9, `k=5` has 100, every even `k≤6` has 0; replayed for
+`n=2..7`. Hypotheses replayed for `n=2..20`.
+
+This re-proves C22.1’s two-factor negative and rules out `k=4,6,8,…`
+without search. `k=1` remains the length obstruction `|R|=7 > |ξ|=3`.
+`k=3` is C23. The next odd value is `k=5`.
+
+**C24.2 (five-factor Gate 1, prefix/one-letter).** Meet-in-the-middle
+`2+3` over the C22 conjugator pool (prefixes of both spellings
+`R^{±1}`, `S^{±1}`, and one-letter conjugators) enumerates every ordered
+5-tuple from the unique-conjugate lists. For `n=2..7` and `δ∈{±1}`
+(`12` pairs, `103,765,444,800` tuples) no product freely equals `ξ` or
+`ξ^{-1}`. No product freely equals a cyclic permutation of `ξ^{±1}`
+either (six length-3 targets; not a claim about cyclic reduction of a
+longer word). Split `2+3` is complete for 5-tuples: free reduction
+is a homomorphism, so `f1⋯f5 = ξ` iff `(f1 f2)^{-1} ξ = f3 f4 f5`.
+
+**C24.3 (Gate 2 L1 on `Q'` / `S_{n,δ}`).** In coordinates `(x,u)`,
+`Â` has exponent `(δ−1, 1)`, `B̂` has `(1, −1)`, and
+`e=u^2 x^{nδ}` has `(nδ, 2)`. The unique combination is
+
+- `δ=+1`: `(a,b)=(n+2,\, n)`, `L1=2n+2 ≥ 6`;
+- `δ=−1`: `(a,b)=(n−2,\, n−4)`, `L1=|n−2|+|n−4| ≥ 2`, always even.
+
+Odd `k` is therefore abelian-impossible on every `Q'_{n,δ}`. In
+particular C23’s leftover “Gate 2 three-factor” cannot hit `e` on this
+family. Four-factor products are abelian-legal only for `δ=−1` and
+`n∈{2,3,4,5}` (`L1∈{2,2,2,4}`). Prefix/one-letter MITM `2+2` on those
+four pairs (`891,860,544` tuples) never freely equals `e^{±1}`.
+
+**C24.4 (stored C16 endpoints).** Best-table C16 hits have
+`(id, L1)` = `(aca_16, 5)`, `(aca_43, 2)`, `(aca_67, 15)`,
+`(aca_87, 21)`, `(aca_90, 3)`. Prefix/one-letter searches of the
+smallest remaining legal `k≤5`: `aca_16` five-factor, `aca_43`
+four-factor, `aca_90` three-factor; no hit. `aca_67` and `aca_87` have
+`L1>5` and were not enumerated.
+
+**Expansion.** Restore-preserving AC3+AC2 as in C22. No C0 in the
+enumerated products. C24.1 is an abelian identity and does not expand
+Lemma 11. No witness under these predicates was found.
+
+**What this does not rule out.** Gate 1: `k=7,9,…`; conjugators outside
+the prefix/one-letter set, or involving the new letter `u`; a defining
+word other than `ξ`. Gate 2 on `Q'`: `k=L1+2m` for `m≥0` when `L1≥6`
+(`δ=+1` all `n`, and `δ=−1` with `n≥6`); conjugators outside the stated
+set. Stored `aca_67` / `aca_87`. F3 depth ≥ 3 after AC4. Materializing
+Lemma 11 for either gate.
+
+**U124.** Same C16 Q' family as C22/C23, plus the five stored C16
+endpoints. Incoming C16 remains two non-effective C0 uses. **Not a
+solve.**
+
+**Audit.** `code/c24_even_k.py`, `tables/c24_even_k.json`. Advisor
+audit pending (`ingest/advisor_wave9.md`).

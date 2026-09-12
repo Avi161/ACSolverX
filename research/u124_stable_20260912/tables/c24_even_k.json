@@ -1,0 +1,1159 @@
+{
+  "summary": {
+    "gate1_hypotheses_n_le_20": true,
+    "gate2_L1_always_even_n_le_20": true,
+    "even_k_all_zero": true,
+    "uniform_gate1_counts": true,
+    "k5_always_100": true,
+    "five_factor_any_hit": false,
+    "five_factor_rotation_any_hit": false,
+    "five_factor_n_checked": 12,
+    "five_factor_n_k_tuples": 103765444800,
+    "gate2_odd_k_all_forbidden": true,
+    "gate2_four_n_checked": 4,
+    "gate2_four_any_hit": false,
+    "stored_n": 5,
+    "stored_small_k_n_searched": 3,
+    "stored_small_k_any_hit": false,
+    "solved_u124": 0
+  },
+  "family": {
+    "n_max": 20,
+    "gate1_hypotheses_hold": true,
+    "gate2_L1_always_even": true,
+    "rows_n_le_7": [
+      {
+        "n": 2,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 2,
+        "g2_combo_a": 0,
+        "g2_combo_b": -2,
+        "ok": true
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 2,
+        "g2_combo_a": 1,
+        "g2_combo_b": -1,
+        "ok": true
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 2,
+        "g2_combo_a": 2,
+        "g2_combo_b": 0,
+        "ok": true
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 4,
+        "g2_combo_a": 3,
+        "g2_combo_b": 1,
+        "ok": true
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 6,
+        "g2_combo_a": 4,
+        "g2_combo_b": 2,
+        "ok": true
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "g1_L1": 1,
+        "g2_L1": 8,
+        "g2_combo_a": 5,
+        "g2_combo_b": 3,
+        "ok": true
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 6,
+        "g2_combo_a": 4,
+        "g2_combo_b": 2,
+        "ok": true
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 8,
+        "g2_combo_a": 5,
+        "g2_combo_b": 3,
+        "ok": true
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 10,
+        "g2_combo_a": 6,
+        "g2_combo_b": 4,
+        "ok": true
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 12,
+        "g2_combo_a": 7,
+        "g2_combo_b": 5,
+        "ok": true
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 14,
+        "g2_combo_a": 8,
+        "g2_combo_b": 6,
+        "ok": true
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "g1_L1": 1,
+        "g2_L1": 16,
+        "g2_combo_a": 9,
+        "g2_combo_b": 7,
+        "ok": true
+      }
+    ]
+  },
+  "abelian_k": {
+    "uniform_gate1_counts": true,
+    "even_k_all_zero": true,
+    "k1_always_1": true,
+    "k3_always_9": true,
+    "k5_always_100": true,
+    "rows": [
+      {
+        "n": 2,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 3,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 4,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 5,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 6,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 7,
+        "delta": -1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 2,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 3,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 4,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 5,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 6,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      },
+      {
+        "n": 7,
+        "delta": 1,
+        "counts": {
+          "1": 1,
+          "2": 0,
+          "3": 9,
+          "4": 0,
+          "5": 100,
+          "6": 0
+        },
+        "even_k_zero": true,
+        "odd_k_positive": true,
+        "k1": 1,
+        "k3": 9,
+        "k5": 100
+      }
+    ]
+  },
+  "gate1_five_factor": [
+    {
+      "n": 2,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 28,
+      "n_factors": 80,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 6400,
+      "n_right_tuples": 512000,
+      "n_right_unique": 487384,
+      "n_k_tuples": 3276800000,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 30,
+      "n_factors": 86,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 7396,
+      "n_right_tuples": 636056,
+      "n_right_unique": 607868,
+      "n_k_tuples": 4704270176,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 32,
+      "n_factors": 92,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 8464,
+      "n_right_tuples": 778688,
+      "n_right_unique": 746688,
+      "n_k_tuples": 6590815232,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 34,
+      "n_factors": 98,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 9604,
+      "n_right_tuples": 941192,
+      "n_right_unique": 905140,
+      "n_k_tuples": 9039207968,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 36,
+      "n_factors": 104,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 10816,
+      "n_right_tuples": 1124864,
+      "n_right_unique": 1084520,
+      "n_k_tuples": 12166529024,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 38,
+      "n_factors": 110,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 12100,
+      "n_right_tuples": 1331000,
+      "n_right_unique": 1286124,
+      "n_k_tuples": 16105100000,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 28,
+      "n_factors": 80,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 6400,
+      "n_right_tuples": 512000,
+      "n_right_unique": 487384,
+      "n_k_tuples": 3276800000,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 30,
+      "n_factors": 86,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 7396,
+      "n_right_tuples": 636056,
+      "n_right_unique": 607868,
+      "n_k_tuples": 4704270176,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 32,
+      "n_factors": 92,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 8464,
+      "n_right_tuples": 778688,
+      "n_right_unique": 746688,
+      "n_k_tuples": 6590815232,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 34,
+      "n_factors": 98,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 9604,
+      "n_right_tuples": 941192,
+      "n_right_unique": 905140,
+      "n_k_tuples": 9039207968,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 36,
+      "n_factors": 104,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 10816,
+      "n_right_tuples": 1124864,
+      "n_right_unique": 1084520,
+      "n_k_tuples": 12166529024,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "xi": "Yxy",
+      "xi_len": 3,
+      "n_conjugators": 38,
+      "n_factors": 110,
+      "left_arity": 2,
+      "right_arity": 3,
+      "n_left_tuples": 12100,
+      "n_right_tuples": 1331000,
+      "n_right_unique": 1286124,
+      "n_k_tuples": 16105100000,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    }
+  ],
+  "gate2_parity": [
+    {
+      "n": 2,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": -2
+      },
+      "L1": 2,
+      "expected_L1": 2,
+      "expected_combo": {
+        "a": 0,
+        "b": -2
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXX",
+      "e_len": 4,
+      "A_cyc_len": 7,
+      "B_cyc_len": 10,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": true,
+      "min_k": 2
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 1,
+        "b": -1
+      },
+      "L1": 2,
+      "expected_L1": 2,
+      "expected_combo": {
+        "a": 1,
+        "b": -1
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXXX",
+      "e_len": 5,
+      "A_cyc_len": 7,
+      "B_cyc_len": 12,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": true,
+      "min_k": 2
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 2,
+        "b": 0
+      },
+      "L1": 2,
+      "expected_L1": 2,
+      "expected_combo": {
+        "a": 2,
+        "b": 0
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXXXX",
+      "e_len": 6,
+      "A_cyc_len": 7,
+      "B_cyc_len": 14,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": true,
+      "min_k": 2
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 3,
+        "b": 1
+      },
+      "L1": 4,
+      "expected_L1": 4,
+      "expected_combo": {
+        "a": 3,
+        "b": 1
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXXXXX",
+      "e_len": 7,
+      "A_cyc_len": 7,
+      "B_cyc_len": 16,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": true,
+      "min_k": 4
+    },
+    {
+      "n": 6,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 4,
+        "b": 2
+      },
+      "L1": 6,
+      "expected_L1": 6,
+      "expected_combo": {
+        "a": 4,
+        "b": 2
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXXXXXX",
+      "e_len": 8,
+      "A_cyc_len": 7,
+      "B_cyc_len": 18,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 6
+    },
+    {
+      "n": 7,
+      "delta": -1,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 5,
+        "b": 3
+      },
+      "L1": 8,
+      "expected_L1": 8,
+      "expected_combo": {
+        "a": 5,
+        "b": 3
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuXXXXXXX",
+      "e_len": 9,
+      "A_cyc_len": 7,
+      "B_cyc_len": 20,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 8
+    },
+    {
+      "n": 2,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 4,
+        "b": 2
+      },
+      "L1": 6,
+      "expected_L1": 6,
+      "expected_combo": {
+        "a": 4,
+        "b": 2
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxx",
+      "e_len": 4,
+      "A_cyc_len": 7,
+      "B_cyc_len": 10,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 6
+    },
+    {
+      "n": 3,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 5,
+        "b": 3
+      },
+      "L1": 8,
+      "expected_L1": 8,
+      "expected_combo": {
+        "a": 5,
+        "b": 3
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxxx",
+      "e_len": 5,
+      "A_cyc_len": 7,
+      "B_cyc_len": 12,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 8
+    },
+    {
+      "n": 4,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 6,
+        "b": 4
+      },
+      "L1": 10,
+      "expected_L1": 10,
+      "expected_combo": {
+        "a": 6,
+        "b": 4
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxxxx",
+      "e_len": 6,
+      "A_cyc_len": 7,
+      "B_cyc_len": 14,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 10
+    },
+    {
+      "n": 5,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 7,
+        "b": 5
+      },
+      "L1": 12,
+      "expected_L1": 12,
+      "expected_combo": {
+        "a": 7,
+        "b": 5
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxxxxx",
+      "e_len": 7,
+      "A_cyc_len": 7,
+      "B_cyc_len": 16,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 12
+    },
+    {
+      "n": 6,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 8,
+        "b": 6
+      },
+      "L1": 14,
+      "expected_L1": 14,
+      "expected_combo": {
+        "a": 8,
+        "b": 6
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxxxxxx",
+      "e_len": 8,
+      "A_cyc_len": 7,
+      "B_cyc_len": 18,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 14
+    },
+    {
+      "n": 7,
+      "delta": 1,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": 9,
+        "b": 7
+      },
+      "L1": 16,
+      "expected_L1": 16,
+      "expected_combo": {
+        "a": 9,
+        "b": 7
+      },
+      "combo_matches_closed_form": true,
+      "e": "uuxxxxxxx",
+      "e_len": 9,
+      "A_cyc_len": 7,
+      "B_cyc_len": 20,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "k4_abelian_legal": false,
+      "min_k": 16
+    }
+  ],
+  "gate2_four_factor": [
+    {
+      "n": 2,
+      "delta": -1,
+      "e": "uuXX",
+      "e_len": 4,
+      "n_conjugators": 35,
+      "n_factors": 102,
+      "left_arity": 2,
+      "right_arity": 2,
+      "n_left_tuples": 10404,
+      "n_right_tuples": 10404,
+      "n_right_unique": 10219,
+      "n_k_tuples": 108243216,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 3,
+      "delta": -1,
+      "e": "uuXXX",
+      "e_len": 5,
+      "n_conjugators": 39,
+      "n_factors": 114,
+      "left_arity": 2,
+      "right_arity": 2,
+      "n_left_tuples": 12996,
+      "n_right_tuples": 12996,
+      "n_right_unique": 12791,
+      "n_k_tuples": 168896016,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 4,
+      "delta": -1,
+      "e": "uuXXXX",
+      "e_len": 6,
+      "n_conjugators": 43,
+      "n_factors": 126,
+      "left_arity": 2,
+      "right_arity": 2,
+      "n_left_tuples": 15876,
+      "n_right_tuples": 15876,
+      "n_right_unique": 15651,
+      "n_k_tuples": 252047376,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    },
+    {
+      "n": 5,
+      "delta": -1,
+      "e": "uuXXXXX",
+      "e_len": 7,
+      "n_conjugators": 47,
+      "n_factors": 138,
+      "left_arity": 2,
+      "right_arity": 2,
+      "n_left_tuples": 19044,
+      "n_right_tuples": 19044,
+      "n_right_unique": 18799,
+      "n_k_tuples": 362673936,
+      "n_target_hits": 0,
+      "hit": null,
+      "found": false,
+      "rotation_n_target_hits": 0,
+      "rotation_hit": null,
+      "rotation_found": false
+    }
+  ],
+  "stored_gate2_parity": [
+    {
+      "id": "aca_16",
+      "p": -3,
+      "c": 2,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -1,
+        "b": 4
+      },
+      "L1": 5,
+      "e": "UUUxx",
+      "e_len": 5,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 5
+    },
+    {
+      "id": "aca_43",
+      "p": -2,
+      "c": 2,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 2
+      },
+      "L1": 2,
+      "e": "UUxx",
+      "e_len": 4,
+      "odd_k_forbidden": true,
+      "even_k_forbidden": false,
+      "min_k": 2
+    },
+    {
+      "id": "aca_67",
+      "p": -3,
+      "c": -3,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 6,
+        "b": -9
+      },
+      "L1": 15,
+      "e": "UUUXXX",
+      "e_len": 6,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 15
+    },
+    {
+      "id": "aca_87",
+      "p": -3,
+      "c": -3,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -6,
+        "b": 15
+      },
+      "L1": 21,
+      "e": "UUUXXX",
+      "e_len": 6,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 21
+    },
+    {
+      "id": "aca_90",
+      "p": -3,
+      "c": 3,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 3
+      },
+      "L1": 3,
+      "e": "UUUxxx",
+      "e_len": 6,
+      "odd_k_forbidden": false,
+      "even_k_forbidden": true,
+      "min_k": 3
+    }
+  ],
+  "stored_small_k": [
+    {
+      "id": "aca_16",
+      "L1": 5,
+      "e": "UUUxx",
+      "e_len": 5,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -1,
+        "b": 4
+      },
+      "searched": true,
+      "k": 5,
+      "found": false,
+      "hit": null,
+      "n_factors": 138,
+      "n_k_tuples": 50049003168
+    },
+    {
+      "id": "aca_43",
+      "L1": 2,
+      "e": "UUxx",
+      "e_len": 4,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 2
+      },
+      "searched": true,
+      "k": 4,
+      "found": false,
+      "hit": null,
+      "n_factors": 114,
+      "n_k_tuples": 168896016
+    },
+    {
+      "id": "aca_67",
+      "L1": 15,
+      "e": "UUUXXX",
+      "e_len": 6,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 6,
+        "b": -9
+      },
+      "searched": false,
+      "k": null,
+      "found": false,
+      "hit": null
+    },
+    {
+      "id": "aca_87",
+      "L1": 21,
+      "e": "UUUXXX",
+      "e_len": 6,
+      "combo": {
+        "det": -1,
+        "ok": true,
+        "a": -6,
+        "b": 15
+      },
+      "searched": false,
+      "k": null,
+      "found": false,
+      "hit": null
+    },
+    {
+      "id": "aca_90",
+      "L1": 3,
+      "e": "UUUxxx",
+      "e_len": 6,
+      "combo": {
+        "det": 1,
+        "ok": true,
+        "a": 0,
+        "b": 3
+      },
+      "searched": true,
+      "k": 3,
+      "found": false,
+      "hit": null,
+      "n_factors": 150,
+      "n_k_tuples": 3375000
+    }
+  ],
+  "notes": [
+    "Even k is an abelian obstruction for Gate 1, independent of conjugators.",
+    "Five-factor conjugators are prefix/one-letter, same set as C22.3/C23.2.",
+    "Meet-in-the-middle split is 2+3, covering every 5-tuple of that factor pool.",
+    "Rotation targets are recorded separately; they are not extra factors in the pool.",
+    "Gate 2 odd k is abelian-impossible on every Q'_{n,\u03b4} with n=2..20.",
+    "Four-factor Gate 2 is searched only where L1 \u2264 4 (\u03b4=\u22121, n=2..5).",
+    "Stored C16 endpoints: k=4 on L1\u22644 even, k=L1 on odd L1\u22645; L1>5 unsearched.",
+    "No U124 row is solved."
+  ]
+}
