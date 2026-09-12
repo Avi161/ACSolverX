@@ -133,7 +133,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     length 7). Advisor APPROVE. C34: exact-L1 for defining word `x` on
     eight C33 rows in `2≤L1≤7` misses (`59,884` Cartesian products,
     observed min length 9; four MITM cells, typed search-space
-    `69,587,713,197`, not enumerated products). Advisor audit pending.
+    `69,587,713,197`, not enumerated products). Advisor APPROVE.
     C35: last unused length-7 donor in the listed shared-donor
     inventory, `YXXXyxx` (`x ≡ D^{-1}`, `L1=1`); k=3 nine-config
     misses (`579,870` products, observed min length 7). Plan advisor

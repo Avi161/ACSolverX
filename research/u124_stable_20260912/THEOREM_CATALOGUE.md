@@ -1416,7 +1416,7 @@ Same-code replay plus C26 planted controls. Observed Cartesian minimum
 9 is a census fact. MITM typed sizes are search-space, not enumerated
 products. Tests independently check the algebra and rerun only
 aca_8/aca_72; they do not independently replay MITM.
-`independent_checker=false`. Advisor audit pending.
+`independent_checker=false`. `ingest/advisor_wave19.md` **APPROVE**.
 
 ---
 

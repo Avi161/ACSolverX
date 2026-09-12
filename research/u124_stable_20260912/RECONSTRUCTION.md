@@ -323,7 +323,7 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `{x, Yxy, yxY}`. Equality was tested after free reduction only
   against those three words. Skipped aca_43 (`L1=1`, `x ≡ C^{-1}`) and
   three `L1≥8` rows. Still **0/124**. No certificate JSONL rows.
-  `independent_checker=false`. Advisor audit pending.
+  `independent_checker=false`. Advisor APPROVE (`ingest/advisor_wave19.md`).
 
 ## Wave 21 (C35 YXXXyxx family, 2026-09-12)
 
