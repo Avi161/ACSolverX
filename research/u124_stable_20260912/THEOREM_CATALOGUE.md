@@ -1181,12 +1181,17 @@ Same-code deterministic replay plus planted nine-config control.
 
 ## C30. Exact-L1 typed products for `x` on the `YXXyxYx` family — IDENTITY-CHECKED NEGATIVE
 
-**C30.1 (combination).** On every unimodular companion of `D = YXXyxYx`,
-defining word `x` has unique combination `(a,b)` with `|b|=1` and
-`L1=|a|+1 ∈ {2,…,7}`. Exact-L1 products are `|a|` conjugates of
-`D^{\mathrm{sign}(a)}` and one conjugate of `C^{\mathrm{sign}(b)}`, in
-some order (`t_D=t_C=0`). Even `k` is abelian-legal on even-L1 rows;
-there is no C24-style even-k block. `k=1` never arises (`min L1=2`).
+**C30.1 (combination).** Donor `D = YXXyxYx` abelianizes to `(0,-1)`.
+Any unimodular companion `C` abelianizes to `(p,q)` with `p=±1`, and
+the unique solution of `a D_{\mathrm{ab}} + b C_{\mathrm{ab}} = (1,0)`
+is `(a,b)=(pq,p)`; hence `|b|=1` for every such companion. On the
+eleven listed rows, `L1=|a|+1 ∈ {2,…,7}` (not a claim about every
+conceivable unimodular companion). Exact-L1 products are `|a|`
+conjugates of `D^{\mathrm{sign}(a)}` and one conjugate of
+`C^{\mathrm{sign}(b)}`, in some order (`t_D=t_C=0`). Even `k` is
+abelian-legal on even-L1 rows among those eleven; there is no
+C24-style even-k block. `k=1` never arises on those rows
+(`min L1=2`).
 
 **C30.2 (prefix/one-letter census, all eleven rows).** Unique conjugates
 per signed type; counts are typed Cartesian sizes `k\,|A|^{k-1}|B|`,
@@ -1214,9 +1219,13 @@ be a **normal-closure candidate**, not a C12 primitive. Five companions
 are C7 Aut-minimal P floors; that Aut-orbit is not a solve.
 
 **What this does not rule out.** `k=L1+2t` for `t≥1`. Longer
-conjugators, including conjugators involving `u`. C29 leftover
-`k=5,7,…` for defining word `y`. The eight-row donor `YXXYxxyx` is
-C31. Depth ≥ 3 AC2. Lemma 11.
+conjugators, including conjugators involving `u`. Equality was tested
+after free reduction only against `{x, Yxy, yxY}`. No cyclic-reduction
+or conjugacy quotient, ambient `Aut(F_2)`, or Tietze identification
+was used; freely reduced longer conjugates of `x` not among these
+three targets remain untested. C29 leftover `k=5,7,…` for defining
+word `y`. The eight-row donor `YXXYxxyx` is C31. Depth ≥ 3 AC2.
+Lemma 11.
 
 **U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
 **Not a solve.** Bounded negative for this exact-L1 typed pool.
@@ -1224,7 +1233,8 @@ C31. Depth ≥ 3 AC2. Lemma 11.
 **Audit.** `code/c30_x_exact_l1.py`, `tables/c30_x_exact_l1.json`.
 Same-code replay plus C26 planted controls. Cartesian observed minima
 11 and 15 are census facts, not a length theorem. MITM typed sizes are
-search-space, not enumerated products. Advisor audit pending.
+search-space, not enumerated products. `independent_checker=false`.
+`ingest/advisor_wave14.md` **REVISE** applied.
 
 ---
 

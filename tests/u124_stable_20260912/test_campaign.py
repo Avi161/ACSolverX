@@ -636,6 +636,7 @@ def test_c29_yxx_family_identities():
 def test_c30_x_exact_l1_identities():
     sys.path.insert(0, str(ROOT))
     sys.path.insert(0, str(CODE))
+    import c22_gate_witness as c22  # type: ignore
     import c26_y_exact_l1 as c26  # type: ignore
     import c29_yxx_family as c29  # type: ignore
     import c30_x_exact_l1 as c30  # type: ignore
@@ -644,7 +645,10 @@ def test_c30_x_exact_l1_identities():
     xclass = c30.x_class_exponents()
     assert xclass["all_exp_one_zero"]
     assert xclass["inverse_all_exp_minus_one_zero"]
+    assert xclass["one_letter_class_complete"]
     assert c30.POSITIVE_X[1] == tw.XI
+    assert c30.x_combo_from_c_exp(1, -1) == (-1, 1, 2)
+    assert c30.x_combo_from_c_exp(-1, -4) == (4, -1, 5)
     rec = c30.scan_row("aca_120", "YYYXyyxx")
     assert rec["L1"] == 2
     assert rec["combo_a"] == -1 and rec["combo_b"] == 1
@@ -685,6 +689,14 @@ def test_c30_x_exact_l1_identities():
         assert summary["cartesian_ids"] == ["aca_34", "aca_53", "aca_120"]
         assert summary["mitm_counts_are_search_space_not_enumerated_products"]
         assert summary["n_p_floor_companions"] == 5
+        assert summary["l1_range_is_eleven_listed_rows"]
+        assert summary["abs_b_1_from_unimodularity"]
+        assert summary["equality_is_free_reduce_literal"]
+        assert summary["one_letter_class_complete"]
+        for row in artifact["scans"]:
+            p, q = c22.exp_on(row["companion"], "xy")
+            a, b, l1 = c30.x_combo_from_c_exp(p, q)
+            assert (a, b, l1) == (row["combo_a"], row["combo_b"], row["L1"])
 
 
 def test_c31_yxxy_family_identities():

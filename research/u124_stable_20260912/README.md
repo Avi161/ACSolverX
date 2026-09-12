@@ -114,7 +114,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     min length 7, no hit). C30: exact-L1 for defining word `x` on the
     same eleven rows misses (`107,212` Cartesian products, observed
     minima 11 and 15; eight MITM cells, typed search-space
-    `43,999,380,138`, not enumerated products). C31: `YXXYxxyx` family,
+    `43,999,380,138`, not enumerated products). Advisor REVISE applied.
+    C31: `YXXYxxyx` family,
     seven consecutive BS companions with `y ≡ C^{-1}` (`L1=1`); k=3
     nine-config misses (`1,519,059` products, observed min length 9);
     aca_32 exact L1=2 misses (1,104 products). Still 0/124.

@@ -266,8 +266,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   typed total 43,999,487,350. No hit on `{x, Yxy, yxY}`.
 - A hit would have been a normal-closure candidate, not a C12 path.
   Five companions are C7 Aut-minimal P floors; that is not a solve.
+  `|b|=1` is unimodular; `L1 ∈ {2,…,7}` is the eleven listed rows.
+  Equality is free-reduce literal against `{x, Yxy, yxY}`.
   Still **0/124**. No certificate JSONL rows.
-  `independent_checker=false`. Advisor audit pending.
+  `independent_checker=false`. Advisor REVISE applied
+  (`ingest/advisor_wave14.md`).
 
 ## Wave 17 (C31 YXXYxxyx family, 2026-09-12)
 

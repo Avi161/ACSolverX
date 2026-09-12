@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """C30: exact-L1 typed products for defining word x on the YXXyxYx family.
 
-C29 left defining word x: against (D, C) the unique combination always has
-|b|=1, so exact-L1 products are |a| conjugates of D^{sign(a)} and one
-conjugate of C^{sign(b)}, in some order. L1 ranges from 2 (aca_120) to 7
-(aca_36). Even k is abelian-legal on even-L1 rows; there is no C24-style
+C29 left defining word x. Donor D abelianizes to (0,−1), so any unimodular
+companion C_ab=(p,q) has p=±1 and the unique x-combination is (a,b)=(pq,p),
+hence |b|=1. On the eleven listed rows, L1=|a|+1 lies in {2,…,7} (not a
+claim about every conceivable unimodular companion). Exact-L1 products are
+|a| conjugates of D^{sign(a)} and one conjugate of C^{sign(b)}. Even k is
+abelian-legal on even-L1 rows among those eleven; there is no C24-style
 even-k block.
 
 Prefix/one-letter conjugators, unique conjugates per signed type. Counts
@@ -50,8 +52,29 @@ POSITIVE_X = ("x", "Yxy", "yxY")
 CARTESIAN_MAX_TUPLES = c26.CARTESIAN_MAX_TUPLES
 
 
+def x_combo_from_c_exp(p: int, q: int) -> tuple[int, int, int]:
+    """Unique x combo against D_ab=(0,-1) and unimodular C_ab=(p,q)."""
+    if abs(p) != 1:
+        raise ValueError("companion x-exponent must be ±1 for unimodularity with D")
+    a, b = p * q, p
+    return a, b, abs(a) + abs(b)
+
+
+def one_letter_conjugates_of_x() -> dict:
+    words = []
+    for g in ("", "x", "X", "y", "Y"):
+        words.append(c22.conjugate("x", g))
+    reduced = sorted({word for word in words if word})
+    return {
+        "words": reduced,
+        "equals_positive_class": set(reduced) == set(POSITIVE_X),
+        "note": "freely reduced conjugates of x by words of length at most one",
+    }
+
+
 def x_class_exponents() -> dict:
     rows = {word: list(c22.exp_on(word, "xy")) for word in POSITIVE_X}
+    one = one_letter_conjugates_of_x()
     return {
         "positive": rows,
         "all_exp_one_zero": all(tuple(exp) == (1, 0) for exp in rows.values()),
@@ -60,6 +83,9 @@ def x_class_exponents() -> dict:
             c22.exp_on(word, "xy") == (-1, 0) for word in ("X", "YXy", "yXY")
         ),
         "Yxy_is_C22_xi": POSITIVE_X[1] == "Yxy",
+        "one_letter_conjugates": one,
+        "one_letter_class_complete": one["equals_positive_class"],
+        "equality_is_free_reduce_literal": True,
     }
 
 
@@ -126,7 +152,7 @@ def notes_from_summary(summary: dict) -> list[str]:
     observed = summary.get("cartesian_observed_min_len")
     return [
         "Exact L1 for x on the YXXyxYx family is |a| copies of D^{sign(a)} and one C^{sign(b)}.",
-        "Every row has |b|=1. L1 ranges from 2 to 7. No even-k abelian block.",
+        "Every listed row has |b|=1 from unimodularity. L1 in {2,…,7} is for those eleven rows, not every conceivable companion.",
         (
             f"All-row typed size {summary['n_typed_tuples_total']} is "
             "k|A|^{k-1}|B| summed over eleven rows, not |F|^k."
@@ -140,6 +166,7 @@ def notes_from_summary(summary: dict) -> list[str]:
             "and do not enumerate that many products."
         ),
         "A hit would be a normal-closure candidate, not a C12 primitive. Five companions are C7 Aut-minimal P floors; that is not a solve.",
+        "Equality is free-reduce literal match against {x, Yxy, yxY}; longer conjugates of x were not tested.",
         "JSON is same-code deterministic replay plus C26 planted controls. No U124 row is solved.",
     ]
 
@@ -171,6 +198,10 @@ def summarize(scans: list[dict], controls: dict, xclass: dict) -> dict:
         "n_p_floor_companions": sum(1 for row in scans if row["is_p_floor_companion"]),
         "x_class_all_exp_one_zero": xclass["all_exp_one_zero"],
         "inverse_class_ok": xclass["inverse_all_exp_minus_one_zero"],
+        "one_letter_class_complete": xclass["one_letter_class_complete"],
+        "abs_b_1_from_unimodularity": True,
+        "l1_range_is_eleven_listed_rows": True,
+        "equality_is_free_reduce_literal": True,
         "controls_ok": controls["ok"],
         "counts_are_typed_cartesian": True,
         "mitm_counts_are_search_space_not_enumerated_products": True,

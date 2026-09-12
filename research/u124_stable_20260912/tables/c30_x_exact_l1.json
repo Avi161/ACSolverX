@@ -44,6 +44,10 @@
     "n_p_floor_companions": 5,
     "x_class_all_exp_one_zero": true,
     "inverse_class_ok": true,
+    "one_letter_class_complete": true,
+    "abs_b_1_from_unimodularity": true,
+    "l1_range_is_eleven_listed_rows": true,
+    "equality_is_free_reduce_literal": true,
     "controls_ok": true,
     "counts_are_typed_cartesian": true,
     "mitm_counts_are_search_space_not_enumerated_products": true,
@@ -73,7 +77,18 @@
       "yXY"
     ],
     "inverse_all_exp_minus_one_zero": true,
-    "Yxy_is_C22_xi": true
+    "Yxy_is_C22_xi": true,
+    "one_letter_conjugates": {
+      "words": [
+        "Yxy",
+        "x",
+        "yxY"
+      ],
+      "equals_positive_class": true,
+      "note": "freely reduced conjugates of x by words of length at most one"
+    },
+    "one_letter_class_complete": true,
+    "equality_is_free_reduce_literal": true
   },
   "scans": [
     {
@@ -463,11 +478,12 @@
   },
   "notes": [
     "Exact L1 for x on the YXXyxYx family is |a| copies of D^{sign(a)} and one C^{sign(b)}.",
-    "Every row has |b|=1. L1 ranges from 2 to 7. No even-k abelian block.",
+    "Every listed row has |b|=1 from unimodularity. L1 in {2,\u2026,7} is for those eleven rows, not every conceivable companion.",
     "All-row typed size 43999487350 is k|A|^{k-1}|B| summed over eleven rows, not |F|^k.",
     "Cartesian cells enumerate 107212 products (observed min lengths [15, 15, 11], all \u226511).",
     "MITM cells have typed search-space size 43999380138 and do not enumerate that many products.",
     "A hit would be a normal-closure candidate, not a C12 primitive. Five companions are C7 Aut-minimal P floors; that is not a solve.",
+    "Equality is free-reduce literal match against {x, Yxy, yxY}; longer conjugates of x were not tested.",
     "JSON is same-code deterministic replay plus C26 planted controls. No U124 row is solved."
   ]
 }
