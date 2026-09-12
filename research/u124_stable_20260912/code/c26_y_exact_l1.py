@@ -87,23 +87,6 @@ def fold_set(factors: tuple[str, ...], arity: int) -> set[str]:
     return out
 
 
-def fold_set_ext(factors: tuple[str, ...], arity: int) -> set[str]:
-    """Unique reduced n-folds, using 2+2 for arity 4."""
-    if arity <= MATERIALIZE_MAX_ARITY:
-        return fold_set(factors, arity)
-    if arity != 4:
-        raise ValueError(f"fold_set_ext arity {arity}")
-    key = (factors, 4)
-    cached = _FOLD_CACHE.get(key)
-    if cached is not None:
-        return cached
-    lefts = fold_set(factors, 2)
-    rights = fold_set(factors, 2)
-    out = {free_reduce(a + b) for a in lefts for b in rights}
-    _FOLD_CACHE[key] = out
-    return out
-
-
 def is_fold(factors: tuple[str, ...], arity: int, word: str) -> bool:
     """Whether word is a freely reduced product of `arity` factors."""
     if arity < 0:
@@ -111,9 +94,14 @@ def is_fold(factors: tuple[str, ...], arity: int, word: str) -> bool:
     if arity <= MATERIALIZE_MAX_ARITY:
         return word in fold_set(factors, arity)
     if arity == 4:
-        lefts = fold_set(factors, 2)
-        rights = fold_set(factors, 2)
-        return any(free_reduce(inv(left) + word) in rights for left in lefts)
+        key = (factors, 4)
+        cached = _FOLD_CACHE.get(key)
+        if cached is None:
+            lefts = fold_set(factors, 2)
+            rights = fold_set(factors, 2)
+            cached = {free_reduce(a + b) for a in lefts for b in rights}
+            _FOLD_CACHE[key] = cached
+        return word in cached
     if arity == 5:
         lefts = fold_set(factors, 2)
         rights = fold_set(factors, 3)
@@ -163,13 +151,46 @@ def cartesian_m_plus_one(
     }
 
 
+def contains_mid(
+    factors: tuple[str, ...],
+    left_arity: int,
+    mid: str,
+    right_arity: int,
+    tgt: str,
+) -> bool:
+    """Whether tgt freely equals A^{left} * mid * A^{right}."""
+    if left_arity == 0 and right_arity == 0:
+        return tgt == free_reduce(mid)
+    if left_arity == 0:
+        return is_fold(factors, right_arity, free_reduce(inv(mid) + tgt))
+    if right_arity == 0:
+        return is_fold(factors, left_arity, free_reduce(tgt + inv(mid)))
+    if left_arity <= 2 and left_arity <= right_arity:
+        for left in fold_set(factors, left_arity):
+            need = free_reduce(inv(left + mid) + tgt)
+            if is_fold(factors, right_arity, need):
+                return True
+        return False
+    if right_arity <= 2:
+        for right in fold_set(factors, right_arity):
+            need = free_reduce(tgt + inv(mid + right))
+            if is_fold(factors, left_arity, need):
+                return True
+        return False
+    for left2 in fold_set(factors, 2):
+        need = free_reduce(inv(left2) + tgt)
+        if contains_mid(factors, left_arity - 2, mid, right_arity, need):
+            return True
+    return False
+
+
 def mitm_m_plus_one(
     a_factors: list[str],
     b_factors: list[str],
     m: int,
     targets: set[str],
 ) -> dict:
-    """Existence MITM: A^L * B * A^R against targets, unique reduced folds."""
+    """Existence MITM: A^L * B * A^R against targets, no large fold iteration."""
     a_t = tuple(a_factors)
     k = m + 1
     hit = None
@@ -177,59 +198,16 @@ def mitm_m_plus_one(
     for pos in range(k):
         left_arity = pos
         right_arity = m - pos
-        if left_arity <= 4 and right_arity <= 4:
-            lefts = fold_set_ext(a_t, left_arity)
-            rights = fold_set_ext(a_t, right_arity)
-            for left in lefts:
-                for b_word in b_factors:
-                    lb = free_reduce(left + b_word)
-                    for tgt in targets:
-                        need = free_reduce(inv(lb) + tgt)
-                        if need in rights:
-                            n_hits += 1
-                            if hit is None:
-                                hit = {
-                                    "target": tgt,
-                                    "pos": pos,
-                                    "left": left,
-                                    "b": b_word,
-                                    "need": need,
-                                }
-            continue
-        if right_arity > MATERIALIZE_MAX_ARITY:
-            lefts = fold_set_ext(a_t, left_arity)
-            for left in lefts:
-                for b_word in b_factors:
-                    lb = free_reduce(left + b_word)
-                    for tgt in targets:
-                        need = free_reduce(inv(lb) + tgt)
-                        if is_fold(a_t, right_arity, need):
-                            n_hits += 1
-                            if hit is None:
-                                hit = {
-                                    "target": tgt,
-                                    "pos": pos,
-                                    "left": left,
-                                    "b": b_word,
-                                    "need": need,
-                                }
-            continue
-        rights = fold_set_ext(a_t, right_arity)
-        for right in rights:
-            for b_word in b_factors:
-                br = free_reduce(b_word + right)
-                for tgt in targets:
-                    need = free_reduce(tgt + inv(br))
-                    if is_fold(a_t, left_arity, need):
-                        n_hits += 1
-                        if hit is None:
-                            hit = {
-                                "target": tgt,
-                                "pos": pos,
-                                "right": right,
-                                "b": b_word,
-                                "need": need,
-                            }
+        for b_word in b_factors:
+            for tgt in targets:
+                if contains_mid(a_t, left_arity, b_word, right_arity, tgt):
+                    n_hits += 1
+                    if hit is None:
+                        hit = {
+                            "target": tgt,
+                            "pos": pos,
+                            "b": b_word,
+                        }
     return {
         "method": "typed_mitm_unique_folds",
         "n_products": None,
