@@ -155,7 +155,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     (`1,798,887` products, observed min length 9). Plan advisor APPROVE.
     Advisor APPROVE. C39: listed `YXXyXYxxx` rows (`y ≡ D^{-1}`, `L1=1`);
     k=3 nine-config misses (`1,563,690` products, observed min length 9).
-    Plan advisor APPROVE. Still 0/124.
+    Plan advisor APPROVE. Advisor APPROVE. Still 0/124.
 
 ## File ownership
 
