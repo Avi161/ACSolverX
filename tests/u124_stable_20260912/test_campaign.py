@@ -450,10 +450,15 @@ def test_c26_exact_l1_identities_and_n3():
     controls = c26.planted_controls()
     assert controls["ok"]
     assert controls["independent_checker"] is False
+    assert controls["mitm5_hit_found"]
+    assert controls["mitm6_end_hit_found"]
+    assert controls["mitm6_mid_hit_found"]
+    assert controls["cancel_empty_fold_hit_found"]
+    assert controls["cartesian_mitm_agree_tiny_m2"]
     rec = c26.scan_exact_l1(3, -1)
     assert not rec["found"]
     assert rec["method"] == "typed_cartesian"
-    assert rec["min_len"] >= 7
+    assert rec["min_len"] == 11
     assert rec["L1"] == 2
     assert rec["combo_a"] == 1
     assert rec["combo_b"] == -1
@@ -475,5 +480,16 @@ def test_c26_exact_l1_identities_and_n3():
         assert [row["n"] for row in summary["skipped_l1_ge_8"]] == [5, 6, 7]
         assert summary["n_cartesian_cells"] == 2
         assert summary["n_mitm_cells"] == 6
-        assert summary["cartesian_all_min_len_ge_7"]
+        assert summary["cartesian_min_lens"] == [11, 13]
+        assert summary["cartesian_observed_min_len"] == 11
+        assert summary["cartesian_all_min_len_ge_11"]
+        assert summary["n_cartesian_products_enumerated"] == 38_940
+        assert summary["n_typed_tuples_cartesian"] == 38_940
+        assert summary["n_typed_tuples_mitm"] == 33_815_591_648
         assert summary["n_typed_tuples_total"] == 33_815_630_588
+        assert summary["mitm_counts_are_search_space_not_enumerated_products"]
+        assert artifact["controls"]["mitm5_hit_found"]
+        assert artifact["controls"]["mitm6_mid_hit_found"]
+        assert artifact["controls"]["cancel_empty_fold_hit_found"]
+        assert artifact["controls"]["cartesian_mitm_agree_tiny_m2"]
+        assert artifact["controls"]["independent_checker"] is False

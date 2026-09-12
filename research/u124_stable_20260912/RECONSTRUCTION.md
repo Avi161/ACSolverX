@@ -210,11 +210,13 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   `R^{\mathrm{sign}(a)}` and one `S^{-1}`. Prefix/one-letter, per-type
   unique conjugates, typed Cartesian counts (not `|F|^k`).
 - Window `n=2..7`, `2≤L1≤7` (eight cells). Two Cartesian cells
-  (38,940 products, min length 7); six existence-MITM cells. No hit
-  on `{y, Xyx, xyX}`. Typed search-space cardinality is not a product
-  enumeration.
+  enumerate 38,940 products (observed minima 11 and 13). Six
+  existence-MITM cells have typed search-space size 33,815,591,648
+  and do not enumerate that many products. All-cell typed total
+  33,815,630,588. No hit on `{y, Xyx, xyX}`.
 - A hit would have been a normal-closure candidate, not a C12 path.
-  `L1=1` remains C25.2; `L1≥8` is open. Still **0/124**.
+  `L1=1` remains C25.2; `L1≥8` is open. Advisor REVISE applied
+  (`ingest/advisor_wave11.md`). Still **0/124**.
   No certificate JSONL rows.
 
 

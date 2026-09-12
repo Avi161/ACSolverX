@@ -66,7 +66,7 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C23: `.../code/c23_three_factor.py`.
    C24: `.../code/c24_even_k.py`.
    C25: `.../code/c25_alt_words.py` (full census) or `--annotate-existing`.
-   C26: `.../code/c26_y_exact_l1.py`.
+   C26: `.../code/c26_y_exact_l1.py` (full census) or `--annotate-existing`.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -93,8 +93,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     and 2,884,950 products miss the positive one-letter class of `y`.
     A hit would be a normal-closure candidate, not a C12/C22.6 path.
     C26: exact-L1 typed products for `y` on `Q'` in the `2≤L1≤7`
-    window: two Cartesian cells miss (min length 7); six MITM cells
-    miss. Still 0/124.
+    window: two Cartesian cells miss (observed minima 11 and 13);
+    six MITM cells miss. Still 0/124.
 
 ## File ownership
 

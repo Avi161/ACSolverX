@@ -263,22 +263,68 @@ def scan_exact_l1(n: int, delta: int, targets: set[str] | None = None) -> dict:
 
 
 def planted_controls() -> dict:
-    """Same-code positive/negative control, not the Q' census."""
+    """Same-code positive/negative controls, not the Q' census.
+
+    Branches covered: Cartesian k=2; MITM arity 4 (cached 2+2); arity 5
+    (2+3); arity 6 end-slot (3+3); recursive mid-slot L=3,R=3; a
+    cancellation-heavy empty 5-fold; Cartesian/MITM agreement on a tiny
+    pool. Not a second implementation.
+    """
     a_factors = ["x", "xx"]
     b_factors = ["y", "Y"]
     hit = cartesian_m_plus_one(a_factors, b_factors, 1, {"xy"})
     miss = cartesian_m_plus_one(a_factors, b_factors, 1, {"u"})
-    mitm_hit = mitm_m_plus_one(["x"], ["y"], 4, {"xxxxy"})
-    mitm_miss = mitm_m_plus_one(["x"], ["y"], 4, {"u"})
+    mitm4_hit = mitm_m_plus_one(["x"], ["y"], 4, {"xxxxy"})
+    mitm4_miss = mitm_m_plus_one(["x"], ["y"], 4, {"u"})
+    mitm5_hit = mitm_m_plus_one(["x"], ["y"], 5, {"xxxxxy"})
+    mitm5_miss = mitm_m_plus_one(["x"], ["y"], 5, {"u"})
+    mitm6_end = mitm_m_plus_one(["x"], ["y"], 6, {"xxxxxxy"})
+    mitm6_mid = mitm_m_plus_one(["x"], ["y"], 6, {"xxxyxxx"})
+    mitm6_miss = mitm_m_plus_one(["x"], ["y"], 6, {"u"})
+    cancel_hit = mitm_m_plus_one(["Xx"], ["y"], 5, {"y"})
+    cancel_miss = mitm_m_plus_one(["Xx"], ["y"], 5, {"u"})
+    tiny_a, tiny_b = ["x", "xx"], ["y"]
+    tiny_targets = {"xxy", "xyx", "yxx"}
+    cart_tiny = cartesian_m_plus_one(tiny_a, tiny_b, 2, tiny_targets)
+    mitm_tiny = mitm_m_plus_one(tiny_a, tiny_b, 2, tiny_targets)
+    agree = cart_tiny["found"] is True and mitm_tiny["found"] is True
+    ok = (
+        hit["found"]
+        and not miss["found"]
+        and mitm4_hit["found"]
+        and not mitm4_miss["found"]
+        and mitm5_hit["found"]
+        and not mitm5_miss["found"]
+        and mitm6_end["found"]
+        and mitm6_mid["found"]
+        and not mitm6_miss["found"]
+        and cancel_hit["found"]
+        and not cancel_miss["found"]
+        and agree
+    )
     return {
         "cartesian_hit_found": hit["found"],
         "cartesian_miss_found": miss["found"],
-        "mitm_hit_found": mitm_hit["found"],
-        "mitm_miss_found": mitm_miss["found"],
-        "ok": hit["found"]
-        and not miss["found"]
-        and mitm_hit["found"]
-        and not mitm_miss["found"],
+        "mitm4_hit_found": mitm4_hit["found"],
+        "mitm4_miss_found": mitm4_miss["found"],
+        "mitm5_hit_found": mitm5_hit["found"],
+        "mitm5_miss_found": mitm5_miss["found"],
+        "mitm6_end_hit_found": mitm6_end["found"],
+        "mitm6_mid_hit_found": mitm6_mid["found"],
+        "mitm6_miss_found": mitm6_miss["found"],
+        "cancel_empty_fold_hit_found": cancel_hit["found"],
+        "cancel_empty_fold_miss_found": cancel_miss["found"],
+        "cartesian_mitm_agree_tiny_m2": agree,
+        "branches_exercised": [
+            "cartesian_k2",
+            "mitm_arity4_2plus2",
+            "mitm_arity5_2plus3",
+            "mitm_arity6_3plus3_end",
+            "mitm_recursive_L3_R3",
+            "mitm_cancel_empty_5fold",
+            "cartesian_vs_mitm_m2",
+        ],
+        "ok": ok,
         "independent_checker": False,
         "same_code_as_census": True,
     }
@@ -289,6 +335,62 @@ def inversion_closure() -> dict:
         "map": "(f1,...,fk) -> (fk^{-1}, ..., f1^{-1})",
         "enumerated_class": "(0,1); checks y, Xyx, xyX; Y-class follows",
         "negative_targets_hit_iff_positive_inverse_factors": True,
+    }
+
+
+def notes_from_summary(summary: dict) -> list[str]:
+    mins = summary.get("cartesian_min_lens") or []
+    observed = summary.get("cartesian_observed_min_len")
+    return [
+        "Exact L1 for y on Q' is |a| copies of R^{sign(a)} and one S^{-1}.",
+        (
+            f"All-cell typed size {summary['n_typed_tuples_total']} is "
+            "k|A|^{k-1}|B| summed over eight cells, not |F|^k."
+        ),
+        (
+            f"Cartesian cells enumerate {summary['n_cartesian_products_enumerated']} "
+            f"products (observed min lengths {mins}, all ≥{observed})."
+        ),
+        (
+            f"MITM cells have typed search-space size {summary['n_typed_tuples_mitm']} "
+            "and do not enumerate that many products."
+        ),
+        "A hit would be a normal-closure candidate, not a C12/C22.6 path.",
+        "Window is n=2..7 with 2≤L1≤7. L1=1 is C25.2; L1≥8 is open.",
+        "JSON is same-code deterministic replay plus branch-complete planted controls. No U124 row is solved.",
+    ]
+
+
+def summarize(scans: list[dict], controls: dict) -> dict:
+    cart = [row for row in scans if row["method"] == "typed_cartesian"]
+    mitm = [row for row in scans if row["method"] == "typed_mitm_unique_folds"]
+    cart_mins = [row["min_len"] for row in cart if row["min_len"] is not None]
+    skipped_l1_ge_8 = [
+        {"n": n, "delta": 1, "L1": c25.y_l1_closed(n, 1)}
+        for n in range(5, 8)
+    ]
+    return {
+        "n_cells": len(scans),
+        "window": [{"n": row["n"], "delta": row["delta"], "L1": row["L1"]} for row in scans],
+        "any_hit": any(row["found"] for row in scans),
+        "n_typed_tuples_total": sum(row["n_typed_tuples"] for row in scans),
+        "n_typed_tuples_cartesian": sum(row["n_typed_tuples"] for row in cart),
+        "n_typed_tuples_mitm": sum(row["n_typed_tuples"] for row in mitm),
+        "n_cartesian_products_enumerated": sum(row["n_products"] or 0 for row in cart),
+        "n_cartesian_cells": len(cart),
+        "n_mitm_cells": len(mitm),
+        "cartesian_min_lens": cart_mins,
+        "cartesian_observed_min_len": min(cart_mins) if cart_mins else None,
+        "cartesian_all_min_len_ge_11": all(m >= 11 for m in cart_mins),
+        "cartesian_all_min_len_ge_7": all(m >= 7 for m in cart_mins),
+        "controls_ok": controls["ok"],
+        "skipped_l1_1": {"n": 2, "delta": -1, "L1": 1, "reason": "C25.2 length block |S|=7"},
+        "skipped_l1_ge_8": skipped_l1_ge_8,
+        "counts_are_typed_cartesian": True,
+        "mitm_counts_are_search_space_not_enumerated_products": True,
+        "same_code_replay": True,
+        "independent_checker": False,
+        "solved_u124": 0,
     }
 
 
@@ -306,45 +408,13 @@ def main() -> dict:
             flush=True,
         )
     controls = planted_controls()
-    invc = inversion_closure()
-    skipped_l1_ge_8 = [
-        {"n": n, "delta": 1, "L1": c25.y_l1_closed(n, 1)}
-        for n in range(5, 8)
-    ]
-    l1_one = {"n": 2, "delta": -1, "L1": 1, "reason": "C25.2 length block |S|=7"}
-    summary = {
-        "n_cells": len(scans),
-        "window": [{"n": n, "delta": d, "L1": l1} for n, d, l1 in cells],
-        "any_hit": any(row["found"] for row in scans),
-        "n_typed_tuples_total": sum(row["n_typed_tuples"] for row in scans),
-        "n_cartesian_cells": sum(1 for row in scans if row["method"] == "typed_cartesian"),
-        "n_mitm_cells": sum(1 for row in scans if row["method"] == "typed_mitm_unique_folds"),
-        "cartesian_all_min_len_ge_7": all(
-            (row["min_len"] or 0) >= 7
-            for row in scans
-            if row["method"] == "typed_cartesian"
-        ),
-        "controls_ok": controls["ok"],
-        "skipped_l1_1": l1_one,
-        "skipped_l1_ge_8": skipped_l1_ge_8,
-        "counts_are_typed_cartesian": True,
-        "same_code_replay": True,
-        "independent_checker": False,
-        "solved_u124": 0,
-    }
+    summary = summarize(scans, controls)
     report = {
         "summary": summary,
         "scans": scans,
         "controls": controls,
-        "inversion_closure": invc,
-        "notes": [
-            "Exact L1 for y on Q' is |a| copies of R^{sign(a)} and one S^{-1}.",
-            "Counts are typed Cartesian sizes after per-type unique conjugates, not |F|^k.",
-            "MITM cells test existence via unique reduced folds; they do not list min_len.",
-            "A hit would be a normal-closure candidate, not a C12/C22.6 path.",
-            "Window is n=2..7 with 2≤L1≤7. L1=1 is C25.2; L1≥8 is open.",
-            "JSON is same-code deterministic replay. No U124 row is solved.",
-        ],
+        "inversion_closure": inversion_closure(),
+        "notes": notes_from_summary(summary),
     }
     path = OUT / "c26_y_exact_l1.json"
     path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -354,5 +424,26 @@ def main() -> dict:
     return report
 
 
+def annotate_existing() -> dict:
+    """Refresh summary, notes, and planted controls without re-running the window."""
+    path = OUT / "c26_y_exact_l1.json"
+    report = json.loads(path.read_text(encoding="utf-8"))
+    _FOLD_CACHE.clear()
+    controls = planted_controls()
+    summary = summarize(report["scans"], controls)
+    report["summary"] = summary
+    report["controls"] = controls
+    report["inversion_closure"] = inversion_closure()
+    report["notes"] = notes_from_summary(summary)
+    path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    print("c26 annotate-existing")
+    print(json.dumps(summary, indent=2))
+    print(f"wrote {path}")
+    return report
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--annotate-existing"]:
+        annotate_existing()
+    else:
+        main()

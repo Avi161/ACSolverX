@@ -1005,14 +1005,22 @@ in some order (`t_R=t_S=0`). For `n≥2` in this campaign's window,
 
 **C26.2 (prefix/one-letter census, `n=2..7`, `2≤L1≤7`).** Unique
 conjugates per signed type; counts are typed Cartesian sizes
-`k\,|A|^{k-1}|B|`, not `|F|^k`. Cells with at most 500,000 typed
-tuples are enumerated as products (two cells, 38,940 products, min
-length 7). Larger cells are an existence MITM on unique freely
-reduced folds of the same typed slots (six cells; typed search-space
-cardinality 33,815,591,648). Targets are the exponent-`(0,1)`
-one-letter class `{y, Xyx, xyX}`. The inverse class follows by
-reversing and inverting factors. No cell hits. Same-code planted
-Cartesian/MITM controls pass. `independent_checker=false`.
+`k\,|A|^{k-1}|B|`, not `|F|^k`. Distinguish three numbers:
+
+- All eight cells, typed search-space total: `33,815,630,588`.
+- Two Cartesian cells, actually enumerated products: `38,940`
+  (observed free-length minima 11 and 13; every enumerated word has
+  length at least 11).
+- Six MITM cells, typed search-space only (not enumerated products):
+  `33,815,591,648`. Existence MITM on unique freely reduced folds of
+  the same typed slots.
+
+Targets are the exponent-`(0,1)` one-letter class `{y, Xyx, xyX}`.
+The inverse class follows by reversing and inverting factors. No cell
+hits. Same-code planted controls cover Cartesian `k=2`, MITM arities
+4–6, the recursive `L=3,R=3` split, a cancellation-heavy empty
+5-fold, and Cartesian/MITM agreement on a tiny pool.
+`independent_checker=false`.
 
 Window: `(n,δ) = (3,-1),(4,-1),(5,-1),(6,-1),(7,-1),(2,+1),(3,+1),(4,+1)`.
 Excluded: `(2,-1)` (`L1=1`, C25.2 length block); `δ=+1` and `n≥5`
@@ -1029,6 +1037,7 @@ Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Materializing Lemma 11.
 **U124.** C16 Q' family. **Not a solve.**
 
 **Audit.** `code/c26_y_exact_l1.py`, `tables/c26_y_exact_l1.json`.
-Same-code replay plus planted Cartesian/MITM controls.
-`independent_checker=false`. Advisor ingest pending.
+Same-code replay plus branch-complete planted Cartesian/MITM
+controls. `independent_checker=false`. `ingest/advisor_wave11.md`
+**REVISE** applied.
 
